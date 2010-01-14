@@ -130,13 +130,14 @@
 		<ul>
 			<li><a id="settings_link" href="#">Конфигурация Сайта</a></li>
             <!-- <li><a id="main_page_link" href="">Главная Страница</a></li> -->
-			<li><a id="languages_link" href="">Языки</a></li>
+			<li><a id="languages_link" href="">Языки</a></li> 
 			<li><a class="returnFalse arrow-right" href="">Кеш</a>
 				<ul>
 					<li><a  href="javascript:delete_cache('all')">Очистить полностью</a></li>
 					<li><a  href="javascript:delete_cache('expried')">Очистить устаревшие</a></li>
 				</ul>
 			</li>
+            <li class="divider"><a href="#" onclick="ajax_div('page', base_url + 'admin/backup'); return false;">Резервное копирование</a></li>
 		</ul>
 	</li>
 
