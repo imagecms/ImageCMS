@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets>
+
+    <widget>
+        <title>Последние комментарии</title>
+        <description>Вывод последних комментариев.</description>
+        <method>recent_comments</method>
+    </widget>
+
+</widgets>

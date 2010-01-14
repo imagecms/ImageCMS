@@ -1,0 +1,108 @@
+@charset "utf-8";
+/* CSS Document */
+body{ margin:0px; padding:0px; font-family:Verdana,Tahoma,Arial; width:100%; background-image:url(../images/bg.png); background-repeat:repeat-x; font-size:13px}
+img {border:0}
+table{margin:0px; padding:0px}
+form{margin: 0px; padding: 0px}
+ul{margin: 0px; padding: 0px}
+a{color:#0066cc; text-decoration:underline; font-size:12px}
+a:hover{color:#cf0101;}
+h1{margin:0px;font-size:18px;color:#626262;}
+h2{ color:#0066cc; font-size:18px; margin:0px; padding:0px;}
+h3{margin:0px;}
+h4{margin:0px;}
+
+.all{width:1000px; margin:auto; text-align:left; font-size:12px}
+
+.left{float:left; width:665px}
+	.left a{color:#0066cc; text-decoration:underline; font-size:12px}
+	.left a:hover{color:#cf0101;}
+	.top{float:left; margin-top:37px}
+		.logo{margin:0 0 0 44px; float:left}
+		#search{padding-left:148px;padding-top:10px;}
+			#search input[type=text]{border: 1px solid #d9e6ed; float:left; width:200px;}
+			#search input[type=image]{padding-left:5px; padding-top:2px;}
+
+	.topmenu{ float:left; margin-top:20px; margin-left:39px}
+		.topmenu ul{padding: 0; margin: 0; list-style: none;}
+			.topmenu .active {  }
+			.topmenu .active a { text-decoration:none; }
+			.topmenu li{display:inline; float:left; padding-left:5px;padding:5px;}
+            .topmenu a { font-size:18px;text-decoration:none;color:#444444;  }
+
+			.menuact{background-image:url(../images/menuactmid.jpg); background-repeat:repeat-x; margin-top:5px;}
+			.menuactleft{background-image:url(../images/menuactleft.jpg); background-position:left; background-repeat:no-repeat; padding-left:15px;}
+			.menuactright{background-image:url(../images/menuactright.jpg); background-position:right; background-repeat:no-repeat; padding-right:15px;} 
+			.menuacttext{padding-top:6px; padding-bottom:6px; margin-top:5px}
+			.menuinact{background-image:url(../images/menuinact.jpg); background-repeat:repeat-x; margin-top:5px; padding:5px 10px 6px 10px}
+				.menuinact a{color:#FFF; text-decoration:none}
+				.menuinact a:hover{color:#FFF; text-decoration:none}
+	.post{float:left; width:600px; margin-top:20px; margin-left:44px; font-size:13px; line-height:18px }
+		.post h2{font-size:24px; color:#000; font-weight:100; margin:0px 0px; line-height:26px }
+		.post h2 a{font-size:24px; color:#000; font-weight:100}
+		.post h2 a:hover{font-size:24px; color:#cf0101; font-weight:100}
+	.postbot {width:603px; height:41px; font-size:11px;color:#BBBBBB;}
+		.date{float:left; padding:10px 0px 0px 0px}
+		.date a{font-size:11px;}
+        .commentsnum a{font-size:11px;}
+		.commentsnum{float:right; padding:10px 20px 0px 20px; background-image:url(../images/commentico.png); background-position: bottom left; background-repeat:no-repeat}
+	.pagination{float:left; text-align:center; margin-top:20px; padding-left:250px}
+		.pagination img{float:left}
+		.pagination span{float:left; font-size:14px; padding:0px 5px 0px 5px; background-color:#d70303; color:#FFF; margin:0px 5px 0px 5px;}
+		.pagination a{float:left; font-size:14px; padding:0px 5px 0px 5px}
+
+.right{float:right; width:283px;}
+	.righttopbg{float:left; width:283px; height:21px}
+	.rightbotbg{float:left; width:283px; height:21px}
+	.rightmidbg{float:left; width:283px;}
+	
+	.category{float:left; width:280px; margin-top:150px; color:#5B5B5B;}
+		.category h3{color:#7a7a7a; font-size:18px; margin-left:30px; font-weight:100;}
+		.categorylist{margin-left:5px}
+			.categorylist ul{margin-top:10px}
+			.categorylist li{list-style:none; background-image:url(../images/categoryico.jpg); background-repeat:no-repeat;padding:3px 3px 3px 25px}
+			.categorylist img{vertical-align: middle}
+			.categorylist a{font-size:13px; color:#218EAE}
+			.categorylist a:hover{ text-decoration:none;}
+
+    .meta {float:left: width:280px; color:#5B5B5B; padding-top:5px;margin-left:30px;font-size:11px;}
+    .meta a{color:#5B5B5B;text-decoration:none;font-size:11px;}
+    .meta .logout {text-decoration:underline;}
+
+	.tags{float:left; width:280px; margin-top:25px}
+	
+	.comments{float:left; width:280px; margin-top:20px; color:#5B5B5B; }
+		.comments h3{color:#7a7a7a; font-size:18px; margin-left:30px; font-weight:100;}
+		.comments a{color:#218EAE; font-size:12px}
+		.comments a:hover{ text-decoration:none;}
+		.commentslist{margin-left:30px}
+		.commentslist ul{margin-top:20px}
+		.commentslist li{list-style:none; line-height:18px; margin-top:5px; padding-right:10px; clear:both;}
+		.commentslist img{vertical-align: middle; float:left; padding-right:5px; padding-bottom:15px}
+
+div.form_text{ color: #384654; float: left; padding-top: 8px; padding-right: 1em; width: 150px; margin-bottom: 0.5em; text-align:right; font-size: 13px; }
+div.form_input { color: #384654; float: left; padding-top: 8px; margin-bottom: 0.5em; }
+div.form_overflow { clear: left; padding-top: 1px; width:auto; overflow: hidden; }
+div.hr{height:1px; background-color:#CBCBCB;margin-top:5px;}
+
+.bottom{float:left; width:100%; height:101px; margin-top:50px}
+	.bottom a{color:#0066cc; text-decoration:underline; font-size:12px}
+	.bottom a:hover{color:#cf0101;}
+	.botlogo{float:left; margin-left:45px; margin-top:13px}
+	.copy{float:left; margin-left:20px; margin-top:30px}
+	.botmenu{float:right; margin-right:46px; margin-top:30px}
+		.botmenu ul{}
+			.botmenu li{list-style:none; float:left; padding-left:20px; font-size:11px;color:#929292; }
+			.botmenu img{vertical-align:text-bottom}
+
+form input[type=text] {
+    padding:3px;
+    width:225px;
+    border: 1px solid #D8D8D8; 
+}
+
+form textarea {
+    padding: 3px;
+    width:275px;
+    border: 1px solid #D8D8D8; 
+}

@@ -1,0 +1,213 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Image CMS
+ * Admin Class
+ * 
+ * TODO:
+ * check local ip; 
+ *
+ */
+
+define('IMAGECMS_NUMBER', '1.0.0');
+define('IMAGECMS_VERSION', 'A35TW503B1'); 
+define('IMAGECMS_PUBLIC_ID', 'djhsdjhskfsdfjhk782340'); 
+
+class Admin extends Controller {
+
+    private $request_url = 'http://requests.imagecms.net/index.php/requests/req';
+
+	public function __construct()
+	{
+		parent::Controller();
+
+		$this->load->library('DX_Auth');
+
+        if( $this->dx_auth->is_admin() == FALSE)
+		{
+			redirect('admin/login', '');
+		}
+
+		$this->load->library('lib_admin');
+		$this->load->library('lib_category');
+		$this->lib_admin->init_settings(); 
+        
+	}
+
+	public function index()
+	{
+        $this->check(); 
+
+		$this->load->module('admin/components');
+		$components = $this->components->find_components(TRUE);
+
+		$this->template->assign('components', $components);
+		$this->template->assign('cats_unsorted',$this->lib_category->unsorted());
+		$this->template->assign('tree',$this->lib_category->build());
+
+        // load menus
+        $this->load->module('menu');
+        $this->template->assign('menus', $this->menu->get_all_menus());
+
+		///TinyMCE
+		$this->load->library('lib_editor');
+		$this->template->assign('editor',$this->lib_editor->init());
+		//////
+
+        $this->template->assign('username', $this->dx_auth->get_username());
+
+		$this->template->show('desktop', FALSE);
+	}
+    
+    private function check()
+    {
+        $s_ip = substr($_SERVER['SERVER_ADDR'], 0, strrpos($_SERVER['SERVER_ADDR'], '.'));
+
+        switch ($s_ip)
+        {
+            case '127.0.0':
+            case '10.0.0':
+            case '172.16.0':
+            case '192.168.0':
+               return TRUE;
+            break;
+        }
+
+        $ud = $this->_ud();
+
+        if ($ud['LK'] != '')
+        {
+            $l_result = $this->_curl_post($this->request_url, $ud);
+            $lr2 = unserialize($l_result['result']);
+            
+            if ($lr2['lk_result'] === TRUE)
+            {
+                return TRUE;
+            }
+        }
+
+        if (count($_POST) > 0)
+        {
+            $result = $this->_curl_post($this->request_url, $ud);
+        }
+
+        $r2 = unserialize($result['result']);
+
+        if ($r2['error'] == FALSE AND $r2['action'] == 'INSERT_DB_KEY')
+        {
+            $this->db->where('s_name', 'main');
+            $this->db->update('settings', array('lk' => $r2['text']));
+
+            $this->template->assign('lk_ok', 'Ваш домен активирован. <a href="'.site_url('admin').'">Панель управления.</a>');
+        }
+
+        if ($r2['error'] == FALSE AND $r2['action'] == 'INSERT_DB_KEY_PRO')
+        {
+            if ($r2['text'] != '')
+            {
+                $this->db->where('s_name', 'main');
+                $this->db->update('settings', array('lk' => $r2['text']));
+            }
+
+            $this->template->assign('lk_ok', 'Для получения подробной информации о активации системы посетите страницу <a href="http://www.imagecms.net/my_sites/">оплаты</a>.');
+        }
+
+        $this->template->add_array(array(
+            'show_p' => TRUE,
+            'result' => $r2,
+        ));
+
+        $this->template->show('login', FALSE);
+        exit;
+    }
+
+    private function _ud()
+    {
+        $s = $this->cms_base->get_settings();
+
+        $data = array(
+                'USER_LOGIN'         => $this->input->post('login'),
+                'USER_PASSWORD'      => $this->input->post('password'),
+                'HOST'               => $_SERVER['HTTP_HOST'],               
+                'SERVER_IP'          => $_SERVER['SERVER_ADDR'],
+                'USER_IP'            => $this->input->ip_address(),
+                'IMAGECMS_NUMBER'    => IMAGECMS_NUMBER,
+                'IMAGECMS_VERSION'   => IMAGECMS_VERSION,
+                'IMAGECMS_PUBLIC_ID' => IMAGECMS_PUBLIC_ID,
+                'LK'                 => $s['lk'],
+            );
+        
+        return $data;
+    }
+
+    private function _curl_post($url='', $data=array()) 
+    {
+        $options = array();
+        $options[CURLOPT_HEADER]         = FALSE;
+        $options[CURLOPT_RETURNTRANSFER] = TRUE;
+        $options[CURLOPT_POST]           = TRUE;
+        $options[CURLOPT_POSTFIELDS]     = $data;
+
+        $handler = curl_init($url);
+
+        curl_setopt_array($handler, $options);
+        $resp = curl_exec($handler);
+
+        $result['code']   = curl_getinfo($handler, CURLINFO_HTTP_CODE);
+        $result['result'] = $resp;
+        $result['error']  = curl_errno($handler);
+
+        curl_close($handler);
+        return $result; 
+    }
+
+	/**
+	 * Delete cached files
+	 *
+	 * @param string
+	 * @access public
+	 * @return bool
+	 */
+	public function delete_cache()
+	{
+		$param = $this->input->post('param');
+
+		switch ($param)
+		{
+			case 'all':
+				$files = $this->cache->delete_all();
+				if ($files)
+					showMessage ('Удалено файлов: '.$files);
+				else
+					showMessage ('Кеш очищен.');
+			break;
+
+			case 'expried':
+				$files = $this->cache->Clean();
+				if ($files)
+					showMessage ('Удалено устаревших файлов: '.$files);
+				else
+				   showMessage ('Кеш очищен.');  	
+			break;
+		}
+	}
+
+    public function sidebar_cats()
+    {
+		$this->template->assign('tree', $this->lib_category->build());
+        $this->template->show('cats_sidebar', FALSE);
+    }
+
+	/**
+	 *Clear session data;
+	 *
+	 *@access public
+	 */
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		redirect('/admin/login','refresh');
+	}
+
+}
+
+/* End of admin.php */

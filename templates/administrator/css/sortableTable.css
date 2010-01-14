@@ -1,0 +1,103 @@
+#sortable table {
+	border: 1px solid #ccc;
+	width: 100%;
+}
+
+#sortable th {
+	background-color: #eee;
+	background: #6f9fbd url('../images/form_button.png') repeat-x;
+	padding: 4px 4px 4px 14px;
+	font-weight: none;
+	font-size:	11px;
+	color:#fff;
+	height:28px;
+}
+
+.items_table th {
+	background-color: #eee;
+	background: #6f9fbd url('../images/form_button.png') repeat-x;
+	padding: 4px 4px 4px 14px;
+	font-weight: none;
+	font-size:	11px;
+	color: #fff;
+	height:32px;
+}
+.items_table td {
+	font-weight: none;
+	font-size:	11px;
+}
+
+.row_even:hover{ background-color: #354158; color:#fff; cursor:pointer;}
+.row_odd:hover{ background-color: #354158; color:#fff; cursor:pointer; }
+
+.row_even {
+	background-color:#F8F8F8;
+}
+
+.row_odd {
+	background-color:#F0F0F0;
+}
+
+#sortable tr {
+	background-color: #eee;
+	padding: 4px;
+}
+
+#sortable tr.altRow {
+	background-color: #fff;
+}
+
+#sortable td {
+	padding: 0 2px;
+}
+
+#sortable .rightAlign {
+	text-align: right;
+}
+
+#sortable .sortedASC {
+	background: url(../images/sortable/icon-table-sort-asc.png) no-repeat 2px 4px #464646;
+}
+
+#sortable .sortedDESC {
+	background: url(../images/sortable/icon-table-sort-desc.png) no-repeat 2px 10px #464646;
+}
+
+#sortable .tableHeaderOver {
+	cursor: pointer;
+	color: #fff;
+}
+
+
+/*tr.selected {
+	background-color: gold;
+	color: #fff;
+}*/
+
+#sortable tr.over {
+	background-color: #354158;
+	color: #fff;
+	cursor: pointer;
+}
+
+#sortable tr.hide {
+	display: none;
+}
+
+/***************************/
+.tableFilter {
+	border: 1px solid #ccc;
+	padding: 2px;
+	margin: 5px 0 10px 0;
+}
+
+.tableFilter input {
+	border: 1px solid #ccc;
+}
+
+.tableFilter select {
+	border: 1px solid #ccc;
+}
+
+
+/*************************************************************/
