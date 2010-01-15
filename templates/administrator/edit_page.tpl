@@ -31,12 +31,18 @@
 	<h4>Содержание</h4>
 	<div id="text_id2" style="padding-left:10px;">
 
+        { $this->template_vars['page_editing'] = TRUE }
+
         <div style="padding:3px;"></div>
-		Категория:
-            <select name="category">
-		    <option value="0">Нет</option>
-            { $this->view("cats_select.tpl", $this->template_vars ); } 
-            </select>
+        <div id="fast_category_list" style="float:left;">
+            Категория: <select name="category" ONCHANGE="change_comments_status();" id="category_selectbox">
+                <option value="0" selected="selected">Нет</option>
+                   { $this->view("cats_select.tpl", $this->template_vars ); }
+                </select> 
+        </div>
+
+        <img  src="{$THEME}/images/plus2.png" style="padding-left:5px;padding-top:2px;cursor:pointer;float:left;" onclick="show_fast_add_cat();" title="Создать категорию" />
+
 		<div class="form_overflow" style="padding:5px;"></div>
 
 		Заголовок:
@@ -142,7 +148,7 @@
 
 		<div class="form_text"></div>
 		<div class="form_input">
-			<input name="comments_status"  value="1" {if $comments_status == 1} checked="checked" {/if} type="checkbox" /> Разрешить комментирование
+			<label><input name="comments_status"  value="1" {if $comments_status == 1} checked="checked" {/if} type="checkbox" /> Разрешить комментирование</label>
 		</div>
 		<div class="form_overflow"></div>
 
