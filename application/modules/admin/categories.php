@@ -149,7 +149,6 @@ class Categories extends Controller {
                 if ($parent != 'NULL')
                 {
                     $full_path = $parent['path_url'].$data['url'].'/';
-                    //var_dump( $this->lib_category->get_category_by('path_url', $full_path) );
                 }
                 else
                 {
@@ -195,6 +194,101 @@ class Categories extends Controller {
     {
         return $this->lib_category->get_category_by('path_url', $str);
     }
+
+    function fast_add($action = '')
+    {
+        $this->template->add_array(array(
+            'tree' => $this->lib_category->build(), 
+        ));
+
+        if ($action == '')
+        {
+            $this->template->show('fast_cat_add', FALSE);
+        }
+        
+        if ($action == 'create')
+        {
+            $this->form_validation->set_rules('name', 'Название', 'trim|required|min_length[1]|max_length[160]');
+            $this->form_validation->set_rules('parent_id', 'Родитель', 'trim|required|integer|max_length[160]');
+        
+            if ($this->form_validation->run() == FALSE)
+            {
+                showMessage (validation_errors());
+            }
+            else
+            {
+                // Create category URL
+                if ($this->input->post('url') == FALSE)
+                {
+                    $this->load->helper('translit');
+                    $url = translit_url($this->input->post('name'));
+                }else{
+                    $url = $this->input->post('url');
+                }
+
+                $fetch_pages = '';
+
+                $data = array(
+                    'name' => $this->input->post('name'),
+                    'url' => $url,
+                    'position' => '0',
+                    'short_desc' => '',
+                    'parent_id' => $this->input->post('parent_id'),
+                    'description' => '',
+                    'keywords' => '',
+                    'title' => '',
+                    'tpl' => '',
+                    'main_tpl' => '',
+                    'page_tpl' => '',
+                    'per_page' => 15,
+                    'order_by' => 'publish_date',
+                    'sort_order' => 'desc',
+                    'comments_default' => '1',
+                    'fetch_pages' => $fetch_pages,
+                );
+
+                $parent = $this->lib_category->get_category($data['parent_id']);
+
+                if ($parent != 'NULL')
+                {
+                    $full_path = $parent['path_url'].$data['url'].'/';
+                }
+                else
+                {
+                    $full_path = $data['url'].'/';
+                }
+
+                if ( ($this->category_exists($full_path) == TRUE) AND ($action != 'update') AND ($data['url'] != 'core') )
+                {
+                    $data['url'] .= time();
+                }
+
+                $id = $this->cms_admin->create_category($data);
+                $this->lib_category->clear_cache();
+
+                updateDiv('categories', site_url('/admin/categories/update_block'));
+                updateDiv('fast_category_list', site_url('/admin/categories/update_fast_block/'.$id));
+                closeWindow('fast_add_cat_w');
+                jsCode("$('comments_status').checked = true;");
+            }
+        }
+    }
+
+    function update_fast_block($sel_id)
+    {
+        $this->template->add_array(array(
+            'tree' => $this->lib_category->build(),
+            'sel_cat' => $sel_id,
+        ));
+
+        echo 'Категория: <select name="category" ONCHANGE="change_comments_status();" id="category_selectbox">
+                <option value="0" selected="selected">Нет</option>';
+        
+        $this->template->show('cats_select', FALSE);
+
+        echo "</select>";
+    }
+    
 
 	/**
 	 * Show edit category window

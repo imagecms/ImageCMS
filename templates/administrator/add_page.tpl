@@ -11,12 +11,15 @@
 	<div id="text_id2" style="padding-left:10px;">
 
         <div style="padding:3px;"></div>
-		Категория:
-            <select name="category" ONCHANGE="change_comments_status();" id="category_selectbox">
-		    <option value="0" selected="selected">Нет</option>
-		    { $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['sel_cat'])); }
-		    </select>
-       
+        <div id="fast_category_list" style="float:left;">
+            Категория: <select name="category" ONCHANGE="change_comments_status();" id="category_selectbox">
+                <option value="0" selected="selected">Нет</option>
+                { $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['sel_cat'])); }
+                </select> 
+        </div>
+
+        <img  src="{$THEME}/images/plus2.png" style="padding-left:5px;padding-top:2px;cursor:pointer;float:left;" onclick="show_fast_add_cat();" title="Создать категорию" />
+
 		<div class="form_overflow" style="padding:5px;"></div>
 
 		Заголовок:
@@ -73,7 +76,7 @@
 
 		<div class="form_text"></div>
 		<div class="form_input">
-			<input name="comments_status"  value="1" checked="checked" type="checkbox" id="comments_status" /> Разрешить комментирование
+			<label><input name="comments_status"  value="1" checked="checked" type="checkbox" id="comments_status" /> Разрешить комментирование</label>
 		</div>
 		<div class="form_overflow"></div>
 

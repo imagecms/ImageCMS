@@ -191,6 +191,19 @@
         initializeWindows();
     });
 
+ 
+    function show_fast_add_cat(){
+        new MochaUI.Window({
+            id: 'fast_add_cat_w',
+            title: 'Создать категорию',
+            type: 'modal',
+            loadMethod: 'xhr',
+            contentURL: base_url + 'admin/categories/fast_add',
+            width: 540,
+            height: 180
+        });
+    }
+
     ///////////////////////////////////////////////
     //Widgets manager windows
     ///////////////////////////////////////////////
