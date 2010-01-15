@@ -49,7 +49,7 @@
                     {foreach $latest as $l}
                         <tr>
                             <td><a href="#" onclick="ajax_div('page','{$BASE_URL}admin/pages/edit/{$l.id}'); return false;" >{truncate($l.title, 40, '...')}</a></td>
-                            <td><a href="#" onclick="cats_options({$l.category});" >{truncate(get_category_name($l.category), 20, '...')}</a></td>
+                            <td><a href="#" onclick="cats_options({$l.category}); return false;" >{truncate(get_category_name($l.category), 20, '...')}</a></td>
                             <td>
                                <a href="{$BASE_URL}{$l.cat_url}{$l.url}" target="_blank">{truncate($l.url, 20, '...')}</a> 
                             </td>
@@ -68,7 +68,7 @@
                     {foreach $updated as $l}
                         <tr>
                             <td><a href="#" onclick="ajax_div('page','{$BASE_URL}admin/pages/edit/{$l.id}'); return false;" >{truncate($l.title, 40, '...')}</a></td>
-                            <td><a href="#" onclick="cats_options({$l.category});" >{truncate(get_category_name($l.category), 20, '...')}</a></td>
+                            <td><a href="#" onclick="cats_options({$l.category}); return false;" >{truncate(get_category_name($l.category), 20, '...')}</a></td>
                             <td>
                                <a href="{$BASE_URL}{$l.cat_url}{$l.url}" target="_blank">{truncate($l.url, 20, '...')}</a> 
                             </td>
