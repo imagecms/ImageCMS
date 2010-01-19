@@ -15,6 +15,7 @@ class Lib_category {
 	public $level = 0;
 	public $path = array();
     public $unsorted_arr = FALSE;
+    public $unsorted = FALSE;
 
  	function Lib_category()
  	{
@@ -280,7 +281,14 @@ class Lib_category {
 
         $translated = $this->get_translated_array();
 
-        $t_cat = $translated[$category['id']];
+        if (count($translated))
+        {
+            $t_cat = $translated[$category['id']];
+        }
+        else
+        {
+            $t_cat = FALSE;
+        }
 
         if ($t_cat)
         {

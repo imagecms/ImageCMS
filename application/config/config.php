@@ -35,7 +35,7 @@
 | the active record class
  */
 
-if ($load_db_settings == TRUE)
+if (isset($load_db_settings) AND $load_db_settings == TRUE)
 {
     $active_group = "default";
     $active_record = TRUE;
