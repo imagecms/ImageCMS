@@ -146,7 +146,7 @@ class Menu extends Controller{
 				$this->html .= '<a href="'.$href.'">'.$item['title'].'</a>';
 
 					$sub_menus = $this->_get_sub_menus($item['id']);
-					if ($this->expand[$item['id']] == TRUE AND count($sub_menus) > 0)
+					if (isset($this->expand[$item['id']]) AND $this->expand[$item['id']] == TRUE AND count($sub_menus) > 0)
 					{
 						$this->display_menu($sub_menus);
 					}
