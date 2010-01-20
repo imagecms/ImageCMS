@@ -10,6 +10,34 @@ error_reporting(E_ALL);
 
 // $_SERVER['PATH_INFO'] = '/';
 
+/*
+Пример авторизации:
+
+define('CMS_BRIDGE', TRUE);
+define('ICMS_INIT', TRUE);
+define('ICMS_DISBALE_CSRF', TRUE);
+
+require(realpath('../../../../system/cms_bridge.php'));
+
+$obj =& get_instance();
+
+if(!$obj->dx_auth->is_admin())
+{
+    die('Access denied.');
+}
+
+$query_string = $_SERVER['QUERY_STRING'];
+
+$get_array = array();
+parse_str($query_string,$get_array);
+
+foreach($get_array as $key => $val) 
+{
+    $_GET[$key] = $obj->input->xss_clean($val);
+    $_REQUEST[$key] = $obj->input->xss_clean($val);
+}
+
+*/
 
 // Copied from initial CI index.php
 $system_folder = "";
