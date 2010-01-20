@@ -1,7 +1,7 @@
 <div id="sortable">
 		  <table id="pages_table" >
 		  	<thead>
-                <th width="5px"></th>
+                <th width="5px">ID</th>
 				<th>Заголовок</th>
 				<th>Страниц</th>
 				<th>URL</th>
