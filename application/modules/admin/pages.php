@@ -118,7 +118,12 @@ class Pages extends Controller{
 		if ($this->form_validation->run() == FALSE)
 		{
 			showMessage (validation_errors());
-		}else{
+		}else
+        {
+            // load site settings
+   			$settings = $this->cms_admin->get_settings();
+
+
 			$def_lang = $this->cms_admin->get_default_lang();
 
 			if($this->input->post('page_url') == '' or $this->input->post('page_url') == NULL)
