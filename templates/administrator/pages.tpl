@@ -59,7 +59,7 @@
 			{ switch $page['post_status'] }
 				{ case "publish" }
 				<div style="visibility:hidden;float:left">1</div>
-                <img id="p_status_{$page.id}" onclick="change_page_status('{$page.id}');" title="Обупликовано" src="{$THEME}/images/publish.png" width="16" height="16" />
+                <img id="p_status_{$page.id}" onclick="change_page_status('{$page.id}');" title="Опубликовано" src="{$THEME}/images/publish.png" width="16" height="16" />
                 {break;}
 				{ case "pending" }
 				<div style="visibility:hidden;float:left">2</div>

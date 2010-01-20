@@ -2,7 +2,7 @@
         <table width="100%" border="0" cellpadding="2" cellspacing="2">
             <tr>
                 <td width="100%" valign="top">
-                    Выбирите Категорию
+                    Выбeрите Категорию
                 </td>
                 <td valign="top">
                 <div style="width:350px;" id="item_params">  
