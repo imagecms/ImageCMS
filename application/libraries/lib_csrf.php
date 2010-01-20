@@ -40,6 +40,11 @@ class Lib_csrf {
     {
         if (count($_POST) > 0)
         {
+            if (defined('ICMS_DISBALE_CSRF') AND ICMS_DISBALE_CSRF === TRUE)
+            {
+                return TRUE;
+            }
+
             // Don't check ajax requests
             if (isset($_SERVER['HTTP_X_REQUESTED_WITH']))
             {
