@@ -1,7 +1,7 @@
 AddDefaultCharset UTF-8
 
 RewriteEngine on
-RewriteCond $1 !^(index\.php|user_guide|file_manager|uploads|favicon\.ico|favicon\.png|captcha|application/modules/.*/templates|templates|js|robots\.txt|application/controllers/install/images/*)
+RewriteCond $1 !^(index\.php|user_guide|uploads|favicon\.ico|favicon\.png|captcha|application/modules/.*/templates|templates|js|robots\.txt|application/controllers/install/images/*)
 RewriteRule ^(.*)$ /index.php/$1 [L]
 
 #RewriteCond %{REQUEST_URI} !^uploads
