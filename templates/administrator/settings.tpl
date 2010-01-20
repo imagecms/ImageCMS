@@ -111,7 +111,7 @@
 
 		<b style="color:#73B0D3"><h3>Страницы:</h3></b>
 
-		<div class="form_text"><b>Ключевые слова</b><br/>Если не укзаны:</div>
+		<div class="form_text"><b>Ключевые слова</b><br/>Если не указаны:</div>
 		<div class="form_input">
 		<select name="create_keywords">
 			<option value="auto" {if $create_keywords == "auto"}selected="selected"{/if}>Формировать атоматически</option>>
@@ -123,7 +123,7 @@
 <div class="form_overflow"></div>
 
 
-		<div class="form_text"><b>Описание</b><br/>Если не укзано:</div>
+		<div class="form_text"><b>Описание</b><br/>Если не указано:</div>
 		<div class="form_input">
 		<select name="create_description">
 			<option value="auto" {if $create_description == "auto"}selected="selected"{/if}>Формировать атоматически</option>
