@@ -52,6 +52,11 @@ class Core extends Controller {
 
         $last_element = key($this->uri->uri_to_assoc(0));
 
+        if (defined('ICMS_INIT') AND ICMS_INIT === TRUE)
+        {
+            $data_type = 'bridge';
+        }
+
         // DETECT LANGUAGE
         if ($this->uri->total_segments() >= 1)
         {
@@ -114,7 +119,7 @@ class Core extends Controller {
         $this->load->library('DX_Auth');
   
         // Are we on main page?
-        if ($cat_path == FALSE)
+        if ($cat_path == FALSE AND $data_type != 'bridge')
         {
              $data_type = 'main';
         }
@@ -141,7 +146,7 @@ class Core extends Controller {
             }
         }
 
-        if ($data_type != 'main' AND $data_type != 'category')
+        if ($data_type != 'main' AND $data_type != 'category' AND $data_type != 'bridge')
         {
                 $cat_path_url = substr($cat_path, 0, strripos($cat_path, '/') + 1);
                                 
@@ -219,10 +224,9 @@ class Core extends Controller {
         // Assign template variables and load modules
         $this->_process_core_data();
 
-
         // If module than exit from core and load module
         if ( $this->is_module($mod_segment) == TRUE ) return TRUE;
-  
+ 
         switch ( $this->core_data['data_type'] )
         {
             case 'main': // Main page
@@ -240,6 +244,10 @@ class Core extends Controller {
 
             case '404': // Page not found
                 $this->error_404();
+            break;
+
+            case 'bridge':
+                log_message('debug', 'Bridge initialized.');
             break;
         }
     }
