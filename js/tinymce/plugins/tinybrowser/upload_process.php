@@ -2,6 +2,36 @@
 require_once("config_tinybrowser.php");
 require_once("fns_tinybrowser.php");
 
+// Imagecms auth;
+define('CMS_BRIDGE', TRUE);
+define('ICMS_INIT', TRUE);
+define('ICMS_DISBALE_CSRF', TRUE);
+
+$ser = $_SERVER;
+$_SERVER['QUERY_STRING'] = '';
+require(realpath('../../../../system/cms_bridge.php'));
+
+$obj =& get_instance();
+
+if(!$obj->dx_auth->is_admin())
+{
+    die('Access denied.');
+}
+
+$_SERVER = $ser;
+$query_string = $_SERVER['QUERY_STRING'];
+
+$get_array = array();
+parse_str($query_string,$get_array);
+
+foreach($get_array as $key => $val) 
+{
+    $_GET[$key] = $obj->input->xss_clean($val);
+    $_REQUEST[$key] = $obj->input->xss_clean($val);
+}
+// end cms auth
+
+
 // delay script if set
 if($tinybrowser['delayprocess']>0) sleep($tinybrowser['delayprocess']);
 

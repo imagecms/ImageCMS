@@ -11,15 +11,34 @@ else
 	}
 require_once('fns_tinybrowser.php');
 
-// Check session, if it exists
-if(session_id() != '')
-	{
-	if(!isset($_SESSION[$tinybrowser['sessioncheck']]))
-		{
-		echo TB_DENIED;
-		exit;
-		}
-	}
+// Imagecms auth;
+define('CMS_BRIDGE', TRUE);
+define('ICMS_INIT', TRUE);
+define('ICMS_DISBALE_CSRF', TRUE);
+
+$ser = $_SERVER;
+$_SERVER['QUERY_STRING'] = '';
+require(realpath('../../../../system/cms_bridge.php'));
+
+$obj =& get_instance();
+
+if(!$obj->dx_auth->is_admin())
+{
+    die('Access denied.');
+}
+
+$_SERVER = $ser;
+$query_string = $_SERVER['QUERY_STRING'];
+
+$get_array = array();
+parse_str($query_string,$get_array);
+
+foreach($get_array as $key => $val) 
+{
+    $_GET[$key] = $obj->input->xss_clean($val);
+    $_REQUEST[$key] = $obj->input->xss_clean($val);
+}
+// end cms auth
 	
 if(!$tinybrowser['allowedit'] && !$tinybrowser['allowdelete'])
 	{

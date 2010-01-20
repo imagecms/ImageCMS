@@ -11,15 +11,39 @@ else
 	}
 require_once('fns_tinybrowser.php');
 
-// Check session, if it exists
-if(session_id() != '')
-	{
-	if(!isset($_SESSION[$tinybrowser['sessioncheck']]))
-		{
-		echo TB_DENIED;
-		exit;
-		}
-	}
+// Imagecms auth;
+define('CMS_BRIDGE', TRUE);
+define('ICMS_INIT', TRUE);
+define('ICMS_DISBALE_CSRF', TRUE);
+
+$ser = $_SERVER;
+$_SERVER['QUERY_STRING'] = '';
+require(realpath('../../../../system/cms_bridge.php'));
+
+$obj =& get_instance();
+
+if(!$obj->dx_auth->is_admin())
+{
+    die('Access denied.');
+}
+
+$_SERVER = $ser;
+$query_string = $_SERVER['QUERY_STRING'];
+
+$get_array = array();
+parse_str($query_string, $get_array);
+
+foreach($get_array as $key => $val) 
+{
+    $_GET[$key] = $obj->input->xss_clean($val);
+    $_REQUEST[$key] = $obj->input->xss_clean($val);
+}
+
+$cms_user = $obj->db->get_where('users', array('id' => $obj->dx_auth->get_user_id()))->row_array();
+
+$cms_auth_key =  $obj->dx_auth->get_user_id().'/'.sha1($cms_user['password']);
+
+// end cms auth
 
 if(!$tinybrowser['allowupload'])
 	{
@@ -110,13 +134,16 @@ document.location = url;
 }
 </script>
 </head>
+
+
+
 <body onload='
       var so = new SWFObject("flexupload.swf", "mymovie", "100%", "340", "9", "#ffffff");
       so.addVariable("folder", "<?php echo $uploadpath; ?>");
       so.addVariable("uptype", "<?php echo $typenow; ?>");
       so.addVariable("destid", "<?php echo $passupfeid; ?>");
       so.addVariable("maxsize", "<?php echo $tinybrowser['maxsize'][$_GET['type']]; ?>");
-      so.addVariable("sessid", "<?php echo session_id(); ?>");
+      so.addVariable("sessid", "<?php echo $cms_auth_key; ?>");
       so.addVariable("obfus", "<?php echo md5($_SERVER['DOCUMENT_ROOT'].$tinybrowser['obfuscate']); ?>");
       so.addVariable("filenames", "<?php echo $filelist; ?>");
       so.addVariable("extensions", "<?php echo $fileexts; ?>");
