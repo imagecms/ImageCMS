@@ -171,6 +171,8 @@ class Admin extends Controller {
 	{
 		$param = $this->input->post('param');
 
+        $this->lib_admin->log('Очистил кеш');
+
 		switch ($param)
 		{
 			case 'all':
@@ -204,6 +206,8 @@ class Admin extends Controller {
 	 */
 	public function logout()
 	{
+        $this->lib_admin->log('Вышел из панели управления');
+
 		$this->session->sess_destroy();
 		redirect('/admin/login','refresh');
 	}

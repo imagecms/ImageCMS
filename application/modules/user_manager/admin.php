@@ -115,6 +115,8 @@ class Admin extends Controller {
 				$user_info = $this->user2->get_user_by_username($user)->row_array();
 				$this->user2->set_role($user_info['id'],$this->input->post('role'));
 
+                $this->lib_admin->log('Создал пользователя '.$val->set_value('username'));
+
 				showMessage('Пользователь создан.');
 			}else{
 				showMessage (validation_errors());
@@ -138,14 +140,17 @@ class Admin extends Controller {
 				{
 					case 1: // ban
 						$this->users->ban_user($value);
+                        $this->lib_admin->log('Забанил пользователя '.$value);
 					break;
 
 					case 2: //unban
 						$this->users->unban_user($value);
+                        $this->lib_admin->log('Разбанил пользователя '.$value);
 					break;
 
 					case 3: //delete
 						$this->users->delete_user($value);
+                        $this->lib_admin->log('Удалил пользователя '.$value); 
 					break;
 				}
 			}
@@ -176,7 +181,7 @@ class Admin extends Controller {
 
 		if($query->num_rows() == 0)
 		{
-			showMessage('Пользователей ненайдено!');
+			showMessage('Пользователей не найдено.');
 		}else{
 			$users = $query->result_array();
 
@@ -197,7 +202,7 @@ class Admin extends Controller {
 
 			// recount users
 			if(count($users) == 0) {
-				showMessage('Пользователей ненайдено!');
+				showMessage('Пользователей не найдено.');
 				exit;
 			}
 
@@ -279,6 +284,9 @@ class Admin extends Controller {
 
 				$this->db->where('id',$user_id);
 				$this->db->update('users',$data);
+
+                $this->lib_admin->log('Обновил пользователя '.$data['username']);
+
 				showMessage('Изменения сохранены');
 
 			}else{
@@ -315,6 +323,9 @@ class Admin extends Controller {
 						);
 
 			$this->db->insert('roles',$data);
+
+            $this->lib_admin->log('Создал группу '.$data['name']);
+
 			showMessage('Группа создана');
             $this->update_groups_block();
 		}
@@ -369,6 +380,8 @@ class Admin extends Controller {
 			$this->db->where('id',intval($id));
 			$this->db->update('roles',$data);
 
+            $this->lib_admin->log('Изменил группу '.$id);
+
 			showMessage('Группа сохранена');
             $this->update_groups_block();
             closeWindow('group_edit_window');
@@ -389,6 +402,8 @@ class Admin extends Controller {
 		$this->db->limit(1);
 		$this->db->where('id',intval($id));
 		$this->db->delete('roles');
+
+        $this->lib_admin->log('Удалил группу '.$id); 
 
 		$this->update_groups_block();
 	}

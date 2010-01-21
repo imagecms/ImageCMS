@@ -606,3 +606,12 @@ div.d_comment:hover {
 .d_comment {
     margin:2px;
 }
+
+.pagination a {
+    padding:4px;
+}
+
+.pagination strong {
+    background-color:#EAEAEA;
+    padding:2px;
+}

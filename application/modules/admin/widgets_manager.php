@@ -139,6 +139,8 @@ class Widgets_Manager extends Controller {
                     $this->$module->$m('install_defaults', $data);
                 }
 
+                $this->lib_admin->log('Создал виджет '.$data['name']);
+
                 //showMessage('Виджет создан.');
                 updateDiv('page', site_url('admin/widgets_manager'));
             }
@@ -159,6 +161,8 @@ class Widgets_Manager extends Controller {
                     'type' => $type,
                     'created' => time()
                 );
+
+                $this->lib_admin->log('Создал виджет '.$data['name']);
 
                 $this->db->insert('widgets', $data);
 
@@ -222,6 +226,8 @@ class Widgets_Manager extends Controller {
                 $this->db->where('id', $widget['id']);
                 $this->db->update('widgets', $data);
 
+                $this->lib_admin->log('Изменил виджет '.$data['name']);
+
                 showMessage('Изменения сохранены');
                 return TRUE;
             }
@@ -253,6 +259,8 @@ class Widgets_Manager extends Controller {
 
                 $this->db->where('id', $id);
                 $this->db->update('widgets', $data);
+
+                $this->lib_admin->log('Изменил виджет '.$data['name']);
 
                 //updateDiv('page', site_url('admin/widgets_manager'));
                 showMessage('Изменения сохранены');
@@ -289,6 +297,8 @@ class Widgets_Manager extends Controller {
         {
             @unlink(PUBPATH.'/templates/'.$query['site_template'].'/widgets/'.$name.'.tpl'); 
         }
+
+        $this->lib_admin->log('Удалил виджет '.$name);
     }
 
     public function get($id)

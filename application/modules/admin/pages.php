@@ -86,6 +86,8 @@ class Pages extends Controller{
 	 */
 	private function on_page_delete($page_id)
 	{
+        $this->lib_admin->log('Удалил страницу ID '.$page_id);
+
 		// Delete content_permissions
 		$this->db->where('page_id',$page_id);
 		$this->db->delete('content_permissions');
@@ -199,6 +201,11 @@ class Pages extends Controller{
 
 			$data['id'] = $page_id;
 			$this->on_page_add($data);
+
+            $this->lib_admin->log('
+            Создал страницу 
+            <a href="#" onclick="ajax_div(\'page\',\''.site_url('admin/pages/edit/'.$page_id).'\'); return false;">'.$data['title'].'</a>'
+            );
 
 			showMessage ('Страница создана');
 			updateDiv('page',site_url('admin/pages/edit/'.$page_id.'/'.$data['lang']));
@@ -478,6 +485,12 @@ class Pages extends Controller{
 
 			if ($this->cms_admin->update_page($page_id, $data) >= 1)
 			{
+
+            $this->lib_admin->log('
+            Изменил страницу  
+            <a href="#" onclick="ajax_div(\'page\',\''.site_url('admin/pages/edit/'.$page_id).'\'); return false;">'.$data['title'].'</a>'
+            );
+
 				showMessage ('Содержание страницы обновлено.');
 			}else{
 				showMessage ('Ошибка.');
