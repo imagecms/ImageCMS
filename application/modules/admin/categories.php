@@ -164,6 +164,12 @@ class Categories extends Controller {
                 {
                     case 'new':
                         $id = $this->cms_admin->create_category($data);
+
+                        $this->lib_admin->log('
+                        Создал категорию   
+                        <a href="#" onclick="edit_category('.$id.'); return false;">'.$data['name'].'</a>'
+                        );
+
                         showMessage ('Категория '.$data['name'].' создана.');
 
                         updateDiv('page', site_url('admin/categories/edit/'.$id));
@@ -179,6 +185,11 @@ class Categories extends Controller {
                         $this->db->where('category',$this->input->post('cat_id'));
                         $this->db->update('content',array('cat_url' => $new_path));
                         //end update pages
+
+                        $this->lib_admin->log('
+                        Изменил категорию   
+                        <a href="#" onclick="edit_category('.$cat_id.'); return false;">'.$data['name'].'</a>'
+                        );
 
                        showMessage('Категория обновлена'); 
                     break;
@@ -265,6 +276,11 @@ class Categories extends Controller {
 
                 $id = $this->cms_admin->create_category($data);
                 $this->lib_category->clear_cache();
+
+                $this->lib_admin->log('
+                Создал категорию   
+                <a href="#" onclick="edit_category('.$id.'); return false;">'.$data['name'].'</a>'
+                );
 
                 updateDiv('categories', site_url('/admin/categories/update_block'));
                 updateDiv('fast_category_list', site_url('/admin/categories/update_fast_block/'.$id));
@@ -354,10 +370,20 @@ class Categories extends Controller {
 
                 if ($query->num_rows() == 0)
                 {
+                    $this->lib_admin->log('
+                    Создал перевод категории 
+                    <a href="#" onclick="edit_category('.$cat['id'].'); return false;">'.$cat['name'].'</a>'
+                    );
+
                     $this->db->insert('category_translate', $data);
                 }
                 else
                 {
+                    $this->lib_admin->log('
+                    Изменил перевод категории 
+                    <a href="#" onclick="edit_category('.$cat['id'].'); return false;">'.$cat['name'].'</a>'
+                    );
+
                     $this->db->where('alias', $id);
                     $this->db->where('lang', $lang);
                     $this->db->update('category_translate', $data);
@@ -413,6 +439,8 @@ class Categories extends Controller {
 		$this->db->limit(1);
 		$this->db->where('id',$cat_id);
 		$this->db->delete('category');
+
+        $this->lib_admin->log('Удалил категорию ID '.$cat_id);
 
         // Delete translates
         $this->db->where('alias', $cat_id);

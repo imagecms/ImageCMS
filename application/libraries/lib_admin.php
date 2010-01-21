@@ -54,6 +54,17 @@
 	}
 
 
+    function log($message)
+    {
+        $data = array(
+            'user_id'  => $this->CI->dx_auth->get_user_id(),
+            'username' => $this->CI->dx_auth->get_username(),
+            'message'  => $message,
+            'date'     => time(),
+        );
+
+        $this->CI->db->insert('logs', $data);
+    }
 
  }
 

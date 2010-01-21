@@ -64,6 +64,8 @@ class Login extends Controller {
 
 						if ($rezult == TRUE)
 						{
+                            $this->lib_admin->log('Вошел в панель управления IP '.$this->input->ip_address());
+
 							redirect('admin', 'refresh');
                         }
                         else

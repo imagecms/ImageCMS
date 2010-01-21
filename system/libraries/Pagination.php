@@ -243,6 +243,9 @@ class CI_Pagination {
     // Modified by dev@imagecms.net
 	function create_links_ajax()
 	{
+        $CI =& get_instance(); 
+        $CI->load->helper('my_html');
+
 		// If our item count or per-page total is zero there is no need to continue.
 		if ($this->total_rows == 0 OR $this->per_page == 0)
 		{
@@ -376,7 +379,7 @@ class CI_Pagination {
 		// Add the wrapper HTML if exists
 		$output = $this->full_tag_open.$output.$this->full_tag_close;
 
-		return $output;
+		return htmlentities_to_xml($output);
 	}
 
 

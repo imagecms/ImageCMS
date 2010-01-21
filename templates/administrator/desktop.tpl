@@ -137,7 +137,8 @@
 					<li><a  href="javascript:delete_cache('expried')">Очистить устаревшие</a></li>
 				</ul>
 			</li>
-            <li class="divider"><a href="#" onclick="ajax_div('page', base_url + 'admin/backup'); return false;">Резервное копирование</a></li>
+            <li class="divider"><a href="#" onclick="ajax_div('page', base_url + 'admin/admin_logs'); return false;">Журнал событий</a></li>
+            <li><a href="#" onclick="ajax_div('page', base_url + 'admin/backup'); return false;">Резервное копирование</a></li>
 		</ul>
 	</li>
 

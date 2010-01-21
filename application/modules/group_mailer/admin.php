@@ -96,6 +96,9 @@ class Admin extends Controller {
                     $this->email->send();
                 }
 
+                $this->load->library('lib_admin');
+                $this->lib_admin->log('Отправил пользователям E-Mail c темой '.$_POST['subject']);
+
                 showMessage('Сообщение отправлено.');
                 updateDiv('page', site_url('admin/components/cp/group_mailer/index'));
             }

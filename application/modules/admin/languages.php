@@ -67,6 +67,8 @@ class Languages extends Controller{
 
 			$this->cms_admin->insert_lang($data);
 
+            $this->lib_admin->log('Создал язык '.$data['lang_name']);
+
 			showMessage('Язык создан');
 			closeWindow('languages_create_lang_w');
 			updateDiv('languages_page_w_content',site_url('admin/languages/'));
@@ -117,6 +119,9 @@ class Languages extends Controller{
 			);
 
 			$this->cms_admin->update_lang($data,$lang_id);
+
+            $this->lib_admin->log('Изменил язык '.$data['lang_name']);
+
 			showMessage('Изменения сохранены');
 			closeWindow('edit_language_w');
 			updateDiv('languages_page_w_content',site_url('admin/languages/'));
@@ -145,6 +150,8 @@ class Languages extends Controller{
 		$this->db->where('lang',$id);
 		$this->db->delete('content');
 
+        $this->lib_admin->log('Удалил язык ID '.$id);
+
 		showMessage('Язык удален!');
 		updateDiv('languages_page_w_content',site_url('admin/languages/'));
 	}
@@ -158,6 +165,9 @@ class Languages extends Controller{
 		$this->cms_admin->set_default_lang($lang_id);
 
 		$lang = $this->cms_admin->get_lang($lang_id);
+
+        $this->lib_admin->log('Назначил язык '.$lang['lang_name'].' по умолчанию');
+
 		showMessage('Язык по умолчанию установлен: <b>'.$lang['lang_name'].'</b>');
 	}
 

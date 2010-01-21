@@ -99,6 +99,8 @@ class Components extends Controller{
 					$this->$module->_install();
 				}
 
+            $this->lib_admin->log('Установил модуль '.$data['name']);
+
 			//showMessage('Модуль Установлен');
             return TRUE;
 		}
@@ -124,7 +126,11 @@ class Components extends Controller{
 			$this->db->limit(1);
 			$this->db->delete('components',array('name' => $module));
 
-		}else{
+            $this->lib_admin->log('Удалил модуль '.$module);
+
+		}
+        else
+        {
 			showMessage('Ошибка удаления модуля.');
 		}
 
@@ -221,6 +227,8 @@ class Components extends Controller{
 
 			$this->db->where('name',$component);
 			$this->db->update('components',$data);
+
+            $this->lib_admin->log('Изменил настройки модуля '.$com['name']);
 
 			//showMessage('Настройки сохранены');
 		}else{

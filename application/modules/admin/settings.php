@@ -149,7 +149,8 @@ class Settings extends Controller{
 
 		$this->cms_admin->save_settings($data_m);
 
- 
+        $this->lib_admin->log('Изменил настройки сайта');
+    
 		showMessage ('Настройки сохранены');
 	}
 
