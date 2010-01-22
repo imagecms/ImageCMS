@@ -38,6 +38,8 @@ class Core extends Controller {
 
         $cat_path = substr($this->uri->uri_string(), 1); 
 
+        ($hook = get_hook('core_init')) ? eval($hook) : NULL; 
+
         // Load settings
         $this->settings = $this->cms_base->get_settings();
 

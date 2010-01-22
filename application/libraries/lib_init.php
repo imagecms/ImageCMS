@@ -5,14 +5,8 @@ class Lib_init {
 	public function Lib_init()
 	{
         $CI =& get_instance();
- 
+
         log_message('debug', "Lib_init Class Initialized");
-
-		$native_session = TRUE;
-
-		// Cache engine
-		// $CI->load->library('mem_cache','','cache');
-		$CI->load->library('cache');
 
         if (file_exists(APPPATH.'modules/install/install.php') AND $CI->config->item('is_installed') !== TRUE)
         {
@@ -25,7 +19,17 @@ class Lib_init {
         {
             // Load DB
             $CI->load->database();
+
+            // Load hooks lib
+            $CI->load->library('cms_hooks');
         }
+
+		$native_session = TRUE;
+
+		// Cache engine
+		// $CI->load->library('mem_cache','','cache');
+		$CI->load->library('cache');
+
 
 		if($native_session == TRUE)
 		{
