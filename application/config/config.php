@@ -83,7 +83,10 @@ $config['static_base_url'] = $config['base_url'];
 |
 */
 $config['index_page'] = "";
+
 $config['is_installed'] = TRUE;
+
+$config['rebuild_hooks_tree'] = TRUE;
 /*
 |--------------------------------------------------------------------------
 | URI PROTOCOL
