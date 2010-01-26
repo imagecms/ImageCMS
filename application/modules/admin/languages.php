@@ -70,6 +70,8 @@ class Languages extends Controller{
 
             $this->lib_admin->log('Создал язык '.$data['lang_name']);
 
+            $this->cache->delete('main_site_langs');
+
 			showMessage('Язык создан');
 			closeWindow('languages_create_lang_w');
 			updateDiv('languages_page_w_content',site_url('admin/languages/'));
@@ -125,6 +127,8 @@ class Languages extends Controller{
 
             $this->lib_admin->log('Изменил язык '.$data['lang_name']);
 
+            $this->cache->delete('main_site_langs');
+
 			showMessage('Изменения сохранены');
 			closeWindow('edit_language_w');
 			updateDiv('languages_page_w_content',site_url('admin/languages/'));
@@ -155,6 +159,8 @@ class Languages extends Controller{
 		$this->db->where('lang',$id);
 		$this->db->delete('content');
 
+        $this->cache->delete('main_site_langs');
+
         $this->lib_admin->log('Удалил язык ID '.$id);
 
 		showMessage('Язык удален!');
@@ -169,6 +175,8 @@ class Languages extends Controller{
 		$lang_id = $this->input->post('lang');
 
         ($hook = get_hook('admin_change_def_language')) ? eval($hook) : NULL; 
+
+        $this->cache->delete('main_site_langs');
 
 		$this->cms_admin->set_default_lang($lang_id);
 
