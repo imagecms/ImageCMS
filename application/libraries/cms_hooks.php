@@ -8,14 +8,22 @@ class Cms_hooks {
     {
         $ci =& get_instance();
 
-        $this->hooks_file = realpath(dirname(__FILE__).'/../../system/cache/hooks'.EXT);
+        $this->hooks_file = (dirname(__FILE__).'/../../system/cache/hooks'.EXT);
+        $this->hooks_file = realpath($this->hooks_file);
 
         if (!file_exists($this->hooks_file) OR $ci->config->item('rebuild_hooks_tree') === TRUE)
         {
             $this->build_hooks();
+        } 
+
+        if (file_exists($this->hooks_file))
+        {
+            include($this->hooks_file);
         }
-        
-        include($this->hooks_file);
+        else
+        {
+            show_error('Ошибка загрузки файла хуков.');
+        }
     }
 
     public function build_hooks()
