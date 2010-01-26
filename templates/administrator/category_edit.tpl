@@ -134,6 +134,8 @@
         <div class="form_overflow"></div>
     </div>
 
+    {($hook = get_hook('admin_tpl_edit_category')) ? eval($hook) : NULL;}
+
 </div>
 
 

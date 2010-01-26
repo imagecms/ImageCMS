@@ -81,6 +81,8 @@
                     </tbody>
                   </table>
 
+            {($hook = get_hook('admin_tpl_dashboard_center')) ? eval($hook) : NULL;}
+
             {if count($api_news) > 1}
             <div style="background-color: #BBD45F; padding:10px; font-weight:bold;">
                 <img src="{$THEME}/images/documents-text.png" width="16" height="16" align="top" style="padding-right:15px;" />
@@ -132,6 +134,8 @@
         </div>
         {/foreach}
         </div>
+
+        {($hook = get_hook('admin_tpl_dashboard_sidebar')) ? eval($hook) : NULL;}
 
     </div>
 

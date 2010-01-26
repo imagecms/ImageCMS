@@ -2,18 +2,20 @@
 
 class Cms_hooks {
 
+    private $hooks_file = NULL;
+
     public function __construct()
     {
         $ci =& get_instance();
 
-        $hooks_file = './system/cache/hooks'.EXT;
+        $this->hooks_file = realpath(dirname(__FILE__).'/../../system/cache/hooks'.EXT);
 
-        if (!file_exists($hooks_file) OR $ci->config->item('rebuild_hooks_tree') === TRUE)
+        if (!file_exists($this->hooks_file) OR $ci->config->item('rebuild_hooks_tree') === TRUE)
         {
             $this->build_hooks();
         }
         
-        include($hooks_file);
+        include($this->hooks_file);
     }
 
     public function build_hooks()
@@ -53,17 +55,19 @@ class Cms_hooks {
 
         foreach($vals as $k => $v)
         {
-            if ($v['type'] == 'complete' AND trim($v['value']) != '' AND trim($v['attributes']['id'] != ''))
+            if (isset($v['type']) AND isset($v['value']) AND isset($v['attributes']) )
             {
-                $hook_id = $v['attributes']['id']; 
+                if ($v['type'] == 'complete' AND trim($v['value']) != '' AND trim($v['attributes']['id'] != ''))
+                {
+                    $hook_id = $v['attributes']['id']; 
 
-                $tmp[$hook_id] .= $v['value'];
+                    $tmp[$hook_id] .= $v['value'];
+                }
             }
         }
 
 
         $this->create_hooks_file($tmp);
-
     }
 
     private function create_hooks_file($hooks_arr = array())
@@ -102,6 +106,6 @@ function get_hook(\$hook_id)
 }
 
 ";
-        write_file('./system/cache/hooks'.EXT, $template);
+        write_file($this->hooks_file, $template);
     }
 }

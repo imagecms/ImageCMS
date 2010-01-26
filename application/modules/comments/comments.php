@@ -37,6 +37,8 @@ class Comments extends Controller {
 	 */
 	public function autoload()
     {
+       ($hook = get_hook('comments_on_autoload')) ? eval($hook) : NULL; 
+
         $this->load->helper('cookie');
 
         // Load language
@@ -67,6 +69,8 @@ class Comments extends Controller {
     {
         $settings = $this->base->get_settings();
 
+        ($hook = get_hook('comments_settigs_init')) ? eval($hook) : NULL;
+
         foreach ($settings as $k => $v)
         {
             $this->$k = $v; 
@@ -78,11 +82,14 @@ class Comments extends Controller {
      */ 
 	public function build_comments($item_id = 0)
     {
+        ($hook = get_hook('comments_on_build_comments')) ? eval($hook) : NULL;
+
         $this->load->model('base');
         $this->init_settings();
 
         if (($comments = $this->cache->fetch('comments_'.$item_id, 'comments')) !== FALSE)
         {
+            ($hook = get_hook('comments_fetch_cache_ok')) ? eval($hook) : NULL;
             // Comments fetched from cahce file
         }else{
             $comments = $this->base->get($item_id);
@@ -91,6 +98,7 @@ class Comments extends Controller {
             // Set page id for comments form
             if($comments != FALSE)
             {
+                ($hook = get_hook('comments_store_cache')) ? eval($hook) : NULL;
                 $this->cache->store('comments_'.$item_id, $comments, $this->cache_ttl, 'comments');
             }
         }
@@ -110,7 +118,11 @@ class Comments extends Controller {
 
         }
 
+        ($hook = get_hook('comments_read_com_tpl')) ? eval($hook) : NULL;
+
         $comments = $this->template->read('comments', $data); 
+
+        ($hook = get_hook('comments_assign_tpl_data')) ? eval($hook) : NULL;
 
         $this->template->add_array(array( 
                 'comments' => $comments
@@ -122,6 +134,8 @@ class Comments extends Controller {
      */ 
 	public function add()
     {
+        ($hook = get_hook('comments_on_add')) ? eval($hook) : NULL;
+
         // Load comments model
         $this->load->model('base');
         $this->init_settings();
@@ -129,6 +143,7 @@ class Comments extends Controller {
 		// Check access only for registered users
 		if ($this->can_comment === 1 AND $this->dx_auth->is_logged_in() == FALSE)
         {
+            ($hook = get_hook('comments_login_for_comments')) ? eval($hook) : NULL;
 			$this->core->error(lang('login_for_comments'));
         }
 
@@ -137,8 +152,9 @@ class Comments extends Controller {
         // Check if page comments status.
         if ($this->base->get_item_comments_status($item_id) == FALSE)
         {
+            ($hook = get_hook('comments_page_comments_disabled')) ? eval($hook) : NULL;
             $this->core->error(lang('error_comments_diabled'));
-        }        
+        }
 
         $this->load->library('user_agent');
         $this->load->library('form_validation');
@@ -147,12 +163,15 @@ class Comments extends Controller {
         if ($this->period > 0)
         if ($this->check_comment_period() == FALSE)
         {
+            ($hook = get_hook('comments_period_error')) ? eval($hook) : NULL;
             $this->core->error( sprintf(lang('error_comments_period'), $this->period) );
         }
     
         // Validate email and nickname from unregistered users.
         if ($this->dx_auth->is_logged_in() == FALSE)
         {
+            ($hook = get_hook('comments_set_val_rules')) ? eval($hook) : NULL;
+
 		    $this->form_validation->set_rules('comment_email',  'lang:lang_comment_email',  'trim|required|xss_clean|valid_email');
 		    $this->form_validation->set_rules('comment_author', 'lang:lang_comment_author', 'trim|required|xss_clean|max_length[50]');
 		    $this->form_validation->set_rules('comment_site',   'lang:lang_comment_site', 'trim|xss_clean|max_length[250]');
@@ -161,6 +180,7 @@ class Comments extends Controller {
         // Check captcha code if captcha_check enabled and user in not admin.
         if ($this->use_captcha == TRUE AND $this->dx_auth->is_admin() == FALSE)
         {
+            ($hook = get_hook('comments_set_captcha')) ? eval($hook) : NULL;
             $this->form_validation->set_rules('captcha', lang('lang_captcha'), 'trim|required|xss_clean|callback_captcha_check');
         }
 
@@ -168,12 +188,15 @@ class Comments extends Controller {
 
 		if ($this->form_validation->run() == FALSE)
 		{
+            ($hook = get_hook('comments_validation_failed')) ? eval($hook) : NULL;
 			$this->core->error( validation_errors() );
 		}
 		else
 		{
             if ($this->dx_auth->is_logged_in() == FALSE)
             {
+                ($hook = get_hook('comments_author_not_logged')) ? eval($hook) : NULL;
+
                 $comment_author = trim(htmlspecialchars($this->input->post('comment_author')));
                 $comment_email  = trim(htmlspecialchars($this->input->post('comment_email')));
 
@@ -182,6 +205,8 @@ class Comments extends Controller {
             }
             else
             {
+                ($hook = get_hook('comments_author_logged')) ? eval($hook) : NULL;
+
                 $user = $this->db->get_where('users', array('id' => $this->dx_auth->get_user_id()))->row_array();
                 $comment_author = $user['username'];
                 $comment_email  = $user['email'];
@@ -204,11 +229,15 @@ class Comments extends Controller {
                                     'user_ip'   => $this->input->ip_address(),
                                     'date'      => time(),
                                     );
-                
+               
+                ($hook = get_hook('comments_db_insert')) ? eval($hook) : NULL; 
+
                 $id = $this->base->add($comment_data);
 
                 if ($comment_data['status'] == 0)
                 {
+                    ($hook = get_hook('comments_update_count')) ? eval($hook) : NULL;
+
                     $this->db->set('comments_count', 'comments_count + 1', FALSE);
                     $this->db->where('id', $comment_data['item_id']);
                     $this->db->update('content');
@@ -216,6 +245,8 @@ class Comments extends Controller {
 
                 // Drop cached comments
                 $this->cache->delete('comments_'.$item_id, 'comments');
+
+                ($hook = get_hook('comments_goes_redirect')) ? eval($hook) : NULL; 
 
                 // Redirect back to page
                 // TODO: add lang prefix to url
@@ -230,6 +261,7 @@ class Comments extends Controller {
 
                 redirect($page['cat_url'].$page['url'].'#comment_'.$id, 'refresh');
             }else{
+                ($hook = get_hook('comments_empty_text')) ? eval($hook) : NULL;
                 $this->core->error( lang('error_comments_text') );
             }
 		}
@@ -245,6 +277,8 @@ class Comments extends Controller {
      */
     private function _comment_status()
     {
+        ($hook = get_hook('comments_on_get_status')) ? eval($hook) : NULL;
+
         $status = 0;
 
         if ($this->dx_auth->is_admin() == TRUE)
@@ -270,6 +304,8 @@ class Comments extends Controller {
     private function _write_cookie($name, $email, $site)
     {
         $this->load->helper('cookie');
+
+        ($hook = get_hook('comments_write_cookie')) ? eval($hook) : NULL;
 
         $cookie_name = array(
                         'name'   => 'comment_author',
@@ -299,6 +335,8 @@ class Comments extends Controller {
 
     private function check_comment_period()
     {
+        ($hook = get_hook('comments_on_check_period')) ? eval($hook) : NULL;
+
         if ($this->dx_auth->is_admin() == TRUE)
         {
             return TRUE;
@@ -338,6 +376,8 @@ class Comments extends Controller {
 
 	public function captcha_check($code)
 	{
+        ($hook = get_hook('comments_captcha_check')) ? eval($hook) : NULL;
+
 	    $result = TRUE;
 
 		if ($this->dx_auth->is_captcha_expired())

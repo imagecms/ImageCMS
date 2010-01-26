@@ -82,6 +82,8 @@ class Components extends Controller{
 	{
 		$module = strtolower($module);
 
+        ($hook = get_hook('admin_install_module')) ? eval($hook) : NULL;
+
 		if ( file_exists(APPPATH.'modules/'.$module.'/'.$module.'.php') AND $this->is_installed($module) == 0 )
 		{
 			// Make module install
@@ -99,6 +101,10 @@ class Components extends Controller{
 					$this->$module->_install();
 				}
 
+            // Update hooks
+            $this->load->library('cms_hooks');
+            $this->cms_hooks->build_hooks();
+
             $this->lib_admin->log('Установил модуль '.$data['name']);
 
 			//showMessage('Модуль Установлен');
@@ -114,6 +120,9 @@ class Components extends Controller{
 	function deinstall($module = '')
 	{
 		$module = strtolower($module);
+
+        ($hook = get_hook('admin_deinstall_module')) ? eval($hook) : NULL;
+
 		if ( file_exists(APPPATH.'modules/'.$module.'/'.$module.'.php')  AND $this->is_installed($module) == 1 )
 		{
 			$this->load->module($module);
@@ -133,6 +142,10 @@ class Components extends Controller{
         {
 			showMessage('Ошибка удаления модуля.');
 		}
+
+        // Update hooks
+        $this->load->library('cms_hooks');
+        $this->cms_hooks->build_hooks();
 
 		$this->modules_table();
 	}
@@ -215,6 +228,8 @@ class Components extends Controller{
         
         $com = $query->row_array();
 
+        ($hook = get_hook('admin_component_save_settings')) ? eval($hook) : NULL;
+
 		if ($query->num_rows() >= 1)
 		{
 			$data = array(
@@ -269,6 +284,8 @@ class Components extends Controller{
 		$func = $this->uri->segment(5);
 		if($func == FALSE) $func = 'index';
 
+        ($hook = get_hook('admin_run_module_panel')) ? eval($hook) : NULL;
+
 		$this->load->module('core/core');
 		$args = $this->core->grab_variables(6);
 
@@ -286,6 +303,8 @@ class Components extends Controller{
 	{
         $func = $this->uri->segment(5);
 		if($func == FALSE) $func = 'index';
+
+        ($hook = get_hook('admin_run_module_admin')) ? eval($hook) : NULL;
 
 		$this->load->module('core/core');
 		$args = $this->core->grab_variables(6);
@@ -312,6 +331,8 @@ class Components extends Controller{
 
 	function get_module_info($mod_name)
 	{
+       ($hook = get_hook('admin_get_module_info')) ? eval($hook) : NULL; 
+
 		$info_file = realpath(APPPATH.'modules/'.$mod_name).'/module_info.php';
 		if(file_exists($info_file))
 		{

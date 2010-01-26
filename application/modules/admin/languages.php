@@ -30,7 +30,6 @@ class Languages extends Controller{
 	 */
 	function create_form()
 	{
-
 		$settings = $this->cms_admin->get_settings();
 		$lang_folders = $this->_get_lang_folders();
 
@@ -64,6 +63,8 @@ class Languages extends Controller{
 				'folder'    => $this->input->post('folder'),
 				'template'  => $this->input->post('template')
 			);
+
+            ($hook = get_hook('admin_language_create')) ? eval($hook) : NULL; 
 
 			$this->cms_admin->insert_lang($data);
 
@@ -118,6 +119,8 @@ class Languages extends Controller{
 			'template' => $this->input->post('template')
 			);
 
+            ($hook = get_hook('admin_language_update')) ? eval($hook) : NULL;
+
 			$this->cms_admin->update_lang($data,$lang_id);
 
             $this->lib_admin->log('Изменил язык '.$data['lang_name']);
@@ -137,6 +140,8 @@ class Languages extends Controller{
 		$id = $this->input->post('lang_id');
 
 		$lang = $this->cms_admin->get_lang($id);
+
+        ($hook = get_hook('admin_language_delete')) ? eval($hook) : NULL;
 
 		if($lang['default'] == 1)
 		{
@@ -162,6 +167,9 @@ class Languages extends Controller{
 	function set_default()
 	{
 		$lang_id = $this->input->post('lang');
+
+        ($hook = get_hook('admin_change_def_language')) ? eval($hook) : NULL; 
+
 		$this->cms_admin->set_default_lang($lang_id);
 
 		$lang = $this->cms_admin->get_lang($lang_id);

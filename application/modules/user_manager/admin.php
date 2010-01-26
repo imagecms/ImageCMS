@@ -92,6 +92,8 @@ class Admin extends Controller {
 		$val->set_rules('password', lang('lang_password'), 'trim|required|xss_clean');
 		$val->set_rules('email', lang('lang_email'), 'trim|required|xss_clean|valid_email');
 
+        ($hook = get_hook('users_create_set_val_rules')) ? eval($hook) : NULL;
+
 		$user = $this->input->post('username');
 		$email = $this->input->post('email');
 
@@ -111,6 +113,8 @@ class Admin extends Controller {
 
 			if ($val->run() AND $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email')))
 			{
+                ($hook = get_hook('users_user_created')) ? eval($hook) : NULL;
+
 				//set user role
 				$user_info = $this->user2->get_user_by_username($user)->row_array();
 				$this->user2->set_role($user_info['id'],$this->input->post('role'));
@@ -139,16 +143,19 @@ class Admin extends Controller {
 				switch ($action)
 				{
 					case 1: // ban
+                        ($hook = get_hook('users_ban')) ? eval($hook) : NULL;
 						$this->users->ban_user($value);
                         $this->lib_admin->log('Забанил пользователя '.$value);
 					break;
 
 					case 2: //unban
+                    ($hook = get_hook('users_unban')) ? eval($hook) : NULL;
 						$this->users->unban_user($value);
                         $this->lib_admin->log('Разбанил пользователя '.$value);
 					break;
 
 					case 3: //delete
+                        ($hook = get_hook('users_delete')) ? eval($hook) : NULL;
 						$this->users->delete_user($value);
                         $this->lib_admin->log('Удалил пользователя '.$value); 
 					break;
@@ -282,6 +289,8 @@ class Admin extends Controller {
 						$data['password'] = $new_pass;
 					}
 
+                ($hook = get_hook('users_user_update')) ? eval($hook) : NULL;
+
 				$this->db->where('id',$user_id);
 				$this->db->update('users',$data);
 
@@ -321,6 +330,8 @@ class Admin extends Controller {
 						'alt_name' => $this->input->post('alt_name'),
 						'desc' => $this->lib_admin->db_post('desc')
 						);
+
+            ($hook = get_hook('users_create_role')) ? eval($hook) : NULL;
 
 			$this->db->insert('roles',$data);
 
@@ -376,6 +387,8 @@ class Admin extends Controller {
 				break;
 			}
 
+            ($hook = get_hook('users_update_role')) ? eval($hook) : NULL;
+
 			$this->db->limit(1);
 			$this->db->where('id',intval($id));
 			$this->db->update('roles',$data);
@@ -398,6 +411,8 @@ class Admin extends Controller {
 			exit;
 			break;
 		}
+
+        ($hook = get_hook('users_delete_role')) ? eval($hook) : NULL;
 
 		$this->db->limit(1);
 		$this->db->where('id',intval($id));

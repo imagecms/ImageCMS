@@ -14,6 +14,8 @@ class Template extends Mabilis {
 	{
 		$this->CI =& get_instance();
 
+        ($hook = get_hook('lib_template_init')) ? eval($hook) : NULL;
+
 		//$this->compile_dir = BASEPATH.'cache/templates_c/';
 		//$this->template_dir = TEMPLATES_PATH.$this->CI->config->item('template').'/';
 		$this->modules_template_dir = TEMPLATES_PATH.'modules/';
@@ -29,6 +31,8 @@ class Template extends Mabilis {
             'use_filemtime'   => $cnf['use_filemtime']
             );
 
+        ($hook = get_hook('lib_template_set_conf')) ? eval($hook) : NULL;
+
         $this->load_config($config);
 
         $this->template_dir = $config['tpl_path'];
@@ -38,6 +42,8 @@ class Template extends Mabilis {
 
         // Assign CI instance
         $this->assign('CI', $this->CI);
+
+        ($hook = get_hook('lib_template_init_end')) ? eval($hook) : NULL;
 	}
 
     function assign($key, $value)
@@ -70,6 +76,8 @@ class Template extends Mabilis {
 	 */
 	function show($file = FALSE, $load_main = TRUE, $data = array())
 	{
+        ($hook = get_hook('lib_template_show')) ? eval($hook) : NULL;
+
 		$this->assign('BASE_URL', site_url()); //Base URL
 
         if (count($data) > 0) $this->add_array($data);
@@ -97,6 +105,8 @@ class Template extends Mabilis {
 
     function run_info()
     {
+        ($hook = get_hook('lib_template_run_info')) ? eval($hook) : NULL;
+
 		/************************/
 		echo '<!--';
 		echo 'Total Time:'.$this->CI->benchmark->elapsed_time('total_execution_time_start', 'total_execution_time_end').', ';

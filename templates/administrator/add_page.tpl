@@ -82,6 +82,8 @@
 
 	</div>
 
+    {($hook = get_hook('admin_tpl_add_page')) ? eval($hook) : NULL;}
+
 	<!-- Begin custom tabs -->
 	    { echo modules::run('xfields/admin/create_page_tab'); }
     <!-- / custom tabs -->
@@ -122,6 +124,9 @@
 		</div>
 
 		</div>
+
+    {($hook = get_hook('admin_tpl_add_page_side_bar')) ? eval($hook) : NULL;}
+
 	</div>
 
 <div style="padding:10px;clear:left;">

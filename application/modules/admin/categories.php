@@ -102,8 +102,11 @@ class Categories extends Controller {
 		$this->form_validation->set_rules('main_tpl', 'Главный Шаблон', 'trim|max_length[50]');
 		$this->form_validation->set_rules('per_page', '', 'required|trim|integer|max_length[9]|min_length[1]|is_natural_no_zero');
 
+        ($hook = get_hook('admin_create_cat_set_rules')) ? eval($hook) : NULL; 
+
 		if ($this->form_validation->run() == FALSE)
 		{
+            ($hook = get_hook('admin_create_cat_val_failed')) ? eval($hook) : NULL;
 			showMessage (validation_errors());
 		}
         else
@@ -163,6 +166,8 @@ class Categories extends Controller {
                 switch ($action)
                 {
                     case 'new':
+                        ($hook = get_hook('admin_create_category')) ? eval($hook) : NULL;
+
                         $id = $this->cms_admin->create_category($data);
 
                         $this->lib_admin->log('
@@ -176,6 +181,8 @@ class Categories extends Controller {
                     break;
 
                     case 'update':
+                        ($hook = get_hook('admin_update_category')) ? eval($hook) : NULL;
+
                         $this->cms_admin->update_category($data, $cat_id);
                         $this->lib_category->clear_cache();
                         $this->lib_category->build();
@@ -208,6 +215,8 @@ class Categories extends Controller {
 
     function fast_add($action = '')
     {
+        ($hook = get_hook('admin_fast_cat_add')) ? eval($hook) : NULL; 
+
         $this->template->add_array(array(
             'tree' => $this->lib_category->build(), 
         ));
@@ -274,6 +283,8 @@ class Categories extends Controller {
                     $data['url'] .= time();
                 }
 
+                ($hook = get_hook('admin_fast_cat_insert')) ? eval($hook) : NULL; 
+
                 $id = $this->cms_admin->create_category($data);
                 $this->lib_category->clear_cache();
 
@@ -315,6 +326,8 @@ class Categories extends Controller {
 	{
 		$cat = $this->cms_admin->get_category($id);
 
+       ($hook = get_hook('admin_edit_category')) ? eval($hook) : NULL; 
+
 		if ($cat !== FALSE)
 		{
             // Get langs
@@ -326,6 +339,9 @@ class Categories extends Controller {
 			$this->template->add_array($cat);
 			$this->template->assign('tree', $this->lib_category->build());
             $this->template->assign('include_cats', $this->sub_cats( $this->lib_category->build() ) );
+
+            ($hook = get_hook('admin_show_category_edit')) ? eval($hook) : NULL;
+
 			$this->template->show('category_edit', FALSE);
 		}else{
 			return FALSE;
@@ -337,6 +353,8 @@ class Categories extends Controller {
     {
 	    $cat = $this->cms_admin->get_category($id); 
 
+        ($hook = get_hook('admin_on_translate_cat')) ? eval($hook) : NULL;
+
         if (count($_POST) > 0)
         {
             $this->load->library('form_validation');
@@ -347,6 +365,8 @@ class Categories extends Controller {
             $this->form_validation->set_rules('keywords', 'Ключевые слова', 'trim');
             $this->form_validation->set_rules('short_desc', 'Краткое описание', 'trim');
             $this->form_validation->set_rules('title', 'Meta Title', 'trim|max_length[250]');
+
+            ($hook = get_hook('admin_set_cat_translate_rules')) ? eval($hook) : NULL;
 
 	        if ($this->form_validation->run() == FALSE)
 		    {
@@ -375,6 +395,8 @@ class Categories extends Controller {
                     <a href="#" onclick="edit_category('.$cat['id'].'); return false;">'.$cat['name'].'</a>'
                     );
 
+                    ($hook = get_hook('admin_insert_cat_translation')) ? eval($hook) : NULL; 
+
                     $this->db->insert('category_translate', $data);
                 }
                 else
@@ -383,6 +405,8 @@ class Categories extends Controller {
                     Изменил перевод категории 
                     <a href="#" onclick="edit_category('.$cat['id'].'); return false;">'.$cat['name'].'</a>'
                     );
+
+                    ($hook = get_hook('admin_update_cat_translation')) ? eval($hook) : NULL;
 
                     $this->db->where('alias', $id);
                     $this->db->where('lang', $lang);
@@ -415,7 +439,9 @@ class Categories extends Controller {
                         'lang' => $lang,
                     ));
 
-            $this->template->show('cat_translate', FALSE);               		
+            ($hook = get_hook('admin_show_cat_translate')) ? eval($hook) : NULL; 
+
+            $this->template->show('cat_translate', FALSE);       		
         }
         else
         {
@@ -434,6 +460,8 @@ class Categories extends Controller {
 	function delete()
     {
         $cat_id = $this->input->post('id');
+
+        ($hook = get_hook('admin_category_delete')) ? eval($hook) : NULL; 
 
 		// Delete Category
 		$this->db->limit(1);

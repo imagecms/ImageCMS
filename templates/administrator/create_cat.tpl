@@ -119,6 +119,9 @@
         <div class="form_input"><textarea name="keywords" rows="2" cols="48"></textarea></div>
         <div class="form_overflow"></div>
     </div>
+
+    {($hook = get_hook('admin_tpl_create_category')) ? eval($hook) : NULL;}
+
 </div>
 
 <div class="form_text"></div>

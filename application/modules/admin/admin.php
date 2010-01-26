@@ -55,6 +55,8 @@ class Admin extends Controller {
 
         $this->template->assign('username', $this->dx_auth->get_username());
 
+        ($hook = get_hook('admin_show_desktop')) ? eval($hook) : NULL;
+
 		$this->template->show('desktop', FALSE);
 	}
     

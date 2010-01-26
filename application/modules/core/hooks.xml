@@ -2,6 +2,6 @@
 
 <hook id="core_init">
 <![CDATA[
-    // code 
+
 ]]>
 </hook>
