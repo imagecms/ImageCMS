@@ -38,18 +38,27 @@ class Core extends Controller {
 
         $cat_path = substr($this->uri->uri_string(), 1); 
 
-        ($hook = get_hook('core_init')) ? eval($hook) : NULL; 
+        ($hook = get_hook('core_init')) ? eval($hook) : NULL;
 
         // Load settings
         $this->settings = $this->cms_base->get_settings();
 
+        ($hook = get_hook('core_settings_loaded')) ? eval($hook) : NULL;
+
         // Show offline message
-        if ($this->settings['site_offline'] == 'yes') show_error('Site is offline.');
+        if ($this->settings['site_offline'] == 'yes') 
+        {
+            ($hook = get_hook('core_goes_offline')) ? eval($hook) : NULL;
+
+            show_error('Site is offline.');
+        }
 
         // Set site main template
         $this->config->set_item('template', $this->settings['site_template']);
 
         // Load Template library
+        ($hook = get_hook('core_load_template_engine')) ? eval($hook) : NULL;
+
         $this->load->library('template');
 
         $last_element = key($this->uri->uri_to_assoc(0));
@@ -64,6 +73,9 @@ class Core extends Controller {
         {
             if(array_key_exists($this->uri->segment(1),$this->langs))
             {
+
+                ($hook = get_hook('core_set_lang')) ? eval($hook) : NULL;
+
                 $cat_path = substr($cat_path, strlen($this->uri->segment(1)));
 
                 // Delete first slash
@@ -82,7 +94,9 @@ class Core extends Controller {
 
                 $this->template->set_config_value('tpl_path', TEMPLATES_PATH.$this->langs[$uri_lang]['template'].'/');
 
-                $this->load_functions_file($this->langs[$uri_lang]['template'] );
+               ($hook = get_hook('core_changed_tpl_path')) ? eval($hook) : NULL; 
+
+                $this->load_functions_file($this->langs[$uri_lang]['template']);
 
                 // Add language identificator to base_url
                 $this->config->set_item('base_url',base_url().$uri_lang);
@@ -97,6 +111,8 @@ class Core extends Controller {
         // End language detect
 
         // Load categories
+        ($hook = get_hook('core_load_lib_category')) ? eval($hook) : NULL;
+
         $this->load->library('lib_category');
         $categories = $this->lib_category->build();
 
@@ -109,6 +125,8 @@ class Core extends Controller {
         {
             $this->modules = $query->result_array();
 
+            ($hook = get_hook('core_load_modules_urls')) ? eval($hook) : NULL; 
+
             foreach($this->modules as $k)
             {
                 $com_links[ $k['name'] ] = '/'.$k['identif'];
@@ -118,12 +136,16 @@ class Core extends Controller {
         }
 
         // Load auth library
+        ($hook = get_hook('core_load_auth_lib')) ? eval($hook) : NULL;
+
         $this->load->library('DX_Auth');
   
         // Are we on main page?
         if ($cat_path == FALSE AND $data_type != 'bridge')
         {
              $data_type = 'main';
+
+            ($hook = get_hook('core_set_type_main')) ? eval($hook) : NULL;
         }
 
         if (is_numeric($last_element) AND is_int($last_element))
@@ -134,6 +156,8 @@ class Core extends Controller {
             $cat_path = substr($cat_path, 0, strripos($cat_path, '/'));
             $this->by_pages = TRUE;
             $this->cat_page = $last_element;
+
+            ($hook = get_hook('core_enable_pagination')) ? eval($hook) : NULL;
         }
 
         if (substr($cat_path, -1) != '/') $SLASH = '/';
@@ -144,6 +168,9 @@ class Core extends Controller {
             {
                 $this->cat_content = $cat;
                 $data_type = 'category';
+
+                ($hook = get_hook('core_set_type_category')) ? eval($hook) : NULL;
+
                 break;
             }
         }
@@ -152,6 +179,8 @@ class Core extends Controller {
         {
                 $cat_path_url = substr($cat_path, 0, strripos($cat_path, '/') + 1);
                                 
+                ($hook = get_hook('core_try_find_page')) ? eval($hook) : NULL;
+
                 // Select page permissions and page data
                 $this->db->select('content.*');
                 $this->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url');
@@ -171,10 +200,13 @@ class Core extends Controller {
                     $this->db->where('content.cat_url',$cat_path_url);
                 }
 
+                ($hook = get_hook('core_get_page_query')) ? eval($hook) : NULL;
                 $query = $this->db->get('content',1);
 
                 if ($query->num_rows() > 0)
                 {
+                    ($hook = get_hook('core_page_found')) ? eval($hook) : NULL;
+
                     if(substr($cat_path, -1) == '/') $cat_path = substr($cat_path, 0 , -1);
                     $cat_path = substr($cat_path, 0, strripos($cat_path, '/'));
 
@@ -192,12 +224,17 @@ class Core extends Controller {
                                 $data_type = 'page';
                                 $this->page_content = $page_info;
                                 $this->cat_content = $cat;
+
+                                ($hook = get_hook('core_set_page_data')) ? eval($hook) : NULL;
+
                                 break;
                             }
                         }
 
                         if ($page_found == FALSE)
                         {
+                            ($hook = get_hook('core_set_type_404')) ? eval($hook) : NULL;
+
                             // show 404 page
                             $data_type = '404';
                         }
@@ -206,11 +243,16 @@ class Core extends Controller {
                         // display page without category
                         $data_type = 'page';
                         $this->page_content = $page_info;
+
+                        ($hook = get_hook('core_set_type_nocat')) ? eval($hook) : NULL;
                     }
                 }else{
                     $data_type = '404';
+                    ($hook = get_hook('core_type_404')) ? eval($hook) : NULL;
                 }
         }
+
+       ($hook = get_hook('core_assign_data_type')) ? eval($hook) : NULL; 
 
         $this->core_data = array(
                         'data_type' => $data_type, // Possible values: page/category/main/404
@@ -219,6 +261,8 @@ class Core extends Controller {
         // Assign userdata
         if ($this->dx_auth->is_logged_in() == TRUE)
         {
+            ($hook = get_hook('core_user_is_logged_in')) ? eval($hook) : NULL;
+
             $this->tpl_data['is_logged_in'] = TRUE;
             $this->tpl_data['username'] = $this->dx_auth->get_username();
         }
@@ -251,6 +295,8 @@ class Core extends Controller {
             case 'bridge':
                 log_message('debug', 'Bridge initialized.');
             break;
+
+            ($hook = get_hook('core_datatype_switch')) ? eval($hook) : NULL;
         }
     }
 
@@ -294,13 +340,20 @@ class Core extends Controller {
                 
                 $title = $page['meta_title'] == NULL ? $page['title'] : $page['meta_title'];
                 //$this->set_meta_tags($title, $page['keywords'], $page['description']);
+
+               ($hook = get_hook('core_set_main_page_meta')) ? eval($hook) : NULL; 
+
                 $this->set_meta_tags($this->settings['site_title'], $this->settings['site_keywords'], $this->settings['site_description']);
+
+                ($hook = get_hook('core_show_main_page')) ? eval($hook) : NULL;
 
 				$this->template->show();
 			break;
 
 			// Category
 			case 'category';
+               ($hook = get_hook('core_show_main_cat')) ? eval($hook) : NULL; 
+
                 $m_category = $this->lib_category->get_category( $this->settings['main_page_cat'] );
                 $this->_display_category($m_category);
             break;
@@ -313,6 +366,8 @@ class Core extends Controller {
 	function _display_page_and_cat($page = array(), $category = array())
     {
         //$this->load->library('typography');
+        ($hook = get_hook('core_disp_page_and_cat')) ? eval($hook) : NULL;
+
 
         if ($page['full_text'] == '')
         {
@@ -344,7 +399,6 @@ class Core extends Controller {
         $this->db->where('id', $page['id']);
         $this->db->update('content');
 
-
         if (!$category['main_tpl'])
         {
             $this->template->show();
@@ -358,6 +412,8 @@ class Core extends Controller {
     // Select or count pages in category
     public function _get_category_pages($category = array(), $row_count = 0, $offset = 0, $count = FALSE)
     {
+        ($hook = get_hook('core_get_category_pages')) ? eval($hook) : NULL;
+
         $this->db->where('post_status', 'publish');
         $this->db->where('publish_date <=', time());
         $this->db->where('lang', $this->config->item('cur_lang'));
@@ -390,9 +446,13 @@ class Core extends Controller {
         else
         {
             // Return total pages for pagination
+            ($hook = get_hook('core_return_pages_count')) ? eval($hook) : NULL;
+
             $this->db->from('content');
             return $this->db->count_all_results();
         }
+
+        ($hook = get_hook('core_return_category_pages')) ? eval($hook) : NULL;
 
         return $query->result_array();
     }
@@ -402,6 +462,8 @@ class Core extends Controller {
 	 */
 	function _display_category($category = array())
     {
+        ($hook = get_hook('core_disp_category')) ? eval($hook) : NULL;
+
         $category['fetch_pages'] = unserialize($category['fetch_pages']);
 
 		$content = '';
@@ -431,50 +493,56 @@ class Core extends Controller {
             $config['cur_tag_close'] = '</span>';
 
             $this->pagination->num_links = 5;
+
+            ($hook = get_hook('core_dispcat_set_pagination')) ? eval($hook) : NULL;
+
             $this->pagination->initialize($config);
             $this->template->assign('pagination', $this->pagination->create_links());
         }
         // End pagination
 
-        $this->template->assign('category', $category);    
+        ($hook = get_hook('core_dispcat_set_category_data')) ? eval($hook) : NULL;
+        $this->template->assign('category', $category);  
 
         $cnt = count($pages);
 
         if ($category['tpl'] == '')
         {
             $cat_tpl = 'category';
-        }else{
+        }
+        else
+        {
             $cat_tpl = $category['tpl'];
         }
 
         if ($cnt > 0)
-        {
-            //$this->load->library('typography'); 
-
-            // Prepare prev_text and create links
-            // for ($i = 0; $i < $cnt; $i++) 
-            // {
-            //    $pages[$i]['prev_text'] = $this->typography->auto_typography( htmlspecialchars_decode($pages[$i]['prev_text']) );
-            // }
-  
+        {  
             // Locate category tpl file
             if (! file_exists( $this->template->template_dir. $cat_tpl .'.tpl' ))
             {
+                ($hook = get_hook('core_dispcat_tpl_error')) ? eval($hook) : NULL;
                 show_error('Can\'t locate category template file.');
             }
+
+            ($hook = get_hook('core_dispcat_read_ptpl')) ? eval($hook) : NULL;
 
             $content = $this->template->read($cat_tpl, array('pages' => $pages));
 
         }else{
+            ($hook = get_hook('core_dispcat_no_pages')) ? eval($hook) : NULL;
             $content = $this->template->read($cat_tpl, array('no_pages' => lang('no_pages_in_cat')));
         }
 
 
         $category['title'] == NULL ? $category['title'] = $category['name'] : TRUE;
 
+        ($hook = get_hook('core_dispcat_set_meta')) ? eval($hook) : NULL;
         $this->set_meta_tags($category['title'], $category['keywords'], $category['description']);
 
+        ($hook = get_hook('core_dispcat_set_content')) ? eval($hook) : NULL;
         $this->template->assign('content', $content);
+
+        ($hook = get_hook('core_dispcat_show_content')) ? eval($hook) : NULL;
 
         if (!$category['main_tpl'])
         {
@@ -492,6 +560,8 @@ class Core extends Controller {
     public function _load_languages()
     {
         // Load languages
+        ($hook = get_hook('core_load_languages')) ? eval($hook) : NULL; 
+
         $langs = $this->cms_base->get_langs();
 
         foreach ($langs as $lang)
@@ -510,7 +580,9 @@ class Core extends Controller {
 	 * Load and run modules
 	 */
 	private function load_modules()
-	{
+    {
+        ($hook = get_hook('core_load_modules')) ? eval($hook) : NULL;
+
 		foreach($this->modules as $module)
         {
             if ($module['autoload'] == 1)
@@ -521,6 +593,8 @@ class Core extends Controller {
                 if ( method_exists($mod_name, 'autoload') === TRUE )
                 {
                     $this->core_data['module'] = $mod_name;
+
+                    ($hook = get_hook('core_load_module_autoload')) ? eval($hook) : NULL;
                     $this->$mod_name->autoload();
                 }
             }
@@ -536,6 +610,9 @@ class Core extends Controller {
 	private function _check_url()
     {
         $CI =& get_instance();
+
+        ($hook = get_hook('core_check_url')) ? eval($hook) : NULL;
+
         $error_text = $this->lang->line('uri_access_deny');
 
 		$not_permitted = array('_install', '_deinstall', '_install_rules', 'autoload', '__construct');
@@ -554,6 +631,7 @@ class Core extends Controller {
 		    {
                 if( in_array($segment, $not_permitted) == TRUE )
                 {
+                    ($hook = get_hook('core_checkurl_access_false')) ? eval($hook) : NULL;
                     $this->error($error_text, FALSE);
                 }
             }
@@ -564,6 +642,7 @@ class Core extends Controller {
 
 	private function _process_core_data()
 	{
+        ($hook = get_hook('core_set_tpl_data')) ? eval($hook) : NULL;
 		$this->template->add_array($this->tpl_data);
 		$this->load_modules();
 
@@ -586,6 +665,8 @@ class Core extends Controller {
 	 */
 	function error_404()
 	{
+        ($hook = get_hook('core_display_error_404')) ? eval($hook) : NULL;
+
         $this->set_meta_tags(lang('error_page_h'));
 
 		$this->template->assign('error_text', lang('error_page_404'));
@@ -600,6 +681,8 @@ class Core extends Controller {
      */ 
     function error($text, $back = TRUE)
     {
+       ($hook = get_hook('core_display_errors_tpl')) ? eval($hook) : NULL; 
+
         $this->template->add_array(array(
             'content' => $this->template->read('error', array('error_text' => $text, 'back_button' => $back))
         ));
@@ -633,6 +716,8 @@ class Core extends Controller {
         $segment = $this->uri->segment($n);
         $found   = FALSE;
 
+        ($hook = get_hook('core_is_seg_module')) ? eval($hook) : NULL;
+
         foreach($this->modules as $k)
         {
             if ($k['identif'] === $segment AND $k['enabled'] == 1)
@@ -655,6 +740,8 @@ class Core extends Controller {
 
             if(file_exists($file))
             {
+                ($hook = get_hook('core_run_module_by_seg')) ? eval($hook) : NULL;
+
                 // Run module
                 $func = $this->uri->segment($n + 2);
                 if($func == FALSE) $func = 'index';
@@ -676,6 +763,8 @@ class Core extends Controller {
 	 */
 	function check_page_access($roles)
     {
+        ($hook = get_hook('core_check_page_access')) ? eval($hook) : NULL;
+
         if ($roles == FALSE OR count($roles) == 0) return TRUE;
 
         // if (count($roles) == 0) return TRUE;
@@ -705,6 +794,8 @@ class Core extends Controller {
 
 		if($access == FALSE)
 		{
+            ($hook = get_hook('core_page_access_deny')) ? eval($hook) : NULL;
+
 			$this->dx_auth->deny_access('deny');
 			exit;
 		}
@@ -739,6 +830,8 @@ class Core extends Controller {
 	 */
 	private function use_def_language()
 	{
+            ($hook = get_hook('core_load_def_lang')) ? eval($hook) : NULL;
+
             $this->load_functions_file($this->settings['site_template']);
 			// Load language variables into template
 			//$this->template->add_array($this->lang->load('main',$this->def_lang[0]['folder'],TRUE));
@@ -755,11 +848,13 @@ class Core extends Controller {
 
     private function load_functions_file($tpl_name)
     {
+        ($hook = get_hook('core_load_functions_php')) ? eval($hook) : NULL;
+
         $full_path ='./templates/'.$tpl_name.'/functions.php'; 
 
         if (file_exists($full_path))
         {
-            require($full_path);
+            include($full_path);
         }
     }
 
@@ -768,6 +863,8 @@ class Core extends Controller {
 	 */
 	public function set_meta_tags($title = '', $keywords = '', $description = '')
 	{
+        ($hook = get_hook('core_set_meta_tags')) ? eval($hook) : NULL;
+
         if ($this->core_data['data_type'] == 'main')
         {
             $this->template->add_array(array(

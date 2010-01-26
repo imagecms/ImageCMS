@@ -2,16 +2,6 @@
 require_once('config_tinybrowser.php');
 require_once('fns_tinybrowser.php');
 
-
-$fp = fopen('/srv/http/imagecms/system/cache/dump.html', 'w');
-ob_start();
-var_dump($_REQUEST);
-$da = ob_get_contents();
-ob_end_clean();
-fwrite($fp, $da);
-fclose($fp);
-
-
 // Imagecms auth;
 define('CMS_BRIDGE', TRUE);
 define('ICMS_INIT', TRUE);

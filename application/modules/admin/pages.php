@@ -43,6 +43,8 @@ class Pages extends Controller{
                 'sel_cat'  => $uri_segs['category']
             ));
 
+        ($hook = get_hook('admin_show_add_page')) ? eval($hook) : NULL;
+
 		$this->template->show('add_page', FALSE);
 	}
 
@@ -117,8 +119,11 @@ class Pages extends Controller{
 		$this->form_validation->set_rules('page_description', 'Описание', 'trim');
 		$this->form_validation->set_rules('full_tpl', 'Шаблон Страницы', 'trim|max_length[150]|min_length[2]');
 
+        ($hook = get_hook('admin_page_add_set_rules')) ? eval($hook) : NULL;
+
 		if ($this->form_validation->run() == FALSE)
 		{
+            ($hook = get_hook('admin_page_add_val_failed')) ? eval($hook) : NULL;
 			showMessage (validation_errors());
 		}else
         {
@@ -197,9 +202,12 @@ class Pages extends Controller{
 				'lang' => $def_lang['id']
 			);
 
+            ($hook = get_hook('admin_page_insert')) ? eval($hook) : NULL;
+
 			$page_id = $this->cms_admin->add_page($data);
 
 			$data['id'] = $page_id;
+
 			$this->on_page_add($data);
 
             $this->lib_admin->log('
@@ -217,6 +225,8 @@ class Pages extends Controller{
 	 */
 	function _set_page_roles($page_id, $roles)
     {
+        ($hook = get_hook('admin_page_set_roles')) ? eval($hook) : NULL; 
+
 		//if ( count($roles) > 0 )
 		if ( $roles[0] != '' )
 		{
@@ -280,6 +290,8 @@ class Pages extends Controller{
                 $data = FALSE;
             }
         }
+
+        ($hook = get_hook('admin_page_edit_found')) ? eval($hook) : NULL; 
 
 		if ($data)
         {
@@ -349,6 +361,8 @@ class Pages extends Controller{
                 $this->template->assign('orig_page', $orig_page);
             }
 
+            ($hook = get_hook('admin_show_edit_page_tpl')) ? eval($hook) : NULL; 
+
 			$this->template->show('edit_page', FALSE);
 		}else{
 
@@ -372,6 +386,8 @@ class Pages extends Controller{
 							'lang_alias'      => $defpage['id'],
 							'full_tpl'        => $defpage['full_tpl'],
 					);
+
+                    ($hook = get_hook('admin_page_create_empty_translation')) ? eval($hook) : NULL;
 
 					$new_p_id = $this->cms_admin->add_page($new_data);
 
@@ -402,8 +418,11 @@ class Pages extends Controller{
 		$this->form_validation->set_rules('page_description', 'Описание', 'trim');
 		$this->form_validation->set_rules('full_tpl', 'Шаблон Страницы', 'trim|max_length[150]|min_length[2]');
 
+        ($hook = get_hook('admin_page_update_set_rules')) ? eval($hook) : NULL;
+
 		if ($this->form_validation->run() == FALSE)
 		{
+                ($hook = get_hook('admin_page_update_val_failed')) ? eval($hook) : NULL;
 				showMessage (validation_errors());
 		}else{
 
@@ -483,6 +502,9 @@ class Pages extends Controller{
 			$data['id'] = $page_id;
 			$this->on_page_update($data);
 
+            ($hook = get_hook('admin_page_update')) ? eval($hook) : NULL;
+
+
 			if ($this->cms_admin->update_page($page_id, $data) >= 1)
 			{
 
@@ -537,6 +559,8 @@ class Pages extends Controller{
 
 		$root_page = $this->cms_admin->get_page($page['lang_alias']);
 
+        ($hook = get_hook('admin_page_delete')) ? eval($hook) : NULL;
+
 		// delete page
 		$this->db->where('id',$page['id']);
 		$this->db->delete('content');
@@ -562,6 +586,9 @@ class Pages extends Controller{
 
     function save_positions()
     {      
+
+        ($hook = get_hook('admin_update_page_positions')) ? eval($hook) : NULL;
+
         foreach ($_POST['pages_pos'] as $k => $v)
         {
             $item = explode('_', substr($v, 4));
@@ -579,6 +606,8 @@ class Pages extends Controller{
     {
         $ids = $_POST['pages'];
 
+        ($hook = get_hook('admin_pages_delete_many')) ? eval($hook) : NULL;
+
         if (count($ids) > 0)
         {
             foreach($ids as $k => $v)
@@ -591,7 +620,7 @@ class Pages extends Controller{
 
     function move_pages($action)
     {
-        $ids = $_POST['pages'];
+        $ids = $_POST['pages']; 
 
         $this->db->select('category');
         $page = $this->db->get_where('content', array('id' => substr($_POST['pages'][0],5)))->row_array();
@@ -612,6 +641,8 @@ class Pages extends Controller{
                 switch ($action)
                 {
                     case 'move':
+                        ($hook = get_hook('admin_pages_move')) ? eval($hook) : NULL;
+
                         $this->db->where('id', $page_id);
                         $this->db->update('content', $data);
                     break;
@@ -630,6 +661,8 @@ class Pages extends Controller{
                         $page['url'] .= $new_url + 1;
 
                         unset($page['id']);
+
+                        ($hook = get_hook('admin_pages_copy')) ? eval($hook) : NULL;
 
                         $this->db->insert('content', $page);
                     break;
@@ -728,6 +761,8 @@ class Pages extends Controller{
 	{
 		$page = $this->cms_admin->get_page($page_id);
 
+        ($hook = get_hook('admin_page_change_status')) ? eval($hook) : NULL;
+
 		switch($page['post_status'])
 		{
 			case 'publish':
@@ -770,9 +805,11 @@ class Pages extends Controller{
                     'lang_alias' => 0 
                     );
 
+
+        ($hook = get_hook('admin_get_pages_by_cat')) ? eval($hook) : NULL;
+
         $offset = $this->uri->segment( 5 );    
         $offset == FALSE ? $offset = 0 : TRUE;
-
 
         $row_count = $this->_Config['per_page'];
 

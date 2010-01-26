@@ -33,6 +33,8 @@ class Settings extends Controller{
 			'full'=> 'Полная'
 		);
 
+        ($hook = get_hook('admin_set_editor_theme')) ? eval($hook) : NULL;
+
 		$this->template->assign('editor_themes', $themes_arr);
 		$this->template->assign('theme_selected', $settings['editor_theme']);
 
@@ -44,6 +46,8 @@ class Settings extends Controller{
 
 		$this->template->assign('parent_id', $settings['main_page_cat']);
 		$this->template->assign('id', 0);
+
+        ($hook = get_hook('admin_show_settings_tpl')) ? eval($hook) : NULL;
 
 		$this->template->show('settings',FALSE);
 	}
@@ -146,6 +150,8 @@ class Settings extends Controller{
             'editor_theme' => $this->input->post('editor_theme'),
             'site_offline' => $this->input->post('site_offline')
 		);
+
+        ($hook = get_hook('admin_save_settings')) ? eval($hook) : NULL;
 
 		$this->cms_admin->save_settings($data_m);
 

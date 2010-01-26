@@ -33,6 +33,8 @@
 	<script type="text/javascript" src="{$JS_URL}/tinymce/plugins/tinybrowser/tb_tinymce.js.php"></script>
 	<script type="text/javascript" src="{$JS_URL}/tinymce/plugins/tinybrowser/tb_standalone.js.php"></script>
 
+    {($hook = get_hook('admin_tpl_desktop_head')) ? eval($hook) : NULL;}
+
     {literal}
     <script type="text/javascript">
         window.addEvent('domready', function(){

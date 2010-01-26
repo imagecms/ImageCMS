@@ -16,12 +16,16 @@
 
 	function init()
 	{
+        ($hook = get_hook('lib_editor_init')) ? eval($hook) : NULL;
+
 		return $this->tiny_mce();
 	}
 
 	function tiny_mce()
 	{
 		$theme = $this->CI->cms_admin->editor_theme();
+
+        ($hook = get_hook('lib_editor_create_js_code')) ? eval($hook) : NULL;
 
         //var_dump($theme);
 
