@@ -41,7 +41,11 @@ class Core extends Controller {
         ($hook = get_hook('core_init')) ? eval($hook) : NULL;
 
         // Load settings
-        $this->settings = $this->cms_base->get_settings();
+        if (($this->settings = $this->cache->fetch('main_site_settings')) === FALSE)
+        {
+            $this->settings = $this->cms_base->get_settings();
+            $this->cache->store('main_site_settings', $this->settings);
+        }
 
         ($hook = get_hook('core_settings_loaded')) ? eval($hook) : NULL;
 
@@ -562,7 +566,11 @@ class Core extends Controller {
         // Load languages
         ($hook = get_hook('core_load_languages')) ? eval($hook) : NULL; 
 
-        $langs = $this->cms_base->get_langs();
+        if (($langs = $this->cache->fetch('main_site_langs')) === FALSE)
+        {
+            $langs = $this->cms_base->get_langs();
+            $this->cache->store('main_site_langs', $langs);
+        }
 
         foreach ($langs as $lang)
         {
@@ -572,6 +580,7 @@ class Core extends Controller {
                                                 'folder' => $lang['folder'],
                                                 'template' => $lang['template']
                                                 );
+
             if($lang['default'] == 1) $this->def_lang = array($lang);
         }
     }
