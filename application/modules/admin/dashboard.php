@@ -15,6 +15,7 @@ class Dashboard extends Controller{
 
 		$this->load->library('lib_admin');
 		$this->lib_admin->init_settings();
+        $this->load->helper('my_html');
 	}
 
 	public function index()
@@ -71,12 +72,13 @@ class Dashboard extends Controller{
         {
             $this->config->load('api');
 
-            $api_news = @file_get_contents($this->config->item('imagecms_latest_news'));
+            //$api_news = @file_get_contents($this->config->item('imagecms_latest_news'));
+            $api_news = $this->_curl_post($this->config->item('imagecms_latest_news')); 
 
-            if (count(unserialize($api_news)) > 1)
+            if (count(unserialize($api_news['result'])) > 1 AND $api_news['code'] == '200')
             {
-                $this->template->assign('api_news', unserialize($api_news));
-                $this->cache->store('api_news_cache', unserialize($api_news)); 
+                $this->template->assign('api_news', unserialize($api_news['result']));
+                $this->cache->store('api_news_cache', unserialize($api_news['result'])); 
             }
             else
             {
@@ -87,6 +89,27 @@ class Dashboard extends Controller{
 	    $this->template->show('dashboard', FALSE);
 	}
 
+
+    private function _curl_post($url='', $data=array()) 
+    {
+        $options = array();
+        $options[CURLOPT_HEADER]         = FALSE;
+        $options[CURLOPT_RETURNTRANSFER] = TRUE;
+        $options[CURLOPT_POST]           = TRUE;
+        $options[CURLOPT_POSTFIELDS]     = $data;
+
+        $handler = curl_init($url);
+
+        curl_setopt_array($handler, $options);
+        $resp = curl_exec($handler);
+
+        $result['code']   = curl_getinfo($handler, CURLINFO_HTTP_CODE);
+        $result['result'] = $resp;
+        $result['error']  = curl_errno($handler);
+
+        curl_close($handler);
+        return $result; 
+    }
 
 }
 

@@ -51,8 +51,8 @@ class Permissions Extends Model
 	 */		
 	function _unserialize($data)
 	{
-		$data = @unserialize($data);
-
+		$data = @unserialize(stripslashes($data));
+		
 		if (is_array($data))
 		{
 			foreach ($data as $key => $val)
@@ -113,13 +113,13 @@ class Permissions Extends Model
 		$result = array();
 	
 		$query = $this->get_permission($role_id);
-
+		
 		if ($query->num_rows() > 0)
 		{
 			$row = $query->row();
 			
-			$result = $row->data; 
-
+			$result = $row->data;
+			
 			if ($unserialize)
 			{				
 				$result = $this->_unserialize($row->data);
