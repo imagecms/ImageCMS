@@ -113,7 +113,10 @@ class Sys_upgrade extends Controller {
 
                 write_file($tmp_file, $contents);
 
-                mkdir($tmp_folder);
+                if (!file_exists($tmp_folder))
+                {
+                    mkdir($tmp_folder);
+                }
 
                 $this->load->library('pclzip', $tmp_file);
 
@@ -153,6 +156,10 @@ class Sys_upgrade extends Controller {
                 // Clear system cache
                 $this->load->library('cache');
                 $this->cache->delete_all();
+
+                // Rebuild sys hooks
+                $this->load->library('cms_hooks');
+                $this->cms_hooks->build_hooks();
 
                 showMessage('Обновление завершено.');
                 updateDiv('page', site_url('admin/dashboard/index'));
