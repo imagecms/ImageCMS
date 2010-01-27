@@ -86,6 +86,24 @@ class Dashboard extends Controller{
             } 
         }
 
+        // Get system upgrade info
+        $this->load->module('admin/sys_upgrade');
+
+        $status = $this->sys_upgrade->_check_status();
+
+        // Get next version number
+        $next_v = explode('_', $status['upgrade_file']);
+
+        if (isset($next_v[2]))
+        {
+            $this->template->assign('next_v', str_replace('.zip','',$next_v[2]));
+        }
+    
+        $this->template->add_array(array(
+            'cms_number' => IMAGECMS_NUMBER,
+            'sys_status' => $status,
+        ));
+
 	    $this->template->show('dashboard', FALSE);
 	}
 

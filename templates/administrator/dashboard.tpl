@@ -107,6 +107,20 @@
     <div style="float:left; width:25%; ">
 
         <div class="l_box" style="background-color: #ACBFC5; border-top:0px;">
+            <img src="{$THEME}/images/application-browser.png" width="16" height="16" align="top" style="padding-right:15px;" />
+            <b>Система</b>
+        </div>
+
+        <div class="l_box">
+            Версия: {$cms_number} <br />
+            {if $sys_status.is_update == TRUE}
+                <a href="#" onclick="ajax_div('page', base_url + 'admin/sys_upgrade');return false;">Есть обновления до версии {$next_v}</a>
+            {else:}
+                Обновлений нет.
+            {/if}
+        </div>
+
+        <div class="l_box" style="background-color: #ACBFC5; border-top:0px;">
             <img src="{$THEME}/images/application-list.png" width="16" height="16" align="top" style="padding-right:15px;" />
             <b>Статистика</b>
         </div>
