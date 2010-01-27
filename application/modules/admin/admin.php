@@ -25,8 +25,7 @@ class Admin extends Controller {
 
 		$this->load->library('lib_admin');
 		$this->load->library('lib_category');
-		$this->lib_admin->init_settings(); 
-        
+		$this->lib_admin->init_settings();         
 	}
 
 	public function index()
