@@ -8,8 +8,7 @@ class Cms_hooks {
     {
         $ci =& get_instance();
 
-        $this->hooks_file = (dirname(__FILE__).'/../../system/cache/hooks'.EXT);
-        $this->hooks_file = realpath($this->hooks_file);
+        $this->hooks_file = BASEPATH.'cache/hooks'.EXT;
 
         if (!file_exists($this->hooks_file) OR $ci->config->item('rebuild_hooks_tree') === TRUE)
         {

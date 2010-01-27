@@ -8,10 +8,6 @@
  *
  */
 
-define('IMAGECMS_NUMBER', '1.0.0');
-define('IMAGECMS_VERSION', 'A35TW503B1'); 
-define('IMAGECMS_PUBLIC_ID', 'djhsdjhskfsdfjhk782340'); 
-
 class Admin extends Controller {
 
     private $request_url = 'http://requests.imagecms.net/index.php/requests/req';
