@@ -117,6 +117,51 @@ class Admin extends Controller {
         exit;
     }
 
+    public function sys_info($action = '')
+    {
+        if ($action == 'phpinfo')
+        {
+            ob_start();
+            phpinfo();
+            $contents = ob_get_contents();
+            ob_end_clean();
+
+            $this->load->helper('my_html');
+            echo htmlentities_to_xml($contents);
+            exit;
+        }
+
+        if ($this->db->dbdriver == 'mysql')
+        {
+            $this->load->helper('number');
+
+            $sql = "SHOW TABLE STATUS FROM `imagecms_blog`";
+            $query = $this->db->query($sql)->result_array();
+
+            // Get total DB size
+            $total_size = 0;
+            $total_rows = 0;
+            foreach($query as $k => $v)
+            {
+                $total_size += $v['Data_length'] +  $v['Index_length'];
+                $total_rows += $v['Rows'];
+            }
+
+            $sql = "SELECT VERSION()";
+            $query = $this->db->query($sql);
+
+            $version = $query->row_array();
+
+            $this->template->add_array(array(
+                'db_version' => $version['VERSION()'],
+                'db_size'    => byte_format($total_size),
+                'db_rows'    => $total_rows,
+            ));
+        }
+
+        $this->template->show('sys_info', FALSE);
+    }
+
     private function _ud()
     {
         $s = $this->cms_base->get_settings();

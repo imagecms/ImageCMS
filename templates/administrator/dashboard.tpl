@@ -118,6 +118,8 @@
             {else:}
                 Обновлений нет.
             {/if}
+                <br/>
+                <a href="#" onclick="ajax_div('page', base_url + 'admin/sys_info');return false;">Информация</a> 
         </div>
 
         <div class="l_box" style="background-color: #ACBFC5; border-top:0px;">
