@@ -131,6 +131,23 @@ class Admin extends Controller {
             exit;
         }
 
+        $folders = array(
+            '/system/cache/' => FALSE,
+            '/system/cache/templates_c/' => FALSE,
+            '/uploads/' => FALSE,
+            '/uploads/images' => FALSE,
+            '/uploads/files' => FALSE,
+            '/uploads/media' => FALSE,
+            '/captcha/' => FALSE,
+        );
+
+        foreach ($folders as $k => $v)
+        {
+            $folders[$k] = is_really_writable(PUBPATH.$k);
+        }
+
+        $this->template->assign('folders', $folders);
+
         if ($this->db->dbdriver == 'mysql')
         {
             $this->load->helper('number');

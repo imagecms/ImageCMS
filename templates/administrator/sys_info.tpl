@@ -56,6 +56,17 @@
         <div class="form_overflow"></div>
     {/if}
 
-<div id="php_info">
+    <div class="form_text">Права на запись</div>
+	<div class="form_input">
+        {foreach $folders as $k => $v}
+            {if $v == TRUE}
+                {$color='green'}
+            {else:}
+                {$color='#E25B5B'}
+            {/if}
+            <span style="color:{$color};">{$k}</span><br />
+        {/foreach}
+    </div>
+	<div class="form_overflow"></div>
 
-</div>
+<div id="php_info"></div>
