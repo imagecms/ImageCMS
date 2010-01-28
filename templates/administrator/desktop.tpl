@@ -144,7 +144,6 @@
 		</ul>
 	</li>
 
-	<li><a class="returnFalse" href="">Справка</a></li>
 	<li><a href="{$BASE_URL}" target="_blank">Просмотреть сайт</a></li>
 	<li><a href="{$BASE_URL}admin/logout">Выход</a></li>
 </ul>
