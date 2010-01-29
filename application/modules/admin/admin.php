@@ -152,7 +152,7 @@ class Admin extends Controller {
         {
             $this->load->helper('number');
 
-            $sql = "SHOW TABLE STATUS FROM `imagecms_blog`";
+            $sql = "SHOW TABLE STATUS FROM `".$this->db->database."`";
             $query = $this->db->query($sql)->result_array();
 
             // Get total DB size

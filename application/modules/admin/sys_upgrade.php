@@ -4,7 +4,7 @@
 
 class Sys_upgrade extends Controller {
 
-    private $upgrade_server = 'http://test/upgrades/';
+    private $upgrade_server = 'http://imagecms.net/upgrades/';
 
 	public function __construct()
 	{
@@ -169,10 +169,15 @@ class Sys_upgrade extends Controller {
 
     public function _check_status()
     {
+        if (($result = $this->cache->fetch('main_site_upgrades')) !== FALSE)
+        {
+            return $result;
+        }
+
         $is_update    = FALSE;
         $upgrade_file = FALSE;
 
-        if(($fh = fopen($this->upgrade_server.'migrates.xml', 'r')) == FALSE)
+        if(($fh = @fopen($this->upgrade_server.'migrates.xml', 'r')) == FALSE)
         {
             //die('Ошибка загрузки файла версий.');
             $is_update = FALSE;
@@ -203,7 +208,12 @@ class Sys_upgrade extends Controller {
             }
         }
 
-        return array('is_update' => $is_update, 'upgrade_file' => $upgrade_file);
+        $result = array('is_update' => $is_update, 'upgrade_file' => $upgrade_file);
+
+        $this->cache->store('main_site_upgrades', $result);
+
+
+        return $result;
     }
 
 }
