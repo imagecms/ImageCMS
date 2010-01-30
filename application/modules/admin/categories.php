@@ -184,14 +184,19 @@ class Categories extends Controller {
                         ($hook = get_hook('admin_update_category')) ? eval($hook) : NULL;
 
                         $this->cms_admin->update_category($data, $cat_id);
+
                         $this->lib_category->clear_cache();
+
+                        // Clear lib_category data
+                        $this->lib_category->categories = array();
+                        $this->lib_category->level = 0;
+                        $this->lib_category->path = array();
+                        $this->lib_category->unsorted_arr = FALSE;
+                        $this->lib_category->unsorted = FALSE;
+
                         $this->lib_category->build();
 
-                        // update pages path
-                        $new_path = $this->lib_category->GetValue($this->input->post('cat_id'),'path_url');
-                        $this->db->where('category',$this->input->post('cat_id'));
-                        $this->db->update('content',array('cat_url' => $new_path));
-                        //end update pages
+                        $this->update_urls();
 
                         $this->lib_admin->log('
                         Изменил категорию   
@@ -207,6 +212,17 @@ class Categories extends Controller {
 		}
 
 	}
+
+    function update_urls()
+    {
+        $categories = $this->lib_category->unsorted();
+        
+        foreach ($categories as $category)
+        {
+            $this->db->where('category', $category['id']);
+            $this->db->update('content', array('cat_url' => $category['path_url']));
+        }
+    }
 
     function category_exists($str)
     {
