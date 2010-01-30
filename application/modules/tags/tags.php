@@ -70,19 +70,33 @@ class Tags extends Controller {
     */
     public function search($tag = '', $offset = 0)
     {
+        $this->load->module('search');
+        $this->search->search_tpl = 'search';
+
         $error = FALSE;
+
+        $offset = $this->uri->segment($this->uri->total_segments());
 
         if ($offset < 0)
         {
             $offset = 0;
         }
 
-        $tag = urldecode($tag);
+        $tags = explode(':', $tag);
 
-        $this->load->module('search');
-        $this->search->search_tpl = 'search';
+        if (count($tags) > 0)
+        {
+            foreach ($tags as $k => $v)
+            {
+                $this->db->or_where('value', urldecode($v));
+            }
 
-        $ids = $this->db->get_where('content_tags', array('value' => $tag));
+            $ids = $this->db->get('content_tags');
+        }
+        else
+        {
+            $this->search->_display(FALSE); 
+        }
 
         if ($ids->num_rows() == 0)
         {
