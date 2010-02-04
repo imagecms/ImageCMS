@@ -13,11 +13,7 @@ class Pages extends Controller{
 		parent::Controller();
 
         $this->load->library('DX_Auth');
-
-		if( $this->dx_auth->is_admin() == FALSE)
-		{
-			redirect('admin/login', '');
-		}
+        admin_or_redirect();
 
 		$this->load->library('lib_admin');
 		$this->load->library('lib_editor');
@@ -29,6 +25,8 @@ class Pages extends Controller{
 
 	function index($params = array())
 	{
+        cp_check_perm('page_create');
+
 		// Set roles
 		$query = $this->db->get('roles');
 		$this->template->assign('roles',$query->result_array());
@@ -112,6 +110,8 @@ class Pages extends Controller{
 	 */
 	public function add()
 	{
+        cp_check_perm('page_create');
+
 		$this->form_validation->set_rules('page_title', 'Заголовок', 'trim|required|min_length[1]|max_length[500]');
 		$this->form_validation->set_rules('page_url', 'URL', 'alpha_dash');
 		$this->form_validation->set_rules('page_keywords', 'Ключевые слова', 'trim');
@@ -267,6 +267,7 @@ class Pages extends Controller{
 	 */
 	function edit($page_id, $lang = 0)
 	{
+        cp_check_perm('page_edit');
 
 		if($this->cms_admin->get_page($page_id) == FALSE)
 		{
@@ -411,6 +412,8 @@ class Pages extends Controller{
 	 */
 	function update($page_id)
 	{
+        cp_check_perm('page_edit');
+
 		$this->form_validation->set_rules('page_title', 'Заголовок', 'trim|required|min_length[1]|max_length[500]');
 		$this->form_validation->set_rules('page_url', 'URL', 'alpha_dash');
 		$this->form_validation->set_rules('page_keywords', 'Ключевые слова', 'trim');
@@ -527,6 +530,8 @@ class Pages extends Controller{
 	 */
 	function delete($page_id,$show_messages = TRUE)
 	{
+        cp_check_perm('page_delete');
+
 		$settings = $this->cms_admin->get_settings();
 
 		if($settings['main_page_id'] == $page_id AND $settings['main_type'] == 'page')
@@ -586,6 +591,7 @@ class Pages extends Controller{
 
     function save_positions()
     {      
+        cp_check_perm('page_edit');
 
         ($hook = get_hook('admin_update_page_positions')) ? eval($hook) : NULL;
 
@@ -604,6 +610,8 @@ class Pages extends Controller{
 
     function delete_pages()
     {
+        cp_check_perm('page_delete');
+
         $ids = $_POST['pages'];
 
         ($hook = get_hook('admin_pages_delete_many')) ? eval($hook) : NULL;
@@ -620,6 +628,8 @@ class Pages extends Controller{
 
     function move_pages($action)
     {
+        cp_check_perm('page_edit');
+
         $ids = $_POST['pages']; 
 
         $this->db->select('category');
@@ -759,6 +769,8 @@ class Pages extends Controller{
 	 */
 	function ajax_change_status($page_id)
 	{
+        cp_check_perm('page_edit');
+
 		$page = $this->cms_admin->get_page($page_id);
 
         ($hook = get_hook('admin_page_change_status')) ? eval($hook) : NULL;

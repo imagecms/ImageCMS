@@ -13,9 +13,10 @@ class Login extends Controller {
 		parent::Controller();
 
 		$this->load->library('DX_Auth');
+        //admin_or_redirect();
 
-		$this->load->library('lib_admin');
-		$this->lib_admin->init_settings();
+        $this->load->library('lib_admin');
+        $this->lib_admin->init_settings();
 
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
@@ -70,7 +71,7 @@ class Login extends Controller {
                         }
                         else
                         {
-							showMessage ($this->lang->line('error_login'),'Ошибка');
+                            $this->template->assign('login_failed', $this->lang->line('error_login'));
 						}
 				}
 

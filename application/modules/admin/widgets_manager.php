@@ -12,10 +12,7 @@ class Widgets_Manager extends Controller {
         parent::Controller();
 
 		$this->load->library('DX_Auth');
-		if( $this->dx_auth->is_admin() == FALSE)
-		{
-			redirect('admin/login','');
-		}
+        admin_or_redirect(); 
 
 		$this->load->library('lib_admin');
 		$this->lib_admin->init_settings();
@@ -78,6 +75,8 @@ class Widgets_Manager extends Controller {
 
     public function create()
     {
+        cp_check_perm('widget_create'); 
+
         $this->load->library('form_validation');
 
         $type = $this->input->post('type');
@@ -176,11 +175,15 @@ class Widgets_Manager extends Controller {
      */
     public function create_tpl()
     {
+        cp_check_perm('widget_create');
+
         $this->template->show('widget_create', FALSE);
     }
 
     public function edit($id)
     {
+        cp_check_perm('widget_access_settings');
+
         $widget = $this->get($id);
 
         if ($widget->num_rows() == 1)
@@ -201,6 +204,8 @@ class Widgets_Manager extends Controller {
 
     public function update_widget($id, $update_info = FALSE)
     {
+        cp_check_perm('widget_access_settings');
+
         $widget = $this->get($id);
 
         if ($widget->num_rows() == 1)
@@ -273,6 +278,8 @@ class Widgets_Manager extends Controller {
     // Update widget config
     public function update_config($id = FALSE, $new_settings =  array())
     {
+        cp_check_perm('widget_access_settings');
+
         if ($id != FALSE AND count($new_settings) > 0)
         {
             $settings = serialize($new_settings);
@@ -283,6 +290,8 @@ class Widgets_Manager extends Controller {
 
     public function delete()
     {
+        cp_check_perm('widget_delete'); 
+
         $name = $this->input->post('widget_name');
 
         $this->db->where('name', $name);
@@ -308,6 +317,8 @@ class Widgets_Manager extends Controller {
 
     public function edit_html_widget($id)
     {
+        cp_check_perm('widget_access_settings');
+
         $widget = $this->get($id);
 
         $this->template->add_array(array(
@@ -319,6 +330,8 @@ class Widgets_Manager extends Controller {
 
     public function edit_module_widget($id)
     {
+        cp_check_perm('widget_access_settings'); 
+
         $widget = $this->get($id);
 
         $this->template->add_array(array(

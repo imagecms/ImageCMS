@@ -7,10 +7,7 @@ class Languages extends Controller{
 	    parent::Controller();
 
 	    $this->load->library('DX_Auth');
-	    if( $this->dx_auth->is_admin() == FALSE)
-	    {
-		    redirect('admin/login','');
-	    }
+        admin_or_redirect();
 
 	    $this->load->library('lib_admin');
 	    $this->load->library('form_validation');
@@ -30,6 +27,8 @@ class Languages extends Controller{
 	 */
 	function create_form()
 	{
+        cp_check_perm('lang_create');
+
 		$settings = $this->cms_admin->get_settings();
 		$lang_folders = $this->_get_lang_folders();
 
@@ -45,6 +44,8 @@ class Languages extends Controller{
 	 */
 	function insert()
 	{
+        cp_check_perm('lang_create');
+
 		$this->form_validation->set_rules('name', 'Название', 'trim|required|min_length[1]|max_length[100]');
 		$this->form_validation->set_rules('identif', 'Идентификатор', 'trim|required|min_length[1]|max_length[100]|alpha_dash');
 		$this->form_validation->set_rules('image', 'Изображение', 'max_length[250]');
@@ -84,6 +85,8 @@ class Languages extends Controller{
 	 */
 	function edit($lang_id)
 	{
+        cp_check_perm('lang_edit');
+
 		// get lang params
 		$lang = $this->cms_admin->get_lang($lang_id);
 		$this->template->add_array($lang);
@@ -102,6 +105,8 @@ class Languages extends Controller{
 	 */
 	function update($lang_id)
 	{
+        cp_check_perm('lang_edit');
+
 		$this->form_validation->set_rules('name', 'Название', 'trim|required|min_length[1]|max_length[100]');
 		$this->form_validation->set_rules('identif', 'Идентификатор', 'trim|required|min_length[1]|max_length[100]|alpha_dash');
 		$this->form_validation->set_rules('image', 'Изображение', 'max_length[250]');
@@ -141,6 +146,8 @@ class Languages extends Controller{
 	 */
 	function delete()
 	{
+        cp_check_perm('lang_delete'); 
+
 		$id = $this->input->post('lang_id');
 
 		$lang = $this->cms_admin->get_lang($id);
@@ -172,6 +179,8 @@ class Languages extends Controller{
 	 */
 	function set_default()
 	{
+        cp_check_perm('lang_edit');
+
 		$lang_id = $this->input->post('lang');
 
         ($hook = get_hook('admin_change_def_language')) ? eval($hook) : NULL; 

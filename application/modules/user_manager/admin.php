@@ -13,7 +13,8 @@ class Admin extends Controller {
 		parent::Controller();
 
 		// only admin access
-		if( $this->dx_auth->is_admin() == FALSE) exit;
+        $this->load->library('DX_Auth');
+
 		$this->load->library('Form_validation');
 	}
 
@@ -46,6 +47,8 @@ class Admin extends Controller {
 	 */
 	function genre_user_table()
 	{
+        cp_check_perm('user_view_data');
+
 		$this->load->model('dx_auth/users', 'users');
 		$this->load->library('pagination');
 
@@ -94,8 +97,9 @@ class Admin extends Controller {
 
         ($hook = get_hook('users_create_set_val_rules')) ? eval($hook) : NULL;
 
-		$user = $this->input->post('username');
+		$user  = $this->input->post('username');
 		$email = $this->input->post('email');
+        $role  = $this->input->post('role'); 
 
 		// check user
 		if($this->user2->check_username($user)->num_rows() > 0)
@@ -111,13 +115,23 @@ class Admin extends Controller {
 			exit;
 		}
 
+            if (!check_perm('user_create') AND !check_perm('user_create_all_roles'))
+            {
+                cp_check_perm('user_create');
+            }
+
+            if (!check_perm('user_create_all_roles'))
+            {
+                $role = $this->dx_auth->get_role_id();
+            }
+
 			if ($val->run() AND $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email')))
 			{
                 ($hook = get_hook('users_user_created')) ? eval($hook) : NULL;
 
 				//set user role
 				$user_info = $this->user2->get_user_by_username($user)->row_array();
-				$this->user2->set_role($user_info['id'],$this->input->post('role'));
+				$this->user2->set_role($user_info['id'], $role);
 
                 $this->lib_admin->log('Создал пользователя '.$val->set_value('username'));
 
@@ -131,7 +145,7 @@ class Admin extends Controller {
 	/*
 	 * Ban, unban or delete users
 	 */
-	function actions($action,$return_to_page = 0)
+	function actions($action, $return_to_page = 0)
 	{
 		$this->load->model('dx_auth/users', 'users');
 
@@ -143,18 +157,21 @@ class Admin extends Controller {
 				switch ($action)
 				{
 					case 1: // ban
+                        cp_check_perm('user_edit');
                         ($hook = get_hook('users_ban')) ? eval($hook) : NULL;
 						$this->users->ban_user($value);
                         $this->lib_admin->log('Забанил пользователя '.$value);
 					break;
 
 					case 2: //unban
-                    ($hook = get_hook('users_unban')) ? eval($hook) : NULL;
+                        cp_check_perm('user_edit');
+                        ($hook = get_hook('users_unban')) ? eval($hook) : NULL;
 						$this->users->unban_user($value);
                         $this->lib_admin->log('Разбанил пользователя '.$value);
 					break;
 
 					case 3: //delete
+                        cp_check_perm('user_delete');
                         ($hook = get_hook('users_delete')) ? eval($hook) : NULL;
 						$this->users->delete_user($value);
                         $this->lib_admin->log('Удалил пользователя '.$value); 
@@ -172,6 +189,8 @@ class Admin extends Controller {
 	 */
 	function search()
 	{
+        cp_check_perm('user_view_data');
+
 		$s_data = $this->input->post('s_data');
 		$role = $this->input->post('role');
 		$page = (int) $this->uri->segment(8);
@@ -225,6 +244,8 @@ class Admin extends Controller {
 	 */
 	function edit_user($user_id)
 	{
+        cp_check_perm('user_edit');
+
 		$this->load->model('dx_auth/users', 'users');
 
 		$user = $this->users->get_user_by_id($user_id);
@@ -244,6 +265,8 @@ class Admin extends Controller {
 	 */
 	function update_user($user_id)
 	{
+        cp_check_perm('user_edit');
+
 		$this->load->model('dx_auth/users', 'user2');
 
 		$val = $this->form_validation;
@@ -316,6 +339,8 @@ class Admin extends Controller {
 
 	function create()
 	{
+        cp_check_perm('roles_create');
+
 		$this->form_validation->set_rules('name', 'Имя', 'required|trim|max_length[150]|min_length[2]');
 		$this->form_validation->set_rules('alt_name', 'Идентификатор', 'required|trim|max_length[150]|min_length[2]|alpha');
 		$this->form_validation->set_rules('desc', 'Описание', 'trim|max_length[300]|min_length[2]');
@@ -345,6 +370,7 @@ class Admin extends Controller {
 
 	function edit($id)
 	{
+        cp_check_perm('roles_edit'); 
 
 		$this->db->where('id',$id);
 		$query = $this->db->get('roles',1);
@@ -359,6 +385,8 @@ class Admin extends Controller {
 
 	function save($id)
 	{
+        cp_check_perm('roles_edit'); 
+
 		$this->form_validation->set_rules('alt_name', 'Имя', 'required|trim|max_length[150]|min_length[2]');
 		$this->form_validation->set_rules('name', 'Идентификатор', 'required|trim|max_length[150]|min_length[2]|alpha');
 		$this->form_validation->set_rules('desc', 'Описание', 'trim|max_length[500]|min_length[2]');
@@ -403,12 +431,14 @@ class Admin extends Controller {
 
 	function delete($id)
     {
+        cp_check_perm('roles_delete');
+
 		switch($id)
 		{
 			case 1:
 			case 2:
     			showMessage('Ошибка удаления');
-			exit;
+	    		exit;
 			break;
 		}
 
@@ -426,6 +456,81 @@ class Admin extends Controller {
     function update_groups_block()
     {
         updateDiv('groups_block', site_url('admin/components/cp/user_manager/groups_index')); 
+    }
+
+    function update_role_perms()
+    {
+        cp_check_perm('roles_edit');
+
+        $this->load->model('dx_auth/permissions', 'permissions');
+        //$permission_data = $this->permissions->get_permission_data($this->input->post('role'));
+        $permission_data = array();
+
+        $all_perms = $this->get_permissions_table();
+
+        foreach ($all_perms as $k => $v)
+        {
+            if (isset($_POST[$k]) AND $_POST[$k] == 1)
+            {
+                $permission_data[$k] = 1;
+            }
+        }
+        
+        if (count($permission_data) > 0)
+        {
+            $this->permissions->set_permission_data($this->input->post('role_id'), $permission_data);
+        }
+        else
+        {
+            $this->db->where('role_id', $this->input->post('role_id'));
+            $this->db->delete('permissions');
+        }
+
+        showMessage('Изменения сохранены');
+    }
+
+    function show_edit_prems_tpl($selected_role = 1)
+    {
+        $this->load->model('dx_auth/permissions', 'permissions');
+        $permissions = $this->permissions->get_permission_data($selected_role);
+
+        $all_perms = $this->get_permissions_table();
+
+        // Explode all perms to groups by prefix
+        $groups = array();
+        foreach ($all_perms as $k => $v)
+        {
+            $tmp = explode('_', $k);
+            $groups[$tmp[0]][$k] = $v;
+        }
+
+        foreach ($groups as $key => $row) 
+        {
+            $count[$key]  = count($row);
+        }
+
+        array_multisort($count, SORT_ASC, $groups); 
+    
+        $this->template->add_array(array(
+            'selected_role' => $selected_role,
+            'roles'         => $this->db->get('roles')->result_array(),
+            'all_perms'     => $all_perms,
+            'permissions'   => $permissions,
+            'groups'        => $groups,
+            'group_names'   => $this->get_group_names(),
+        ));
+
+        $this->display_tpl('edit_perms');
+    }
+
+    function get_permissions_table()
+    {
+        return get_permissions_array();
+    }
+
+    function get_group_names()
+    {
+        return get_perms_groups();
     }
 
     ////////////////////////////////////////// 

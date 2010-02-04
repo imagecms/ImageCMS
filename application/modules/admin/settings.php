@@ -7,10 +7,7 @@ class Settings extends Controller{
 	    parent::Controller();
 
 		$this->load->library('DX_Auth');
-		if( $this->dx_auth->is_admin() == FALSE)
-		{
-			redirect('admin/login','');
-		}
+        admin_or_redirect();
 
 	    $this->load->library('lib_admin');
 	    $this->load->library('lib_category');
@@ -20,6 +17,8 @@ class Settings extends Controller{
 
 	function index()
 	{
+        cp_check_perm('cp_site_settings'); 
+
 		$settings = $this->cms_admin->get_settings();
 
 		$this->template->add_array($settings);
@@ -104,6 +103,8 @@ class Settings extends Controller{
 	 */
 	function save()
 	{
+        cp_check_perm('cp_site_settings');
+
         switch($this->input->post('main_type'))
         {
             case 'category':
