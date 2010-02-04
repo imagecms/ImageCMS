@@ -52,7 +52,8 @@ class Admin extends Controller {
 	{
 		parent::Controller();
 
-        if( $this->dx_auth->is_admin() == FALSE) exit;
+        $this->load->library('DX_Auth');
+        cp_check_perm('module_admin'); 
 
         $this->load->model('gallery_m');
         $this->init_settings();

@@ -3,7 +3,7 @@
 /**
  * Image CMS
  *
- * Sample Module Admin
+ * Rss Module Admin
  */
 
 class Admin extends Controller {
@@ -12,9 +12,8 @@ class Admin extends Controller {
 	{
 		parent::Controller();
 
-        // Only admin access 
-        // Do not delete this code !
-		if( $this->dx_auth->is_admin() == FALSE) exit;
+        $this->load->library('DX_Auth');
+        cp_check_perm('module_admin'); 
 	}
 
 

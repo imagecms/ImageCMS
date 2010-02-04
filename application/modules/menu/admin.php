@@ -18,7 +18,7 @@ class Admin extends Controller {
 		parent::Controller();
 
 		// Only admin access
-		if( $this->dx_auth->is_admin() == FALSE) exit;
+        $this->load->library('DX_Auth');
 
         $this->cache->delete_group('menus');
 		$this->load->library('Form_validation');    
@@ -170,6 +170,8 @@ class Admin extends Controller {
      */
 	function delete_item($id)
 	{
+        cp_check_perm('menu_edit');
+
 		if ($id > 0)
 		{
 			$this->db->where('id', $id);
@@ -237,6 +239,8 @@ class Admin extends Controller {
      */ 
 	function edit_item($item_id,$menu_name)
 	{
+        cp_check_perm('menu_edit');
+
 		$this->menu->prepare_menu_array($menu_name);
 		$this->root_menu =& $this->menu->menu_array;
 		$this->sub_menu =& $this->menu->sub_menu_array;
@@ -276,6 +280,8 @@ class Admin extends Controller {
      */     
     function insert_menu_item()
     {
+        cp_check_perm('menu_edit');
+
         $roles = $_POST['roles'];
         if ($roles == NULL)
         {
@@ -406,6 +412,8 @@ class Admin extends Controller {
 
     function save_positions()
     {
+        cp_check_perm('menu_edit');
+
         foreach ($_POST['items_pos'] as $k => $v)
         {
             $item = explode('_', substr($v, 4));
@@ -420,6 +428,8 @@ class Admin extends Controller {
      */ 
 	function create_menu()
 	{
+        cp_check_perm('menu_create');
+
         $this->check_menu_data();
 
 		$val = $this->form_validation;
@@ -450,6 +460,8 @@ class Admin extends Controller {
 
     function edit_menu($id)
     {
+        cp_check_perm('menu_edit');
+
         $menu_data = $this->menu_model->get_menu($id);
         $this->template->add_array($menu_data);
         $this->display_tpl('edit_menu');
@@ -457,6 +469,8 @@ class Admin extends Controller {
 
     function update_menu($id)
     {
+        cp_check_perm('menu_edit');
+
    		if ($_POST['menu_name'] == NULL)
 		{
 			showMessage('Поле Имя обязательно для заполения!.');
@@ -507,6 +521,8 @@ class Admin extends Controller {
 
     function delete_menu($name)
     {
+        cp_check_perm('menu_delete'); 
+
   		$this->menu->prepare_menu_array($name);
 		$this->root_menu =& $this->menu->menu_array;
 		$this->sub_menu =& $this->menu->sub_menu_array;
@@ -531,6 +547,8 @@ class Admin extends Controller {
    
     function create_tpl()
     {
+        cp_check_perm('menu_create');
+
         $this->display_tpl('create_menu');
     }
 
@@ -704,6 +722,8 @@ class Admin extends Controller {
     
     function translate_item($id)
     {
+        cp_check_perm('menu_edit');
+
         $langs = $this->_get_langs();
 
         $this->db->where('item_id', $id);

@@ -11,10 +11,7 @@ class Components extends Controller{
 		parent::Controller();
 
 		$this->load->library('DX_Auth');
-		if( $this->dx_auth->is_admin() == FALSE)
-		{
-			redirect('admin/login','');
-		}
+        admin_or_redirect();
 
 		$this->load->library('lib_admin');
 		$this->lib_admin->init_settings();
@@ -80,6 +77,8 @@ class Components extends Controller{
 
 	function install($module = '')
 	{
+        cp_check_perm('module_install');
+
 		$module = strtolower($module);
 
         ($hook = get_hook('admin_install_module')) ? eval($hook) : NULL;
@@ -119,6 +118,8 @@ class Components extends Controller{
 
 	function deinstall($module = '')
 	{
+        cp_check_perm('module_deinstall');
+
 		$module = strtolower($module);
 
         ($hook = get_hook('admin_deinstall_module')) ? eval($hook) : NULL;
@@ -204,6 +205,8 @@ class Components extends Controller{
 
 	function component_settings($component)
 	{
+        cp_check_perm('module_admin');
+
 		$this->db->where('name', $component);
 		$query = $this->db->get('components', 1);
 
@@ -223,6 +226,8 @@ class Components extends Controller{
 	// Save component settings
 	function save_settings($component)
 	{
+        cp_check_perm('module_admin');
+
 		$this->db->where('name', $component);
 		$query = $this->db->get('components',1);
         

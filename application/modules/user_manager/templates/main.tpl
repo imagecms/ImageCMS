@@ -84,6 +84,10 @@
 
 <h4 title="">Группы</h4>
     <div style="padding:3px;" id="groups_block"></div>
+
+<h4 title="">Разделение прав</h4>
+    <div style="padding:3px;" id="perms_editor_block"></div>
+
 </div>
 
 {literal}
@@ -94,6 +98,7 @@
 
 		ajax_div('users_ajax_table', base_url + 'admin/components/cp/user_manager/genre_user_table/');
 		ajax_div('groups_block', base_url + 'admin/components/cp/user_manager/groups_index/');
+		ajax_div('perms_editor_block', base_url + 'admin/components/cp/user_manager/show_edit_prems_tpl/');
 
 		function edit_user(user_id)
 		{

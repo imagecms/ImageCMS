@@ -9,14 +9,14 @@ class Admin_logs extends Controller {
 		parent::Controller();
 
 		$this->load->library('DX_Auth');
-		if( $this->dx_auth->is_admin() == FALSE)
-		{
-			redirect('admin/login','');
-		}
+        admin_or_redirect(); 
 
 		$this->load->library('lib_admin');
 		$this->load->library('pagination');
+        $this->load->helper('my_html');
 		$this->lib_admin->init_settings();
+
+        cp_check_perm('logs_view');
 	}
 
     public function index($offset = 0)

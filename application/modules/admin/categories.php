@@ -9,10 +9,7 @@ class Categories extends Controller {
 		parent::Controller();
 
 		$this->load->library('DX_Auth');
-		if( $this->dx_auth->is_admin() == FALSE)
-		{
-			redirect('admin/login','');
-		}
+        admin_or_redirect(); 
 
 		$this->load->library('lib_admin');
 		$this->load->library('lib_category');
@@ -27,6 +24,8 @@ class Categories extends Controller {
     // Display create category form
 	function create_form()
     {
+        cp_check_perm('category_create');
+
  		$this->template->assign('tree', $this->lib_category->build());
 		$this->template->assign('parent_id', NULL);
 		$this->template->assign('include_cats', $this->sub_cats( $this->lib_category->build() ) );
@@ -88,6 +87,8 @@ class Categories extends Controller {
 	 */
 	function create($action, $cat_id = 0)
     {
+        cp_check_perm('category_create');
+
 		$this->form_validation->set_rules('name', 'Название', 'trim|required|min_length[1]|max_length[160]');
 		$this->form_validation->set_rules('url', 'URL Категории', 'trim|min_length[2]|max_length[300]|alpha_dash');
 		$this->form_validation->set_rules('image', 'Изображение', 'max_length[250]');
@@ -231,6 +232,8 @@ class Categories extends Controller {
 
     function fast_add($action = '')
     {
+        cp_check_perm('category_create');
+
         ($hook = get_hook('admin_fast_cat_add')) ? eval($hook) : NULL; 
 
         $this->template->add_array(array(
@@ -340,6 +343,8 @@ class Categories extends Controller {
 	 */
 	function edit($id)
 	{
+        cp_check_perm('category_edit');
+
 		$cat = $this->cms_admin->get_category($id);
 
        ($hook = get_hook('admin_edit_category')) ? eval($hook) : NULL; 
@@ -475,6 +480,8 @@ class Categories extends Controller {
 	 */
 	function delete()
     {
+        cp_check_perm('category_delete');
+
         $cat_id = $this->input->post('id');
 
         ($hook = get_hook('admin_category_delete')) ? eval($hook) : NULL; 

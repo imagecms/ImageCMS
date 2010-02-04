@@ -11,11 +11,7 @@ class Sys_upgrade extends Controller {
 		parent::Controller();
 
 		$this->load->library('DX_Auth');
-
-        if( $this->dx_auth->is_admin() == FALSE)
-		{
-			redirect('admin/login', '');
-		}
+        admin_or_redirect();
 
 		$this->load->library('lib_admin');
 		$this->lib_admin->init_settings(); 
@@ -29,6 +25,8 @@ class Sys_upgrade extends Controller {
 
     public function make_upgrade()
     {
+        cp_check_perm('cp_autoupdate');
+
         if (!function_exists('ftp_connect'))
         {
             showMessage('Функция ftp_connect недоступна.');

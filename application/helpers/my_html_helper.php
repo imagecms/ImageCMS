@@ -105,7 +105,11 @@ if (!function_exists('htmlentities_to_xml'))
             '&yacute;' =>	'&#253;', 
             '&thorn;'  =>	'&#254;', 
             '&yuml;'   =>	'&#255;', 
-            '&euro;'   =>	'&#8364;', 
+            '&euro;'   =>	'&#8364;',
+            '&laquo;'  =>   '&#171;',
+            '&rsaquo;' =>   '&#8250;',
+            '&lsaquo;' =>   '&#8249;',
+            '&raquo;'  =>   '&#187;',
         );
 
         $from_array = array();

@@ -99,6 +99,11 @@ if($ci->config->item('is_installed') === TRUE AND file_exists(APPPATH.'modules/i
 
 {if $show_p != TRUE}
 <br/>
+
+{if $login_failed}
+    {$login_failed}
+{/if}
+
 <p>
 <form method="post" action="{$BASE_URL}admin/login/" id="login_form">
 {$lang_login}: <br/>  <input type="text" name="login" class="textbox_long" />{$login_error}<br/>

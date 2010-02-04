@@ -17,17 +17,14 @@ class Admin extends Controller {
 		parent::Controller();
 
 		$this->load->library('DX_Auth');
-
-        if( $this->dx_auth->is_admin() == FALSE)
-		{
-			redirect('admin/login', '');
-		}
+        admin_or_redirect();
 
 		$this->load->library('lib_admin');
 		$this->load->library('lib_category');
-		$this->lib_admin->init_settings();         
+		$this->lib_admin->init_settings();
 	}
 
+    
 	public function index()
 	{
         $this->check(); 
@@ -228,6 +225,8 @@ class Admin extends Controller {
 	 */
 	public function delete_cache()
 	{
+        cp_check_perm('cache_clear');
+
 		$param = $this->input->post('param');
 
         $this->lib_admin->log('Очистил кеш');
@@ -267,7 +266,8 @@ class Admin extends Controller {
 	{
         $this->lib_admin->log('Вышел из панели управления');
 
-		$this->session->sess_destroy();
+        $this->dx_auth->logout();
+		//$this->session->sess_destroy();
 		redirect('/admin/login','refresh');
 	}
 

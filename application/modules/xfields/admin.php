@@ -14,8 +14,9 @@ class Admin extends Controller {
 	function __construct()
 	{
 		parent::Controller();
-		if( $this->dx_auth->is_admin() == FALSE) exit;
 
+		$this->load->library('DX_Auth');
+        
 		//$this->load->model('fields');
 		$this->load->model('xfields_admin');
         $this->load->module('xfields/xfields','xfields'); 
@@ -74,6 +75,8 @@ class Admin extends Controller {
 	 */
 	function create($type = FALSE)
 	{
+        cp_check_perm('xfields_create');
+
         $data = array();
 
         // Check if field name is aviable
@@ -174,6 +177,8 @@ class Admin extends Controller {
 
 	function update($field_id,$type)
 	{
+        cp_check_perm('xfields_edit');
+
 		if ($this->xfields_admin->get_field($field_id) !== FALSE)
 		{
 			$this->update = TRUE;
@@ -184,6 +189,8 @@ class Admin extends Controller {
 
     function edit_field($id)
     {
+        cp_check_perm('xfields_edit');
+
 		$field = $this->xfields_admin->get_field($id);
 
 			if ($field != FALSE)
@@ -301,6 +308,8 @@ class Admin extends Controller {
      */ 
     function create_group()
     {
+        cp_check_perm('xfields_edit');
+
 		$this->form_validation->set_rules('name', 'Имя', 'required|alpha_dash|max_length[100]');
 		$this->form_validation->set_rules('title', 'Заголовок', 'required|max_length[100]');
 
@@ -354,6 +363,8 @@ class Admin extends Controller {
 
     function delete_group($id = FALSE)
     {
+        cp_check_perm('xfields_edit');
+
         if ($id != FALSE)
         {
             $this->db->where('id', $id);
@@ -403,6 +414,8 @@ class Admin extends Controller {
 
     function delete_field($id)
     {
+        cp_check_perm('xfields_delete');
+
         $this->db->where('id', $id);
         $this->db->delete('xfields');
 
@@ -422,6 +435,8 @@ class Admin extends Controller {
 
     function set_fields_group()
     {
+        cp_check_perm('xfields_edit');
+
         $group = $this->input->post('group_id');
         $fields = $this->input->post('fields');
 

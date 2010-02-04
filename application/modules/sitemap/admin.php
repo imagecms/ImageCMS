@@ -12,8 +12,8 @@ class Admin extends Controller {
 	{
 		parent::Controller();
 
-        // Only admin access 
-		if( $this->dx_auth->is_admin() == FALSE) exit;
+        $this->load->library('DX_Auth');
+        cp_check_perm('module_admin'); 
 	}
 
 

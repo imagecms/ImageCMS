@@ -8,10 +8,7 @@ class Dashboard extends Controller{
 		parent::Controller();
 
 		$this->load->library('DX_Auth');
-		if( $this->dx_auth->is_admin() == FALSE)
-		{
-			redirect('admin/login','');
-		}
+        admin_or_redirect();
 
 		$this->load->library('lib_admin');
 		$this->lib_admin->init_settings();

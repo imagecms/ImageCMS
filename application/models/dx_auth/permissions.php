@@ -51,7 +51,7 @@ class Permissions Extends Model
 	 */		
 	function _unserialize($data)
 	{
-		$data = @unserialize(stripslashes($data));
+		$data = unserialize(stripslashes($data));
 		
 		if (is_array($data))
 		{
@@ -158,13 +158,30 @@ class Permissions Extends Model
 	// Set permission record
 	function set_permission($role_id, $data, $auto_create = TRUE)
 	{
-		$this->db->where('role_id', $role_id);
-		$query = $this->db->update($this->_table, $data);
-		
-		// Create record if role_id not found
-		if ($this->db->affected_rows() == 0 && $auto_create)
+		if ($auto_create)
+		{			
+			$this->db->select('1', FALSE);
+			$this->db->where('role_id', $role_id);
+			$query = $this->db->get($this->_table);
+			
+			// Check if role_id exist
+			if ($query->num_rows() == 0)
+			{
+				// Create permission
+				$query = $this->create_permission($role_id, $data);
+			}
+			else
+			{
+				// Update permission
+				$this->db->where('role_id', $role_id);
+				$query = $this->db->update($this->_table, $data);
+			}
+		}
+		else
 		{
-			$query = $this->create_permission($role_id, $data);
+			// Update permission
+			$this->db->where('role_id', $role_id);
+			$query = $this->db->update($this->_table, $data);
 		}
 		
 		return $query;

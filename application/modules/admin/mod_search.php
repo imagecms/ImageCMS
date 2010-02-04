@@ -13,11 +13,8 @@ class Mod_search extends Controller {
 		parent::Controller();
 
 		$this->load->library('DX_Auth');
+        admin_or_redirect();
 
-        if( $this->dx_auth->is_admin() == FALSE)
-		{
-			redirect('admin/login', '');
-		}
 
         $this->load->helper('file');
 
@@ -110,6 +107,8 @@ class Mod_search extends Controller {
     // Connect to ftp server
     public function connect_ftp($id)
     {
+        cp_check_perm('module_install');
+
         if (is_really_writable(APPPATH.'modules/'))
         {
             $use_dir = TRUE;
