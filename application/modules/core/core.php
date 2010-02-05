@@ -272,22 +272,7 @@ class Core extends Controller {
         }
 
         // Assign template variables and load modules
-        $this->_process_core_data();
-
-        // Update permissions each time user views page
-        // TODO: DELETE THIS PART AFTER TESTING DONE
-        if ($this->dx_auth->is_logged_in())
-        {
-            $this->load->model('dx_auth/permissions');
-            $permissions = $this->permissions->get_permission_data($this->dx_auth->get_role_id());
-
-		    $user = array(
-		        'DX_permission'	=> $permissions,
-    		);
-
-		    $this->session->set_userdata($user);
-        }
-        
+        $this->_process_core_data();        
 
         // If module than exit from core and load module
         if ( $this->is_module($mod_segment) == TRUE ) return TRUE;

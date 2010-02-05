@@ -8,6 +8,16 @@ class Cms_hooks {
     {
         $ci =& get_instance();
 
+        if (!$ci->config->item('is_installed'))
+        {
+            function get_hook() 
+            { 
+                return FALSE; 
+            }
+
+            return FALSE;
+        }
+
         $this->hooks_file = BASEPATH.'cache/hooks'.EXT;
 
         if (!file_exists($this->hooks_file) OR $ci->config->item('rebuild_hooks_tree') === TRUE)
