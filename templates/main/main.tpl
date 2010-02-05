@@ -93,7 +93,7 @@
 
 <div class="footer">
 	<div class="live"><img src="{$THEME}/images/live.jpg" /></div>
-    <div class="copy">2009 © ООО «Сайт Имидж»<br /><a href="#">Авторское право</a><span></span><a href="#">Лицензионное соглашение</a></div>
+    <div class="copy"><a href="http://www.imagecms.net">Сайт работает на ImageCMS</a><br/><br/></div>
     	<ul>
         	<li><a href="#">Главная</a></li>
             <li><a href="#">Продукт</a></li>
