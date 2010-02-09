@@ -484,6 +484,12 @@ class Categories extends Controller {
 
         $cat_id = $this->input->post('id');
 
+        if ($this->db->get('category')->num_rows() == 1)
+        {
+            showMessage('Ошибка удаления категории.', 'Ошибка');
+            exit;
+        }
+
         ($hook = get_hook('admin_category_delete')) ? eval($hook) : NULL; 
 
 		// Delete Category

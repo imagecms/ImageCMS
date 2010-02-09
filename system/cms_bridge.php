@@ -1,6 +1,6 @@
 <?php if (!defined('CMS_BRIDGE')) exit('No direct script access allowed');
 
-error_reporting(E_ALL);
+error_reporting(0);
 
 // Если установить FALSE, система выведет главную страницу 
 // или страницу которую вы указали в $_SERVER['PATH_INFO']
