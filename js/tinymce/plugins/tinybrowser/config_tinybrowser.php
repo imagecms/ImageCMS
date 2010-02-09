@@ -1,5 +1,5 @@
 <?php
-error_reporting(E_ALL);
+error_reporting(0);
 /*
 TinyBrowser 1.40 - A TinyMCE file browser (C) 2008  Bryn Jones
 (author website - http://www.lunarvis.com)

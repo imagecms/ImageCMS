@@ -21,7 +21,7 @@
 
 <div class="form_text"></div>
 <div class="form_input" >    
-    <textarea id="html_codeid" name="html_code" class="mceEditor" rows="15" cols="180"  style="width:500px;height:250px;">{$widget.data}</textarea>
+    <textarea id="html_codeid" name="html_code" class="mceEditor" rows="15" cols="180" style="width:500px;height:250px;">{htmlspecialchars($widget.data)}</textarea>
     <br />
     <a href="#" id="load_editr_link" onclick="load_editor(); return false;">Загрузить редактор </a>
 </div>

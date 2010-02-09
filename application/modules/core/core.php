@@ -77,7 +77,6 @@ class Core extends Controller {
         {
             if(array_key_exists($this->uri->segment(1),$this->langs))
             {
-
                 ($hook = get_hook('core_set_lang')) ? eval($hook) : NULL;
 
                 $cat_path = substr($cat_path, strlen($this->uri->segment(1)));
@@ -106,10 +105,13 @@ class Core extends Controller {
                 $this->config->set_item('base_url',base_url().$uri_lang);
 
                 $mod_segment = 2;
-            }else{
+            }
+            else
+            {
                 $this->use_def_language();
             }
-        }else{
+        }else
+        {
                 $this->use_def_language();
         }
         // End language detect

@@ -19,7 +19,7 @@
 
     <div class="form_text"></div>
     <div class="form_input">
-        <input type="submit" class="button" value="Сохранить" onclick="ajax_me('widget_form');"> 
+        <input type="submit" class="button" value="Сохранить" onclick="ajax_me('widget_form');" /> 
         <a href="#" onclick="ajax_div('page', base_url + 'admin/widgets_manager/'); return false" >Перейти к списку виджетов</a>
     </div>
 {form_csrf()}</form>
