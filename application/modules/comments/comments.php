@@ -14,6 +14,9 @@ class Comments extends Controller {
     public $max_comment_length = 500;    // Max. comments text lenght.
     public $use_captcha        = FALSE;  // Possible values TRUE/FALSE;
     public $cache_ttl          = 86400;
+    public $module             = 'core';
+    public $comment_controller = 'comments/add';
+    public $tpl_name           = 'comments'; // Use comments.tpl
 
     public $use_moderation     = TRUE;
 
@@ -87,11 +90,14 @@ class Comments extends Controller {
         $this->load->model('base');
         $this->init_settings();
 
-        if (($comments = $this->cache->fetch('comments_'.$item_id, 'comments')) !== FALSE)
+        if (($comments = $this->cache->fetch('comments_'.$item_id.$this->module, 'comments')) !== FALSE)
         {
             ($hook = get_hook('comments_fetch_cache_ok')) ? eval($hook) : NULL;
             // Comments fetched from cahce file
-        }else{
+        }
+        else
+        {
+            $this->db->where('module', $this->module);
             $comments = $this->base->get($item_id);
 
             // Read comments template
@@ -99,16 +105,17 @@ class Comments extends Controller {
             if($comments != FALSE)
             {
                 ($hook = get_hook('comments_store_cache')) ? eval($hook) : NULL;
-                $this->cache->store('comments_'.$item_id, $comments, $this->cache_ttl, 'comments');
+                $this->cache->store('comments_'.$item_id.$this->module, $comments, $this->cache_ttl, 'comments');
             }
         }
 
         $data = array(
-            'comments_arr'   => $comments,
-            'total_comments' => lang('lang_total_comments').count($comments),
-            'can_comment'    => $this->can_comment,
-            'use_captcha'    => $this->use_captcha,
-            'item_id'        => $item_id
+            'comments_arr'       => $comments,
+            'comment_controller' => $this->comment_controller,
+            'total_comments'     => lang('lang_total_comments').count($comments),
+            'can_comment'        => $this->can_comment,
+            'use_captcha'        => $this->use_captcha,
+            'item_id'            => $item_id
         );
 
         if ($this->use_captcha == TRUE)
@@ -120,7 +127,7 @@ class Comments extends Controller {
 
         ($hook = get_hook('comments_read_com_tpl')) ? eval($hook) : NULL;
 
-        $comments = $this->template->read('comments', $data); 
+        $comments = $this->template->read($this->tpl_name, $data); 
 
         ($hook = get_hook('comments_assign_tpl_data')) ? eval($hook) : NULL;
 
@@ -218,6 +225,7 @@ class Comments extends Controller {
             if($comment_text != '')
             {
                 $comment_data = array(
+                                    'module'    => $this->module,
                                     'user_id'   => $this->dx_auth->get_user_id(), // 0 if unregistered
                                     'user_name' => $comment_author,
                                     'user_mail' => $comment_email,
@@ -244,23 +252,15 @@ class Comments extends Controller {
                 }
 
                 // Drop cached comments
-                $this->cache->delete('comments_'.$item_id, 'comments');
+                $this->cache->delete('comments_'.$item_id.$this->module, 'comments');
 
                 ($hook = get_hook('comments_goes_redirect')) ? eval($hook) : NULL; 
 
                 // Redirect back to page
-                // TODO: add lang prefix to url
-                $this->db->limit(1);
-                $this->db->select('id, url, cat_url');
-                $page = $this->db->get_where('content', array('id' => $item_id))->row_array(); 
-                
-                if ($page['cat_url'] == '0') 
-                { 
-                    $page['cat_url'] = '';
-                }
-
-                redirect($page['cat_url'].$page['url'].'#comment_'.$id, 'refresh');
-            }else{
+                redirect($this->input->post('redirect'));
+            }
+            else
+            {
                 ($hook = get_hook('comments_empty_text')) ? eval($hook) : NULL;
                 $this->core->error( lang('error_comments_text') );
             }

@@ -29,8 +29,9 @@
      <p>{sprintf(lang('login_for_comments'), site_url($modules.auth))}</p>
 {/if}
 
-<form action="{$modules.comments}/add/" method="post" class="form">
+<form action="{site_url($comment_controller)}" method="post" class="form">
     <input type="hidden" name="comment_item_id" value="{$item_id}" />
+    <input type="hidden" name="redirect" value="{uri_string()}" />
 
     {if $is_logged_in} 
         <p style="background-color:#F4F1F1;padding:3px;">{lang('lang_logged_in_as')} {$username}. <a href="{site_url('auth/logout')}">{lang('lang_logout')}</a></p>         

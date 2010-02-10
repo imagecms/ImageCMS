@@ -48,7 +48,11 @@
             </td>
 			<td>{$item.user_name}</td>
 			<td>{$item.user_mail}</td>
-			<td><a href="{$item.page_url}#comment_{$item.id}" target="_blank" title="{$item.page_title}">{truncate($item.page_title, 25, '...')}</a></td>
+			<td>
+            {if $item.module == 'core'}
+                <a href="{$item.page_url}#comment_{$item.id}" target="_blank" title="{$item.page_title}">{truncate($item.page_title, 25, '...')}</a>
+            {/if}
+            </td>
 			<td>{$item.user_ip}</td>
 			<td>{date('d-m-Y H:i', $item.date)}</td>
 			<td>
