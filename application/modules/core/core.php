@@ -319,8 +319,14 @@ class Core extends Controller {
 
                 $this->db->where('lang', $this->config->item('cur_lang'));
                 $this->db->where('id', $main_page_id);
-                $this->db->or_where('lang_alias', $main_page_id);
                 $query = $this->db->get('content', 1);
+
+                if ($query->num_rows() == 0)
+                {
+                    $this->db->where('lang', $this->config->item('cur_lang'));
+                    $this->db->where('lang_alias', $main_page_id);
+                    $query = $this->db->get('content', 1);
+                }
 
                 if ($query->num_rows() > 0)
                 {

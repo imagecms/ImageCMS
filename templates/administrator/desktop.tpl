@@ -130,7 +130,7 @@
 	<li>
 	<a class="returnFalse" href="">Система</a>
 		<ul>
-			<li><a id="settings_link" href="#">Конфигурация Сайта</a></li>
+			<li><a id="settings_link" class="returnFalse" href="#">Конфигурация Сайта</a></li>
             <!-- <li><a id="main_page_link" href="">Главная Страница</a></li> -->
 			<li><a id="languages_link" href="">Языки</a></li> 
 			<li><a class="returnFalse arrow-right" href="">Кеш</a>
