@@ -70,12 +70,15 @@ class Admin extends Controller {
             $cnt = count($comments);
             for ($i = 0; $i < $cnt; $i++) 
             {
-                $this->db->select('id, title, url, cat_url');    
-                $this->db->where('id', $comments[$i]['item_id']);
-                $query = $this->db->get('content')->row_array();
+                if ($comments[$i]['module'] == 'core')
+                {
+                    $this->db->select('id, title, url, cat_url');    
+                    $this->db->where('id', $comments[$i]['item_id']);
+                    $query = $this->db->get('content')->row_array();
 
-                $comments[$i]['page_title'] = $query['title'];
-                $comments[$i]['page_url'] = site_url($query['cat_url'].$query['url']);
+                    $comments[$i]['page_title'] = $query['title'];
+                    $comments[$i]['page_url'] = site_url($query['cat_url'].$query['url']);
+                }
             }
 
             if ($status_all == 'all')
@@ -139,7 +142,11 @@ class Admin extends Controller {
 
         $this->comments->update($this->input->post('id'), $data);
 
-        $this->drop_cache($this->input->post('id'));
+        $comment = $this->comments->get_one($this->input->post('id'));
+
+        $this->drop_cache($this->input->post('id'), $comment['module']);
+
+        $this->_recount_comments($comment['item_id'], $comment['module']);
     }
 
     public function update_status()
@@ -148,9 +155,10 @@ class Admin extends Controller {
         $this->db->update('comments', array('status' => $this->input->post('status')));
 
         $comment = $this->comments->get_one($this->input->post('id'));
-        $this->_recount_comments($comment['item_id']);
 
-        $this->drop_cache($this->input->post('id'));
+        $this->drop_cache($this->input->post('id'), $comment['module']);
+
+        $this->_recount_comments($comment['item_id'], $comment['module']); 
     }
 
     // Delete comment
@@ -164,7 +172,7 @@ class Admin extends Controller {
   
         $this->comments->delete($id);
 
-        $this->_recount_comments($comment['item_id']);
+        $this->_recount_comments($comment['item_id'], $comment['module']);
     }
 
     public function delete_many()
@@ -181,7 +189,7 @@ class Admin extends Controller {
                 $comment = $this->comments->get_one($id);
                 $this->comments->delete($id);
 
-                $this->_recount_comments($comment['item_id']);
+                $this->_recount_comments($comment['item_id'], $comment['module']);
             }
         }
 
@@ -194,9 +202,9 @@ class Admin extends Controller {
      */
     private function drop_cache($comment_id)
     {
-        $this->db->select('id, item_id');
+        $this->db->select('id, item_id, module');
         $comment = $this->comments->get_one($comment_id);
-        $this->cache->delete('comments_'.$comment['item_id'], 'comments');
+        $this->cache->delete('comments_'.$comment['item_id'].$comment['module'], 'comments');
     }
 
     /**
@@ -228,10 +236,16 @@ class Admin extends Controller {
         showMessage('Изменения сохранены');
     }
 
-    private function _recount_comments($page_id)
+    private function _recount_comments($page_id, $module)
     {
+        if ($module != 'core')
+        {
+            return FALSE;
+        }
+
         $this->db->where('item_id', $page_id);
         $this->db->where('status', 0);
+        $this->db->where('module', 'core');
         $this->db->from('comments');
         $total = $this->db->count_all_results();
 
