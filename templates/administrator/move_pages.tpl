@@ -1,4 +1,4 @@
-Выбирите категорию:
+Выберите категорию:
 <select id="move_cat_id">
 <option value="0" selected="selected">Нет</option>
 { $this->view("cats_select.tpl", $this->template_vars); }

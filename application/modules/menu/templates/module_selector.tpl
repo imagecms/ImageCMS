@@ -137,7 +137,7 @@
 
         if (mod_name == '')
         {
-            showMessage('Ошибка','Выбирите модуль.');
+            showMessage('Ошибка','Выберите модуль.');
             return false;
         }
 
