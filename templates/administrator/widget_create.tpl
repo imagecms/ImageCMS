@@ -28,7 +28,7 @@
 <div id="module_info">
     <div class="form_text"></div>
     <div class="form_input" >
-        <span id="widget_title">Выбирите виджет из списка ниже и нажмите "Создать".</span>
+        <span id="widget_title">Выбeрите виджет из списка ниже и нажмите "Создать".</span>
     </div>
     <div class="form_overflow"></div>
 </div>
