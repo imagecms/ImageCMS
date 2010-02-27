@@ -118,7 +118,7 @@ else
 //phpinfo();
 
 // ImageCMS data
-define('IMAGECMS_NUMBER', '1.3.2');
+define('IMAGECMS_NUMBER', '1.3.7');
 define('IMAGECMS_VERSION', 'A35TW503B1'); // don't chnage this value!!!
 define('IMAGECMS_PUBLIC_ID', '7840a004c9fb02f6c294c793b59aa5348a895978');
 

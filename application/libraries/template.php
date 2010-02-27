@@ -37,8 +37,8 @@ class Template extends Mabilis {
 
         $this->template_dir = $config['tpl_path'];
 
-		$this->assign('JS_URL',base_url().'js'); //URL to JS folder
-		$this->assign('THEME',base_url().'templates/'.$this->CI->config->item('template')); //URL to template folder
+		$this->assign('JS_URL', base_url().'js'); //URL to JS folder
+		$this->assign('THEME', base_url().'templates/'.$this->CI->config->item('template')); //URL to template folder
 
         // Assign CI instance
         $this->assign('CI', $this->CI);

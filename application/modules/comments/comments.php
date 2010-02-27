@@ -157,10 +157,13 @@ class Comments extends Controller {
         $item_id = $this->input->post('comment_item_id');
 
         // Check if page comments status.
-        if ($this->base->get_item_comments_status($item_id) == FALSE)
+        if ($this->module == 'core')
         {
-            ($hook = get_hook('comments_page_comments_disabled')) ? eval($hook) : NULL;
-            $this->core->error(lang('error_comments_diabled'));
+            if ($this->base->get_item_comments_status($item_id) == FALSE)
+            {
+                ($hook = get_hook('comments_page_comments_disabled')) ? eval($hook) : NULL;
+                $this->core->error(lang('error_comments_diabled'));
+            }
         }
 
         $this->load->library('user_agent');
@@ -227,9 +230,9 @@ class Comments extends Controller {
                 $comment_data = array(
                                     'module'    => $this->module,
                                     'user_id'   => $this->dx_auth->get_user_id(), // 0 if unregistered
-                                    'user_name' => $comment_author,
+                                    'user_name' => htmlspecialchars($comment_author),
                                     'user_mail' => $comment_email,
-                                    'user_site' => $this->input->post('comment_site'),
+                                    'user_site' => htmlspecialchars($this->input->post('comment_site')),
                                     'text'      => $comment_text,
                                     'item_id'   => $item_id,
                                     'status'    => $this->_comment_status(),

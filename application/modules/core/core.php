@@ -95,11 +95,16 @@ class Core extends Controller {
                 // Set language template
                 // $this->template->template_dir = TEMPLATES_PATH.$this->langs[$uri_lang]['template'].'/';
 
+                $this->config->set_item('template', $this->langs[$uri_lang]['template'] );
+
                 $this->template->set_config_value('tpl_path', TEMPLATES_PATH.$this->langs[$uri_lang]['template'].'/');
 
                ($hook = get_hook('core_changed_tpl_path')) ? eval($hook) : NULL; 
 
                 $this->load_functions_file($this->langs[$uri_lang]['template']);
+
+                // Reload template settings
+                $this->template->Template();
 
                 // Add language identificator to base_url
                 $this->config->set_item('base_url',base_url().$uri_lang);
@@ -278,7 +283,7 @@ class Core extends Controller {
 
         // If module than exit from core and load module
         if ( $this->is_module($mod_segment) == TRUE ) return TRUE;
- 
+
         switch ( $this->core_data['data_type'] )
         {
             case 'main': // Main page

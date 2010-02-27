@@ -101,6 +101,14 @@ class Mabilis {
         $this->config->$param = $value;
     }
 
+    function get_config_value($param)
+    {
+        if (isset($this->config->$param))
+        {
+            return $this->config->$param;
+        }
+    }
+
     /**
      * Load compiler class if not loaded yet
      */ 
