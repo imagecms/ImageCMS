@@ -38,12 +38,22 @@ class Search extends Controller {
     // Search pages
     public function index($hash = '', $offset = 0)
     {
-       $text_len = mb_strlen(trim($this->input->post('text')), 'UTF-8'); 
+        $offset = (int) $offset;
+
+        if ($hash != '')
+        {
+            $hash_data = $this->query($hash, $offset);
+            $s_text = $this->search_title;
+        }
+        else
+        {
+            $s_text = trim($this->input->post('text'));
+        }
+
+        $text_len = mb_strlen(trim($s_text), 'UTF-8'); 
 
         if ($text_len >= $this->min_s_len AND $text_len < 50 )
-        {
-            $offset = (int) $offset;
-
+        { 
             $config = array(
                 'table'     => 'content',
                 'order_by'  => array('publish_date' => 'DESC'),
@@ -51,8 +61,6 @@ class Search extends Controller {
             );
             
             $this->init($config);
-
-            $s_text = trim($this->input->post('text'));
 
             $where = array(
                 array(
@@ -67,7 +75,7 @@ class Search extends Controller {
                         'lang' => $this->config->item('cur_lang'),
                     ),
                 array(
-                        'group1' => '(title LIKE "%'.$s_text.'%" OR prev_text LIKE "%'.$s_text.'%" OR full_text LIKE "%'.$s_text.'%" )',
+                        'group1' => '(title LIKE "%'.$this->db->escape_str($s_text).'%" OR prev_text LIKE "%'.$this->db->escape_str($s_text).'%" OR full_text LIKE "%'.$this->db->escape_str($s_text).'%" )',
                         'group'  => TRUE,
                 ),
             );
@@ -77,7 +85,7 @@ class Search extends Controller {
                 $result = $this->execute($where, $offset);
             }
             else
-            { 
+            {
                 $result = $this->query($hash, $offset);
             }
 
@@ -120,6 +128,11 @@ class Search extends Controller {
         else
         {
             $data = $result['query']->result_array(); 
+        }
+
+        if (isset($s_text))
+        {
+            $this->template->assign('search_title', $s_text);
         }
 
         $this->core->set_meta_tags(array(lang('search_title'), $this->search_title));
@@ -229,7 +242,10 @@ class Search extends Controller {
         }
         else
         {
-            $this->hash_data->ids = unserialize($this->hash_data->ids);
+            if (!is_array($this->hash_data->ids))
+            {
+                $this->hash_data->ids = unserialize($this->hash_data->ids);
+            }
 
             $where = array();
             $ids = array();

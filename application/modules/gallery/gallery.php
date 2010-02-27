@@ -110,6 +110,8 @@ class Gallery extends Controller {
                         // Create prev/next links
                         $next = $album['images'][$n + 1];
                         $prev = $album['images'][$n - 1];
+                        
+                        $current_pos = $n + 1;
                     } 
 
                     $n++;
@@ -122,10 +124,22 @@ class Gallery extends Controller {
 
                 $next = $album['images'][1];
                 $prev = NULL;
+                $current_pos = 1;
             }
 
+            if ($prev_img == NULL)
+            {
+                $this->core->error_404();
+                exit;
+            }
 
             $prev_img['url'] = $this->conf['upload_url'] . $album['id'] .'/'. $prev_img['file_name'] .'_prev'. $prev_img['file_ext'];
+
+            // Comments
+            $this->load->module('comments');
+            $this->comments->module = 'gallery';
+            $this->comments->comment_controller = 'gallery/post_comment';
+            $this->comments->build_comments($prev_img['id']);
 
             $this->template->add_array(array(
                 'album'      => $album,
@@ -135,6 +149,7 @@ class Gallery extends Controller {
                 'prev_img'   => $prev_img,
                 'next'       => $next,
                 'prev'       => $prev,
+                'current_pos'=> $current_pos,
 
                 'current_category' => $this->gallery_m->get_category($album['category_id']), 
                 'gallery_category' => $this->gallery_m->get_categories($this->settings['order_by'], $this->settings['sort_order']),
@@ -142,9 +157,49 @@ class Gallery extends Controller {
 
             $this->gallery_m->increase_image_views($prev_img['id']);
            
-            $this->core->set_meta_tags(array($album['name']));
+            $this->core->set_meta_tags(array($album['name'])); 
 
             $this->display_tpl('album');
+        }
+    }
+
+    function thumbnails($id = 0)
+    {
+        $album = $this->gallery_m->get_album($id);
+
+        if ($album == FALSE)
+        {
+            $this->core->error_404();
+            exit;
+        }
+
+        $this->template->add_array(array(
+            'album'      => $album,
+            'thumb_url'  => $this->conf['upload_url'] . $album['id'] . '/' . $this->conf['thumbs_folder'] . '/',
+            'album_link' => 'gallery/album/' . $album['id'] . '/', 
+            'album_url'  => $this->conf['upload_url'] . $album['id'] . '/',
+            'current_category' => $this->gallery_m->get_category($album['category_id']),
+        ));
+      
+        $this->core->set_meta_tags(array($album['name']));
+
+        $this->display_tpl('thumbnails');
+    }
+
+    function post_comment()
+    {
+        $image_id = (int) $this->input->post('comment_item_id');
+ 
+        $this->load->module('comments');
+        $this->comments->module = 'gallery';
+
+        if ($this->db->get_where('gallery_images', array('id' => $image_id))->num_rows() > 0)
+        {
+            $this->comments->add($image_id);
+        }
+        else
+        {
+            $this->core->error_404();
         }
     }
 
@@ -186,8 +241,6 @@ class Gallery extends Controller {
         if( $this->dx_auth->is_admin() == FALSE) exit;
         $this->load->model('install')->deinstall();
     }
-
-
 
     /**
      * Display template file

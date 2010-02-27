@@ -151,7 +151,8 @@ class Tags extends Controller {
             }
             else
             {
-                $this->core->set_meta_tags(lang('search_title').$this->search->title_delimiter.$tag);  
+                $this->core->set_meta_tags(lang('search_title').$this->search->title_delimiter.$tag);
+                $this->template->assign('search_title', htmlspecialchars($tag));
                 $this->search->_display($pages->result_array());
             }
         }

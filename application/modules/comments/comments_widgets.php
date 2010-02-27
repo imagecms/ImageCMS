@@ -33,6 +33,7 @@ class Comments_Widgets extends Controller {
         $this->db->select('comments.*');
         $this->db->select('CONCAT_WS("", ,content.cat_url, content.url) as url', FALSE); // page full url
         $this->db->where('content.lang', $this->config->item('cur_lang'));
+        $this->db->where('comments.module', 'core');
         $this->db->join('content','content.id = comments.item_id', 'left');
         $this->db->order_by('date', 'desc'); 
         $query = $this->db->get('comments', $settings['comments_count']);
