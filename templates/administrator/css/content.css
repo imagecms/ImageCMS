@@ -615,3 +615,15 @@ div.d_comment:hover {
     background-color:#EAEAEA;
     padding:2px;
 }
+
+/** Style for forms create with forms module */
+.CForms label.left {
+   float:right;
+}
+.CForms label.required {
+   color:#E64F4F;
+}
+.CForms .help_text {
+   font-size:11px;
+   color:#8A8A8A; 
+}

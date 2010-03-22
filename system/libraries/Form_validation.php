@@ -581,7 +581,7 @@ class CI_Form_validation {
 			if ($callback === TRUE)
 			{
 				if ( ! method_exists($this->CI, $rule))
-				{ 		
+				{
 					continue;
 				}
 				

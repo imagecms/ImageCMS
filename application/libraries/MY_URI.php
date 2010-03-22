@@ -7,7 +7,7 @@ class MY_URI extends CI_URI {
     public function MY_URI()
     {
         parent::CI_URI();
-        parse_str( $_SERVER['QUERY_STRING'], $this->GET_params_arr );          
+        parse_str( $_SERVER['QUERY_STRING'], $this->GET_params_arr );
     }
 
     public function getParam($key)

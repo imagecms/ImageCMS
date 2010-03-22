@@ -6,7 +6,7 @@
 	<title>Панель Управления - Image CMS</title>
 	<meta name="description" content="Панель Управления - Image CMS" />
 
-	<link rel="stylesheet" href="{$THEME}/css/style.css" type="text/css"/>
+
 	<link rel="stylesheet" href="{$THEME}/css/content.css" type="text/css"/>
 
 

@@ -86,7 +86,7 @@ $config['index_page'] = "";
 
 $config['is_installed'] = TRUE;
 
-$config['rebuild_hooks_tree'] = FALSE;
+$config['rebuild_hooks_tree'] = TRUE;
 /*
 |--------------------------------------------------------------------------
 | URI PROTOCOL

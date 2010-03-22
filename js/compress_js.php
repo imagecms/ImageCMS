@@ -43,16 +43,16 @@ $files = array(
 
 	$exp = 3600 * 24 * 10;
 	header("Content-Type: text/javascript");
-	//header("Vary: Accept-Encoding");
-	//header("Expires: " . gmdate("D, d M Y H:i:s", time() + $exp) . " GMT");
+	header("Vary: Accept-Encoding");
+	header("Expires: " . gmdate("D, d M Y H:i:s", time() + $exp) . " GMT");
 
-	//if (extension_loaded('zlib'))
-	//{
-	//	if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) AND strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== FALSE)
-	//	{
-	//		ob_start('ob_gzhandler');
-	//	}
-	//}
+	if (extension_loaded('zlib'))
+	{
+		if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) AND strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== FALSE)
+		{
+			ob_start('ob_gzhandler');
+		}
+	}
 
 	print $code;
-?>
+

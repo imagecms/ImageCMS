@@ -1,0 +1,87 @@
+/*** FORMS **/
+
+form {
+    line-height: 25px;
+}
+
+form p.clear {
+	clear: both;
+    font-size:12px;
+}
+
+label.left{
+	display: inline;
+	float: left;
+	width: 140px;
+	width: "150px";
+	padding-right: 10px;
+	vertical-align: middle;
+    text-align: left;
+}
+
+form .el_magrin {
+    margin-left:150px;
+}
+
+label.required {
+    font-weight:bold;
+}
+
+input[type=text], input[type=password] {
+    border:1px solid #B9B9B9;
+	font-size: 12px;
+    width:200px;
+    padding:2px;
+    color:#333;
+}
+
+form textarea {
+    border:1px solid #B9B9B9;
+    margin-bottom:0px;
+    padding:2px;
+}
+
+fieldset {
+	margin-bottom: 20px;
+	padding: 10px;
+	border: 0px;	
+    
+    /*
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+    */
+}
+
+legend {
+	font-size: 13px;
+    color:#D50400; 
+    font-weight:bold;
+}
+
+form .help_text {
+    color:#8E8E8E;
+    margin-left:150px;
+    float:left;
+    clear:both;
+    font-size:11px;
+    margin-bottom:0px;
+    padding:0px;
+}
+
+form .error_field_text {
+    color:#E34141;
+}
+
+form .field_error {
+    border:1px solid #E34141;
+}
+
+.errors {
+    margin-bottom:15px;
+    margin-top:5px;
+    padding:5px;
+    line-height:15px;
+    border:1px solid #FFBBBB;
+    border-top:4px solid #FFBBBB;
+    background-color: #FFDDDD; 
+}

@@ -1,0 +1,98 @@
+<!-- CFCM hooks file -->
+
+<!-- Set category field_group id on admin category update page --> 
+<hook id="admin_update_category">
+<![CDATA[
+	$data['field_group'] = $this->input->post('field_group');
+]]>
+</hook>
+
+<hook id="admin_page_update">
+<![CDATA[
+    $this->load->module('cfcm')->save_item_data($page_id, 'page');
+]]>
+</hook>
+
+<hook id="admin_on_page_add">
+<![CDATA[
+    $this->load->module('cfcm')->save_item_data($page['id'], 'page');
+]]>
+</hook>
+
+<!-- Core assign page data -->
+<hook id="core_set_page_data">
+<![CDATA[
+    $this->page_content = $this->load->module('cfcm')->connect_fields($this->page_content, 'page');
+]]>
+</hook>
+
+<hook id="core_read_main_page_tpl">
+<![CDATA[
+    $page = $this->load->module('cfcm')->connect_fields($page, 'page');
+]]>
+</hook>
+
+<hook id="core_return_category_pages">
+<![CDATA[
+    $n = 0;
+    foreach ($pages as $p)
+    {
+        $pages[$n] = $this->load->module('cfcm')->connect_fields($p, 'page');
+    }
+]]>
+</hook>
+
+<hook id="admin_on_page_delete">
+<![CDATA[
+    $this->db->where('item_id', $page_id);
+    $this->db->where('item_type', 'page');
+    $this->db->delete('content_fields_data');
+]]>
+</hook>
+
+<!-- Add new tab on add page. --> 
+<hook id="admin_tpl_add_page">
+<![CDATA[
+    echo '<h4>Доп. Поля</h4>';
+	echo '<div style="padding:8px;" id="cfcm_fields_block"></div>';
+
+    echo '
+    <script type="text/javascript">
+           $("category_selectbox").addEvent("change", function(event){
+            category_id = $("category_selectbox").value;
+            ajax_div("cfcm_fields_block",  base_url + "admin/components/cp/cfcm/form_from_category_group/" + category_id + "/0/page");
+           });
+
+            // Load current category fields
+            window.addEvent("domready", function(){
+                category_id = $("category_selectbox").value;
+                ajax_div("cfcm_fields_block",  base_url + "admin/components/cp/cfcm/form_from_category_group/" + category_id + "/0/page");
+            });
+    </script>
+    ';
+]]>
+</hook>
+
+<hook id="admin_tpl_edit_page">
+<![CDATA[
+    echo '<h4>Доп. Поля</h4>';
+	echo '<div style="padding:8px;" id="cfcm_fields_block"></div>';
+
+    echo '
+    <script type="text/javascript">
+           var update_page_id = '.$update_page_id.';
+
+           $("category_selectbox").addEvent("change", function(event){
+            category_id = $("category_selectbox").value;
+            ajax_div("cfcm_fields_block",  base_url + "admin/components/cp/cfcm/form_from_category_group/" + category_id + "/" + update_page_id + "/page");
+           });
+
+            // Load current category fields
+            window.addEvent("domready", function(){
+                category_id = $("category_selectbox").value;
+                ajax_div("cfcm_fields_block",  base_url + "admin/components/cp/cfcm/form_from_category_group/" + category_id + "/" + update_page_id + "/page");
+            });
+    </script>
+    ';
+]]>
+</hook>

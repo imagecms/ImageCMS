@@ -4,7 +4,6 @@
     <input type="submit" style="cursor:pointer;border:0px;width:16px;height:16px;background: transparent url({$THEME}/images/save_page.png) no-repeat;" value=" " onclick="ajax_me('add_page_form');" title="Сохранить" />
 </div>
 
-
 <div id="tabs-block"  style="float:left;width:100%;">
 
 	<h4>Содержание</h4>
@@ -79,11 +78,14 @@
 			<label><input name="comments_status"  value="1" checked="checked" type="checkbox" id="comments_status" /> Разрешить комментирование</label>
 		</div>
 		<div class="form_overflow"></div>
-
 	</div>
 
     {($hook = get_hook('admin_tpl_add_page')) ? eval($hook) : NULL;}
+{literal}
+<script type="text/javascript">
 
+</script>
+{/literal}
 	<!-- Begin custom tabs -->
 	    { echo modules::run('xfields/admin/create_page_tab'); }
     <!-- / custom tabs -->
@@ -137,7 +139,7 @@
 
 {literal}
 	<script type="text/javascript">
-    
+           var cms_tabs = null;
            var sp_param = Cookie.read('sidepanel'); 
 
             window.addEvent('domready', function() {
@@ -154,9 +156,10 @@
 				'postVar': 'search_tags'
 			});
 
-			var cms_tabs = new SimpleTabs('tabs-block', {
+			cms_tabs = new SimpleTabs('tabs-block', {
 			selector: 'h4'
 			});        
+ 
 
             load_editor();
 		});

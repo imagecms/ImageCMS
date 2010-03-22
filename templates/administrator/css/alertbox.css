@@ -1,18 +1,18 @@
 #SexyAlertBox-Box {
   padding-bottom: 24px;
-  background: url('../images/alertbox/bg-box-bottom.png') bottom left no-repeat !important;
-  background: url('../images/alertbox/bg-box-bottom.gif') bottom left no-repeat;
+  background:url('../images/alertbox/bg-box-bottom.png') bottom left no-repeat !important;
+  background:url('../images/alertbox/bg-box-bottom.gif') bottom left no-repeat;
 }
 
 #SexyAlertBox-InBox {
   padding-top: 15px;
-  background: url('../images/alertbox/bg-box-top.png') top left no-repeat !important;
-  background: url('../images/alertbox/bg-box-top.gif') top left no-repeat;
+  background:url('../images/alertbox/bg-box-top.png') top left no-repeat !important;
+  background:url('../images/alertbox/bg-box-top.gif') top left no-repeat;
 }
 
 #SexyAlertBox-BoxContent {
-  background: url('../images/alertbox/bg-box-body.png') top left repeat-y !important;
-  background: url('../images/alertbox//bg-box-body.gif') top left repeat-y;
+  background:url('../images/alertbox/bg-box-body.png') top left repeat-y !important;
+  background:url('../images/alertbox//bg-box-body.gif') top left repeat-y;
   padding: 0px 20px;
 }
 

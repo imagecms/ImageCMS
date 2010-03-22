@@ -36,31 +36,45 @@
     {if $is_logged_in} 
         <p>{lang('lang_logged_in_as')} {$username}. <a href="{site_url('auth/logout')}">{lang('lang_logout')}</a></p>         
     {else:}
+    <p class="clear">
         <label for="comment_author" class="left">{lang('lang_comment_author')}</label>
-        <input type="text" name="comment_author" id="comment_author" value="{get_cookie('comment_author')}"/><br />
-        
+        <input type="text" name="comment_author" id="comment_author" value="{get_cookie('comment_author')}"/>
+    </p>
+       
+    <p class="clear">
         <label for="comment_email" class="left">{lang('lang_comment_email')}</label>
-        <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/><br />
+        <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
+    </p>
 
+    <p class="clear">
         <label for="comment_site" class="left">{lang('lang_comment_site')}</label>
-        <input type="text" name="comment_site" id="comment_site" value="{get_cookie('comment_site')}"/><br />
+        <input type="text" name="comment_site" id="comment_site" value="{get_cookie('comment_site')}"/>
+    </p>
     {/if}
 
-    <label for="comment_text" class="left">{lang('lang_comment_text')}</label>
-    <textarea name="comment_text" id="comment_text" rows="10" cols="50"></textarea><br />
+    <p class="clear">
+        <label for="comment_text" class="left">{lang('lang_comment_text')}</label>
+        <textarea name="comment_text" id="comment_text" rows="10" cols="50"></textarea>
+    </p>
 
     {if $use_captcha}
     <div style="padding-bottom:4px;">
+    <p class="clear"> 
         <label for="captcha" class="left">{lang('lang_captcha')}</label>
-        <input type="text" name="captcha" id="captcha" /><br />
+        <input type="text" name="captcha" id="captcha" />
+
+        <br/>
 
         <label class="left">&nbsp;</label>
-        {$cap_image}<br />
+        {$cap_image}
+    </p>
     </div>
     {/if}
 
-    <label class="left">&nbsp;</label> 
-    <input type="submit" class="button" value="{lang('lang_comment_button')}" /><br />
+    <p class="clear">
+        <label class="left">&nbsp;</label> 
+        <input type="submit" class="button" value="{lang('lang_comment_button')}" />
+    </p>
 
     {form_csrf()}
 </form>
