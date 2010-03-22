@@ -6,7 +6,10 @@
 <meta name="description" content="{$site_description}" />
 <meta name="keywords" content="{$site_keywords}" />
 <meta name="generator" content="ImageCMS">
+
 <link rel="stylesheet" type="text/css" href="{$THEME}/css/style.css" />
+<link rel="stylesheet" type="text/css" href="{$THEME}/css/forms.css" />
+
 </head>
 <body>
 

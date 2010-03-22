@@ -56,7 +56,8 @@ class Pages extends Controller{
 	 */
 	private function on_page_add($page)
 	{
-
+       ($hook = get_hook('admin_on_page_add')) ? eval($hook) : NULL;
+ 
 		// Set page roles
 		$this->_set_page_roles($page['id'],$this->input->post('roles'));
 
@@ -71,6 +72,7 @@ class Pages extends Controller{
 	 */
 	private function on_page_update($page)
 	{
+       ($hook = get_hook('admin_on_page_update')) ? eval($hook) : NULL;
 
 		// Update page roless
 		$this->_set_page_roles($page['id'],$this->input->post('roles'));
@@ -86,6 +88,8 @@ class Pages extends Controller{
 	 */
 	private function on_page_delete($page_id)
 	{
+        ($hook = get_hook('admin_on_page_delete')) ? eval($hook) : NULL;
+
         $this->lib_admin->log('Удалил страницу ID '.$page_id);
 
 		// Delete content_permissions

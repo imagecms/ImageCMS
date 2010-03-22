@@ -29,7 +29,7 @@
  
 	<script type="text/javascript" src="{$JS_URL}/compress_js.php"></script>
 
-	<script type="text/javascript" src="{$JS_URL}/tinymce/tiny_mce.js"></script>
+	<script type="text/javascript" src="{$JS_URL}/tinymce/tiny_mce.js.php"></script>
 	<script type="text/javascript" src="{$JS_URL}/tinymce/plugins/tinybrowser/tb_tinymce.js.php"></script>
 	<script type="text/javascript" src="{$JS_URL}/tinymce/plugins/tinybrowser/tb_standalone.js.php"></script>
 

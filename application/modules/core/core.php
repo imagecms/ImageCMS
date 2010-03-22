@@ -353,6 +353,8 @@ class Core extends Controller {
                     $page['full_text'] = $page['prev_text'];
                 }
 
+                ($hook = get_hook('core_read_main_page_tpl')) ? eval($hook) : NULL;
+
 				$this->template->assign('content', $this->template->read($page_tpl, array('page' => $page)));
                 
                 $title = $page['meta_title'] == NULL ? $page['title'] : $page['meta_title'];
@@ -469,9 +471,11 @@ class Core extends Controller {
             return $this->db->count_all_results();
         }
 
+        $pages = $query->result_array(); 
+
         ($hook = get_hook('core_return_category_pages')) ? eval($hook) : NULL;
 
-        return $query->result_array();
+        return $pages;
     }
 
 	/**
