@@ -50,7 +50,6 @@ class Cfcm extends Controller {
                     die();
                 }
             }
-
         }
     }
 
@@ -92,6 +91,12 @@ class Cfcm extends Controller {
     // select/checkgroup/radiogroup always returned as array
     public function connect_fields($item_data, $item_type)
     {
+        if (($cache_result = $this->cache->fetch('cfcm_field_'.$item_data['id'].$item_type)) !== FALSE)
+        {
+            $item_data = array_merge($item_data, $cache_result); 
+            return $item_data;
+        }
+
         $replace = array();
         $wight   = array();
         $fields_data = array();
@@ -150,7 +155,11 @@ class Cfcm extends Controller {
         array_multisort($weight, SORT_ASC, $result, SORT_DESC, $result);
 
         if (count($result) > 0)
+        {
+            $this->cache->store('cfcm_field_'.$item_data['id'].$item_type, $result);
+
             $item_data = array_merge($item_data, $result);
+        }
 
         return $item_data;
     }
