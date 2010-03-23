@@ -491,7 +491,7 @@ class Categories extends Controller {
         }
 
         ($hook = get_hook('admin_category_delete')) ? eval($hook) : NULL; 
-
+ 
 		// Delete Category
 		$this->db->limit(1);
 		$this->db->where('id',$cat_id);
@@ -516,10 +516,57 @@ class Categories extends Controller {
 			}
 		}
 
+        // Delete sub cats
+        $this->sub_cats = array();
+        $this->categories = $this->db->get('category')->result_array(); 
+        $this->_get_sub_cats($cat_id);
+
+        if (count($this->sub_cats) > 0)
+        {
+            foreach ($this->sub_cats as $key => $cat_id)
+            {
+                // Delete Category
+                $this->db->limit(1);
+                $this->db->where('id',$cat_id);
+                $this->db->delete('category');
+
+                $this->lib_admin->log('Удалил категорию ID '.$cat_id);
+
+                // Delete translates
+                $this->db->where('alias', $cat_id);
+                $this->db->delete('category_translate');
+
+                // Delete pages
+                $this->db->where('category',$cat_id);
+                $pages = $this->db->get('content');
+
+                if ($pages->num_rows() > 0)
+                {
+                    $this->load->module('admin/pages','pages');
+                    foreach($pages->result_array() as $page)
+                    {
+                        $this->pages->delete($page['id'], FALSE);
+                    }
+                }
+            }
+        }
+
 		$this->lib_category->clear_cache();
 		showMessage('Категория удалена!');
 	
 		return TRUE;
+    }
+
+    public function _get_sub_cats($id)
+    {
+        foreach ($this->categories as $cat)
+        {
+		    if ($cat['parent_id'] == $id)
+            {
+                $this->sub_cats[] = $cat['id'];
+                $this->_get_sub_cats($cat['id']);
+            } 
+        }
     }
 
     function get_comments_status($id)

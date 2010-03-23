@@ -24,7 +24,6 @@
         </div>
         <div class="form_overflow"></div>
 
-
         <div class="form_text">Родитель:</div>
         <div class="form_input">
             <select name="parent_id">
@@ -43,7 +42,7 @@
                 <option value="{$k}" {if $k == $field_group} selected="selected" {/if}>{$v}</option>
             {/foreach}
             </select>
-            <div class="lite">Выберите группу полей, которые будут отображаться при создании страниц в данной категории.</div>
+            <div class="lite">Выберите группу полей, которая будут отображаться при создании страниц в данной категории.</div>
         </div>
         <div class="clear"></div>
 

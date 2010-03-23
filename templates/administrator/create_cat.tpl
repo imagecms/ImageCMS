@@ -24,6 +24,19 @@
         </div>
         <div class="clear"></div>
 
+        <div class="form_text">Группа полей страниц:</div>
+        <div class="form_input">
+            {$f_groups = $this->CI->load->module('cfcm/cfcm_forms')->prepare_groups_select()}
+            <select name="field_group">
+                <option value="-1">Нет</option>
+            {foreach $f_groups as $k => $v}
+                <option value="{$k}" {if $k == $field_group} selected="selected" {/if}>{$v}</option>
+            {/foreach}
+            </select>
+            <div class="lite">Выберите группу полей, которая будут отображаться при создании страниц в данной категории.</div>
+        </div>
+        <div class="clear"></div>
+
         <div class="form_text">Изображение:</div>
         <div class="form_input">
             <input type="text" name="image" id="cat_image" value="" class="textbox_long" />

@@ -43,7 +43,7 @@ if (isset($load_db_settings) AND $load_db_settings == TRUE)
     $db['default']['hostname'] = "localhost";
     $db['default']['username'] = "root";
     $db['default']['password'] = "mysqlpass";
-    $db['default']['database'] = "imagecms_blog";
+    $db['default']['database'] = "imagecms";
     $db['default']['dbdriver'] = "mysql";
     $db['default']['dbprefix'] = "";
     $db['default']['pconnect'] = TRUE;
