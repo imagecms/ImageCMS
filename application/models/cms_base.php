@@ -103,12 +103,16 @@ class Cms_base extends Model{
 	 */
 	function get_categories()
 	{
-		$this->db->order_by('position','asc');
+		$this->db->order_by('position', 'ASC');
 		$query = $this->db->get('category');
 
 		if ($query->num_rows() > 0 )
 		{
-			return $query->result_array();
+			$categories = $query->result_array();
+
+            ($hook = get_hook('cmsbase_return_categories')) ? eval($hook) : NULL; 
+            
+            return $categories;
 		}
 
 		return FALSE;

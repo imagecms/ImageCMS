@@ -292,6 +292,9 @@ class Admin extends Controller {
     {
         $category = (object) $this->lib_category->get_category($category_id);
 
+        if ($item_type == 'category')
+            $category->field_group = $category->category_field_group;
+
         if ($category->field_group != '-1')
         {
             // Get group

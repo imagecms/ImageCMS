@@ -473,8 +473,6 @@ class Categories extends Controller {
 	/**
 	 * Delete category and its pages
      *
-     * TODO: delete sub cats and pages
-     *
 	 * @param integer $cat_id
 	 * @access public
 	 */
@@ -488,10 +486,10 @@ class Categories extends Controller {
         {
             showMessage('Ошибка удаления категории.', 'Ошибка');
             exit;
-        }
-
-        ($hook = get_hook('admin_category_delete')) ? eval($hook) : NULL; 
+        } 
  
+        ($hook = get_hook('admin_category_delete')) ? eval($hook) : NULL;
+
 		// Delete Category
 		$this->db->limit(1);
 		$this->db->where('id',$cat_id);
@@ -525,6 +523,9 @@ class Categories extends Controller {
         {
             foreach ($this->sub_cats as $key => $cat_id)
             {
+
+                ($hook = get_hook('admin_sub_category_delete')) ? eval($hook) : NULL;
+
                 // Delete Category
                 $this->db->limit(1);
                 $this->db->where('id',$cat_id);

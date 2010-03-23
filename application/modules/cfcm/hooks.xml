@@ -4,12 +4,16 @@
 <hook id="admin_update_category">
 <![CDATA[
 	$data['field_group'] = $this->input->post('field_group');
+	$data['category_field_group'] = $this->input->post('category_field_group');
+
+    $this->load->module('cfcm')->save_item_data($cat_id, 'category');
 ]]>
 </hook>
 
 <hook id="admin_create_category">
 <![CDATA[
 	$data['field_group'] = $this->input->post('field_group');
+    $data['category_field_group'] = $this->input->post('category_field_group');
 ]]>
 </hook>
 
@@ -44,6 +48,20 @@
     foreach ($pages as $p)
     {
         $pages[$n] = $this->load->module('cfcm')->connect_fields($p, 'page');
+        $n++;
+    }
+]]>
+</hook>
+
+<hook id="cmsbase_return_categories">
+<![CDATA[
+    $n = 0;
+    $ci =& get_instance();
+    $ci->load->library('DX_Auth');
+    foreach ($categories as $c)
+    {
+        $categories[$n] = $ci->load->module('cfcm')->connect_fields($c, 'category');
+        $n++;
     }
 ]]>
 </hook>
@@ -52,6 +70,22 @@
 <![CDATA[
     $this->db->where('item_id', $page_id);
     $this->db->where('item_type', 'page');
+    $this->db->delete('content_fields_data');
+]]>
+</hook>
+
+<hook id="admin_category_delete">
+<![CDATA[
+    $this->db->where('item_id', $cat_id);
+    $this->db->where('item_type', 'category');
+    $this->db->delete('content_fields_data');
+]]>
+</hook>
+
+<hook id="admin_sub_category_delete">
+<![CDATA[
+    $this->db->where('item_id', $cat_id);
+    $this->db->where('item_type', 'category');
     $this->db->delete('content_fields_data');
 ]]>
 </hook>
@@ -100,5 +134,16 @@
             });
     </script>
     ';
+]]>
+</hook>
+
+<hook id="admin_tpl_edit_category">
+<![CDATA[
+    echo '<h4>Доп. Поля</h4>';
+	echo '<div style="padding:8px;" id="cfcm_fields_block">';
+
+    echo $this->CI->load->module('cfcm/admin')->form_from_category_group($id, $id, 'category');
+
+    echo '</div>';
 ]]>
 </hook>

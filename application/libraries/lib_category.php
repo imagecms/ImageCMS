@@ -19,7 +19,7 @@ class Lib_category {
 
  	function Lib_category()
  	{
- 		$this->CI = get_instance(); 
+ 		$this->CI = get_instance();
  	}
 
 	/**
