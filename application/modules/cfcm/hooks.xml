@@ -7,6 +7,12 @@
 ]]>
 </hook>
 
+<hook id="admin_create_category">
+<![CDATA[
+	$data['field_group'] = $this->input->post('field_group');
+]]>
+</hook>
+
 <hook id="admin_page_update">
 <![CDATA[
     $this->load->module('cfcm')->save_item_data($page_id, 'page');

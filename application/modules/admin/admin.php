@@ -59,6 +59,7 @@ class Admin extends Controller {
         switch ($s_ip)
         {
             case '127.0.0':
+            case '127.0.1':
             case '10.0.0':
             case '172.16.0':
             case '192.168.0':
