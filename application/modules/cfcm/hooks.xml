@@ -7,6 +7,7 @@
 	$data['category_field_group'] = $this->input->post('category_field_group');
 
     $this->load->module('cfcm')->save_item_data($cat_id, 'category');
+    $this->cache->delete('cfcm_field_'.$cat_id.'category');
 ]]>
 </hook>
 
@@ -20,6 +21,7 @@
 <hook id="admin_page_update">
 <![CDATA[
     $this->load->module('cfcm')->save_item_data($page_id, 'page');
+    $this->cache->delete('cfcm_field_'.$page_id.'page');
 ]]>
 </hook>
 
@@ -71,6 +73,8 @@
     $this->db->where('item_id', $page_id);
     $this->db->where('item_type', 'page');
     $this->db->delete('content_fields_data');
+
+    $this->cache->delete('cfcm_field_'.$page_id.'page');
 ]]>
 </hook>
 
