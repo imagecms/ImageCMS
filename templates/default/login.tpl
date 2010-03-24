@@ -9,29 +9,39 @@
 
 <form action="" method="post" class="form">
 
-    <label for="username" class="left">{lang('lang_login')}</label> 
-    <input type="text" id="username" size="30" name="username" /><br />
+    <p class="clear">
+        <label for="username" class="left">{lang('lang_login')}</label> 
+        <input type="text" id="username" size="30" name="username" />
+    </p>
 
-    <label for="password" class="left">{lang('lang_password')}</label> 
-    <input type="password" size="30" name="password" id="password" /><br />
- 
+    <p class="clear"> 
+        <label for="password" class="left">{lang('lang_password')}</label> 
+        <input type="password" size="30" name="password" id="password" />
+    </p>
+
     {if $cap_image}
     <div style="padding-bottom:4px;">
+    <p class="clear"> 
         <label for="captcha" class="left">{lang('lang_captcha')}</label>
-        <input type="text" name="captcha" id="captcha" /><br />
+        <input type="text" name="captcha" id="captcha" />
+
+        <br/>
 
         <label class="left">&nbsp;</label>
-        {$cap_image}<br />
-    </div> 
+        {$cap_image}
+    </p>
+    </div>
     {/if}
 
-    <label for="remember" class="left">&nbsp;</label> 
-    <input type="checkbox" name="remember" value="1" id="remember" /> {lang('lang_remember_me')} <br />
+    <p class="clear">
+        <label for="remember" class="left">&nbsp;</label> 
+        <label><input type="checkbox" name="remember" value="1" id="remember" /> {lang('lang_remember_me')}</label>
+    </p>
 
     <label for="submit" class="left">&nbsp;</label> 
     <input type="submit" id="submit" class="button" value="{lang('lang_submit')}" /> 
 
-<br />
+    <br />
 
     <label class="left">&nbsp;</label> 
     <a href="{site_url($modules.auth . '/forgot_password')}">{lang('lang_forgot_password')}</a>

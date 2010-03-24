@@ -56,6 +56,15 @@
                                         {widget('latest_comments')}
 
                                         <div class="separator"></div>
+                                       
+                                        {if $is_logged_in}
+                                        {lang('lang_logged_in_as')} {$username}. <a href="{site_url('auth/logout')}">{lang('lang_logout')}</a> 
+                                        {else:}
+                                            <a href="{site_url('auth/login')}">Вход</a><br/>
+                                            <a href="{site_url('auth/register')}">Регистрация</a>
+                                        {/if}
+
+                                        <div class="separator"></div>
 
                                         <h2>Облако Тегов</h2> 
                                         
