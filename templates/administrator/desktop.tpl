@@ -86,7 +86,7 @@
 		<ul>
 			<li><a id="add_page_link" href="">Создать</a></li>
 			<li><a id="" href="#" class="returnFalse" onclick="ajax_div('page',base_url + 'admin/pages/GetPagesByCategory/0');">Без категории</a></li>
-			<li class="divider"><a id="" href="#" onclick="com_admin('xfields'); return false;">Дополнительные поля</a></li>
+			<li class="divider"><a id="" href="#" onclick="com_admin('cfcm'); return false;">Конструктор полей</a></li>
 		</ul>
 	</li>
 

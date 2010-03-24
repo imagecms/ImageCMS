@@ -86,10 +86,6 @@
 
 </script>
 {/literal}
-	<!-- Begin custom tabs -->
-	    { echo modules::run('xfields/admin/create_page_tab'); }
-    <!-- / custom tabs -->
-
 </div>
 	<div id="sidebar2">
 		<div><h3><a href="#" onclick="side_panel('show'); return false;">показать настройки</a></h3></div>
