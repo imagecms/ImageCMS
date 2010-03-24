@@ -186,7 +186,8 @@ $config['subclass_prefix'] = 'MY_';
 |
 */
 //$config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
-$config['permitted_uri_chars'] = 'a-zа-яёіґ 0-9~%.:_\-';
+//$config['permitted_uri_chars'] = 'a-zа-яёіґ 0-9~%.:_\-';
+$config['permitted_uri_chars'] = '?A-Za-zА-Яа-я=\s&0-9~%\.:_-';
 
 /*
 |--------------------------------------------------------------------------
