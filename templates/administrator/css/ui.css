@@ -1004,7 +1004,8 @@ div.mochaToolbarWrapper.bottom {
 }
 
 #desktop textarea {
-	width: 225px;
+	width: 274px;
+	background: #FFFFFF url(../images/input_bg.gif) repeat-x top;
 	height: 100px;
 	padding: 1px 0 1px 3px;
 	border: 1px solid #bbb;
