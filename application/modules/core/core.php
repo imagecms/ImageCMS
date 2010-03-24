@@ -773,10 +773,31 @@ class Core extends Controller {
                 if($func == FALSE) $func = 'index';
                 
                 $args = $this->grab_variables($n + 3);
-                echo modules::run($mod_name.'/'.$mod_function.'/'.$func, $args);
-            }else{
+                
+                $this->load->module($mod_name.'/'.$mod_function);
+
+                if (method_exists($mod_function, $func))
+                {
+                    echo modules::run($mod_name.'/'.$mod_function.'/'.$func, $args);
+                }
+                else
+                {
+                    $this->error_404();
+                }
+            }
+            else
+            {
                 $args = $this->grab_variables($n + 2);
-                echo modules::run($mod_name.'/'.$mod_name.'/'.$mod_function, $args);
+                $this->load->module($mod_name);
+                if (method_exists($mod_name, $mod_function))
+                {
+                    echo modules::run($mod_name.'/'.$mod_name.'/'.$mod_function, $args);                      
+                }
+                else
+                {
+                    // If method noy found display 404 error.
+                    $this->error_404();
+                }
             }
 
             return TRUE;
