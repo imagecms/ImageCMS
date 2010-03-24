@@ -64,7 +64,7 @@ class Pages extends Controller{
 		// Set page tags
         $this->load->module('tags')->_set_page_tags($_POST['search_tags'], $page['id']);
 
-		$this->load->module('xfields/admin')->set_page_xfields($page['id']);
+		//$this->load->module('xfields/admin')->set_page_xfields($page['id']);
 	}
 
 	/**
@@ -80,7 +80,7 @@ class Pages extends Controller{
 		// Update page tags
         $this->load->module('tags')->_set_page_tags($_POST['search_tags'], $page['id']);
 
-		$this->load->module('xfields/admin')->set_page_xfields($page['id']);
+		//$this->load->module('xfields/admin')->set_page_xfields($page['id']);
 	}
 
 	/**
@@ -101,7 +101,7 @@ class Pages extends Controller{
 		$this->db->delete('content_tags');
 
 		// Delete page xfields
-		$this->load->module('xfields/admin')->delete_page_xfields($page_id);
+		//$this->load->module('xfields/admin')->delete_page_xfields($page_id);
 	}
 
 	/****************************************************
