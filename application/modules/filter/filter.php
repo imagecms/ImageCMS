@@ -8,23 +8,214 @@
 
 class Filter extends Controller {
 
+    public $items_per_page = 1;
+    public $default_tpl    = 'search';
+
 	public function __construct()
 	{
 		parent::Controller();
+        //$this->output->enable_profiler(TRUE);
 	}
 
 	// Index function
 	public function index()
-	{
-        var_dump($this->search_items($_POST));
-	}
+	{ 
+        	
+    }
+
+    public function no_pages_found()
+    {
+        $this->load->module('core');
+        $this->core->error('По Вашему запросу, страниц не найдено.');
+        exit;
+    }
+
+    // Фильтр страниц
+    public function pages()
+    {
+        // Удалим из строки запроса /filter/pages
+        $segments = array_slice($this->uri->segment_array(), 2);
+
+        // Парсим строку запроса сгенерированную http_build_query обратно в массив.
+        $search_data = $this->parse_url($segments);
+
+        // Получаем ID страниц, которые подходят критериям поиска,
+        $ids = $this->search_items($search_data);
+
+        // если ничего не найдено, выводим соответствующее сообщение.
+        if (!$ids)
+            $this->no_pages_found(); //exit
+
+        // Получаем данные страниц
+        $query = $this->_filter_pages($ids, $search_data);
+
+        // Сделаем пагинацию
+        $this->load->library('Pagination');
+        $config['base_url']    = site_url('filter/pages/'.http_build_query($search_data,'','/'));
+        $config['total_rows']  = $this->_filter_pages($ids, $search_data, TRUE);
+        $config['per_page']    = $this->items_per_page;
+        $config['uri_segment'] = $this->uri->total_segments();
+        $config['first_link']  = lang('first_link');
+        $config['last_link']   = lang('last_link');
+        $config['cur_tag_open']  = '<span class="active">';
+        $config['cur_tag_close'] = '</span>';
+        $this->pagination->num_links = 5;
+        $this->pagination->initialize($config);
+        $pagination = $this->pagination->create_links();
+
+        if ($query->num_rows() > 0)
+        {
+            $tpl = $this->default_tpl;
+            $pages = $query->result_array();
+
+            // Продублируем здесь хук core_return_category_pages,
+            // чтобы подключить к найденным страницам поля cfcm.
+            ($hook = get_hook('core_return_category_pages')) ? eval($hook) : NULL;
+
+            // Если поиск производится по одной категории,
+            // то используем ее шаблон.
+            if (isset($search_data['category']) AND count((array)$search_data['category']) == 1)
+            {
+                $category = $this->lib_category->get_category($search_data['category']);
+
+                if ($category['tpl'] == '')
+                    $tpl = 'category';
+                else
+                    $tpl = $category['tpl'];
+            }
+
+            $data =array(
+                'pages'      => $pages,
+                'pagination' => $pagination,
+                'category'   => $category,
+            );
+
+            if ($tpl == 'search') $data['items'] = $data['pages'];
+
+            $this->template->add_array($data);
+
+            $this->template->show($tpl);
+        }
+        else
+        {
+            $this->no_pages_found();
+        }
+    }
+
+
+    public function _filter_pages($ids, $search_data, $count = FALSE)
+    {
+        // Вытягиваем только опубликованные страницы
+        $where = array(
+            'post_status'     => 'publish',
+            'publish_date <=' => time(),
+            'lang'            => $this->config->item('cur_lang'),
+        );
+
+        $this->db->where($where);
+        $this->db->where_in('id', $ids);
+        // Если в запросе есть переменная 'category'
+        // ищем страницы только из указанных категорий.
+        if (isset($search_data['category']) AND $search_data['category'] != '')
+            $this->db->where_in('category', $search_data['category']);
+
+        if ($count == FALSE)
+        {
+            $this->db->select('*');
+            $this->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url', FALSE);
+            return $this->db->get('content', $this->items_per_page, (int) $this->uri->segment($this->uri->total_segments()) );
+        }
+        else
+        {
+            $this->db->from('content');
+            return $this->db->count_all_results(); 
+        }
+    }
+
+    public function group($group_id = 0)
+    {
+        if (!($form = $this->create_group_form($group_id)))
+        {
+            $this->core->error('В группе нет полей.');
+            exit;
+        }
+
+        $this->load->helper('form');
+
+        if ($form->isValid())
+        {
+            $data = $form->getData();
+            $uri_query = http_build_query($data, '', '/');
+            redirect('filter/pages/'.$uri_query);
+        }
+
+        // перезаполним форму данными $_POST
+        if ($_POST)
+            $form->setAttributes($_POST);
+ 
+        $form_html = form_open('filter/group/'.(int)$group_id); 
+        $form_html .= $form->render();
+        $form_html .= form_csrf();
+        $form_html .= form_submit('submit', 'Поиск');
+        $form_html .= form_close();
+
+        $this->template->add_array(array(
+            'content' => $form_html,
+            )
+        );
+
+        $this->template->show();
+    }
+
+    // Создание формы с полей группы модуля cfcm.
+    public function create_group_form($group_id)
+    {
+        $this->load->module('forms');
+        $group = $this->db->get_where('content_field_groups', array('id' => $group_id))->row();
+ 
+        $this->db->where('group', $group_id);
+        $this->db->where('in_search', '1');
+        $this->db->order_by('weight', 'ASC');
+        $query = $this->db->get('content_fields');
+
+        if ($query->num_rows() > 0)
+        {
+            $form_fields = array();
+            $fields = $query->result_array();
+                
+            foreach ($fields as $field)
+            {
+                $f_data = unserialize($field['data']);
+                if ($f_data == FALSE)
+                    $f_data = array();
+
+                $form_fields[$field['field_name']] = array(
+                    'type'  => $field['type'],
+                    'label' => $field['label'],
+                );
+
+                $form_fields[$field['field_name']] = array_merge($form_fields[$field['field_name']], $f_data);
+            }
+
+            $form = $this->forms->add_fields($form_fields);
+
+            //TODO: set form attrs from session data
+
+            return $form;
+        }
+        else
+        {
+            // В группе нет полей;
+            return FALSE;
+        }        
+    }
 
     // Поиск ID страниц или категорий в таблице `content_fields_data`
     // $fields - Массив field_name => value
     // $type - Возможные значения: page, category
-    public function _search_items($fields, $type = 'page')
+    public function search_items($fields = array(), $type = 'page')
     {
-        $fields = array();
+        $search_fields = array();
         $select = array();
         $from   = array();
         $where  = array();
@@ -32,20 +223,21 @@ class Filter extends Controller {
         $ids    = array();
        
         // Оставим поля, которые имеют префикс field_
-        foreach ($_POST as $key => $val)
+        foreach ($fields as $key => $val)
         {
             if ($val != '' AND substr($key, 0, 6) == 'field_')
             {
-                $fields[] = $key;
+                $search_fields[] = $key;
             }
         }
 
-        if (count($fields) == 0)
+        if (count($search_fields) == 0)
             return FALSE;
             
         // В поиске будут участвовать, только поля, которые присутствуют в БД. 
         $this->db->select('field_name, type');
-        $this->db->where_in('field_name', (array)$fields);
+        $this->db->where_in('field_name', (array) $search_fields);
+        $this->db->where_in('in_search', '1');
         $query = $this->db->get('content_fields');
 
         if ($query->num_rows() == 0)
@@ -71,15 +263,15 @@ class Filter extends Controller {
 
             if (in_array($field['type'], array('select','checkgroup','radiogroup')))
             {
-                $where[] = "(t_$name.field_name='$name' AND t_$name.data IN (".$this->implode($_POST[$name])."))";
+                $where[] = "(t_$name.field_name='$name' AND t_$name.data IN (".$this->implode($fields[$name])."))";
             }
             elseif(in_array($field['type'], array('text','textarea')))
             {
-                $where[] = "(t_$name.field_name='$name' AND t_$name.data LIKE '%".$this->db->escape_str($_POST[$name])."%')";
+                $where[] = "(t_$name.field_name='$name' AND t_$name.data LIKE '%".$this->db->escape_str($fields[$name])."%')";
             }
             elseif(in_array($field['type'], array('checkbox')))
             {
-                $where[] = "(t_$name.field_name='$name' AND t_$name.data = '".$this->db->escape_str($_POST[$name])."')";
+                $where[] = "(t_$name.field_name='$name' AND t_$name.data = '".$this->db->escape_str($field_name[$name])."')";
             }
 
             $n++;
@@ -117,60 +309,48 @@ class Filter extends Controller {
         }
     }
 
-    private function implode($array = array())
+    // Парсим сегменты http_build_query 
+    // обратно в массив.
+    public function parse_url($request)
     {
+        $result = array();
+
+        if (is_array($request) AND count($request) > 0)
+        {
+            foreach ($request as $key => $val)
+            {
+                $vals = explode('=', $val);
+                
+                $segment_key = preg_replace('/\[.*?\]/', '', $vals[0]);
+                $segment_val = $vals[1];
+
+                if (isset($result[$segment_key]))
+                {
+                    $result[$segment_key] = (array) $result[$segment_key];
+                    $result[$segment_key][] = $segment_val;
+                }
+                else
+                {
+                    $result[$segment_key] = $segment_val;
+                }
+            }
+
+            return $result;
+        }
+
+        return FALSE;
+    }
+
+    public function implode($array = array())
+    {
+        $array = array_values((array)$array);
+
         for ($i=0; $i<count($array); $i++)
         {
             $array[$i] = '"'.$this->db->escape_str($array[$i]).'"';
         }
 
-       $str = implode(', ', (array) $array);
-       return $str;
-    }
-
-    // Создание формы с полей группы модуля cfcm.
-    public function create_group_form($group_id)
-    {
-        $this->load->module('forms');
-        $group = $this->db->get_where('content_field_groups', array('id' => $group_id))->row();
- 
-        $this->db->where('group', $group_id);
-        $this->db->order_by('weight', 'ASC');
-        $query = $this->db->get('content_fields');
-
-        if ($query->num_rows() > 0)
-        {
-            $form_fields = array();
-            $fields = $query->result_array();
-                
-            foreach ($fields as $field)
-            {
-                $f_data = unserialize($field['data']);
-                if ($f_data == FALSE)
-                    $f_data = array();
-
-                $form_fields[$field['field_name']] = array(
-                    'type'  => $field['type'],
-                    'label' => $field['label'],
-                );
-
-                $form_fields[$field['field_name']] = array_merge($form_fields[$field['field_name']], $f_data);
-            }
-
-            $form = $this->forms->add_fields($form_fields);
-
-            // set form attrs from session data
-
-            $this->template->add_array(array(
-                'form' => $form,
-            ));
-        
-            return $form;
-        }
-        else
-        {
-            echo 'В группе нет полей';
-        }        
+        return implode(', ', (array) $array); 
     }
 
     /**

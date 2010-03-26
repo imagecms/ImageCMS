@@ -140,6 +140,8 @@ class Admin extends Controller {
                 $data = $form->getData();
                 unset($data['field_name']);
 
+                if (!$data['in_search']) $data['in_search'] = 0;
+
                 $this->db->limit(1);
                 $this->db->where('field_name', $field_name);
                 $this->db->update('content_fields', $data);

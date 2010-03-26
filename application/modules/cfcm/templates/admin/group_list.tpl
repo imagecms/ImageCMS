@@ -13,6 +13,7 @@
 <div id="sortable" >
 		  <table id="cfcfm_fields_table">
 		  	<thead>
+                <th style="width:15px;">ID</th>
                 <th>Имя</th>
                 <th>Описание</th>
                 <th>Поля</th>
@@ -21,6 +22,7 @@
 			<tbody>
 		    {foreach $groups as $g}
                 <tr>
+                    <td>{$g.id}</td>
                     <td>
                         <a href="javascript:ajax_div('page', base_url + 'admin/components/cp/cfcm/edit_group/{$g.id}');">{$g.name}</a>
                     </td>
@@ -37,6 +39,7 @@
 			</tbody>
 			<tfoot>
 				<tr>
+					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>

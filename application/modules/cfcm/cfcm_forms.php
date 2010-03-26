@@ -33,6 +33,11 @@ class Cfcm_forms extends Controller {
                 'label'      => 'Label',
                 'validation' => 'required|max_length[255]',
             ),
+            'in_search' => array(
+                'type'       => 'checkbox',
+                'label'      => 'Участвует в поиске',
+                'initial'    => '1',
+            ),
             'type' => array(
                 'type'       => 'select',
                 'label'      => 'Тип',
