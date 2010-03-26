@@ -5,6 +5,8 @@
         <form style="width:100%;" onsubmit="return false;" method="post" action="{$BASE_URL}admin/admin_search" id="g_search_form">
             <input type="text" value="Поиск страниц..." name="search_text" class="textbox_long" onclick="if (this.value=='Поиск страниц...') this.value='';" onblur="if (this.value=='') this.value='Поиск страниц...';" />
             <input type="submit" value="Search" class="search_submit" onclick="ajax_form('g_search_form', 'page');"/>
+
+            <a href="javascript:ajax_div('page', base_url + 'admin/admin_search/advanced_search')">Расширенный поиск</a>
          </form>
     </div>
     </div>

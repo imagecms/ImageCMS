@@ -17,10 +17,9 @@ class Filter extends Controller {
         //$this->output->enable_profiler(TRUE);
 	}
 
-	// Index function
 	public function index()
 	{ 
-        	
+        return;	
     }
 
     public function no_pages_found()
@@ -33,6 +32,8 @@ class Filter extends Controller {
     // Фильтр страниц
     public function pages()
     {
+        $this->load->module('core')->set_meta_tags('Поиск');
+
         // Удалим из строки запроса /filter/pages
         $segments = array_slice($this->uri->segment_array(), 2);
 
@@ -132,9 +133,10 @@ class Filter extends Controller {
         }
     }
 
+    // Создание и вывод формы по ID cfmcm группы.
     public function group($group_id = 0)
     {
-        if (!($form = $this->create_group_form($group_id)))
+        if (!($form = $this->create_filter_form($group_id)))
         {
             $this->core->error('В группе нет полей.');
             exit;
@@ -168,12 +170,25 @@ class Filter extends Controller {
     }
 
     // Создание формы с полей группы модуля cfcm.
-    public function create_group_form($group_id)
+    // $group_id - ID cfcm группы или список нужных полей через запятую.
+    public function create_filter_form($group_id, $by_fields = FALSE)
     {
         $this->load->module('forms');
         $group = $this->db->get_where('content_field_groups', array('id' => $group_id))->row();
  
-        $this->db->where('group', $group_id);
+        if ($by_fields == FALSE)
+        {
+            $this->db->where('group', $group_id);
+        }
+        else
+        {
+            $exp_fields = explode(",", $group_id);
+            if (count($exp_fields) > 0)
+                $this->db->where_in('field_name', $exp_fields);
+            else
+                return FALSE;
+        }
+
         $this->db->where('in_search', '1');
         $this->db->order_by('weight', 'ASC');
         $query = $this->db->get('content_fields');
@@ -222,6 +237,9 @@ class Filter extends Controller {
         $strict = array();
         $ids    = array();
        
+        if (!$fields)
+            return FALSE;
+
         // Оставим поля, которые имеют префикс field_
         foreach ($fields as $key => $val)
         {
@@ -327,7 +345,7 @@ class Filter extends Controller {
                 if (isset($result[$segment_key]))
                 {
                     $result[$segment_key] = (array) $result[$segment_key];
-                    $result[$segment_key][] = $segment_val;
+                    $result[$segment_key][] = urldecode($segment_val);
                 }
                 else
                 {

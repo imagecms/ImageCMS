@@ -24,7 +24,7 @@ class Admin extends Controller {
         $this->_set_forms_config();
 	}
 
-    private function _set_forms_config()
+    public function _set_forms_config()
     {
         $config = array();
         $config['filter_xss_post'] = TRUE;
@@ -65,7 +65,6 @@ class Admin extends Controller {
                 'label' => 'Код протекции',
             ),
         );
-
 
         $this->forms->set_config($config);
     }
