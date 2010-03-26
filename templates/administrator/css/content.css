@@ -348,10 +348,14 @@ color:red;
 	font-size:14px;
 	padding:5px;
 }
+#pagination a{
+	padding:2px;
+}
 
 #pagination .active {
 	font-weight:bold;
 	padding-left:4px;
+	padding-right:4px;
 	/* background-color: #DCDCDC; */
 	margin-left:2px;
 }

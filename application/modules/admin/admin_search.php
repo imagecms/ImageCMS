@@ -2,6 +2,8 @@
 
 class Admin_search extends Controller {
 
+    public $items_per_page = '20'; // items per page for advanced search.
+
 	public function __construct()
 	{
 		parent::Controller();
@@ -11,7 +13,7 @@ class Admin_search extends Controller {
 
 		$this->load->library('lib_admin');
 		$this->lib_admin->init_settings();
-
+        $this->load->helper('my_html');
         cp_check_perm('cp_page_search');
 	}
 
@@ -102,6 +104,169 @@ class Admin_search extends Controller {
 		$this->template->show('search', FALSE);
 	}
 
+    public function advanced_search()
+    {
+        $this->template->add_array(array(
+            'categories' => $this->lib_category->build(), 
+        ));
+
+        $this->template->show('advanced_search', FALSE);
+    }
+
+    public function do_advanced_search()
+    {
+        $this->load->module('filter');
+        $this->load->module('forms');
+
+        $segments = array_slice($this->uri->segment_array(), 3);
+
+        $search_data = $this->filter->parse_url($segments);
+        
+        if (!$search_data)
+            $search_data = array();
+
+        ob_start();
+        $this->form_from_group($search_data['use_cfcm_group'], $search_data); 
+        $group_html = ob_get_contents();
+        ob_end_clean(); 
+
+        $this->template->add_array(array(
+            'advanced_search' => TRUE,
+            'filter_data'     => $search_data,
+            'cfcm_group_html' => $group_html,
+        ));
+
+        $ids = $this->filter->search_items($search_data);
+        
+        if (!$ids AND isset($search_data['use_cfcm_group']))
+        {
+            $this->template->show('search', FALSE); 
+            exit;
+        } 
+
+        $query = $this->_filter_pages($ids, $search_data);
+
+        if ($query->num_rows() == 0)
+        {
+            $this->template->show('search', FALSE); 
+            exit;
+        } 
+
+        $this->load->library('Pagination');
+
+        $config['base_url']    = site_url('admin/admin_search/do_advanced_search/'.http_build_query($search_data,'','/'));
+        $config['total_rows']  = $this->_filter_pages($ids, $search_data, TRUE);
+        $config['per_page']    = $this->items_per_page;
+        $config['uri_segment'] = $this->uri->total_segments();
+        $config['first_link']  = lang('first_link');
+        $config['last_link']   = lang('last_link');
+
+        $config['cur_tag_open']  = '<span class="active">';
+        $config['cur_tag_close'] = '</span>';
+
+        $this->pagination->num_links = 5;
+        $this->pagination->initialize($config);
+        $pagination = $this->pagination->create_links_ajax();
+
+        $this->template->add_array(array(
+            'pages'           => $query->result_array(),
+            'pagination'      => $pagination,
+            'advanced_search' => TRUE,
+            'filter_data'     => $search_data,
+            'cfcm_group_html' => $group_html,
+        ));
+
+        $this->template->show('search', FALSE);
+    }
+
+    public function validate_advanced_search()
+    {
+        $this->load->module('filter');
+        $this->load->module('forms');
+        
+        $form = $this->filter->create_filter_form($_POST['use_cfcm_group']);
+
+        if ($form)
+        {
+            if ($form->isValid())
+            {
+                $data = $form->getData();
+                $data['category']       = $_POST['category'];
+                $data['search_text']    = $_POST['search_text'];
+                $data['use_cfcm_group'] = $_POST['use_cfcm_group'];
+                $url = http_build_query($data, '', '/');
+                updateDiv('page', site_url('admin/admin_search/do_advanced_search/'.$url));
+            }
+            else
+            {
+                showMessage($form->_validation_errors());
+            }
+        }
+        else
+        {
+            $data = $_POST;
+            $url = http_build_query($data, '', '/');
+            updateDiv('page', site_url('admin/admin_search/do_advanced_search/'.$url));  
+        }
+    }
+
+    public function form_from_group($group_id, $attributes = FALSE)
+    {
+        $this->load->module('filter');
+        $this->load->module('forms');
+        $this->load->module('cfcm/admin')->_set_forms_config(); 
+        $form = $this->filter->create_filter_form($group_id);
+
+        // Перезаполним форму при поиске
+        if ($attributes AND $form)
+            $form->setAttributes($attributes);
+
+        $result = '';
+
+        if ($form)
+            foreach ($form->asArray() as $field)
+            {   
+                $result .= '<div class="form_text">'.$field['label'].'</div>';
+                $result .= '<div class="form_input">'.$field['field'].'</div>';
+                $result .= '<div class="form_overflow"></div>';
+            }
+
+        echo htmlentities_to_xml($result);
+        echo '<input type="hidden" value="'.$group_id.'" name="use_cfcm_group" />';
+    }
+
+    public function _filter_pages($ids, $search_data, $count = FALSE)
+    {
+        $where = array(
+            'lang_alias' => '0', 
+        );
+
+        $this->db->where($where);
+
+        if (count((array)$ids) > 0 AND is_array($ids))
+            $this->db->where_in('id', $ids);
+
+        if (isset($search_data['search_text']))
+        {
+            $s_text = $search_data['search_text'];
+            $this->db->where('(title LIKE "%'.$this->db->escape_str($s_text).'%" OR prev_text LIKE "%'.$this->db->escape_str($s_text).'%" OR full_text LIKE "%'.$this->db->escape_str($s_text).'%" )', NULL, FALSE);
+        }
+
+        if (isset($search_data['category']) AND $search_data['category'] != '')
+            $this->db->where_in('category', $search_data['category']);
+
+        if ($count == FALSE)
+        {
+            $this->db->select('*');
+            $this->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url', FALSE);
+            return $this->db->get('content', $this->items_per_page, (int) $this->uri->segment($this->uri->total_segments()) );
+        }
+        else
+        {
+            $this->db->from('content');
+            return $this->db->count_all_results(); 
+        }
+    }
 
 }
 
