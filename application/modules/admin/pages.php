@@ -97,8 +97,10 @@ class Pages extends Controller{
 		$this->db->delete('content_permissions');
 
 		// Delete page tags
-		$this->db->where('page_id',$page_id);
+		$this->db->where('page_id', $page_id);
 		$this->db->delete('content_tags');
+
+        $this->load->module('tags')->_remove_orphans();
 
 		// Delete page xfields
 		//$this->load->module('xfields/admin')->delete_page_xfields($page_id);
@@ -709,7 +711,7 @@ class Pages extends Controller{
 
 		if (mb_strlen($search) > 1)
 		{
-			$tags = $this->tags->search_tags($search);
+			    $tags = $this->tags->search_tags($search);
 
 				foreach ($tags as $tag)
 				{

@@ -31,6 +31,12 @@
 ]]>
 </hook>
 
+<hook id="admin_page_insert">
+<![CDATA[
+    $this->load->module('cfcm')->save_item_data('0', 'page');
+]]>
+</hook>
+
 <!-- Core assign page data -->
 <hook id="core_set_page_data">
 <![CDATA[

@@ -27,20 +27,23 @@ class Cfcm extends Controller {
 
                 if ($form->isValid())
                 {
-                    // Save fields data
-                    $data = $form->getData();
-            
-                    $this->update_fields_data($item_id, $data, $type);
-
-                    // Delete empty fields
-                    foreach ($fields as $name => $field)
+                    if ($item_id > 0)
                     {
-                        if (!array_key_exists($name, $data))
+                        // Save fields data
+                        $data = $form->getData();
+                
+                        $this->update_fields_data($item_id, $data, $type);
+
+                        // Delete empty fields
+                        foreach ($fields as $name => $field)
                         {
-                            $this->db->where('item_id', $item_id);
-                            $this->db->where('field_name', $name);
-                            $this->db->where('item_type', $type);
-                            $this->db->delete('content_fields_data');
+                            if (!array_key_exists($name, $data))
+                            {
+                                $this->db->where('item_id', $item_id);
+                                $this->db->where('field_name', $name);
+                                $this->db->where('item_type', $type);
+                                $this->db->delete('content_fields_data');
+                            }
                         }
                     }
                 }
