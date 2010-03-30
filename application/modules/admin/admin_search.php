@@ -121,7 +121,10 @@ class Admin_search extends Controller {
         $segments = array_slice($this->uri->segment_array(), 3);
 
         $search_data = $this->filter->parse_url($segments);
-        
+
+        //if ($search_data['use_cfcm_group'] == 0)
+        //    unset($search_data['use_cfcm_group']);
+
         if (!$search_data)
             $search_data = array();
 
@@ -134,12 +137,12 @@ class Admin_search extends Controller {
             'advanced_search' => TRUE,
             'filter_data'     => $search_data,
             'cfcm_group_html' => $group_html,
-        ));
+        )); 
 
         $ids = $this->filter->search_items($search_data);
-        
+
         if (!$ids AND isset($search_data['use_cfcm_group']))
-        {
+        { 
             $this->template->show('search', FALSE); 
             exit;
         } 
@@ -194,6 +197,7 @@ class Admin_search extends Controller {
                 $data['category']       = $_POST['category'];
                 $data['search_text']    = $_POST['search_text'];
                 $data['use_cfcm_group'] = $_POST['use_cfcm_group'];
+                
                 $url = http_build_query($data, '', '/');
                 updateDiv('page', site_url('admin/admin_search/do_advanced_search/'.$url));
             }
