@@ -48,10 +48,9 @@
 	<div class="form_text">Категории</div>
 	<div class="form_input">
         <select name="category[]" multiple="multiple" style="width:270px;">
-        <option >Все категории</option>
         <option value="0">root</option>
         <option disabled="disabled"> </option>
-            {build_cats_tree($this->CI->lib_category->build(), $filter_data.category)}  
+            {build_cats_tree($this->CI->lib_category->build(), (array) $filter_data.category)}  
         </select>
     </div>
 	<div class="form_overflow"></div>

@@ -42,7 +42,6 @@
 	<div class="form_text">Категории</div>
 	<div class="form_input">
         <select name="category[]" multiple="multiple" style="width:270px;">
-        <option >Все категории</option>
         <option value="0">root</option>
         <option disabled="disabled"> </option>
             {build_cats_tree($categories)}  
