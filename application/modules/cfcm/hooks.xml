@@ -52,12 +52,15 @@
 
 <hook id="core_return_category_pages">
 <![CDATA[
+if (count($pages) > 0 AND is_array($pages))
+{
     $n = 0;
     foreach ($pages as $p)
     {
         $pages[$n] = $this->load->module('cfcm')->connect_fields($p, 'page');
         $n++;
     }
+}
 ]]>
 </hook>
 

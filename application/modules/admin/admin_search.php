@@ -122,8 +122,8 @@ class Admin_search extends Controller {
 
         $search_data = $this->filter->parse_url($segments);
 
-        //if ($search_data['use_cfcm_group'] == 0)
-        //    unset($search_data['use_cfcm_group']);
+        if ($search_data['use_cfcm_group'] == 0)
+            unset($search_data['use_cfcm_group']);
 
         if (!$search_data)
             $search_data = array();

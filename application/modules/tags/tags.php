@@ -140,6 +140,19 @@ class Tags extends Controller {
                 $this->db->where_in('id', $pages_id);
                 $pages = $this->db->get('content', $this->search->row_count, (int) $offset);
 
+                if ($pages->num_rows() == 0)
+                {
+                    $this->search->_display(FALSE);
+                    exit;
+                }
+                else
+                {
+                    $pages = $pages->result_array();
+
+                    // Connect cfcm fields
+                    ($hook = get_hook('core_return_category_pages')) ? eval($hook) : NULL;
+                }
+
                 //Pagination
                 if ($pages->num_rows() >= $this->search->row_count)
                 {
@@ -170,7 +183,7 @@ class Tags extends Controller {
             {
                 $this->core->set_meta_tags(lang('search_title').$this->search->title_delimiter.$tag);
                 $this->template->assign('search_title', htmlspecialchars($tag));
-                $this->search->_display($pages->result_array());
+                $this->search->_display($pages);
             }
         }
 
