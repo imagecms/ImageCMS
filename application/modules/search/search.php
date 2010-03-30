@@ -12,7 +12,7 @@ class Search extends Controller {
 
     public $search_ttl = 3600; //Search time to live in minutes.
     public $table      = '';
-    public $cache      = FALSE;
+    public $cache_on      = FALSE;
     public $row_count  = 15;
     public $table_pk   = 'id';
     public $search_tpl = 'search';
@@ -162,15 +162,15 @@ class Search extends Controller {
 
     public function clear()
     {
-        $this->$search_ttl   = 600;
-        $this->$table        = '';
-        $this->$cache        = FALSE;
-        $this->$default_operator = 'where';
-        $this->$where        = array();
-        $this->$order_by     = array();
-        $this->$search_table = 'search';
-        $this->$query_hash   = '';
-        $this->$hash_data    = FALSE; 
+        $this->search_ttl   = 600;
+        $this->table        = '';
+        $this->cache_on        = FALSE;
+        $this->default_operator = 'where';
+        $this->where        = array();
+        $this->order_by     = array();
+        $this->search_table = 'search';
+        $this->query_hash   = '';
+        $this->hash_data    = FALSE; 
     }
 
     // Search by hash
@@ -405,11 +405,13 @@ class Search extends Controller {
     }
   
     // Display search template file
-    public function _display($data = array())
+    public function _display($pages = array())
     {
-        if (count($data) > 0)
+        if (count($pages) > 0)
         {
-            $this->template->add_array(array('items' => $data));
+            ($hook = get_hook('core_return_category_pages')) ? eval($hook) : NULL; 
+
+            $this->template->add_array(array('items' => $pages));
         }
 
         $this->template->show($this->search_tpl);
