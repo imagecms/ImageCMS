@@ -36,7 +36,7 @@ a {
     color:#0099cc;
 }
 
-a:hover{ 
+a:hover { 
     text-decoration:none;
 }
 
@@ -253,4 +253,15 @@ div.comment_avatar {
 .copy {
     color: #969696;
     padding-right:15px;
+}
+
+.tags_list {
+    padding:3px 3px 3px 20px;
+    background-image:url('../images/tags-label.png');
+    background-repeat:no-repeat;
+    background-position:0px 3px;
+}
+.tags_list a {
+    font-size:11px;
+    color:#717171; 
 }

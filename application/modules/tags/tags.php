@@ -154,7 +154,7 @@ class Tags extends Controller {
                 }
 
                 //Pagination
-                if ($pages->num_rows() >= $this->search->row_count)
+                if (count($pages) >= $this->search->row_count)
                 {
                     $this->load->library('Pagination');
 
