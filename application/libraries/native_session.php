@@ -171,6 +171,8 @@ class Native_session {
 
         // mark all new flashdata as old (data will be deleted before next request)
         $this->_flashdata_mark();
+
+
     }
 
     /**
@@ -213,7 +215,7 @@ class Native_session {
 		{
 			foreach ($newdata as $key => $val)
 			{
-				$flashdata_key = $this->flashdata_key.':new:'.$key;
+				$flashdata_key = $this->flash_key.':new:'.$key;
 				$this->set_userdata($flashdata_key, $val);
 			}
 		}

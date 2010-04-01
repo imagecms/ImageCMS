@@ -193,6 +193,7 @@ class Auth extends Controller
     {
         ($hook = get_hook('auth_on_register')) ? eval($hook) : NULL;
 
+
         $this->load->library('Form_validation');
 
 		if ( ! $this->dx_auth->is_logged_in() AND $this->dx_auth->allow_registration)
@@ -268,7 +269,7 @@ class Auth extends Controller
 
 			$this->template->assign('content',$data['auth_message']);
 			$this->template->show();
-		}
+		} 
 	}
 
 	function activate()
