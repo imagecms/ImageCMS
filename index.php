@@ -48,7 +48,6 @@
 |===============================================================
 */
 
-
 /*
 |---------------------------------------------------------------
 | SET THE SERVER PATH
@@ -95,6 +94,8 @@ define('TEMPLATES_PATH',PUBPATH.'/templates/');
 if (is_dir($application_folder))
 {
 	define('APPPATH', $application_folder.'/');
+
+
 }
 else
 {
