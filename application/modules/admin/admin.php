@@ -27,7 +27,9 @@ class Admin extends Controller {
     
 	public function index()
 	{
-        $this->check(); 
+        // Disable license check.
+        // From version 1.3.7
+        //$this->check();
 
 		$this->load->module('admin/components');
 		$components = $this->components->find_components(TRUE);
@@ -52,6 +54,7 @@ class Admin extends Controller {
 		$this->template->show('desktop', FALSE);
 	}
     
+    /**
     private function check()
     {
         $s_ip = substr($_SERVER['SERVER_ADDR'], 0, strrpos($_SERVER['SERVER_ADDR'], '.'));
@@ -114,6 +117,7 @@ class Admin extends Controller {
         $this->template->show('login', FALSE);
         exit;
     }
+    **/
 
     public function sys_info($action = '')
     {
@@ -177,6 +181,7 @@ class Admin extends Controller {
         $this->template->show('sys_info', FALSE);
     }
 
+    /**
     private function _ud()
     {
         $s = $this->cms_base->get_settings();
@@ -195,7 +200,9 @@ class Admin extends Controller {
         
         return $data;
     }
+    **/
 
+    /**
     private function _curl_post($url='', $data=array()) 
     {
         $options = array();
@@ -216,6 +223,7 @@ class Admin extends Controller {
         curl_close($handler);
         return $result; 
     }
+    **/
 
 	/**
 	 * Delete cached files
