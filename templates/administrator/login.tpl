@@ -97,7 +97,6 @@ if($ci->config->item('is_installed') === TRUE AND file_exists(APPPATH.'modules/i
 
 <img src="{$THEME}/images/logo_big.png" />
 
-{if $show_p != TRUE}
 <br/>
 
 {if $login_failed}
@@ -124,41 +123,6 @@ if($ci->config->item('is_installed') === TRUE AND file_exists(APPPATH.'modules/i
 {form_csrf()}
 </form>
 </p>
-
-{else:}
-
-<br/>
-<h2>Получение регистрационного ключа.</h2>
-<p>
-Для того чтобы получить регистрационный ключ, укажите свой <b>логин и пароль</b> на <b>сайте </b><a href="http://www.imagecms.net/auth/register" target="_blank">imagecms.net</a>.
-
-{if $lk_ok}
-    
-    <p>{$lk_ok}</p>
-
-{else:}
-
-{if $result.error == TRUE}
-<div style="padding:10px;border:1px dashed red;">
-    {$result.error_text}
-</div>
-<br/>
-{/if}
-
-<form method="post" action="{$BASE_URL}admin/">
-{$lang_login}: <br/>  <input type="text" name="login" class="textbox_long" /><br/>
-{$lang_password}: <br/> <input type="password" name="password" class="textbox_long" /><br/>
-<br/>
-<input type="submit" name="button" class="button" value="{$lang_submit}" />
-{form_csrf()}
-
-</form>
-
-{/if}
-
-</p>
-
-{/if}
 
 <div style="right:0;bottom:0;position:absolute;font-size:11px;padding:3px;">
 <span style="color:silver;font-size:12px; font-weight:bold;">Поддерживаются следующие браузеры:</span>
