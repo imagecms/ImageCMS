@@ -52,7 +52,7 @@ class CForm_Password {
 
     public function renderHtml()
     {
-        return '<input type="password" '.$this->form->_check_attr($this->name, $this->field).' value="'.$this->field->initial.'" />';
+        return '<input type="password" '.$this->form->_check_attr($this->name, $this->field).' value="'.htmlspecialchars($this->field->initial).'" />';
     }
 
 }
