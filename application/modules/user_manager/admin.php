@@ -341,19 +341,20 @@ class Admin extends Controller {
 	{
         cp_check_perm('roles_create');
 
-		$this->form_validation->set_rules('name', 'Имя', 'required|trim|max_length[150]|min_length[2]');
-		$this->form_validation->set_rules('alt_name', 'Идентификатор', 'required|trim|max_length[150]|min_length[2]|alpha');
+		$this->form_validation->set_rules('name', 'Идентификатор', 'required|trim|max_length[150]|min_length[2]|alpha_dash');
+		$this->form_validation->set_rules('alt_name', 'Название', 'required|trim|max_length[150]|min_length[2]');
 		$this->form_validation->set_rules('desc', 'Описание', 'trim|max_length[300]|min_length[2]');
 
 		if ($this->form_validation->run() == FALSE)
 		{
 			showMessage (validation_errors());
-		}else{
-
+		}
+        else
+        {
 			$data = array(
-						'name' => $this->input->post('name'),
-						'alt_name' => $this->input->post('alt_name'),
-						'desc' => $this->lib_admin->db_post('desc')
+					'name'     => $this->input->post('name'),
+					'alt_name' => $this->input->post('alt_name'),
+					'desc'     => $this->lib_admin->db_post('desc')
 						);
 
             ($hook = get_hook('users_create_role')) ? eval($hook) : NULL;
@@ -365,7 +366,6 @@ class Admin extends Controller {
 			showMessage('Группа создана');
             $this->update_groups_block();
 		}
-
 	}
 
 	function edit($id)
