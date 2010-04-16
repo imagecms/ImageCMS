@@ -48,7 +48,8 @@
 			<div class="form_text"></div>
 			<div class="form_input"><input type="submit" name="button" class="button"  value="Создать" onclick="ajax_me('groups_create_form');" ></div>
 			<div class="form_overflow"></div>
-		{form_csrf()}</form>
+		{form_csrf()}
+        </form>
 		</div>
 </div>
 
