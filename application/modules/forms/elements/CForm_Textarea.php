@@ -54,7 +54,7 @@ class CForm_Textarea {
 
     public function renderHtml()
     {
-        return '<textarea '.$this->form->_check_attr($this->name, $this->field).'>'.$this->field->initial.'</textarea>';
+        return '<textarea '.$this->form->_check_attr($this->name, $this->field).'>'.htmlspecialchars($this->field->initial).'</textarea>';
     }
 
 }

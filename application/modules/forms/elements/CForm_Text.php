@@ -52,7 +52,7 @@ class CForm_Text {
 
     public function renderHtml()
     {
-        return '<input type="text" '.$this->form->_check_attr($this->name, $this->field).' value="'.$this->field->initial.'" />';
+        return '<input type="text" '.$this->form->_check_attr($this->name, $this->field).' value="'.htmlspecialchars($this->field->initial).'" />';
     }
 
 }
