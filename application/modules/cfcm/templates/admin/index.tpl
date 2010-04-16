@@ -66,7 +66,7 @@
 
 {else:}
 <div id="notice">
-    No fields found.
+    Список полей пустой. <a href="javascript:ajax_div('page', base_url + 'admin/components/cp/cfcm/create_field');">Создать поле.</a>
 </div>
 {/if}
 
