@@ -61,6 +61,20 @@ class Dashboard extends Controller{
                     'total_comments' => $total_comments,
                 ));
 
+        // If we are online - load system news.
+        $s_ip = substr($_SERVER['SERVER_ADDR'], 0, strrpos($_SERVER['SERVER_ADDR'], '.'));
+
+        switch ($s_ip)
+        {
+            case '127.0.0':
+            case '127.0.1':
+            case '10.0.0':
+            case '172.16.0':
+            case '192.168.0':
+                $on_local = TRUE;               
+            break;
+        }
+ 
         if (($api_news = $this->cache->fetch('api_news_cache')) !== FALSE)
         {
             $this->template->assign('api_news', $api_news);
@@ -68,9 +82,11 @@ class Dashboard extends Controller{
         else
         {
             $this->config->load('api');
-
-            //$api_news = @file_get_contents($this->config->item('imagecms_latest_news'));
-            $api_news = $this->_curl_post($this->config->item('imagecms_latest_news')); 
+            
+            if ($on_local !== TRUE)
+            {
+                $api_news = $this->_curl_post($this->config->item('imagecms_latest_news'));
+            }
 
             if (count(unserialize($api_news['result'])) > 1 AND $api_news['code'] == '200')
             {
@@ -104,14 +120,14 @@ class Dashboard extends Controller{
 	    $this->template->show('dashboard', FALSE);
 	}
 
-
     private function _curl_post($url='', $data=array()) 
     {
         $options = array();
         $options[CURLOPT_HEADER]         = FALSE;
         $options[CURLOPT_RETURNTRANSFER] = TRUE;
-        $options[CURLOPT_POST]           = TRUE;
+        $options[CURLOPT_POST]           = FALSE;
         $options[CURLOPT_POSTFIELDS]     = $data;
+        $options[CURLOPT_REFERER]        = base_url();
 
         $handler = curl_init($url);
 
