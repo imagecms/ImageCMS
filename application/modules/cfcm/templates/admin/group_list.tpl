@@ -60,7 +60,7 @@
 
 {else:}
 <div id="notice">
-    No groups found.
+    Список групп пустой. <a href="javascript:ajax_div('page', base_url + 'admin/components/cp/cfcm/create_group');">Создать Группу.</a>
 </div>
 {/if}
 
