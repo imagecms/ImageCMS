@@ -91,6 +91,23 @@ class Cfcm_forms extends Controller {
                 'checked' => FALSE,
             );
 
+        if ($type == 'text' OR $type == 'textarea')
+        {
+            $f['enable_image_browser'] = array(
+                'type'    => 'checkbox',
+                'label'   => 'Включить просмотр изображений',
+                'initial' => '1',
+                'checked' => FALSE,
+            );
+
+            $f['enable_file_browser'] = array(
+                'type'    => 'checkbox',
+                'label'   => 'Включить просмотр файлов',
+                'initial' => '1',
+                'checked' => FALSE,
+            );
+        }
+
 
         $f['validation'] = array(
             'type'      => 'text',
