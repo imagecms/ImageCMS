@@ -177,7 +177,9 @@ class Forms extends Controller {
                 'label'     => $this->label($key, $this->fields[$key]['label']),
                 'field'     => $this->$key->renderHtml(),
                 'help_text' => $this->_get_element_help_text($key),
-                'error_text'=> $this->_get_inline_error($key), 
+                'error_text'=> $this->_get_inline_error($key),
+                'info'=>$this->fields[$key],
+                'name'=>$key,
             );
         }
 
