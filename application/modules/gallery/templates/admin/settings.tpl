@@ -74,6 +74,13 @@
         </div>
 		<div class="form_overflow"></div> 
 
+		<div class="form_text">Обрезать края</div>
+		<div class="form_input">
+           	<label><input type="radio" value="1" {if $settings.crop == TRUE}checked="checked"{/if}   name="crop" /> Да</label>
+           	<label><input type="radio" value="0" {if $settings.crop == FALSE}checked="checked"{/if} name="crop" /> Нет</label>
+       	</div>
+		<div class="form_overflow"></div>	 
+
 
    		<div class="form_text"></div>
 		<div class="form_input">
@@ -100,6 +107,13 @@
         </div>
 		<div class="form_overflow"></div> 
 
+		<div class="form_text">Обрезать края</div>
+		<div class="form_input">
+           	<label><input type="radio" value="1" {if $settings.crop_prev == TRUE}checked="checked"{/if}   name="crop_prev" /> Да</label>
+           	<label><input type="radio" value="0" {if $settings.crop_prev == FALSE}checked="checked"{/if} name="crop_prev" /> Нет</label>
+       	</div>
+		<div class="form_overflow"></div>	 
+
 
    		<div class="form_text"></div>
 		<div class="form_input">
@@ -121,10 +135,17 @@
 
    		<div class="form_text">Сохранять пропорции</div>
 		<div class="form_input">
-            <label><input type="radio" value="1" {if $settings.maintain_ratio_icon == TRUE}checked="checked"{/if}   name="maintain_ratio_icon" /> Да</label>
+            <label><input type="radio" value="1" {if $settings.maintain_ratio_icon == TRUE}checked="checked"{/if} name="maintain_ratio_icon" /> Да</label>
             <label><input type="radio" value="0" {if $settings.maintain_ratio_icon == FALSE}checked="checked"{/if} name="maintain_ratio_icon" /> Нет</label>
         </div>
 		<div class="form_overflow"></div> 
+
+		<div class="form_text">Обрезать края</div>
+		<div class="form_input">
+           	<label><input type="radio" value="1" {if $settings.crop_icon == TRUE}checked="checked"{/if}   name="crop_icon" /> Да</label>
+           	<label><input type="radio" value="0" {if $settings.crop_icon == FALSE}checked="checked"{/if} name="crop_icon" /> Нет</label>
+       	</div>
+		<div class="form_overflow"></div>	 
 
 
    		<div class="form_text"></div>
