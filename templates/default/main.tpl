@@ -10,6 +10,8 @@
 <link rel="stylesheet" type="text/css" href="{$THEME}/css/style.css" />
 <link rel="stylesheet" type="text/css" href="{$THEME}/css/forms.css" />
 
+<script type="text/javascript" src="{media_url('js/mocha/mootools-1.2-core.js')}"></script>
+
 </head>
 <body>
 
