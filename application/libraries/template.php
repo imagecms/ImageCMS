@@ -309,6 +309,8 @@ class Template extends Mabilis {
             $result = preg_replace('/\<\/html\>/', "</html>\n".$result_css_after, $result, 1);
         }
 
+        if ($result == null) return $tpl;
+
         return $result;
     }
 
