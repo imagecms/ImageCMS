@@ -86,10 +86,15 @@ class Template extends Mabilis {
 		{
 			$this->add_array(array('content' => $this->fetch($file.'.tpl')));
 		}
+       
         
-        $load_main == TRUE ?  $this->view('main.tpl', $this->template_vars): $this->view($file.'.tpl', $this->template_vars);
-        //$this->run_info();
-		//$this->clear_all_assign(); 
+        ob_start();
+        $load_main == TRUE ? $this->view('main.tpl', $this->template_vars): $this->view($file.'.tpl', $this->template_vars);
+        $result = ob_get_contents();
+        ob_end_clean();
+
+        $result = $this->splitTplFiles($result);
+        echo $result;
     }
 
     function clear_all_assign()
@@ -99,7 +104,6 @@ class Template extends Mabilis {
 
 	function get_var($var)
 	{
-        //return $this->get_vars($var);
         return $this->template_vars[$var];
 	}
 
@@ -154,6 +158,158 @@ class Template extends Mabilis {
 
 		$this->assign('BASE_URL',site_url()); //Base URL
         return $this->view($file.'.tpl', $this->template_vars);
+    }
+
+    private $_css_files = array();
+    private $_js_files = array();
+    private $_js_code = array();
+    private $_css_code = array();
+    private $_css_code_pos = array();
+    private $_js_code_pos = array();
+
+    public function registerCssCode($name, $code, $position = 'before')
+    {
+        $position = $this->_check_postion($position); 
+        $this->_css_code[$name] = $code;
+        $this->_css_code_pos[$name] = $position;
+    }
+
+    public function registerJsCode($name, $code, $position = 'before')
+    {
+        $position = $this->_check_postion($position); 
+        $this->_js_code[$name] = $code;
+        $this->_js_code_pos[$name] = $position;
+    }
+
+    // $position possible values: before, after
+    public function registerCssFile($url, $position = 'before')
+    {
+        $position = $this->_check_postion($position);
+        $this->_css_files[media_url($url)] = $position;
+    }
+
+    public function registerJsFile($url, $position = 'before')
+    {
+        $position = $this->_check_postion($position);
+        $this->_js_files[media_url($url)] = $position; 
+    }
+
+    private function _check_postion($position)
+    {
+        if ($position != 'before' AND $position != 'after') echo '!';
+        return $position;
+    }
+
+    private function splitTplFiles($tpl)
+    {
+        $result_before = '';
+        $result_after = '';
+        $result_css_before = '';
+        $result_css_after = '';
+        $result_js_before = '';
+        $result_js_after = '';
+
+        // split css files
+        if (count($this->_css_files) > 0)
+        {
+            foreach ($this->_css_files as $url => $pos)
+            {
+                switch ($pos)
+                {
+                    case 'before':
+                    $result_before .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"$url\" />\n";
+                    break;
+                    case 'after':
+                    $result_after .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"$url\" />\n";
+                    break;
+                }
+            }
+        }
+
+        // split js files
+        if (count($this->_js_files) > 0)
+        {
+            foreach ($this->_js_files as $url => $pos)
+            {
+                switch ($pos)
+                {
+                    case 'before':
+                    $result_before .= "<script type=\"text/javascript\" src=\"$url\"></script>\n";
+                    break;
+                    case 'after':
+                    $result_after .= "<script type=\"text/javascript\" src=\"$url\"></script>\n";  
+                    break;
+                }
+            }
+        }
+
+
+        // split css code
+        if (count($this->_css_code ) > 0)
+        {
+            foreach ($this->_css_code as $key => $code)
+            {
+                switch ($this->_css_code_pos[$key])
+                {
+                    case 'before':
+                    $result_css_before .= "$code\n";
+                    break;
+                    case 'after':
+                    $result_css_after .= "$code\n";  
+                    break;
+                }
+            }
+        }
+
+        // split js code
+        if (count($this->_js_code ) > 0)
+        {
+            foreach ($this->_js_code as $key => $code)
+            {
+                switch ($this->_js_code_pos[$key])
+                {
+                    case 'before':
+                    $result_js_before .= "$code\n";
+                    break;
+                    case 'after':
+                    $result_js_after .= "$code\n";  
+                    break;
+                }
+            }
+        }
+
+        if ($result_before)
+            $result = preg_replace('/\<\/head\>/', $result_before.'</head>'."\n", $tpl,1);
+
+        if ($result_after)
+            $result = preg_replace('/\<\/html\>/', "</html>\n".$result_after, $result,1);
+
+
+        if ($result_js_before)
+        {
+            $result_js_before = "<script type=\"text/javascript\">\n$result_js_before\n</script>\n";
+            $result = preg_replace('/\<\/head\>/', $result_js_before."</head>\n", $result,1);
+        }
+
+        if ($result_js_after)
+        {
+            $result_js_after = "<script type=\"text/javascript\">\n$result_js_after\n</script>\n";
+            $result = preg_replace('/\<\/html\>/', "</html>\n".$result_js_after, $result, 1);
+        }
+
+        if ($result_css_before)
+        {
+            $result_css_before = "<style type=\"text/css\">\n$result_css_before\n</style>\n";
+            $result = preg_replace('/\<\/head\>/', $result_css_before."</head>\n", $result,1);
+        } 
+    
+        if ($result_css_after)
+        {
+            $result_css_after = "<style type=\"text/css\">\n$result_css_after\n</style>\n";            
+            $result = preg_replace('/\<\/html\>/', "</html>\n".$result_css_after, $result, 1);
+        }
+
+        return $result;
     }
 
 }
