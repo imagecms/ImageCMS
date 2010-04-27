@@ -16,7 +16,7 @@
 	<div class="all">
     	
         <div class="topmenu">
-            {load_menu('main_menu')} 
+            {load_menu('main_menu')}
         </div>
     	<div class="clear"></div>
         

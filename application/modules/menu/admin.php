@@ -347,6 +347,7 @@ class Admin extends Controller {
                     'item_type' => $_POST['item_type'],
                     'title'     => htmlentities($_POST['title'], ENT_QUOTES, 'UTF-8'),
                     'hidden'    => $_POST['hidden'],
+        			'item_image'=> $_POST['item_image'],
                     'roles'     => $roles,
                     'parent_id' => $_POST['parent_id'],
                     'position'  => $position,
@@ -436,6 +437,8 @@ class Admin extends Controller {
 		$val->set_rules('menu_name', 'Имя', 'required|min_length[2]|max_length[25]|alpha_dash');
 		$val->set_rules('main_title', 'Название', 'required|max_length[100]');
 		$val->set_rules('menu_desc', 'Описание', 'max_length[500]');
+		$val->set_rules('menu_tpl', 'Шаблон', 'max_length[500]');
+		$val->set_rules('menu_expand_level', 'Уровень раскрытия', 'numeric|max_length[2]');
 
 
 		if ($this->form_validation->run() == FALSE)
@@ -445,8 +448,10 @@ class Admin extends Controller {
 
 			$data = array(
 				'name' => $this->input->post('menu_name'),
-				'main_title' => $this->input->post('main_title'),
+				'main_title' => $this->input->post('main_title'),				
 				'description' => $_POST['menu_desc'],
+				'tpl' => $this->input->post('menu_tpl'),
+				'expand_level' => $this->input->post('menu_expand_level'),
 				'created' => date('Y-m-d H:i:s')
 			);
 
@@ -481,6 +486,8 @@ class Admin extends Controller {
 		$val->set_rules('menu_name', 'Имя', 'required|min_length[2]|max_length[25]|alpha_dash');
 		$val->set_rules('main_title', 'Название', 'required|max_length[100]');
 		$val->set_rules('menu_desc', 'Описание', 'max_length[500]');
+		$val->set_rules('menu_tpl', 'Шаблон', 'max_length[500]');
+		$val->set_rules('menu_expand_level', 'Уровень раскрытия', 'numeric|max_length[2]');
 
 
 		if ($this->form_validation->run() == FALSE)
@@ -492,6 +499,8 @@ class Admin extends Controller {
 				'name' => $this->input->post('menu_name'),
 				'main_title' => $this->input->post('main_title'),
 				'description' => $_POST['menu_desc'],
+				'tpl' => $this->input->post('menu_tpl'),
+				'expand_level' => $this->input->post('menu_expand_level'),
 				'created' => date('Y-m-d H:i:s')
 			);
 

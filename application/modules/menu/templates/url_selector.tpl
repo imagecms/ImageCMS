@@ -52,6 +52,14 @@
                         </select> 
                     </div>
                     <div class="form_overflow"></div>
+                    
+
+                    <div class="field_text">Изображение</div>
+                    <div class="field_input">
+                        <input type="text" class="textbox" value="" name="url_image"  id="url_image" />
+                        <img width="16" height="16" align="absmiddle" src="{$THEME}/images/images.png" title="Выбрать Изображение" style="cursor: pointer;" onclick="tinyBrowserPopUp('image', 'url_image');" />
+                    </div>    
+                                        
 
                     <div class="field_text">Уровень доступа</div>
                     <div class="field_input">
@@ -101,6 +109,7 @@
         url_parent_id = $('url_parent_id').value;
         url_position_after = $('url_position_after').value;
         url_page = $('url_to_page').value;
+        item_image = $('url_image').value;
 
         if (url_title == '')
         {
@@ -129,6 +138,7 @@
                 'item_type': 'url',
                 'title': url_title,
                 'hidden': url_hidden,
+                'item_image': item_image,
                 'roles': url_roles,
                 'parent_id': url_parent_id,
                 'position_after': url_position_after,

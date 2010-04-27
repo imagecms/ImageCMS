@@ -14,6 +14,17 @@
         <div class="form_input"><input type="text" class="textbox" name="menu_desc" value="{$description}" /></div>
         <div class="form_overflow"></div>
 
+        <div class="form_text">Папка шаблона:</div>
+        <div class="form_input"><input type="text" class="textbox" name="menu_tpl" value="{$tpl}" /></div>
+        <div class="form_overflow"></div>
+
+        <div class="form_text">Раскрывать меню, уровень:</div>
+        <div class="form_input">
+        	<input type="text" class="textbox" name="menu_expand_level" value="{$expand_level}" />        	
+        </div>
+        <div class="form_overflow"></div>
+
+
         <div class="form_text"></div>
         <div class="form_input">
             <input type="submit" value="Сохранить" class="button" onclick="ajax_me(this.form.id);" />

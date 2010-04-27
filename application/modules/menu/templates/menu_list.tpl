@@ -51,7 +51,7 @@
                     loadMethod: 'xhr',
                     contentURL: base_url + 'admin/components/cp/menu/create_tpl/',
                     width: 490,
-                    height: 300
+                    height: 350
                 });            
             }
 
@@ -64,7 +64,7 @@
                     loadMethod: 'xhr',
                     contentURL: base_url + 'admin/components/cp/menu/edit_menu/' + id,
                     width: 490,
-                    height: 300
+                    height: 350
                 });       
             }
 
