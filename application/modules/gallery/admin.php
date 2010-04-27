@@ -25,7 +25,10 @@ class Admin extends Controller {
         'prev_img_marker'     => '_prev',  // Preview image suffix
         'maintain_ratio'      => TRUE,     // Specifies whether to maintain the original aspect ratio when resizing. 
         'maintain_ratio_prev' => TRUE,     // Specifies whether to maintain the original aspect ratio when resizing prev image. 
-        'maintain_ratio_icon' => TRUE,     // Specifies whether to maintain the original aspect ratio when resizing icon. 
+        'maintain_ratio_icon' => TRUE,     // Specifies whether to maintain the original aspect ratio when resizing icon.
+    	'crop'			  	  => TRUE,     // Specifies whether to crop image for save the original aspect ratio when resizing.
+    	'crop_prev'			  => TRUE,     // Specifies whether to crop image for save the original aspect ratio when resizing prev image.
+    	'crop_icon'			  => TRUE,     // Specifies whether to crop image for save the original aspect ratio when resizing icon. 
         'prev_img_width'      => '500',    // Preview image width
         'prev_img_height'     => '375',    // Preview image height
        
@@ -52,8 +55,7 @@ class Admin extends Controller {
 	{
 		parent::Controller();
 
-        $this->load->library('DX_Auth');
-        cp_check_perm('module_admin'); 
+        if( $this->dx_auth->is_admin() == FALSE) exit;
 
         $this->load->model('gallery_m');
         $this->init_settings();
@@ -233,17 +235,20 @@ class Admin extends Controller {
                 }
 
                 $params = array(
-                    'max_file_size'   => $this->input->post('max_file_size'),
-                    'max_width'       => $this->input->post('max_width'),
-                    'max_height'      => $this->input->post('max_height'),
-                    'quality'         => $this->input->post('quality'),
-                    'maintain_ratio'  => (bool) $this->input->post('maintain_ratio'),
-                    'maintain_ratio_prev'  => (bool) $this->input->post('maintain_ratio_prev'),
-                    'maintain_ratio_icon'  => (bool) $this->input->post('maintain_ratio_icon'),
-                    'prev_img_width'  => $this->input->post('prev_img_width'),
-                    'prev_img_height' => $this->input->post('prev_img_height'),
-                    'thumb_width'     => $this->input->post('thumb_width'),
-                    'thumb_height'    => $this->input->post('thumb_height'),
+                    'max_file_size'   		=> $this->input->post('max_file_size'),
+                    'max_width'       		=> $this->input->post('max_width'),
+                    'max_height'			=> $this->input->post('max_height'),
+                    'quality'         		=> $this->input->post('quality'),
+                    'maintain_ratio' 		=> (bool) $this->input->post('maintain_ratio'),
+                    'maintain_ratio_prev'  	=> (bool) $this->input->post('maintain_ratio_prev'),
+                    'maintain_ratio_icon'  	=> (bool) $this->input->post('maintain_ratio_icon'),
+                	'crop'  				=> (bool) $this->input->post('crop'),
+                	'crop_prev'  			=> (bool) $this->input->post('crop_prev'),
+                	'crop_icon'  			=> (bool) $this->input->post('crop_icon'),
+                    'prev_img_width'  		=> $this->input->post('prev_img_width'),
+                    'prev_img_height' 		=> $this->input->post('prev_img_height'),
+                    'thumb_width'     		=> $this->input->post('thumb_width'),
+                    'thumb_height'    		=> $this->input->post('thumb_height'),
 
                     // watermark settings
                     'watermark_text'      => trim($this->input->post('watermark_text')),
@@ -737,9 +742,32 @@ class Admin extends Controller {
             $config['height']         = $this->conf['max_height'];
             $config['quality']        = $this->conf['quality'];
 
-            $this->image_lib->clear();
-            $this->image_lib->initialize($config); 
-            $this->image_lib->resize();
+			if (($this->conf['maintain_ratio']) AND ($this->conf['crop'])) // Уменьшаем изображение и обрезаем края 
+            { 
+				$size = $this->get_image_size($file['full_path']); // Получаем размеры сторон изображения
+            	
+				$size['width'] >= $size['height'] ? $config['master_dim'] = "height" : $config['master_dim'] = "width"; // Задаем master_dim 
+            	
+				$this->image_lib->clear();
+				$this->image_lib->initialize($config); 
+				$this->image_lib->resize(); 
+        	    	
+				$config['image_library']  = $this->conf['engine'];
+				$config['source_image']   = $file['full_path'];
+				$config['maintain_ratio'] = FALSE;
+				$config['width']          = $this->conf['max_width'];            	
+				$config['height']         = $this->conf['max_height'];
+           	
+				$this->image_lib->clear();
+				$this->image_lib->initialize($config); 
+				$this->image_lib->crop();            	
+            }
+            else // Только уменьшаем
+            {
+				$this->image_lib->clear();
+				$this->image_lib->initialize($config); 
+				$this->image_lib->resize();
+            }
         }
 
         // Create image preview
@@ -748,18 +776,41 @@ class Admin extends Controller {
 
         if ($file['image_width'] > $this->conf['prev_img_width'] OR $file['image_height'] > $this->conf['prev_img_height'])
         {
-            $config['image_library']  = $this->conf['engine'];
-            $config['source_image']   = $file['full_path'];
-            $config['new_image']      = $prev_img_name;
-            $config['create_thumb']   = FALSE;
-            $config['maintain_ratio'] = $this->conf['maintain_ratio_prev'];
-            $config['width']          = $this->conf['prev_img_width'];
-            $config['height']         = $this->conf['prev_img_height'];
-            $config['quality']        = $this->conf['quality'];
+            $config['image_library']  		= $this->conf['engine'];
+            $config['source_image']   		= $file['full_path'];
+            $config['new_image']      		= $prev_img_name;
+            $config['create_thumb']   		= FALSE;
+            $config['maintain_ratio_prev']  = $this->conf['maintain_ratio_prev'];
+            $config['width']          		= $this->conf['prev_img_width'];
+            $config['height']         		= $this->conf['prev_img_height'];
+            $config['quality']        		= $this->conf['quality'];
 
-            $this->image_lib->clear();
-            $this->image_lib->initialize($config);
-            $this->image_lib->resize();
+			if (($this->conf['maintain_ratio_prev']) AND ($this->conf['crop_prev'])) // Уменьшаем изображение и обрезаем края 
+            { 
+				$size = $this->get_image_size($file['full_path']); // Получаем размеры сторон изображения
+            	
+				$size['width'] >= $size['height'] ? $config['master_dim'] = "height" : $config['master_dim'] = "width"; // Задаем master_dim 
+            	
+				$this->image_lib->clear();
+				$this->image_lib->initialize($config); 
+				$this->image_lib->resize(); 
+        	    	
+				$config['image_library']  = $this->conf['engine'];
+				$config['source_image']   = $prev_img_name;
+				$config['maintain_ratio'] = FALSE;
+				$config['width']          = $this->conf['prev_img_width'];            	
+				$config['height']         = $this->conf['prev_img_height'];
+           	
+				$this->image_lib->clear();
+				$this->image_lib->initialize($config); 
+				$this->image_lib->crop();            	
+            }
+            else // Только уменьшаем
+            {
+				$this->image_lib->clear();
+				$this->image_lib->initialize($config); 
+				$this->image_lib->resize();
+            }
         }
         else
         {
@@ -784,9 +835,32 @@ class Admin extends Controller {
             $config['height']         = $this->conf['thumb_height'];
             $config['quality']        = $this->conf['quality'];
 
-            $this->image_lib->clear(); 
-            $this->image_lib->initialize($config); 
-            $this->image_lib->resize();
+            if (($this->conf['maintain_ratio_icon']) AND ($this->conf['crop_icon'])) // Уменьшаем изображение и обрезаем края 
+            { 
+				$size = $this->get_image_size($file['full_path']); // Получаем размеры сторон изображения
+            	
+				$size['width'] >= $size['height'] ? $config['master_dim'] = "height" : $config['master_dim'] = "width"; // Задаем master_dim 
+            	
+				$this->image_lib->clear();
+				$this->image_lib->initialize($config); 
+				$this->image_lib->resize(); 
+        	    	
+				$config['image_library']  = $this->conf['engine'];
+				$config['source_image']   = $thumb_name;
+				$config['maintain_ratio'] = FALSE;
+				$config['width']          = $this->conf['thumb_width'];            	
+				$config['height']         = $this->conf['thumb_height'];
+           	
+				$this->image_lib->clear();
+				$this->image_lib->initialize($config); 
+				$this->image_lib->crop();            	
+            }
+            else // Только уменьшаем
+            {
+				$this->image_lib->clear();
+				$this->image_lib->initialize($config); 
+				$this->image_lib->resize();
+            }
         }
         else
         {
