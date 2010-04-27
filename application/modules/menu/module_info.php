@@ -8,7 +8,7 @@ $com_info = array(
 	'w' => 800,
 	'h' => 550,
 	'version' => '1.0',
-	'author' => 'dev@imagecms.net'
+	'author' => 'dev@imagecms.net, zloitapok@inbox.ru'
 );
 
 /* end of file */

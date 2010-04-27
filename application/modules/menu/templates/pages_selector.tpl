@@ -3,7 +3,7 @@
             <tr>
                 <td width="100%" valign="top">
                     <div style="float:left;padding-right:10px;">
-                    
+                 
                         Категории: 
                         <select id="category_sel">
                         <option value="0" onclick="load_pages(0,0); return false;">root</option>
@@ -82,7 +82,14 @@
                         </select> 
                     </div>
                     <div class="form_overflow"></div>
-
+                    
+                    <div class="field_text">Изображение</div>
+                    <div class="field_input">
+                        <input type="text" class="textbox" value="" name="page_image"  id="page_image" />
+                        <img width="16" height="16" align="absmiddle" src="{$THEME}/images/images.png" title="Выбрать Изображение" style="cursor: pointer;" onclick="tinyBrowserPopUp('image', 'page_image');" />
+                    </div>
+                    
+                    <div class="form_overflow"></div>                        
 
                     <div class="field_text">Уровень доступа</div>
                     <div class="field_input">
@@ -138,7 +145,7 @@
 
         if (id == 0)
         {
-            showMessage('Ошибка','Выберите страницу.');
+            showMessage('Ошибка','Выбирите страницу.');
             return false;
         }
 
@@ -155,6 +162,7 @@
         hidden = item_hidden;
         parent_id = $('item_parent_id').value;
         position_after = $('position_after').value;
+		item_image = $('page_image').value;
 
         var roles = new Array();
         $('item_roles').getSelected().each(function(el) {  
@@ -172,6 +180,7 @@
                 'item_id': id,
                 'title': title,
                 'hidden': hidden,
+                'item_image': item_image,
                 'roles': roles,
                 'parent_id': parent_id,
                 'position_after': position_after,

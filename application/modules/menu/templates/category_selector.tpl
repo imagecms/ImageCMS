@@ -64,7 +64,12 @@
                         </select> 
                     </div>
                     <div class="form_overflow"></div>
-
+                    
+                    <div class="field_text">Изображение</div>
+                    <div class="field_input">
+                        <input type="text" class="textbox" value="" name="cat_image"  id="cat_image" />
+                        <img width="16" height="16" align="absmiddle" src="{$THEME}/images/images.png" title="Выбрать Изображение" style="cursor: pointer;" onclick="tinyBrowserPopUp('image', 'cat_image');" />
+                    </div>
 
                     <div class="field_text">Уровень доступа</div>
                     <div class="field_input">
@@ -129,7 +134,7 @@
 
         if (id == 0)
         {
-            showMessage('Ошибка','Выберите категорию.');
+            showMessage('Ошибка','Выбирите категорию.');
             return false;
         }
 
@@ -146,6 +151,7 @@
         hidden = cat_hidden;
         parent_id = $('cat_parent_id').value;
         position_after = $('cat_position_after').value;
+        item_image = $('cat_image').value;
 
         var roles = new Array();
         $('cat_roles').getSelected().each(function(el) {  
@@ -163,6 +169,7 @@
                 'item_id': id,
                 'title': title,
                 'hidden': hidden,
+                'item_image': item_image,
                 'roles': roles,
                 'parent_id': parent_id,
                 'position_after': position_after,

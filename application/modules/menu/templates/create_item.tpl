@@ -78,7 +78,9 @@
                                 }
                                 }); 
                         }
-                       
+                        
+                        $('page_image').value = data.item_image;
+                       	
                         roles = data.roles;                         
                         if (roles != false) {
                         roles.each(function(item, index){
@@ -125,6 +127,8 @@
                                 }
                                 }); 
                         }
+                        
+                        $('cat_image').value = data.item_image;
                        
                         roles = data.roles;                         
                         if (roles != false) {
@@ -173,6 +177,8 @@
                                 }
                                 }); 
                         }
+                        
+                        $('url_image').value = data.item_image;
                        
                         roles = data.roles;                         
                         if (roles != false) {
@@ -218,6 +224,8 @@
                                 }
                                 }); 
                         }
+                        
+                        $('mod_image').value = data.item_image;
                        
                         roles = data.roles;                         
                         if (roles != false) {

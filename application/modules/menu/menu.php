@@ -8,16 +8,38 @@
 
 class Menu extends Controller{
 
-	private $current_uri;
-
-	public $menu_array     = array(); // the root of the menu tree
-    public $sub_menu_array = array(); // the list of menu items
-    public $select_hidden  = FALSE;
-    public $html           = '';
-    public $activate_by_sub_urls = TRUE;
+	/******* Это можно редактировать ************/
+	private $tpl_folder_prefix		= "level_";
+	private $tpl_file_names			= array(
+												'container' 			=> 'container',
+												'item_default' 			=> 'item_default', 
+												'item_default_active' 	=> 'item_default_active',
+												'item_first' 			=> 'item_first', 
+												'item_first_active' 	=> 'item_first_active',
+												'item_last' 			=> 'item_last', 
+												'item_last_active' 		=> 'item_last_active',
+												'item_one' 				=> 'item_one', 
+												'item_one_active' 		=> 'item_one_active',
+											);
+											
+	/******* То что ниже редактируйте осторожно, вдумчиво :) ************/
+																					
+	private $current_uri			= "";
+	private $tpl_folder				= "";
+	private $stack				 	= array();
+	private $errors				 	= array();
+	public $menu_array				= array(); // the root of the menu tree
+    public $sub_menu_array 			= array(); // the list of menu items
+    public $select_hidden  			= FALSE;
+    public $arranged_menu_array  	= array();    
+    public $activate_by_sub_urls 	= TRUE;
 
     private $expand        = array(); // items id to expand
     private $cache_key     = '';
+    
+    public $menu_template_vars = array();
+    
+    private $cur_level     = 0;
 
 	function __construct()
 	{
@@ -38,9 +60,38 @@ class Menu extends Controller{
     {
         $this->load->helper('menu'); 
 
-        $this->current_uri = site_url( $this->uri->uri_string() );
+        $this->prepare_current_uri();
+        //$this->current_uri = site_url( $this->uri->uri_string() );
 	}
 
+	/**
+	 * Prepare and set $this->current_uri value
+	 *
+	 * @access private
+	 */
+	private function prepare_current_uri()
+    {    	
+        $lang_id = $this->config->item( 'cur_lang' );
+        $this->db->select( 'identif' );
+        $query = $this->db->get_where( 'languages', array('id' => $lang_id) )->result();
+        
+        if ( $query )
+        {
+        	if ( $this->uri->segment(1) == $query[0]->identif ) 
+        	{
+        		$segment_array = $this->uri->segment_array();
+        		array_shift( $segment_array ); // убираем первый элемент ( идентификатор языка ) массива сегментов uri
+				$this->current_uri = site_url( $segment_array );
+        	} else {
+        		$this->current_uri = site_url( $this->uri->uri_string() );
+        	}
+        } else {
+        	// что-то не в порядке с таблицей languages или функцией $this->config->item
+        	return false;
+        }
+        return true;        
+    }
+	
 	/**
 	 * Prepare and display menu
 	 *
@@ -50,25 +101,58 @@ class Menu extends Controller{
 	public function render($menu)
     {
         $this->clear();
-
+        
+        $this->prepare_current_uri();	// правильно определяет текущий uri, фикс бага многоязычности
+        
         $this->prepare_menu_array($menu);
+        
 		$this->get_expand_items( $this->current_uri );
+		
+		$array_keys = array_keys($this->menu_array);
+        $start_index = $array_keys[0];
+		$this->tpl_folder = $this->menu_array[$start_index]['tpl'];
+		
+		$this->prepare_menu_recursion(); // Инициализируем первый элемент для начала итераций
 
-        $this->current_uri = site_url( $this->uri->uri_string() ); 
-
-		$this->html .= $this->display_menu($this->menu_array);
-
-        echo $this->html;
+		$this->display_menu($this->menu_array);
+		
+		if ($this->errors)
+		{
+			$data = array(
+				'menu' => $menu,
+				'errors' => array_unique($this->errors),
+				'tpl_folder' => $this->tpl_folder,
+			);
+			$this->display_tpl('error', $data);
+		}
+		else
+		{
+			echo $this->arranged_menu_array[-1]['html'];
+		}
+		
+	}
+	
+	private function prepare_menu_recursion()
+	{
+        array_push($this->stack, -1);
+        $this->arranged_menu_array[-1]['html'] = FALSE;
+        $this->arranged_menu_array[-1]['level'] = -1;		
 	}
 
     private function clear()
     {
-	    $this->menu_array     = array(); 
-        $this->sub_menu_array = array();
-        $this->select_hidden  = FALSE;
-        $this->html           = '';
+    	$this->current_uri			= "";
+    	$this->tpl_folder			= "";
+	    $this->menu_array     		= array();
+	    $this->errors 	    		= array(); 
+        $this->sub_menu_array 		= array();
+        $this->select_hidden  		= FALSE;
         $this->activate_by_sub_urls = TRUE;
-        $this->expand        = array();
+        $this->expand        		= array();
+        $this->arranged_menu_array  = array();
+        $this->stack				= array();
+        $this->menu_template_vars  	= array();
+        $this->cur_level        	= 0;
     }
 
 	/**
@@ -80,10 +164,19 @@ class Menu extends Controller{
 	 */
 	public function display_menu($menu_array)
 	{
-		$this->html .=  "<ul>\n";
+		
+        $array_keys = array_keys($menu_array);
+        $start_index = $array_keys[0];
+		$end_index = $array_keys[count($array_keys)-1];		
+		
 		foreach ($menu_array as $item)
         {
-                // Translate title
+
+        	$arranged_items_count = count($this->arranged_menu_array);
+        	$this->arranged_menu_array[$arranged_items_count]['level'] = $this->cur_level;
+        	$this->arranged_menu_array[$arranged_items_count]['tpl'] = $item['tpl'];
+
+        	// Translate title
                 if (isset($item['lang_title_'.$this->config->item('cur_lang')]))
                 {
                     $item['title'] = $item['lang_title_'.$this->config->item('cur_lang')]; 
@@ -120,53 +213,255 @@ class Menu extends Controller{
                         $active_cur = FALSE;
                     }
                 }
-    
+    			if ( $this->cur_level < ( $item['expand_level'] ) ) $this->expand[$item['id']] = TRUE; // to expand tree
  				if ( $site_url == $this->current_uri OR $active_cur === TRUE)
 				{
 					$this->expand[$item['id']] = TRUE;
-                    $CSS_class = ' class="active"';
+                    $is_active = TRUE;
+                    $this->arranged_menu_array[$arranged_items_count]['is_active'] = TRUE;
 				}
                 else
                 {
                     // Make link active if link is / and no segments in url
                     if ($item['link'] == '/' AND $this->uri->total_segments() == 0)
                     {
-                        $CSS_class = ' class="active"'; 
+                        $is_active = TRUE;
+                        $this->arranged_menu_array[$arranged_items_count]['is_active'] = TRUE;
                     }
                     else
                     {
-					    $CSS_class = "";
+					    $is_active = FALSE;
+					    $this->arranged_menu_array[$arranged_items_count]['is_active'] = FALSE;
                     }
                 }            
 
-                $this->html .= "<li".$CSS_class.">";
-
                 $item['item_type'] == 'url' ? $href = $item['link']: $href = site_url($item['link']);                 
+                
+				$this->arranged_menu_array[$arranged_items_count]['link'] = $href;
+				$this->arranged_menu_array[$arranged_items_count]['title'] = $item['title'];
+				$this->arranged_menu_array[$arranged_items_count]['image'] = $item['image'];
+				
+				if(($menu_array[$start_index] != $item) AND ($menu_array[$end_index] != $item))
+				{
+					$this->arranged_menu_array[$arranged_items_count]['edge'] = "default";
+				}
+				
+				if(($menu_array[$start_index] == $item) AND ($menu_array[$end_index] != $item))
+				{
+					$this->arranged_menu_array[$arranged_items_count]['edge'] = "first";
+				}
+				
+				if(($menu_array[$start_index] != $item) AND ($menu_array[$end_index] == $item))
+				{
+					$this->arranged_menu_array[$arranged_items_count]['edge'] = "last";
+				}
+				
+				if(($menu_array[$start_index] == $item) AND ($menu_array[$end_index] == $item))
+				{
+					$this->arranged_menu_array[$arranged_items_count]['edge'] = "one";					
+				}
+				
+				
+				
+				$sub_menus = $this->_get_sub_menus($item['id']);
 
-				$this->html .= '<a href="'.$href.'">'.$item['title'].'</a>';
+				if (isset($this->expand[$item['id']]) AND $this->expand[$item['id']] == TRUE AND count($sub_menus) > 0)
+				{
+					$this->cur_level++;
+					array_push($this->stack, $arranged_items_count);
+					
+					$this->display_menu($sub_menus);
+				} else {
+					$this->_prepare_item_tpl($arranged_items_count);
+				}
 
-					$sub_menus = $this->_get_sub_menus($item['id']);
-					if (isset($this->expand[$item['id']]) AND $this->expand[$item['id']] == TRUE AND count($sub_menus) > 0)
-					{
-						$this->display_menu($sub_menus);
-					}
-                    /*
-                    else
-                    {
-                        if ($this->display_menu($sub_menus) != NULL)
-                        {
-                            $this->html .= "<div id=\"menu_sub_items\">";
-                                $this->display_menu($sub_menus);
-                            $this->html.= "</div>";
-                        }
-                    }
-                    */
-
-            $this->html .= "</li>\n";
         }
 
-		$this->html .= "</ul>\n";
+        $wrapper = "";
+        $stack_item = array_pop($this->stack);        
+        for ($i = $stack_item + 1; $i <= $arranged_items_count; $i++)
+        {
+	       	if ( $this->arranged_menu_array[$i]['level'] <= $this->arranged_menu_array[$stack_item]['level'] + 1)
+			{
+        		$wrapper .= $this->arranged_menu_array[$i]['html']."\n";
+			}        	
+        }
+        $this->_prepare_item_tpl($stack_item, $wrapper);   
+        
+		$this->cur_level--;
 	}
+	
+
+		/**
+	 * Натягивает шаблон на данные и запихивает всю эту красоту в this->arranged_menu_array[$arranged_items_count]['html']. версия для элемента списка
+	 *
+	 * @param integer $index номер элемента для натягивания шаблона  
+	 * @param string  $wrapper натянутые шаблоны на всех всех наследников
+	 * @access private
+	 * @return TRUE
+	 */
+	private function _prepare_container_tpl($index = 0, $wrapper = FALSE)
+	{
+		$data = array(
+			'wrapper'  	=> $wrapper,
+		);
+		
+		$tpl_path = $this->_get_real_tpl($index, "container");
+		if ( $tpl_path ) return $this->fetch_tpl($tpl_path, $data);
+		else return FALSE;
+		
+	}	
+	
+	/**
+	 * Натягивает данные на шаблон и запихивает всю эту красоту в this->arranged_menu_array[$arranged_items_count]['html']. версия для элемента списка
+	 *
+	 * @param integer $index номер элемента для натягивания шаблона  
+	 * @param string  $wrapper натянутые шаблоны на всех всех наследников
+	 * @access private
+	 * @return TRUE
+	 */
+	private function _prepare_item_tpl($index = 0, $wrapper = FALSE)
+	{
+		if ($wrapper == TRUE)
+		{
+			$wrapper = $this->_prepare_container_tpl($index, $wrapper);
+		}
+		
+		$data = array(
+			'title' 	=> $this->arranged_menu_array[$index]['title'],
+			'link'  	=> $this->arranged_menu_array[$index]['link'],
+			'image'  	=> $this->arranged_menu_array[$index]['image'],
+			'wrapper'  	=> $wrapper,
+		);
+		
+		if ($index == -1) {
+			$this->arranged_menu_array[$index]['html'] = $wrapper;
+		} else {
+			$tpl_path = $this->_get_real_tpl($index);
+			if ( $tpl_path ) $this->arranged_menu_array[$index]['html'] = $this->fetch_tpl($tpl_path, $data);
+		}
+
+		
+		return TRUE;		
+	}
+	
+	/**
+	 * Find sub menus
+	 *
+	 * @param integer $id
+	 * @access public
+	 * @return mixed
+	 */
+	private function _get_real_tpl($index = 0, $mode = "item")
+	{
+		if ($mode == "item")
+		{
+			$is_active = $this->arranged_menu_array[$index]['is_active'];
+			$edge = $this->arranged_menu_array[$index]['edge'];
+		
+			switch($edge)
+			{
+				case "first":
+					$item_active_tpl = $this->tpl_file_names['item_first_active'];
+					$item_tpl = $this->tpl_file_names['item_first'];  
+				break;
+				case "last":
+					$item_active_tpl = $this->tpl_file_names['item_last_active'];
+					$item_tpl = $this->tpl_file_names['item_last'];  
+				break;
+				case "one":
+					$item_active_tpl = $this->tpl_file_names['item_one_active'];
+					$item_tpl = $this->tpl_file_names['item_one'];  
+				break;
+				default:
+					// ничего вроде не надо...
+				break;							
+			}
+			
+			/***** дефолтный шаблон ******/
+			$default_item_active_tpl = $this->tpl_file_names['item_default_active'];
+			$default_item_tpl = $this->tpl_file_names['item_default'];
+			$is_good = FALSE;	
+			
+			for ($level = $this->arranged_menu_array[$index]['level']; $level >= 0; $level--)
+			{
+				if ($is_active) 
+				{
+					if ($item_active_tpl) {
+						$tpl = $this->tpl_folder_prefix.$level."/".$this->tpl_file_names[$item_active_tpl];
+						if ( $this->test_tpl( $tpl ) ) {
+							$is_good = TRUE;
+							break;
+						} 						
+					}
+					if ($item_tpl) {
+						$tpl = $this->tpl_folder_prefix.$level."/".$this->tpl_file_names[$item_tpl];
+						if ( $this->test_tpl( $tpl ) ) {
+							$is_good = TRUE;
+							break;
+						} 						
+					}
+					
+					$tpl = $this->tpl_folder_prefix.$level."/".$this->tpl_file_names[$default_item_active_tpl];
+					if ( $this->test_tpl( $tpl ) ) {
+						$is_good = TRUE;
+						break;
+					} 	
+
+					$tpl = $this->tpl_folder_prefix.$level."/".$this->tpl_file_names[$default_item_tpl];
+					if ( $this->test_tpl( $tpl ) ) {
+						$is_good = TRUE;
+						break;
+					} 						
+				}
+				else
+				{
+					if ($item_tpl) {
+						$tpl = $this->tpl_folder_prefix.$level."/".$this->tpl_file_names[$item_tpl];
+						if ( $this->test_tpl( $tpl ) ) {
+							$is_good = TRUE;
+							break;
+						} 						
+					}
+					$tpl = $this->tpl_folder_prefix.$level."/".$this->tpl_file_names[$default_item_tpl];
+					if ( $this->test_tpl( $tpl ) ) {
+						$is_good = TRUE;
+						break;
+					} 										
+				}
+			}			
+		} else {
+			for ($level = $this->arranged_menu_array[$index]['level'] + 1; $level >= 0; $level--) {
+				$tpl = $this->tpl_folder_prefix.$level."/".$this->tpl_file_names['container'];
+				if ( $this->test_tpl( $tpl ) ) {
+					$is_good = TRUE;
+					break;
+				}
+			}			
+		}
+
+		if ($is_good) 
+		{
+			return $tpl;
+		}
+		else 
+		{
+			//передача управления сюда означает что один из необходимых файлов шаблона меню не найден в указанной папке
+		
+		    if ($this->tpl_folder) 
+	        {
+    	    	$err_data = array('user_template' => $this->tpl_folder.'/'.$tpl.'.tpl');
+	        }
+        	else
+        	{
+				$err_data = array('system_template' => './application/modules/menu/templates/public/'.$tpl.'.tpl');
+        	}
+		
+			$this->errors[] = $err_data;
+			return FALSE;
+		}	 
+	}	
+	
 
 	/**
 	 * Find sub menus
@@ -178,7 +473,7 @@ class Menu extends Controller{
 	public function _get_sub_menus($id)
 	{
 		$sub_menus = array();
-
+		
 		foreach ($this->sub_menu_array as $sub_menu)
 		{
 			if ($sub_menu['parent_id'] == $id)
@@ -235,24 +530,27 @@ class Menu extends Controller{
         }
         else
         {
-            $this->db->select('menus.name', FALSE);
+			$this->db->select('menus.name', FALSE);
+			$this->db->select('menus.tpl AS tpl', FALSE);
+			$this->db->select('menus.expand_level AS expand_level', FALSE);
             //$this->db->select('menus.main_title', FALSE);
-            $this->db->select('menus_data.id AS id', FALSE);
-            $this->db->select('menus_data.menu_id AS menu_id', FALSE);
-            $this->db->select('menus_data.item_type AS item_type', FALSE);
-            $this->db->select('menus_data.item_id AS item_id', FALSE);
-            $this->db->select('menus_data.title AS title', FALSE);
-            $this->db->select('menus_data.hidden AS hidden', FALSE);
-            $this->db->select('menus_data.position AS position', FALSE);
-            $this->db->select('menus_data.roles AS roles', FALSE);
-            $this->db->select('menus_data.parent_id AS parent_id', FALSE);
-            $this->db->select('menus_data.description AS description', FALSE);
-            $this->db->select('menus_data.add_data AS add_data', FALSE);
+			$this->db->select('menus_data.id AS id', FALSE);
+			$this->db->select('menus_data.menu_id AS menu_id', FALSE);
+			$this->db->select('menus_data.item_type AS item_type', FALSE);
+			$this->db->select('menus_data.item_id AS item_id', FALSE);
+			$this->db->select('menus_data.title AS title', FALSE);
+			$this->db->select('menus_data.hidden AS hidden', FALSE);
+			$this->db->select('menus_data.position AS position', FALSE);
+			$this->db->select('menus_data.roles AS roles', FALSE);
+			$this->db->select('menus_data.parent_id AS parent_id', FALSE);
+			$this->db->select('menus_data.description AS description', FALSE);
+			$this->db->select('menus_data.add_data AS add_data', FALSE);
+			$this->db->select('menus_data.item_image AS image', FALSE);
 
-            $this->db->join('menus_data', 'menus_data.menu_id = menus.id');
-            $this->db->where('menus.name', $menu);
-            $this->db->where('menus_data.hidden', 0);
-            $this->db->order_by('position','asc');
+			$this->db->join('menus_data', 'menus_data.menu_id = menus.id');
+			$this->db->where('menus.name', $menu);
+			$this->db->where('menus_data.hidden', 0);
+			$this->db->order_by('position','asc');
 
             // Select hidden items
             if ($this->select_hidden == TRUE)
@@ -281,12 +579,14 @@ class Menu extends Controller{
                         unset($menus[$i]);
                 }
             }
+            
+            
 
             $this->cur_menu_id = $menus[0]['menu_id'];
             $this->load->model('menu_model','item');
 
-            $menus = array_values($menus);
-
+            $menus = array_values($menus);           
+            
             $langs = $this->db->get('languages');
 
             if ($langs->num_rows() > 0)
@@ -301,9 +601,9 @@ class Menu extends Controller{
             // Create links
             $cnt = count($menus);
             for ($i = 0; $i < $cnt; $i++) 
-            { 
+            {             	
                 switch ($menus[$i]['item_type'])
-                {
+                {                	
                     case 'page':
                         $url = $this->item->get_page_url($menus[$i]['item_id']);
                         $menus[$i]['link'] = $url['cat_url'].$url['url'];
@@ -336,7 +636,7 @@ class Menu extends Controller{
                         $menus[$i]['link'] = $menus[$i]['add_data'];    
                     break;  
                 }
-
+                
 
                 if ($langs != FALSE)
                 {
@@ -367,6 +667,7 @@ class Menu extends Controller{
                 'sub_menu_array' => $this->sub_menu_array
                 );
 
+                               
             $this->cache->store($this->cache_key.$menu, $data, FALSE, 'menus');
         }
     }
@@ -407,6 +708,62 @@ class Menu extends Controller{
             return FALSE;
         }
     }
+
+    /**
+     * Display template file
+     */ 
+	private function display_tpl($file = '', $data = array())
+	{
+		if (count($data) > 0)
+        {
+            $this->template->add_array($data);
+        }
+        
+		$file = realpath(dirname(__FILE__)).'/templates/public/'.$file.'.tpl';
+
+		$this->template->display('file:'.$file);
+	}
+
+    /**
+     * Fetch template file
+     */ 
+	private function fetch_tpl($file = '', $data = array())
+	{
+	    if (count($data) > 0)
+        {
+            $this->template->add_array($data);
+        }
+        
+	    if ($this->tpl_folder) 
+	    {
+        	$file = $this->template->template_dir.$this->tpl_folder.'/'.$file.'.tpl';
+        }
+        else
+        {
+			$file = realpath(dirname(__FILE__)).'/templates/public/'.$file.'.tpl';
+        }        
+          
+		return $this->template->fetch('file:'.$file);
+	}
+
+	private function test_tpl($file = '')
+	{
+        if ($this->tpl_folder) 
+        {
+        	$file = $this->template->template_dir.$this->tpl_folder.'/'.$file.'.tpl';
+        }
+        else
+        {
+			$file = realpath(dirname(__FILE__)).'/templates/public/'.$file.'.tpl';
+        }
+        
+		if ( file_exists( $file ) ) 
+		{
+			return TRUE;
+		} else {
+			return FALSE;
+		}	
+	}
 
     public function _install()
     {

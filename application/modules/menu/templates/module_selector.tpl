@@ -72,6 +72,13 @@
                         </select> 
                     </div>
                     <div class="form_overflow"></div>
+                    
+                    
+                    <div class="field_text">Изображение</div>
+                    <div class="field_input">
+                        <input type="text" class="textbox" value="" name="mod_image"  id="mod_image" />
+                        <img width="16" height="16" align="absmiddle" src="{$THEME}/images/images.png" title="Выбрать Изображение" style="cursor: pointer;" onclick="tinyBrowserPopUp('image', 'mod_image');" />
+                    </div>                    
 
 
                     <div class="field_text">Уровень доступа</div>
@@ -137,7 +144,7 @@
 
         if (mod_name == '')
         {
-            showMessage('Ошибка','Выберите модуль.');
+            showMessage('Ошибка','Выбирите модуль.');
             return false;
         }
 
@@ -155,6 +162,7 @@
         mod_hidden = module_hidden;
         mod_parent_id = $('module_parent_id').value;
         mod_position_after = $('module_position_after').value;
+        item_image = $('mod_image').value;
 
         var mod_roles = new Array();
         $('module_roles').getSelected().each(function(el) {  
@@ -173,6 +181,7 @@
                 'method': mod_method,
                 'title': mod_title,
                 'hidden': mod_hidden,
+                'item_image': item_image,
                 'roles': mod_roles,
                 'parent_id': mod_parent_id,
                 'position_after': mod_position_after,
