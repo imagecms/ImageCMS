@@ -278,40 +278,41 @@ class Template extends Mabilis {
             }
         }
 
+        $js_tpl_begin = "window.addEvent('domready', function() { "; 
+        $js_tpl_end = " });";
+    
         if ($result_before)
-            $result = preg_replace('/\<\/head\>/', $result_before.'</head>'."\n", $tpl,1);
+            $tpl = preg_replace('/\<\/head\>/', $result_before.'</head>'."\n", $tpl,1);
 
         if ($result_after)
-            $result = preg_replace('/\<\/html\>/', "</html>\n".$result_after, $result,1);
+            $tpl = preg_replace('/\<\/html\>/', "</html>\n".$result_after, $tpl,1);
 
 
         if ($result_js_before)
         {
-            $result_js_before = "<script type=\"text/javascript\">\n$result_js_before\n</script>\n";
-            $result = preg_replace('/\<\/head\>/', $result_js_before."</head>\n", $result,1);
+            $result_js_before = "<script type=\"text/javascript\">$js_tpl_begin\n$result_js_before\n$js_tpl_end</script>\n";
+            $tpl = preg_replace('/\<\/head\>/', $result_js_before."</head>\n", $tpl,1);
         }
 
         if ($result_js_after)
         {
-            $result_js_after = "<script type=\"text/javascript\">\n$result_js_after\n</script>\n";
-            $result = preg_replace('/\<\/html\>/', "</html>\n".$result_js_after, $result, 1);
+            $result_js_after = "<script type=\"text/javascript\">$js_tpl_begin\n$result_js_after\n$js_tpl_end</script>\n";
+            $tpl = preg_replace('/\<\/html\>/', "</html>\n".$result_js_after, $tpl, 1);
         }
 
         if ($result_css_before)
         {
             $result_css_before = "<style type=\"text/css\">\n$result_css_before\n</style>\n";
-            $result = preg_replace('/\<\/head\>/', $result_css_before."</head>\n", $result,1);
+            $tpl = preg_replace('/\<\/head\>/', $result_css_before."</head>\n", $tpl, 1);
         } 
     
         if ($result_css_after)
         {
             $result_css_after = "<style type=\"text/css\">\n$result_css_after\n</style>\n";            
-            $result = preg_replace('/\<\/html\>/', "</html>\n".$result_css_after, $result, 1);
+            $tpl = preg_replace('/\<\/html\>/', "</html>\n".$result_css_after, $tpl, 1);
         }
 
-        if ($result == null) return $tpl;
-
-        return $result;
+        return $tpl;
     }
 
 }
