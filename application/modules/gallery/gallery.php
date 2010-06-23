@@ -211,17 +211,17 @@ class Gallery extends Controller {
         {
             $thumb_url = $this->conf['upload_url'] . $albums[$i]['id'] .'/'. $this->conf['thumbs_folder'].'/';
 
-            $albums[$i]['cover_url'] = site_url($thumb_url . $albums[$i]['cover_name'] . $albums[$i]['cover_ext']);
+            $albums[$i]['cover_url'] = media_url($thumb_url . $albums[$i]['cover_name'] . $albums[$i]['cover_ext']);
 
             if ($albums[$i]['cover_name'] == NULL)
             {
                 $image = $this->gallery_m->get_last_image($albums[$i]['id']);
 
-                $albums[$i]['cover_url'] = site_url($thumb_url . $image['file_name'] . $image['file_ext']);
+                $albums[$i]['cover_url'] = media_url($thumb_url . $image['file_name'] . $image['file_ext']);
             }
             else
             {
-                 $albums[$i]['cover_url'] = site_url($thumb_url . $albums[$i]['cover_name'] . $albums[$i]['cover_ext']);
+                 $albums[$i]['cover_url'] = media_url($thumb_url . $albums[$i]['cover_name'] . $albums[$i]['cover_ext']);
             }
         }
 

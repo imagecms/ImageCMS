@@ -103,3 +103,4 @@
 	</div>
 </body>
 </html>
+{echo $CI->template->run_info()}

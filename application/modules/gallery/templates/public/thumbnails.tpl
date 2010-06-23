@@ -32,7 +32,7 @@
 <ul class="gallery_thumbs">
     {foreach $album.images as $image}
        <li>
-       <a href="{site_url($album_link . 'image/'. $image.id)}" title="{$image.description}"><img src="{site_url($thumb_url . $image.full_name)}" alt="{$image.description}" /></a>
+       <a href="{site_url($album_link . 'image/'. $image.id)}" title="{$image.description}"><img src="{media_url($thumb_url . $image.full_name)}" alt="{$image.description}" /></a>
         <a style="display:none;" href="{site_url($album_url . $image.full_name)}"></a>
        </li>
     {/foreach}

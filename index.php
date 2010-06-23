@@ -119,7 +119,7 @@ else
 //phpinfo();
 
 // ImageCMS data
-define('IMAGECMS_NUMBER', '1.9.2');
+define('IMAGECMS_NUMBER', '2.0.0');
 define('IMAGECMS_VERSION', 'A35TW503B1'); 
 define('IMAGECMS_PUBLIC_ID', '7840a004c9fb02f6c294c793b59aa5348a895978');
 
