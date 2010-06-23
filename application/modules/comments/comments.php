@@ -260,7 +260,11 @@ class Comments extends Controller {
                 ($hook = get_hook('comments_goes_redirect')) ? eval($hook) : NULL; 
 
                 // Redirect back to page
-                redirect($this->input->post('redirect'));
+                //redirect($this->input->post('redirect'));
+                if ($_POST['redirect'])
+                    header('Location: '.$this->input->post('redirect'));
+                else
+                    redirect('/');
             }
             else
             {
