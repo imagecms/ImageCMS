@@ -1,0 +1,10 @@
+<!-- Sample hooks file -->
+
+<hook id="comments_read_com_tpl">
+<![CDATA[
+if (isset($_POST['comment_text']))
+{
+    modules::run('comments/add');
+}
+]]>
+</hook>

@@ -385,7 +385,6 @@ class Core extends Controller {
         //$this->load->library('typography');
         ($hook = get_hook('core_disp_page_and_cat')) ? eval($hook) : NULL;
 
-
         if ($page['full_text'] == '')
         {
             $page['full_text'] = $page['prev_text'];

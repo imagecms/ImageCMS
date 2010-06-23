@@ -25,11 +25,17 @@
 
 <h3>{lang('post_comment')}</h3>
 
+{if $comment_errors}
+    <div class="errors"> 
+        {$comment_errors}
+    </div>
+{/if}
+
 {if $can_comment === 1 AND !is_logged_in}
      <p>{sprintf(lang('login_for_comments'), site_url($modules.auth))}</p>
 {/if}
 
-<form action="{site_url($comment_controller)}" method="post" class="form">
+<form action="" method="post" class="form">
     <input type="hidden" name="comment_item_id" value="{$item_id}" />
     <input type="hidden" name="redirect" value="{uri_string()}" />
 
@@ -54,7 +60,7 @@
 
     <p class="clear">
         <label for="comment_text" class="left">{lang('lang_comment_text')}</label>
-        <textarea name="comment_text" id="comment_text" rows="10" cols="50"></textarea>
+        <textarea name="comment_text" id="comment_text" rows="10" cols="50">{$_POST.comment_text}</textarea>
     </p>
 
     {if $use_captcha}
