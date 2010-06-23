@@ -31,6 +31,7 @@ class Core_Widgets extends Controller {
         $this->db->where('post_status', 'publish');
         $this->db->where('prev_text !=', 'null');
         $this->db->where('publish_date <=', time());
+        $this->db->where('lang', $this->config->item('cur_lang'));
 
         if ( count($settings['categories']) > 0)
         {

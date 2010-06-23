@@ -3,9 +3,10 @@
 
 	function translit($str)
 	{
+        $str=trim($str);
 
-		 $encIn = "utf-8";
-		 $encOut = "utf-8";
+		$encIn = "utf-8";
+		$encOut = "utf-8";
 
 		$cyr=array(
 		"Щ", "Ш", "Ч", "Ц","Ю", "Я", "Ж", "А","Б","В","Г","Д","Е","Ё","З","И","Й","К","Л","М","Н",

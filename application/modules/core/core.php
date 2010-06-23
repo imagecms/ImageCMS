@@ -1,11 +1,9 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-
 /*
  * Image CMS
  *
  * core.php
  */
-
 class Core extends Controller {
 
 	public $langs = array(); // Langs array

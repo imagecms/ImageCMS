@@ -53,7 +53,7 @@ div.gallery_thumbs {
     <tr>
         <td colspan="2">
             <a href="{site_url($album_url . $prev_img.full_name)}" rel="lightbox[gallery]" title="{$prev_img.description}" >
-                <img src="{site_url($prev_img.url)}" style="border:5px solid #E8E8E8;" />
+                <img src="{media_url($prev_img.url)}" style="border:5px solid #E8E8E8;" />
             </a>  
         </td>
     </tr>

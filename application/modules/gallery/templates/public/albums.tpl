@@ -32,11 +32,13 @@
 
 <h1>Альбомы</h1>
 
+
+
 {if is_array($albums)}
     <div class="albums_list">
     <ul>   
     {foreach $albums as $album}     
-    <li>   
+    <li>  
         <a href="{site_url('gallery/album/' . $album.id)}"><img src="{$album.cover_url}" border="0" style="border:5px solid #fff;" /></a>
         <br/>
         <a href="{site_url('gallery/album/' . $album.id)}">{$album.name}</a>
