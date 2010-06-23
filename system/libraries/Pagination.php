@@ -180,6 +180,8 @@ class CI_Pagination {
 			$this->base_url = rtrim($this->base_url, '/') .'/';
 		}
 
+        $this->base_url=site_url($this->base_url).'/';
+
   		// And here we go...
 		$output = '';
 
