@@ -132,7 +132,7 @@ class Comments extends Controller {
         ($hook = get_hook('comments_assign_tpl_data')) ? eval($hook) : NULL;
 
         $this->template->add_array(array( 
-                'comments' => $comments
+                'comments' => $comments,
                 ));
 	}
 
@@ -142,7 +142,7 @@ class Comments extends Controller {
 	public function add()
     {
         ($hook = get_hook('comments_on_add')) ? eval($hook) : NULL;
-
+     
         // Load comments model
         $this->load->model('base');
         $this->init_settings();
@@ -174,7 +174,7 @@ class Comments extends Controller {
         if ($this->check_comment_period() == FALSE)
         {
             ($hook = get_hook('comments_period_error')) ? eval($hook) : NULL;
-            $this->core->error( sprintf(lang('error_comments_period'), $this->period) );
+            $this->core->error(sprintf(lang('error_comments_period'), $this->period));
         }
     
         // Validate email and nickname from unregistered users.
@@ -199,7 +199,8 @@ class Comments extends Controller {
 		if ($this->form_validation->run() == FALSE)
 		{
             ($hook = get_hook('comments_validation_failed')) ? eval($hook) : NULL;
-			$this->core->error( validation_errors() );
+			//$this->core->error( validation_errors() );
+            $this->template->assign('comment_errors', validation_errors());
 		}
 		else
 		{
