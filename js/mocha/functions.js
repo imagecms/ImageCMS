@@ -589,10 +589,15 @@ function show_help(item)
             if (type == 'html')
             {
                 var html_code = '';
+                //if (tinymce_loaded == false) { 
+                //    html_code = $('html_code').value;
+                //} else {
+                //    html_code = tinyMCE.get('html_code').getContent(); 
+                //}
 
-                if (tinymce_loaded == false) { 
-                    html_code = $('html_code').value;
-                } else {
+                try {
+                    html_code = $('html_code').value; 
+                }catch(e){
                     html_code = tinyMCE.get('html_code').getContent(); 
                 }
 
