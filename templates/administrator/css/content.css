@@ -389,7 +389,8 @@ color:red;
 	height:				100%;
 	left:					0;
 	top:					0;
-	background-color:		#a81900;
+	/* background-color:		#a81900; */
+	background-color:		#4C8A93;
 	-moz-border-radius:		4px;
 	-webkit-border-radius:	4px;
 	/*-webkit-box-shadow:		0 0 5px rgba(0, 0, 0, 0.5);*/
