@@ -7,10 +7,13 @@ div.rdTreeFirebug table {
 div.rdTreeFirebug  a.selected  {
 /*     background-color:#e0e0e0;
      color:#000; */
-	 background-color:#000070;
+	 background-color:#0684cc;
 	 color:#fff;
      padding:0px 4px;
 	 font-weight:bold;
+	 border-radius:2px;
+	 -webkit-border-radius:3px;
+	 -moz-border-radius:3px;
 }
 
 div.rdTreeFirebug a {

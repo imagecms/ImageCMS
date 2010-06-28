@@ -49,29 +49,26 @@ body {
 #desktopTitlebarWrapper {
 	position: relative;	
 	height: 44px;
-	overflow: hidden;
+	
 }
 
 #desktopTitlebar {
-	padding: 5px;
-    padding-left:3px;
-	height: 58px;
+	padding: 5px 0 5px 15px;
+	height: 38px;
 	background-position: left 0;
 }
 
 /* Navbar */
 
 #desktopNavbar {
-	background: #fff url(../images/bg1.png) repeat-x ;	
-    background-position: 0px 1px;
-    background-attachment:fixed;
+	background: url(../images/bg1.png) no-repeat left bottom;	
 	height: 30px;
 	margin: 0 0px;	
     width: 750px;
 }
 
 #desktopNavbar ul {	
-	padding: 0;
+	padding: 2px 0 0 20px;
 	margin: 0;
 	list-style: none;
 	font-size: 12px;
@@ -86,14 +83,16 @@ body {
 }	
 	
 #desktopNavbar ul li a {
-	padding: 6px 10px 6px 10px;	
+	padding: 5px 10px 5px 10px;	
 	color: #fff;
 	font-weight: normal;
+	text-shadow:-1px -1px 0 #047bb1;
 }
 
 #desktopNavbar ul li a:hover {
 	color: #fff;
   	background-image: url(../images/menu_bg.png); 
+	text-shadow:-1px -1px 0 #666;
 }
 
 #desktopNavbar ul li a.arrow-right, #desktopNavbar ul li a:hover.arrow-right {
@@ -103,9 +102,9 @@ body {
 } 
 
 #desktopNavbar li ul {
-	padding: 2px;
+	padding: 0px;
 	border: 1px solid #3f3f3f;
-	background: #fff url(../images/bg-dropdown.gif) repeat-y;
+	background: #f7f7f7;
 	position: absolute;
 	width: 164px;
 	left: -999em;
@@ -134,18 +133,20 @@ body {
 	line-height: 1px;
 	font-size: 1px;
 }
-
+#desktopNavbar li ul li { background:none}
 #desktopNavbar li ul li a {
 	position: relative;
-	padding: 1px 9px 1px 25px;
-	width: 130px;
+	padding: 1px 9px 1px 10px;
+	width: 145px;
 	color: #3f3f3f;
 	font-weight: normal;
+	text-shadow:none;
 }
 
 #desktopNavbar li ul li a:hover {
-	background: #6C98D9;
+	background: #0684cc;
 	color: #fff;
+	text-shadow:none;
 }
 
 #desktopNavbar li ul li a:hover .check {
@@ -263,7 +264,7 @@ li.divider {
 #pageWrapper {
 	position: relative;
 	overflow: hidden; /* This can be set to hidden or auto */
-	border-top: 1px solid #222;
+	border-top: 1px solid #666;
 }
 
 /* Footer */
@@ -430,10 +431,9 @@ li.divider {
 
 .panel-header {
 	position: relative;	
-	background: #f1f1f1 url(../images/bg-panel-header.gif) repeat-x;
-	height: 30px;
-	overflow: hidden;
-	border-bottom: 1px solid #d3d3d3;		
+	background: #f1f1f1 url(../images/tabs2.gif) repeat-x bottom;
+	height: 34px;
+	overflow: hidden;		
 }
 
 .panel-headerContent {
@@ -442,7 +442,7 @@ li.divider {
 
 .panel-headerContent.tabs {
 	background: url(../images/tabs.gif) repeat-x;
-	background-position: left -68px;	
+	background-position: left -70px;	
 }
 
 .panel-header h2 {
@@ -501,7 +501,7 @@ li.divider {
 	line-height: 1px;
 	font-size: 1px;
 	overflow: hidden;
-	background: #d1d1d1 url(../images/bg-handle-horizontal.gif) repeat-x;
+	background: #d1d1d1 url(../images/tabs2.gif) repeat-x left top;
 }
 
 .horizontalHandle.detached .handleIcon {
@@ -804,49 +804,58 @@ div.mochaToolbarWrapper.bottom {
 .toolbarTabs {	
 	padding: 0 5px 2px 2px;
 	background: url(../images/tabs.gif) repeat-x;
-	background-position: left -70px;
+	background-position: left -72px;
 	overflow: visible;
 }
 
 .tab-menu {	
 	padding-top: 1px;
 	list-style:	none;
-	margin: 0;
-	padding: 0;
-	line-height: 16px;
+	margin: 0 0 0 0px;
+	padding: 0 0 0 7px;
+	height:39px;
 	font-size: 11px;
+	background:url(../images/tabs2.gif) repeat-x;
 }
-
 .tab-menu li {
 	display: block;
 	float: left;
-	margin:	0 0 5px 0;
+	height:24px;
+	margin:	7px 5px 0 0;
 	cursor: pointer;	
-	background: url(../images/tabs.gif) repeat-x;
-	background-position: left -35px;
+	background: url(../images/tabs.gif) left top;
+	background-position: left -24px;
 }
-
-.tab-menu li.selected {
+.tab-menu li:hover {
+	background-position: left -48px;
+}
+.tab-menu li:hover a{
+	background-position: right -48px;
+}
+.tab-menu li.tab-selected {
 	background: url(../images/tabs.gif) repeat-x;
 	background-position: left 0;
 }
 
 .tab-menu li a {
+	font-size:12px;
 	display: block;
 	margin-left: 8px;
-	padding: 6px 16px 5px 10px;
+	height:22px;
+	padding: 2px 11px 0px 2px;
 	text-align: center;
 	font-weight: normal;
-	color: #141414;
+	color: #fff;
+	text-shadow:1px 1px 0 #aaa;
 	background: url(../images/tabs.gif) repeat-x;
-	background-position: right -35px;	
+	background-position: right -24px;	
 }
 
-.tab-menu li.selected a {
-	color: #141414;
-	font-weight: bold;	
+.tab-menu li.tab-selected a {
+	color: #fff;
 	background: url(../images/tabs.gif) repeat-x;
 	background-position: right 0;
+	text-shadow:none
 }
 
 /* Accordian */
@@ -1069,3 +1078,5 @@ div.mochaToolbarWrapper.bottom {
 	overflow: hidden;
 	visibility: hidden;
 }
+
+#spinner2 { position:absolute !important; left:665px; top:55px; padding:0 !important;}
