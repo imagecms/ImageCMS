@@ -4,14 +4,21 @@ if ( ! function_exists('gallery_latest_images'))
 {
     // Get gallery latest uploaded fotos
     // return array
-	function gallery_latest_images($count = 0)
+	function gallery_latest_images($count = 5, $order = 'latest')
     {
         $ci =& get_instance();
 
         if ($count > 0)
         {
             $ci->db->limit((int) $count);
-            $ci->db->order_by('uploaded', 'DESC');
+
+            if ($order == 'latest')
+                $ci->db->order_by('uploaded', 'DESC');
+            elseif($order=='random')
+                $ci->db->order_by('uploaded', 'RANDOM');
+            else
+                $ci->db->order_by('uploaded', 'DESC');
+
             $query = $ci->db->get('gallery_images');
 
             if ($query->num_rows() > 0)
