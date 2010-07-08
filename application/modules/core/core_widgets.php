@@ -113,6 +113,56 @@ class Core_Widgets extends Controller {
         }
     }
 
+    // Similar posts
+    public function similar_posts($widget=array())
+    {
+        $this->load->module('core');
+
+        if($this->core->core_data['data_type']=='page')
+        {
+            $sql=array();
+
+            // Get page title
+            $title=$this->core->page_content['title'];
+
+            // Clean title
+            $title=str_replace(array(',',';',':','-','+','=','@','.','/','\''),'',$title);
+            $titleParts=explode(' ',$title);
+
+            if (!empty($titleParts))
+            {
+                foreach($titleParts as $key=>$text)
+                {
+                    $text=trim($text);
+                    if ($text != '')
+                        $sql[]="title LIKE '%$text%'"; 
+                }
+
+                if (!empty($sql))
+                {
+                    $this->db->where('('.implode(' OR ',$sql).') AND id != '.$this->core->page_content['id']);
+
+                    $this->db->limit(5);
+                    $this->db->select('content.*');
+                    $this->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url');
+                    $this->db->where('post_status', 'publish');
+                    $this->db->where('publish_date <=', time()); 
+                    $this->db->where('lang', $this->config->item('cur_lang'));
+                    $query=$this->db->get('content');
+
+                    if ($query->num_rows() > 0)
+                    {
+                        $data=array(
+                            'pages'=>$query->result_array(),        
+                        );
+                        
+                        return $this->template->fetch('widgets/'.$widget['name'], $data); 
+                    }
+                }
+            }
+        }
+    }
+
     // Template functions
 	function display_tpl($file, $vars = array())
     {

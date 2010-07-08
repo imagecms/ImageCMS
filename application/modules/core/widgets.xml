@@ -7,4 +7,10 @@
         <method>recent_news</method>
     </widget>
 
+    <widget>
+        <title>Похожие темы</title>
+        <description>Выводит список страниц, которые связаны между собой заголовком.</description>
+        <method>similar_posts</method>
+    </widget>
+
 </widgets>
