@@ -1,10 +1,53 @@
+{literal}
+<style>
+    .ticket_comment {
+        width:90%;
+        position:relative;
+        margin-top:10px;
+        font-size:13px;
+    }
+
+
+    .ticket_comment_info0 {
+        background-color:#CEE2E6;
+        border-bottom:2px solid #A7B7BA; 
+        padding:3px;
+        height:22px;
+    }
+
+    .ticket_comment_info1 {
+        background-color:#B9DD51;
+        border-bottom:2px solid #A7B7BA; 
+        padding:3px;
+        height:22px;
+    }
+
+    .ticket_comment_author {
+        float:left;
+        font-size:16px;
+        font-weight:bold;
+        padding:3px;
+        font-size:13px;
+    }
+
+    .ticket_comment_date {
+        font-size:12px;
+        padding-top:4px;
+        font-size:13px;
+    }
+
+    .ticket_comment_text {
+        padding:3px;
+    }  
+</style>
+{/literal}
+
 <h3>Тема билета: {$ticket.theme}</h3>
 
 <?php
     $ci = get_instance();
     $ci->load->helper('typography');
 ?>
-
 
     <fieldset class="fieldset">
         <table cellspacing="1" cellpadding="4" border="0" width="100%">
