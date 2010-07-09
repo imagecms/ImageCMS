@@ -314,6 +314,69 @@ class User_support extends Controller {
         return $this->departments_arr[$id];
     }
 
+    public function _install()
+    {
+        if( $this->dx_auth->is_admin() == FALSE) exit;
+
+        // Create tables
+        $sql2="
+            INSERT INTO `support_departments` (`id`, `name`) VALUES
+            (1, 'Техническая поддержка');
+        ";
+
+        $this->db->query("
+            CREATE TABLE IF NOT EXISTS `support_comments` (
+              `id` int(11) NOT NULL AUTO_INCREMENT,
+              `ticket_id` int(11) NOT NULL,
+              `user_id` int(11) NOT NULL,
+              `user_status` int(11) NOT NULL,
+              `user_name` varchar(100) NOT NULL,
+              `text` varchar(500) NOT NULL,
+              `date` int(11) NOT NULL,
+              UNIQUE KEY `id` (`id`)
+            ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;        
+        ");
+        $this->db->query("
+            CREATE TABLE IF NOT EXISTS `support_departments` (
+              `id` int(11) NOT NULL AUTO_INCREMENT,
+              `name` varchar(45) DEFAULT NULL,
+              PRIMARY KEY (`id`)
+            ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;        
+        ");
+        $this->db->query("
+
+            CREATE TABLE IF NOT EXISTS `support_tickets` (
+              `id` int(11) NOT NULL AUTO_INCREMENT,
+              `user_id` int(11) DEFAULT NULL,
+              `last_comment_author` varchar(50) NOT NULL,
+              `text` text,
+              `theme` varchar(100) NOT NULL,
+              `department` int(11) NOT NULL,
+              `status` smallint(1) DEFAULT NULL,
+              `priority` varchar(15) DEFAULT NULL,
+              `date` int(11) DEFAULT NULL,
+              `updated` int(11) NOT NULL,
+              PRIMARY KEY (`id`)
+            ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;       
+        ");
+
+        $this->db->query($sql2);
+
+        $this->db->where('name', 'user_support');
+        $this->db->update('components', array('enabled' => 1));
+
+    }
+
+    public function _deinstall()
+    {
+        if( $this->dx_auth->is_admin() == FALSE) exit;
+
+        $this->load->dbforge();
+        $this->dbforge->drop_table('support_comments');
+        $this->dbforge->drop_table('support_tickets');
+        $this->dbforge->drop_table('support_departments');
+    }
+
     /**
      * Display template file
      */ 
