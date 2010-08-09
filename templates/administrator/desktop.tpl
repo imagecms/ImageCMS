@@ -110,7 +110,7 @@
 	<li>
 	<a class="returnFalse" href="#" onclick="ajax_div('page', base_url + 'admin/components/modules_table/'); return false;">Модули</a>
 		<ul>
-		<!-- <li><a id="add_page_link" href="#" onclick="ajax_div('page', base_url + 'admin/components/modules_table/'); return false;">Все Модули</a></li> -->
+		<li><a id="all_modules_link" href="#" onclick="ajax_div('page', base_url + 'admin/components/modules_table/'); return false;">Все Модули</a></li> 
 		<li><a id="mod_search_link" href="#" onclick="ajax_div('page', base_url + 'admin/mod_search/'); return false;">Поиск</a></li>
 	    <li class="divider returnFalse"><a href="#"></a></li>
 			{if $components}
