@@ -302,7 +302,7 @@ if (!function_exists('create_captcha'))
         //  Assign colors
         // -----------------------------------
 
-        $bg_color		= imagecolorallocate ($im, color('bg'), color('bg'), color('bg'));
+        $bg_color		= imagecolorallocatealpha ($im, color('bg'), color('bg'), color('bg'),0);
         $border_color	= imagecolorallocate ($im, 255, 255, 255);
         $text_color		= imagecolorallocate ($im, color('text'), color('text'), color('text'));
         $grid_color[]	= imagecolorallocate($im, color('grid'), color('grid'), color('grid'));

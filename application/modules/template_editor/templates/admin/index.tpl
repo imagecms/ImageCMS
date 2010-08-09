@@ -7,7 +7,7 @@
     </div>
 
     <div align="right" style="padding:5px 13px;">
-      <input type="button" class="button_green_130" value="Создать Файл" onclick="file_create_window('{$path}'); return false;" /> 
+      <input type="button" class="button_green_130" value="Создать Файл" onclick="file_create_window('{$path}');" /> 
     </div>
 </div>
 
@@ -16,11 +16,11 @@
 {foreach $files as $key=>$val}
     {if is_array($val)}
         <div style="float:left;padding:5px;width:100px;height:100px;" align="center">
-        <a href="javascript:ajax_div('page',base_url+'admin/components/cp/template_editor/renderDir/{$path}/{$key}'); return false;" title="{$key}">
+        <a href="javascript:ajax_div('page',base_url+'admin/components/cp/template_editor/renderDir/{$path}/{$key}');" title="{$key}">
             <img src="/application/modules/template_editor/templates/admin/images/folder-blue.png" align="center"/>
             </a>
             <div align="center" style="clear:both;">
-                <a href="javascript:ajax_div('page',base_url+'admin/components/cp/template_editor/renderDir/{$path}/{$key}'); return false;" title="{$key}">{truncate($key,15,'...')}</a>
+                <a href="javascript:ajax_div('page',base_url+'admin/components/cp/template_editor/renderDir/{$path}/{$key}');" title="{$key}">{truncate($key,15,'...')}</a>
             </div>
         </div>
     {else:}

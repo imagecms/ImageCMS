@@ -44,7 +44,7 @@ class Admin extends Controller {
         {
             // root link
             $url=site_url('admin/components/cp/template_editor/renderDir/');
-            $html.='<li><a href="javascript:ajax_div(\'page\',\''.$url.'\'); return false;">root / </a></li>';
+            $html.='<li><a href="javascript:ajax_div(\'page\',\''.$url.'\');">root / </a></li>';
 
             $path_segments='';
             for($i=0;$i<count($parts);$i++)
@@ -53,7 +53,7 @@ class Admin extends Controller {
                 {
                     $path_segments.=$parts[$i].'/';
                     $url= site_url('admin/components/cp/template_editor/renderDir/'.$path_segments); 
-                    $html.='<li><a href="javascript:ajax_div(\'page\',\''.$url.'\'); return false;">'.$parts[$i].' / </a></li>';
+                    $html.='<li><a href="javascript:ajax_div(\'page\',\''.$url.'\');">'.$parts[$i].' / </a></li>';
                 }
             }
         }
