@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/1914/tags/1.5.3/generator/lib/builder/sql/oracle
+END
+OracleDDLBuilder.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/!svn/ver/1914/tags/1.5.3/generator/lib/builder/sql/oracle/OracleDDLBuilder.php
+END
+OracleDataSQLBuilder.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/!svn/ver/1914/tags/1.5.3/generator/lib/builder/sql/oracle/OracleDataSQLBuilder.php
+END

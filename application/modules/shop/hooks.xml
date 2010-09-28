@@ -1,0 +1,57 @@
+<!-- Sample hooks file -->
+
+<hook id="core_is_seg_module">
+<![CDATA[
+if (!defined('DS'))
+{
+    define(DS,DIRECTORY_SEPARATOR);
+}
+
+// Init shop module by segment
+if ($segment == 'shop')
+{
+    // Full path to shop module dir with ending slash.
+    define(SHOP_DIR, PUBPATH.DIRECTORY_SEPARATOR.APPPATH.'modules'.DIRECTORY_SEPARATOR.'shop'.DIRECTORY_SEPARATOR);
+    
+    // Include Shop core.
+    require_once(SHOP_DIR . 'classes/ShopCore.php');
+
+    // Register shop autoloader.
+    spl_autoload_unregister(array('ShopCore','autoload'));
+    spl_autoload_register(array('ShopCore','autoload'));
+}
+]]>
+</hook>
+
+<hook id="admin_run_module_admin">
+<![CDATA[
+if (!defined('DS'))
+{
+    define(DS,DIRECTORY_SEPARATOR);
+}
+
+// Init shop module by segment
+// Full path to shop module dir with ending slash.
+define(SHOP_DIR, PUBPATH.DIRECTORY_SEPARATOR.APPPATH.'modules'.DIRECTORY_SEPARATOR.'shop'.DIRECTORY_SEPARATOR);
+
+// Include Shop core.
+require_once(SHOP_DIR . 'classes/ShopCore.php');
+
+// Register shop autoloader.
+spl_autoload_unregister(array('ShopCore','autoload'));
+spl_autoload_register(array('ShopCore','autoload'));
+
+]]>
+</hook>
+
+<hook id="admin_tpl_desktop_head">
+<![CDATA[
+// Register shop javascript files.
+echo '<script type="text/javascript" src="/application/modules/shop/admin/templates/assets/shopFunctions.js"></script>'."\n";
+echo '<link rel="stylesheet" href="/application/modules/shop/admin/templates/assets/shopAdmin.css" type="text/css" media="screen" />'."\n";
+
+echo '<script type="text/javascript" src="/application/modules/shop/admin/templates/assets/SqueezeBox/SqueezeBox.js"></script>'."\n";
+echo '<link rel="stylesheet" href="/application/modules/shop/admin/templates/assets/SqueezeBox/assets/SqueezeBox.css" type="text/css" media="screen" />'."\n\n";
+
+]]>
+</hook>
