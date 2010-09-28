@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/1914/tags/1.5.3/runtime/lib/connection
+END
+DebugPDO.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/1914/tags/1.5.3/runtime/lib/connection/DebugPDO.php
+END
+DebugPDOStatement.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/1914/tags/1.5.3/runtime/lib/connection/DebugPDOStatement.php
+END
+PropelPDO.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/1914/tags/1.5.3/runtime/lib/connection/PropelPDO.php
+END

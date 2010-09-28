@@ -1,0 +1,29 @@
+@charset "utf-8";
+/*---------------------------Contact Page Classes---------------------------------------*/
+#main .left{
+width:425px;
+
+}
+#main .right{
+float:right;
+width:470px;/* MOD */
+}
+#main .right #title{
+background:none;
+padding:0;
+font-size:30px;
+color:#3F9FFF;
+margin:-7px 0 0 0;
+padding-bottom:18px;
+}
+#main .right #detail{
+line-height:175%;
+
+margin-bottom:32px;
+padding-bottom:32px;
+font-size:13px;
+}
+#titleExt .right {
+width:auto;/* MOD */
+
+}

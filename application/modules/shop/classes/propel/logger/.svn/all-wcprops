@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/!svn/ver/1914/tags/1.5.3/runtime/lib/logger
+END
+BasicLogger.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/1914/tags/1.5.3/runtime/lib/logger/BasicLogger.php
+END
+MojaviLogAdapter.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/1914/tags/1.5.3/runtime/lib/logger/MojaviLogAdapter.php
+END

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="Shop" defaultIdMethod="native" baseClass="ShopBaseObject">
+    <table name="shop_category" phpName="SCategory">
+        <column name="id" type="INTEGER" required="true" autoIncrement="true" primaryKey="true"/>
+        <column name="name" type="varchar" size="255" required="true" />
+        <column name="url" type="varchar" size="255" required="true" />
+        <column name="description" type="longvarchar" required="false" />
+        <column name="meta_desc" type="varchar" size="255" required="true" />
+        <column name="meta_title" type="varchar" size="255" required="true" />
+        <column name="parent_id" type="integer" required="false"/>
+        <column name="position" type="integer" required="false"/>
+        <column name="full_path" type="varchar" size="1000" required="false"/> <!-- Full uri path to category -->
+        <column name="full_path_ids" type="varchar" size="250" required="false"/>
+
+        <index><index-column name="name" /></index>
+        <index><index-column name="url" /></index>
+        <index><index-column name="parent_id" /></index>
+        <index><index-column name="position" /></index>
+    </table>
+
+    <table name="shop_products" phpName="SProducts">
+        <column name="id" type="INTEGER" required="true" autoIncrement="true" primaryKey="true" />
+        <column name="name" type="varchar" size="500" required="true" />
+        <column name="url" type="varchar" size="255" required="true" />
+        <column name="price" type="float" required="true" phpType="string"/>
+        <column name="stock" type="integer"  required="false" />
+        <column name="number" type="varchar" size="255" required="false" /> <!-- Артикул -->
+        <column name="active" type="boolean" required="false" />
+        <column name="hit" type="boolean" required="false" />
+        <column name="brand_id" type="integer" required="false" />
+        <column name="category_id" type="integer" required="true" />
+        <column name="related_products" type="varchar" size="255" required="false" />
+        <column name="mainImage" type="boolean" required="false" />
+        <column name="smallImage" type="boolean" required="false" />
+        <column name="short_description" type="longvarchar" required="false" /> 
+        <column name="full_description" type="longvarchar" required="false" /> 
+        <column name="meta_title" type="varchar" size="255" required="false" />
+        <column name="meta_description" type="varchar" size="255" required="false" />
+        <column name="meta_keywords" type="varchar" size="255" required="false" />
+        <column name="created" type="integer" required="true" />
+        <column name="updated" type="integer" required="true" />
+
+        <foreign-key foreignTable="shop_brands" phpName="Brand">
+            <reference local="brand_id" foreign="id"/>
+        </foreign-key>
+
+        <foreign-key foreignTable="shop_category" phpName="MainCategory">
+            <reference local="category_id" foreign="id"/>
+        </foreign-key>
+
+        <index><index-column name="name" /></index>
+        <index><index-column name="url" /></index>
+
+    </table>
+
+    <table name="shop_brands" phpName="SBrands">
+        <column name="id" type="INTEGER" required="true" autoIncrement="true" primaryKey="true" />
+        <column name="name" type="varchar" size="500" required="true" />
+        <column name="url" type="varchar" size="255" required="true" />
+        <column name="description" type="longvarchar" required="false" /> 
+        <column name="meta_title" type="varchar" size="255" required="false" />
+        <column name="meta_description" type="varchar" size="255" required="false" />
+        <column name="meta_keywords" type="varchar" size="255" required="false" />
+
+        <index><index-column name="name" /></index>
+        <index><index-column name="url" /></index>
+    </table>
+
+    <table name="shop_product_variants" phpName="SProductVariants">
+        <column name="id" type="INTEGER" required="true" autoIncrement="true" primaryKey="true" /> 
+        <column name="product_id" type="INTEGER" required="true" /> 
+        <column name="name" type="varchar" size="500" required="true" />
+        <column name="price" type="float" required="true" phpType="string"/>
+        <column name="number" type="varchar" size="255" required="false" />
+        <column name="stock" type="integer"  required="false" /> 
+        <column name="position" type="integer"  required="false" /> 
+
+        <foreign-key foreignTable="shop_products" refPhpName="ProductVariant">
+            <reference local="product_id" foreign="id"/>
+        </foreign-key>
+
+        <index><index-column name="position" /></index>
+
+    </table>
+
+    <table name="shop_product_categories" isCrossRef="true">
+        <column name="product_id" type="INTEGER" primaryKey="true"/>
+        <column name="category_id" type="INTEGER" primaryKey="true"/> 
+
+        <foreign-key foreignTable="shop_products" phpName="Product">
+            <reference local="product_id" foreign="id"/>
+        </foreign-key>
+
+        <foreign-key foreignTable="shop_category" phpName="Category" onDelete="CASCADE">
+            <reference local="category_id" foreign="id"/>
+        </foreign-key>
+    </table>
+
+    <table name="shop_product_properties" phpName="SProperties">
+        <column name="id" type="INTEGER" required="true" autoIncrement="true" primaryKey="true" /> 
+        <column name="name" type="varchar" size="50" required="true" />
+        <column name="active" type="boolean"  required="false" />
+        <column name="show_in_compare" type="boolean"  required="false" />
+        <column name="position" type="INTEGER"  required="true" />
+        <column name="data" type="longvarchar"  required="false" />
+    </table>
+
+    <table name="shop_product_properties_categories" isCrossRef="true">
+        <column name="property_id" type="INTEGER" primaryKey="true"/>
+        <column name="category_id" type="INTEGER" primaryKey="true"/> 
+
+        <foreign-key foreignTable="shop_product_properties" phpName="Property">
+            <reference local="property_id" foreign="id"/>
+        </foreign-key>
+
+        <foreign-key foreignTable="shop_category" phpName="PropertyCategory" onDelete="CASCADE">
+            <reference local="category_id" foreign="id"/>
+        </foreign-key>
+    </table>
+
+    <table name="shop_product_properties_data" phpName="SProductPropertiesData">
+        <column name="property_id" type="INTEGER" primaryKey="true"/>
+        <column name="product_id" type="INTEGER" primaryKey="true"/>
+        <column name="value" type="varchar" size="500" required="true" />
+
+        <foreign-key foreignTable="shop_product_properties" >
+            <reference local="property_id" foreign="id"/>
+        </foreign-key>
+
+        <foreign-key foreignTable="shop_products" phpName="Product" onDelete="CASCADE">
+            <reference local="product_id" foreign="id"/>
+        </foreign-key>
+    </table>
+
+</database>

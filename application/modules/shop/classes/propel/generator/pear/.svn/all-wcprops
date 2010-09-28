@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/!svn/ver/1914/tags/1.5.3/generator/pear
+END
+pear-propel-gen.bat
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/1914/tags/1.5.3/generator/pear/pear-propel-gen.bat
+END
+pear-build.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/1914/tags/1.5.3/generator/pear/pear-build.xml
+END
+BuildPropelGenPEARPackageTask.php
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/1914/tags/1.5.3/generator/pear/BuildPropelGenPEARPackageTask.php
+END
+build.properties
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/1914/tags/1.5.3/generator/pear/build.properties
+END
+build-pear-package.xml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/1914/tags/1.5.3/generator/pear/build-pear-package.xml
+END
+pear-propel-gen
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/1914/tags/1.5.3/generator/pear/pear-propel-gen
+END

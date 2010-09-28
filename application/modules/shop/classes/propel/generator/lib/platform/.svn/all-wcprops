@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/1914/tags/1.5.3/generator/lib/platform
+END
+DefaultPlatform.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/1914/tags/1.5.3/generator/lib/platform/DefaultPlatform.php
+END
+MysqlPlatform.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/1914/tags/1.5.3/generator/lib/platform/MysqlPlatform.php
+END
+OraclePlatform.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/1914/tags/1.5.3/generator/lib/platform/OraclePlatform.php
+END
+PgsqlPlatform.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/1914/tags/1.5.3/generator/lib/platform/PgsqlPlatform.php
+END
+MssqlPlatform.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/1914/tags/1.5.3/generator/lib/platform/MssqlPlatform.php
+END
+Platform.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/1914/tags/1.5.3/generator/lib/platform/Platform.php
+END
+SqlitePlatform.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/1914/tags/1.5.3/generator/lib/platform/SqlitePlatform.php
+END

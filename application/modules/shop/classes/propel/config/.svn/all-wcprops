@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/!svn/ver/1914/tags/1.5.3/runtime/lib/config
+END
+PropelConfiguration.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/1914/tags/1.5.3/runtime/lib/config/PropelConfiguration.php
+END
+PropelConfigurationIterator.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/1914/tags/1.5.3/runtime/lib/config/PropelConfigurationIterator.php
+END
