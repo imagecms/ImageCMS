@@ -14,7 +14,10 @@
     {
         function is_true_array($array)
         {
-            if (count($array) > 0 AND is_array($array) )
+            if ($array == false)
+                return false;
+
+            if (sizeof($array) > 0)
             {
                 return TRUE;
             }

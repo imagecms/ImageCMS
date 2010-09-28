@@ -109,6 +109,7 @@
 
         <div class="form_text">Отображать страницы с других категорий:</div>
         <div class="form_input">
+
         <select name="fetch_pages[]"  multiple="multiple">
             {foreach $include_cats as $c}
             {if $c.id == $id}

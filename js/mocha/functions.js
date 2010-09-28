@@ -64,7 +64,6 @@ function change_page_status(page_id)
 		}).post();
 }
 
-//
 function ajax_div(div_id,act)
 {
     if ( $(div_id) != null  )
