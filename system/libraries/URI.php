@@ -152,7 +152,7 @@ class CI_URI {
 			$fc_path .= '?';
 		}
 
-		$parsed_uri = explode("/", $request_uri);
+		$parsed_uri = explode("/", $request_uri); 
 
 		$i = 0;
 		foreach(explode("/", $fc_path) as $segment)
@@ -169,6 +169,10 @@ class CI_URI {
 		{
 			$parsed_uri = '/'.$parsed_uri;
 		}
+
+        // Added by dev@imagecms.net
+        // Delete $_GET string from request.
+        $parsed_uri = str_replace(strstr($parsed_uri,"?"),"",$parsed_uri);
 
 		return $parsed_uri;
 	}
