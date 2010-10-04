@@ -62,7 +62,12 @@ class Category extends ShopController {
         if (ShopCore::$_GET['brand'] > 0)
             $criteria->add(SProductsPeer::BRAND_ID,(int) ShopCore::$_GET['brand'], Criteria::EQUAL);
 
-        $products = $this->model->getProducts($criteria);
+        //$products = $this->model->getProducts($criteria);
+        $products = SProductsQuery::create()
+            ->filterByCategory($this->model)
+            ->combinator()
+            ->find();
+
         $totalProducts = $this->model->countProducts($criteria);
 
         $this->render('category', array(
@@ -74,4 +79,4 @@ class Category extends ShopController {
     }
 }
 
-/* End of file shop.php */
+/* End of file category.php */

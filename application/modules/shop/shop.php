@@ -24,6 +24,7 @@ class Shop extends ShopController {
 	{
 
     }
+
 }
 
 /* End of file shop.php */
