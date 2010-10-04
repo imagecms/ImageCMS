@@ -30,7 +30,12 @@
       <!-- BEGIN SLOGAN -->
       <div id="slogan">Ваш <b>магазин</b> слоган</div>
     </div>
-    <div class="right" id="mycart"> <a href="cat.html " class="items">6 item</a><span class="prices">$ 3000.00 <a href="cart.html" class="image"><img src="{$SHOP_THEME}style/images/myitems.jpg" width="22" height="18" border="0" alt="mycart" /></a></span> </div>
+    <div class="right" id="mycart">
+        <a href="{shop_url('cart')}" class="items">{echo ShopCore::app()->SCart->totalItems()} item</a>
+        <span class="prices">$ {echo ShopCore::app()->SCart->totalPrice()} 
+            <a href="{shop_url('cart')}" class="image"><img src="{$SHOP_THEME}style/images/myitems.jpg" width="22" height="18" border="0" alt="mycart" /></a>
+        </span>
+    </div>
     <div class="sp"></div>
   </div>
   <!-- END HEADER -->

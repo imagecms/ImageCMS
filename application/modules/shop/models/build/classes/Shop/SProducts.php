@@ -97,4 +97,12 @@ class SProducts extends BaseSProducts {
         return true;
     }
 
+    public function getVariants()
+    {
+        return SProductVariantsQuery::create()
+            ->orderByPosition()
+            ->filterByProductId($this->getId())
+            ->find();
+    }
+
 } // SProducts

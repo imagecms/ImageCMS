@@ -85,9 +85,54 @@
         </div>
 
    
+    <a href="#"></a>
+
     <div class="right">
-        <div class="price">{echo $model->getPrice()} €</div>
-        <a href="cart.html" class="button1">{echo ShopCore::t('ДОБАВИТЬ В КОРЗИНУ')}</a>
+        <div class="price" id="price">
+            {echo $model->getPrice()} $
+        </div>
+        <form action="{shop_url('cart/add')}" name="productForm" method="post">
+        <input type="hidden" name="productId" value="{echo $model->getId()}" />
+        <input type="hidden" name="quantity" value="1" />
+
+        {if $model->countProductVariants() > 0}
+
+        <script> 
+        var variants_prices = new Array;
+        var price = '{echo $model->getPrice()}';
+        var valuta_znak = ' $';
+        {foreach $model->getVariants() as $variant}
+            variants_prices[{echo $variant->getId()}] = '{echo $variant->getPrice()}';
+        {/foreach}
+    
+        {literal}
+        function display_variant(variant)
+        {
+            if (variant == 0)
+            {
+                document.getElementById('price').innerHTML = price + valuta_znak;
+                return true;
+            }
+
+  	        document.getElementById('price').innerHTML = variants_prices[variant] + valuta_znak;
+        }
+        {/literal}
+  
+        </script> 
+
+        <div align="right">
+            <select name="variantId" onChange="display_variant(this.value)">
+            <option value="0">- Выберите вариант -</option>
+            {foreach $model->getVariants() as $variant}
+                <option value="{echo $variant->getId()}">{echo ShopCore::encode($variant->getName())}</option>
+            {/foreach}
+            </select>
+        </div>
+        {/if}
+
+            <a rel="nofollow" href="#" onClick="document.productForm.submit(); return false;" class="button1">{echo ShopCore::t('ДОБАВИТЬ В КОРЗИНУ')}</a>
+        {form_csrf()}
+        </form>
     </div>
     
 

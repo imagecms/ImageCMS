@@ -30,7 +30,6 @@ class ShopController extends Controller {
         $this->template->add_array($data);
 		$content = $this->template->fetch('file:'.$this->template_path.$name.'.tpl');
 
-        $this->output->enable_profiler(true);
         $this->template->assign('shop_content', $content);
         $this->template->display('file:'.$this->template_path.'main.tpl');
 
