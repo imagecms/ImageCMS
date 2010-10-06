@@ -153,7 +153,10 @@ CREATE TABLE `shop_product_properties`
 	`show_in_compare` TINYINT,
 	`position` INTEGER  NOT NULL,
 	`data` TEXT,
-	PRIMARY KEY (`id`)
+	PRIMARY KEY (`id`),
+	KEY `shop_product_properties_I_1`(`name`),
+	KEY `shop_product_properties_I_2`(`show_in_compare`),
+	KEY `shop_product_properties_I_3`(`position`)
 ) ENGINE=MyISAM;
 
 #-----------------------------------------------------------------------------
@@ -191,6 +194,7 @@ CREATE TABLE `shop_product_properties_data`
 	`product_id` INTEGER  NOT NULL,
 	`value` VARCHAR(500)  NOT NULL,
 	PRIMARY KEY (`property_id`,`product_id`),
+	KEY `shop_product_properties_data_I_1`(`value`),
 	CONSTRAINT `shop_product_properties_data_FK_1`
 		FOREIGN KEY (`property_id`)
 		REFERENCES `shop_product_properties` (`id`),
@@ -198,6 +202,89 @@ CREATE TABLE `shop_product_properties_data`
 	CONSTRAINT `shop_product_properties_data_FK_2`
 		FOREIGN KEY (`product_id`)
 		REFERENCES `shop_products` (`id`)
+		ON DELETE CASCADE
+) ENGINE=MyISAM;
+
+#-----------------------------------------------------------------------------
+#-- shop_delivery_methods
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `shop_delivery_methods`;
+
+
+CREATE TABLE `shop_delivery_methods`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(500)  NOT NULL,
+	`description` TEXT,
+	`price` FLOAT  NOT NULL,
+	`free_from` FLOAT  NOT NULL,
+	`enabled` TINYINT,
+	PRIMARY KEY (`id`),
+	KEY `shop_delivery_methods_I_1`(`name`),
+	KEY `shop_delivery_methods_I_2`(`enabled`)
+) ENGINE=MyISAM;
+
+#-----------------------------------------------------------------------------
+#-- shop_orders
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `shop_orders`;
+
+
+CREATE TABLE `shop_orders`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`key` VARCHAR(255)  NOT NULL,
+	`delivery_method` INTEGER,
+	`delivery_price` FLOAT,
+	`status` SMALLINT,
+	`paid` TINYINT,
+	`user_full_name` VARCHAR(255),
+	`user_email` VARCHAR(255),
+	`user_phone` VARCHAR(255),
+	`user_deliver_to` VARCHAR(500),
+	`user_comment` VARCHAR(1000),
+	`date_created` INTEGER,
+	`date_updated` INTEGER,
+	`user_ip` VARCHAR(255),
+	PRIMARY KEY (`id`),
+	KEY `shop_orders_I_1`(`key`),
+	KEY `shop_orders_I_2`(`status`),
+	KEY `shop_orders_I_3`(`date_created`),
+	INDEX `shop_orders_FI_1` (`delivery_method`),
+	CONSTRAINT `shop_orders_FK_1`
+		FOREIGN KEY (`delivery_method`)
+		REFERENCES `shop_delivery_methods` (`id`)
+		ON DELETE SET NULL
+) ENGINE=MyISAM;
+
+#-----------------------------------------------------------------------------
+#-- shop_orders_products
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `shop_orders_products`;
+
+
+CREATE TABLE `shop_orders_products`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`order_id` INTEGER  NOT NULL,
+	`product_id` INTEGER  NOT NULL,
+	`variant_id` INTEGER  NOT NULL,
+	`product_name` VARCHAR(255),
+	`variant_name` VARCHAR(255),
+	`price` FLOAT,
+	`quantity` INTEGER,
+	PRIMARY KEY (`id`),
+	KEY `shop_orders_products_I_1`(`order_id`),
+	INDEX `shop_orders_products_FI_1` (`product_id`),
+	CONSTRAINT `shop_orders_products_FK_1`
+		FOREIGN KEY (`product_id`)
+		REFERENCES `shop_products` (`id`),
+	CONSTRAINT `shop_orders_products_FK_2`
+		FOREIGN KEY (`order_id`)
+		REFERENCES `shop_orders` (`id`)
 		ON DELETE CASCADE
 ) ENGINE=MyISAM;
 

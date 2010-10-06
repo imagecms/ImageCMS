@@ -170,6 +170,11 @@ abstract class BaseSProducts extends ShopBaseObject  implements Persistent
 	protected $collSProductPropertiesDatas;
 
 	/**
+	 * @var        array SOrderProducts[] Collection to store aggregation of SOrderProducts objects.
+	 */
+	protected $collSOrderProductss;
+
+	/**
 	 * @var        array SCategory[] Collection to store aggregation of SCategory objects.
 	 */
 	protected $collCategorys;
@@ -932,6 +937,8 @@ abstract class BaseSProducts extends ShopBaseObject  implements Persistent
 
 			$this->collSProductPropertiesDatas = null;
 
+			$this->collSOrderProductss = null;
+
 		} // if (deep)
 	}
 
@@ -1108,6 +1115,14 @@ abstract class BaseSProducts extends ShopBaseObject  implements Persistent
 				}
 			}
 
+			if ($this->collSOrderProductss !== null) {
+				foreach ($this->collSOrderProductss as $referrerFK) {
+					if (!$referrerFK->isDeleted()) {
+						$affectedRows += $referrerFK->save($con);
+					}
+				}
+			}
+
 			$this->alreadyInSave = false;
 
 		}
@@ -1215,6 +1230,14 @@ abstract class BaseSProducts extends ShopBaseObject  implements Persistent
 
 				if ($this->collSProductPropertiesDatas !== null) {
 					foreach ($this->collSProductPropertiesDatas as $referrerFK) {
+						if (!$referrerFK->validate($columns)) {
+							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+						}
+					}
+				}
+
+				if ($this->collSOrderProductss !== null) {
+					foreach ($this->collSOrderProductss as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
 							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
 						}
@@ -1633,6 +1656,12 @@ abstract class BaseSProducts extends ShopBaseObject  implements Persistent
 			foreach ($this->getSProductPropertiesDatas() as $relObj) {
 				if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
 					$copyObj->addSProductPropertiesData($relObj->copy($deepCopy));
+				}
+			}
+
+			foreach ($this->getSOrderProductss() as $relObj) {
+				if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
+					$copyObj->addSOrderProducts($relObj->copy($deepCopy));
 				}
 			}
 
@@ -2157,6 +2186,140 @@ abstract class BaseSProducts extends ShopBaseObject  implements Persistent
 	}
 
 	/**
+	 * Clears out the collSOrderProductss collection
+	 *
+	 * This does not modify the database; however, it will remove any associated objects, causing
+	 * them to be refetched by subsequent calls to accessor method.
+	 *
+	 * @return     void
+	 * @see        addSOrderProductss()
+	 */
+	public function clearSOrderProductss()
+	{
+		$this->collSOrderProductss = null; // important to set this to NULL since that means it is uninitialized
+	}
+
+	/**
+	 * Initializes the collSOrderProductss collection.
+	 *
+	 * By default this just sets the collSOrderProductss collection to an empty array (like clearcollSOrderProductss());
+	 * however, you may wish to override this method in your stub class to provide setting appropriate
+	 * to your application -- for example, setting the initial array to the values stored in database.
+	 *
+	 * @return     void
+	 */
+	public function initSOrderProductss()
+	{
+		$this->collSOrderProductss = new PropelObjectCollection();
+		$this->collSOrderProductss->setModel('SOrderProducts');
+	}
+
+	/**
+	 * Gets an array of SOrderProducts objects which contain a foreign key that references this object.
+	 *
+	 * If the $criteria is not null, it is used to always fetch the results from the database.
+	 * Otherwise the results are fetched from the database the first time, then cached.
+	 * Next time the same method is called without $criteria, the cached collection is returned.
+	 * If this SProducts is new, it will return
+	 * an empty collection or the current collection; the criteria is ignored on a new object.
+	 *
+	 * @param      Criteria $criteria optional Criteria object to narrow the query
+	 * @param      PropelPDO $con optional connection object
+	 * @return     PropelCollection|array SOrderProducts[] List of SOrderProducts objects
+	 * @throws     PropelException
+	 */
+	public function getSOrderProductss($criteria = null, PropelPDO $con = null)
+	{
+		if(null === $this->collSOrderProductss || null !== $criteria) {
+			if ($this->isNew() && null === $this->collSOrderProductss) {
+				// return empty collection
+				$this->initSOrderProductss();
+			} else {
+				$collSOrderProductss = SOrderProductsQuery::create(null, $criteria)
+					->filterBySProducts($this)
+					->find($con);
+				if (null !== $criteria) {
+					return $collSOrderProductss;
+				}
+				$this->collSOrderProductss = $collSOrderProductss;
+			}
+		}
+		return $this->collSOrderProductss;
+	}
+
+	/**
+	 * Returns the number of related SOrderProducts objects.
+	 *
+	 * @param      Criteria $criteria
+	 * @param      boolean $distinct
+	 * @param      PropelPDO $con
+	 * @return     int Count of related SOrderProducts objects.
+	 * @throws     PropelException
+	 */
+	public function countSOrderProductss(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+	{
+		if(null === $this->collSOrderProductss || null !== $criteria) {
+			if ($this->isNew() && null === $this->collSOrderProductss) {
+				return 0;
+			} else {
+				$query = SOrderProductsQuery::create(null, $criteria);
+				if($distinct) {
+					$query->distinct();
+				}
+				return $query
+					->filterBySProducts($this)
+					->count($con);
+			}
+		} else {
+			return count($this->collSOrderProductss);
+		}
+	}
+
+	/**
+	 * Method called to associate a SOrderProducts object to this object
+	 * through the SOrderProducts foreign key attribute.
+	 *
+	 * @param      SOrderProducts $l SOrderProducts
+	 * @return     void
+	 * @throws     PropelException
+	 */
+	public function addSOrderProducts(SOrderProducts $l)
+	{
+		if ($this->collSOrderProductss === null) {
+			$this->initSOrderProductss();
+		}
+		if (!$this->collSOrderProductss->contains($l)) { // only add it if the **same** object is not already associated
+			$this->collSOrderProductss[]= $l;
+			$l->setSProducts($this);
+		}
+	}
+
+
+	/**
+	 * If this collection has already been initialized with
+	 * an identical criteria, it returns the collection.
+	 * Otherwise if this SProducts is new, it will return
+	 * an empty collection; or if this SProducts has previously
+	 * been saved, it will retrieve related SOrderProductss from storage.
+	 *
+	 * This method is protected by default in order to keep the public
+	 * api reasonable.  You can provide public methods for those you
+	 * actually need in SProducts.
+	 *
+	 * @param      Criteria $criteria optional Criteria object to narrow the query
+	 * @param      PropelPDO $con optional connection object
+	 * @param      string $join_behavior optional join type to use (defaults to Criteria::LEFT_JOIN)
+	 * @return     PropelCollection|array SOrderProducts[] List of SOrderProducts objects
+	 */
+	public function getSOrderProductssJoinSOrders($criteria = null, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		$query = SOrderProductsQuery::create(null, $criteria);
+		$query->joinWith('SOrders', $join_behavior);
+
+		return $this->getSOrderProductss($query, $con);
+	}
+
+	/**
 	 * Clears out the collCategorys collection
 	 *
 	 * This does not modify the database; however, it will remove any associated objects, causing
@@ -2329,11 +2492,17 @@ abstract class BaseSProducts extends ShopBaseObject  implements Persistent
 					$o->clearAllReferences($deep);
 				}
 			}
+			if ($this->collSOrderProductss) {
+				foreach ((array) $this->collSOrderProductss as $o) {
+					$o->clearAllReferences($deep);
+				}
+			}
 		} // if ($deep)
 
 		$this->collProductVariants = null;
 		$this->collShopProductCategoriess = null;
 		$this->collSProductPropertiesDatas = null;
+		$this->collSOrderProductss = null;
 		$this->aBrand = null;
 		$this->aMainCategory = null;
 	}
