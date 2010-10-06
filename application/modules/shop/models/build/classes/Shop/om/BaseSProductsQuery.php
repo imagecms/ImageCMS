@@ -72,6 +72,10 @@
  * @method     SProductsQuery rightJoinSProductPropertiesData($relationAlias = null) Adds a RIGHT JOIN clause to the query using the SProductPropertiesData relation
  * @method     SProductsQuery innerJoinSProductPropertiesData($relationAlias = null) Adds a INNER JOIN clause to the query using the SProductPropertiesData relation
  *
+ * @method     SProductsQuery leftJoinSOrderProducts($relationAlias = null) Adds a LEFT JOIN clause to the query using the SOrderProducts relation
+ * @method     SProductsQuery rightJoinSOrderProducts($relationAlias = null) Adds a RIGHT JOIN clause to the query using the SOrderProducts relation
+ * @method     SProductsQuery innerJoinSOrderProducts($relationAlias = null) Adds a INNER JOIN clause to the query using the SOrderProducts relation
+ *
  * @method     SProducts findOne(PropelPDO $con = null) Return the first SProducts matching the query
  * @method     SProducts findOneOrCreate(PropelPDO $con = null) Return the first SProducts matching the query, or a new SProducts object populated from the query conditions when no match is found
  *
@@ -1012,6 +1016,70 @@ abstract class BaseSProductsQuery extends ModelCriteria
 		return $this
 			->joinSProductPropertiesData($relationAlias, $joinType)
 			->useQuery($relationAlias ? $relationAlias : 'SProductPropertiesData', 'SProductPropertiesDataQuery');
+	}
+
+	/**
+	 * Filter the query by a related SOrderProducts object
+	 *
+	 * @param     SOrderProducts $sOrderProducts  the related object to use as filter
+	 * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+	 *
+	 * @return    SProductsQuery The current query, for fluid interface
+	 */
+	public function filterBySOrderProducts($sOrderProducts, $comparison = null)
+	{
+		return $this
+			->addUsingAlias(SProductsPeer::ID, $sOrderProducts->getProductId(), $comparison);
+	}
+
+	/**
+	 * Adds a JOIN clause to the query using the SOrderProducts relation
+	 * 
+	 * @param     string $relationAlias optional alias for the relation
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    SProductsQuery The current query, for fluid interface
+	 */
+	public function joinSOrderProducts($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		$tableMap = $this->getTableMap();
+		$relationMap = $tableMap->getRelation('SOrderProducts');
+		
+		// create a ModelJoin object for this join
+		$join = new ModelJoin();
+		$join->setJoinType($joinType);
+		$join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+		if ($previousJoin = $this->getPreviousJoin()) {
+			$join->setPreviousJoin($previousJoin);
+		}
+		
+		// add the ModelJoin to the current object
+		if($relationAlias) {
+			$this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+			$this->addJoinObject($join, $relationAlias);
+		} else {
+			$this->addJoinObject($join, 'SOrderProducts');
+		}
+		
+		return $this;
+	}
+
+	/**
+	 * Use the SOrderProducts relation SOrderProducts object
+	 *
+	 * @see       useQuery()
+	 * 
+	 * @param     string $relationAlias optional alias for the relation,
+	 *                                   to be used as main alias in the secondary query
+	 * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+	 *
+	 * @return    SOrderProductsQuery A secondary query class using the current class as primary query
+	 */
+	public function useSOrderProductsQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+	{
+		return $this
+			->joinSOrderProducts($relationAlias, $joinType)
+			->useQuery($relationAlias ? $relationAlias : 'SOrderProducts', 'SOrderProductsQuery');
 	}
 
 	/**

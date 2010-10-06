@@ -103,6 +103,10 @@
         <column name="show_in_compare" type="boolean"  required="false" />
         <column name="position" type="INTEGER"  required="true" />
         <column name="data" type="longvarchar"  required="false" />
+
+        <index><index-column name="name" /></index>
+        <index><index-column name="show_in_compare" /></index>
+        <index><index-column name="position" /></index>
     </table>
 
     <table name="shop_product_properties_categories" isCrossRef="true">
@@ -130,6 +134,66 @@
         <foreign-key foreignTable="shop_products" phpName="Product" onDelete="CASCADE">
             <reference local="product_id" foreign="id"/>
         </foreign-key>
+
+        <index><index-column name="value" /></index>
+    </table>
+
+    <table name="shop_delivery_methods" phpName="SDeliveryMethods">
+        <column name="id" type="integer" required="true" autoIncrement="true" primaryKey="true" />
+        <column name="name" type="varchar" size="500" required="true" />
+        <column name="description" type="longvarchar" required="false" />
+        <column name="price" type="float" required="true" phpType="string"/> 
+        <column name="free_from" type="float" required="true" phpType="string"/> 
+        <column name="enabled" type="boolean" required="false" />
+
+        <index><index-column name="name" /></index>
+        <index><index-column name="enabled" /></index>
+    </table>
+
+    <table name="shop_orders" phpName="SOrders" >
+        <column name="id" type="integer" required="true" autoIncrement="true" primaryKey="true" />
+        <column name="key" type="varchar" size="255" required="true" />
+        <column name="delivery_method" type="integer"  />
+        <column name="delivery_price" type="float" phpType="string" />
+        <column name="status" type="smallint" />
+        <column name="paid" type="boolean" />
+        <column name="user_full_name" type="varchar" size="255" />
+        <column name="user_email" type="varchar"  size="255" />
+        <column name="user_phone" type="varchar"  size="255" />
+        <column name="user_deliver_to" type="varchar" size="500" />
+        <column name="user_comment" type="varchar"  size="1000" />
+        <column name="date_created" type="integer" />
+        <column name="date_updated" type="integer" />
+        <column name="user_ip" type="varchar" size="255" />
+
+        <foreign-key foreignTable="shop_delivery_methods" onDelete="SETNULL">
+            <reference local="delivery_method" foreign="id" />
+        </foreign-key>
+
+        <index><index-column name="key" /></index>
+        <index><index-column name="status" /></index>
+        <index><index-column name="date_created" /></index>
+    </table>
+
+    <table name="shop_orders_products" phpName="SOrderProducts">
+        <column name="id" type="integer" required="true" autoIncrement="true" primaryKey="true" />
+        <column name="order_id" type="integer"  required="true"/>
+        <column name="product_id" type="integer" required="true" />
+        <column name="variant_id" type="integer" required="true" />
+        <column name="product_name" type="varchar" size="255" />
+        <column name="variant_name" type="varchar" size="255"/>
+        <column name="price" type="float" phpType="string" />
+        <column name="quantity" type="integer" />
+
+        <foreign-key foreignTable="shop_products">
+            <reference local="product_id" foreign="id"/>
+        </foreign-key>
+
+        <foreign-key foreignTable="shop_orders" onDelete="CASCADE">
+            <reference local="order_id" foreign="id"/>
+        </foreign-key>
+
+        <index><index-column name="order_id" /></index>
     </table>
 
 </database>

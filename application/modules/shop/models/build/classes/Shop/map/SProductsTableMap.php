@@ -70,7 +70,8 @@ class SProductsTableMap extends TableMap {
     $this->addRelation('ProductVariant', 'SProductVariants', RelationMap::ONE_TO_MANY, array('id' => 'product_id', ), null, null);
     $this->addRelation('ShopProductCategories', 'ShopProductCategories', RelationMap::ONE_TO_MANY, array('id' => 'product_id', ), null, null);
     $this->addRelation('SProductPropertiesData', 'SProductPropertiesData', RelationMap::ONE_TO_MANY, array('id' => 'product_id', ), 'CASCADE', null);
-    $this->addRelation('Category', 'SCategory', RelationMap::MANY_TO_MANY, array(), 'CASCADE', null);
+    $this->addRelation('SOrderProducts', 'SOrderProducts', RelationMap::ONE_TO_MANY, array('id' => 'product_id', ), null, null);
+    $this->addRelation('Category', 'SCategory', RelationMap::MANY_TO_MANY, array(), null, null);
 	} // buildRelations()
 
 } // SProductsTableMap

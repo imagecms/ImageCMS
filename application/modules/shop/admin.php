@@ -136,7 +136,7 @@ $labelsCode = "
 $formCode .= '
     <div class="form_text">{echo $model->getLabel(\''.$val.'\')}:</div>
     <div class="form_input">
-        <input type="text" name="'.$className.'['.$val.']" value="" class="textbox_long" />
+        <input type="text" name="'.$val.'" value="" class="textbox_long" />
     </div>
     <div class="form_overflow"></div>
 '."\n";

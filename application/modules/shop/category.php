@@ -57,18 +57,16 @@ class Category extends ShopController {
                 ->findPks($brandsInCategory);
         }
 
-        $criteria = new Criteria;
-
-        if (ShopCore::$_GET['brand'] > 0)
-            $criteria->add(SProductsPeer::BRAND_ID,(int) ShopCore::$_GET['brand'], Criteria::EQUAL);
-
         //$products = $this->model->getProducts($criteria);
-        $products = SProductsQuery::create()
-            ->filterByCategory($this->model)
-            ->combinator()
-            ->find();
+        $products = SProductsQuery::create();
+        $products = $products->filterByCategory($this->model);
+        
+        if (ShopCore::$_GET['brand'] > 0)
+            $products = $products->filterByBrandId((int) ShopCore::$_GET['brand']);
 
-        $totalProducts = $this->model->countProducts($criteria);
+        $products = $products->find();
+
+        $totalProducts = $this->model->countProducts();
 
         $this->render('category', array(
             'model'=>$this->model,
