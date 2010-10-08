@@ -104,36 +104,35 @@ if($ci->config->item('is_installed') === TRUE AND file_exists(APPPATH.'modules/i
 {/if}
 
 <p>
-<form method="post" action="{$BASE_URL}admin/login/" id="login_form">
-{$lang_login}: <br/>  <input type="text" name="login" class="textbox_long" />{$login_error}<br/>
-{$lang_password}: <br/> <input type="password" name="password" class="textbox_long" />{$password_error}<br/>
+    <form method="post" action="{$BASE_URL}admin/login/" id="login_form">
+    {$lang_login}: <br/>  <input type="text" name="login" class="textbox_long" />{$login_error}<br/>
+    {$lang_password}: <br/> <input type="password" name="password" class="textbox_long" />{$password_error}<br/>
 
-	{if $use_captcha == "1"}
-		{$lang_captcha}:<br/>
-		<div id="captcha">
-			{$cap_image}
-		</div>
-		<a href="#" onclick="ajax_div('captcha','{$BASE_URL}/admin/login/update_captcha');return false;">Обновить код</a>
-		<br/><br/>
-		<input type="text" class="textbox_long" size="30" name="captcha" />{$captcha_error}<br/>
-	{/if}
+        {if $use_captcha == "1"}
+            {$lang_captcha}:<br/>
+            <div id="captcha">
+                {$cap_image}
+            </div>
+            <a href="#" onclick="ajax_div('captcha','{$BASE_URL}/admin/login/update_captcha');return false;">Обновить код</a>
+            <br/><br/>
+            <input type="text" class="textbox_long" size="30" name="captcha" />{$captcha_error}<br/>
+        {/if}
 
-<br/>
-<input type="submit" name="button"   class="button" value="{$lang_submit}" />
-{form_csrf()}
-</form>
+    <br/>
+    <input type="submit" name="button"   class="button" value="{$lang_submit}" />
+    {form_csrf()}
+    </form>
 </p>
 
 <div style="right:0;bottom:0;position:absolute;font-size:11px;padding:3px;">
-<span style="color:silver;font-size:12px; font-weight:bold;">Поддерживаются следующие браузеры:</span>
-<ul class="b_list"> 
-    <li><a href="http://www.mozilla.com/" target="_blank">Firefox</a></li> 
-    <li><a href="http://www.opera.com/browser/download/" target="_blank">Opera</a></li>
-    <li><a href="http://www.apple.com/safari/" target="_blank">Safari</a></li>
-    <li><a href="http://www.google.com/chrome/" target="_blank">Google Chrome</a></li>
-</ul>
-
-<div>
+    <span style="color:silver;font-size:12px; font-weight:bold;">Поддерживаются следующие браузеры:</span>
+    <ul class="b_list"> 
+        <li><a href="http://www.mozilla.com/" target="_blank">Firefox</a></li> 
+        <li><a href="http://www.opera.com/browser/download/" target="_blank">Opera</a></li>
+        <li><a href="http://www.apple.com/safari/" target="_blank">Safari</a></li>
+        <li><a href="http://www.google.com/chrome/" target="_blank">Google Chrome</a></li>
+    </ul>
+</div>
 
 </div>
 

@@ -102,11 +102,11 @@ class Cart extends ShopController {
         $order->setDeliveryMethod($deliveryMethod);
         $order->setDeliveryPrice($deliveryPrice);
         $order->setStatus(0);
-        $order->setUserFullName(ShopCore::encode($_POST['userInfo']['fullName']));
-        $order->setUserEmail(ShopCore::encode($_POST['userInfo']['email']));
-        $order->setUserPhone(ShopCore::encode($_POST['userInfo']['phone']));
-        $order->setUserDeliverTo(ShopCore::encode($_POST['userInfo']['deliverTo']));
-        $order->setUserComment(ShopCore::encode($_POST['userInfo']['commentText']));
+        $order->setUserFullName($_POST['userInfo']['fullName']);
+        $order->setUserEmail($_POST['userInfo']['email']);
+        $order->setUserPhone($_POST['userInfo']['phone']);
+        $order->setUserDeliverTo($_POST['userInfo']['deliverTo']);
+        $order->setUserComment($_POST['userInfo']['commentText']);
         $order->setDateCreated(time());
         $order->setDateUpdated(time());
         $order->setUserIp($this->input->ip_address());

@@ -217,3 +217,93 @@ function filterPropertiesByCategory(selectBox)
 {
     ajaxShop('properties/index/' + selectBox.value); 
 }
+
+/***** Orders list functions *****/
+function confirm_delete_order(id,status)
+{
+    if (!status)
+    {
+        status = 0;
+    }
+
+    alertBox.confirm('<h1>Удалить заказ ID: ' + id + '? </h1>', {onComplete:
+        function(returnvalue) {
+            if(returnvalue)
+            {
+                $('orderId' + id).setStyle('border','2px solid #D95353'); 
+                start_ajax();
+                var req = new Request.HTML({
+                    method: 'post',
+                    url: shop_url + 'orders/delete',
+                    evalResponse: true,
+                    onComplete: function(response) {  
+                        $('orderId' + id).dispose();
+
+                        if ($$('.orderItem')=='')
+                        {
+                            ajaxShop('orders/index?status=' + status);
+                        }
+                        stop_ajax();
+                    }
+                }).post({'orderId': id});
+            }
+        }
+    });
+}
+
+function moveToInProgress(id)
+{
+    $('orderId' + id).setStyle('border','2px solid #B0D736'); 
+    start_ajax();
+    var req = new Request.HTML({
+        method: 'post',
+        url: shop_url + 'orders/changeStatus',
+        evalResponse: true,
+        onComplete: function(response) {  
+            $('orderId' + id).dispose();
+            stop_ajax();
+            if ($$('.orderItem')=='')
+            {
+                ajaxShop('orders/index');
+            }
+        }
+    }).post({'orderId': id,'status': 'progress'});
+
+}
+
+function moveToCompleted(id)
+{
+    $('orderId' + id).setStyle('border','2px solid #B0D736'); 
+    start_ajax();
+    var req = new Request.HTML({
+        method: 'post',
+        url: shop_url + 'orders/changeStatus',
+        evalResponse: true,
+        onComplete: function(response) {  
+            $('orderId' + id).dispose();
+            stop_ajax();
+            if ($$('.orderItem')=='')
+            {
+                ajaxShop('orders/index?status=1');
+            }
+        }
+    }).post({'orderId': id,'status': 'completed'});
+}
+
+function changePaid(el, id)
+{
+    start_ajax();
+    var req = new Request.HTML({
+        method: 'post',
+        url: shop_url + 'orders/changePaid',
+        onComplete: function(responseTree, responseElements, responseHTML, responseJavaScript) {  
+            if (responseHTML == 1)
+            {
+                el.src = '/application/modules/shop/admin/templates/assets/images/credit-card.png';
+            }else{
+                el.src = '/application/modules/shop/admin/templates/assets/images/credit-card-silver.png';
+            }
+            stop_ajax();
+        }
+    }).post({'orderId': id});
+}
