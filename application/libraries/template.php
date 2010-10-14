@@ -14,7 +14,8 @@ class Template extends Mabilis {
 	{
 		$this->CI =& get_instance();
 
-        ($hook = get_hook('lib_template_init')) ? eval($hook) : NULL;
+        if (function_exists('get_hook'))
+            ($hook = get_hook('lib_template_init')) ? eval($hook) : NULL;
 
 		//$this->compile_dir = BASEPATH.'cache/templates_c/';
 		//$this->template_dir = TEMPLATES_PATH.$this->CI->config->item('template').'/';
