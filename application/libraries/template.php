@@ -21,15 +21,13 @@ class Template extends Mabilis {
 		//$this->template_dir = TEMPLATES_PATH.$this->CI->config->item('template').'/';
 		$this->modules_template_dir = TEMPLATES_PATH.'modules/';
 
-        $cnf = $this->CI->load->config('template_conf', TRUE);
-
         $config = array(
             'tpl_path'        => TEMPLATES_PATH.$this->CI->config->item('template').'/',
-            'compile_path'    => $cnf['compile_path'],
-            'force_compile'   => $cnf['force_compile'],
-            'compiled_ttl'    => $cnf['compiled_ttl'],
-            'compress_output' => $cnf['compress_output'],
-            'use_filemtime'   => $cnf['use_filemtime']
+            'compile_path'    => $this->CI->config->item('tpl_compile_path'),
+            'force_compile'   => $this->CI->config->item('tpl_force_compile'),
+            'compiled_ttl'    => $this->CI->config->item('tpl_compiled_ttl'),
+            'compress_output' => $this->CI->config->item('tpl_compress_output'),
+            'use_filemtime'   => $this->CI->config->item('tpl_use_filemtime')
             );
 
         ($hook = get_hook('lib_template_set_conf')) ? eval($hook) : NULL;
