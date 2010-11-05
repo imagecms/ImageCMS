@@ -30,7 +30,6 @@ class Lib_init {
 		// $CI->load->library('mem_cache','','cache');
 		$CI->load->library('cache');
 
-
 		if($native_session == TRUE)
 		{
 			// Sessions engine should run on cookies to minimize opportunities

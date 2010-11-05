@@ -27,8 +27,15 @@ function &DB($params = '', $active_record_override = FALSE)
 	// Load the DB config file if a DSN string wasn't passed
 	if (is_string($params) AND strpos($params, '://') === FALSE)
 	{
-		include(APPPATH.'config/database'.EXT);
-		
+        // Modified by dev@imagecms.net
+        // Changes: we don't need to load database.php, becouse db connection settings are now located in config.php file.
+        $ci = get_instance();
+        $DB_Config = $ci->config->item('database');
+
+        $active_group = $DB_Config['active_group'];
+
+        $db = $DB_Config;
+ 
 		if ( ! isset($db) OR count($db) == 0)
 		{
 			show_error('No database connection settings were found in the database config file.');

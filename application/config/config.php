@@ -34,27 +34,20 @@
 | The $active_record variables lets you determine whether or not to load
 | the active record class
  */
-
-if (isset($load_db_settings) AND $load_db_settings == TRUE)
-{
-    $active_group = "default";
-    $active_record = TRUE;
-
-    $db['default']['hostname'] = "localhost";
-    $db['default']['username'] = "root";
-    $db['default']['password'] = "mysqlpass";
-    $db['default']['database'] = "imagecms";
-    $db['default']['dbdriver'] = "mysql";
-    $db['default']['dbprefix'] = "";
-    $db['default']['pconnect'] = TRUE;
-    $db['default']['db_debug'] = TRUE;
-    $db['default']['cache_on'] = FALSE;
-    $db['default']['cachedir'] = "";
-    $db['default']['char_set'] = "utf8";
-    $db['default']['dbcollat'] = "utf8_general_ci";
-
-    return;
-}
+$config['database']['active_group']        = 'default';
+$config['database']['active_record']       = 'true';
+$config['database']['default']['hostname'] = "localhost";
+$config['database']['default']['username'] = "root";
+$config['database']['default']['password'] = "mysqlpass";
+$config['database']['default']['database'] = "imagecms";
+$config['database']['default']['dbdriver'] = "mysql";
+$config['database']['default']['dbprefix'] = "";
+$config['database']['default']['pconnect'] = TRUE;
+$config['database']['default']['db_debug'] = TRUE;
+$config['database']['default']['cache_on'] = FALSE;
+$config['database']['default']['cachedir'] = "";
+$config['database']['default']['char_set'] = "utf8";
+$config['database']['default']['dbcollat'] = "utf8_general_ci";
 
 /*
 |--------------------------------------------------------------------------
