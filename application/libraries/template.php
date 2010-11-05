@@ -10,7 +10,7 @@ class Template extends Mabilis {
 
     public $template_vars = array();
 
-	function Template()
+	public function Template()
 	{
 		$this->CI =& get_instance();
 
@@ -47,7 +47,7 @@ class Template extends Mabilis {
         ($hook = get_hook('lib_template_init_end')) ? eval($hook) : NULL;
 	}
 
-    function assign($key, $value)
+    public function assign($key, $value)
     {
         $this->template_vars[$key] = $value;
     }
@@ -58,7 +58,7 @@ class Template extends Mabilis {
 	 * @arr array
 	 * @return bool
 	 */
-	function add_array($arr)
+	public function add_array($arr)
     {
 		if (count($arr) > 0)
 		{
@@ -75,13 +75,13 @@ class Template extends Mabilis {
 	 * @access public
 	 * @return true
 	 */
-	function show($file = FALSE, $load_main = TRUE, $data = array())
+	public function show($file = FALSE, $load_main = TRUE, $data = array())
 	{
         ($hook = get_hook('lib_template_show')) ? eval($hook) : NULL;
 
 		$this->assign('BASE_URL', site_url()); //Base URL
 
-        if (count($data) > 0) $this->add_array($data);
+        if (sizeof($data) > 0) $this->add_array($data);
 
 	    if ($file != FALSE)
 		{
@@ -98,17 +98,17 @@ class Template extends Mabilis {
         echo $result;
     }
 
-    function clear_all_assign()
+    public function clear_all_assign()
     {
         $this->template_vars = array();
     }
 
-	function get_var($var)
+	public function get_var($var)
 	{
         return $this->template_vars[$var];
 	}
 
-    function run_info()
+    public function run_info()
     {
         ($hook = get_hook('lib_template_run_info')) ? eval($hook) : NULL;
 
@@ -128,7 +128,7 @@ class Template extends Mabilis {
 	 *
 	 * @access public
 	 */
-	function read($file = FALSE, $data = array())
+	public function read($file = FALSE, $data = array())
     {
         if (count($data) > 0)
         {
@@ -139,20 +139,14 @@ class Template extends Mabilis {
 		return $this->view($file.'.tpl', $this->template_vars, TRUE);
     }
  
-    function fetch($file = FALSE, $data = array())
+    public function fetch($file = FALSE, $data = array())
     {
-        if (count($data) > 0)
-        {
-            $this->add_array($data);
-        }
-
-		$this->assign('BASE_URL',site_url()); //Base URL
-        return $this->view($file.'.tpl', $this->template_vars, TRUE);
+        return $this->read($file, $data);
     }
 
-    function display($file, $data = array())
+    public function display($file, $data = array())
     {
-        if (count($data) > 0)
+        if (sizeof($data) > 0)
         {
             $this->add_array($data);
         }
@@ -201,7 +195,7 @@ class Template extends Mabilis {
         return $position;
     }
 
-    private function splitTplFiles($tpl)
+    public function splitTplFiles($tpl)
     {
         $result_before = '';
         $result_after = '';
@@ -211,7 +205,7 @@ class Template extends Mabilis {
         $result_js_after = '';
 
         // split css files
-        if (count($this->_css_files) > 0)
+        if (sizeof($this->_css_files) > 0)
         {
             foreach ($this->_css_files as $url => $pos)
             {
@@ -228,7 +222,7 @@ class Template extends Mabilis {
         }
 
         // split js files
-        if (count($this->_js_files) > 0)
+        if (sizeof($this->_js_files) > 0)
         {
             foreach ($this->_js_files as $url => $pos)
             {
@@ -246,7 +240,7 @@ class Template extends Mabilis {
 
 
         // split css code
-        if (count($this->_css_code ) > 0)
+        if (sizeof($this->_css_code ) > 0)
         {
             foreach ($this->_css_code as $key => $code)
             {
@@ -263,7 +257,7 @@ class Template extends Mabilis {
         }
 
         // split js code
-        if (count($this->_js_code ) > 0)
+        if (sizeof($this->_js_code ) > 0)
         {
             foreach ($this->_js_code as $key => $code)
             {

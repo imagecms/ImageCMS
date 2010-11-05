@@ -6,7 +6,7 @@
  * Simple template engine for Image CMS based on regular expressions search and replace. 
  *
  * author: dev@imagecms.net
- * version: 0.2 Beta PHP5
+ * version: 0.3 PHP5
  ***************************************************/
 
 class Mabilis {
@@ -14,7 +14,7 @@ class Mabilis {
     private $compiler = NULL;
     private $config = NULL;
 
-    function __construct(&$config = array())
+    public function __construct(&$config = array())
     {
         $this->load_config($config);
     }
@@ -50,7 +50,7 @@ class Mabilis {
 
         if (file_exists($compiled_file))
         {            
-            include ( $compiled_file ); 
+            include ($compiled_file);
         }else{
             print '<p>Error: '.$compiled_file. ' does not exists!</p>';
         }
@@ -96,12 +96,12 @@ class Mabilis {
         return TRUE;
     }
 
-    function set_config_value($param, $value)
+    public function set_config_value($param, $value)
     {
         $this->config->$param = $value;
     }
 
-    function get_config_value($param)
+    public function get_config_value($param)
     {
         if (isset($this->config->$param))
         {
@@ -112,7 +112,7 @@ class Mabilis {
     /**
      * Load compiler class if not loaded yet
      */ 
-    private function load_compiler()
+    public function load_compiler()
     {
         if ($this->compiler == NULL)
         {
