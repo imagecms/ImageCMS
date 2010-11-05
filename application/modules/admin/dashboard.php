@@ -81,22 +81,22 @@ class Dashboard extends Controller{
         }
         else
         {
-            $this->config->load('api');
-            
             if ($on_local !== TRUE)
             {
-                $api_news = $this->_curl_post($this->config->item('imagecms_latest_news'));
-            }
+                $this->config->load('api');
 
-            if (count(unserialize($api_news['result'])) > 1 AND $api_news['code'] == '200')
-            {
-                $this->template->assign('api_news', unserialize($api_news['result']));
-                $this->cache->store('api_news_cache', unserialize($api_news['result'])); 
+                $api_news = $this->_curl_post($this->config->item('imagecms_latest_news'));
+
+                if (count(unserialize($api_news['result'])) > 1 AND $api_news['code'] == '200')
+                {
+                    $this->template->assign('api_news', unserialize($api_news['result']));
+                    $this->cache->store('api_news_cache', unserialize($api_news['result']));
+                }
+                else
+                {
+                    $this->cache->store('api_news_cache', 'false');
+                }
             }
-            else
-            {
-                $this->cache->store('api_news_cache', 'false'); 
-            } 
         }
 
         // Get system upgrade info
