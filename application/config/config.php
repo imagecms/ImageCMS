@@ -76,9 +76,7 @@ $config['static_base_url'] = $config['base_url'];
 |
 */
 $config['index_page'] = "";
-
 $config['is_installed'] = TRUE;
-
 $config['rebuild_hooks_tree'] = TRUE;
 /*
 |--------------------------------------------------------------------------
@@ -98,6 +96,24 @@ $config['rebuild_hooks_tree'] = TRUE;
 */
 $config['uri_protocol']	= "REQUEST_URI";
 
+/*
+|--------------------------------------------------------------------------
+| Template Config
+|--------------------------------------------------------------------------
+|
+| 'tpl_compile_path'		Path 	to store compiled template files
+| 'tpl_force_compile'	Compile template file each request
+| 'tpl_compiled_ttl'	        Time to live for compiled file
+| 'tpl_compress_output'   Use gzip to compress output
+| 'tpl_use_filemtime'			
+|
+*/
+// Template engine settings
+$config['tpl_compile_path']    = BASEPATH.'cache/templates_c/';
+$config['tpl_force_compile']   = TRUE;
+$config['tpl_compiled_ttl']    = 84600;
+$config['tpl_compress_output'] = FALSE;
+$config['tpl_use_filemtime']   = TRUE;
 /*
 |--------------------------------------------------------------------------
 | URL suffix
