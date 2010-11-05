@@ -53,7 +53,7 @@
                                        
                                         <h2>Комментарии</h2> 
                                         
-                                        {widget('latest_comments')}
+                                        {widget('latest_comments', 30)}
 
                                         <div class="separator"></div>
                                        
@@ -68,7 +68,7 @@
 
                                         <h2>Облако Тегов</h2> 
                                         
-                                        {widget('tags_cloud')}
+                                        {widget('tags_cloud', 30)}
                                         
                                      </div><!-- sidebar END -->
                                      
