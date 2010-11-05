@@ -77,7 +77,7 @@ $config['static_base_url'] = $config['base_url'];
 */
 $config['index_page'] = "";
 $config['is_installed'] = TRUE;
-$config['rebuild_hooks_tree'] = TRUE;
+$config['rebuild_hooks_tree'] = true;
 /*
 |--------------------------------------------------------------------------
 | URI PROTOCOL
@@ -110,7 +110,7 @@ $config['uri_protocol']	= "REQUEST_URI";
 */
 // Template engine settings
 $config['tpl_compile_path']    = BASEPATH.'cache/templates_c/';
-$config['tpl_force_compile']   = TRUE;
+$config['tpl_force_compile']   = true;
 $config['tpl_compiled_ttl']    = 84600;
 $config['tpl_compress_output'] = FALSE;
 $config['tpl_use_filemtime']   = TRUE;
