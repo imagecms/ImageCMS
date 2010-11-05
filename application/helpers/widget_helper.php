@@ -18,7 +18,7 @@
             $ci =& get_instance(); 
 
             $ci->db->limit(1);
-            $query = $ci->db->get_where('widgets', array('name' => $name));
+            $query = $ci->db->limit(1)->get_where('widgets', array('name' => $name));
 
             if ($query->num_rows() == 1)
             {

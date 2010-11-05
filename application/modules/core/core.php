@@ -21,7 +21,7 @@ class Core extends Controller {
 	public function __construct()
 	{
         parent::Controller();
-        //$this->output->enable_profiler(TRUE);
+        $this->output->enable_profiler(TRUE);
         $this->_load_languages();
 	}
 
@@ -150,7 +150,7 @@ class Core extends Controller {
         $this->load->library('DX_Auth');
   
         // Are we on main page?
-        if ($cat_path == FALSE AND $data_type != 'bridge')
+        if ($cat_path === FALSE AND $data_type != 'bridge')
         {
              $data_type = 'main';
 
@@ -358,7 +358,7 @@ class Core extends Controller {
                 $title = $page['meta_title'] == NULL ? $page['title'] : $page['meta_title'];
                 //$this->set_meta_tags($title, $page['keywords'], $page['description']);
 
-               ($hook = get_hook('core_set_main_page_meta')) ? eval($hook) : NULL; 
+               ($hook = get_hook('core_set_main_page_meta')) ? eval($hook) : NULL;
 
                 $this->set_meta_tags($this->settings['site_title'], $this->settings['site_keywords'], $this->settings['site_description']);
 
@@ -385,7 +385,7 @@ class Core extends Controller {
         //$this->load->library('typography');
         ($hook = get_hook('core_disp_page_and_cat')) ? eval($hook) : NULL;
 
-        if ($page['full_text'] == '')
+        if (empty($page['full_text']))
         {
             $page['full_text'] = $page['prev_text'];
         }
@@ -400,7 +400,7 @@ class Core extends Controller {
             $page_tpl = $page['full_tpl'];
         }
 
-        $page_tpl == '' ? $page_tpl = 'page_full' : TRUE;
+        empty($page_tpl) ? $page_tpl = 'page_full' : TRUE;
 
         $this->template->add_array(array(
             'page' => $page,
@@ -413,6 +413,7 @@ class Core extends Controller {
 
         $this->db->set('showed', 'showed + 1', FALSE);
         $this->db->where('id', $page['id']);
+        $this->db->limit(1);
         $this->db->update('content');
 
         if (!$category['main_tpl'])
@@ -643,12 +644,12 @@ class Core extends Controller {
 		$url_segs = $CI->uri->segment_array();
 
         // Deny uri access to all methods like _somename 
-        if ( count(explode('/_', $CI->uri->uri_string())) > 1 )
+        if (count(explode('/_', $CI->uri->uri_string())) > 1)
         {
             $this->error($error_text, FALSE);
         }
 
-        if ( count($url_segs) > 0)
+        if (count($url_segs) > 0)
         {
 		    foreach($url_segs as $segment)
 		    {
@@ -695,7 +696,6 @@ class Core extends Controller {
 		$this->template->assign('error_text', lang('error_page_404'));
 		$this->template->show('404');
 		//$this->template->show();
-
         exit;
     }
 
@@ -792,7 +792,7 @@ class Core extends Controller {
                 }
                 else
                 {
-                    // If method noy found display 404 error.
+                    // If method not found display 404 error.
                     $this->error_404();
                 }
             }
@@ -818,7 +818,7 @@ class Core extends Controller {
 		$my_role = $this->dx_auth->get_role_id();
 	
 		if($this->dx_auth->is_admin() === TRUE)
-		$access = TRUE;
+		    $access = TRUE;
 
 		// Check roles access
 		if ($access != TRUE)
@@ -924,7 +924,6 @@ class Core extends Controller {
                 $title .= ' '.$this->settings['delimiter'].' '.$this->cat_content['name']; 
             }
 
-        
             if (is_array($title))
             {
                 $n_title = '';
