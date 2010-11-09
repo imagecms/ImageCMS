@@ -155,8 +155,9 @@ class Mem_cache extends Memcache
      */
     function delete_all()
     {
-    	$this->flush();
+        $this->flush();
     }
+
 
 
     function generatekey($key)
