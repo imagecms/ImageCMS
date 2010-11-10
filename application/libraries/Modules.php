@@ -63,6 +63,14 @@ class Modules
                 // Fix for imagecms. dev@imagecms.net
                 $args = $args[1];
 				//$output = call_user_func_array(array($class, $method), array_slice($args, 1));
+                if (is_string($args)) {
+                    $args = (array) $args;
+                }
+                if (!is_array($args))
+                {
+                    $args=array();
+                }
+
 				$output = call_user_func_array(array($class, $method), $args);
 				$buffer = ob_get_clean();
 				return ($output) ? $output : $buffer;
