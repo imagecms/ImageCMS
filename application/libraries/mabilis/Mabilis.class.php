@@ -90,7 +90,7 @@ class Mabilis {
         if ($this->config == NULL)
         {
             include 'Config.class.php';
-            $this->config =& new Mabilis_Config($config);
+            $this->config = new Mabilis_Config($config);
         }
 
         return TRUE;

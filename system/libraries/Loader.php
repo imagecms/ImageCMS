@@ -221,7 +221,7 @@ class CI_Loader {
 		$CI->db = '';
 		
 		// Load the DB class
-		$CI->db =& DB($params, $active_record);	
+		$CI->db = DB($params, $active_record);
 		
 		// Assign the DB object to any existing models
 		$this->_ci_assign_to_models();
@@ -242,7 +242,7 @@ class CI_Loader {
 			$this->database();
 		}
 		
-		$CI =& get_instance();
+		$CI = get_instance();
 
 		// for backwards compatibility, load dbforge so we can extend dbutils off it
 		// this use is deprecated and strongly discouraged
@@ -252,7 +252,7 @@ class CI_Loader {
 		require_once(BASEPATH.'database/drivers/'.$CI->db->dbdriver.'/'.$CI->db->dbdriver.'_utility'.EXT);
 		$class = 'CI_DB_'.$CI->db->dbdriver.'_utility';
 
-		$CI->dbutil =& new $class();
+		$CI->dbutil = new $class();
 
 		$CI->load->_ci_assign_to_models();
 	}

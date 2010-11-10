@@ -8,6 +8,12 @@ class Lib_init {
 
         log_message('debug', "Lib_init Class Initialized");
 
+        // Set timezone
+        if (function_exists('date_default_timezone_set'))
+        {
+            date_default_timezone_set($CI->config->item('default_time_zone'));
+        }
+
         if (file_exists(APPPATH.'modules/install/install.php') AND $CI->config->item('is_installed') !== TRUE)
         {
             if ($CI->uri->segment(1) != 'install')
