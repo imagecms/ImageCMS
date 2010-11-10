@@ -74,7 +74,9 @@
             </div>
          </div>
          {/if}
-		<textarea id="prev_text" class="mceEditor" name="prev_text" rows="15" cols="180"  style="width:700px;height:400px;">{htmlspecialchars($prev_text)}</textarea>
+		<textarea id="prev_text" class="mceEditor" name="prev_text" rows="15" cols="180"  style="width:700px;height:400px;">
+		    {encode($prev_text)}
+		</textarea>
 
         <div id="page_header"> Полное содержание:</div>
          {if $orig_page}
@@ -101,7 +103,9 @@
             </div>
          </div>
          {/if}
-		<textarea id="full_text" class="mceEditor" name="full_text" rows="15" cols="180" style="width:700px;height:400px;">{htmlspecialchars($full_text)}</textarea>
+		<textarea id="full_text" class="mceEditor" name="full_text" rows="15" cols="180" style="width:700px;height:400px;">
+		    {encode($full_text)}
+		</textarea>
     </div>
 
 	<h4 title="Настройки">Настройки</h4>

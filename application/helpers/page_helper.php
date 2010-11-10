@@ -63,3 +63,10 @@ if ( ! function_exists('category_pages'))
     }
 }
 
+if (!function_exists('encode'))
+{
+    function encode($string)
+    {
+        return htmlspecialchars($string, ENT_QUOTES, 'utf-8');
+    }
+}
