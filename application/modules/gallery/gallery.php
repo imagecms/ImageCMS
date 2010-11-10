@@ -112,7 +112,7 @@ class Gallery extends Controller {
                         $prev = $album['images'][$n - 1];
                         
                         $current_pos = $n + 1;
-                    } 
+                    }
 
                     $n++;
                 }
