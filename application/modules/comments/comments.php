@@ -9,7 +9,6 @@
 class Comments extends Controller {
 
     public $period             = 5;      // Post comment period in minutes. If user is unregistered, check will be made by ip address. 0 - To disable this method.
-    public $default_lang       = 'russian';
     public $can_comment        = 0;      // Possible values: 0 - all, 1 - registered only.
     public $max_comment_length = 500;    // Max. comments text lenght.
     public $use_captcha        = FALSE;  // Possible values TRUE/FALSE;
@@ -45,17 +44,7 @@ class Comments extends Controller {
         $this->load->helper('cookie');
 
         // Load language
-        $lang = $this->config->item('language');
-        $lang_file = @realpath(dirname(__FILE__)).'/language/'.$lang.'_lang.php';
-
-        if (file_exists($lang_file))
-        {
-            $this->load->language($lang);  
-        }
-        else
-        {
-            $this->load->language($this->default_lang);
-        }
+        $this->load->language('comments');
 
         // Build comments only for pages with comments_status 1
         if ($this->core->core_data['data_type'] == 'page' AND $this->core->page_content['comments_status'] == 1 )
