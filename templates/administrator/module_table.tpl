@@ -8,11 +8,11 @@
                     <th axis="string">Модуль</th>
                     <th axis="string">Описание</th>
                     <th axis="string">URL</th>
-                    <th axis="date">Версия</th>
-                    <th axis="string">Автозагрузка</th>
-                    <th axis="string">URL доступ</th>
-                    <th axis="string"></th>
-                    <th axis="string"></th>
+                    <th axis="string">Версия</th>
+                    <th>Автозагрузка</th>
+                    <th>URL доступ</th>
+                    <th></th>
+                    <th></th>
                 </thead>
                 <tbody>
             {foreach $installed as $item}
