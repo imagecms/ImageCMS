@@ -427,7 +427,9 @@ function delete_group(id)
 });
 }
 
-function save_pages_position()
+// Save pages position and refresh list.
+// Called in administrator/pages.tpl
+function save_pages_position(redirectUrl)
 {
     var pages_pos = new Array();     
 
@@ -442,11 +444,17 @@ function save_pages_position()
             }  
             });
 
+    start_ajax();
+
     var req = new Request.HTML({
        method: 'post',
        url: base_url + 'admin/pages/save_positions/',
        onRequest: function() { },
-       onComplete: function(response) { }
+       onComplete: function(response) {
+           // Reload pages list
+           ajax_div('page', redirectUrl);
+           stop_ajax();
+       }
     }).post({'pages_pos': pages_pos });
 }
 
