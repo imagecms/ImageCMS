@@ -235,7 +235,7 @@ class Admin_search extends Controller {
                 $result .= '<div class="form_overflow"></div>';
             }
 
-        echo htmlentities_to_xml($result);
+        echo $result;
         echo '<input type="hidden" value="'.$group_id.'" name="use_cfcm_group" />';
     }
 
