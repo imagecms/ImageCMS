@@ -246,7 +246,6 @@ class CI_Pagination {
 	function create_links_ajax()
 	{
         $CI =& get_instance(); 
-        $CI->load->helper('my_html');
 
 		// If our item count or per-page total is zero there is no need to continue.
 		if ($this->total_rows == 0 OR $this->per_page == 0)

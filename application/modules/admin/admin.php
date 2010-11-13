@@ -128,7 +128,6 @@ class Admin extends Controller {
             $contents = ob_get_contents();
             ob_end_clean();
 
-            $this->load->helper('my_html');
             echo $contents;
             exit;
         }

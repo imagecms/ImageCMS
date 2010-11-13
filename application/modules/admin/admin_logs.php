@@ -13,7 +13,6 @@ class Admin_logs extends Controller {
 
 		$this->load->library('lib_admin');
 		$this->load->library('pagination');
-        $this->load->helper('my_html');
 		$this->lib_admin->init_settings();
 
         cp_check_perm('logs_view');

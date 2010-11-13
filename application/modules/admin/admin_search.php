@@ -13,7 +13,6 @@ class Admin_search extends Controller {
 
 		$this->load->library('lib_admin');
 		$this->lib_admin->init_settings();
-        $this->load->helper('my_html');
         cp_check_perm('cp_page_search');
 	}
 

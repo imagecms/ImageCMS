@@ -19,8 +19,6 @@ class Admin extends Controller {
 
 		$this->load->module('forms');
 		$this->load->library('form_validation');
-		$this->load->helper('my_html');
-
         $this->_set_forms_config();
 	}
 
