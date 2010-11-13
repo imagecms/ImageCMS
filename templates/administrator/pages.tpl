@@ -35,7 +35,8 @@
 				<th axis="date">Создано</th>
 				<th style="width:80px;" width="80px">
                 Позиция
-                <img src="{$THEME}/images/save.png" align="absmiddle" style="cursor:pointer;width:22px;height:22px;" onclick="save_pages_position(); return false;" /> 
+                <img src="{$THEME}/images/save.png" align="absmiddle" style="cursor:pointer;width:22px;height:22px;"
+                onclick="save_pages_position('{echo $CI->uri->uri_string()}'); return false;" /> 
                 </th>
 				<th axis="string">Автор</th>
 				<th>Статус</th>
