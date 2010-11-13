@@ -12,7 +12,6 @@ class Dashboard extends Controller{
 
 		$this->load->library('lib_admin');
 		$this->lib_admin->init_settings();
-        $this->load->helper('my_html');
 	}
 
 	public function index()
