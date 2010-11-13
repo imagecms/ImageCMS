@@ -130,6 +130,7 @@
                 border-right:3px solid #A2C449;
                 border-bottom:3px solid #A2C449;
                 opacity: 0.9;
+                z-index:999;
             }
             #filter_block_container {
                 display:none;
