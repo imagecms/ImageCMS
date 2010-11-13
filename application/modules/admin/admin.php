@@ -129,7 +129,7 @@ class Admin extends Controller {
             ob_end_clean();
 
             $this->load->helper('my_html');
-            echo htmlentities_to_xml($contents);
+            echo $contents;
             exit;
         }
 
