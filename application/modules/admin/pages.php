@@ -327,11 +327,11 @@ class Pages extends Controller{
 					{
 						if($page_roles[$i2]['role_id'] == $roles[$i]['id'])
 						{
-							$roles[$i]['selected'] = 'selected="selected"';
+							$roles[$i]['selected'] = 'selected="true"';
 						}
 						if($page_roles[$i2]['role_id'] == '0')
 						{
-							$this->template->assign('all_selected','selected="selected"');
+							$this->template->assign('all_selected','selected="true"');
 						}
 					}
 				}

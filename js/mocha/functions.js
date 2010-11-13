@@ -6,7 +6,7 @@ function ajax_me(form_id)
 
         $(form_id).getElements('input[type=submit]').each(function(number){
             number.disabled = true;
-        }); 
+        });
 
 		var req = new Request.HTML({
 			method: $(form_id).get('method'),
@@ -441,7 +441,7 @@ function save_pages_position(redirectUrl)
                 val = el.value;
                 new_pos = id + '_' + val;
                 pages_pos.include( new_pos );
-            }  
+            }
             });
 
     start_ajax();

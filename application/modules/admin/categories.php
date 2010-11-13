@@ -328,7 +328,7 @@ class Categories extends Controller {
         ));
 
         echo 'Категория: <select name="category" ONCHANGE="change_comments_status();" id="category_selectbox">
-                <option value="0" selected="selected">Нет</option>';
+                <option value="0">Нет</option>';
         
         $this->template->show('cats_select', FALSE);
 
