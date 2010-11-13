@@ -148,7 +148,7 @@ class Core extends Controller {
         ($hook = get_hook('core_load_auth_lib')) ? eval($hook) : NULL;
 
         $this->load->library('DX_Auth');
-  
+
         // Are we on main page?
         if ($cat_path === FALSE AND $data_type != 'bridge')
         {
