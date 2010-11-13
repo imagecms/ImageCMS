@@ -238,11 +238,11 @@ class Components extends Controller{
 		if ($query->num_rows() >= 1)
 		{
 			$data = array(
-				'enabled' => $this->input->post('status'),
+				'enabled' => (int)$this->input->post('status'),
 				//'identif' => $this->input->post('identif'),
 				'identif' => $com['name'],
-				'autoload' => $this->input->post('autoload'),
-				'in_menu' => $this->input->post('in_menu')
+				'autoload' => (int)$this->input->post('autoload'),
+				'in_menu' => (int)$this->input->post('in_menu')
 			);
 
 			$this->db->where('name',$component);

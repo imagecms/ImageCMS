@@ -114,7 +114,7 @@
 		<div class="form_text"><b>Ключевые слова</b><br/>Если не указаны:</div>
 		<div class="form_input">
 		<select name="create_keywords">
-			<option value="auto" {if $create_keywords == "auto"}selected="selected"{/if}>Формировать атоматически</option>>
+			<option value="auto" {if $create_keywords == "auto"}selected="selected"{/if}>Формировать атоматически</option>
 			<option value="empty" {if $create_keywords == "empty"}selected="selected"{/if}>Оставить пустым</option>
 		</select>
 		</div>

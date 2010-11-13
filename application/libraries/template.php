@@ -30,7 +30,10 @@ class Template extends Mabilis {
             'use_filemtime'   => $this->CI->config->item('tpl_use_filemtime')
             );
 
-        ($hook = get_hook('lib_template_set_conf')) ? eval($hook) : NULL;
+        if (function_exists('get_hook'))
+        {
+            ($hook = get_hook('lib_template_set_conf')) ? eval($hook) : NULL;
+        }
 
         $this->load_config($config);
 

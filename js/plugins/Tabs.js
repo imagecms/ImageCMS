@@ -46,7 +46,7 @@ var SimpleTabs = new Class({
 		onAdded: Class.empty,
 		getContent: null,
 		ajaxOptions: {},
-		cache: true
+		cache: false
 	},
 
 	/**
@@ -68,7 +68,7 @@ var SimpleTabs = new Class({
 		this.wrapper = new Element('div', {'class': this.options.classWrapper});
 
 		this.element.getElements(this.options.selector).each(function(el) {
-			var content = el.get('href') || (this.options.getContent ? this.options.getContent.call(this, el) : el.getNext());
+ 			var content = el.get('href') || (this.options.getContent ? this.options.getContent.call(this, el) : el.getNext());
 			this.addTab(el.innerHTML, el.title || el.innerHTML, content);
 		}, this);
 		this.element.empty().adopt(this.menu, this.wrapper);
@@ -86,7 +86,7 @@ var SimpleTabs = new Class({
 	addTab: function(text, title, content) {
 		var grab = $(content);
 		var container = (grab || new Element('div'))
-			.setStyle('display', 'none')
+			.setStyle('display', 'none')   
 			.addClass(this.options.classContainer)
 			.inject(this.wrapper);
 		var pos = this.tabs.length;

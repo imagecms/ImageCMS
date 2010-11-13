@@ -35,10 +35,10 @@
 
         <div style="padding:3px;"></div>
         <div id="fast_category_list" style="float:left;">
-            Категория: <select name="category" ONCHANGE="change_comments_status();" id="category_selectbox">
-                <option value="0" selected="selected">Нет</option>
-                   { $this->view("cats_select.tpl", $this->template_vars ); }
-                </select> 
+            Категория: <select name="category" onchange="change_comments_status();" id="category_selectbox">
+                <option value="0">Нет</option>
+                   { $this->view("cats_select.tpl", $this->template_vars ) }
+                </select>
         </div>
 
         <img  src="{$THEME}/images/plus2.png" style="padding-left:5px;padding-top:2px;cursor:pointer;float:left;" onclick="show_fast_add_cat();" title="Создать категорию" />
@@ -152,7 +152,7 @@
 
 		<div class="form_text"></div>
 		<div class="form_input">
-			<label><input name="comments_status"  value="1" {if $comments_status == 1} checked="checked" {/if} type="checkbox" /> Разрешить комментирование</label>
+			<label><input type="checkbox" name="comments_status" value="1" {if $comments_status == 1} checked="checked" {/if} /> Разрешить комментирование</label>
 		</div>
 		<div class="form_overflow"></div>
 
@@ -194,7 +194,7 @@
             <select multiple="multiple" name="roles[]">
                 <option value="0" {$all_selected} >Все</option>
                 {foreach $roles as $role}
-                  <option {$role.selected} value ="{$role.id}">{$role.alt_name}</option>
+                  <option {$role.selected} value="{$role.id}">{$role.alt_name}</option>
                 {/foreach}
             </select>
         </p>
@@ -256,11 +256,11 @@
 		window.addEvent('domready', function() {
 			pub_date_cal = new Calendar({ publish_date: 'Y-m-d' }, { direction: .0, tweak: {x: -150, y: 22} });
 
-            var sp_param = Cookie.read('sidepanel'); 
+            var sp_param = Cookie.read('sidepanel');
             if (sp_param == 'show')
             {
-                document.getElementById('sidebar1').style.display='none'; 
-                document.getElementById('sidebar2').style.display='block';     
+                document.getElementById('sidebar1').style.display='none';
+                document.getElementById('sidebar2').style.display='block';
             }
 
 			new Autocompleter.Request.JSON('tags', base_url + 'admin/pages/json_tags', {
@@ -270,9 +270,9 @@
 			var cms_tabs = new SimpleTabs('tabs-block', {
 			selector: 'h4'
 			});
-    
+
             load_editor();
-            
+
 		});
 	</script>
 {/literal}
