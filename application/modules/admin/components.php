@@ -321,7 +321,7 @@ class Components extends Controller{
 
 	function com_info()
 	{
-		$com_info = $this->get_module_info( $this->input->post('component') );
+		$com_info = $this->get_module_info($this->input->post('component'));
 
 		if($com_info != FALSE)
 		{

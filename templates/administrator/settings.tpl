@@ -56,19 +56,28 @@
 <div>
 	<div class="form_text">Категория: <input type="radio" name="main_type" value="category" {if $main_type == "category"} checked="checked" {/if} /> </div>
 	<div class="form_input">
-
 		<select name="main_page_cat">
 			{ $this->view("cats_select.tpl", $this->template_vars); }
 		</select>
-
 	</div>
 	<div class="form_overflow"></div>
 
 	<div class="form_text">Страница: <input type="radio" name="main_type" value="page" {if $main_type == "page"} checked="checked" {/if} /></div>
 	<div class="form_input">
-
     	<input type="text" name="main_page_pid" class="textbox_long" style="width:100px" value="{$main_page_id}" /> - ID страницы
+	</div>
+	<div class="form_overflow"></div>
 
+    <div class="form_text">Модуль: <input type="radio" name="main_type" value="module" {if $main_type == "module"} checked="checked" {/if} /></div>
+	<div class="form_input">
+        <select name="main_page_module">
+	        {foreach $modules as $m}
+	            {$mData = modules::run('admin/components/get_module_info',$m['name'])}
+	            {//if $mData['main_page'] === true}
+	                <option {if $m['name'] == $main_page_module}selected="selected"{/if} value="{$m['name']}">{echo $mData['menu_name']}</option>
+	            {///if}
+	        {/foreach}
+		</select>
 	</div>
 	<div class="form_overflow"></div>
 </div>

@@ -7,6 +7,7 @@
 </div>
 
 {if $menu_result}
+<div id="sortable">
 	<table width="100%" border="0" align="left" class="items_table" style="text-align:left;">
 	  <thead>
 		<th width="15px">ID</th>
@@ -17,7 +18,7 @@
         </th>
 		<th>
         <div align="center">
-        Позиция  <img src="{$THEME}/images/save.png" align="absmiddle" style="cursor:pointer;width:22px;height:22px;" onclick="save_position(); return false;" /> 
+        Позиция  <img src="{$THEME}/images/save.png" align="absmiddle" style="cursor:pointer;width:22px;height:22px;" onclick="save_position(); return false;" />
         </div>
         </th>
 		<th>Скрытая</th>
@@ -70,6 +71,7 @@
 	  {/foreach}
 	  </tbody>
 	</table>
+	</div>
  {/if}
 
 <div class="form_overflow"></div>
