@@ -96,7 +96,7 @@
                <span class="lite">{date('d-m-Y H:i', $a.publish_date)}</span> 
                <a style="padding-left:10px;" target="_blank" href="http://www.imagecms.net/news/{$a.url}">>>></a>
                <br/> 
-               {truncate(strip_tags(htmlentities_to_xml($a.prev_text)), 200)}
+               {truncate(strip_tags($a.prev_text), 200)}
                <hr/>
             </div>
             {/foreach}

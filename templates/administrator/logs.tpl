@@ -10,7 +10,7 @@
         <span style="padding-right:3px;" class="lite">{date('d-m-Y H:i:s', $m.date)}</span>
         <a href="#" onclick="return false;">{$m.username}</a>:
     </div>
-    <div class="log_message" style="float:left;">{htmlentities_to_xml($m.message)}</div>
+    <div class="log_message" style="float:left;">{$m.message}</div>
 
     <div style="clear:both;"></div> 
 {/foreach}
