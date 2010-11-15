@@ -688,7 +688,7 @@ class Core extends Controller {
      * Show 404 error
 	 */
 	function error_404()
-	{t  
+	{
         header('HTTP/1.1 404 Not Found');
         ($hook = get_hook('core_display_error_404')) ? eval($hook) : NULL;
 
