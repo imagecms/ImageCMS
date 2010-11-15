@@ -48,6 +48,9 @@ class Settings extends Controller{
 
         ($hook = get_hook('admin_show_settings_tpl')) ? eval($hook) : NULL;
 
+        // Load modules list
+        $this->template->assign('modules', $this->db->get('components')->result_array());
+
 		$this->template->show('settings',FALSE);
 	}
 
@@ -132,6 +135,14 @@ class Settings extends Controller{
                     exit;
                 }
             break;
+
+            case 'module':
+                    $data = array(
+                        'main_type'    => 'module',
+                        'main_page_module' => $this->input->post('main_page_module'),
+                    );
+                    $this->cms_admin->save_settings($data);
+            break;
         }
 
 
@@ -149,7 +160,7 @@ class Settings extends Controller{
             'delimiter' => $this->input->post('delimiter'),
             'site_template' => $this->input->post('template'),
             'editor_theme' => $this->input->post('editor_theme'),
-            'site_offline' => $this->input->post('site_offline')
+            'site_offline' => $this->input->post('site_offline'),
 		);
 
         ($hook = get_hook('admin_save_settings')) ? eval($hook) : NULL;

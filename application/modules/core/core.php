@@ -374,6 +374,19 @@ class Core extends Controller {
                 $m_category = $this->lib_category->get_category( $this->settings['main_page_cat'] );
                 $this->_display_category($m_category);
             break;
+
+            // Run module as main page
+            case 'module':
+                $modName = $this->settings['main_page_module'].'';
+                $module = $this->load->module($modName);
+                if (is_object($module) && method_exists($module,'index'))
+                {
+                    $module->index();
+                }else{
+                    $this->error('Ошибка загрузки модуля '.$modName);
+                }
+
+            break;
 		}
 	}
 
