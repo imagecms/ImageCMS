@@ -13,6 +13,9 @@ class Admin_search extends Controller {
 
 		$this->load->library('lib_admin');
 		$this->lib_admin->init_settings();
+
+        $_POST['search_text'] = urldecode($_POST['search_text']);
+
         cp_check_perm('cp_page_search');
 	}
 
@@ -120,6 +123,8 @@ class Admin_search extends Controller {
         $segments = array_slice($this->uri->segment_array(), 3);
 
         $search_data = $this->filter->parse_url($segments);
+
+        $search_data['search_text'] = urldecode($search_data['search_text']);
 
         if ($search_data['use_cfcm_group'] == 0)
             unset($search_data['use_cfcm_group']);
