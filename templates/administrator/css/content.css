@@ -303,9 +303,8 @@ color:red;
 #sidebar2 h3{padding-top:2px; padding-left:40px}
 
 #side_bar_right{
-	height: 27px;
-	background: url(../images/tabs.gif) repeat-x;
-	background-position: left -70px;
+	height: 39px;
+	background: url(../images/tabs2.gif) repeat-x;
 }
 #side_bar_right h3{padding-top:2px; padding-left:20px}
 
