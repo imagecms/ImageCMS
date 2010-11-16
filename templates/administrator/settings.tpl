@@ -87,7 +87,9 @@
 <h4 title="SEO">Мета Теги</h4>
 <div>
 
-		<b style="color:#73B0D3"><h3>Выводить в Title:</h3></b>
+		<div class="form_text"></div>
+		<div class="form_input"><b>Выводить в Meta Title:</b></div>
+		<div class="form_overflow"></div>
 
 		<div class="form_text">Название сайта</div>
 		<div class="form_input">
@@ -97,7 +99,7 @@
 		</select>
 		</div>
 
-<div class="form_overflow"></div>
+        <div class="form_overflow"></div>
 
 		<div class="form_text">Название категории</div>
 		<div class="form_input">
@@ -114,13 +116,13 @@
 		<input type="text" value="{$delimiter}" name="delimiter" class="textbox_long" style="width:80px;" />
 		</div>
 
-<div class="form_overflow"></div>
+        <div class="form_overflow"></div>
 
-		<hr/>
+		<div class="form_text"></div>
+		<div class="form_input"><b>Мета-теги страниц:</b></div>
+		<div class="form_overflow"></div>
 
-		<b style="color:#73B0D3"><h3>Страницы:</h3></b>
-
-		<div class="form_text"><b>Ключевые слова</b><br/>Если не указаны:</div>
+		<div class="form_text"><b>Meta Keywords</b><br/>Если не указаны:</div>
 		<div class="form_input">
 		<select name="create_keywords">
 			<option value="auto" {if $create_keywords == "auto"}selected="selected"{/if}>Формировать атоматически</option>
@@ -128,11 +130,9 @@
 		</select>
 		</div>
 
+        <div class="form_overflow"></div>
 
-<div class="form_overflow"></div>
-
-
-		<div class="form_text"><b>Описание</b><br/>Если не указано:</div>
+		<div class="form_text"><b>Meta Description</b><br/>Если не указано:</div>
 		<div class="form_input">
 		<select name="create_description">
 			<option value="auto" {if $create_description == "auto"}selected="selected"{/if}>Формировать атоматически</option>
