@@ -568,6 +568,23 @@ input.button:hover {
     background-position:center -22px;
 }
 
+.button_red {
+    background: transparent url(../images/btn1_red.png) no-repeat scroll center top;
+    border:0 none;
+    height:22px;
+    padding:1px 3px 5px;
+    width:100px;
+    font-family:'Trebuchet MS',Helvetica,Arial,sans-serif;
+    font-size:12px;
+	color:#fff;
+	text-shadow:1px 1px 0 #000;
+	cursor:pointer;
+}
+
+.button_red:hover {
+    background-position:center -22px;
+}
+
 .button_130:hover, .button_silver_130:hover {
     background-position:center -22px;
 }
