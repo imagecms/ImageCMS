@@ -24,7 +24,7 @@
         color:#fff;        
         border-left:5px solid #4BBBDD;
     }
-    .clicked{
+    .clicked {
         background-color:#77C4DB; 
         color:#fff;        
         border-left:5px solid #4BBBDD;
@@ -33,16 +33,30 @@
     </style>
 
     <script type="text/javascript">
-        var selector_tabs = '';
+
         var c_load = 0;
         var fx_step = 0;
+
+        var selector_tabs = new SimpleTabs('global_selector',
+        {
+            selector: 'li a',
+            cache:true,
+            onComplete: function() {
+                if (menu_action == 'update')
+                {
+                    load_item_data();
+                }
+            }
+        });
 
         function load_item_data()
         {
             var request = new Request.JSON({
                 url: base_url + 'admin/components/run/menu/get_item' ,
                 onComplete: function(jsonObj) {
-                       process_item_data(jsonObj); 
+                window.addEvent('domready', function() {
+                       process_item_data(jsonObj);
+                   });
                 }
             }).post({'item_id': menu_update_id});
         }
@@ -244,19 +258,6 @@
                 }
             }
         }
-        
 
-		window.addEvent('domready', function() {
-			selector_tabs = new SimpleTabs('global_selector', 
-            {
-    	        selector: 'li a',
-	        	onComplete: function() {
-    			    if (menu_action == 'update')
-                    {
-                        load_item_data();
-                    }
-		        }
-			});
-    		});    
     </script>
 {/literal}

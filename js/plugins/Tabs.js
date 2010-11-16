@@ -117,7 +117,7 @@ var SimpleTabs = new Class({
 	 */
 	select: function(index) {
 		if (this.selected === index || !this.tabs[index]) return this;
-		if (this.ajax) this.ajax.cancel().removeEvents();
+		//if (this.ajax) this.ajax.cancel().removeEvents();
 		var tab = this.tabs[index];
 		var params = [tab.toggle, tab.container, index];
 		if (this.selected !== null) {

@@ -26,7 +26,7 @@
 	<!--[if IE]>
 		<script type="text/javascript" src="{$JS_URL}/mocha/excanvas-compressed.js"></script>
 	<![endif]-->
- 
+
 	<script type="text/javascript" src="{$JS_URL}/compress_js.php"></script>
 
 	<script type="text/javascript" src="{$JS_URL}/tinymce/tiny_mce.js.php"></script>

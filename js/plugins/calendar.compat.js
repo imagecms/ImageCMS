@@ -3,7 +3,7 @@
 // Mootools 1.2 compatibility by Davorin Šego
 
 var Calendar = new Class({
-
+    Implements: Options,
 	options: {
 		blocked: [], // blocked dates
 		classes: [], // ['calendar', 'prev', 'next', 'month', 'year', 'today', 'invalid', 'valid', 'inactive', 'active', 'hover', 'hilite']
@@ -25,7 +25,7 @@ var Calendar = new Class({
 	// @param obj (obj) a js object containing the form elements and format strings { id: 'format', id: 'format' etc }
 	// @param props (obj) optional properties
 
-	initialize: function(obj, options) {
+	initialize: function(obj,options) {
 		// basic error checking
 		if (!obj) { return false; }
 
