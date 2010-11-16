@@ -677,3 +677,16 @@ div.d_comment:hover {
    font-size:12px;
    color:#8A8A8A; 
 }
+
+/** Footer panel **/
+.footer_block {
+    color:#f0f8ff;
+    position: fixed;
+    z-index: 1000;
+    bottom: 0;
+    right:0px;
+    margin: -8px 5px;
+    padding: 12px 20px;
+    width: 50%;
+    opacity: 1;
+}

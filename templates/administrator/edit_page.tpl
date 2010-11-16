@@ -23,7 +23,6 @@
 
     return false;
     " />
-    <input type="submit" title="Сохранить" style="cursor:pointer;border:0px;width:16px;height:16px;background: transparent url({$THEME}/images/save_page.png) no-repeat;" value=" " onclick="ajax_me('edit_page_form{$update_page_id}');" />
 </div>
 
 <div id="tabs-block"  style="float:left;width:100%">
@@ -106,6 +105,8 @@
 		<textarea id="full_text" class="mceEditor" name="full_text" rows="15" cols="180" style="width:700px;height:400px;">
 		    {encode($full_text)}
 		</textarea>
+
+		<div style="height:25px;"></div>
     </div>
 
 	<h4 title="Настройки">Настройки</h4>
@@ -214,26 +215,19 @@
             {/if}
         </div>
 
-        <hr />
-
-        <div style="padding-left:15px;">
-        <b>Действия:</b>
-                <div style="padding-left:15px;">
-                <ul>
-                    <li><a href="#" onclick="confirm_delete_page('{$update_page_id}'); return false;">Удалить</a></li>
-                </ul>
-                </div>
-        </div>
-
         {($hook = get_hook('admin_tpl_edit_page_side_bar')) ? eval($hook) : NULL;}
 
     </div>
 </div>
 
-    <div style="padding:10px;clear:left;">
-        <input type="submit" name="button" id="page_save_button" class="button_silver_130" value="Сохранить" onclick="ajax_me('edit_page_form{$update_page_id}');" />
-    </div>
-{form_csrf()}</form>
+{form_csrf()}
+
+<div class="footer_block" align="right">
+    <input type="submit" name="button" id="page_save_button" class="button_silver_130" value="Сохранить" onclick="ajax_me('edit_page_form{$update_page_id}');" />
+    <input type="submit" class="button_red" value="Удалить" onclick="confirm_delete_page('{$update_page_id}'); return false;" />
+</div>
+
+</form>
 
 {literal}
     <style>

@@ -164,17 +164,13 @@
 
 </div>
 
+{form_csrf()}
 
-<div class="form_text"></div>
-<div class="form_input">
-    <input type="submit" name="button" class="button" value="Сохранить" onclick="ajax_me('edit_cat_form');" />
+<div class="footer_block" align="right">
+    <input type="submit" name="button" class="button_silver_130" value="Сохранить" onclick="ajax_me('edit_cat_form');" />
     <input type="submit" name="button" class="button" value="Отмена" onclick="ajax_div('page', base_url + 'admin/categories/cat_list'); return false;" />
-    <br/>
-    <br/>
-<div class="form_overflow"></div>
 </div>
 
-{form_csrf()}
 </form>
 
 {literal}

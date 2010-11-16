@@ -43,12 +43,10 @@
     <div class="form_overflow"></div>
 </div>
 
-<div class="form_text"></div>
-<div class="form_input">
-    <input type="button" class="button" value="Создать" onclick="create_widget();" />
+<div class="footer_block" align="right">
+    <input type="button" class="button_130" value="Создать" onclick="create_widget();" />
     <input type="button" class="button" value="Отмена" onclick="ajax_div('page', base_url + 'admin/widgets_manager/');" />
 </div>
-<div class="form_overflow"></div>
 
 <hr/>
 
