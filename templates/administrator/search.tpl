@@ -74,7 +74,7 @@
 
 	<div class="form_text"></div>
 	<div class="form_input">
-        <input type="submit" value="Поиск"  onclick="ajax_me('filter_form');" />
+        <input type="submit" value="Поиск" class="button_silver" onclick="ajax_me('filter_form');" />
     </div>
 	<div class="form_overflow"></div>
 

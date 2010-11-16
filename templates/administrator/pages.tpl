@@ -105,7 +105,7 @@
 С отмечеными:
 <input type="submit" name="delete"  class="button_silver" value="Переместить" onclick="show_move_window('move');" />
 <input type="submit" name="delete"  class="button_silver" value="Копировать" onclick="show_move_window('copy');" />
-<input type="submit" name="delete"  class="button_silver" style="font-weight:bold;" value="Удалить" onclick="delete_sel_pages({$cat_id}); return false;" />
+<input type="submit" name="delete"  class="button_red" style="font-weight:bold;" value="Удалить" onclick="delete_sel_pages({$cat_id}); return false;" />
 </p>
 <div align="center" style="padding:5px;" id="pagination">
 {$paginator}
