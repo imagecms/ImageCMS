@@ -165,9 +165,9 @@
 		item_image = $('page_image').value;
 
         var roles = new Array();
-        $('item_roles').getSelected().each(function(el) {  
+        $('item_roles').getSelected().each(function(el) {
              roles.include( el.value );
-        });  
+        });
 
         var req = new Request.HTML({
                method: 'post',

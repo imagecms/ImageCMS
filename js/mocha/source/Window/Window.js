@@ -252,6 +252,7 @@ MochaUI.Windows.windowOptions = {
 };
 
 MochaUI.Window = new Class({
+    Implements: Events,
 	options: MochaUI.Windows.windowOptions,
 	initialize: function(options){
 		this.setOptions(options);

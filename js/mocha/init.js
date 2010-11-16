@@ -1,4 +1,5 @@
 window.addEvent('domready', function() {
+
 alertBox = new SexyAlertBox();	
         
 new MochaUI.Column({
@@ -41,9 +42,9 @@ new MochaUI.Panel({
     panelBackground: '#f8f8f8'
 });
 
-$('page_headerContent').dispose();	
-$('page_header').dispose();	
-$('page').setStyle('height', '100%');	
-$('mainColumn_spacer').setStyle('display', 'none');	
-        
+$('page_headerContent').dispose();
+$('page_header').dispose();
+$('page').setStyle('height', '100%');
+$('mainColumn_spacer').setStyle('display', 'none');
+
         });

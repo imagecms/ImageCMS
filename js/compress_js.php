@@ -5,7 +5,7 @@
  */
 
 $files = array(
-		'mocha/mootools-1.2-core.js', // Mootools
+		'mocha/mootools-1.3-core.js', // Mootools
 		'mocha/mootools-1.2-more.js',
 		'mocha/source/Core/Core.js', //MochaUI
 		'mocha/source/Window/Window.js',
