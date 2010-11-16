@@ -26,7 +26,7 @@
         {foreach $editor_themes as $theme => $v}
             <option value="{$theme}" {if $theme_selected == $theme } selected="selected" {/if} >{$v}</option>
         {/foreach}
-	</select>
+	</select> <div class="lite">Изменения вступят в силу после перезагрузки панели управления</div>
 	</div>
 	<div class="form_overflow"></div>
 
