@@ -28,7 +28,9 @@
 <div id="sortable" >
 		  <table id="pages_table">
 		  	<thead>
-                <th width="5px"></th>
+                <th width="5px">
+                    <input type="checkbox" onclick="switchChecks(this);"/>
+                </th>
 				<th axis="number" width="5px;">ID</th>
 				<th axis="string">Заголовок</th>
 				<th axis="string">URL</th>
@@ -97,18 +99,15 @@
 		  </table>
 </div>
 
-<div style="padding-left:15px;padding-top:2px;">
-<a href="#" onclick="check_all(); return false;">Отметить все</a>  /  <a href="#" onclick="uncheck_all(); return false;">Снять выделение</a> 
-</div>
-
-<p align="right" style="padding:5px;padding-top:10px;">
-С отмечеными:
-<input type="submit" name="delete"  class="button_silver" value="Переместить" onclick="show_move_window('move');" />
-<input type="submit" name="delete"  class="button_silver" value="Копировать" onclick="show_move_window('copy');" />
-<input type="submit" name="delete"  class="button_red" style="font-weight:bold;" value="Удалить" onclick="delete_sel_pages({$cat_id}); return false;" />
-</p>
 <div align="center" style="padding:5px;" id="pagination">
 {$paginator}
+</div>
+
+<div class="footer_block" align="right">
+    С отмечеными:
+    <input type="submit" name="delete" class="button_silver" value="Переместить" onclick="show_move_window('move');" />
+    <input type="submit" name="delete" class="button_silver" value="Копировать" onclick="show_move_window('copy');" />
+    <input type="submit" name="delete" class="button_red" style="font-weight:bold;" value="Удалить" onclick="delete_sel_pages({$cat_id}); return false;" />
 </div>
 
 {literal}
@@ -117,6 +116,15 @@
 				pages_table = new sortableTable('pages_table', {overCls: 'over', sortOn: -1 ,onClick: function(){}});
                 pages_table.altRow();
 			});
+
+            function switchChecks(el)
+            {
+                if (el.checked == true){
+                    check_all();
+                }else{
+                    uncheck_all();
+                }
+            }
 
             function check_all()
             {

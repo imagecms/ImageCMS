@@ -1,4 +1,3 @@
-
 <form method="post" action="{$BASE_URL}admin/categories/create/new" id="create_cat_form" style="width:100%">
 
 <div id="create_cat_tabs">
@@ -150,14 +149,13 @@
 
 </div>
 
-<div class="form_text"></div>
-<div class="form_input">
-<input type="submit" name="button" class="button" value="Создать" onclick="ajax_me('create_cat_form');" />
+{form_csrf()}
 
-<div class="form_overflow"></div>
+<div class="footer_block" align="right">
+    <input type="submit" name="button" class="button_130" value="Создать" onclick="ajax_me('create_cat_form');" />
 </div>
 
-{form_csrf()}</form>
+</form>
 
 {literal}
 <script type="text/javascript">

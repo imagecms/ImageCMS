@@ -1,9 +1,5 @@
 <form method="post" action="{$BASE_URL}admin/pages/add" id="add_page_form" style="width:100%;">
 
-<div style="float:left; position:absolute;padding:3px;margin-left:355px;">
-    <input type="submit" style="cursor:pointer;border:0px;width:16px;height:16px;background: transparent url({$THEME}/images/save_page.png) no-repeat;" value=" " onclick="ajax_me('add_page_form');" title="Сохранить" />
-</div>
-
 <div id="tabs-block"  style="float:left;width:100%;">
 
 	<h4>Содержание</h4>
@@ -127,8 +123,9 @@
 
 	</div>
 
-<div style="padding:10px;clear:left;">
-<input type="submit" name="button"  class="button_130" value="Создать Страницу" onclick="ajax_me('add_page_form');" />
+
+<div class="footer_block" align="right">
+    <input type="submit" name="button"  class="button_130" value="Создать Страницу" onclick="ajax_me('add_page_form');" />
 </div>
 
 {form_csrf()}</form>
