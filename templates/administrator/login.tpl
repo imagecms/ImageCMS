@@ -9,7 +9,6 @@
 
 	<link rel="stylesheet" href="{$THEME}/css/content.css" type="text/css"/>
 
-
 	<!--[if IE]>
 		<script type="text/javascript" src="{$JS_URL}/mocha/excanvas-compressed.js"></script>
 	<![endif]-->
@@ -20,13 +19,12 @@
 	<script type="text/javascript" src="{$JS_URL}/mocha/functions.js"></script>
 
 	<script  type="text/javascript">
-    var theme = '{$THEME}';
-    var base_url = '{$BASE_URL}';
+        var theme = '{$THEME}';
+        var base_url = '{$BASE_URL}';
     </script>
 
 	{literal}
 	<STYLE TYPE="text/css">
-
 	body {
 		margin: 0px 20px 0px 20px;
 		background-image:url('/templates/administrator/images/bg2.png');
@@ -35,7 +33,6 @@
         height:95%; 
         width:95%;
 	}
-
 	#box {
 		margin: 0 auto;   		
         text-align: left; 
@@ -43,17 +40,14 @@
 		width: 400px;
 
 	}
-
 	h1{
 		padding-left:55px;
         font-size:20px;
 	}
-
 	.error {
 		color:red;
 		font-size:12px;
 	}
-
 	#s_text {
 		color:#B1B1B1;
 		font-weight:bold;
@@ -90,7 +84,6 @@ $ci = get_instance();
 
 if($ci->config->item('is_installed') === TRUE AND file_exists(APPPATH.'modules/install/install.php'))
     die('<span style="font-size:18px;"><br/><br/>Для продолжения работы, удалите файл ./application/modules/install/install.php</div>');
-
 ?>
 
 <div id="box">
@@ -107,6 +100,7 @@ if($ci->config->item('is_installed') === TRUE AND file_exists(APPPATH.'modules/i
     <form method="post" action="{$BASE_URL}admin/login/" id="login_form">
     {$lang_login}: <br/>  <input type="text" name="login" class="textbox_long" />{$login_error}<br/>
     {$lang_password}: <br/> <input type="password" name="password" class="textbox_long" />{$password_error}<br/>
+    <br/><label><input type="checkbox" name="remember" value="1" /> Запомнить меня</label><br/>
 
         {if $use_captcha == "1"}
             {$lang_captcha}:<br/>
