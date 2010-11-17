@@ -44,6 +44,13 @@ class Login extends Controller {
 			$this->form_validation->set_rules('login', 'lang:lang_login', 'trim|required|min_length[3]|max_length[50]');
 			$this->form_validation->set_rules('password', 'lang:lang_password', 'trim|required|min_length[5]|max_length[32]');
 
+            if ($_POST['remember'] == 1)
+            {
+                $remember = true;
+            }else{
+                $remember = false;
+            }
+
 			if ($this->dx_auth->is_max_login_attempts_exceeded())
 			{
 				$this->form_validation->set_rules('captcha', lang('lang_captcha'), 'trim|required|xss_clean|callback_captcha_check');
@@ -61,7 +68,7 @@ class Login extends Controller {
 				}
 				else
 				{
-						$rezult = $this->dx_auth->login($this->input->post('login'), $this->input->post('password'), $remember = FALSE);
+						$rezult = $this->dx_auth->login($this->input->post('login'), $this->input->post('password'), $remember);
 
 						if ($rezult == TRUE)
 						{

@@ -223,12 +223,12 @@
 <a href="#" onclick="check_all(); return false;">Отметить все</a>  /  <a href="#" onclick="uncheck_all(); return false;">Снять выделение</a> 
 </div>
 
-<p align="right" style="padding:5px;padding-top:10px;">
+<div class="footer_block" align="right">
 С отмечеными:
 <input type="submit" name="delete"  class="button_silver" value="Переместить" onclick="show_move_window('move');" />
 <input type="submit" name="delete"  class="button_silver" value="Копировать" onclick="show_move_window('copy');" />
-<input type="submit" name="delete"  class="button_silver" style="font-weight:bold;" value="Удалить" onclick="delete_sel_pages({$cat_id}); return false;" />
-</p>
+<input type="submit" name="delete"  class="button_red" style="font-weight:bold;" value="Удалить" onclick="delete_sel_pages({$cat_id}); return false;" />
+</div>
 
 <div align="center" style="padding:5px;" id="pagination">
 {$pagination}
