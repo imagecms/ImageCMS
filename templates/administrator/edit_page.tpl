@@ -145,9 +145,17 @@
 		</div>
 		<div class="form_overflow"></div>
 
+		<div class="form_text">Главный шаблон:</div>
+		<div class="form_input">
+			<input type="text" name="main_tpl" value="{$main_tpl}" class="textbox_long" /> .tpl
+			<div class="lite">По умолчанию  main.tpl</div>
+		</div>
+		<div class="form_overflow"></div>
+
 		<div class="form_text">Шаблон Страницы:</div>
 		<div class="form_input">
 			<input type="text" name="full_tpl" value="{$full_tpl}" class="textbox_long" /> .tpl
+			<div class="lite">По умолчанию  page_full.tpl</div>
 		</div>
 		<div class="form_overflow"></div>
 

@@ -124,6 +124,7 @@ class Pages extends Controller{
 		$this->form_validation->set_rules('prev_text', 'Пред. Содержание', 'trim|required');
 		$this->form_validation->set_rules('page_description', 'Описание', 'trim');
 		$this->form_validation->set_rules('full_tpl', 'Шаблон Страницы', 'trim|max_length[150]|min_length[2]');
+        $this->form_validation->set_rules('main_tpl', 'Главный шаблон страницы', 'trim|max_length[50]|min_length[2]');
 
         ($hook = get_hook('admin_page_add_set_rules')) ? eval($hook) : NULL;
 
@@ -200,6 +201,7 @@ class Pages extends Controller{
 				//'prev_text' => htmlspecialchars(trim($this->lib_admin->db_post('prev_text'))),
 				'category' => $this->input->post('category'),
 				'full_tpl' => $_POST['full_tpl'],
+				'main_tpl' => $_POST['main_tpl'],
 				'comments_status' => $this->input->post('comments_status'),
 				'post_status' => $this->input->post('post_status'),
 				'author' => $this->dx_auth->get_username(),
@@ -392,6 +394,7 @@ class Pages extends Controller{
 							'lang'            => $lang,
 							'lang_alias'      => $defpage['id'],
 							'full_tpl'        => $defpage['full_tpl'],
+                            'main_tpl'        => $defpage['main_tpl'],
 					);
 
                     ($hook = get_hook('admin_page_create_empty_translation')) ? eval($hook) : NULL;
@@ -425,7 +428,8 @@ class Pages extends Controller{
 		$this->form_validation->set_rules('page_keywords', 'Ключевые слова', 'trim');
 		$this->form_validation->set_rules('prev_text', 'Пред. Содержание', 'trim|required');
 		$this->form_validation->set_rules('page_description', 'Описание', 'trim');
-		$this->form_validation->set_rules('full_tpl', 'Шаблон Страницы', 'trim|max_length[150]|min_length[2]');
+		$this->form_validation->set_rules('full_tpl', 'Шаблон Страницы', 'trim|max_length[50]|min_length[2]');
+		$this->form_validation->set_rules('main_tpl', 'Главный шаблон cтраницы', 'trim|max_length[50]|min_length[2]');
 
         ($hook = get_hook('admin_page_update_set_rules')) ? eval($hook) : NULL;
 
@@ -501,6 +505,7 @@ class Pages extends Controller{
 				//'prev_text' => htmlspecialchars(trim($this->lib_admin->db_post('prev_text'))),
 				'category' => $this->input->post('category'),
 				'full_tpl' => $_POST['full_tpl'],
+                'main_tpl' => $_POST['main_tpl'],
 				'comments_status' => $this->input->post('comments_status'),
 				'post_status' => $this->input->post('post_status'),
 				'author' => $this->dx_auth->get_username(),
