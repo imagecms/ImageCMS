@@ -59,13 +59,14 @@
 			</tfoot>
 		  </table>
 </div>
-{/if}
 
-{literal}
-        <script type="text/javascript">
-			window.addEvent('domready', function(){
-				widgets_table = new sortableTable('widgets_table', {overCls: 'over', sortOn: -1 ,onClick: function(){}});
-                widgets_table.altRow();
-			});
-        </script>
-{/literal}
+    {literal}
+            <script type="text/javascript">
+                window.addEvent('domready', function(){
+                    widgets_table = new sortableTable('widgets_table', {overCls: 'over', sortOn: -1 ,onClick: function(){}});
+                    widgets_table.altRow();
+                });
+            </script>
+    {/literal}
+
+{/if}
