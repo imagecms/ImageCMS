@@ -72,13 +72,15 @@ class Cms_hooks {
 
         foreach($vals as $k => $v)
         {
-            if (isset($v['type']) AND isset($v['value']) AND isset($v['attributes']) )
+            if (isset($v['type']) && isset($v['value']) && isset($v['attributes']) )
             {
-                if ($v['type'] == 'complete' AND trim($v['value']) != '' AND trim($v['attributes']['id'] != ''))
+                $hookId =  trim($v['attributes']['id']);
+                $hookValue = trim($v['value']);
+                if ($v['type'] === 'complete' && !empty($hookValue) && !empty($hookId))
                 {
-                    $hook_id = $v['attributes']['id']; 
+                    $hook_id = $hookId;
 
-                    $tmp[$hook_id] .= $v['value'];
+                    $tmp[$hook_id] .= $hookValue;
                 }
             }
         }
@@ -98,7 +100,7 @@ class Cms_hooks {
         {
             foreach($hooks_arr as $k => $v)
             {
-                $tmp .= '\''.$k.'\''.' => \''.str_replace("'", "\'",$v).'\','."\n";
+                $tmp = $tmp . '\''.$k.'\''.' => \''.str_replace("'", "\'",$v).'\','."\n";
             }
         }
         
