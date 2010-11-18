@@ -47,6 +47,8 @@ class Lib_init {
 		}else{
 			$CI->load->library('session');
         }
+
+        ($hook = get_hook('system_init_completed')) ? eval($hook) : NULL;
     }
 
 }
