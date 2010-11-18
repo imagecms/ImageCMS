@@ -93,5 +93,5 @@
             $urlstr = preg_replace('/[^A-Za-z0-9_\-]/', '', $urlstr);
         }
 
-        return url_title($urlstr);
+        return strtolower(url_title($urlstr));
 	}
