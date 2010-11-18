@@ -364,7 +364,11 @@ class Core extends Controller {
 
                 ($hook = get_hook('core_show_main_page')) ? eval($hook) : NULL;
 
-				$this->template->show();
+                if (empty($page['main_tpl'])) {
+				    $this->template->show();
+                }else{
+                    $this->template->display($page['main_tpl']);
+                }
 			break;
 
 			// Category
@@ -429,13 +433,18 @@ class Core extends Controller {
         $this->db->limit(1);
         $this->db->update('content');
 
-        if (!$category['main_tpl'])
+        $tpl_name = $category['main_tpl'];
+
+        if (!empty($page['main_tpl']))
+            $tpl_name = $page['main_tpl'];
+
+        if (!$tpl_name)
         {
             $this->template->show();
         }
         else
         {
-            $this->template->display($category['main_tpl']);
+            $this->template->display($tpl_name);
         }
 	}
 
