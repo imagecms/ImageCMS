@@ -33,7 +33,7 @@ class Lib_init {
 		$native_session = TRUE;
 
 		// Cache engine
-		// $CI->load->library('mem_cache','','cache');
+		//$CI->load->library('mem_cache','','cache');
 		$CI->load->library('cache');
 
 		if($native_session == TRUE)
