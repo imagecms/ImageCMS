@@ -351,7 +351,7 @@ class Admin extends Controller {
 
                     $form_fields[$field['field_name']] = array(
                         'type'  => $field['type'],
-                        'label' => $field['label'],
+                        'label' => encode($field['label']),
                     );
 
                     $form_fields[$field['field_name']] = array_merge($form_fields[$field['field_name']], $f_data);
