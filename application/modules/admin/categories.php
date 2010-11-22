@@ -128,6 +128,12 @@ class Categories extends Controller {
                 $fetch_pages = serialize($fetch_pages);
             }
 
+            if ($cat_id == $this->input->post('parent_id'))
+            {
+                showMessage('Ошибка.');
+                return false;
+            }
+
 			$data = array(
                 'name' => $this->input->post('name'),
                 'url' => $url,

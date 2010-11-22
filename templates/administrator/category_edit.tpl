@@ -27,7 +27,7 @@
         <div class="form_text">Родитель:</div>
         <div class="form_input">
             <select name="parent_id">
-            <option value="0" selected="selected">Нет</option>
+            <option value="0">Нет</option>
             {  $this->view("cats_select.tpl", $this->template_vars)}
             </select>
         </div>
