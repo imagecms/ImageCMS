@@ -130,7 +130,8 @@ class CI_Input {
 		// Is $_GET data allowed? If not we'll set the $_GET to an empty array
 		if ($this->allow_get_array == FALSE)
 		{
-			$_GET = array();
+			//$_GET = array();
+            $_GET = $this->_clean_input_data($_GET);
 		}
 		else
 		{
