@@ -35,7 +35,18 @@ class Mabilis {
             $file_dir = $this->config->tpl_path . $file; 
         }
 
-        $compiled_file = $this->config->compile_path . md5($file_dir) . $this->config->compiled_ext; 
+        if (preg_match('/application\/modules/', $file_dir, $mm))
+        {
+            $newFile = explode('application/modules', $file_dir);
+            $new_file_dir = $this->config->tpl_path. 'modules' . $newFile[1];
+
+            if (file_exists($new_file_dir))
+            {
+                $file_dir = $new_file_dir;
+            }
+        }
+
+        $compiled_file = $this->config->compile_path . md5($file_dir) . $this->config->compiled_ext;
 
         if ( ! file_exists( $compiled_file ) OR $this->config->force_compile == TRUE  )
         {
@@ -52,7 +63,7 @@ class Mabilis {
         {            
             include ($compiled_file);
         }else{
-            print '<p>Error: '.$compiled_file. ' does not exists!</p>';
+            print '<p class="error">Error: '.$compiled_file. ' does not exists!</p>';
         }
 
         // Time to live expried
