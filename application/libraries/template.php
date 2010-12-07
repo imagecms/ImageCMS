@@ -156,6 +156,12 @@ class Template extends Mabilis {
         return $this->view($file.'.tpl', $this->template_vars);
     }
 
+    public function include_tpl($name, $path)
+    {
+        $this->display('file:'.$path.'/'.$name);
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////
     private $_css_files = array();
     private $_js_files = array();
     private $_js_code = array();
