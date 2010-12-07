@@ -350,7 +350,7 @@ class CI_Image_lib {
 	{
 		$protocol = 'image_process_'.$this->image_library;
 
-		if (eregi("gd2$", $protocol))
+		if (strpos($protocol,"gd2"))
 		{
 			$protocol = 'image_process_gd';
 		}

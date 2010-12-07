@@ -155,7 +155,6 @@ function history_forward()
 
 }
 
-
 function my_alert(form_id){
 	if ($(form_id) != null)
     {
@@ -569,110 +568,110 @@ function show_help(item)
 }
 
 // Widgets
-        function create_widget()
-        {
-            name = $('widget_name').value;
-            desc = $('widget_desc').value;
-            type = $('widget_type_sel').value;
+function create_widget()
+{
+    name = $('widget_name').value;
+    desc = $('widget_desc').value;
+    type = $('widget_type_sel').value;
 
-            if (type == 'module')
-            {
-                module = selected_module;
-                method = selected_method;
+    if (type == 'module')
+    {
+        module = selected_module;
+        method = selected_method;
 
-                var request = new Request.HTML({
-                    url: base_url + 'admin/widgets_manager/create',
-                    onComplete: function() {            
-                    }
-                }).post({
-                    'name' : name,
-                    'desc' : desc,
-                    'type' : type,
-                    'module' : module,
-                    'method' : method,
-                    });
+        var request = new Request.HTML({
+            url: base_url + 'admin/widgets_manager/create',
+            onComplete: function() {
             }
+        }).post({
+            'name' : name,
+            'desc' : desc,
+            'type' : type,
+            'module' : module,
+            'method' : method,
+            });
+    }
 
-            if (type == 'html')
-            {
-                var html_code = '';
-                //if (tinymce_loaded == false) { 
-                //    html_code = $('html_code').value;
-                //} else {
-                //    html_code = tinyMCE.get('html_code').getContent(); 
-                //}
+    if (type == 'html')
+    {
+        var html_code = '';
+        //if (tinymce_loaded == false) {
+        //    html_code = $('html_code').value;
+        //} else {
+        //    html_code = tinyMCE.get('html_code').getContent();
+        //}
 
-                try {
-                    html_code = $('html_code').value; 
-                }catch(e){
-                    html_code = tinyMCE.get('html_code').getContent(); 
-                }
-
-                var request = new Request.HTML({
-                    url: base_url + 'admin/widgets_manager/create',
-                    onComplete: function() {            
-                    }
-                }).post({
-                    'name' : name,
-                    'desc' : desc,
-                    'type' : type,
-                    'html_code' : html_code,
-                    });
-            }        
+        try {
+            html_code = $('html_code').value;
+        }catch(e){
+            html_code = tinyMCE.get('html_code').getContent();
         }
 
-        function edit_widget_html(id)
-        {
-    	    ajax_div('page', base_url + 'admin/widgets_manager/edit_html_widget/' + id);
-        }
-
-        function select_widget(module, method, title)
-        {
-            $('widget_title').highlight('#47B1C1').focus();	 
-            $('widget_title').set('html', '<a href="#">' + title + '</a>');
-            selected_module = module;
-            selected_method = method;
-        }
-
-        function load_create_tpl()
-        {
-            type = $('widget_type_sel').value;
-
-            if (type == 'module')
-            {
-                $('module_info').setStyle('display', 'block');
-                $('html_tpl').setStyle('display', 'none');
-                ajax_div('widget_create_div', base_url + 'admin/widgets_manager/display_create_tpl/' + type);
+        var request = new Request.HTML({
+            url: base_url + 'admin/widgets_manager/create',
+            onComplete: function() {
             }
+        }).post({
+            'name' : name,
+            'desc' : desc,
+            'type' : type,
+            'html_code' : html_code,
+            });
+    }
+}
 
-            if (type == 'html')
-            {
-                $('html_tpl').setStyle('display', 'block');
-                $('module_info').setStyle('display', 'none');
-                $('widget_create_div').set('html', '');
+function edit_widget_html(id)
+{
+    ajax_div('page', base_url + 'admin/widgets_manager/edit_html_widget/' + id);
+}
+
+function select_widget(module, method, title)
+{
+    $('widget_title').highlight('#47B1C1').focus();
+    $('widget_title').set('html', '<a href="#">' + title + '</a>');
+    selected_module = module;
+    selected_method = method;
+}
+
+function load_create_tpl()
+{
+    type = $('widget_type_sel').value;
+
+    if (type == 'module')
+    {
+        $('module_info').setStyle('display', 'block');
+        $('html_tpl').setStyle('display', 'none');
+        ajax_div('widget_create_div', base_url + 'admin/widgets_manager/display_create_tpl/' + type);
+    }
+
+    if (type == 'html')
+    {
+        $('html_tpl').setStyle('display', 'block');
+        $('module_info').setStyle('display', 'none');
+        $('widget_create_div').set('html', '');
+    }
+}
+
+function edit_widget(id)
+{
+    ajax_div('page', base_url + 'admin/widgets_manager/edit/' + id );
+}
+
+function confim_delete_widget(name)
+{
+alertBox.confirm('<h1> </h1><p>Удалить виджет ' + name + '? </p>', {onComplete:
+function(returnvalue){
+if(returnvalue)
+{
+        var req = new Request.HTML({
+           method: 'post',
+           url: base_url + 'admin/widgets_manager/delete',
+           onRequest: function() { },
+           onComplete: function(response) {
+                ajax_div('page', base_url + 'admin/widgets_manager');
             }
-        }
-        
-        function edit_widget(id)
-        {
-            ajax_div('page', base_url + 'admin/widgets_manager/edit/' + id );
-        }
-
-        function confim_delete_widget(name)
-        {
-        alertBox.confirm('<h1> </h1><p>Удалить виджет ' + name + '? </p>', {onComplete:
-        function(returnvalue){
-        if(returnvalue)
-        {
-                var req = new Request.HTML({
-                   method: 'post',
-                   url: base_url + 'admin/widgets_manager/delete',
-                   onRequest: function() { },
-                   onComplete: function(response) {  
-                        ajax_div('page', base_url + 'admin/widgets_manager');   
-                    }
-                }).post({'widget_name': name });
-        }
-        }
-        });
-        }
+        }).post({'widget_name': name });
+}
+}
+});
+}
