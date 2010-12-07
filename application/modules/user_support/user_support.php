@@ -95,7 +95,7 @@ class User_support extends Controller {
             $this->form_validation->set_rules('department', 'Отдел', 'required|xss_clean'); 
             $this->form_validation->set_rules('priority', 'Приоритет', 'required|xss_clean'); 
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run($this) == FALSE)
             {
                 // error
             }
@@ -218,7 +218,7 @@ class User_support extends Controller {
 
         $this->form_validation->set_rules('text', 'Текст сообщения', 'required|xss_clean|max_length[500]'); 
 
-        if ($this->form_validation->run() == FALSE)
+        if ($this->form_validation->run($this) == FALSE)
         {
             $this->ticket($ticket['id']);
 

@@ -441,7 +441,7 @@ class Admin extends Controller {
 		$val->set_rules('menu_expand_level', 'Уровень раскрытия', 'numeric|max_length[2]');
 
 
-		if ($this->form_validation->run() == FALSE)
+		if ($this->form_validation->run($this) == FALSE)
 		{
 			showMessage ( validation_errors() );
 		}else{
@@ -490,7 +490,7 @@ class Admin extends Controller {
 		$val->set_rules('menu_expand_level', 'Уровень раскрытия', 'numeric|max_length[2]');
 
 
-		if ($this->form_validation->run() == FALSE)
+		if ($this->form_validation->run($this) == FALSE)
 		{
 			showMessage ( validation_errors() );
 		}else{

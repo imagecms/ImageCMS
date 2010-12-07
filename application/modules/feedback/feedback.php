@@ -37,7 +37,7 @@ class Feedback extends Controller {
             $this->form_validation->set_rules('captcha', lang('lang_captcha'), 'trim|required|xss_clean|callback_captcha_check');
             $this->form_validation->set_rules('message', 'Сообщение', 'trim|required|max_length['.$this->message_max_len.']|xss_clean');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run($this) == FALSE)
             {
                 $tpl_data['form_errors'] = validation_errors();
             }

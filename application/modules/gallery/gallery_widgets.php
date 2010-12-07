@@ -51,7 +51,7 @@ class Gallery_Widgets extends Controller {
                 $this->load->library('Form_validation');
                 $this->form_validation->set_rules('limit', 'Лимит изображений', 'trim|required|integer');
 
-                if ($this->form_validation->run() == FALSE)
+                if ($this->form_validation->run($this) == FALSE)
                 {
                     showMessage(validation_errors());
                     exit;

@@ -128,7 +128,7 @@ class Pages extends Controller{
 
         ($hook = get_hook('admin_page_add_set_rules')) ? eval($hook) : NULL;
 
-		if ($this->form_validation->run() == FALSE)
+		if ($this->form_validation->run($this) == FALSE)
 		{
             ($hook = get_hook('admin_page_add_val_failed')) ? eval($hook) : NULL;
 			showMessage (validation_errors());
@@ -433,7 +433,7 @@ class Pages extends Controller{
 
         ($hook = get_hook('admin_page_update_set_rules')) ? eval($hook) : NULL;
 
-		if ($this->form_validation->run() == FALSE)
+		if ($this->form_validation->run($this) == FALSE)
 		{
                 ($hook = get_hook('admin_page_update_val_failed')) ? eval($hook) : NULL;
 				showMessage (validation_errors());
