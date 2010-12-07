@@ -204,7 +204,7 @@ class Admin extends Controller {
             $this->load->library('Form_validation');
             $this->form_validation->set_rules('name', 'Название департамента', 'required|xss_clean|max_length[45]'); 
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run($this) == FALSE)
             {
                 showMessage(validation_errors());
             }
@@ -236,7 +236,7 @@ class Admin extends Controller {
                 $this->load->library('Form_validation');
                 $this->form_validation->set_rules('name', 'Название департамента', 'required|xss_clean|max_length[45]'); 
 
-                if ($this->form_validation->run() == FALSE)
+                if ($this->form_validation->run($this) == FALSE)
                 {
                     showMessage(validation_errors());
                 }

@@ -49,7 +49,7 @@ class Admin extends Controller {
                     $this->form_validation->set_rules('email', 'E-mail', 'trim|valid_email|required|xss_clean');
                     $this->form_validation->set_rules('message_max_len', 'Макс. длина сообщения', 'trim|integer|required|xss_clean');
 
-                    if ($this->form_validation->run() == FALSE)
+                    if ($this->form_validation->run($this) == FALSE)
                     {
                         showMessage( validation_errors() );
                     }

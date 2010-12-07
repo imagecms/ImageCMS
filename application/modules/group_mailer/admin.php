@@ -47,7 +47,7 @@ class Admin extends Controller {
         $this->form_validation->set_rules('email', 'Ваш Email', 'required|trim|valid_email');
         $this->form_validation->set_rules('message', 'Сообщение', 'required|trim');
         
-		if ($this->form_validation->run() == FALSE)
+		if ($this->form_validation->run($this) == FALSE)
 		{
 			showMessage (validation_errors());
 		}

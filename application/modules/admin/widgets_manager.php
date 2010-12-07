@@ -94,7 +94,7 @@ class Widgets_Manager extends Controller {
             $this->form_validation->set_rules('module', 'Модуль', 'trim|required');
             $this->form_validation->set_rules('method', 'Метод', 'trim|required');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run($this) == FALSE)
             {
                 showMessage (validation_errors());
             }else{
@@ -149,7 +149,7 @@ class Widgets_Manager extends Controller {
             $this->form_validation->set_rules('name', 'Имя', 'trim|required|alpha_dash');
             $this->form_validation->set_rules('html_code', 'HTML', 'trim|required');
             
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run($this) == FALSE)
             {
                 showMessage (validation_errors());
             }else{
@@ -217,7 +217,7 @@ class Widgets_Manager extends Controller {
                 $this->form_validation->set_rules('desc', 'Описание', 'trim|min_length[1]|max_length[500]');
                 $this->form_validation->set_rules('name', 'Имя', 'trim|required|alpha_dash');
             
-                if ($this->form_validation->run() == FALSE)
+                if ($this->form_validation->run($this) == FALSE)
                 {
                     showMessage (validation_errors());
                     return FALSE;
@@ -248,7 +248,7 @@ class Widgets_Manager extends Controller {
             $this->form_validation->set_rules('name', 'Имя', 'trim|required|alpha_dash');
             $this->form_validation->set_rules('html_code', 'HTML', 'trim|required');
             
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run($this) == FALSE)
             {
                 showMessage (validation_errors());
                 return FALSE;

@@ -185,7 +185,7 @@ class Comments extends Controller {
 
 		$this->form_validation->set_rules('comment_text',   'lang:lang_comment_text',   'trim|required|xss_clean|max_length['.$this->max_comment_length.']');
 
-		if ($this->form_validation->run() == FALSE)
+		if ($this->form_validation->run($this) == FALSE)
 		{
             ($hook = get_hook('comments_validation_failed')) ? eval($hook) : NULL;
 			//$this->core->error( validation_errors() );

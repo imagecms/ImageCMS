@@ -90,7 +90,7 @@ class Core_Widgets extends Controller {
                 $this->form_validation->set_rules('news_count', 'Количество новостей', 'trim|required|is_natural_no_zero|min_length[1]');
                 $this->form_validation->set_rules('max_symdols', 'Максимальное количество символов', 'trim|required|is_natural|min_length[1]');
 
-                if ($this->form_validation->run() == FALSE)
+                if ($this->form_validation->run($this) == FALSE)
                 {
                     showMessage( validation_errors() );
                 }

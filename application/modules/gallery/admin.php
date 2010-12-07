@@ -214,7 +214,7 @@ class Admin extends Controller {
                 $val->set_rules('watermark_font_size', 'Размер шрифта', 'required|is_natural'); 
                 $val->set_rules('watermark_image_opacity', 'Прозрачность', 'required|is_natural|min_length[1]|max_length[3]'); 
 
-                if ($this->form_validation->run() == FALSE)
+                if ($this->form_validation->run($this) == FALSE)
                 {
                     showMessage (validation_errors());
                     return FALSE;
@@ -288,7 +288,7 @@ class Admin extends Controller {
         $this->form_validation->set_rules('email', 'Описание', 'max_length[500]');
         $this->form_validation->set_rules('category_id', 'Категория', 'required');
 			
-		if ($this->form_validation->run() == FALSE)
+		if ($this->form_validation->run($this) == FALSE)
 		{
 			showMessage( validation_errors() );
 		}
@@ -451,7 +451,7 @@ class Admin extends Controller {
 
             $this->form_validation->set_rules('new_name', 'Имя', 'trim|required|alpha_dash');
 
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run($this) == FALSE)
             {
                 showMessage( validation_errors() );
             }

@@ -73,7 +73,7 @@ class Comments_Widgets extends Controller {
                 $this->form_validation->set_rules('comments_count', 'Количество комментариев', 'trim|required|is_natural_no_zero|min_length[1]');
                 $this->form_validation->set_rules('symbols_count', 'Количество символов', 'required|trim|is_natural');
 
-                if ($this->form_validation->run() == FALSE)
+                if ($this->form_validation->run($this) == FALSE)
                 {
                     showMessage( validation_errors() );
                 }

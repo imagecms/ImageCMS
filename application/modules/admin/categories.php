@@ -105,7 +105,7 @@ class Categories extends Controller {
 
         ($hook = get_hook('admin_create_cat_set_rules')) ? eval($hook) : NULL; 
 
-		if ($this->form_validation->run() == FALSE)
+		if ($this->form_validation->run($this) == FALSE)
 		{
             ($hook = get_hook('admin_create_cat_val_failed')) ? eval($hook) : NULL;
 			showMessage (validation_errors());
@@ -250,7 +250,7 @@ class Categories extends Controller {
             $this->form_validation->set_rules('name', 'Название', 'trim|required|min_length[1]|max_length[160]');
             $this->form_validation->set_rules('parent_id', 'Родитель', 'trim|required|integer|max_length[160]');
         
-            if ($this->form_validation->run() == FALSE)
+            if ($this->form_validation->run($this) == FALSE)
             {
                 showMessage (validation_errors());
             }
@@ -389,7 +389,7 @@ class Categories extends Controller {
 
             ($hook = get_hook('admin_set_cat_translate_rules')) ? eval($hook) : NULL;
 
-	        if ($this->form_validation->run() == FALSE)
+	        if ($this->form_validation->run($this) == FALSE)
 		    {
 		    	showMessage (validation_errors());
 		    }

@@ -345,7 +345,7 @@ class Admin extends Controller {
 		$this->form_validation->set_rules('alt_name', 'Название', 'required|trim|max_length[150]|min_length[2]');
 		$this->form_validation->set_rules('desc', 'Описание', 'trim|max_length[300]|min_length[2]');
 
-		if ($this->form_validation->run() == FALSE)
+		if ($this->form_validation->run($this) == FALSE)
 		{
 			showMessage (validation_errors());
 		}
@@ -391,7 +391,7 @@ class Admin extends Controller {
 		$this->form_validation->set_rules('name', 'Идентификатор', 'required|trim|max_length[150]|min_length[2]|alpha');
 		$this->form_validation->set_rules('desc', 'Описание', 'trim|max_length[500]|min_length[2]');
 
-		if ($this->form_validation->run() == FALSE)
+		if ($this->form_validation->run($this) == FALSE)
 		{
 
 			showMessage (validation_errors());

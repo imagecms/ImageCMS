@@ -56,7 +56,7 @@ class Login extends Controller {
 				$this->form_validation->set_rules('captcha', lang('lang_captcha'), 'trim|required|xss_clean|callback_captcha_check');
 			}
 
-				if ($this->form_validation->run() == FALSE)
+				if ($this->form_validation->run($this) == FALSE)
 				{
 					$err_object =& _get_validation_object();
 

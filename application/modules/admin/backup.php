@@ -66,7 +66,7 @@ class Backup extends Controller {
 
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 			
-		if ($this->form_validation->run() == FALSE)
+		if ($this->form_validation->run($this) == FALSE)
 		{
 			showMessage( validation_errors() );
 		}

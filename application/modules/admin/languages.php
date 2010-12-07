@@ -52,7 +52,7 @@ class Languages extends Controller{
 		$this->form_validation->set_rules('folder', 'Папка', 'required|max_length[250]');
 		$this->form_validation->set_rules('template', 'Шаблон', 'required|max_length[250]');
 
-		if ($this->form_validation->run() == FALSE)
+		if ($this->form_validation->run($this) == FALSE)
 		{
 			showMessage (validation_errors());
 		}else{
@@ -113,7 +113,7 @@ class Languages extends Controller{
 		$this->form_validation->set_rules('folder', 'Папка', 'required|max_length[250]');
 		$this->form_validation->set_rules('template', 'Шаблон', 'required|max_length[250]');
 
-		if ($this->form_validation->run() == FALSE)
+		if ($this->form_validation->run($this) == FALSE)
 		{
 			showMessage (validation_errors());
 		}else{
