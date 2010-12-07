@@ -576,7 +576,7 @@ class CI_Form_validation {
 				$rule	= $match[1];
 				$param	= $match[2];
 			}
-			
+
 			// Call the function that corresponds to the rule
 			if ($callback === TRUE)
 			{
