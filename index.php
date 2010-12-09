@@ -122,7 +122,7 @@ else
 // Added by dev@imagecms.net
 header ('Content-type: text/html; charset=utf-8');
 
-define('IMAGECMS_NUMBER', '2.0.9');
+define('IMAGECMS_NUMBER', '2.1.0');
 define('IMAGECMS_VERSION', 'A35TW503B1'); 
 define('IMAGECMS_PUBLIC_ID', '7840a004c9fb02f6c294c793b59aa5348a895978');
 

@@ -1,58 +1,19 @@
+<script src="{$THEME}/js/lightBox/js/jquery.lightbox-0.5-min.js"></script>
+<link rel="stylesheet" type="text/css" href="{$THEME}/js/lightBox/css/jquery.lightbox-0.5-min.css" />
 {literal}
-<style type="text/css">
-div.prev_div {
-    /*float:left; */
-    text-align:center;
-}
-
-#gallery_nav {
-    font-size:22px;padding:5px;text-decoration:none;
-}
-
-div.gallery_thumbs {
-    float:right;
-    width:142px;
-}
-
-.gallery_thumbs ul { 
-    list-style:none;
-    text-align:left;
-}
-
-.gallery_thumbs li {
-    margin:0;
-    float:left;
-    display:table-cell;
-    padding:5px;
-}
-
-.gallery_thumbs p {
-    padding:0;
-    margin:0;
-}
-
-.gallery_thumbs img {
-    border:2px solid #E8E8E8;
-}
-
-.g_small , .g_small a {
-    font-size:10px;
-}
-
-</style>
+    <script type="text/javascript">
+    $(function(){
+        $('a.lightbox').lightBox({fixedNavigation:true});
+    })
+    </script>
 {/literal}
-
-{imagebox_headers()}
-
-<h1>{$album.name}</h1>
-
-<br />
+<div id="titleExt"><h5><a href="{site_url('gallery')}">Галерея</a> &gt;&gt; <span class="ext">{$album.name}</span></h5></div>
 
 <div align="center">
 <table cellpadding="1" cellspacing="1" border="0">
     <tr>
         <td colspan="2">
-            <a href="{site_url($album_url . $prev_img.full_name)}" rel="lightbox[gallery]" title="{$prev_img.description}" >
+            <a href="{site_url($album_url . $prev_img.full_name)}" class="lightbox" title="{$prev_img.description}" >
                 <img src="{media_url($prev_img.url)}" style="border:5px solid #E8E8E8;" />
             </a>  
         </td>
@@ -67,13 +28,13 @@ div.gallery_thumbs {
     </tr>
 </table>
 
-    {if $prev}<a id="gallery_nav" href="{site_url($album_link . 'image/'. $prev.id)}"#image>←</a>{/if}
-    {if $next}<a id="gallery_nav" href="{site_url($album_link . 'image/'. $next.id)}"#image>→</a>{/if}
+    {if $prev}<a id="gallery_nav" href="{site_url($album_link . 'image/'. $prev.id)}"#image>&lt;&lt;&nbsp;Предыдущая</a>&nbsp;&nbsp;{/if}
+    {if $next}&nbsp;&nbsp;<a id="gallery_nav" href="{site_url($album_link . 'image/'. $next.id)}"#image>Следующая&nbsp;&gt;&gt;</a>{/if}
 </div>
 
 <br />
 
-<div id="comments">
+<div class="comments">
     {$comments}
 </div>
 

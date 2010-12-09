@@ -1,7 +1,2 @@
-<p>
-    <a href="{site_url('user_support/create_ticket')}">Создать билет</a>
-</p>
+{$my_tickets_list}
 
-<p>
-    {$my_tickets_list}
-</p>

@@ -19,6 +19,8 @@
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.cycle.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.functions.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/js.js"></script>
+
+<link rel="icon" href="{$SHOP_THEME}images/favicon.png" type="image/x-icon" />
 </head>
 <body>
 <!-- BEGIN LAYOUT -->
@@ -36,12 +38,12 @@
             {echo ShopCore::app()->SCart->totalItems()}
             {echo SStringHelper::Pluralize(ShopCore::app()->SCart->totalItems(), array('товар','товара','товаров'))}
         </a>
-        <span class="prices">{echo ShopCore::app()->SCart->totalPrice()} {$CS} 
+        <span class="prices">{echo ShopCore::app()->SCart->totalPrice()} {$CS}
             <a href="{shop_url('cart')}" class="image"><img src="{$SHOP_THEME}style/images/myitems.jpg" width="22" height="18" border="0" alt="mycart" /></a>
         </span>
     </div>
 
-    <div id="topCurrency">
+    <div id="topCurrency" align="right">
     <form action="" method="post" name="currencyChangeForm">
     {form_csrf()}
         Валюта: <select onchange="document.forms.currencyChangeForm.submit();" name="setCurrency">
@@ -50,6 +52,15 @@
             {/foreach}
         </select>
     </form>
+
+    {if $CI->session->userdata('shopForCompare')}
+        <div class="topCompareInfo">
+            <a href="{shop_url('compare')}">
+                Добавлено {count($CI->session->userdata('shopForCompare'))} {echo SStringHelper::Pluralize(count($CI->session->userdata('shopForCompare')), array('товар','товара','товаров'))} для сравнения
+            </a>
+        </div>
+    {/if}
+
     </div>
 
     <div class="sp"></div>
@@ -76,7 +87,7 @@
   <div id="main">
       <!-- BEGIN CONTEINER -->
     <div id="content">
-        {$content} 
+        {$content}
     </div>
     <!-- END CONTENT -->
     <div class="sp"></div>

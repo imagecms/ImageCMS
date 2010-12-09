@@ -1,2 +1,2 @@
-<h1>Поддержка пользователей</h1>
+<div id="titleExt"><h5>{widget('path')}<span class="ext">Поддержка пользователей</span></h5></div>
 {$user_support_content}

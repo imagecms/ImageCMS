@@ -1,5 +1,5 @@
 
-{include_tpl('sidebar', './application/modules/shop/templates/default')}
+{include_tpl('shop/default/sidebar')}
 
 {if $no_pages}
         <p>{$no_pages}</p>

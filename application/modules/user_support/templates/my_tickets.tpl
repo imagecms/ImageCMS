@@ -45,8 +45,11 @@ color:#333399;
 {/literal}
 
 {if $tickets}
-<br/>
 <h3>Мои билеты</h3>
+<p>
+    <a href="{site_url('user_support/create_ticket')}">Создать билет</a> | <a href="{site_url('user_support')}">Главный раздел</a>
+</p>
+
 <table id="box-table-a">
 
 <thead>
@@ -81,5 +84,9 @@ color:#333399;
 
 <p align="right">
     <a href="{site_url('user_support/my_tickets')}">Все билеты</a>
+</p>
+{else:}
+<p>
+    <a href="{site_url('user_support/create_ticket')}">Создать билет</a> | <a href="{site_url('user_support')}">Главный раздел</a>
 </p>
 {/if}

@@ -8,7 +8,7 @@ class Cms_hooks {
     {
         $ci =& get_instance();
 
-        if (!$ci->config->item('is_installed'))
+        if (!$ci->config->item('is_installed') && !function_exists('get_hook'))
         {
             function get_hook() 
             { 

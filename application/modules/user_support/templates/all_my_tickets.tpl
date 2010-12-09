@@ -58,6 +58,10 @@ padding:2px;
 {/literal}
 
 <h3>Мои билеты</h3>
+<p>
+    <a href="{site_url('user_support/create_ticket')}">Создать билет</a> | <a href="{site_url('user_support')}">Главный раздел</a>
+</p>
+
 <table id="box-table-a">
 
 <thead>

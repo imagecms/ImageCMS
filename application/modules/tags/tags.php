@@ -83,6 +83,7 @@ class Tags extends Controller {
             $offset = 0;
         }
 
+        $tag = urldecode($tag);
         $tags = explode(':', $tag);
 
         if (count($tags) > 0)

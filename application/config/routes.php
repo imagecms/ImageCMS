@@ -48,6 +48,12 @@ $route['admin'] = "admin/admin";
 $route['admin/logout'] = "admin/logout";
 $route['admin/delete_cache'] = "admin/delete_cache";
 
+// You can remove next lines after instalation.
+//----------------------------------------------
+$route['install/(.*)'] = "install/$1";
+$route['install'] = "install"; 
+//----------------------------------------------
+
 $route[':any'] = "core";
 
 /* End of file routes.php */
