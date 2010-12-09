@@ -30,6 +30,15 @@ class Lib_init {
             $CI->load->library('cms_hooks');
         }
 
+        // Fake function for hooks.
+        if (!function_exists('get_hook'))
+        {
+            function get_hook()
+            {
+                return false;
+            }
+        }
+
 		$native_session = TRUE;
 
 		// Cache engine

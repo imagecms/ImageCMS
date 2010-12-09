@@ -1,3 +1,3 @@
-{include_tpl('sidebar', './application/modules/shop/templates/default')}
+{include_tpl('shop/default/sidebar')}
 
 <h5>Страница не найдена.</h5>

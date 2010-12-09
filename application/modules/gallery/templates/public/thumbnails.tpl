@@ -1,40 +1,12 @@
-{literal}
-<style type="text/css">
-
-.gallery_thumbs ul { 
-    list-style:none;
-    text-align:left;
-}
-
-.gallery_thumbs li {
-    margin:0;
-    float:left;
-    display:table-cell;
-    padding:5px;
-}
-
-.gallery_thumbs p {
-    padding:0;
-    margin:0;
-}
-
-.gallery_thumbs img {
-    border:2px solid #E8E8E8;
-}
-
-</style>
-{/literal}
-
-<h1>{$album.name}</h1>
-
-<br />
-
-<ul class="gallery_thumbs">
+<div id="titleExt"><h5><a href="{site_url('gallery')}">Галерея</a> &gt;&gt; <span class="ext">{$album.name}</span></h5></div>
+<ul class="products thumbs">
+	 {$counter = 1}
     {foreach $album.images as $image}
-       <li>
-       <a href="{site_url($album_link . 'image/'. $image.id)}" title="{$image.description}"><img src="{media_url($thumb_url . $image.full_name)}" alt="{$image.description}" /></a>
-        <a style="display:none;" href="{site_url($album_url . $image.full_name)}"></a>
-       </li>
+     <li {if $counter == 4} class="last" {$counter = 0}{/if}>
+      <a href="{site_url($album_link . 'image/'. $image.id)}" title="{$image.description}" class="image"><img src="{media_url($thumb_url . $image.full_name)}" alt="{$image.description}" /></a>
+     </li>
+     {$counter++}
     {/foreach}
 </ul>
+
 

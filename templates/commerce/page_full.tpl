@@ -1,4 +1,4 @@
-{include_tpl('sidebar', './application/modules/shop/templates/default')}
+{include_tpl('shop/default/sidebar')}
 
 <div class="products_list">
 

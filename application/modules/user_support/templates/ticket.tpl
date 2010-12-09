@@ -43,6 +43,9 @@
 {/literal}
 
 <h3>Тема билета: {$ticket.theme}</h3>
+<p>
+    <a href="{site_url('user_support/create_ticket')}">Создать новый билет</a> | <a href="{site_url('user_support/my_tickets')}">Все билеты</a>
+</p>
 
 <?php
     $ci = get_instance();
@@ -119,12 +122,13 @@
     <form action="{site_url('user_support/add_comment/' . $ticket.id)}" method="POST">
     {form_csrf()}
         <div class="form"> 
-        <p>
+        <div class="textbox">
+			<label for="text" class="left">Введите Ваше сообщение</label>
             <textarea rows="10" cols="45" class="textarea" name="text"></textarea>
+        </div>
             <br />
-            <br />
-            <button type="submit" class="button">Отослать</button> 
-        </p>
+            <button type="submit" class="submit">Отослать</button> 
+        
         </div>
     </form>
 </p>

@@ -20,8 +20,7 @@ class Core extends Controller {
 
 	public function __construct()
 	{
-        parent::Controller();
-        //$this->output->enable_profiler(TRUE);
+        parent::__construct();
         $this->_load_languages();
 	}
 

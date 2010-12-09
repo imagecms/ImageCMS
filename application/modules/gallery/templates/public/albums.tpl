@@ -1,57 +1,16 @@
-{literal}
-<style>
-   .albums_list {
-        position:relative;
-    }
-
-    .albums_list ul { 
-        list-style:none;
-        text-align:left;
-    }
-
-    .albums_list li {
-        margin:0;
-        float:left;
-        display:table-cell;
-        width:200px;
-        height:150px;
-        padding:5px;
-    }
-
-    .albums_list p {
-        padding:0;
-        margin:0;
-    }
-
-    .date {
-        font-size:10px;
-        display:block;
-    }
-</style>
-{/literal}
-
-<h1>Альбомы</h1>
-
-
+<div id="titleExt"><h5>{widget('path')}<span class="ext">Галерея</span></h5></div>
 
 {if is_array($albums)}
-    <div class="albums_list">
-    <ul>   
+<ul class="products">
+    {$counter = 1}
     {foreach $albums as $album}     
-    <li>  
-        <a href="{site_url('gallery/album/' . $album.id)}"><img src="{$album.cover_url}" border="0" style="border:5px solid #fff;" /></a>
-        <br/>
-        <a href="{site_url('gallery/album/' . $album.id)}">{$album.name}</a>
-        <p>
-            {truncate($album.description, 50)}
-            <span class="date">
-                {date('Y-m-d', $album.updated)}
-            </span>
-        </p>
+    <li {if $counter == 3} class="last" {$counter = 0}{/if}>  
+        <a href="{site_url('gallery/album/' . $album.id)}" class="image"><img src="{$album.cover_url}" border="0" /></a>
+        <h3 class="name"><a href="{site_url('gallery/album/' . $album.id)}">{$album.name}</a></h3>
     </li>
+    {$counter++}
     {/foreach}
-    </ul>
-    </div>
+</ul>
 
 {else:}
     Альбомов не найдено.

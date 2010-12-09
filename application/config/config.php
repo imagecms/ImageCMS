@@ -39,10 +39,10 @@ $config['database']['active_record']       = 'true';
 $config['database']['default']['hostname'] = "localhost";
 $config['database']['default']['username'] = "root";
 $config['database']['default']['password'] = "mysqlpass";
-$config['database']['default']['database'] = "imagecms_site";
+$config['database']['default']['database'] = "imagecms_shop";
 $config['database']['default']['dbdriver'] = "mysql";
 $config['database']['default']['dbprefix'] = "";
-$config['database']['default']['pconnect'] = TRUE;
+$config['database']['default']['pconnect'] = false;
 $config['database']['default']['db_debug'] = TRUE;
 $config['database']['default']['cache_on'] = FALSE;
 $config['database']['default']['cachedir'] = "";
@@ -60,12 +60,11 @@ $config['database']['default']['dbcollat'] = "utf8_general_ci";
 |	http://example.com/
 |
 */
-//$config['base_url'] = 'http://imagecms/';
 
 // Auto-detect base url.
-$proto = "http" . ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "s" : "") . "://";
+$prototype = "http" . ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "s" : "") . "://";
 $server = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : $_SERVER['SERVER_NAME'];
-$config['base_url'] = $proto . $server;
+$config['base_url'] = $prototype . $server;
 
 $config['static_base_url'] = $config['base_url'];
 
@@ -80,8 +79,8 @@ $config['static_base_url'] = $config['base_url'];
 |
 */
 $config['index_page'] = "";
-$config['is_installed'] = TRUE;
-$config['rebuild_hooks_tree'] = TRUE;
+$config['is_installed'] = false;
+$config['rebuild_hooks_tree'] = false;
 /*
 |--------------------------------------------------------------------------
 | URI PROTOCOL
