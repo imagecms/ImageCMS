@@ -3,6 +3,7 @@
     {for $i=0; $i < $item['level']; $i++}-{/for} {$item.name}
     </a>
         {if $item['subtree']}
-            { include_tpl(cats_list.tpl, array('tree' => $item['subtree'])); }
+            {$CI->template->assign('tree',$item['subtree'])}
+            {include_tpl('cats_list')}
         {/if}
 {/foreach}

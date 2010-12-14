@@ -79,7 +79,7 @@ $config['static_base_url'] = $config['base_url'];
 |
 */
 $config['index_page'] = "";
-$config['is_installed'] = false;
+$config['is_installed'] = true;
 $config['rebuild_hooks_tree'] = false;
 /*
 |--------------------------------------------------------------------------

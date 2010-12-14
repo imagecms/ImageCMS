@@ -46,7 +46,7 @@ class CForm_Textarea {
     {
         if ($this->field->validation)
             $this->form->form_validation->set_rules($this->name, $this->field->label, $this->field->validation);
-            if ($this->form->form_validation->run($this) == FALSE)
+            if ($this->form->form_validation->run($this->ci) == FALSE)
                 return form_error($this->name, ' ', ' ');
             else
                 return FALSE;
