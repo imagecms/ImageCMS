@@ -61,11 +61,24 @@
 
 <div id="total">
     <span class="value" id="totalPriceText">
-        {echo $total} {$CS}
+        {echo $total + $model->getDeliveryPrice()} {$CS}
     </span>
     <span class="label">
         {echo ShopCore::t('Итог')}
     </span>
 </div>
 
-<div class="sp"></div>  
+<div class="sp"></div>
+<h5>Способы оплаты</h5>
+<ul>
+    {foreach $paymentMethods as $pm}
+    <li>
+        <label><b>{echo encode($pm->getName())}</b></label>
+        <p>
+            {echo $pm->getDescription()}
+            {echo $pm->getPaymentForm($model)}
+        </p>
+    </li>
+    {/foreach}
+</ul>
+
