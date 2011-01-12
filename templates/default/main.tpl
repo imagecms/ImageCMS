@@ -148,8 +148,8 @@
         </div>
       </div>
 
-      
-		<div class="box"><a href="/rss" class="button1">Подписаться на блог</a></div>
+
+	<div class="box"><a href="/rss" class="button1">Подписаться на блог</a></div>
     </div>
     <!-- END SIDEBAR -->
     
