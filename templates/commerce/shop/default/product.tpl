@@ -121,9 +121,25 @@
         {/if}
 
 
-        <div class="price" id="price">
-            {echo $model->firstVariant->toCurrency()} {$CS}
+        <div class="price">
+            <span id="price">{echo $model->firstVariant->toCurrency()} {$CS}</span>
+
+            <!-- Старая цена -->
+            {if $model->getOldPrice() > 0}
+            <div style="font-size:13px;color:#000">
+               Старая цена: <span style="color:red;"><s>{echo $model->toCurrency('OldPrice')} {$CS}</s></span>
+            </div>
+            {/if}
+
+            <!-- Выводим процент или сумму скидки(если есть) -->
+            {if $model->hasDiscounts()}
+            <div style="font-size:12px;color:#d2691e;">
+                На данный продукт действует скидка {echo $model->getDiscountString()}
+            </div>
+            {/if}
         </div>
+
+
         <input type="hidden" name="productId" value="{echo $model->getId()}" />
         <input type="hidden" name="quantity" value="1" />
 
