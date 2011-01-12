@@ -80,7 +80,7 @@ $config['static_base_url'] = $config['base_url'];
 */
 $config['index_page'] = "";
 $config['is_installed'] = true;
-$config['rebuild_hooks_tree'] = false;
+$config['rebuild_hooks_tree'] = true;
 /*
 |--------------------------------------------------------------------------
 | URI PROTOCOL
