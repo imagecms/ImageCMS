@@ -58,7 +58,7 @@ class Lib_csrf {
                 }
             }
                 
-            $post_token = $this->ci->input->post( $this->hidden_name );
+            $post_token = $this->ci->input->post($this->hidden_name);
 
             if ( array_search($post_token, $this->tokens) == FALSE)
             {
