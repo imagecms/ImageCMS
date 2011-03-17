@@ -33,6 +33,7 @@ class Install extends Controller {
         $dir_array = array(
                 './application/config/config.php' => 'ok',
                 './system/cache'       => 'ok',
+                './captcha/    '       => 'ok',
                 './system/cache/templates_c' => 'ok',
                 './uploads/'           => 'ok',
                 './uploads/images'     => 'ok',
