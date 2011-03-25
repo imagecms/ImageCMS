@@ -1,10 +1,10 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Cms_admin extends Model{
+class Cms_admin extends CI_Model {
 
 	function __construct()
 	{
-		parent::Model();
+		parent::__construct();
 	}
 
 /*************************************************************

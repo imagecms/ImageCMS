@@ -6,7 +6,7 @@
  * Feedback module
  */
 
-class Feedback extends Controller {
+class Feedback extends MY_Controller {
 
     public $username_max_len = 30;
     public $message_max_len  = 600;
@@ -16,7 +16,7 @@ class Feedback extends Controller {
 
 	public function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 		$this->load->module('core');
         $this->load_settings();
 	}

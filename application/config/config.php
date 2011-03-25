@@ -79,8 +79,8 @@ $config['static_base_url'] = $config['base_url'];
 |
 */
 $config['index_page'] = "";
-$config['is_installed'] = true;
-$config['rebuild_hooks_tree'] = true;
+$config['is_installed'] = TRUE;
+$config['rebuild_hooks_tree'] = TRUE;
 /*
 |--------------------------------------------------------------------------
 | URI PROTOCOL
@@ -248,7 +248,7 @@ $config['directory_trigger'] 	= 'd'; // experimental not currently in use
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 0;
+$config['log_threshold'] = 4;
 
 /*
 |--------------------------------------------------------------------------

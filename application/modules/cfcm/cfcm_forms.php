@@ -1,6 +1,6 @@
 <?php
 
-class Cfcm_forms extends Controller {
+class Cfcm_forms extends MY_Controller {
 
     public
         $field_types = array(
@@ -14,7 +14,7 @@ class Cfcm_forms extends Controller {
 
     public function __construct()
     {
-        parent::Controller();
+        parent::__construct();
 
         $this->load->module('forms');
     }

@@ -20,7 +20,7 @@ Instructions:
 
 Load the plugin using:
 
- 	$this->load->plugin('captcha');
+ 	$this->load->helper('captcha');
 
 Once loaded you can generate a captcha like this:
 
@@ -101,7 +101,7 @@ Here is an example of usage with a DB.
 
 On the page where the captcha will be shown you'll have something like this:
 
-	$this->load->plugin('captcha');
+	$this->load->helper('captcha');
 	$vals = array(
 					'img_path'	 => './captcha/',
 					'img_url'	 => 'http://www.your-site.com/captcha/'

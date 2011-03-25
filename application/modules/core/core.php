@@ -4,7 +4,7 @@
  *
  * core.php
  */
-class Core extends Controller {
+class Core extends MY_Controller {
 
 	public $langs = array(); // Langs array
 	public $def_lang = array(); // Default language array
@@ -16,7 +16,7 @@ class Core extends Controller {
 	public $by_pages = FALSE;
 	public $cat_page = 0;
 	public $tpl_data = array();
-	public $core_data = array();
+	public $core_data = array('data_type'=>null);
 
 	public function __construct()
 	{
@@ -33,7 +33,7 @@ class Core extends Controller {
         $data_type = '';
         $com_links = array();
 
-        $cat_path = substr($this->uri->uri_string(), 1); 
+        $cat_path = $this->uri->uri_string(); 
 
         ($hook = get_hook('core_init')) ? eval($hook) : NULL;
 
@@ -149,7 +149,7 @@ class Core extends Controller {
         $this->load->library('DX_Auth');
 
         // Are we on main page?
-        if ($cat_path === FALSE AND $data_type != 'bridge')
+        if ($cat_path == '/' OR $cat_path === FALSE AND $data_type != 'bridge')
         {
              $data_type = 'main';
 
@@ -186,7 +186,7 @@ class Core extends Controller {
         if ($data_type != 'main' AND $data_type != 'category' AND $data_type != 'bridge')
         {
                 $cat_path_url = substr($cat_path, 0, strripos($cat_path, '/') + 1);
-                                
+
                 ($hook = get_hook('core_try_find_page')) ? eval($hook) : NULL;
 
                 // Select page permissions and page data
@@ -406,14 +406,22 @@ class Core extends Controller {
             $page['full_text'] = $page['prev_text'];
         }
 
-        // Set page template file
-        if ($page['full_tpl'] == NULL)
+
+        if (sizeof($category) > 0)
         {
-            $page_tpl = $category['page_tpl'];
-        }
-        else
-        {
-            $page_tpl = $page['full_tpl'];
+            // Set page template file
+            if ($page['full_tpl'] == NULL)
+            {
+                $page_tpl = $category['page_tpl'];
+            }
+            else
+            {
+                $page_tpl = $page['full_tpl'];
+            }
+
+            $tpl_name = $category['main_tpl'];
+        }else{
+            $tpl_name = False;
         }
 
         empty($page_tpl) ? $page_tpl = 'page_full' : TRUE;
@@ -430,9 +438,7 @@ class Core extends Controller {
         $this->db->set('showed', 'showed + 1', FALSE);
         $this->db->where('id', $page['id']);
         $this->db->limit(1);
-        $this->db->update('content');
-
-        $tpl_name = $category['main_tpl'];
+        $this->db->update('content'); 
 
         if (!empty($page['main_tpl']))
             $tpl_name = $page['main_tpl'];

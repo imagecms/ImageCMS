@@ -1,12 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Admin_logs extends Controller {
+class Admin_logs extends MY_Controller {
 
     public $per_page = 25;
 
 	public function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 
 		$this->load->library('DX_Auth');
         admin_or_redirect(); 

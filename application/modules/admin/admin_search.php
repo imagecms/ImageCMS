@@ -1,12 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Admin_search extends Controller {
+class Admin_search extends MY_Controller {
 
     public $items_per_page = '20'; // items per page for advanced search.
 
 	public function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 
 		$this->load->library('DX_Auth');
         admin_or_redirect(); 

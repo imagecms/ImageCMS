@@ -6,13 +6,13 @@
  * User support module.
  */
 
-class Admin extends Controller {
+class Admin extends MY_Controller {
 
     public $tickets_per_page = 20;
 
 	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 
         // Only admin access 
         // Do not delete this code !

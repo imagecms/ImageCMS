@@ -13,13 +13,13 @@ class Cache
 
 	//Cache config
     // TODO: Rewrite auto_clean to fetch date from DB
-    public $_Config = array('store'           => 'cache',
+    public $_Config = array('store'        => 'cache',
                          'auto_clean'      => 500, //Random number to run _Clean();
                          'auto_clean_life' => 3600,
                          'auto_clean_all'  => TRUE,
                          'ttl'             => 3600); //one hour
 
-    public function Cache()
+    public function __construct()
     {
         $this->CI =& get_instance();
 

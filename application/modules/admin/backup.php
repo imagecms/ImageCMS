@@ -6,11 +6,11 @@
  *
  */
 
-class Backup extends Controller {
+class Backup extends MY_Controller {
 
 	public function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 
 		$this->load->library('DX_Auth');
         admin_or_redirect(); 

@@ -2,13 +2,13 @@
 
 //error_reporting(0);
 
-class Sys_upgrade extends Controller {
+class Sys_upgrade extends MY_Controller {
 
     private $upgrade_server = 'http://imagecms.net/upgrades/';
 
 	public function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 
 		$this->load->library('DX_Auth');
         admin_or_redirect();

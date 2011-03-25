@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); 
 
-class Install extends Controller {
+class Install extends MY_Controller {
 
     public $host  = '';
     public $useSqlFile = 'sqlSite.sql'; // sqlShop.sql

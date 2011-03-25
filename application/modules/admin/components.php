@@ -4,11 +4,11 @@
  * Components Class
  */
 
-class Components extends Controller{
+class Components extends MY_Controller{
 
 	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 
 		$this->load->library('DX_Auth');
         admin_or_redirect();

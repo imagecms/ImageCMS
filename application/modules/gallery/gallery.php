@@ -7,7 +7,7 @@
  * Need Imagebox module
  */
 
-class Gallery extends Controller {
+class Gallery extends MY_Controller {
 
     public $conf = array(
         'upload_url'    => 'uploads/gallery/',
@@ -18,7 +18,7 @@ class Gallery extends Controller {
 
 	function __construct()
 	{
-        parent::Controller();
+        parent::__construct();
 
         $this->load->module('core');
         $this->load->model('gallery_m');

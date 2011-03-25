@@ -1,12 +1,12 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Tickets extends Model {
+class Tickets extends CI_Model {
 
     public $table = 'support_tickets';
 
 	function Tickets()
 	{
-		parent::Model();
+		parent::__construct();
     }
 
     function create($data)

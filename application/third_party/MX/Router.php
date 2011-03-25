@@ -1,15 +1,10 @@
 <?php (defined('BASEPATH')) OR exit('No direct script access allowed');
 
-/* load the modules class */
-require_once 'Modules'.EXT;
-
-/* define the module locations and offset */
-Modules::$locations = array(
-	APPPATH.'modules/' => '../modules/',
-);
+/* load the MX core module class */
+require dirname(__FILE__).'/Modules.php';
 
 /**
- * Modular Extensions - PHP5
+ * Modular Extensions - HMVC
  *
  * Adapted from the CodeIgniter Core Classes
  * @link	http://codeigniter.com
@@ -17,10 +12,10 @@ Modules::$locations = array(
  * Description:
  * This library extends the CodeIgniter router class.
  *
- * Install this file as application/libraries/MY_Router.php
+ * Install this file as application/third_party/MX/Router.php
  *
- * @copyright	Copyright (c) Wiredesignz 2010-01-18
- * @version 	5.2.31
+ * @copyright	Copyright (c) 2011 Wiredesignz
+ * @version 	5.4
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -40,7 +35,7 @@ Modules::$locations = array(
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  **/
-class MY_Router extends CI_Router
+class MX_Router extends CI_Router
 {
 	private $module;
 	
@@ -48,13 +43,15 @@ class MY_Router extends CI_Router
 		return $this->module;
 	}
 	
-	public function _validate_request($segments) {		
+	public function _validate_request($segments) {
+
+		if (count($segments) == 0) return $segments;
 		
 		/* locate module controller */
 		if ($located = $this->locate($segments)) return $located;
 		
-		/* use a default 404 controller */
-		if (isset($this->routes['404']) AND $segments = explode('/', $this->routes['404'])) {
+		/* use a default 404_override controller */
+		if (isset($this->routes['404_override']) AND $segments = explode('/', $this->routes['404_override'])) {
 			if ($located = $this->locate($segments)) return $located;
 		}
 		
@@ -77,54 +74,62 @@ class MY_Router extends CI_Router
 		/* get the segments array elements */
 		list($module, $directory, $controller) = array_pad($segments, 3, NULL);
 
+		/* check modules */
 		foreach (Modules::$locations as $location => $offset) {
 		
 			/* module exists? */
 			if (is_dir($source = $location.$module.'/')) {
-
+				
 				$this->module = $module;
 				$this->directory = $offset.$module.'/';
-
+				
 				/* module sub-controller exists? */
 				if($directory AND is_file($source.$directory.$ext)) {
 					return array_slice($segments, 1);
 				}
 					
 				/* module sub-directory exists? */
-				if($directory AND is_dir($module_subdir = $source.$directory.'/')) {
-							
+				if($directory AND is_dir($source.$directory.'/')) {
+
+					$source = $source.$directory.'/'; 
 					$this->directory .= $directory.'/';
 
 					/* module sub-directory controller exists? */
-					if(is_file($module_subdir.$directory.$ext)) {
+					if(is_file($source.$directory.$ext)) {
 						return array_slice($segments, 1);
 					}
 				
 					/* module sub-directory sub-controller exists? */
-					if($controller AND is_file($module_subdir.$controller.$ext))	{
+					if($controller AND is_file($source.$controller.$ext))	{
 						return array_slice($segments, 2);
 					}
 				}
-
+				
 				/* module controller exists? */			
 				if(is_file($source.$module.$ext)) {
 					return $segments;
 				}
 			}
 		}
-
-		/* application controller exists? */
-		if(is_file(APPPATH.'controllers/'.$module.$ext)) {
+		
+		/* application controller exists? */			
+		if (is_file(APPPATH.'controllers/'.$module.$ext)) {
 			return $segments;
 		}
 		
 		/* application sub-directory controller exists? */
-		if(is_file(APPPATH.'controllers/'.$module.'/'.$directory.$ext)) {
+		if($directory AND is_file(APPPATH.'controllers/'.$module.'/'.$directory.$ext)) {
 			$this->directory = $module.'/';
 			return array_slice($segments, 1);
 		}
+		
+		/* application sub-directory default controller exists? */
+		if (is_file(APPPATH.'controllers/'.$module.'/'.$this->default_controller.$ext)) {
+			$this->directory = $module.'/';
+			return array($this->default_controller);
+		}
 	}
-	
+
 	public function set_class($class) {
 		$this->class = $class.$this->config->item('controller_suffix');
 	}

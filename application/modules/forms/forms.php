@@ -14,7 +14,7 @@ interface CFormObject {
     public function getUserData();
 }
 
-class Forms extends Controller {
+class Forms extends MY_Controller {
 
  	public $ci;
     public $instance     = NULL;
@@ -25,7 +25,7 @@ class Forms extends Controller {
 
  	public function __construct()
  	{
- 		parent::Controller();
+ 		parent::__construct();
 
         $this->load->library('form_validation');
 

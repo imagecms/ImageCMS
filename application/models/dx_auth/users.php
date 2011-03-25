@@ -2,11 +2,11 @@
 
 // DX_Auth class to work with users table
 
-class Users extends Model
+class Users extends CI_Model
 {
 	function Users()
 	{
-		parent::Model();
+		parent::__construct();
 
 		// Other stuff
 		$this->_prefix = $this->config->item('DX_table_prefix');

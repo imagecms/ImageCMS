@@ -7,7 +7,7 @@
  *
  */
 
-class User_support extends Controller {
+class User_support extends MY_Controller {
 
     public $user_id   = '';
 
@@ -44,7 +44,7 @@ class User_support extends Controller {
 
 	public function __construct()
 	{
-        parent::Controller();
+        parent::__construct();
         $this->load->module('core');
 
         // Check user login

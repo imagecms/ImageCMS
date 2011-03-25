@@ -6,7 +6,7 @@
  * Menu module
  */
 
-class Menu extends Controller{
+class Menu extends MY_Controller{
 
 	/******* Это можно редактировать ************/
 	private $tpl_folder_prefix		= "level_";
@@ -43,7 +43,7 @@ class Menu extends Controller{
 
 	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
         $this->load->module('core');
         $this->cache_key = 'menu_data_'; 
         $this->cache_key = $this->cache_key.$this->dx_auth->get_role_id();

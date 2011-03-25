@@ -6,11 +6,11 @@
  * Polls Module Admin
  */
 
-class Admin extends Controller {
+class Admin extends MY_Controller {
 
 	public function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
         cp_check_perm('module_admin');
 	}
 

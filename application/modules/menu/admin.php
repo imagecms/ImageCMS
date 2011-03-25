@@ -4,7 +4,7 @@
  * Image CMS
  */
 
-class Admin extends Controller {
+class Admin extends MY_Controller {
 
 	private $root_menu = array();
 	private $sub_menu  = array();
@@ -15,7 +15,7 @@ class Admin extends Controller {
 
 	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 
 		// Only admin access
         $this->load->library('DX_Auth');

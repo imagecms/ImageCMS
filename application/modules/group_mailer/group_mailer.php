@@ -6,11 +6,11 @@
  * Group Mailer Module
  */
 
-class Group_Mailer extends Controller {
+class Group_Mailer extends MY_Controller {
 
 	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 		
 	}
 

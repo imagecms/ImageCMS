@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Pages extends Controller{
+class Pages extends MY_Controller{
 
 
 	var $_Config = array(
@@ -10,7 +10,7 @@ class Pages extends Controller{
 
 	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 
         $this->load->library('DX_Auth');
         admin_or_redirect();

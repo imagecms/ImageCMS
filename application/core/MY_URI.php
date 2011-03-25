@@ -4,9 +4,9 @@ class MY_URI extends CI_URI {
 
     private $GET_params_arr = array();
 
-    public function MY_URI()
+    public function __construct()
     {
-        parent::CI_URI();
+        parent::__construct();
         parse_str( $_SERVER['QUERY_STRING'], $this->GET_params_arr );
     }
 

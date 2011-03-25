@@ -6,11 +6,11 @@
  * Gallery main model
  */
 
-class Gallery_m extends Model {
+class Gallery_m extends CI_Model {
 
 	function Base()
 	{
-		parent::Model();
+		parent::__construct();
     }
 
     function load_settings()

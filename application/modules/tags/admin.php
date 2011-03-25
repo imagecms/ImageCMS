@@ -4,11 +4,11 @@
  * Image CMS
  */
 
-class Admin  extends Controller {
+class Admin  extends MY_Controller {
 
 	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 
     	$this->load->library('DX_Auth');
         cp_check_perm('module_admin');	

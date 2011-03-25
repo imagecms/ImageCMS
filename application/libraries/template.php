@@ -10,7 +10,7 @@ class Template extends Mabilis {
 
     public $template_vars = array();
 
-	public function Template()
+	public function __construct()
 	{
 		$this->CI =& get_instance();
 

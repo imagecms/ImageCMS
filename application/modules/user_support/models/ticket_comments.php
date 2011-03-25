@@ -1,12 +1,12 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Ticket_comments extends Model {
+class Ticket_comments extends CI_Model {
 
     public $table = 'support_comments';
 
 	function Ticket_comments()
 	{
-		parent::Model();
+		parent::__construct();
     }
 
     function create($data)

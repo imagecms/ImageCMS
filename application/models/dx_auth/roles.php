@@ -1,10 +1,10 @@
 <?php
 
-class Roles extends Model 
+class Roles extends CI_Model 
 {
 	function Roles()
 	{
-		parent::Model();
+		parent::__construct();
 		
 		// Other stuff
 		$this->_prefix = $this->config->item('DX_table_prefix');

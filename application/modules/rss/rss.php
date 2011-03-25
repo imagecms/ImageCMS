@@ -6,7 +6,7 @@
  * RSS Module
  */
 
-class Rss extends Controller {
+class Rss extends MY_Controller {
 
     private $settings   = array();
     private $rss_header = '<?xml version="1.0" encoding="UTF-8"?>';
@@ -14,7 +14,7 @@ class Rss extends Controller {
 
 	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
     }
 
 	public function index()

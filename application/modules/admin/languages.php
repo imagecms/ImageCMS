@@ -1,10 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Languages extends Controller{
+class Languages extends MY_Controller{
 
 	function __construct()
 	{
-	    parent::Controller();
+	    parent::__construct();
 
 	    $this->load->library('DX_Auth');
         admin_or_redirect();

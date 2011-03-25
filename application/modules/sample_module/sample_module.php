@@ -6,11 +6,11 @@
  * Module Sample
  */
 
-class Sample_Module extends Controller {
+class Sample_Module extends MY_Controller {
 
 	public function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 		$this->load->module('core');
 	}
 

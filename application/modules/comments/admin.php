@@ -5,13 +5,13 @@
  * Comments admin
  */
 
-class Admin extends Controller {
+class Admin extends MY_Controller {
 
     private $per_page = 12;
 
 	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 
         $this->load->library('DX_Auth');
         cp_check_perm('module_admin');

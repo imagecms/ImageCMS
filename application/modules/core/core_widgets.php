@@ -4,7 +4,7 @@
  * Image CMS
  */
 
-class Core_Widgets extends Controller {
+class Core_Widgets extends MY_Controller {
 
     private $defaults = array(
         'news_count'  => 10,
@@ -14,7 +14,7 @@ class Core_Widgets extends Controller {
 
    	public function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
     } 
 
     // Display recent or popular news
