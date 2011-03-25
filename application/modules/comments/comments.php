@@ -111,7 +111,6 @@ class Comments extends MY_Controller {
         {
             $this->dx_auth->captcha();
             $data['cap_image'] = $this->dx_auth->get_captcha_image();
-
         }
 
         ($hook = get_hook('comments_read_com_tpl')) ? eval($hook) : NULL;
