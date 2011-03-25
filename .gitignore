@@ -7,3 +7,5 @@
 gitpush
 .idea
 /applications/config/config.php
+.komodotools
+imagecmsdev.komodoproject
