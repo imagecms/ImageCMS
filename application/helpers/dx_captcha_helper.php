@@ -202,17 +202,17 @@ if (!function_exists('create_captcha'))
         }
 
         if ($img_path == '' OR $img_url == '')
-        {
+        { 
             return FALSE;
         }
 
         if ( ! @is_dir($img_path))
-        {
+        { 
             return FALSE;
         }
 
         if ( ! is_really_writable($img_path))
-        {
+        { 
             return FALSE;
         }
 
