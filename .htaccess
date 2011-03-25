@@ -1,6 +1,14 @@
 AddDefaultCharset UTF-8
 
+#Options +FollowSymLinks
+#Options -Indexes
+
+
 RewriteEngine on
 RewriteCond $1 !^(index\.php|user_guide|uploads/.*|favicon\.ico|favicon\.png|captcha/.*|application/modules/.*/templates|templates|js|robots\.txt|application/controllers/install/images/.*)
 RewriteRule ^(.*)$ /index.php/$1 [L]
+
+####################################
+# or
+# RewriteRule ^(.+)$ index.php?$1 [L]
 
