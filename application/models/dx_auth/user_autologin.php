@@ -1,10 +1,10 @@
 <?php
 
-class User_Autologin extends Model 
+class User_Autologin extends CI_Model 
 {
 	function User_Autologin()
 	{
-		parent::Model();
+		parent::__construct();
 
 		// Other stuff
 		$this->_prefix = $this->config->item('DX_table_prefix');

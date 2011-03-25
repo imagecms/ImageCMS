@@ -6,7 +6,7 @@
  * Gallery Module Admin
  */
 
-class Admin extends Controller {
+class Admin extends MY_Controller {
 
     // Gallery config
     public $conf = array(
@@ -53,7 +53,7 @@ class Admin extends Controller {
 
 	public function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 
         if( $this->dx_auth->is_admin() == FALSE) exit;
 

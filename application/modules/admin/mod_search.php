@@ -4,13 +4,13 @@
  *
  */
 
-class Mod_search extends Controller {
+class Mod_search extends MY_Controller {
 
     private $api_url = '';
 
 	public function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 
 		$this->load->library('DX_Auth');
         admin_or_redirect();

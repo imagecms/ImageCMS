@@ -6,11 +6,11 @@
  * Page tags module
  */
 
-class Navigation extends Controller {
+class Navigation extends MY_Controller {
 
 	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 	}
 
 	function index()

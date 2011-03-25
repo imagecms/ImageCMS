@@ -5,11 +5,11 @@
  * Widget manager class
  */ 
 
-class Widgets_Manager extends Controller {
+class Widgets_Manager extends MY_Controller {
 
 	public function __construct()
 	{
-        parent::Controller();
+        parent::__construct();
 
 		$this->load->library('DX_Auth');
         admin_or_redirect(); 

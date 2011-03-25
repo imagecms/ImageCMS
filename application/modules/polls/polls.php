@@ -28,13 +28,13 @@
         {/if}
  */
 
-class Polls extends Controller {
+class Polls extends MY_Controller {
 
     protected $poll = null;
 
 	public function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 		$this->load->module('core');
 	}
 

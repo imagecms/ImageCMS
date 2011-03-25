@@ -6,11 +6,11 @@
  * Feedback Module
  */
 
-class Admin extends Controller {
+class Admin extends MY_Controller {
    
 	public function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 
         // Only admin access 
         $this->load->library('DX_Auth');

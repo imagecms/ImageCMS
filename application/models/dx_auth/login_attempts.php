@@ -1,9 +1,9 @@
 <?php
-class Login_Attempts extends Model 
+class Login_Attempts extends CI_Model 
 {
 	function Login_Attempts()
 	{
-		parent::Model();
+		parent::__construct();
 
 		// Other stuff
 		$this->_prefix = $this->config->item('DX_table_prefix');

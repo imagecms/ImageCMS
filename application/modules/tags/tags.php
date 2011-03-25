@@ -6,7 +6,7 @@
  * Page tags module
  */
 
-class Tags extends Controller {
+class Tags extends MY_Controller {
 
     public $min_font_size = 10;
     public $max_font_size = 26;
@@ -20,7 +20,7 @@ class Tags extends Controller {
 
 	public function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 		$this->load->module('core');
        // $this->output->enable_profiler(TRUE);
 	}

@@ -6,7 +6,7 @@
  * Comments component
  */
 
-class Comments extends Controller {
+class Comments extends MY_Controller {
 
     public $period             = 5;      // Post comment period in minutes. If user is unregistered, check will be made by ip address. 0 - To disable this method.
     public $can_comment        = 0;      // Possible values: 0 - all, 1 - registered only.
@@ -22,7 +22,7 @@ class Comments extends Controller {
 
     public function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
         $this->load->module('core');
 	}
 

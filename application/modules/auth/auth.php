@@ -5,7 +5,7 @@
  * auth.php
  */
 
-class Auth extends Controller
+class Auth extends MY_Controller
 {
 	// Used for registering and changing password form validation
 	public $min_username = 4;
@@ -17,7 +17,7 @@ class Auth extends Controller
 
 	function Auth()
 	{
-		parent::Controller();
+		parent::__construct();
 
         $this->load->helper('url');
         $this->load->library('Form_validation');

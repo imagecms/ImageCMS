@@ -4,11 +4,11 @@
  * Image CMS
  */
 
-class Tags_Widgets extends Controller {
+class Tags_Widgets extends MY_Controller {
 
    	public function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
     } 
 
     // Display recent or popular news

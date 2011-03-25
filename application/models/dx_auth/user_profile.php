@@ -1,9 +1,9 @@
 <?php
-class User_Profile extends Model 
+class User_Profile extends CI_Model 
 {
 	function User_Profile()
 	{
-		parent::Model();
+		parent::__construct();
 
 		$this->_prefix = $this->config->item('DX_table_prefix');		
 		$this->_table = $this->_prefix.$this->config->item('DX_user_profile_table');

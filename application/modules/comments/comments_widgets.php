@@ -6,7 +6,7 @@
  * Comments widgets
  */
 
-class Comments_Widgets extends Controller {
+class Comments_Widgets extends MY_Controller {
 
     private $defaults = array(
             'comments_count' => 100,
@@ -15,7 +15,7 @@ class Comments_Widgets extends Controller {
 
    	public function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
     } 
 
     // Get and display recent comments

@@ -8,13 +8,13 @@
  *
  */
 
-class Admin extends Controller {
+class Admin extends MY_Controller {
 
     private $request_url = 'http://requests.imagecms.net/index.php/requests/req';
 
 	public function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 
 		$this->load->library('DX_Auth');
         admin_or_redirect();

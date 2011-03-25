@@ -6,11 +6,11 @@
  * CFCFM Module
  */
 
-class Cfcm extends Controller {
+class Cfcm extends MY_Controller {
 
 	public function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 	}
 
     public function save_item_data($item_id, $type = 'page')

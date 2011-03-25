@@ -6,11 +6,11 @@
  * Module Sample
  */
 
-class ImageBox extends Controller {
+class ImageBox extends MY_Controller {
 
 	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 		$this->load->module('core');
 	}
 

@@ -20,7 +20,7 @@ Instructions:
 
 Load the plugin using:
 
- 	$this->load->plugin('js_calendar');
+ 	$this->load->helper('js_calendar');
 
 Once loaded you'll add the calendar script to the <head> of your page like this:
 

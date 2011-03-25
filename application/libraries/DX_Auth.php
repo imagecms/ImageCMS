@@ -1246,7 +1246,7 @@ class DX_Auth
 
 	function captcha()
 	{
-		$this->ci->load->plugin('dx_captcha');
+		$this->ci->load->helper('dx_captcha');
 
 		$vals = array(
 			'img_path'	 => $this->ci->config->item('DX_captcha_path'),

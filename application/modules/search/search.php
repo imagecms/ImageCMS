@@ -8,7 +8,7 @@
  *     refresh cache after $search_ttl expry.
  */
 
-class Search extends Controller {
+class Search extends MY_Controller {
 
     public $search_ttl = 3600; //Search time to live in minutes.
     public $table      = '';
@@ -31,7 +31,7 @@ class Search extends Controller {
  
     public function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
         //$this->output->enable_profiler(TRUE);
     }
 

@@ -6,11 +6,11 @@
  * Sample Module Admin
  */
 
-class Admin extends Controller {
+class Admin extends MY_Controller {
 
 	public function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 
         // Only admin access 
         // Do not delete this code !

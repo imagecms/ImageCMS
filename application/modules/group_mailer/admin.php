@@ -6,11 +6,11 @@
  * Group Mailer Admin
  */
 
-class Admin extends Controller {
+class Admin extends MY_Controller {
 
 	public function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 
         $this->load->library('DX_Auth');
         cp_check_perm('module_admin'); 

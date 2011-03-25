@@ -1,10 +1,10 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Menu_model extends Model{
+class Menu_model extends CI_Model{
 
 	function Menu_model()
 	{
-		parent::Model();
+		parent::__construct();
 	}
 
     function delete_menu_item($id)

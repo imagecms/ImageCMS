@@ -4,11 +4,11 @@
  * Image CMS
  */
 
-class Template_editor extends Controller {
+class Template_editor extends MY_Controller {
 
 	public function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 	}
 
 	// Index function

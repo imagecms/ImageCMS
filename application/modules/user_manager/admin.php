@@ -4,13 +4,13 @@
  * Image CMS
  */
 
-class Admin extends Controller {
+class Admin extends MY_Controller {
 
 	private $mod_name = 'user_manager';
 
 	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 
 		// only admin access
         $this->load->library('DX_Auth');

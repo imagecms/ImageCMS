@@ -1,10 +1,10 @@
 <?php
 
-class Permissions Extends Model 
+class Permissions Extends CI_Model 
 {
 	function Permissions()
 	{
-		parent::Model();
+		parent::__construct();
 
 		// Other stuff
 		$this->_prefix = $this->config->item('DX_table_prefix');

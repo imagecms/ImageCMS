@@ -4,11 +4,11 @@
  * Image CMS
  */
 
-class User_manager extends Controller {
+class User_manager extends MY_Controller {
 
 	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 	}
 
 

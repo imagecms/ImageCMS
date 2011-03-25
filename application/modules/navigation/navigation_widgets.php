@@ -6,11 +6,11 @@
  * Navigation widgets
  */
 
-class Navigation_Widgets extends Controller{
+class Navigation_Widgets extends MY_Controller{
 
 	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 	}
     
     function widget_navigation($widget = array())

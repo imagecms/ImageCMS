@@ -4,11 +4,11 @@
  * Image CMS
  */
 
-class Gallery_Widgets extends Controller {
+class Gallery_Widgets extends MY_Controller {
 
    	public function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
     } 
 
     public function latest_fotos($widget = array())

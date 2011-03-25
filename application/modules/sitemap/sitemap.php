@@ -6,7 +6,7 @@
  * Sitemap Module
  */
 
-class Sitemap extends Controller {
+class Sitemap extends MY_Controller {
 
     public $pages_priority     = '0.5'; // priority for pages
     public $cats_priority      = '0.9'; // priority for categories
@@ -24,7 +24,7 @@ class Sitemap extends Controller {
 
 	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
         $this->load->module('core');
 
         // Get langs

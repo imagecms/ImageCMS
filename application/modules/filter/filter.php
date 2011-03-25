@@ -6,14 +6,14 @@
  * Filter Module
  */
 
-class Filter extends Controller {
+class Filter extends MY_Controller {
 
     public $items_per_page = 1;
     public $default_tpl    = 'search';
 
 	public function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
         //$this->output->enable_profiler(TRUE);
 	}
 

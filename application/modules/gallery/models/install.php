@@ -6,11 +6,11 @@
  * Gallery main model
  */
 
-class Install extends Model {
+class Install extends CI_Model {
 
 	function Install()
 	{
-		parent::Model();
+		parent::__construct();
     }
 
     function make_install()

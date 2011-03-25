@@ -75,12 +75,16 @@ class Cms_hooks {
             if (isset($v['type']) && isset($v['value']) && isset($v['attributes']) )
             {
                 $hookId =  trim($v['attributes']['id']);
+                
+                if (empty($tmp[$hookId]))
+                {
+                    $tmp[$hookId] = '';
+                }
+
                 $hookValue = trim($v['value']);
                 if ($v['type'] === 'complete' && !empty($hookValue) && !empty($hookId))
                 {
-                    $hook_id = $hookId;
-
-                    $tmp[$hook_id] .= $hookValue;
+                    $tmp[$hookId] .= $hookValue;
                 }
             }
         }
