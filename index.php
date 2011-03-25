@@ -168,7 +168,7 @@
 	// Path to the front controller (this file)
 	define('FCPATH', str_replace(SELF, '', __FILE__));
 
-    define('PUBPATH', '/var/www/imagecms');
+    define('PUBPATH', FCPATH); 
     define('TEMPLATES_PATH', PUBPATH.'/templates/');
 
 	// Name of the "system folder"
