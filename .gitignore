@@ -9,3 +9,4 @@ gitpush
 application/config/config.php
 .komodotools
 imagecmsdev.komodoproject
+application/config/database.php
