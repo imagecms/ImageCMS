@@ -189,6 +189,13 @@
         </p>
 
         <hr />
+	
+	<p style="padding-left:15px;">
+	    <b>Дата и время создания:</b>
+		<p style="padding-left:15px;"><input id="create_date" name="create_date" tabindex="7" value="{$create_date}" type="text" class="textbox_short" /></p>
+		<p style="padding-left:15px;"><input id="create_time" name="create_time" tabindex="8" type="text" value="{$create_time}" class="textbox_short" /></p>
+	    </p>
+	<hr />
 
         <p style="padding-left:15px;">
             <b>Дата и время публикации:</b>
@@ -257,6 +264,7 @@
 	<script type="text/javascript">
 		window.addEvent('domready', function() {
 			pub_date_cal = new Calendar({ publish_date: 'Y-m-d' }, { direction: .0, tweak: {x: -150, y: 22} });
+			create_date_cal = new Calendar({ create_date: 'Y-m-d' }, { direction: .0, tweak: {x: -150, y: 22} });
 
             var sp_param = Cookie.read('sidepanel');
             if (sp_param == 'show')

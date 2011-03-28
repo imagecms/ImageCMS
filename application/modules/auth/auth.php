@@ -45,7 +45,7 @@ class Auth extends MY_Controller
 
 	function email_check($email)
 	{
-        ($hook = get_hook('auth_email_check')) ? eval($hook) : NULL;
+		($hook = get_hook('auth_email_check')) ? eval($hook) : NULL;
 
 		$result = $this->dx_auth->is_email_available($email);
 		if ( ! $result)

@@ -392,10 +392,6 @@ class Tags extends MY_Controller {
             $this->db->where_not_in('id', $tags);
             $this->db->delete('tags');
         }
-        else
-        {
-            $this->db->delete('tags'); 
-        }
     }
 
 	public function get_page_tags($page_id)
