@@ -65,7 +65,19 @@ class Modules
 			if (method_exists($class, $method))	{
 				ob_start();
 				$args = func_get_args();
-				$output = call_user_func_array(array($class, $method), array_slice($args, 1));
+
+                $args = $args[1];
+                if (is_string($args)) 
+                {
+                    $args = (array) $args;
+                }
+
+                if (!is_array($args))
+                {
+                    $args=array();
+                }
+
+				$output = call_user_func_array(array($class, $method), $args);
 				$buffer = ob_get_clean();
 				return ($output !== NULL) ? $output : $buffer;
 			}
