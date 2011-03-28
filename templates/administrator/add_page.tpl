@@ -108,9 +108,15 @@
 		</p>
 		<hr />
 		<p style="padding-left:15px;">
+		<b>Дата и время создания:</b>
+			<p style="padding-left:15px;"><input id="create_date" name="create_date" tabindex="7" value="{$cur_date}" type="text" class="textbox_short" /></p>
+			<p style="padding-left:15px;"><input id="create_time" name="create_time" tabindex="8" type="text" value="{$cur_time}" class="textbox_short" /></p>
+		</p>
+		<hr />
+		<p style="padding-left:15px;">
 		<b>Дата и время публикации:</b>
-			<p><input id="publish_date" name="publish_date" tabindex="7" value="{$cur_date}" type="text" class="textbox_short" /></p>
-			<p><input id="publish_time" name="publish_time" tabindex="8" type="text" value="{$cur_time}" class="textbox_short" /></p>
+			<p style="padding-left:15px;"><input id="publish_date" name="publish_date" tabindex="7" value="{$cur_date}" type="text" class="textbox_short" /></p>
+			<p style="padding-left:15px;"><input id="publish_time" name="publish_time" tabindex="8" type="text" value="{$cur_time}" class="textbox_short" /></p>
 		</p>
 		<hr />
 		<div style="padding-left:15px">
@@ -152,6 +158,7 @@
             }
 
 			pub_date_cal = new Calendar({ publish_date: 'Y-m-d' }, { direction: .0, tweak: {x: -150, y: 22} });
+			create_date_cal = new Calendar({ create_date: 'Y-m-d' }, { direction: .0, tweak: {x: -150, y: 22} });
 
 			new Autocompleter.Request.JSON('tags', base_url + 'admin/pages/json_tags', {
 				'postVar': 'search_tags'

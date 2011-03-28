@@ -78,7 +78,8 @@ class Pages extends MY_Controller{
 		$this->_set_page_roles($page['id'],$this->input->post('roles'));
 
 		// Update page tags
-        $this->load->module('tags')->_set_page_tags($_POST['search_tags'], $page['id']);
+	
+        $this->load->module('tags')->_set_page_tags($_POST['search_tags'], (int)$page['id']);
 
 		//$this->load->module('xfields/admin')->set_page_xfields($page['id']);
 	}
@@ -124,16 +125,23 @@ class Pages extends MY_Controller{
 		$this->form_validation->set_rules('prev_text', 'Пред. Содержание', 'trim|required');
 		$this->form_validation->set_rules('page_description', 'Описание', 'trim');
 		$this->form_validation->set_rules('full_tpl', 'Шаблон Страницы', 'trim|max_length[150]|min_length[2]');
+		$this->form_validation->set_rules('create_date', 'Дата создания', 'required|valid_date');
+		$this->form_validation->set_rules('create_time', 'Время создания', 'required|valid_time');
+		$this->form_validation->set_rules('publish_date', 'Дата создания', 'required|valid_date');
+		$this->form_validation->set_rules('publish_time', 'Время создания', 'required|valid_time');
+		
         $this->form_validation->set_rules('main_tpl', 'Главный шаблон страницы', 'trim|max_length[50]|min_length[2]');
 
         ($hook = get_hook('admin_page_add_set_rules')) ? eval($hook) : NULL;
 
 		if ($this->form_validation->run($this) == FALSE)
 		{
+			
             ($hook = get_hook('admin_page_add_val_failed')) ? eval($hook) : NULL;
 			showMessage (validation_errors());
 		}else
         {
+		
             // load site settings
    			$settings = $this->cms_admin->get_settings();
 
@@ -187,7 +195,9 @@ class Pages extends MY_Controller{
             mb_substr($keywords, -1) == ',' ? $keywords = mb_substr($keywords, 0 , -1): TRUE;
 
 			$publish_date = $this->input->post('publish_date').' '.$this->input->post('publish_time');
-
+			$create_date  = $this->input->post('create_date').' '.$this->input->post('create_time');
+		
+			
 			$data = array(
                 'title' => trim($this->input->post('page_title')),
                 'meta_title' => trim($this->input->post('meta_title')),
@@ -206,7 +216,7 @@ class Pages extends MY_Controller{
 				'post_status' => $this->input->post('post_status'),
 				'author' => $this->dx_auth->get_username(),
 				'publish_date' => strtotime($publish_date),
-				'created' => time(),
+				'created' => strtotime($create_date),
 				'lang' => $def_lang['id']
 			);
 
@@ -345,6 +355,8 @@ class Pages extends MY_Controller{
 			// explode publush_date to date and time
 			$this->template->assign('publish_date', date('Y-m-d', $data['publish_date']));
 			$this->template->assign('publish_time', date('H:i:s', $data['publish_date']));
+			$this->template->assign('create_date', date('Y-m-d', $data['created']));
+			$this->template->assign('create_time', date('H:i:s', $data['created']));
 			// end
 
 			// set langs
@@ -421,6 +433,7 @@ class Pages extends MY_Controller{
 	 */
 	function update($page_id)
 	{
+		
         cp_check_perm('page_edit');
 
 		$this->form_validation->set_rules('page_title', 'Заголовок', 'trim|required|min_length[1]|max_length[500]');
@@ -430,6 +443,10 @@ class Pages extends MY_Controller{
 		$this->form_validation->set_rules('page_description', 'Описание', 'trim');
 		$this->form_validation->set_rules('full_tpl', 'Шаблон Страницы', 'trim|max_length[50]|min_length[2]');
 		$this->form_validation->set_rules('main_tpl', 'Главный шаблон cтраницы', 'trim|max_length[50]|min_length[2]');
+		$this->form_validation->set_rules('create_date', 'Дата создания', 'required|valid_date');
+		$this->form_validation->set_rules('create_time', 'Время создания', 'required|valid_time');
+		$this->form_validation->set_rules('publish_date', 'Дата создания', 'required|valid_date');
+		$this->form_validation->set_rules('publish_time', 'Время создания', 'required|valid_time');
 
         ($hook = get_hook('admin_page_update_set_rules')) ? eval($hook) : NULL;
 
@@ -490,7 +507,10 @@ class Pages extends MY_Controller{
 
 			mb_substr($keywords, -1) == ',' ? $keywords = mb_substr($keywords, 0 , -1): TRUE;
 
+
+
 			$publish_date = $this->input->post('publish_date').' '.$this->input->post('publish_time');
+			$create_date = $this->input->post('create_date').' '.$this->input->post('create_time');
 
 			$data = array(
                 'title' => trim($this->input->post('page_title')),
@@ -510,6 +530,7 @@ class Pages extends MY_Controller{
 				'post_status' => $this->input->post('post_status'),
 				'author' => $this->dx_auth->get_username(),
 				'publish_date' => strtotime($publish_date),
+				'created'	=> strtotime($create_date),
 				'updated' => time()
 			);
 
