@@ -317,6 +317,7 @@ class Admin extends MY_Controller {
     public function update_album($id)
     {
         $data = array(
+	    'category_id' => (int) $this->input->post('category_id'),
             'name'        => $this->input->post('name'),
             'description' => trim($this->input->post('description')),
             'position'    => (int) $this->input->post('position')
@@ -402,8 +403,10 @@ class Admin extends MY_Controller {
      */
     public function edit_album($id = 0)
     {
-        $album = $this->gallery_m->get_album($id);
+	$album = $this->gallery_m->get_album($id);
 
+	
+    
         $this->template->add_array(array(
             'album'     => $album,
             'category'  => $this->gallery_m->get_category($album['category_id']),
