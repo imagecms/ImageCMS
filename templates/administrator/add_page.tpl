@@ -170,6 +170,16 @@
  
 
             load_editor();
+	    
+	    	var editor_loaded = false;
+		
+		$('tabs-block').getElements('a').addEvent('mouseover', function(event){
+		    if (!editor_loaded)
+		    {
+			load_editor();
+			editor_loaded = true;
+		    }
+		    });
 		});
 
 	</script>
