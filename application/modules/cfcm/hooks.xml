@@ -131,7 +131,7 @@ if (count($pages) > 0 AND is_array($pages))
     echo '<h4>Дополнительные Поля</h4>';
 	echo '<div style="padding:8px;" id="cfcm_fields_block"></div>';
 
-    echo '!!!
+    echo '
     <script type="text/javascript">
            var update_page_id = '.$update_page_id.';
 
