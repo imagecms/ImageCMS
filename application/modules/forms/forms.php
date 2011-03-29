@@ -108,7 +108,7 @@ class Forms extends MY_Controller {
 	    
 	    if ($field['enable_tinymce_editor'] == 1)
 	    {
-		$fields[$key]['class'] = 'mceEditor';
+		$fields[$key]['class'] = 'mceEditor2';
 	    }
         }
 
@@ -355,7 +355,7 @@ class Forms extends MY_Controller {
 	
 	if (isset($field->enable_tinymce_editor) && ($field->enable_tinymce_editor == 1))
 	{
-	    $field->class .= ' mceEditor';
+	    $field->class .= ' mceEditor2';
 	}
 
         return $result;
