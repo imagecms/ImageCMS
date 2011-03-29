@@ -21,7 +21,6 @@ class Cfcm extends MY_Controller {
 
         if ($group != '-1' )
         {
-		var_dump($this->get_group_fields($group));
             if (($fields = $this->get_group_fields($group)))
             {
                 $form = $this->forms->add_fields($fields);

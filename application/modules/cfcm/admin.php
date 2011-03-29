@@ -338,8 +338,6 @@ class Admin extends MY_Controller {
 	if ($category_id == '0')
 		$category->field_group = 0;
 
-		
-//var_dump($category->field_group);
 
         if ($category->field_group != '-1')
         {
