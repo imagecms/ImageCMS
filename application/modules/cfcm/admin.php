@@ -323,10 +323,21 @@ class Admin extends MY_Controller {
     // on add/edit page tpl.
     public function form_from_category_group($category_id = FALSE, $item_id = FALSE, $item_type = FALSE)
     {
+	if ($item_id == 'page')
+	{
+		$item_type = 'page';
+		$item_id = $category_id;
+		$category_id = 0;
+	}
+		
         $category = (object) $this->lib_category->get_category($category_id);
 
         if ($item_type == 'category')
             $category->field_group = $category->category_field_group;
+
+	if ($category_id == '0')
+		$category->field_group = 0;
+
 
         if ($category->field_group != '-1')
         {
