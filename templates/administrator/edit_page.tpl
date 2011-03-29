@@ -26,7 +26,6 @@
 </div>
 
 <div id="tabs-block"  style="float:left;width:100%">
-
 	<h4>Содержание</h4>
 	<div id="text_id2" style="padding-left:10px;">
 
@@ -282,6 +281,15 @@
 			});
 
             load_editor();
+		var editor_loaded = false;
+		
+		$('tabs-block').getElements('a').addEvent('mouseover', function(event){
+		    if (!editor_loaded)
+		    {
+			load_editor();
+			editor_loaded = true;
+		    }
+		    });
 
 		});
 	</script>

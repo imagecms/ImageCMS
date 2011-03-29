@@ -1,5 +1,4 @@
 {$top_navigation}
-
 <!--
 {foreach $fields as $f}
     <a href="javascript:ajax_div('page', base_url + 'admin/components/cp/cfcm/edit_field/{$f.field_name}');">{$f.type} {$f.field_name}</a>
