@@ -96,7 +96,9 @@ class Admin extends MY_Controller {
         $this->load->library('lib_category');
     
         $this->template->assign('tree', $this->lib_category->build() );
-        $this->template->assign('cats', $this->fetch_tpl('cats') );
+        if ($type != 'category') {
+            $this->template->assign('cats', $this->fetch_tpl('cats') ); 
+        }
 
         $this->template->assign('action', 'insert');
         $this->template->assign('update_id', '0');
