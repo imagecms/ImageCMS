@@ -105,7 +105,7 @@ var totalPrice = '{echo ShopCore::app()->SCart->totalPrice()}';
     {if $deliveryMethod->getFreeFrom() == 0 && $deliveryMethod->getPrice() > 0}
         {$priceStr = $deliveryMethod->toCurrency().' '.$CS}
         {$free = false}
-    {elseif(ShopCore::app()->SCart->totalPrice() >= $deliveryMethod->getFreeFrom()):}
+    {elseif(ShopCore::app()->SCart->totalPrice(false) >= $deliveryMethod->getFreeFrom()):}
         {$priceStr = "бесплатно"}
         {$free = true}
     {elseif($deliveryMethod->getFreeFrom() > 0 && $deliveryMethod->getPrice() > 0):}
