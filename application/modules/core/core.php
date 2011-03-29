@@ -252,6 +252,8 @@ class Core extends MY_Controller {
                         $data_type = 'page';
                         $this->page_content = $page_info;
 
+			($hook = get_hook('core_set_page_data')) ? eval($hook) : NULL;
+                               
                         ($hook = get_hook('core_set_type_nocat')) ? eval($hook) : NULL;
                     }
                 }else{
