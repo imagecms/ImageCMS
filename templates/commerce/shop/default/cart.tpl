@@ -61,7 +61,8 @@ var totalPrice = '{echo ShopCore::app()->SCart->totalPrice()}';
             </td>
             <td>{echo ShopCore::app()->SCurrencyHelper->convert($item.price)} {$CS}</td>
             <td>
-                {form_dropdown("products[$key]",$ranges, $item.quantity, 'onChange="document.cartForm.submit();"')}
+                <!-- {form_dropdown("products[$key]",$ranges, $item.quantity, 'onChange="document.cartForm.submit();"')} -->
+                <input type="text" name="products[{$key}]" value="{$item.quantity}" style="width:24px;">
             </td>
             <td>{echo ShopCore::app()->SCurrencyHelper->convert($item.totalAmount)} {$CS}</td>
             <td><a href="{shop_url('cart/delete/' . $key)}" class="delete">X</a></td>
@@ -77,6 +78,11 @@ var totalPrice = '{echo ShopCore::app()->SCart->totalPrice()}';
         <td></td>
     </tfoot>
 </table>
+
+<div id="buttons" style="padding:0px;">
+    <a href="#" id="checkout" onClick="document.cartForm.submit();">Пересчитать</a>
+</div>
+
 </form>
 
 <div class="sp"></div>

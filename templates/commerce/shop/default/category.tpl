@@ -31,8 +31,8 @@
                     </div>
                     <div class="clear"></div>
 
-                {if $model->getPropertys()->count() > 0}
-                    {foreach $model->getPropertys() as $prop}
+                {if $model->countProperties() > 0}
+                    {foreach $model->getProperties() as $prop}
                         <div class="fieldName">{echo $prop->getName()}:</div>
                         <div class="field">
                             {foreach $prop->asArray() as $key=>$val}
