@@ -380,7 +380,6 @@ class Admin extends MY_Controller {
                         $form->setAttributes($attributes);
                     }
                 }
-                
                 $form->title = $group->name;
 
                 $this->template->add_array(array(

@@ -105,10 +105,15 @@ class Forms extends MY_Controller {
             {
                 $this->$key = new $class_name($key, $field);
             }
+	    
+	    if ($field['enable_tinymce_editor'] == 1)
+	    {
+		$fields[$key]['class'] = 'mceEditor';
+	    }
         }
 
         $this->fields = $fields;
-
+	
         return $this;
     }
 
@@ -325,7 +330,6 @@ class Forms extends MY_Controller {
         if (isset($field->class) OR $this->field_errors[$name] != '')
         {
             $class = $field->class;
-
             if ($this->field_errors[$name] != '')
             {
                 if ($class != NULL)
@@ -348,6 +352,11 @@ class Forms extends MY_Controller {
         {
             $result .= ' style="'.$field->style.'" ';
         }
+	
+	if (isset($field->enable_tinymce_editor) && ($field->enable_tinymce_editor == 1))
+	{
+	    $field->class .= ' mceEditor';
+	}
 
         return $result;
     }
