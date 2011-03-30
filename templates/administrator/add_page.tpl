@@ -146,6 +146,7 @@
 
 {literal}
 	<script type="text/javascript">
+	
            var cms_tabs = null;
            var sp_param = Cookie.read('sidepanel'); 
 
@@ -171,15 +172,52 @@
 
             load_editor();
 	    
+		function load_editor2()        {
+                    tinyMCE.init({
+                        mode : 'specific_textareas',
+                        editor_selector : 'mceEditor2',
+                        language: 'ru',
+                        theme : 'advanced',
+                        skin : "o2k7",
+                        skin_variant : "silver",
+                        plugins : "safari,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,inlinepopups",
+                        theme_advanced_buttons1 : "imagebox, bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,|,undo,redo,|,forecolor,backcolor,|,styleselect,formatselect,fontselect,fontsizeselect ",
+                        theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,outdent,indent,blockquote,|,link,unlink,anchor,image,media,|,pagebreak,cleanup,code,|,fullscreen ",
+                        theme_advanced_buttons3 : "",
+                        theme_advanced_toolbar_location : "top",
+                        theme_advanced_toolbar_align : "left",
+                        theme_advanced_statusbar_location : "bottom",
+                        theme_advanced_resizing : true,
+                        content_css : theme + "/css/content.css",
+                        paste_use_dialog : false,
+                        theme_advanced_resizing : true,
+                        file_browser_callback : "tinyBrowser",
+                        theme_advanced_resize_horizontal : true,
+                        apply_source_formatting : true,
+                        force_br_newlines : true,
+                        force_p_newlines : false,
+                        relative_urls : false,
+                        setup : function(ed) {
+                            ed.addButton('imagebox', {
+                                title : 'Imagebox',
+                                image : '/application/modules/imagebox/templates/images/button.png',
+                                onclick : function() {
+                                    show_main_window();
+                                    }
+                                    });
+                            },
+                            });
+                    };
+	    
 	    	var editor_loaded = false;
 		
 		$('tabs-block').getElements('a').addEvent('mouseover', function(event){
 		    if (!editor_loaded)
 		    {
-			load_editor();
+			load_editor2();
 			editor_loaded = true;
 		    }
-		    });
+		    });	
 		});
 
 	</script>
