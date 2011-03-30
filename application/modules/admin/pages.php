@@ -117,6 +117,7 @@ class Pages extends MY_Controller{
 	 */
 	public function add()
 	{
+		
         cp_check_perm('page_create');
 
 		$this->form_validation->set_rules('page_title', 'Заголовок', 'trim|required|min_length[1]|max_length[500]');
