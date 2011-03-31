@@ -131,7 +131,7 @@ class Admin extends MY_Controller {
      */ 
     private function _load_module_list()
     {
-        $this->load->module('components');
+        $this->load->module('admin/components');
 
         $modules = $this->db->get('components')->result_array();
         
