@@ -92,6 +92,16 @@
                     </div>
 
                     <div class="form_overflow"></div>
+		    
+		    	            <div class="field_text">
+                        Открывать в новом окне
+                    </div>
+                    <div class="field_input">
+                       <input type="radio" name="catnew_page" id="cat_newpage"  onclick="cat_newpage = 1;" /> Да
+                       <input type="radio" name="catnew_page" id="cat_nonewpage" onclick="cat_newpage = 0;"  checked="checked" /> Нет
+                    </div>
+
+                    <div class="form_overflow"></div>
 
                     <div class="field_text"></div>
                     <div class="field_input">
@@ -110,6 +120,7 @@
 	<script type="text/javascript">
 	//<![CDATA[
     var cat_hidden = 0;
+    var cat_newpage = 0;
 
     function set_category_data(id)
     {
@@ -169,6 +180,7 @@
                 'item_id': id,
                 'title': title,
                 'hidden': hidden,
+		'newpage': cat_newpage,
                 'item_image': item_image,
                 'roles': roles,
                 'parent_id': parent_id,

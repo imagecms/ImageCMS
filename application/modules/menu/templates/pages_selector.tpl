@@ -110,6 +110,16 @@
                        <input type="radio" name="hidden_v" id="page_hidden"  onclick="item_hidden = 1;" /> Да
                        <input type="radio" name="hidden_v" id="page_nohidden" onclick="item_hidden = 0;"  checked="checked" /> Нет
                     </div>
+		    
+		    <div class="form_overflow"></div>
+		    
+	            <div class="field_text">
+                        Открывать в новом окне
+                    </div>
+                    <div class="field_input">
+                       <input type="radio" name="new_page" id="page_newpage"  onclick="page_newpage = 1;" /> Да
+                       <input type="radio" name="new_page" id="page_nonewpage" onclick="page_newpage = 0;"  checked="checked" /> Нет
+                    </div>
 
                     <div class="form_overflow"></div>
 
@@ -138,6 +148,7 @@
 	//<![CDATA[
     var item_type = 'page';
     var item_hidden = 0;
+    var page_newpage = 0;
    
     function insert_element()
     {
@@ -160,6 +171,7 @@
 
         menu_id = $('owner_id').value;
         hidden = item_hidden;
+	newpage = page_newpage;
         parent_id = $('item_parent_id').value;
         position_after = $('position_after').value;
 		item_image = $('page_image').value;
@@ -180,6 +192,7 @@
                 'item_id': id,
                 'title': title,
                 'hidden': hidden,
+		'newpage': newpage,
                 'item_image': item_image,
                 'roles': roles,
                 'parent_id': parent_id,
