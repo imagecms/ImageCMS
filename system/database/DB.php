@@ -28,18 +28,12 @@ function &DB($params = '', $active_record_override = NULL)
 	if (is_string($params) AND strpos($params, '://') === FALSE)
 	{
 		
-		$file_path = APPPATH.'config/'.ENVIRONMENT.'/database'.EXT;
-		
-		if ( ! file_exists($file_path))
-		{
-			log_message('debug', 'Database config for '.ENVIRONMENT.' environment is not found. Trying global config.');
-			$file_path = APPPATH.'config/database'.EXT;
-			
-			if ( ! file_exists($file_path))
-			{
-				continue;
-			}
-		}
+        $file_path = APPPATH.'config/config'.EXT;
+        
+        if ( ! file_exists($file_path))
+        {
+            continue;
+        }
 		
 		include($file_path);
 

@@ -33,14 +33,10 @@
       <!-- BEGIN SLOGAN -->
       <div id="slogan">Приобретайте только качественную технику: <br /> +7 (095) <b>222-33-22</b><br /> +38 (098) <b>222-33-22</b></div>
     </div>
+
+    <!-- Hold this part in separate file which will be used for ajax requests. -->
     <div class="right" id="mycart">
-        <a href="{shop_url('cart')}" class="items">
-            {echo ShopCore::app()->SCart->totalItems()}
-            {echo SStringHelper::Pluralize(ShopCore::app()->SCart->totalItems(), array('товар','товара','товаров'))}
-        </a>
-        <span class="prices">{echo ShopCore::app()->SCart->totalPrice()} {$CS} 
-            <a href="{shop_url('cart')}" class="image"><img src="{$SHOP_THEME}style/images/myitems.jpg" width="22" height="18" border="0" alt="mycart" /></a>
-        </span>
+        {include_tpl('cart_data')}
     </div>
 
     <div id="topCurrency" align="right">
