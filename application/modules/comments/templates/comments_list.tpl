@@ -52,6 +52,12 @@
             {if $item.module == 'core'}
                 <a href="{$item.page_url}#comment_{$item.id}" target="_blank" title="{$item.page_title}">{truncate($item.page_title, 25, '...')}</a>
             {/if}
+            {if $item.module == 'shop'}
+                {if $this->CI->db->where('name','shop')->get('components')->num_rows() > 0}
+                    {$p_name = SProductsQuery::create()->filterById($item.item_id)->findOne()->getName()} 
+                    <a href="/shop/product/{$item.item_id}" target="_blank">{truncate($p_name,25,'...')}</a>
+                {/if}
+            {/if}
             </td>
 			<td>{$item.user_ip}</td>
 			<td>{date('d-m-Y H:i', $item.date)}</td>

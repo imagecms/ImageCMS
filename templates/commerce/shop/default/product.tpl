@@ -30,6 +30,20 @@
         }
     });
 });
+
+function ajaxAddToCart()
+{
+    $.ajax({
+        type: "POST",
+        data: $("#productForm").serialize(),
+        url: "/shop/cart/add",
+        success: function(){$("#mycart").load('/shop/ajax/getCartDataHtml')},
+     });
+
+    $("#cartNotify").css('display', 'block');
+    setTimeout(function() {  $("#cartNotify").css('display', 'none') }, 2000); 
+}
+
 </script>
 {/literal}
 
@@ -105,7 +119,7 @@
     <a href="#"></a>
 
     <div class="right">
-        <form action="{shop_url('cart/add')}" name="productForm" method="post">
+        <form action="{shop_url('cart/add')}" name="productForm" id="productForm" method="post">
 
         {if $model->countProductVariants() > 1}
         <div align="right" style="padding-bottom:20px;">
@@ -142,8 +156,14 @@
 
         <input type="hidden" name="productId" value="{echo $model->getId()}" />
         <input type="hidden" name="quantity" value="1" />
-
+        
+        <!--
         <a rel="nofollow" href="#" onClick="document.productForm.submit(); return false;" class="button1">{echo ShopCore::t('ДОБАВИТЬ В КОРЗИНУ')}</a>
+        -->
+        <a rel="nofollow" href="#" onClick='ajaxAddToCart(); return false;' class="button1">{echo ShopCore::t('ДОБАВИТЬ В КОРЗИНУ')}</a>
+        <div style="margin-left:45px;font-size:13px;display:none;background-color:#f5f5dc;" id="cartNotify"> 
+            Товар добавлен в корзину.
+        </div> 
         {form_csrf()}
         </form>
     </div>
