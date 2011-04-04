@@ -12,11 +12,14 @@ class Admin extends MY_Controller {
     public $conf = array(
         'engine'              => 'gd2',   // Image library. Possible values: GD, GD2, ImageMagick, NetPBM 
         'max_file_size'       => 5,       // Max file size for upload in Mb.
+	'max_archive_size'    => 50,
         'max_width'           => 0,       // Max image width.
         'max_height'          => 0,       // Max image height.
-        'allowed_types'       => 'gif|jpg|jpeg|png',   // Allowed image types.
+        'allowed_types'       => 'gif|jpg|jpeg|png|zip',   // Allowed image types.
+	'allowed_archive_types'=> 'zip',
         'upload_path'         => './uploads/gallery/', // Image upload dir. With ending slash.
-        'upload_url'          => 'uploads/gallery/',   // Image upload url. With ending slash. 
+        'upload_url'          => 'uploads/gallery/',   // Image upload url. With ending slash.
+	'cache_path'	      => './system/cache/',
         'quality'             => '90%',    // Image quality
         'thumb_width'         => '100',    // Thumb width. min. 20px; max 1000px;
         'thumb_height'        => '100',    // Thumb height min. 20px; max 1000px;
@@ -699,6 +702,11 @@ class Admin extends MY_Controller {
     public function upload_image($album_id = 0)
     {
         //$this->check_album_folder($album_id);
+	if ($_FILES['userfile']['type'] == 'application/octet-stream')
+	{
+	    $this->upload_archive($album_id);
+	    exit;
+	}
 
         $this->conf['upload_path'] = $this->conf['upload_path'] . $album_id;
 
@@ -717,10 +725,141 @@ class Admin extends MY_Controller {
             $data = array('upload_data' => $this->upload->data());
 
             // Resize Image and create thumb
+	    
             $this->resize_and_thumb($data['upload_data']);
 
             $this->add_image($album_id, $data['upload_data']);
 		}
+      
+        echo json_encode($data);
+    }
+    
+     public function upload_archive($album_id = 0)
+    {
+
+	$temp_directory = 'temp_'.MD5($album_id.time());
+	$temp_path = $this->conf['cache_path'].$temp_directory;
+	$unpack_path = $this->conf['upload_path'] . $album_id;
+	if (!file_exists($temp_path))
+	{
+	    @mkdir($temp_path);
+	    @chmod($temp_path, 0777);
+	}
+	
+	if (!file_exists($unpack_path))
+	{
+	    @mkdir($unpack_path);
+	    @chmod($unpack_path, 0777);
+	}
+	//upload archive to temp folder
+	
+	$this->conf['upload_path'] = $this->conf['upload_path'] . $album_id.'/';
+	
+		$config['upload_path']   = $temp_path;
+		$config['allowed_types'] = 'zip';
+		$config['max_size']      = 1024 * 1024 * $this->conf['max_archive_size'];
+		
+        $this->load->library('upload', $config);
+	
+	    if ( ! $this->upload->do_upload())
+	    {
+	        $data = array('error' => $this->upload->display_errors('', ''));
+	    }	
+	    else
+	    {
+	        $data = array('upload_data' => $this->upload->data());
+	
+	//extract pictures into temp_folder/unpacked
+	
+	    $this->load->library('pclzip', $data['upload_data']['full_path']);
+	    $list = $this->pclzip->listContent();
+	    $file_list = array();
+	    foreach ($list as $item)
+	    {
+		array_push($file_list, $item['filename']);
+	    }
+	    
+	     if (($zip_result = $this->pclzip->extract(PCLZIP_OPT_PATH, $unpack_path)) == 0)
+                {
+
+                    delete_files($temp_path, TRUE);
+                    @unlink($data['upload_data']['full_path']);
+		    @rmdir($temp_path);
+                    
+                    //showMessage('Ошибка извлечения файлов из архива.');
+                    exit;
+                }
+		
+
+	    
+    
+	//scan directory and add all images to album
+	//TODO: wtf with showMessage()
+	    //showMessage('Поки-що все добре....');
+	    if (!($dir = opendir($unpack_path)))
+	    {
+	        //showMessage('wtf....');
+		exit;
+	    }
+	    
+	$album_data = $this->gallery_m->get_album($album_id);
+	$album_images = array();
+	foreach ($album_data['images'] as $image)
+	{
+	    array_push($album_images, $image['full_name']);
+	}
+	
+	//$this->load->library('image_lib');
+	
+	while ($file = readdir($dir))
+        {
+            if (($file != '.') && ($file != '..') && (in_array($file, $file_list)))
+            {
+                if (get_mime_by_extension($file) == 'image/jpeg' )
+		{
+		    $file_data = array();
+		    
+		    $props = getimagesize($this->conf['upload_path'].$file);
+		    
+		    $file_data['file_name'] = $file;
+		    $file_data['file_type'] = $props['mime'];
+		    $file_data['file_path'] = $this->conf['upload_path'];
+		    $file_data['full_path'] = $this->conf['upload_path'].$file;
+		    $file_data['file_ext'] = '';
+		    if (strpos($file, '.jpg'))
+		    {
+			 $file_data['raw_name'] = str_replace('.jpg', '', $file);
+			 $file_data['file_ext'] = '.jpg';
+		    }
+		    elseif (strpos($file, '.jpeg'))
+		    {
+			$file_data['raw_name'] = str_replace('.jpg', '', $file);
+			$file_data['file_ext'] = '.jpeg';
+		    }
+		    $file_data['orig_name'] = $file;
+		    $file_data['client_name'] = $file;
+		    $file_data['file_size'] = '1';
+		    $file_data['is_image'] = TRUE;
+		    $file_data['image_width'] = $props[0];
+		    $file_data['image_height'] = $props[1];
+		    $file_data['image_type'] = '';
+		    $file_data['image_size_str'] = $props[3];
+		    
+		    // Resize Image and create thumb
+		    $this->resize_and_thumb($file_data);
+		    if (!in_array($file, $album_images))
+			$this->add_image($album_id, $file_data);
+		}
+	    }
+
+        }
+	
+	}
+	
+	//remove temp folder
+	delete_files($temp_path, TRUE);
+            @unlink($data['upload_data']['full_path']);
+	    @rmdir($temp_path);
       
         echo json_encode($data);
     }
@@ -730,6 +869,7 @@ class Admin extends MY_Controller {
      */ 
     private function resize_and_thumb($file = array())
     {
+	//var_dump($file);
         $this->load->library('image_lib'); 
 
         // Resize image
@@ -772,7 +912,6 @@ class Admin extends MY_Controller {
 				$this->image_lib->resize();
             }
         }
-
         // Create image preview
         $config = array();
         $prev_img_name            = $file['raw_name'].'_prev'.$file['file_ext'];
@@ -822,7 +961,9 @@ class Admin extends MY_Controller {
             write_file($file['file_path'] . $prev_img_name, $file_data);
         }
 
+//wtf
 
+//echo $this->conf['upload_path'];
         // Create thumb file
         $config                   = array();
         $thumb_name               = $this->conf['upload_path'].'/'.$this->conf['thumbs_folder'].'/'.$file['raw_name'].$this->conf['thumb_marker'].$file['file_ext'];
@@ -837,6 +978,7 @@ class Admin extends MY_Controller {
             $config['width']          = $this->conf['thumb_width'];
             $config['height']         = $this->conf['thumb_height'];
             $config['quality']        = $this->conf['quality'];
+	    
 
             if (($this->conf['maintain_ratio_icon']) AND ($this->conf['crop_icon'])) // Уменьшаем изображение и обрезаем края 
             { 
@@ -846,7 +988,7 @@ class Admin extends MY_Controller {
             	
 				$this->image_lib->clear();
 				$this->image_lib->initialize($config); 
-				$this->image_lib->resize(); 
+				if (!$this->image_lib->resize()) echo 'fck'; 
         	    	
 				$config['image_library']  = $this->conf['engine'];
 				$config['source_image']   = $thumb_name;
@@ -862,7 +1004,7 @@ class Admin extends MY_Controller {
             {
 				$this->image_lib->clear();
 				$this->image_lib->initialize($config); 
-				$this->image_lib->resize();
+				if (!$this->image_lib->resize()) echo $this->image_lib->display_errors();
             }
         }
         else
