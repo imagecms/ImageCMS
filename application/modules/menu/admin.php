@@ -748,13 +748,15 @@ class Admin extends MY_Controller {
         {
             if (isset($_POST['lang_'.$lang['id']]))
             {
-                $data = array(
-                    'item_id' => (int) $id,
-                    'lang_id' => $lang['id'],
-                    'title'   => $_POST['lang_'.$lang['id']],
-                );
-
-                $this->db->insert('menu_translate', $data);
+		if  ( trim( $_POST['lang_'.$lang['id']] ) != '' )
+		{
+			$data = array(
+			    'item_id' => (int) $id,
+			    'lang_id' => $lang['id'],
+			    'title'   => $_POST['lang_'.$lang['id']],
+			);
+			$this->db->insert('menu_translate', $data);
+		}
             }
         }
 
