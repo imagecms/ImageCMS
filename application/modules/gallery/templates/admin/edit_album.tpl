@@ -17,6 +17,8 @@
             <li>
                 <span id="upload_result"></span>
             </li>
+	    
+	    
             </ul>
         </div>
 
@@ -127,6 +129,7 @@
                 document.getElementById('image_upload_form').target = 'upload_target';
                 document.getElementById("upload_target").onload = uploadCallback; 
             }
+	    
         });
 
         // Callback function after upload image
