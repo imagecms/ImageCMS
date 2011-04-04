@@ -306,7 +306,7 @@ class Admin extends MY_Controller {
 				);
 
 					//change password
-					if(isset($_POST['new_pass']))
+					if((isset($_POST['new_pass'])) && (!empty($_POST['new_pass'])))
 					{
 						$new_pass = crypt($this->dx_auth->_encode($this->input->post('new_pass')));
 						$data['password'] = $new_pass;
