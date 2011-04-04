@@ -12,6 +12,11 @@ class Template extends Mabilis {
 
 	public function __construct()
 	{
+        $this->load();
+	}
+
+    public function load()
+    {
 		$this->CI =& get_instance();
 
         if (function_exists('get_hook'))
@@ -46,7 +51,7 @@ class Template extends Mabilis {
         $this->assign('CI', $this->CI);
 
         ($hook = get_hook('lib_template_init_end')) ? eval($hook) : NULL;
-	}
+    }
 
     public function assign($key, $value)
     {
