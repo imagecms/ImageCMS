@@ -101,7 +101,7 @@ class Core extends MY_Controller {
                 $this->load_functions_file($this->langs[$uri_lang]['template']);
 
                 // Reload template settings
-                $this->template->Template();
+                $this->template->load();
 
                 // Add language identificator to base_url
                 $this->config->set_item('base_url',base_url().$uri_lang);
