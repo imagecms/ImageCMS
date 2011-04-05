@@ -1,4 +1,4 @@
-<div id="titleExt"><h5>{widget('path')}<span class="ext">{lang('lang_register')}</span></h5></div>
+<div id="titleExt"><h5><span class="ext">{lang('lang_register')}</span></h5></div>
 
 {if validation_errors() OR $info_message}
     <div class="errors"> 
@@ -7,54 +7,58 @@
     </div>
 {/if}
 
+<br/>
+
 <form action="" class="form" method="post">
 
-	<div class="comment_form_info">
-	
-	<div class="textbox">
-        <label for="username" class="left">{lang('lang_login')}</label>
-        <input type="text" size="30" name="username" id="username" value="{set_value('username')}"/>
-    </div>
-	
-	<div class="textbox_spacer"></div>
-	
-    <div class="textbox">
-        <label for="email" class="left">{lang('lang_email')}</label>
-        <input type="text" size="30" name="email" id="email" value="{set_value('email')}" />
-    </div>
+        <div class="fieldName">{lang('lang_login')}</div>
+        <div class="field">      
+            <input type="text" size="30" name="username" id="username" value="{set_value('username')}"/>
+        </div>
+        <div class="clear"></div>
 
-    <div class="textbox">
-        <label for="password" class="left">{lang('lang_password')}</label>
-        <input type="password" size="30" name="password" id="password" value="{set_value('password')}" />
-    </div>
-	
-	<div class="textbox_spacer"></div>
 
-    <div class="textbox"
-        <label for="confirm_password" class="left">{lang('lang_confirm_password')}</label>
-        <input type="password" class="text" size="30" name="confirm_password" id="confirm_password" />
-    </div>
-	</div>
-    
-	{if $cap_image}
-    <div class="comment_form_info">
-    <div class="textbox captcha">
-        <input type="text" name="captcha" id="captcha" value="Код протекции" onfocus="if(this.value=='Код протекции') this.value='';" onblur="if(this.value=='') this.value='Код протекции';"/>
-   	</div>
-    {$cap_image}
-    </div>
-    {/if}
+        <div class="fieldName">{lang('lang_email')}</div>
+        <div class="field">      
+            <input type="text" size="30" name="email" id="email" value="{set_value('email')}" />
+        </div>
+        <div class="clear"></div>
  
-    <p class="clear">
-        <label for="submit" class="left">&nbsp;</label> 
-        <input type="submit" id="submit" class="submit" value="{lang('lang_submit')}" />
-    </p>
 
-	
-    <label class="left">&nbsp;</label> 
-    <a href="{site_url($modules.auth . '/forgot_password')}">{lang('lang_forgot_password')}</a>
-    &nbsp;
-    <a href="{site_url('auth/login')}">Вход</a>
+        <div class="fieldName">{lang('lang_password')}</div>
+        <div class="field">      
+            <input type="password" size="30" name="password" id="password" value="{set_value('password')}" />
+        </div>
+        <div class="clear"></div>
+
+        
+        <div class="fieldName">{lang('lang_confirm_password')}</div>
+        <div class="field">      
+            <input type="password" class="text" size="30" name="confirm_password" id="confirm_password" />
+        </div>
+        <div class="clear"></div>
+
+        {if $cap_image} 
+        <div class="fieldName">{$cap_image}</div>
+        <div class="field">
+            <input type="text" name="captcha" id="captcha" />            
+        </div>
+        <div class="clear"></div>        
+        {/if} 
+
+        <div class="fieldName"></div>
+        <div class="field">
+            <input type="submit" id="submit" class="submit" value="{lang('lang_submit')}" />              
+        </div>
+        <div class="clear"></div>
+
+        <div class="fieldName"></div>
+        <div class="field">      
+            <a href="{site_url($modules.auth . '/forgot_password')}">{lang('lang_forgot_password')}</a>
+            &nbsp;
+            <a href="{site_url('auth/login')}">Вход</a>
+        </div>
+        <div class="clear"></div>
 
 {form_csrf()}
 </form>
