@@ -1,6 +1,8 @@
         
         {if $is_logged_in}
             <a href="{shop_url('profile')}" class="items">Профиль</a>
+        {else:}
+            <a href="/auth" class="items">Авторизация</a>
         {/if}
         <a href="{shop_url('cart')}" class="items">
             {echo ShopCore::app()->SCart->totalItems()}
