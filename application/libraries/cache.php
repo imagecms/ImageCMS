@@ -337,7 +337,7 @@ class Cache
         {
             if (($file != '.') && ($file != '..') && ($file != 'index.html') && is_file($cache_file = $this->_Config['store'].$file))
             {
-                if (substr($file, 0, 6) == 'cache_')
+                if (substr($file, 0, 6) == 'cache_' OR ($file == 'hooks.php'))
                 {
                     @unlink($cache_file);
 		            $n++;
@@ -348,7 +348,7 @@ class Cache
 	        {
     		    $this->delete_group($file);
 	        }
-         }
+        }
 
     	$this->log_cache_error('All cache files deleted');
 

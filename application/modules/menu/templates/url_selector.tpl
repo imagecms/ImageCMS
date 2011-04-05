@@ -83,6 +83,16 @@
 
                     <div class="form_overflow"></div>
 
+	            <div class="field_text">
+                        Открывать в новом окне
+                    </div>
+                    <div class="field_input">
+			<input type="radio" name="urlnew_page" id="url_newpage"  onclick="url_newpage = 1;" /> Да
+		        <input type="radio" name="urlnew_page" id="url_nonewpage" onclick="url_newpage = 0;"  checked="checked" /> Нет
+                     </div>
+
+                    <div class="form_overflow"></div>
+
                     <div class="field_text"></div>
                     <div class="field_input">
                         <input type="button" value="Создать" id="url_btn" class="button" onclick="insert_url(); return false;" />
@@ -100,6 +110,7 @@
 	<script type="text/javascript">
 	//<![CDATA[
     var url_hidden = 0;
+    var url_newpage = 0;
 
     function insert_url()
     {
@@ -138,6 +149,7 @@
                 'item_type': 'url',
                 'title': url_title,
                 'hidden': url_hidden,
+		'newpage': url_newpage,
                 'item_image': item_image,
                 'roles': url_roles,
                 'parent_id': url_parent_id,

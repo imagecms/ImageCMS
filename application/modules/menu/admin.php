@@ -282,6 +282,9 @@ class Admin extends MY_Controller {
      */     
     function insert_menu_item()
     {
+	
+	var_dump($_POST);
+	
         cp_check_perm('menu_edit');
 
         $roles = $_POST['roles'];
@@ -359,7 +362,8 @@ class Admin extends MY_Controller {
         {
             $mod_info = array(
                         'mod_name' => $_POST['item_id'],       
-                        'method' => trim($_POST['method']),       
+                        'method' => trim($_POST['method']),
+			'newpage' => $_POST['newpage']
                     );
 
             $item_data['item_id']  = 0;
@@ -369,8 +373,10 @@ class Admin extends MY_Controller {
         if ($item_data['item_type'] == 'url')
         {
             $item_data['item_id'] = 0;
-            $item_data['add_data'] = $_POST['url'];
+            $item_data['add_data'] = serialize(array('url' => $_POST['url'], 'newpage' => $_POST['newpage']));
         }
+	
+	if (!isset($item_data['add_data'])) $item_data['add_data'] = serialize(array('newpage'=>$_POST['newpage'])) ;
 
         if ($_POST['update_id'] == 0)
         {  
@@ -681,11 +687,9 @@ class Admin extends MY_Controller {
         if ($query->num_rows() > 0)
         {
             $data = $query->row_array();
-
-            if ($data['item_type'] == 'module')
-            {
-                $data['add_data'] = unserialize($data['add_data']);
-            }
+		
+		if(!empty($data['add_data']))
+			$data['add_data'] = unserialize($data['add_data']);
 
             $cnt = count($data);
             $data['roles'] = unserialize($data['roles']);
@@ -744,13 +748,15 @@ class Admin extends MY_Controller {
         {
             if (isset($_POST['lang_'.$lang['id']]))
             {
-                $data = array(
-                    'item_id' => (int) $id,
-                    'lang_id' => $lang['id'],
-                    'title'   => $_POST['lang_'.$lang['id']],
-                );
-
-                $this->db->insert('menu_translate', $data);
+		if  ( trim( $_POST['lang_'.$lang['id']] ) != '' )
+		{
+			$data = array(
+			    'item_id' => (int) $id,
+			    'lang_id' => $lang['id'],
+			    'title'   => $_POST['lang_'.$lang['id']],
+			);
+			$this->db->insert('menu_translate', $data);
+		}
             }
         }
 
