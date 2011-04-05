@@ -13,7 +13,7 @@
 <table cellpadding="1" cellspacing="1" border="0">
     <tr>
         <td colspan="2">
-            <a href="{site_url($album_url . $prev_img.full_name)}" class="lightbox" title="{$prev_img.description}" >
+            <a href="{media_url($album_url . $prev_img.full_name)}" class="lightbox" title="{$prev_img.description}" >
                 <img src="{media_url($prev_img.url)}" style="border:5px solid #E8E8E8;" />
             </a>  
         </td>
