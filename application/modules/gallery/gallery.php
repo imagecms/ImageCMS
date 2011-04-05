@@ -88,9 +88,11 @@ class Gallery extends MY_Controller {
     function album($id = 0)
     {
         $album = $this->gallery_m->get_album($id);
-
-        $params =  $this->uri->uri_to_assoc(4);
-
+	if ($this->uri->total_segments() > 5 )
+	    $params =  $this->uri->uri_to_assoc(5);
+	else
+	    $params =  $this->uri->uri_to_assoc(4);
+	    
         if ($album == FALSE)
         {
             show_error('Can\'t load album.');
@@ -113,7 +115,6 @@ class Gallery extends MY_Controller {
                         
                         $current_pos = $n + 1;
                     }
-
                     $n++;
                 }
             }
