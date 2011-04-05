@@ -157,25 +157,25 @@ var totalPrice = '{echo ShopCore::app()->SCart->totalPrice()}';
     <input type="hidden" name="makeOrder" value="1">
         <div class="fieldName">Имя, фамилия:</div>
         <div class="field">
-            <input type="text" class="input" name="userInfo[fullName]">
+            <input type="text" class="input" name="userInfo[fullName]" value="{$profile.name}">
         </div>
         <div class="clear"></div>
 
         <div class="fieldName">Email:</div>
         <div class="field">
-            <input type="text" class="input" name="userInfo[email]">
+            <input type="text" class="input" name="userInfo[email]" value="{$profile.email}">
         </div>
         <div class="clear"></div>
 
         <div class="fieldName">Телефон:</div>
         <div class="field">
-            <input type="text" class="input" name="userInfo[phone]">
+            <input type="text" class="input" name="userInfo[phone]" value="{$profile.phone}">
         </div>
         <div class="clear"></div>
 
         <div class="fieldName">Адрес доставки:</div>
         <div class="field">
-            <input type="text" class="input" name="userInfo[deliverTo]">
+            <input type="text" class="input" name="userInfo[deliverTo]" value="{echo $profile.address}">
         </div>
         <div class="clear"></div>
 
