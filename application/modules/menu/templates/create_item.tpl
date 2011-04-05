@@ -83,6 +83,14 @@
                         }else{
                             $('page_hidden').setProperty('checked','true'); 
                         }
+			
+			item_newpage = data.add_data.newpage;
+			
+			if(item_newpage == 0) {
+                            $('page_nonewpage').setProperty('checked','true');
+                        }else{
+                            $('page_newpage').setProperty('checked','true'); 
+                        }
 
                         if (data.parent_id != 0) {
                             $('item_parent_id').getElements('option').each(function(option,i) {
@@ -128,6 +136,14 @@
                         }else{
                             $('cat_hidden').setProperty('checked','true'); 
                         }
+			
+			cat_newpage = data.add_data.newpage;
+			
+			if(cat_newpage == 0) {
+                            $('cat_nonewpage').setProperty('checked','true');
+                        }else{
+                            $('cat_newpage').setProperty('checked','true'); 
+                        }
 
                         if (data.parent_id != 0) {
                             $('cat_parent_id').getElements('option').each(function(option,i) {
@@ -171,12 +187,20 @@
 
                         $('url_title').value = data.title;
                         cat_hidden = data.hidden;
-                        $('url_to_page').value = data.add_data;
+                        $('url_to_page').value = data.add_data.url;
 
                         if(cat_hidden == 0) {
                             $('url_nohiddenv').setProperty('checked','true');
                         }else{
                             $('url_hiddenv').setProperty('checked','true'); 
+                        }
+			
+			url_newpage = data.add_data.newpage;
+			
+			if(url_newpage == 0) {
+                            $('url_nonewpage').setProperty('checked','true');
+                        }else{
+                            $('url_newpage').setProperty('checked','true'); 
                         }
 
                         if (data.parent_id != 0) {
@@ -228,6 +252,14 @@
                             $('mod_nohidden').setProperty('checked','true');
                         }else{
                             $('mod_hidden').setProperty('checked','true'); 
+                        }
+			
+			mod_newpage = data.add_data.newpage;
+			
+			if(mod_newpage == 0) {
+                            $('mod_nonewpage').setProperty('checked','true');
+                        }else{
+                            $('mod_newpage').setProperty('checked','true'); 
                         }
 
                         if (data.parent_id != 0) {

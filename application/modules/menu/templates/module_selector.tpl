@@ -102,6 +102,16 @@
                     </div>
 
                     <div class="form_overflow"></div>
+		    
+		    <div class="field_text">
+                        Открывать в новом окне
+                    </div>
+                    <div class="field_input">
+                       <input type="radio" name="modnew_page" id="mod_newpage"  onclick="mod_newpage = 1;" /> Да
+                       <input type="radio" name="modnew_page" id="mod_nonewpage" onclick="mod_newpage = 0;"  checked="checked" /> Нет
+                    </div>
+
+                    <div class="form_overflow"></div>
 
                     <div class="field_text"></div>
                     <div class="field_input">
@@ -120,7 +130,8 @@
 	<script type="text/javascript">
 	//<![CDATA[
     var module_hidden = 0;
-
+    var mod_newpage = 0;
+    
     function set_module_data(name)
     {
         item = $('module_' + name);
@@ -181,6 +192,7 @@
                 'method': mod_method,
                 'title': mod_title,
                 'hidden': mod_hidden,
+		'newpage' : mod_newpage,
                 'item_image': item_image,
                 'roles': mod_roles,
                 'parent_id': mod_parent_id,

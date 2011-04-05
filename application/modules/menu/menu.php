@@ -240,6 +240,9 @@ class Menu extends MY_Controller{
 				$this->arranged_menu_array[$arranged_items_count]['link'] = $href;
 				$this->arranged_menu_array[$arranged_items_count]['title'] = $item['title'];
 				$this->arranged_menu_array[$arranged_items_count]['image'] = $item['image'];
+				if (!is_array($item['add_data']))
+					$item['add_data'] = unserialize($item['add_data']);
+				$item['add_data']['newpage'] == '1' ? $this->arranged_menu_array[$arranged_items_count]['target'] = 'target="_blank"': $this->arranged_menu_array[$arranged_items_count]['target'] = 'target="_self"';
 				
 				if(($menu_array[$start_index] != $item) AND ($menu_array[$end_index] != $item))
 				{
@@ -332,6 +335,7 @@ class Menu extends MY_Controller{
 			'link'  	=> $this->arranged_menu_array[$index]['link'],
 			'image'  	=> $this->arranged_menu_array[$index]['image'],
 			'wrapper'  	=> $wrapper,
+			'target'	=> $this->arranged_menu_array[$index]['target'],
 		);
 		
 		if ($index == -1) {
@@ -633,7 +637,8 @@ class Menu extends MY_Controller{
                     break;
 
                     case 'url':
-                        $menus[$i]['link'] = $menus[$i]['add_data'];    
+			$menus[$i]['add_data'] = unserialize($menus[$i]['add_data']);
+                        $menus[$i]['link'] = $menus[$i]['add_data']['url'];    
                     break;  
                 }
                 
