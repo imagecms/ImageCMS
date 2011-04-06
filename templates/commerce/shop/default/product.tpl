@@ -185,7 +185,16 @@ function ajaxAddToCart()
                         </a>
                     </div>
                     <h3 class="name"><a href="{shop_url('product/' . $p->getUrl())}">{echo ShopCore::encode($p->getName())}</a></h3>
-                    <div class="price">{echo $p->firstVariant->toCurrency()} {$CS}</div>
+                    <div class="price">
+                        {$p->firstVariant}
+                        {if $p->hasDiscounts()}
+                            <s>{echo $p->firstVariant->toCurrency('origPrice')} {$CS}</s>
+                            <br/>
+                            <span style="font-size:14px;">{echo $p->firstVariant->toCurrency()} {$CS}</span>
+                        {else:}
+                            <span style="font-size:14px;">{echo $p->firstVariant->toCurrency()} {$CS}</span>
+                        {/if}                    
+                    </div>
                     <div class="compare"><a href="#">Сравнить</a></div>
                 </li>
                 {if $count == 3}<li class="separator"></li> {$count=0}{/if}
