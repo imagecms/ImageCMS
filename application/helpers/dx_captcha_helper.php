@@ -202,7 +202,8 @@ if (!function_exists('create_captcha'))
         }
 
         if ($img_path == '' OR $img_url == '')
-        { 
+        {
+            
             return FALSE;
         }
 

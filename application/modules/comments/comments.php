@@ -179,7 +179,10 @@ class Comments extends MY_Controller {
         if ($this->use_captcha == TRUE AND $this->dx_auth->is_admin() == FALSE)
         {
             ($hook = get_hook('comments_set_captcha')) ? eval($hook) : NULL;
-            $this->form_validation->set_rules('captcha', lang('lang_captcha'), 'trim|required|xss_clean|callback_captcha_check');
+	    if ($this->dx_auth->use_recaptcha)
+		$this->form_validation->set_rules('recaptcha_response_field', lang('lang_captcha'), 'trim|required|xss_clean|callback_captcha_check');
+	    else
+		$this->form_validation->set_rules('captcha', lang('lang_captcha'), 'trim|required|xss_clean|callback_captcha_check');
         }
 
 		$this->form_validation->set_rules('comment_text',   'lang:lang_comment_text',   'trim|required|xss_clean|max_length['.$this->max_comment_length.']');
@@ -374,20 +377,10 @@ class Comments extends MY_Controller {
 	{
         ($hook = get_hook('comments_captcha_check')) ? eval($hook) : NULL;
 
-	    $result = TRUE;
-
-		if ($this->dx_auth->is_captcha_expired())
-		{
-			$this->form_validation->set_message('captcha_check', lang('lang_captcha_error'));
-			$result = FALSE;
-		}
-		elseif ( ! $this->dx_auth->is_captcha_match($code))
-		{
-			$this->form_validation->set_message('captcha_check', lang('lang_captcha_error'));
-			$result = FALSE;
-		}
-
-		return $result;
+	   if (!$this->dx_auth->captcha_check($code))
+		return FALSE;
+	    else
+		return TRUE;
 	}
 
 }

@@ -276,6 +276,12 @@ class Core extends MY_Controller {
             $this->tpl_data['is_logged_in'] = TRUE;
             $this->tpl_data['username'] = $this->dx_auth->get_username();
         }
+	
+	//Assign captcha type
+	if ($this->dx_auth->use_recaptcha)
+		$this->tpl_data['captcha_type'] = 'recaptcha';
+	else
+		$this->tpl_data['captcha_type'] = 'captcha';
 
         // Assign template variables and load modules
         $this->_process_core_data();        

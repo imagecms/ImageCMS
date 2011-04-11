@@ -40,9 +40,11 @@
 
         {if $cap_image} 
         <div class="fieldName">{$cap_image}</div>
+        {if $captcha_type == 'captcha'}
         <div class="field">
             <input type="text" name="captcha" id="captcha" />            
         </div>
+        {/if}
         <div class="clear"></div>        
         {/if} 
 
