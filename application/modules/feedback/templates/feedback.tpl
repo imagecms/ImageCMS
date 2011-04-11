@@ -30,9 +30,11 @@
     </div>
     
    	<div class="comment_form_info">
+	{if $captcha_type =='captcha'}    
     	<div class="textbox captcha">
-        <input type="text" name="captcha" id="captcha" value="Код протекции" onfocus="if(this.value=='Код протекции') this.value='';" onblur="if(this.value=='') this.value='Код протекции';"/>
-   		</div>
+	    <input type="text" name="captcha" id="recaptcha_response_field" value="Код протекции" onfocus="if(this.value=='Код протекции') this.value='';" onblur="if(this.value=='') this.value='Код протекции';"/>
+   	</div>
+	{/if}
     {$cap_image}
     </div>
     

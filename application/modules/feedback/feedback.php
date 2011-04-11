@@ -33,8 +33,13 @@ class Feedback extends MY_Controller {
         {
             $this->form_validation->set_rules('name',  'Имя', 'trim|required|min_length[3]|max_length['.$this->username_max_len.']|xss_clean'); 
             $this->form_validation->set_rules('email', 'E-Mail', 'trim|required|valid_email|xss_clean'); 
-            $this->form_validation->set_rules('theme', 'Тема', 'trim|required|max_length['.$this->theme_max_len.']|xss_clean'); 
-            $this->form_validation->set_rules('captcha', lang('lang_captcha'), 'trim|required|xss_clean|callback_captcha_check');
+            $this->form_validation->set_rules('theme', 'Тема', 'trim|required|max_length['.$this->theme_max_len.']|xss_clean');
+	    
+	    if ($this->dx_auth->use_recaptcha)
+		$this->form_validation->set_rules('recaptcha_response_field', lang('lang_captcha'), 'trim|xss_clean|required|callback_captcha_check');
+	    else
+		$this->form_validation->set_rules('captcha', lang('lang_captcha'), 'trim|required|xss_clean|callback_captcha_check');
+		
             $this->form_validation->set_rules('message', 'Сообщение', 'trim|required|max_length['.$this->message_max_len.']|xss_clean');
 
             if ($this->form_validation->run($this) == FALSE)
@@ -97,22 +102,12 @@ class Feedback extends MY_Controller {
 
 	public function captcha_check($code)
 	{
-		$result = TRUE;
-
-		if ($this->dx_auth->is_captcha_expired())
-		{
-			// Will replace this error msg with $lang
-			$this->form_validation->set_message('captcha_check', lang('lang_captcha_error'));
-			$result = FALSE;
-		}
-		elseif ( ! $this->dx_auth->is_captcha_match($code))
-		{
-			$this->form_validation->set_message('captcha_check', lang('lang_captcha_error'));
-			$result = FALSE;
-		}
-
-		return $result;
+	    if (!$this->dx_auth->captcha_check($code))
+		return FALSE;
+	    else
+		return TRUE;
 	}
+    
 
     /**
      * Display template file

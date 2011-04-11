@@ -58,6 +58,10 @@ class DX_Auth
 		$this->captcha_registration = $this->ci->config->item('DX_captcha_registration');
 
 		$this->captcha_login = $this->ci->config->item('DX_captcha_login');
+		
+		//Use recaptcha
+		$this->use_recaptcha = $this->ci->config->item('DX_use_recaptcha');
+		$this->use_audio_recaptcha = $this->ci->config->item('DX_use_audio_recaptcha');
 
 		// URIs
 		$this->banned_uri = $this->ci->config->item('DX_banned_uri');
@@ -1275,7 +1279,10 @@ class DX_Auth
 
 	function get_captcha_image()
 	{
-		return $this->_captcha_image;
+		if ($this->use_recaptcha)
+			return $this->_get_recaptcha_data();	
+		else	
+			return $this->_captcha_image;
 	}
 
 	// Check if captcha already expired
@@ -1299,6 +1306,38 @@ class DX_Auth
 	}
 
 	/* End of captcha related function */
+	
+	
+	public function captcha_check($code)
+	{
+		$CI = get_instance();
+		$result = TRUE;
+        
+		if ($this->use_recaptcha)
+		{
+			$result = $this->is_recaptcha_match();
+			if ( ! $result)  
+			{	
+			    $CI->form_validation->set_message('captcha_check', lang('lang_captcha_error'));  
+			}
+		}
+		else
+		{
+			if ($this->is_captcha_expired())
+			{
+				// Will replace this error msg with $lang
+				$CI->form_validation->set_message('captcha_check', lang('lang_captcha_error'));
+				$result = FALSE;
+			}
+			elseif ( ! $this->is_captcha_match($code))
+			{
+				$CI->form_validation->set_message('captcha_check', lang('lang_captcha_error'));
+				$result = FALSE;
+			}
+		}
+		return $result;
+	}
+	
 
 	/* Recaptcha function */
 
@@ -1343,7 +1382,7 @@ class DX_Auth
 		// Add custom theme so we can get only image
 		$options = "<script>
 			var RecaptchaOptions = {
-				 theme: 'custom',
+				 theme: 'clean',
 				 custom_theme_widget: 'recaptcha_widget'
 			};
 			</script>";
@@ -1366,6 +1405,11 @@ class DX_Auth
 			$_POST["recaptcha_response_field"]);
 
 		return $resp->is_valid;
+	}
+	
+	private function _get_recaptcha_data()
+	{
+	    return $this->get_recaptcha_html();   
 	}
 
 	/* End of Recaptcha function */

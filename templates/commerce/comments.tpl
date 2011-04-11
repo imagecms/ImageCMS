@@ -59,11 +59,11 @@
     {if $use_captcha}
     <div style="padding-bottom:4px;">
     <p class="clear">
-        <label for="captcha" style="width:140px;" class="left">{lang('lang_captcha')}</label>
-        <input type="text" name="captcha" id="captcha" />  <span style="color:red;">*</span>
-
+        {if $captcha_type == 'captcha'}
+            <label for="captcha" style="width:140px;" class="left">{lang('lang_captcha')}</label>
+            <input type="text" name="captcha" id="captcha" />  <span style="color:red;">*</span>
+        {/if}
         <br/>
-
         <label class="left" style="width:140px;" >&nbsp;</label>
         {$cap_image}
     </p>

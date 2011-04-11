@@ -59,22 +59,12 @@ class Auth extends MY_Controller
 	function captcha_check($code)
 	{
         ($hook = get_hook('auth_captcha_check')) ? eval($hook) : NULL;
-
-		$result = TRUE;
-
-		if ($this->dx_auth->is_captcha_expired())
-		{
-			// Will replace this error msg with $lang
-			$this->form_validation->set_message('captcha_check', lang('lang_captcha_error'));
-			$result = FALSE;
-		}
-		elseif ( ! $this->dx_auth->is_captcha_match($code))
-		{
-			$this->form_validation->set_message('captcha_check', lang('lang_captcha_error'));
-			$result = FALSE;
-		}
-
-		return $result;
+	
+	if (!$this->dx_auth->captcha_check($code))
+		return FALSE;
+	    else
+		return TRUE;
+	
 	}
 
 	function recaptcha_check()
@@ -114,7 +104,10 @@ class Auth extends MY_Controller
 			// Set captcha rules if login attempts exceed max attempts in config
 			if ($this->dx_auth->is_max_login_attempts_exceeded())
 			{
-				$val->set_rules('captcha', lang('lang_captcha'), 'trim|required|xss_clean|callback_captcha_check');
+				if ($this->dx_auth->use_recaptcha)
+					$val->set_rules('recaptcha_response_field', lang('lang_captcha'), 'trim|xss_clean|required|callback_captcha_check');
+				else
+					$val->set_rules('captcha', lang('lang_captcha'), 'trim|required|xss_clean|callback_captcha_check');
 			}
 
 			if ($val->run() AND $this->dx_auth->login($val->set_value('username'), $val->set_value('password'), $val->set_value('remember')))
@@ -210,7 +203,10 @@ class Auth extends MY_Controller
 
 			if ($this->dx_auth->captcha_registration)
 			{
-				$val->set_rules('captcha', lang('lang_captcha'), 'trim|xss_clean|required|callback_captcha_check');
+				if ($this->dx_auth->use_recaptcha)
+					$val->set_rules('recaptcha_response_field', lang('lang_captcha'), 'trim|xss_clean|required|callback_captcha_check');
+				else
+					$val->set_rules('captcha', lang('lang_captcha'), 'trim|xss_clean|required|callback_captcha_check');
 			}
 
 			// Run form validation and register user if it's pass the validation
