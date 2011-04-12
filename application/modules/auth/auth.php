@@ -15,15 +15,16 @@ class Auth extends MY_Controller
 
 	public $ban_reason = NULL;
 
-	function Auth()
+	public function __construct()
 	{
 		parent::__construct();
 
         $this->load->helper('url');
         $this->load->library('Form_validation');
+        $this->form_validation->CI =& $this;
 	}
 
-	function index()
+	public function index()
 	{
 		$this->login();
 	}
