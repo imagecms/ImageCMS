@@ -28,6 +28,7 @@ class Feedback extends MY_Controller {
 
         $tpl_data = array();
         $this->load->library('form_validation');
+        $this->form_validation->CI =& $this;
 
         if (count($_POST) > 0)
         {
