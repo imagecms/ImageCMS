@@ -6,7 +6,7 @@
 | -------------------------------------------------------------------
 | This file will contain the settings needed to access your database.
 |
-| For complete instructions please consult the "Database Connection"
+| For complete instructions please consult the 'Database Connection'
 | page of the User Guide.
 |
 | -------------------------------------------------------------------
@@ -27,17 +27,22 @@
 |	['cachedir'] The path to the folder where cache files should be stored
 |	['char_set'] The character set used in communicating with the database
 |	['dbcollat'] The character collation used in communicating with the database
+|	['swap_pre'] A default table prefix that should be swapped with the dbprefix
+|	['autoinit'] Whether or not to automatically initialize the database.
+|	['stricton'] TRUE/FALSE - forces 'Strict Mode' connections
+|							- good for ensuring strict SQL while developing
 |
 | The $active_group variable lets you choose which connection group to
-| make active.  By default there is only one group (the "default" group).
+| make active.  By default there is only one group (the 'default' group).
 |
 | The $active_record variables lets you determine whether or not to load
 | the active record class
- */
-$config['database']['active_group']        = 'default';
-$config['database']['active_record']       = 'true';
+*/
 
-//--DB-SETTINGS
+$active_group = 'default';
+$active_record = TRUE;
+
+{DB_SETTINGS}
 
 /*
 |--------------------------------------------------------------------------
@@ -98,7 +103,7 @@ $config['uri_protocol']	= "REQUEST_URI";
 | 'tpl_force_compile'	Compile template file each request
 | 'tpl_compiled_ttl'	        Time to live for compiled file
 | 'tpl_compress_output'   Use gzip to compress output
-| 'tpl_use_filemtime'
+| 'tpl_use_filemtime'			
 |
 */
 $config['tpl_compile_path']    = BASEPATH.'cache/templates_c/';
@@ -223,7 +228,7 @@ $config['directory_trigger'] 	= 'd'; // experimental not currently in use
 | Error Logging Threshold
 |--------------------------------------------------------------------------
 |
-| If you have enabled error logging, you can set an error threshold to
+| If you have enabled error logging, you can set an error threshold to 
 | determine what gets logged. Threshold options are:
 | You can enable error logging by setting a threshold over zero. The
 | threshold determines what gets logged. Threshold options are:
