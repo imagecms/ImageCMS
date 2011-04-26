@@ -190,6 +190,10 @@
 		define('APPPATH', BASEPATH.$application_folder.'/');
 	}
 
+    define('IMAGECMS_NUMBER', '2.5.0');
+    define('IMAGECMS_VERSION', 'A3SDFKD31');
+    define('IMAGECMS_PUBLIC_ID', '423098sdfjknl4253098sdfknl423'); 
+
 /*
  * --------------------------------------------------------------------
  * LOAD THE BOOTSTRAP FILE
