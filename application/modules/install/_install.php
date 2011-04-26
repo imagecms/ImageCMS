@@ -282,21 +282,24 @@ class Install extends MY_Controller {
         $db_pass   = $this->input->post('db_pass');
         $db_name   = $this->input->post('db_name');
 
-        $db_settings='$config[\'database\'][\'default\'][\'hostname\'] = "'.$db_server.'";
-$config[\'database\'][\'default\'][\'username\'] = "'.$db_user.'";
-$config[\'database\'][\'default\'][\'password\'] = "'.$db_pass.'";
-$config[\'database\'][\'default\'][\'database\'] = "'.$db_name.'";
-$config[\'database\'][\'default\'][\'dbdriver\'] = "mysql";
-$config[\'database\'][\'default\'][\'dbprefix\'] = "";
-$config[\'database\'][\'default\'][\'pconnect\'] = false;
-$config[\'database\'][\'default\'][\'db_debug\'] = true;
-$config[\'database\'][\'default\'][\'cache_on\'] = false;
-$config[\'database\'][\'default\'][\'cachedir\'] = "";
-$config[\'database\'][\'default\'][\'char_set\'] = "utf8";
-$config[\'database\'][\'default\'][\'dbcollat\'] = "utf8_general_ci";
-        ';
+        $db_settings="$db['default']['hostname'] = '$db_server';
+$db['default']['username'] = '$db_user';
+$db['default']['password'] = '$db_pass';
+$db['default']['database'] = '$db_name';
+$db['default']['dbdriver'] = 'mysql';
+$db['default']['dbprefix'] = '';
+$db['default']['pconnect'] = FALSE;
+$db['default']['db_debug'] = TRUE;
+$db['default']['cache_on'] = FALSE;
+$db['default']['cachedir'] = '';
+$db['default']['char_set'] = 'utf8';
+$db['default']['dbcollat'] = 'utf8_general_ci';
+$db['default']['swap_pre'] = '';
+$db['default']['autoinit'] = TRUE;
+$db['default']['stricton'] = FALSE; 
+";
 
-        $config = str_replace('//--DB-SETTINGS', $db_settings, $config);
+        $config = str_replace('{DB_SETTINGS}', $db_settings, $config);
 
         if ( ! write_file($config_file, $config))
         {
