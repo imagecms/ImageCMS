@@ -64,7 +64,7 @@
                     <span style="font-size:14px;">{echo $p->firstVariant->toCurrency()} {$CS}</span>
                 {/if}            
             </div>
-            <div class="compare"><a href="#">Сравнить</a></div>
+            <div class="compare"><a href="{shop_url('compare/add/' . $p->getId())}">Сравнить</a></div>
         </li>
             {if $count == 3}<li class="separator"></li> {$count=0}{/if}
             {$count++}
@@ -100,7 +100,7 @@
                     <span style="font-size:14px;">{echo $p->firstVariant->toCurrency()} {$CS}</span>
                 {/if}            
             </div>
-            <div class="compare"><a href="#">Сравнить</a></div>
+            <div class="compare"><a href="{shop_url('compare/add/' . $p->getId())}">Сравнить</a></div>
         </li>
             {if $count == 3}<li class="separator"></li> {$count=0}{/if}
             {$count++}

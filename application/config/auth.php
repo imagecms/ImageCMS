@@ -144,8 +144,7 @@ $config['DX_captcha_expire'] = 900;
 | To enable ReCaptcha set 'DX_use_recaptcha' to TRUE;
 */
 
-$config['DX_use_recaptcha'] = TRUE;
-//$config['DX_use_audio_recaptcha'] = FALSE;
+$config['DX_use_recaptcha'] = FALSE;
 
 $config['DX_recaptcha_public_key'] = '6Lf0R8MSAAAAAGvA1P1hg7XFBsZD15CLcQeL8nPU';
 $config['DX_recaptcha_private_key'] = '6Lf0R8MSAAAAALfOoB1umw57C72uUp0IGU-OZdb4';
