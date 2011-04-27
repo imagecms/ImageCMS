@@ -189,6 +189,7 @@
 
 		define('APPPATH', BASEPATH.$application_folder.'/');
 	}
+        
 
     define('IMAGECMS_NUMBER', '2.5.0');
     define('IMAGECMS_VERSION', 'A3SDFKD31');

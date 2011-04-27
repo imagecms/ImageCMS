@@ -149,7 +149,7 @@ class Core extends MY_Controller {
         $this->load->library('DX_Auth');
 
         // Are we on main page?
-        if ($cat_path == '/' OR $cat_path === FALSE AND $data_type != 'bridge')
+        if (($cat_path == '/' OR $cat_path === FALSE) AND $data_type != 'bridge')
         {
              $data_type = 'main';
 
