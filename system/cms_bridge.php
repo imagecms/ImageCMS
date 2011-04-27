@@ -1,8 +1,7 @@
 <?php if (!defined('CMS_BRIDGE')) exit('No direct script access allowed');
 
-error_reporting(E_ALL);
-
 define('ENVIRONMENT', 'production');
+error_reporting(0);
 
 $system_path = realpath(dirname(__FILE__));
 $system_path = str_replace("\\","/", $system_path);
