@@ -153,6 +153,9 @@ function ajaxAddToCart()
             {/if}
         </div>
 
+        <div align='right' style="font-size:12px;color:#669900;">
+                Доступно на складе: <span id="stock">{echo $model->firstVariant->getStock()}</span> шт.
+        </div>
 
         <input type="hidden" name="productId" value="{echo $model->getId()}" />
         <input type="hidden" name="quantity" value="1" />
