@@ -181,7 +181,7 @@ function ajaxAddToCart()
         <ul class="products">
             {$count = 1;}
             {foreach $model->getRelatedProductsModels() as $p}
-                <li class="{counter('', '', 'last')}">
+                <li {if $count == 3} class="last" {$count = 0}{/if}>
                     <div class="image" style="display:table-cell;vertical-align:middle;overflow:hidden;">
                         <a href="{shop_url('product/' . $p->getUrl())}">
                             <img src="{productImageUrl($p->getId() . '_small.jpg')}" border="0"  alt="image" />
@@ -198,7 +198,7 @@ function ajaxAddToCart()
                             <span style="font-size:14px;">{echo $p->firstVariant->toCurrency()} {$CS}</span>
                         {/if}                    
                     </div>
-                    <div class="compare"><a href="#">Сравнить</a></div>
+                    <div class="compare"><a href="{shop_url('compare/add/' . $p->getId())}">Сравнить</a></div>
                 </li>
                 {if $count == 3}<li class="separator"></li> {$count=0}{/if}
                 {$count++}
