@@ -1,3 +1,11 @@
+{literal}
+<script type="text/javascript">
+function getCategoryAttributes(cId)
+{
+    $("#catVariants").load('/shop/ajax/getCategoryAttributes/' + cId)
+}
+</script>
+{/literal}
 
 {# Display sidebar.tpl #}
 {include_tpl ('sidebar')}
@@ -29,11 +37,36 @@
                         </select>
                     </div>
                     
+                    <div class="fieldName">Фильтр по категории:</div>
+                    <div class="field">
+                        <select name="category" onChange="getCategoryAttributes(this.options[this.selectedIndex].value)">
+                            <option>-</option>
+                            {foreach $tree as $c}
+                                <option {if ShopCore::$_GET['category']==$c->getId()}selected{/if} value="{echo $c->getId()}">{str_repeat('-',$c->getLevel())}
+                                    {if $c->getLevel()==0}
+                                        <b>{echo ShopCore::encode($c->getName())}</b>
+                                    {else:}
+                                        {echo ShopCore::encode($c->getName())}
+                                    {/if}
+                                </option>
+                            {/foreach}  
+                        </select>
+                    </div>
+                    
+                    <div id="catVariants">
+                    </div>
+                    
+                    <div class="fieldName">Цена:</div>
+                    <div class="field">
+                        от <input type="text" value="{encode(ShopCore::$_GET['lp'])}" name="lp" style="width:26px;" />
+                        до <input type="text" value="{encode(ShopCore::$_GET['rp'])}" name="rp" style="width:26px;"/> 
+                    </div>
+                    <div class="clear"></div>
+                    
                     {if !empty(ShopCore::$_GET['brand'])}
                         <input type="hidden" value="{encode(ShopCore::$_GET['brand'])}" name="brand" />
                     {/if}
                     <div class="clear"></div>
-
                     <div class="fieldName"></div>
                     <div class="field">
                         <input type="submit" value="Применить" />
@@ -45,7 +78,7 @@
             <!-- END FILTER BOX -->
         </div>
         <div class="sp"></div>
-       
+
         <div id="categoryPath">
             {if !empty(ShopCore::$_GET['text'])}
                 Вы искали: "<span class="highlight">{encode($_GET['text'])}</span>"
@@ -57,7 +90,7 @@
     {if sizeof($brandsInSearchResult) > 0}
         {foreach $brandsInSearchResult as $brand}
             {if $brand->getId() != ShopCore::$_GET['brand']}
-                <a href="?text={encode(ShopCore::$_GET['text'])}{if !empty(ShopCore::$_GET['order'])}&order={encode(ShopCore::$_GET['order'])}{/if}&brand={echo $brand->getId()}">{echo ShopCore::encode($brand->getName())}</a>
+                <a href="?text={encode(ShopCore::$_GET['text'])}{if !empty(ShopCore::$_GET['order'])}&order={encode(ShopCore::$_GET['order'])}{/if}{if !empty(ShopCore::$_GET['category'])}&category={encode(ShopCore::$_GET['category'])}{/if}&brand={echo $brand->getId()}">{echo ShopCore::encode($brand->getName())}</a>
             {else:}
                 <a href="#" style="font-weight:bold;">{echo ShopCore::encode($brand->getName())}</a>
             {/if}

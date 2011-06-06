@@ -20,4 +20,5 @@
 	</div>
 
     {widget('latest_news')}
+    {widget('recent_product_comments')}
 </div>
