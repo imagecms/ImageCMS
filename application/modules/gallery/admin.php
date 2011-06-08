@@ -12,14 +12,14 @@ class Admin extends MY_Controller {
     public $conf = array(
         'engine'              => 'gd2',   // Image library. Possible values: GD, GD2, ImageMagick, NetPBM 
         'max_file_size'       => 5,       // Max file size for upload in Mb.
-	'max_archive_size'    => 50,
+		'max_archive_size'    => 50,
         'max_width'           => 0,       // Max image width.
         'max_height'          => 0,       // Max image height.
         'allowed_types'       => 'gif|jpg|jpeg|png|zip',   // Allowed image types.
-	'allowed_archive_types'=> 'zip',
+		'allowed_archive_types'=> 'zip',
         'upload_path'         => './uploads/gallery/', // Image upload dir. With ending slash.
         'upload_url'          => 'uploads/gallery/',   // Image upload url. With ending slash.
-	'cache_path'	      => './system/cache/',
+		'cache_path'	      => './system/cache/',
         'quality'             => '90%',    // Image quality
         'thumb_width'         => '100',    // Thumb width. min. 20px; max 1000px;
         'thumb_height'        => '100',    // Thumb height min. 20px; max 1000px;
