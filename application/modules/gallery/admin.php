@@ -701,12 +701,11 @@ class Admin extends MY_Controller {
      */  
     public function upload_image($album_id = 0)
     {
-        //$this->check_album_folder($album_id);
-	if ($_FILES['userfile']['type'] == 'application/octet-stream')
-	{
-	    $this->upload_archive($album_id);
-	    exit;
-	}
+		if ($_FILES['userfile']['type'] == 'application/octet-stream' OR $_FILES['userfile']['type'] == 'application/zip')
+		{
+			$this->upload_archive($album_id);
+			exit;
+		}
 
         $this->conf['upload_path'] = $this->conf['upload_path'] . $album_id;
 
@@ -734,125 +733,127 @@ class Admin extends MY_Controller {
         echo json_encode($data);
     }
     
-     public function upload_archive($album_id = 0)
-    {
+	public function upload_archive($album_id = 0)
+	{
 
-	$temp_directory = 'temp_'.MD5($album_id.time());
-	$temp_path = $this->conf['cache_path'].$temp_directory;
-	$unpack_path = $this->conf['upload_path'] . $album_id;
-	if (!file_exists($temp_path))
-	{
-	    @mkdir($temp_path);
-	    @chmod($temp_path, 0777);
-	}
-	
-	if (!file_exists($unpack_path))
-	{
-	    @mkdir($unpack_path);
-	    @chmod($unpack_path, 0777);
-	}
-	//upload archive to temp folder
-	
-	$this->conf['upload_path'] = $this->conf['upload_path'] . $album_id.'/';
-	
-	$config['upload_path']   = $temp_path;
-	$config['allowed_types'] = 'zip';
-	$config['max_size']      = 1024 * 1024 * $this->conf['max_archive_size'];
-		
-        $this->load->library('upload', $config);
-	
-	if ( ! $this->upload->do_upload())
-	{
-	    $data = array('error' => $this->upload->display_errors('', ''));
-	}	
-	else
-	{
-	    $data = array('upload_data' => $this->upload->data());
-	
-	    //extract pictures into temp_folder/unpacked
-	
-	    $this->load->library('pclzip', $data['upload_data']['full_path']);
-	    $list = $this->pclzip->listContent();
-	    $file_list = array();
-	    foreach ($list as $item)
-	    {
-		array_push($file_list, $item['filename']);
-	    }
-	    
-	    if (($zip_result = $this->pclzip->extract(PCLZIP_OPT_PATH, $unpack_path)) == 0)
-            {
-
-                delete_files($temp_path, TRUE);
-                @unlink($data['upload_data']['full_path']);
-		@rmdir($temp_path);
-	    }
-	    else
-	    {        
-            //scan directory and add all images to album
-	
-	    if (!($dir = opendir($unpack_path)))
-	    {
-	    }
-	    
-	    $album_data = $this->gallery_m->get_album($album_id);
-	    $album_images = array();
-	    foreach ($album_data['images'] as $image)
-	    {
-	        array_push($album_images, $image['full_name']);
-	    }
-	
-	    //$this->load->library('image_lib');
-	
-	    while ($file = readdir($dir))
-	    {
-	        if (($file != '.') && ($file != '..') && (in_array($file, $file_list)))
-	        {
-	            if (get_mime_by_extension($file) == 'image/jpeg' )
-	    	    {
-			$file_data = array();
-		    
-			$props = getimagesize($this->conf['upload_path'].$file);
-		    
-			$file_data['file_name'] = $file;
-			$file_data['file_type'] = $props['mime'];
-			$file_data['file_path'] = $this->conf['upload_path'];
-			$file_data['full_path'] = $this->conf['upload_path'].$file;
-			$file_data['file_ext'] = '';
-			if (strpos($file, '.jpg'))
-			{
-			    $file_data['raw_name'] = str_replace('.jpg', '', $file);
-			    $file_data['file_ext'] = '.jpg';
-			}
-			elseif (strpos($file, '.jpeg'))
-			{
-			    $file_data['raw_name'] = str_replace('.jpg', '', $file);
-			    $file_data['file_ext'] = '.jpeg';
-			}
-			$file_data['orig_name'] = $file;
-			$file_data['client_name'] = $file;
-			$file_data['file_size'] = '1';
-			$file_data['is_image'] = TRUE;
-			$file_data['image_width'] = $props[0];
-			$file_data['image_height'] = $props[1];
-			$file_data['image_type'] = '';
-			$file_data['image_size_str'] = $props[3];
-		    
-			// Resize Image and create thumb
-			$this->resize_and_thumb($file_data);
-			if (!in_array($file, $album_images))
-			    $this->add_image($album_id, $file_data);
-		    }
+		$temp_directory = 'temp_'.MD5($album_id.time());
+		$temp_path = $this->conf['cache_path'].$temp_directory;
+		$unpack_path = $this->conf['upload_path'] . $album_id;
+		if (!file_exists($temp_path))
+		{
+			@mkdir($temp_path);
+			@chmod($temp_path, 0777);
 		}
-	    }
-        }
-    }
-	
-	//remove temp folder
-	delete_files($temp_path, TRUE);
-            @unlink($data['upload_data']['full_path']);
-	    @rmdir($temp_path);
-      
-        echo json_encode($data);
+		
+		if (!file_exists($unpack_path))
+		{
+			@mkdir($unpack_path);
+			@chmod($unpack_path, 0777);
+		}
+		//upload archive to temp folder
+		
+		$this->conf['upload_path'] = $this->conf['upload_path'] . $album_id.'/';
+		
+		$config['upload_path']   = $temp_path;
+		$config['allowed_types'] = 'zip';
+		$config['max_size']      = 1024 * 1024 * $this->conf['max_archive_size'];
+			
+		$this->load->library('upload', $config);
+		
+		if ( ! $this->upload->do_upload())
+		{
+			$data = array('error' => $this->upload->display_errors('', ''));
+		}	
+		else
+		{
+			$data = array('upload_data' => $this->upload->data());
+		
+			//extract pictures into temp_folder/unpacked
+		
+			$this->load->library('pclzip', $data['upload_data']['full_path']);
+			$list = $this->pclzip->listContent();
+			$file_list = array();
+			foreach ($list as $item)
+			{
+			array_push($file_list, $item['filename']);
+			}
+			
+			if (($zip_result = $this->pclzip->extract(PCLZIP_OPT_PATH, $unpack_path)) == 0)
+				{
+
+					delete_files($temp_path, TRUE);
+					@unlink($data['upload_data']['full_path']);
+			@rmdir($temp_path);
+			}
+			else
+			{        
+				//scan directory and add all images to album
+		
+			if (!($dir = opendir($unpack_path)))
+			{
+			}
+			
+			$album_data = $this->gallery_m->get_album($album_id);
+			$album_images = array();
+			foreach ($album_data['images'] as $image)
+			{
+				array_push($album_images, $image['full_name']);
+			}
+		
+			//$this->load->library('image_lib');
+		
+			while ($file = readdir($dir))
+			{
+				if (($file != '.') && ($file != '..') && (in_array($file, $file_list)))
+				{
+					if (get_mime_by_extension($file) == 'image/jpeg' )
+					{
+						$file_data = array();
+						
+						$props = getimagesize($this->conf['upload_path'].$file);
+						
+						$file_data['file_name'] = $file;
+						$file_data['file_type'] = $props['mime'];
+						$file_data['file_path'] = $this->conf['upload_path'];
+						$file_data['full_path'] = $this->conf['upload_path'].$file;
+						$file_data['file_ext'] = '';
+						if (strpos($file, '.jpg'))
+						{
+							$file_data['raw_name'] = str_replace('.jpg', '', $file);
+							$file_data['file_ext'] = '.jpg';
+						}
+						elseif (strpos($file, '.jpeg'))
+						{
+							$file_data['raw_name'] = str_replace('.jpg', '', $file);
+							$file_data['file_ext'] = '.jpeg';
+						}
+						$file_data['orig_name'] = $file;
+						$file_data['client_name'] = $file;
+						$file_data['file_size'] = '1';
+						$file_data['is_image'] = TRUE;
+						$file_data['image_width'] = $props[0];
+						$file_data['image_height'] = $props[1];
+						$file_data['image_type'] = '';
+						$file_data['image_size_str'] = $props[3];
+						
+						// Resize Image and create thumb
+						$this->resize_and_thumb($file_data);
+						if (!in_array($file, $album_images))
+						{
+							$this->add_image($album_id, $file_data);
+						}
+					}
+				}
+			}
+			}
+		}
+		
+		//remove temp folder
+		delete_files($temp_path, TRUE);
+		@unlink($data['upload_data']['full_path']);
+		@rmdir($temp_path);
+		  
+		echo json_encode($data);
     }
 
     /**
