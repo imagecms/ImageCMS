@@ -9,13 +9,13 @@
 <form action="" method="post">
 <?php echo form_csrf(); ?>
 <p>
-        <div class="form_text">Домен</div>
+        <div class="form_text">Название сайта</div>
         <div class="form_input">
-        <input type="text" class="textbox" value="<?php if($_POST['host_name'] != '') echo $_POST['host_name']; else echo str_replace('index.php/', '',$host); ?>" name="host_name">
+        <input type="text" class="textbox" value="<?php echo $_POST['site_title'] ?>" name="site_title">
         </div>
         <div class="form_overflow"></div>
-
-        <div class="form_text">Устанавливать примеры продуктов</div>
+		
+		<div class="form_text">Устанавливать примеры продуктов</div>
         <div class="form_input">
         <input type="checkbox" class="checkbox" <?php echo $_POST['product_samples'] ? 'checked' : '' ?> name="product_samples">
         </div>
