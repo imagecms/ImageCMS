@@ -5,4 +5,8 @@
 gitpush
 application/config/config.php
 application/config/database.php
+<<<<<<< HEAD
+application/modules/shop
+=======
 Thumbs.db
+>>>>>>> d4934b91506d37dc95e8b27dd27a477ef9aaf9b1
