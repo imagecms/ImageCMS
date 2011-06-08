@@ -20,6 +20,8 @@
                             <option {if ShopCore::$_GET['order']=='price_desc'}selected{/if} value="price_desc">Убыванию цены</option>
                             <option {if ShopCore::$_GET['order']=='name'}selected{/if} value="name">Название  A-Z</option>
                             <option {if ShopCore::$_GET['order']=='name_desc'}selected{/if} value="name_desc">Название Z-A</option>
+                            <option {if ShopCore::$_GET['order']=='hit'}selected{/if} value="hit">Сначало хиты</option>
+                            <option {if ShopCore::$_GET['order']=='news'}selected{/if} value="news">Сначало новинки</option>
                         </select>
                     </div>
                     <div class="clear"></div>
