@@ -148,7 +148,6 @@ class Install extends MY_Controller {
 
         if (count($_POST) > 0)
         {
-            $this->form_validation->set_rules('host_name', 'Домен', 'required');
             $this->form_validation->set_rules('site_title', 'Название сайта', 'required');
             $this->form_validation->set_rules('db_host', 'Хост', 'required');
             $this->form_validation->set_rules('db_user', 'Имя пользователя БД', 'required');
@@ -224,7 +223,7 @@ class Install extends MY_Controller {
 
         // Insert sql data
         mysql_query('SET NAMES `utf8`;', $link);    
-
+		$this->useSqlFile = $this->input->post('product_samples') ? 'sqlShop.sql' : 'sqlShop_noSamples.sql';
         $sqlFileData = read_file(dirname(__FILE__).'/'.$this->useSqlFile);
 
         $queries = explode(";\n", $sqlFileData);
@@ -274,8 +273,6 @@ class Install extends MY_Controller {
 
         $this->load->helper('file');
         $config = read_file($config_file_copy);
-
-        $new_url = $this->input->post('host_name');
 
         $db_server = $this->input->post('db_host');
         $db_user   = $this->input->post('db_user');
