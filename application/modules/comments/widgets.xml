@@ -6,5 +6,11 @@
         <description>Вывод последних комментариев.</description>
         <method>recent_comments</method>
     </widget>
+    
+    <widget>
+        <title>Последние отзывы о товарах</title>
+        <description>Вывод последних отзывов о товарах</description>
+        <method>recent_product_comments</method>
+    </widget>
 
 </widgets>
