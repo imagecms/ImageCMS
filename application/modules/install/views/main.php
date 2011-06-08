@@ -102,6 +102,10 @@ background-position:center -22px;
     vertical-align:middle;
     width:270px;
 }
+.checkbox {
+    padding:4px;
+    vertical-align:middle;
+}
 .lite {
     color:#C2C0C0;
     font-size:12px;
