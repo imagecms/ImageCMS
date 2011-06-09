@@ -21,7 +21,8 @@
                             <option {if ShopCore::$_GET['order']=='name'}selected{/if} value="name">Название  A-Z</option>
                             <option {if ShopCore::$_GET['order']=='name_desc'}selected{/if} value="name_desc">Название Z-A</option>
                             <option {if ShopCore::$_GET['order']=='hit'}selected{/if} value="hit">Сначала хиты</option>
-                            <option {if ShopCore::$_GET['order']=='news'}selected{/if} value="news">Сначала новинки</option>
+                            <option {if ShopCore::$_GET['order']=='hot'}selected{/if} value="hot">Сначала новинки</option>
+                            <option {if ShopCore::$_GET['order']=='action'}selected{/if} value="action">Сначала акции</option>
                         </select>
                     </div>
                     <div class="clear"></div>
