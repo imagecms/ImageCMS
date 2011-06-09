@@ -22,6 +22,7 @@ class Core extends MY_Controller {
 	{
         parent::__construct();
         $this->_load_languages();
+        Modules::$registry['core'] = $this;
 	}
 
     public function index()
@@ -117,6 +118,12 @@ class Core extends MY_Controller {
                 $this->use_def_language();
         }
         // End language detect
+
+        if ($this->uri->segment(1) == $this->def_lang[0]['identif'])
+        {
+            $url = implode('/',array_slice($this->uri->segment_array(),1));
+            header('Location:/'.$url);
+        }
 
         // Load categories
         ($hook = get_hook('core_load_lib_category')) ? eval($hook) : NULL;
@@ -284,7 +291,7 @@ class Core extends MY_Controller {
 		$this->tpl_data['captcha_type'] = 'captcha';
 
         // Assign template variables and load modules
-        $this->_process_core_data();        
+        $this->_process_core_data();
 
         // If module than exit from core and load module
         if ( $this->is_module($mod_segment) == TRUE ) return TRUE;
@@ -362,12 +369,10 @@ class Core extends MY_Controller {
 
 				$this->template->assign('content', $this->template->read($page_tpl, array('page' => $page)));
                 
-                $title = $page['meta_title'] == NULL ? $page['title'] : $page['meta_title'];
-                //$this->set_meta_tags($title, $page['keywords'], $page['description']);
-
                ($hook = get_hook('core_set_main_page_meta')) ? eval($hook) : NULL;
 
-                $this->set_meta_tags($this->settings['site_title'], $this->settings['site_keywords'], $this->settings['site_description']);
+                //$this->set_meta_tags($this->settings['site_title'], $this->settings['site_keywords'], $this->settings['site_description']);
+                $this->set_meta_tags($page['meta_title'] == NULL ? $page['title'] : $page['meta_title'] , $page['keywords'], $page['description']);
 
                 ($hook = get_hook('core_show_main_page')) ? eval($hook) : NULL;
 
