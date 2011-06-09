@@ -22,6 +22,7 @@ class Core extends MY_Controller {
 	{
         parent::__construct();
         $this->_load_languages();
+        Modules::$registry['core'] = $this;
 	}
 
     public function index()
@@ -290,7 +291,7 @@ class Core extends MY_Controller {
 		$this->tpl_data['captcha_type'] = 'captcha';
 
         // Assign template variables and load modules
-        $this->_process_core_data();        
+        $this->_process_core_data();
 
         // If module than exit from core and load module
         if ( $this->is_module($mod_segment) == TRUE ) return TRUE;
