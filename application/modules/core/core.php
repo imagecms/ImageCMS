@@ -368,12 +368,10 @@ class Core extends MY_Controller {
 
 				$this->template->assign('content', $this->template->read($page_tpl, array('page' => $page)));
                 
-                $title = $page['meta_title'] == NULL ? $page['title'] : $page['meta_title'];
-                //$this->set_meta_tags($title, $page['keywords'], $page['description']);
-
                ($hook = get_hook('core_set_main_page_meta')) ? eval($hook) : NULL;
 
-                $this->set_meta_tags($this->settings['site_title'], $this->settings['site_keywords'], $this->settings['site_description']);
+                //$this->set_meta_tags($this->settings['site_title'], $this->settings['site_keywords'], $this->settings['site_description']);
+                $this->set_meta_tags($page['meta_title'] == NULL ? $page['title'] : $page['meta_title'] , $page['keywords'], $page['description']);
 
                 ($hook = get_hook('core_show_main_page')) ? eval($hook) : NULL;
 
