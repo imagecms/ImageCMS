@@ -13,8 +13,8 @@ class Login extends MY_Controller {
 		parent::__construct();
 
 		$this->load->library('DX_Auth');
-        //admin_or_redirect();
-
+        if( $this->dx_auth->is_admin() == TRUE) redirect('/admin');
+        
         $this->load->library('lib_admin');
         $this->load->library('form_validation');
         $this->form_validation->CI =& $this;
