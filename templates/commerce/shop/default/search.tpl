@@ -18,7 +18,7 @@ function getCategoryAttributes(cId)
         <div class="right">
             Найдено {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array('продукт','продукта','продуктов'))}
             <!-- BEGIN FILTER BOX -->
-                <a href="#" onclick="$('#filterBox').toggle();return false;">Изменить параметры v</a>
+                <a href="#" onclick="$('#filterBox').toggle();return false;">Изменить параметры ↓</a>
                 <div id="filterBox">
                 <form method="get" action="">
                     {if !empty(ShopCore::$_GET['text'])}
@@ -33,8 +33,8 @@ function getCategoryAttributes(cId)
                             <option {if ShopCore::$_GET['order']=='price_desc'}selected{/if} value="price_desc">Убыванию цены</option>
                             <option {if ShopCore::$_GET['order']=='name'}selected{/if} value="name">Название  A-Z</option>
                             <option {if ShopCore::$_GET['order']=='name_desc'}selected{/if} value="name">Название Z-A</option>
-                            <option {if ShopCore::$_GET['order']=='date'}selected{/if} value="date">Возрастанию даты создания</option>
-                            <option {if ShopCore::$_GET['order']=='date_desc'}selected{/if} value="date_desc">Убыванию даты создания</option>
+                            <option {if ShopCore::$_GET['order']=='date'}selected{/if} value="date">Возрастанию даты</option>
+                            <option {if ShopCore::$_GET['order']=='date_desc'}selected{/if} value="date_desc">Убыванию даты</option>
                         </select>
                     </div>
                     
