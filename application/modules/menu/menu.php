@@ -167,10 +167,12 @@ class Menu extends MY_Controller{
 		
         $array_keys = array_keys($menu_array);
         $start_index = $array_keys[0];
-		$end_index = $array_keys[count($array_keys)-1];		
+	$end_index = $array_keys[count($array_keys)-1];		
 		
-		foreach ($menu_array as $item)
+	foreach ($menu_array as $item)
         {
+            if (!$item['hidden'])
+            {
 
         	$arranged_items_count = count($this->arranged_menu_array);
         	$this->arranged_menu_array[$arranged_items_count]['level'] = $this->cur_level;
@@ -277,7 +279,7 @@ class Menu extends MY_Controller{
 				} else {
 					$this->_prepare_item_tpl($arranged_items_count);
 				}
-
+            }
         }
 
         $wrapper = "";

@@ -47,6 +47,27 @@
                         <div class="clear"></div>
                     {/foreach}
                 {/if}
+                <div class="fieldName">В наличии:</div>
+                        <div class="field">
+                                <label>
+                                <input type="checkbox" {if isset(ShopCore::$_GET['stock'])} checked="checked" {/if} name="stock" {$checked} value="1" />
+                                </label><br>
+                        </div>
+                        <div class="clear"></div>
+                <div class="fieldName">Акции:</div>
+                        <div class="field">
+                                <label>
+                                <input type="checkbox" {if isset(ShopCore::$_GET['action'])} checked="checked" {/if} name="action" {$checked} value="1" />
+                                </label><br>
+                        </div>
+                        <div class="clear"></div>
+                <div class="fieldName">Новинки:</div>
+                        <div class="field">
+                                <label>
+                                <input type="checkbox" {if isset(ShopCore::$_GET['hot'])} checked="checked" {/if} name="hot" {$checked} value="1" />
+                                </label><br>
+                        </div>
+                        <div class="clear"></div>
 
                     <div class="fieldName"></div>
                     <div class="field">
@@ -70,7 +91,7 @@
     {if sizeof($brandsInCategory) > 0}
         {foreach $brandsInCategory as $brand}
             {if $brand->getId() != ShopCore::$_GET['brand']}
-                <a href="?brand={echo $brand->getId()}">{echo ShopCore::encode($brand->getName())}</a>
+                <a href="?brand={echo $brand->getId()}{if !empty(ShopCore::$_GET['order'])}&order={encode(ShopCore::$_GET['order'])}{/if}{if !empty(ShopCore::$_GET['lp'])}&lp={encode(ShopCore::$_GET['lp'])}{/if}{if !empty(ShopCore::$_GET['rp'])}&rp={encode(ShopCore::$_GET['rp'])}{/if}{if isset(ShopCore::$_GET['stock'])}&stock=1{/if}{if isset(ShopCore::$_GET['action'])}&action=1{/if}{if isset(ShopCore::$_GET['hot'])}&hot=1{/if}{if $model->countProperties() > 0}{foreach $model->getProperties() as $prop}{foreach $prop->asArray() as $key=>$val}{if is_property_in_get($prop->getId(), $key)}&f[{echo $prop->getId()}][]={$key}{/if}{/foreach}{/foreach}{/if}">{echo ShopCore::encode($brand->getName())}</a>
             {else:}
                 <a href="#" style="font-weight:bold;">{echo ShopCore::encode($brand->getName())}</a>
             {/if}
