@@ -433,7 +433,12 @@ class Core extends MY_Controller {
             }
 
             $tpl_name = $category['main_tpl'];
-        }else{
+        }else
+		{
+			if ($page['full_tpl'])
+				{
+					$page_tpl = $page['full_tpl'];
+				}
             $tpl_name = False;
         }
 
