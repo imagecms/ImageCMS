@@ -14,7 +14,8 @@
         <input type="text" class="textbox" value="<?php echo $_POST['site_title'] ?>" name="site_title">
         </div>
         <div class="form_overflow"></div>
-		
+
+        <?php if ($sqlFileName != 'sqlSite.sql'){ ?>
 		<div class="form_text">Устанавливать примеры продуктов</div>
         <div class="form_input">
             <input type="checkbox" class="checkbox"
@@ -29,6 +30,7 @@
             name="product_samples">
         </div>
         <div class="form_overflow"></div>
+        <?php } ?>
 
 <h2>Подключение к базе данных</h2>
         <div class="form_text"></div>
