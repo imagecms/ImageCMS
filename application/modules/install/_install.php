@@ -222,8 +222,12 @@ class Install extends MY_Controller {
         }
 
         // Insert sql data
-        mysql_query('SET NAMES `utf8`;', $link);    
-		$this->useSqlFile = $this->input->post('product_samples') ? 'sqlShop.sql' : 'sqlShop_noSamples.sql';
+        mysql_query('SET NAMES `utf8`;', $link);
+
+        if ($this->useSqlFile != 'sqlSite.sql')
+        {
+		    $this->useSqlFile = $this->input->post('product_samples') ? 'sqlShop.sql' : 'sqlShop_noSamples.sql';
+        }
         $sqlFileData = read_file(dirname(__FILE__).'/'.$this->useSqlFile);
 
         $queries = explode(";\n", $sqlFileData);

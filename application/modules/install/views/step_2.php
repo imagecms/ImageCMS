@@ -17,7 +17,16 @@
 		
 		<div class="form_text">Устанавливать примеры продуктов</div>
         <div class="form_input">
-        <input type="checkbox" class="checkbox" <?php echo $_POST['product_samples'] ? 'checked' : '' ?> name="product_samples">
+            <input type="checkbox" class="checkbox"
+                <?php
+                    if ($_POST)
+                    {
+                        echo $_POST['product_samples'] ? "checked='checked'" : '';
+                    }else{
+                        echo "checked='checked'";
+                    }
+                ?>
+            name="product_samples">
         </div>
         <div class="form_overflow"></div>
 
