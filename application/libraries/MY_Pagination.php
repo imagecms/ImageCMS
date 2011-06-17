@@ -96,15 +96,15 @@ class MY_Pagination extends CI_Pagination {
 		// Render the "First" link
 		if  ($this->cur_page > $this->num_links)
 		{
-			$output .= $this->first_tag_open.'<a href="javascript:ajax_div(\''.$this->container.'\',\''.$this->base_url.'\') ">'.$this->first_link.'</a>'.$this->first_tag_close;
+			$output .= $this->first_tag_open.'<a href="javascript:ajax_div(\''.$this->container.'\',\''.$this->base_url.'offset'.'/'.$this->suffix.'\') ">'.$this->first_link.'</a>'.$this->first_tag_close;
 		}
 
 		// Render the "previous" link
 		if  ($this->cur_page != 1)
 		{
 			$i = $uri_page_number - $this->per_page;
-			if ($i == 0) $i = '';
-			$output .= $this->prev_tag_open.'<a href="javascript:ajax_div(\''.$this->container.'\',\''.$this->base_url.$i.'\') ">'.$this->prev_link.'</a>'.$this->prev_tag_close;
+			if ($i == 0) $i = 'offset';
+			$output .= $this->prev_tag_open.'<a href="javascript:ajax_div(\''.$this->container.'\',\''.$this->base_url.$i.'/'.$this->suffix.'\') ">'.$this->prev_link.'</a>'.$this->prev_tag_close;
 		}
 
 		// Write the digit links
@@ -120,8 +120,8 @@ class MY_Pagination extends CI_Pagination {
 				}
 				else
 				{
-					$n = ($i == 0) ? '' : $i;
-					$output .= $this->num_tag_open.'<a href="javascript:ajax_div(\''.$this->container.'\', \''.$this->base_url.$n.'\') ">'.$loop.'</a>'.$this->num_tag_close;
+					$n = ($i == 0) ? 'offset' : $i;
+					$output .= $this->num_tag_open.'<a href="javascript:ajax_div(\''.$this->container.'\', \''.$this->base_url.$n.'/'.$this->suffix.'\') ">'.$loop.'</a>'.$this->num_tag_close;
 				}
 			}
 		}
@@ -129,14 +129,14 @@ class MY_Pagination extends CI_Pagination {
 		// Render the "next" link
 		if ($this->cur_page < $num_pages)
 		{
-			$output .= $this->next_tag_open.'<a href="javascript:ajax_div(\''.$this->container.'\',\''.$this->base_url.($this->cur_page * $this->per_page).'\') ">'.$this->next_link.'</a>'.$this->next_tag_close;
+			$output .= $this->next_tag_open.'<a href="javascript:ajax_div(\''.$this->container.'\',\''.$this->base_url.($this->cur_page * $this->per_page).'/'.$this->suffix.'\') ">'.$this->next_link.'</a>'.$this->next_tag_close;
 		}
 
 		// Render the "Last" link
 		if (($this->cur_page + $this->num_links) < $num_pages)
 		{
 			$i = (($num_pages * $this->per_page) - $this->per_page);
-			$output .= $this->last_tag_open.'<a href="javascript:ajax_div(\''.$this->container.'\',\''.$this->base_url.$i.'\') ">'.$this->last_link.'</a>'.$this->last_tag_close;
+			$output .= $this->last_tag_open.'<a href="javascript:ajax_div(\''.$this->container.'\',\''.$this->base_url.$i.'/'.$this->suffix.'\') ">'.$this->last_link.'</a>'.$this->last_tag_close;
 		}
 
 		// Kill double slashes.  Note: Sometimes we can end up with a double slash
