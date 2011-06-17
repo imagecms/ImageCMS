@@ -909,7 +909,7 @@ class Core extends MY_Controller {
 
 			for ($i = 0, $cnt = count($args); $i < $cnt; $i++)
 			{
-				if($args[$i] == FALSE) unset($args[$i]);
+				if($args[$i] === FALSE) unset($args[$i]);
 			}
 
 			return $args;
