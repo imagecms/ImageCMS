@@ -111,7 +111,7 @@ if(file_exists($tinybrowser['docroot'].$browsepath))
 	$file = array();
 	while (($filename = readdir($dh)) !== false)
 		{
-		if($filename != '.' && $filename != '..' && !is_dir($tinybrowser['docroot'].$browsepath.$filename))
+		if($filename != '.' && $filename != '..' && !is_dir($tinybrowser['docroot'].$browsepath.$filename) && $filename != 'index.html')
 			{
 			// search file name if search term entered
 			if($findnow) $exists = stripos($filename,$findnow);
