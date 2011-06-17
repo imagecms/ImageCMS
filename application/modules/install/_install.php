@@ -181,6 +181,7 @@ class Install extends MY_Controller {
             'next_link'    => $this->_get_next_link($result, 2),
             'other_errors' => $other_errors,
             'host'         => $this->host,
+            'sqlFileName'   => $this->useSqlFile,
             );
 		$this->_display( $this->load->view('step_2', $data, TRUE) );
     }
