@@ -191,7 +191,7 @@
 	}
         
 
-    define('IMAGECMS_NUMBER', '2.5.0');
+    define('IMAGECMS_NUMBER', '2.5.5');
     define('IMAGECMS_VERSION', 'A3SDFKD31');
     define('IMAGECMS_PUBLIC_ID', '51035d2a96a227c54d0dea3ff415ced6d39266c3'); 
 

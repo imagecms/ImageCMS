@@ -701,7 +701,7 @@ class Admin extends MY_Controller {
      */  
     public function upload_image($album_id = 0)
     {
-		if ($_FILES['userfile']['type'] == 'application/octet-stream' OR $_FILES['userfile']['type'] == 'application/zip')
+		if (in_array($_FILES['userfile']['type'], array('application/x-zip', 'application/zip', 'application/x-zip-compressed', 'application/octet-stream')))
 		{
 			$this->upload_archive($album_id);
 			exit;
