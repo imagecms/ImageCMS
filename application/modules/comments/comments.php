@@ -255,7 +255,7 @@ class Comments extends MY_Controller {
                 // Redirect back to page
                 //redirect($this->input->post('redirect'));
                 if ($_POST['redirect'])
-                    header('Location: '.$this->input->post('redirect'));
+                    redirect((substr($this->input->post('redirect'),0,1) == '/') ? $this->input->post('redirect') : '/'.$this->input->post('redirect'), 301);
                 else
                     redirect('/');
             }
