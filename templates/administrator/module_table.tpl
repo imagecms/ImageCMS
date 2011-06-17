@@ -19,7 +19,11 @@
             <tr id="{$page.number}">
                 <td>
                 {if $item['admin_file'] == 1}
-                    <a href="#" onclick="com_admin('{$item.name}'); return false;">{$item.menu_name}</a>
+					{if $item.name == 'shop'}
+						<a href="#" onclick="javascript:loadShopInterface(); return false;">{$item.menu_name}</a>
+					{else:}
+						<a href="#" onclick="com_admin('{$item.name}'); return false;">{$item.menu_name}</a>
+					{/if}
                 {else:}
                     {$item.menu_name}
                 {/if}
