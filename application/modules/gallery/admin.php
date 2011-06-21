@@ -835,7 +835,7 @@ class Admin extends MY_Controller {
 						}
 						elseif (strpos($file, '.jpeg'))
 						{
-							$file_data['raw_name'] = str_replace('.jpg', '', $file);
+							$file_data['raw_name'] = str_replace('.jpeg', '', $file);
 							$file_data['file_ext'] = '.jpeg';
 						}
 						$file_data['orig_name'] = $file;
