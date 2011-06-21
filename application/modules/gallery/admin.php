@@ -701,21 +701,15 @@ class Admin extends MY_Controller {
      */  
     public function upload_image($album_id = 0)
     {
-<<<<<<< HEAD
 		$temp_conf = $this->conf;
 		for ($i = 0; $i <= count($_FILES['file']['type'])-1; $i++) 
-=======
-		if (in_array($_FILES['userfile']['type'], array('application/x-zip', 'application/zip', 'application/x-zip-compressed')))
->>>>>>> f248a88eb37dacb4fb2bf70ee1fd79417e77b4b9
 		{
 			if (in_array($_FILES['file']['type'][$i], array('application/x-zip', 'application/zip', 'application/x-zip-compressed', 'application/octet-stream')))
 			{
-				if ( (count($_FILES['file']['type'])-1) == 0 )
-				{
-					$this->upload_archive($album_id);
-					exit;
-				} else	continue;
+				$this->upload_archive($album_id);
+				exit;
 			}
+		
 		
 			$this->conf['upload_path'] = $this->conf['upload_path'] . $album_id;
 
@@ -805,16 +799,13 @@ class Admin extends MY_Controller {
 			}
 			
 			$album_data = $this->gallery_m->get_album($album_id);
-						
+
 			$album_images = array();
-			if (is_array($album_data['images']))
+			foreach ($album_data['images'] as $image)
 			{
-				foreach ($album_data['images'] as $image)
-				{
-					array_push($album_images, $image['full_name']);
-				}
+				array_push($album_images, $image['full_name']);
 			}
-			else $album_data = array();
+		
 			//$this->load->library('image_lib');
 		
 			while ($file = readdir($dir))
