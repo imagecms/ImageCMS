@@ -701,8 +701,12 @@ class Admin extends MY_Controller {
      */  
     public function upload_image($album_id = 0)
     {
+<<<<<<< HEAD
 		$temp_conf = $this->conf;
 		for ($i = 0; $i <= count($_FILES['file']['type'])-1; $i++) 
+=======
+		if (in_array($_FILES['userfile']['type'], array('application/x-zip', 'application/zip', 'application/x-zip-compressed')))
+>>>>>>> f248a88eb37dacb4fb2bf70ee1fd79417e77b4b9
 		{
 			if (in_array($_FILES['file']['type'][$i], array('application/x-zip', 'application/zip', 'application/x-zip-compressed', 'application/octet-stream')))
 			{
