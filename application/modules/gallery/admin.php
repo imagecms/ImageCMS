@@ -701,36 +701,43 @@ class Admin extends MY_Controller {
      */  
     public function upload_image($album_id = 0)
     {
-		if (in_array($_FILES['userfile']['type'], array('application/x-zip', 'application/zip', 'application/x-zip-compressed', 'application/octet-stream')))
+		$temp_conf = $this->conf;
+		for ($i = 0; $i <= count($_FILES['file']['type'])-1; $i++) 
 		{
-			$this->upload_archive($album_id);
-			exit;
-		}
-
-        $this->conf['upload_path'] = $this->conf['upload_path'] . $album_id;
-
-		$config['upload_path']   = $this->conf['upload_path'];
-		$config['allowed_types'] = $this->conf['allowed_types'];
-		$config['max_size']      = 1024 * 1024 * $this->max_file_size;
+			if (in_array($_FILES['file']['type'][$i], array('application/x-zip', 'application/zip', 'application/x-zip-compressed', 'application/octet-stream')))
+			{
+				if ( (count($_FILES['file']['type'])-1) == 0 )
+				{
+					$this->upload_archive($album_id);
+					exit;
+				} else	continue;
+			}
 		
-        $this->load->library('upload', $config);
-	
-		if ( ! $this->upload->do_upload())
-		{
-            $data = array('error' => $this->upload->display_errors('', ''));
-		}	
-		else
-		{
-            $data = array('upload_data' => $this->upload->data());
+			$this->conf['upload_path'] = $this->conf['upload_path'] . $album_id;
 
-            // Resize Image and create thumb
-	    
-            $this->resize_and_thumb($data['upload_data']);
+			$config['upload_path']   = $this->conf['upload_path'];
+			$config['allowed_types'] = $this->conf['allowed_types'];
+			$config['max_size']      = 1024 * 1024 * $this->max_file_size;
+			
+			$this->load->library('upload', $config);
+		
+			if ( ! $this->upload->do_upload('file',$i))
+			{
+				$data = array('error' => $this->upload->display_errors('', ''));
+			}	
+			else
+			{
+				$data[$i] = array('upload_data' => $this->upload->data());
 
-            $this->add_image($album_id, $data['upload_data']);
+				// Resize Image and create thumb
+			
+				$this->resize_and_thumb($data[$i]['upload_data']);
+
+				$this->add_image($album_id, $data[$i]['upload_data']);
+			}				
+			$this->conf = $temp_conf;
 		}
-      
-        echo json_encode($data);
+		echo json_encode($data);
     }
     
 	public function upload_archive($album_id = 0)
@@ -794,12 +801,16 @@ class Admin extends MY_Controller {
 			}
 			
 			$album_data = $this->gallery_m->get_album($album_id);
+						
 			$album_images = array();
-			foreach ($album_data['images'] as $image)
+			if (is_array($album_data['images']))
 			{
-				array_push($album_images, $image['full_name']);
+				foreach ($album_data['images'] as $image)
+				{
+					array_push($album_images, $image['full_name']);
+				}
 			}
-		
+			else $album_data = array();
 			//$this->load->library('image_lib');
 		
 			while ($file = readdir($dir))

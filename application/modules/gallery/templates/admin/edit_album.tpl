@@ -7,7 +7,7 @@
 
                <div style="height:16px;width:130px;float:left;text-align: center; overflow: hidden;" class="button_silver_130">
                <div style="color:#000000;">Выбрать файл</div>
-               <input type="file" name="userfile" id="file" size="1" style="margin-top: -50px; margin-left:-410px; -moz-opacity: 0; filter: alpha(opacity=0); opacity: 0; font-size: 150px; height: 100px;" />
+               <input type="file" name="file[]" id="file" size="1" style="margin-top: -50px; margin-left:-410px; -moz-opacity: 0; filter: alpha(opacity=0); opacity: 0; font-size: 150px; height: 100px;" multiple="multiple"/>
                </div>
 
                 <input type="submit" name="action" value="Загрузить файл" class="button_silver_130" />
