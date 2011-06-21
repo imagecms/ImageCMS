@@ -80,7 +80,7 @@ class Admin extends MY_Controller {
         if ( ! is_really_writable( $this->conf['upload_path'] ) OR ! file_exists( $this->conf['upload_path'] ) )
         {
             $this->template->add_array(array(
-                'error' => 'Р”Р»СЏ РїСЂРѕРґРѕР»Р¶РµРЅРёСЏ СЂР°Р±РѕС‚С‹ СЃ РіР°Р»РµСЂРµРµР№ СЃРѕР·РґР°Р№С‚Рµ РґРёСЂРµРєС‚РѕСЂРёСЋ <b>'.$this->conf['upload_path'].'</b> Рё СѓСЃС‚Р°РЅРѕРІРёС‚Рµ РїСЂР°РІР° РЅР° Р·Р°РїРёСЃСЊ.'
+                'error' => 'Для продолжения работы с галереей создайте директорию <b>'.$this->conf['upload_path'].'</b> и установите права на запись.'
             ));
 
             $this->display_tpl('error');
@@ -205,17 +205,17 @@ class Admin extends MY_Controller {
                 $this->load->library('Form_validation');
                 $val = $this->form_validation;
 
-                $val->set_rules('max_file_size', 'Р Р°Р·РјРµСЂ С„Р°Р№Р»Р°', 'required|is_natural'); 
-                $val->set_rules('max_width', 'РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ С€РёСЂРёРЅР°', 'required|is_natural'); 
-                $val->set_rules('max_height', 'РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ РІС‹СЃРѕС‚Р°', 'required|is_natural'); 
-                $val->set_rules('quality', 'РљР°С‡РµСЃС‚РІРѕ', 'required|is_natural'); 
-                $val->set_rules('prev_img_width', 'РЁРёСЂРёРЅР° РїСЂРµРґРІР°СЂРёС‚РµР»СЊРЅРѕРіРѕ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ', 'required|is_natural'); 
-                $val->set_rules('prev_img_height', 'Р’С‹СЃРѕС‚Р° РїСЂРµРґРІР°СЂРёС‚РµР»СЊРЅРѕРіРѕ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ', 'required|is_natural'); 
-                $val->set_rules('thumb_width', 'РЁРёСЂРёРЅР° РёРєРѕРЅРєРё', 'required|is_natural'); 
-                $val->set_rules('thumb_height', 'Р’С‹СЃРѕС‚Р° РёРєРѕРЅРєРё', 'required|is_natural'); 
-                $val->set_rules('watermark_text', 'Р’РѕРґСЏРЅРѕР№ С‚РµРєСЃС‚', 'max_length[100]'); 
-                $val->set_rules('watermark_font_size', 'Р Р°Р·РјРµСЂ С€СЂРёС„С‚Р°', 'required|is_natural'); 
-                $val->set_rules('watermark_image_opacity', 'РџСЂРѕР·СЂР°С‡РЅРѕСЃС‚СЊ', 'required|is_natural|min_length[1]|max_length[3]'); 
+                $val->set_rules('max_file_size', 'Размер файла', 'required|is_natural'); 
+                $val->set_rules('max_width', 'Максимальная ширина', 'required|is_natural'); 
+                $val->set_rules('max_height', 'Максимальная высота', 'required|is_natural'); 
+                $val->set_rules('quality', 'Качество', 'required|is_natural'); 
+                $val->set_rules('prev_img_width', 'Ширина предварительного изображения', 'required|is_natural'); 
+                $val->set_rules('prev_img_height', 'Высота предварительного изображения', 'required|is_natural'); 
+                $val->set_rules('thumb_width', 'Ширина иконки', 'required|is_natural'); 
+                $val->set_rules('thumb_height', 'Высота иконки', 'required|is_natural'); 
+                $val->set_rules('watermark_text', 'Водяной текст', 'max_length[100]'); 
+                $val->set_rules('watermark_font_size', 'Размер шрифта', 'required|is_natural'); 
+                $val->set_rules('watermark_image_opacity', 'Прозрачность', 'required|is_natural|min_length[1]|max_length[3]'); 
 
                 if ($this->form_validation->run($this) == FALSE)
                 {
@@ -226,14 +226,14 @@ class Admin extends MY_Controller {
                 // Check if watermark image exists.
                 if ($_POST['watermark_type'] == 'overlay' AND ! file_exists($_POST['watermark_image']) )
                 {
-                    showMessage('РћС€РёР±РєР°. РЈРєР°Р¶РёС‚Рµ РїСЂР°РІРёР»СЊРЅС‹Р№ РїСѓС‚СЊ Рє РёР·РѕР±СЂР°Р¶РµРЅРёСЋ РІРѕРґСЏРЅРѕРіРѕ Р·РЅР°РєР°.');
+                    showMessage('Ошибка. Укажите правильный путь к изображению водяного знака.');
                     return FALSE;
                 }
 
                 // Check if watermark font exists.
                 if ($_POST['watermark_type'] == 'text' AND ! file_exists($_POST['watermark_font_path']) )
                 {
-                    showMessage('РћС€РёР±РєР°. РЈРєР°Р¶РёС‚Рµ РїСЂР°РІРёР»СЊРЅС‹Р№ РїСѓС‚СЊ Рє С€СЂРёС„С‚Сѓ.');
+                    showMessage('Ошибка. Укажите правильный путь к шрифту.');
                     return FALSE;
                 }
 
@@ -272,7 +272,7 @@ class Admin extends MY_Controller {
                     $this->db->where('name', 'gallery');
                     $this->db->update('components', array('settings' => serialize($params)));
 
-                    showMessage('РќР°СЃС‚СЂРѕР№РєРё СЃРѕС…СЂР°РЅРµРЅС‹');
+                    showMessage('Настройки сохранены');
 
             break;
         }
@@ -287,9 +287,9 @@ class Admin extends MY_Controller {
     {
         $this->load->library('Form_validation');
 
-        $this->form_validation->set_rules('name', 'РРјСЏ', 'required|min_length[3]|max_length[250]');
-        $this->form_validation->set_rules('email', 'РћРїРёСЃР°РЅРёРµ', 'max_length[500]');
-        $this->form_validation->set_rules('category_id', 'РљР°С‚РµРіРѕСЂРёСЏ', 'required');
+        $this->form_validation->set_rules('name', 'Имя', 'required|min_length[3]|max_length[250]');
+        $this->form_validation->set_rules('email', 'Описание', 'max_length[500]');
+        $this->form_validation->set_rules('category_id', 'Категория', 'required');
 			
 		if ($this->form_validation->run($this) == FALSE)
 		{
@@ -308,7 +308,7 @@ class Admin extends MY_Controller {
             // Create folder for admin thumbs 
             mkdir( $this->conf['upload_path'] . $album_id . '/_admin_thumbs' );    
 
-            showMessage('РђР»СЊР±РѕРј СЃРѕР·РґР°РЅ');
+            showMessage('Альбом создан');
 
             ajax_div('page', site_url('admin/components/cp/gallery/edit_album/'.$album_id));
 		}
@@ -455,7 +455,7 @@ class Admin extends MY_Controller {
         {
             $this->load->library('Form_validation');
 
-            $this->form_validation->set_rules('new_name', 'РРјСЏ', 'trim|required|alpha_dash');
+            $this->form_validation->set_rules('new_name', 'Имя', 'trim|required|alpha_dash');
 
             if ($this->form_validation->run($this) == FALSE)
             {
@@ -545,7 +545,7 @@ class Admin extends MY_Controller {
                 $this->gallery_m->set_album_cover($image['album_id'], NULL);  
             }
 
-            //showMessage('РР·РјРµРЅРµРЅРёСЏ СЃРѕС…СЂР°РЅРµРЅС‹');
+            //showMessage('Изменения сохранены');
 
             updateDiv('page', site_url('admin/components/cp/gallery/edit_album/' . $image['album_id']));
         }
@@ -612,9 +612,9 @@ class Admin extends MY_Controller {
         $this->load->library('Form_validation');
         $val = $this->form_validation;
 
-        $val->set_rules('name', 'РРјСЏ', 'trim|required|max_length[250]|min_length[1]');
-        $val->set_rules('description', 'РћРїРёСЃР°РЅРёРµ', 'max_length[500]');
-        $val->set_rules('position', 'РџРѕР·РёС†РёСЏ', 'numeric');
+        $val->set_rules('name', 'Имя', 'trim|required|max_length[250]|min_length[1]');
+        $val->set_rules('description', 'Описание', 'max_length[500]');
+        $val->set_rules('position', 'Позиция', 'numeric');
 					
 		if ($val->run() == FALSE)
 		{
@@ -652,9 +652,9 @@ class Admin extends MY_Controller {
         $this->load->library('Form_validation');
         $val = $this->form_validation;
 
-        $val->set_rules('name', 'РРјСЏ', 'trim|required|max_length[250]|min_length[1]');
-        $val->set_rules('description', 'РћРїРёСЃР°РЅРёРµ', 'max_length[500]');
-        $val->set_rules('position', 'РџРѕР·РёС†РёСЏ', 'numeric');
+        $val->set_rules('name', 'Имя', 'trim|required|max_length[250]|min_length[1]');
+        $val->set_rules('description', 'Описание', 'max_length[500]');
+        $val->set_rules('position', 'Позиция', 'numeric');
 					
 		if ($val->run() == FALSE)
 		{
@@ -670,7 +670,7 @@ class Admin extends MY_Controller {
 
             $this->gallery_m->update_category($data, $id);
 
-            showMessage('РР·РјРµРЅРµРЅРёСЏ СЃРѕС…СЂР°РЅРµРЅС‹');
+            showMessage('Изменения сохранены');
             updateDiv('page', site_url('admin/components/cp/gallery'));
 		}
     }
@@ -888,11 +888,11 @@ class Admin extends MY_Controller {
             $config['height']         = $this->conf['max_height'];
             $config['quality']        = $this->conf['quality'];
 
-			if (($this->conf['maintain_ratio']) AND ($this->conf['crop'])) // РЈРјРµРЅСЊС€Р°РµРј РёР·РѕР±СЂР°Р¶РµРЅРёРµ Рё РѕР±СЂРµР·Р°РµРј РєСЂР°СЏ 
+			if (($this->conf['maintain_ratio']) AND ($this->conf['crop'])) // Уменьшаем изображение и обрезаем края 
             { 
-				$size = $this->get_image_size($file['full_path']); // РџРѕР»СѓС‡Р°РµРј СЂР°Р·РјРµСЂС‹ СЃС‚РѕСЂРѕРЅ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
+				$size = $this->get_image_size($file['full_path']); // Получаем размеры сторон изображения
             	
-				$size['width'] >= $size['height'] ? $config['master_dim'] = "height" : $config['master_dim'] = "width"; // Р—Р°РґР°РµРј master_dim 
+				$size['width'] >= $size['height'] ? $config['master_dim'] = "height" : $config['master_dim'] = "width"; // Задаем master_dim 
             	
 				$this->image_lib->clear();
 				$this->image_lib->initialize($config); 
@@ -908,7 +908,7 @@ class Admin extends MY_Controller {
 				$this->image_lib->initialize($config); 
 				$this->image_lib->crop();            	
             }
-            else // РўРѕР»СЊРєРѕ СѓРјРµРЅСЊС€Р°РµРј
+            else // Только уменьшаем
             {
 				$this->image_lib->clear();
 				$this->image_lib->initialize($config); 
@@ -930,11 +930,11 @@ class Admin extends MY_Controller {
             $config['height']         		= $this->conf['prev_img_height'];
             $config['quality']        		= $this->conf['quality'];
 
-			if (($this->conf['maintain_ratio_prev']) AND ($this->conf['crop_prev'])) // РЈРјРµРЅСЊС€Р°РµРј РёР·РѕР±СЂР°Р¶РµРЅРёРµ Рё РѕР±СЂРµР·Р°РµРј РєСЂР°СЏ 
+			if (($this->conf['maintain_ratio_prev']) AND ($this->conf['crop_prev'])) // Уменьшаем изображение и обрезаем края 
             { 
-				$size = $this->get_image_size($file['full_path']); // РџРѕР»СѓС‡Р°РµРј СЂР°Р·РјРµСЂС‹ СЃС‚РѕСЂРѕРЅ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
+				$size = $this->get_image_size($file['full_path']); // Получаем размеры сторон изображения
             	
-				$size['width'] >= $size['height'] ? $config['master_dim'] = "height" : $config['master_dim'] = "width"; // Р—Р°РґР°РµРј master_dim 
+				$size['width'] >= $size['height'] ? $config['master_dim'] = "height" : $config['master_dim'] = "width"; // Задаем master_dim 
             	
 				$this->image_lib->clear();
 				$this->image_lib->initialize($config); 
@@ -950,7 +950,7 @@ class Admin extends MY_Controller {
 				$this->image_lib->initialize($config); 
 				$this->image_lib->crop();            	
             }
-            else // РўРѕР»СЊРєРѕ СѓРјРµРЅСЊС€Р°РµРј
+            else // Только уменьшаем
             {
 				$this->image_lib->clear();
 				$this->image_lib->initialize($config); 
@@ -983,11 +983,11 @@ class Admin extends MY_Controller {
             $config['quality']        = $this->conf['quality'];
 	    
 
-            if (($this->conf['maintain_ratio_icon']) AND ($this->conf['crop_icon'])) // РЈРјРµРЅСЊС€Р°РµРј РёР·РѕР±СЂР°Р¶РµРЅРёРµ Рё РѕР±СЂРµР·Р°РµРј РєСЂР°СЏ 
+            if (($this->conf['maintain_ratio_icon']) AND ($this->conf['crop_icon'])) // Уменьшаем изображение и обрезаем края 
             { 
-				$size = $this->get_image_size($file['full_path']); // РџРѕР»СѓС‡Р°РµРј СЂР°Р·РјРµСЂС‹ СЃС‚РѕСЂРѕРЅ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
+				$size = $this->get_image_size($file['full_path']); // Получаем размеры сторон изображения
             	
-				$size['width'] >= $size['height'] ? $config['master_dim'] = "height" : $config['master_dim'] = "width"; // Р—Р°РґР°РµРј master_dim 
+				$size['width'] >= $size['height'] ? $config['master_dim'] = "height" : $config['master_dim'] = "width"; // Задаем master_dim 
             	
 				$this->image_lib->clear();
 				$this->image_lib->initialize($config); 
@@ -1003,7 +1003,7 @@ class Admin extends MY_Controller {
 				$this->image_lib->initialize($config); 
 				$this->image_lib->crop();            	
             }
-            else // РўРѕР»СЊРєРѕ СѓРјРµРЅСЊС€Р°РµРј
+            else // Только уменьшаем
             {
 				$this->image_lib->clear();
 				$this->image_lib->initialize($config); 
