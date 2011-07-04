@@ -11,6 +11,7 @@
     @import "{$SHOP_THEME}style/general.css";
     @import "{$SHOP_THEME}style/product.css";
     @import "{$SHOP_THEME}style/slideshow.css";
+    @import "{$SHOP_THEME}style/jquery.ui.all.css";
 </style>
 
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.js"></script>
@@ -19,8 +20,40 @@
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.cycle.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.functions.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/js.js"></script>
+<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.core.min.js"></script>
+<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.widget.min.js"></script>
+<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.position.min.js"></script>
+<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.autocomplete.min.js"></script>
 
 <link rel="icon" href="{$SHOP_THEME}images/favicon.png" type="image/x-icon" />
+{literal}
+<style>
+    .ui-autocomplete-loading { background: white url("{/literal}{$SHOP_THEME}{literal}style/images/ui-anim_basic_16x16.gif") right center no-repeat; }
+</style>
+
+	<script>
+	$(function() {
+		$( "#text" ).autocomplete({
+			source: "/shop/search",
+			minLength: 2,
+                        select: function( event, ui ) {
+				return false;
+			},
+                        open: function(event, ui){
+                            return false;
+                        }
+		})
+                .data( "autocomplete" )._renderItem = function( ul, item ) { {/literal}
+                        var currencySymbol = '{$CS}';{literal}
+			return $( "<li></li>" )
+				.data( "item.autocomplete", item )
+				.append( "<a  onclick=\"window.location = '" + item.url + "';\">" + item.label + "<br>"  + "<img src=\"/uploads/shop/" + item.image + "\" alt=\"image\" border=\"0\">" 
+                                          + "<div class=\"price\">Цена:" + item.price + " " +currencySymbol +"</div>" +"</a>" )
+				.appendTo( ul );
+		};
+	});
+	</script>
+{/literal}
 </head>
 <body>
 <!-- BEGIN LAYOUT -->
@@ -76,7 +109,7 @@
     <div id="search">
       <form action="{shop_url('search')}" method="get">
         <input type="submit" class="submit" value=""/>
-        <input type="text" name="text" class="text"/>
+        <input type="text" name="text" class="text" id="text"/>
       </form>
     </div>
   </div>
