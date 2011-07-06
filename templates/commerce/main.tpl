@@ -19,6 +19,7 @@
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.cycle.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.functions.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/js.js"></script>
+<script type="text/javascript" src="{$SHOP_THEME}js/jquery.coda-bubble.sp.js"></script>
 
 <link rel="icon" href="{$SHOP_THEME}images/favicon.png" type="image/x-icon" />
 </head>
