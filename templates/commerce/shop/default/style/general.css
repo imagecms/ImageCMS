@@ -957,3 +957,26 @@ div.comment_avatar {
     -webkit-border-radius:5px;
     -moz-border-radius:5px;
 }
+.ui-autocomplete-loading { 
+	background: white url("images/ui-anim_basic_16x16.gif") 
+	right center no-repeat; 
+}
+.bubbleInfo{
+	position: relative;
+	display: inline;
+}
+.popup{
+    position: absolute; 
+    padding: 5px;
+    display: none; 
+    z-index: 50; 
+    background-color: #fff; 
+    border: 1px solid #E3E3E3;
+    -moz-border-radius: 10px;  
+    -webkit-border-radius: 10px; 
+    border-radius: 10px; 
+}
+.trigger{
+	white-space:nowrap; 
+	display: inline;
+}

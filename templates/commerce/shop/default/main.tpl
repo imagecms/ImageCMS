@@ -24,15 +24,12 @@
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.widget.min.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.position.min.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.autocomplete.min.js"></script>
+<script type="text/javascript" src="{$SHOP_THEME}js/jquery.coda-bubble.sp.js"></script>
 
 <link rel="icon" href="{$SHOP_THEME}images/favicon.png" type="image/x-icon" />
 {literal}
-<style>
-    .ui-autocomplete-loading { background: white url("{/literal}{$SHOP_THEME}{literal}style/images/ui-anim_basic_16x16.gif") right center no-repeat; }
-</style>
-
 	<script>
-	$(function() {
+        $(function() {
 		$( "#text" ).autocomplete({
 			source: "/shop/search",
 			minLength: 2,

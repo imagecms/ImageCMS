@@ -2,12 +2,29 @@
     <ul class="categories_tree_list">
         {echo ShopCore::app()->SCategoryTree->ul()}
 	</ul>
-
-	<h3>Все бренды магазина</h3>
+    <h3>Все бренды магазина</h3>
     <div class="brand">
     {foreach SBrandsQuery::create()->find() as $brand}
 	    <a href="{shop_url('brand/' . $brand->getUrl())}">{echo $brand->getName()}</a>
 	{/foreach}
+    </div>
+
+    <h3>Бренды по алфавиту</h3>
+    <div class="brand">
+    {foreach ShopCore::app()->SBrandsHelper->getBrandsCharaters(false) as $brandsCharater=>$brands}
+        {if $brands}
+        <div class="bubbleInfo">
+        <div class="trigger"><a>{echo $brandsCharater}</a></div>
+            <div if class="popup">
+                    {foreach $brands as $brand}
+                        <a href="{shop_url('brand/' . $brand['url'])}">{echo $brand['name'].'('.$brand['total'].')'}</a>
+                    {/foreach}
+            </div>
+        </div>
+        {else:}
+        {echo $brandsCharater}
+        {/if}
+    {/foreach}
     </div>
 	<h3>Принимаем к оплате</h3>
 	<div class="brand">
@@ -21,4 +38,5 @@
 
     {widget('latest_news')}
     {widget('recent_product_comments')}
+	{widget('tags')}
 </div>
