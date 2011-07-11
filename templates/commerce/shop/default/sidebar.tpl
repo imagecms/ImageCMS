@@ -11,7 +11,7 @@
 
     <h3>Бренды по алфавиту</h3>
     <div class="brand">
-    {foreach ShopCore::app()->SBrandsHelper->getBrandsCharaters(false) as $brandsCharater=>$brands}
+    {foreach ShopCore::app()->SBrandsHelper->getBrandsCharaters(false, array('EN')) as $brandsCharater=>$brands}
         {if $brands}
         <div class="bubbleInfo">
         <div class="trigger"><a>{echo $brandsCharater}</a></div>
