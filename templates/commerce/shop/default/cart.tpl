@@ -31,6 +31,10 @@ var totalPrice = '{echo ShopCore::app()->SCart->totalPrice()}';
             document.getElementById('totalPriceText').innerHTML = result.toFixed(2).toString() + ' ' + currencySymbol;
         }
     }
+	function changePaymentMethod(id)
+    {
+        document.getElementById('paymentMethodId').value = id;
+    }
 {/literal}
 </script>
 
@@ -86,6 +90,36 @@ var totalPrice = '{echo ShopCore::app()->SCart->totalPrice()}';
 </form>
 
 <div class="sp"></div>
+<h5>Способ оплаты</h5>
+<div class="spLine"></div>
+
+{if sizeof($paymentMethods) > 0}
+<ul class="deliveryMethods">
+    {$n=0}
+    {foreach $paymentMethods as $paymentMethod}
+    
+    {if $n==0}
+        {$checked = "checked"}
+        {$activePaymentMethod = $paymentMethod->getId()}
+        {$n++}
+    {else:}
+        {$checked = ''}
+    {/if}
+	<li>
+		<h3>
+            <label>
+				 <input type="radio" onclick="changePaymentMethod(this.value);" {$checked} name="paymentMethod" value="{echo $paymentMethod->getId()}" />
+				 
+				 {echo ShopCore::encode($paymentMethod->getName())}
+			</label>
+		</h3>
+        <div class="desc">{echo $paymentMethod->getDescription()}</div>
+	</li>
+    {/foreach}
+</ul>
+{/if}
+
+<div class="sp"></div>
 <h5>Способ доставки</h5>
 <div class="spLine"></div>
 
@@ -97,11 +131,10 @@ var totalPrice = '{echo ShopCore::app()->SCart->totalPrice()}';
     {if $n==0}
         {$checked = "checked"}
         {$activeDeliveryMethod = $deliveryMethod->getId()}
-        {$n++}
     {else:}
         {$checked = ''}
     {/if}
-
+    {$n++}
     {if $deliveryMethod->getFreeFrom() == 0 && $deliveryMethod->getPrice() > 0}
         {$priceStr = $deliveryMethod->toCurrency().' '.$CS}
         {$free = false}
@@ -112,7 +145,7 @@ var totalPrice = '{echo ShopCore::app()->SCart->totalPrice()}';
         {$priceStr = $deliveryMethod->toCurrency().' '.$CS}
         {$free = false} 
     {/if}
-
+    
     <li>
         <h3>
             <label>
@@ -127,6 +160,13 @@ var totalPrice = '{echo ShopCore::app()->SCart->totalPrice()}';
         </h3>
         <div class="desc">{echo $deliveryMethod->getDescription()}</div>
     </li>
+    {if $n==1}
+        {if $free==true}
+            {$srciptText = "changeDeliveryMethod($activeDeliveryMethod, true);\r\n"}
+        {else:}
+            {$srciptText = "changeDeliveryMethod($activeDeliveryMethod);\r\n"}
+        {/if}
+    {/if}
     {/foreach}
 </ul>
 {/if}
@@ -154,6 +194,7 @@ var totalPrice = '{echo ShopCore::app()->SCart->totalPrice()}';
 <div style="margin-left:20px;">
     <form action="{shop_url('cart')}" method="post" name="orderForm">
     <input type="hidden" name="deliveryMethodId" id="deliveryMethodId" value="0">
+	<input type="hidden" name="paymentMethodId" id="paymentMethodId" value="0">
     <input type="hidden" name="makeOrder" value="1">
         <div class="fieldName">Имя, фамилия:</div>
         <div class="field">
@@ -193,5 +234,6 @@ var totalPrice = '{echo ShopCore::app()->SCart->totalPrice()}';
 </div>
 
 <script type="text/javascript">
-    changeDeliveryMethod({echo $activeDeliveryMethod});
+    {$srciptText}
+    changePaymentMethod({echo $activePaymentMethod});
 </script>

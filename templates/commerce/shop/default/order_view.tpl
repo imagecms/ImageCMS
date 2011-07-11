@@ -69,7 +69,7 @@
 </div>
 
 <div class="sp"></div>
-<h5>Способы оплаты</h5>
+<h5>Вариант оплаты</h5>
 <ul>
     {foreach $paymentMethods as $pm}
     <li>
