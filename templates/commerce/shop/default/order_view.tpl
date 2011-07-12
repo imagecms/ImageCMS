@@ -61,7 +61,11 @@
 
 <div id="total">
     <span class="value" id="totalPriceText">
-        {echo $total + $model->getDeliveryPrice()} {$CS}
+        {if $total >= $deliveryMethod->getFreeFrom()}
+            {echo $total} {$CS}
+        {else:}
+            {echo $total + $model->getDeliveryPrice()} {$CS}
+        {/if}
     </span>
     <span class="label">
         {echo ShopCore::t('Итог')}
