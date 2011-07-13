@@ -13,14 +13,22 @@ var currencySymbol = '{$CS}';
 var totalPrice = '{echo ShopCore::app()->SCart->totalPrice()}';
 
 {foreach $deliveryMethods as $d}
-    deliveryMethods_prices[{echo $d->getId()}] = '{echo $d->toCurrency()}';
+    {if $d->getIsPriceInPercent() == true}
+        {$delPrice = round(ShopCore::app()->SCart->totalPrice() * $d->getPrice() / 100, 2)}
+    {else:}
+        {$delPrice = $d->toCurrency()}
+    {/if}
+    deliveryMethods_prices[{echo $d->getId()}] = '{echo $delPrice}';
 {/foreach}
 
 {literal}
+    function changePaymentMethod(id)
+    {
+        document.getElementById('paymentMethodId').value = id;
+    }
     function changeDeliveryMethod(id, free)
     {
         document.getElementById('deliveryMethodId').value = id;
-
         if (free == true)
         {
             document.getElementById('totalPriceText').innerHTML = totalPrice + ' ' + currencySymbol; 
@@ -30,11 +38,16 @@ var totalPrice = '{echo ShopCore::app()->SCart->totalPrice()}';
             var result = parseFloat(deliveryMethods_prices[id]) + parseFloat(totalPrice);
             document.getElementById('totalPriceText').innerHTML = result.toFixed(2).toString() + ' ' + currencySymbol;
         }
-    }
-	function changePaymentMethod(id)
-    {
-        document.getElementById('paymentMethodId').value = id;
-    }
+        $('#paymentMethods').html('{/literal}<img src="{$SHOP_THEME}style/images/ui-anim_basic_16x16.gif" />{literal}');
+        $.ajax({
+                    url: "/shop/cart/getPaymentsMethods/"+id,
+                    success: function(html){
+                    if(html){
+                        $("#paymentMethods").html(html);
+                    }
+                   }
+               });
+    }    
 {/literal}
 </script>
 
@@ -90,36 +103,6 @@ var totalPrice = '{echo ShopCore::app()->SCart->totalPrice()}';
 </form>
 
 <div class="sp"></div>
-<h5>Способ оплаты</h5>
-<div class="spLine"></div>
-
-{if sizeof($paymentMethods) > 0}
-<ul class="deliveryMethods">
-    {$n=0}
-    {foreach $paymentMethods as $paymentMethod}
-    
-    {if $n==0}
-        {$checked = "checked"}
-        {$activePaymentMethod = $paymentMethod->getId()}
-        {$n++}
-    {else:}
-        {$checked = ''}
-    {/if}
-	<li>
-		<h3>
-            <label>
-				 <input type="radio" onclick="changePaymentMethod(this.value);" {$checked} name="paymentMethod" value="{echo $paymentMethod->getId()}" />
-				 
-				 {echo ShopCore::encode($paymentMethod->getName())}
-			</label>
-		</h3>
-        <div class="desc">{echo $paymentMethod->getDescription()}</div>
-	</li>
-    {/foreach}
-</ul>
-{/if}
-
-<div class="sp"></div>
 <h5>Способ доставки</h5>
 <div class="spLine"></div>
 
@@ -127,7 +110,11 @@ var totalPrice = '{echo ShopCore::app()->SCart->totalPrice()}';
 <ul class="deliveryMethods">
     {$n=0}
     {foreach $deliveryMethods as $deliveryMethod}
-    
+    {if $deliveryMethod->getIsPriceInPercent() == true}
+        {$delPrice = round(ShopCore::app()->SCart->totalPrice() * $deliveryMethod->getPrice() / 100, 2)}
+    {else:}
+        {$delPrice = $deliveryMethod->toCurrency()}
+    {/if}
     {if $n==0}
         {$checked = "checked"}
         {$activeDeliveryMethod = $deliveryMethod->getId()}
@@ -136,13 +123,13 @@ var totalPrice = '{echo ShopCore::app()->SCart->totalPrice()}';
     {/if}
     {$n++}
     {if $deliveryMethod->getFreeFrom() == 0 && $deliveryMethod->getPrice() > 0}
-        {$priceStr = $deliveryMethod->toCurrency().' '.$CS}
+        {$priceStr = "$delPrice".' '.$CS}
         {$free = false}
     {elseif(ShopCore::app()->SCart->totalPrice(false) >= $deliveryMethod->getFreeFrom()):}
         {$priceStr = "бесплатно"}
         {$free = true}
     {elseif($deliveryMethod->getFreeFrom() > 0 && $deliveryMethod->getPrice() > 0):}
-        {$priceStr = $deliveryMethod->toCurrency().' '.$CS}
+        {$priceStr = "$delPrice".' '.$CS}
         {$free = false} 
     {/if}
     
@@ -170,6 +157,39 @@ var totalPrice = '{echo ShopCore::app()->SCart->totalPrice()}';
     {/foreach}
 </ul>
 {/if}
+<div id="paymentMethods">
+{if sizeof($paymentMethods) > 0}
+<div class="sp"></div>
+<h5>Способ оплаты</h5>
+<div class="spLine"></div>
+
+
+<ul class="deliveryMethods">
+    {$n=0}
+    {foreach $paymentMethods as $paymentMethod}
+    
+    {if $n==0}
+        {$checked = "checked"}
+        {$activePaymentMethod = $paymentMethod->getId()}
+        {$n++}
+    {else:}
+        {$checked = ''}
+    {/if}
+	<li>
+		<h3>
+            <label>
+				 <input type="radio" onclick="changePaymentMethod(this.value);" {$checked} name="paymentMethod" value="{echo $paymentMethod->getId()}" />
+				 
+				 {echo ShopCore::encode($paymentMethod->getName())}
+			</label>
+		</h3>
+        <div class="desc">{echo $paymentMethod->getDescription()}</div>
+	</li>
+    {/foreach}
+</ul>
+{/if}
+</div>
+
 
 <div id="total">
     <span class="value" id="totalPriceText">
