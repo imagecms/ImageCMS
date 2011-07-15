@@ -17,7 +17,7 @@
         {foreach $orders as $order}
         <tr style="font-size:13px;">
             <td style="width:15px;">{echo $order->getId()}</td>
-            <td>{echo SOrders::$statuses[$order->getStatus()]}</td>
+            <td>{echo SOrders::getStatusName('Id', $order->getStatus())}</td>
             <td>{if $order->getPaid()} Да {else:} Нет {/if}</td>
             <td>{date("d-m-Y H:i", $order->getDateCreated())}</td>
             <td>{date("d-m-Y H:i", $order->getDateUpdated())}</td>
