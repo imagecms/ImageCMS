@@ -11,7 +11,7 @@
 
 <div class="orderViewInfo">
     Оплачен: {if $model->getPaid() == true} Да{else: }Нет{/if}
-   <br/>Статус: {echo SOrders::$statuses[$model->getStatus()]}
+   <br/>Статус: {echo SOrders::getStatusName('Id',$model->getStatus())}
     {if $model->getDeliveryMethod() > 0}
         <br/>Способ доставки: {echo $model->getSDeliveryMethods()->getName()}
     {/if}
