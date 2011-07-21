@@ -65,8 +65,12 @@
     </div>
 
     <!-- Hold this part in separate file which will be used for ajax requests. -->
-    <div class="right" id="mycart">
+    <div class="right" id="mycart" title="Корзина">
         {include_tpl('cart_data')}
+    </div>
+    
+    <div class="right" id="mywishlist" title="Wish List">
+        {include_tpl('wish_list_data')}
     </div>
 
     <div id="topCurrency" align="right">
