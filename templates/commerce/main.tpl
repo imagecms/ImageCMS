@@ -34,8 +34,11 @@
       <!-- BEGIN SLOGAN -->
       <div id="slogan">Приобретайте только качественную технику: <br /> +7 (095) <b>222-33-22</b><br /> +38 (098) <b>222-33-22</b></div>
     </div>
-    <div class="right" id="mycart">
+    <div class="right" id="mycart" title="Корзина">
         {include_tpl('shop/default/cart_data')} 
+    </div>
+    <div class="right" id="mywishlist" title="Wish List">
+        {include_tpl('shop/default/wish_list_data')}
     </div>
 
     <div id="topCurrency" align="right">

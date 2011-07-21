@@ -44,6 +44,18 @@ function ajaxAddToCart()
     setTimeout(function() {  $("#cartNotify").css('display', 'none') }, 2000); 
 }
 
+function ajaxAddToWishList()
+{
+    $.ajax({
+        type: "POST",
+        data: $("#productForm").serialize(),
+        url: "/shop/wish_list/add",
+        success: function(){$("#mywishlist").load('/shop/ajax/getWishListDataHtml')},
+     });
+
+    $("#wishListNotify").css('display', 'block');
+    setTimeout(function() {  $("#wishListNotify").css('display', 'none') }, 2000); 
+}
 </script>
 {/literal}
 
@@ -166,7 +178,11 @@ function ajaxAddToCart()
         <a rel="nofollow" href="#" onClick='ajaxAddToCart(); return false;' class="button1">{echo ShopCore::t('ДОБАВИТЬ В КОРЗИНУ')}</a>
         <div style="margin-left:45px;font-size:13px;display:none;background-color:#f5f5dc;" id="cartNotify"> 
             Товар добавлен в корзину.
-        </div> 
+        </div>
+        <a rel="nofollow" href="#" onClick='ajaxAddToWishList(); return false;' class="button1">{echo ShopCore::t('ДОБАВИТЬ В WISH LIST')}</a>
+        <div style="margin-left:45px;font-size:13px;display:none;background-color:#f5f5dc;" id="wishListNotify"> 
+            Товар добавлен в Wish List.
+        </div
         {form_csrf()}
         </form>
     </div>
