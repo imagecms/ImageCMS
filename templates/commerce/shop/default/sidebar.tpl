@@ -17,7 +17,7 @@
         <div class="trigger"><a>{echo $brandsCharater}</a></div>
             <div if class="popup">
                     {foreach $brands as $brand}
-                        <a href="{shop_url('brand/' . $brand['url'])}">{echo $brand['name'].'('.$brand['total'].')'}</a>
+                        <a href="{shop_url('brand/' . $brand['url'])}">{echo $brand['name'].'('.$brand['total'].')'}</a>{counter("<br />", "", "")}
                     {/foreach}
             </div>
         </div>

@@ -961,6 +961,15 @@ div.comment_avatar {
     text-decoration:none;   
 	text-decoration:underline;
 }
+.wishListQuestion {
+    float:right;
+    font-size: 14px;
+    margin: 5px 0 0 0;
+}
+.wishListQuestion a {
+    font-size:12px;
+    text-decoration:none;   
+}
 .priceLight {
     font-size:15px;
     font-weight:bold;
@@ -977,6 +986,7 @@ div.comment_avatar {
 .bubbleInfo{
 	position: relative;
 	display: inline;
+        white-space:nowrap; 
 }
 .popup{
     position: absolute; 
