@@ -69,7 +69,7 @@
         {include_tpl('cart_data')}
     </div>
     
-    {if ShopCore::app()->SWishList->getWishListCookie() > 0 && ShopCore::$ci->dx_auth->is_logged_in()} 
+    {if ShopCore::app()->SWishList->getWishListCookie() && ShopCore::$ci->dx_auth->is_logged_in()} 
    <div class="bubbleInfo">
        <div class="trigger">
            <div class="right" id="mywishlist" title="Wish List">

@@ -1,10 +1,16 @@
-<h5>Список пожеланий</h5>
+<h5>Список пожеланий {if $items}({count($items)}){/if}</h5>
 <div class="spLine"></div>
 
 {if !$items}
     {echo ShopCore::t('Список пожеланий пуст')}
     {return}
 {/if}
+
+{if $CI->session->flashdata('makeWish') === true}
+    <div style="padding:10px;background-color:#f5f5dc;">
+        Ваше пожелание отправлено адресату на e-mail.
+    </div>
+    {/if}
 
 <form action="{shop_url('wish_list')}" method="post" name="wishListForm">
 <input type="hidden" name="recount" value="1">
@@ -53,7 +59,8 @@
         {echo ShopCore::t('Итог')}
     </span>
 </div>
-
+    
+{if ShopCore::$ci->dx_auth->is_logged_in()}
 <div class="sp"></div>
 <h5>Отправить пожелание</h5>
 
@@ -76,7 +83,7 @@
 
         <div class="fieldName">Отправить на Email:</div>
         <div class="field">
-            <input type="text" class="input" name="userInfo[email]" value="{$profile.email}">
+            <input type="text" class="input" name="userInfo[email]">
         </div>
         <div class="clear"></div>
 
@@ -104,3 +111,4 @@
         {form_csrf()}
     </form>
 </div>
+{/if}
