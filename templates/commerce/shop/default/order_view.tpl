@@ -71,7 +71,7 @@
         {echo ShopCore::t('Итог')}
     </span>
 </div>
-{if $paymentMethods[0] != null}
+{if $paymentMethods[0] != null && !$model->getPaid()}
 <div class="sp"></div>
 <h5>Вариант оплаты</h5>
 <ul>
