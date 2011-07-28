@@ -34,10 +34,31 @@
       <!-- BEGIN SLOGAN -->
       <div id="slogan">Приобретайте только качественную технику: <br /> +7 (095) <b>222-33-22</b><br /> +38 (098) <b>222-33-22</b></div>
     </div>
-    <div class="right" id="mycart">
+    <div class="right" id="mycart" title="Корзина">
         {include_tpl('shop/default/cart_data')} 
     </div>
 
+   {if ShopCore::app()->SWishList->getWishListCookie() && ShopCore::$ci->dx_auth->is_logged_in()} 
+   <div class="bubbleInfo">
+       <div class="trigger">
+           <div class="right" id="mywishlist" title="Wish List">
+                {include_tpl('shop/default/wish_list_data')}
+           </div>
+       </div>
+       <div class="popup">
+           <div class="wishListQuestion">
+               У вас уже был WishList до входа в систему!<br />
+                    <a href="{shop_url('wish_list/move_to_profile')}" >Перенести WishList в профиль</a> /
+                    <a href="{shop_url('wish_list/clear_cookie_wish_list')}">Удалить WishList</a>
+               </div>
+           </div>
+   </div>    
+   {else:}    
+   <div class="right" id="mywishlist" title="Wish List">
+        {include_tpl('shop/default/wish_list_data')}
+   </div>  
+   {/if}
+   
     <div id="topCurrency" align="right">
     <form action="" method="post" name="currencyChangeForm">
     {form_csrf()}

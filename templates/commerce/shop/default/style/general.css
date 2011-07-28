@@ -759,6 +759,19 @@ div.products_list {
     color:#666666; 
 } 
 
+#buttons #sendwish { 
+    display:block; 
+    height:29px;
+    width: 170px;
+    background: url(images/sendwish.jpg) left top no-repeat; 
+    padding:13px 0 0 45px; 
+    font-weight:bold; 
+    font-size:14px; 
+} 
+#buttons #sendwish:hover { 
+    color:#666666; 
+}
+
 ul.deliveryMethods h3 {
     font-size:16px;
     margin:0px;
@@ -948,6 +961,15 @@ div.comment_avatar {
     text-decoration:none;   
 	text-decoration:underline;
 }
+.wishListQuestion {
+    float:right;
+    font-size: 14px;
+    margin: 5px 0 0 0;
+}
+.wishListQuestion a {
+    font-size:12px;
+    text-decoration:none;   
+}
 .priceLight {
     font-size:15px;
     font-weight:bold;
@@ -964,6 +986,7 @@ div.comment_avatar {
 .bubbleInfo{
 	position: relative;
 	display: inline;
+        white-space:nowrap; 
 }
 .popup{
     position: absolute; 
