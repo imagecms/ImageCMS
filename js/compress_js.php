@@ -30,7 +30,8 @@ $files = array(
 		'plugins/autocompleter/Autocompleter.js',
 		'plugins/autocompleter/Observer.js',
 		'plugins/autocompleter/Autocompleter.Request.js',
-		'plugins/autocompleter/Autocompleter.Local.js'
+		'plugins/autocompleter/Autocompleter.Local.js',
+		'mocha/mootools-more-1.3.2.1.js' //Element.Form for Autocomplete
 	);
 
 	$js_root = dirname(__FILE__);
