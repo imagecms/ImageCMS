@@ -34,7 +34,7 @@ class Search extends MY_Controller {
 		parent::__construct();
         //$this->output->enable_profiler(TRUE);
     }
-
+    
     // Search pages
     public function index($hash = '', $offset = 0)
     {
