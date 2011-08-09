@@ -46,6 +46,20 @@
 	text-shadow:1px 1px 0 #fff;
 }
 
+#sortable tr.row_notified {
+	padding: 4px;
+	position:relative;
+	background:#e2eada url('../images/tr.gif') repeat-x bottom;
+	text-shadow:1px 1px 0 #fff;
+}
+
+#sortable tr.row_available {
+	padding: 4px;
+	position:relative;
+	background:#F7E0DA url('../images/tr.gif') repeat-x bottom;
+	text-shadow:1px 1px 0 #fff;
+}
+
 #sortable tr.altRow {
 	background: #f5f5f5 url('../images/tr.gif') repeat-x bottom;
 }
