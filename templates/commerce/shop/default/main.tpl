@@ -23,6 +23,10 @@
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.core.min.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.widget.min.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.position.min.js"></script>
+<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.mouse.js"></script>
+<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.draggable.js"></script>
+<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.resizable.js"></script>
+<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.datepicker.min.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.autocomplete.min.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.coda-bubble.sp.js"></script>
 
@@ -48,6 +52,84 @@
                                           + "<div class=\"price\">Цена:" + item.price + " " +currencySymbol +"</div>" +"</a>" )
 				.appendTo( ul );
 		};
+	});
+	</script>
+        <link rel="stylesheet" href="http://jqueryui.com/themes/base/jquery.ui.all.css">
+	<script src="http://jqueryui.com/ui/jquery.ui.button.js"></script>
+	<script src="http://jqueryui.com/ui/jquery.ui.dialog.js"></script>
+	<style>
+		.ui-dialog, .ui-datepicker { font-size: 82.5%; }
+		#dialog-form label, input { display:block; }
+		#dialog-form input.text { margin-bottom:12px; width:95%; padding: .4em; }
+		#dialog-form fieldset { padding:0; border:0; margin-top:25px; }
+		.ui-dialog .ui-state-error { padding: .3em; }
+		.validateTips { border: 1px solid transparent; padding: 0.3em;} 
+                }
+	</style>
+	<script>
+	$(function() {
+		// a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
+		$( "#dialog:ui-dialog" ).dialog( "destroy" );
+		$( "#actual" ).datepicker({minDate: new Date() });
+                $( "#actual" ).datepicker( "option", "dateFormat", 'dd-mm-yy');
+                
+		var productId = $( "[name=productId]" ),
+                    variantId = $( "[name=variantId]" ),
+                    name = $( "#name" ),
+                    email = $( "#email" ),
+                    phone = $( "#phone" ),
+                    actual = $( "#actual" ),
+                    comment = $( "#comment" ),
+                    allFields = $( [] ).add( name ).add( email ).add( phone ).add( actual ).add( comment ),
+                    tips = $( ".validateTips" );
+
+		function updateTips( t ) {
+			tips
+				.html( t )
+				.addClass( "ui-state-highlight" );
+			setTimeout(function() {
+				tips.removeClass( "ui-state-highlight", 1500 );
+			}, 500 );
+		}
+		
+		$( "#dialog-form" ).dialog({
+			autoOpen: false,
+			width: 350,
+			modal: true,
+			buttons: {
+				"Отправить запрос": function() {
+					allFields.removeClass( "ui-state-error" );
+                                        $.post("/shop/cart/sendNotifyingRequest", {productId: productId.val(),
+                                                                     variantId: variantId.val(),
+                                                                     name: name.val(), 
+                                                                     email: email.val(), 
+                                                                     phone: phone.val(),
+                                                                     actual:actual.val(),
+                                                                     comment:comment.val()
+                                                                   },
+                                                                   function(data) {
+                                                                        if (data == "done"){
+                                                                                updateTips('Ваш запрос отправлен!');
+                                                                                setTimeout(function() {
+                                                                                        $( "#dialog-form" ).dialog( "close" );
+                                                                                }, 1000 );
+                                                                        } else updateTips(data);
+                                                                   });
+				},
+				Cancel: function() {
+					$( this ).dialog( "close" );
+				}
+			},
+                        close: function() {
+				allFields.val( "" );
+                                tips.html( "" );
+			}
+		});
+
+		$( "#send-request" )
+			.click(function() {
+				$( "#dialog-form" ).dialog( "open" );
+			});               
 	});
 	</script>
 {/literal}
