@@ -45,6 +45,9 @@
 
     {$editor}
 
+    
+    {check_admin_redirect()}
+
 </head>
 <body>
 
