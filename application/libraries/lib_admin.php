@@ -39,6 +39,7 @@
  		$this->CI->config->set_item('language','russian');
 
 		$this->CI->load->helper('javascript');
+		$this->CI->load->helper('admin');
 		$this->CI->load->helper('component');
  	}
 
