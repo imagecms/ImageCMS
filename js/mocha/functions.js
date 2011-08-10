@@ -91,6 +91,28 @@ function ajax_div(div_id,act)
     }
 }
 
+function ajax_get_info(el_id,act)
+{
+    if ( $(el_id) != null  )
+    {
+	start_ajax();
+	var update_el = $(el_id);
+
+		var req = new Request.HTML({
+			method: 'post',
+			url: act,
+			update: update_el,
+			evalResponse: true,
+			onComplete: function(response) { 
+                stop_ajax(); 
+            },
+            onFailure: function(){
+                update_el.set('text', 'Request failed.');
+            }            
+		}).send();
+    }
+}
+
 function history_refresh()
 {
       var req = new Request.HTML({
