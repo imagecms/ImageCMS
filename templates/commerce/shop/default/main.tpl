@@ -59,7 +59,7 @@
 	<script src="http://jqueryui.com/ui/jquery.ui.dialog.js"></script>
 	<style>
 		.ui-dialog, .ui-datepicker { font-size: 82.5%; }
-		#dialog-form label, input { display:block; }
+		#dialog-form label input { display:block; }
 		#dialog-form input.text { margin-bottom:12px; width:95%; padding: .4em; }
 		#dialog-form fieldset { padding:0; border:0; margin-top:25px; }
 		.ui-dialog .ui-state-error { padding: .3em; }
