@@ -4,6 +4,7 @@
  * Image CMS
  *
  * Filter Module
+ * Search pages by additional fields: http://example.com/fields/pages/fieldName=Value
  */
 
 class Filter extends MY_Controller {
