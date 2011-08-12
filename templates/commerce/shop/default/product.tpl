@@ -57,8 +57,14 @@ function ajaxAddToWishList()
     setTimeout(function() {  $("#wishListNotify").css('display', 'none') }, 2000); 
 }
 </script>
+<style type="text/css">
+    .validateTips p{
+        padding: 0;
+        display: block;
+        margin: 0;
+    }    
+</style>
 {/literal}
-
 {# Display sidebar.tpl #}
 {include_tpl ('sidebar')}
 
@@ -168,7 +174,7 @@ function ajaxAddToWishList()
         <div align='right' style="font-size:12px;color:#669900;">
                 Доступно на складе: <span id="stock">{echo $model->firstVariant->getStock()}</span> шт.
         </div>
-
+        <a id="send-request" style="float:right;font-size: 13px;cursor: pointer;display:{if $model->firstVariant->getStock()}none{else:}block{/if};">Сообщить о появлении</a><br />
         <input type="hidden" name="productId" value="{echo $model->getId()}" />
         <input type="hidden" name="quantity" value="1" />
         
@@ -182,7 +188,27 @@ function ajaxAddToWishList()
         <a rel="nofollow" href="#" onClick='ajaxAddToWishList(); return false;' class="button1">{echo ShopCore::t('ДОБАВИТЬ В WISH LIST')}</a>
         <div style="margin-left:45px;font-size:13px;display:none;background-color:#f5f5dc;" id="wishListNotify"> 
             Товар добавлен в Wish List.
-        </div
+        </div>
+        
+        <div id="dialog-form" title="Сообщить о появлении" style="height: 575px;">
+            <span style="font-weight: bold; font-size: 14px;">{echo $model->getName()}</span>
+            <div id="notifyProductVariantName" style="font-weight: bold; font-size: 13px;">{echo $model->firstVariant->getName()}</div>
+            <p class="validateTips" style="color: #d2691e;"></p>
+            <form>
+            <fieldset>
+                    <label for="name">Ваше имя:</label>
+                    <input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all" />
+                    <label for="email">Email:</label>
+                    <input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all" />
+                    <label for="phone">Мобильный телефон:</label>
+                    <input type="text" name="phone" id="phone" value="" class="text ui-widget-content ui-corner-all" />
+                    <label for="actual">Актуально до:</label>
+                    <input type="text" name="actual" id="actual" value="дд-мм-гггг" class="text ui-widget-content ui-corner-all" style="background-image: url('{$SHOP_THEME}style/images/calendar.png'); background-position: right center; background-repeat: no-repeat;" />
+                    <label for="comment">Дополнительная информация:</label>
+                    <textarea name="comment" id="comment" class="text ui-widget-content ui-corner-all" style="min-width: 95%;height: 75px;"></textarea>
+            </fieldset>
+            </form>
+        </div>
         {form_csrf()}
         </form>
     </div>

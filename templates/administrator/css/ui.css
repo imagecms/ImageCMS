@@ -211,6 +211,26 @@ body {
 	text-decoration: none;
 }
 
+#topInfoButtons {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	position: absolute;
+	left: 550px;
+	top: 0;
+	color: #b2b2b2;
+	text-align: center;
+	padding: 15px 0px 0 0;
+}
+
+#topInfoButtons a {
+	color: #7DD0FA;
+	font-weight: normal;
+}
+
+#topInfoButtons a:hover {
+	text-decoration: none;
+}
+
 /* Toolboxes */
 
 .toolbox {
