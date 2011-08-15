@@ -567,7 +567,45 @@ input.button:hover {
 .button_red_130:hover {
     background-position:center -22px;
 }
-
+.upload_image_button{
+    border-radius:4px;
+    padding: 2px;
+    cursor:pointer;
+    background: transparent url(../images/upload_image.png) no-repeat scroll center top;
+}
+.upload_image_button:hover{
+    background-color:#A7D6EB;     
+}
+.upload_image_button_checked{
+    border-radius:4px;
+    padding: 2px;
+    cursor:pointer;
+    background: transparent url(../images/upload_image_checked.png) no-repeat scroll center top;
+}
+.upload_image_button_checked:hover{
+    background-color:#A7D6EB;     
+}
+.upload_small_image_button{
+    border-radius:4px;
+    padding: 2px;
+    cursor:pointer;
+    background: transparent url(../images/upload_small_image.png) no-repeat scroll center top;
+}
+.upload_small_image_button:hover{
+    background-color:#A7D6EB;     
+}
+.upload_small_image_button_checked{
+    border-radius:4px;
+    padding: 2px;
+    cursor:pointer;
+    background: transparent url(../images/upload_small_image_checked.png) no-repeat scroll center top;
+}
+.upload_small_image_button_checked:hover{
+    background-color:#A7D6EB;     
+}
+.deleteOrderButton:hover {
+    background-color:#FF777A; 
+}
 .button_red {
     background: transparent url(../images/btn1_red.png) no-repeat scroll center top;
     border:0 none;

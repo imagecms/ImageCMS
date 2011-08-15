@@ -11,6 +11,8 @@
     @import "{$SHOP_THEME}style/general.css";
     @import "{$SHOP_THEME}style/product.css";
     @import "{$SHOP_THEME}style/slideshow.css";
+    @import "{$SHOP_THEME}style/jquery-ui-1.8.15.custom.css";
+    @import "{$SHOP_THEME}style/jquery.ui.autocomplete.css";
 </style>
 
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.js"></script>
@@ -19,16 +21,11 @@
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.cycle.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.functions.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/js.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.core.min.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.widget.min.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.position.min.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.mouse.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.draggable.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.resizable.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.autocomplete.min.js"></script>
+<script type="text/javascript" src="{$SHOP_THEME}js/jquery-ui-1.8.15.custom.min.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.coda-bubble.sp.js"></script>
 
 <link rel="icon" href="{$SHOP_THEME}images/favicon.png" type="image/x-icon" />
+
 </head>
 <body>
 <!-- BEGIN LAYOUT -->
