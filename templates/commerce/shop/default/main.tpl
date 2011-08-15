@@ -11,7 +11,8 @@
     @import "{$SHOP_THEME}style/general.css";
     @import "{$SHOP_THEME}style/product.css";
     @import "{$SHOP_THEME}style/slideshow.css";
-    @import "{$SHOP_THEME}style/jquery.ui.all.css";
+    @import "{$SHOP_THEME}style/jquery-ui-1.8.15.custom.css";
+    @import "{$SHOP_THEME}style/jquery.ui.autocomplete.css";
 </style>
 
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.js"></script>
@@ -20,14 +21,7 @@
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.cycle.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.functions.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/js.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.core.min.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.widget.min.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.position.min.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.mouse.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.draggable.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.resizable.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.datepicker.min.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.autocomplete.min.js"></script>
+<script type="text/javascript" src="{$SHOP_THEME}js/jquery-ui-1.8.15.custom.min.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.coda-bubble.sp.js"></script>
 
 <link rel="icon" href="{$SHOP_THEME}images/favicon.png" type="image/x-icon" />
@@ -54,9 +48,7 @@
 		};
 	});
 	</script>
-        <link rel="stylesheet" href="http://jqueryui.com/themes/base/jquery.ui.all.css">
-	<script src="http://jqueryui.com/ui/jquery.ui.button.js"></script>
-	<script src="http://jqueryui.com/ui/jquery.ui.dialog.js"></script>
+
 	<style>
 		.ui-dialog, .ui-datepicker { font-size: 82.5%; }
 		#dialog-form label input { display:block; }
@@ -97,7 +89,7 @@
 			width: 350,
 			modal: true,
 			buttons: {
-				"Отправить запрос": function() {
+				"Сообщить о появлении" : function() {
 					allFields.removeClass( "ui-state-error" );
                                         $.post("/shop/cart/sendNotifyingRequest", {productId: productId.val(),
                                                                      variantId: variantId.val(),
