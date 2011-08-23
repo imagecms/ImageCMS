@@ -14,7 +14,7 @@ var totalPrice = '{echo ShopCore::app()->SCart->totalPrice()}';
 
 {foreach $deliveryMethods as $d}
     {if $d->getIsPriceInPercent() == true}
-        {$delPrice = round(ShopCore::app()->SCart->totalPrice() * $d->getPrice() / 100, 2)}
+        {$delPrice = round(ShopCore::app()->SCart->totalPrice() * $d->toCurrency() / 100, 2)}
     {else:}
         {$delPrice = $d->toCurrency()}
     {/if}
