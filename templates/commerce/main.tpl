@@ -23,7 +23,79 @@
 <script type="text/javascript" src="{$SHOP_THEME}js/js.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery-ui-1.8.15.custom.min.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.coda-bubble.sp.js"></script>
+{literal}
+<script>
+$(function() {
+                
+		var themeId = $("#callback-dialog-theme"),
+                    name = $( "#callback-dialog-name" ),
+                    phone = $( "#callback-dialog-phone" ),
+                    comment = $( "#callback-dialog-comment" ),
+                    allFields = $( [] ).add( themeId ).add( comment ),
+                    tips = $( "#callback-dialog-form .validateTips" );
 
+		function updateTips( t ) {
+			tips
+				.html( t )
+				.addClass( "ui-state-highlight" );
+			setTimeout(function() {
+				tips.removeClass( "ui-state-highlight", 1500 );
+			}, 500 );
+		}
+		
+                function showGif( t ) {
+			tips.html( t );
+		}
+                
+		$( "#callback-dialog-form" ).dialog({
+			autoOpen: false,
+			width: 350,
+			modal: true,
+			buttons: {
+				"Запросить CallBack" : function() {
+					allFields.removeClass( "ui-state-error" );
+                                        showGif("<center><img src='/application/modules/imagebox/templates/js/lightbox/images/loading.gif' /></center>");
+                                        $.post("/shop/callback", {   ThemeId : themeId.val(),
+                                                                     Name : name.val(), 
+                                                                     Phone : phone.val(),
+                                                                     Comment : comment.val()
+                                                                   },
+                                                                   function(data) {
+                                                                        if (data == "done"){
+                                                                                updateTips('Ваш запрос отправлен! В ближайшее время с Вами свяжеться наш менеджер.');
+                                                                                setTimeout(function() {
+                                                                                        $( "#callback-dialog-form" ).dialog( "close" );
+                                                                                }, 2500 );
+                                                                        } else updateTips(data);
+                                                                   });
+				},
+				"Отмена" : function() {
+					$( this ).dialog( "close" );
+				}
+			},
+                        close: function() {
+				allFields.val( "" );
+                                tips.html( "" );
+			}
+		});
+
+		$( "#callback-send-request" )
+			.click(function() {
+				$( "#callback-dialog-form" ).dialog( "open" );
+			});               
+	});
+	</script>
+        <style>
+		.ui-dialog, .ui-datepicker { font-size: 82.5%; }
+		#dialog-form label input, #callback-dialog-form label input { display:block; }
+		#dialog-form input.text,  #callback-dialog-form input.text { margin-bottom:12px; width:95%; padding: .4em; }
+                #callback-dialog-form select { margin-bottom:12px; padding: .4em; width:98.5%; }
+		#dialog-form fieldset, #callback-dialog-form fieldset{ padding:0; border:0; margin-top:25px; }
+		.ui-dialog .ui-state-error { padding: .3em; }
+		.validateTips { border: 1px solid transparent; padding: 0.3em;} 
+                }
+	</style>
+{/literal}
 <link rel="icon" href="{$SHOP_THEME}images/favicon.png" type="image/x-icon" />
 
 </head>
@@ -36,7 +108,7 @@
       <!-- BEGIN LOGO -->
       <div id="logo"><a href="{shop_url('')}"><img src="{$SHOP_THEME}images/logo.png" alt="logo" border="0"/></a></div>
       <!-- BEGIN SLOGAN -->
-      <div id="slogan">Приобретайте только качественную технику: <br /> +7 (095) <b>222-33-22</b><br /> +38 (098) <b>222-33-22</b></div>
+      <div id="slogan">Приобретайте только качественную технику: <br /> +7 (095) <b>222-33-22</b><br /> +38 (098) <b>222-33-22</b><br /><a id="callback-send-request" style="cursor: pointer;">Запросить CallBack</a></div>
     </div>
     <div class="right" id="mycart" title="Корзина">
         {include_tpl('shop/default/cart_data')} 
@@ -84,6 +156,7 @@
     </div>
 
     <div class="sp"></div>
+    {include_tpl('shop/default/call_back')}
   </div>
   <!-- END HEADER -->
   <!-- BEGIN NAVIGATION -->
