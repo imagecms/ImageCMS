@@ -271,7 +271,7 @@ class Admin extends MY_Controller {
 
 		$val = $this->form_validation;
 
-		$val->set_rules('username', lang('lang_login'), 'trim|required|xss_clean|alpha_dash');
+		$val->set_rules('username', lang('lang_login'), 'trim|required|xss_clean');
 		$val->set_rules('new_pass', lang('lang_password'), 'trim|xss_clean|min_length[4]');
 		$val->set_rules('email', lang('lang_email'), 'trim|required|xss_clean|valid_email');
 
