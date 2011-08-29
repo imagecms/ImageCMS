@@ -1003,3 +1003,7 @@ div.comment_avatar {
 	white-space:nowrap; 
 	display: inline;
 }
+.clear {
+    clear:both;
+    padding-bottom:10px;
+}
