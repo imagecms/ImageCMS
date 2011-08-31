@@ -15,6 +15,59 @@
             before:fade_slide_caption
         })
     }
+ 
+    function mycarousel_itemLoadCallback(carousel, state)
+    {
+        // Check if the requested items already exist
+        if (carousel.has(carousel.first, carousel.last)) {
+            return;
+        }
+
+        jQuery.get(
+            '/shop/ajax/getCarouselImages',
+            {
+                first: carousel.first,
+                last: carousel.last
+            },
+            function(xml) {
+                mycarousel_itemAddCallback(carousel, carousel.first, carousel.last, xml);
+            },
+            'xml'
+        );
+    };
+
+    function mycarousel_itemAddCallback(carousel, first, last, xml)
+    {
+        // Set the size of the carousel
+        carousel.size(parseInt(jQuery('total', xml).text()));
+        jQuery('product', xml).each(function(i) {
+              var url = $("url", this).text();
+              var image_url = $("image", this).text();
+              carousel.add(first + i, mycarousel_getItemHTML(url, image_url));
+        });
+    };
+
+    /**
+     * Item html creation helper.
+     */
+    function mycarousel_getItemHTML(url, image_url)
+    {
+        return '<a class = "product_url" href="/shop/product/' + url +'"><img src="' + image_url + '" width="75" height="75" alt="" /></a>';
+    };
+
+    jQuery(document).ready(function() {
+        jQuery('#mycarousel').jcarousel({
+            // Uncomment the following option if you want items
+            // which are outside the visible range to be removed
+            // from the DOM.
+            // Useful for carousels with MANY items.
+
+            // itemVisibleOutCallback: {onAfterAnimation: function(carousel, item, i, state, evt) { carousel.remove(i); }},
+            scroll:6,
+            itemLoadCallback: mycarousel_itemLoadCallback
+        });
+    });
+
     </script>
 {/literal}
 
@@ -22,14 +75,14 @@
 {include_tpl ('sidebar')}
 
 <div class="products_list">
-
+    {$banners = ShopBanersQuery::create()->orderByPosition()->find()}
+    {if count($banners)}
     <!-- BEGIN SLIDESHOW -->
     <div id="slideshow">
-            <ul id="slides" style="width: 693px; height: 259px;">
-              <li><a href="/shop/product/74"><img src="/uploads/shop/74_main.jpg" alt="" height="256"></a><span class="slide_caption"> <a href="/shop/product/74" class="title">Samsung LN40C650 40" LCD TV</a> Высоко технологический продукт, который поможет Вам оценить качество.</span></li>
-              <li><a href="/shop/product/106"><img src="/uploads/shop/106_main.jpg" alt="" height="256"></a><span class="slide_caption"> <a href="/shop/product/106" class="title">Panasonic KX-TG7433B Expandable</a> Высоко технологический продукт, который поможет Вам оценить качество.</span></li>
-              <li><a href="/shop/product/98"><img src="/uploads/shop/98_main.jpg" alt="" height="256"></a><span class="slide_caption"> <a href="/shop/product/98" class="title">Samsung NX10 14 Megapixel Digital</a> Высоко технологический продукт, который поможет Вам оценить качество.</span></li>
-              <li><a href="/shop/product/96"><img src="/uploads/shop/96_main.jpg" alt="" height="256"></a><span class="slide_caption"> <a href="/shop/product/96" class="title">Canon VIXIA HF R11 Digital</a> Высоко технологический продукт, который поможет Вам оценить качество.</span></li>
+            <ul id="slides" style="width: 693px; height: 260px;">
+                {foreach $banners as $banner}
+                    <li><a href="{echo $banner->getUrl()}"><img src="/uploads/shop/banners/{echo $banner->getImage()}" alt="" height="256"></a><span class="slide_caption"> <a href="{echo $banner->getUrl()}" class="title">{echo ShopCore::encode($banner->getName())}</a> {echo ShopCore::encode($banner->getText())}</span></li>
+                {/foreach}
             </ul>
             <div id="slideshow_violator" class="clearfix">
               <div id="project_caption"></div>
@@ -37,7 +90,14 @@
             </div>
     </div>
     <!-- END SLIDESHOW -->
-
+    {/if}
+    <div align="center" style="padding-bottom: 38px;">
+        <div id="mycarousel" class="jcarousel-skin-ie7">
+            <ul>
+              <!-- The content will be dynamically loaded in here -->
+            </ul>
+        </div>
+    </div>
     <!-- BEGIN HITS -->
     <div id="titleExt">
         <h5 class="left">Хиты</h5>

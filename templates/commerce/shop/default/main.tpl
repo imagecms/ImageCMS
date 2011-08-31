@@ -13,6 +13,7 @@
     @import "{$SHOP_THEME}style/slideshow.css";
     @import "{$SHOP_THEME}style/jquery-ui-1.8.15.custom.css";
     @import "{$SHOP_THEME}style/jquery.ui.autocomplete.css";
+    @import "{$SHOP_THEME}style/ie7/skin.css";
 </style>
 
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.js"></script>
@@ -23,6 +24,7 @@
 <script type="text/javascript" src="{$SHOP_THEME}js/js.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery-ui-1.8.15.custom.min.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.coda-bubble.sp.js"></script>
+<script type="text/javascript" src="{$SHOP_THEME}js/jquery.jcarousel.min.js"></script>
 
 <link rel="icon" href="{$SHOP_THEME}images/favicon.png" type="image/x-icon" />
 {literal}
@@ -57,7 +59,6 @@
 		#dialog-form fieldset, #callback-dialog-form fieldset{ padding:0; border:0; margin-top:25px; }
 		.ui-dialog .ui-state-error { padding: .3em; }
 		.validateTips { border: 1px solid transparent; padding: 0.3em;} 
-                }
 	</style>
 	<script>
 	$(function() {
