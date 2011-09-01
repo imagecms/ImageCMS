@@ -98,7 +98,7 @@ function ajaxAddToWishList()
         </div>
     {/if}
         <br/>
-
+    {if ShopCore::$ci->dx_auth->is_admin()}<div style="float:right;"><a href="/admin?r=admin/components/run/shop/products/edit/{echo $editProductUrl}/&b=shopAdminPage">Редактировать товар</a></div>{/if}
     <div class="left">
 
       <div id="gallery">
