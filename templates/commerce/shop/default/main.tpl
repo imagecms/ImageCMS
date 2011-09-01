@@ -11,7 +11,9 @@
     @import "{$SHOP_THEME}style/general.css";
     @import "{$SHOP_THEME}style/product.css";
     @import "{$SHOP_THEME}style/slideshow.css";
-    @import "{$SHOP_THEME}style/jquery.ui.all.css";
+    @import "{$SHOP_THEME}style/jquery-ui-1.8.15.custom.css";
+    @import "{$SHOP_THEME}style/jquery.ui.autocomplete.css";
+    @import "{$SHOP_THEME}style/ie7/skin.css";
 </style>
 
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.js"></script>
@@ -20,15 +22,9 @@
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.cycle.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.functions.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/js.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.core.min.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.widget.min.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.position.min.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.mouse.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.draggable.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.resizable.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.datepicker.min.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui.autocomplete.min.js"></script>
+<script type="text/javascript" src="{$SHOP_THEME}js/jquery-ui-1.8.15.custom.min.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.coda-bubble.sp.js"></script>
+<script type="text/javascript" src="{$SHOP_THEME}js/jquery.jcarousel.min.js"></script>
 
 <link rel="icon" href="{$SHOP_THEME}images/favicon.png" type="image/x-icon" />
 {literal}
@@ -54,17 +50,15 @@
 		};
 	});
 	</script>
-        <link rel="stylesheet" href="http://jqueryui.com/themes/base/jquery.ui.all.css">
-	<script src="http://jqueryui.com/ui/jquery.ui.button.js"></script>
-	<script src="http://jqueryui.com/ui/jquery.ui.dialog.js"></script>
+
 	<style>
 		.ui-dialog, .ui-datepicker { font-size: 82.5%; }
-		#dialog-form label input { display:block; }
-		#dialog-form input.text { margin-bottom:12px; width:95%; padding: .4em; }
-		#dialog-form fieldset { padding:0; border:0; margin-top:25px; }
+		#dialog-form label input, #callback-dialog-form label input { display:block; }
+		#dialog-form input.text,  #callback-dialog-form input.text { margin-bottom:12px; width:95%; padding: .4em; }
+                #callback-dialog-form select { margin-bottom:12px; padding: .4em; width:98.5%; }
+		#dialog-form fieldset, #callback-dialog-form fieldset{ padding:0; border:0; margin-top:25px; }
 		.ui-dialog .ui-state-error { padding: .3em; }
 		.validateTips { border: 1px solid transparent; padding: 0.3em;} 
-                }
 	</style>
 	<script>
 	$(function() {
@@ -81,7 +75,7 @@
                     actual = $( "#actual" ),
                     comment = $( "#comment" ),
                     allFields = $( [] ).add( name ).add( email ).add( phone ).add( actual ).add( comment ),
-                    tips = $( ".validateTips" );
+                    tips = $( "#dialog-form .validateTips" );
 
 		function updateTips( t ) {
 			tips
@@ -91,14 +85,19 @@
 				tips.removeClass( "ui-state-highlight", 1500 );
 			}, 500 );
 		}
-		
+                
+		function showGif( t ) {
+			tips.html( t );
+		}
+                
 		$( "#dialog-form" ).dialog({
 			autoOpen: false,
 			width: 350,
 			modal: true,
 			buttons: {
-				"Отправить запрос": function() {
+				"Сообщить о появлении" : function() {
 					allFields.removeClass( "ui-state-error" );
+                                        showGif("<center><img src='/application/modules/imagebox/templates/js/lightbox/images/loading.gif' /></center>");
                                         $.post("/shop/cart/sendNotifyingRequest", {productId: productId.val(),
                                                                      variantId: variantId.val(),
                                                                      name: name.val(), 
@@ -116,7 +115,7 @@
                                                                         } else updateTips(data);
                                                                    });
 				},
-				Cancel: function() {
+				"Отмена" : function() {
 					$( this ).dialog( "close" );
 				}
 			},
@@ -131,6 +130,65 @@
 				$( "#dialog-form" ).dialog( "open" );
 			});               
 	});
+        $(function() {
+                
+		var cThemeId = $("#callback-dialog-theme"),
+                    cName = $( "#callback-dialog-name" ),
+                    cPhone = $( "#callback-dialog-phone" ),
+                    cComment = $( "#callback-dialog-comment" ),
+                    cAllFields = $( [] ).add( cThemeId ).add( cComment ),
+                    cTips = $( "#callback-dialog-form .validateTips" );
+
+		function updateTips( t ) {
+			cTips
+				.html( t )
+				.addClass( "ui-state-highlight" );
+			setTimeout(function() {
+				cTips.removeClass( "ui-state-highlight", 1500 );
+			}, 500 );
+		}
+                
+                function showGif( t ) {
+			cTips.html( t );
+		}
+		
+		$( "#callback-dialog-form" ).dialog({
+			autoOpen: false,
+			width: 350,
+			modal: true,
+			buttons: {
+				"Запросить CallBack" : function() {
+					cAllFields.removeClass( "ui-state-error" );
+                                        showGif("<center><img src='/application/modules/imagebox/templates/js/lightbox/images/loading.gif' /></center>");
+                                        $.post("/shop/callback", {   ThemeId : cThemeId.val(),
+                                                                     Name : cName.val(), 
+                                                                     Phone : cPhone.val(),
+                                                                     Comment : cComment.val()
+                                                                   },
+                                                                   function(data) {
+                                                                        if (data == "done"){
+                                                                                updateTips('Ваш запрос отправлен! В ближайшее время с Вами свяжеться наш менеджер.');
+                                                                                setTimeout(function() {
+                                                                                        $( "#callback-dialog-form" ).dialog( "close" );
+                                                                                }, 2500 );
+                                                                        } else updateTips(data);
+                                                                   });
+				},
+				"Отмена" : function() {
+					$( this ).dialog( "close" );
+				}
+			},
+                        close: function() {
+				cAllFields.val( "" );
+                                cTips.html( "" );
+			}
+		});
+
+		$( "#callback-send-request" )
+			.click(function() {
+				$( "#callback-dialog-form" ).dialog( "open" );                   
+			});               
+	});
 	</script>
 {/literal}
 </head>
@@ -143,11 +201,7 @@
       <!-- BEGIN LOGO -->
       <div id="logo"><a href="{shop_url('')}"><img src="{$SHOP_THEME}images/logo.png" alt="logo" border="0"/></a></div>
       <!-- BEGIN SLOGAN -->
-      <div id="slogan">
-            Приобретайте только качественную технику: <br /> +7 (095) <b>222-33-22</b><br /> +38 (098) <b>222-33-22</b>
-            <br/>
-            <a href="/shop/callback">Запросить обратный звонок</a>
-      </div>
+     <div id="slogan">Приобретайте только качественную технику: <br /> +7 (095) <b>222-33-22</b><br /> +38 (098) <b>222-33-22</b><br /><a id="callback-send-request" style="cursor: pointer;">Запросить CallBack</a></div>
     </div>
 
     <!-- Hold this part in separate file which will be used for ajax requests. -->
@@ -193,10 +247,10 @@
             </a>
         </div>
     {/if}
-
     </div>
-
-    <div class="sp"></div>
+   
+   <div class="sp"></div>
+{include_tpl('call_back')}
   </div>
   <!-- END HEADER -->
   <!-- BEGIN NAVIGATION -->
