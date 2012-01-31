@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>{$site_title}</title>
+<title>1</title>
 <meta name="description" content="{$site_description}" />
 <meta name="keywords" content="{$site_keywords}" />
 <meta name="generator" content="ImageCMS">
@@ -44,7 +44,7 @@
                         var currencySymbol = '{$CS}';{literal}
 			return $( "<li></li>" )
 				.data( "item.autocomplete", item )
-				.append( "<a  onclick=\"window.location = '" + item.url + "';\">" + item.label + "<br>"  + "<img src=\"/uploads/shop/" + item.image + "\" alt=\"image\" border=\"0\">" 
+				.append( "<a  onclick=\"window.location = '" + item.url + "';\">" + item.label + "<br>"  + "<img src=\"/uploads/shop/" + item.image + "\" alt=\"image\" border=\"0\">"
                                           + "<div class=\"price\">Цена:" + item.price + " " +currencySymbol +"</div>" +"</a>" )
 				.appendTo( ul );
 		};
@@ -58,7 +58,7 @@
                 #callback-dialog-form select { margin-bottom:12px; padding: .4em; width:98.5%; }
 		#dialog-form fieldset, #callback-dialog-form fieldset{ padding:0; border:0; margin-top:25px; }
 		.ui-dialog .ui-state-error { padding: .3em; }
-		.validateTips { border: 1px solid transparent; padding: 0.3em;} 
+		.validateTips { border: 1px solid transparent; padding: 0.3em;}
 	</style>
 	<script>
 	$(function() {
@@ -66,7 +66,7 @@
 		$( "#dialog:ui-dialog" ).dialog( "destroy" );
 		$( "#actual" ).datepicker({minDate: new Date() });
                 $( "#actual" ).datepicker( "option", "dateFormat", 'dd-mm-yy');
-                
+
 		var productId = $( "[name=productId]" ),
                     variantId = $( "[name=variantId]" ),
                     name = $( "#name" ),
@@ -85,11 +85,11 @@
 				tips.removeClass( "ui-state-highlight", 1500 );
 			}, 500 );
 		}
-                
+
 		function showGif( t ) {
 			tips.html( t );
 		}
-                
+
 		$( "#dialog-form" ).dialog({
 			autoOpen: false,
 			width: 350,
@@ -100,8 +100,8 @@
                                         showGif("<center><img src='/application/modules/imagebox/templates/js/lightbox/images/loading.gif' /></center>");
                                         $.post("/shop/cart/sendNotifyingRequest", {productId: productId.val(),
                                                                      variantId: variantId.val(),
-                                                                     name: name.val(), 
-                                                                     email: email.val(), 
+                                                                     name: name.val(),
+                                                                     email: email.val(),
                                                                      phone: phone.val(),
                                                                      actual:actual.val(),
                                                                      comment:comment.val()
@@ -128,10 +128,10 @@
 		$( "#send-request" )
 			.click(function() {
 				$( "#dialog-form" ).dialog( "open" );
-			});               
+			});
 	});
         $(function() {
-                
+
 		var cThemeId = $("#callback-dialog-theme"),
                     cName = $( "#callback-dialog-name" ),
                     cPhone = $( "#callback-dialog-phone" ),
@@ -147,11 +147,11 @@
 				cTips.removeClass( "ui-state-highlight", 1500 );
 			}, 500 );
 		}
-                
+
                 function showGif( t ) {
 			cTips.html( t );
 		}
-		
+
 		$( "#callback-dialog-form" ).dialog({
 			autoOpen: false,
 			width: 350,
@@ -161,7 +161,7 @@
 					cAllFields.removeClass( "ui-state-error" );
                                         showGif("<center><img src='/application/modules/imagebox/templates/js/lightbox/images/loading.gif' /></center>");
                                         $.post("/shop/callback", {   ThemeId : cThemeId.val(),
-                                                                     Name : cName.val(), 
+                                                                     Name : cName.val(),
                                                                      Phone : cPhone.val(),
                                                                      Comment : cComment.val()
                                                                    },
@@ -186,8 +186,8 @@
 
 		$( "#callback-send-request" )
 			.click(function() {
-				$( "#callback-dialog-form" ).dialog( "open" );                   
-			});               
+				$( "#callback-dialog-form" ).dialog( "open" );
+			});
 	});
 	</script>
 {/literal}
@@ -208,8 +208,8 @@
     <div class="right" id="mycart" title="Корзина">
         {include_tpl('cart_data')}
     </div>
-    
-    {if ShopCore::app()->SWishList->getWishListCookie() && ShopCore::$ci->dx_auth->is_logged_in()} 
+
+    {if ShopCore::app()->SWishList->getWishListCookie() && ShopCore::$ci->dx_auth->is_logged_in()}
    <div class="bubbleInfo">
        <div class="trigger">
            <div class="right" id="mywishlist" title="Wish List">
@@ -223,13 +223,13 @@
                     <a href="{shop_url('wish_list/clear_cookie_wish_list')}">Удалить WishList</a>
                </div>
            </div>
-   </div>    
-   {else:}    
+   </div>
+   {else:}
    <div class="right" id="mywishlist" title="Wish List">
         {include_tpl('wish_list_data')}
-   </div>  
+   </div>
    {/if}
-   
+
     <div id="topCurrency" align="right">
     <form action="" method="post" name="currencyChangeForm">
     {form_csrf()}
@@ -248,7 +248,7 @@
         </div>
     {/if}
     </div>
-   
+
    <div class="sp"></div>
 {include_tpl('call_back')}
   </div>
@@ -274,7 +274,7 @@
   <div id="main">
       <!-- BEGIN CONTEINER -->
     <div id="content">
-        {$shop_content} 
+        {$shop_content}
     </div>
     <!-- END CONTENT -->
     <div class="sp"></div>

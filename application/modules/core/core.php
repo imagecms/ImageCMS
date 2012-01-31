@@ -597,7 +597,6 @@ class Core extends MY_Controller {
             $content = $this->template->read($cat_tpl, array('no_pages' => lang('no_pages_in_cat')));
         }
 
-
         $category['title'] == NULL ? $category['title'] = $category['name'] : TRUE;
 
         ($hook = get_hook('core_dispcat_set_meta')) ? eval($hook) : NULL;
@@ -958,9 +957,9 @@ class Core extends MY_Controller {
         if ($this->core_data['data_type'] == 'main')
         {
             $this->template->add_array(array(
-                'site_title' => $this->settings['site_title'],
-                'site_description' => $this->settings['site_description'],
-                'site_keywords' => $this->settings['site_keywords']
+                'site_title' => empty($title) ? $this->settings['site_title'] : $title,
+                'site_description' => empty($description) ? $this->settings['site_description'] : $description,
+                'site_keywords' => empty($keywords) ? $this->settings['site_keywords'] : $keywords
             ));
         }
         else

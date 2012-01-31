@@ -26,7 +26,6 @@
         {/foreach}
 		</ul>
 
-
         <div class="sp"></div>
         <div class="products_bottom" id="products_bottom"></div>
         <div id="gopages" class="navigation">
@@ -35,6 +34,6 @@
         <div class="sp"></div>
         {else:}
         <p>          
-                {echo ShopCore::t('В категории нет продуктов')}.
+            {echo ShopCore::t('В категории нет продуктов')}.
         </p>
 {/if}
