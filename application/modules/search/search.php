@@ -8,8 +8,10 @@
  *     refresh cache after $search_ttl expry.
  */
 
-class Search extends MY_Controller {
+class Search extends MY_Controller
+{
 
+    public $highlightColor = '#FAE373';
     public $search_ttl = 3600; //Search time to live in minutes.
     public $table      = '';
     public $cache_on      = FALSE;
@@ -28,13 +30,13 @@ class Search extends MY_Controller {
     private $where        = array();
     private $order_by     = array();
     private $search_table = 'search';
- 
+
     public function __construct()
 	{
 		parent::__construct();
         //$this->output->enable_profiler(TRUE);
     }
-    
+
     // Search pages
     public function index($hash = '', $offset = 0)
     {
@@ -50,16 +52,16 @@ class Search extends MY_Controller {
             $s_text = trim($this->input->post('text'));
         }
 
-        $text_len = mb_strlen(trim($s_text), 'UTF-8'); 
+        $text_len = mb_strlen(trim($s_text), 'UTF-8');
 
         if ($text_len >= $this->min_s_len AND $text_len < 50 )
-        { 
+        {
             $config = array(
                 'table'     => 'content',
                 'order_by'  => array('publish_date' => 'DESC'),
                 'select'    => array('content.*', 'CONCAT_WS("", content.cat_url, content.url) as full_url'),
             );
-            
+
             $this->init($config);
 
             $where = array(
@@ -120,23 +122,50 @@ class Search extends MY_Controller {
         {
             $result = FALSE;
         }
-        
+
         if ($result === FALSE)
-        {
             $data = FALSE;
-        }
         else
-        {
-            $data = $result['query']->result_array(); 
-        }
+            $data = $result['query']->result_array();
 
         if (isset($s_text))
         {
             $this->template->assign('search_title', $s_text);
         }
 
+        $data = $this->_highlight_text($data, $s_text);
+
         $this->core->set_meta_tags(array(lang('search_title'), $this->search_title));
         $this->_display($data);
+    }
+
+
+    /**
+     * Highlight found text
+     * @param array $data Pages to highlight
+     * @param string $text 
+     * @return array
+     */
+    protected function _highlight_text(array $data, $text)
+    {
+        $dataCount = count($data);
+
+        for($i=0;$i<$dataCount;$i++)
+        {
+            $tempText = strip_tags($data[$i]['prev_text'].' '.$data[$i]['full_text']);
+            $pos = mb_strpos($tempText, $text);
+            $length = mb_strlen($tempText, 'UTF-8');
+            $start = $pos - 40;
+            $stop = $pos + 40;
+            if($start<0) $start = 0;
+            if($stop>$length) $stop = $length;
+
+            $tempText = mb_substr($tempText, $start, $stop, 'UTF-8');
+            $tempText = str_replace($text, '<span style="background-color:'.$this->highlightColor.'">'.$text.'</span>', $tempText);
+            $data[$i]['parsedText'] = '...'.$tempText.'...';
+        }
+
+        return $data;
     }
 
     // Init search settings
@@ -170,7 +199,7 @@ class Search extends MY_Controller {
         $this->order_by     = array();
         $this->search_table = 'search';
         $this->query_hash   = '';
-        $this->hash_data    = FALSE; 
+        $this->hash_data    = FALSE;
     }
 
     // Search by hash
@@ -277,7 +306,7 @@ class Search extends MY_Controller {
                 if (isset($params['operator']))
                 {
                     $operator = strtolower($params['operator']);
-                    unset($params['operator']);            
+                    unset($params['operator']);
                 }
                 else
                 {
@@ -288,7 +317,7 @@ class Search extends MY_Controller {
                 if (isset($params['backticks']))
                 {
                     $backticks = $params['backticks'];
-                    unset($params['backticks']); 
+                    unset($params['backticks']);
                 }
                 else
                 {
@@ -403,13 +432,13 @@ class Search extends MY_Controller {
             return FALSE;
         }
     }
-  
+
     // Display search template file
     public function _display($pages = array())
     {
         if (count($pages) > 0)
         {
-            ($hook = get_hook('core_return_category_pages')) ? eval($hook) : NULL; 
+            ($hook = get_hook('core_return_category_pages')) ? eval($hook) : NULL;
 
             $this->template->add_array(array('items' => $pages));
         }
@@ -467,7 +496,7 @@ class Search extends MY_Controller {
                         'constraint' => '250',
                     ),
                  );
-        
+
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table('search', TRUE);
@@ -476,7 +505,7 @@ class Search extends MY_Controller {
     public function _deinstall()
     {
        	if( $this->dx_auth->is_admin() == FALSE) exit;
-    
+
         $this->load->dbforge();
         $this->dbforge->drop_table('search');
     }
