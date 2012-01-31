@@ -167,9 +167,9 @@ class Menu extends MY_Controller{
 		
         $array_keys = array_keys($menu_array);
         $start_index = $array_keys[0];
-	$end_index = $array_keys[count($array_keys)-1];		
+	    $end_index = $array_keys[count($array_keys)-1];
 		
-	foreach ($menu_array as $item)
+	    foreach ($menu_array as $item)
         {
             if (!$item['hidden'])
             {
@@ -245,29 +245,29 @@ class Menu extends MY_Controller{
 				if (!is_array($item['add_data']))
 					$item['add_data'] = unserialize($item['add_data']);
 				$item['add_data']['newpage'] == '1' ? $this->arranged_menu_array[$arranged_items_count]['target'] = 'target="_blank"': $this->arranged_menu_array[$arranged_items_count]['target'] = 'target="_self"';
-				
-				if(($menu_array[$start_index] != $item) AND ($menu_array[$end_index] != $item))
+
+
+				if(($menu_array[$start_index]['position'] != $item['position']) AND ($menu_array[$end_index]['position'] != $item['position']))
 				{
 					$this->arranged_menu_array[$arranged_items_count]['edge'] = "default";
 				}
 				
-				if(($menu_array[$start_index] == $item) AND ($menu_array[$end_index] != $item))
+				if(($menu_array[$start_index]['position'] == $item['position']) AND ($menu_array[$end_index]['position'] != $item['position']))
 				{
 					$this->arranged_menu_array[$arranged_items_count]['edge'] = "first";
 				}
 				
-				if(($menu_array[$start_index] != $item) AND ($menu_array[$end_index] == $item))
+				if(($menu_array[$start_index]['position'] != $item['position']) AND ($menu_array[$end_index]['position'] == $item['position']))
 				{
 					$this->arranged_menu_array[$arranged_items_count]['edge'] = "last";
 				}
 				
-				if(($menu_array[$start_index] == $item) AND ($menu_array[$end_index] == $item))
+				if(($menu_array[$start_index]['position'] == $item['position']) AND ($menu_array[$end_index]['position'] == $item['position']))
 				{
-					$this->arranged_menu_array[$arranged_items_count]['edge'] = "one";					
+					$this->arranged_menu_array[$arranged_items_count]['edge'] = "one";
 				}
 				
-				
-				
+
 				$sub_menus = $this->_get_sub_menus($item['id']);
 
 				if (isset($this->expand[$item['id']]) AND $this->expand[$item['id']] == TRUE AND count($sub_menus) > 0)
@@ -297,7 +297,7 @@ class Menu extends MY_Controller{
 	}
 	
 
-		/**
+    /**
 	 * Натягивает шаблон на данные и запихивает всю эту красоту в this->arranged_menu_array[$arranged_items_count]['html']. версия для элемента списка
 	 *
 	 * @param integer $index номер элемента для натягивания шаблона  
