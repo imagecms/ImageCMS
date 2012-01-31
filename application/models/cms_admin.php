@@ -91,16 +91,16 @@ class Cms_admin extends CI_Model {
 		if($alias == 0)
 		{
 			$this->db->where('lang_alias', $page['id']);
-			$this->db->update('content', array('category' => $data['category'], 'cat_url' => $data['cat_url'], 'url' => $data['url']));
+			$this->db->update('content', array('post_status'=>$data['post_status'],'category' => $data['category'], 'cat_url' => $data['cat_url'], 'url' => $data['url']));
         }
         else
         {
 			$page = $this->get_page($alias);
 			$this->db->where('lang_alias', $page['id']);
-			$this->db->update('content', array('category' => $data['category'], 'cat_url' => $data['cat_url']));
+			$this->db->update('content', array('post_status'=>$data['post_status'], 'category' => $data['category'], 'cat_url' => $data['cat_url']));
 
 			$this->db->where('id', $alias);
-            $this->db->update('content', array('category' => $data['category'], 'cat_url' => $data['cat_url']));
+            $this->db->update('content', array('post_status'=>$data['post_status'],'category' => $data['category'], 'cat_url' => $data['cat_url']));
 
             $data['url'] = $page['url'];
 		}
@@ -110,7 +110,8 @@ class Cms_admin extends CI_Model {
 		$this->db->update('content', $data);
 		// end update page
 
-		return $this->db->affected_rows();
+        $affectedRows = $this->db->affected_rows();
+		return $affectedRows;
 	}
 
 /*************************************************************

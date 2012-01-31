@@ -143,7 +143,7 @@ class Search extends MY_Controller
     /**
      * Highlight found text
      * @param array $data Pages to highlight
-     * @param string $text 
+     * @param string $text
      * @return array
      */
     protected function _highlight_text(array $data, $text)

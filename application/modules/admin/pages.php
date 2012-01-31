@@ -543,11 +543,10 @@ class Pages extends MY_Controller{
 
 			if ($this->cms_admin->update_page($page_id, $data) >= 1)
 			{
-
-            $this->lib_admin->log('
-            Изменил страницу  
-            <a href="#" onclick="ajax_div(\'page\',\''.site_url('admin/pages/edit/'.$page_id).'\'); return false;">'.$data['title'].'</a>'
-            );
+                $this->lib_admin->log('
+                Изменил страницу
+                <a href="#" onclick="ajax_div(\'page\',\''.site_url('admin/pages/edit/'.$page_id).'\'); return false;">'.$data['title'].'</a>'
+                );
 
 				showMessage ('Содержание страницы обновлено.');
 			}else{
