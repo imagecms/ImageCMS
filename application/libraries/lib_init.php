@@ -62,6 +62,7 @@ class Lib_init {
         $first_segment = $CI->uri->segment(1);
         if(substr($uri, -1, 1) === '/' && $first_segment !== 'admin' && $uri !== '/')
         {
+            $get_params = '';
             if(!empty($_GET))
                 $get_params = '?'.http_build_query($_GET);
             redirect(substr($uri,0,-1).$get_params, 'location', 301);
