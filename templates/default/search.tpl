@@ -7,9 +7,14 @@
 {/if}
 
 <ul>
-{foreach $items as $page}
-	<li><a href="{site_url($page.full_url)}">{$page.title}</a></li>
-{/foreach}
+    {foreach $items as $page}
+        <li>
+            <a href="{site_url($page.full_url)}">{$page.title}</a>
+            <p>
+                {$page.parsedText}
+            </p>
+        </li>
+    {/foreach}
 </ul>
 
 <div class="pagination" align="center">
