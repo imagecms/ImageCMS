@@ -632,10 +632,11 @@ class Pages extends MY_Controller{
             $item = explode('_', substr($v, 4));
 
             $data = array(
-                    'position' => $item[1]
-                    );
+                'position' => $item[1]
+            );
             
             $this->db->where('id', $item[0]);
+            $this->db->or_where('lang_alias', $item[0]);
             $this->db->update('content', $data);
         }
     }
