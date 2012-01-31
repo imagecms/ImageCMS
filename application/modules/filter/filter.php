@@ -350,7 +350,7 @@ class Filter extends MY_Controller {
                 }
                 else
                 {
-                    $result[$segment_key] = $segment_val;
+                    $result[$segment_key] = urldecode($segment_val);
                 }
             }
 

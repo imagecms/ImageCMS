@@ -211,7 +211,6 @@ class Categories extends MY_Controller {
                 $this->lib_category->clear_cache();
                 updateDiv('categories', site_url('/admin/categories/update_block')); // Update categories on workspace
 		}
-
 	}
 
     function update_urls()

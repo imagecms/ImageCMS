@@ -85,6 +85,19 @@ class Admin extends MY_Controller {
         $form->title = 'Создание Поля';
 
         if ($_POST)
+        {
+
+            if(empty($_POST['field_name']))
+            {
+                showMessage('Укажите Имя поля');
+                exit;
+            }
+            if(empty($_POST['label']))
+            {
+                showMessage('Укажите Label поля');
+                exit;
+            }
+
             if ($form->isValid())
             {
                 $data = $form->getData();
@@ -111,6 +124,7 @@ class Admin extends MY_Controller {
             {
                 showMessage($form->_validation_errors());
             }
+        }
 
         $this->template->add_array(array(
             'form'   => $form,
@@ -166,6 +180,7 @@ class Admin extends MY_Controller {
 
     public function delete_field($field_name)
     {
+        $field_name = urldecode($field_name);
         $this->db->where('field_name', $field_name);
         $this->db->delete('content_fields');
 
@@ -175,6 +190,7 @@ class Admin extends MY_Controller {
 
     public function edit_field($name = '')
     {
+        $name = urldecode($name);
         $this->db->limit(1);
         $field = $this->db->get_where('content_fields', array('field_name' => (string) $name));
 
@@ -227,6 +243,13 @@ class Admin extends MY_Controller {
         $form->title = 'Создание Группы';
 
         if ($_POST)
+        {
+            if(empty($_POST['name']))
+            {
+                showMessage('Укажите название группы');
+                exit;
+            }
+
             if ($form->isValid())
             {               
                 $this->db->insert('content_field_groups', $form->getData());
@@ -238,6 +261,7 @@ class Admin extends MY_Controller {
             {
                 showMessage($form->_validation_errors());
             }
+        }
 
         $this->template->add_array(array(
             'form' => $form,
@@ -323,27 +347,27 @@ class Admin extends MY_Controller {
     // on add/edit page tpl.
     public function form_from_category_group($category_id = FALSE, $item_id = FALSE, $item_type = FALSE)
     {
-	if ($category_id == 'page')
-	{
-		$item_type = 'page';
-		$item_id = 0;
-		$category_id = 0;
-	}
-	
-	if ($item_id == 'page')
-	{
-		$item_type = 'page';
-		$item_id = $category_id;
-		$category_id = 0;
-	}
+        if ($category_id == 'page')
+        {
+            $item_type = 'page';
+            $item_id = 0;
+            $category_id = 0;
+        }
+
+        if ($item_id == 'page')
+        {
+            $item_type = 'page';
+            $item_id = $category_id;
+            $category_id = 0;
+        }
 		
         $category = (object) $this->lib_category->get_category($category_id);
 
         if ($item_type == 'category')
             $category->field_group = $category->category_field_group;
 
-	if ($category_id == '0')
-		$category->field_group = 0;
+        if ($category_id == '0')
+            $category->field_group = 0;
 
 
         if ($category->field_group != '-1')

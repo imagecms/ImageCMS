@@ -20,7 +20,7 @@
         <div class="form_text">URL:</div>
         <div class="form_input">
             <input type="text" name="url" id="cat_url" value="{$url}" class="textbox_long" />
-           <img onclick="translite_cat_name($('cat_name').value);" align="absmiddle" style="cursor:pointer" src="{$THEME}/images/translit.png" width="16" height="16" /> 
+           <img onclick="translite_cat_name($('cat_name').value);" align="absmiddle" style="cursor:pointer" src="{$THEME}/images/translit.png" width="16" height="16" />
         </div>
         <div class="form_overflow"></div>
 
@@ -42,6 +42,11 @@
                 <option value="{$k}" {if $k == $category_field_group} selected="selected" {/if}>{$v}</option>
             {/foreach}
             </select>
+
+                <br>
+                <label><input type="checkbox" value="1" name="category_apply_for_subcats">Применить для подкатегорий</label>
+                <br/>
+
             <div class="lite">Выберите группу полей для категории.</div>
         </div>
         <div class="clear"></div>
@@ -55,9 +60,15 @@
                 <option value="{$k}" {if $k == $field_group} selected="selected" {/if}>{$v}</option>
             {/foreach}
             </select>
+
+                <br>
+                <label><input type="checkbox" value="1" name="apply_for_subcats">Применить для подкатегорий</label>
+                <br/>
+
             <div class="lite">Выберите группу полей, которая будет отображаться при создании страниц в данной категории.</div>
         </div>
         <div class="clear"></div>
+
 
         <div class="form_text">Изображение:</div>
         <div class="form_input">
@@ -83,27 +94,27 @@
         <div class="form_text">Сортировать:</div>
         <div class="form_input">
             <select name="order_by">
-            <option value="publish_date" {if $order_by == "publish_date"} selected="selected" {/if}>По дате</option>    
-            <option value="title" {if $order_by == "title"} selected="selected" {/if}>По Алфавиту</option>    
-            <option value="position" {if $order_by == "position"} selected="selected" {/if}>По Позиции</option> 
+            <option value="publish_date" {if $order_by == "publish_date"} selected="selected" {/if}>По дате</option>
+            <option value="title" {if $order_by == "title"} selected="selected" {/if}>По Алфавиту</option>
+            <option value="position" {if $order_by == "position"} selected="selected" {/if}>По Позиции</option>
             </select>
 
             <select name="sort_order">
-            <option value="desc" {if $sort_order == "desc"} selected="selected" {/if}>Убыванию</option> 
-            <option value="asc" {if $sort_order == "asc"} selected="selected" {/if}>Возрастанию</option>    
+            <option value="desc" {if $sort_order == "desc"} selected="selected" {/if}>Убыванию</option>
+            <option value="asc" {if $sort_order == "asc"} selected="selected" {/if}>Возрастанию</option>
             </select>
         </div>
         <div class="clear"></div>
 
         <div class="form_text">Записей на странице:</div>
         <div class="form_input">
-           <input type="text" name="per_page" value="{$per_page}" class="textbox_long" /> 
+           <input type="text" name="per_page" value="{$per_page}" class="textbox_long" />
         </div>
         <div class="clear"></div>
 
         <div class="form_text"></div>
         <div class="form_input">
-           <label><input type="checkbox" name="comments_default" value="1" {if $comments_default == 1 } checked="checked" {/if}  />  Комментирование страниц по умолчанию</label> 
+           <label><input type="checkbox" name="comments_default" value="1" {if $comments_default == 1 } checked="checked" {/if}  />  Комментирование страниц по умолчанию</label>
         </div>
         <div class="clear"></div>
 
@@ -115,7 +126,7 @@
             {if $c.id == $id}
                <option disabled="disabled" value="{$c.id}"> {for $i=0; $i < $c.level;$i++}-{/for} {$c.name}</option>
             {else:}
-                <option value="{$c.id}"{foreach $fetch_pages as $k => $v}{if $v == $c.id} selected="selected" {/if}{/foreach}>{for $i=0; $i < $c.level;$i++}-{/for} {$c.name}</option> 
+                <option value="{$c.id}"{foreach $fetch_pages as $k => $v}{if $v == $c.id} selected="selected" {/if}{/foreach}>{for $i=0; $i < $c.level;$i++}-{/for} {$c.name}</option>
             {/if}
             {/foreach}
         </select>
@@ -125,7 +136,7 @@
         <div class="form_text">Главный шаблон:</div>
         <div class="form_input">
             <input type="text" name="main_tpl" value="{$main_tpl}" class="textbox_short" /> .tpl
-            <div class="lite">Главный шаблон категории. По умолчанию  main.tpl</div> 
+            <div class="lite">Главный шаблон категории. По умолчанию  main.tpl</div>
         </div>
         <div class="form_overflow"></div>
 
@@ -139,7 +150,7 @@
         <div class="form_text">Шаблон страниц:</div>
         <div class="form_input">
             <input type="text" name="page_tpl" value="{$page_tpl}" class="textbox_short" /> .tpl
-            <div class="lite">Шаблон просмотра страниц. По умолчанию  page_full.tpl</div>    
+            <div class="lite">Шаблон просмотра страниц. По умолчанию  page_full.tpl</div>
         </div>
         <div class="form_overflow"></div>
     </div>
@@ -193,9 +204,8 @@
                     height: 600
                 });
             }
-               
+
             MochaUI.search_p_Window();
         }
-
 </script>
 {/literal}
