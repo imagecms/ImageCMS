@@ -70,9 +70,8 @@
                 
                 switch (data.item_type)
                 {
-                    case 'page': 
+                    case 'page':
                         //load and set item data
- 
 
                         $('item_id').set('text',data.item_id);
                         $('item_title').value = data.title;
@@ -83,16 +82,19 @@
                         }else{
                             $('page_hidden').setProperty('checked','true'); 
                         }
+
+
+			                item_newpage = data.add_data.newpage;
+
 			
-			item_newpage = data.add_data.newpage;
-			
-			if(item_newpage == 0) {
+			            if(item_newpage == 0) {
                             $('page_nonewpage').setProperty('checked','true');
                         }else{
                             $('page_newpage').setProperty('checked','true'); 
                         }
 
                         if (data.parent_id != 0) {
+
                             $('item_parent_id').getElements('option').each(function(option,i) {
                                 if (option.value == data.parent_id)
                                 {
