@@ -106,7 +106,7 @@ class Lib_seo {
 							 "0", "1", "2", "3", "4", "5", "6", "7", "8", "9","mdash"
 							 );
 		$text = str_replace($del_symbols, ' ', $text);
-		@$text = ereg_replace("( +)", " ", $text);
+        $text = preg_replace("( +)", " ", $text);
 		$this->origin_arr = explode(" ", trim($text));
 		return $this->origin_arr;
 	}
