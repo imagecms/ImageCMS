@@ -178,7 +178,7 @@ class CI_URI {
 		{
 			return '/';
 		}
-				
+
 		$uri = parse_url($uri, PHP_URL_PATH);
 
 		// Do some final cleaning of the URI and return it
