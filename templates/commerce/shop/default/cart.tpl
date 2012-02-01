@@ -1,11 +1,13 @@
+{$this->registerMeta('<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">')}
+
 <h5>Корзина</h5>
 <div class="spLine"></div>
+
 
 {if !$items}
     {echo ShopCore::t('Корзина пуста')}
     {return}
 {/if}
-
 
 <script type="text/javascript">
 var deliveryMethods_prices = new Array;

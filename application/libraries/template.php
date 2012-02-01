@@ -150,7 +150,7 @@ class Template extends Mabilis {
         return $this->read($file, $data);
     }
 
-    public function display($file, $data = array())
+    public function display($file, $data = array(), $processOutput = true)
     {
         if (sizeof($data) > 0)
         {
@@ -158,7 +158,10 @@ class Template extends Mabilis {
         }
 
 		$this->assign('BASE_URL',site_url()); //Base URL
-        return $this->view($file.'.tpl', $this->template_vars);
+        $result = $this->view($file.'.tpl', $this->template_vars, true);
+        if($processOutput === true)
+            echo $this->splitTplFiles($result);
+        echo $result;
     }
 
     public function include_tpl($name, $path)
@@ -173,6 +176,7 @@ class Template extends Mabilis {
     private $_css_code = array();
     private $_css_code_pos = array();
     private $_js_code_pos = array();
+    private $_metas = array();
 
     public function registerCssCode($name, $code, $position = 'before')
     {
@@ -199,6 +203,15 @@ class Template extends Mabilis {
     {
         $position = $this->_check_postion($position);
         $this->_js_files[media_url($url)] = $position; 
+    }
+
+    /**
+     * Place custom code before /head
+     * @param $code
+     */
+    public function registerMeta($code)
+    {
+        $this->_metas[] = $code;
     }
 
     private function _check_postion($position)
@@ -283,6 +296,12 @@ class Template extends Mabilis {
                     break;
                 }
             }
+        }
+
+        if(sizeof($this->_metas) > 0)
+        {
+            foreach ($this->_metas as $code)
+                $result_before .= "111\n";
         }
 
         $js_tpl_begin = "window.addEvent('domready', function() { "; 

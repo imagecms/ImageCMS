@@ -1,3 +1,5 @@
+{$this->registerMeta('<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">')}
+
 <div style="float: left; width: 50%;margin: 20px 0 0 20px;">
 {if $errors}
     <div style="background-color:#f5f5dc;">
