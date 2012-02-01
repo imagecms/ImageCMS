@@ -25,7 +25,7 @@
                         </select>
                     </div>
                     <div class="clear"></div>
-                    
+
                     <div class="fieldName">Товаров на страницу:</div>
                     <div class="field">
                         <select name="user_per_page" class="per_page">
@@ -35,12 +35,12 @@
                            <option {if ShopCore::$_GET['user_per_page']=='all'}selected{/if} value="all">Все</option>
                         </select>
                     </div>
-                    <div class="clear"></div> 
-                    
+                    <div class="clear"></div>
+
                     <div class="fieldName">Цена:</div>
                     <div class="field">
                         от <input type="text" value="{encode(ShopCore::$_GET['lp'])}" name="lp" style="width:26px;" />
-                        до <input type="text" value="{encode(ShopCore::$_GET['rp'])}" name="rp" style="width:26px;"/> 
+                        до <input type="text" value="{encode(ShopCore::$_GET['rp'])}" name="rp" style="width:26px;"/>
                     </div>
                     <div class="clear"></div>
 
@@ -90,7 +90,7 @@
             <!-- END FILTER BOX -->
         </div>
         <div class="sp"></div>
-       
+
         <div id="categoryPath">
             {renderCategoryPath($model)}
         </div>
@@ -112,5 +112,10 @@
         <div class="products_block">
             {include_tpl('products_block')}
         </div>
+
+        {if $_GET.per_page < 2}
+            {echo $model->getDescription()}
+        {/if}
+
     </div>
     <div id="loadmoreajaxloader" style="display:none;"><center><img src="{$SHOP_THEME}style/images/ui-anim_basic_16x16.gif" /></center></div>
