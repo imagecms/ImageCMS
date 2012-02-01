@@ -1,3 +1,5 @@
+{$this->registerMeta('<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">')}
+
 <div id="titleExt"><span class="ext">{lang('lang_login_page')}</span></h5></div>
 
 {if validation_errors() OR $info_message}
