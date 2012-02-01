@@ -161,7 +161,8 @@ class Template extends Mabilis {
         $result = $this->view($file.'.tpl', $this->template_vars, true);
         if($processOutput === true)
             echo $this->splitTplFiles($result);
-        echo $result;
+        else
+            echo $result;
     }
 
     public function include_tpl($name, $path)
