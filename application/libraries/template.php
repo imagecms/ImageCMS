@@ -301,7 +301,7 @@ class Template extends Mabilis {
         if(sizeof($this->_metas) > 0)
         {
             foreach ($this->_metas as $code)
-                $result_before .= "111\n";
+                $result_before .= "$code\n";
         }
 
         $js_tpl_begin = "window.addEvent('domready', function() { "; 
