@@ -5,7 +5,7 @@
             <li class="{counter('', '', 'last')}">
                 <div class="image" style="display:table-cell;vertical-align:middle;overflow:hidden;">
                     <a href="{shop_url('product/' . $p->getUrl())}">
-                        <img src="{productImageUrl($p->getId() . '_small.jpg')}" border="0"  alt="image" />
+                        <img src="{productImageUrl($p->getId() . '_small.jpg')}" border="0"  alt="{echo encode($p->getName())}" />
                     </a>
                 </div>
                 <h3 class="name"><a href="{shop_url('product/' . $p->getUrl())}">{echo ShopCore::encode($p->getName())}</a></h3>

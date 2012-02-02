@@ -104,7 +104,7 @@ function ajaxAddToWishList()
       <div id="gallery">
         <div id="prImage" align="center">
         {if $model->getMainImage()}
-            <img src="{productImageUrl($model->getMainImage())}" border="0" alt="image" />
+            <img src="{productImageUrl($model->getMainImage())}" border="0" alt="{echo encode($model->getName())}" />
         {/if}       
         </div>
 
