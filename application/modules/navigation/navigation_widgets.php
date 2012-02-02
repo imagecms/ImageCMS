@@ -24,6 +24,8 @@ class Navigation_Widgets extends MY_Controller{
             $settings = $widget['settings'];
         }
 
+
+
         switch ($this->core->core_data['data_type'])
         {
             case 'category':                
