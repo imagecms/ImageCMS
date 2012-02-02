@@ -96,7 +96,7 @@ class Cfcm extends MY_Controller {
     {
         if (($cache_result = $this->cache->fetch('cfcm_field_'.$item_data['id'].$item_type)) !== FALSE)
         {
-            $item_data = array_merge($item_data, $cache_result); 
+            $item_data = array_merge($item_data, $cache_result);
             return $item_data;
         }
 
@@ -150,17 +150,23 @@ class Cfcm extends MY_Controller {
                     }
 
                     ksort($result[$key]);
-                } 
+                }
             }
         }
 
-        //Sort fields by weight      
+        //Sort fields by weight
         array_multisort($weight, SORT_ASC, $result, SORT_DESC, $result);
 
         if (count($result) > 0)
         {
-            $this->cache->store('cfcm_field_'.$item_data['id'].$item_type, $result);
+            // Display many many values
+            foreach ($result as $key => $val)
+            {
+                if(is_array($val))
+                    $result[$key] = implode(', ', $val);
+            }
 
+            $this->cache->store('cfcm_field_'.$item_data['id'].$item_type, $result);
             $item_data = array_merge($item_data, $result);
         }
 
