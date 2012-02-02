@@ -10,7 +10,7 @@
 $lang['lang_categories'] = 'Категории';
 
 // Auth module
-$lang['lang_register'] = 'Регистарция';
+$lang['lang_register'] = 'Регистрация';
 $lang['lang_login'] = 'Логин';
 $lang['lang_password'] = 'Пароль';
 $lang['lang_confirm_password'] = 'Повторите Пароль';
