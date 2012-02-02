@@ -531,11 +531,22 @@ class Core extends MY_Controller {
         $category['fetch_pages'] = unserialize($category['fetch_pages']);
 
 		$content = '';
-        $offset = $this->uri->segment($this->uri->total_segments());
+
+        preg_match('/^\d+$/', $this->uri->segment($this->uri->total_segments()), $matches);
+        if(!empty($matches))
+        {
+            $offset = $this->uri->segment($this->uri->total_segments());
+            $segment = $this->uri->total_segments();
+        }
+        else
+        {
+            $offset = 0;
+            $segment = $this->uri->total_segments()+1;
+        }
 
         $offset == FALSE ? $offset = 0 : TRUE;
         $row_count = $category['per_page'];
-    
+
         $pages = $this->_get_category_pages($category, $row_count, $offset);
 
         // Count total pages for pagination
@@ -549,7 +560,7 @@ class Core extends MY_Controller {
             $config['base_url']    = '/'.$category['path_url'];
             $config['total_rows']  = $category['total_pages'];
             $config['per_page']    = $category['per_page'];
-            $config['uri_segment'] = $this->uri->total_segments();
+            $config['uri_segment'] = $segment;
             $config['first_link']  = lang('first_link');
             $config['last_link']   = lang('last_link');
 
