@@ -1,6 +1,6 @@
 {# View ordered products}
 
-<h5>Заказ № {echo $model->getId()}</h5>
+    <h5>Заказ</h5>
     {if $CI->session->flashdata('makeOrder') === true}
     <div style="padding:10px;background-color:#f5f5dc;">
         Спасибо за Ваш заказ.
