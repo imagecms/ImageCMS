@@ -3,7 +3,7 @@
 /***************************************************
  * Image CMS Template Engine (Mabilis TPL)
  *
- * Simple template engine for Image CMS based on regular expressions search and replace. 
+ * Simple template engine for Image CMS based on regular expressions search and replace.
  *
  * author: dev@imagecms.net
  * version: 1.3 Beta PHP5
@@ -30,7 +30,7 @@ class Mabilis_Compiler extends Mabilis {
      *
      * @access public
      * @param string template filename
-     */ 
+     */
     public function compile($file)
     {
         // Read template data
@@ -46,7 +46,7 @@ class Mabilis_Compiler extends Mabilis {
 
             $include_functions = array();
 
-            // Replace all {$variable} as echo $variable 
+            // Replace all {$variable} as echo $variable
             //$tpl_data = preg_replace('/({\s*)\s*(\$\w*?)\s*(\s*\})/', '$1 echo $2;$3', $tpl_data);
             $tpl_data = preg_replace('/\{(\$\w*?)\}/', '{ echo $1; }', $tpl_data);
 
@@ -94,14 +94,14 @@ class Mabilis_Compiler extends Mabilis {
             $tpl_data = preg_replace('/\{\s*(\w*)\s*(\(.*?\))\s*\}/', '{ echo $1 $2; }', $tpl_data);
 
             // Replace PHP tags
-            $tpl_data = preg_replace("/<\?php(.*?)\?>/si", '<!user_php $1 user_php!>',$tpl_data);
+            $tpl_data = preg_replace("/<\?php(.*?)\?>/si", '<!user_php$1user_php!>',$tpl_data);
 
             // Replace literal tags
             $tpl_data = preg_replace("/\{\s*literal\s*\}(.*?)\{\s*\/literal\}/si", '<!user_literal$1user_literal!>',$tpl_data);
 
             // Replace delimiters to php tags
-            $tpl_data = preg_replace('/(\s*)\{(\s*)/', '$1<?php $2', $tpl_data);
-            $tpl_data = preg_replace('/(\s*)\}(\s*)/', '$1 ?>$2', $tpl_data);
+            $tpl_data = preg_replace('/(\s*)\{(\s*)/', '$1<?php$2', $tpl_data);
+            $tpl_data = preg_replace('/(\s*)\}(\s*)/', '$1?>$2', $tpl_data);
 
 
             /******************************************
@@ -184,6 +184,9 @@ class Mabilis_Compiler extends Mabilis {
                 $modifi_time = '$mabilis_last_modified='.filemtime($file).';';
             }
 
+            // Delete repeating spaces after php open tag
+            $tpl_data = preg_replace('/(\s*)\<\?php\s*/', '$1<?php ', $tpl_data);
+
             $ttl_string = '<?php $mabilis_ttl='.$del_time.'; '.$modifi_time.' //'.$file.' ?>';
 
             $this->write_compiled_file($file, $add_data.$tpl_data.$ttl_string);
@@ -211,11 +214,11 @@ class Mabilis_Compiler extends Mabilis {
 		{
 			return FALSE;
 		}
-		
+
 		flock($fp, LOCK_EX);
 		fwrite($fp, $data);
 		flock($fp, LOCK_UN);
-		fclose($fp);	
+		fclose($fp);
 
         @chmod ($this->config->compile_path . md5($file) . $this->config->compiled_ext, 0777);
 

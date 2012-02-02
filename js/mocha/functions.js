@@ -243,7 +243,7 @@ block_screen();
 
 function translite_title(str)
 {
-			var req = new Request.HTML({
+        var req = new Request.HTML({
 			method: 'post',
 			url: base_url + 'admin/pages/ajax_translit/',
 			onComplete: function(responseTree,responseElements,responseHTML,responseJavaScript) { $('page_url').value = responseHTML;	}
