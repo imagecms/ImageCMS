@@ -13,7 +13,7 @@
 		<script type="text/javascript" src="{$JS_URL}/mocha/excanvas-compressed.js"></script>
 	<![endif]-->
 
-	<script type="text/javascript" src="{$JS_URL}/mocha/mootools-1.2-core.js"></script>
+	<script type="text/javascript" src="{$JS_URL}/mocha/mootools-1.3-core.js"></script>
 	<script type="text/javascript" src="{$JS_URL}/mocha/mootools-1.2-more.js"></script>
 	<script type="text/javascript" src="{$JS_URL}/plugins/Roar.js"></script>
 	<script type="text/javascript" src="{$JS_URL}/mocha/functions.js"></script>
