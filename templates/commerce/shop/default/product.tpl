@@ -112,7 +112,9 @@ function ajaxAddToWishList()
             {foreach $model->getSProductImagess() as $image}
                 <div class="images">
                     <div class="image">
-                        <a class="lightbox" title=" " href="{productImageUrl($image->getImageName())}"><img src="{productImageUrl($image->getImageName())}" style="width:90px;"></a>
+                        <a class="lightbox" alt="{echo encode($model->getName())}" href="{echo $image->getUrl()}">
+                            <img src="{echo $image->getThumbUrl()}" style="width:90px;">
+                        </a>
                     </div>
                 </div>
             {/foreach}
