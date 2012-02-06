@@ -109,7 +109,12 @@ var rdTree = new Class({
 		link.setProperty('class', this.options.classes.selected);
 		if (this.options.openSelectedNode) {
 			var ul = link.getParent('li').getElement('ul');
-			this.expandNode(ul,ul.getParent().getElement('img'));
+
+            try{
+			    this.expandNode(ul,ul.getParent().getElement('img'));
+            }catch(err){
+                // console.log('Error rdTree');
+            }
 		}
 
 
@@ -238,8 +243,16 @@ var rdTree = new Class({
 	checkSelectedVisible: function(ul) {
 		if (ul != $(this.id)) {
 			if (!(ul.hasClass(this.options.classes.opened))) {
-				this.expandNode(ul,ul.getParent().getElement('img'));
-				this.checkSelectedVisible(ul.getParent('ul'));
+                try{
+				    this.expandNode(ul,ul.getParent().getElement('img'));
+                }catch(err){
+                    // ...code...
+                }
+                try{
+                    this.checkSelectedVisible(ul.getParent('ul'));
+                }catch(err){
+                    // ...code...
+                }
 			}
 		}
 	},
