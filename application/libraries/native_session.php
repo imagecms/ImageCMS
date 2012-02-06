@@ -156,7 +156,7 @@ class Native_session {
     */
     function _sess_run()
     {
-        session_start();
+        @session_start();
 
         // check if session id needs regeneration
         if ( $this->_session_id_expired() )

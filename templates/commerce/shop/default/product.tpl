@@ -37,7 +37,7 @@ function ajaxAddToCart()
         type: "POST",
         data: $("#productForm").serialize(),
         url: "/shop/cart/add",
-        success: function(){$("#mycart").load('/shop/ajax/getCartDataHtml')},
+        success: function(){$("#mycart").load('/shop/ajax/getCartDataHtml')}
      });
 
     $("#cartNotify").css('display', 'block');
@@ -50,7 +50,7 @@ function ajaxAddToWishList()
         type: "POST",
         data: $("#productForm").serialize(),
         url: "/shop/wish_list/add",
-        success: function(){$("#mywishlist").load('/shop/ajax/getWishListDataHtml')},
+        success: function(){$("#mywishlist").load('/shop/ajax/getWishListDataHtml')}
      });
 
     $("#wishListNotify").css('display', 'block');
