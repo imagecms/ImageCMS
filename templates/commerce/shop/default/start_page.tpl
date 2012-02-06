@@ -15,7 +15,7 @@
             before:fade_slide_caption
         })
     }
- 
+
     function mycarousel_itemLoadCallback(carousel, state)
     {
         // Check if the requested items already exist
@@ -107,7 +107,7 @@
     <ul class="products">
     {$count = 1}
     {foreach $hits as $p}
-        <li class="{counter('', '', 'last')}">
+        <li {if $count == 3} class="last" {$count = 0}{/if}>
             <div class="image" style="display:table-cell;vertical-align:middle;overflow:hidden;">
                 <a href="{shop_url('product/' . $p->getUrl())}">
                     <img src="{productImageUrl($p->getId() . '_small.jpg')}" border="0"  alt="image" />
@@ -122,7 +122,7 @@
                     <span style="font-size:14px;">{echo $p->firstVariant->toCurrency()} {$CS}</span>
                 {else:}
                     <span style="font-size:14px;">{echo $p->firstVariant->toCurrency()} {$CS}</span>
-                {/if}            
+                {/if}
             </div>
             <div class="compare"><a href="{shop_url('compare/add/' . $p->getId())}">Сравнить</a></div>
         </li>
@@ -143,7 +143,7 @@
     <ul class="products">
     {$count = 1}
     {foreach $newest as $p}
-        <li class="{counter('', '', 'last')}">
+        <li {if $count == 3} class="last" {$count = 0}{/if}>
             <div class="image" style="display:table-cell;vertical-align:middle;overflow:hidden;">
                 <a href="{shop_url('product/' . $p->getUrl())}">
                     <img src="{productImageUrl($p->getId() . '_small.jpg')}" border="0"  alt="image" />
@@ -158,7 +158,7 @@
                     <span style="font-size:14px;">{echo $p->firstVariant->toCurrency()} {$CS}</span>
                 {else:}
                     <span style="font-size:14px;">{echo $p->firstVariant->toCurrency()} {$CS}</span>
-                {/if}            
+                {/if}
             </div>
             <div class="compare"><a href="{shop_url('compare/add/' . $p->getId())}">Сравнить</a></div>
         </li>
