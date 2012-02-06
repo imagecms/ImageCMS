@@ -54,6 +54,9 @@ $route['install/(.*)'] = "install/$1";
 $route['install'] = "install"; 
 //----------------------------------------------
 
+$route['sitemap.xml']    = 'sitemap/build_xml_map';
+$route['sitemap.xml.gz'] = 'sitemap/gzip';
+
 $route[':any'] = "core";
 
 /* End of file routes.php */
