@@ -11,6 +11,8 @@ class Cache
     public $get = 0;
     public $set = 0;
 
+    public $disableCache = 0;
+
 	//Cache config
     // TODO: Rewrite auto_clean to fetch date from DB
     public $_Config = array('store'        => 'cache',
@@ -31,6 +33,8 @@ class Cache
         {
             $this->_Config['store'] = BASEPATH.'cache/';
         }
+
+        $this->disableCache = (boolean) $this->CI->config->item('disable_cache');
 
         // Is cache folder wratible?
         if (!is_writable($this->_Config['store']))
@@ -54,6 +58,9 @@ class Cache
      */
     public function fetch($key, $group = FALSE)
     {
+        if($this->disableCache === true)
+            return false;
+
     	$this->set_group($group);
 
 	    if (($ret = $this->_fetch($key)) === false)
@@ -141,6 +148,9 @@ class Cache
      */
     public function store($key, $data, $ttl = false, $group = false)
     {
+        if($this->disableCache === true)
+            return false;
+
         if (!$ttl)
             $ttl = $this->_Config['ttl'];
 
