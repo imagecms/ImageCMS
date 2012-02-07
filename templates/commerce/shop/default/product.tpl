@@ -1,9 +1,14 @@
 {$jsCode}
 
+<script type="text/javascript">
+    var currentProductId = '{echo $model->getId()}';
+</script>
+
 <!-- BEGIN STAR RATING -->
 <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}js/rating/jquery.rating-min.css" />
 <script src="{$SHOP_THEME}js/rating/jquery.rating-min.js"></script>
 <script src="{$SHOP_THEME}js/rating/jquery.MetaData-min.js"></script>
+<script src="{$SHOP_THEME}js/product.js"></script>
 <!-- END STAR RATING -->
 
 <!-- BEGIN LIGHTBOX -->
@@ -12,59 +17,6 @@
 <link type="text/css" rel="stylesheet" media="screen" href="{$SHOP_THEME}js/lightbox/styles/jquery.lightbox.min.css" />
 <!-- END LIGHTBOX -->
 
-{literal}
-<script type="text/javascript">$(function(){
-    // Init light box
-    $('.lightbox').lightbox();
-
-    // Init star rating
-    $('.hover-star').rating({
-        callback: function(value, link) {
-            $.ajax({
-                type: "POST",
-                data: "pid={/literal}{echo $model->getId()}{literal}&val=" + value,
-                url:'/shop/ajax/rate',
-             });
-
-            $('.hover-star').rating('readOnly', true);
-        }
-    });
-});
-
-function ajaxAddToCart()
-{
-    $.ajax({
-        type: "POST",
-        data: $("#productForm").serialize(),
-        url: "/shop/cart/add",
-        success: function(){$("#mycart").load('/shop/ajax/getCartDataHtml')}
-     });
-
-    $("#cartNotify").css('display', 'block');
-    setTimeout(function() {  $("#cartNotify").css('display', 'none') }, 2000); 
-}
-
-function ajaxAddToWishList()
-{
-    $.ajax({
-        type: "POST",
-        data: $("#productForm").serialize(),
-        url: "/shop/wish_list/add",
-        success: function(){$("#mywishlist").load('/shop/ajax/getWishListDataHtml')}
-     });
-
-    $("#wishListNotify").css('display', 'block');
-    setTimeout(function() {  $("#wishListNotify").css('display', 'none') }, 2000); 
-}
-</script>
-<style type="text/css">
-    .validateTips p{
-        padding: 0;
-        display: block;
-        margin: 0;
-    }    
-</style>
-{/literal}
 {# Display sidebar.tpl #}
 {include_tpl ('sidebar')}
 

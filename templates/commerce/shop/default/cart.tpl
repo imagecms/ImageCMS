@@ -1,57 +1,28 @@
 {$this->registerMeta('<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">')}
+<script type="text/javascript" src="/templates/commerce/shop/default/js/cart.js"></script>
+
+<script type="text/javascript">
+    var deliveryMethods_prices = new Array;
+    var currencySymbol = '{$CS}';
+    var totalPrice = '{echo ShopCore::app()->SCart->totalPrice()}';
+
+    {foreach $deliveryMethods as $d}
+        {if $d->getIsPriceInPercent() == true}
+            {$delPrice = round(ShopCore::app()->SCart->totalPrice() * $d->toCurrency() / 100, 2)}
+            {else:}
+            {$delPrice = $d->toCurrency()}
+        {/if}
+    deliveryMethods_prices[{echo $d->getId()}] = '{echo $delPrice}';
+    {/foreach}
+</script>
 
 <h5>Корзина</h5>
 <div class="spLine"></div>
-
 
 {if !$items}
     {echo ShopCore::t('Корзина пуста')}
     {return}
 {/if}
-
-<script type="text/javascript">
-var deliveryMethods_prices = new Array;
-var currencySymbol = '{$CS}';
-var totalPrice = '{echo ShopCore::app()->SCart->totalPrice()}';
-
-{foreach $deliveryMethods as $d}
-    {if $d->getIsPriceInPercent() == true}
-        {$delPrice = round(ShopCore::app()->SCart->totalPrice() * $d->toCurrency() / 100, 2)}
-    {else:}
-        {$delPrice = $d->toCurrency()}
-    {/if}
-    deliveryMethods_prices[{echo $d->getId()}] = '{echo $delPrice}';
-{/foreach}
-
-{literal}
-    function changePaymentMethod(id)
-    {
-        document.getElementById('paymentMethodId').value = id;
-    }
-    function changeDeliveryMethod(id, free)
-    {
-        document.getElementById('deliveryMethodId').value = id;
-        if (free == true)
-        {
-            document.getElementById('totalPriceText').innerHTML = totalPrice + ' ' + currencySymbol; 
-        }
-        else
-        {
-            var result = parseFloat(deliveryMethods_prices[id]) + parseFloat(totalPrice);
-            document.getElementById('totalPriceText').innerHTML = result.toFixed(2).toString() + ' ' + currencySymbol;
-        }
-        $('#paymentMethods').html('{/literal}<img src="{$SHOP_THEME}style/images/ui-anim_basic_16x16.gif" />{literal}');
-        $.ajax({
-                    url: "/shop/cart/getPaymentsMethods/"+id,
-                    success: function(html){
-                    if(html){
-                        $("#paymentMethods").html(html);
-                    }
-                   }
-               });
-    }    
-{/literal}
-</script>
 
 <form action="{shop_url('cart')}" method="post" name="cartForm">
 <input type="hidden" name="recount" value="1">
@@ -98,7 +69,7 @@ var totalPrice = '{echo ShopCore::app()->SCart->totalPrice()}';
     </tfoot>
 </table>
 
-<div id="buttons" style="padding:0px;">
+<div id="buttons">
     <a href="#" id="checkout" onClick="document.cartForm.submit();">Пересчитать</a>
 </div>
 
