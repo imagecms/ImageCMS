@@ -82,7 +82,7 @@
             {echo ShopCore::app()->SCart->totalItems()}
             {echo SStringHelper::Pluralize(ShopCore::app()->SCart->totalItems(), array('товар','товара','товаров'))}
     </span></div>
-    <div style="padding: 3px 0 3px 25px;float:left;"><a href="{shop_url('cart')}" class="items">Просмотреть</a></div>
+    <div style="padding: 3px 0 3px 25px;float:left;"><a href="{shop_url('cart')}" rel="nofollow" class="items">Просмотреть</a></div>
     <div class="clear"></div>
     
     <div style="float:left;padding-top:3px;width: 350px;">В списке желаний:
@@ -116,7 +116,7 @@
             <td>{date("d-m-Y H:i", $order->getDateCreated())}</td>
             <td>{date("d-m-Y H:i", $order->getDateUpdated())}</td>
             <td>{echo ShopCore::app()->SCurrencyHelper->convert($order->getTotalPrice())} {$CS}</td>
-            <td><a href="{shop_url('cart/view/' . $order->getKey())}">Просмотреть</a></td>
+            <td><a rel="nofollow" href="{shop_url('cart/view/' . $order->getKey())}">Просмотреть</a></td>
         </tr>
         {/foreach}
     </table>
