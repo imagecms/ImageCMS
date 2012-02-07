@@ -1,3 +1,11 @@
+{# Variables
+# @var products
+# @var totalProducts
+# @var brandsInSearchResult
+# @var pagination
+# @var tree
+#}
+
 {# Display sidebar.tpl #}
 {include_tpl ('sidebar')}
 

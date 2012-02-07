@@ -1,3 +1,10 @@
+{# Variables
+# @var model
+# @var products
+# @var pagination
+# @var totalProducts
+#}
+
 {# Show brand products list #}
 
 {# Display sidebar.tpl #}

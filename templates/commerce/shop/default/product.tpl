@@ -1,3 +1,10 @@
+{# Variables
+# @var model
+# @var editProductUrl
+# @var jsCode
+#}
+
+
 {$jsCode}
 
 <script type="text/javascript">

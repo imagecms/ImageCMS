@@ -1,3 +1,6 @@
+{# Variables
+# @var products
+#}
 
 {include_tpl ('sidebar')}
 

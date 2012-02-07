@@ -1,3 +1,13 @@
+{# Variables
+# @var items
+# @var deliveryMethods
+# @var paymentMethods
+# @var paymentMethodsArray
+# @var ranges
+# @var profile
+#}
+
+
 {$this->registerMeta('<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">')}
 <script type="text/javascript" src="/templates/commerce/shop/default/js/cart.js"></script>
 
