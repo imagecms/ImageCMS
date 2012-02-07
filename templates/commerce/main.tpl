@@ -89,14 +89,7 @@
   <!-- END HEADER -->
   <!-- BEGIN NAVIGATION -->
   <div id="navigation">
-    <ul>
-      <li class="home"><a href="/" class="item">Главная</a></li>
-      <li><a href="{site_url('about')}" class="item">О Магазине</a> </li>
-      <li><a href="{site_url('oplata')}" class="item">Оплата</a> </li>
-      <li><a href="{site_url('dostavka')}" class="item">Доставка</a></li>
-	  <li><a href="{site_url('help')}" class="item">Помощь</a></li>
-	  <li><a href="{site_url('contact_us')}" class="item">Контакты</a></li>
-    </ul>
+    {load_menu('main_menu')}
     <!-- BEGIN SEARCH -->
     <div id="search">
       <form action="{shop_url('search')}" method="get">
