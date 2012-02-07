@@ -84,7 +84,7 @@ var totalPrice = '{echo ShopCore::app()->SCart->totalPrice()}';
                 <input type="text" name="products[{$key}]" value="{$item.quantity}" style="width:24px;">
             </td>
             <td>{echo ShopCore::app()->SCurrencyHelper->convert($item.totalAmount)} {$CS}</td>
-            <td><a href="{shop_url('cart/delete/' . $key)}" class="delete">X</a></td>
+            <td><a href="{shop_url('cart/delete/' . $key)}" rel="nofollow" class="delete">X</a></td>
         </tr>
     {/foreach}
     </tbody>

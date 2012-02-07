@@ -94,7 +94,7 @@ function ajaxAddToWishList()
 
     {if $CI->session->flashdata('productAdded') === true}
         <div style="padding:10px;background-color:#f5f5dc;">
-            Товар добавлен в <a href="{shop_url('cart')}">корзину.</a>
+            Товар добавлен в <a href="{shop_url('cart')}" rel="nofollow">корзину.</a>
         </div>
     {/if}
         <br/>
