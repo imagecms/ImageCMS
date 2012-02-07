@@ -1,3 +1,9 @@
+{# Variables
+# @var hits
+# @var newest
+#}
+
+
 <script type="text/javascript" src="{$SHOP_THEME}js/start_page.js"></script>
 
 {# Display sidebar.tpl #}
