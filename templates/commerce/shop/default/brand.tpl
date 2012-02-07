@@ -22,7 +22,7 @@
             {if $brand->getId() != ShopCore::$_GET['brand']}
                 <a href="?brand={echo $brand->getId()}">{echo ShopCore::encode($brand->getName())}</a>
             {else:}
-                <a href="#" style="font-weight:bold;">{echo ShopCore::encode($brand->getName())}</a>
+                <a href="#" class="bold">{echo ShopCore::encode($brand->getName())}</a>
             {/if}
             |
         {/foreach}
@@ -59,6 +59,5 @@
             {echo ShopCore::t('В категории нет продуктов')}.
         </p>
     {/if}
-
 
 </div>

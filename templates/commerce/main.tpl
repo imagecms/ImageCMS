@@ -8,11 +8,11 @@
 <meta name="generator" content="ImageCMS">
 
 <style type="text/css">
+    @import "{$SHOP_THEME}style/jquery-ui-1.8.15.custom.css";
+    @import "{$SHOP_THEME}style/jquery.ui.autocomplete.css";
     @import "{$SHOP_THEME}style/general.css";
     @import "{$SHOP_THEME}style/product.css";
     @import "{$SHOP_THEME}style/slideshow.css";
-    @import "{$SHOP_THEME}style/jquery-ui-1.8.15.custom.css";
-    @import "{$SHOP_THEME}style/jquery.ui.autocomplete.css";
 </style>
 
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.js"></script>
@@ -23,79 +23,7 @@
 <script type="text/javascript" src="{$SHOP_THEME}js/js.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery-ui-1.8.15.custom.min.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.coda-bubble.sp.js"></script>
-{literal}
-<script>
-$(function() {
-                
-		var themeId = $("#callback-dialog-theme"),
-                    name = $( "#callback-dialog-name" ),
-                    phone = $( "#callback-dialog-phone" ),
-                    comment = $( "#callback-dialog-comment" ),
-                    allFields = $( [] ).add( themeId ).add( comment ),
-                    tips = $( "#callback-dialog-form .validateTips" );
-
-		function updateTips( t ) {
-			tips
-				.html( t )
-				.addClass( "ui-state-highlight" );
-			setTimeout(function() {
-				tips.removeClass( "ui-state-highlight", 1500 );
-			}, 500 );
-		}
-		
-                function showGif( t ) {
-			tips.html( t );
-		}
-                
-		$( "#callback-dialog-form" ).dialog({
-			autoOpen: false,
-			width: 350,
-			modal: true,
-			buttons: {
-				"Запросить CallBack" : function() {
-					allFields.removeClass( "ui-state-error" );
-                                        showGif("<center><img src='/application/modules/imagebox/templates/js/lightbox/images/loading.gif' /></center>");
-                                        $.post("/shop/callback", {   ThemeId : themeId.val(),
-                                                                     Name : name.val(), 
-                                                                     Phone : phone.val(),
-                                                                     Comment : comment.val()
-                                                                   },
-                                                                   function(data) {
-                                                                        if (data == "done"){
-                                                                                updateTips('Ваш запрос отправлен! В ближайшее время с Вами свяжеться наш менеджер.');
-                                                                                setTimeout(function() {
-                                                                                        $( "#callback-dialog-form" ).dialog( "close" );
-                                                                                }, 2500 );
-                                                                        } else updateTips(data);
-                                                                   });
-				},
-				"Отмена" : function() {
-					$( this ).dialog( "close" );
-				}
-			},
-                        close: function() {
-				allFields.val( "" );
-                                tips.html( "" );
-			}
-		});
-
-		$( "#callback-send-request" )
-			.click(function() {
-				$( "#callback-dialog-form" ).dialog( "open" );
-			});               
-	});
-	</script>
-        <style>
-		.ui-dialog, .ui-datepicker { font-size: 82.5%; }
-		#dialog-form label input, #callback-dialog-form label input { display:block; }
-		#dialog-form input.text,  #callback-dialog-form input.text { margin-bottom:12px; width:95%; padding: .4em; }
-                #callback-dialog-form select { margin-bottom:12px; padding: .4em; width:98.5%; }
-		#dialog-form fieldset, #callback-dialog-form fieldset{ padding:0; border:0; margin-top:25px; }
-		.ui-dialog .ui-state-error { padding: .3em; }
-		.validateTips { border: 1px solid transparent; padding: 0.3em;} 
-                }
-	</style>
-{/literal}
+<script type="text/javascript" src="{$THEME}/scripts/callbacks.js"></script>
 <link rel="icon" href="{$SHOP_THEME}images/favicon.png" type="image/x-icon" />
 
 </head>
