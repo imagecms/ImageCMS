@@ -1,3 +1,10 @@
+{# Variables
+# @var model
+# @var paymentMethods
+# @var deliveryMethod
+#}
+
+
 {# View ordered products}
 
     <h5>Заказ</h5>

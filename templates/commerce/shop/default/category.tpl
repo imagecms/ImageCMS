@@ -1,3 +1,13 @@
+{# Variables
+# @var model
+# @var jsCode
+# @var products
+# @var totalProducts
+# @var brandsInCategory
+# @var pagination
+#}
+
+
 {# Display sidebar.tpl #}
 {include_tpl ('sidebar')}
 {$jsCode}

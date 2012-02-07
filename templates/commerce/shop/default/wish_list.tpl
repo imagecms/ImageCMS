@@ -1,3 +1,10 @@
+{# Variables
+# @var items
+# @var capImage
+# @var profile
+#}
+
+
 <h5>Список пожеланий {if $items}({count($items)}){/if}</h5>
 <div class="spLine"></div>
 
