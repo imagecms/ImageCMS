@@ -2,7 +2,7 @@
 		<ul class="products">
 		{$count = 1;}
         {foreach $products as $p}
-            <li {if $count == 3} class="last" {$count = 0}{/if}>
+            <li {if $count == 3} class="last" {$count = 0}{/if} {if $count == 1} style="clear:left;" {/if}>
                 <div class="image" style="display:table-cell;vertical-align:middle;overflow:hidden;">
                     <a href="{shop_url('product/' . $p->getUrl())}">
                         <img src="{productImageUrl($p->getId() . '_small.jpg')}" border="0"  alt="{echo encode($p->getName())}" />
