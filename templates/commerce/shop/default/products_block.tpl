@@ -9,7 +9,7 @@
                     </a>
                 </div>
                 <h3 class="name"><a href="{shop_url('product/' . $p->getUrl())}">{echo ShopCore::encode($p->getName())}</a></h3>
-                <div class="price priceLight"> 
+                <div class="price priceLight">
                     {$p->firstVariant}
                     {if $p->hasDiscounts()}
                         <s>{echo $p->firstVariant->toCurrency('origPrice')} {$CS}</s>
@@ -33,7 +33,7 @@
         </div>
         <div class="sp"></div>
         {else:}
-        <p>          
+        <p>
             {echo ShopCore::t('В категории нет продуктов')}.
         </p>
 {/if}
