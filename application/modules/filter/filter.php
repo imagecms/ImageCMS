@@ -53,12 +53,12 @@ class Filter extends MY_Controller {
 
         // Сделаем пагинацию
         $this->load->library('Pagination');
-        $config['base_url']    = site_url('filter/pages/'.http_build_query($search_data,'','/'));
-        $config['total_rows']  = $this->_filter_pages($ids, $search_data, TRUE);
-        $config['per_page']    = $this->items_per_page;
-        $config['uri_segment'] = $this->uri->total_segments();
-        $config['first_link']  = lang('first_link');
-        $config['last_link']   = lang('last_link');
+        $config['base_url']      = site_url('filter/pages/'.http_build_query($search_data,'','/'));
+        $config['total_rows']    = $this->_filter_pages($ids, $search_data, TRUE);
+        $config['per_page']      = $this->items_per_page;
+        $config['uri_segment']   = $this->uri->total_segments();
+        $config['first_link']    = lang('first_link');
+        $config['last_link']     = lang('last_link');
         $config['cur_tag_open']  = '<span class="active">';
         $config['cur_tag_close'] = '</span>';
         $this->pagination->num_links = 5;

@@ -4,7 +4,6 @@
 # @var jsCode
 #}
 
-
 {$jsCode}
 
 <script type="text/javascript">
@@ -101,6 +100,7 @@
         <form action="{shop_url('cart/add')}" name="productForm" id="productForm" method="post">
 
         {if $model->countProductVariants() > 1}
+        <!-- See products.js::display_variant_price() for more details -->
         <div align="right" style="padding-bottom:20px;">
         Варианты товара:
             <select name="variantId" onChange="display_variant_price(this.value)">
@@ -132,8 +132,13 @@
             {/if}
         </div>
 
+        <!-- See products.js::display_variant_price() for more details -->
         <div align='right' style="font-size:12px;color:#669900;">
-                Доступно на складе: <span id="stock">{echo $model->firstVariant->getStock()}</span> шт.
+            {if $model->firstVariant->getStock() > 0}
+                <span id="stock">Есть на складе</span>
+            {else:}
+                <span id="stock">Нет на складе</span>
+            {/if}
         </div>
         <a id="send-request" style="float:right;font-size: 13px;cursor: pointer;display:{if $model->firstVariant->getStock()}none{else:}block{/if};">Сообщить о появлении</a><br />
         <input type="hidden" name="productId" value="{echo $model->getId()}" />
