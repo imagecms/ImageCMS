@@ -110,14 +110,29 @@ class DX_Auth_Event
 	// You can customize email content here
 	function sending_forgot_password_email($data, &$content)
 	{
-		// Create content
-		$content = sprintf($this->ci->lang->line('auth_forgot_password_content'), 
-			$this->ci->config->item('DX_website_name'), 
-			$data['reset_password_uri'],
-			$data['password'],
-			$data['key'],
-			$this->ci->config->item('DX_webmaster_email'),
-			$this->ci->config->item('DX_website_name'));
+        if(ShopCore::app()->SSettings->forgotPasswordMessageText)
+        {
+            $replaceData = array(
+                '%webSiteName%'=>$this->ci->config->item('DX_website_name'),
+                '%resetPasswordUri%'=>$data['reset_password_uri'],
+                '%password%'=>$data['password'],
+                '%key%'=>$data['key'],
+                '%webMasterEmail%'=>$this->ci->config->item('DX_webmaster_email')
+            );
+
+            $content = str_replace(array_keys($replaceData), $replaceData, ShopCore::app()->SSettings->forgotPasswordMessageText);
+        }
+        else
+        {
+            // Create content
+            $content = sprintf($this->ci->lang->line('auth_forgot_password_content'),
+                $this->ci->config->item('DX_website_name'),
+                $data['reset_password_uri'],
+                $data['password'],
+                $data['key'],
+                $this->ci->config->item('DX_webmaster_email'),
+                $this->ci->config->item('DX_website_name'));
+        }
 	}
 }
 
