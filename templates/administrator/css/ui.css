@@ -1100,3 +1100,86 @@ div.mochaToolbarWrapper.bottom {
 }
 
 #spinner2 { position:absolute !important; left:665px; top:55px; padding:0 !important;}
+
+.ordersTable {
+    font-size:13px;
+}
+.ordersTable td {
+    padding-left:15px;
+}
+.ordersTable tr.hover:hover {
+    background-color:#E8EEF6;
+}
+.row_lite {
+    background-color:#F5F5F5;
+}
+.row_dark {
+    background-color:#EEEEEE;
+}
+.summary {
+    font-size:15px;
+}
+#totalPriceText {
+    font-weight:bold;
+}
+#OrdersStatusHistoryTable {
+    width:100%;
+    position:relative;
+    white-space:nowrap;
+}
+#OrdersStatusHistoryTable tr{
+    text-align: left;
+    border: 1px solid #E3E3E3;
+}
+#OrdersStatusHistoryTable td{
+    text-align: left;
+    border: 1px solid #E3E3E3;
+}
+#OrdersStatusHistoryTable thead{
+    text-align: left;
+    border: 1px solid #E3E3E3;
+}
+#OrdersStatusHistoryTable th{
+    text-align: left;
+    border: 1px solid #E3E3E3;
+}
+.ma-container{
+    color: #000;
+    border: 1px solid #333;
+    background-color: #fff;
+    position: absolute;
+    visibility: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 12000;
+}
+.ma-container ul{
+    list-style: none;
+    overflow: hidden;
+    width: 100%;
+}
+.ma-container li{
+    padding: 2px 5px;
+    line-height: 16px;
+    cursor: pointer;
+    float: left;
+    width: 100%;
+    overflow: hidden;
+}
+.ma-container .ma-hover{
+    color: #fff;
+    background-color: #921506 !important;
+}
+.ma-container .ma-odd{
+}
+.ma-container .ma-even{
+    background-color: #efefef;
+}
+.ma-loading{
+    background-color: #fafba4;
+    z-index: 10001px;
+}
+.ma-selected{
+    background-color: #ccfda8;
+    z-index: 10001px;
+}

@@ -53,16 +53,16 @@ if (!function_exists('sub_category_list'))
 {
     function sub_category_list($category_id = 0)
     {
+        $ci =& get_instance();
+        $ci->load->helper('html');
+        $ci->load->module('core');
+        
         if ($category_id > 0)
         {
             $categories = get_sub_categories($category_id);
 
             if (count($categories) > 0)
             {
-                $ci =& get_instance();
-                $ci->load->helper('html');
-                $ci->load->module('core');
-
                 foreach($categories as $row)
                 {
                     $row['fetch_pages'] = unserialize($row['fetch_pages']);
