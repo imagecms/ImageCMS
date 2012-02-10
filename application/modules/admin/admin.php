@@ -53,71 +53,6 @@ class Admin extends MY_Controller {
 
 		$this->template->show('desktop', FALSE);
 	}
-    
-    /**
-    private function check()
-    {
-        $s_ip = substr($_SERVER['SERVER_ADDR'], 0, strrpos($_SERVER['SERVER_ADDR'], '.'));
-
-        switch ($s_ip)
-        {
-            case '127.0.0':
-            case '127.0.1':
-            case '10.0.0':
-            case '172.16.0':
-            case '192.168.0':
-               return TRUE;
-            break;
-        }
-
-        $ud = $this->_ud();
-
-        if ($ud['LK'] != '')
-        {
-            $l_result = $this->_curl_post($this->request_url, $ud);
-            $lr2 = unserialize($l_result['result']);
-            
-            if ($lr2['lk_result'] === TRUE)
-            {
-                return TRUE;
-            }
-        }
-
-        if (count($_POST) > 0)
-        {
-            $result = $this->_curl_post($this->request_url, $ud);
-        }
-
-        $r2 = unserialize($result['result']);
-
-        if ($r2['error'] == FALSE AND $r2['action'] == 'INSERT_DB_KEY')
-        {
-            $this->db->where('s_name', 'main');
-            $this->db->update('settings', array('lk' => $r2['text']));
-
-            $this->template->assign('lk_ok', 'Ваш домен активирован. <a href="'.site_url('admin').'">Панель управления.</a>');
-        }
-
-        if ($r2['error'] == FALSE AND $r2['action'] == 'INSERT_DB_KEY_PRO')
-        {
-            if ($r2['text'] != '')
-            {
-                $this->db->where('s_name', 'main');
-                $this->db->update('settings', array('lk' => $r2['text']));
-            }
-
-            $this->template->assign('lk_ok', 'Для получения подробной информации о активации системы посетите страницу <a href="http://www.imagecms.net/my_sites/">оплаты</a>.');
-        }
-
-        $this->template->add_array(array(
-            'show_p' => TRUE,
-            'result' => $r2,
-        ));
-
-        $this->template->show('login', FALSE);
-        exit;
-    }
-    **/
 
     public function sys_info($action = '')
     {
@@ -180,50 +115,6 @@ class Admin extends MY_Controller {
         $this->template->show('sys_info', FALSE);
     }
 
-    /**
-    private function _ud()
-    {
-        $s = $this->cms_base->get_settings();
-
-        $data = array(
-                'USER_LOGIN'         => $this->input->post('login'),
-                'USER_PASSWORD'      => $this->input->post('password'),
-                'HOST'               => $_SERVER['HTTP_HOST'],               
-                'SERVER_IP'          => $_SERVER['SERVER_ADDR'],
-                'USER_IP'            => $this->input->ip_address(),
-                'IMAGECMS_NUMBER'    => IMAGECMS_NUMBER,
-                'IMAGECMS_VERSION'   => IMAGECMS_VERSION,
-                'IMAGECMS_PUBLIC_ID' => IMAGECMS_PUBLIC_ID,
-                'LK'                 => $s['lk'],
-            );
-        
-        return $data;
-    }
-    **/
-
-    /**
-    private function _curl_post($url='', $data=array()) 
-    {
-        $options = array();
-        $options[CURLOPT_HEADER]         = FALSE;
-        $options[CURLOPT_RETURNTRANSFER] = TRUE;
-        $options[CURLOPT_POST]           = TRUE;
-        $options[CURLOPT_POSTFIELDS]     = $data;
-
-        $handler = curl_init($url);
-
-        curl_setopt_array($handler, $options);
-        $resp = curl_exec($handler);
-
-        $result['code']   = curl_getinfo($handler, CURLINFO_HTTP_CODE);
-        $result['result'] = $resp;
-        $result['error']  = curl_errno($handler);
-
-        curl_close($handler);
-        return $result; 
-    }
-    **/
-
 	/**
 	 * Delete cached files
 	 *
@@ -261,8 +152,22 @@ class Admin extends MY_Controller {
 
     public function sidebar_cats()
     {
+        echo '<div id="categories">';
+        if(isset($_GET['first']))
+        {
+            $this->db->where('name', 'shop');
+            $this->db->limit(1);
+            $query = $this->db->get('components');
+            if($query->num_rows() > 0)
+            {
+                ShopCore::app()->SAdminSidebarRenderer->render();
+                exit;
+            }
+        }
+
 		$this->template->assign('tree', $this->lib_category->build());
         $this->template->show('cats_sidebar', FALSE);
+        echo '</div>';
     }
 
 	/**
@@ -273,9 +178,7 @@ class Admin extends MY_Controller {
 	public function logout()
 	{
         $this->lib_admin->log('Вышел из панели управления');
-
         $this->dx_auth->logout();
-		//$this->session->sess_destroy();
 		redirect('/admin/login','refresh');
 	}
 
