@@ -56,7 +56,7 @@ if (!function_exists('sub_category_list'))
         $ci =& get_instance();
         $ci->load->helper('html');
         $ci->load->module('core');
-        
+
         if ($category_id > 0)
         {
             $categories = get_sub_categories($category_id);
