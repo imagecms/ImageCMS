@@ -44,7 +44,7 @@
             </select>
 
             <br>
-            <label><input type="checkbox" value="1" name="category_apply_for_subcats">Применить для подкатегорий</label>
+            <label><input type="checkbox" value="1" name="category_apply_for_subcats"> Применить для подкатегорий</label>
             <br/>
 
             <div class="lite">Выберите группу полей для категории.</div>
@@ -62,7 +62,7 @@
             </select>
 
             <br>
-            <label><input type="checkbox" value="1" name="apply_for_subcats">Применить для подкатегорий</label>
+            <label><input type="checkbox" value="1" name="apply_for_subcats"> Применить для подкатегорий</label>
             <br/>
 
             <div class="lite">Выберите группу полей, которая будет отображаться при создании страниц в данной категории.</div>

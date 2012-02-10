@@ -3,12 +3,12 @@
             <tr>
                 <td width="100%" valign="top">
                     <div style="float:left;padding-right:10px;">
-                 
-                        Категории: 
+
+                        Категории:
                         <select id="category_sel">
                         <option value="0" onclick="load_pages(0,0); return false;">root</option>
                         {$cats}
-                        </select>         
+                        </select>
 
                         <select id="per_page" onchange="set_per_page(); return false;">
                             <option value="10" selected="selected">10</option>
@@ -23,8 +23,8 @@
                     </div> <div style="float:left;font-size:13px;" id="nav_links"></div>
                 </td>
                 <td valign="top">
-                <div style="width:350px;" id="item_params">  
-                        <h3>Параметры:</h3> 
+                <div style="width:350px;" id="item_params">
+                        <h3>Параметры:</h3>
                 </div>
                 </td>
             </tr>
@@ -32,11 +32,11 @@
                 <td valign="top">
                     <div id="pages_list">
                     </div>
-                </td>              
-               
+                </td>
+
                <td valign="top">
-                    <!-- Link params -->              
-                    <input type="hidden" id="owner_id" value="{$insert_id}" /> 
+                    <!-- Link params -->
+                    <input type="hidden" id="owner_id" value="{$insert_id}" />
 
                     <div class="field_text">Тип</div>
                     <div class="field_input" id="item_type">
@@ -49,14 +49,14 @@
                         0
                     </div>
                     <div class="form_overflow"></div>
-                    
+
 
                     <div class="field_text">Заголовок</div>
                     <div class="field_input">
                         <input type="text" class="textbox" value="" name="item_title"  id="item_title" />
                     </div>
-                    
-                    <div class="form_overflow"></div>                  
+
+                    <div class="form_overflow"></div>
 
                     <div class="field_text">Родитель</div>
                     <div class="field_input">
@@ -65,7 +65,7 @@
                         {foreach $menu_result as $item}
                         <option  value="{$item.id}">{for $i=0; $i <= $item['padding']; $i++ } -{/for} {$item.title}</option>
                         {/foreach}
-                        </select> 
+                        </select>
                     </div>
 
                     <div class="form_overflow"></div>
@@ -77,19 +77,19 @@
                         <option value="0">Нет</option>
                         <option value="first">Первый</option>
                         {foreach $menu_result as $item}
-                        <option  value="{$item.id}">{for $i=0; $i <= $item['padding']; $i++ } -{/for} {$item.title}</option>        
+                        <option  value="{$item.id}">{for $i=0; $i <= $item['padding']; $i++ } -{/for} {$item.title}</option>
                         {/foreach}
-                        </select> 
+                        </select>
                     </div>
                     <div class="form_overflow"></div>
-                    
+
                     <div class="field_text">Изображение</div>
                     <div class="field_input">
                         <input type="text" class="textbox" value="" name="page_image"  id="page_image" />
                         <img width="16" height="16" align="absmiddle" src="{$THEME}/images/images.png" title="Выбрать Изображение" style="cursor: pointer;" onclick="tinyBrowserPopUp('image', 'page_image');" />
                     </div>
-                    
-                    <div class="form_overflow"></div>                        
+
+                    <div class="form_overflow"></div>
 
                     <div class="field_text">Уровень доступа</div>
                     <div class="field_input">
@@ -110,9 +110,9 @@
                        <input type="radio" name="hidden_v" id="page_hidden"  onclick="item_hidden = 1;" /> Да
                        <input type="radio" name="hidden_v" id="page_nohidden" onclick="item_hidden = 0;"  checked="checked" /> Нет
                     </div>
-		    
+
 		    <div class="form_overflow"></div>
-		    
+
 	            <div class="field_text">
                         Открывать в новом окне
                     </div>
@@ -129,7 +129,7 @@
                         <input type="button" value="Отмена" class="button" onclick="MochaUI.closeWindow( $('createnewlink') ); return false;" />
                     </div>
 
-                    <div class="form_overflow"></div>                 
+                    <div class="form_overflow"></div>
                 </td>
             </tr>
         </table>
@@ -137,7 +137,7 @@
         <div style="position:absolute;bottom:40px;right:20px;">
         <form onsubmit="make_search(0); return false;">
             Поиск <input type="text" class="textbox" id="search_text" />
-            <img src="{$THEME}/images/search.png" width="24" height="24" align="absmiddle" onclick="make_search(0); return false;" />  
+            <img src="{$THEME}/images/search.png" width="24" height="24" align="absmiddle" onclick="make_search(0); return false;" />
         {form_csrf()}</form>
         </div>
 
@@ -149,7 +149,7 @@
     var item_type = 'page';
     var item_hidden = 0;
     var page_newpage = 0;
-   
+
     function insert_element()
     {
         id = $('item_id').get('text');
@@ -233,7 +233,7 @@
                 el.removeClass('clicked');
        });
 
-       item.set('class', 'clicked'); 
+       item.set('class', 'clicked');
     }
 
     function set_type(type)
@@ -272,17 +272,17 @@
                 url: base_url + 'admin/components/run/menu/search_pages/' + cur_page ,
                 onComplete: function(jsonObj) {
                     cp = cur_page;
-                    process_search_data(jsonObj); 
-                        if (jsonObj != null && $('nav_link_' + cur_page) != null) 
+                    process_search_data(jsonObj);
+                        if (jsonObj != null && $('nav_link_' + cur_page) != null)
                         {
-                            $('nav_link_' + cur_page).setStyle('font-weight', 'bold'); 
+                            $('nav_link_' + cur_page).setStyle('font-weight', 'bold');
                         }
                 stop_ajax();
                 }
             }).post({'per_page': per_page,'search': search});
             //end search request
         }
-        
+
         // Process search result
         function process_search_data(data)
         {
@@ -292,7 +292,7 @@
                 $('pages_list').set('html','Совпадений не найдено.');
                 $('nav_links').set('html',' ');
             }else{
-                    
+
                 $('pages_list').set('html', ' ');
                 $('nav_links').set('html', ' ');
 
@@ -318,14 +318,14 @@
                                 }
                         }
                     });
-                
+
                     PageLink.inject(block);
                 });
 
-              
+
                 create_nav_links(data.links);
 
-              }         
+              }
 
         }
         // end search
@@ -343,7 +343,7 @@
                         'class': i,
                         'onclick': 'make_search('+ i + ');'
                         });
-                
+
                    NavLink.inject(nav_block);
                    }
                 }
@@ -363,7 +363,7 @@
                 $('pages_list').set('html','В категории нет страниц.');
                 $('nav_links').set('html',' ');
             }else{
-                    
+
                 $('pages_list').set('html', ' ');
                 $('nav_links').set('html', ' ');
 
@@ -389,7 +389,7 @@
                                 }
                         }
                     });
-                
+
                     PageLink.inject(block);
                 });
 
@@ -406,11 +406,11 @@
                         'class': i,
                         'onclick': 'load_pages(' + val + ',' + i + '); return false;'
                         });
-                
+
                    NavLink.inject(nav_block);
                    }
-                }        
-			}            
+                }
+			}
         }
 
         // load category pages
@@ -422,12 +422,12 @@
                 url: base_url + 'admin/components/run/menu/get_pages/' + id + '/' + cur_page ,
                 onComplete: function(jsonObj) {
                     cp = cur_page;
-                    insert_data(jsonObj); 
+                    insert_data(jsonObj);
                         if (jsonObj != null && $('nav_link_' + cur_page) != null)
 		                {
-                            $('nav_link_' + cur_page).setStyle('font-weight', 'bold'); 
+                            $('nav_link_' + cur_page).setStyle('font-weight', 'bold');
                         }
-         
+
                     stop_ajax();
                 }
             }).post({'per_page': per_page});
@@ -436,7 +436,7 @@
 		window.addEvent('domready', function() {
             if(menu_action == 'update')
             {
-            $('page_btn').value = 'Сохранить'; 
+            $('page_btn').value = 'Сохранить';
             }
 
             load_pages($('category_sel').value,0);
