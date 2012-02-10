@@ -39,6 +39,29 @@
 <![CDATA[
 	$data['field_group'] = $this->input->post('field_group');
     $data['category_field_group'] = $this->input->post('category_field_group');
+
+    $this->db->select('id');
+    $this->db->where('parent_id', $cat_id);
+    $cats = $this->db->get('category');
+
+    if($cats->num_rows() > 0)
+    {
+        foreach($cats->result_array() as $c)
+        {
+            $id = $c['id'];
+
+            if($_POST['apply_for_subcats'])
+            {
+                $this->db->where('id', $id);
+                $this->db->update('category', array('field_group'=>$data['field_group']));
+            }
+            if($_POST['category_apply_for_subcats'])
+            {
+                $this->db->where('id', $id);
+                $this->db->update('category', array('category_field_group'=>$data['category_field_group']));
+            }
+        }
+    }
 ]]>
 </hook>
 
