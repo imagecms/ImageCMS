@@ -146,10 +146,11 @@ class Search extends MY_Controller
      * @param string $text
      * @return array
      */
-    protected function _highlight_text(array $data, $text)
+    protected function _highlight_text($data, $text)
     {
+        if(!$data)
+            return;
         $dataCount = count($data);
-
         for($i=0;$i<$dataCount;$i++)
         {
             $tempText = strip_tags($data[$i]['prev_text'].' '.$data[$i]['full_text']);
