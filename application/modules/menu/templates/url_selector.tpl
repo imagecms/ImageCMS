@@ -149,7 +149,7 @@
                 'item_type': 'url',
                 'title': url_title,
                 'hidden': url_hidden,
-		'newpage': url_newpage,
+		        'newpage': url_newpage,
                 'item_image': item_image,
                 'roles': url_roles,
                 'parent_id': url_parent_id,

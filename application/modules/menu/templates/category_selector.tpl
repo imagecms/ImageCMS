@@ -180,7 +180,7 @@
                 'item_id': id,
                 'title': title,
                 'hidden': hidden,
-		'newpage': cat_newpage,
+		        'newpage': cat_newpage,
                 'item_image': item_image,
                 'roles': roles,
                 'parent_id': parent_id,
@@ -196,7 +196,7 @@
 		window.addEvent('domready', function() {
             if(menu_action == 'update')
             {
-            $('cat_btn').value = 'Сохранить'; 
+                $('cat_btn').value = 'Сохранить';
             }
     		});
 	//]]>

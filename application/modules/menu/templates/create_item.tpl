@@ -5,28 +5,28 @@
 		<li><a href="{$SELF_URL}/display_selector/{$insert_id}/module">Модули</a></li>
 		<li><a href="{$SELF_URL}/display_selector/{$insert_id}/url">URL</a></li>
 	</ul>
-</div>	
+</div>
 
 {literal}
     <style type="text/css">
      #pages_list  a:hover {
-        background-color: #6f9fbd; 
-        color:#fff;        
+        background-color: #6f9fbd;
+        color:#fff;
         border-left:5px solid #4BBBDD;
     }
     #category_list  a:hover {
-        background-color: #6f9fbd; 
-        color:#fff;        
+        background-color: #6f9fbd;
+        color:#fff;
         border-left:5px solid #4BBBDD;
     }
     #module_list a:hover {
-        background-color: #6f9fbd; 
-        color:#fff;        
+        background-color: #6f9fbd;
+        color:#fff;
         border-left:5px solid #4BBBDD;
     }
     .clicked {
-        background-color:#77C4DB; 
-        color:#fff;        
+        background-color:#77C4DB;
+        color:#fff;
         border-left:5px solid #4BBBDD;
     }
     .non_cliked{}
@@ -67,7 +67,7 @@
 			{
                // alert('not found');
             }else{
-                
+
                 switch (data.item_type)
                 {
                     case 'page':
@@ -80,17 +80,19 @@
                         if(item_hidden == 0) {
                             $('page_nohidden').setProperty('checked','true');
                         }else{
-                            $('page_hidden').setProperty('checked','true'); 
+                            $('page_hidden').setProperty('checked','true');
                         }
 
-
+                        try{
 			                item_newpage = data.add_data.newpage;
+                        }catch(e){
+                            item_newpage = 0;
+                        }
 
-			
 			            if(item_newpage == 0) {
                             $('page_nonewpage').setProperty('checked','true');
                         }else{
-                            $('page_newpage').setProperty('checked','true'); 
+                            $('page_newpage').setProperty('checked','true');
                         }
 
                         if (data.parent_id != 0) {
@@ -100,12 +102,12 @@
                                 {
                                     $('item_parent_id').options[i].selected = 'selected';
                                 }
-                                }); 
+                                });
                         }
-                        
+
                         $('page_image').value = data.item_image;
-                       	
-                        roles = data.roles;                         
+
+                        roles = data.roles;
                         if (roles != false) {
                         roles.each(function(item, index){
                             $('item_roles').getElements('option').each(function(option,i2) {
@@ -113,7 +115,7 @@
                                 {
                                     $('item_roles').options[i2].selected = 'selected';
                                 }
-                                }); 
+                                });
                         });
                         }
 
@@ -136,15 +138,19 @@
                         if(cat_hidden == 0) {
                             $('cat_nohidden').setProperty('checked','true');
                         }else{
-                            $('cat_hidden').setProperty('checked','true'); 
+                            $('cat_hidden').setProperty('checked','true');
                         }
-			
-			cat_newpage = data.add_data.newpage;
-			
-			if(cat_newpage == 0) {
+
+                        try{
+			                cat_newpage = data.add_data.newpage;
+                        }catch(e){
+                            cat_newpage = 0;
+                        }
+
+            			if(cat_newpage == 0) {
                             $('cat_nonewpage').setProperty('checked','true');
                         }else{
-                            $('cat_newpage').setProperty('checked','true'); 
+                            $('cat_newpage').setProperty('checked','true');
                         }
 
                         if (data.parent_id != 0) {
@@ -155,14 +161,14 @@
                                 }
                                 if (option.value == data.id)
                                 {
-                                   $('cat_parent_id').options[i].disabled = 'disabled'; 
+                                   $('cat_parent_id').options[i].disabled = 'disabled';
                                 }
-                                }); 
+                                });
                         }
-                        
+
                         $('cat_image').value = data.item_image;
-                       
-                        roles = data.roles;                         
+
+                        roles = data.roles;
                         if (roles != false) {
                         roles.each(function(item, index){
                             $('cat_roles').getElements('option').each(function(option,i2) {
@@ -170,7 +176,7 @@
                                 {
                                     $('cat_roles').options[i2].selected = 'selected';
                                 }
-                                }); 
+                                });
                         });
                         }
                         }
@@ -194,15 +200,19 @@
                         if(cat_hidden == 0) {
                             $('url_nohiddenv').setProperty('checked','true');
                         }else{
-                            $('url_hiddenv').setProperty('checked','true'); 
+                            $('url_hiddenv').setProperty('checked','true');
                         }
-			
-			url_newpage = data.add_data.newpage;
-			
-			if(url_newpage == 0) {
+
+                        try{
+                            url_newpage = data.add_data.newpage;
+                        }catch(e){
+                            url_newpage = 0;
+                        }
+
+            			if(url_newpage == 0) {
                             $('url_nonewpage').setProperty('checked','true');
                         }else{
-                            $('url_newpage').setProperty('checked','true'); 
+                            $('url_newpage').setProperty('checked','true');
                         }
 
                         if (data.parent_id != 0) {
@@ -213,14 +223,14 @@
                                 }
                                 if (option.value == data.id)
                                 {
-                                   $('url_parent_id').options[i].disabled = 'disabled'; 
+                                   $('url_parent_id').options[i].disabled = 'disabled';
                                 }
-                                }); 
+                                });
                         }
-                        
+
                         $('url_image').value = data.item_image;
-                       
-                        roles = data.roles;                         
+
+                        roles = data.roles;
                         if (roles != false) {
                         roles.each(function(item, index){
                             $('url_roles').getElements('option').each(function(option,i2) {
@@ -228,7 +238,7 @@
                                 {
                                     $('url_roles').options[i2].selected = 'selected';
                                 }
-                                }); 
+                                });
                         });
                         }
                         }
@@ -240,7 +250,7 @@
                         selector_tabs.select(2);
                         c_load = 1;
                     }
-                     
+
                         fx_step = fx_step + 1;
                         if (fx_step == 2)
                         {
@@ -253,15 +263,19 @@
                         if(module_hidden == 0) {
                             $('mod_nohidden').setProperty('checked','true');
                         }else{
-                            $('mod_hidden').setProperty('checked','true'); 
+                            $('mod_hidden').setProperty('checked','true');
                         }
-			
-			mod_newpage = data.add_data.newpage;
-			
-			if(mod_newpage == 0) {
+
+                        try{
+			                mod_newpage = data.add_data.newpage;
+                        }catch(e){
+                            mod_newpage = 0;
+                        }
+
+			            if(mod_newpage == 0) {
                             $('mod_nonewpage').setProperty('checked','true');
                         }else{
-                            $('mod_newpage').setProperty('checked','true'); 
+                            $('mod_newpage').setProperty('checked','true');
                         }
 
                         if (data.parent_id != 0) {
@@ -270,12 +284,12 @@
                                 {
                                     $('module_parent_id').options[i].selected = 'selected';
                                 }
-                                }); 
+                                });
                         }
-                        
+
                         $('mod_image').value = data.item_image;
-                       
-                        roles = data.roles;                         
+
+                        roles = data.roles;
                         if (roles != false) {
                         roles.each(function(item, index){
                             $('module_roles').getElements('option').each(function(option,i2) {
@@ -283,7 +297,7 @@
                                 {
                                     $('module_roles').options[i2].selected = 'selected';
                                 }
-                                }); 
+                                });
                         });
                         }
                         }
