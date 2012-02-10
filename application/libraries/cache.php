@@ -148,9 +148,6 @@ class Cache
      */
     public function store($key, $data, $ttl = false, $group = false)
     {
-        if($this->disableCache === true)
-            return false;
-
         if (!$ttl)
             $ttl = $this->_Config['ttl'];
 
