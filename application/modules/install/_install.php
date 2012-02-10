@@ -247,6 +247,8 @@ class Install extends MY_Controller {
         mysql_query('UPDATE `settings` SET `site_title`=\''.mysql_real_escape_string($this->input->post('site_title')).'\' ', $link);
 
         // Create admin account
+        $this->load->helper('cookie');
+        delete_cookie('autologin');
         $this->load->library('DX_Auth');
         $admin_pass = crypt($this->dx_auth->_encode( $this->input->post('admin_pass') ));
         $admin_login = mysql_real_escape_string( $this->input->post('admin_login') );
