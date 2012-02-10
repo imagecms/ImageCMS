@@ -32,6 +32,11 @@
                 <option value="{$k}" {if $k == $category_field_group} selected="selected" {/if}>{$v}</option>
             {/foreach}
             </select>
+
+            <br>
+            <label><input type="checkbox" value="1" name="category_apply_for_subcats">Применить для подкатегорий</label>
+            <br/>
+
             <div class="lite">Выберите группу полей для категории.</div>
         </div>
         <div class="clear"></div>
@@ -45,6 +50,11 @@
                 <option value="{$k}" {if $k == $field_group} selected="selected" {/if}>{$v}</option>
             {/foreach}
             </select>
+
+            <br>
+            <label><input type="checkbox" value="1" name="apply_for_subcats">Применить для подкатегорий</label>
+            <br/>
+
             <div class="lite">Выберите группу полей, которая будет отображаться при создании страниц в данной категории.</div>
         </div>
         <div class="clear"></div>
