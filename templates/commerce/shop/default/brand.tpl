@@ -40,7 +40,7 @@
 		<ul class="products">
 		{$count = 1;}
         {foreach $products as $p}
-            <li class="{counter('', '', 'last')}">
+            <li {if $count == 3} class="last" {$count = 0}{/if} {if $count == 1} style="clear:left;" {/if}>
                 <div class="image" style="display:table-cell;vertical-align:middle;overflow:hidden;">
                     <a href="{shop_url('product/' . $p->getUrl())}">
                         <img src="{productImageUrl($p->getId() . '_small.jpg')}" border="0"  alt="image" />
@@ -48,17 +48,16 @@
                 </div>
                 <h3 class="name"><a href="{shop_url('product/' . $p->getUrl())}">{echo ShopCore::encode($p->getName())}</a></h3>
                 <div class="price">{echo $p->firstVariant->toCurrency()} {$CS}</div>
-                <div class="compare"><a href="#">Сравнить</a></div>
+                <div class="compare"><a href="{shop_url('compare/add/' . $p->getId())}">Сравнить</a></div>
             </li>
             {if $count == 3}<li class="separator"></li> {$count=0}{/if}
             {$count++}
         {/foreach}
 		</ul>
 
-
         <div class="sp"></div>
         <div id="gopages">
-                {$pagination}
+            {$pagination}
         </div>
         <div class="sp"></div>
         {else:}
