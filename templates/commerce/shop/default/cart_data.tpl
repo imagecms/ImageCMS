@@ -2,7 +2,7 @@
         {if $is_logged_in}
             <a href="{shop_url('profile')}" rel="nofollow" class="items">Профиль</a>
         {else:}
-            <a href="/auth" class="items">Авторизация</a>
+            <a href="/auth" class="items" rel="nofollow">Авторизация</a>
         {/if}
         <a href="{shop_url('cart')}" rel="nofollow" class="items">
             {echo ShopCore::app()->SCart->totalItems()}
