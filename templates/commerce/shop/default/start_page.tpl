@@ -3,7 +3,6 @@
 # @var newest
 #}
 
-
 <script type="text/javascript" src="{$SHOP_THEME}js/start_page.js"></script>
 
 {# Display sidebar.tpl #}
@@ -16,7 +15,12 @@
 	<div id="slideshow">
 			<ul id="slides" style="width: 693px; height: 260px;">
 				{foreach $banners as $banner}
-					<li><a href="{echo $banner->getUrl()}"><img src="/uploads/shop/banners/{echo $banner->getImage()}" alt="" height="256"></a><span class="slide_caption"> <a href="{echo $banner->getUrl()}" class="title">{echo ShopCore::encode($banner->getName())}</a> {echo ShopCore::encode($banner->getText())}</span></li>
+					<li>
+						<a href="{echo $banner->getUrl()}"><img src="/uploads/shop/banners/{echo $banner->getImage()}" alt="" height="256"></a>
+						<span class="slide_caption">
+							<a href="{echo $banner->getUrl()}" class="title">{echo ShopCore::encode($banner->getName())}</a>{echo ShopCore::encode($banner->getText())}
+						</span>
+					</li>
 				{/foreach}
 			</ul>
 			<div id="slideshow_violator" class="clearfix">
@@ -26,13 +30,17 @@
 	</div>
 	<!-- END SLIDESHOW -->
 	{/if}
+
+	<!--
 	<div align="center" style="padding-bottom: 38px;">
 		<div id="mycarousel" class="jcarousel-skin-ie7">
 			<ul>
-			  <!-- The content will be dynamically loaded in here -->
+
 			</ul>
 		</div>
 	</div>
+	-->
+
 	<!-- BEGIN HITS -->
 	<div id="titleExt">
 		<h5 class="left">Хиты</h5>
