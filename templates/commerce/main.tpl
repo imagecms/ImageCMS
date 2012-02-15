@@ -5,7 +5,7 @@
 <title>{$site_title}</title>
 <meta name="description" content="{$site_description}" />
 <meta name="keywords" content="{$site_keywords}" />
-<meta name="generator" content="ImageCMS">
+<meta name="generator" content="ImageCMS" />
 
 <style type="text/css">
     @import "{$SHOP_THEME}style/jquery-ui-1.8.15.custom.css";

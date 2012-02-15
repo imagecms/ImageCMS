@@ -146,10 +146,11 @@
 		<input type="hidden" name="productId" value="{echo $model->getId()}" />
 		<input type="hidden" name="quantity" value="1" />
 
-		<!--
-		<a rel="nofollow" href="#" onClick="document.productForm.submit(); return false;" class="button1">{echo ShopCore::t('ДОБАВИТЬ В КОРЗИНУ')}</a>
-		-->
-		<a rel="nofollow" href="#" onClick='ajaxAddToCart(); return false;' class="button1">{echo ShopCore::t('ДОБАВИТЬ В КОРЗИНУ')}</a>
+		{if $model->firstVariant->getStock() > 0}
+			<a rel="nofollow" href="#" onClick='ajaxAddToCart(); return false;' class="button1">{echo ShopCore::t('ДОБАВИТЬ В КОРЗИНУ')}</a>
+		{else:}
+
+		{/if}
 		<div style="margin-left:45px;font-size:13px;display:none;background-color:#f5f5dc;" id="cartNotify">
 			Товар добавлен в корзину.
 		</div>

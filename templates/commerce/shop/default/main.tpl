@@ -5,7 +5,7 @@
 <title>{$site_title}</title>
 <meta name="description" content="{$site_description}" />
 <meta name="keywords" content="{$site_keywords}" />
-<meta name="generator" content="ImageCMS">
+<meta name="generator" content="ImageCMS" />
 
 {literal}
 <script type="text/javascript">
