@@ -1,7 +1,4 @@
 User-agent: *
-Disallow: /orders/view/*
-
-User-agent: *
 Disallow:
 
 User-agent: Yandex
