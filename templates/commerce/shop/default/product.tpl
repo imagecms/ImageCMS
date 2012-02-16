@@ -28,7 +28,7 @@
 
 <div class="products_list">
 
-	  <div id="titleExt">
+	<div id="titleExt">
 		<h5 class="left">
 		{echo ShopCore::encode($model->getName())}
 		{if sizeof($model->getProductVariants()) == 1}
@@ -48,7 +48,7 @@
 		<div id="categoryPath">
 			{renderCategoryPath($model->getMainCategory())}
 		</div>
-	  </div>
+	</div>
 
 	{if $CI->session->flashdata('productAdded') === true}
 		<div style="padding:10px;background-color:#f5f5dc;">
@@ -61,10 +61,10 @@
 	{/if}
 	<div class="left">
 
-	  <div id="gallery">
+	<div id="gallery">
 		<div id="prImage" align="center">
 		{if $model->getMainImage()}
-			<img src="{productImageUrl($model->getMainImage())}" border="0" alt="{echo encode($model->getName())}" />
+			<img src="{productImageUrl($model->getMainImage())}" border="0" alt="{echo encode($model->getName())}" width="300px" />
 		{/if}
 		</div>
 
@@ -79,7 +79,7 @@
 				</div>
 			{/foreach}
 		{/if}
-	  </div>
+	</div>
 
 	</div>
 	<div id="product" style="width:380px;">
@@ -95,8 +95,6 @@
 				</div>
 			{/if}
 		</div>
-
-	<a href="#"></a>
 
 	<div class="right">
 		<form action="{shop_url('cart/add')}" name="productForm" id="productForm" method="post">
