@@ -2,7 +2,7 @@
 		  	<tr style="background-color:#EDEDED">
 				<td><b>Название</b></td>
 				<td><b>Папка</b></td>
-				<td><b>URL Идентификатор</b></td>
+				<td><b>Идентификатор</b></td>
 				<td><b>Шаблон</b></td>
 				<td><b>Изображение</b></td>
 				<td></td>
