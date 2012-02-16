@@ -10,7 +10,6 @@
 
 <link rel="stylesheet" type="text/css" href="{$THEME}/css/general.css" />
 <link rel="stylesheet" type="text/css" href="{$THEME}/css/slideshow.css" />
-<link rel="stylesheet" type="text/css" href="{$THEME}/css/index.css" />
 
 <script type="text/javascript" src="{$THEME}/js/jquery.js"></script>
 <script type="text/javascript" src="{$THEME}/js/jquery.hoverIntent.js"></script>
