@@ -291,6 +291,7 @@ $config['log_date_format'] = 'Y-m-d H:i:s';
 |
 */
 $config['cache_path'] = '';
+$config['disable_cache'] = true;
 
 /*
 |--------------------------------------------------------------------------
