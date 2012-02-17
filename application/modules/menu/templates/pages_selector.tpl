@@ -5,8 +5,8 @@
                     <div style="float:left;padding-right:10px;">
 
                         Категории:
-                        <select id="category_sel">
-                        <option value="0" onclick="load_pages(0,0); return false;">root</option>
+                        <select id="category_sel" onclick="load_pages(this.value, 0); return false;">
+                        <option value="0">root</option>
                         {$cats}
                         </select>
 
