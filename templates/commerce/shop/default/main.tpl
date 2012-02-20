@@ -62,8 +62,8 @@
        <div class="popup">
            <div class="wishListQuestion">
                У вас уже был WishList до входа в систему!<br />
-                    <a href="{shop_url('wish_list/move_to_profile')}" >Перенести WishList в профиль</a> /
-                    <a href="{shop_url('wish_list/clear_cookie_wish_list')}">Удалить WishList</a>
+                    <a rel="nofollow" href="{shop_url('wish_list/move_to_profile')}" >Перенести WishList в профиль</a> /
+                    <a rel="nofollow" href="{shop_url('wish_list/clear_cookie_wish_list')}">Удалить WishList</a>
                </div>
            </div>
    </div>

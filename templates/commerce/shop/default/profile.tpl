@@ -90,7 +90,7 @@
             {echo ShopCore::app()->SWishList->totalItems()}
             {echo SStringHelper::Pluralize(ShopCore::app()->SWishList->totalItems(), array('товар','товара','товаров'))}
     </span></div>
-    <div style="padding: 3px 0 3px 25px;float:left;"><a href="{shop_url('wish_list')}" class="items">Просмотреть</a></div>
+    <div style="padding: 3px 0 3px 25px;float:left;"><a rel="nofollow" href="{shop_url('wish_list')}" class="items">Просмотреть</a></div>
     <div class="clear"></div>
 </div>
 
