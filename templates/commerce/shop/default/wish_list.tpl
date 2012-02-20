@@ -4,7 +4,6 @@
 # @var profile
 #}
 
-
 <h5>Список пожеланий {if $items}({count($items)}){/if}</h5>
 <div class="spLine"></div>
 
@@ -43,7 +42,7 @@
                 <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}</a> {$item.variantName}
             </td>
             <td>{echo ShopCore::app()->SCurrencyHelper->convert($item.price)} {$CS}</td>
-            <td><a href="{shop_url('wish_list/delete/' . $key)}" class="delete">X</a></td>
+            <td><a rel="nofollow" href="{shop_url('wish_list/delete/' . $key)}" class="delete">X</a></td>
         </tr>
     {/foreach}
     </tbody>
