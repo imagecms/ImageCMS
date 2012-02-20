@@ -101,6 +101,7 @@ class Sitemap extends MY_Controller {
     public function build_xml_map()
     {
         $this->_create_map();
+		header ("content-type: text/xml");
         echo $this->result;
     }
 
