@@ -279,19 +279,12 @@ class Filter extends MY_Controller {
 				$strict[]    = "t_$name.item_type = '".$type."'";
 			}
 
-
 			if (in_array($field['type'], array('select','checkgroup','radiogroup')))
-			{
 				$where[] = "(t_$name.field_name='$name' AND t_$name.data IN (".$this->implode($fields[$name])."))";
-			}
 			elseif(in_array($field['type'], array('text','textarea')))
-			{
 				$where[] = "(t_$name.field_name='$name' AND t_$name.data LIKE '%".$this->db->escape_str($fields[$name])."%')";
-			}
 			elseif(in_array($field['type'], array('checkbox')))
-			{
-				$where[] = "(t_$name.field_name='$name' AND t_$name.data = '".$this->db->escape_str($field_name[$name])."')";
-			}
+				$where[] = "(t_$name.field_name='$name' AND t_$name.data = '".$this->db->escape_str($fields[$name])."')";
 
 			$n++;
 		}
@@ -306,7 +299,6 @@ class Filter extends MY_Controller {
 
 			if (count($strict) > 0)
 				$sql .= "AND \n".implode(" \nAND\n ", $strict)."\n";
-
 
 			$query = $this->db->query($sql);
 
