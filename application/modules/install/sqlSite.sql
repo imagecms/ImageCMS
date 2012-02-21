@@ -1,5 +1,4 @@
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
@@ -95,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `components` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=129 ;
 
 INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_menu`, `settings`) VALUES
-(1, 'user_manager', 'user_manager', 0, 0, 0, NULL),
+(1, 'user_manager', 'user_manager', 0, 0, 1, NULL),
 (2, 'auth', 'auth', 1, 0, 0, NULL),
 (4, 'comments', 'comments', 1, 1, 1, 'a:5:{s:18:"max_comment_length";i:550;s:6:"period";i:0;s:11:"can_comment";i:0;s:11:"use_captcha";b:1;s:14:"use_moderation";b:0;}'),
 (7, 'navigation', 'navigation', 0, 0, 1, NULL),
@@ -151,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `content` (
 
 INSERT INTO `content` (`id`, `title`, `meta_title`, `url`, `cat_url`, `keywords`, `description`, `prev_text`, `full_text`, `category`, `full_tpl`, `main_tpl`, `position`, `comments_status`, `comments_count`, `post_status`, `author`, `publish_date`, `created`, `updated`, `showed`, `lang`, `lang_alias`) VALUES
 (35, 'Приветствуем на сайте ImageRobotics', 'ImageRobotics - Лидер в производстве роботов', 'privetstvuem_na_saite_imagerobitics', '', 'это, базовый, шаблон, imagecms, котором, релизованы, следующие, функции, вывод, фотогалереи, статической, статьи, блога', 'Мы разрабатываем и усовершенствуем такие виды роботов: человеко роботы, боевые роботы, космические роботы, кухонные роботы, рабочие роботы.Наши службы по ремонту , прокату и апгрейду роботов всегда рады приветствовать любого клиента.Мы систематически расш', '<p>Мы разрабатываем и усовершенствуем такие виды роботов: человеко роботы, боевые роботы, космические роботы, кухонные роботы, рабочие роботы.<br /><br />Наши службы по ремонту , прокату и апгрейду роботов всегда рады приветствовать любого клиента.<br /><br />Мы систематически расширяемся и захватываем все новые сегменты рынка, потому постоянно пополняем наши ряды новыми сотрудниками.<br /><br />Мы рады представлять вам все новые виды робототехники, которые Вы можете приобрести в кредит. Для этого нужен только мульти паспорт!<br /><br />Будем рады, если вы станете нашим постоянным клиентом и надеемся, наш сайт поможет в информировании о деятельности компании!</p>', '', 0, 'homepage', '', 0, 0, 0, 'publish', 'admin', 1267203253, 1267203328, 1291735384, 7, 3, 0),
-(63, 'О компании', '', 'o_kompanii', '', 'компания, image, robotics, создана, высокой, цели, ndash, продавать, роботов, всегда, заботимся, качестве, нашей, продукции, безопасности, нашего, товара, существуем, рынке, начала, времен, потому, опыт, накопленный, время, дает, нам, право, считаться, лучшими', 'Компания Image Robotics создана для высокой цели – продавать роботов!  Мы всегда заботимся о качестве нашей продукции и безопасности нашего товара.  Мы существуем на рынке еще с начала времен. Потому опыт, накопленный за это время, дает нам право счи', '<p><strong>Компания Image Robotics создана для высокой цели &ndash; продавать роботов!</strong></p>\n<p><img style="float: right; margin-left: 10px;" src="/uploads/images/o-kompanii.jpg" alt="" width="210" height="158" /></p>\n<ul>\n<li>Мы всегда заботимся о качестве нашей продукции и&nbsp; безопасности нашего товара. </li>\n<li>Мы существуем на рынке еще с начала времен. Потому опыт, накопленный за это время, дает нам право считаться лучшими в своей сфере.</li>\n<li>Мы можем в любое время вернуть вам всю сумму, оплаченную за товар, если он еще не привык к Вам и Вашей семье!</li>\n<li>Мы заботимся не только о правах человека, но и о правах роботов, согласно галактического законодательства.</li>\n<li>Мы боремся с теми, кто выгоняет роботов на улицу и согласны на бесплатную утилизацию ввиду отсутствия интереса к таковому.</li>\n</ul>', '', 0, '', '', 0, 0, 0, 'publish', 'admin', 1291378533, 1291378992, 1291721377, 231, 3, 0),
+(63, 'О компании', '', 'o_kompanii', '', 'компания, image, robotics, создана, высокой, цели, ndash, продавать, роботов, всегда, заботимся, качестве, нашей, продукции, безопасности, нашего, товара, существуем, рынке, начала, времен, потому, опыт, накопленный, время, дает, нам, право, считаться, лучшими', 'Компания Image Robotics создана для высокой цели – продавать роботов!  Мы всегда заботимся о качестве нашей продукции и безопасности нашего товара.  Мы существуем на рынке еще с начала времен. Потому опыт, накопленный за это время, дает нам право счи', '<p><strong>Компания Image Robotics создана для высокой цели &ndash; продавать роботов!</strong></p>\n<p><img style="float: right; margin-left: 10px;" src="/uploads/images/o-kompanii.jpg" alt="" width="210" height="158" /></p>\n<ul>\n<li>Мы всегда заботимся о качестве нашей продукции и&nbsp; безопасности нашего товара. </li>\n<li>Мы существуем на рынке еще с начала времен. Потому опыт, накопленный за это время, дает нам право считаться лучшими в своей сфере.</li>\n<li>Мы можем в любое время вернуть вам всю сумму, оплаченную за товар, если он еще не привык к Вам и Вашей семье!</li>\n<li>Мы заботимся не только о правах человека, но и о правах роботов, согласно галактического законодательства.</li>\n<li>Мы боремся с теми, кто выгоняет роботов на улицу и согласны на бесплатную утилизацию ввиду отсутствия интереса к таковому.</li>\n</ul>', '', 0, '', '', 0, 0, 0, 'publish', 'admin', 1291378533, 1291378992, 1291721377, 232, 3, 0),
 (64, 'Человеко роботы', '', 'cheloveko_roboty', 'produktsiia/', 'вам, надоели, ваши, друзья, подруги, достало, ваше, окружение, закажите, человеко, робота, нас, получите, чего, хватало, надоедливых, людей, роботы, работают, законам, которые, укажите, схожи, людьми, тоже, время, обладают, механизмом, управления, подчинения', 'Вам надоели ваши друзья и подруги? Вас достало ваше окружение? Закажите человеко робота у нас, и вы получите все, чего вам не хватало от надоедливых людей! Человеко роботы работают по законам, которые укажите вы. Они схожи с людьми, но в тоже время облада', '<p><img style="float: left; margin-right: 10px; margin-top:2px" src="/uploads/images/cheloveko-roboty.jpg" alt="" width="190" height="143" />Вам надоели ваши друзья и подруги? Вас достало ваше окружение? Закажите человеко робота у нас, и вы получите все, чего вам не хватало от надоедливых людей!</p>\r\n<p>Человеко роботы работают&nbsp; по законам, которые укажите вы. Они схожи с людьми, но в тоже время обладают механизмом управления и подчинения вашим приказам.</p>\r\n<p>Наши новые человеко роботы обладают инновационными разговорными функциями. Они могут оказывать полноценную психологическую поддержку, вести беседу обо всем, быть хорошими советчиками и пунктами необходимых&nbsp; знаний!</p>\r\n<p>Любого человеко робота можно взять в кредит и вернуть, если он вас не устроит.</p>', '', 55, '', '', 1, 0, 0, 'publish', 'admin', 1291379033, 1291379069, 1291634370, 54, 3, 0),
 (65, 'Боевые роботы', '', 'boevye_roboty', 'produktsiia/', 'если, нужна, настоящая, мощная, защита, ndash, боевые, роботы, нужно, наши, обладают, различными, комплектациями, вооружения, кроме, базового, оружия, возможна, установка, плазменной, ультрафиолетовой, лазерной, лептонной, пушки, важно, перед, покупкой, получить, форму, galaxy', 'Если вам нужна настоящая и мощная защита – боевые роботы это то, что вам нужно! Наши боевые роботы обладают различными комплектациями вооружения. Кроме базового оружия возможна установка плазменной, ультрафиолетовой, лазерной или лептонной пушки. ВАЖ', '<p><img style="float: left; margin-right: 10px; margin-top:2px" src="/uploads/images/boeviye-roboty.jpg" alt="" width="300" height="268" />Если вам нужна настоящая и мощная защита &ndash; боевые роботы это то, что вам нужно!</p>\r\n<p>Наши боевые роботы обладают различными комплектациями вооружения. Кроме базового оружия возможна установка плазменной, ультрафиолетовой, лазерной или лептонной пушки.</p>\r\n<p>ВАЖНО! Перед покупкой Вам нужно получить форму GALAXY-837,&nbsp; для удостоверения психологической уравновешенности, не судимости и т.п. Приходите в наш отдел с данной формой и мульти паспортом, мы продадим вам боевого робота, который будет служить лучше, чем любая сторожевая собака или телохранитель высшего ранга.</p>', '', 55, '', '', 2, 0, 0, 'publish', 'admin', 1291379073, 1291379097, 1291634533, 20, 3, 0),
 (66, 'Космические роботы', '', 'kosmicheskie_roboty', 'produktsiia/', 'image, robotics, выпускает, лучших, космических, роботов, нашей, галактике, дальность, полетов, составляет, более, световых, лет, скорость, полета, близка, скорости, света, космические, роботы, могут, перевозить, довольно, большие, объемы, грузов, удаленно, выполнять, различные', 'Image Robotics выпускает лучших космических роботов в нашей галактике. Их дальность полетов составляет более 10 световых лет, а скорость полета близка к скорости света. Космические роботы могут перевозить довольно большие объемы грузов, удаленно выполнять', '<p><img style="float: left; margin-right: 10px; margin-top:2px" src="/uploads/images/kosmicheskie-roboty.jpg" alt="" width="298" height="293" />Image Robotics выпускает лучших космических роботов в нашей галактике. Их дальность полетов составляет более 10 световых лет, а скорость полета близка к скорости света.</p>\r\n<p>Космические роботы могут перевозить довольно большие объемы грузов, удаленно выполнять различные задания на ближних планетах.</p>\r\n<p>Если вы купите более трех роботов или приведете к нам двух своих друзей , которые станут клиентами, Ваш робот будет оборудован дополнительным сверхмощным телескопом!</p>\r\n<p>С нашей инновационной продукцией Вам подчинится космос!</p>', '', 55, '', '', 3, 0, 0, 'publish', 'admin', 1291379102, 1291379142, 1291634589, 19, 3, 0),
@@ -367,73 +366,7 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `date` (`date`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=65 ;
-
-INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
-(1, 1, 'admin', 'Удалил модуль polls', 1294845745),
-(2, 1, 'admin', 'Установил модуль polls', 1294845821),
-(3, 1, 'admin', 'Удалил модуль polls', 1294845863),
-(4, 1, 'admin', 'Установил модуль polls', 1294845865),
-(5, 1, 'admin', 'Удалил модуль polls', 1294845968),
-(6, 1, 'admin', 'Установил модуль polls', 1294845984),
-(7, 1, 'admin', 'Удалил модуль polls', 1294846007),
-(8, 1, 'admin', 'Установил модуль polls', 1294846013),
-(9, 1, 'admin', 'Изменил настройки модуля polls', 1294846322),
-(10, 1, 'admin', 'Удалил модуль polls', 1294847091),
-(11, 1, 'admin', 'Установил модуль polls', 1294847094),
-(12, 1, 'admin', 'Изменил настройки модуля polls', 1294849881),
-(13, 1, 'admin', 'Вошел в панель управления IP 127.0.0.3', 1294854120),
-(14, 1, 'admin', 'Удалил модуль polls', 1294854129),
-(15, 1, 'admin', 'Вошел в панель управления IP 127.0.0.3', 1294934267),
-(16, 1, 'admin', 'Вошел в панель управления IP 127.0.0.2', 1303820492),
-(17, 1, 'admin', '\n            Изменил страницу  \n            <a href="#" onclick="ajax_div(''page'',''http://imagecms/admin/pages/edit/74''); return false;">Новые космические роботы станут летать быстрее, а «носить» больше!</a>', 1303820817),
-(18, 1, 'admin', 'Очистил кеш', 1307617119),
-(19, 1, 'admin', 'Вошел в панель управления IP 127.0.0.2', 1328012091),
-(20, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(60); return false;">Кухонные роботы</a>', 1328016725),
-(21, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(60); return false;">Кухонные роботы</a>', 1328017803),
-(22, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(60); return false;">Кухонные роботы</a>', 1328017821),
-(23, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(59); return false;">Блог</a>', 1328019171),
-(24, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(59); return false;">Блог</a>', 1328019181),
-(25, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(59); return false;">Блог</a>', 1328019206),
-(26, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(59); return false;">Блог</a>', 1328019342),
-(27, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(60); return false;">Кухонные роботы</a>', 1328019351),
-(28, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(60); return false;">Кухонные роботы</a>', 1328019352),
-(29, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(60); return false;">Кухонные роботы</a>', 1328019386),
-(30, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(60); return false;">Кухонные роботы</a>', 1328019387),
-(31, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(60); return false;">Кухонные роботы</a>', 1328019430),
-(32, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(60); return false;">Кухонные роботы</a>', 1328019438),
-(33, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(60); return false;">Кухонные роботы</a>', 1328019438),
-(34, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(60); return false;">Кухонные роботы</a>', 1328019511),
-(35, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(60); return false;">Кухонные роботы</a>', 1328019658),
-(36, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(59); return false;">Блог</a>', 1328019666),
-(37, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(59); return false;">Блог</a>', 1328019686),
-(38, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(59); return false;">Блог</a>', 1328019813),
-(39, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(60); return false;">Кухонные роботы</a>', 1328019832),
-(40, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(59); return false;">Блог</a>', 1328019883),
-(41, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(59); return false;">Блог</a>', 1328020023),
-(42, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(59); return false;">Блог</a>', 1328020034),
-(43, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(59); return false;">Блог</a>', 1328020055),
-(44, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(61); return false;">Человеко роботы</a>', 1328020451),
-(45, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(60); return false;">Кухонные роботы</a>', 1328020468),
-(46, 1, 'admin', '\n            Создал страницу \n            <a href="#" onclick="ajax_div(''page'',''http://imagecms/admin/pages/edit/82''); return false;">test page</a>', 1328020499),
-(47, 1, 'admin', 'Удалил страницу ID 82', 1328020522),
-(48, 1, 'admin', 'Вошел в панель управления IP 127.0.0.2', 1328029099),
-(49, 1, 'admin', 'Вошел в панель управления IP 127.0.0.2', 1328029130),
-(50, 1, 'admin', 'Вошел в панель управления IP 127.0.0.2', 1328191797),
-(51, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(59); return false;">Блог</a>', 1328191821),
-(52, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(59); return false;">Блог</a>', 1328191838),
-(53, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(59); return false;">Блог</a>', 1328192967),
-(54, 1, 'admin', 'Вошел в панель управления IP 127.0.0.2', 1328196626),
-(55, 1, 'admin', '\n                Изменил страницу\n                <a href="#" onclick="ajax_div(''page'',''http://imagecms/admin/pages/edit/69''); return false;">Ремонт роботов</a>', 1328196961),
-(56, 1, 'admin', '\n                Изменил страницу\n                <a href="#" onclick="ajax_div(''page'',''http://imagecms/admin/pages/edit/69''); return false;">Ремонт роботов</a>', 1328197498),
-(57, 1, 'admin', '\n                Изменил страницу\n                <a href="#" onclick="ajax_div(''page'',''http://imagecms/admin/pages/edit/69''); return false;">Ремонт роботов</a>', 1328197596),
-(58, 1, 'admin', '\n                Изменил страницу\n                <a href="#" onclick="ajax_div(''page'',''http://imagecms/admin/pages/edit/69''); return false;">Ремонт роботов</a>', 1328197629),
-(59, 1, 'admin', '\n                Изменил страницу\n                <a href="#" onclick="ajax_div(''page'',''http://imagecms/admin/pages/edit/69''); return false;">Ремонт роботов</a>', 1328197645),
-(60, 1, 'admin', '\n                Изменил страницу\n                <a href="#" onclick="ajax_div(''page'',''http://imagecms/admin/pages/edit/69''); return false;">Ремонт роботов</a>', 1328707333),
-(61, 1, 'admin', '\n                Изменил страницу\n                <a href="#" onclick="ajax_div(''page'',''http://imagecms/admin/pages/edit/69''); return false;">Ремонт роботов</a>', 1328707381),
-(62, 1, 'admin', '\n                Изменил страницу\n                <a href="#" onclick="ajax_div(''page'',''http://imagecms/admin/pages/edit/69''); return false;">Ремонт роботов</a>', 1328707421),
-(63, 1, 'admin', 'Вошел в панель управления IP 127.0.0.2', 1328869655),
-(64, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(59); return false;">Блог</a>', 1328869808);
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=71 ;
 
 DROP TABLE IF EXISTS `menus`;
 CREATE TABLE IF NOT EXISTS `menus` (
@@ -671,7 +604,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   KEY `role_id` (`role_id`),
   KEY `banned` (`banned`),
   KEY `password` (`password`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=87 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=88 ;
 
 DROP TABLE IF EXISTS `user_autologin`;
 CREATE TABLE IF NOT EXISTS `user_autologin` (
@@ -684,26 +617,19 @@ CREATE TABLE IF NOT EXISTS `user_autologin` (
   KEY `last_ip` (`last_ip`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
-INSERT INTO `user_autologin` (`key_id`, `user_id`, `user_agent`, `last_ip`, `last_login`) VALUES
-('1e08538c9b444d67d57aec6fb2d584f2', 1, 'Mozilla/5.0 (X11; U; Linux i686; en-US) AppleWebKit/534.7 (KHTML, like Gecko) Chrome/7.0.517.44 Safari/534.7', '127.0.0.2', '2010-11-19 10:11:59'),
-('c622061ad82075b57a18e881f42d6ff4', 1, 'Mozilla/5.0 (X11; U; Linux i686; en-US) AppleWebKit/534.7 (KHTML, like Gecko) Chrome/7.0.517.44 Safari/534.7', '127.0.0.8', '2010-11-17 13:17:06'),
-('5d7f6972ed95dd84c7782afa839c2de2', 1, 'Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/534.16 (KHTML, like Gecko) Chrome/10.0.648.205 Safari/534.16', '127.0.0.2', '2011-04-26 12:21:32'),
-('21f240c39ecf51c831f9c3e11fec1521', 1, 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.7 (KHTML, like Gecko) Chrome/16.0.912.77 Safari/535.7', '127.0.0.2', '2012-01-31 12:14:51'),
-('5ec444372c5bf8751201cc76e2bdfe38', 1, 'Opera/9.80 (X11; Linux x86_64; U; en) Presto/2.10.229 Version/11.61', '127.0.0.2', '2012-01-31 16:58:19'),
-('e55b64130a55826c5ac12e38f0df92b7', 1, 'Mozilla/5.0 (Ubuntu; X11; Linux x86_64; rv:9.0.1) Gecko/20100101 Firefox/9.0.1', '127.0.0.2', '2012-01-31 16:58:50');
-
 DROP TABLE IF EXISTS `user_profile`;
 CREATE TABLE IF NOT EXISTS `user_profile` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=5 ;
 
 INSERT INTO `user_profile` (`id`, `user_id`) VALUES
 (1, 84),
 (2, 85),
-(3, 86);
+(3, 86),
+(4, 87);
 
 DROP TABLE IF EXISTS `user_temp`;
 CREATE TABLE IF NOT EXISTS `user_temp` (
