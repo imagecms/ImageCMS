@@ -33,7 +33,7 @@
 		case 'development':
 			error_reporting(E_ALL ^ E_NOTICE);
 		break;
-	
+
 		case 'testing':
 		case 'production':
 			error_reporting(0);
@@ -168,8 +168,8 @@
 	// Path to the front controller (this file)
 	define('FCPATH', str_replace(SELF, '', __FILE__));
 
-    define('PUBPATH', FCPATH); 
-    define('TEMPLATES_PATH', PUBPATH.'/templates/');
+	define('PUBPATH', FCPATH);
+	define('TEMPLATES_PATH', PUBPATH.'/templates/');
 
 	// Name of the "system folder"
 	define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
@@ -189,11 +189,10 @@
 
 		define('APPPATH', BASEPATH.$application_folder.'/');
 	}
-        
 
-    define('IMAGECMS_NUMBER', '2.5.5');
-    define('IMAGECMS_VERSION', 'A3SDFKD31');
-    define('IMAGECMS_PUBLIC_ID', '51035d2a96a227c54d0dea3ff415ced6d39266c3'); 
+	define('IMAGECMS_NUMBER', '2.9.0');
+	define('IMAGECMS_VERSION', '20120222');
+	define('IMAGECMS_PUBLIC_ID', '51035d2a96a227c54d0dea3ff415ced6d39266c3');
 
 /*
  * --------------------------------------------------------------------
