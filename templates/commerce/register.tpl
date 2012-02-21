@@ -11,16 +11,15 @@
 
 <form action="" class="form" method="post">
 
-		<div class="fieldName">{lang('lang_login')}</div>
-		<div class="field">
-			<input type="text" size="30" name="username" id="username" value="{set_value('username')}"/>
-		</div>
-		<div class="clear"></div>
-
-
 		<div class="fieldName">{lang('lang_email')}</div>
 		<div class="field">
 			<input type="text" size="30" name="email" id="email" value="{set_value('email')}" />
+		</div>
+		<div class="clear"></div>
+
+		<div class="fieldName">ФИО</div>
+		<div class="field">
+			<input type="text" size="30" name="userInfo[fullName]" value="{set_value('userInfo[fullName]')}" />
 		</div>
 		<div class="clear"></div>
 

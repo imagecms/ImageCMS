@@ -99,7 +99,7 @@ $config['DX_autologin_cookie_life'] = 60*60*24*31*2;
 */
 
 $config['DX_count_login_attempts'] = TRUE;
-$config['DX_max_login_attempts'] = 3;
+$config['DX_max_login_attempts'] = 5;
 
 /*
 |--------------------------------------------------------------------------
@@ -223,5 +223,3 @@ $config['DX_change_password_success_view'] = 'auth/general_message';
 $config['DX_register_disabled_view'] = 'auth/general_message';
 $config['DX_activate_failed_view'] = 'auth/general_message';
 $config['DX_reset_password_failed_view'] = 'auth/general_message';
-
-?>
