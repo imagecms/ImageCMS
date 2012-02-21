@@ -661,9 +661,9 @@ class Pages extends MY_Controller {
 				$page_id = substr($v,5);
 
 				$data = array(
-						'category' => $category['id'],
-						'cat_url'  => $category['path_url']
-						);
+					'category' => $category['id'],
+					'cat_url'  => $category['path_url']
+				);
 
 				switch ($action)
 				{
@@ -671,6 +671,9 @@ class Pages extends MY_Controller {
 						($hook = get_hook('admin_pages_move')) ? eval($hook) : NULL;
 
 						$this->db->where('id', $page_id);
+						$this->db->update('content', $data);
+
+						$this->db->where('lang_alias', $page_id);
 						$this->db->update('content', $data);
 					break;
 
