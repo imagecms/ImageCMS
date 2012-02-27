@@ -1,4 +1,4 @@
-        <a href="{shop_url('wish_list')}" class="items">
+        <a href="{shop_url('wish_list')}" class="items" rel="nofollow">
             {echo ShopCore::app()->SWishList->totalItems()}
             {echo SStringHelper::Pluralize(ShopCore::app()->SWishList->totalItems(), array('товар','товара','товаров'))}
         </a>
