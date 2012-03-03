@@ -14,7 +14,7 @@
 	/**
 	 * Show Roar message
 	 */
-	function showMessage( $message, $title = FALSE)
+	function showMessage( $message, $title = FALSE, $class = '')
     {
         $del = array("'",'"');  
 
@@ -25,13 +25,17 @@
 		if ($title == FALSE)
 		{
 			$title = 'Сообщение: ';
+			if ($class == 'r') 
+				{$title = 'Ошибка: ';}
+			if ($class == 'g') 
+				{$title = 'Успех: ';}
 		}
 		$CI =& get_instance();
 		$message .= '<br/><strong>Запросов к базе: '.$CI->db->total_queries().'</strong>';
 		$message = str_replace("\n",'<br/>',$message);
 		$message = str_replace("<p>",'',$message);
 		$message = str_replace("</p>",'',$message);
-		echo "<script type=\"text/javascript\"> showMessage('".$title."','".$message."'); </script>";
+		echo "<script type=\"text/javascript\"> showMessage('".$title."','".$message."','".$style."'); </script>";
 	}
 
 	/**
