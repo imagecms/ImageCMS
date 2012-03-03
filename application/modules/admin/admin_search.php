@@ -207,7 +207,7 @@ class Admin_search extends MY_Controller {
 			}
 			else
 			{
-				showMessage($form->_validation_errors());
+				showMessage($form->_validation_errors(),false,'r');
 			}
 		}
 		else
