@@ -296,31 +296,14 @@ class Core extends MY_Controller {
         // If module than exit from core and load module
         if ( $this->is_module($mod_segment) == TRUE ) return TRUE;
 
-        switch ( $this->core_data['data_type'] )
-        {
-            case 'main': // Main page
-                $this->_mainpage();
-            break;
-
-            case 'category': // Category
-                $this->_display_category($this->cat_content);
-            break;
-
-            case 'page': // Page and category
-                $this->check_page_access($this->page_content['roles']);
-                $this->_display_page_and_cat($this->page_content,$this->cat_content);
-            break;
-
-            case '404': // Page not found
-                $this->error_404();
-            break;
-
-            case 'bridge':
-                log_message('debug', 'Bridge initialized.');
-            break;
-
-            ($hook = get_hook('core_datatype_switch')) ? eval($hook) : NULL;
-        }
+    	$data_type_switch=array();
+    	($hook = get_hook('core_datatype_switch')) ? eval($hook) : NULL;
+    	$data_type_switch['main']='$this->_mainpage();';
+    	$data_type_switch['category']='$this->_display_category($this->cat_content);';
+    	$data_type_switch['page']='$this->check_page_access($this->page_content["roles"]);$this->_display_page_and_cat($this->page_content,$this->cat_content);';
+    	$data_type_switch['404']='$this->error_404();';
+    	$data_type_switch['bridge']='log_message("debug", "Bridge initialized.");';
+    	eval($data_type_switch[$this->core_data['data_type']]);
     }
 
     /**
