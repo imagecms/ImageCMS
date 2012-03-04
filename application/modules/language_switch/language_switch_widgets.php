@@ -60,7 +60,7 @@ class Language_switch_Widgets extends MY_Controller {
 
                 if ($this->form_validation->run() == FALSE)
                 {
-                    showMessage( validation_errors() );
+                    showMessage( validation_errors() ,false,'r');
                 }
                 else{
                     $data = array(
