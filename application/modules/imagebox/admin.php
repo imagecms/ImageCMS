@@ -108,7 +108,7 @@ class Admin extends MY_Controller {
             
             $this->load->library('upload', $config);
         
-            if ( ! $this->upload->do_upload())
+            if ( ! $this->upload->do_upload('userfile'))
             {
                 echo 'Error: '. $this->upload->display_errors('', '');
                 return;
