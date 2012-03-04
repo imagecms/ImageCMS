@@ -106,12 +106,12 @@ class Admin extends MY_Controller {
         if (file_exists($file))
         {
             if ( ! write_file($file, $this->input->post('data'))) 
-                showMessage('Ошибка записи файла. Проверьте права на запись.'); 
+                showMessage('Ошибка записи файла. Проверьте права на запись.',false,'r'); 
             else
                 showMessage('Изменения сохранены.');
         }
         else
-            showMessage('Файл не найден.');  
+            showMessage('Файл не найден.',false,'r');  
     }
 
     public function create_file()
@@ -127,7 +127,7 @@ class Admin extends MY_Controller {
 
             if (trim($file_name) == '')
             {
-                showMessage('Укажите имя файла.');
+                showMessage('Укажите имя файла.',false,'r');
                 exit;
             }
             else
@@ -137,7 +137,7 @@ class Admin extends MY_Controller {
                 $file=htmlspecialchars(TEMPLATES_PATH.$path.'/'.$file_name.'.tpl');
                 
                 if ( ! write_file($file, ' ')) 
-                    showMessage('Ошибка записи файла. Проверьте права на запись.'); 
+                    showMessage('Ошибка записи файла. Проверьте права на запись.',false,'r'); 
                 else
                 {
                     showMessage('Файл создан.');
@@ -163,7 +163,7 @@ class Admin extends MY_Controller {
         {
             if (!unlink(TEMPLATES_PATH.$path))
             {
-                showMessage('Ошибка удаления файла.');
+                showMessage('Ошибка удаления файла.',false,'r');
             }
             else
             {
@@ -174,7 +174,7 @@ class Admin extends MY_Controller {
         }
         else
         {
-            showMessage('Ошибка укаления');
+            showMessage('Ошибка укаления',false,'r');
         }
     }
 
