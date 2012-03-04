@@ -22,12 +22,12 @@ class Categories extends MY_Controller {
 	}
 
     // Display create category form
-	function create_form()
+	function create_form($parent_id = NULL)
     {
         cp_check_perm('category_create');
 
  		$this->template->assign('tree', $this->lib_category->build());
-		$this->template->assign('parent_id', NULL);
+		$this->template->assign('parent_id', $parent_id);
 		$this->template->assign('include_cats', $this->sub_cats( $this->lib_category->build() ) );
 
 		$this->template->show('create_cat', FALSE);
