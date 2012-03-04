@@ -36,7 +36,7 @@ div.rdTreeFirebug  a.selected  {
     font-weight:bold;
     box-shadow:1px 1px 1px #000;
 }
-div.rdTreeFirebug .penedit {
+div.rdTreeFirebug .penedit, div.rdTreeFirebug .penedit-root {
     display:none;
 }
 div.rdTreeFirebug .selected .penedit-root{
