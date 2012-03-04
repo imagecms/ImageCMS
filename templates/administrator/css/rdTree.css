@@ -1,97 +1,142 @@
-/** #menu {padding: 1px; position: absolute; left: 0px; top: 0px} **/
+/* для занятия всей* области по горизонтали */
+#files-panel.panel.expanded>div {
+    display:block;
+    min-width:90%;
+    min-height:90%;
+    
+}
+
 div.rdTreeFirebug table {
-	font-family:Arial, Helvetica, sans-serif;
-	font-size: 11px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 11px;
+
+}
+div.rdTreeFirebug a  {
+    margin:1px;
+    border-radius:3px;
+    color:#2e679a;
+    text-decoration:none;
+    cursor:pointer;
+    font-size: 11px;
+    border-radius:3px;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
 }
 
+div.rdTreeFirebug a:hover {
+    border: 1px solid #a5d5f0;
+    margin:0px;
+}
 div.rdTreeFirebug  a.selected  {
-/*     background-color:#e0e0e0;
-     color:#000; */
-	 background-color:#0684cc;
-	 color:#fff;
-     padding:0px 4px;
-	 font-weight:bold;
-	 border-radius:2px;
-	 -webkit-border-radius:3px;
-	 -moz-border-radius:3px;
+    background-color:#0684cc;
+    color:#fff;
+    margin:1px;
+    border:0px solid transparent;
+    padding:0px 4px;
+    font-weight:bold;
+    box-shadow:1px 1px 1px #000;
+}
+div.rdTreeFirebug .penedit {
+    display:none;
+}
+div.rdTreeFirebug .selected .penedit-root{
+    display:inline;
+    float:right;
 }
 
-div.rdTreeFirebug a {
-	color:#2e679a;
-	text-decoration:none;
-	cursor:pointer;
-	font-size: 11px;
+div.rdTreeFirebug .selected .penedit-root , div.rdTreeFirebug .selected .penedit{    
+    margin:1px;
+    border-radius:3px;
+    background-color:#2684cc;
+    box-shadow:1px 1px 2px #000;
 }
 
+div.rdTreeFirebug .selected .penedit {
+    display:block;
+    position:absolute;
+    right:5px;    
+}
+div.rdTreeFirebug .selected .penedit.b1{
+    right:1px;
+}
+div.rdTreeFirebug .selected .penedit.b2{
+    right:19px;
+}
+div.rdTreeFirebug .selected .penedit.b3{
+    right:37px;
+}
+div.rdTreeFirebug .penedit:hover {
+    background-color:#000066;
+}
+
+div.rdTreeFirebug li{
+    display:block;
+
+}
 div.rdTreeFirebug ul{
     margin:0px;
     padding:0px;
 }
 
-div.rdTreeFirebug a:hover {
-/*	text-decoration:none; */
-	text-decoration:underline;
-
-}
 
 div.rdTreeFirebug ul ul {
-/**	border-left:2px solid #e0e0e0; **/
-	padding-left:0px;
-	display:none;
+    padding-left:0px;
+    display:none;
 }
 
 div.rdTreeFirebug ul li {
-	list-style:none;
-	/** cursor:pointer; **/
-	background:0px 4px no-repeat url(../images/tree/item.gif);
+    list-style:none;
+    background:0px 4px no-repeat url(../images/tree/item.gif);
     padding-left:0px;
-	font-weight:bold;
-	line-height:15px;
+    font-weight:bold;
+    line-height:15px;
 }
 
 div.rdTreeFirebug ul li.last,
-div.rdTreeFirebug ul li.lastNode {	background:url(../images/tree/line-last.gif) no-repeat; background-position: 0px -285px;}
+div.rdTreeFirebug ul li.lastNode {background:url(../images/tree/line-last.gif) no-repeat; background-position: 0px -285px;}
 div.rdTreeFirebug ul li.center,
-div.rdTreeFirebug ul li.centerNode { background:url(../images/tree/line-center.gif) no-repeat; background-position: 0px center;}
+div.rdTreeFirebug ul li.centerNode {background:url(../images/tree/line-center.gif) no-repeat; background-position: 0px center;}
 
-div.rdTreeFirebug ul li.centerNode { background-position: 0px -293px;}
-div.rdTreeFirebug ul li.lastNode { background-position: 0px -286px;}
+div.rdTreeFirebug ul li.centerNode {background-position: 0px -293px;}
+div.rdTreeFirebug ul li.lastNode {background-position: 0px -286px;}
 
-div.rdTreeFirebug ul ul li.last {	background-position: 15px -286px;}
-div.rdTreeFirebug ul ul li.center { background-position: 15px center;}
+div.rdTreeFirebug ul ul li.last {background-position: 15px -286px;}
+div.rdTreeFirebug ul ul li.center {background-position: 15px center;}
 
-div.rdTreeFirebug ul ul li.centerNode { background-position: 15px -293px;}
-div.rdTreeFirebug ul ul li.lastNode { background-position: 15px -286px;}
+div.rdTreeFirebug ul ul li.centerNode {background-position: 15px -293px;}
+div.rdTreeFirebug ul ul li.lastNode {background-position: 15px -286px;}
 
-div.rdTreeFirebug ul li ul li {
-    font-weight:normal;
-    padding-left:15px;
-}
+div.rdTreeFirebug ul li ul li {font-weight:normal;padding-left:15px;}
 
 div.rdTreeFirebug ul.opened {
-	display:block;
-	background: url(../images/tree/line-vertical.gif) left repeat-y;
+    display:block;
+    background: url(../images/tree/line-vertical.gif) left repeat-y;
 }
 
 div.rdTreeFirebug table {
-	border-spacing:0px;
-	border-collapse:collapse;
-	display:block;
+    border-spacing:0px;
+    border-collapse:collapse;
+    display:block;
 }
 div.rdTreeFirebug table,
 div.rdTreeFirebug tr,
 div.rdTreeFirebug td
- {
-	margin:0px;
-	padding:0px;
-	/*border:1px solid #FF0000; */
+{
+    margin:0px;
+    padding:0px;
 }
 
 div.rdTreeFirebug td.icon {
-	vertical-align:top;
-	width:16px;
+    vertical-align:top;
+    width:16px;
 }
 div.rdTreeFirebug td.icon img {
-	display:block;
-	padding-top:3px;
+    display:block;
+    padding-top:3px;
 }
+/**
+* оттестированно, багов не замечено
+* Firefox 10.0.2 Linux
+* Opera 11.61 Сборка: 1250 Платформа: Linux
+* Chromium 17.0.963.56 (Сборка для разработчиков 121963 Linux) 
+*/
