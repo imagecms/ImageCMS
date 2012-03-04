@@ -45,7 +45,7 @@ class Sys_upgrade extends MY_Controller {
         }
         else
         {
-            showMessage('Вы используете последнюю версию*.','','g');
+            showMessage('Вы используете последнюю версию.','Поздравляем!','g');
             exit;
         }
 
