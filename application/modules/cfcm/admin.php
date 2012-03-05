@@ -89,12 +89,12 @@ class Admin extends MY_Controller {
 
             if(empty($_POST['field_name']))
             {
-                showMessage('Укажите Имя поля');
+                showMessage('Укажите Имя поля',false,'r');
                 exit;
             }
             if(empty($_POST['label']))
             {
-                showMessage('Укажите Label поля');
+                showMessage('Укажите Label поля',false,'r');
                 exit;
             }
 
@@ -105,7 +105,7 @@ class Admin extends MY_Controller {
 
                 if ($this->db->get_where('content_fields', array('field_name' => $data['field_name']))->num_rows() > 0)
                 {
-                    showMessage('Выберите другое имя.');
+                    showMessage('Выберите другое имя.',false,'r');
                 }
                 else
                 {
@@ -122,7 +122,7 @@ class Admin extends MY_Controller {
             }
             else
             {
-                showMessage($form->_validation_errors());
+                showMessage($form->_validation_errors(),false,'r');
             }
         }
 
@@ -162,7 +162,7 @@ class Admin extends MY_Controller {
             }
             else
             {
-                showMessage($form->_validation_errors());
+                showMessage($form->_validation_errors(),false,'r');
                 exit;
             }
         }
@@ -246,7 +246,7 @@ class Admin extends MY_Controller {
         {
             if(empty($_POST['name']))
             {
-                showMessage('Укажите название группы');
+                showMessage('Укажите название группы',false,'r');
                 exit;
             }
 
@@ -259,7 +259,7 @@ class Admin extends MY_Controller {
             }
             else
             {
-                showMessage($form->_validation_errors());
+                showMessage($form->_validation_errors(),false,'r');
             }
         }
 
@@ -283,7 +283,7 @@ class Admin extends MY_Controller {
         }
         else
         {
-            showMessage('Группа не найдена.');
+            showMessage('Группа не найдена.',false,'r');
             exit;
         }
 
@@ -305,7 +305,7 @@ class Admin extends MY_Controller {
             }
             else
             {
-                showMessage($form->_validation_errors());
+                showMessage($form->_validation_errors(),false,'r');
             }
 
         $form->setAttributes($group);
