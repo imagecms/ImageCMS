@@ -77,14 +77,7 @@ class Lib_csrf {
      */
     public function create_hidden_html()
     {
-        if ( count($this->tokens) == 0 )
-        {
-            $this->_generate_token();
-        }
-
-        $token = array_pop($this->tokens);
-
-        return '<input type="hidden" value="'.$token.'" name="'.$this->hidden_name.'" />';
+        return '<input type="hidden" value="'.$this->get_token().'" name="'.$this->hidden_name.'" />';
     }
 
     private function _write_message($text)
@@ -134,7 +127,11 @@ class Lib_csrf {
 
     public function get_token()
     {
-        return $this->token;
+        if ( count($this->tokens) == 0 )
+        {
+            $this->_generate_token();
+        }
+        return array_pop($this->tokens);
     }
 
     private function _get_sess_id()
