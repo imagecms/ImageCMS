@@ -1,7 +1,7 @@
 
 <div class="rdTreeFirebug demotree">
 <ul id="desktop_tree">
-<li><a id="root_tree" ondblclick='myTree.expandAll()' onclick="cats_options(0,'');" title="Двойной щелчок - развернуть все категории">root</a>
+<li><a id="root_tree" ondblclick='myTree.expandAll()' onclick="cats_options(0,'');" title="Двойной щелчок - развернуть все категории">{$_SERVER[SERVER_NAME]}</a>
 { $this->view("cats_tree_css.tpl", $data) }
 </li>
 </ul>
