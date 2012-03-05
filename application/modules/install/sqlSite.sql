@@ -619,17 +619,11 @@ CREATE TABLE IF NOT EXISTS `user_autologin` (
 
 DROP TABLE IF EXISTS `user_profile`;
 CREATE TABLE IF NOT EXISTS `user_profile` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`)
+  PRIMARY KEY `user_id` (`user_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=5 ;
 
-INSERT INTO `user_profile` (`id`, `user_id`) VALUES
-(1, 84),
-(2, 85),
-(3, 86),
-(4, 87);
+INSERT INTO `user_profile` ( `user_id`) VALUES (84),(85),(86),(87);
 
 DROP TABLE IF EXISTS `user_temp`;
 CREATE TABLE IF NOT EXISTS `user_temp` (
