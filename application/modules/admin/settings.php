@@ -131,7 +131,7 @@ class Settings extends MY_Controller{
                 }
                 else
                 {
-                    showMessage ('Страница не найдена!','Ошибка');
+                    showMessage ('Страница не найдена!',false,'r');
                     exit;
                 }
             break;
@@ -171,7 +171,7 @@ class Settings extends MY_Controller{
 
         $this->lib_admin->log('Изменил настройки сайта');
     
-		showMessage ('Настройки сохранены');
+		showMessage ('Настройки сохранены',false,'g');
 	}
 
 	/**

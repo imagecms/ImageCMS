@@ -49,7 +49,7 @@ class Admin extends MY_Controller {
         
 		if ($this->form_validation->run($this) == FALSE)
 		{
-			showMessage (validation_errors());
+			showMessage (validation_errors(),false,'r');
 		}
         else
         {

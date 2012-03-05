@@ -219,21 +219,21 @@ class Admin extends MY_Controller {
 
                 if ($this->form_validation->run($this) == FALSE)
                 {
-                    showMessage (validation_errors());
+                    showMessage (validation_errors(),false,'r');
                     return FALSE;
                 }
 
                 // Check if watermark image exists.
                 if ($_POST['watermark_type'] == 'overlay' AND ! file_exists($_POST['watermark_image']) )
                 {
-                    showMessage('Ошибка. Укажите правильный путь к изображению водяного знака.');
+                    showMessage('Укажите правильный путь к изображению водяного знака.',false,'r');
                     return FALSE;
                 }
 
                 // Check if watermark font exists.
                 if ($_POST['watermark_type'] == 'text' AND ! file_exists($_POST['watermark_font_path']) )
                 {
-                    showMessage('Ошибка. Укажите правильный путь к шрифту.');
+                    showMessage('Укажите правильный путь к шрифту.',false,'r');
                     return FALSE;
                 }
 
@@ -293,7 +293,7 @@ class Admin extends MY_Controller {
 			
 		if ($this->form_validation->run($this) == FALSE)
 		{
-			showMessage( validation_errors() );
+			showMessage( validation_errors(),false,'r' );
 		}
 		else
 		{
@@ -459,7 +459,7 @@ class Admin extends MY_Controller {
 
             if ($this->form_validation->run($this) == FALSE)
             {
-                showMessage( validation_errors() );
+                showMessage( validation_errors() ,false,'r');
             }
             else
             {
@@ -488,7 +488,7 @@ class Admin extends MY_Controller {
         }
         else
         {
-            showMessage('Can\'t load image info.');
+            showMessage('Can\'t load image info.',false,'r');
         }
     }
 
@@ -551,7 +551,7 @@ class Admin extends MY_Controller {
         }
         else
         {
-            showMessage('Can\'t load image info.');
+            showMessage('Can\'t load image info.',false,'r');
         }
     }
 
@@ -618,7 +618,7 @@ class Admin extends MY_Controller {
 					
 		if ($val->run() == FALSE)
 		{
-		    showMessage( validation_errors() );
+		    showMessage( validation_errors(),false,'r' );
 		}
 		else
 		{
@@ -658,7 +658,7 @@ class Admin extends MY_Controller {
 					
 		if ($val->run() == FALSE)
 		{
-		    showMessage( validation_errors() );
+		    showMessage( validation_errors(),false,'r' );
 		}
 		else
 		{
