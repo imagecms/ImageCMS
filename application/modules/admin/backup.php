@@ -35,7 +35,7 @@ class Backup extends MY_Controller {
     {
         if (!is_really_writable('./application/backups'))
         {
-            showMessage('Директория ./application/backups не доступна для записи.');
+            showMessage('Директория ./application/backups не доступна для записи.',false,'r');
             exit;
         }
 
@@ -68,7 +68,7 @@ class Backup extends MY_Controller {
 			
 		if ($this->form_validation->run($this) == FALSE)
 		{
-			showMessage( validation_errors() );
+			showMessage( validation_errors(),false,'r');
 		}
 		else
 		{

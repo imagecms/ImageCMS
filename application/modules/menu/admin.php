@@ -451,7 +451,7 @@ class Admin extends MY_Controller {
 
 		if ($this->form_validation->run($this) == FALSE)
 		{
-			showMessage ( validation_errors() );
+			showMessage ( validation_errors() ,false,'r');
 		}else{
 
 			$data = array(
@@ -486,7 +486,7 @@ class Admin extends MY_Controller {
 
    		if ($_POST['menu_name'] == NULL)
 		{
-			showMessage('Поле Имя обязательно для заполения!.');
+			showMessage('Поле Имя обязательно для заполения!.',false,'r');
 			exit;
 		}
 
@@ -500,7 +500,7 @@ class Admin extends MY_Controller {
 
 		if ($this->form_validation->run($this) == FALSE)
 		{
-			showMessage ( validation_errors() );
+			showMessage ( validation_errors() ,false,'r');
 		}else{
 
 			$data = array(
@@ -525,13 +525,13 @@ class Admin extends MY_Controller {
     {
 		if ($_POST['menu_name'] == NULL)
 		{
-			showMessage('Поле Имя обязательно для заполения!.');
+			showMessage('Поле Имя обязательно для заполения!.',false,'r');
 			exit;
 		}
 
 		if ( $this->db->get_where('menus',array('name'=>$_POST['menu_name']))->num_rows() > 0 )
 		{
-			showMessage('Меню с таким именем уже существует!');
+			showMessage('Меню с таким именем уже существует!',false,'r');
 			exit;
 		}
     }

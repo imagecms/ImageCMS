@@ -83,7 +83,7 @@ class Widgets_Manager extends MY_Controller {
 
         if ($this->db->get_where('widgets', array('name' => $this->input->post('name')))->num_rows() > 0)
         {
-            showMessage('Виджет с таким именем уже создан. Укажите другое имя.', 'Ошибка');
+            showMessage('Виджет с таким именем уже создан. Укажите другое имя.',false,'r');
             return FALSE;
         }
             
@@ -96,7 +96,7 @@ class Widgets_Manager extends MY_Controller {
 
             if ($this->form_validation->run($this) == FALSE)
             {
-                showMessage (validation_errors());
+                showMessage (validation_errors(),false,'r');
             }else{
                 $data = array(
                     'description' => $this->input->post('desc'),
@@ -151,7 +151,7 @@ class Widgets_Manager extends MY_Controller {
             
             if ($this->form_validation->run($this) == FALSE)
             {
-                showMessage (validation_errors());
+                showMessage (validation_errors(),false,'r');
             }else{
                 $data = array(
                     'description' => $this->input->post('desc'),
@@ -219,7 +219,7 @@ class Widgets_Manager extends MY_Controller {
             
                 if ($this->form_validation->run($this) == FALSE)
                 {
-                    showMessage (validation_errors());
+                    showMessage (validation_errors(),false,'r');
                     return FALSE;
                 }
 
@@ -250,7 +250,7 @@ class Widgets_Manager extends MY_Controller {
             
             if ($this->form_validation->run($this) == FALSE)
             {
-                showMessage (validation_errors());
+                showMessage (validation_errors(),false,'r');
                 return FALSE;
             }
         
