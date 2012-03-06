@@ -283,7 +283,7 @@ class Admin extends MY_Controller {
 		{
 			if($this->user2->check_username($this->input->post('username'))->num_rows() > 0)
 			{
-				showMessage(lang('lang_login_exists'));
+				showMessage(lang('lang_login_exists'),false,'r');
 				exit;
 			}
 		}
