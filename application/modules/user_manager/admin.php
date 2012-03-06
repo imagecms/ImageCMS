@@ -91,8 +91,9 @@ class Admin extends MY_Controller {
 		$this->load->model('dx_auth/users', 'user2');
 		$val = $this->form_validation;
 
-		$val->set_rules('username', lang('lang_login'), 'trim|required|xss_clean|alpha_dash');
-		$val->set_rules('password', lang('lang_password'), 'trim|required|xss_clean');
+                $val->set_rules('username', lang('lang_login'), 'trim|required|xss_clean|alpha_dash');
+		$val->set_rules('password', lang('lang_password'), 'trim|min_length['.$this->config->item('DX_login_min_length').']|max_length['.$this->config->item('DX_login_max_length').']|required|xss_clean');
+		$val->set_rules('password_conf', lang('lang_confirm_password'), 'trim|matches[password]|required|xss_clean');
 		$val->set_rules('email', lang('lang_email'), 'trim|required|xss_clean|valid_email');
 
         ($hook = get_hook('users_create_set_val_rules')) ? eval($hook) : NULL;
@@ -104,14 +105,14 @@ class Admin extends MY_Controller {
 		// check user
 		if($this->user2->check_username($user)->num_rows() > 0)
 		{
-			showMessage(lang('lang_login_exists'));
+			showMessage(lang('lang_login_exists'),false,'r');
 			exit;
 		}
 
 		// check user mail
 		if($this->user2->check_email($email)->num_rows() > 0)
 		{
-			showMessage(lang('lang_email_exists'));
+			showMessage(lang('lang_email_exists'),false,'r');
 			exit;
 		}
 
@@ -137,7 +138,7 @@ class Admin extends MY_Controller {
 
 				showMessage('Пользователь создан.');
 			}else{
-				showMessage (validation_errors());
+				showMessage (validation_errors(),false,'r');
 			}
 
 	}
@@ -207,7 +208,7 @@ class Admin extends MY_Controller {
 
 		if($query->num_rows() == 0)
 		{
-			showMessage('Пользователей не найдено.');
+			showMessage('Пользователей не найдено.',false,'r');
 		}else{
 			$users = $query->result_array();
 
@@ -228,7 +229,7 @@ class Admin extends MY_Controller {
 
 			// recount users
 			if(count($users) == 0) {
-				showMessage('Пользователей не найдено.');
+				showMessage('Пользователей не найдено.',false,'r');
 				exit;
 			}
 
@@ -272,7 +273,8 @@ class Admin extends MY_Controller {
 		$val = $this->form_validation;
 
 		$val->set_rules('username', lang('lang_login'), 'trim|required|xss_clean');
-		$val->set_rules('new_pass', lang('lang_password'), 'trim|xss_clean|min_length[4]');
+		$val->set_rules('new_pass', lang('lang_password'), 'trim|min_length['.$this->config->item('DX_login_min_length').']|max_length['.$this->config->item('DX_login_max_length').']|required|xss_clean');
+		$val->set_rules('new_pass_conf', lang('lang_confirm_password'), 'trim|matches[new_pass]|required|xss_clean');
 		$val->set_rules('email', lang('lang_email'), 'trim|required|xss_clean|valid_email');
 
 		$user_data = $this->user2->get_user_field($user_id,array('username','email'))->row_array();
@@ -290,7 +292,7 @@ class Admin extends MY_Controller {
 		{
 			if($this->user2->check_email($this->input->post('email'))->num_rows() > 0)
 			{
-				showMessage(lang('lang_email_exists'));
+				showMessage(lang('lang_email_exists'),false,'r');
 				exit;
 			}
 		}
@@ -322,7 +324,7 @@ class Admin extends MY_Controller {
 				showMessage('Изменения сохранены');
 
 			}else{
-				showMessage (validation_errors());
+				showMessage (validation_errors(),false,'r');
 			}
 	}
 
@@ -347,7 +349,7 @@ class Admin extends MY_Controller {
 
 		if ($this->form_validation->run($this) == FALSE)
 		{
-			showMessage (validation_errors());
+			showMessage (validation_errors(),false,'r');
 		}
         else
         {
@@ -394,7 +396,7 @@ class Admin extends MY_Controller {
 		if ($this->form_validation->run($this) == FALSE)
 		{
 
-			showMessage (validation_errors());
+			showMessage (validation_errors(),false,'r');
 
 		}else{
 
@@ -437,7 +439,7 @@ class Admin extends MY_Controller {
 		{
 			case 1:
 			case 2:
-    			showMessage('Ошибка удаления');
+    			showMessage('Ошибка удаления',false,'r');
 	    		exit;
 			break;
 		}
