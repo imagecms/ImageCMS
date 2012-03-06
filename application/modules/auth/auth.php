@@ -34,6 +34,8 @@ class Auth extends MY_Controller
 	function username_check($username)
 	{
 		($hook = get_hook('auth_username_check')) ? eval($hook) : NULL;
+                ($tmp = $this->config->item('DX_login_min_length')) ? $this->min_password = $tmp : NULL;
+                ($tmp = $this->config->item('DX_login_max_length')) ? $this->max_password = $tmp : NULL;
 
 		$result = $this->dx_auth->is_username_available($username);
 		if ( ! $result)
