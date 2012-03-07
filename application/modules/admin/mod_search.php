@@ -120,7 +120,7 @@ class Mod_search extends MY_Controller {
 
         if (!function_exists('ftp_connect') AND $use_dir == FALSE)
         {
-            showMessage('Функция ftp_connect недоступна.');
+            showMessage('Функция ftp_connect недоступна.',false,'r');
             exit;
         }
 
@@ -164,7 +164,7 @@ class Mod_search extends MY_Controller {
 
             if ($error == TRUE)
             {
-                showMessage('Ошибка. Не правильный путь к корневой директории.');
+                showMessage('Не правильный путь к корневой директории.',false,'r');
                 exit;
             }
             else
@@ -179,7 +179,7 @@ class Mod_search extends MY_Controller {
 
         if(($fh = fopen($module_data['file'], 'r')) == FALSE)
         {
-            showMessage('Ошибка загрузки файла.');
+            showMessage('Ошибка загрузки файла.',false,'r');
         }
         else
         {
@@ -204,7 +204,7 @@ class Mod_search extends MY_Controller {
             {
                 if ( ! mkdir($tmp_folder.$name.'/'))
                 {
-                    showMessage('Ошибка создания временной директории.');
+                    showMessage('Ошибка создания временной директории.',false,'r');
                     fclose($fh);
 
                     if ($use_dir == FALSE)
@@ -228,13 +228,13 @@ class Mod_search extends MY_Controller {
                 }
                 else
                 {
-                    showMessage('Для продолжения уставки удалите директорию '.APPPATH.'modules/'.$name);
+                    showMessage('Для продолжения уставки удалите директорию '.APPPATH.'modules/'.$name,'Внимание!','r');
                     exit;
                 }
 
                 if (($zip_result = $this->pclzip->extract(PCLZIP_OPT_PATH, APPPATH.'modules/'.$name.'/')) == 0)
                 {
-                    showMessage('Ошибка извлечения файлов из архива.');
+                    showMessage('Ошибка извлечения файлов из архива.',false,'r');
                     exit;
                 }
 
@@ -245,7 +245,7 @@ class Mod_search extends MY_Controller {
             
                 if (!$this->components->install($name))
                 {
-                    showMessage('Ошибка установки модуля.');
+                    showMessage('Ошибка установки модуля.',false,'r');
                 }
 
                 // Delete temp dir
@@ -255,7 +255,7 @@ class Mod_search extends MY_Controller {
                 // Delete temp .zip file
                 @unlink($tmp_folder.$name.'.zip');
 
-                showMessage('Модуль установлен.');
+                showMessage('Модуль установлен.',false,'g');
 
                 // Close install window
                 closeWindow('mod_install_w');
@@ -265,7 +265,7 @@ class Mod_search extends MY_Controller {
 
             if (($zip_result = $this->pclzip->extract(PCLZIP_OPT_PATH, $tmp_folder.$name.'/')) == 0)
             {
-                showMessage('Ошибка извлечения файлов из архива.');
+                showMessage('Ошибка извлечения файлов из архива.',false,'r');
             }
             else
             {
@@ -284,7 +284,7 @@ class Mod_search extends MY_Controller {
                 {
                     if (!$this->ftp->mirror($tmp_folder.$name.'/', $dest_folder))
                     {
-                        showMessage('Ошибка создания временной директории.'); 
+                        showMessage('Ошибка создания временной директории.',false,'r'); 
                     }
                 }
 
@@ -293,7 +293,7 @@ class Mod_search extends MY_Controller {
             
                 if (!$this->components->install($name))
                 {
-                    showMessage('Ошибка установки модуля.');
+                    showMessage('Ошибка установки модуля.',false,'r');
                 }
 
                 // Delete temp dir
@@ -303,7 +303,7 @@ class Mod_search extends MY_Controller {
                 // Delete temp .zip file
                 @unlink($tmp_folder.$name.'.zip');
 
-                showMessage('Модуль установлен.');
+                showMessage('Модуль установлен.',false,'g');
 
                 // Close install window
                 closeWindow('mod_install_w');

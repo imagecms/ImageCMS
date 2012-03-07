@@ -190,13 +190,13 @@ function my_alert(form_id){
 	stop_ajax();
 }
 
-function showMessage(title,message)
+function showMessage(title,message,style)
 {
-	var roar = new Roar({
-			duration: 5000
-	});
-
-	roar.alert(title,message);
+    var roar = new Roar({
+            duration: 5000,
+            className: 'roar ' + style
+    });
+    roar.alert(title,message);
 }
 
 function cats_options(cat_id)

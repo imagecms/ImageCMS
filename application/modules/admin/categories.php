@@ -22,12 +22,12 @@ class Categories extends MY_Controller {
 	}
 
     // Display create category form
-	function create_form()
+	function create_form($parent_id = NULL)
     {
         cp_check_perm('category_create');
 
  		$this->template->assign('tree', $this->lib_category->build());
-		$this->template->assign('parent_id', NULL);
+		$this->template->assign('parent_id', $parent_id);
 		$this->template->assign('include_cats', $this->sub_cats( $this->lib_category->build() ) );
 
 		$this->template->show('create_cat', FALSE);
@@ -108,7 +108,7 @@ class Categories extends MY_Controller {
 		if ($this->form_validation->run($this) == FALSE)
 		{
             ($hook = get_hook('admin_create_cat_val_failed')) ? eval($hook) : NULL;
-			showMessage (validation_errors());
+			showMessage (validation_errors(),false,'r');
 		}
         else
         {
@@ -251,7 +251,7 @@ class Categories extends MY_Controller {
         
             if ($this->form_validation->run($this) == FALSE)
             {
-                showMessage (validation_errors());
+                showMessage (validation_errors(),false,'r');
             }
             else
             {
@@ -483,7 +483,7 @@ class Categories extends MY_Controller {
 
         if ($this->db->get('category')->num_rows() == 1)
         {
-            showMessage('Ошибка удаления категории.', 'Ошибка');
+            showMessage('Ошибка удаления категории.', 'Ошибка','r');
             exit;
         } 
  

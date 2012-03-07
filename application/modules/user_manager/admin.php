@@ -104,14 +104,14 @@ class Admin extends MY_Controller {
 		// check user
 		if($this->user2->check_username($user)->num_rows() > 0)
 		{
-			showMessage(lang('lang_login_exists'));
+			showMessage(lang('lang_login_exists'),false,'r');
 			exit;
 		}
 
 		// check user mail
 		if($this->user2->check_email($email)->num_rows() > 0)
 		{
-			showMessage(lang('lang_email_exists'));
+			showMessage(lang('lang_email_exists'),false,'r');
 			exit;
 		}
 
@@ -137,7 +137,7 @@ class Admin extends MY_Controller {
 
 				showMessage('Пользователь создан.');
 			}else{
-				showMessage (validation_errors());
+				showMessage (validation_errors(),false,'r');
 			}
 
 	}
@@ -207,7 +207,7 @@ class Admin extends MY_Controller {
 
 		if($query->num_rows() == 0)
 		{
-			showMessage('Пользователей не найдено.');
+			showMessage('Пользователей не найдено.',false,'r');
 		}else{
 			$users = $query->result_array();
 
@@ -228,7 +228,7 @@ class Admin extends MY_Controller {
 
 			// recount users
 			if(count($users) == 0) {
-				showMessage('Пользователей не найдено.');
+				showMessage('Пользователей не найдено.',false,'r');
 				exit;
 			}
 
@@ -281,7 +281,7 @@ class Admin extends MY_Controller {
 		{
 			if($this->user2->check_username($this->input->post('username'))->num_rows() > 0)
 			{
-				showMessage(lang('lang_login_exists'));
+				showMessage(lang('lang_login_exists'),false,'r');
 				exit;
 			}
 		}
@@ -290,7 +290,7 @@ class Admin extends MY_Controller {
 		{
 			if($this->user2->check_email($this->input->post('email'))->num_rows() > 0)
 			{
-				showMessage(lang('lang_email_exists'));
+				showMessage(lang('lang_email_exists'),false,'r');
 				exit;
 			}
 		}
@@ -322,7 +322,7 @@ class Admin extends MY_Controller {
 				showMessage('Изменения сохранены');
 
 			}else{
-				showMessage (validation_errors());
+				showMessage (validation_errors(),false,'r');
 			}
 	}
 
@@ -347,7 +347,7 @@ class Admin extends MY_Controller {
 
 		if ($this->form_validation->run($this) == FALSE)
 		{
-			showMessage (validation_errors());
+			showMessage (validation_errors(),false,'r');
 		}
         else
         {
@@ -394,7 +394,7 @@ class Admin extends MY_Controller {
 		if ($this->form_validation->run($this) == FALSE)
 		{
 
-			showMessage (validation_errors());
+			showMessage (validation_errors(),false,'r');
 
 		}else{
 
@@ -437,7 +437,7 @@ class Admin extends MY_Controller {
 		{
 			case 1:
 			case 2:
-    			showMessage('Ошибка удаления');
+    			showMessage('Ошибка удаления',false,'r');
 	    		exit;
 			break;
 		}
