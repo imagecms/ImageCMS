@@ -129,7 +129,7 @@ class Pages extends MY_Controller {
 		if ($this->form_validation->run($this) == FALSE)
 		{
 			($hook = get_hook('admin_page_add_val_failed')) ? eval($hook) : NULL;
-			showMessage (validation_errors());
+			showMessage (validation_errors(),false,'r');
 		}else
 		{
 			// load site settings
@@ -155,7 +155,7 @@ class Pages extends MY_Controller {
 
 			if($query->num_rows() > 0)
 			{
-				showMessage ('Страница c таким URL уже существует! Укажите другой URL.','Ошибка');
+				showMessage ('Страница c таким URL уже существует! Укажите другой URL.',false,'r');
 				exit;
 			}
 			// end check
@@ -279,7 +279,7 @@ class Pages extends MY_Controller {
 
 		if($this->cms_admin->get_page($page_id) == FALSE)
 		{
-			showMessage('Страница '.$page_id.' не найдена');
+			showMessage('Страница '.$page_id.' не найдена',false,'r');
 			exit;
 		}
 
@@ -443,7 +443,7 @@ class Pages extends MY_Controller {
 		if ($this->form_validation->run($this) == FALSE)
 		{
 				($hook = get_hook('admin_page_update_val_failed')) ? eval($hook) : NULL;
-				showMessage (validation_errors());
+				showMessage (validation_errors(),false,'r');
 		}else{
 
 			// load site settings
@@ -468,7 +468,7 @@ class Pages extends MY_Controller {
 
 			if($query->num_rows() > 0)
 			{
-				showMessage ('Страница c URL: <b>'.$url.'</b> в категории ID: '.$this->input->post('category').' уже существует! Укажите другой URL.','Ошибка');
+				showMessage ('Страница c URL: <b>'.$url.'</b> в категории ID: '.$this->input->post('category').' уже существует! Укажите другой URL.',false,'r');
 				exit;
 			}
 			// end check
@@ -534,7 +534,7 @@ class Pages extends MY_Controller {
 
 				showMessage ('Содержание страницы обновлено.');
 			}else{
-				showMessage ('Ошибка.');
+				showMessage ('',false,'r');
 			}
 		}
 	}

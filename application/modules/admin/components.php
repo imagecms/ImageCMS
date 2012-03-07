@@ -141,7 +141,7 @@ class Components extends MY_Controller{
 		}
         else
         {
-			showMessage('Ошибка удаления модуля.');
+			showMessage('Ошибка удаления модуля.',false,'r');
 		}
 
         // Update hooks
@@ -330,7 +330,7 @@ class Components extends MY_Controller{
 			jsCode("alertBox.info('".$info_text."');");
 
 		}else{
-			showMessage('Can\'t load module info file');
+			showMessage('Can\'t load module info file',false.'r');
 		}
 	}
 

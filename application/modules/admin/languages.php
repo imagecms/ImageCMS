@@ -54,7 +54,7 @@ class Languages extends MY_Controller{
 
 		if ($this->form_validation->run($this) == FALSE)
 		{
-			showMessage (validation_errors());
+			showMessage (validation_errors(),false,'r');
 		}else{
 
 			$data = array(
@@ -115,7 +115,7 @@ class Languages extends MY_Controller{
 
 		if ($this->form_validation->run($this) == FALSE)
 		{
-			showMessage (validation_errors());
+			showMessage (validation_errors(),false,'r');
 		}else{
 
 			$data = array(
@@ -156,7 +156,7 @@ class Languages extends MY_Controller{
 
 		if($lang['default'] == 1)
 		{
-			showMessage('Вы не можете удалить этот язык. Он используеться по умолчанию.');
+			showMessage('Вы не можете удалить этот язык. Он используеться по умолчанию.','Блокировка','r');
 			exit;
 		}
 

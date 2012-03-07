@@ -4,7 +4,7 @@
 <div>
     <form id="image_upload_form" style="width:100%;" method="post" enctype="multipart/form-data" action="{site_url('admin/components/run/imagebox/upload')}">
         <div class="form_text">Выберите файл:</div>
-        <div class="form_input"><input type="file" name="userfile" id="file" size="30" /></div>
+        <div class="form_input"><input type="file" name="userfile[]" id="file" size="30" /></div>
         <div class="form_overflow"></div>
 
         <div class="form_text">Или укажите URL</div>
