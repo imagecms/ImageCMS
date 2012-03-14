@@ -160,7 +160,14 @@ class Gallery extends MY_Controller {
            
             $this->core->set_meta_tags(array($album['name'])); 
 
-            $this->display_tpl('album');
+            if ($album['tpl_file'] != '')
+                    {
+                    echo $this->display_tpl($album['tpl_file']);
+                    }
+                else
+                    {
+                    $this->display_tpl('album');
+                    }
         }
     }
 
