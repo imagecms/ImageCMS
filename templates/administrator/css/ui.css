@@ -61,15 +61,18 @@ body {
 /* Navbar */
 
 #desktopNavbar {
-	background: url(../images/bg1.png) no-repeat left bottom;	
+        background: url(../images/bg1_right.png) no-repeat right bottom, 
+            url(../images/bg1_left.png) no-repeat left bottom,
+            url(../images/bg1_center.png) repeat-x left bottom;
+        display:inline-block;
 	height: 30px;
-	margin: 0 0px;	
-    width: 750px;
+	margin: 0 0px;
 }
 
-#desktopNavbar ul {	
-	padding: 2px 0 0 20px;
-	margin: 0;
+#desktopNavbar ul {
+        margin: 0;
+        padding: 2px 0 0 20px;
+        margin-right:20px;
 	list-style: none;
 	font-size: 12px;
 }
@@ -1099,7 +1102,11 @@ div.mochaToolbarWrapper.bottom {
 	visibility: hidden;
 }
 
-#spinner2 { position:absolute !important; left:665px; top:55px; padding:0 !important;}
+#spinner2 {
+    position:relative;
+    bottom:3px;
+    left:3px;
+}
 
 .ordersTable {
     font-size:13px;

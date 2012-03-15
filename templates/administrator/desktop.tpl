@@ -87,8 +87,6 @@
 
 <div id="desktopTitlebarWrapper">
 
-<img id="spinner2" src="{$THEME}/images/spinner-placeholder.gif" style="float:right;padding:20px;position:relative;" />
-
 	<div id="desktopTitlebar">
             <img src="{$THEME}/images/logo1.png" id="cmsLogo" onclick="ajax_div('page', base_url + 'admin/dashboard/index'); return false;" style="cursor:pointer;" width="130px;" /> 
         <h2 class="tagline">
@@ -186,6 +184,7 @@
 
 
 </div>
+<img id="spinner2" src="{$THEME}/images/spinner-placeholder.gif" />
 </div>
 
 <div id="dockWrapper">
