@@ -74,7 +74,14 @@
 
         <div class="form_text">Пароль</div>
         <div class="form_input">
-            <input type="text" class="textbox" value="<?php echo $_POST['admin_pass'] ?>" name="admin_pass">
+            <input type="password" class="textbox" value="<?php echo $_POST['admin_pass'] ?>" name="admin_pass_con">
+        </div>
+        <div class="form_overflow"></div>
+
+
+       <div class="form_text">Повтор пароля</div>
+        <div class="form_input">
+            <input type="password" class="textbox" value="<?php echo $_POST['admin_pass_con'] ?>" name="admin_pass_con">
         </div>
         <div class="form_overflow"></div>
 

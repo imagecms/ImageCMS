@@ -323,7 +323,8 @@ class Admin extends MY_Controller {
 	    'category_id' => (int) $this->input->post('category_id'),
             'name'        => $this->input->post('name'),
             'description' => trim($this->input->post('description')),
-            'position'    => (int) $this->input->post('position')
+            'position'    => (int) $this->input->post('position'),
+            'tpl_file'    => $this->input->post('tpl_file')
             );
 
         $this->gallery_m->update_album($id, $data);

@@ -24,13 +24,13 @@ class Cfcm_forms extends MY_Controller {
         $fields = array(
             'field_name' => array(
                 'type'       => 'text',
-                'label'      => 'Имя',
+                'label'      => 'Идентификатор',
                 'validation' => 'required|alpha_dash|max_length[255]',
                 'help_text'  => 'К имени будет добавлен префикс field_',
             ),
             'label' => array(
                 'type'       => 'text',
-                'label'      => 'Label',
+                'label'      => 'Имя',
                 'validation' => 'required|max_length[255]',
             ),
             'in_search' => array(

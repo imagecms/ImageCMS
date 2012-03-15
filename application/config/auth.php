@@ -69,6 +69,8 @@ $config['DX_email_account_details'] = FALSE;
 | 'DX_login_record_time' = Determine if time should be recorded in database when user login.
 |
 */
+$config['DX_login_max_length'] = 20;
+$config['DX_login_min_length'] = 5;
 
 $config['DX_login_using_username'] = TRUE;
 $config['DX_login_using_email'] = TRUE;
