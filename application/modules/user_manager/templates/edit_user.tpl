@@ -2,11 +2,11 @@
 
 <div id="user_edit_block">
 
-	<div class="form_text">Логин</div>
+	<div class="form_text">{lang('lang_login')}</div>
 	<div class="form_input"><input type="text" name="username" value="{$username}" class="textbox_long" /></div>
 	<div class="form_overflow"></div>
 
-	<div class="form_text">Email</div>
+	<div class="form_text">{lang('lang_email')}</div>
 	<div class="form_input"><input type="text" name="email" value="{$email}" class="textbox_long" /></div>
 	<div class="form_overflow"></div>
 
@@ -20,8 +20,12 @@
 	</div>
 	<div class="form_overflow"></div>
 
-	<div class="form_text">Новый Пароль</div>
-	<div class="form_input"><input type="text" name="new_pass" value="" class="textbox_long" /></div>
+	<div class="form_text">Новый {lang('lang_password')}:</div>
+	<div class="form_input"><input type="password" name="new_pass" value="" class="textbox_long" /></div>
+	<div class="form_overflow"></div>
+
+        <div class="form_text">{lang('lang_confirm_password')}:</div>
+	<div class="form_input"><input type="password" name="new_pass_conf" value="" class="textbox_long" /></div>
 	<div class="form_overflow"></div>
 
 	<div class="form_text">Бан</div>
