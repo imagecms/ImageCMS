@@ -307,8 +307,6 @@ class Core extends MY_Controller {
             $this->error_404();
         }elseif ($this->core_data['data_type'] == 'bridge'){
             log_message('debug', 'Bridge initialized.');
-        }else{
-            
         }
         //you can use if statement in that hook
         ($hook = get_hook('core_datatype_switch')) ? eval($hook) : NULL;
