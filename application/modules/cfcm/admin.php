@@ -94,7 +94,7 @@ class Admin extends MY_Controller {
             }
             if(empty($_POST['label']))
             {
-                showMessage('Укажите Label поля',false,'r');
+                showMessage('Укажите имя поля',false,'r');
                 exit;
             }
 

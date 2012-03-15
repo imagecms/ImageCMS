@@ -12,8 +12,8 @@
 <div id="sortable" >
 		  <table id="cfcfm_fields_table">
 		  	<thead>
-                <th axis="string">Label</th>
                 <th axis="string">Имя</th>
+                <th axis="string">Идентификатор</th>
                 <th axis="string">Тип</th>
                 <th axis="string">Группа</th>
                 <th>
