@@ -68,9 +68,9 @@ class Admin extends MY_Controller {
 
             $ext = end(explode('.', $url));
 
-            if (strstr($this->settings['allowed_types'], $ext) == FALSE)
+            if (strstr(strtolower($this->settings['allowed_types']), strtolower($ext)) == FALSE)
             {
-                echo 'Error: Вы пытаетесь загрузить запрещенный тип файла.';
+                showmessage('Вы пытаетесь загрузить запрещенный тип файла',false,'r');
                 return;
             }
             
@@ -79,7 +79,7 @@ class Admin extends MY_Controller {
             
             if (!$p)
             {
-                echo 'Error: Ошибка загрузки файла.';
+                showmessage('Ошибка загрузки файла.',false,'r');
                 return;
             }
 
