@@ -40,6 +40,23 @@
         window.addEvent('domready', function(){
             ajax_div('page', base_url + 'admin/dashboard/index');
         });
+        function openator(name_window,type_file)
+	{
+	new MochaUI.Window({
+   	{/literal}
+		id: Math.random(),
+		title: name_window,
+		loadMethod: 'iframe',
+		maximizable: true,
+		resizable : true,
+		minimizable : true,
+		contentURL: base_url + 'js/tinymce/plugins/tinybrowser/tinybrowser.php?type=' + type_file +'&feid=open_to_new_window',
+		type: 'window',
+		width: 800,
+		height: 600
+		{literal}
+                });
+   	}
     </script>
     {/literal}
 
@@ -83,6 +100,8 @@
                 <img src="{$THEME}/images/left.png" style="cursor:pointer" width="16" height="16" title="Назад (Ctrl + Left)" onclick="history_back();">
 				<img src="{$THEME}/images/right.png" style="cursor:pointer" width="16" height="16" title="Вперед (Ctrl + Right)" onclick="history_forward();">
 				<img src="{$THEME}/images/refresh.png" style="cursor:pointer" width="16" height="16" title="Обновить  (Ctrl + R)" onclick="history_refresh();">
+				<img src="/templates/administrator/images/drive.png" width="16" height="16" title="Выбрать Документ" style="cursor:pointer;padding:2px;" align="absmiddle" onclick="openator('Файлы','file');return false;" class="quimby_search_image">
+				<img src="/templates/administrator/images/images.png" width="16" height="16" title="Выбрать Изображение" style="cursor:pointer;padding:2px;" align="absmiddle" onclick="openator('Изображения','image');return false;" class="quimby_search_image">
             </li>
 			</ul>
 		</div>
