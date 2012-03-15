@@ -266,6 +266,7 @@ CREATE TABLE IF NOT EXISTS `gallery_albums` (
   `position` int(9) DEFAULT '0',
   `created` int(11) DEFAULT NULL,
   `updated` int(11) DEFAULT NULL,
+  `tpl_file` VARCHAR( 50 ) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`),
   KEY `created` (`created`)
