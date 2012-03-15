@@ -44,26 +44,26 @@
       <!-- BEGIN LOGO -->
       <div id="logo"><a href="{shop_url('')}"><img src="{$SHOP_THEME}images/logo.png" alt="logo" border="0"/></a></div>
       <!-- BEGIN SLOGAN -->
-     <div id="slogan">Приобретайте только качественную технику: <br /> +7 (095) <b>222-33-22</b><br /> +38 (098) <b>222-33-22</b><br /><a id="callback-send-request" style="cursor: pointer;">Запросить CallBack</a></div>
+     <div id="slogan">{echo ShopCore::lang('Приобретайте только качественную технику')}: <br /> +7 (095) <b>222-33-22</b><br /> +38 (098) <b>222-33-22</b><br /><a id="callback-send-request" style="cursor: pointer;">{echo ShopCore::lang('Запросить CallBack')}</a></div>
     </div>
 
     <!-- Hold this part in separate file which will be used for ajax requests. -->
-    <div class="right" id="mycart" title="Корзина">
+    <div class="right" id="mycart" title="{echo ShopCore::lang('Корзина')}">
         {include_tpl('cart_data')}
     </div>
 
     {if ShopCore::app()->SWishList->getWishListCookie() && ShopCore::$ci->dx_auth->is_logged_in()}
    <div class="bubbleInfo">
        <div class="trigger">
-           <div class="right" id="mywishlist" title="Wish List">
+           <div class="right" id="mywishlist" title="{echo ShopCore::lang('Wish List')}">
                 {include_tpl('wish_list_data')}
            </div>
        </div>
        <div class="popup">
            <div class="wishListQuestion">
-               У вас уже был WishList до входа в систему!<br />
-                    <a rel="nofollow" href="{shop_url('wish_list/move_to_profile')}" >Перенести WishList в профиль</a> /
-                    <a rel="nofollow" href="{shop_url('wish_list/clear_cookie_wish_list')}">Удалить WishList</a>
+               {echo ShopCore::lang('У вас уже был WishList до входа в систему!')}<br />
+                    <a rel="nofollow" href="{shop_url('wish_list/move_to_profile')}" >{echo ShopCore::lang('Перенести WishList в профиль')}</a> /
+                    <a rel="nofollow" href="{shop_url('wish_list/clear_cookie_wish_list')}">{echo ShopCore::lang('Удалить WishList')}</a>
                </div>
            </div>
    </div>
@@ -76,7 +76,7 @@
     <div id="topCurrency" align="right">
     <form action="" method="post" name="currencyChangeForm">
     {form_csrf()}
-        Валюта: <select onchange="document.forms.currencyChangeForm.submit();" name="setCurrency">
+        {echo ShopCore::lang('Валюта')}: <select onchange="document.forms.currencyChangeForm.submit();" name="setCurrency">
             {foreach get_currencies() as $currency}
                 <option {if ShopCore::app()->SCurrencyHelper->current->getId() == $currency->getId()}selected{/if} value="{echo $currency->getId()}">{echo encode($currency->getName())}</option>
             {/foreach}
@@ -86,7 +86,7 @@
     {if $CI->session->userdata('shopForCompare')}
         <div class="topCompareInfo">
             <a href="{shop_url('compare')}">
-                Добавлено {count($CI->session->userdata('shopForCompare'))} {echo SStringHelper::Pluralize(count($CI->session->userdata('shopForCompare')), array('товар','товара','товаров'))} для сравнения
+                {echo ShopCore::lang('Добавлено')} {count($CI->session->userdata('shopForCompare'))} {echo SStringHelper::Pluralize(count($CI->session->userdata('shopForCompare')), array(ShopCore::lang('товар'),ShopCore::lang('товара'),ShopCore::lang('товаров') ))} {echo ShopCore::lang('для сравнения')}
             </a>
         </div>
     {/if}
@@ -119,15 +119,15 @@
 </div>
 <!-- BEGIN FOOTER -->
 <div id="footer">
-  <div class="left">© 2011  Ваш <strong>Интернет-магазин</strong><br/>
+  <div class="left">© 2011  {echo ShopCore::lang('Ваш')} <strong>{echo ShopCore::lang('Интернет-магазин')}</strong><br/>
     <div class="credits"> Powered by <a href="http://www.imagecms.net">ImageCMS Shop</a></div>
   </div>
   <ul class="right">
-      <li><a href="{site_url('about')}" class="item">О Магазине</a> </li>
-      <li><a href="{site_url('oplata')}" class="item">Оплата</a> </li>
-      <li><a href="{site_url('dostavka')}" class="item">Доставка</a></li>
-	  <li><a href="{site_url('help')}" class="item">Помощь</a></li>
-	  <li><a href="{site_url('contact_us')}" class="item">Контакты</a></li>
+      <li><a href="{site_url('about')}" class="item">{echo ShopCore::lang('О Магазине')}</a> </li>
+      <li><a href="{site_url('oplata')}" class="item">{echo ShopCore::lang('Оплата')}</a> </li>
+      <li><a href="{site_url('dostavka')}" class="item">{echo ShopCore::lang('Доставка')}</a></li>
+	  <li><a href="{site_url('help')}" class="item">{echo ShopCore::lang('Помощь')}</a></li>
+	  <li><a href="{site_url('contact_us')}" class="item">{echo ShopCore::lang('Контакты')}</a></li>
   </ul>
   <div class="sp"></div>
 </div>
