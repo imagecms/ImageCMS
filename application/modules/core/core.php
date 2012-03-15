@@ -296,31 +296,22 @@ class Core extends MY_Controller {
 		// If module than exit from core and load module
 		if ( $this->is_module($mod_segment) == TRUE ) return TRUE;
 
-		switch ( $this->core_data['data_type'] )
-		{
-			case 'main': // Main page
-				$this->_mainpage();
-			break;
-
-			case 'category': // Category
-				$this->_display_category($this->cat_content);
-			break;
-
-			case 'page': // Page and category
-				$this->check_page_access($this->page_content['roles']);
-				$this->_display_page_and_cat($this->page_content,$this->cat_content);
-			break;
-
-			case '404': // Page not found
-				$this->error_404();
-			break;
-
-			case 'bridge':
-				log_message('debug', 'Bridge initialized.');
-			break;
-
-			($hook = get_hook('core_datatype_switch')) ? eval($hook) : NULL;
-		}
+        if ($this->core_data['data_type'] == 'main'){
+            $this->_mainpage();
+        }elseif($this->core_data['data_type'] == 'category'){
+            $this->_display_category($this->cat_content);
+        }elseif($this->core_data['data_type'] == 'page'){
+            $this->check_page_access($this->page_content['roles']);
+			$this->_display_page_and_cat($this->page_content,$this->cat_content);
+        }elseif($this->core_data['data_type'] == '404'){
+            $this->error_404();
+        }elseif ($this->core_data['data_type'] == 'bridge'){
+            log_message('debug', 'Bridge initialized.');
+        }else{
+            
+        }
+        //you can use if statement in that hook
+        ($hook = get_hook('core_datatype_switch')) ? eval($hook) : NULL;
 	}
 
 	/**
