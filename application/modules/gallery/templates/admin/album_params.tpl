@@ -22,6 +22,11 @@
 		<div class="form_input"><input type="text" name="position" value="{$album.position}" class="textbox_long" /></div>
 		<div class="form_overflow"></div> 
 
+                <div class="form_text">Файл шаблона:</div>
+                <div class="form_input"><input type="text" name="tpl_file" value="{$album.tpl_file}" class="textbox_long" />.tpl
+                <div class="lite">По умолчанию: album.tpl</div></div>
+                <div class="form_overflow"></div>
+
    		<div class="form_text"></div>
 		<div class="form_input">
             <input type="submit" name="button"  class="button_130" value="Сохранить" onclick="ajax_me('create_album_form');" /> 
