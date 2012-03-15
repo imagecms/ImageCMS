@@ -50,7 +50,20 @@
 
 </head>
 <body>
-
+<NOSCRIPT>
+    <div style="
+         font-size:15px;
+         font-weight:bold;
+         color:red;
+         width:700px;
+         margin:200px auto;
+         padding:40px;
+         border:2px solid #eedddd;
+         border-radius:10px;">
+        <img src="{$THEME}/images/logo1.png" width="130px;" />
+        <div style="margin-top:40px;" >Для использования кабинета администрирования, крайне необходима активация JavaScript!</div>
+    </div>
+</NOSCRIPT>
 <div id="desktop">
 
 <div id="desktopHeader">
