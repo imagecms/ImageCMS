@@ -155,7 +155,8 @@ class Install extends MY_Controller {
 			$this->form_validation->set_rules('db_name', 'Имя БД', 'required');
 			$this->form_validation->set_rules('admin_login', 'Логин администратора', 'required|min_length[4]');
 			$this->form_validation->set_rules('admin_pass', 'Пароль администратора', 'required|min_length[5]');
-			$this->form_validation->set_rules('admin_mail', 'Почта администратра', 'required|valid_email');
+                        $this->form_validation->set_rules('admin_pass_conf', 'Подтверждение пароля', 'matches[admin_pass]');
+ 			$this->form_validation->set_rules('admin_mail', 'Почта администратра', 'required|valid_email');
 
 			if ($this->form_validation->run() == FALSE)
 			{
