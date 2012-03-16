@@ -162,7 +162,7 @@ class Gallery extends MY_Controller {
 
             if ($album['tpl_file'] != '')
                 {
-                echo $this->display_tpl($album['sh']);
+                echo $this->display_tpl($album['tpl_file']);
                 }
             else
                 {
