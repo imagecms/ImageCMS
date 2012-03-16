@@ -12,10 +12,3 @@
 var myTree = new rdTree('desktop_tree');
 myTree.select("root_tree");
 </script>
-/**
-* нужно закачать кнопки, они уже нарисованы... 
-* http://ttl.loc/templates/administrator/images/tree/add_page.png
-* http://ttl.loc/templates/administrator/images/tree/add_subdir.png
-* http://ttl.loc/templates/administrator/images/tree/edit_dir.png
-*/
-
