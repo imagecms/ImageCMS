@@ -7,7 +7,7 @@ $com_info = array(
 	'window_type' => 'xhr', 
     'w'           => 600,                   
 	'h'           => 550,                     
-	'version'     => '1.0',             
+	'version'     => '1.0.1',             
 	'author'      => 'dev@imagecms.net, zloitapok@inbox.ru'
 );
 
