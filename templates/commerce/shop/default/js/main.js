@@ -1,6 +1,6 @@
 $(function() {
     $( "#text" ).autocomplete({
-        source: "/shop/search",
+        source: $( "#text").closest("form").attr("action"),
         minLength: 2,
         select: function( event, ui ) {
             return false;

@@ -4,7 +4,7 @@
 	</ul>
     <h3>Все бренды магазина</h3>
     <div class="brand">
-    {foreach SBrandsQuery::create()->find() as $brand}
+    {foreach SBrandsQuery::create()->joinWithI18n(ShopController::getCurrentLocale())->find() as $brand}
 	    <a href="{shop_url('brand/' . $brand->getUrl())}">{echo $brand->getName()}</a>
 	{/foreach}
     </div>

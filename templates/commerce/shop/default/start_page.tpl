@@ -9,7 +9,7 @@
 {include_tpl ('sidebar')}
 
 <div class="products_list">
-	{$banners = ShopBanersQuery::create()->orderByPosition()->find()}
+	{$banners = ShopBanersQuery::create()->joinWithI18n(ShopController::getCurrentLocale())->orderByPosition()->find()}
 	{if count($banners)}
 	<!-- BEGIN SLIDESHOW -->
 	<div id="slideshow">
