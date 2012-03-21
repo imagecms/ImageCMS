@@ -145,7 +145,7 @@
 		<input type="hidden" name="quantity" value="1" />
 
 		{if $model->firstVariant->getStock() > 0}
-			<a rel="nofollow" href="#" onClick='ajaxAddToCart(); return false;' class="button1">{echo ShopCore::t('ДОБАВИТЬ В КОРЗИНУ')}</a>
+			<a rel="nofollow" href="#" onClick='ajaxAddToCart("{shop_url("cart/add")}", "{shop_url("ajax/getCartDataHtml")}"); return false;' class="button1">{echo ShopCore::t('ДОБАВИТЬ В КОРЗИНУ')}</a>
 		{else:}
 
 		{/if}

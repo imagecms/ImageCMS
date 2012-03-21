@@ -9,8 +9,8 @@ $(document).ready(function(){
             });
 });
 
-function getCategoryAttributes(cId)
+function getCategoryAttributes(cId, url)
 {
     document.getElementById('catVariants').innerHTML = "<img src='/application/modules/imagebox/templates/js/lightbox/images/loading.gif' />"
-    $("#catVariants").load('/shop/ajax/getCategoryAttributes/' + cId)
+    $("#catVariants").load(url + '/' +cId)
 }

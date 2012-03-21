@@ -54,13 +54,13 @@ function display_variant_price(variant)
 /**
  * Add product and its vatiant to cart
  */
-function ajaxAddToCart()
+function ajaxAddToCart(url, successUrl)
 {
     $.ajax({
         type: "POST",
         data: $("#productForm").serialize(),
-        url: "/shop/cart/add",
-        success: function(){$("#mycart").load('/shop/ajax/getCartDataHtml')}
+        url: url,
+        success: function(){$("#mycart").load(successUrl)}
     });
 
     $("#cartNotify").css('display', 'block');

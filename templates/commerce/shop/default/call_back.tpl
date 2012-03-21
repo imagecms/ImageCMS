@@ -14,7 +14,7 @@
             <fieldset>
                     <label for="topic">Тема:</label>
                     <select type="text" name="theme" id="callback-dialog-theme" value="" class="text ui-widget-content ui-corner-all">
-                        {foreach SCallbackThemesQuery::create()->orderByPosition()->find() as $theme}
+                        {foreach SCallbackThemesQuery::create()->joinWithI18n(ShopController::getCurrentLocale())->orderByPosition()->find() as $theme}
                             <option value="{echo $theme->getId()}">{echo encode($theme->getText())}</option>
                         {/foreach}
                     </select>

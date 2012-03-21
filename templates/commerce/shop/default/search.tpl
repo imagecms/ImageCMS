@@ -38,7 +38,7 @@
                     
                     <div class="fieldName">Фильтр по категории:</div>
                     <div class="field">
-                        <select name="category" onChange="getCategoryAttributes(this.options[this.selectedIndex].value)">
+                        <select name="category" onChange="getCategoryAttributes(this.options[this.selectedIndex].value, '{shop_url('ajax/getCategoryAttributes/')}')">
                             <option>-</option>
                             {foreach $tree as $c}
                                 <option {if ShopCore::$_GET['category']==$c->getId()}selected{/if} value="{echo $c->getId()}">{str_repeat('-',$c->getLevel())}
