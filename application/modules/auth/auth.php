@@ -10,7 +10,7 @@ class Auth extends MY_Controller
 	// Used for registering and changing password form validation
 	public $min_username = 4;
 	public $max_username = 20;
-	public $min_password = 4;
+	public $min_password = 5;
 	public $max_password = 20;
 
 	public $ban_reason = NULL;
@@ -18,6 +18,9 @@ class Auth extends MY_Controller
 	public function __construct()
 	{
 		parent::__construct();
+
+                $this->min_password = ($this->config->item('DX_login_min_length')) ? $this->config->item('DX_login_min_length') : $this->min_password;
+                $this->max_password = ($this->config->item('DX_login_max_length')) ? $this->config->item('DX_login_max_length') : $this->max_password;
 
 		$this->load->helper('url');
 		$this->load->library('Form_validation');

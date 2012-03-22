@@ -13,15 +13,19 @@
 	<div class="form_overflow"></div>
 
 		<form action="{$SELF_URL}/create_user/" id="user_create" method="post" style="width:100%">
-			<div class="form_text">Логин:</div>
+			<div class="form_text">{lang('lang_login')}:</div>
 			<div class="form_input"><input type="text" name="username" value="" class="textbox_long" /></div>
 			<div class="form_overflow"></div>
 
-			<div class="form_text">Пароль:</div>
-			<div class="form_input"><input type="text" name="password" value="" class="textbox_long" /></div>
+                        <div class="form_text">{lang('lang_password')}:</div>
+                        <div class="form_input"><input type="password" name="password" value="" class="textbox_long" /></div>
 			<div class="form_overflow"></div>
 
-			<div class="form_text">E-Mail:</div>
+                        <div class="form_text">{lang('lang_confirm_password')}:</div>
+                        <div class="form_input"><input type="password" name="password_conf" value="" class="textbox_long" /></div>
+                        <div class="form_overflow"></div>
+
+                        <div class="form_text">{lang('lang_email')}:</div>
 			<div class="form_input"><input type="text" name="email" value="" class="textbox_long" /></div>
 			<div class="form_overflow"></div>
 
