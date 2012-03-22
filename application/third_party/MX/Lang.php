@@ -35,7 +35,7 @@
  **/
 class MX_Lang extends CI_Lang
 {
-	public function load($langfile, $lang = '', $return = FALSE, $_module = NULL)	{
+	public function load($langfile, $lang = '', $return = FALSE, $_module = NULL, $add_suffix = TRUE, $alt_path = '')	{
 		
 		if (is_array($langfile)) return $this->load_many($langfile);
 			
@@ -49,7 +49,7 @@ class MX_Lang extends CI_Lang
 		list($path, $_langfile) = Modules::find($langfile.'_lang', $_module, 'language/'.$idiom.'/');
 
 		if ($path === FALSE) {
-			if ($lang = parent::load($langfile, $lang, $return)) return $lang;
+			if ($lang = parent::load($langfile, $lang, $return, $add_suffix, $alt_path)) return $lang;
 		} else {
 			if($lang = Modules::load_file($_langfile, $path, 'lang')) {
 				if ($return) return $lang;
