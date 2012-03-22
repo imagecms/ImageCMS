@@ -29,7 +29,7 @@
                 {/if}
                 </td>
                 <td>{$item.description}</td>
-                <td>{$item.identif}</td>
+                <td>{if $item['enabled'] == "1"}{anchor($item.identif,$item.identif,array('target'=>'_blank'))}{else:}-{/if}</td>
                 <td>{$item.version}</td>
                 <td>
                 {if $item['autoload'] == "0"}
