@@ -86,7 +86,7 @@
     {if $CI->session->userdata('shopForCompare')}
         <div class="topCompareInfo">
             <a href="{shop_url('compare')}">
-                Добавлено {count($CI->session->userdata('shopForCompare'))} {echo SStringHelper::Pluralize(count($CI->session->userdata('shopForCompare')), товар, товара, товаров ))} для сравнения
+                Добавлено {count($CI->session->userdata('shopForCompare'))} {echo SStringHelper::Pluralize(count($CI->session->userdata('shopForCompare')), 'товар', 'товара', 'товаров' ))} для сравнения
             </a>
         </div>
     {/if}
