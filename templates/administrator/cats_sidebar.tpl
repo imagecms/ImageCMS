@@ -11,8 +11,4 @@
 <script>
 var myTree = new rdTree('desktop_tree');
 myTree.select("root_tree");
-<<<<<<< HEAD
 </script>
-=======
-</script>
->>>>>>> ce05bf8d4a66559767289498aa6a20eca08f55f0
