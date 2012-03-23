@@ -92,13 +92,27 @@ class Admin extends MY_Controller {
                     $this->email->reply_to($_POST['email'], $_POST['name']);
                     $this->email->subject($_POST['subject']);
                     $this->email->message($tmp_msg);
-                    $this->email->send();
+                    $counter['all']++;
+                    if ($this->email->send())
+                    	{$counter['true']++;}
                 }
 
                 $this->load->library('lib_admin');
-                $this->lib_admin->log('Отправил пользователям E-Mail c темой '.$_POST['subject']);
-
-                showMessage('Сообщение отправлено.');
+                $this->lib_admin->log('Отправил('.$counter['true'].'/'.$counter['all'].') пользователям E-Mail c темой '.$_POST['subject']);
+                $class='b';
+                if ($counter['true'] == $counter['all'])
+                    {$class='g';}
+                else if ($counter['true'] == 0)
+                    {$class='r';}
+                if ($class !== 'r')
+                    {
+                    showMessage('Сообщений отправлено: '.$counter['true'].'шт. из '.$counter['all'].'шт.',false,$class);
+                    }
+                else
+                    {
+                    showMessage('Ни одно сообщение из '.$counter['all'].'шт. не отправлено!',false,$class);
+                    }
+                    
                 updateDiv('page', site_url('admin/components/cp/group_mailer/index'));
             }
         }
