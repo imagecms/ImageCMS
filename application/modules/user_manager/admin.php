@@ -93,7 +93,7 @@ class Admin extends MY_Controller {
 
                 $val->set_rules('username', lang('lang_login'), 'trim|required|xss_clean|alpha_dash');
                 $val->set_rules('password', lang('lang_password'), 'trim|min_length['.$this->config->item('DX_login_min_length').']|max_length['.$this->config->item('DX_login_max_length').']|required|xss_clean');
-                $val->set_rules('password_conf', lang('lang_confirm_password'), 'matches[password]');
+                $val->set_rules('password_conf', lang('lang_confirm_password'), 'matches[password]|required');
 		$val->set_rules('email', lang('lang_email'), 'trim|required|xss_clean|valid_email');
 
         ($hook = get_hook('users_create_set_val_rules')) ? eval($hook) : NULL;
@@ -273,12 +273,18 @@ class Admin extends MY_Controller {
 		$val = $this->form_validation;
 
 		$val->set_rules('username', lang('lang_login'), 'trim|required|xss_clean');
-                $val->set_rules('new_pass', lang('lang_password'), 'trim|min_length['.$this->config->item('DX_login_min_length').']|max_length['.$this->config->item('DX_login_max_length').']|required|xss_clean');
+                $val->set_rules('new_pass', lang('lang_password'), 'trim|max_length['.$this->config->item('DX_login_max_length').']|xss_clean');
                 $val->set_rules('new_pass_conf', lang('lang_confirm_password'), 'matches[new_pass]');
 
 		$val->set_rules('email', lang('lang_email'), 'trim|required|xss_clean|valid_email');
 
 		$user_data = $this->user2->get_user_field($user_id,array('username','email'))->row_array();
+                
+                if(strlen($this->input->post('new_pass')) !== 0)
+                    {
+                    $val->set_rules('new_pass', lang('lang_password'), 'trim|min_length['.$this->config->item('DX_login_min_length').']|max_length['.$this->config->item('DX_login_max_length').']|required|xss_clean');
+                    $val->set_rules('new_pass_conf', lang('lang_confirm_password'), 'matches[new_pass]|required');
+                    }
 
 		if($user_data['username'] != $this->input->post('username'))
 		{
