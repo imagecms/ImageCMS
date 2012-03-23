@@ -81,7 +81,7 @@ class Admin extends MY_Controller {
                 {
                     $message = "<html><body>".nl2br_except_pre($message)."</body></html>";
                 }
-
+		$counter=array('true'=>0,'all'=>0);
                 foreach($users->result_array() as $user)
                 {
                     // Replace {username}
