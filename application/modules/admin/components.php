@@ -54,7 +54,7 @@ class Components extends MY_Controller{
 			$db_modules[$i]['menu_name'] = $info['menu_name'];
 			$db_modules[$i]['version'] = $info['version'];
 			$db_modules[$i]['description'] = $info['description'];
-			$db_modules[$i]['identif'] = anchor($db_modules[$i]['identif'],$db_modules[$i]['identif']);
+			$db_modules[$i]['identif'] = $db_modules[$i]['identif'];
 
 			if ( file_exists(APPPATH.'modules/'.$db_modules[$i]['name'].'/admin.php') )
 			{
