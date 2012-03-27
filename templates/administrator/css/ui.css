@@ -44,6 +44,7 @@ body {
 #desktopHeader {
 	background: #f1f1f1;
 	background: #fff url(../images/bgline.png);
+	height:74px;
 }
 
 #desktopTitlebarWrapper {
