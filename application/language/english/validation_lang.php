@@ -18,6 +18,8 @@ $lang['integer']			= "The %s field must contain an integer.";
 $lang['matches']			= "The %s field does not match the %s field.";
 $lang['is_natural']			= "The %s field must contain a number.";
 $lang['is_natural_no_zero']	= "The %s field must contain a number greater than zero.";
+$lang['less_than']          = "The field %s must have a lower value than %s.";
+
 
 
 /* End of file validation_lang.php */
