@@ -48,25 +48,68 @@
     </thead>
     <tbody>
     {foreach $items as $key=>$item}
-        <tr>
-            <td style="width:90px;padding:2px;">
-                <div style="width:90px;height:90px;overflow:hidden;">
-                {if $item.model->getMainImage()}
-                    <img src="{productImageUrl($item.model->getId() . '_main.jpg')}" border="0" alt="image" width="90" />
-                {/if}
-                </div>
-            </td>
-            <td>
-                <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}</a> {$item.variantName}
-            </td>
-            <td>{echo ShopCore::app()->SCurrencyHelper->convert($item.price)} {$CS}</td>
-            <td>
-                <!-- {form_dropdown("products[$key]",$ranges, $item.quantity, 'onChange="document.cartForm.submit();"')} -->
-                <input type="text" name="products[{$key}]" value="{$item.quantity}" style="width:24px;">
-            </td>
-            <td>{echo ShopCore::app()->SCurrencyHelper->convert($item.totalAmount)} {$CS}</td>
-            <td><a href="{shop_url('cart/delete/' . $key)}" rel="nofollow" class="delete">X</a></td>
-        </tr>
+		{if $item.model instanceof SProducts}
+			<tr>
+				<td style="width:90px;padding:2px;">
+					<div style="width:90px;height:90px;overflow:hidden;">
+					{if $item.model->getMainImage()}
+						<img src="{productImageUrl($item.model->getId() . '_main.jpg')}" border="0" alt="image" width="90" />
+					{/if}
+					</div>
+				</td>
+				<td>
+					<a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}</a> {$item.variantName}
+				</td>
+				<td>{echo ShopCore::app()->SCurrencyHelper->convert($item.price)} {$CS}</td>
+				<td>
+					<input type="text" name="products[{$key}]" value="{$item.quantity}" style="width:24px;">
+				</td>
+				<td>{echo ShopCore::app()->SCurrencyHelper->convert($item.totalAmount)} {$CS}</td>
+				<td><a href="{shop_url('cart/delete/' . $key)}" rel="nofollow" class="delete">X</a></td>
+			</tr>
+		{elseif($item.model instanceof ShopKit):}
+			<tr>
+				<td style="width:90px;padding:2px;">
+					<div style="width:90px;height:90px;overflow:hidden;">
+					{if $item.model->getMainProduct()->getMainImage()}
+						<img src="{productImageUrl($item.model->getMainProduct()->getId() . '_main.jpg')}" border="0" alt="image" width="90" />
+					{/if}
+					</div>
+				</td>
+				<td>
+					<a href="{shop_url('product/' . $item.model->getMainProduct()->getUrl())}">{echo ShopCore::encode($item.model->getMainProduct()->getName())}</a> {echo ShopCore::encode($item.model->getMainProduct()->firstVariant->getName())}
+					<br /><span style="font-size:16px;">{echo $item.model->getMainProduct()->firstVariant->toCurrency()} {$CS}</span>
+				</td>
+				<td rowspan="{echo $item.model->countProducts()}">{echo ShopCore::app()->SCurrencyHelper->convert($item.price)} {$CS}</td>
+				<td rowspan="{echo $item.model->countProducts()}"><input type="text" name="products[{$key}]" value="{$item.quantity}" style="width:24px;"/></td>
+				<td rowspan="{echo $item.model->countProducts()}">{echo ShopCore::app()->SCurrencyHelper->convert($item.totalAmount)} {$CS}</td>
+				<td rowspan="{echo $item.model->countProducts()}"><a href="{shop_url('cart/delete/' . $key)}" rel="nofollow" class="delete">X</a></td>
+			</tr>
+			{foreach $item.model->getShopKitProducts() as $shopKitProduct}
+				{$ap = $shopKitProduct->getSProducts()}
+				{$ap->setLocale(ShopController::getCurrentLocale())}
+				{$kitFirstVariant = $ap->getKitFirstVariant($shopKitProduct)}
+				<tr>
+					<td style="width:90px;padding:2px;">
+						<div style="width:90px;height:90px;overflow:hidden;">
+						{if $ap->getMainImage()}
+							<img src="{productImageUrl($ap->getId() . '_main.jpg')}" border="0" alt="image" width="90" />
+						{/if}
+						</div>
+					</td>
+					<td>
+						<a href="{shop_url('product/' . $ap->getUrl())}">{echo ShopCore::encode($ap->getName())}</a> {echo ShopCore::encode($kitFirstVariant->getName())}
+						{if $kitFirstVariant->getEconomy() > 0}
+							<br /><s style="font-size:14px;">{echo $kitFirstVariant->toCurrency('origPrice')} {$CS}</s>
+							<span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
+						{else:}
+							<span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
+						{/if}
+					</td>
+				</tr>
+				{$i++}
+			{/foreach}
+		{/if}
     {/foreach}
     </tbody>
     <tfoot>
