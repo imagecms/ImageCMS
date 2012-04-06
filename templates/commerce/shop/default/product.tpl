@@ -188,7 +188,7 @@
 	<h5>Сопутствующие товары</h5>
 		{# Display list of related products #}
 		<ul class="products">
-			{$count = 1;}
+			{$count = 1}
 			{foreach $model->getRelatedProductsModels() as $p}
 				<li {if $count == 3} class="last" {$count = 0}{/if}>
 					<div class="image" style="display:table-cell;vertical-align:middle;overflow:hidden;">
@@ -214,9 +214,67 @@
 			{/foreach}
 		</ul>
 	{/if}
+	
 	<div class="sp"></div>
-
+	{if $model->getKits()->count() > 0}
+	{$kits = $model->getKits()}
+	<h5>Вместе дешевле</h5>
+		{# Display the list of product kits #}
+		<ul class="products">
+			{$count = 1}
+			<li {if $count == 3}class="last"{$count = 0}{/if}>
+				<div class="image" style="display:table-cell;vertical-align:middle;overflow:hidden;">
+					<a href="{shop_url('product/' . $kits[0]->getMainProduct()->getUrl())}">
+						<img src="{productImageUrl($kits[0]->getMainProduct()->getId() . '_small.jpg')}" border="0"  alt="image" />
+					</a>
+				</div>
+				<h3 class="name"><a href="{shop_url('product/' . $kits[0]->getMainProduct()->getUrl())}">{echo ShopCore::encode($kits[0]->getMainProduct()->getName())}</a></h3>
+				<div class="price">
+					{$firstVariant = $kits[0]->getMainProduct()->getFirstVariant()}
+					<span style="font-size:14px;">{echo $firstVariant->toCurrency()} {$CS}</span>
+				</div>
+				<div class="compare"><a href="{shop_url('compare/add/' . $kits[0]->getMainProduct()->getId())}">Сравнить</a></div>
+			</li>
+			{$isAvailable = TRUE}
+			{foreach $kits[0]->getShopKitProducts() as $shopKitProduct}
+				{$ap = $shopKitProduct->getSProducts()}
+				{$ap->setLocale(ShopController::getCurrentLocale())}
+				<li {if $count == 3}class="last"{$count = 0}{/if}>
+					<div class="image" style="display:table-cell;vertical-align:middle;overflow:hidden;">
+						<a href="{shop_url('product/' . $ap->getUrl())}">
+							<img src="{productImageUrl($ap->getId() . '_small.jpg')}" border="0"  alt="image" />
+						</a>
+					</div>
+					<h3 class="name"><a href="{shop_url('product/' . $ap->getUrl())}">{echo ShopCore::encode($ap->getName())}</a></h3>
+					<div class="price">
+						{$kitFirstVariant = $ap->getKitFirstVariant($shopKitProduct)}
+						{if $kitFirstVariant->getEconomy() > 0}
+							<s>{echo $kitFirstVariant->toCurrency('origPrice')} {$CS}</s>
+							<br/>
+							<span style="font-size:14px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
+						{else:}
+							<span style="font-size:14px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
+						{/if}
+					</div>
+					<div class="compare"><a href="{shop_url('compare/add/' . $ap->getId())}">Сравнить</a></div>
+				</li>
+				{if $count == 3}<li class="separator"></li> {$count=0}{/if}
+				{$count++}
+				{if $kitFirstVariant->getStock() < 1}
+					{$isAvailable = FALSE}
+				{/if}
+			{/foreach}				
+		</ul>
+		<div class="sp"></div>
+		<div style="float: right;">
+		{if $isAvailable}
+			<a rel="nofollow" href="#" onClick='ajaxAddKitToCart({echo $kits[0]->getId()}, "{shop_url("cart/add/ShopKit")}", "{shop_url("ajax/getCartDataHtml")}"); return false;'>{echo ShopCore::t('Добавить комплект в корзину')}</a>
+		{else:}
+			Нет на складе
+		{/if}
+		</div>
+	{/if}
+	
+	<div class="sp"></div>
 	{$comments}
-
 </div>
-

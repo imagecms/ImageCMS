@@ -82,3 +82,13 @@ function ajaxAddToWishList()
     $("#wishListNotify").css('display', 'block');
     setTimeout(function() {  $("#wishListNotify").css('display', 'none') }, 2000);
 }
+
+function ajaxAddKitToCart(kitId, url, successUrl)
+{
+	$.ajax({
+        type: "POST",
+        data: "kitId=" + kitId,
+        url: url,
+        success: function(){$("#mycart").load(successUrl)}
+    });
+}
