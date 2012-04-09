@@ -107,6 +107,7 @@
 				'roles'    => 'Группы',
 				'logs'     => 'Логи',
 				'backup'   => 'Резервное копирование',
+				'tinybrowser' => 'Редактор файлов',
 			);
 
 			($hook = get_hook('on_get_perms_groups')) ? eval($hook) : NULL;
@@ -164,6 +165,8 @@
 
 				'logs_view'             => 'Просмотр журнала событий',
 				'backup_create'         => 'Создание резервных копий',
+				
+				'tinybrowser_all'       => 'Доступ к редактору файлов',
 			);
 
 			($hook = get_hook('get_permissions_array')) ? eval($hook) : NULL;

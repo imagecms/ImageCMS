@@ -23,7 +23,7 @@ require(realpath('../../../../system/cms_bridge.php'));
 
 $obj =& get_instance();
 
-if(!$obj->dx_auth->is_admin())
+if(!check_perm('tinybrowser_all'))
 {
     die('Access denied.');
 }
