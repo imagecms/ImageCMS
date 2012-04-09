@@ -87,8 +87,10 @@
                 <img src="{$THEME}/images/left.png" style="cursor:pointer" width="16" height="16" title="Назад (Ctrl + Left)" onclick="history_back();">
 				<img src="{$THEME}/images/right.png" style="cursor:pointer" width="16" height="16" title="Вперед (Ctrl + Right)" onclick="history_forward();">
 				<img src="{$THEME}/images/refresh.png" style="cursor:pointer" width="16" height="16" title="Обновить  (Ctrl + R)" onclick="history_refresh();">
+				{if check_perm('tinybrowser_all')}
 				<img src="/templates/administrator/images/drive.png" width="16" height="16" title="Выбрать Документ" style="cursor:pointer;padding:2px;" align="absmiddle" onclick="openator('Файлы','file');return false;" class="quimby_search_image">
 				<img src="/templates/administrator/images/images.png" width="16" height="16" title="Выбрать Изображение" style="cursor:pointer;padding:2px;" align="absmiddle" onclick="openator('Изображения','image');return false;" class="quimby_search_image">
+				{/if}
             </li>
 			</ul>
 		</div>
