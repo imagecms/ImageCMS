@@ -48,6 +48,11 @@ class Cfcm_forms extends MY_Controller {
                 'label'      => 'Группа',
                 'initial'    => self::prepare_groups_select(),
             ), 
+			'data' => array(
+                'type'       => 'hidden',
+                'validation' => 'alpha_dash',
+                'initial'    => '',
+            ),
         );
 
         return $this->forms->add_fields($fields);

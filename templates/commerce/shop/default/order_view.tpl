@@ -36,25 +36,61 @@
     </thead>
     <tbody>
     {foreach $model->getSOrderProductss() as $item}
-    {$total = $total + $item->getQuantity() * $item->toCurrency()}
-    {$product = $item->getSProducts()}
-        <tr>
-            <td style="width:90px;padding:2px;">
-                <div style="width:90px;height:90px;overflow:hidden;">
-                {if $product->getMainImage()}
-                    <img src="{productImageUrl($product->getId() . '_main.jpg')}" border="0" alt="image" width="90" />
-                {/if}
-                </div>
-            </td>
-            <td>
-                <a href="{shop_url('product/' . $product->getUrl())}">{echo ShopCore::encode($product->getName())}</a> {$item->getVariantName()}
-            </td>
-            <td>{echo $item->toCurrency()} {$CS}</td>
-            <td>
-                 {echo $item->getQuantity()} шт.
-            </td>
-            <td>{echo $item->getQuantity() * $item->toCurrency()} {$CS}</td>
-        </tr>
+		{$total = $total + $item->getQuantity() * $item->toCurrency()}
+		{$product = $item->getSProducts()}
+		{if $item->getKitId() > 0}
+			{if $item->getIsMain()}
+				<tr>
+					<td style="width:90px;padding:2px;">
+						<div style="width:90px;height:90px;overflow:hidden;">
+						{if $product->getMainImage()}
+							<img src="{productImageUrl($product->getId() . '_main.jpg')}" border="0" alt="image" width="90" />
+						{/if}
+						</div>
+					</td>
+					<td>
+						<a href="{shop_url('product/' . $product->getUrl())}">{echo ShopCore::encode($product->getName())}</a> {$item->getVariantName()}
+					</td>
+					<td>{echo $item->toCurrency()} {$CS}</td>
+					<td rowspan="{echo $kits[$item->getKitId()]['total']}">
+						 {echo $item->getQuantity()} шт.
+					</td>
+					<td rowspan="{echo $kits[$item->getKitId()]['total']}">{echo $item->getQuantity() * $kits[$item->getKitId()]['price']} {$CS}</td>
+				</tr>
+			{else:}
+				<tr>
+					<td style="width:90px;padding:2px;">
+						<div style="width:90px;height:90px;overflow:hidden;">
+						{if $product->getMainImage()}
+							<img src="{productImageUrl($product->getId() . '_main.jpg')}" border="0" alt="image" width="90" />
+						{/if}
+						</div>
+					</td>
+					<td>
+						<a href="{shop_url('product/' . $product->getUrl())}">{echo ShopCore::encode($product->getName())}</a> {$item->getVariantName()}
+					</td>
+					<td>{echo $item->toCurrency()} {$CS}</td>
+				</tr>
+			{/if}
+		{else:}
+			<tr>
+				<td style="width:90px;padding:2px;">
+					<div style="width:90px;height:90px;overflow:hidden;">
+					{if $product->getMainImage()}
+						<img src="{productImageUrl($product->getId() . '_main.jpg')}" border="0" alt="image" width="90" />
+					{/if}
+					</div>
+				</td>
+				<td>
+					<a href="{shop_url('product/' . $product->getUrl())}">{echo ShopCore::encode($product->getName())}</a> {$item->getVariantName()}
+				</td>
+				<td>{echo $item->toCurrency()} {$CS}</td>
+				<td>
+					 {echo $item->getQuantity()} шт.
+				</td>
+				<td>{echo $item->getQuantity() * $item->toCurrency()} {$CS}</td>
+			</tr>
+		{/if}
     {/foreach}
     </tbody>
     <tfoot>
