@@ -167,6 +167,9 @@
 				'backup_create'         => 'Создание резервных копий',
 				
 				'tinybrowser_all'       => 'Доступ к редактору файлов',
+				'tinybrowser_upload'    => 'Загрузка файлов',
+				'tinybrowser_edit'      => 'Редактирование файлов',
+				'tinybrowser_folders'   => 'Редактирование папок',
 			);
 
 			($hook = get_hook('get_permissions_array')) ? eval($hook) : NULL;
