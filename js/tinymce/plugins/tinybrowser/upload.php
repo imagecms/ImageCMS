@@ -22,9 +22,9 @@ require(realpath('../../../../system/cms_bridge.php'));
 
 $obj =& get_instance();
 
-if(!$obj->dx_auth->is_admin())
+if(!check_perm('tinybrowser_upload'))
 {
-    die('Access denied.');
+    die('Нет доступа!');
 }
 
 $_SERVER = $ser;
