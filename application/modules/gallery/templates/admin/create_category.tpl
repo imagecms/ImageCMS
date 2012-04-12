@@ -21,6 +21,11 @@
 		<div class="form_input"><textarea name="description" id="g_c_desc" class="mceEditor">{htmlspecialchars($category.description)}</textarea></div>
 		<div class="form_overflow"></div> 
 
+		<div class="form_text">Файл шаблона:</div>
+                <div class="form_input"><input type="text" name="tpl_file" value="{$album.tpl_file}" class="textbox_long" />.tpl
+                <div class="lite">По умолчанию: album.tpl</div></div>
+                <div class="form_overflow"></div>
+
    		<div class="form_text">Позиция:</div>
 		<div class="form_input"><input type="text" name="position" value="" class="textbox_long" /></div>
 		<div class="form_overflow"></div> 
