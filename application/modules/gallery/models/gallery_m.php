@@ -37,6 +37,7 @@ class Gallery_m extends CI_Model {
             'description' => trim($this->input->post('description')),
             'created'     => time(),
             'category_id' => $this->input->post('category_id'),
+            'tpl_file'    => $this->input->post('tpl_file')
         );
 
         $this->db->insert('gallery_albums', $data);
