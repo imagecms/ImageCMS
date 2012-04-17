@@ -234,7 +234,7 @@
 </div>
 <!-- BEGIN FOOTER -->
 <div id="footer">
-  <div class="left">© 2011  <strong>Image Robotics</strong> - лидер в производстве роботов<br/>
+  <div class="left">© 2012  <strong>Image Robotics</strong> - лидер в производстве роботов<br/>
     <div class="credits">Powered by <a href="http://www.imagecms.net">ImageCms</a></div>
   </div>
   {load_menu('bottom_menu')}
