@@ -110,7 +110,7 @@
 </div>
 <!-- BEGIN FOOTER -->
 <div id="footer">
-  <div class="left">© 2011  Ваш <strong>Интернет-магазин</strong><br/>
+  <div class="left">© 2012  Ваш <strong>Интернет-магазин</strong><br/>
     <div class="credits"> Powered by <a href="http://www.imagecms.net">ImageCMS Shop</a></div>
   </div>
   <ul class="right">
