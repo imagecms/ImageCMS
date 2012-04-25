@@ -240,6 +240,7 @@ class Menu extends MY_Controller{
                 $item['item_type'] == 'url' ? $href = $item['link']: $href = site_url($item['link']);                 
                 
 				$this->arranged_menu_array[$arranged_items_count]['link'] = $href;
+				$this->arranged_menu_array[$arranged_items_count]['id'] = $item['id'];
 				$this->arranged_menu_array[$arranged_items_count]['title'] = $item['title'];
 				$this->arranged_menu_array[$arranged_items_count]['image'] = $item['image'];
 				if (!is_array($item['add_data']))
@@ -333,6 +334,7 @@ class Menu extends MY_Controller{
 		}
 		
 		$data = array(
+			'id'            => $this->arranged_menu_array[$index]['id'],
 			'title' 	=> $this->arranged_menu_array[$index]['title'],
 			'link'  	=> $this->arranged_menu_array[$index]['link'],
 			'image'  	=> $this->arranged_menu_array[$index]['image'],
