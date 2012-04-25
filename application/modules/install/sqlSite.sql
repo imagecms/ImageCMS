@@ -362,7 +362,7 @@ DROP TABLE IF EXISTS `logs`;
 CREATE TABLE IF NOT EXISTS `logs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `username` varchar(250) NOT NULL,
+  `username` varchar(255) NOT NULL,
   `message` text NOT NULL,
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`),
@@ -531,7 +531,7 @@ CREATE TABLE IF NOT EXISTS `support_comments` (
   `ticket_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `user_status` int(11) NOT NULL,
-  `user_name` varchar(100) NOT NULL,
+  `user_name` varchar(255) NOT NULL,
   `text` varchar(500) NOT NULL,
   `date` int(11) NOT NULL,
   UNIQUE KEY `id` (`id`)
@@ -587,8 +587,8 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) NOT NULL DEFAULT '1',
-  `username` varchar(25) NOT NULL,
-  `password` varchar(34) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `email` varchar(100) NOT NULL,
   `banned` tinyint(1) NOT NULL DEFAULT '0',
   `ban_reason` varchar(255) DEFAULT NULL,
@@ -636,7 +636,7 @@ DROP TABLE IF EXISTS `user_temp`;
 CREATE TABLE IF NOT EXISTS `user_temp` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
-  `password` varchar(34) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `email` varchar(100) NOT NULL,
   `activation_key` varchar(50) NOT NULL,
   `last_ip` varchar(40) NOT NULL,
