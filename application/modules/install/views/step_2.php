@@ -15,22 +15,13 @@
         </div>
         <div class="form_overflow"></div>
 
-        <?php if ($sqlFileName != 'sqlSite.sql'){ ?>
+      
 		<div class="form_text">Устанавливать примеры продуктов</div>
         <div class="form_input">
-            <input type="checkbox" class="checkbox"
-                <?php
-                    if ($_POST)
-                    {
-                        echo $_POST['product_samples'] ? "checked='checked'" : '';
-                    }else{
-                        echo "checked='checked'";
-                    }
-                ?>
-            name="product_samples">
+            <input type="checkbox" class="checkbox" name="product_samples" value = "on">
         </div>
         <div class="form_overflow"></div>
-        <?php } ?>
+      
 
 <h2>Подключение к базе данных</h2>
         <div class="form_text"></div>
@@ -74,13 +65,7 @@
 
         <div class="form_text">Пароль</div>
         <div class="form_input">
-            <input type="password" class="textbox" value="<?php echo $_POST['admin_pass'] ?>" name="admin_pass">
-        </div>
-        <div class="form_overflow"></div>
-
-        <div class="form_text">Подтверждение</div>
-        <div class="form_input">
-            <input type="password" class="textbox" value="" name="admin_pass_conf">
+            <input type="text" class="textbox" value="<?php echo $_POST['admin_pass'] ?>" name="admin_pass">
         </div>
         <div class="form_overflow"></div>
 

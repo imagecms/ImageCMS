@@ -3,7 +3,7 @@
 class Install extends MY_Controller {
 
 	public $host  = '';
-	public $useSqlFile = 'sqlShop.sql'; // sqlShop.sql
+	public $useSqlFile = 'sqlShopClean.sql'; // sqlShop.sql
 	private $exts = FALSE;
 
 	public function __construct()
@@ -73,7 +73,7 @@ class Install extends MY_Controller {
 
 		// Check installed php exts.
 		$exts = array(
-			'curl' => 'ok',
+			//'curl' => 'ok',
 			'json' => 'ok',
 			'mbstring' => 'ok',
 			'iconv' => 'ok',
@@ -155,8 +155,7 @@ class Install extends MY_Controller {
 			$this->form_validation->set_rules('db_name', 'Имя БД', 'required');
 			$this->form_validation->set_rules('admin_login', 'Логин администратора', 'required|min_length[4]');
 			$this->form_validation->set_rules('admin_pass', 'Пароль администратора', 'required|min_length[5]');
-                        $this->form_validation->set_rules('admin_pass_conf', 'Подтверждение пароля', 'matches[admin_pass]');
- 			$this->form_validation->set_rules('admin_mail', 'Почта администратра', 'required|valid_email');
+			$this->form_validation->set_rules('admin_mail', 'Почта администратра', 'required|valid_email');
 
 			if ($this->form_validation->run() == FALSE)
 			{
@@ -222,10 +221,14 @@ class Install extends MY_Controller {
 				}
 			}
 		}
-
+		
 		// Insert sql data
+		
+		if($this->input->post('product_samples') == "on")
+		{
+			$this->useSqlFile = 'sqlShop.sql';
+		}
 		mysql_query('SET NAMES `utf8`;', $link);
-
 		$sqlFileData = read_file(dirname(__FILE__).'/'.$this->useSqlFile);
 
 		$queries = explode(";\n", $sqlFileData);
@@ -238,50 +241,11 @@ class Install extends MY_Controller {
 			{
 				mysql_query($q.';',$link);
 			}
-		}
+			}
+		
 
 		// Update site title
 		mysql_query('UPDATE `settings` SET `site_title`=\''.mysql_real_escape_string($this->input->post('site_title')).'\' ', $link);
-
-		if(!$this->input->post('product_samples') && $this->useSqlFile == 'sqlShop.sql')
-		{
-			$tables = array(
-				//'shop_banners',
-				//'shop_settings',
-				//'shop_callbacks_statuses',
-				//'shop_currencies',
-				'shop_brands',
-				'shop_callbacks',
-				'shop_callbacks_themes',
-				'shop_category',
-				'shop_delivery_methods',
-				'shop_delivery_methods_systems',
-				'shop_discounts',
-				'shop_notification_statuses',
-				'shop_notifications',
-				'shop_order_statuses',
-				'shop_orders',
-				'shop_orders_products',
-				'shop_orders_status_history',
-				'shop_payment_methods',
-				'shop_product_categories',
-				'shop_product_images',
-				'shop_product_properties',
-				'shop_product_properties_categories',
-				'shop_product_properties_data',
-				'shop_product_variants',
-				'shop_products',
-				'shop_products_rating',
-				'shop_user_profile',
-				'shop_warehouse',
-				'shop_warehouse_data'
-			);
-			foreach($tables as $tb_name)
-				mysql_query("TRUNCATE TABLE `$tb_name`");
-
-			delete_files('./uploads/shop/');
-			delete_files('./uploads/shop/additionalImageThumbs/');
-		}
 
 		// Create admin account
 		$this->load->helper('cookie');
