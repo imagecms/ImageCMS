@@ -78,9 +78,9 @@
 		<div id="topNav">
 			<ul class="menu-right">
             <li>
-                <img src="{$THEME}/images/left.png" style="cursor:pointer" width="16" height="16" title="Назад (Ctrl + Left)" onclick="history_back();">
-				<img src="{$THEME}/images/right.png" style="cursor:pointer" width="16" height="16" title="Вперед (Ctrl + Right)" onclick="history_forward();">
-				<img src="{$THEME}/images/refresh.png" style="cursor:pointer" width="16" height="16" title="Обновить  (Ctrl + R)" onclick="history_refresh();">
+                <img src="{$THEME}/images/left.png" style="cursor:pointer" title="Назад (Ctrl + Left)" onclick="history_back();">
+				<img src="{$THEME}/images/right.png" style="cursor:pointer" title="Вперед (Ctrl + Right)" onclick="history_forward();">
+				<img src="{$THEME}/images/refresh.png" style="cursor:pointer" class="refresh" title="Обновить  (Ctrl + R)" onclick="history_refresh();">
             </li>
 			</ul>
 		</div>

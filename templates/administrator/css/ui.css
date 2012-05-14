@@ -203,7 +203,7 @@ body {
 	top: 0;
 	color: #b2b2b2;
 	text-align: center;
-	padding: 15px 0px 0 0;
+	padding: 11px 0px 0 0;
 }
 
 #topNav a {
@@ -1071,7 +1071,10 @@ div.mochaToolbarWrapper.bottom {
 }
 
 .menu-right img {
-	padding: 0 0 0 5px;
+	float: left;
+}
+.menu-right img.refresh {
+	padding-left: 10px;
 }
 
 /* Notifications */
