@@ -9,19 +9,19 @@ $(document).ready(function(){
     ieV = jQuery.browser.version,
     ltie7 = ie&&(ieV <= 7),
     ltie8 = ie&&(ieV <= 8);
-    
+
     $tabs=$('.nav_tabs').tabs();
     $tabs.tabs('select', 0);
-    
+
     $tabs=$('.enter_reg').tabs();
     $tabs.tabs('select', 0);
-    
+
     first_elem=$('#scroll-box li:eq(0)');
     width_elem=first_elem.outerWidth();
     vidstup=first_elem.outerWidth(true)-width_elem;
     count_elem=$('#scroll-box li').length;
     width=width_elem*count_elem;
-    
+
     if (count_elem % 2 !=0){
         width=width+width_elem;
     }
@@ -29,7 +29,7 @@ $(document).ready(function(){
     $('#scroll-box').jScrollPane({
         'showArrows':true
     });
-    
+
     $('.formCost input[type="text"], .count input').keypress(function(event){
         var key, keyChar;
         if(!event) var event = window.event;
@@ -42,7 +42,7 @@ $(document).ready(function(){
 
         if(!/\d/.test(keyChar))	return false;
     });
-        
+
     if ($.exists('.lineForm')) {
         var params = {
             changedEl: ".lineForm select",
@@ -71,8 +71,8 @@ $(document).ready(function(){
                 value1 = value2;
                 jQuery("input#minCost").val(value1);
             }
-            jQuery("#slider").slider("values",0,value1);	
-        }); 
+            jQuery("#slider").slider("values",0,value1);
+        });
         jQuery("input#maxCost").change(function(){
             var value1=jQuery("input#minCost").val();
             var value2=jQuery("input#maxCost").val();
@@ -89,7 +89,7 @@ $(document).ready(function(){
             jQuery("#slider").slider("values",1,value2);
         });
     }
-    
+
     $('.check_form input').change(function(){
         if($.exists_nabir($(this).parent(':not(.disabled)'))){
             $this=$(this);
@@ -123,7 +123,7 @@ $(document).ready(function(){
         if(!event) var event = window.event;
 
         key = event.keyCode;
-        if(key==27) 
+        if(key==27)
         {
             $('.apply').hide(200);
         }
@@ -140,8 +140,8 @@ $(document).ready(function(){
             'min-height': '39px',
             'height':'auto'
         });
-        
-        $('.characteristics tr:nth-child(odd) th').css('background-color','#e6e6e6'); 
+
+        $('.characteristics tr:nth-child(odd) th').css('background-color','#e6e6e6');
         $('.characteristics tr:nth-child(even) th').css('background-color','#f5f5f5');
         $('.characteristics tr:nth-child(odd) td').css('background-color','#efefef');
     }
@@ -206,8 +206,8 @@ $(document).ready(function(){
     }
 });
 $(window).load(function(){
-    $('.cycle ul').cycle({ 
-        speed:       600, 
+    $('.cycle ul').cycle({
+        speed:       600,
         timeout:     2000,
         fx: 'fade',
         pager:      '.cycle .nav',

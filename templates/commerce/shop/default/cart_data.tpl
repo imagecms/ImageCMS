@@ -1,12 +1,7 @@
-	{if $is_logged_in}
-		<a href="{shop_url('profile')}" rel="nofollow" class="items">Личный кабинет</a>
-	{else:}
-		<a href="/auth" class="items" rel="nofollow">Авторизация</a>
-	{/if}
-	<a href="{shop_url('cart')}" rel="nofollow" class="items">
-		{echo ShopCore::app()->SCart->totalItems()}
-		{echo SStringHelper::Pluralize(ShopCore::app()->SCart->totalItems(), array('товар','товара','товаров'))}
-	</a>
-	<span class="prices">{echo ShopCore::app()->SCart->totalPrice()} {$CS}
-		<a href="{shop_url('cart')}" class="image" rel="nofollow"><img src="{$SHOP_THEME}style/images/myitems.jpg" width="22" height="18" border="0" alt="mycart" /></a>
-	</span>
+{$total = ShopCore::app()->SCart->totalItems()}
+<li class="cart {if $total}is_avail{/if} "><a href="{shop_url('cart')}" class="js gray">Корзина</a> ({$total})</li>
+{if $is_logged_in}
+    <li class="login"><a href="{shop_url('profile')}" rel="nofollow" class="js gray">Личный кабинет</a></li>
+{else:}
+    <li class="login"><a href="{site_url('auth')}" rel="nofollow" class="js gray">Вход в магазин</a></li>
+{/if}

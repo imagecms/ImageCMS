@@ -17,3 +17,12 @@
 		$return = $config->slash_item('static_base_url').$index_page.preg_replace("|^/*(.+?)/*$|", "\\1", $url);
 		return $return;
 	}
+
+    function whereami(){
+        $CI =& get_instance();
+        if($CI->uri->segment(1))
+            return 'inside';
+        else
+            return 'mainpage';
+    }
+    
