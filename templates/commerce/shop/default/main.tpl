@@ -17,16 +17,14 @@
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.ui-slider.js" ></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.fancybox-1.3.4.pack.js" ></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/scripts.js"></script>
+        <script type="text/javascript" src="{$SHOP_THEME}/js/shop.js"></script>
     </head>
     <body>
         <div class="main_body">
             <div class="top">
                 <div class="center">
                     {load_menu('top_menu')}
-                    <ul class="user_menu">
-                        <li class="cart /* is_avail */ "><a href="#" class="js gray">Корзина</a> (0)</li>
-                        <li class="login"><a href="#" class="js gray">Вход в магазин</a></li>
-                    </ul>
+                    <ul class="user_menu cart_data_holder">{include_tpl('cart_data')}</ul>
                 </div>
             </div><!-- top -->
             <div class="header center">
@@ -86,59 +84,11 @@
                     <li class="compare blue is_avail"><a href="#">Список сравнений</a> (2)</li>
                 </ul>
             </div><!-- header --> 
+
             <div class="main_menu center">
-                <ul class="clearfix">
-                    <li>
-                        <a href="#">Видео</a>
-                        <ul>
-                            <li>
-                                <div class="title">Фото</div>
-                                <a href="#">Фотоаппараты</a>
-                                <a href="#">Видеокамеры</a>
-                                <a href="#">Экшн-камеры</a>
-                                <a href="#">Объективы</a>
-                                <a href="#">Вспышки</a>
-                                <a href="#">Штативы</a>
-                                <a href="#">Светофильтры</a>
-                            </li>
-                            <li>
-                                <div class="title">Камеры</div>
-                                <a href="#">Apple iPod и аксессуары</a>
-                                <a href="#">ЖК-телевизоры</a>
-                                <a href="#">LED-телевизоры</a>
-                                <a href="#">Плазменные панели</a>
-                                <a href="#">3D-очки</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Домашнее аудио</a></li>
-                    <li>
-                        <a href="#">Фото и камеры</a>
-                        <ul>
-                            <li>
-                                <div class="title">Фото</div>
-                                <a href="#">Фотоаппараты</a>
-                                <a href="#">Видеокамеры</a>
-                                <a href="#">Экшн-камеры</a>
-                                <a href="#">Объективы</a>
-                                <a href="#">Вспышки</a>
-                                <a href="#">Штативы</a>
-                                <a href="#">Светофильтры</a>
-                            </li>
-                            <li>
-                                <div class="title">Камеры</div>
-                                <a href="#">Apple iPod и аксессуары</a>
-                                <a href="#">ЖК-телевизоры</a>
-                                <a href="#">LED-телевизоры</a>
-                                <a href="#">Плазменные панели</a>
-                                <a href="#">3D-очки</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Домашняя электроника</a></li>
-                    <li><a href="#">Авто музыка и видео</a></li>
-                </ul>
+                <ul class="clearfix">{echo ShopCore::app()->SCategoryTree->ulWithTitle()}</ul>
             </div><!-- main_menu -->
+            
             {$shop_content}
             <div class="hfooter"></div>
         </div>
@@ -200,8 +150,7 @@
                 </div>
             </div>
         </div><!-- footer -->
-<!--        міняється на внутрішніх-->
-        <div class="h_bg_mainpage"></div>
-<!--        ЕНД-->
+
+        <div class="h_bg_{whereami()}"></div>
     </body>
 </html>

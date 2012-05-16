@@ -19,83 +19,44 @@
     </div>
 	{/if}
     <!-- Show Brands in circle -->
-    
-    
+
+
 <!--                ТЕСТ ФЕНСІ-->
 <!--    <a href="{$SHOP_THEME}/images/temp/cycle_1.jpg" class="img" rel="group"><img src="{$SHOP_THEME}/images/temp/item_1.jpg" alt="Apple MacBook Pro A1286" /></a>-->
 <!--    <a href="{$SHOP_THEME}/images/temp/cycle_2.jpg" class="img" rel="group"><img src="{$SHOP_THEME}/images/temp/item_2.jpg" alt="Apple MacBook Pro A1286" /></a>-->
 <!--                ЕНД-->
+
+    {$cart_data = ShopCore::app()->SCart->getData()}
     <div class="featured carusel_frame">
         <div class="box_title center"><span class="f-s_24">Популярные товары</span></div>
         <div class="carusel">
             <ul>
+                {foreach getPromoBlock('popular', 10) as $hotProduct}
+                {$style = productInCart($cart_data, $hotProduct->getId(), $hotProduct->firstVariant->getId(), $hotProduct->firstVariant->getStock())}
                 <li>
                     <div class="small_item">
-                        <a href="#" class="img"><span><img src="{$SHOP_THEME}/images/temp/item_1.jpg" alt="Apple MacBook Pro A1286" /></span></a>
+                        <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="img">
+                            <span>
+                                <img src="{productImageUrl($hotProduct->getMainimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
+                            </span>
+                        </a>
                         <div class="info">
-                            <a href="#" class="title">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
+                            <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                             <div class="buy">
-                                <div class="price f-s_16 f_l">99999 <sub>грн</sub><span class="d_b">859 $</span></div>
-                                <div class="button_gs buttons"><a href="#">Купить</a></div>
+                                <div class="price f-s_16 f_l">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', 1)} $</span></div>
+                                <div class="{$style.class} buttons">
+                                    <a class="{$style.identif}" data-varid="{echo $hotProduct->firstVariant->getId()}" data-prodid="{echo $hotProduct->getId()}" href="{shop_url('product/' . $hotProduct->getUrl())}">{$style.message}</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </li>
-                <li>
-                    <div class="small_item">
-                        <a href="#" class="img"><span><img src="{$SHOP_THEME}/images/temp/item_5.jpg" alt="Apple MacBook Pro A1286" /></span></a>
-                        <div class="info">
-                            <a href="#" class="title">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple</a>
-                            <div class="buy">
-                                <div class="price f-s_16 f_l">4528 <sub>грн</sub><span class="d_b">859 $</span></div>
-                                <div class="button_gs buttons"><a href="#">Купить</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="small_item">
-                        <a href="#" class="img"><span><img src="{$SHOP_THEME}/images/temp/item_2.jpg" alt="Apple MacBook Pro A1286" /></span></a>
-                        <div class="info">
-                            <a href="#" class="title">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple</a>
-                            <div class="buy">
-                                <div class="price f-s_16 f_l">4528 <sub>грн</sub><span class="d_b">859 $</span></div>
-                                <div class="button_gs buttons"><a href="#">Купить</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="small_item">
-                        <a href="#" class="img"><span><img src="{$SHOP_THEME}/images/temp/item_3.jpg" alt="Apple MacBook Pro A1286" /></span></a>
-                        <div class="info">
-                            <a href="#" class="title">Apple MacBook Pro A1286</a>
-                            <div class="buy">
-                                <div class="price f-s_16 f_l">4528 <sub>грн</sub><span class="d_b">859 $</span></div>
-                                <div class="button_gs buttons"><a href="#">Купить</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="small_item">
-                        <a href="#" class="img"><span><img src="{$SHOP_THEME}/images/temp/item_4.jpg" alt="Apple MacBook Pro A1286" /></span></a>
-                        <div class="info">
-                            <a href="#" class="title">Apple MacBook Pro A1286</a>
-                            <div class="buy">
-                                <div class="price f-s_16 f_l">4528 <sub>грн</sub><span class="d_b">859 $</span></div>
-                                <div class="button_gs buttons"><a href="#">Купить</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+                {/foreach}
             </ul>
         </div>
         <button class="prev"></button>
         <button class="next"></button>
     </div><!-- featured -->
-                    {$hot = makeResponse('hot', 3)}
-                    {var_dump($hot )}
     <div class="center clearfix">
         <div class="tabs f_l">
             <ul class="nav_tabs">
@@ -105,98 +66,52 @@
             <div id="first">
                 <div id="scroll-box" class="horizontal-only">
                     <ul>
-                        {foreach $hot as $hotProduct}
+                        {foreach getPromoBlock('hot', 10) as $hotProduct}
+                        {$style = productInCart($cart_data, $hotProduct->getId(), $hotProduct->firstVariant->getId(), $hotProduct->firstVariant->getStock())}
                         <li>
                             <div class="small_item">
-                                <a href="#" class="img"><span><img src="{$SHOP_THEME}/images/temp/item_1.jpg" alt="Apple MacBook Pro A1286" /></span></a>
+                                <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="img">
+                                    <span>
+                                        <img src="{productImageUrl($hotProduct->getMainimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
+                                    </span>
+                                </a>
                                 <div class="info">
-                                    <a href="#" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
+                                    <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                                     <div class="buy">
                                         <div class="price f-s_16 f_l">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', 1)} $</span></div>
-                                        <div class="button_gs buttons"><a href="#">Купить</a></div>
+                                        <div class="{$style.class} buttons"><a class="{$style.identif}" href="#">{$style.message}</a></div>
                                     </div>
                                 </div>
                             </div>
                         </li>
                         {/foreach}
-                        <li>
-                            <div class="small_item">
-                                <a href="#" class="img"><span><img src="{$SHOP_THEME}/images/temp/item_2.jpg" alt="Apple MacBook Pro A1286" /></span></a>
-                                <div class="info">
-                                    <a href="#" class="title">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple</a>
-                                    <div class="buy">
-                                        <div class="price f-s_16 f_l">4528 <sub>грн</sub><span class="d_b">859 $</span></div>
-                                        <div class="button_greys buttons"><a href="#">Сообщить о<br/> появлении</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li><!--
-                        <li>
-                            <div class="small_item">
-                                <a href="#" class="img"><span><img src="{$SHOP_THEME}/images/temp/item_3.jpg" alt="Apple MacBook Pro A1286" /></span></a>
-                                <div class="info">
-                                    <a href="#" class="title">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple</a>
-                                    <div class="buy">
-                                        <div class="price f-s_16 f_l">4528 <sub>грн</sub><span class="d_b">859 $</span></div>
-                                        <div class="button_gs buttons"><a href="#">Купить</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="small_item">
-                                <a href="#" class="img"><span><img src="{$SHOP_THEME}/images/temp/item_4.jpg" alt="Apple MacBook Pro A1286" /></span></a>
-                                <div class="info">
-                                    <a href="#" class="title">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple</a>
-                                    <div class="buy">
-                                        <div class="price f-s_16 f_l">4528 <sub>грн</sub><span class="d_b">859 $</span></div>
-                                        <div class="button_gs buttons"><a href="#">Купить</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="small_item">
-                                <a href="#" class="img"><span><img src="{$SHOP_THEME}/images/temp/item_5.jpg" alt="Apple MacBook Pro A1286" /></span></a>
-                                <div class="info">
-                                    <a href="#" class="title">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple</a>
-                                    <div class="buy">
-                                        <div class="price f-s_16 f_l">4528 <sub>грн</sub><span class="d_b">859 $</span></div>
-                                        <div class="button_gs buttons"><a href="#">Купить</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="small_item">
-                                <a href="#" class="img"><span><img src="{$SHOP_THEME}/images/temp/item_5.jpg" alt="Apple MacBook Pro A1286" /></span></a>
-                                <div class="info">
-                                    <a href="#" class="title">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple</a>
-                                    <div class="buy">
-                                        <div class="price f-s_16 f_l">4528 <sub>грн</sub><span class="d_b">859 $</span></div>
-                                        <div class="button_gs buttons"><a href="#">Купить</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="small_item">
-                                <a href="#" class="img"><span><img src="{$SHOP_THEME}/images/temp/item_5.jpg" alt="Apple MacBook Pro A1286" /></span></a>
-                                <div class="info">
-                                    <a href="#" class="title">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple</a>
-                                    <div class="buy">
-                                        <div class="price f-s_16 f_l">4528 <sub>грн</sub><span class="d_b">859 $</span></div>
-                                        <div class="button_gs buttons"><a href="#">Купить</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>-->
-
                     </ul>
                 </div>
             </div>
             <div id="second">
-                
+                <div id="scroll-box" class="horizontal-only">
+                    <ul>
+                        {foreach getPromoBlock('action', 10) as $hotProduct}
+                        {$style = productInCart($cart_data, $hotProduct->getId(), $hotProduct->firstVariant->getId(), $hotProduct->firstVariant->getStock())}
+                        <li>
+                            <div class="small_item">
+                                <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="img">
+                                    <span>
+                                        <img src="{productImageUrl($hotProduct->getMainimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
+                                    </span>
+                                </a>
+                                <div class="info">
+                                    <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
+                                    <div class="buy">
+                                        <div class="price f-s_16 f_l">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', 1)} $</span></div>
+                                        <div class="{$style.class} buttons"><a class="{$style.identif}" href="#">{$style.message}</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        {/foreach}
+                    </ul>
+                </div>
             </div>
         </div>
         {widget('latest_news')}
