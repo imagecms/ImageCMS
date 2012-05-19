@@ -97,6 +97,7 @@
                 <div class="box_title clearfix">
                     <div class="f-s_24 f_l">{echo ShopCore::encode($model->getTitle())} <span class="count_search">({$totalProducts})</span></div>
                     <div class="f_r">
+                        <form method="GET">
                         <div class="lineForm f_l w_145">
                             <select id="sort" name="sort">
                                 <option value="1" selected="selected">от дешевых к дорогим</option>
@@ -112,26 +113,30 @@
                                 <option value="1">20</option>
                             </select>
                         </div>
+                        </form>
                     </div>
                 </div>
                 <ul>
+                    <!--  Render produts list   -->
+                    {foreach $products as $product}
+                    {$style = productInCart($cart_data, $product->getId(), $product->firstVariant->getId(), $product->firstVariant->getStock())}
                     <li>
                         <div class="photo_block">
-                            <a href="#">
-                                <img src="images/temp/item_1.jpg"/>
+                            <a href="{shop_url('product/' . $product->getUrl())}">
+                                <img src="{productImageUrl($product->getMainimage())}" alt="{echo ShopCore::encode($product->name)}" />
                             </a>
                         </div>
                         <div class="func_description">
-                            <a href="#" class="title">Ноутбук Apple MacBook Pro 13” MD313R</a>
+                            <a href="{shop_url('product/' . $product->getUrl())}" class="title">{echo ShopCore::encode($product->name)}</a>
                             <div class="f-s_0">
-                                <span class="code">Код 13445795</span>
-                                <div class="di_b star"><img src="images/temp/STAR.png"></div>
+                                {if $product->firstVariant->getNumber()}<span class="code">Код {echo ShopCore::encode($product->firstVariant->getNumber())}</span>{/if}
+                                <div class="di_b star"><img src="{$SHOP_THEME}images/temp/STAR.png"></div>
                                 <a href="#" class="response">145 відгуків</a>
                             </div>
                             <div class="f_l">
                                 <div class="buy">
-                                    <div class="price f-s_18 f_l">4528 <sub>грн</sub><span class="d_b">859 $</span></div>
-                                    <div class="button_gs buttons"><a href="#">Купить</a></div>
+                                    <div class="price f-s_18 f_l">{echo $product->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $product->firstVariant->toCurrency('Price', 1)} $</span></div>
+                                    <div class="{$style.class} buttons"><a class="{$style.identif}" href="{$style.link}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" >{$style.message}</a></div>
                                 </div>
                             </div>
                             <div class="f_r t-a_r">
@@ -139,71 +144,19 @@
                                 <a href="#" class="js gray">Зберегти у списку бажань</a>
                             </div>
                         </div>
-                        <p class="c_b">Экран 15.4" (1440x900) LED, глянцевый / Intel Core i7 (2.4 ГГц) / RAM 4 ГБ / HDD 750 ГБ / AMD Radeon HD 6750M, 1 ГБ / DVD Super Multi DL / Wi-Fi / Bluetooth / веб-камера / кардридер SD / OS X Lion / 2.54 кг
-                            <a href="#" class="t-d_n"><span class="t-d_u">Детальніше</span> →</a>
+                        {if $product->countProperties() > 0}
+                        <p class="c_b">
+                            {echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInline($product)}
+                            <a href="{shop_url('product/' . $product->getUrl())}" class="t-d_n"><span class="t-d_u">Подробнее</span> →</a>
                         </p>
+                        {/if}
                     </li>
-                    <li class="not_avail">
-                        <div class="photo_block">
-                            <a href="#">
-                                <img src="images/temp/item_1.jpg"/>
-                            </a>
-                        </div>
-                        <div class="func_description">
-                            <a href="#" class="title">Ноутбук Apple MacBook Pro 13” MD313R</a>
-                            <div class="f-s_0">
-                                <span class="not_avail_icon">Нет в наличии</span>
-                                <span class="code">Код 13445795</span>
-                                <div class="di_b star"><img src="images/temp/STAR.png"></div>
-                                <a href="#" class="response">145 відгуків</a>
-                            </div>
-                            <div class="f_l">
-                                <div class="buy">
-                                    <div class="price f-s_18 f_l">4528 <sub>грн</sub><span class="d_b">859 $</span></div>
-                                    <div class="button_greys buttons"><a href="#">Сообщить <br/>о появлении</a></div>
-                                </div>
-                            </div>
-                            <div class="f_r t-a_r">
-                                <span class="ajax_refer_marg"><a href="#" class="js gray">Додати до порівняння</a></span>
-                                <a href="#" class="js gray">Зберегти у списку бажань</a>
-                            </div>
-                        </div>
-                        <p class="c_b">Экран 15.4" (1440x900) LED, глянцевый / Intel Core i7 (2.4 ГГц) / RAM 4 ГБ / HDD 750 ГБ / AMD Radeon HD 6750M, 1 ГБ / DVD Super Multi DL / Wi-Fi / Bluetooth / веб-камера / кардридер SD / OS X Lion / 2.54 кг
-                            <a href="#" class="t-d_n"><span class="t-d_u">Детальніше</span> →</a>
-                        </p>
-                    </li>
-                    <li>
-                        <div class="photo_block">
-                            <a href="#">
-                                <img src="images/temp/item_1.jpg"/>
-                            </a>
-                        </div>
-                        <div class="func_description">
-                            <a href="#" class="title">Asus X54C (X54C-SX006D) Black + Флешка на 32GB!!</a>
-                            <div class="f-s_0">
-                                <span class="code">Код 13445795</span>
-                                <div class="di_b star"><img src="images/temp/STAR.png"></div>
-                                <a href="#" class="response">145 відгуків</a>
-                            </div>
-                            <div class="f_l">
-                                <div class="buy">
-                                    <div class="price f-s_18 f_l">4528 <sub>грн</sub><span class="d_b">859 $</span></div>
-                                    <div class="button_middle_blue buttons"><a href="#">Оформить<br/>заказ</a></div>
-                                </div>
-                            </div>
-                            <div class="f_r t-a_r">
-                                <span class="ajax_refer_marg"><a href="#" class="js gray">Додати до порівняння</a></span>
-                                <a href="#" class="js gray">Зберегти у списку бажань</a>
-                            </div>
-                        </div>
-                        <p class="c_b">Экран 15.4" (1440x900) LED, глянцевый / Intel Core i7 (2.4 ГГц) / RAM 4 ГБ / HDD 750 ГБ / AMD Radeon HD 6750M, 1 ГБ / DVD Super Multi DL / Wi-Fi / Bluetooth / веб-камера / кардридер SD / OS X Lion / 2.54 кг
-                            <a href="#" class="t-d_n"><span class="t-d_u">Детальніше</span> →</a>
-                        </p>
-                    </li>
+                    {/foreach}
+                    <!--  Render produts list   -->                    
                 </ul>
                 
                 <!--    Pagination    -->                
-                <div class="pagination">
+                <div class="pagination d_n">
                     <span class="f_l">
                         ←&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">Назад</a>
                     </span>
