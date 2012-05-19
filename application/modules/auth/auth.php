@@ -169,6 +169,7 @@ class Auth extends MY_Controller
 
 					// Load login page view
 					$this->template->show('login');
+					
 				}
 			}
 		}
