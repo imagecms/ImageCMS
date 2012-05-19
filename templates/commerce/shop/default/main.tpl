@@ -79,16 +79,26 @@
                     <a href="#" class="js">Заказать звонок</a>
                 </div>
                 <ul class="user_menu">
+                    <!--    Show callback's form    -->
                     <li><a href="#" class="js">Онлайн консультация</a></li>
-                    <li class="like blue is_avail"><a href="#">Список желаний</a> (4)</li>
-                    <li class="compare blue is_avail"><a href="#">Список сравнений</a> (2)</li>
+                    <!--    Show callback's form    -->
+
+                    <!--    Wish list item's for Header    -->
+                    <li id="wishListHolder" class="like blue{if ShopCore::app()->SWishList->totalItems()} is_avail{/if}">
+                        {include_tpl('wish_list_data')}</li>
+                    <!--    Wish list item's for Header    -->
+
+                    <!--    Products in compare list for Header    -->
+                    <li id="compareHolder" class="compare blue{if count($CI->session->userdata('shopForCompare'))} is_avail{/if}">
+                        {include_tpl('compare_data')}</li>
+                    <!--    Products in compare list for Header    -->
                 </ul>
-            </div><!-- header --> 
+            </div><!-- header -->
 
             <div class="main_menu center">
                 <ul class="clearfix">{echo ShopCore::app()->SCategoryTree->ulWithTitle()}</ul>
             </div><!-- main_menu -->
-            
+
             {$shop_content}
             <div class="hfooter"></div>
         </div>
@@ -145,7 +155,7 @@
                         <a href="#" class="twitter"></a>
                         <a href="#" class="odnoklasniki"></a>
                     </div>
-                    <a href="#" class="red">Создание интернет магазина</a>
+                    <a href="http://imagecms.net" target="_blank" class="red">Создание интернет магазина</a>
                     <div>SEO оптимизация сайта</div>
                 </div>
             </div>
