@@ -18,6 +18,8 @@
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.fancybox-1.3.4.pack.js" ></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/scripts.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/shop.js"></script>
+		
+		
     </head>
     <body>
         <div class="main_body">
@@ -30,9 +32,16 @@
             <div class="header center">
                 <a href="{shop_url('')}" class="logo"></a>
                 <div class="frame_form_search">
-                    <form action="#" method="post" class="clearfix">
-                        <input type="text" value="Поиск по сайту" />
-                        <input type="submit" value="Найти" />
+                    <form action="{shop_url('search')}" method="get" class="clearfix">
+<!--                        <input type="text" value="Поиск по сайту" name="text" />-->
+						
+<input type="text" size="30" name="text" value="Поиск по сайту" onfocus="if(this.value=='Поиск по сайту') this.value='';" onblur="if(this.value=='') this.value='Поиск по сайту';" />
+	
+                        <input type="submit" class="submit"  value="Найти" />
+						
+						
+
+						
                         <div class="search_drop d_n">
                             <ul>
                                 <li class="smallest_item">

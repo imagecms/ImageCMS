@@ -7,16 +7,145 @@
 #}
 
 {# Display sidebar.tpl #}
+<!--
 {include_tpl ('sidebar')}
+-->
+
+           <div class="content">
+                <div class="center">
+                    <div class="filter">
+                        <div class="title padding_filter">Найдено в категориях:</div>
+                        <div class="padding_filter check_frame">
+                            <div class="sub_title">Телефони, MP3, GPS</div>
+                            <ul class="menu_fiter">
+                                <li><a href="#">Мобильные телефоны</a> <span>(36)</span></li>
+                                <li><a href="#">КПК</a> <span>(20)</span></li>
+                                <li><a href="#">Электронные книги</a> <span>(2)</span></li>
+                                <li><a href="#">Наушники</a> <span>(2)</span></li>
+                                <li><a href="#">GPS навигаторы</a> <span>(5)</span></li>
+                            </ul>
+                        </div>
+                      
+                       
+                    </div>
+                    <div class="catalog_content">
+                        <div class="catalog_frame w_100">
+                            <div class="crumbs">Главная страница / домашняя электроника /</div>
+                            <div class="box_title clearfix">
+                                <div class="f-s_24 f_l">Ноутбуки <span class="count_search">(1614)</span></div>
+                                <div class="f_r">
+                                    <div class="lineForm f_l w_145">
+                                        <select id="sort" name="sort">
+                                            <option value="1" selected="selected">Цена по убыванию</option>
+                                            <option value="1">Цена по убыванию2</option>
+                                        </select>
+                                    </div>
+                                    <div class="lineForm f_l w_50 m-l_10">
+                                        <select id="count" name="count">
+                                            <option value="1" selected="selected">10</option>
+                                            <option value="1">20</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                                                            
+                            
+      {if $totalProducts > 0}
+		<ul class="products">
+		{$count = 1;}
+        {foreach $products as $p}
+		 <li {if $count == 3} class="last" {$count = 0}{/if} {if $count == 1} style="clear:left;" {/if}>
+          
+			
+                      
+                                
+					   
+					   <div class="photo_block">
+               <a href="{shop_url('product/' . $p->getUrl())}">
+               <img src="{productImageUrl($p->getId() . '_small.jpg')}" border="0"  alt="image" />
+                </a>
+                  </div>
+                <div class="func_description">
+                <a href="{shop_url('product/'.$p->getUrl())}" class="title">Ноутбук {echo ShopCore::encode($p->getName())}</a>
+                <div class="f-s_0">
+                    <span class="code">Код 13445795</span>
+                    <div class="di_b star"><img src="images/temp/STAR.png"></div>
+                     <a href="#" class="response">145 відгуків</a>
+                </div> 
+            <div class="f_l">
+                   <div class="buy">
+                          <div class="price f-s_18 f_l">{echo $p->firstVariant->toCurrency()}<sub>{$CS}</sub><span class="d_b">{echo $p->firstVariant->toCurrency('Price', 1)} $</span></div>
+                          <div class="button_gs buttons"><a href="#">Купить</a></div>
+                          </div>
+		
+					
+              </div>
+               <div class="f_r t-a_r">
+                 <span class="ajax_refer_marg"><a href="{shop_url('compare/add/' . $p->getId())}" class="js gray">Додати до порівняння</a></span>
+                 <a href="#" class="js gray">Зберегти у списку бажань</a>
+               </div>
+                   </div>
+              <p class="c_b">Экран 15.4" (1440x900) LED, глянцевый / Intel Core i7 (2.4 ГГц) / RAM 4 ГБ / HDD 750 ГБ / AMD Radeon HD 6750M, 1 ГБ / DVD Super Multi DL / Wi-Fi / Bluetooth / веб-камера / кардридер SD / OS X Lion / 2.54 кг
+                    <a href="{shop_url('product/'.$p->getUrl())}" class="t-d_n"><span class="t-d_u">Детальніше</span> ></a>
+              </p>
+          </li>
+                                
+            
+            
+            
+            {if $count == 3}<li class="separator"></li>{$count=0}{/if}
+            {$count++}
+              
+        {/foreach}
+		</ul>
+
+
+        <div id="gopages">
+                {$pagination}
+        </div>
+        <div class="sp"></div>
+        {else:}
+        <p>
+            {echo ShopCore::t('По вашему запросу ничего не найдено')}.
+        </p>
+    {/if}
+                            
+       <div class="pagination">
+                                <span class="f_l">
+                                    <&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">Назад</a>
+                                </span>
+                                <span class="f_r">
+                                    <a href="#">Следующая страница</a>&nbsp;&nbsp;&nbsp;&nbsp;>
+                                </span>
+                                <div class="t-a_c">
+                                    <a href="#">1</a>
+                                    <a href="#">2</a>
+                                    <a href="#">3</a>
+                                    <a href="#" class="active">4</a>
+                                    <a href="#">5</a>
+                                    <a>...</a>
+                                    <a href="#">10</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+	
+<!--
 
 <div class="products_list">
-
       <div id="titleExt">
         <h5 class="left">Поиск</h5>
         <div class="right">
             Найдено {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array('продукт','продукта','продуктов'))}
-            <!-- BEGIN FILTER BOX -->
-                <a href="#" onclick="$('#filterBox').toggle();return false;">Изменить параметры ↓</a>
+             BEGIN FILTER BOX 
+                <a href="#" onclick="$('#filterBox').toggle();return false;">Изменить параметры v</a>
                 <div id="filterBox">
                 <form method="get" action="">
                     {if !empty(ShopCore::$_GET['text'])}
@@ -74,7 +203,7 @@
 
                 </form>
                 </div>
-            <!-- END FILTER BOX -->
+             END FILTER BOX 
         </div>
         <div class="sp"></div>
 
@@ -85,7 +214,7 @@
         </div>
       </div>
     <div id="brands_list">
-    <!-- Display brans list -->
+     Display brans list 
     {if sizeof($brandsInSearchResult) > 0}
         {foreach $brandsInSearchResult as $brand}
             {if $brand->getId() != ShopCore::$_GET['brand']}
@@ -129,4 +258,4 @@
             {echo ShopCore::t('По вашему запросу ничего не найдено')}.
         </p>
     {/if}
-</div>
+</div>-->
