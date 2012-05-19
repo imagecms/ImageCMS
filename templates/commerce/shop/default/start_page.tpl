@@ -60,7 +60,7 @@
     <div class="center clearfix">
         <div class="tabs f_l">
             <ul class="nav_tabs">
-                <li><a href="#first">Новинки</a></li>
+                <li><a href="#first">Новинкиsss</a></li>
                 <li><a href="#second">Акції</a></li>
             </ul>
             <div id="first">
