@@ -367,7 +367,8 @@ span.code{color: #999;font-size: 11px;margin-right: 9px;}
 
 .catalog_content{float: right;width: 750px;}
 .crumbs{margin-top: 17px;}
-.crumbs a, .crumbs{color:#999;font-size: 11px;line-height: 19px;}
+.crumbs a, .crumbs{color:#999;font-size: 11px;line-height: 19px; text-decoration: none;}
+.crumbs a:hover{ text-decoration: underline;}
 .count_search{font-size: 14px;color: #666;}
 .catalog_content > .box_title{padding-bottom: 9px;}
 .catalog_frame{width: 520px;float: left;}

@@ -8,6 +8,8 @@
 # @var cart_data
 #}
 
+{$forCompareProducts = $CI->session->userdata('shopForCompare')}
+
 <div class="content">
     <div class="center">
         <div class="filter">
@@ -52,7 +54,7 @@
                     </div>
                 </div>
             </form>
-            <form method="post" action="">
+            <form method="post" action="" >
                 <div class="padding_filter check_frame">
                     <div class="title">Производитель</div>
                     <div class="clearfix check_form">
@@ -93,24 +95,25 @@
         </div>
         <div class="catalog_content">
             <div class="catalog_frame">
-                <div class="crumbs">Главная страница / домашняя электроника /</div>
+                <div class="crumbs">{renderCategoryPath($model)}</div>
                 <div class="box_title clearfix">
                     <div class="f-s_24 f_l">{echo ShopCore::encode($model->getTitle())} <span class="count_search">({$totalProducts})</span></div>
                     <div class="f_r">
                         <form method="GET">
                         <div class="lineForm f_l w_145">
-                            <select id="sort" name="sort">
-                                <option value="1" selected="selected">от дешевых к дорогим</option>
-                                <option value="2">от дорогих к дешевым</option>
-                                <option value="3">популярные</option>
-                                <option value="4">новинки</option>
-                                <option value="5">акции</option>
+                            <select id="sort" name="order">
+                                <option value="price" {if ShopCore::$_GET['order']=='price'}selected="selected"{/if}>от дешевых к дорогим</option>
+                                <option value="price_desc" {if ShopCore::$_GET['order']=='price_desc'}selected="selected"{/if} >от дорогих к дешевым</option>
+                                <option value="hit" {if ShopCore::$_GET['order']=='hit'}selected="selected"{/if}>популярные</option>
+                                <option value="hot" {if ShopCore::$_GET['order']=='hot'}selected="selected"{/if}>новинки</option>
+                                <option value="action" {if ShopCore::$_GET['order']=='action'}selected="selected"{/if}>акции</option>
                             </select>
                         </div>
                         <div class="lineForm f_l w_50 m-l_10">
-                            <select id="count" name="count">
-                                <option value="1" selected="selected">10</option>
-                                <option value="1">20</option>
+                            <select id="count" name="user_per_page">
+                                <option value="12" {if ShopCore::$_GET['user_per_page']=='12'}selected="selected"{/if} >12</option>
+                                <option value="24" {if ShopCore::$_GET['user_per_page']=='24'}selected="selected"{/if} >24</option>
+                                <option value="36" {if ShopCore::$_GET['user_per_page']=='36'}selected="selected"{/if} >36</option>
                             </select>
                         </div>
                         </form>
@@ -129,9 +132,17 @@
                         <div class="func_description">
                             <a href="{shop_url('product/' . $product->getUrl())}" class="title">{echo ShopCore::encode($product->name)}</a>
                             <div class="f-s_0">
-                                {if $product->firstVariant->getNumber()}<span class="code">Код {echo ShopCore::encode($product->firstVariant->getNumber())}</span>{/if}
+                                <!--    Show Product Number -->
+                                    {if $product->firstVariant->getNumber()}<span class="code">Код {echo ShopCore::encode($product->firstVariant->getNumber())}</span>{/if}
+                                <!--    Show Product Number -->
+
                                 <div class="di_b star"><img src="{$SHOP_THEME}images/temp/STAR.png"></div>
-                                <a href="#" class="response">145 відгуків</a>
+
+                                <!--    Show Comments count -->
+                                    <a href="{shop_url('product/'.$product->getId().'?cmn=on')}"  class="response">
+                                        {echo $product->totalComments()} {echo SStringHelper::Pluralize($product->totalComments(), array('отзыв', 'отзывы', 'отзывов'))}</a>
+                                <!--    Show Comments count -->
+
                             </div>
                             <div class="f_l">
                                 <div class="buy">
@@ -140,8 +151,14 @@
                                 </div>
                             </div>
                             <div class="f_r t-a_r">
-                                <span class="ajax_refer_marg"><a href="#" class="js gray">Додати до порівняння</a></span>
-                                <a href="#" class="js gray">Зберегти у списку бажань</a>
+                                <span class="ajax_refer_marg">
+                                    {if $forCompareProducts && in_array($product->getId(), $forCompareProducts)}
+                                        <a href="{shop_url('compare')}" class="">Сравнить</a>
+                                    {else:}
+                                        <a href="{shop_url('compare/add/'. $product->getId())}" data-prodid="{echo $product->getId()}" class="js gray toCompare">Добавить к сравнению</a>
+                                    {/if}
+                                </span>
+                                <a data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" href="#" class="js gray addToWList">Сохранить в список желаней</a>
                             </div>
                         </div>
                         {if $product->countProperties() > 0}
@@ -152,10 +169,10 @@
                         {/if}
                     </li>
                     {/foreach}
-                    <!--  Render produts list   -->                    
+                    <!--  Render produts list   -->
                 </ul>
-                
-                <!--    Pagination    -->                
+
+                <!--    Pagination    -->
                 <div class="pagination d_n">
                     <span class="f_l">
                         ←&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">Назад</a>
@@ -175,7 +192,7 @@
                 </div>
                 <!--    Pagination    -->
             </div>
-            
+
             <!--   Right sidebar     -->
             <div class="nowelty_auction">
                 <!--   New products block     -->
@@ -200,7 +217,7 @@
                     {/foreach}
                 </ul>
                 <!--   New products block     -->
-                
+
                 <!--   Promo products block     -->
                 <div class="box_title">
                     <span>Акции</span>
@@ -222,10 +239,10 @@
                     </li>
                     {/foreach}
                 </ul>
-                <!--   Promo products block     -->                
+                <!--   Promo products block     -->
             </div>
             <!--   Right sidebar     -->
-            
+
         </div>
     </div>
 </div>
