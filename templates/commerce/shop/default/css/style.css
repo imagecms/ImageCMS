@@ -17,7 +17,7 @@ input[type="text"],input[type="password"]{border-width: 1px;border-style: solid;
 input[type="text"]:focus, input[type="password"]:focus, textarea:focus{box-shadow: 0 0 4px #ccc;}
 textarea{overflow: auto;border: 1px solid;}
 
-a,.blue,.checked_filter li{color: #3a88cc}
+a,.blue,.checked_filter li a{color: #3a88cc}
 a:hover,.pagination a:hover,.catalog_frame .func_description .title:hover{color: #5faff5;}
 .red, .cart.is_avail, .cart.is_avail a, .all_result, .header .user_menu li.is_avail,.header .user_menu li.is_avail a, .history_order td a{color: #D80600;}
 .red:hover,.cart.is_avail:hover,.cart.is_avail a:hover, .header .user_menu li.is_avail:hover,.header .user_menu li.is_avail a:hover,.checked_filter li:hover, .all_result:hover, .history_order td a:hover, .main_menu ul ul a:hover{color:#ff4d48;}
@@ -320,7 +320,7 @@ a.jspArrowLeft{background-position: 0 -15px;}
 .cusel .jScrollPaneContainer {position: relative;overflow: hidden;z-index: 5;border: 1px solid #ccc;border-width: 0 1px 1px 1px;-moz-border-radius: 0 0 6px 6px;-webkit-border-radius: 0 0 6px 6px;border-radius: 0 0 6px 6px;background: #fff;-moz-box-shadow: 0 2px 5px #b2b2b2;-webkit-box-shadow: 0 2px 5px #b2b2b2;box-shadow: 0 2px 5px #b2b2b2;}
 .cusel-scroll-pane{width: 100% !important;}
 
-.checked_filter li{background: url('../images/icon_filter.png') no-repeat 0 3px;cursor: pointer;padding-left: 20px;margin: 2px 0;float: left;clear: left;}
+.checked_filter li a{background: url('../images/icon_filter.png') no-repeat 0 3px;cursor: pointer;padding-left: 20px;margin: 2px 0;float: left;clear: left; display: block; text-decoration: none;}
 .checked_filter{background-color: #e8e8e8;border-width: 1px 0;border-style: solid;border-color: #d0d0d0;margin: 13px 0 11px;padding-top: 16px;padding-bottom: 13px;max-width: 200px;}
 .checked_filter ul{margin-top: 12px;overflow: hidden;}
 .reset{background: url('../images/reset.png') no-repeat 0 3px;padding-left: 15px;color: #333;margin-top: 10px;display: block;}

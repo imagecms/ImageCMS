@@ -100,8 +100,6 @@ $(document).ready(function(){
     })
     /*   End of Event   */
 
-    $('.lineForm input[type=hidden]').on('change', function(){
-        $(this).parents('form').submit();
-    })
+    $('.lineForm input[type=hidden]').on('change', function(){$(this).parents('form').submit();});
 
 });

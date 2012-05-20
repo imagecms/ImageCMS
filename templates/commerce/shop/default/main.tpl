@@ -16,10 +16,12 @@
         <script type="text/javascript" src="{$SHOP_THEME}/js/cusel-min-2.4.1.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.ui-slider.js" ></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.fancybox-1.3.4.pack.js" ></script>
+        <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.form.js"></script>
+        <script type="text/javascript" src="{$SHOP_THEME}/js/imagecms.filter.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/scripts.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/shop.js"></script>
-		
-		
+
+
     </head>
     <body>
         <div class="main_body">
@@ -34,14 +36,8 @@
                 <div class="frame_form_search">
                     <form action="{shop_url('search')}" method="get" class="clearfix">
 <!--                        <input type="text" value="Поиск по сайту" name="text" />-->
-						
-<input type="text" size="30" name="text" value="Поиск по сайту" onfocus="if(this.value=='Поиск по сайту') this.value='';" onblur="if(this.value=='') this.value='Поиск по сайту';" />
-	
+                        <input type="text" size="30" name="text" value="Поиск по сайту" onfocus="if(this.value=='Поиск по сайту') this.value='';" onblur="if(this.value=='') this.value='Поиск по сайту';" />
                         <input type="submit" class="submit"  value="Найти" />
-						
-						
-
-						
                         <div class="search_drop d_n">
                             <ul>
                                 <li class="smallest_item">
@@ -107,8 +103,9 @@
             <div class="main_menu center">
                 <ul class="clearfix">{echo ShopCore::app()->SCategoryTree->ulWithTitle()}</ul>
             </div><!-- main_menu -->
-
+            
             {$shop_content}
+            
             <div class="hfooter"></div>
         </div>
         <div class="footer">
