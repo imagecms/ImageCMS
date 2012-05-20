@@ -12,87 +12,7 @@
 
 <div class="content">
     <div class="center">
-        <div class="filter">
-            <div class="box_title padding_filter">
-                <div class="title">Клас</div>
-                <div class="lineForm">
-                    <select id="class" name="class" tabindex="1">
-                        <option value="1" selected="selected">от дешевых к дорогим</option>
-                        <option value="2">от дорогих к дешевым</option>
-                        <option value="3">популярные</option>
-                        <option value="4">новинки</option>
-                        <option value="5">акции</option>
-                    </select>
-                </div>
-            </div>
-            <div class="title padding_filter">Подбор по параметрам</div>
-            <div class="checked_filter padding_filter">
-                <span class="c_4f">245 товаров с фильтрами:</span>
-                <ul>
-                    <li>Apple Apple Apple AppleApple Apple Apple</li>
-                    <li>Samsung</li>
-                    <li>Dell</li>
-                </ul>
-                <a href="#" class="reset">Сбросить все фильтры</a>
-            </div>
-            <form method="post" action="" class="padding_filter clearfix">
-                <div class="title">Цена</div>
-                <div class="sliderCont">
-                    <div id="slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content">
-                        <div class="ui-slider-range ui-widget-header"></div>
-                        <a class="ui-slider-handle ui-state-default" href="#" id="left_slider"></a>
-                        <a class="ui-slider-handle ui-state-default" href="#" id="right_slider"></a>
-                    </div>
-                </div>
-                <div class="formCost f_l">
-                    <label>от</label>
-                    <input type="text" id="minCost" value="0"/>
-                    <label>до</label>
-                    <input type="text" id="maxCost" value="8000"/>
-                    <div class="buttons button_bs">
-                        <input type="submit" value="ok"/>
-                    </div>
-                </div>
-            </form>
-            <form method="post" action="" >
-                <div class="padding_filter check_frame">
-                    <div class="title">Производитель</div>
-                    <div class="clearfix check_form">
-                        <label class="disabled"><input type="checkbox" disabled="disabled"/><span class="name_model">Philips <span>(14)</span></span></label>
-                        <label><input type="checkbox"/><span class="name_model">Dex <span>(15)</span></span></label>
-                        <label><input type="checkbox"/><span class="name_model">Hyundai <span>(15)</span></span></label>
-                        <label><input type="checkbox"/><span class="name_model">LG <span>(15)</span></span></label>
-                        <label><input type="checkbox"/><span class="name_model">Panasonic <span>(15)</span></span></label>
-                        <label><input type="checkbox"/><span class="name_model">Philips <span>(15)</span></span></label>
-                        <label><input type="checkbox"/><span class="name_model">Samsung <span>(15)</span></span></label>
-                        <label><input type="checkbox"/><span class="name_model">Sanyo <span>(15)</span></span></label>
-                        <label><input type="checkbox"/><span class="name_model">Sharp <span>(15)</span></span></label>
-                        <label><input type="checkbox"/><span class="name_model">Sony <span>(15)</span></span></label>
-                        <label><input type="checkbox"/><span class="name_model">Supra <span>(15)</span></span></label>
-                        <label><input type="checkbox"/><span class="name_model">Thompson <span>(15)</span></span></label>
-                        <label><input type="checkbox"/><span class="name_model">Toshiba <span>(15)</span></span></label>
-                    </div>
-                </div>
-                <div class="padding_filter check_frame">
-                    <div class="title">Производитель</div>
-                    <div class="clearfix check_form">
-                        <label class="disabled"><input type="checkbox" disabled="disabled"/><span class="name_model">Philips <span>(14)</span></span></label>
-                        <label><input type="checkbox"/><span class="name_model">Dex <span>(15)</span></span></label>
-                        <label><input type="checkbox"/><span class="name_model">Hyundai <span>(15)</span></span></label>
-                        <label><input type="checkbox"/><span class="name_model">LG <span>(15)</span></span></label>
-                        <label><input type="checkbox"/><span class="name_model">Panasonic <span>(15)</span></span></label>
-                        <label><input type="checkbox"/><span class="name_model">Philips <span>(15)</span></span></label>
-                        <label><input type="checkbox"/><span class="name_model">Samsung <span>(15)</span></span></label>
-                        <label><input type="checkbox"/><span class="name_model">Sanyo <span>(15)</span></span></label>
-                        <label><input type="checkbox"/><span class="name_model">Sharp <span>(15)</span></span></label>
-                        <label><input type="checkbox"/><span class="name_model">Sony <span>(15)</span></span></label>
-                        <label><input type="checkbox"/><span class="name_model">Supra <span>(15)</span></span></label>
-                        <label><input type="checkbox"/><span class="name_model">Thompson <span>(15)</span></span></label>
-                        <label><input type="checkbox"/><span class="name_model">Toshiba <span>(15)</span></span></label>
-                    </div>
-                </div>
-            </form>
-        </div>
+        {include_tpl('filter')}
         <div class="catalog_content">
             <div class="catalog_frame">
                 <div class="crumbs">{renderCategoryPath($model)}</div>
@@ -158,7 +78,7 @@
                                         <a href="{shop_url('compare/add/'. $product->getId())}" data-prodid="{echo $product->getId()}" class="js gray toCompare">Добавить к сравнению</a>
                                     {/if}
                                 </span>
-                                <a data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" href="#" class="js gray addToWList">Сохранить в список желаней</a>
+                                <a data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" href="#" class="js gray addToWList">Сохранить в список желаний</a>
                             </div>
                         </div>
                         {if $product->countProperties() > 0}

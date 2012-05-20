@@ -42,7 +42,7 @@ $(document).ready(function(){
 
         if(!/\d/.test(keyChar))	return false;
     });
-
+    
     if ($.exists('.lineForm')) {
         var params = {
             changedEl: ".lineForm select",
@@ -89,7 +89,7 @@ $(document).ready(function(){
             jQuery("#slider").slider("values",1,value2);
         });
     }
-
+/*
     $('.check_form input').change(function(){
         if($.exists_nabir($(this).parent(':not(.disabled)'))){
             $this=$(this);
@@ -106,6 +106,7 @@ $(document).ready(function(){
             win.find('.apply').css('left',left+7);
         }
     });
+    */
     $('.comment_ajax_refer > a').click(function(){
         $this = $(this);
         $this.next().slideToggle(200,function(){
@@ -241,10 +242,3 @@ $(window).load(function(){
     });
     $('.brand ul').css('width',width_brand);
 });
-
-/*початкові зміні для слайдера*/
-def_min=0;
-def_max=10000;
-cur_min=0;
-cur_max=8000;
-/**/
