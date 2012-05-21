@@ -362,7 +362,7 @@ a.jspArrowLeft{background-position: 0 -15px;}
 span.code{color: #999;font-size: 11px;margin-right: 9px;}
 .response{margin-left: 9px;}
 .d_b.response{margin:9px 0 0 0;}
-.di_b.star{margin-top: 3px;}
+.di_b.star{margin-top: 3px;padding-top: 0px;}
 .photo_block > *{line-height: 1;}
 
 .catalog_content{float: right;width: 750px;}

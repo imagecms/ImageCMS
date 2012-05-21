@@ -106,7 +106,7 @@ class Comments extends MY_Controller {
             'use_captcha'        => $this->use_captcha,
             'item_id'            => $item_id
         );
-
+        
         if ($this->use_captcha == TRUE)
         {
             $this->dx_auth->captcha();
@@ -120,7 +120,7 @@ class Comments extends MY_Controller {
         ($hook = get_hook('comments_assign_tpl_data')) ? eval($hook) : NULL;
 
         $this->template->add_array(array( 
-                'comments' => $comments,
+                'comments' => $comments, 
                 ));
 	}
 
@@ -383,7 +383,14 @@ class Comments extends MY_Controller {
 	    else
 		return TRUE;
 	}
-
+        
+        function get_comments_number($id)
+        {
+            $this->where('item_id', $id);
+            $query = $this->db->get('comments')->result_array();
+            return count($query);
+            
+        }
 }
 
 /* End of file comments.php */

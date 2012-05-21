@@ -73,7 +73,7 @@ class Install extends MY_Controller {
 
 		// Check installed php exts.
 		$exts = array(
-			//'curl' => 'ok',
+			'curl' => 'ok',
 			'json' => 'ok',
 			'mbstring' => 'ok',
 			'iconv' => 'ok',
