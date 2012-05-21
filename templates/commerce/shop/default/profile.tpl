@@ -25,7 +25,7 @@
                         <a href="#" class="f_l w-s_n-w" id="change_info">Изменить личные данные</a>
                         <a href="{shop_url('/cart')}" class="f_r w-s_n-w">Перейти в корзину</a>
 						<a href="#" class="f_l w-s_n-w" id="change_password">Изменить пароль</a>
-                        <a href="{shop_url('/cart')}" class="f_r w-s_n-w">Посмотреть Wish List</a>
+                        <a href="{shop_url('wish_list')}" class="f_r w-s_n-w">Посмотреть Wish List</a>
      <form action="{shop_url('profile')}" method="post" name="editFormpass">
 		  <div style="clear: left;width: 50%;display: none;" id="change_password_fields">
          Старый пароль:

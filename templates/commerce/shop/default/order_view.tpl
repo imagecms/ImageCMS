@@ -126,7 +126,7 @@
 													   {foreach $paymentMethods as $pm}
 													   {echo encode($pm->getName())}
 													   {echo $pm->getDescription()}
-													   {echo $pm->getPaymentForm($model)}
+<!--													   {echo $pm->getPaymentForm($model)}-->
 													   {/foreach}
 													   {/if}
 													</b>
@@ -144,14 +144,7 @@
                 </div>
             </div>
            
-
-
-
-
-
-
-
-  
+ 
     {if $CI->session->flashdata('makeOrder') === true}
     <div style="padding:10px;background-color:#f5f5dc;">
         Спасибо за Ваш заказ.

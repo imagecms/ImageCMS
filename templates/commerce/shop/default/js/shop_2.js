@@ -20,7 +20,7 @@ $(document).ready(function(){
             type: 'post',
             data: "quantity="+1+"&productId="+id+"&variantId="+id_var,
             url: '/shop/cart/add',
-            success: function(){
+            success: function(msg){
                 $('.cart_data_holder').load('/shop/ajax/getCartDataHtml');
                 if ($this.parent('div').hasClass('button_big_green'))
                 {
@@ -35,12 +35,18 @@ $(document).ready(function(){
                     .addClass('goToCart')
                     .html('Оформить <br/> заказ')
                     .parent('div')
+<<<<<<< HEAD
                     .removeClass('button_gs')
                     .addClass('button_middle_blue');
                 }
                 $this
                 .attr('href', '/shop/cart')
                 .unbind('click');
+=======
+                        .removeClass('button_gs')
+                        .addClass('button_middle_blue');
+                showResponse(msg);
+>>>>>>> 728b0b60565b96eabb4be32059cb915c08a79407
                 $.fancybox.hideActivity();
             }
         });
@@ -112,4 +118,93 @@ $(document).ready(function(){
     /*   End of Event   */
 
     $('.lineForm input[type=hidden]').on('change', function(){$(this).parents('form').submit();});
+    
+    $('.plus_minus button').live('click', function(){
+        $target = $(this).parent().parent().find('input');
+        $val = $target.val();
+        $form = $(this).parents('form');
+        if($(this).hasClass('count_up')){
+            $target.val($val*1+1);
+        }
+        else{
+            if($val != '1')
+                $target.val($val*1-1);
+        }
+        $.fancybox.showActivity();
+        $.ajax({
+            type: 'post',
+            data: $form.serialize() + '&recount=1',
+            url: '/shop/cart',
+            success: function(msg){
+                $('.cart_data_holder').load('/shop/ajax/getCartDataHtml');                
+                showResponse(msg);
+                $.fancybox.hideActivity();
+            }
+        });    
+        return false;
+    });
+    
+    $('.delete_text').live('click', function(){
+        $.fancybox.showActivity();
+        $target = $(this).attr('href');
+        $.ajax({
+            url: $target,
+            success: function(msg){
+                $('.cart_data_holder').load('/shop/ajax/getCartDataHtml');
+                showResponse(msg);
+                $.fancybox.hideActivity();
+            }
+        });    
+        return false;
+    });        
+    
+    
+
+    function showResponse(responseText, statusText, xhr, $form){
+        try { 
+            var obj = $.parseJSON(responseText); 
+        } catch(e) {
+        }
+        
+        if (typeof obj != 'undefined') {
+            if (obj != null) {
+                $.fancybox(obj.msg, {                    
+                    'titleShow'     : false,
+                    'padding' : 0,
+                    'margin' : 0,
+                    'overlayOpacity' : 0.5,
+                    'overlayColor' : '#000',
+                    'transitionIn'  : 'elastic',
+                    'transitionOut' : 'elastic',                    
+                    'showNavArrows' : false,
+                    'onComplete' : function(){
+                        setTimeout('$.fancybox.close()', 3000);
+                    }
+                });
+            } else {
+                $.fancybox(responseText, {
+                    'titleShow'     : false,
+                    'padding' : 0,
+                    'margin' : 0,
+                    'overlayOpacity' : 0.5,
+                    'overlayColor' : '#000',
+                    'transitionIn'  : 'elastic',
+                    'transitionOut' : 'elastic',                    
+                    'showNavArrows' : false
+                }); 
+            }
+        }
+        else {
+            $.fancybox(responseText, {
+                    'titleShow'     : false,
+                    'padding' : 0,
+                    'margin' : 0,
+                    'overlayOpacity' : 0.5,
+                    'overlayColor' : '#000',
+                    'transitionIn'  : 'elastic',
+                    'transitionOut' : 'elastic',                    
+                    'showNavArrows' : false
+            }); 
+        }
+    }
 });
