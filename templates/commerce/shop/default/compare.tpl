@@ -1,95 +1,55 @@
-{# Variables
-# @var products
-#}
-
-{include_tpl ('sidebar')}
-
-<div class="products_list">
-
-      <div id="titleExt">
-        <h5 class="left">Сравнение товаров</h5>
-        <div class="sp"></div>
-      </div>
-
-    <br/>
-
-{if $products->count() == 0}
-    Список товаров для сравнения пустой.
-{else:}
-    <table border="0" cellpadding="3" cellspacing="3" style="font-size:12px;">
-        {# Row 0 - Name #}
-        <tr valign="top">
-            {foreach $products as $p}
-                <td>
-                    <a href="{shop_url('product/' . $p->getUrl())}">{echo $p->getName()}</a>
-                </td>
-            {/foreach}
-        </tr>
-
-        {# Row 1 - Image #}
-        <tr valign="top">
-            {foreach $products as $p}
-                <td>
-                    {if $p->getSmallImage()}
-                        <img src="/uploads/shop/{echo $p->getSmallImage()}" alt="{echo $p->getName()}">
-                    {/if}
-                    <br/> <a href="{shop_url('compare/remove/' . $p->getId())}">Удалить</a>
-                </td>
-            {/foreach}
-        </tr>
-
-        {#Row 2 - Cusom fields data #}
-        <tr valign="top">
-            {foreach $products as $p}
-            <td>
-                {$data = ShopCore::app()->SPropertiesRenderer->renderPropertiesArray($p)}
+<div class="content">
+    <div class="center">
+        <h1>Сравнение товаров</h1>
+        <div class="comparison_slider">
+            <div class="parameters_compr">
+                <div class="title">Показаны:</div>
+                <a class="active">Все параметры</a>
+                <a href="#">Только отличия</a>
+            </div>
+            <div class="comparison_slider_left">
+                
+                {$data = ShopCore::app()->SPropertiesRenderer->renderProductsProperties($products)}
                 {foreach $data as $key=>$val}
-                    <strong>{$key}</strong> - {$val}<br/>
+                    {$key}
                 {/foreach}
-            </td>
-            {/foreach}
-        </tr>
-
-        {#Row 3 - Description #}
-        <tr valign="top">
-            {foreach $products as $p}
-                <td>{echo $p->getFullDescription()}</td>
-            {/foreach}
-        </tr>
-
-        {#Row 3 - Add to cart buttons #}
-        <tr valign="top">
-            {foreach $products as $p}
-                <td>
-                    <form action="{shop_url('cart/add')}" name="productForm" method="post">
-
-                    {if $p->countProductVariants() > 1}
-                    <div style="padding-bottom:20px;">
-                    Варианты товара:<br/>
-                        <select name="variantId">
-                        {foreach $p->getProductVariants() as $variant}
-                            <option value="{echo $variant->getId()}">{echo ShopCore::encode($variant->getName())} - {echo $variant->toCurrency()} {$CS}</option>
-                        {/foreach}
-                        </select>
-                    </div>
-                    {else:}
-                        <input type="hidden" name="variantId" value="{echo $p->firstVariant->getId()}" />
-
-                        <div style="padding-bottom:20px;">
-                            <span class="priceLight">{echo $p->firstVariant->toCurrency()} {$CS}</span><br/>
+                {var_dump($data)}
+            </div>
+            <div class="comparison_tovars">
+                <ul class="comparison_slider_right">                    
+                    {foreach $products as $product}
+                    {$data = ShopCore::app()->SPropertiesRenderer->renderPropertiesArray($product)}
+                    {$style = productInCart($cart_data, $product->getId(), $product->firstVariant->getId(), $product->firstVariant->getStock())}
+                    <li class="list_desire">
+                        <div class="frame_porivnjanja_tovar smallest_item">
+                            <div class="photo_block">
+                                <a href="{shop_url('product/' . $product->getUrl())}"><img height="70" src="{productImageUrl($product->getMainimage())}" alt="{echo ShopCore::encode($product->name)}" /></a>
+                                <div class="clearfix">
+                                    <div class="di_b star"><img src="{$SHOP_THEME}images/temp/STAR.png"></div>
+                                    {if $product->totalComments()}<a href="{shop_url('product/'.$product->getId().'?cmn=on')}" class="d_b response">{echo $product->totalComments()} {echo SStringHelper::Pluralize($product->totalComments(), array('отзыв', 'отзывы', 'отзывов'))}</a>{/if}
+                                </div>
+                                <span class="delete_tovar"></span>
+                            </div>
+                            <div class="func_description">
+                                <a href="{shop_url('product/' . $product->getUrl())}" class="title">{echo $product->getName()}</a>
+                                <div class="buy">
+                                    <div class="price f-s_14">{echo $product->firstVariant->toCurrency()} <sub>{$CS}</sub><span>{echo $product->firstVariant->toCurrency('Price', 1)} $</span></div>
+                                    <div class="buttons {$style.class}">
+                                        <a class="{$style.identif}" href="{$style.link}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" >{$style.message}</a>
+                                    </div>
+                                </div>                                
+                            </div>
                         </div>
-                    {/if}
-
-                    <input type="hidden" name="productId" value="{echo $p->getId()}" />
-                    <input type="hidden" name="quantity" value="1" />
-
-                    <input type="submit" value="{echo ShopCore::t('ДОБАВИТЬ В КОРЗИНУ')}"/>
-                    {form_csrf()}
-                    </form>
-                </td>
-            {/foreach}
-        </tr>
-    </table>
-{/if}
-
+                        <div class="field_container_character">                            
+                            {foreach $data as $key=>$val}
+                                <span><span>{$val}</span></span>
+                            {/foreach}
+                            
+                        </div>
+                    </li>
+                    {/foreach}
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
