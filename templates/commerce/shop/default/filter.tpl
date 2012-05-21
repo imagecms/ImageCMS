@@ -97,7 +97,7 @@
         <div class="padding_filter check_frame">
             <div class="title">Производитель</div>
             <div class="clearfix check_form">
-                <!--                <label class="disabled"><input type="checkbox" disabled="disabled"/><span class="name_model">Philips <span>(14)</span></span></label>-->                
+                <!--                <label class="disabled"><input type="checkbox" disabled="disabled"/><span class="name_model">Philips <span>(14)</span></span></label>-->
                 {$count_brands = array_count_values($brandsInCategory)}
                 {foreach $allBrandsInCategory as $brand}
                 {$count_brand = $count_brands[$brand->getId()];}
@@ -112,10 +112,10 @@
                 {/if}
                 <label>
                     <input id="brand_{echo $brand->getId()}" name="brand[]" value="{echo $brand->getId()}" type="checkbox" {echo $check} {echo $activeness} />
-                           <span class="name_model">{echo $brand->getName()}</span> 
+                           <span class="name_model">{echo $brand->getName()}</span>
                     <span>({echo $count_brand})</span>
                 </label>
-                {/foreach}                
+                {/foreach}
                 <!--                <label><input type="checkbox"/><span class="name_model">Dex <span>(15)</span></span></label>
                                 <label><input type="checkbox"/><span class="name_model">Hyundai <span>(15)</span></span></label>
                                 <label><input type="checkbox"/><span class="name_model">LG <span>(15)</span></span></label>
@@ -130,8 +130,9 @@
                                 <label><input type="checkbox"/><span class="name_model">Toshiba <span>(15)</span></span></label>-->
             </div>
         </div>
-        <div class="padding_filter check_frame">
-            {foreach $model->getProperties() as $prop}            
+        <div class="padding_filter check_frame">            
+            {foreach $model->getProperties() as $prop}
+            {if !$prop->getShowInFilter()} { continue; } {/if}
             <div class="title">{echo $prop->getName()}</div>
             <div class="clearfix check_form">
                 {if $propertiesInCategory[$prop->getId()]}
@@ -147,34 +148,16 @@
                 {else:}
                 {$activeness = 'class="not_disabled"'}
                 {$count_property = 0}
-                {/if}
+                {/if}                
                 <label {if !$count_property}class="disabled"{/if}>
                     <input  {if !$count_property}disabled="disabled"{/if} id="prop_{echo $prop->getId() . '_' . $key}" type="checkbox" name="f[{echo $prop->getId()}][]" value="{echo $key}" {echo $check} {echo $activeness} />
-                    <span class="name_model">{echo $val}</span> 
+                    <span class="name_model">{echo $val}</span>
                     <span>({$count_property})</span>
                 </label>
                 {/foreach}
             </div>
             {/foreach}
-            <div class="button_middle_blue buttons t-a_c"><input type="submit" value="Подобрать"/></div>            
-            
-        
-<!--            <div class="title">Производитель</div>
-            <div class="clearfix check_form">
-                <label class="disabled"><input type="checkbox" disabled="disabled"/><span class="name_model">Philips <span>(14)</span></span></label>
-                <label><input type="checkbox"/><span class="name_model">Dex <span>(15)</span></span></label>
-                <label><input type="checkbox"/><span class="name_model">Hyundai <span>(15)</span></span></label>
-                <label><input type="checkbox"/><span class="name_model">LG <span>(15)</span></span></label>
-                <label><input type="checkbox"/><span class="name_model">Panasonic <span>(15)</span></span></label>
-                <label><input type="checkbox"/><span class="name_model">Philips <span>(15)</span></span></label>
-                <label><input type="checkbox"/><span class="name_model">Samsung <span>(15)</span></span></label>
-                <label><input type="checkbox"/><span class="name_model">Sanyo <span>(15)</span></span></label>
-                <label><input type="checkbox"/><span class="name_model">Sharp <span>(15)</span></span></label>
-                <label><input type="checkbox"/><span class="name_model">Sony <span>(15)</span></span></label>
-                <label><input type="checkbox"/><span class="name_model">Supra <span>(15)</span></span></label>
-                <label><input type="checkbox"/><span class="name_model">Thompson <span>(15)</span></span></label>
-                <label><input type="checkbox"/><span class="name_model">Toshiba <span>(15)</span></span></label>
-            </div>-->
+            <div class="button_middle_blue buttons t-a_c"><input type="submit" value="Подобрать"/></div>
         </div>
     </form>
 </div>

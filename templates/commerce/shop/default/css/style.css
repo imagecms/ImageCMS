@@ -444,6 +444,13 @@ span.code{color: #999;font-size: 11px;margin-right: 9px;}
 .characteristics tr:nth-child(even) th{background-color: #f5f5f5;}
 .characteristics tr:nth-child(odd) td{background-color: #efefef;}
 
+.productPropertiesTable td, productPropertiesTable th{text-align: left;height: 26px;color: #666;font-weight: normal;text-indent: 20px;}
+.productPropertiesTable tr:nth-child(odd) th{background-color: #e6e6e6;} 
+.productPropertiesTable tr:nth-child(even) th{background-color: #f5f5f5;}
+.productPropertiesTable tr:nth-child(odd) td{background-color: #efefef;}
+.productPropertiesTable {width:100%;}
+
+
 .accessories {overflow: hidden;margin-left: -110px;width: 830px;padding-left: 27px;}
 .accessories li{width: 302px;height: 130px;border-bottom: 1px dashed #999;margin-left: 110px;display: inline-block;margin-bottom: -1px;padding: 19px 0;}
 
