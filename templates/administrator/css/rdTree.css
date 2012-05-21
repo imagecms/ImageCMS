@@ -18,6 +18,11 @@ div.rdTreeFirebug  a.selected  {
     -moz-border-radius:3px;
 }
 
+div.rdTreeFirebug a:hover {
+    color:#ff3f34;
+    text-decoration:none;
+}
+
 div.rdTreeFirebug .penedit,  div.rdTreeFirebug .penedit-root{
     display:none;
 }

@@ -50,7 +50,7 @@
 		     Имя, фамилия:
             <input type="text" class="input" name="name" value="{echo encode($profile->getName())}">
             <div class="clear"></div> 
-             Email:<br/>
+             Email:
             <input type="text" class="input" name="email" value="{echo encode($user.email)}">            
             <div class="clear"></div>
             Адрес доставки:
