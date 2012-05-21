@@ -613,12 +613,8 @@ span.code{color: #999;font-size: 11px;margin-right: 9px;}
 .carusel ul li{float: none!important; display: inline-block!important; font-size: 12px;}*/
 
 .button_middle_blue a, .button_middle_blue input{line-height: 10px;font-size: 10px;height: 27px;padding-top: 5px;}
-
 .forms_edit{clear:left;width: 50%;display: none;}
 .msg_form_edit{float: center; width: 94%;margin: 20px 0 0 20px;}
-
-
-
 #mask {
   position:absolute;
   left:0;
@@ -627,7 +623,6 @@ span.code{color: #999;font-size: 11px;margin-right: 9px;}
   background-color:#000;
   display:none;
 }
-  
 #boxes .window {
   position:fixed;
   left:0;
@@ -638,21 +633,16 @@ span.code{color: #999;font-size: 11px;margin-right: 9px;}
   z-index:9999;
   padding:20px;
 }
-
 #boxes #dialog {
   width:475px; 
   height:303px;
   padding:10px;
   background-color:#ffffff;
 }
-
 #boxes #dialog1 {
   width:475px; 
   height:303px;
 }
-
-
-
 .enter_reg{width: 230px;}
 .enter_reg ul{background-color: #e6e6e6;overflow: hidden;}
 .enter_reg li{float: left;text-align: center;position: relative;background-color: transparent;}
@@ -666,8 +656,12 @@ span.code{color: #999;font-size: 11px;margin-right: 9px;}
 .reg{width: 140px;}
 .reg.ui-tabs-selected:before{content: '';width: 4px;left: 0;height: 100%;box-shadow: 0 0 5px #dadada;-webkit-box-shadow: 0 0 4px #dadada;-moz-box-shadow: 0 0 4px #dadada;position: absolute;-moz-border-radius: 4px 0 0 0;-webkit-border-radius: 4px 0 0 0;border-radius: 4px 0 0 0;z-index: 0;}
 .p-t_19{padding-top: 19px;}
-
 .button_middle_blue{background-position: 0 -248px;margin-right: 5px;}
 .button_middle_blue a, .button_middle_blue input{background-position: 100% -280px;height: 32px;line-height: 29px;margin-right: -5px;font-size: 13px;color: #fff; padding: 0 13px;text-shadow:0 -1px #1774ca;}
 .button_middle_blue:hover{background-position: 0 -579px;}
 .button_middle_blue:hover a, .button_middle_blue:hover input{background-position: 100% -611px;}
+.f_r_search{padding: 40px 40px 40px 15px;}
+.f_l_search{padding-left: 2px; padding-right: 7px;}
+.grey_9{color:#999 !important;}
+
+#suggestions{position: absolute; display: none; top: 100%;left: 0;width: 424px;border: 1px solid #a4a5b9;z-index: 6; background-color: #fff; padding-right: 5px;}
