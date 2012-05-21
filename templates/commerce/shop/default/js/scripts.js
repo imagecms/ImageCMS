@@ -145,6 +145,10 @@ $(document).ready(function(){
         $('.characteristics tr:nth-child(odd) th').css('background-color','#e6e6e6');
         $('.characteristics tr:nth-child(even) th').css('background-color','#f5f5f5');
         $('.characteristics tr:nth-child(odd) td').css('background-color','#efefef');
+        
+        $('..productPropertiesTable tr:nth-child(odd) th').css('background-color','#e6e6e6');
+        $('..productPropertiesTable tr:nth-child(even) th').css('background-color','#f5f5f5');
+        $('..productPropertiesTable tr:nth-child(odd) td').css('background-color','#efefef');
     }
 
     if ($.exists('.field_container_character'))

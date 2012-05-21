@@ -22,15 +22,25 @@ $(document).ready(function(){
             url: '/shop/cart/add',
             success: function(){
                 $('.cart_data_holder').load('/shop/ajax/getCartDataHtml');
-                $this
+                if ($this.parent('div').hasClass('button_big_green'))
+                {
+                    $('.in_cart').html('Уже в корзине');
+                    $this
+                    .html('Оформить заказ');
+                }
+                else 
+                {
+                    $this
                     .removeClass('goBuy')
                     .addClass('goToCart')
                     .html('Оформить <br/> заказ')
-                    .attr('href', '/shop/cart')
-                    .unbind('click')
                     .parent('div')
-                        .removeClass('button_gs')
-                        .addClass('button_middle_blue');
+                    .removeClass('button_gs')
+                    .addClass('button_middle_blue');
+                }
+                $this
+                .attr('href', '/shop/cart')
+                .unbind('click');
                 $.fancybox.hideActivity();
             }
         });
@@ -52,6 +62,7 @@ $(document).ready(function(){
             url: "/shop/wish_list/add",
             success: function(){
                 $("#wishListHolder").load('/shop/ajax/getWishListDataHtml').addClass('is_avail');
+                $('a.addToWList').html('Уже в списке желаний').attr('href', '/shop/wish_list');
                 $.fancybox.hideActivity();
             }
         });
