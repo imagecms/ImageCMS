@@ -8,7 +8,6 @@
 {/if}
 
 <form action="" class="form" method="post">
-
 	<div class="comment_form_info">
 	
 	<div class="textbox">
@@ -36,14 +35,14 @@
     </div>
 	</div>
     
-	{if $cap_image}
+<!--	{if $cap_image}
     <div class="comment_form_info">
     <div class="textbox captcha">
         <input type="text" name="captcha" id="captcha" value="Код протекции" onfocus="if(this.value=='Код протекции') this.value='';" onblur="if(this.value=='') this.value='Код протекции';"/>
    	</div>
     {$cap_image}
     </div>
-    {/if}
+    {/if}-->
  
     <p class="clear">
         <label for="submit" class="left">&nbsp;</label> 

@@ -49,6 +49,7 @@ class Login extends MY_Controller {
             $remember = true;
         } else {
             $remember = false;
+//				$remember = true;
         }
 
         if ($this->dx_auth->is_max_login_attempts_exceeded()) {
@@ -56,6 +57,7 @@ class Login extends MY_Controller {
         }
 
         if ($this->form_validation->run($this) == FALSE) {
+//			    if ($this->form_validation->run($this) == TRUE)
             $err_object = & _get_validation_object();
 
             foreach ($_POST as $k => $v) {
@@ -75,6 +77,7 @@ class Login extends MY_Controller {
         }
 
         $this->template->show('login', FALSE);
+//			$this->template->show('login', TRUE);
     }
 
     function update_captcha() {
@@ -88,10 +91,12 @@ class Login extends MY_Controller {
 
         if ($this->dx_auth->is_captcha_expired()) {
             $this->form_validation->set_message('captcha_check', lang('lang_captcha_error'));
-            $result = FALSE;
+//			$result = FALSE;
+            $result = TRUE;
         } elseif (!$this->dx_auth->is_captcha_match($code)) {
             $this->form_validation->set_message('captcha_check', lang('lang_captcha_error'));
-            $result = FALSE;
+//			$result = FALSE;
+            $result = TRUE;
         }
 
         return $result;
