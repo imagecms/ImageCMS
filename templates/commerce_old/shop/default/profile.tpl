@@ -122,7 +122,7 @@
     </table>
 </div>
 
-<div id="buttons" style="padding:0px;width: 100%; float: left;">
+<div id="buttons">
     <a href="#" id="checkout" onClick="document.editForm.submit();">{echo ShopCore::t('Сохранить')}</a>
 </div>
 
