@@ -13,9 +13,7 @@ $(document).ready(function(){
     select_tab=0;
     $tabs=$('.nav_tabs').tabs();
     $tabs.tabs('select', select_tab);
-
-    $tabs=$('.enter_reg').tabs();
-    $tabs.tabs('select', 0);
+//    $tabs.tabs('select', 0);
 
 
     $('.scroll-box:eq('+select_tab+')').each(function(){
