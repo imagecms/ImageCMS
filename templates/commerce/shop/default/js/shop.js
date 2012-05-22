@@ -35,18 +35,13 @@ $(document).ready(function(){
                     .addClass('goToCart')
                     .html('Оформить <br/> заказ')
                     .parent('div')
-<<<<<<< HEAD
                     .removeClass('button_gs')
                     .addClass('button_middle_blue');
                 }
                 $this
                 .attr('href', '/shop/cart')
                 .unbind('click');
-=======
-                        .removeClass('button_gs')
-                        .addClass('button_middle_blue');
                 showResponse(msg);
->>>>>>> 728b0b60565b96eabb4be32059cb915c08a79407
                 $.fancybox.hideActivity();
             }
         });
