@@ -1,6 +1,6 @@
 {# Comments form for product}
 
-<div style="clear:both;"></div>
+<div ></div>
 
 {if $comments_arr}
 <div class="comments">

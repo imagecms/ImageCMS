@@ -106,7 +106,6 @@ class Comments extends MY_Controller {
             'use_captcha'        => $this->use_captcha,
             'item_id'            => $item_id
         );
-        
         if ($this->use_captcha == TRUE)
         {
             $this->dx_auth->captcha();
@@ -121,6 +120,7 @@ class Comments extends MY_Controller {
 
         $this->template->add_array(array( 
                 'comments' => $comments, 
+                'comm' => $data,
                 ));
 	}
 
