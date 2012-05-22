@@ -74,7 +74,7 @@
                     </div>
                 </div>
                 <div class="buy clearfix">
-                    <div class="price f-s_26">{echo $model->firstVariant->toCurrency()}<sub> {$CS}</sub><span class="d_b">{echo $model->getOldPrice()}$</span></div>
+                    <div class="price f-s_26">{echo $model->firstVariant->toCurrency()}<sub> {$CS}</sub><span class="d_b">{echo $model->firstVariant->toCurrency('Price', 1)} $</span></div>
                     <!--<div class="buttons button_big_green f_l">
                         <a href="#">Купить</a>
                         </div>-->
