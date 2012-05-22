@@ -175,12 +175,12 @@ $(document).ready(function(){
             success: function(msg){
                 $("#paymentMethods").html(msg);
                 $('#paymentMethodId').val($('.met_buy:eq(0)').val());
-//                var myv = nid.attr('data-price');                
-//                if ((nid.attr('data-freefrom') != 0)&&($('#total_price').text() > nid.attr('data-freefrom')))
-//                    myv = '0';
-//                $('#delivery_price').text(myv);
-//                $('#gtprice').text(parseInt($('#total_price').text()) + parseInt(myv));
-//                $('#gtpricev').text(parseInt($('#total_pricev').text()) + Math.ceil(parseInt(myv)/$('#second_v').val()));
+            //                var myv = nid.attr('data-price');                
+            //                if ((nid.attr('data-freefrom') != 0)&&($('#total_price').text() > nid.attr('data-freefrom')))
+            //                    myv = '0';
+            //                $('#delivery_price').text(myv);
+            //                $('#gtprice').text(parseInt($('#total_price').text()) + parseInt(myv));
+            //                $('#gtpricev').text(parseInt($('#total_pricev').text()) + Math.ceil(parseInt(myv)/$('#second_v').val()));
             }
         });
     });
@@ -188,7 +188,40 @@ $(document).ready(function(){
         $('#paymentMethodId').val($(this).val());
     }); 
 
+    $('.showCallback').on('click', function(){
+        $.fancybox.showActivity();
+        $.ajax({
+            type: 'post',
+            url: '/shop/shop/callback',
+            success: function(msg){
+                showResponse(msg);
+                bindCallbackForm();
+                $.fancybox.hideActivity();
+            }
+        });
+        return false;
+    })
 
+    function bindCallbackForm(){
+        $('.order_call form').bind('submit',function(){
+            $this = $(this);
+            $.ajax({
+                type: 'post',
+                url: '/shop/shop/callback',
+                data: $this.serialize(),
+                beforeSend: function(){
+                    $.fancybox.showActivity();
+                },
+                success: function(msg){
+                    showResponse(msg);
+                    bindCallbackForm();
+                    $.fancybox.hideActivity();
+                }
+            });
+            return false;
+        })
+    }
+    
     function showResponse(responseText, statusText, xhr, $form){
         try {
             var obj = $.parseJSON(responseText);
