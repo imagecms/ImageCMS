@@ -60,11 +60,11 @@
     <div class="center clearfix">
         <div class="tabs f_l">
             <ul class="nav_tabs">
-                <li><a href="#first">Новинкиsss</a></li>
+                <li><a href="#first">Новинки</a></li>
                 <li><a href="#second">Акції</a></li>
             </ul>
             <div id="first">
-                <div id="scroll-box" class="horizontal-only">
+                <div class="horizontal-only scroll-box">
                     <ul>
                         {foreach getPromoBlock('hot', 10) as $hotProduct}
                         {$style = productInCart($cart_data, $hotProduct->getId(), $hotProduct->firstVariant->getId(), $hotProduct->firstVariant->getStock())}
@@ -89,7 +89,7 @@
                 </div>
             </div>
             <div id="second">
-                <div id="scroll-box" class="horizontal-only">
+                <div class="horizontal-only scroll-box">
                     <ul>
                         {foreach getPromoBlock('action', 10) as $hotProduct}
                         {$style = productInCart($cart_data, $hotProduct->getId(), $hotProduct->firstVariant->getId(), $hotProduct->firstVariant->getStock())}

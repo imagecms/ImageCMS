@@ -1,53 +1,37 @@
-{# Show brand products list #}
-
-{# Display sidebar.tpl #}
-{include_tpl ('sidebar')}
-
-<div class="products_list">
-
-    <div id="titleExt">
-        <h5 class="left">Запросить обратный звонок</h5>
-        <div class="right"></div>
-        <div class="sp"></div>
-    </div>
-
-    {if $errors}
-        <div class="errors">
-            {$errors}
+<div class="fancy order_call">
+    {if !$success}
+    <form method="post" action="" class="clearfix">
+        <h1>Заказать звонок</h1>
+        {if validation_errors() OR $info_message}
+            <div class="validate_error_ml"> 
+                {validation_errors()}
+                {$info_message}
+            </div>
+        {/if}
+        <div class="f_l w_191">
+            <label>
+                Ваше имя
+                <input type="text" class="required" name="Name" value="" />
+            </label>
+            <label>
+                Телефон
+                <input type="text" class="required" name="Phone" value="" />
+            </label>
         </div>
-    {/if}
-
-    <form action="" method="post" class="form commentForm">
-        <p class="clear">
-            <label for="name" style="width:140px;" class="left">Ваше Имя</label>
-            <input type="text" name="Name"  value=""/> <span style="color:red;">*</span>
-        </p>
-
-        <p class="clear">
-            <label for="phone" style="width:140px;" class="left">Телефон с кодом города</label>
-            <input type="text" name="Phone"  value=""/> <span style="color:red;">*</span>
-        </p>
-
-       <p class="clear">
-            <label for="theme_id" style="width:140px;" class="left">Тема вопроса</label>
-            <select name="ThemeId">
-                {foreach SCallbackThemesQuery::create()->orderByPosition()->find() as $t}
-                    <option value="{echo $t->getId()}">{echo encode($t->getText())}</option>
-                {/foreach}
-            </select>
-            <span style="color:red;">*</span>
-        </p>
-
-        <p class="clear">
-            <label for="comment" style="width:140px;" class="left">Дополнительная информация</label>
-            <textarea name="Comment" cols="40" rows="10"></textarea>
-        </p>
-
-        <p class="clear">
-            <label class="left" style="width:140px;" >&nbsp;</label>
-            <input type="submit" value="Оставить запрос"/>
-        </p>
-
+        <div class="f_r">
+            <label>
+                Дополнительная информация
+                <textarea name="Comment" class="required"></textarea>
+            </label>
+        </div>
+        <div class="p-t_19 c_b clearfix">
+            <div class="buttons button_middle_blue f_r">
+                <input type="submit" value="Позвоните мне">
+            </div>
+        </div>
         {form_csrf()}
     </form>
+    {else:}
+        {echo $success}
+    {/if}
 </div>
