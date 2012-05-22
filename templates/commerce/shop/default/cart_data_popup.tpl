@@ -31,7 +31,7 @@
                     </td>
                     <td>
                         <div class="count f_l">
-                            <input type="text" name="products[SProducts_{echo $catr.productId}_{echo $catr.variantId}]" value="{echo $catr.quantity}"/>                            
+                            <input type="text" name="products[{$key}]" value="{echo $catr.quantity}"/>                            
                             <span class="plus_minus">
                                 <button class="count_up">&#9650;</button>
                                 <button class="count_down">&#9660;</button>
@@ -42,14 +42,16 @@
                         </div>-->
                     </td>
                     <td>
-                        <div class="price f-s_18 f_l">{echo $summary += $prod->firstVariant->toCurrency() * $catr.quantity} <sub>{$CS}</sub>
-                            <span class="d_b">{echo $summary_nextc += $prod->firstVariant->toCurrency('Price', 1) * $catr.quantity} $</span>
+                        <div class="price f-s_18 f_l">{echo $summary = $prod->firstVariant->toCurrency() * $catr.quantity} <sub>{$CS}</sub>
+                            <span class="d_b">{echo $summary_nextc = $prod->firstVariant->toCurrency('Price', 1) * $catr.quantity} $</span>
                         </div>
                     </td>
                     <td>
                         <a href="{shop_url('cart/delete/'.$key)}" class="delete_text">&times;</a>
                     </td>
                 </tr>
+                {$total     += $summary}
+                {$total_nc  += $summary_nextc}
                 {/foreach}
             </tbody>
             <tfoot>
@@ -60,7 +62,7 @@
                                 <a href="{shop_url('cart')}">Оформить заказ</a>
                             </div>
                             <div class="f_r">
-                                <div class="price f-s_26 f_l">{$summary} <sub>{$CS}</sub><span class="d_b">{echo $summary_nextc} $</span></div>
+                                <div class="price f-s_26 f_l">{$total} <sub>{$CS}</sub><span class="d_b">{echo $total_nc} $</span></div>
                             </div>
                             <div class="sum f_r">
                                 Сумма:

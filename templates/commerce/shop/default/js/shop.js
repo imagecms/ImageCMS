@@ -39,11 +39,11 @@ $(document).ready(function(){
                     .addClass('button_middle_blue');
                 }
                 $this
-                    .attr('href', '/shop/cart')
-                    .unbind('click');
+                .attr('href', '/shop/cart')
+                .unbind('click');
 
-//                        .removeClass('button_gs')
-//                        .addClass('button_middle_blue');
+                //                        .removeClass('button_gs')
+                //                        .addClass('button_middle_blue');
                 showResponse(msg);
                 $.fancybox.hideActivity();
             }
@@ -52,7 +52,7 @@ $(document).ready(function(){
     });
     /*   End of Event   */
 
-/**
+    /**
 * Add to user wishlist
 */
     $('.addToWList').on('click', function(){
@@ -69,7 +69,7 @@ $(document).ready(function(){
             }
         });
         return false;
-        //setTimeout(function() { $("#wishListNotify").css('display', 'none') }, 2000);
+    //setTimeout(function() { $("#wishListNotify").css('display', 'none') }, 2000);
     });
 
 
@@ -86,14 +86,14 @@ $(document).ready(function(){
                 $("#compareHolder").load('/shop/ajax/getCompareDataHtml').addClass('is_avail');
                 $.fancybox.hideActivity();
                 $this
-                    .text('Сравнить')
-                    .removeClass('js')
-                    .removeClass('gray')
-                    .unbind('click');
+                .text('Сравнить')
+                .removeClass('js')
+                .removeClass('gray')
+                .unbind('click');
             }
         });
         return false;
-        //setTimeout(function() { $("#wishListNotify").css('display', 'none') }, 2000);
+    //setTimeout(function() { $("#wishListNotify").css('display', 'none') }, 2000);
     });
 
 
@@ -102,20 +102,25 @@ $(document).ready(function(){
         var $content = '<h2 style="background-color: #fff;">Hi!</h2><p style="background-color: #fff;">TODO: Show notification message</p>';
         $.fancybox($content, {
             'autoDimensions' : false,
-'width' : 350,
-'height' : 'auto',
-'transitionIn' : 'none',
-'transitionOut' : 'none',
-            'onClosed' : function() {$.fancybox.close();}
+            'width' : 350,
+            'height' : 'auto',
+            'transitionIn' : 'none',
+            'transitionOut' : 'none',
+            'onClosed' : function() {
+                $.fancybox.close();
             }
+        }
         );
         return false;
     })
     /* End of Event */
 
-    $('.lineForm input[type=hidden]').on('change', function(){$(this).parents('form').submit();});
+    $('.lineForm input[type=hidden]').on('change', function(){
+        $(this).parents('form').submit();
+    });
     
     $('.plus_minus button').live('click', function(){
+        $this = $(this);
         $target = $(this).parent().parent().find('input');
         $val = $target.val();
         $form = $(this).parents('form');
@@ -132,8 +137,11 @@ $(document).ready(function(){
             data: $form.serialize() + '&recount=1',
             url: '/shop/cart',
             success: function(msg){
-                $('.cart_data_holder').load('/shop/ajax/getCartDataHtml');
-                showResponse(msg);
+                $('.cart_data_holder').load('/shop/ajax/getCartDataHtml');                
+                if($this.hasClass('inCartProducts'))
+                    $('.forCartProducts').html(msg);
+                else
+                    showResponse(msg);                
                 $.fancybox.hideActivity();
             }
         });
@@ -143,18 +151,43 @@ $(document).ready(function(){
     $('.delete_text').live('click', function(){
         $.fancybox.showActivity();
         $target = $(this).attr('href');
+        $this = $(this);
         $.ajax({
+            type: 'post',
             url: $target,
             success: function(msg){
                 $('.cart_data_holder').load('/shop/ajax/getCartDataHtml');
-                showResponse(msg);
+                if($this.hasClass('inCartProducts'))
+                    $('.forCartProducts').html(msg);
+                else                
+                    showResponse(msg);
                 $.fancybox.hideActivity();
             }
         });
         return false;
     });
     
-    
+    $('.met_del').bind('click',function(){
+        var nid = $(this);
+        $('#deliveryMethodId').val(nid.val());
+        $.ajax({
+            url: "/shop/cart/getPaymentsMethods/"+nid.val(),
+            success: function(msg){
+                $("#paymentMethods").html(msg);
+                $('#paymentMethodId').val($('.met_buy:eq(0)').val());
+//                var myv = nid.attr('data-price');                
+//                if ((nid.attr('data-freefrom') != 0)&&($('#total_price').text() > nid.attr('data-freefrom')))
+//                    myv = '0';
+//                $('#delivery_price').text(myv);
+//                $('#gtprice').text(parseInt($('#total_price').text()) + parseInt(myv));
+//                $('#gtpricev').text(parseInt($('#total_pricev').text()) + Math.ceil(parseInt(myv)/$('#second_v').val()));
+            }
+        });
+    });
+    $('.met_buy').live('click',function(){
+        $('#paymentMethodId').val($(this).val());
+    }); 
+
 
     function showResponse(responseText, statusText, xhr, $form){
         try {
@@ -192,14 +225,14 @@ $(document).ready(function(){
         }
         else {
             $.fancybox(responseText, {
-                    'titleShow' : false,
-                    'padding' : 0,
-                    'margin' : 0,
-                    'overlayOpacity' : 0.5,
-                    'overlayColor' : '#000',
-                    'transitionIn' : 'elastic',
-                    'transitionOut' : 'elastic',
-                    'showNavArrows' : false
+                'titleShow' : false,
+                'padding' : 0,
+                'margin' : 0,
+                'overlayOpacity' : 0.5,
+                'overlayColor' : '#000',
+                'transitionIn' : 'elastic',
+                'transitionOut' : 'elastic',
+                'showNavArrows' : false
             });
         }
     }

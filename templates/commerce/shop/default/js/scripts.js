@@ -10,26 +10,50 @@ $(document).ready(function(){
     ltie7 = ie&&(ieV <= 7),
     ltie8 = ie&&(ieV <= 8);
 
+    select_tab=0;
     $tabs=$('.nav_tabs').tabs();
-    $tabs.tabs('select', 0);
+    $tabs.tabs('select', select_tab);
 
     $tabs=$('.enter_reg').tabs();
     $tabs.tabs('select', 0);
 
-    first_elem=$('#scroll-box li:eq(0)');
-    width_elem=first_elem.outerWidth();
-    vidstup=first_elem.outerWidth(true)-width_elem;
-    count_elem=$('#scroll-box li').length;
-    width=width_elem*count_elem;
 
-    if (count_elem % 2 !=0){
-        width=width+width_elem;
-    }
-    first_elem.parent().css('width',width/2+Math.round(count_elem/2)*vidstup);
-    $('#scroll-box').jScrollPane({
-        'showArrows':true
-    });
+    $('.scroll-box:eq('+select_tab+')').each(function(){
+        first_elem=$(this).find('li:eq(0)');
+        width_elem=first_elem.outerWidth();
+        console.log(width_elem)
+        vidstup=first_elem.outerWidth(true)-width_elem;
+        count_elem=$(this).find('li').length;
+        width=width_elem*count_elem;
 
+        if (count_elem % 2 !=0){
+            width=width+width_elem;
+        }
+        first_elem.parent().css('width',width/2+Math.round(count_elem/2)*vidstup);
+        $(this).jScrollPane({
+            'showArrows':true
+        });
+    })
+    $('.nav_tabs li a').click(function(){
+        $this = $($(this).attr('href')).children();
+        if (!$this.is('.jspScrollable')){
+            first_elem=$this.find('li:eq(0)');
+            console.log(first_elem)
+            width_elem=first_elem.outerWidth();
+            console.log(width_elem)
+            vidstup=first_elem.outerWidth(true)-width_elem;
+            count_elem=$this.find('li').length;
+            width=width_elem*count_elem;
+
+            if (count_elem % 2 !=0){
+                width=width+width_elem;
+            }
+            first_elem.parent().css('width',width/2+Math.round(count_elem/2)*vidstup);
+            $(this).jScrollPane({
+                'showArrows':true
+            });
+        }
+    })
     $('.formCost input[type="text"], .count input').keypress(function(event){
         var key, keyChar;
         if(!event) var event = window.event;
@@ -89,7 +113,7 @@ $(document).ready(function(){
             jQuery("#slider").slider("values",1,value2);
         });
     }
-/*
+    /*
     $('.check_form input').change(function(){
         if($.exists_nabir($(this).parent(':not(.disabled)'))){
             $this=$(this);
@@ -106,7 +130,7 @@ $(document).ready(function(){
             win.find('.apply').css('left',left+7);
         }
     });
-    */
+     */
     $('.comment_ajax_refer > a').click(function(){
         $this = $(this);
         $this.next().slideToggle(200,function(){
@@ -195,7 +219,7 @@ $(document).ready(function(){
     $('.comparison_slider_right li').each(function(){
         return width+=$(this).outerWidth();
     });
-    $('.comparison_slider_right').css('width',width);
+//    $('.comparison_slider_right').css('width',width);
     $(function(){
         $('.comparison_tovars').jScrollPane({
             'showArrows':true

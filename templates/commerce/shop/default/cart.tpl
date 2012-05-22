@@ -1,285 +1,165 @@
-{# Variables
-# @var items
-# @var deliveryMethods
-# @var paymentMethods
-# @var paymentMethodsArray
-# @var ranges
-# @var profile
-#}
+<div class="center">    
+    <h1>Оформление заказа</h1>
+    <form method="post" action="{site_url(uri_string())}">
+        <table class="cleaner_table forCartProducts" cellspacing="0">
+            <caption>Корзина</caption>
+            <colgroup>
+                <col span="1" width="120">
+                <col span="1" width="396">
+                <col span="1" width="160">
+                <col span="1" width="140">
+                <col span="1" width="160">
+                <col span="1" width="25">
+            </colgroup>
+            <tbody>
+                {foreach $items as $key=>$item}                
+                <tr>
+                    <td>
+                        <a href="{shop_url('product/' . $item.model->getUrl())}" class="photo_block">
+                            <img src="{productImageUrl($item.model->getMainimage())}" alt="{echo ShopCore::encode($item.model->getName())}"/>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}</a>
+                    </td>
+                    <td>
+                        <div class="price f-s_16 f_l">{echo $item.model->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $item.model->firstVariant->toCurrency('Price', 1)} $</span></div>
+                    </td>
+                    <td>
+                        <div class="count">
+                            <input name="products[{$key}]" type="text" value="{$item.quantity}"/>
+                            <span class="plus_minus">
+                                <button class="count_up inCartProducts">&#9650;</button>
+                                <button class="count_down inCartProducts">&#9660;</button>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="price f-s_18 f_l">{echo $summary = $item.model->firstVariant->toCurrency() * $item.quantity} <sub>{$CS}</sub>
+                            <span class="d_b">{echo $summary_nextc = $item.model->firstVariant->toCurrency('Price', 1) * $item.quantity} $</span></div>
+                    </td>
+                    <td>
+                        <a href="{shop_url('cart/delete/'.$key)}" class="delete_text inCartProducts">&times;</a>
+                    </td>
+                </tr>
+                {$total     += $summary}
+                {$total_nc  += $summary_nextc}
+                {/foreach}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6">
+                        <div class="foot_cleaner">
+                            <div class="f_r">
+                                <div class="price f-s_26 f_l">{$total} <sub>{$CS}</sub><span class="d_b">{$total_nc} $</span></div>
+                            </div>
+                            <div class="f_r sum">Сумма:</div>
+                        </div>
+                    </td>
+                </tr>
+            </tfoot>
+            <input type="hidden" name="forCart" />            
+        </table>
+        <div class="f_l method_deliver_buy">
+            <div class="block_title_18"><span class="title_18">Выберите способ доставки</span></div>
+            {$counter = true}
+            {foreach $deliveryMethods as $deliveryMethod}
+            <label><input type="radio" {if $counter} checked="checked"{$counter = false}{$del_price = ceil($deliveryMethod->getPrice())}{$del_freefrom = ceil($deliveryMethod->getFreeFrom())}{/if}{$del_id = $deliveryMethod->getId()} name="met_del" class="met_del" value="{echo $del_id}" data-price="{echo ceil($deliveryMethod->getPrice())}" data-freefrom="{echo ceil($deliveryMethod->getFreeFrom())}"/>{echo $deliveryMethod->getName()}</label>                
+            {/foreach}
 
+            <!--    Show payment methods    -->
+            {if sizeof($paymentMethods) > 0}
+            <div class="block_title_18"><span class="title_18">Выберите способ оплаты</span></div>
+            <div id="paymentMethods">
+                {$counter = true}
+                {foreach $paymentMethods as $paymentMethod}
+                <label>
+                    <input type="radio"{if $counter} checked="checked"{$counter = false}{$pay_id = $paymentMethod->getId()}{/if} name="met_buy" class="met_buy" value="{echo $pay_id}" />{echo $paymentMethod->getName()}
+                </label>                        
+                {/foreach}
+            </div>
+            {/if}            
+            <!--    Show payment methods    -->
 
-{$this->registerMeta('<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">')}
-<script type="text/javascript" src="/templates/commerce/shop/default/js/cart.js"></script>
-
-<script type="text/javascript">
-    var deliveryMethods_prices = new Array;
-    var currencySymbol = '{$CS}';
-    var totalPrice = '{echo ShopCore::app()->SCart->totalPrice()}';
-
-    {foreach $deliveryMethods as $d}
-        {if $d->getIsPriceInPercent() == true}
-            {$delPrice = round(ShopCore::app()->SCart->totalPrice() * $d->toCurrency() / 100, 2)}
-            {else:}
-            {$delPrice = $d->toCurrency()}
-        {/if}
-    deliveryMethods_prices[{echo $d->getId()}] = '{echo $delPrice}';
-    {/foreach}
-</script>
-
-<h5>Корзина</h5>
-<div class="spLine"></div>
-
-{if !$items}
-    {echo ShopCore::t('Корзина пуста')}
-    {return}
-{/if}
-
-<form action="{shop_url('cart')}" method="post" name="cartForm">
-<input type="hidden" name="recount" value="1">
-{form_csrf()}
-<table class="cartTable" width="100%">
-    <thead align="left">
-        <th>{echo ShopCore::t('Фото')}</th>
-        <th>{echo ShopCore::t('Название')}</th>
-        <th>{echo ShopCore::t('Цена')}</th>
-        <th>{echo ShopCore::t('Количество')}</th>
-        <th>{echo ShopCore::t('Всего')}</th>
-        <th class="admin"></th>
-    </thead>
-    <tbody>
-    {foreach $items as $key=>$item}
-		{if $item.model instanceof SProducts}
-			<tr>
-				<td style="width:90px;padding:2px;">
-					<div style="width:90px;height:90px;overflow:hidden;">
-					{if $item.model->getMainImage()}
-						<img src="{productImageUrl($item.model->getId() . '_main.jpg')}" border="0" alt="image" width="90" />
-					{/if}
-					</div>
-				</td>
-				<td>
-					<a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}</a> {$item.variantName}
-				</td>
-				<td>{echo ShopCore::app()->SCurrencyHelper->convert($item.price)} {$CS}</td>
-				<td>
-					<input type="text" name="products[{$key}]" value="{$item.quantity}" style="width:24px;">
-				</td>
-				<td>{echo ShopCore::app()->SCurrencyHelper->convert($item.totalAmount)} {$CS}</td>
-				<td><a href="{shop_url('cart/delete/' . $key)}" rel="nofollow" class="delete">X</a></td>
-			</tr>
-		{elseif($item.model instanceof ShopKit):}
-			<tr>
-				<td style="width:90px;padding:2px;">
-					<div style="width:90px;height:90px;overflow:hidden;">
-					{if $item.model->getMainProduct()->getMainImage()}
-						<img src="{productImageUrl($item.model->getMainProduct()->getId() . '_main.jpg')}" border="0" alt="image" width="90" />
-					{/if}
-					</div>
-				</td>
-				<td>
-					<a href="{shop_url('product/' . $item.model->getMainProduct()->getUrl())}">{echo ShopCore::encode($item.model->getMainProduct()->getName())}</a> {echo ShopCore::encode($item.model->getMainProduct()->firstVariant->getName())}
-					<br /><span style="font-size:16px;">{echo $item.model->getMainProduct()->firstVariant->toCurrency()} {$CS}</span>
-				</td>
-				<td rowspan="{echo $item.model->countProducts()}">{echo ShopCore::app()->SCurrencyHelper->convert($item.price)} {$CS}</td>
-				<td rowspan="{echo $item.model->countProducts()}"><input type="text" name="products[{$key}]" value="{$item.quantity}" style="width:24px;"/></td>
-				<td rowspan="{echo $item.model->countProducts()}">{echo ShopCore::app()->SCurrencyHelper->convert($item.totalAmount)} {$CS}</td>
-				<td rowspan="{echo $item.model->countProducts()}"><a href="{shop_url('cart/delete/' . $key)}" rel="nofollow" class="delete">X</a></td>
-			</tr>
-			{foreach $item.model->getShopKitProducts() as $shopKitProduct}
-				{$ap = $shopKitProduct->getSProducts()}
-				{$ap->setLocale(ShopController::getCurrentLocale())}
-				{$kitFirstVariant = $ap->getKitFirstVariant($shopKitProduct)}
-				<tr>
-					<td style="width:90px;padding:2px;">
-						<div style="width:90px;height:90px;overflow:hidden;">
-						{if $ap->getMainImage()}
-							<img src="{productImageUrl($ap->getId() . '_main.jpg')}" border="0" alt="image" width="90" />
-						{/if}
-						</div>
-					</td>
-					<td>
-						<a href="{shop_url('product/' . $ap->getUrl())}">{echo ShopCore::encode($ap->getName())}</a> {echo ShopCore::encode($kitFirstVariant->getName())}
-						{if $kitFirstVariant->getEconomy() > 0}
-							<br /><s style="font-size:14px;">{echo $kitFirstVariant->toCurrency('origPrice')} {$CS}</s>
-							<span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
-						{else:}
-							<span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
-						{/if}
-					</td>
-				</tr>
-				{$i++}
-			{/foreach}
-		{/if}
-    {/foreach}
-    </tbody>
-    <tfoot>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tfoot>
-</table>
-
-<div id="buttons">
-    <a href="#" id="checkout" onClick="document.cartForm.submit();">Пересчитать</a>
-</div>
-
-</form>
-
-<div class="sp"></div>
-<h5>Способ доставки</h5>
-<div class="spLine"></div>
-
-{if sizeof($deliveryMethods) > 0}
-<ul class="deliveryMethods">
-    {$n=0}
-    {foreach $deliveryMethods as $deliveryMethod}
-    {if $deliveryMethod->getIsPriceInPercent() == true}
-        {$delPrice = round(ShopCore::app()->SCart->totalPrice() * $deliveryMethod->getPrice() / 100, 2)}
-    {else:}
-        {$delPrice = $deliveryMethod->toCurrency()}
-    {/if}
-    {if $n==0}
-        {$checked = "checked"}
-        {$activeDeliveryMethod = $deliveryMethod->getId()}
-    {else:}
-        {$checked = ''}
-    {/if}
-    {$n++}
-    {if $deliveryMethod->getFreeFrom() == 0 && $deliveryMethod->getPrice() > 0}
-        {$priceStr = "$delPrice".' '.$CS}
-        {$free = false}
-    {elseif(ShopCore::app()->SCart->totalPrice(false) >= $deliveryMethod->getFreeFrom()):}
-        {$priceStr = "бесплатно"}
-        {$free = true}
-    {elseif($deliveryMethod->getFreeFrom() > 0 && $deliveryMethod->getPrice() > 0):}
-        {$priceStr = "$delPrice".' '.$CS}
-        {$free = false} 
-    {/if}
-    
-    <li>
-        <h3>
-            <label>
-                {if $free==true}
-                    <input type="radio" onclick="changeDeliveryMethod(this.value,true);" {$checked} name="deliveryMethod" value="{echo $deliveryMethod->getId()}" />
-                {else:}
-                    <input type="radio" onclick="changeDeliveryMethod(this.value);" {$checked} name="deliveryMethod" value="{echo $deliveryMethod->getId()}" />
-                {/if}
-
-                {echo ShopCore::encode($deliveryMethod->getName())} ({$priceStr}) 
+        </div>
+        <div class="addres_recip f_r">
+            <div class="block_title_18"><span class="title_18">Адрес получателя</span></div>
+            <div class="label_block">
+                <label class="f_l">
+                    Ваше имя
+                    <input type="text" name="userInfo[fullName]" value="{$profile.name}">
+                </label>
+                <label class="f_l">
+                    Электронный адрес
+                    <input type="text" name="userInfo[email]" value="{$profile.email}">
+                </label>
+                <label class="f_l">
+                    Телефон
+                    <input type="text" name="userInfo[phone]" value="{$profile.phone}">
+                </label>
+                <label class="f_l">
+                    Адрес получателя
+                    <input type="text" name="userInfo[deliverTo]" value="{echo $profile.address}">
+                </label>
+            </div>
+            <label class="c_b d_b">
+                Комментарий
+                <textarea name="userInfo[commentText]"></textarea> 
             </label>
-        </h3>
-        <div class="desc">{echo $deliveryMethod->getDescription()}</div>
-    </li>
-    {if $n==1}
-        {if $free==true}
-            {$srciptText = "changeDeliveryMethod($activeDeliveryMethod, true);\r\n"}
-        {else:}
-            {$srciptText = "changeDeliveryMethod($activeDeliveryMethod);\r\n"}
-        {/if}
-    {/if}
-    {/foreach}
-</ul>
-{/if}
-<div id="paymentMethods">
-{if sizeof($paymentMethods) > 0}
-<div class="sp"></div>
-<h5>Способ оплаты</h5>
-<div class="spLine"></div>
-
-
-<ul class="deliveryMethods">
-    {$n=0}
-    {foreach $paymentMethods as $paymentMethod}
-    
-    {if $n==0}
-        {$checked = "checked"}
-        {$activePaymentMethod = $paymentMethod->getId()}
-        {$n++}
-    {else:}
-        {$checked = ''}
-    {/if}
-	<li>
-		<h3>
-            <label>
-				 <input type="radio" onclick="changePaymentMethod(this.value);" {$checked} name="paymentMethod" value="{echo $paymentMethod->getId()}" />
-				 
-				 {echo ShopCore::encode($paymentMethod->getName())}
-			</label>
-		</h3>
-        <div class="desc">{echo $paymentMethod->getDescription()}</div>
-	</li>
-    {/foreach}
-</ul>
-{/if}
-</div>
-
-
-<div id="total">
-    <span class="value" id="totalPriceText">
-        {echo ShopCore::app()->SCart->totalPrice()} {$CS}
-    </span>
-    <span class="label">
-        {echo ShopCore::t('Итог')}
-    </span>
-</div>
-
-<div class="sp"></div>
-<h5>Адрес получателя</h5>
-
-{if $errors}
-    <div class="spLine"></div>
-    <div class="errors">
-        {$errors}
-    </div>
-{/if}
-
-<div class="spLine"></div><br/>
-<div style="margin-left:20px;">
-    <form action="{shop_url('cart')}" method="post" name="orderForm">
-    <input type="hidden" name="deliveryMethodId" id="deliveryMethodId" value="0">
-	<input type="hidden" name="paymentMethodId" id="paymentMethodId" value="0">
-    <input type="hidden" name="makeOrder" value="1">
-        <div class="fieldName">Имя, фамилия:</div>
-        <div class="field">
-            <input type="text" class="input" name="userInfo[fullName]" value="{$profile.name}">
         </div>
-        <div class="clear"></div>
-
-        <div class="fieldName">Email:</div>
-        <div class="field">
-            <input type="text" class="input" name="userInfo[email]" value="{$profile.email}">
+        <div class="foot_cleaner c_b t-a_c">
+            <div class="buttons button_big_blue">
+                <input type="submit" value="Оформить заказ"/>
+            </div>
         </div>
-        <div class="clear"></div>
 
-        <div class="fieldName">Телефон:</div>
-        <div class="field">
-            <input type="text" class="input" name="userInfo[phone]" value="{$profile.phone}">
-        </div>
-        <div class="clear"></div>
-
-        <div class="fieldName">Адрес доставки:</div>
-        <div class="field">
-            <input type="text" class="input" name="userInfo[deliverTo]" value="{echo $profile.address}">
-        </div>
-        <div class="clear"></div>
-
-        <div class="fieldName">Комментарий к заказу:</div>
-        <div class="field">
-            <textarea name="userInfo[commentText]" class="input" rows="6"></textarea> 
-        </div>
-        <div class="clear"></div>
-
-        <div id="buttons">
-            <a href="#" id="checkout" onClick="document.orderForm.submit();">{echo ShopCore::t('Оформить Заказ')}</a>
-        </div>
+        <table class="max_w c_b">
+            <colgroup span="1" width="80px"></colgroup>
+            <colgroup span="1" width="150px"></colgroup>
+            <colgroup span="1" width="45px"></colgroup>
+            <colgroup span="1" width="145px"></colgroup>
+            <colgroup span="1" width="35px"></colgroup>
+            <colgroup span="1" width="120px"></colgroup>
+            <colgroup span="1" width="145px"></colgroup>
+            <colgroup span="1" width="200px"></colgroup>
+            <tbody>                
+                <tr class="blue_block">
+                    <td class="tar fs_18 grey" width="80px">Сумма:</td>
+                    <td width="150px">
+                        <div class="price f_30">
+                            <div class="grn green" id="totalgrn_s">{echo $total} {$CS}</div>
+                            <div class="dol green" id="totaldol_s">{echo $total_nc} $</div>
+                        </div>
+                    </td>
+                    <td class="blue3 f_38 f_w_b" width="45px">+</td>
+                    <td width="145px" class="t_a_c">
+                        <div class="price f_30">
+                            <div class="grey f_14 f_w_b">Вартість доставки:</div>
+                            <div class="grn green tac"><div class="d_i"><span id="delivery_price">{echo $del_price = ($del_freefrom!=0 && $del_freefrom<$tpr) ? 0 : $del_price}</span> {$CS}</div></div>
+                        </div>
+                    </td>           
+                    <td class="blue3 f_38 f_w_b tar" width="35px">=</td>             
+                    <td class="tar fs_18 grey" width="120px">До виплати:</td>
+                    <td width="145px">
+                        <div class="price f_30">
+                            <div class="grn green f_w_b"><span id="gtprice">{echo $tpr + $del_price}</span> {$CS}</div>
+                            <div class="dol green"><span id="gtpricev">{echo $tprv + ceil($del_price/$second_v)}</span> $</div>
+                        </div>
+                    </td>                        
+                    <td width="200px">
+                        <div class="buttons button_4 f_l">
+                            <input type="submit" value="Оформити замовлення"/>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>        
+        <input type="hidden" name="deliveryMethodId" id="deliveryMethodId" value="{echo $del_id}">
+        <input type="hidden" name="deliveryMethod" value="1">
+        <input type="hidden" name="paymentMethodId" id="paymentMethodId" value="{echo $pay_id}">
+        <input type="hidden" name="paymentMethod" value="5">
+        <input type="hidden" name="makeOrder" value="0">
         {form_csrf()}
     </form>
 </div>
-
-<script type="text/javascript">
-    {$srciptText}
-    changePaymentMethod({echo $activePaymentMethod});
-</script>
+</div>
