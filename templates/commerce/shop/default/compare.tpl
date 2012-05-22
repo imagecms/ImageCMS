@@ -1,6 +1,7 @@
 <div class="content">
     <div class="center">
         <h1>Сравнение товаров</h1>
+        {if count($products) > 0}
         <div class="comparison_slider">
 <!--            <div class="parameters_compr">
                 <div class="title">Показаны:</div>
@@ -20,7 +21,7 @@
                     <li class="list_desire">
                         <div class="frame_porivnjanja_tovar smallest_item">
                             <div class="photo_block">
-                                <a href="{shop_url('product/' . $product->getUrl())}"><img height="70" src="{productImageUrl($product->getMainimage())}" alt="{echo ShopCore::encode($product->name)}" /></a>
+                                <a href="{shop_url('product/' . $product->getUrl())}"><img src="{productImageUrl($product->getMainimage())}" alt="{echo ShopCore::encode($product->name)}" /></a>
                                 <div class="clearfix">
                                     <div class="di_b star"><img src="{$SHOP_THEME}images/temp/STAR.png"></div>
                                     {if $product->totalComments()}<a href="{shop_url('product/'.$product->getId().'?cmn=on')}" class="d_b response">{echo $product->totalComments()} {echo SStringHelper::Pluralize($product->totalComments(), array('отзыв', 'отзывы', 'отзывов'))}</a>{/if}
@@ -47,5 +48,10 @@
                 </ul>
             </div>
         </div>
+        {else:}
+        <div class="comparison_slider">
+            <div class="f-s_18 m-t_29 t-a_c">Список сравнений пуст</div>
+        </div>
+        {/if}
     </div>
 </div>

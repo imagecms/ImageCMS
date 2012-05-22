@@ -672,3 +672,4 @@ span.code{color: #999;font-size: 11px;margin-right: 9px;}
 .grey_9{color:#999 !important;}
 
 #suggestions{position: absolute; display: none; top: 100%;left: 0;width: 424px;border: 1px solid #a4a5b9;z-index: 6; background-color: #fff; padding-right: 5px;}
+span.js{color: #3A88CC; cursor: pointer;}

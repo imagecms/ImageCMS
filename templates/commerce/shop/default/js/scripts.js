@@ -20,8 +20,7 @@ $(document).ready(function(){
 
     $('.scroll-box:eq('+select_tab+')').each(function(){
         first_elem=$(this).find('li:eq(0)');
-        width_elem=first_elem.outerWidth();
-        console.log(width_elem)
+        width_elem=first_elem.outerWidth();        
         vidstup=first_elem.outerWidth(true)-width_elem;
         count_elem=$(this).find('li').length;
         width=width_elem*count_elem;
@@ -37,10 +36,8 @@ $(document).ready(function(){
     $('.nav_tabs li a').click(function(){
         $this = $($(this).attr('href')).children();
         if (!$this.is('.jspScrollable')){
-            first_elem=$this.find('li:eq(0)');
-            console.log(first_elem)
-            width_elem=first_elem.outerWidth();
-            console.log(width_elem)
+            first_elem=$this.find('li:eq(0)');            
+            width_elem=first_elem.outerWidth();            
             vidstup=first_elem.outerWidth(true)-width_elem;
             count_elem=$this.find('li').length;
             width=width_elem*count_elem;
@@ -216,10 +213,11 @@ $(document).ready(function(){
             });
         });
     }
+    width = 0;
     $('.comparison_slider_right li').each(function(){
         return width+=$(this).outerWidth();
     });
-//    $('.comparison_slider_right').css('width',width);
+    $('.comparison_slider_right').css('width',width);
     $(function(){
         $('.comparison_tovars').jScrollPane({
             'showArrows':true
