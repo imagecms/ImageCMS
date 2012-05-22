@@ -75,8 +75,8 @@
                     </div>
                 </div>
                 <div class="buy clearfix">
-                    <div class="price f-s_26">{echo $model->firstVariant->toCurrency()}<sub> {$CS}</sub><span class="d_b">{echo $model->firstVariant->toCurrency('Price',1)} $</span></div>
-                    <div class="in_cart"></div>
+                   <div class="price f-s_26">{echo $model->firstVariant->toCurrency()}<sub> {$CS}</sub><span class="d_b">{echo $model->firstVariant->toCurrency('Price',1)} $</span></div>
+               <div class="in_cart"></div>
                     {if $model->firstvariant->getstock()== 0}
                         <div class="buttons button_big_green f_l">
                             <a href="" class="goNotifMe">Сообщить о появлении</a>

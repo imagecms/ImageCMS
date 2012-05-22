@@ -82,7 +82,7 @@
                 </div>
                 <div class="phone">
                     <address>+8 (067) <span>572-58-18</span></address>
-                    <a href="#" class="js">Заказать звонок</a>
+                    <span class="js showCallback">Заказать звонок</span>
                 </div>
                 <ul class="user_menu">
                     <!--    Show callback's form    -->
@@ -95,7 +95,7 @@
                     <!--    Wish list item's for Header    -->
 
                     <!--    Products in compare list for Header    -->
-                    <li id="compareHolder" class="compare blue{if count($CI->session->userdata('shopForCompare'))} is_avail{/if}">
+                    <li id="compareHolder" class="compare blue{if is_array($CI->session->userdata('shopForCompare'))} is_avail{/if}">
                         {include_tpl('compare_data')}</li>
                     <!--    Products in compare list for Header    -->
                 </ul>

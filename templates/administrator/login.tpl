@@ -51,7 +51,7 @@
                             </label>
                             <label>
                                 {$lang_password}:
-                                <input type="text" name="password"/>{$password_error}</br>
+                                <input type="password" name="password"/>{$password_error}</br>
                             </label>
                             {if $use_captcha == "1"}
 
@@ -64,7 +64,7 @@
                             {/if}
                             
                             <div class="t_a_c">
-                                <label class="d_i_b w_auto h_auto m_r_9">
+                                <label class="d_i_b w_auto h_auto m_r_9 pos_rel">
                                     <input type="checkbox" name="remember" value="1"/>Запомнить</label>
                                 <div class="button_clean button_blue">
                                     <input type="submit" value="Отправить"/>
