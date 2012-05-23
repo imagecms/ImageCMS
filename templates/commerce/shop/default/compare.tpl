@@ -3,11 +3,11 @@
         <h1>Сравнение товаров</h1>
         {if count($products) > 0}
         <div class="comparison_slider">
-<!--            <div class="parameters_compr">
+            {/*}<div class="parameters_compr">
                 <div class="title">Показаны:</div>
                 <a class="active">Все параметры</a>
-                <a href="#">Только отличия</a>
-            </div>-->
+                <a >Только отличия</a>
+            </div>{*/}
             <div class="comparison_slider_left">
                 {$data = ShopCore::app()->SPropertiesRenderer->renderProductsProperties($products)}
                 {foreach $data[$products[0]->getId()] as $key=>$val}
@@ -23,7 +23,7 @@
                             <div class="photo_block">
                                 <a href="{shop_url('product/' . $product->getUrl())}"><img src="{productImageUrl($product->getMainimage())}" alt="{echo ShopCore::encode($product->name)}" /></a>
                                 <div class="clearfix">
-                                    <div class="di_b star"><img src="{$SHOP_THEME}images/temp/STAR.png"></div>
+<!--                                    <div class="di_b star"><img src="{$SHOP_THEME}images/temp/STAR.png"></div>-->
                                     {if $product->totalComments()}<a href="{shop_url('product/'.$product->getId().'?cmn=on')}" class="d_b response">{echo $product->totalComments()} {echo SStringHelper::Pluralize($product->totalComments(), array('отзыв', 'отзывы', 'отзывов'))}</a>{/if}
                                 </div>
                                 <a class="delete_tovar" href="{shop_url('compare/remove/' . $product->getId())}"></a>
@@ -31,7 +31,7 @@
                             <div class="func_description">
                                 <a href="{shop_url('product/' . $product->getUrl())}" class="title">{echo $product->getName()}</a>
                                 <div class="buy">
-                                    <div class="price f-s_14">{echo $product->firstVariant->toCurrency()} <sub>{$CS}</sub><span>{echo $product->firstVariant->toCurrency('Price', 1)} $</span></div>
+                                    <div class="price f-s_14">{echo $product->firstVariant->toCurrency()} <sub>{$CS}</sub><br/><span>{echo $product->firstVariant->toCurrency('Price', 1)} $</span></div>
                                     <div class="buttons {$style.class}">
                                         <a class="{$style.identif}" href="{$style.link}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" >{$style.message}</a>
                                     </div>
