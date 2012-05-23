@@ -60,6 +60,7 @@ img[align=left]{margin-right:18px;float: left;}
 .m-l_10{margin-left: 10px;}
 .m-l_19{margin-left: 19px;}
 .m-t_29{margin-top: 29px;}
+.m-b_29{margin-bottom: 29px;}
 .p-t_19{padding-top: 19px;}
 .di_b{display: inline-block;}
 .d_b{display: block;}
@@ -508,6 +509,7 @@ span.code{color: #999;font-size: 11px;margin-right: 9px;}
 .count + .buttons{margin-left: 15px;}
 .cleaner_table .count input[type="text"]{width: 40px;height: 28px;line-height: 28px;float: left;border-color:  #cccccc;margin-right: 3px;text-align: center;font-size: 18px;color: #666;position: relative;}
 .delete_text{color: #7f7f7f;text-decoration: none;font-size: 25px !important;}
+.delete_plus{color: #7f7f7f;text-decoration: none;font-size: 25px !important;}
 .foot_cleaner{background-color: #f7f7f7;border: 1px solid #d7d7d7;min-height: 78px;overflow: hidden;}
 .foot_cleaner > .f_l{width: 812px;}
 .foot_cleaner > .f_r:first-child{width: 185px;}

@@ -3,122 +3,79 @@
 # @var capImage
 # @var profile
 #}
-
 {$this->registerMeta('<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">')}
-
-<h5>Список пожеланий {if $items}({count($items)}){/if}</h5>
-<div class="spLine"></div>
-
-{if !$items}
-	{echo ShopCore::t('Список пожеланий пуст')}
-	{return}
-{/if}
-
-{if $CI->session->flashdata('makeWish') === true}
-	<div style="padding:10px;background-color:#f5f5dc;">
-		Ваше пожелание отправлено адресату на e-mail.
-	</div>
-	{/if}
-
-<form action="{shop_url('wish_list')}" method="post" name="wishListForm">
-<input type="hidden" name="recount" value="1">
-{form_csrf()}
-<table class="wishListTable" width="100%">
-	<thead align="left">
-		<th>{echo ShopCore::t('Фото')}</th>
-		<th>{echo ShopCore::t('Название')}</th>
-		<th>{echo ShopCore::t('Цена')}</th>
-		<th class="admin"></th>
-	</thead>
-	<tbody>
-	{foreach $items as $key=>$item}
-		<tr>
-			<td style="width:90px;padding:2px;">
-				<div style="width:90px;height:90px;overflow:hidden;">
-				{if $item.model->getMainImage()}
-					<img src="{productImageUrl($item.model->getId() . '_main.jpg')}" border="0" alt="image" width="90" />
-				{/if}
-				</div>
-			</td>
-			<td>
-				<a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}</a> {$item.variantName}
-			</td>
-			<td>{echo ShopCore::app()->SCurrencyHelper->convert($item.price)} {$CS}</td>
-			<td><a rel="nofollow" href="{shop_url('wish_list/delete/' . $key)}" class="delete">X</a></td>
-		</tr>
-	{/foreach}
-	</tbody>
-	<tfoot>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tfoot>
-</table>
-</form>
-
-<div id="total">
-	<span class="value" id="totalPriceText">
-		{echo ShopCore::app()->SWishList->totalPrice()} {$CS}
-	</span>
-	<span class="label">
-		{echo ShopCore::t('Итог')}
-	</span>
+<div class="content">
+    <div class="center">
+        <h1>Список пожеланий</h1>
+        {if !$items}
+        <div class="comparison_slider">
+            <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t('Список пожеланий пуст')}</div>
+        </div>
+        {else:}
+        <table class="cleaner_table forCartProducts" cellspacing="0">
+            <caption>Добавлено продуктов  {if $items}({count($items)}){/if}</caption>
+            <colgroup>
+                <col width="140" span="1">
+                <col width="371" span="1">
+                <col width="130" span="1">
+                <col width="224" span="1">
+                <col width="138" span="1">
+                <col width="28" span="1">
+            </colgroup>
+            <tbody>
+                {foreach $items as $key=>$item}
+                <tr>
+                    <td>
+                        <a href="{shop_url('product/' . $item.model->getUrl())}" class="photo_block">
+                            <img src="{productImageUrl($item.model->getMainimage())}" alt="{echo ShopCore::encode($item.model->getName())}"/>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}</a>
+                    </td>
+                    <td>
+                        <div class="price f-s_16 f_l">{echo $item.model->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $item.model->firstVariant->toCurrency('Price', 1)} $</span></div>
+                    </td>
+                    <td>
+                        <div class="count">
+                            <div class="buttons button_gs">
+                                <form action="{shop_url('cart/add')}" method="post">
+                                    <input type="hidden" value="wishes" id="buytype" name="buytype">
+                                    <input type="hidden" value="{echo $item.model->firstVariant->getId()}" name="variantId">
+                                    <input type="hidden" value="{echo $item.model->getId()}" name="productId">
+                                    <input type="hidden" value="1" name="quantity">
+                                    <input type="submit" value="Добавить в корзину">
+                                    {form_csrf()}
+                                </form>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="price f-s_18 f_l">{echo $summary = $item.model->firstVariant->toCurrency() * 1} <sub>{$CS}</sub>
+                            <span class="d_b">{echo $summary_nextc = $item.model->firstVariant->toCurrency('Price', 1) * 1} $</span></div>
+                    </td>
+                    <td>
+                        <a href="{shop_url('wish_list/delete/' . $key)}" class="delete_plus">&times;</a>
+                    </td>
+                </tr>
+                {$total     += $summary}
+                {$total_nc  += $summary_nextc}
+                {/foreach}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6">
+                        <div class="foot_cleaner">
+                            <div class="f_r">
+                                <div class="price f-s_26 f_l">{$total} <sub>{$CS}</sub><span class="d_b">{$total_nc} $</span></div>
+                            </div>
+                            <div class="f_r sum">Сумма:</div>
+                        </div>
+                    </td>
+                </tr>
+            </tfoot>
+            <input type="hidden" name="forCart" />
+        </table>
+        {/if}
+    </div>
 </div>
-
-{if ShopCore::$ci->dx_auth->is_logged_in()}
-<div class="sp"></div>
-<h5>Отправить пожелание</h5>
-
-{if $errors}
-	<div class="spLine"></div>
-	<div class="errors">
-		{$errors}
-	</div>
-{/if}
-
-<div class="spLine"></div><br/>
-<div style="margin-left:20px;">
-	<form action="{shop_url('wish_list')}" method="post" name="wishForm">
-	<input type="hidden" name="makeWish" value="1">
-		<div class="fieldName">Ваше имя, фамилия:</div>
-		<div class="field">
-			<input type="text" class="input" name="userInfo[fullName]" value="{$profile.name}">
-		</div>
-		<div class="clear"></div>
-
-		<div class="fieldName">Отправить на Email:</div>
-		<div class="field">
-			<input type="text" class="input" name="userInfo[email]">
-		</div>
-		<div class="clear"></div>
-
-		<div class="fieldName">Ваш Телефон:</div>
-		<div class="field">
-			<input type="text" class="input" name="userInfo[phone]" value="{$profile.phone}">
-		</div>
-		<div class="clear"></div>
-
-		<div class="fieldName">Комментарий к пожеланию:</div>
-		<div class="field">
-			<textarea name="userInfo[commentText]" class="input" rows="6"></textarea>
-		</div>
-		<div class="clear"></div>
-
-		<div class="fieldName">{lang('lang_captcha')}</div>
-		<div class="field">
-			<input type="text" name="captcha" id="captcha" />  <span style="color:red;">*</span>
-		</div>
-		{$capImage}
-
-		<div id="buttons">
-			<a href="#" id="sendwish" onClick="document.wishForm.submit();">{echo ShopCore::t('Отправить пожелание')}</a>
-		</div>
-		{form_csrf()}
-	</form>
-</div>
-{else:}
-	Только зарегестрированные пользователи могут делится вишлистом!
-{/if}
