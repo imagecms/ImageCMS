@@ -41,9 +41,6 @@ $(document).ready(function(){
                 $this
                 .attr('href', '/shop/cart')
                 .unbind('click');
-
-                //                        .removeClass('button_gs')
-                //                        .addClass('button_middle_blue');
                 showResponse(msg);
                 $.fancybox.hideActivity();
             }
