@@ -32,23 +32,23 @@
             <div class="thumb_frame f_l">
                 <span>
                     <a href="#" class="active">
-                        <img src="images/temp/thumb_img.jpg"/>
+                        <img src="{$SHOP_THEME}images/temp/thumb_img.jpg"/>
                     </a>
                 </span>
                 <span>
                     <a href="#">
-                        <img src="images/temp/thumb_img.jpg"/>
+                        <img src="{$SHOP_THEME}images/temp/thumb_img.jpg"/>
                     </a>
                 </span>
                 <span>
                     <a href="#">
-                        <img src="images/temp/thumb_img.jpg"/>
+                        <img src="{$SHOP_THEME}images/temp/thumb_img.jpg"/>
                     </a>
                 </span>
             </div>
             <div class="photo_block">
                 <a href="#">
-                    <img src="images/temp/big_img.jpg"/>
+                    <img src="{$SHOP_THEME}images/temp/big_img.jpg"/>
                 </a>
             </div>
             <div class="func_description">
