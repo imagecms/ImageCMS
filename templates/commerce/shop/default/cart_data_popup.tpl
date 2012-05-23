@@ -18,7 +18,7 @@
                 <tr>
                     <td>
                         <a href="{shop_url('product/'.$prod->getId())}" class="photo_block">
-                            <img src="{productImageUrl($prod->getMainimage())}" alt="{echo ShopCore::encode($prod->name)}" />
+                            <img src="{productImageUrl($prod->getMainModimage())}" alt="{echo ShopCore::encode($prod->name)}" />
                         </a>
                     </td>
                     <td>
