@@ -38,6 +38,7 @@ $(document).ready(function(){
                     .removeClass('button_gs')
                     .addClass('button_middle_blue');
                 }
+                 $('.in_cart').html('Уже в корзине');
                 $this
                 .attr('href', '/shop/cart')
                 .unbind('click');
@@ -61,6 +62,7 @@ $(document).ready(function(){
             data: 'productId = '+productId+'&variantId = '+variantId,
             url: "/shop/wish_list/add",
             success: function(){
+                $('.addToWList').html('Уже в списке желаний');
                 $("#wishListHolder").load('/shop/ajax/getWishListDataHtml').addClass('is_avail');
                 $.fancybox.hideActivity();
             }
@@ -83,9 +85,10 @@ $(document).ready(function(){
                 $("#compareHolder").load('/shop/ajax/getCompareDataHtml').addClass('is_avail');
                 $.fancybox.hideActivity();
                 $this
-                .text('Сравнить')
-                .removeClass('js')
-                .removeClass('gray')
+                .html('Сравнить')
+             //   .text('Сравнить')
+              .removeClass('js')
+              .removeClass('gray')
                 .unbind('click');
             }
         });
