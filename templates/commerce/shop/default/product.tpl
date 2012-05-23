@@ -7,7 +7,7 @@
 {$jsCode}
 
 {$forCompareProducts = $CI->session->userdata('shopForCompare')}
-
+{$cart_data= ShopCore::app()->SCart->getData();}
 
 <script type="text/javascript">
     var currentProductId = '{echo $model->getId()}';
@@ -75,10 +75,10 @@
                     </div>
                 </div>
                 <div class="buy clearfix">
-                   <div class="price f-s_26">{echo $model->firstVariant->toCurrency()}<sub> {$CS}</sub><span class="d_b">{echo $model->firstVariant->toCurrency('Price',1)} $</span></div>
-               <div class="in_cart"></div>
+                    <div class="price f-s_26">{echo $model->firstVariant->toCurrency()}<sub> {$CS}</sub><span class="d_b">{echo $model->firstVariant->toCurrency('Price',1)} $</span></div>
+                    <div class="in_cart"></div>
                     {if $model->firstvariant->getstock()== 0}
-                        <div class="buttons button_big_green f_l">
+                        <div class="buttons button_big_greys f_l">
                             <a href="" class="goNotifMe">Сообщить о появлении</a>
                         </div>
                         {literal}
@@ -87,31 +87,37 @@
                             </script>
                         {/literal}
                     {else:}
-                        <div class="buttons button_big_green f_l">
-                            {if !is_in_cart($model->getId())} <a href="" class="goBuy" data-prodid="{echo $model->getId()}" data-varid="{echo $model->firstVariant->getId()}" >Купить</a>
-                            {else:}
-                                <a href="/shop/cart" data-prodid="echo $model->getId()}" data-varid="{echo $model->firstvariant->getId()}">Оформить заказ</a>
-                                {literal}
-                                    <script type="text/javascript">
-                                        $('.in_cart').html('Уже в корзине');
-                                    </script>
-                                {/literal}
-                            {/if}
-                        </div>
+
+                        {if !is_in_cart($model->getId())}
+                            <div class="buttons button_big_green f_l"> 
+                                <a href="" class="goBuy" data-prodid="{echo $model->getId()}" data-varid="{echo $model->firstVariant->getId()}" >Купить</a>
+                            </div>
+                        {else:}
+                            <div class="buttons button_big_blue f_l">
+                                <a href="/shop/cart" data-prodid="{echo $model->getId()}" data-varid="{echo $model->firstvariant->getId()}">Оформить заказ</a>
+                            </div>
+                            {literal}
+                                <script type="text/javascript">
+                                    $('.in_cart').html('Уже в корзине');
+                                </script>
+                            {/literal}
+                        {/if}
+
                     {/if}
                     <div class="f_l">
                         <span class="ajax_refer_marg">
                             {if $forCompareProducts && in_array($model->getId(), $forCompareProducts)}
-                                <a href="{shop_url('compare')}" class="js gray">Сравнить</a>
+                                <a href="{shop_url('compare')}">Сравнить</a>
                             {else:}
                                 <a href="{shop_url('compare/add/'. $model->getId())}" data-prodid="{echo $model->getId()}" class="js gray toCompare">Добавить к сравнению</a>
                             {/if}
                         </span>
+                        <span>
                         {if !is_in_wish($model->getId())}
                             <a data-varid="{echo $model->firstVariant->getId()}" data-prodid="{echo $model->getId()}" href="#" class="js gray addToWList">Сохранить в список желаний</a>
                         {else:}
-                            <a href="/shop/wish_list" class="js gray">Уже в списке желаний</a>
-                        {/if}
+                            <a href="/shop/wish_list">Уже в списке желаний</a>
+                        {/if}</span>
                     </div>
                 </div>
                 <p class="c_b">{echo $model->getShortDescription()}</p>
@@ -149,12 +155,13 @@
             </li>
         </ul>
     </div>
-    <div class="f-s_18 c_6 center">Акционное предложение</div>
-    <div class="promotion carusel_frame">
-        <div class="carusel">
-            {if $model->getKits()->count() > 0}
-                {$kits = $model->getKits()}
-                {# Display the list of product kits #}
+    {if $model->getKits()->count() > 0}
+        {$kits = $model->getKits()}
+        {# Display the list of product kits #}
+        <div class="f-s_18 c_6 center">Акционное предложение</div>
+        <div class="promotion carusel_frame">
+            <div class="carusel">
+
                 <ul>
                     <li>
                         {$count = count($kits[0]->getShopKitProducts())}
@@ -187,13 +194,12 @@
                                     </a>
                                 </div>
                                 <div class="func_description">
-                                    <a href="{'/shop/product/'.$ap->getUrl()}">{echo ShopCore::encode($ap->getName())}</a>
+                                    <a href="{echo '/shop/product/'.$ap->getId()}">{echo ShopCore::encode($ap->getName())}</a>
                                     <div class="buy">
                                         {$kitFirstVariant = $ap->getKitFirstVariant($shopKitProduct)}
                                         {if $shopKitProduct->getDiscount()}
-                                            {$dis = 1}
                                             <del class="price f-s_12 price-c_9">{echo $s1_1 = $kitFirstVariant->toCurrency()}<sub> {$CS}</sub>
-                                            <span>{echo $s1_2 = $kitFirstVariant->toCurrency('Price', 1)} $</span></del>
+                                                <span>{echo $s1_2 = $kitFirstVariant->toCurrency('Price', 1)} $</span></del>
                                             <div class="price f-s_14 price-c_red">{echo $s2_1 = (int)$kitFirstVariant->toCurrency()*(100-$shopKitProduct->getDiscount())/100}<sub> {$CS}</sub><span>{echo $s2_2 = (int)$kitFirstVariant->toCurrency('Price', 1)*(100-$shopKitProduct->getDiscount())/100} $</span></div>
                                         {else:}
                                             <div class="price f-s_14">{echo $kitFirstVariant->toCurrency()}<sub> {$CS}</sub><span>{echo $kitFirstVariant->toCurrency('Price', 1)} $</span></div>   
@@ -211,12 +217,15 @@
                                 <div class="button_block">
                                     <div class="buy">
                                         {if $dis}
-                                        <del class="price f-s_12 price-c_9">{$sum1_1}<sub> {$CS}</sub><span>{echo $sum1_2} $</span></del>
+                                            <del class="price f-s_12 price-c_9">{$sum1_1}<sub> {$CS}</sub><span>{echo $sum1_2} $</span></del>
                                         {/if}
                                         <div class="price f-s_18">{echo $sum2_1} <sub> {$CS}</sub><span> {echo $sum2_2}  $</span></div>
                                     </div>
                                     <div class="buttons button_gs">
-                                        <a class="goBuy" href="">Купить</a>
+                                        <div class="buy">
+
+                                            <a class="goBuy" href="">Купить</a>
+                                        </div>
                                     </div>
                                 </div>
                             {else:}
@@ -225,11 +234,45 @@
                         {/foreach}				
                     </li>
                 </ul>
-            {/if}
+
+            </div>
+            <button class="prev"></button>
+            <button class="next"></button>
+        </div> 
+    {/if}
+    {if count(getSimilarProduct($model, 20))>0}
+        <div class="f-s_18 c_6 center">Похожие товары</div>
+        <div class="promotion carusel_frame">
+            <div class="carusel">
+                <ul>
+                    <li>
+                        {$simprod = getSimilarProduct($model, 20)}
+                        {foreach $simprod as $sp}
+                            {$style = productInCart($cart_data, $sp->getId(), $sp->firstVariant->getId(), $sp->firstVariant->getStock())}
+                            <div class="f_l smallest_item">
+                                <div class="photo_block">
+                                    <a href="/shop/product/{echo $sp->getId()}">
+                                        <img src="/uploads/shop/{echo $sp->getId()}_small.jpg"/>
+                                    </a>
+                                </div>
+                                <div class="func_description">
+                                    <a href="/shop/product/{echo $sp->getId()}" class="title">{echo ShopCore::encode($sp->getName())}</a>
+                                    <div class="buy">
+                                        <div class="price f-s_14">{echo $sp->firstVariant->toCurrency()}<sub> {$CS}</sub><span>{echo $sp->firstVariant->toCurrency('Price', 1)} $</span> </div>                       
+                                        <div class="{$style.class} buttons"><a class="{$style.identif}" href="{$style.link}" data-varid="{echo $sp->firstVariant->getId()}" data-prodid="{echo $sp->getId()}" >{$style.message}</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        {/foreach}
+                    </li>
+
+                </ul>
+            </div>
+            <button class="prev"></button>
+            <button class="next"></button>
         </div>
-        <button class="prev"></button>
-        <button class="next"></button>
-    </div>
+    {/if} 
+
     <div class="center">
         <div class="tabs f_l w_770 info_tovar">
             <ul class="nav_tabs">
@@ -259,7 +302,8 @@
             {if $model->getRelatedProductsModels()}
                 <div id="third">
                     <ul class="accessories f-s_0">
-                        {foreach $model->getRelatedProductsModels() as $p}
+                        {foreach $model->getRelatedProductsModels() as $p} 
+                            {$style = productInCart($cart_data, $p->getId(), $p->firstVariant->getId(), $p->firstVariant->getStock())}
                             <li>
                                 <div class="small_item">
                                     <a class="img" href="{shop_url('product/' . $p->getUrl())}">
@@ -269,7 +313,7 @@
                                         <a href="{shop_url('product/'.$p->getUrl())}" class="title">{echo ShopCore::encode($p->getName())}</a>
                                         <div class="buy">
                                             <div class="price f-s_16 f_l">{echo $p->firstVariant->toCurrency()}<sub> {$CS}</sub><span class="d_b">{echo $p->firstVariant->toCurrency('Price', 1)} $</span></div>
-                                            <div class="button_gs buttons"><a href="#" class="goBuy">Купить</a></div>
+                                            <div class="{$style.class} buttons"><a class="{$style.identif}" href="{$style.link}" data-varid="{echo $p->firstVariant->getId()}" data-prodid="{echo $p->getId()}" >{$style.message}</a></div> 
                                         </div>
                                     </div>
                                 </div>
@@ -321,52 +365,54 @@
                 </ul>
             </div>
         </div>
-        <div class="nowelty_auction m-t_29">
-            <div class="box_title">
-                <span>Новинки</span>
-            </div>
-            <ul>
-                <li class="smallest_item">
-                    <div class="photo_block">
-                        <a href="#">
-                            <img src="{$SHOP_THEME}images/temp/small_img.jpg"/>
-                        </a>
+        <!--                            <div class="nowelty_auction m-t_29">
+                                        
+                                        <div class="box_title">
+                                            <span>Новинки</span>
+                                        </div>-->
+        <!--<ul>
+            <li class="smallest_item">
+                <div class="photo_block">
+                    <a href="#">
+                        <img src="{$SHOP_THEME}images/temp/small_img.jpg"/>
+                    </a>
+                </div>
+                <div class="func_description">
+                    <a href="#" class="title">Asus X54C (X54C-SX006D) Black</a>
+                    <div class="buy">
+                        <div class="price f-s_14">4528 <sub>грн.</sub><span>859 $</span></div>
                     </div>
-                    <div class="func_description">
-                        <a href="#" class="title">Asus X54C (X54C-SX006D) Black</a>
-                        <div class="buy">
-                            <div class="price f-s_14">4528 <sub>грн.</sub><span>859 $</span></div>
-                        </div>
+                </div>
+            </li>
+            <li class="smallest_item">
+                <div class="photo_block">
+                    <a href="#">
+                        <img src="{$SHOP_THEME}images/temp/small_img.jpg"/>
+                    </a>
+                </div>
+                <div class="func_description">
+                    <a href="#" class="title">Asus X54C (X54C-SX006D) Black</a>
+                    <div class="buy">
+                        <div class="price f-s_14">4528 <sub>грн.</sub><span>859 $</span></div>
                     </div>
-                </li>
-                <li class="smallest_item">
-                    <div class="photo_block">
-                        <a href="#">
-                            <img src="{$SHOP_THEME}images/temp/small_img.jpg"/>
-                        </a>
+                </div>
+            </li>
+            <li class="smallest_item">
+                <div class="photo_block">
+                    <a href="#">
+                        <img src="{$SHOP_THEME}images/temp/small_img.jpg"/>
+                    </a>
+                </div>
+                <div class="func_description">
+                    <a href="#" class="title">Asus X54C (X54C-SX006D) Black</a>
+                    <div class="buy">
+                        <div class="price f-s_14">4528 <sub>грн.</sub><span>859 $</span></div>
                     </div>
-                    <div class="func_description">
-                        <a href="#" class="title">Asus X54C (X54C-SX006D) Black</a>
-                        <div class="buy">
-                            <div class="price f-s_14">4528 <sub>грн.</sub><span>859 $</span></div>
-                        </div>
-                    </div>
-                </li>
-                <li class="smallest_item">
-                    <div class="photo_block">
-                        <a href="#">
-                            <img src="{$SHOP_THEME}images/temp/small_img.jpg"/>
-                        </a>
-                    </div>
-                    <div class="func_description">
-                        <a href="#" class="title">Asus X54C (X54C-SX006D) Black</a>
-                        <div class="buy">
-                            <div class="price f-s_14">4528 <sub>грн.</sub><span>859 $</span></div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
+                </div>
+            </li>-->
+        <!--                                </ul>-->
+
     </div>
+
 
 </div>
