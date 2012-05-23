@@ -1095,7 +1095,7 @@ class DX_Auth
 
 		return $result;
 	}
-
+        
 	function reset_password($username, $key = '')
 	{
 		// Load Models
