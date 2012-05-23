@@ -147,7 +147,7 @@
                     <li class="smallest_item">
                         <div class="photo_block">
                             <a href="{shop_url('product/' . $hotProduct->getUrl())}">
-                                <img height="50" src="{productImageUrl($hotProduct->getSmallimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
+                                <img width="80" src="{productImageUrl($hotProduct->getSmallimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
                             </a>
                         </div>
                         <div class="func_description">
