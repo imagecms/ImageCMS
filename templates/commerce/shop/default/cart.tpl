@@ -16,7 +16,7 @@
                 <tr>
                     <td>
                         <a href="{shop_url('product/' . $item.model->getUrl())}" class="photo_block">
-                            <img src="{productImageUrl($item.model->getMainimage())}" alt="{echo ShopCore::encode($item.model->getName())}"/>
+                            <img src="{productImageUrl($item.model->getMainModimage())}" alt="{echo ShopCore::encode($item.model->getName())}"/>
                         </a>
                     </td>
                     <td>

@@ -58,12 +58,12 @@ $(document).ready(function(){
             success: function(msg){                
                 showResponse(msg);
                 $(".enter_reg").tabs();
-                bindAuthForm();
-                
-                $('#reg').bind('submit',function(){
-                    alert('dsadas');
-                    return false;
-                });
+//                bindAuthForm();
+//                
+//                $('#reg').bind('submit',function(){
+//                    alert('dsadas');
+//                    return false;
+//                });
                 $.fancybox.hideActivity();
             }
         });

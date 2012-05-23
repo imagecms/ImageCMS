@@ -46,7 +46,7 @@
                     <li>
                         <div class="photo_block">
                             <a href="{shop_url('product/' . $product->getUrl())}">
-                                <img src="{productImageUrl($product->getMainimage())}" alt="{echo ShopCore::encode($product->name)}" />
+                                <img src="{productImageUrl($product->getMainModimage())}" alt="{echo ShopCore::encode($product->name)}" />
                             </a>
                         </div>
                         <div class="func_description">
@@ -124,7 +124,7 @@
                     <li class="smallest_item">
                         <div class="photo_block">
                             <a href="{shop_url('product/' . $hotProduct->getUrl())}">
-                                <img width="80" src="{productImageUrl($hotProduct->getSmallimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
+                                <img src="{productImageUrl($hotProduct->getSmallModimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
                             </a>
                         </div>
                         <div class="func_description">
@@ -147,7 +147,7 @@
                     <li class="smallest_item">
                         <div class="photo_block">
                             <a href="{shop_url('product/' . $hotProduct->getUrl())}">
-                                <img width="80" src="{productImageUrl($hotProduct->getSmallimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
+                                <img width="80" src="{productImageUrl($hotProduct->getSmallModImage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
                             </a>
                         </div>
                         <div class="func_description">
