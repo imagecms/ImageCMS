@@ -38,7 +38,7 @@ $(document).ready(function(){
                     .removeClass('button_gs')
                     .addClass('button_middle_blue');
                 }
-                 $('.in_cart').html('Уже в корзине');
+                $('.in_cart').html('Уже в корзине');
                 $this
                 .attr('href', '/shop/cart')
                 .unbind('click');
@@ -124,7 +124,7 @@ $(document).ready(function(){
             }
         });
         return false;
-        //setTimeout(function() { $("#wishListNotify").css('display', 'none') }, 2000);
+    //setTimeout(function() { $("#wishListNotify").css('display', 'none') }, 2000);
     });
 
 
@@ -142,31 +142,33 @@ $(document).ready(function(){
                 $.fancybox.hideActivity();
                 $this
                 .html('Сравнить')
-             //   .text('Сравнить')
-              .removeClass('js')
-              .removeClass('gray')
+                //   .text('Сравнить')
+                .removeClass('js')
+                .removeClass('gray')
                 .unbind('click');
             }
         });
         return false;
-        //setTimeout(function() { $("#wishListNotify").css('display', 'none') }, 2000);
+    //setTimeout(function() { $("#wishListNotify").css('display', 'none') }, 2000);
     });
 
 
 
     $('a.goNotifMe').on('click', function(){
-        var $content = '<h2 style="background-color: #fff;">Hi!</h2><p style="background-color: #fff;">TODO: Show notification message</p>';
-        $.fancybox($content, {
-            'autoDimensions' : false,
-            'width' : 350,
-            'height' : 'auto',
-            'transitionIn' : 'none',
-            'transitionOut' : 'none',
-            'onClosed' : function() {
-                $.fancybox.close();
+        $.fancybox.showActivity();
+        var id_var  = $(this).attr('data-varid');
+        var id      = $(this).attr('data-prodid');
+        var $this   = $(this);
+        $.ajax({
+            type: 'post',
+            data: "ProductId="+id,
+            url: '/shop/ajax/getNotifyingRequest',
+            success: function(msg){                
+                showResponse(msg);
+                bindNotifMeForm();
+                $.fancybox.hideActivity();
             }
-        }
-    );
+        });        
         return false;
     })
     /* End of Event */
@@ -235,12 +237,12 @@ $(document).ready(function(){
             success: function(msg){
                 $("#paymentMethods").html(msg);
                 $('#paymentMethodId').val($('.met_buy:eq(0)').val());
-                //                var myv = nid.attr('data-price');
-                //                if ((nid.attr('data-freefrom') != 0)&&($('#total_price').text() > nid.attr('data-freefrom')))
-                //                    myv = '0';
-                //                $('#delivery_price').text(myv);
-                //                $('#gtprice').text(parseInt($('#total_price').text()) + parseInt(myv));
-                //                $('#gtpricev').text(parseInt($('#total_pricev').text()) + Math.ceil(parseInt(myv)/$('#second_v').val()));
+            //                var myv = nid.attr('data-price');
+            //                if ((nid.attr('data-freefrom') != 0)&&($('#total_price').text() > nid.attr('data-freefrom')))
+            //                    myv = '0';
+            //                $('#delivery_price').text(myv);
+            //                $('#gtprice').text(parseInt($('#total_price').text()) + parseInt(myv));
+            //                $('#gtpricev').text(parseInt($('#total_pricev').text()) + Math.ceil(parseInt(myv)/$('#second_v').val()));
             }
         });
     });
@@ -261,6 +263,26 @@ $(document).ready(function(){
         });
         return false;
     })
+
+    function bindNotifMeForm(){
+        $('.order_call #notifMe').bind('submit',function(){
+            $this = $(this);
+            $.ajax({
+                type: 'post',
+                url: '/shop/ajax/getNotifyingRequest',
+                data: $this.serialize(),
+                beforeSend: function(){
+                    $.fancybox.showActivity();
+                },
+                success: function(msg){
+                    showResponse(msg);
+                    bindNotifMeForm();
+                    $.fancybox.hideActivity();
+                }
+            });
+            return false;
+        })
+    }
 
     function bindCallbackForm(){
         $('.order_call form').bind('submit',function(){
