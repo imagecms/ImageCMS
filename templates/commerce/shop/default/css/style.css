@@ -677,3 +677,5 @@ span.code{color: #999;font-size: 11px;margin-right: 9px;}
 span.js{color: #3A88CC; cursor: pointer;}
 
 .middle_fix.button_greys input[type=submit]{height: 31px;line-height: 29px;font-size: 13px;color: #333333;text-shadow: 0 1px #B7B7B7; padding-top: 2px;}
+.fancy_profile{background-color: #FFFFFF; border: 0px solid #9F9E9E;  overflow: hidden;!important; margin-right: -26px;}
+.msg_form_edit_prof{background-color:#d7f0c6; text-align:center;}
