@@ -77,6 +77,6 @@
 </div>
 {else:}
 {literal}
-    {"close":"true","msg": "<div class='fancy wish_list'><form method='post'><h1 class='m-l_19'>Корзина</h1><div>пусто</div></form></div>"}
+    {"close":"true","msg": "<div class='fancy wish_list'><h1>Корзина</h1><div class='comparison_slider'><div class='f-s_18 m-t_29 t-a_c'>Корзина пуста</div></div></div>"}
 {/literal}
 {/if}

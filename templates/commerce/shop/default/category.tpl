@@ -77,8 +77,12 @@
                                     {else:}
                                         <a href="{shop_url('compare/add/'. $product->getId())}" data-prodid="{echo $product->getId()}" class="js gray toCompare">Добавить к сравнению</a>
                                     {/if}
-                                </span>
-                                <a data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" href="#" class="js gray addToWList">Сохранить в список желаний</a>
+                                </span>                       
+                                {if !is_in_wish($product->getId())}
+                                    <a data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" href="#" class="js gray addToWList">Сохранить в список желаний</a>
+                                {else:}
+                                    <a href="/shop/wish_list">Уже в списке желаний</a>
+                                {/if}
                             </div>
                         </div>
                         {if $product->countProperties() > 0}

@@ -21,7 +21,7 @@
                     <li class="list_desire">
                         <div class="frame_porivnjanja_tovar smallest_item">
                             <div class="photo_block">
-                                <a href="{shop_url('product/' . $product->getUrl())}"><img src="{productImageUrl($product->getMainimage())}" alt="{echo ShopCore::encode($product->name)}" /></a>
+                                <a href="{shop_url('product/' . $product->getUrl())}"><img src="{productImageUrl($product->getSmallModimage())}" alt="{echo ShopCore::encode($product->name)}" /></a>
                                 <div class="clearfix">
 <!--                                    <div class="di_b star"><img src="{$SHOP_THEME}images/temp/STAR.png"></div>-->
                                     {if $product->totalComments()}<a href="{shop_url('product/'.$product->getId().'?cmn=on')}" class="d_b response">{echo $product->totalComments()} {echo SStringHelper::Pluralize($product->totalComments(), array('отзыв', 'отзывы', 'отзывов'))}</a>{/if}

@@ -675,3 +675,5 @@ span.code{color: #999;font-size: 11px;margin-right: 9px;}
 
 #suggestions{position: absolute; display: none; top: 100%;left: 0;width: 424px;border: 1px solid #a4a5b9;z-index: 6; background-color: #fff; padding-right: 5px;}
 span.js{color: #3A88CC; cursor: pointer;}
+
+.middle_fix.button_greys input[type=submit]{height: 31px;line-height: 29px;font-size: 13px;color: #333333;text-shadow: 0 1px #B7B7B7; padding-top: 2px;}
