@@ -24,10 +24,11 @@
             </colgroup>
             <tbody>
                 {foreach $items as $key=>$item}
+                {$style = productInCart($cart_data, $item.model->getId(), $item.model->firstVariant->getId(), $item.model->firstVariant->getStock())}
                 <tr>
                     <td>
                         <a href="{shop_url('product/' . $item.model->getUrl())}" class="photo_block">
-                            <img src="{productImageUrl($item.model->getMainimage())}" alt="{echo ShopCore::encode($item.model->getName())}"/>
+                            <img src="{productImageUrl($item.model->getMainModimage())}" alt="{echo ShopCore::encode($item.model->getName())}"/>
                         </a>
                     </td>
                     <td>
@@ -36,19 +37,17 @@
                     <td>
                         <div class="price f-s_16 f_l">{echo $item.model->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $item.model->firstVariant->toCurrency('Price', 1)} $</span></div>
                     </td>
-                    <td>
-                        <div class="count">
-                            <div class="buttons button_gs">
-                                <form action="{shop_url('cart/add')}" method="post">
-                                    <input type="hidden" value="wishes" id="buytype" name="buytype">
-                                    <input type="hidden" value="{echo $item.model->firstVariant->getId()}" name="variantId">
-                                    <input type="hidden" value="{echo $item.model->getId()}" name="productId">
-                                    <input type="hidden" value="1" name="quantity">
-                                    <input type="submit" value="Добавить в корзину">
-                                    {form_csrf()}
-                                </form>
-                            </div>
-                        </div>
+                    <td>                        
+                        <form action="{$style.link}" method="post">
+                        <div class="buttons middle_fix {$style.class} buy">
+                                <input type="hidden" value="wishes" id="buytype" name="buytype">
+                                <input type="hidden" value="{echo $item.model->firstVariant->getId()}" name="variantId">
+                                <input type="hidden" value="{echo $item.model->getId()}" name="productId">
+                                <input type="hidden" value="1" name="quantity">
+                                <input class="{$style.identif}" data-varid="{echo $item.model->firstVariant->getId()}" data-prodid="{echo $item.model->getId()}" type="submit" value="{str_replace('<br/>', '', $style.message)}">
+                                {form_csrf()}
+                        </div>                        
+                        </form>
                     </td>
                     <td>
                         <div class="price f-s_18 f_l">{echo $summary = $item.model->firstVariant->toCurrency() * 1} <sub>{$CS}</sub>

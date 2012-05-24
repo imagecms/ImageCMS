@@ -1,5 +1,6 @@
 <div class="center">    
     <h1>Оформление заказа</h1>
+    {if count($items) > 0}
     <form method="post" action="{site_url(uri_string())}">
         <table class="cleaner_table forCartProducts" cellspacing="0">
             <caption>Корзина</caption>
@@ -64,7 +65,7 @@
             <div class="block_title_18"><span class="title_18">Выберите способ доставки</span></div>
             {$counter = true}
             {foreach $deliveryMethods as $deliveryMethod}
-            <label><input type="radio" {if $counter} checked="checked"{$counter = false}{$del_price = ceil($deliveryMethod->getPrice())}{$del_freefrom = ceil($deliveryMethod->getFreeFrom())}{/if}{$del_id = $deliveryMethod->getId()} name="met_del" class="met_del" value="{echo $del_id}" data-price="{echo ceil($deliveryMethod->getPrice())}" data-freefrom="{echo ceil($deliveryMethod->getFreeFrom())}"/>{echo $deliveryMethod->getName()}</label>                
+            <label><input type="radio" {if $counter} checked="checked" {$del_id = $deliveryMethod->getId()} {$counter = false}{$del_price = ceil($deliveryMethod->getPrice())}{$del_freefrom = ceil($deliveryMethod->getFreeFrom())}{/if} name="met_del" class="met_del" value="{echo $del_id}" data-price="{echo ceil($deliveryMethod->getPrice())}" data-freefrom="{echo ceil($deliveryMethod->getFreeFrom())}"/>{echo $deliveryMethod->getName()}</label>                
             {/foreach}
 
             <!--    Show payment methods    -->
@@ -111,54 +112,17 @@
             <div class="buttons button_big_blue">
                 <input type="submit" value="Оформить заказ"/>
             </div>
-        </div>
-
-        <table class="max_w c_b">
-            <colgroup span="1" width="80px"></colgroup>
-            <colgroup span="1" width="150px"></colgroup>
-            <colgroup span="1" width="45px"></colgroup>
-            <colgroup span="1" width="145px"></colgroup>
-            <colgroup span="1" width="35px"></colgroup>
-            <colgroup span="1" width="120px"></colgroup>
-            <colgroup span="1" width="145px"></colgroup>
-            <colgroup span="1" width="200px"></colgroup>
-            <tbody>                
-                <tr class="blue_block">
-                    <td class="tar fs_18 grey" width="80px">Сумма:</td>
-                    <td width="150px">
-                        <div class="price f_30">
-                            <div class="grn green" id="totalgrn_s">{echo $total} {$CS}</div>
-                            <div class="dol green" id="totaldol_s">{echo $total_nc} $</div>
-                        </div>
-                    </td>
-                    <td class="blue3 f_38 f_w_b" width="45px">+</td>
-                    <td width="145px" class="t_a_c">
-                        <div class="price f_30">
-                            <div class="grey f_14 f_w_b">Вартість доставки:</div>
-                            <div class="grn green tac"><div class="d_i"><span id="delivery_price">{echo $del_price = ($del_freefrom!=0 && $del_freefrom<$tpr) ? 0 : $del_price}</span> {$CS}</div></div>
-                        </div>
-                    </td>           
-                    <td class="blue3 f_38 f_w_b tar" width="35px">=</td>             
-                    <td class="tar fs_18 grey" width="120px">До виплати:</td>
-                    <td width="145px">
-                        <div class="price f_30">
-                            <div class="grn green f_w_b"><span id="gtprice">{echo $tpr + $del_price}</span> {$CS}</div>
-                            <div class="dol green"><span id="gtpricev">{echo $tprv + ceil($del_price/$second_v)}</span> $</div>
-                        </div>
-                    </td>                        
-                    <td width="200px">
-                        <div class="buttons button_4 f_l">
-                            <input type="submit" value="Оформити замовлення"/>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>        
-        <input type="hidden" name="deliveryMethodId" id="deliveryMethodId" value="{echo $del_id}">
-        <input type="hidden" name="deliveryMethod" value="1">
-        <input type="hidden" name="paymentMethodId" id="paymentMethodId" value="{echo $pay_id}">
-        <input type="hidden" name="paymentMethod" value="5">
-        <input type="hidden" name="makeOrder" value="0">
+        </div>   
+        <input type="hidden" name="deliveryMethodId" id="deliveryMethodId" value="{echo $del_id}" />
+        <input type="hidden" name="deliveryMethod" value="1" />
+        <input type="hidden" name="paymentMethodId" id="paymentMethodId" value="{echo $pay_id}" />
+        <input type="hidden" name="paymentMethod" value="5" />
+        <input type="hidden" name="makeOrder" value="1" />
         {form_csrf()}
     </form>
+    {else:}
+        <div class="comparison_slider">
+            <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t('Корзина пуста')}</div>
+        </div>
+    {/if}
 </div>

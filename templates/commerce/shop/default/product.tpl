@@ -362,7 +362,6 @@
                 </ul>
             </div>
         </div>
-<<<<<<< HEAD
         <div class="nowelty_auction m-t_29">
             <div class="box_title">
                 <span>Новинки</span>
@@ -389,56 +388,5 @@
                 {/foreach}
             </ul>
         </div>
-=======
-        <!--                            <div class="nowelty_auction m-t_29">
-                                        
-                                        <div class="box_title">
-                                            <span>Новинки</span>
-                                        </div>-->
-        <!--<ul>
-            <li class="smallest_item">
-                <div class="photo_block">
-                    <a href="#">
-                        <img src="{$SHOP_THEME}images/temp/small_img.jpg"/>
-                    </a>
-                </div>
-                <div class="func_description">
-                    <a href="#" class="title">Asus X54C (X54C-SX006D) Black</a>
-                    <div class="buy">
-                        <div class="price f-s_14">4528 <sub>грн.</sub><span>859 $</span></div>
-                    </div>
-                </div>
-            </li>
-            <li class="smallest_item">
-                <div class="photo_block">
-                    <a href="#">
-                        <img src="{$SHOP_THEME}images/temp/small_img.jpg"/>
-                    </a>
-                </div>
-                <div class="func_description">
-                    <a href="#" class="title">Asus X54C (X54C-SX006D) Black</a>
-                    <div class="buy">
-                        <div class="price f-s_14">4528 <sub>грн.</sub><span>859 $</span></div>
-                    </div>
-                </div>
-            </li>
-            <li class="smallest_item">
-                <div class="photo_block">
-                    <a href="#">
-                        <img src="{$SHOP_THEME}images/temp/small_img.jpg"/>
-                    </a>
-                </div>
-                <div class="func_description">
-                    <a href="#" class="title">Asus X54C (X54C-SX006D) Black</a>
-                    <div class="buy">
-                        <div class="price f-s_14">4528 <sub>грн.</sub><span>859 $</span></div>
-                    </div>
-                </div>
-            </li>-->
-        <!--                                </ul>-->
-
->>>>>>> b9f6ab61206b34aae869dccdacc80767ca2916dd
     </div>
-
-
 </div>
