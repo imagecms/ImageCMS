@@ -30,7 +30,7 @@
         <div class="tovar_frame clearfix{if $model->firstvariant->getstock()== 0} not_avail{/if}">
             <div class="thumb_frame f_l">
                 <span>
-                    <a  class="active grouped_elements" rel="gal1" href="{$SHOP_THEME}images/temp/big_img.jpg" >
+                    <a  class="grouped_elements" rel="gal1" href="{$SHOP_THEME}images/temp/big_img.jpg" >
                         <img src="{$SHOP_THEME}images/temp/thumb_img.jpg"/>
                     </a>
                 </span>
@@ -79,7 +79,7 @@
                     {if $model->firstvariant->getstock()== 0}
                         <div class="in_cart">Нет в наличии</div>
                         <div class="buttons button_big_greys f_l">
-                            <a href="" class="goNotifMe">Сообщить о появлении</a>
+                            <a href="" class="goNotifMe" data-prodid="{echo $model->getId()}" data-varid="{echo $model->firstvariant->getId()}">Сообщить о появлении</a>
                         </div>
                     {else:}
                         {if !is_in_cart($model->getId())}
@@ -237,7 +237,7 @@
                         {$simprod = getSimilarProduct($model, 20)}
                         {foreach $simprod as $sp}
                             {$style = productInCart($cart_data, $sp->getId(), $sp->firstVariant->getId(), $sp->firstVariant->getStock())}
-                            <div class="f_l smallest_item">
+                            <div class="f_l smallest_item {if $sp->firstvariant->getstock()==0}not_avail{/if}">
                                 <div class="photo_block">
                                     <a href="/shop/product/{echo $sp->getId()}">
                                         <img src="/uploads/shop/{echo $sp->getId()}_small.jpg"/>

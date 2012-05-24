@@ -11,7 +11,10 @@ $(document).ready(function(){
      *      "<a href="#" data-prodid="12" data-varid="21" class="goBuy">Buy product</a>"
      *      Where 'data-prodid' - product ID and 'data-varid' - variant ID
      */
-    $("a.grouped_elements").fancybox({showNavArrows: true, cyclic: true});
+    $("a.grouped_elements").fancybox({
+        showNavArrows: true, 
+        cyclic: true
+    });
     
     $('.buy .goBuy').on('click',function(){
         $.fancybox.showActivity();
@@ -24,13 +27,11 @@ $(document).ready(function(){
             url: '/shop/cart/add',
             success: function(msg){
                 $('.cart_data_holder').load('/shop/ajax/getCartDataHtml');
-                if ($this.parent('div').hasClass('button_big_green'))
+                if ($this.parent().hasClass('button_big_green'))
                 {
                     $('.in_cart').html('Уже в корзине');
-                    $this
-                    .removeClass('button_big_green')
-                    .addClass('button_middle_blue')
-                    .html('Оформить заказ');
+                    $this.parent().removeClass('button_big_green').addClass('button_big_blue')
+                    $this.html('Оформить заказ');
                 }
                 else
                 {
@@ -42,7 +43,7 @@ $(document).ready(function(){
                     .removeClass('button_gs')
                     .addClass('button_middle_blue');
                 }
-                $('.in_cart').html('Уже в корзине');
+                // $('.in_cart').html('Уже в корзине');
                 $this
                 .attr('href', '/shop/cart')
                 .unbind('click');
