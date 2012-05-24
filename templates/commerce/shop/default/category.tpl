@@ -22,6 +22,7 @@
                         <form method="GET">
                         <div class="lineForm f_l w_145">
                             <select id="sort" name="order">
+                                <option value="rating" {if ShopCore::$_GET['order']=='rating'}selected="selected"{/if}>по рейтингу</option>
                                 <option value="price" {if ShopCore::$_GET['order']=='price'}selected="selected"{/if}>от дешевых к дорогим</option>
                                 <option value="price_desc" {if ShopCore::$_GET['order']=='price_desc'}selected="selected"{/if} >от дорогих к дешевым</option>
                                 <option value="hit" {if ShopCore::$_GET['order']=='hit'}selected="selected"{/if}>популярные</option>
@@ -56,7 +57,7 @@
                                     {if $product->firstVariant->getNumber()}<span class="code">Код {echo ShopCore::encode($product->firstVariant->getNumber())}</span>{/if}
                                 <!--    Show Product Number -->
 
-                                <div class="di_b star"><img src="{$SHOP_THEME}images/temp/STAR.png"></div>
+                                <!--<div class="di_b star"><img src="{$SHOP_THEME}images/temp/STAR.png"></div>-->
 
                                 <!--    Show Comments count -->
                                     <a href="{shop_url('product/'.$product->getId().'?cmn=on')}"  class="response">
@@ -135,7 +136,7 @@
                     <li class="smallest_item">
                         <div class="photo_block">
                             <a href="{shop_url('product/' . $hotProduct->getUrl())}">
-                                <img width="80" src="{productImageUrl($hotProduct->getSmallModImage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
+                                <img src="{productImageUrl($hotProduct->getSmallModImage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
                             </a>
                         </div>
                         <div class="func_description">
