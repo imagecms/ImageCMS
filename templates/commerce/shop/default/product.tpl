@@ -25,7 +25,7 @@
 <!-- END LIGHTBOX -->
 
 
-<div class="content">
+<div class="content">    
     <div class="center">
         <div class="tovar_frame clearfix{if $model->firstvariant->getstock()== 0} not_avail{/if}">
             <div class="thumb_frame f_l">
