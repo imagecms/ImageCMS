@@ -5,15 +5,16 @@
 #}
 <div class="content">
     <div class="center">
-        <h1>Личный кабинет</h1>
+        <h1>Личный кабинет</h1>        
+        {if $CI->session->flashdata('makeOrder') === true}<div style="padding:10px;border: 1px #f5f5dc solid;">Спасибо за Ваш заказ.</div>{/if}
         <table class="cleaner_table" cellspacing="0">
-            <caption>Заказ</caption>
+            <caption>Заказ №{echo $model->getId()}</caption>
             <colgroup>
                 <col span="1" width="120">
                 <col span="1" width="400">
                 <col span="1" width="165">
                 <col span="1" width="140">
-                <col span="1" width="160">                
+                <col span="1" width="160">
             </colgroup>
             <tbody>
                 {foreach $model->getSOrderProductss() as $item}
@@ -24,8 +25,8 @@
                 <tr>
                     <td>
                         {if $product->getMainImage()}
-                        <a href="#" class="photo_block">
-                            <img src="{productImageUrl($product->getId() . '_main.jpg')}" border="0" alt="image" width="90" />
+                        <a href="{shop_url('product/' . $product->getUrl())}" class="photo_block">
+                            <img src="{productImageUrl($product->getSmallModimage())}" border="0" alt="{echo ShopCore::encode($product->getName())}"/>
                         </a>{/if}
                     </td>
                     <td>
@@ -42,7 +43,7 @@
                     <td style="width:90px;padding:2px;">
                         <div style="width:90px;height:90px;overflow:hidden;">
                             {if $product->getMainImage()}
-                            <img src="{productImageUrl($product->getId() . '_main.jpg')}" border="0" alt="image" width="90" />
+                            <img src="{productImageUrl($product->getSmallModimage())}" border="0" alt="{echo ShopCore::encode($product->getName())}"/>
                             {/if}
                         </div>
                     </td>
@@ -55,17 +56,15 @@
                 {else:}
                 <tr>
                     <td>
-                        {if $product->getMainImage()}
                         <a href="{shop_url('product/' . $product->getUrl())}" class="photo_block">
-                            <img src="{productImageUrl($product->getId() . '_main.jpg')}"/>
-                        </a>{/if}
+                            <img src="{productImageUrl($product->getSmallModimage())}" alt="{echo ShopCore::encode($product->getName())}"/>
+                        </a>
                     </td>
                     <td>
                         <a href="{shop_url('product/' . $product->getUrl())}">{echo ShopCore::encode($product->getName())}</a> {$item->getVariantName()}
                     </td>
                     <td>
-                        <div class="price f-s_16 f_l">{echo $item->toCurrency()}<sub> {$CS}</sub><span class="d_b">859 $</span></div>
-
+                        <div class="price f-s_16 f_l">{echo $item->toCurrency()}<sub> {$CS}</sub><span class="d_b">{echo $item->toCurrency('Price', 1)} $</span></div>
                     </td>
                     <td>
                         <div class="count">
@@ -74,11 +73,10 @@
                     </td>
                     <td>
                         <div class="price f-s_18 f_l">{echo $item->getQuantity() * $item->toCurrency()} <sub> {$CS}</sub><span class="d_b">859 $</span></div>
-                    </td>                    
+                    </td>
                 </tr>
                 {/if}
                 {/foreach}
-
             </tbody>
             <tfoot>
                 <tr>
@@ -92,8 +90,8 @@
                                     <span class="d_b">
                                         4454$</span></div>
                             </div>
-                            <div class="f_l">
-                                <ul class="info_curr_buy f_l">
+                            <div class="f_l" style="width: 775px;">
+                                <ul class="info_curr_buy f_l" >
                                     <li>
                                         <span>Оплачен:</span>
                                         <b>{if $model->getPaid() == true} Да{else: }Нет{/if}</b>
@@ -127,10 +125,3 @@
         </table>
     </div>
 </div>
-
-
-{if $CI->session->flashdata('makeOrder') === true}
-<div style="padding:10px;background-color:#f5f5dc;">
-    Спасибо за Ваш заказ.
-</div>
-{/if}
