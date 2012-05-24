@@ -1,64 +1,52 @@
 {# Comments form for product}
 
-<div ></div>
-
-{if $comments_arr}
-<div class="comments">
-    <h5>Отзывы клиентов о товаре</h5>
-
-    {foreach $comments_arr as $comment}
-    <div id="comment_{$comment.id}" >
-        <b>{$comment.user_name}</b>
-        <span>{date('d-m-Y H:i', $comment.date)} </span>
-        <p>{$comment.text}</p>
-    </div>
-    {/foreach}
-</div>
+{if $can_comment === 1 AND !is_logged_in}
+    <p>{sprintf(lang('login_for_comments'), site_url($modules.auth))}</p>
 {/if}
-
-<h5>{lang('post_comment')}</h5>
-
+<div class="di_b">
+    <span class="comment_ajax_refer b-r_4 visible">
+        <a href="#" class="t-d_n"><span class="js">Оставить отзыв</span><span class="blue_arrow"></span></a>
+        {if $is_logged_in}
+            {lang('lang_logged_in_as')} {$username}
+        {else:}
+<!--            <span>Для того, чтобы оставить комментарий, Вы должны <a href="{site_url('auth/login')}" class="js red">авторизироваться</a> на сайте</span>-->
+        {/if}
+    </span>
+</div>
 {if $comment_errors}
     <div class="errors">
         {$comment_errors}
     </div>
 {/if}
-
-{if $can_comment === 1 AND !is_logged_in}
-     <p>{sprintf(lang('login_for_comments'), site_url($modules.auth))}</p>
-{/if}
-
-<form action="" method="post" class="form commentForm">
+<form action="" method="post" class="comment_form clearfix">
     <input type="hidden" name="comment_item_id" value="{$item_id}" />
     <input type="hidden" name="redirect" value="{uri_string()}" />
 
-    {if $is_logged_in}
-        <p>{lang('lang_logged_in_as')} {$username}. <a href="{site_url('auth/logout')}">{lang('lang_logout')}</a></p>
-    {else:}
-    <p class="clear">
-        <label for="comment_author" style="width:140px;" class="left">{lang('lang_comment_author')}</label>
-        <input type="text" name="comment_author" id="comment_author" value="{get_cookie('comment_author')}"/> <span style="color:red;">*</span>
-    </p>
+    {if !$is_logged_in}
 
-    <p class="clear">
-        <label for="comment_email" style="width:140px;" class="left">{lang('lang_comment_email')}</label>
-        <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/> <span style="color:red;">*</span>
-    </p>
+        <label>{lang('lang_comment_author')}
+            <input type="text" name="comment_author" id="comment_author" value="{get_cookie('comment_author')}"/> <span style="color:red;">*</span></label>
 
-    <p class="clear">
-        <label for="comment_site" style="width:140px;" class="left">{lang('lang_comment_site')}</label>
-        <input type="text" name="comment_site" id="comment_site" value="{get_cookie('comment_site')}"/>
-    </p>
+
+
+        <label>{lang('lang_comment_email')}
+            <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/> <span style="color:red;">*</span></label>
+
+
+
+        <label>{lang('lang_comment_site')}
+            <input type="text" name="comment_site" id="comment_site" value="{get_cookie('comment_site')}"/></label>
+
     {/if}
 
-    <p class="clear">
-        <label for="comment_text" style="width:140px;" class="left">{lang('lang_comment_text')}</label>
-        <textarea name="comment_text" id="comment_text" rows="10" cols="50">{$_POST.comment_text}</textarea> <span style="color:red;">*</span>
-    </p>
+
+    <label>{lang('lang_comment_text')}
+        <textarea name="comment_text" id="comment_text" rows="10" cols="50">{$_POST.comment_text}</textarea> <span style="color:red;">*</span></label>
+
 
     {if $use_captcha}
-    <div style="padding-bottom:4px;">
-    <p class="clear">
+        <!--        <div style="padding-bottom:4px;">
+                    <p class="clear">
         {if $captcha_type == 'captcha'}
             <label for="captcha" style="width:140px;" class="left">{lang('lang_captcha')}</label>
             <input type="text" name="captcha" id="captcha" />  <span style="color:red;">*</span>
@@ -67,13 +55,23 @@
         <label class="left" style="width:140px;" >&nbsp;</label>
         {$cap_image}
     </p>
-    </div>
+</div>-->
     {/if}
-
-    <p class="clear">
-        <label class="left" style="width:140px;" >&nbsp;</label>
-        <input type="submit" value="Оставить комментарий"/>
-    </p>
+    <label class="buttons button_middle_blue f_l">
+        <input type="submit" value="Оставить отзыв"/>
+    </label>
 
     {form_csrf()}
 </form>
+
+{if $comments_arr}
+    <ul class="comments" style="width:100%">
+        {foreach $comments_arr as $comment}
+            <li>
+                <b>{$comment.user_name}</b>
+                <div class="c_9 f-s_11">Оставлен {date('d-m-Y H:i', $comment.date)}</div>
+                <p>{$comment.text}</p>
+            </li>
+        {/foreach}
+        <ul>
+        {/if}
