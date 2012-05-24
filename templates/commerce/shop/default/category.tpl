@@ -44,7 +44,7 @@
                     <!--  Render produts list   -->
                     {foreach $products as $product}
                     {$style = productInCart($cart_data, $product->getId(), $product->firstVariant->getId(), $product->firstVariant->getStock())}
-                    <li>
+                    <li {if $product->firstvariant->getstock()== 0}class="not_avail"{/if}>
                         <div class="photo_block">
                             <a href="{shop_url('product/' . $product->getUrl())}">
                                 <img src="{productImageUrl($product->getMainModimage())}" alt="{echo ShopCore::encode($product->name)}" />

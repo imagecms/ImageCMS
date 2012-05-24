@@ -185,9 +185,10 @@ img[align=left]{margin-right:18px;float: left;}
 .cycle .nav{float: right; position: absolute; right: 10px; bottom: 10px; z-index: 10;}
 .cycle .nav a{width: 13px; height: 13px; margin: 0 5px 0 5px; float: left; font-size: 0; background: url('../images/cycle_nav.png');}
 .cycle .nav .activeSlide{background-position: 0 -13px;}
-.cycle .next, .cycle .prev{background: url('../images/cycle_pn.png');top: 50%; width: 49px; height: 48px; position: absolute;margin-top: -29px; z-index: 10; cursor: pointer;border: none;-moz-opacity: 0.8;-khtml-opacity: 0.8;opacity: 0.8;-webkit-transition: opacity 0.3s ease-in-out;-moz-transition: opacity 0.3s ease-in-out;-o-transition: opacity 0.3s ease-in-out;transition: opacity 0.3s ease-in-out;}
+.cycle .next, .cycle .prev, #fancybox-left-ico, #fancybox-right-ico{background: url('../images/cycle_pn.png');top: 50%; width: 49px; height: 48px;margin-top: -29px;border: none;}
+.cycle .next, .cycle .prev{position: absolute; z-index: 10; cursor: pointer;-moz-opacity: 0.8;-khtml-opacity: 0.8;opacity: 0.8;-webkit-transition: opacity 0.3s ease-in-out;-moz-transition: opacity 0.3s ease-in-out;-o-transition: opacity 0.3s ease-in-out;transition: opacity 0.3s ease-in-out;}
 .cycle .next:hover, .cycle .prev:hover{-moz-opacity: 1;-khtml-opacity: 1;opacity: 1;}
-.cycle .next{right: 30px; background-position: 0 -48px;}
+.cycle .next, #fancybox-right-ico{right: 30px; background-position: 0 -48px;}
 .cycle .prev{left: 30px;}
 .cycle img{display: block;}
 
@@ -214,7 +215,7 @@ img[align=left]{margin-right:18px;float: left;}
 .box_title > span{position: relative;background-color: #fff;padding-right: 20px;top: 12px;font-size: 24px;} 
 
 .small_item{overflow: hidden;}
-.small_item .img{float: left; max-width: 140px; text-align: center; margin: 0 10px 0 0;}
+.small_item .img{float: left; max-width: 140px; text-align: center; margin: 0 10px 0 0;overflow: hidden;}
 .small_item .img span{display: table-cell; vertical-align: middle; height: 130px;}
 .small_item .info{overflow: hidden;margin-top: 10px;}
 .small_item .title{display: block; line-height: 16px; margin-bottom: 10px;}
