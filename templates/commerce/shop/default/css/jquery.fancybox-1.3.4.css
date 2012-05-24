@@ -150,21 +150,12 @@
 	position: absolute;
 	top: 50%;
 	left: -9999px;
-	width: 30px;
-	height: 30px;
-	margin-top: -15px;
+	margin-top: -24px;
 	cursor: pointer;
 	z-index: 1102;
 	display: block;
 }
 
-#fancybox-left-ico {
-	background-position: -40px -30px;
-}
-
-#fancybox-right-ico {
-	background-position: -40px -60px;
-}
 
 #fancybox-left:hover, #fancybox-right:hover {
 	visibility: visible; /* IE6 */

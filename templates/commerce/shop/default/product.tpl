@@ -17,37 +17,36 @@
 <script src="{$SHOP_THEME}js/rating/jquery.rating-min.js"></script>
 <script src="{$SHOP_THEME}js/rating/jquery.MetaData-min.js"></script>
 <script src="{$SHOP_THEME}js/product.js"></script>
-<script src="{$SHOP_THEME}js/shop.js"></script>
+
 
 <!-- BEGIN LIGHTBOX -->
 <script type="text/javascript" src="{$SHOP_THEME}js/lightbox/scripts/jquery.color.min.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/lightbox/scripts/jquery.lightbox.min.js"></script>
-<link type="text/css" rel="stylesheet" media="screen" href="{$SHOP_THEME}js/lightbox/styles/jquery.lightbox.min.css" />
 <!-- END LIGHTBOX -->
 
 
 <div class="content">
     <div class="center">
-        <div class="tovar_frame clearfix">
+        <div class="tovar_frame clearfix{if $model->firstvariant->getstock()== 0} not_avail{/if}">
             <div class="thumb_frame f_l">
                 <span>
-                    <a href="#" class="active">
+                    <a  class="active grouped_elements" rel="gal1" href="{$SHOP_THEME}images/temp/big_img.jpg" >
                         <img src="{$SHOP_THEME}images/temp/thumb_img.jpg"/>
                     </a>
                 </span>
                 <span>
-                    <a href="#">
+                    <a class="grouped_elements" rel="gal1" href="{$SHOP_THEME}images/temp/big_img.jpg">
                         <img src="{$SHOP_THEME}images/temp/thumb_img.jpg"/>
                     </a>
                 </span>
                 <span>
-                    <a href="#">
+                    <a class="grouped_elements" rel="gal1" href="{$SHOP_THEME}images/temp/big_img.jpg">
                         <img src="{$SHOP_THEME}images/temp/thumb_img.jpg"/>
                     </a>
                 </span>
             </div>
             <div class="photo_block">
-                <a href="#">
+                <a class="grouped_elements" rel="gal1" href="{$SHOP_THEME}images/temp/big_img.jpg">
                     <img src="{$SHOP_THEME}images/temp/big_img.jpg"/>
                 </a>
             </div>
@@ -78,29 +77,21 @@
                     <div class="price f-s_26">{echo $model->firstVariant->toCurrency()}<sub> {$CS}</sub><span class="d_b">{echo $model->firstVariant->toCurrency('Price',1)} $</span></div>
                     <div class="in_cart"></div>
                     {if $model->firstvariant->getstock()== 0}
+                        <div class="in_cart">Нет в наличии</div>
                         <div class="buttons button_big_greys f_l">
                             <a href="" class="goNotifMe">Сообщить о появлении</a>
                         </div>
-                        {literal}
-                            <script type="text/javascript">
-                                $('.in_cart').html('Нет в наличии');
-                            </script>
-                        {/literal}
                     {else:}
                         {if !is_in_cart($model->getId())}
                             <div class="buttons button_big_green f_l"> 
                                 <a href="" class="goBuy" data-prodid="{echo $model->getId()}" data-varid="{echo $model->firstVariant->getId()}" >Купить</a>
                             </div>
                         {else:}
+                            <div class="in_cart">Уже в корзине</div>
                             <div class="buttons button_big_blue f_l">
                                 <a href="/shop/cart" data-prodid="{echo $model->getId()}" data-varid="{echo $model->firstvariant->getId()}">Оформить заказ</a>
                             </div>
-                            {literal}
-                                <script type="text/javascript">
-                                    $('.in_cart').html('Уже в корзине');
-                                </script>
-                            {/literal}
-                        {/if}
+                         {/if}
                     {/if}
                     <div class="f_l">
                         <span class="ajax_refer_marg">

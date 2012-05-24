@@ -11,6 +11,8 @@ $(document).ready(function(){
      *      "<a href="#" data-prodid="12" data-varid="21" class="goBuy">Buy product</a>"
      *      Where 'data-prodid' - product ID and 'data-varid' - variant ID
      */
+    $("a.grouped_elements").fancybox({showNavArrows: true, cyclic: true});
+    
     $('.buy .goBuy').on('click',function(){
         $.fancybox.showActivity();
         var id_var  = $(this).attr('data-varid');
@@ -26,6 +28,8 @@ $(document).ready(function(){
                 {
                     $('.in_cart').html('Уже в корзине');
                     $this
+                    .removeClass('button_big_green')
+                    .addClass('button_middle_blue')
                     .html('Оформить заказ');
                 }
                 else

@@ -10,29 +10,28 @@ $(document).ready(function(){
     ltie7 = ie&&(ieV <= 7),
     ltie8 = ie&&(ieV <= 8);
 
-    select_tab=0;
+    select_tab=1;
+
+    $this_s = $('.scroll-box:eq('+select_tab+')')
+    first_elem=$this_s.find('li:eq(0)');
+    width_elem=first_elem.outerWidth();        
+    vidstup=first_elem.outerWidth(true)-width_elem;
+    count_elem=$this_s.find('li').length;
+    width=width_elem*count_elem;
+
+    if (count_elem % 2 !=0){
+        width=width+width_elem;
+    }
+    first_elem.parent().css('width',width/2+Math.round(count_elem/2)*vidstup);
+    $this_s.jScrollPane({
+        'showArrows':true
+    });
     $tabs=$('.nav_tabs').tabs();
     $tabs.tabs('select', select_tab);
-//    $tabs.tabs('select', 0);
-
-
-    $('.scroll-box:eq('+select_tab+')').each(function(){
-        first_elem=$(this).find('li:eq(0)');
-        width_elem=first_elem.outerWidth();        
-        vidstup=first_elem.outerWidth(true)-width_elem;
-        count_elem=$(this).find('li').length;
-        width=width_elem*count_elem;
-
-        if (count_elem % 2 !=0){
-            width=width+width_elem;
-        }
-        first_elem.parent().css('width',width/2+Math.round(count_elem/2)*vidstup);
-        $(this).jScrollPane({
-            'showArrows':true
-        });
-    })
+    
     $('.nav_tabs li a').click(function(){
-        $this = $($(this).attr('href')).children();
+        $('.nav_tabs').tabs();
+        $this = $($(this).attr('href')).children('.scroll-box');
         if (!$this.is('.jspScrollable')){
             first_elem=$this.find('li:eq(0)');            
             width_elem=first_elem.outerWidth();            
@@ -44,7 +43,7 @@ $(document).ready(function(){
                 width=width+width_elem;
             }
             first_elem.parent().css('width',width/2+Math.round(count_elem/2)*vidstup);
-            $(this).jScrollPane({
+            $this.jScrollPane({
                 'showArrows':true
             });
         }
