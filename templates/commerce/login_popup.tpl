@@ -4,7 +4,7 @@
         {if validation_errors() OR $info_message}<div class="errors">{validation_errors()}{$info_message}</div>{/if}        
         <label>
             Электронная почта
-            <input type="text" id="username" class="username" name="username"/>
+            <input type="text" name="username"/>
         </label>
         <label>
             Пароль

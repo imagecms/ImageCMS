@@ -111,11 +111,11 @@
                             {/if}
                         </span>
                         <span>
-                        {if !is_in_wish($model->getId())}
-                            <a data-varid="{echo $model->firstVariant->getId()}" data-prodid="{echo $model->getId()}" href="#" class="js gray addToWList">Сохранить в список желаний</a>
-                        {else:}
-                            <a href="/shop/wish_list">Уже в списке желаний</a>
-                        {/if}</span>
+                            {if !is_in_wish($model->getId())}
+                                <a data-varid="{echo $model->firstVariant->getId()}" data-prodid="{echo $model->getId()}" href="#" class="js gray addToWList">Сохранить в список желаний</a>
+                            {else:}
+                                <a href="/shop/wish_list">Уже в списке желаний</a>
+                            {/if}</span>
                     </div>
                 </div>
                 <p class="c_b">{echo $model->getShortDescription()}</p>
@@ -321,45 +321,7 @@
 
             {/if}
             <div id="four">
-                {if ShopCore::$ci->dx_auth->is_logged_in()}
-                    <div class="di_b">
-                        <span class="comment_ajax_refer b-r_4 visible">
-                            <a href="#" class="t-d_n"><span class="js">Оставить отзыв</span><span class="blue_arrow"></span></a>
-                            <span>Вы вошли как {echo ShopCore::$ci->dx_auth->get_username()} | <a href="/auth/logout/" class="js red">Выход</a></span>
-                        </span>
-                    </div>
-                {else:}
-                    <div class="di_b">
-                        <span class="comment_ajax_refer b-r_4 visible">
-                            <span>Для того, чтобы оставить комментарий, Вы должны <a href="#dialog1" rel="nofollow" class="js red" name="modal">авторизироваться</a> на сайте</span>
-                        </span>
-                    </div>        
-                {/if}
-                {if ShopCore::$ci->dx_auth->is_logged_in()}
-                    <form method="post" action="/comments/add/" class="comment_form clearfix">
-
-                        <input type="hidden" name="comment_item_id" value="{echo $model->getId()}" />
-                        <input type="hidden" name="redirect" value="{echo '/shop/product/'.$model->getId()}" />
-                        <label>
-                            {$comments}
-                        </label>
-                    </form>
-                {/if}
-                <ul class="comments">
-                    {foreach $comm as $c}
-                        {if is_array($c)}
-                            {foreach $c as $c1}
-                                <li>
-                                    <b>{echo $c1.user_name}:</b>
-                                    <div class="c_9 f-s_11">Оставлен {echo date('d-m-Y', $c1.date)}</div>
-                                    <p>
-                                        {echo $c1.text}
-                                    </p>
-                                </li>
-                            {/foreach}
-                        {/if}
-                    {/foreach}    
-                </ul>
+                {$comments}
             </div>
         </div>
         <div class="nowelty_auction m-t_29">
@@ -368,23 +330,23 @@
             </div>
             <ul>
                 {foreach getPromoBlock('hot', 3) as $hotProduct}
-                {$style = productInCart($cart_data, $hotProduct->getId(), $hotProduct->firstVariant->getId(), $hotProduct->firstVariant->getStock())}
-                <li>
-                    <div class="small_item">
-                        <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="img">
-                            <span>
-                                <img src="{productImageUrl($hotProduct->getSmallModimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
-                            </span>
-                        </a>
-                        <div class="info">
-                            <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
-                            <div class="buy">
-                                <div class="price f-s_16 f_l">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', 1)} $</span></div>
-                                <div class="{$style.class} buttons"><a class="{$style.identif}" data-varid="{echo $hotProduct->firstVariant->getId()}" data-prodid="{echo $hotProduct->getId()}" href="{shop_url('product/' . $hotProduct->getUrl())}">{$style.message}</a></div>
+                    {$style = productInCart($cart_data, $hotProduct->getId(), $hotProduct->firstVariant->getId(), $hotProduct->firstVariant->getStock())}
+                    <li>
+                        <div class="small_item">
+                            <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="img">
+                                <span>
+                                    <img src="{productImageUrl($hotProduct->getSmallModimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
+                                </span>
+                            </a>
+                            <div class="info">
+                                <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
+                                <div class="buy">
+                                    <div class="price f-s_16 f_l">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', 1)} $</span></div>
+                                    <div class="{$style.class} buttons"><a class="{$style.identif}" data-varid="{echo $hotProduct->firstVariant->getId()}" data-prodid="{echo $hotProduct->getId()}" href="{shop_url('product/' . $hotProduct->getUrl())}">{$style.message}</a></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </li>
+                    </li>
                 {/foreach}
             </ul>
         </div>
