@@ -32,23 +32,23 @@
             <div class="thumb_frame f_l">
                 <span>
                     <a href="#" class="active">
-                        <img src="images/temp/thumb_img.jpg"/>
+                        <img src="{$SHOP_THEME}images/temp/thumb_img.jpg"/>
                     </a>
                 </span>
                 <span>
                     <a href="#">
-                        <img src="images/temp/thumb_img.jpg"/>
+                        <img src="{$SHOP_THEME}images/temp/thumb_img.jpg"/>
                     </a>
                 </span>
                 <span>
                     <a href="#">
-                        <img src="images/temp/thumb_img.jpg"/>
+                        <img src="{$SHOP_THEME}images/temp/thumb_img.jpg"/>
                     </a>
                 </span>
             </div>
             <div class="photo_block">
                 <a href="#">
-                    <img src="images/temp/big_img.jpg"/>
+                    <img src="{$SHOP_THEME}images/temp/big_img.jpg"/>
                 </a>
             </div>
             <div class="func_description">
@@ -87,7 +87,6 @@
                             </script>
                         {/literal}
                     {else:}
-
                         {if !is_in_cart($model->getId())}
                             <div class="buttons button_big_green f_l"> 
                                 <a href="" class="goBuy" data-prodid="{echo $model->getId()}" data-varid="{echo $model->firstVariant->getId()}" >Купить</a>
@@ -102,7 +101,6 @@
                                 </script>
                             {/literal}
                         {/if}
-
                     {/if}
                     <div class="f_l">
                         <span class="ajax_refer_marg">
@@ -167,15 +165,14 @@
                         {$count = count($kits[0]->getShopKitProducts())}
                         <div class="f_l smallest_item">
                             <div class="photo_block">
-                                <a href="/shop/product/'{echo $model->getId()}">
-                                    <img src="/uploads/shop/{echo $model->getId()}_small.jpg" />
+                                <a href="{shop_url('shop/product'. $model->getId())}">
+                                    <img src="{productImageUrl($model->getSmallModImage())}" />
                                 </a>
                             </div>
                             <div class="func_description">
                                 <a href="{'/shop/product/'.$model->getId()}">{echo ShopCore::encode($model->getName())}</a>
                                 <div class="buy">
                                     <div class="price f-s_14">{echo $model->firstVariant->toCurrency()}<sub> {$CS}</sub><span>{echo $model->firstVariant->toCurrency('Price', 1)} $</span></div> 
-
                                 </div>
                             </div>
                         </div>
@@ -365,54 +362,31 @@
                 </ul>
             </div>
         </div>
-        <!--                            <div class="nowelty_auction m-t_29">
-                                        
-                                        <div class="box_title">
-                                            <span>Новинки</span>
-                                        </div>-->
-        <!--<ul>
-            <li class="smallest_item">
-                <div class="photo_block">
-                    <a href="#">
-                        <img src="{$SHOP_THEME}images/temp/small_img.jpg"/>
-                    </a>
-                </div>
-                <div class="func_description">
-                    <a href="#" class="title">Asus X54C (X54C-SX006D) Black</a>
-                    <div class="buy">
-                        <div class="price f-s_14">4528 <sub>грн.</sub><span>859 $</span></div>
+        <div class="nowelty_auction m-t_29">
+            <div class="box_title">
+                <span>Новинки</span>
+            </div>
+            <ul>
+                {foreach getPromoBlock('hot', 3) as $hotProduct}
+                {$style = productInCart($cart_data, $hotProduct->getId(), $hotProduct->firstVariant->getId(), $hotProduct->firstVariant->getStock())}
+                <li>
+                    <div class="small_item">
+                        <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="img">
+                            <span>
+                                <img src="{productImageUrl($hotProduct->getSmallModimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
+                            </span>
+                        </a>
+                        <div class="info">
+                            <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
+                            <div class="buy">
+                                <div class="price f-s_16 f_l">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', 1)} $</span></div>
+                                <div class="{$style.class} buttons"><a class="{$style.identif}" data-varid="{echo $hotProduct->firstVariant->getId()}" data-prodid="{echo $hotProduct->getId()}" href="{shop_url('product/' . $hotProduct->getUrl())}">{$style.message}</a></div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </li>
-            <li class="smallest_item">
-                <div class="photo_block">
-                    <a href="#">
-                        <img src="{$SHOP_THEME}images/temp/small_img.jpg"/>
-                    </a>
-                </div>
-                <div class="func_description">
-                    <a href="#" class="title">Asus X54C (X54C-SX006D) Black</a>
-                    <div class="buy">
-                        <div class="price f-s_14">4528 <sub>грн.</sub><span>859 $</span></div>
-                    </div>
-                </div>
-            </li>
-            <li class="smallest_item">
-                <div class="photo_block">
-                    <a href="#">
-                        <img src="{$SHOP_THEME}images/temp/small_img.jpg"/>
-                    </a>
-                </div>
-                <div class="func_description">
-                    <a href="#" class="title">Asus X54C (X54C-SX006D) Black</a>
-                    <div class="buy">
-                        <div class="price f-s_14">4528 <sub>грн.</sub><span>859 $</span></div>
-                    </div>
-                </div>
-            </li>-->
-        <!--                                </ul>-->
-
+                </li>
+                {/foreach}
+            </ul>
+        </div>
     </div>
-
-
 </div>

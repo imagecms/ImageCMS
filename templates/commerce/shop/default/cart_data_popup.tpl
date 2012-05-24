@@ -18,7 +18,7 @@
                 <tr>
                     <td>
                         <a href="{shop_url('product/'.$prod->getId())}" class="photo_block">
-                            <img src="{productImageUrl($prod->getMainimage())}" alt="{echo ShopCore::encode($prod->name)}" />
+                            <img src="{productImageUrl($prod->getMainModimage())}" alt="{echo ShopCore::encode($prod->name)}" />
                         </a>
                     </td>
                     <td>
@@ -77,6 +77,6 @@
 </div>
 {else:}
 {literal}
-    {"close":"true","msg": "<div class='fancy wish_list'><form method='post'><h1 class='m-l_19'>Корзина</h1><div>пусто</div></form></div>"}
+    {"close":"true","msg": "<div class='fancy wish_list'><h1>Корзина</h1><div class='comparison_slider'><div class='f-s_18 m-t_29 t-a_c'>Корзина пуста</div></div></div>"}
 {/literal}
 {/if}

@@ -37,7 +37,7 @@
                     <div class="small_item">
                         <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="img">
                             <span>
-                                <img src="{productImageUrl($hotProduct->getMainimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
+                                <img src="{productImageUrl($hotProduct->getMainModimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
                             </span>
                         </a>
                         <div class="info">
@@ -72,14 +72,14 @@
                             <div class="small_item">
                                 <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="img">
                                     <span>
-                                        <img src="{productImageUrl($hotProduct->getMainimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
+                                        <img src="{productImageUrl($hotProduct->getMainModimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
                                     </span>
                                 </a>
                                 <div class="info">
                                     <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                                     <div class="buy">
                                         <div class="price f-s_16 f_l">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', 1)} $</span></div>
-                                        <div class="{$style.class} buttons"><a class="{$style.identif}" data-varid="{echo $hotProduct->firstVariant->getId()}" data-prodid="{echo $hotProduct->getId()}" href="#">{$style.message}</a></div>
+                                        <div class="{$style.class} buttons"><a class="{$style.identif}" data-varid="{echo $hotProduct->firstVariant->getId()}" data-prodid="{echo $hotProduct->getId()}" href="{shop_url('product/' . $hotProduct->getUrl())}">{$style.message}</a></div>
                                     </div>
                                 </div>
                             </div>
@@ -87,7 +87,7 @@
                         {/foreach}
                     </ul>
                 </div>
-            </div>
+            </div>           
             <div id="second">
                 <div class="horizontal-only scroll-box">
                     <ul>
@@ -97,14 +97,14 @@
                             <div class="small_item">
                                 <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="img">
                                     <span>
-                                        <img src="{productImageUrl($hotProduct->getMainimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
+                                        <img src="{productImageUrl($hotProduct->getMainModimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
                                     </span>
                                 </a>
                                 <div class="info">
                                     <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                                     <div class="buy">
                                         <div class="price f-s_16 f_l">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', 1)} $</span></div>
-                                        <div class="{$style.class} buttons"><a class="{$style.identif}"  data-varid="{echo $hotProduct->firstVariant->getId()}" data-prodid="{echo $hotProduct->getId()}" href="#">{$style.message}</a></div>
+                                        <div class="{$style.class} buttons"><a class="{$style.identif}"  data-varid="{echo $hotProduct->firstVariant->getId()}" data-prodid="{echo $hotProduct->getId()}" href="{shop_url('product/' . $hotProduct->getUrl())}">{$style.message}</a></div>
                                     </div>
                                 </div>
                             </div>
