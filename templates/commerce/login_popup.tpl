@@ -58,7 +58,7 @@
     <form method="post" action="{site_url('auth/login')}" id="enter">
         <label>
             Электронная почта
-            <input type="text" name="usernamerrr"/>
+            <input type="text" name="username"/>
         </label>
         <label>
             Пароль
