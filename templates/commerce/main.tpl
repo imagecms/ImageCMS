@@ -20,7 +20,7 @@
         <script type="text/javascript" src="{$SHOP_THEME}/js/imagecms.filter.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/scripts.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/shop.js"></script>
-
+        <script type="text/javascript" src="{$SHOP_THEME}js/jquery.validate.js"></script>
 
     </head>
     <body>
@@ -52,6 +52,7 @@
                                         </div>
                                     </div>
                                 </li>
+
 
                                 <li class="smallest_item">
                                     <a href="#" class="photo_block">
