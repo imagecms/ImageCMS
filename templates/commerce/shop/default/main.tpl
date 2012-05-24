@@ -36,48 +36,8 @@
                 <a href="{shop_url('')}" class="logo"></a>
                 <div class="frame_form_search">
                     <form action="{shop_url('search')}" method="get" class="clearfix">
-<!--                        <input type="text" value="Поиск по сайту" name="text" />-->
                         <input type="text" size="30" name="text" value="Поиск по сайту" onfocus="if(this.value=='Поиск по сайту') this.value='';" onblur="if(this.value=='') this.value='Поиск по сайту';" />
-                        <input type="submit" class="submit"  value="Найти" />
-                        <div class="search_drop d_n">
-                            <ul>
-                                <li class="smallest_item">
-                                    <a href="#" class="photo_block">
-                                        <img src="{$SHOP_THEME}/images/temp/small_img.jpg"/>
-                                    </a>
-                                    <div class="func_description">
-                                        <a href="#" class="title">Asus X54C (X54C-SX006D) Black</a>
-                                        <div class="buy">
-                                            <div class="price f-s_14">4528 <sub>грн.</sub><span>859 $</span></div>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li class="smallest_item">
-                                    <a href="#" class="photo_block">
-                                        <img src="{$SHOP_THEME}/images/temp/small_img.jpg"/>
-                                    </a>
-                                    <div class="func_description">
-                                        <a href="#" class="title">Asus X54C (X54C-SX006D) Black</a>
-                                        <div class="buy">
-                                            <div class="price f-s_14">4528 <sub>грн.</sub><span>859 $</span></div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="smallest_item">
-                                    <a href="#" class="photo_block">
-                                        <img src="{$SHOP_THEME}/images/temp/small_img.jpg"/>
-                                    </a>
-                                    <div class="func_description">
-                                        <a href="#" class="title">Asus X54C (X54C-SX006D) Black</a>
-                                        <div class="buy">
-                                            <div class="price f-s_14">4528 <sub>грн.</sub><span>859 $</span></div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                            <a href="#" class="all_result">Показать все результаты</a>
-                        </div>
+                        <input type="submit" class="submit"  value="Найти" />                        
                     </form>
                 </div>
                 <div class="phone">

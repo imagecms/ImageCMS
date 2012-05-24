@@ -162,4 +162,3 @@
         {form_csrf()}
     </form>
 </div>
-</div>

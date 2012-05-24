@@ -93,23 +93,7 @@
                 </ul>
 
                 <!--    Pagination    -->
-                <div class="pagination d_n">
-                    <span class="f_l">
-                        ←&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">Назад</a>
-                    </span>
-                    <span class="f_r">
-                        <a href="#">Следующая страница</a>&nbsp;&nbsp;&nbsp;&nbsp;→
-                    </span>
-                    <div class="t-a_c">
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#" class="active">4</a>
-                        <a href="#">5</a>
-                        <a>...</a>
-                        <a href="#">10</a>
-                    </div>
-                </div>
+                <div class="pagination"><div class="t-a_c">{$pagination}</div></div>
                 <!--    Pagination    -->
             </div>
 
