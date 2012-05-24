@@ -1,132 +1,174 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>{$site_title}</title>
-<meta name="description" content="{$site_description}" />
-<meta name="keywords" content="{$site_keywords}" />
-<meta name="generator" content="ImageCMS" />
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>{$site_title}</title>
+        <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/style.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/jquery.fancybox-1.3.4.css" media="all" />
+        <link rel="icon" type="image/x-icon" href="{$SHOP_THEME}images/favicon.png"/>
+        <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/ie8_7_6.css" /><![endif]-->
+        <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/ie_7.css" /><![endif]-->
+        <script type="text/javascript" src="{$SHOP_THEME}/js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.cycle.all.js"></script>
+        <script type="text/javascript" src="{$SHOP_THEME}/js/jcarousellite_1.0.1.min.js"></script>
+        <script type="text/javascript" src="{$SHOP_THEME}/js/jquery-ui-personalized-1.5.2.packed.js"></script>
+        <script type="text/javascript" src="{$SHOP_THEME}/js/jScrollPane.min.js"></script>
+        <script type="text/javascript" src="{$SHOP_THEME}/js/cusel-min-2.4.1.js"></script>
+        <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.ui-slider.js" ></script>
+        <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.fancybox-1.3.4.pack.js" ></script>
+        <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.form.js"></script>
+        <script type="text/javascript" src="{$SHOP_THEME}/js/imagecms.filter.js"></script>
+        <script type="text/javascript" src="{$SHOP_THEME}/js/scripts.js"></script>
+        <script type="text/javascript" src="{$SHOP_THEME}/js/shop.js"></script>
+        <script type="text/javascript" src="{$SHOP_THEME}js/jquery.validate.js"></script>
 
-<style type="text/css">
-    @import "{$SHOP_THEME}style/jquery-ui-1.8.15.custom.css";
-    @import "{$SHOP_THEME}style/jquery.ui.autocomplete.css";
-    @import "{$SHOP_THEME}style/general.css";
-    @import "{$SHOP_THEME}style/product.css";
-    @import "{$SHOP_THEME}style/slideshow.css";
-</style>
+    </head>
+    <body>
+        <div class="main_body">
+            <div class="top">
+                <div class="center">
+                    {load_menu('top_menu')}
+                    <ul class="user_menu m-l_19">{include_tpl('/shop/default/auth_data')}</ul>
+                    <ul class="user_menu cart_data_holder">{include_tpl('/shop/default/cart_data')}</ul>
+                </div>
+            </div><!-- top -->
+            <div class="header center">
+                <a href="{shop_url('')}" class="logo"></a>
+                <div class="frame_form_search">
+                    <form action="{shop_url('search')}" method="get" class="clearfix">
+<!--                        <input type="text" value="Поиск по сайту" name="text" />-->
+                        <input type="text" size="30" name="text" value="Поиск по сайту" onfocus="if(this.value=='Поиск по сайту') this.value='';" onblur="if(this.value=='') this.value='Поиск по сайту';" />
+                        <input type="submit" class="submit"  value="Найти" />
+                        <div class="search_drop d_n">
+                            <ul>
+                                <li class="smallest_item">
+                                    <a href="#" class="photo_block">
+                                        <img src="{$SHOP_THEME}/images/temp/small_img.jpg"/>
+                                    </a>
+                                    <div class="func_description">
+                                        <a href="#" class="title">Asus X54C (X54C-SX006D) Black</a>
+                                        <div class="buy">
+                                            <div class="price f-s_14">4528 <sub>грн.</sub><span>859 $</span></div>
+                                        </div>
+                                    </div>
+                                </li>
 
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.hoverIntent.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/superfish.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.cycle.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.functions.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/js.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery-ui-1.8.15.custom.min.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.coda-bubble.sp.js"></script>
-<script type="text/javascript" src="{$THEME}/scripts/callbacks.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.validate.js"></script>
 
-       <script type="text/javascript" src="{$SHOP_THEME}js/autocomplete.js"></script>   
-<link rel="icon" href="{$SHOP_THEME}images/favicon.png" type="image/x-icon" />
+                                <li class="smallest_item">
+                                    <a href="#" class="photo_block">
+                                        <img src="{$SHOP_THEME}/images/temp/small_img.jpg"/>
+                                    </a>
+                                    <div class="func_description">
+                                        <a href="#" class="title">Asus X54C (X54C-SX006D) Black</a>
+                                        <div class="buy">
+                                            <div class="price f-s_14">4528 <sub>грн.</sub><span>859 $</span></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="smallest_item">
+                                    <a href="#" class="photo_block">
+                                        <img src="{$SHOP_THEME}/images/temp/small_img.jpg"/>
+                                    </a>
+                                    <div class="func_description">
+                                        <a href="#" class="title">Asus X54C (X54C-SX006D) Black</a>
+                                        <div class="buy">
+                                            <div class="price f-s_14">4528 <sub>грн.</sub><span>859 $</span></div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <a href="#" class="all_result">Показать все результаты</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="phone">
+                    <address>+8 (067) <span>572-58-18</span></address>
+                    <span class="js showCallback">Заказать звонок</span>
+                </div>
+                <ul class="user_menu">
+                    <!--    Show callback's form    -->
+                    <li><a href="#" class="js">Онлайн консультация</a></li>
+                    <!--    Show callback's form    -->
 
-</head>
-<body>
-<!-- BEGIN LAYOUT -->
-<div id="conteiner">
-  <!-- BEGIN HEADER -->
-  <div id="header">
-    <div class="left">
-      <!-- BEGIN LOGO -->
-      <div id="logo"><a href="{shop_url('')}"><img src="{$SHOP_THEME}images/logo.png" alt="logo" border="0"/></a></div>
-      <!-- BEGIN SLOGAN -->
-     <div id="slogan">Приобретайте только качественную технику: <br /> +7 (095) <b>222-33-22</b><br /> +38 (098) <b>222-33-22</b><br /><a id="callback-send-request" style="cursor: pointer;">Запросить CallBack</a></div>
-    </div>
-    <div class="right" id="mycart" title="Корзина">
-        {include_tpl('shop/default/cart_data')} 
-    </div>
+                    <!--    Wish list item's for Header    -->
+                    <li id="wishListHolder" class="like blue{if ShopCore::app()->SWishList->totalItems()} is_avail{/if}">
+                        {include_tpl('/shop/default/wish_list_data')}</li>
+                    <!--    Wish list item's for Header    -->
 
-   {if ShopCore::app()->SWishList->getWishListCookie() && ShopCore::$ci->dx_auth->is_logged_in()} 
-   <div class="bubbleInfo">
-       <div class="trigger">
-           <div class="right" id="mywishlist" title="Wish List">
-                {include_tpl('shop/default/wish_list_data')}
-           </div>
-       </div>
-       <div class="popup">
-           <div class="wishListQuestion">
-               У вас уже был WishList до входа в систему!<br />
-                    <a rel="nofollow" href="{shop_url('wish_list/move_to_profile')}" >Перенести WishList в профиль</a> /
-                    <a rel="nofollow" href="{shop_url('wish_list/clear_cookie_wish_list')}">Удалить WishList</a>
-               </div>
-           </div>
-   </div>    
-   {else:}    
-   <div class="right" id="mywishlist" title="Wish List">
-        {include_tpl('shop/default/wish_list_data')}
-   </div>  
-   {/if}
-   
-    <div id="topCurrency" align="right">
-    <form action="" method="post" name="currencyChangeForm">
-    {form_csrf()}
-        Валюта: <select onchange="document.forms.currencyChangeForm.submit();" name="setCurrency">
-            {foreach get_currencies() as $currency}
-                <option {if ShopCore::app()->SCurrencyHelper->current->getId() == $currency->getId()}selected{/if} value="{echo $currency->getId()}">{echo encode($currency->getName())}</option>
-            {/foreach}
-        </select>
-    </form>
+                    <!--    Products in compare list for Header    -->
+                    <li id="compareHolder" class="compare blue{if is_array($CI->session->userdata('shopForCompare'))} is_avail{/if}">
+                        {include_tpl('/shop/default/compare_data')}</li>
+                    <!--    Products in compare list for Header    -->
+                </ul>
+            </div><!-- header -->
 
-    {if $CI->session->userdata('shopForCompare')}
-        <div class="topCompareInfo">
-            <a href="{shop_url('compare')}">
-                Добавлено {count($CI->session->userdata('shopForCompare'))} {echo SStringHelper::Pluralize(count($CI->session->userdata('shopForCompare')), array('товар','товара','товаров'))} для сравнения
-            </a>
+            <div class="main_menu center">
+                <ul class="clearfix">{echo ShopCore::app()->SCategoryTree->ulWithTitle()}</ul>
+            </div><!-- main_menu -->
+            
+            {$content}
+            
+            <div class="hfooter"></div>
         </div>
-    {/if}
+        <div class="footer">
+            <div class="center">
+                <div class="carusel_frame brand box_title">
+                    <div class="carusel clearfix">
+                        <ul>
+                            {foreach ShopCore::app()->SBrandsHelper->mostProductBrands(15, TRUE) as $brand}
+                                <li>
+                                    <a href="{shop_url($brand.full_url)}">
+                                        <img src="{media_url($brand.img_fullpath)}" title="{$brand.name}" />
+                                    </a>
+                                </li>
+                            {/foreach}
+                        </ul>
+                    </div>
+                    <button class="prev"></button>
+                    <button class="next"></button>
+                </div>
+                <ul class="footer_menu f_l">
+                    <li><a href="#">Главная</a></li>
+                    <li><a href="#">Видео</a></li>
+                    <li><a href="#">О магазине</a></li>
+                    <li><a href="#">Домашнее  аудио</a></li>
+                    <li><a href="#">Доставка и оплата</a></li>
+                    <li><a href="#">Фото и камеры</a></li>
+                    <li><a href="#">Помощь</a></li>
+                    <li><a href="#">Домашняя электроника</a></li>
+                    <li><a href="#">Контакты</a></li>
+                    <li><a href="#">Авто музыка и видео</a></li>
+                </ul>
+                <ul class="contacts f_l">
+                    <li>
+                        <span class="b">Тел:</span>
+                        <span>+8 (067) 572-58-18<br/>+8 (067) 572-58-18</span>
+                    </li>
+                    <li>
+                        <span class="b">Email:</span>
+                        <span>SiteImageCMS@gmail.com</span>
+                    </li>
+                    <li>
+                        <span class="b">Skype:</span>
+                        <span>SiteImageCMS</span>
+                    </li>
+                </ul>
+                <div class="footer_info f_r">
+                    <div>© Site ImageCMS, {date('Y')}</div>
+                    <div class="social">
+                        <a href="#" class="mail"></a>
+                        <a href="#" class="g_plus"></a>
+                        <a href="#" class="facebook"></a>
+                        <a href="#" class="vkontakte"></a>
+                        <a href="#" class="twitter"></a>
+                        <a href="#" class="odnoklasniki"></a>
+                    </div>
+                    <a href="http://imagecms.net" target="_blank" class="red">Создание интернет магазина</a>
+                    <div>SEO оптимизация сайта</div>
+                </div>
+            </div>
+        </div><!-- footer -->
 
-    </div>
-
-    <div class="sp"></div>
-    {include_tpl('shop/default/call_back')}
-  </div>
-  <!-- END HEADER -->
-  <!-- BEGIN NAVIGATION -->
-  <div id="navigation">
-    {load_menu('main_menu')}
-    <!-- BEGIN SEARCH -->
-    <div id="search">
-      <form action="{shop_url('search')}" method="get">
-        <input type="submit" class="submit" value=""/>
-        <input type="text" name="text" class="text"/>
-      </form>
-    </div>
-	
-
-  </div>
-  <div id="main">
-      <!-- BEGIN CONTEINER -->
-    <div id="content">
-        {$content}
-    </div>
-    <!-- END CONTENT -->
-    <div class="sp"></div>
-  </div>
-  <div class="sp"></div>
-</div>
-<!-- BEGIN FOOTER -->
-<div id="footer">
-  <div class="left">© 2012  Ваш <strong>Интернет-магазин</strong><br/>
-    <div class="credits"> Powered by <a href="http://www.imagecms.net">ImageCMS Shop</a></div>
-  </div>
-  <ul class="right">
-      <li><a href="{site_url('about')}" class="item">О Магазине</a> </li>
-      <li><a href="{site_url('oplata')}" class="item">Оплата</a> </li>
-      <li><a href="{site_url('dostavka')}" class="item">Доставка</a></li>
-	  <li><a href="{site_url('help')}" class="item">Помощь</a></li>
-	  <li><a href="{site_url('contact_us')}" class="item">Контакты</a></li>
-  </ul>
-  <div class="sp"></div>
-</div>
-<!-- END FOOTER -->
-</body>
+        <div class="h_bg_{whereami()}"></div>
+    </body>
 </html>

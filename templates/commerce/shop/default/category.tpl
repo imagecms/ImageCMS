@@ -46,7 +46,7 @@
                     <li>
                         <div class="photo_block">
                             <a href="{shop_url('product/' . $product->getUrl())}">
-                                <img src="{productImageUrl($product->getMainimage())}" alt="{echo ShopCore::encode($product->name)}" />
+                                <img src="{productImageUrl($product->getMainModimage())}" alt="{echo ShopCore::encode($product->name)}" />
                             </a>
                         </div>
                         <div class="func_description">
@@ -77,8 +77,12 @@
                                     {else:}
                                         <a href="{shop_url('compare/add/'. $product->getId())}" data-prodid="{echo $product->getId()}" class="js gray toCompare">Добавить к сравнению</a>
                                     {/if}
-                                </span>
-                                <a data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" href="#" class="js gray addToWList">Сохранить в список желаний</a>
+                                </span>                       
+                                {if !is_in_wish($product->getId())}
+                                    <a data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" href="#" class="js gray addToWList">Сохранить в список желаний</a>
+                                {else:}
+                                    <a href="/shop/wish_list">Уже в списке желаний</a>
+                                {/if}
                             </div>
                         </div>
                         {if $product->countProperties() > 0}
@@ -93,23 +97,7 @@
                 </ul>
 
                 <!--    Pagination    -->
-                <div class="pagination d_n">
-                    <span class="f_l">
-                        ←&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">Назад</a>
-                    </span>
-                    <span class="f_r">
-                        <a href="#">Следующая страница</a>&nbsp;&nbsp;&nbsp;&nbsp;→
-                    </span>
-                    <div class="t-a_c">
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#" class="active">4</a>
-                        <a href="#">5</a>
-                        <a>...</a>
-                        <a href="#">10</a>
-                    </div>
-                </div>
+                <div class="pagination"><div class="t-a_c">{$pagination}</div></div>
                 <!--    Pagination    -->
             </div>
 
@@ -124,7 +112,7 @@
                     <li class="smallest_item">
                         <div class="photo_block">
                             <a href="{shop_url('product/' . $hotProduct->getUrl())}">
-                                <img width="80" src="{productImageUrl($hotProduct->getSmallimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
+                                <img src="{productImageUrl($hotProduct->getSmallModimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
                             </a>
                         </div>
                         <div class="func_description">
@@ -147,7 +135,7 @@
                     <li class="smallest_item">
                         <div class="photo_block">
                             <a href="{shop_url('product/' . $hotProduct->getUrl())}">
-                                <img width="80" src="{productImageUrl($hotProduct->getSmallimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
+                                <img width="80" src="{productImageUrl($hotProduct->getSmallModImage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
                             </a>
                         </div>
                         <div class="func_description">

@@ -11,7 +11,7 @@ $(document).ready(function(){
      *      "<a href="#" data-prodid="12" data-varid="21" class="goBuy">Buy product</a>"
      *      Where 'data-prodid' - product ID and 'data-varid' - variant ID
      */
-    $('.buy a.goBuy').on('click',function(){
+    $('.buy .goBuy').on('click',function(){
         $.fancybox.showActivity();
         var id_var  = $(this).attr('data-varid');
         var id      = $(this).attr('data-prodid');
@@ -57,13 +57,6 @@ $(document).ready(function(){
             url: '/auth/login',
             success: function(msg){                
                 showResponse(msg);
-                  $('#enter').bind('submit',function(){
-                      
-                  })
-                $('#reg').bind('submit',function(){
-                   // alert('dsadas');
-                    
-                });
                 $.fancybox.hideActivity();
                 $(".enter_reg").tabs();
             }
@@ -89,6 +82,7 @@ $(document).ready(function(){
      * Add to user wishlist
      */
     $('.addToWList').on('click', function(){
+        var $this= $(this);
         var variantId = $(this).attr('data-varid');
         var productId = $(this).attr('data-prodid');
         $.fancybox.showActivity();
@@ -97,7 +91,7 @@ $(document).ready(function(){
             data: 'productId = '+productId+'&variantId = '+variantId,
             url: "/shop/wish_list/add",
             success: function(){
-                $('.addToWList').html('Уже в списке желаний');
+                $this.html('Уже в списке желаний').removeClass('js').removeClass('gray');
                 $("#wishListHolder").load('/shop/ajax/getWishListDataHtml').addClass('is_avail');
                 $.fancybox.hideActivity();
             }
@@ -133,19 +127,23 @@ $(document).ready(function(){
 
 
 
-    $('a.goNotifMe').on('click', function(){
-        var $content = '<h2 style="background-color: #fff;">Hi!</h2><p style="background-color: #fff;">TODO: Show notification message</p>';
-        $.fancybox($content, {
-            'autoDimensions' : false,
-            'width' : 350,
-            'height' : 'auto',
-            'transitionIn' : 'none',
-            'transitionOut' : 'none',
-            'onClosed' : function() {
-                $.fancybox.close();
+    $('.goNotifMe').on('click', function(){
+        $.fancybox.showActivity();
+        var id_var  = $(this).attr('data-varid');
+        var id      = $(this).attr('data-prodid');
+        var $this   = $(this);
+        $.ajax({
+            type: 'post',
+            data: "ProductId="+id,
+            url: '/shop/ajax/getNotifyingRequest',
+            success: function(msg){                
+                showResponse(msg);
+                bindNotifMeForm();
+                $.fancybox.hideActivity();
             }
         }
         );
+
         return false;
     })
     /* End of Event */
@@ -167,6 +165,7 @@ $(document).ready(function(){
                 $target.val($val*1-1);
         }
         $.fancybox.showActivity();
+        $form.find('input[name=makeOrder]').val(0);
         $.ajax({
             type: 'post',
             data: $form.serialize() + '&recount=1',
@@ -177,6 +176,7 @@ $(document).ready(function(){
                     $('.forCartProducts').html(msg);
                 else
                     showResponse(msg);
+                $form.find('input[name=makeOrder]').val(1);
                 $.fancybox.hideActivity();
             }
         });
@@ -240,6 +240,26 @@ $(document).ready(function(){
         });
         return false;
     })
+
+    function bindNotifMeForm(){
+        $('.order_call #notifMe').bind('submit',function(){
+            $this = $(this);
+            $.ajax({
+                type: 'post',
+                url: '/shop/ajax/getNotifyingRequest',
+                data: $this.serialize(),
+                beforeSend: function(){
+                    $.fancybox.showActivity();
+                },
+                success: function(msg){
+                    showResponse(msg);
+                    bindNotifMeForm();
+                    $.fancybox.hideActivity();
+                }
+            });
+            return false;
+        })
+    }
 
     function bindCallbackForm(){
         $('.order_call form').bind('submit',function(){

@@ -1,16 +1,17 @@
-{include_tpl('shop/default/sidebar')}
-
-<div class="products_list">
-
-    <div id="titleExt">
-        <h5 class="left">{echo encode($page.title)}</h5>
-        <div class="right"></div>
-        <div class="sp"></div>
+<div class="content">
+    <div class="center">
+        <h1>{echo encode($page.title)}</h1>
+        <div class="text">
+            {if $page.id == 68}
+            <div class="f_l map">
+                <img src="{$SHOP_THEME}images/temp/map.jpg"/>
+            </div>
+            <div class="f_r contacts_info">
+                {$page.full_text}
+            </div>
+            {else:}
+                {$page.full_text}
+            {/if}
+        </div>
     </div>
-
-    {$page.full_text}
-
-    <p>
-        <a href="javascript:history.back(-1);">{lang('history_back')}</a>
-    </p>
 </div>

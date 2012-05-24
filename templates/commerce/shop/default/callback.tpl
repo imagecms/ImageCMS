@@ -2,12 +2,7 @@
     {if !$success}
     <form method="post" action="" class="clearfix">
         <h1>Заказать звонок</h1>
-        {if validation_errors() OR $info_message}
-            <div class="validate_error_ml"> 
-                {validation_errors()}
-                {$info_message}
-            </div>
-        {/if}
+        {if validation_errors()}<div class="validate_error_ml">{validation_errors()}</div>{/if}
         <div class="f_l w_191">
             <label>
                 Ваше имя

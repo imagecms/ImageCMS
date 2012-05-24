@@ -22,8 +22,8 @@
                     },
                     confirm_password: {
                         equalTo: "#password"
-                    },
-                    username:{required: true}
+                    }
+//                    username:{required: true}
                 }
             });
        $('#reg').validate({
@@ -98,14 +98,15 @@
         <input type="text"/>
     </label>-->
     <form method="post" action="{site_url('auth/register')}" id="reg">
-        <label>{lang('lang_login')}
+<!--        <label>{lang('lang_login')}
             <input type="text" name="username" id="username" />
+        </label>-->
+       
+        <label>{lang('lang_email')}
+            <input type="text" name="email" id="email" value="{set_value('email')}" />
         </label>
         <label>ФИО
            <input type="text" name="userInfo[fullName]" value="{set_value('userInfo[fullName]')}" />
-        </label>
-        <label>{lang('lang_email')}
-            <input type="text" name="email" id="email" value="{set_value('email')}" />
         </label>
         <label>{lang('lang_password')}
             <input type="password" name="password" id="passwordreg" />
