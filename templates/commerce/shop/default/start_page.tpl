@@ -33,7 +33,7 @@
             <ul>
                 {foreach getPromoBlock('popular', 10) as $hotProduct}
                 {$style = productInCart($cart_data, $hotProduct->getId(), $hotProduct->firstVariant->getId(), $hotProduct->firstVariant->getStock())}
-                <li>
+                <li {if $hotProduct->firstvariant->getstock()==0}class="not_avail"{/if}>
                     <div class="small_item">
                         <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="img">
                             <span>
@@ -68,7 +68,7 @@
                     <ul>
                         {foreach getPromoBlock('hot', 10) as $hotProduct}
                         {$style = productInCart($cart_data, $hotProduct->getId(), $hotProduct->firstVariant->getId(), $hotProduct->firstVariant->getStock())}
-                        <li>
+                        <li {if $hotProduct->firstvariant->getstock()==0}class="not_avail"{/if}>
                             <div class="small_item">
                                 <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="img">
                                     <span>
@@ -93,7 +93,7 @@
                     <ul>
                         {foreach getPromoBlock('action', 10) as $hotProduct}
                         {$style = productInCart($cart_data, $hotProduct->getId(), $hotProduct->firstVariant->getId(), $hotProduct->firstVariant->getStock())}
-                        <li>
+                        <li {if $hotProduct->firstvariant->getstock()==0}class="not_avail"{/if}>
                             <div class="small_item">
                                 <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="img">
                                     <span>

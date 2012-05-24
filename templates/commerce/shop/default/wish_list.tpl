@@ -44,7 +44,7 @@
                                 <input type="hidden" value="{echo $item.model->firstVariant->getId()}" name="variantId">
                                 <input type="hidden" value="{echo $item.model->getId()}" name="productId">
                                 <input type="hidden" value="1" name="quantity">
-                                <input class="{$style.identif}" data-varid="{echo $item.model->firstVariant->getId()}" data-prodid="{echo $item.model->getId()}" type="submit" value="{str_replace('<br/>', '', $style.message)}">
+                                <input class="{$style.identif}" data-varid="{echo $item.model->firstVariant->getId()}" data-prodid="{echo $item.model->getId()}" type="submit" value="{strip_tags($style.message)}">
                                 {form_csrf()}
                         </div>                        
                         </form>
