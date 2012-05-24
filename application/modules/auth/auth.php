@@ -42,7 +42,11 @@ class Auth extends MY_Controller {
             $this->form_validation->set_message('username_check', lang('lang_login_exists'));
         }
 
-        return $result;
+        if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest')
+            return $result;
+        else
+            return $result;
+//            return json_encode(array('result' => $result));
     }
 
     function email_check($email) {
@@ -117,7 +121,17 @@ class Auth extends MY_Controller {
                 ($hook = get_hook('auth_login_success')) ? eval($hook) : NULL;
 
                 // Redirect to homepage
-                redirect('', 'location');
+                if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
+                    redirect('', 'location');
+                } else {
+                    $this->template->add_array(array('is_logged_in' => $this->dx_auth->is_logged_in()));
+                    $template = $this->template->fetch('shop/default/auth_data');
+                    return json_encode(array(
+                                'close' => true,
+                                'msg' => "<div class='fancy'><h1>Авторизация</h1><div class='comparison_slider'><div class='f-s_18 m-t_29 t-a_c'>Авторизация успешно завершена</div></div></div>",
+                                'header' => $template
+                            ));
+                }
             } else {
 
                 ($hook = get_hook('auth_login_failed')) ? eval($hook) : NULL;
@@ -166,6 +180,11 @@ class Auth extends MY_Controller {
         }
     }
 
+    public function render_min($name, $data = array()) {
+        $this->template->add_array($data);
+        return $this->template->display($name . '.tpl');
+    }
+
     function logout() {
         ($hook = get_hook('auth_logout')) ? eval($hook) : NULL;
         $this->dx_auth->logout();
@@ -198,7 +217,7 @@ class Auth extends MY_Controller {
             }
 
             // Run form validation and register user if it's pass the validation
-            if ($val->run() AND $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'))) {
+            if ($val->run() AND $this->dx_auth->register($this->input->post('username'), $val->set_value('password'), $val->set_value('email'))) {
                 ($hook = get_hook('auth_register_success')) ? eval($hook) : NULL;
 
                 // Set success message accordingly
@@ -211,8 +230,12 @@ class Auth extends MY_Controller {
                 ($hook = get_hook('auth_show_success_message')) ? eval($hook) : NULL;
 
                 // Load registration success page
-                $this->template->assign('content', $data['auth_message']);
-                $this->template->show();
+                if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
+                    $this->template->assign('content', $data['auth_message']);
+                    $this->template->show();
+                } else {
+                    $this->template->display('register_popup', array('succes' => TRUE));
+                }
             } else {
 
                 $this->template->assign('info_message', $this->dx_auth->get_auth_error());
@@ -225,8 +248,11 @@ class Auth extends MY_Controller {
 
                 ($hook = get_hook('auth_show_register_tpl')) ? eval($hook) : NULL;
 
-                // Load registration page
-                $this->template->show('register');
+                if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
+                    $this->template->show('register');
+                } else {
+                    $this->template->display('register_popup');
+                }
             }
         } elseif (!$this->dx_auth->allow_registration) {
             ($hook = get_hook('auth_register_closed')) ? eval($hook) : NULL;

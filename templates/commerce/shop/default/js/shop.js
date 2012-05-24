@@ -55,10 +55,11 @@ $(document).ready(function(){
         $.ajax({
             type: 'post',
             url: '/auth/login',
-            success: function(msg){                
+            success: function(msg){
                 showResponse(msg);
+                bindLoginForm();
+                bindRegisterLink();                                
                 $.fancybox.hideActivity();
-                $(".enter_reg").tabs();
             }
         });
         return false;
@@ -125,8 +126,6 @@ $(document).ready(function(){
     //setTimeout(function() { $("#wishListNotify").css('display', 'none') }, 2000);
     });
 
-
-
     $('.goNotifMe').on('click', function(){
         $.fancybox.showActivity();
         var id_var  = $(this).attr('data-varid');
@@ -136,7 +135,7 @@ $(document).ready(function(){
             type: 'post',
             data: "ProductId="+id,
             url: '/shop/ajax/getNotifyingRequest',
-            success: function(msg){                
+            success: function(msg){
                 showResponse(msg);
                 bindNotifMeForm();
                 $.fancybox.hideActivity();
@@ -214,12 +213,6 @@ $(document).ready(function(){
             success: function(msg){
                 $("#paymentMethods").html(msg);
                 $('#paymentMethodId').val($('.met_buy:eq(0)').val());
-            //                var myv = nid.attr('data-price');
-            //                if ((nid.attr('data-freefrom') != 0)&&($('#total_price').text() > nid.attr('data-freefrom')))
-            //                    myv = '0';
-            //                $('#delivery_price').text(myv);
-            //                $('#gtprice').text(parseInt($('#total_price').text()) + parseInt(myv));
-            //                $('#gtpricev').text(parseInt($('#total_pricev').text()) + Math.ceil(parseInt(myv)/$('#second_v').val()));
             }
         });
     });
@@ -260,6 +253,93 @@ $(document).ready(function(){
             return false;
         })
     }
+    function bindLoginForm(){
+        $('.enter_form form').bind('submit',function(){
+            $this = $(this);
+            $.ajax({
+                type: 'post',
+                url: '/auth/login',
+                data: $this.serialize(),
+                beforeSend: function(){
+                    $.fancybox.showActivity();
+                },
+                success: function(msg){
+                    showResponse(msg);
+                    bindLoginForm();
+                    bindRegisterLink();
+                    var obj = $.parseJSON(msg);
+                    if (typeof obj != 'undefined') {
+                        if (obj != null) {
+                            $('.auth_data').html(obj.header);
+                            $.fancybox.resize();
+                        }
+                    }                    
+                    $('.reg_me').bind('click', bindRegisterForm());
+                    $.fancybox.hideActivity();
+                }
+            });
+            return false;
+        })
+    }
+
+    function bindRegisterForm(){
+        $('.enter_form form').bind('submit',function(){
+            $this = $(this);
+            $.ajax({
+                type: 'post',
+                url: '/auth/register',
+                data: $this.serialize(),
+                beforeSend: function(){
+                    $.fancybox.showActivity();
+                },
+                success: function(msg){
+                    showResponse(msg);
+                    bindRegisterForm();
+                    bindLoginLink();
+                    $.fancybox.hideActivity();
+                }
+            });
+            return false;
+        })
+    }
+    function bindRegisterLink(){
+        $('.reg_me').bind('click',function(){
+            $this = $(this);
+            $.ajax({
+                type: 'post',
+                url: '/auth/register',
+                beforeSend: function(){
+                    $.fancybox.showActivity();
+                },
+                success: function(msg){
+                    showResponse(msg);
+                    bindRegisterForm();
+                    bindLoginLink();
+                    $.fancybox.hideActivity();
+                }
+            });
+            return false;
+        })
+    }
+    function bindLoginLink(){
+        $('.auth_me').bind('click',function(){            
+            $this = $(this);
+            $.ajax({
+                type: 'post',
+                url: '/auth/login',
+                beforeSend: function(){
+                    $.fancybox.showActivity();
+                },
+                success: function(msg){
+                    showResponse(msg);
+                    bindLoginForm();
+                    bindRegisterLink();
+                    $.fancybox.hideActivity();
+                }
+            });
+            return false;
+        })
+    }
 
     function bindCallbackForm(){
         $('.order_call form').bind('submit',function(){
@@ -273,7 +353,7 @@ $(document).ready(function(){
                 },
                 success: function(msg){
                     showResponse(msg);
-                    bindCallbackForm();
+                    bindCallbackForm();                    
                     $.fancybox.hideActivity();
                 }
             });
