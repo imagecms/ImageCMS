@@ -28,7 +28,7 @@
             <div class="top">
                 <div class="center">
                     {load_menu('top_menu')}
-                    <ul class="user_menu m-l_19">{include_tpl('auth_data')}</ul>
+                    <ul class="user_menu m-l_19 auth_data">{include_tpl('auth_data')}</ul>
                     <ul class="user_menu cart_data_holder">{include_tpl('cart_data')}</ul>
                 </div>
             </div><!-- top -->
