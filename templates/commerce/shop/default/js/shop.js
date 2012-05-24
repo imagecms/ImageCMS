@@ -38,7 +38,7 @@ $(document).ready(function(){
                     .removeClass('button_gs')
                     .addClass('button_middle_blue');
                 }
-                 $('.in_cart').html('Уже в корзине');
+                $('.in_cart').html('Уже в корзине');
                 $this
                 .attr('href', '/shop/cart')
                 .unbind('click');
@@ -50,7 +50,6 @@ $(document).ready(function(){
     });
     /*   End of Event   */
 
-
     $('.loginAjax').on('click', function(){
         $.fancybox.showActivity();
         $.ajax({
@@ -58,40 +57,20 @@ $(document).ready(function(){
             url: '/auth/login',
             success: function(msg){                
                 showResponse(msg);
-                $(".enter_reg").tabs();
-                bindAuthForm();
-                
+                  $('#enter').bind('submit',function(){
+                      
+                  })
                 $('#reg').bind('submit',function(){
-                    alert('dsadas');
-                    return false;
+                   // alert('dsadas');
+                    
                 });
                 $.fancybox.hideActivity();
+                $(".enter_reg").tabs();
             }
         });
         return false;
     });
 
-
-    function bindAuthForm(){
-        $('#enter').bind('submit',function(){
-            $(".enter_reg").tabs();
-            $this = $(this);
-            $.ajax({
-                type: 'post',
-                url: '/auth/login',
-                data: $this.serialize(),
-                beforeSend: function(){
-                    $.fancybox.showActivity();
-                },
-                success: function(msg){
-                    showResponse(msg);
-                    bindAuthForm();
-                    $.fancybox.hideActivity();
-                }
-            });
-            return false;
-        })
-    }
 
     $('.center').delegate('.is_avail a.goCartData', 'click',function(){
         $.fancybox.showActivity();
@@ -124,7 +103,7 @@ $(document).ready(function(){
             }
         });
         return false;
-        //setTimeout(function() { $("#wishListNotify").css('display', 'none') }, 2000);
+    //setTimeout(function() { $("#wishListNotify").css('display', 'none') }, 2000);
     });
 
 
@@ -142,14 +121,14 @@ $(document).ready(function(){
                 $.fancybox.hideActivity();
                 $this
                 .html('Сравнить')
-             //   .text('Сравнить')
-              .removeClass('js')
-              .removeClass('gray')
+                //   .text('Сравнить')
+                .removeClass('js')
+                .removeClass('gray')
                 .unbind('click');
             }
         });
         return false;
-        //setTimeout(function() { $("#wishListNotify").css('display', 'none') }, 2000);
+    //setTimeout(function() { $("#wishListNotify").css('display', 'none') }, 2000);
     });
 
 
@@ -166,7 +145,7 @@ $(document).ready(function(){
                 $.fancybox.close();
             }
         }
-    );
+        );
         return false;
     })
     /* End of Event */
@@ -235,12 +214,12 @@ $(document).ready(function(){
             success: function(msg){
                 $("#paymentMethods").html(msg);
                 $('#paymentMethodId').val($('.met_buy:eq(0)').val());
-                //                var myv = nid.attr('data-price');
-                //                if ((nid.attr('data-freefrom') != 0)&&($('#total_price').text() > nid.attr('data-freefrom')))
-                //                    myv = '0';
-                //                $('#delivery_price').text(myv);
-                //                $('#gtprice').text(parseInt($('#total_price').text()) + parseInt(myv));
-                //                $('#gtpricev').text(parseInt($('#total_pricev').text()) + Math.ceil(parseInt(myv)/$('#second_v').val()));
+            //                var myv = nid.attr('data-price');
+            //                if ((nid.attr('data-freefrom') != 0)&&($('#total_price').text() > nid.attr('data-freefrom')))
+            //                    myv = '0';
+            //                $('#delivery_price').text(myv);
+            //                $('#gtprice').text(parseInt($('#total_price').text()) + parseInt(myv));
+            //                $('#gtpricev').text(parseInt($('#total_pricev').text()) + Math.ceil(parseInt(myv)/$('#second_v').val()));
             }
         });
     });

@@ -24,6 +24,7 @@
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery-ui-1.8.15.custom.min.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.coda-bubble.sp.js"></script>
 <script type="text/javascript" src="{$THEME}/scripts/callbacks.js"></script>
+<script type="text/javascript" src="{$SHOP_THEME}js/jquery.validate.js"></script>
 
        <script type="text/javascript" src="{$SHOP_THEME}js/autocomplete.js"></script>   
 <link rel="icon" href="{$SHOP_THEME}images/favicon.png" type="image/x-icon" />
