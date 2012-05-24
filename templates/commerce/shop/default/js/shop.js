@@ -50,7 +50,6 @@ $(document).ready(function(){
     });
     /*   End of Event   */
 
-
     $('.loginAjax').on('click', function(){
         $.fancybox.showActivity();
         $.ajax({
@@ -58,40 +57,13 @@ $(document).ready(function(){
             url: '/auth/login',
             success: function(msg){                
                 showResponse(msg);
-                $(".enter_reg").tabs();
-//                bindAuthForm();
-//                
-//                $('#reg').bind('submit',function(){
-//                    alert('dsadas');
-//                    return false;
-//                });
                 $.fancybox.hideActivity();
+                $(".enter_reg").tabs();
             }
         });
         return false;
     });
 
-
-    function bindAuthForm(){
-        $('#enter').bind('submit',function(){
-            $(".enter_reg").tabs();
-            $this = $(this);
-            $.ajax({
-                type: 'post',
-                url: '/auth/login',
-                data: $this.serialize(),
-                beforeSend: function(){
-                    $.fancybox.showActivity();
-                },
-                success: function(msg){
-                    showResponse(msg);
-                    bindAuthForm();
-                    $.fancybox.hideActivity();
-                }
-            });
-            return false;
-        })
-    }
 
     $('.center').delegate('.is_avail a.goCartData', 'click',function(){
         $.fancybox.showActivity();
@@ -169,7 +141,9 @@ $(document).ready(function(){
                 bindNotifMeForm();
                 $.fancybox.hideActivity();
             }
-        });        
+        }
+        );
+
         return false;
     })
     /* End of Event */
