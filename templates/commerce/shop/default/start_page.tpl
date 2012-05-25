@@ -27,6 +27,7 @@
 <!--                ЕНД-->
 
     {$cart_data = ShopCore::app()->SCart->getData()}
+{if getPromoblock('popular')}
     <div class="featured carusel_frame">
         <div class="box_title center"><span class="f-s_24">Популярные товары</span></div>
         <div class="carusel">
@@ -57,12 +58,14 @@
         <button class="prev"></button>
         <button class="next"></button>
     </div><!-- featured -->
+{/if}
     <div class="center clearfix">
         <div class="tabs f_l">
             <ul class="nav_tabs">
-                <li><a href="#first">Новинки</a></li>
-                <li><a href="#second">Акції</a></li>
+                {if getPromoblock('hot')}<li><a href="#first">Новинки</a></li>{/if}
+                {if getPromoblock('action')}<li><a href="#second">Акції</a></li>{/if}
             </ul>
+            {if getPromoblock('hot')}
             <div id="first">
                 <div class="horizontal-only scroll-box">
                     <ul>
@@ -87,7 +90,9 @@
                         {/foreach}
                     </ul>
                 </div>
-            </div>           
+            </div>
+            {/if}
+            {if getPromoblock('action')}
             <div id="second">
                 <div class="horizontal-only scroll-box">
                     <ul>
@@ -113,6 +118,7 @@
                     </ul>
                 </div>
             </div>
+            {/if}
         </div>
         {widget('latest_news')}
     </div>
