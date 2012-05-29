@@ -25,7 +25,7 @@ $obj =& get_instance();
 
 if(!check_perm('tinybrowser_all'))
 {
-    die('Access denied.');
+    die('У Вас недостаточно привилегий. Обратитесь к администратору сайта.');
 }
 
 $_SERVER = $ser;
