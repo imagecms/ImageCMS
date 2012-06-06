@@ -127,18 +127,7 @@
                     <button class="prev"></button>
                     <button class="next"></button>
                 </div>
-                <ul class="footer_menu f_l">
-                    <li><a href="#">Главная</a></li>
-                    <li><a href="#">Видео</a></li>
-                    <li><a href="#">О магазине</a></li>
-                    <li><a href="#">Домашнее  аудио</a></li>
-                    <li><a href="#">Доставка и оплата</a></li>
-                    <li><a href="#">Фото и камеры</a></li>
-                    <li><a href="#">Помощь</a></li>
-                    <li><a href="#">Домашняя электроника</a></li>
-                    <li><a href="#">Контакты</a></li>
-                    <li><a href="#">Авто музыка и видео</a></li>
-                </ul>
+                {load_menu('footer_menu')}
                 <ul class="contacts f_l">
                     <li>
                         <span class="b">Тел:</span>

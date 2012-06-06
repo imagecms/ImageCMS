@@ -64,9 +64,9 @@
             <div class="main_menu center">
                 <ul class="clearfix">{echo ShopCore::app()->SCategoryTree->ulWithTitle()}</ul>
             </div><!-- main_menu -->
-            
+
             {$shop_content}
-            
+
             <div class="hfooter"></div>
         </div>
         <div class="footer">
@@ -75,29 +75,18 @@
                     <div class="carusel clearfix">
                         <ul>
                             {foreach ShopCore::app()->SBrandsHelper->mostProductBrands(15, TRUE) as $brand}
-                                <li>
-                                    <a href="{shop_url($brand.full_url)}">
-                                        <img src="{media_url($brand.img_fullpath)}" title="{$brand.name}" />
-                                    </a>
-                                </li>
+                            <li>
+                                <a href="{shop_url($brand.full_url)}">
+                                    <img src="{media_url($brand.img_fullpath)}" title="{$brand.name}" />
+                                </a>
+                            </li>
                             {/foreach}
                         </ul>
                     </div>
                     <button class="prev"></button>
                     <button class="next"></button>
-                </div>
-                <ul class="footer_menu f_l">
-                    <li><a href="#">Главная</a></li>
-                    <li><a href="#">Видео</a></li>
-                    <li><a href="#">О магазине</a></li>
-                    <li><a href="#">Домашнее  аудио</a></li>
-                    <li><a href="#">Доставка и оплата</a></li>
-                    <li><a href="#">Фото и камеры</a></li>
-                    <li><a href="#">Помощь</a></li>
-                    <li><a href="#">Домашняя электроника</a></li>
-                    <li><a href="#">Контакты</a></li>
-                    <li><a href="#">Авто музыка и видео</a></li>
-                </ul>
+                </div>                
+                {load_menu('footer_menu')}
                 <ul class="contacts f_l">
                     <li>
                         <span class="b">Тел:</span>
