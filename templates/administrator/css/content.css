@@ -64,7 +64,8 @@ a {
 }
 
 a:hover {
-    color:#52E0EA;
+/*    color:#52E0EA;*/
+        color:#ff3f34;
 	text-decoration: none;
 }
 
