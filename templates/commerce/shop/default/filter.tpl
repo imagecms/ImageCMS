@@ -26,7 +26,7 @@
 
 <div class="filter">
     <form method="GET" action="{shop_url('category/'.$model->getFullPath())}" class="clearfix">
-        <div class="box_title padding_filter">
+        {/*}<div class="box_title padding_filter">
             <div class="title">Клас</div>
             <div class="lineForm">
                 <select id="class" name="order" tabindex="1">
@@ -37,7 +37,7 @@
                     <option value="action" {if ShopCore::$_GET['order']=='action'}selected="selected"{/if}>акции</option>
                 </select>
             </div>
-        </div>
+        </div>{*/}
 
         {if ($_GET['lp'] and $_GET[lp] > $def_price_min) or ($_GET['rp'] and $_GET['rp'] < $def_price_max) or $_GET['f'] or $_GET['brand']}
         <div class="title padding_filter">Подбор по параметрам</div>
@@ -94,6 +94,8 @@
                 </div>
             </div>
         </div>
+        {$count_brands = array_count_values($brandsInCategory)}        
+        {if $count_brands}
         <div class="padding_filter check_frame">
             <div class="title">Производитель</div>
             <div class="clearfix check_form">
@@ -130,6 +132,7 @@
                                 <label><input type="checkbox"/><span class="name_model">Toshiba <span>(15)</span></span></label>-->
             </div>
         </div>
+        {/if}
         <div class="padding_filter check_frame">            
             {foreach $model->getProperties() as $prop}
             {if !$prop->getShowInFilter()} { continue; } {/if}

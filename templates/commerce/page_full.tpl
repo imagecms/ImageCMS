@@ -4,7 +4,7 @@
         <div class="text">
             {if $page.id == 68}
             <div class="f_l map">
-                <img src="{$SHOP_THEME}images/temp/map.jpg"/>
+                <img src="{$SHOP_THEME}images/map.jpg"/>
             </div>
             <div class="f_r contacts_info">
                 {$page.full_text}

@@ -10,7 +10,7 @@ $(document).ready(function(){
     ltie7 = ie&&(ieV <= 7),
     ltie8 = ie&&(ieV <= 8);
 
-    select_tab=1;
+    select_tab=0;
 
     $this_s = $('.scroll-box:eq('+select_tab+')')
     first_elem=$this_s.find('li:eq(0)');
