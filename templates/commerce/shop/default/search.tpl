@@ -170,7 +170,7 @@
                 {else:}
                  <a href="{shop_url('compare/add/'. $p->getId())}" data-prodid="{echo $p->getId()}" class="js gray toCompare">Добавить к сравнению</a>
                  {/if}</span>
-                 <a data-varid="{echo $p->firstVariant->getId()}" data-prodid="{echo $p->getId()}" href="#" class="js gray addToWList">Сохранить в список желаний</a>
+                 <a logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" data-varid="{echo $p->firstVariant->getId()}" data-prodid="{echo $p->getId()}" href="#" class="js gray addToWList">Сохранить в список желаний</a>
                 </div>
                    </div>
               <p class="c_b">
