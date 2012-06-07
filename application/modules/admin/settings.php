@@ -161,6 +161,7 @@ class Settings extends MY_Controller{
             'site_template' => $this->input->post('template'),
             'editor_theme' => $this->input->post('editor_theme'),
             'site_offline' => $this->input->post('site_offline'),
+            'google_analytics_id' => $this->input->post('google_analytics_id'),
 		);
 
         ($hook = get_hook('admin_save_settings')) ? eval($hook) : NULL;

@@ -43,7 +43,9 @@
                         <div class="info">
                             <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                             <div class="buy">
-                                <div class="price f-s_16 f_l">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', 1)} $</span></div>
+                                <div class="price f-s_16 f_l">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub>
+                                    <span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', 1)} $</span>
+                                </div>
                                 <div class="{$style.class} buttons">
                                     <a class="{$style.identif}" data-varid="{echo $hotProduct->firstVariant->getId()}" data-prodid="{echo $hotProduct->getId()}" href="{shop_url('product/' . $hotProduct->getUrl())}">{$style.message}</a>
                                 </div>
