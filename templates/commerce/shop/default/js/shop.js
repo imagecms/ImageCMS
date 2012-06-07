@@ -113,8 +113,8 @@ $(document).ready(function(){
     
     $('#towishlist').on('click', function(){
         var logged_in = $(this).attr('logged_in');
-        $.fancybox.showActivity();
-        if (logged_in != 'true'){$('.loginAjax').trigger('click');}
+           if (logged_in != 'true'){
+           $('.loginAjax').trigger('click');}
     });
 
     /**
