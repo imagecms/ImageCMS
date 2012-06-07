@@ -6,7 +6,6 @@
 {$this->registerMeta('<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">')}
 <div class="content">
     <div class="center">
-        {if ShopCore::$ci->dx_auth->is_logged_in()===true}
         <h1>Список пожеланий</h1>
         {if !$items}
         <div class="comparison_slider">
@@ -76,9 +75,11 @@
             </tfoot>
             <input type="hidden" name="forCart" />
         </table>
-        {/if}
-        {else:}
-            <h1>Вам необходимо авторизироватся</h1>
+                            <form action="#" method="post">
+                                <input type="text" name="emailto"/>
+                                <input type="submit" value="Отправить WishList другу"/>
+                                {form_csrf()}
+                            </form>                    
         {/if}
     </div>
 </div>
