@@ -21,7 +21,7 @@
 	<div class="form_overflow"></div>
     
 	<div class="form_text">ID Google Analytics:</div>
-	<div class="form_input"><input type="text" name="$google_analytics_id" value="{$google_analytics_id}" class="textbox_long" /></div>
+	<div class="form_input"><input type="text" name="google_analytics_id" value="{$google_analytics_id}" class="textbox_long" /></div>
 	<div class="form_overflow"></div>
 
 	<div class="form_text">Тема Редактора:</div>
