@@ -91,17 +91,22 @@ $(document).ready(function(){
         var $this= $(this);
         var variantId = $(this).attr('data-varid');
         var productId = $(this).attr('data-prodid');
+        var logged_in = $(this).attr('logged_in');
         $.fancybox.showActivity();
-        $.ajax({
-            type: "POST",
-            data: 'productId = '+productId+'&variantId = '+variantId,
-            url: "/shop/wish_list/add",
-            success: function(){
-                $this.html('Уже в списке желаний').removeClass('js').removeClass('gray');
-                $("#wishListHolder").load('/shop/ajax/getWishListDataHtml').addClass('is_avail');
-                $.fancybox.hideActivity();
-            }
-        });
+        if (logged_in == 'true'){
+            $.ajax({
+                type: "POST",
+                data: 'productId = '+productId+'&variantId = '+variantId,
+                url: "/shop/wish_list/add",
+                success: function(){
+                    $this.html('Уже в списке желаний').removeClass('js').removeClass('gray');
+                    $("#wishListHolder").load('/shop/ajax/getWishListDataHtml').addClass('is_avail');
+                    $.fancybox.hideActivity();
+                }
+            });
+        }else{
+            $('.loginAjax').trigger('click');
+        }
         return false;
     //setTimeout(function() { $("#wishListNotify").css('display', 'none') }, 2000);
     });
