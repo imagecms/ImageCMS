@@ -110,7 +110,12 @@ $(document).ready(function(){
         return false;
     //setTimeout(function() { $("#wishListNotify").css('display', 'none') }, 2000);
     });
-
+    
+    $('#towishlist').on('click', function(){
+        var logged_in = $(this).attr('logged_in');
+        $.fancybox.showActivity();
+        if (logged_in != 'true'){$('.loginAjax').trigger('click');}
+    });
 
     /**
      * Add product for compare
