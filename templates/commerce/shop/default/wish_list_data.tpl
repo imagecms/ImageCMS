@@ -5,4 +5,4 @@
  # @var      $CS
 }
 
-<a href="{shop_url('wish_list')}">Список желаний</a> ({echo ShopCore::app()->SWishList->totalItems()})
+<a {if ShopCore::$ci->dx_auth->is_logged_in()===true}logged_in="true" href="{shop_url('wish_list')}"{else:}href="#"{/if} id="towishlist">Список желаний</a> ({echo ShopCore::app()->SWishList->totalItems()})
