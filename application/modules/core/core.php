@@ -69,6 +69,10 @@ class Core extends MY_Controller {
 		{
 			$data_type = 'bridge';
 		}
+        
+        /* Show Google Analytics code if some value inserted in admin panel */
+        if ($this->settings['google_analytics_id'])
+            ($hook = get_hook('render_google_analytics')) ? eval($hook) : NULL;
 
 		// DETECT LANGUAGE
 		if ($this->uri->total_segments() >= 1)
@@ -85,6 +89,8 @@ class Core extends MY_Controller {
 				$uri_lang = $this->uri->segment(1);
 
 				//$this->template->add_array($this->lang->load('main', $this->langs[$uri_lang]['folder'],TRUE));
+
+
 				$this->config->set_item('language', $this->langs[$uri_lang]['folder']);
 				$this->lang->load('main', $this->langs[$uri_lang]['folder']);
 
