@@ -21,9 +21,9 @@
         <script type="text/javascript" src="{$SHOP_THEME}/js/scripts.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/shop.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}js/jquery.validate.js"></script>
-
+        {$renderGA}
     </head>
-    <body>
+    <body>        
         <div class="main_body">
             <div class="top">
                 <div class="center">
