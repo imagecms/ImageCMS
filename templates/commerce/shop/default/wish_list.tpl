@@ -54,7 +54,15 @@
                             <span class="d_b">{echo $summary_nextc = $item.model->firstVariant->toCurrency('Price', 1) * 1} $</span></div>
                     </td>
                     <td>
-                        <a href="{shop_url('wish_list/delete/' . $key)}" class="delete_plus">&times;</a>
+                        {if $rkey}
+                            {if ShopCore::$ci->dx_auth->is_logged_in()===true&&$rkey==$profile.key}
+                                <a href="{shop_url('wish_list/delete/' . $key)}" class="delete_plus">&times;</a>
+                            {/if}
+                        {else:}
+                            {if ShopCore::$ci->dx_auth->is_logged_in()===true}
+                                <a href="{shop_url('wish_list/delete/' . $key)}" class="delete_plus">&times;</a>
+                            {/if}
+                        {/if}
                     </td>
                 </tr>
                 {$total     += $summary}
@@ -75,11 +83,22 @@
             </tfoot>
             <input type="hidden" name="forCart" />
         </table>
-                            <form action="#" method="post">
-                                <input type="text" name="emailto"/>
-                                <input type="submit" value="Отправить WishList другу"/>
+                    
+                           
+                            {if ShopCore::$ci->dx_auth->is_logged_in()===true}
+                              <h2>  {echo $err}</h2>
+                                <h2>{echo $success}</h2>
+                            <form action="{shop_url('wish_list')}" method="post">
+                                <input type="text" name="emailtofriend"/>
+                                <input type="hidden" name="wishkey" value="{$profile.key}"/>
+                                <input type="hidden" name="email" value="{$profile.email}"/>
+                                <input type="hidden" name="sname" value="{$profile.name}"/>
+                                <input type="submit" name="sendwish" value="Отправить WishList другу"/>
                                 {form_csrf()}
                             </form>                    
+                            {else:}
+                                Для того, чтобы отправить WishList другу, Вам необходимо авторизироватся
+                            {/if}
         {/if}
     </div>
 </div>
