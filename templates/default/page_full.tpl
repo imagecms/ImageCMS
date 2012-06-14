@@ -3,7 +3,7 @@
 </div>
 
 <div id="detail">
-    {$page.prev_text}
+    {$page.full_text}
 </div>
 
 <div class="comments">
