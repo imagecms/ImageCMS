@@ -12,10 +12,7 @@ $_SERVER['QUERY_STRING'] = '';
 require(realpath('../../../../system/cms_bridge.php'));
 
 $obj =& get_instance();
-if(!check_perm('tinybrowser_upload'))
-{
-    die('Нет доступа!');
-}
+
 $_SERVER = $ser;
 $query_string = $_SERVER['QUERY_STRING'];
 
