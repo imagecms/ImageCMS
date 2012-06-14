@@ -80,6 +80,7 @@
 				skin_variant : \"silver\",
 				plugins : \"safari,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,inlinepopups\",
 				".$theme."
+				extended_valid_elements : \"object[width|height|param|embed],param[name|value],embed[src|type|width|height],iframe[name|src|framespacing|border|frameborder|scrolling|title|height|width]\",
 				theme_advanced_toolbar_location : \"top\",
 				theme_advanced_toolbar_align : \"left\",
 				theme_advanced_statusbar_location : \"bottom\",
