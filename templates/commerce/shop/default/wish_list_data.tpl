@@ -4,5 +4,5 @@
  # @method   SStringHelper::Pluralize(ShopCore::app()->SWishList->totalItems(), array('товар','товара','товаров'))
  # @var      $CS
 }
-{$u = SUserProfileQuery::create()->filterByUserId(ShopCore::$ci->dx_auth->get_user_id())->findOne()}    
-<a {if ShopCore::$ci->dx_auth->is_logged_in()===true}logged_in="true" href="{shop_url('wish_list/')}"{else:}href="#"{/if} id="towishlist">Список желаний</a> ({echo ShopCore::app()->SWishList->totalItems($u)})
+<a {if ShopCore::$ci->dx_auth->is_logged_in()===true}logged_in="true" href="{shop_url('wish_list/')}"{else:}href="#"{/if} id="towishlist">Список желаний</a> ({echo ShopCore::app()->SWishList->totalItems()})
+
