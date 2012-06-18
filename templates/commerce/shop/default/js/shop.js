@@ -63,7 +63,7 @@ $(document).ready(function(){
             success: function(msg){
                 showResponse(msg);
                 bindLoginForm();
-                bindRegisterLink();                                
+                bindRegisterLink();
                 $.fancybox.hideActivity();
             }
         });
@@ -91,7 +91,7 @@ $(document).ready(function(){
         var $this= $(this);
         var variantId = $(this).attr('data-varid');
         var productId = $(this).attr('data-prodid');
-        var logged_in = $(this).attr('logged_in');
+        var logged_in = $(this).attr('data-logged_in');
         $.fancybox.showActivity();
         if (logged_in == 'true'){
             $.ajax({
@@ -100,6 +100,8 @@ $(document).ready(function(){
                 url: "/shop/wish_list/add",
                 success: function(){
                     $this.html('Уже в списке желаний').removeClass('js').removeClass('gray');
+                    $this.attr('href','/shop/wish_list');
+                    $this.unbind('click');
                     $("#wishListHolder").load('/shop/ajax/getWishListDataHtml').addClass('is_avail');
                     $.fancybox.hideActivity();
                 }
@@ -112,7 +114,7 @@ $(document).ready(function(){
     });
     
     $('#towishlist').on('click', function(){
-        var logged_in = $(this).attr('logged_in');
+        var logged_in = $(this).attr('data-logged_in');
            if (logged_in != 'true'){
            $('.loginAjax').trigger('click');}
     });
@@ -267,6 +269,7 @@ $(document).ready(function(){
             });
             return false;
         })
+        
     }
     function bindLoginForm(){
         $('.enter_form form').bind('submit',function(){
@@ -286,6 +289,8 @@ $(document).ready(function(){
                     if (typeof obj != 'undefined') {
                         if (obj != null) {
                             $('.auth_data').html(obj.header);
+                            $('.addToWList').bind('click');
+                            $('.addToWList').attr('data-logged_in', 'true');
                             $.fancybox.resize();
                         }
                     }                    

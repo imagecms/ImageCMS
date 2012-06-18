@@ -80,7 +80,7 @@
                                     {/if}
                                 </span>                       
                                 {if !is_in_wish($product->getId())}
-                                    <a logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" href="#" class="js gray addToWList">Сохранить в список желаний</a>
+                                    <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" href="#" class="js gray addToWList">Сохранить в список желаний</a>
                                 {else:}
                                     <a href="/shop/wish_list">Уже в списке желаний</a>
                                 {/if}
