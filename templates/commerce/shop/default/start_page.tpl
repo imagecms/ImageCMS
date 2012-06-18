@@ -2,29 +2,29 @@
 
     <!-- Show Brands in circle -->
     {$banners = getBanners()}
-	{if count($banners)}
+    {if count($banners)}
     <div class="cycle center">
         <ul>
             {foreach $banners as $banner}
-                <li>
-                    <a href="{echo $banner->getUrl()}">
-                        <img src="/uploads/shop/banners/{echo $banner->getImage()}" alt="{echo ShopCore::encode($banner->getName())}" />
-                    </a>
-                </li>
+            <li>
+                <a href="{echo $banner->getUrl()}">
+                    <img src="/uploads/shop/banners/{echo $banner->getImage()}" alt="{echo ShopCore::encode($banner->getName())}" />
+                </a>
+            </li>
             {/foreach}
         </ul>
         <span class="nav"></span>
         <button class="prev"></button>
         <button class="next"></button>
     </div>
-	{/if}
+    {/if}
     <!-- Show Brands in circle -->
 
 
-<!--                ТЕСТ ФЕНСІ-->
-<!--    <a href="{$SHOP_THEME}/images/temp/cycle_1.jpg" class="img" rel="group"><img src="{$SHOP_THEME}/images/temp/item_1.jpg" alt="Apple MacBook Pro A1286" /></a>-->
-<!--    <a href="{$SHOP_THEME}/images/temp/cycle_2.jpg" class="img" rel="group"><img src="{$SHOP_THEME}/images/temp/item_2.jpg" alt="Apple MacBook Pro A1286" /></a>-->
-<!--                ЕНД-->
+    <!--                ТЕСТ ФЕНСІ-->
+    <!--    <a href="{$SHOP_THEME}/images/temp/cycle_1.jpg" class="img" rel="group"><img src="{$SHOP_THEME}/images/temp/item_1.jpg" alt="Apple MacBook Pro A1286" /></a>-->
+    <!--    <a href="{$SHOP_THEME}/images/temp/cycle_2.jpg" class="img" rel="group"><img src="{$SHOP_THEME}/images/temp/item_2.jpg" alt="Apple MacBook Pro A1286" /></a>-->
+    <!--                ЕНД-->
 
     {$cart_data = ShopCore::app()->SCart->getData()}
     <div class="featured carusel_frame">
@@ -32,6 +32,7 @@
         <div class="carusel">
             <ul>
                 {foreach getPromoBlock('popular', 10) as $hotProduct}
+                {//var_dump($hotProduct)}
                 {$style = productInCart($cart_data, $hotProduct->getId(), $hotProduct->firstVariant->getId(), $hotProduct->firstVariant->getStock())}
                 <li {if $hotProduct->firstvariant->getstock()==0}class="not_avail"{/if}>
                     <div class="small_item">
@@ -42,9 +43,16 @@
                         </a>
                         <div class="info">
                             <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
+
+
+
                             <div class="buy">
-                                <div class="price f-s_16 f_l">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub>
-                                    <span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', 1)} $</span>
+                                <div class="price f-s_16 f_l">
+                                    {echo $hotProduct->firstVariant->toCurrency()}
+
+                                    <sub>{$CS}</sub>
+
+                                    <span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>
                                 </div>
                                 <div class="{$style.class} buttons">
                                     <a class="{$style.identif}" data-varid="{echo $hotProduct->firstVariant->getId()}" data-prodid="{echo $hotProduct->getId()}" href="{shop_url('product/' . $hotProduct->getUrl())}">{$style.message}</a>
@@ -63,7 +71,7 @@
         <div class="tabs f_l">
             <ul class="nav_tabs">
                 <li><a href="#first">Новинки</a></li>
-                <li><a href="#second">Акции</a></li>
+                <li><a href="#second">Акції</a></li>
             </ul>
             <div id="first">
                 <div class="horizontal-only scroll-box">
@@ -80,7 +88,8 @@
                                 <div class="info">
                                     <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                                     <div class="buy">
-                                        <div class="price f-s_16 f_l">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', 1)} $</span></div>
+
+                                        <div class="price f-s_16 f_l">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span></div>
                                         <div class="{$style.class} buttons"><a class="{$style.identif}" data-varid="{echo $hotProduct->firstVariant->getId()}" data-prodid="{echo $hotProduct->getId()}" href="{shop_url('product/' . $hotProduct->getUrl())}">{$style.message}</a></div>
                                     </div>
                                 </div>
@@ -89,7 +98,7 @@
                         {/foreach}
                     </ul>
                 </div>
-            </div>           
+            </div>
             <div id="second">
                 <div class="horizontal-only scroll-box">
                     <ul>
@@ -105,7 +114,10 @@
                                 <div class="info">
                                     <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                                     <div class="buy">
-                                        <div class="price f-s_16 f_l">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', 1)} $</span></div>
+                                        <div class="price f-s_16 f_l">{echo $hotProduct->firstVariant->toCurrency()}
+                                            <sub>{$CS}</sub>
+                                            <span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>
+                                        </div>
                                         <div class="{$style.class} buttons"><a class="{$style.identif}"  data-varid="{echo $hotProduct->firstVariant->getId()}" data-prodid="{echo $hotProduct->getId()}" href="{shop_url('product/' . $hotProduct->getUrl())}">{$style.message}</a></div>
                                     </div>
                                 </div>

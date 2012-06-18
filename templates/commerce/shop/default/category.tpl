@@ -67,7 +67,7 @@
                             </div>
                             <div class="f_l">
                                 <div class="buy">
-                                    <div class="price f-s_18 f_l">{echo $product->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $product->firstVariant->toCurrency('Price', 1)} $</span></div>
+                                    <div class="price f-s_18 f_l">{echo $product->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $product->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span></div>
                                     <div class="{$style.class} buttons"><a class="{$style.identif}" href="{$style.link}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" >{$style.message}</a></div>
                                 </div>
                             </div>
@@ -80,7 +80,7 @@
                                     {/if}
                                 </span>                       
                                 {if !is_in_wish($product->getId())}
-                                    <a logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" href="#" class="js gray addToWList">Сохранить в список желаний</a>
+                                    <a data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" href="#" class="js gray addToWList">Сохранить в список желаний</a>
                                 {else:}
                                     <a href="/shop/wish_list">Уже в списке желаний</a>
                                 {/if}
@@ -119,7 +119,7 @@
                         <div class="func_description">
                             <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                             <div class="buy">
-                                <div class="price f-s_14">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', 1)} $</span></div>
+                                <div class="price f-s_14">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span></div>
                             </div>
                         </div>
                     </li>
@@ -142,7 +142,7 @@
                         <div class="func_description">
                             <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                             <div class="buy">
-                                <div class="price f-s_14">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', 1)} $</span></div>
+                                <div class="price f-s_14">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span></div>
                             </div>
                         </div>
                     </li>
