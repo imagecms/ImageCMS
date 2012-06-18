@@ -150,7 +150,7 @@ class Polls extends MY_Controller {
         `id` INT( 11 ) NOT NULL AUTO_INCREMENT ,
         `name` VARCHAR( 255 ) NOT NULL ,
         PRIMARY KEY (  `id` )
-        ) ENGINE = MYISAM ;');
+        ) ENGINE = MYISAM DEFAULT CHARSET=utf8;');
 
         $this->db->query('
         CREATE TABLE  `cms_polls_answers` (
@@ -158,7 +158,7 @@ class Polls extends MY_Controller {
         `poll_id` INT( 11 ) NOT NULL ,
         `text` VARCHAR( 255 ) NOT NULL ,
         PRIMARY KEY (  `id` )
-        ) ENGINE = MYISAM ;');
+        ) ENGINE = MYISAM DEFAULT CHARSET=utf8;');
 
         $this->db->query('ALTER TABLE  `cms_polls_answers` ADD INDEX (  `poll_id` );');
 
@@ -171,7 +171,7 @@ class Polls extends MY_Controller {
         `ip` VARCHAR( 50 ) NOT NULL ,
         PRIMARY KEY (  `id` ) ,
         INDEX (  `poll_id` ,  `answer_id` )
-        ) ENGINE = MYISAM ;');
+        ) ENGINE = MYISAM DEFAULT CHARSET=utf8;');
 
         $this->db->query('ALTER TABLE  `cms_polls_answers` ADD  `position` INT( 5 ) NOT NULL ,
         ADD INDEX (  `position` )');
