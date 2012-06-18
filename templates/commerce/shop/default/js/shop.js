@@ -12,10 +12,10 @@ $(document).ready(function(){
      *      Where 'data-prodid' - product ID and 'data-varid' - variant ID
      */
     $("a.grouped_elements").fancybox({
-        showNavArrows: true, 
+        showNavArrows: true,
         cyclic: true
     });
-    
+
     $('.buy .goBuy').on('click',function(){
         $.fancybox.showActivity();
         var id_var  = $(this).attr('data-varid');
@@ -93,6 +93,7 @@ $(document).ready(function(){
         var productId = $(this).attr('data-prodid');
         var logged_in = $(this).attr('data-logged_in');
         $.fancybox.showActivity();
+        console.log($(this).attr('data-logged_in'));
         if (logged_in == 'true'){
             $.ajax({
                 type: "POST",
@@ -112,7 +113,7 @@ $(document).ready(function(){
         return false;
     //setTimeout(function() { $("#wishListNotify").css('display', 'none') }, 2000);
     });
-    
+
     $('#towishlist').on('click', function(){
         var logged_in = $(this).attr('data-logged_in');
            if (logged_in != 'true'){
@@ -198,6 +199,10 @@ $(document).ready(function(){
         });
         return false;
     });
+
+    $('.changeCurrency').on('change', function(){
+        $(this).parents('form').submit();
+    })
 
     $('.delete_text').live('click', function(){
         $.fancybox.showActivity();
@@ -293,7 +298,7 @@ $(document).ready(function(){
                             $('.addToWList').attr('data-logged_in', 'true');
                             $.fancybox.resize();
                         }
-                    }                    
+                    }
                     $('.reg_me').bind('click', bindRegisterForm());
                     $.fancybox.hideActivity();
                 }
@@ -342,7 +347,7 @@ $(document).ready(function(){
         })
     }
     function bindLoginLink(){
-        $('.auth_me').bind('click',function(){            
+        $('.auth_me').bind('click',function(){
             $this = $(this);
             $.ajax({
                 type: 'post',
@@ -373,7 +378,7 @@ $(document).ready(function(){
                 },
                 success: function(msg){
                     showResponse(msg);
-                    bindCallbackForm();                    
+                    bindCallbackForm();
                     $.fancybox.hideActivity();
                 }
             });

@@ -35,7 +35,7 @@
                         <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}</a>
                     </td>
                     <td>
-                        <div class="price f-s_16 f_l">{echo $item.model->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $item.model->firstVariant->toCurrency('Price', 1)} $</span></div>
+                        <div class="price f-s_16 f_l">{echo $item.model->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $item.model->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span></div>
                     </td>
                     <td>                        
                         <form action="{$style.link}" method="post">
@@ -51,7 +51,7 @@
                     </td>
                     <td>
                         <div class="price f-s_18 f_l">{echo $summary = $item.model->firstVariant->toCurrency() * 1} <sub>{$CS}</sub>
-                            <span class="d_b">{echo $summary_nextc = $item.model->firstVariant->toCurrency('Price', 1) * 1} $</span></div>
+                            <span class="d_b">{echo $summary_nextc = $item.model->firstVariant->toCurrency('Price', $NextCSId) * 1} {$NextCS}</span></div>
                     </td>
                     <td>
                         {if $rkey}

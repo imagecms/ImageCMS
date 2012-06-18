@@ -64,7 +64,7 @@
                         <a href="{shop_url('product/' . $product->getUrl())}">{echo ShopCore::encode($product->getName())}</a> {$item->getVariantName()}
                     </td>
                     <td>
-                        <div class="price f-s_16 f_l">{echo $item->toCurrency()}<sub> {$CS}</sub><span class="d_b">{echo $item->toCurrency('Price', 1)} $</span></div>
+                        <div class="price f-s_16 f_l">{echo $item->toCurrency()}<sub> {$CS}</sub><span class="d_b">{echo $item->toCurrency('Price', $NextCSId)} {$NextCS}</span></div>
                     </td>
                     <td>
                         <div class="count">
@@ -72,7 +72,7 @@
                         </div>
                     </td>
                     <td>
-                        <div class="price f-s_18 f_l">{echo $item->getQuantity() * $item->toCurrency()} <sub> {$CS}</sub><span class="d_b">859 $</span></div>
+                        <div class="price f-s_18 f_l">{echo $item->getQuantity() * $item->toCurrency()} <sub> {$CS}</sub><span class="d_b">{echo $item->toCurrency('Price', $NextCSId)} {$NextCS}</span></div>
                     </td>
                 </tr>
                 {/if}
@@ -83,12 +83,10 @@
                     <td colspan="6">
                         <div class="foot_cleaner">
                             <div class="f_r">
-                                <div class="price f-s_26 f_l">
+                                <div class="price f-s_26 f_l" style="margin-top: 25px;">
                                     {if $total >= $deliveryMethod->getFreeFrom()}
                                     {echo $total} {$CS}
-                                    {else:}{echo $total + $model->getDeliveryPrice()} {$CS}{/if}
-                                    <span class="d_b">
-                                        4454$</span></div>
+                                    {else:}{echo $total + $model->getDeliveryPrice()} {$CS}{/if}</div>
                             </div>
                             <div class="f_l" style="width: 775px;">
                                 <ul class="info_curr_buy f_l" >

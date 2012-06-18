@@ -21,6 +21,7 @@
         <script type="text/javascript" src="{$SHOP_THEME}/js/scripts.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/shop.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}js/jquery.validate.js"></script>
+        <script type="text/javascript" src="{$SHOP_THEME}js/autocomplete.js"></script>
 
     </head>
     <body>
@@ -35,9 +36,10 @@
             <div class="header center">
                 <a href="{shop_url('')}" class="logo"></a>
                 <div class="frame_form_search">
-                    <form action="{shop_url('search')}" method="get" class="clearfix">
-                        <input type="text" size="30" name="text" value="Поиск по сайту" onfocus="if(this.value=='Поиск по сайту') this.value='';" onblur="if(this.value=='') this.value='Поиск по сайту';" />
-                        <input type="submit" class="submit"  value="Найти" />                        
+                    <form name="search" class="clearfix" action="{shop_url('search')}" method="get" id="autocomlete">
+                        <input type="text" name="text" value="Поиск по сайту"  onfocus="if(this.value=='Поиск по сайту') this.value='';" onblur="if(this.value=='') this.value='Поиск по сайту';"  id="inputString" autocomplete="off" onkeyup="lookup(event);" class="place_hold"/>
+                        <input type="submit" id="search_submit"  value="Найти" class="icon"/>
+                        <span id="suggestions"style="display: none; width: 0px; right: 0px;"></span>
                     </form>
                 </div>
                 <div class="phone">
@@ -46,7 +48,17 @@
                 </div>
                 <ul class="user_menu">
                     <!--    Show callback's form    -->
-                    <li><a href="#" class="js">Онлайн консультация</a></li>
+                    <li class="p-l_0">
+                        <form action="" method="post" name="currencyChangeForm" id="currencyChangeForm">
+                        Валюта: <select class="changeCurrency" name="setCurrency" >
+                            {foreach get_currencies() as $currency}
+                                <option {if ShopCore::app()->SCurrencyHelper->current->getId() == $currency->getId()}selected{/if} value="{echo $currency->getId()}">{echo encode($currency->getName())}</option>
+                            {/foreach}                            
+                            </select>
+                            {form_csrf()}
+                        </form>
+                    </li>
+                    
                     <!--    Show callback's form    -->
 
                     <!--    Wish list item's for Header    -->
@@ -85,7 +97,7 @@
                     </div>
                     <button class="prev"></button>
                     <button class="next"></button>
-                </div>                
+                </div>
                 {load_menu('footer_menu')}
                 <ul class="contacts f_l">
                     <li>
