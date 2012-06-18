@@ -12,13 +12,12 @@
 
 <div class="content">
     <div class="center">
-      
         <div class="catalog_content">
             <div class="catalog_frame">
                 <div class="box_title clearfix">
                     <div class="f-s_24 f_l">{echo ShopCore::encode($model->getName())} <span class="count_search">({$totalProducts})</span></div>
                     <div class="f_r">
-                     {echo $model->getDescription()}  
+                     {echo $model->getDescription()}
                     </div>
                 </div>
                  <ul>
@@ -35,42 +34,42 @@
                             <a href="{shop_url('product/' . $product->getUrl())}" class="title">{echo ShopCore::encode($product->name)}</a>
                             <div class="f-s_0">
                                 <!--    Show Product Number -->
-                                    {if $product->firstVariant->getNumber()}<span class="code">Код {echo ShopCore::encode($product->firstVariant->getNumber())}</span>{/if}
+                                    {if $product->firstVariant->getNumber()}<span class="code">РљРѕРґ {echo ShopCore::encode($product->firstVariant->getNumber())}</span>{/if}
                                 <!--    Show Product Number -->
 
                                 <!--<div class="di_b star"><img src="{$SHOP_THEME}images/temp/STAR.png"></div>-->
 
                                 <!--    Show Comments count -->
                                     <a href="{shop_url('product/'.$product->getId().'?cmn=on')}"  class="response">
-                                        {echo $product->totalComments()} {echo SStringHelper::Pluralize($product->totalComments(), array('отзыв', 'отзывы', 'отзывов'))}</a>
+                                        {echo $product->totalComments()} {echo SStringHelper::Pluralize($product->totalComments(), array('РѕС‚Р·С‹РІ', 'РѕС‚Р·С‹РІС‹', 'РѕС‚Р·С‹РІРѕРІ'))}</a>
                                 <!--    Show Comments count -->
 
                             </div>
                             <div class="f_l">
                                 <div class="buy">
-                                    <div class="price f-s_18 f_l">{echo $product->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $product->firstVariant->toCurrency('Price', 1)} $</span></div>
+                                    <div class="price f-s_18 f_l">{echo $product->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $product->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span></div>
                                     <div class="{$style.class} buttons"><a class="{$style.identif}" href="{$style.link}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" >{$style.message}</a></div>
                                 </div>
                             </div>
                             <div class="f_r t-a_r">
                                 <span class="ajax_refer_marg">
                                     {if $forCompareProducts && in_array($product->getId(), $forCompareProducts)}
-                                        <a href="{shop_url('compare')}" class="">Сравнить</a>
+                                        <a href="{shop_url('compare')}" class="">РЎСЂР°РІРЅРёС‚СЊ</a>
                                     {else:}
-                                        <a href="{shop_url('compare/add/'. $product->getId())}" data-prodid="{echo $product->getId()}" class="js gray toCompare">Добавить к сравнению</a>
+                                        <a href="{shop_url('compare/add/'. $product->getId())}" data-prodid="{echo $product->getId()}" class="js gray toCompare">Р”РѕР±Р°РІРёС‚СЊ Рє СЃСЂР°РІРЅРµРЅРёСЋ</a>
                                     {/if}
-                                </span>                       
+                                </span>
                                 {if !is_in_wish($product->getId())}
-                                    <a data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" href="#" class="js gray addToWList">Сохранить в список желаний</a>
+                                    <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" href="#" class="js gray addToWList">РЎРѕС…СЂР°РЅРёС‚СЊ РІ СЃРїРёСЃРѕРє Р¶РµР»Р°РЅРёР№</a>
                                 {else:}
-                                    <a href="/shop/wish_list">Уже в списке желаний</a>
+                                    <a href="/shop/wish_list">РЈР¶Рµ РІ СЃРїРёСЃРєРµ Р¶РµР»Р°РЅРёР№</a>
                                 {/if}
                             </div>
                         </div>
                         {if $product->countProperties() > 0}
                         <p class="c_b">
                             {echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInline($product)}
-                            <a href="{shop_url('product/' . $product->getUrl())}" class="t-d_n"><span class="t-d_u">Подробнее</span> ></a>
+                            <a href="{shop_url('product/' . $product->getUrl())}" class="t-d_n"><span class="t-d_u">РџРѕРґСЂРѕР±РЅРµРµ</span> ></a>
                         </p>
                         {/if}
                     </li>
@@ -87,7 +86,7 @@
             <div class="nowelty_auction">
                 <!--   New products block     -->
                 <div class="box_title">
-                    <span>Новинки</span>
+                    <span>РќРѕРІРёРЅРєРё</span>
                 </div>
                 <ul>
                     {foreach getPromoBlock('hot', 3) as $hotProduct}
@@ -100,7 +99,7 @@
                         <div class="func_description">
                             <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                             <div class="buy">
-                                <div class="price f-s_14">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', 1)} $</span></div>
+                                <div class="price f-s_14">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span></div>
                             </div>
                         </div>
                     </li>
@@ -110,7 +109,7 @@
 
                 <!--   Promo products block     -->
                 <div class="box_title">
-                    <span>Акции</span>
+                    <span>РђРєС†РёРё</span>
                 </div>
                 <ul>
                     {foreach getPromoBlock('action', 3) as $hotProduct}
@@ -123,7 +122,7 @@
                         <div class="func_description">
                             <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                             <div class="buy">
-                                <div class="price f-s_14">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', 1)} $</span></div>
+                                <div class="price f-s_14">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span></div>
                             </div>
                         </div>
                     </li>
