@@ -59,9 +59,11 @@ img[align=left]{margin-right:18px;float: left;}
 .c_9{color: #999;}
 .m-l_10{margin-left: 10px;}
 .m-l_19{margin-left: 19px;}
+.m-t_30{margin-top: 30px!important;}
 .m-t_29{margin-top: 29px;}
 .m-b_29{margin-bottom: 29px;}
 .p-t_19{padding-top: 19px;}
+.p-l_0{padding-left: 0!important;}
 .di_b{display: inline-block;}
 .d_b{display: block;}
 .d_n{display: none;}
@@ -148,11 +150,11 @@ img[align=left]{margin-right:18px;float: left;}
 .header .phone address span{color: #333333; font-size: 16px;}
 .header .user_menu{float: right; margin-top: 5px;}
 .header .user_menu li{padding-left: 18px; margin-top: 6px;background-repeat: no-repeat;}
-.header .user_menu li:first-child{padding-left: 0;}
 .like{background: url('../images/icon_like.gif') 0 3px;}
 .like.is_avail{background-position: 0 -18px;}
 .compare{background: url('../images/icon_compare.gif') 0 3px;}
 .compare.is_avail{background-position: 0 -15px}
+#currencyChangeForm{background-color: transparent; border: none;}
 
 /*---catalog menu lvl 1---*/
 .main_menu > ul{-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;background-position: 0 -32px;border: 1px solid #dbdbdb;-moz-box-shadow: 0 1px 1px 0 #e6e6e6;-webkit-box-shadow: 0 1px 1px 0 #e6e6e6;box-shadow: 0 1px 1px 0 #e6e6e6;position: relative;}
