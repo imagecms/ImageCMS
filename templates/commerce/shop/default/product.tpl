@@ -272,33 +272,32 @@
 <!------------------------------------------------------------------------------------------------------------Finish-->
 
     {if count(getSimilarProduct($model, 20))>0}
+        <div class="featured carusel_frame">
         <div class="f-s_18 c_6 center">Похожие товары</div>
-        <div class="promotion carusel_frame">
             <div class="carusel">
                 <ul>
-                    <li>
                         {$simprod = getSimilarProduct($model, 20)}
                         {foreach $simprod as $sp}
                             {$style = productInCart($cart_data, $sp->getId(), $sp->firstVariant->getId(), $sp->firstVariant->getStock())}
-                            <div class="f_l smallest_item {if $sp->firstvariant->getstock()==0}not_avail{/if}">
-                                <div class="photo_block">
-                                    <a href="/shop/product/{echo $sp->getId()}">
-                                        <img src="{productImageUrl($sp->getSmallModImage())}"/>
-                                    </a>
-                                </div>
-                                <div class="func_description">
-                                    <a href="/shop/product/{echo $sp->getId()}" class="title">{echo ShopCore::encode($sp->getName())}</a>
-                                    <div class="buy">
-                                        <div class="price f-s_14">{echo $sp->firstVariant->toCurrency()}<sub> {$CS}</sub><span>{echo $sp->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span> </div>                                                                             
-                                        <div class="{$style.class} buttons">                                            
-                                            <a class="{$style.identif}" href="{$style.link}" data-varid="{echo $sp->firstVariant->getId()}"  data-prodid="{echo $sp->getId()}" >{$style.message}</a>
+                            <li>
+                                <div class="f_l smallest_item {if $sp->firstvariant->getstock()==0}not_avail{/if}">
+                                    <div class="photo_block">
+                                        <a href="{site_url('shop/product/'.$sp->getId())}">
+                                            <img src="{productImageUrl($sp->getSmallModImage())}"/>
+                                        </a>
+                                    </div>
+                                    <div class="func_description">
+                                        <a href="{site_url('shop/product/'.$sp->getId())}" class="title">{echo ShopCore::encode($sp->getName())}</a>
+                                        <div class="buy">
+                                            <div class="price f-s_14">{echo $sp->firstVariant->toCurrency()}<sub> {$CS}</sub><span>{echo $sp->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span> </div>                                                                             
+                                            <div class="{$style.class} buttons">                                            
+                                                <a class="{$style.identif}" href="{$style.link}" data-varid="{echo $sp->firstVariant->getId()}"  data-prodid="{echo $sp->getId()}" >{$style.message}</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </li>
                         {/foreach}
-                    </li>
-
                 </ul>
             </div>
             <button class="prev"></button>
