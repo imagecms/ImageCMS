@@ -59,7 +59,7 @@
                     </td>
                 </tr>
             </tfoot>
-            <input type="hidden" name="forCart" />            
+            <input type="hidden" name="forCart" value ="1"/>
         </table>
         <div class="f_l method_deliver_buy">
             <div class="block_title_18"><span class="title_18">Выберите способ доставки</span></div>
