@@ -190,7 +190,7 @@ $(document).ready(function(){
             success: function(msg){
                 $('.cart_data_holder').load('/shop/ajax/getCartDataHtml');
                 if($this.hasClass('inCartProducts'))
-                    $('.forCartProducts').html(msg);
+                    $('.forCartProducts').html(msg);                        
                 else
                     showResponse(msg);
                 $form.find('input[name=makeOrder]').val(1);
