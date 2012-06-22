@@ -3,7 +3,6 @@
 /captcha
 /uploads
 gitpush
-db.sql
 application/config/config.php
 application/config/database.php
 application/modules/shop/
