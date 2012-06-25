@@ -42,6 +42,7 @@
                 </div>
                 <ul>
                     <!--  Render produts list   -->
+                    {echo $order_method}
                     {foreach $products as $product}
                     {$style = productInCart($cart_data, $product->getId(), $product->firstVariant->getId(), $product->firstVariant->getStock())}
                     <li {if $product->firstvariant->getstock()== 0}class="not_avail"{/if}>
