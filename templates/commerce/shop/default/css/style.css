@@ -173,6 +173,10 @@ img[align=left]{margin-right:18px;float: left;}
 .main_menu ul ul a{line-height: 20px; color: #3a88cc; font-size: 12px;float: left;clear: left;white-space: nowrap;text-decoration: none;line-height: 20px;}
 .main_menu .title{color: #666;font-size: 18px;line-height: 15px;position: relative;top: -1px;margin-bottom: 6px;}
 
+/*.main_menu ul ul a{line-height: 20px; color: #3a88cc; font-size: 12px;float: left;clear: left;white-space: nowrap;text-decoration: none;line-height: 20px;}
+.main_menu .title a, .main_menu .title{color: #666;font-size: 18px;line-height: 15px;position: relative;top: -1px;margin-bottom: 6px;}
+.main_menu .title a{text-decoration: underline;}*/
+
 
 /*---catalog menu general---*/
 .main_menu{margin-bottom: 30px;position: relative;z-index: 2;}
