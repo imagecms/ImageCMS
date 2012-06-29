@@ -31,8 +31,8 @@ class CI_Image_lib {
 	var $dynamic_output		= FALSE;	// Whether to send to browser or write to disk
 	var $source_image		= '';
 	var $new_image			= '';
-	var $width				= '';
-	var $height				= '';
+	var $width			= '';
+	var $height			= '';
 	var $quality			= '90';
 	var $create_thumb		= FALSE;
 	var $thumb_marker		= '_thumb';
@@ -40,7 +40,7 @@ class CI_Image_lib {
 	var $master_dim			= 'auto';	// auto, height, or width.  Determines what to use as the master dimension
 	var $rotation_angle		= '';
 	var $x_axis				= '';
-	var	$y_axis				= '';
+	var $y_axis				= '';
 
 	// Watermark Vars
 	var $wm_text			= '';			// Watermark text if graphic is not used
