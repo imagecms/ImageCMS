@@ -45,17 +45,17 @@ class Core extends MY_Controller {
 			$this->cache->store('main_site_settings', $this->settings);
 		}
 
-		($hook = get_hook('core_settings_loaded')) ? eval($hook) : NULL;
+		($hook = get_hook('core_settings_loaded')) ? eval($hook) : NULL;  
+                
 
-		// Show offline message
-		if ($this->settings['site_offline'] == 'yes')
-		{
-			($hook = get_hook('core_goes_offline')) ? eval($hook) : NULL;
-
-			show_error('Site is offline.');
-		}
-
-		// Set site main template
+                
+                
+                
+                
+                
+                
+                
+                // Set site main template
 		$this->config->set_item('template', $this->settings['site_template']);
 
 		// Load Template library
@@ -69,6 +69,33 @@ class Core extends MY_Controller {
 		{
 			$data_type = 'bridge';
 		}
+                
+                
+                
+                
+		if ($this->settings['site_offline'] == 'yes')
+		{
+                    if($this->session->userdata('DX_role_id') != 2){
+                        
+		    ($hook = get_hook('core_goes_offline')) ? eval($hook) : NULL;
+                    header('HTTP/1.1 503 Service Unavailable');
+                    $this->template->display('offline');    
+                    exit;
+                    //$this->display_tpl('offline');
+                    //show_error('Сайт на реконструкции.');
+                    //$this->template->show('offline');
+                    }
+                    
+                    
+                    
+			//show_error('Site is offline.');
+		}
+                
+                
+                
+                
+
+
         
         /* Show Google Analytics code if some value inserted in admin panel */
         if ($this->settings['google_analytics_id'])
