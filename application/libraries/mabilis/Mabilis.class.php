@@ -26,7 +26,8 @@ class Mabilis {
     {
         // Delete double .tpl.tpl
         $file = preg_replace('/.tpl.tpl/', '.tpl', $file);
-
+        
+        
         if (preg_match('/file:/', $file, $_Matches))
         {
             $file_dir = preg_replace('/\/\//','/', $file);
@@ -34,11 +35,12 @@ class Mabilis {
         }else{
             $file_dir = $this->config->tpl_path . $file; 
         }
-
-        if (preg_match('/application\/modules/', $file_dir, $mm))
+        $all_tpl_path = $this->config->tpl_path.'shop/default/';
+        //if (preg_match('/application\/modules/', $file_dir, $mm))
+        if(strpos($file_dir, 'application\modules'))
         {
-            $newFile = explode('application/modules', $file_dir);
-            $new_file_dir = $this->config->tpl_path. 'modules' . $newFile[1];
+            $newFile = explode('application\modules', $file_dir);
+            $new_file_dir = $all_tpl_path. 'modules' . $newFile[1];
 
             if (file_exists($new_file_dir))
             {
