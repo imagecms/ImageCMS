@@ -28,13 +28,13 @@ class User_Temp extends CI_Model
 	function get_user_by_username($username)
 	{
 		$this->db->where('username', $username);
-		return $this->db->get($this->_user_table);
+		return $this->db->get($this->_table);
 	}
 	
 	function get_user_by_email($email)
 	{
 		$this->db->where('email', $email);
-		return $this->db->get($this->_user_table);
+		return $this->db->get($this->_table);
 	}
 
 	function get_login($login)
