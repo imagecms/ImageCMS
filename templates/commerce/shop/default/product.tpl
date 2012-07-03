@@ -17,6 +17,11 @@
 <script src="{$SHOP_THEME}js/rating/jquery.rating-min.js"></script>
 <script src="{$SHOP_THEME}js/rating/jquery.MetaData-min.js"></script>
 <script src="{$SHOP_THEME}js/product.js"></script>
+<script type="text/javascript" src="http://userapi.com/js/api/openapi.js?49"></script>
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+  {parsetags: 'explicit'}
+</script>
+<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"> </script> 
 
 
 <!-- BEGIN LIGHTBOX -->
@@ -26,6 +31,7 @@
 
 
 <div class="content">    
+    
     <div class="center">
         <div class="tovar_frame clearfix{if $model->firstvariant->getstock()== 0} not_avail{/if}">
             <div class="thumb_frame f_l">
@@ -60,11 +66,13 @@
                         <input class="hover-star" type="radio" name="rating-1" value="5" {if $rating==5}checked="checked"{/if}/>
                     </div>
                     <a href="#" class="response">{echo $model->totalComments()} {echo SStringHelper::Pluralize($model->totalComments(), array('отзыв', 'отзывы', 'отзывов'))}</a>
-                    <div class="social_small di_b">
-                        <a href="#" class="facebook"></a>
-                        <a href="#" class="vkontakte"></a>
-                        <a href="#" class="twitter"></a>
-                        <a href="#" class="mail"></a>
+                    <div class="social_small di_b">                      
+                        <a href="http://www.facebook.com/sharer.php?u={shop_url('product/'.$model->getId())}"  target="_balnk" class="facebook" title="Facebook"> 
+                        <a href="http://vkontakte.ru/share.php?url={shop_url('product/'.$model->getId())}" target="_blank" class="vkontakte" title="Vkontakte"></a>
+                        <a href="https://twitter.com/share" target="_balnk" class="twitter" title="Twitter" data-lang="en"></a>
+                        <a href="https://plus.google.com/share?url={shop_url('product/'.$model->getId())}" target="_blank" class="mail" title="Google plus" onclick="javascript:window.open(this.href,
+  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"></a>
+
                     </div>
                 </div>
                 <div class="buy clearfix">
@@ -110,7 +118,30 @@
                 </div>
                 <p class="c_b">{echo $model->getShortDescription()}</p>
                 <p>{echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInline($model)}</p>
-                <div><img src="{$SHOP_THEME}images/temp/SOCIAL_like.png"/></div>
+                <div>
+                   
+<iframe src="//www.facebook.com/plugins/like.php?href={shop_url('product/'.$model->getId())}&amp;send=false&amp;layout=button_count&amp;width=290&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:150px; height:21px;" allowTransparency="true"></iframe>
+
+<div class="g-plusone" data-size="medium" data-href="http://imagecmsdev.loc"></div>
+
+
+<script type="text/javascript">gapi.plusone.go();</script>
+{literal}
+<script type="text/javascript">
+  VK.init({apiId: 3020609, onlyWidgets: true});
+</script>
+
+<div id="vk_like" style="float:left;"></div>
+<script type="text/javascript">
+VK.Widgets.Like("vk_like", {type: "button",height: 20});
+</script>
+<div class="fb-like" data-href="http://imagecmsdev.loc" data-send="true" data-width="290" data-show-faces="true" data-font="arial"></div>
+<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" 
+        type="text/javascript">
+</script>
+{/literal}
+
+                </div>
             </div>
         </div>
         <ul class="info_buy">
