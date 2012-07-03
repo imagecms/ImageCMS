@@ -61,18 +61,18 @@ class Dashboard extends MY_Controller{
                 ));
 
         // If we are online - load system news.
-        $s_ip = substr($_SERVER['SERVER_ADDR'], 0, strrpos($_SERVER['SERVER_ADDR'], '.'));
-
-        switch ($s_ip)
-        {
-            case '127.0.0':
-            case '127.0.1':
-            case '10.0.0':
-            case '172.16.0':
-            case '192.168.0':
-                $on_local = TRUE;               
-            break;
-        }
+//        $s_ip = substr($_SERVER['SERVER_ADDR'], 0, strrpos($_SERVER['SERVER_ADDR'], '.'));
+//
+//        switch ($s_ip)
+//        {
+//            case '127.0.0':
+//            case '127.0.1':
+//            case '10.0.0':
+//            case '172.16.0':
+//            case '192.168.0':
+//                $on_local = TRUE;  
+//            break;
+//        }
  
         if (($api_news = $this->cache->fetch('api_news_cache')) !== FALSE)
         {
@@ -97,7 +97,7 @@ class Dashboard extends MY_Controller{
                 }
             }
         }
-
+        
         // Get system upgrade info
         $this->load->module('admin/sys_upgrade');
 
