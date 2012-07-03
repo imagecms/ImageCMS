@@ -72,7 +72,7 @@ $config['DX_email_account_details'] = FALSE;
 $config['DX_login_max_length'] = 20;
 $config['DX_login_min_length'] = 5;
 $config['DX_login_using_username'] = TRUE;
-$config['DX_login_using_email'] = FALSE;
+$config['DX_login_using_email'] = TRUE;
 $config['DX_login_record_ip'] = TRUE;
 $config['DX_login_record_time'] = TRUE;
 
