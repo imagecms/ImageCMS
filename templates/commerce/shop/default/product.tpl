@@ -19,7 +19,7 @@
 <script src="{$SHOP_THEME}js/product.js"></script>
 <script type="text/javascript" src="http://userapi.com/js/api/openapi.js?49"></script>
 <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
-  {parsetags: 'explicit'}
+    {parsetags: 'explicit'}
 </script>
 <script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"> </script> 
 
@@ -31,7 +31,7 @@
 
 
 <div class="content">    
-    
+
     <div class="center">
         <div class="tovar_frame clearfix{if $model->firstvariant->getstock()== 0} not_avail{/if}">
             <div class="thumb_frame f_l">
@@ -57,21 +57,39 @@
                 <h1>{echo ShopCore::encode($model->getName())}</h1>
                 <div class="f-s_0">
                     <span class="code">Код: {echo $model->firstvariant->getNumber()}</span>
-                    <div class="di_b star">
-                        {$rating = $model->getRating()}
-                        <input class="hover-star" type="radio" name="rating-1" value="1" {if $rating==1}checked="checked"{/if}/>
-                        <input class="hover-star" type="radio" name="rating-1" value="2" {if $rating==2}checked="checked"{/if}/>
-                        <input class="hover-star" type="radio" name="rating-1" value="3" {if $rating==3}checked="checked"{/if}/>
-                        <input class="hover-star" type="radio" name="rating-1" value="4" {if $rating==4}checked="checked"{/if}/>
-                        <input class="hover-star" type="radio" name="rating-1" value="5" {if $rating==5}checked="checked"{/if}/>
+                    {$rating = $model->getRating()}
+                    {if $rating == 0}{$r = "nostar"}    {/if}
+                    {if $rating == 1}{$r = "onestar"}   {/if}
+                    {if $rating == 2}{$r = "twostar"}   {/if}
+                    {if $rating == 3}{$r = "threestar"} {/if}
+                    {if $rating == 4}{$r = "fourstar"}  {/if}
+                    {if $rating == 5}{$r = "fivestar"}  {/if}
+                    <div class="star_rating">
+                        <div id="{echo $model->getId()}_star_rating" class="rating {echo $r} star_rait" data-id="{echo $model->getId()}">
+                            <div id="1" class="rate one">
+                                <span title="1" class="clickrate">1</a>
+                            </div>
+                            <div id="2" class="rate two">
+                                <span title="2" class="clickrate">2</a>
+                            </div>
+                            <div id="3" class="rate three">
+                                <span title="3" class="clickrate">3</a>
+                            </div>
+                            <div id="4" class="rate four">
+                                <span title="4" class="clickrate">4</a>
+                            </div>
+                            <div id="5" class="rate five">
+                                <span title="5" class="clickrate">5</a>
+                            </div>
+                        </div>
                     </div>
                     <a href="#" class="response">{echo $model->totalComments()} {echo SStringHelper::Pluralize($model->totalComments(), array('отзыв', 'отзывы', 'отзывов'))}</a>
                     <div class="social_small di_b">                      
                         <a href="http://www.facebook.com/sharer.php?u={shop_url('product/'.$model->getId())}"  target="_balnk" class="facebook" title="Facebook"> 
-                        <a href="http://vkontakte.ru/share.php?url={shop_url('product/'.$model->getId())}" target="_blank" class="vkontakte" title="Vkontakte"></a>
-                        <a href="https://twitter.com/share" target="_balnk" class="twitter" title="Twitter" data-lang="en"></a>
-                        <a href="https://plus.google.com/share?url={shop_url('product/'.$model->getId())}" target="_blank" class="mail" title="Google plus" onclick="javascript:window.open(this.href,
-  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"></a>
+                            <a href="http://vkontakte.ru/share.php?url={shop_url('product/'.$model->getId())}" target="_blank" class="vkontakte" title="Vkontakte"></a>
+                            <a href="https://twitter.com/share" target="_balnk" class="twitter" title="Twitter" data-lang="en"></a>
+                            <a href="https://plus.google.com/share?url={shop_url('product/'.$model->getId())}" target="_blank" class="mail" title="Google plus" onclick="javascript:window.open(this.href,
+                                '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"></a>
 
                     </div>
                 </div>
@@ -110,7 +128,7 @@
                         </span>
                         <span>
                             {if !is_in_wish($model->getId())}
-                            <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" data-varid="{echo $model->firstVariant->getId()}" data-prodid="{echo $model->getId()}" href="#" class="js gray addToWList">Сохранить в список желаний</a>
+                                <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" data-varid="{echo $model->firstVariant->getId()}" data-prodid="{echo $model->getId()}" href="#" class="js gray addToWList">Сохранить в список желаний</a>
                             {else:}
                                 <a href="/shop/wish_list">Уже в списке желаний</a>
                             {/if}</span>
@@ -119,27 +137,27 @@
                 <p class="c_b">{echo $model->getShortDescription()}</p>
                 <p>{echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInline($model)}</p>
                 <div>
-                   
-<iframe src="//www.facebook.com/plugins/like.php?href={shop_url('product/'.$model->getId())}&amp;send=false&amp;layout=button_count&amp;width=290&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:150px; height:21px;" allowTransparency="true"></iframe>
 
-<div class="g-plusone" data-size="medium" data-href="http://imagecmsdev.loc"></div>
+                    <iframe src="//www.facebook.com/plugins/like.php?href={shop_url('product/'.$model->getId())}&amp;send=false&amp;layout=button_count&amp;width=290&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:150px; height:21px;" allowTransparency="true"></iframe>
+
+                    <div class="g-plusone" data-size="medium" data-href="http://imagecmsdev.loc"></div>
 
 
-<script type="text/javascript">gapi.plusone.go();</script>
-{literal}
-<script type="text/javascript">
-  VK.init({apiId: 3020609, onlyWidgets: true});
-</script>
+                    <script type="text/javascript">gapi.plusone.go();</script>
+                    {literal}
+                        <script type="text/javascript">
+                          VK.init({apiId: 3020609, onlyWidgets: true});
+                        </script>
 
-<div id="vk_like" style="float:left;"></div>
-<script type="text/javascript">
-VK.Widgets.Like("vk_like", {type: "button",height: 20});
-</script>
-<div class="fb-like" data-href="http://imagecmsdev.loc" data-send="true" data-width="290" data-show-faces="true" data-font="arial"></div>
-<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" 
-        type="text/javascript">
-</script>
-{/literal}
+                        <div id="vk_like" style="float:left;"></div>
+                        <script type="text/javascript">
+                        VK.Widgets.Like("vk_like", {type: "button",height: 20});
+                        </script>
+                        <div class="fb-like" data-href="http://imagecmsdev.loc" data-send="true" data-width="290" data-show-faces="true" data-font="arial"></div>
+                        <script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" 
+                                type="text/javascript">
+                        </script>
+                    {/literal}
 
                 </div>
             </div>
@@ -177,7 +195,7 @@ VK.Widgets.Like("vk_like", {type: "button",height: 20});
 
 
 
-<!-----------------------------------------------------------------------Акционное предложение начало-->
+    <!-----------------------------------------------------------------------Акционное предложение начало-->
 
     {if $model->getKits()->count() > 0}
         {echo '<pre>';}
@@ -198,14 +216,14 @@ VK.Widgets.Like("vk_like", {type: "button",height: 20});
                 <ul>
                     <li>
                         {$count = count($kits[0]->getShopKitProducts())}
-                       
-                            {$kitt = $kits[0]->getShopKitProducts();}
-                            {foreach $kitt as $tr}
+
+                        {$kitt = $kits[0]->getShopKitProducts();}
+                        {foreach $kitt as $tr}
                             {echo '<pre>';}
                             {echo $tr}
                             {echo '</pre>';}
-                            {/foreach}
-                        
+                        {/foreach}
+
 
                         <div class="f_l smallest_item">
                             <div class="photo_block">
@@ -240,12 +258,12 @@ VK.Widgets.Like("vk_like", {type: "button",height: 20});
                                             <img src="/uploads/shop/{echo $ap->getId()}_small.jpg" />
                                         </a>
                                     </div>
-                                        
+
                                     <div class="func_description">
                                         <a href="{'/shop/product/'.$ap->getId()}">{echo ShopCore::encode($ap->getName())}</a>
-                                        
+
                                         <div class="buy">
-                                           
+
                                             {$kitFirstVariant = $ap->getKitFirstVariant($shopKitProduct)}
                                             {if $shopKitProduct->getDiscount()}
 
@@ -266,13 +284,13 @@ VK.Widgets.Like("vk_like", {type: "button",height: 20});
                                 {$sum2_1 += $s2_1}
                                 {$sum2_2 += $s2_2}
                                 {$i++}
-                                
+
                                 {if $i == $count}        
                                     <div class="plus_eval">=</div>
                                     <div class="button_block">
                                         <div class="buy">
                                             {if $dis}
-                                               
+
                                                 <del class="price f-s_12 price-c_9">{$sum1_1}<sub> {$CS}</sub><span>{echo $sum1_2} {$NextCS}</span></del>
 
                                             {/if}
@@ -281,10 +299,10 @@ VK.Widgets.Like("vk_like", {type: "button",height: 20});
                                         <div class="buttons button_gs">
                                             <div class="buy">
 
-                                       {foreach $kits as $kit}
-                                     
-                                       <a class="goBuy" kitId="{echo $kit->id}" instance="ShopKit" data-varid="86" data-prodid="{echo $kit->productId}" href="">Купить</a>
-                            {/foreach}
+                                                {foreach $kits as $kit}
+
+                                                    <a class="goBuy" kitId="{echo $kit->id}" instance="ShopKit" data-varid="86" data-prodid="{echo $kit->productId}" href="">Купить</a>
+                                                {/foreach}
                                             </div>
                                         </div>
                                     </div>
@@ -300,35 +318,35 @@ VK.Widgets.Like("vk_like", {type: "button",height: 20});
             <button class="next"></button>
         </div> 
     {/if}
-<!------------------------------------------------------------------------------------------------------------Finish-->
+    <!------------------------------------------------------------------------------------------------------------Finish-->
 
     {if count(getSimilarProduct($model, 20))>0}
         <div class="featured carusel_frame">
-        <div class="f-s_18 c_6 center">Похожие товары</div>
+            <div class="f-s_18 c_6 center">Похожие товары</div>
             <div class="carusel">
                 <ul>
-                        {$simprod = getSimilarProduct($model, 20)}
-                        {foreach $simprod as $sp}
-                            {$style = productInCart($cart_data, $sp->getId(), $sp->firstVariant->getId(), $sp->firstVariant->getStock())}
-                            <li>
-                                <div class="f_l smallest_item {if $sp->firstvariant->getstock()==0}not_avail{/if}">
-                                    <div class="photo_block">
-                                        <a href="{site_url('shop/product/'.$sp->getId())}">
-                                            <img src="{productImageUrl($sp->getSmallModImage())}"/>
-                                        </a>
-                                    </div>
-                                    <div class="func_description">
-                                        <a href="{site_url('shop/product/'.$sp->getId())}" class="title">{echo ShopCore::encode($sp->getName())}</a>
-                                        <div class="buy">
-                                            <div class="price f-s_14">{echo $sp->firstVariant->toCurrency()}<sub> {$CS}</sub><span>{echo $sp->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span> </div>                                                                             
-                                            <div class="{$style.class} buttons">                                            
-                                                <a class="{$style.identif}" href="{$style.link}" data-varid="{echo $sp->firstVariant->getId()}"  data-prodid="{echo $sp->getId()}" >{$style.message}</a>
-                                            </div>
+                    {$simprod = getSimilarProduct($model, 20)}
+                    {foreach $simprod as $sp}
+                        {$style = productInCart($cart_data, $sp->getId(), $sp->firstVariant->getId(), $sp->firstVariant->getStock())}
+                        <li>
+                            <div class="f_l smallest_item {if $sp->firstvariant->getstock()==0}not_avail{/if}">
+                                <div class="photo_block">
+                                    <a href="{site_url('shop/product/'.$sp->getId())}">
+                                        <img src="{productImageUrl($sp->getSmallModImage())}"/>
+                                    </a>
+                                </div>
+                                <div class="func_description">
+                                    <a href="{site_url('shop/product/'.$sp->getId())}" class="title">{echo ShopCore::encode($sp->getName())}</a>
+                                    <div class="buy">
+                                        <div class="price f-s_14">{echo $sp->firstVariant->toCurrency()}<sub> {$CS}</sub><span>{echo $sp->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span> </div>                                                                             
+                                        <div class="{$style.class} buttons">                                            
+                                            <a class="{$style.identif}" href="{$style.link}" data-varid="{echo $sp->firstVariant->getId()}"  data-prodid="{echo $sp->getId()}" >{$style.message}</a>
                                         </div>
                                     </div>
                                 </div>
-                            </li>
-                        {/foreach}
+                            </div>
+                        </li>
+                    {/foreach}
                 </ul>
             </div>
             <button class="prev"></button>
