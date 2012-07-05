@@ -686,3 +686,170 @@ span.js{color: #3A88CC; cursor: pointer;}
 .middle_fix.button_greys input[type=submit]{height: 31px;line-height: 29px;font-size: 13px;color: #333333;text-shadow: 0 1px #B7B7B7; padding-top: 2px;}
 .fancy_profile{background-color: #FFFFFF; border: 0px solid #9F9E9E;  overflow: hidden;!important; margin-right: -26px;}
 .msg_form_edit_prof{background-color:#d7f0c6; text-align:center;}
+
+.rating {
+    background: url("/templates/commerce/shop/default/images/star-matrix.gif") no-repeat scroll 0 0 transparent;
+    clear: both;
+    display: block;
+    float: left;
+    height: 16px;
+    list-style: none outside none;
+    margin-top: 0 !important;
+    padding: 0;
+    position: relative;
+    width: 80px;
+}
+.nostar {
+    background-position: 0 0;
+}
+.onestar {
+    background-position: 0 -16px;
+}
+.twostar {
+    background-position: 0 -32px;
+}
+.threestar {
+    background-position: 0 -48px;
+}
+.fourstar {
+    background-position: 0 -64px;
+}
+.fivestar {
+    background-position: 0 -80px;
+}
+div.rating div {
+    cursor: pointer;
+    float: left;
+    height: 16px;
+    overflow: hidden;
+    text-indent: -999em;
+    width: 16px;
+}
+div.rating div span {
+    height: 16px;
+    left: 0;
+    position: absolute;
+    text-decoration: none;
+    top: 0;
+    width: 16px;
+    z-index: 200;
+}
+div.rating div.one span {
+    left: 0;
+}
+div.rating div.two span {
+    left: 16px;
+}
+div.rating div.three span {
+    left: 32px;
+}
+div.rating div.four span {
+    left: 48px;
+}
+div.rating div.five span {
+    left: 64px;
+}
+div.rating div span:hover {
+    background: url("/templates/commerce/shop/default/images/star-matrix.gif") no-repeat scroll 0 0 transparent;
+    height: 16px;
+    left: 0;
+    overflow: hidden;
+    width: 80px;
+    z-index: 2;
+}
+div.rating div.one span:hover {
+    background-position: 0 -176px;
+}
+div.rating div.two span:hover {
+    background-position: 0 -192px;
+}
+div.rating div.three span:hover {
+    background-position: 0 -208px;
+}
+div.rating div.four span:hover {
+    background-position: 0 -224px;
+}
+div.rating div.five span:hover {
+    background-position: 0 -240px;
+}
+h3 {
+    font-size: 110%;
+}
+.overflow {
+    overflow: hidden;
+}
+.star-rating {
+    float: left;
+}
+.star-rating a {
+    background: url("/templates/commerce/shop/default/images/star-matrix.gif") no-repeat scroll 0 0 transparent;
+    cursor: pointer;
+    display: block;
+    height: 16px;
+    text-indent: -999em;
+    width: 16px;
+}
+
+.rating_nohover {
+    background: url("/templates/commerce/shop/default/images/star-matrix.gif") no-repeat scroll 0 0 transparent;
+    clear: both;
+    display: block;
+    float: left;
+    height: 16px;
+    list-style: none outside none;
+    margin-top: 0 !important;
+    padding: 0;
+    position: relative;
+    width: 80px;
+}
+
+div.rating_nohover div {
+    cursor: pointer;
+    float: left;
+    height: 16px;
+    overflow: hidden;
+    text-indent: -999em;
+    width: 16px;
+}
+div.rating_nohover div span {
+    height: 16px;
+    left: 0;
+    position: absolute;
+    text-decoration: none;
+    top: 0;
+    width: 16px;
+    z-index: 200;
+}
+div.rating_nohover div.one span {
+    left: 0;
+}
+div.rating_nohover div.two span {
+    left: 16px;
+}
+div.rating_nohover div.three span {
+    left: 32px;
+}
+div.rating_nohover div.four span {
+    left: 48px;
+}
+div.rating_nohover div.five span {
+    left: 64px;
+}
+.rating_nohover.nostar {
+    background-position: 0 0;
+}
+.rating_nohover.onestar {
+    background-position: 0 -16px;
+}
+.rating_nohover.twostar {
+    background-position: 0 -32px;
+}
+.rating_nohover.threestar {
+    background-position: 0 -48px;
+}
+.rating_nohover.fourstar {
+    background-position: 0 -64px;
+}
+.rating_nohover.fivestar {
+    background-position: 0 -80px;
+}
