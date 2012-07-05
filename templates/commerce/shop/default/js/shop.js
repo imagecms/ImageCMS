@@ -15,7 +15,16 @@ $(document).ready(function(){
         showNavArrows: true,
         cyclic: true
     });
-
+    
+    $('span.clickrate').on('click', function(){
+        var val = $(this).attr('title');
+        $.ajax({
+            type: "POST",
+            data: "pid="+currentProductId+"&val="+val,
+            url:'/shop/ajax/rate'
+        });
+    });
+    
     $('.buy .goBuy').on('click',function(){
         $.fancybox.showActivity();
         var id_var  = $(this).attr('data-varid');
@@ -116,8 +125,9 @@ $(document).ready(function(){
 
     $('#towishlist').on('click', function(){
         var logged_in = $(this).attr('data-logged_in');
-           if (logged_in != 'true'){
-           $('.loginAjax').trigger('click');}
+        if (logged_in != 'true'){
+            $('.loginAjax').trigger('click');
+        }
     });
 
     /**
