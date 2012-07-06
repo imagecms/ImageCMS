@@ -84,9 +84,26 @@ class Comments extends MY_Controller {
                 $this->cache->store('comments_' . $item_id . $this->module, $comments, $this->cache_ttl, 'comments');
             }
         }
-
+        $i = 0;
+        foreach ($comments as $comment) {
+            if ($comment['parent'] != null) {
+                $comment_ch[] = $comment;
+                unset($comments[$i]);
+            }
+            $i++;
+        }
+//        $this->load->library('pagination');
+//
+//        $config['base_url'] = '';
+//        $config['total_rows'] = '200';
+//        $config['per_page'] = '20';
+//
+//        $this->pagination->initialize($config);
+//
+//        echo $this->pagination->create_links();
         $data = array(
             'comments_arr' => $comments,
+            'comment_ch' => $comment_ch,
             'comment_controller' => $this->comment_controller,
             'total_comments' => lang('lang_total_comments') . count($comments),
             'can_comment' => $this->can_comment,
@@ -106,7 +123,6 @@ class Comments extends MY_Controller {
 
         $this->template->add_array(array(
             'comments' => $comments,
-     
         ));
     }
 
@@ -190,6 +206,12 @@ class Comments extends MY_Controller {
 
             $comment_text = trim(htmlspecialchars($this->input->post('comment_text')));
             $comment_text = str_replace("\n", '<br/>', $comment_text);
+            $comment_text_plus = trim(htmlspecialchars($this->input->post('comment_text_plus')));
+            $comment_text_plus = str_replace("\n", '<br/>', $comment_text_plus);
+            $comment_text_minus = trim(htmlspecialchars($this->input->post('comment_text_minus')));
+            $comment_text_minus = str_replace("\n", '<br/>', $comment_text_minus);
+            $rate = $this->input->post('ratec');
+            $parent = $this->input->post('parent');
 
             if ($comment_text != '') {
                 $comment_data = array(
@@ -199,11 +221,15 @@ class Comments extends MY_Controller {
                     'user_mail' => $comment_email,
                     'user_site' => htmlspecialchars($this->input->post('comment_site')),
                     'text' => $comment_text,
+                    'text_plus' => $comment_text_plus,
+                    'text_minus' => $comment_text_minus,
                     'item_id' => $item_id,
                     'status' => $this->_comment_status(),
                     'agent' => $this->agent->agent_string(),
                     'user_ip' => $this->input->ip_address(),
                     'date' => time(),
+                    'rate' => $rate,
+                    'parent' => $parent,
                 );
 
                 ($hook = get_hook('comments_db_insert')) ? eval($hook) : NULL;
@@ -344,6 +370,32 @@ class Comments extends MY_Controller {
         $this->where('item_id', $id);
         $query = $this->db->get('comments')->result_array();
         return count($query);
+    }
+
+    public function setyes() {
+        $comid = $this->input->post('comid');
+        if ($this->session->userdata('comment' . $comid) != true) {
+            $row = $this->db->where('id', $comid)->get('comments')->row();
+            $like = $row->like;
+            $like = $like + 1;
+            $data = array('like' => $like);
+            $this->db->where('id', $comid);
+            $this->db->update('comments', $data);
+            $this->session->set_userdata('comment' . $comid, true);
+        }
+    }
+
+    public function setno() {
+        $comid = $this->input->post('comid');
+        if ($this->session->userdata('comment' . $comid) != true) {
+            $row = $this->db->where('id', $comid)->get('comments')->row();
+            $disslike = $row->disslike;
+            $disslike = $disslike + 1;
+            $data = array('disslike' => $disslike);
+            $this->db->where('id', $comid);
+            $this->db->update('comments', $data);
+            $this->session->set_userdata('comment' . $comid, true);
+        }
     }
 
 }
