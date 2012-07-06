@@ -82,6 +82,12 @@
                                 <span title="5" class="clickrate">5</a>
                             </div>
                         </div>
+<!--                    <span class="count_people d_b" itemtype="http://schema.org/AggregateRating" itemscope="" itemprop="aggregateRating">
+                        <meta itemprop="worstRating" content="1">
+                        <span class="ratingValue" itemprop="ratingValue"> 0</span>/
+                        <span itemprop="bestRating">5</span> залишило                        
+                        <span itemprop="reviewCount" class="reviewCount">0  </span>чоловік.
+                    </span>-->
                     </div>
                     <a href="#" class="response">{echo $model->totalComments()} {echo SStringHelper::Pluralize($model->totalComments(), array('отзыв', 'отзывы', 'отзывов'))}</a>
                     <div class="social_small di_b">                      
