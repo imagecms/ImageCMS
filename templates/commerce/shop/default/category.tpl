@@ -128,54 +128,65 @@
 <!--    Pagination    -->
 </div>
 
-<!--   Right sidebar     -->
-<div class="nowelty_auction">
-    <!--   New products block     -->
-    <div class="box_title">
-        <span>Новинки</span>
-    </div>
-    <ul>
-        {foreach getPromoBlock('hot', 3) as $hotProduct}
-            <li class="smallest_item">
-                <div class="photo_block">
-                    <a href="{shop_url('product/' . $hotProduct->getUrl())}">
-                        <img src="{productImageUrl($hotProduct->getSmallModimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
-                    </a>
-                </div>
-                <div class="func_description">
-                    <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
-                    <div class="buy">
-                        <div class="price f-s_14">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span></div>
-                    </div>
-                </div>
-            </li>
-        {/foreach}
-    </ul>
-    <!--   New products block     -->
 
-    <!--   Promo products block     -->
-    <div class="box_title">
-        <span>Акции</span>
-    </div>
-    <ul>
-        {foreach getPromoBlock('action', 3) as $hotProduct}
-            <li class="smallest_item">
-                <div class="photo_block">
-                    <a href="{shop_url('product/' . $hotProduct->getUrl())}">
-                        <img src="{productImageUrl($hotProduct->getSmallModImage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
-                    </a>
+            <!--   Right sidebar     -->
+           
+            <div class="nowelty_auction">
+                <!--   New products block     -->
+      {if count(getPromoBlock('action', 3, $product->category_id))}
+               
+                <div class="box_title">
+                    <span>Новинки</span>
+                </div>               
+                <ul>
+                  {foreach getPromoBlock('hot', 3, $product->category_id) as $hotProduct}
+                    <li class="smallest_item">
+                        <div class="photo_block">
+                            <a href="{shop_url('product/' . $hotProduct->getUrl())}">
+                                <img src="{productImageUrl($hotProduct->getSmallModimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
+                            </a>
+                        </div>
+                        <div class="func_description">
+                            <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
+                            <div class="buy">
+                                <div class="price f-s_14">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span></div>
+                            </div>
+                        </div>
+                    </li>
+                    {/foreach}
+                </ul>
+                {/if}
+                 
+                
+                <!--   New products block     -->
+
+                <!--   Promo products block     -->                
+              {if count(getPromoBlock('action', 3, $product->category_id))}
+                <div class="box_title">
+                    <span>Акции</span>
                 </div>
-                <div class="func_description">
-                    <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
-                    <div class="buy">
-                        <div class="price f-s_14">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span></div>
-                    </div>
-                </div>
-            </li>
-        {/foreach}
-    </ul>
-    <!--   Promo products block     -->
-</div>
+                <ul>
+                    {foreach getPromoBlock('action', 3, $product->category_id) as $hotProduct}
+                    <li class="smallest_item">
+                        <div class="photo_block">
+                            <a href="{shop_url('product/' . $hotProduct->getUrl())}">
+                                <img src="{productImageUrl($hotProduct->getSmallModImage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
+                            </a>
+                        </div>
+                        <div class="func_description">
+                            <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
+                            <div class="buy">
+                                <div class="price f-s_14">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span></div>
+                            </div>
+                        </div>
+                    </li>
+                    {/foreach}
+                </ul>
+                
+               {/if}
+                <!--   Promo products block     -->
+            </div>
+
 <!--   Right sidebar     -->
 
 </div>
