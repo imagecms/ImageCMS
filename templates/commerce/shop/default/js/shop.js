@@ -25,6 +25,38 @@ $(document).ready(function(){
         });
     });
     
+    $('span.clicktemprate').on('click',function(){
+        //$.fancybox.showActivity();
+       var rate = $(this).attr('title');
+       var ratec;
+       if (rate == 1) ratec = "onestar";
+       if (rate == 2) ratec = "twostar";
+       if (rate == 3) ratec = "threestar";
+       if (rate == 4) ratec = "fourstar";
+       if (rate == 5) ratec = "fivestar";
+       $('#comment_block').removeClass().addClass('rating '+ratec+' star_rait');
+       $('#ratec').attr('value', rate);
+       //$('span.clickrate').trigger('click');
+    });
+    
+    $('.usefullyes').on('click', function(){
+       var comid = $(this).attr('data-comid');
+       $.ajax({
+          type: "POST",
+          data: "comid="+comid,
+          url: '/comments/setyes'
+       }); 
+    });
+    
+     $('.usefullno').on('click', function(){
+       var comid = $(this).attr('data-comid');
+       $.ajax({
+          type: "POST",
+          data: "comid="+comid,
+          url: '/comments/setno'
+       }); 
+    });
+    
     $('.buy .goBuy').on('click',function(){
         $.fancybox.showActivity();
         var id_var  = $(this).attr('data-varid');
