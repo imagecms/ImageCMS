@@ -64,7 +64,7 @@ function ajaxAddToCart(url, successUrl)
     });
 
     $("#cartNotify").css('display', 'block');
-    setTimeout(function() {  $("#cartNotify").css('display', 'none') }, 2000);
+    setTimeout(function() {$("#cartNotify").css('display', 'none')}, 2000);
 }
 
 /**
@@ -80,7 +80,7 @@ function ajaxAddToWishList()
     });
 
     $("#wishListNotify").css('display', 'block');
-    setTimeout(function() {  $("#wishListNotify").css('display', 'none') }, 2000);
+    setTimeout(function() {$("#wishListNotify").css('display', 'none')}, 2000);
 }
 
 function ajaxAddKitToCart(kitId, url, successUrl)
