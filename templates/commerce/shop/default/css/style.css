@@ -16,6 +16,7 @@ input[type="radio"],input[type="checkbox"]{position: relative;top: 1px;width: 13
 input[type="text"],input[type="password"]{border-width: 1px;border-style: solid;}
 input[type="text"]:focus, input[type="password"]:focus, textarea:focus{box-shadow: 0 0 4px #ccc;}
 textarea{overflow: auto;border: 1px solid;}
+.newCategory{background: none repeat scroll 0 0; color: #E11F2D; display: inline-block; font-size: 11px; padding: 0 0 2px 5px;}
 
 a,.blue,.checked_filter li a{color: #3a88cc}
 a:hover,.pagination a:hover,.catalog_frame .func_description .title:hover{color: #5faff5;}

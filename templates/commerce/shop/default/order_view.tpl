@@ -104,11 +104,22 @@
                                     </li>
                                     <li>
                                         <span>Оплата:</span>
-                                        <b>	{if $paymentMethods[0] != null && !$model->getPaid()}
-                                            {foreach $paymentMethods as $pm}
-                                            {echo encode($pm->getName())}
-                                            {/foreach}
-                                            {/if}
+                                        <b>
+                                            {if $paymentMethods[0] != null && !$model->getPaid()}
+<div class="sp"></div>
+<h5>Вариант оплаты</h5>
+<ul>
+    {foreach $paymentMethods as $pm}
+    <li>
+        <label><b>{echo encode($pm->getName())}</b></label>
+        
+            {echo $pm->getDescription()}   
+         {echo $pm->getPaymentForm($model)} 
+        
+    </li>
+    {/foreach}
+</ul>
+{/if}
                                         </b>
                                     </li>
                                 </ul>
@@ -120,6 +131,12 @@
                     </td>
                 </tr>
             </tfoot>
-        </table>
+        </table>                        
     </div>
 </div>
+                   
+           
+                
+           
+            
+        
