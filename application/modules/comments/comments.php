@@ -88,7 +88,7 @@ class Comments extends MY_Controller {
         if (is_array($comments)) {
             $i = 0;
             foreach ($comments as $comment) {
-                if ($comment['parent'] != null) {
+                if ($comment['parent'] > 0) {
                     $comment_ch[] = $comment;
                     unset($comments[$i]);
                 }

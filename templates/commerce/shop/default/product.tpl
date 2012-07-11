@@ -151,9 +151,9 @@
 
                     <script type="text/javascript">gapi.plusone.go();</script>
                     {literal}
-                        <script type="text/javascript">
+<!--                        <script type="text/javascript">
                           VK.init({apiId: 3020609, onlyWidgets: true});
-                        </script>
+                        </script>-->
 
                         <div id="vk_like" style="float:left;"></div>
                         <script type="text/javascript">
