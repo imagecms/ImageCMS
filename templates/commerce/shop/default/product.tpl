@@ -89,7 +89,7 @@
                         <span itemprop="reviewCount" class="reviewCount">0  </span>чоловік.
                     </span>-->
                     </div>
-                    <a href="#" class="response">{echo $model->totalComments()} {echo SStringHelper::Pluralize($model->totalComments(), array('отзыв', 'отзывы', 'отзывов'))}</a>
+                    <span class="response">{echo $model->totalComments()} {echo SStringHelper::Pluralize($model->totalComments(), array('отзыв', 'отзывы', 'отзывов'))}</span>
                     <div class="social_small di_b">                      
                         <a href="http://www.facebook.com/sharer.php?u={shop_url('product/'.$model->getId())}"  target="_balnk" class="facebook" title="Facebook"> 
                             <a href="http://vkontakte.ru/share.php?url={shop_url('product/'.$model->getId())}" target="_blank" class="vkontakte" title="Vkontakte"></a>
@@ -326,7 +326,7 @@
     {/if}
     <!------------------------------------------------------------------------------------------------------------Finish-->
 
-    {if count(getSimilarProduct($model, 20))>0}
+    {if count(getSimilarProduct($model, 20)) > 1}
         <div class="featured carusel_frame">
             <div class="f-s_18 c_6 center">Похожие товары</div>
             <div class="carusel">
