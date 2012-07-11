@@ -133,7 +133,7 @@
            
             <div class="nowelty_auction">
                 <!--   New products block     -->
-      {if count(getPromoBlock('action', 3, $product->category_id))}
+      {if count(getPromoBlock('hot', 3, $product->category_id))}
                
                 <div class="box_title">
                     <span>Новинки</span>
