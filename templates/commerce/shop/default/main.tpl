@@ -67,7 +67,7 @@
                     <!--    Wish list item's for Header    -->
 
                     <!--    Products in compare list for Header    -->
-                    <li id="compareHolder" class="compare blue{if is_array($CI->session->userdata('shopForCompare'))} is_avail{/if}">
+                    <li id="compareHolder" class="compare blue{if $CI->session->userdata('shopForCompare') && count($CI->session->userdata('shopForCompare'))} is_avail{/if}">
                         {include_tpl('compare_data')}</li>
                     <!--    Products in compare list for Header    -->
                 </ul>
