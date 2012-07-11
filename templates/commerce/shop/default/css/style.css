@@ -613,6 +613,11 @@ span.code{color: #999;font-size: 11px;margin-right: 9px;}
 .contacts_info address{margin: 4px 0 23px;}
 .contacts_info address span{display: block;}
 
+.enter_form{padding: 10px 15px;}
+.enter_form .errors{color: red; font-size: 12px;}
+.enter_form .errors p {margin-bottom: 5px;}
+.authcomplete{padding: 10px 15px;}
+
 .footer_info{text-align: right;color: #707070;line-height: 22px;}
 .footer_info .social {margin: 24px 0 6px;}
 .social div{color: #555;}
