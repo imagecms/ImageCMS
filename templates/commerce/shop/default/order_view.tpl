@@ -5,7 +5,7 @@
 #}
 <div class="content">
     <div class="center">
-        <h1>Личный кабинет</h1>        
+        <h1>Личный кабинет</h1>
         {if $CI->session->flashdata('makeOrder') === true}<div style="padding:10px;border: 1px #f5f5dc solid;">Спасибо за Ваш заказ.</div>{/if}
         <table class="cleaner_table" cellspacing="0">
             <caption>Заказ №{echo $model->getId()}</caption>
@@ -102,26 +102,23 @@
                                         <span>Доставка:</span>
                                         <b>{echo $model->getSDeliveryMethods()->getName()}{/if}</b>
                                     </li>
-                                    <li>
-                                        <span>Оплата:</span>
+                                    {if $paymentMethods[0] != null && !$model->getPaid()}
+                                    <li><span>Оплата:</span>
                                         <b>
-                                            {if $paymentMethods[0] != null && !$model->getPaid()}
-<div class="sp"></div>
-<h5>Вариант оплаты</h5>
-<ul>
-    {foreach $paymentMethods as $pm}
-    <li>
-        <label><b>{echo encode($pm->getName())}</b></label>
-        
-            {echo $pm->getDescription()}   
-         {echo $pm->getPaymentForm($model)} 
-        
-    </li>
-    {/foreach}
-</ul>
-{/if}
+                                            <div class="sp"></div>
+                                            <ul>
+                                                {foreach $paymentMethods as $pm}
+                                                <li class="buyandpay">
+                                                    <label><b>{echo encode($pm->getName())}</b></label>
+                                                    <div>{echo $pm->getPaymentForm($model)} </div>
+                                                    {echo $pm->getDescription()}
+
+                                                </li>
+                                                {/foreach}
+                                            </ul>
                                         </b>
                                     </li>
+                                    {/if}
                                 </ul>
                                 <div class="sum f_r">
                                     Сумма:
@@ -131,12 +128,12 @@
                     </td>
                 </tr>
             </tfoot>
-        </table>                        
+        </table>
     </div>
 </div>
-                   
-           
-                
-           
-            
-        
+
+
+
+
+
+

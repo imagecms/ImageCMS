@@ -157,6 +157,11 @@ img[align=left]{margin-right:18px;float: left;}
 .compare.is_avail{background-position: 0 -15px}
 #currencyChangeForm{background-color: transparent; border: none;}
 
+.buyandpay{}
+.buyandpay > div{float: left;}
+.buyandpay > div input[type=submit]{font-size: 14px; color: green;}
+.buyandpay > label{float: left;}
+
 /*---catalog menu lvl 1---*/
 .main_menu > ul{-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;background-position: 0 -32px;border: 1px solid #dbdbdb;-moz-box-shadow: 0 1px 1px 0 #e6e6e6;-webkit-box-shadow: 0 1px 1px 0 #e6e6e6;box-shadow: 0 1px 1px 0 #e6e6e6;position: relative;}
 .main_menu > ul > li{float: left; border-left: 1px solid #aeaeae;  border-right: 1px solid #4d4d4d;}
@@ -566,6 +571,8 @@ span.code{color: #999;font-size: 11px;margin-right: 9px;}
 .fancy form > *{font-size: 12px;}
 .fancy form label{color: #2a2a2a;font-size: 14px;line-height: 21px;margin-top: 9px;display: inline-block;}
 .fancy form .social{margin: 11px 0 0 12px;}
+
+.validate_error_ml{color: red;}
 
 .enter_reg,.enter_form{width: 230px;}
 .enter_reg ul,.enter_form ul{background-color: #e6e6e6;overflow: hidden;}
