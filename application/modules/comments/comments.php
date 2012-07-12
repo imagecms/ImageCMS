@@ -86,7 +86,7 @@ class Comments extends MY_Controller {
         }
         $i = 0;
         foreach ($comments as $comment) {
-            if ($comment['parent'] != null) {
+            if ($comment['parent'] > 0) {
                 $comment_ch[] = $comment;
                 unset($comments[$i]);
             }
@@ -382,6 +382,7 @@ class Comments extends MY_Controller {
             $this->db->where('id', $comid);
             $this->db->update('comments', $data);
             $this->session->set_userdata('comment' . $comid, true);
+            return $like;
         }
     }
 
@@ -395,9 +396,18 @@ class Comments extends MY_Controller {
             $this->db->where('id', $comid);
             $this->db->update('comments', $data);
             $this->session->set_userdata('comment' . $comid, true);
+            return $disslike;
         }
     }
-
+    
+    public function getyes($comid) {
+        
+    }
+    
+    public function getno($comid) {
+        
+    }
+    
 }
 
 /* End of file comments.php */

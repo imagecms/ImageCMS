@@ -142,11 +142,11 @@
                 {/if}
                 <div class="di_b">
                     <span class="comment_ajax_refer b-r_4 visible">
-                        <a href="#"><span class="js">Ответить</span><span class="blue_arrow"></span></a>
+                        <a href="#" class="t-d_n"><span class="js">Ответить</span><span class="blue_arrow"></span></a>
                         Отзыв был полезен?
                         <span></span>
-                        <span class="usefullyes" data-comid="{echo $comment.id}"><span class="js"> Да</span></span>{if $comment.like !=0}({echo $comment.like}){/if}/
-                        <span class="usefullno" data-comid="{echo $comment.id}"><span class="js">Нет</span></span>{if $comment.disslike !=0}({echo $comment.disslike}){/if}
+                        <span class="usefullyes" data-comid="{echo $comment.id}"><span class="js"> Да</span></span>{if $comment.like !=0}<span class="a{$comment.id} yesholder">({echo $comment.like})</span>{/if}/
+                        <span class="usefullno" data-comid="{echo $comment.id}"><span class="js">Нет</span></span>{if $comment.disslike !=0}<span class="{$comment.id} noholder">({echo $comment.disslike})</span>{/if}
                     </span>
                 </div>
                     <form action="" method="post" class="comment_form">
