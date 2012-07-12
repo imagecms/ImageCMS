@@ -1,3 +1,3 @@
-<p>
+<p> 
     {$error_text}
 </p>
