@@ -40,11 +40,14 @@ $(document).ready(function(){
     });
     
     $('.usefullyes').on('click', function(){
-       var comid = $(this).attr('data-comid');
+       comid = $(this).attr('data-comid');
        $.ajax({
           type: "POST",
           data: "comid="+comid,
-          url: '/comments/setyes'
+          url: '/comments/setyes',
+          success: function(data){
+              $('.a'+ comid + ' yesholder').html(data);
+          }
        }); 
     });
     

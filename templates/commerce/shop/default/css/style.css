@@ -801,6 +801,7 @@ h3 {
     padding: 0;
     position: relative;
     width: 80px;
+    margin-right: 10px;
 }
 
 div.rating_nohover div {
