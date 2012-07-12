@@ -141,7 +141,7 @@
         </div>
                         {($hook = get_hook('admin_tpl_dashboard_center')) ? eval($hook) : NULL;}
              {if count($api_news) > 1}
-        <div class="l_box">
+        <div class="l_box">            
                {foreach $api_news as $a}
                     <span style="font-size:11px;">{date('d-m-Y H:i', $a.publish_date)}
                     <a style="padding-left:10px;" target="_blank" href="http://www.imagecms.net/blog/news/{$a.url}">>>></a>

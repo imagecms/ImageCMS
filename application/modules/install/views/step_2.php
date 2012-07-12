@@ -18,7 +18,7 @@
       
 		<div class="form_text">Устанавливать примеры продуктов</div>
         <div class="form_input">
-            <input type="checkbox" class="checkbox" name="product_samples" value = "on">
+            <input type="checkbox" class="checkbox" name="product_samples" checked="checked" value = "on">
         </div>
         <div class="form_overflow"></div>
       
