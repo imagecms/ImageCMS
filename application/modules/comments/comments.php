@@ -65,6 +65,7 @@ class Comments extends MY_Controller {
      * Fetch comments and load template
      */
     public function build_comments($item_id = 0) {
+        $comments = array();
         ($hook = get_hook('comments_on_build_comments')) ? eval($hook) : NULL;
 
         $this->load->model('base');
@@ -84,13 +85,16 @@ class Comments extends MY_Controller {
                 $this->cache->store('comments_' . $item_id . $this->module, $comments, $this->cache_ttl, 'comments');
             }
         }
-        $i = 0;
-        foreach ($comments as $comment) {
-            if ($comment['parent'] > 0) {
-                $comment_ch[] = $comment;
-                unset($comments[$i]);
+
+        if (is_array($comments)) {
+            $i = 0;
+            foreach ($comments as $comment) {
+                if ($comment['parent'] > 0) {
+                    $comment_ch[] = $comment;
+                    unset($comments[$i]);
+                }
+                $i++;
             }
-            $i++;
         }
 //        $this->load->library('pagination');
 //
@@ -119,7 +123,7 @@ class Comments extends MY_Controller {
 
         $comments = $this->template->read($this->tpl_name, $data);
 
-        ($hook = get_hook('comments_assign_tpl_data')) ? eval($hook) : NULL;
+        ($hook = get_hook('comments_assign_tpl_data')) ? eval($hook) : NULL;        
 
         $this->template->add_array(array(
             'comments' => $comments,

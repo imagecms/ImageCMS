@@ -1,9 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * Image CMS
+ * ImageCMS
  *
- * Gallery Module Admin
+ * Gallery Module _Admin_
  */
 
 class Admin extends MY_Controller {

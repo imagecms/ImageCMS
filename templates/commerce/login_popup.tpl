@@ -1,4 +1,4 @@
-<div class="fancy enter_form">    
+<div class="fancy enter_form">
     <h1>Вход</h1>        
     <form method="post" action="{site_url('auth/login')}" id="enter">
         {if validation_errors() OR $info_message}<div class="errors">{validation_errors()}{$info_message}</div>{/if}        

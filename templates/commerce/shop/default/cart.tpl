@@ -65,6 +65,7 @@
             <div class="block_title_18"><span class="title_18">Выберите способ доставки</span></div>
             {$counter = true}
             {foreach $deliveryMethods as $deliveryMethod}
+            {$del_id = $deliveryMethod->getId()}
             <label><input type="radio" {if $counter} checked="checked" {$del_id = $deliveryMethod->getId()} {$counter = false}{$del_price = ceil($deliveryMethod->getPrice())}{$del_freefrom = ceil($deliveryMethod->getFreeFrom())}{/if} name="met_del" class="met_del" value="{echo $del_id}" data-price="{echo ceil($deliveryMethod->getPrice())}" data-freefrom="{echo ceil($deliveryMethod->getFreeFrom())}"/>{echo $deliveryMethod->getName()}</label>                
             {/foreach}
 

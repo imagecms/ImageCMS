@@ -16,6 +16,7 @@ input[type="radio"],input[type="checkbox"]{position: relative;top: 1px;width: 13
 input[type="text"],input[type="password"]{border-width: 1px;border-style: solid;}
 input[type="text"]:focus, input[type="password"]:focus, textarea:focus{box-shadow: 0 0 4px #ccc;}
 textarea{overflow: auto;border: 1px solid;}
+.newCategory{background: none repeat scroll 0 0; color: #E11F2D; display: inline-block; font-size: 11px; padding: 0 0 2px 5px;}
 
 a,.blue,.checked_filter li a{color: #3a88cc}
 a:hover,.pagination a:hover,.catalog_frame .func_description .title:hover{color: #5faff5;}
@@ -155,6 +156,11 @@ img[align=left]{margin-right:18px;float: left;}
 .compare{background: url('../images/icon_compare.gif') 0 3px;}
 .compare.is_avail{background-position: 0 -15px}
 #currencyChangeForm{background-color: transparent; border: none;}
+
+.buyandpay{}
+.buyandpay > div{float: left;}
+.buyandpay > div input[type=submit]{font-size: 14px; color: green;}
+.buyandpay > label{float: left;}
 
 /*---catalog menu lvl 1---*/
 .main_menu > ul{-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;background-position: 0 -32px;border: 1px solid #dbdbdb;-moz-box-shadow: 0 1px 1px 0 #e6e6e6;-webkit-box-shadow: 0 1px 1px 0 #e6e6e6;box-shadow: 0 1px 1px 0 #e6e6e6;position: relative;}
@@ -566,6 +572,8 @@ span.code{color: #999;font-size: 11px;margin-right: 9px;}
 .fancy form label{color: #2a2a2a;font-size: 14px;line-height: 21px;margin-top: 9px;display: inline-block;}
 .fancy form .social{margin: 11px 0 0 12px;}
 
+.validate_error_ml{color: red;}
+
 .enter_reg,.enter_form{width: 230px;}
 .enter_reg ul,.enter_form ul{background-color: #e6e6e6;overflow: hidden;}
 .enter_reg li,.enter_form li{float: left;text-align: center;position: relative;background-color: transparent;}
@@ -604,6 +612,11 @@ span.code{color: #999;font-size: 11px;margin-right: 9px;}
 .contacts_info .f-s_18:first-child{border: none;}
 .contacts_info address{margin: 4px 0 23px;}
 .contacts_info address span{display: block;}
+
+.enter_form{padding: 10px 15px;}
+.enter_form .errors{color: red; font-size: 12px;}
+.enter_form .errors p {margin-bottom: 5px;}
+.authcomplete{padding: 10px 15px;}
 
 .footer_info{text-align: right;color: #707070;line-height: 22px;}
 .footer_info .social {margin: 24px 0 6px;}

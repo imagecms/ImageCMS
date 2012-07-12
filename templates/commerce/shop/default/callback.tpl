@@ -27,6 +27,6 @@
         {form_csrf()}
     </form>
     {else:}
-        {echo $success}
+        <div style="padding: 10px 15px;">{echo $success}</div>
     {/if}
 </div>
