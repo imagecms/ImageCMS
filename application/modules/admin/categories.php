@@ -89,19 +89,19 @@ class Categories extends MY_Controller {
     {
         cp_check_perm('category_create');
 
-		$this->form_validation->set_rules('name', 'Название', 'trim|required|min_length[1]|max_length[160]');
-		$this->form_validation->set_rules('url', 'URL Категории', 'trim|min_length[2]|max_length[300]|alpha_dash');
-		$this->form_validation->set_rules('image', 'Изображение', 'max_length[250]');
-		$this->form_validation->set_rules('position', 'Позиция', 'required|integer|max_length[11]');
-		$this->form_validation->set_rules('parent_id', 'Родитель', 'trim|required|integer|max_length[160]');
-		$this->form_validation->set_rules('description', 'Описание', 'trim');
-		$this->form_validation->set_rules('keywords', 'Ключевые слова', 'trim');
-		$this->form_validation->set_rules('short_desc', 'Краткое описание', 'trim');
-		$this->form_validation->set_rules('title', 'Title', 'trim|max_length[250]');
-		$this->form_validation->set_rules('tpl', 'Шаблон', 'trim|max_length[50]');
-		$this->form_validation->set_rules('page_tpl', 'Шаблон Страниц', 'trim|max_length[50]');
-		$this->form_validation->set_rules('main_tpl', 'Главный Шаблон', 'trim|max_length[50]');
-		$this->form_validation->set_rules('per_page', '', 'required|trim|integer|max_length[9]|min_length[1]|is_natural_no_zero');
+		$this->form_validation->set_rules('name', lang('ac_val_title'), 'trim|required|min_length[1]|max_length[160]');
+		$this->form_validation->set_rules('url', lang('ac_val_cat_url'), 'trim|min_length[2]|max_length[300]|alpha_dash');
+		$this->form_validation->set_rules('image', lang('ac_val_image'), 'max_length[250]');
+		$this->form_validation->set_rules('position', lang('ac_val_position'), 'required|integer|max_length[11]');
+		$this->form_validation->set_rules('parent_id', lang('ac_val_parent'), 'trim|required|integer|max_length[160]');
+		$this->form_validation->set_rules('description', lang('ac_val_desc'), 'trim');
+		$this->form_validation->set_rules('keywords', lang('ac_val_keywords'), 'trim');
+		$this->form_validation->set_rules('short_desc', lang('ac_val_short_desc'), 'trim');
+		$this->form_validation->set_rules('title', lang('ac_val_tit'), 'trim|max_length[250]');
+		$this->form_validation->set_rules('tpl', lang('ac_val_template'), 'trim|max_length[50]');
+		$this->form_validation->set_rules('page_tpl', lang('ac_val_page_tpl'), 'trim|max_length[50]');
+		$this->form_validation->set_rules('main_tpl', lang('ac_val_main_tpl'), 'trim|max_length[50]');
+		$this->form_validation->set_rules('per_page', lang('ac_val_per_page'), 'required|trim|integer|max_length[9]|min_length[1]|is_natural_no_zero');
 
         ($hook = get_hook('admin_create_cat_set_rules')) ? eval($hook) : NULL; 
 
@@ -171,12 +171,12 @@ class Categories extends MY_Controller {
 
                         $id = $this->cms_admin->create_category($data);
 
-                        $this->lib_admin->log('
-                        Создал категорию   
-                        <a href="#" onclick="edit_category('.$id.'); return false;">'.$data['name'].'</a>'
+                        $this->lib_admin->log(
+                        lang('ac_cr_cat').
+                        '<a href="#" onclick="edit_category('.$id.'); return false;">'.$data['name'].'</a>'
                         );
 
-                        showMessage ('Категория '.$data['name'].' создана.');
+                        showMessage (lang('ac_cat').$data['name'].lang('ac_created'));
 
                         updateDiv('page', site_url('admin/categories/edit/'.$id));
                     break;
@@ -199,12 +199,12 @@ class Categories extends MY_Controller {
 
                         $this->update_urls();
 
-                        $this->lib_admin->log('
-                        Изменил категорию   
-                        <a href="#" onclick="edit_category('.$cat_id.'); return false;">'.$data['name'].'</a>'
+                        $this->lib_admin->log(
+                        lang('ac_changed_cat').
+                        '<a href="#" onclick="edit_category('.$cat_id.'); return false;">'.$data['name'].'</a>'
                         );
 
-                       showMessage('Категория обновлена'); 
+                       showMessage(lang('ac_cat_updated')); 
                     break;
                 }
 
@@ -246,8 +246,8 @@ class Categories extends MY_Controller {
         
         if ($action == 'create')
         {
-            $this->form_validation->set_rules('name', 'Название', 'trim|required|min_length[1]|max_length[160]');
-            $this->form_validation->set_rules('parent_id', 'Родитель', 'trim|required|integer|max_length[160]');
+            $this->form_validation->set_rules('name', lang('ac_val_title'), 'trim|required|min_length[1]|max_length[160]');
+            $this->form_validation->set_rules('parent_id', lang('ac_val_parent'), 'trim|required|integer|max_length[160]');
         
             if ($this->form_validation->run($this) == FALSE)
             {
@@ -306,9 +306,9 @@ class Categories extends MY_Controller {
                 $id = $this->cms_admin->create_category($data);
                 $this->lib_category->clear_cache();
 
-                $this->lib_admin->log('
-                Создал категорию   
-                <a href="#" onclick="edit_category('.$id.'); return false;">'.$data['name'].'</a>'
+                $this->lib_admin->log(
+                lang('ac_cr_cat').
+                '<a href="#" onclick="edit_category('.$id.'); return false;">'.$data['name'].'</a>'
                 );
 
                 updateDiv('categories', site_url('/admin/categories/update_block'));
@@ -326,8 +326,8 @@ class Categories extends MY_Controller {
             'sel_cat' => $sel_id,
         ));
 
-        echo 'Категория: <select name="category" ONCHANGE="change_comments_status();" id="category_selectbox">
-                <option value="0">Нет</option>';
+        echo lang('ac_categor').' <select name="category" ONCHANGE="change_comments_status();" id="category_selectbox">
+                <option value="0">'.lang('ac_no').'</option>';
         
         $this->template->show('cats_select', FALSE);
 
@@ -379,12 +379,12 @@ class Categories extends MY_Controller {
         {
             $this->load->library('form_validation');
 
-            $this->form_validation->set_rules('name', 'Название', 'trim|required|min_length[1]|max_length[160]');
-            $this->form_validation->set_rules('image', 'Изображение', 'max_length[250]');
-            $this->form_validation->set_rules('description', 'Описание', 'trim');
-            $this->form_validation->set_rules('keywords', 'Ключевые слова', 'trim');
-            $this->form_validation->set_rules('short_desc', 'Краткое описание', 'trim');
-            $this->form_validation->set_rules('title', 'Meta Title', 'trim|max_length[250]');
+            $this->form_validation->set_rules('name', lang('ac_val_title'), 'trim|required|min_length[1]|max_length[160]');
+            $this->form_validation->set_rules('image', lang('ac_val_image'), 'max_length[250]');
+            $this->form_validation->set_rules('description', lang('ac_val_desc'), 'trim');
+            $this->form_validation->set_rules('keywords', lang('ac_val_keywords'), 'trim');
+            $this->form_validation->set_rules('short_desc', lang('ac_val_short_desc'), 'trim');
+            $this->form_validation->set_rules('title', lang('ac_val_meta_title'), 'trim|max_length[250]');
 
             ($hook = get_hook('admin_set_cat_translate_rules')) ? eval($hook) : NULL;
 
@@ -410,9 +410,9 @@ class Categories extends MY_Controller {
 
                 if ($query->num_rows() == 0)
                 {
-                    $this->lib_admin->log('
-                    Создал перевод категории 
-                    <a href="#" onclick="edit_category('.$cat['id'].'); return false;">'.$cat['name'].'</a>'
+                    $this->lib_admin->log(
+                    lang('ac_create_cat_trans').
+                    '<a href="#" onclick="edit_category('.$cat['id'].'); return false;">'.$cat['name'].'</a>'
                     );
 
                     ($hook = get_hook('admin_insert_cat_translation')) ? eval($hook) : NULL; 
@@ -421,9 +421,9 @@ class Categories extends MY_Controller {
                 }
                 else
                 {
-                    $this->lib_admin->log('
-                    Изменил перевод категории 
-                    <a href="#" onclick="edit_category('.$cat['id'].'); return false;">'.$cat['name'].'</a>'
+                    $this->lib_admin->log(
+                    lang('ac_changed_cat_trans').
+                    '<a href="#" onclick="edit_category('.$cat['id'].'); return false;">'.$cat['name'].'</a>'
                     );
 
                     ($hook = get_hook('admin_update_cat_translation')) ? eval($hook) : NULL;
@@ -483,7 +483,7 @@ class Categories extends MY_Controller {
 
         if ($this->db->get('category')->num_rows() == 1)
         {
-            showMessage('Ошибка удаления категории.', 'Ошибка','r');
+            showMessage(lang('ac_delete_cat_err'), lang('ac_error'),'r');
             exit;
         } 
  
@@ -494,7 +494,7 @@ class Categories extends MY_Controller {
 		$this->db->where('id',$cat_id);
 		$this->db->delete('category');
 
-        $this->lib_admin->log('Удалил категорию ID '.$cat_id);
+        $this->lib_admin->log(lang('ac_delete_cat').$cat_id);
 
         // Delete translates
         $this->db->where('alias', $cat_id);
@@ -530,7 +530,7 @@ class Categories extends MY_Controller {
                 $this->db->where('id',$cat_id);
                 $this->db->delete('category');
 
-                $this->lib_admin->log('Удалил категорию ID '.$cat_id);
+                $this->lib_admin->log(lang('ac_delete_cat').$cat_id);
 
                 // Delete translates
                 $this->db->where('alias', $cat_id);
@@ -552,7 +552,7 @@ class Categories extends MY_Controller {
         }
 
 		$this->lib_category->clear_cache();
-		showMessage('Категория удалена!');
+		showMessage(lang('ac_cat_deleted'));
 	
 		return TRUE;
     }

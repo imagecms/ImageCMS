@@ -34,16 +34,14 @@
 		$this->CI->load->library('template');
 
 		# Load language
-//		$this->CI->template->add_array($this->CI->lang->load('main','russian',TRUE));
 // 		$this->CI->lang->load('main','russian');
 // 		$this->CI->config->set_item('language','russian');
-                //		$this->CI->template->add_array($this->CI->lang->load('main','russian',TRUE));
-// 		$this->CI->lang->load('main','russian');
+//		$this->CI->template->add_array($this->CI->lang->load('main','russian',TRUE));
  		$this->CI->config->set_item('language','russian');
-                $def_lang = $this->CI->cms_admin->get_default_lang();
                 $this->CI->template->add_array($this->CI->lang->load('admin','admin', TRUE));
                 $this->CI->lang->load('admin', 'admin');
-// 		$this->CI->config->set_item('language',$def_lang['lang_name']);
+                $this->CI->lang->load('controller', 'admin');
+                //$this->CI->template->add_array($this->CI->lang->load('controller','admin', TRUE));
 
 		$this->CI->load->helper('javascript');
 		$this->CI->load->helper('admin');
