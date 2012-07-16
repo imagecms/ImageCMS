@@ -17,7 +17,7 @@ class Admin extends MY_Controller {
 		parent::__construct();
 
 		$this->load->library('DX_Auth');
-        admin_or_redirect();
+                admin_or_redirect();
 
 		$this->load->library('lib_admin');
 		$this->load->library('lib_category');
@@ -62,7 +62,6 @@ class Admin extends MY_Controller {
             phpinfo();
             $contents = ob_get_contents();
             ob_end_clean();
-
             echo $contents;
             exit;
         }
@@ -128,24 +127,24 @@ class Admin extends MY_Controller {
 
 		$param = $this->input->post('param');
 
-        $this->lib_admin->log('Очистил кеш');
+        $this->lib_admin->log(lang('ac_cleaned_cache'));
 
 		switch ($param)
 		{
 			case 'all':
 				$files = $this->cache->delete_all();
 				if ($files)
-					showMessage ('Удалено файлов: '.$files);
+					showMessage (lang('ac_files_deleted').': '.$files);
 				else
-					showMessage ('Кеш очищен.');
+					showMessage (lang('ac_cache_cleared'));
 			break;
 
 			case 'expried':
 				$files = $this->cache->Clean();
 				if ($files)
-					showMessage ('Удалено устаревших файлов: '.$files);
+					showMessage (lang('ac_old_files_deleted').$files);
 				else
-				   showMessage ('Кеш очищен.');  	
+				   showMessage (lang('ac_cache_cleared'));  	
 			break;
 		}
 	}
@@ -177,7 +176,7 @@ class Admin extends MY_Controller {
 	 */
 	public function logout()
 	{
-        $this->lib_admin->log('Вышел из панели управления');
+        $this->lib_admin->log(lang('ac_admin_panel_exit'));
         $this->dx_auth->logout();
 		redirect('/admin/login','refresh');
 	}

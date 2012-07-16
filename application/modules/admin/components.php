@@ -104,7 +104,7 @@ class Components extends MY_Controller{
             $this->load->library('cms_hooks');
             $this->cms_hooks->build_hooks();
 
-            $this->lib_admin->log('Установил модуль '.$data['name']);
+            $this->lib_admin->log(lang('ac_istall').$data['name']);
 
 			//showMessage('Модуль Установлен');
             return TRUE;
@@ -136,12 +136,12 @@ class Components extends MY_Controller{
 			$this->db->limit(1);
 			$this->db->delete('components',array('name' => $module));
 
-            $this->lib_admin->log('Удалил модуль '.$module);
+            $this->lib_admin->log(lang('ac_deinstall').$module);
 
 		}
         else
         {
-			showMessage('Ошибка удаления модуля.',false,'r');
+			showMessage(lang('ac_deinstall_error'),false,'r');
 		}
 
         // Update hooks
@@ -248,7 +248,7 @@ class Components extends MY_Controller{
 			$this->db->where('name',$component);
 			$this->db->update('components',$data);
 
-            $this->lib_admin->log('Изменил настройки модуля '.$com['name']);
+            $this->lib_admin->log(lang('ac_module_sett_changed').$com['name']);
 
 			//showMessage('Настройки сохранены');
 		}else{
@@ -325,12 +325,12 @@ class Components extends MY_Controller{
 
 		if($com_info != FALSE)
 		{
-			$info_text = '<h1>'.$com_info['menu_name'].'</h1><p>'.$com_info['description'].'</p><p><b>Автор:</b> '.$com_info['author'].'<br/><b>Версия:</b> '.$com_info['version'].'</p>';
+			$info_text = '<h1>'.$com_info['menu_name'].'</h1><p>'.$com_info['description'].'</p><p><b>'.lang('ac_author').'</b> '.$com_info['author'].'<br/><b>'.lang('ac_version').'</b> '.$com_info['version'].'</p>';
 
 			jsCode("alertBox.info('".$info_text."');");
 
 		}else{
-			showMessage('Can\'t load module info file',false.'r');
+			showMessage(lang('ac_cant_load_module_into_file'),false.'r');
 		}
 	}
 

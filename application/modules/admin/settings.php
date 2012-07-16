@@ -131,7 +131,7 @@ class Settings extends MY_Controller{
                 }
                 else
                 {
-                    showMessage ('Страница не найдена!',false,'r');
+                    showMessage (lang('ac_page_not_found'),false,'r');
                     exit;
                 }
             break;
@@ -170,9 +170,9 @@ class Settings extends MY_Controller{
 
         $this->cache->delete('main_site_settings');
 
-        $this->lib_admin->log('Изменил настройки сайта');
+        $this->lib_admin->log(lang('ac_changed_site_sett'));
     
-		showMessage ('Настройки сохранены',false,'g');
+		showMessage (lang('ac_sett_saved'),false,'g');
 	}
 
 	/**
