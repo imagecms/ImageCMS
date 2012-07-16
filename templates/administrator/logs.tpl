@@ -1,6 +1,6 @@
 <div class="top-navigation">
     <ul>
-        <li><p>Журнал событий</p></li>
+        <li><p>{lang('a_event_journal')}</p></li>
     </ul>
 </div>
 

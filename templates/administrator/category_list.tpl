@@ -1,10 +1,10 @@
 <div id="sortable">
 		  <table id="pages_table" >
 		  	<thead>
-                <th width="5px">ID</th>
-				<th>Заголовок</th>
-				<th>Страниц</th>
-				<th>URL</th>
+                <th width="5px">{lang('a_id')}</th>
+				<th>{lang('a_title')}</th>
+				<th>{lang('a_pages')}</th>
+				<th>{lang('a_url')}</th>
 				<th></th>
 			</thead>
 			<tbody>
@@ -24,7 +24,7 @@
             <td>{$item.pages}</td>
 			<td><a href="{$BASE_URL}{$item.path_url}" target="_blank">{truncate($item.url, 75)}</a></td>
 			<td  class="rightAlign">
-        	<img onclick="confirm_delete_cat('{str_replace(array("'",'"'), '', $item.name)}', {$item.id} );" src="{$THEME}/images/delete_page.png"  style="cursor:pointer" width="16" height="16" title="Удалить" />
+        	<img onclick="confirm_delete_cat('{str_replace(array("'",'"'), '', $item.name)}', {$item.id} );" src="{$THEME}/images/delete_page.png"  style="cursor:pointer" width="16" height="16" title="{lang('a_delete')}" />
 			</td>
 		</tr>
 		{/foreach}

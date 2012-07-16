@@ -24,11 +24,11 @@
 
 <div class="top-navigation">
     <ul>
-        <li><p>Информация о системе</p></li>
+        <li><p>{lang('a_sys_info')}</p></li>
     </ul>
 </div>
 
-	<div class="form_text">Загруженность сервера</div>
+	<div class="form_text">{lang('a_server_load')}</div>
 	<div class="form_input">
     {if function_exists('sys_getloadavg') AND is_array(sys_getloadavg())}
 	    {$load_averages = sys_getloadavg()}
@@ -38,25 +38,25 @@
     </div>
 	<div class="form_overflow"></div>
 
-    <div class="form_text">Сервер</div>
+    <div class="form_text">{lang('a_server')}</div>
 	<div class="form_input">
-        Операционная система:<span style="padding-left:3px;"><?php echo PHP_OS ?></span><br />
+        {lang('a_os')}:<span style="padding-left:3px;"><?php echo PHP_OS ?></span><br />
         PHP:<span style="padding-left:3px;"><?php echo PHP_VERSION ?></span> 
         <a href="#" onclick="ajax_div('php_info', base_url + 'admin/sys_info/phpinfo'); return false;"> phpinfo</a>
     </div>
 	<div class="form_overflow"></div>
 
     {if $db_version}
-        <div class="form_text">База данных</div>
+        <div class="form_text">{lang('a_db')}</div>
         <div class="form_input">
-            Версия: {$db_version}<br/>
-            Строк: {$db_rows}<br/>
-            Размер: {$db_size}
+            {lang('a_version')}: {$db_version}<br/>
+            {lang('a_period')}: {$db_rows}<br/>
+            {lang('a_size')}: {$db_size}
         </div>
         <div class="form_overflow"></div>
     {/if}
 
-    <div class="form_text">Права на запись</div>
+    <div class="form_text">{lang('a_write_perm')}</div>
 	<div class="form_input">
         {foreach $folders as $k => $v}
             {if $v == TRUE}

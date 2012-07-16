@@ -1,10 +1,10 @@
 <table  width="100%">
 		  	<tr style="background-color:#EDEDED">
-				<td><b>Название</b></td>
-				<td><b>Папка</b></td>
-				<td><b>Идентификатор</b></td>
-				<td><b>Шаблон</b></td>
-				<td><b>Изображение</b></td>
+				<td><b>{lang('a_name')}</b></td>
+				<td><b>{lang('a_folder')}</b></td>
+				<td><b>{lang('a_identif')}</b></td>
+				<td><b>{lang('a_tpl')}</b></td>
+				<td><b>{lang('a_image')}</b></td>
 				<td></td>
 			</tr>
 			<tbody>
@@ -16,7 +16,7 @@
 			<td>{$lang.identif}</td>
 			<td>{$lang.template}</td>
 			<td><img src="{$lang.image}" width="16" height="16" /></td>
-			<td><img src="{$THEME}/images/delete.png" width="16" height="16" style="cursor:pointer;" alt="Удалить {$lang.lang_name}" title="Удалить {$lang.lang_name}" onclick="delete_lang('{$lang.id}');" /></td>
+			<td><img src="{$THEME}/images/delete.png" width="16" height="16" style="cursor:pointer;" alt="{lang('a_delete')} {$lang.lang_name}" title="{lang('a_delete')} {$lang.lang_name}" onclick="delete_lang('{$lang.id}');" /></td>
 		</tr>
 		{/foreach}
 
@@ -24,7 +24,7 @@
  </table>
 
 <hr/>
-По умолчанию: <select name="folder" id="def_lang_folder" onchange="set_def_lang($('def_lang_folder').value);">
+{lang('a_by_default')}: <select name="folder" id="def_lang_folder" onchange="set_def_lang($('def_lang_folder').value);">
 		{foreach $langs as $lang}
 			<option value="{$lang.id}" {if $lang['default'] == "1"} selected="selected" {/if}>{$lang.lang_name}</option>
 		{/foreach}

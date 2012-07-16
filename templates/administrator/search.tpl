@@ -2,12 +2,12 @@
     <div style="float:left;">
     <div style="padding-left:10px;">
         <form style="width:100%;" onsubmit="return false;" method="post" action="{$BASE_URL}admin/admin_search" id="g_search_form">
-            <input type="text" value="{$search_title}" name="search_text" class="textbox_long" onclick="if (this.value=='Поиск страниц...') this.value='';" onblur="if (this.value=='') this.value='Поиск страниц...';" />
+            <input type="text" value="{$search_title}" name="search_text" class="textbox_long" onclick="if (this.value=='{lang('a_search_pages')}...') this.value='';" onblur="if (this.value=='') this.value='{lang('a_search_pages')}...';" />
             <input type="submit" value="Search" class="search_submit" onclick="ajax_form('g_search_form', 'page');"/>
            
-            <a href="javascript:ajax_div('page', base_url + 'admin/admin_search/advanced_search')">Расширенный поиск</a>
+            <a href="javascript:ajax_div('page', base_url + 'admin/admin_search/advanced_search')">{lang('a_advanced_search')}</a>
             {if $advanced_search}
-                <a style="padding-left:15px;" href="#" id="toggler">Изменить параметры</a>
+                <a style="padding-left:15px;" href="#" id="toggler">{lang('a_change_param')}</a>
             {/if}
          </form>
     </div>
@@ -15,9 +15,9 @@
     </div>
 
     <div align="right" style="padding:7px 13px;">
-    <input type="button" class="button_silver_130" value="Создать страницу" onclick="ajax_div('page', base_url + 'admin/pages/index'); return false;" />
+    <input type="button" class="button_silver_130" value="{lang('a_create_page')}" onclick="ajax_div('page', base_url + 'admin/pages/index'); return false;" />
     <span style="padding:5px;"></span>
-    <input type="button" class="button_silver_130" value="Создать Категорию" onclick="ajax_div('page', base_url + 'admin/categories/create_form'); return false;" />
+    <input type="button" class="button_silver_130" value="{lang('a_create_cat')}" onclick="ajax_div('page', base_url + 'admin/categories/create_form'); return false;" />
     </div>
 </div>
 
@@ -38,17 +38,17 @@
     <?php } ?>   
     <?php } ?> 
 
-	<div class="form_text">Текст</div>
+	<div class="form_text">{lang('a_text')}</div>
 	<div class="form_input">
         <input type="text" class="textbox_long" value="{$filter_data.search_text}" name="search_text" />
     </div>
 	<div class="form_overflow"></div>
 
 
-	<div class="form_text">Категории</div>
+	<div class="form_text">{lang('a_categories')}</div>
 	<div class="form_input">
         <select name="category[]" multiple="multiple" style="width:270px;">
-        <option value="0">root</option>
+        <option value="0">{lang('a_root')}</option>
         <option disabled="disabled"> </option>
             {build_cats_tree($this->CI->lib_category->build(), (array) $filter_data.category)}  
         </select>
@@ -57,10 +57,10 @@
 
     {$cfcm_groups = $this->CI->db->get('content_field_groups')}
     {if $cfcm_groups->num_rows() > 0}
-	<div class="form_text">Группа для поиска:</div>
+	<div class="form_text">{lang('a_search_group')}:</div>
 	<div class="form_input">
     <select id="cfcm_search_group_id" onchange="filter_load_form();">
-            <option value="0">-- Выберите группу --</option>
+            <option value="0">-- {lang('a_choose_group')} --</option>
         {foreach $cfcm_groups->result_array() as $g}
             <option value="{$g.id}" {if $g.id == $filter_data.use_cfcm_group}selected="selected"{/if} >{$g.name}</option>
         {/foreach}
@@ -74,7 +74,7 @@
 
 	<div class="form_text"></div>
 	<div class="form_input">
-        <input type="submit" value="Поиск" class="button_silver" onclick="ajax_me('filter_form');" />
+        <input type="submit" value="{lang('a_search')}" class="button_silver" onclick="ajax_me('filter_form');" />
     </div>
 	<div class="form_overflow"></div>
 
@@ -146,7 +146,7 @@
 
 {if count($pages) == 0}
     <div id="notice" style="width:500px;">
-        По вашему запросу совпадений не найдено.
+        {lang('a_not_found')}
     </div>    
     {return}
 {/if}
@@ -157,13 +157,13 @@
 		  <table id="pages_table">
 		  	<thead>
                 <th width="5px"></th>
-				<th axis="number" width="5px;">ID</th>
-				<th axis="string">Заголовок</th>
-				<th axis="string">Категория</th>
-				<th axis="string">URL</th>
-				<th axis="date">Создано</th>
-				<th axis="string">Автор</th>
-				<th>Статус</th>
+				<th axis="number" width="5px;">{lang('a_id')}</th>
+				<th axis="string">{lang('a_title')}</th>
+				<th axis="string">{lang('a_category')}</th>
+				<th axis="string">{lang('a_url')}</th>
+				<th axis="date">{lang('a_created')}</th>
+				<th axis="string">{lang('a_author')}</th>
+				<th>{lang('a_status')}</th>
 				<th></th>
 			</thead>
 			<tbody>
@@ -173,7 +173,7 @@
             <input type="checkbox" id="chkb_{$page.id}" class="chbx"/>  
             </td>
 			<td class="">{$page.id}</td>
-			<td title="{$page.title}. Просмотров: {$page.showed}" onclick="ajax_div('page','{$BASE_URL}admin/pages/edit/{$page.id}'); return false;">{truncate($page.title, 50)}</td>
+			<td title="{$page.title}. {lang('a_view_count')}: {$page.showed}" onclick="ajax_div('page','{$BASE_URL}admin/pages/edit/{$page.id}'); return false;">{truncate($page.title, 50)}</td>
 			<td>
                 <a href="#" onclick="cats_options({$page.category});" >{truncate(get_category_name($page.category), 20, '...')}</a> 
             </td>
@@ -184,20 +184,20 @@
 			{ switch $page['post_status'] }
 				{ case "publish" }
 				<div style="visibility:hidden;float:left">1</div>
-                <img id="p_status_{$page.id}" onclick="change_page_status('{$page.id}');" title="Обупликовано" src="{$THEME}/images/publish.png" width="16" height="16" />
+                <img id="p_status_{$page.id}" onclick="change_page_status('{$page.id}');" title="{lang('a_published')}" src="{$THEME}/images/publish.png" width="16" height="16" />
                 {break;}
 				{ case "pending" }
 				<div style="visibility:hidden;float:left">2</div>
-                <img id="p_status_{$page.id}" onclick="change_page_status('{$page.id}');" title="Ожидает одобрения" src="{$THEME}/images/pending.png" width="16" height="16" />
+                <img id="p_status_{$page.id}" onclick="change_page_status('{$page.id}');" title="{lang('a_wait_approve')}" src="{$THEME}/images/pending.png" width="16" height="16" />
                 {break;}
 				{ case "draft" }
 					<div style="visibility:hidden;float:left">3</div>
-                    <img id="p_status_{$page.id}" onclick="change_page_status('{$page.id}');" title="Не опубликовано" src="{$THEME}/images/draft.png" width="16" height="16" />
+                    <img id="p_status_{$page.id}" onclick="change_page_status('{$page.id}');" title="{lang('a_not_publ')}" src="{$THEME}/images/draft.png" width="16" height="16" />
                 {break;}
 			{ /switch }
 			</td>
 			<td  class="rightAlign">
-			<img onclick="ajax_div('page','{$BASE_URL}admin/pages/edit/{$page.id}/{$page.lang}');" style="cursor:pointer" src="{$THEME}/images/edit_page.png" width="16" height="16" title="Редактировать" />
+			<img onclick="ajax_div('page','{$BASE_URL}admin/pages/edit/{$page.id}/{$page.lang}');" style="cursor:pointer" src="{$THEME}/images/edit_page.png" width="16" height="16" title="{lang('a_edit')}" />
 			<img onclick="confirm_delete_page({$page.id});" src="{$THEME}/images/delete_page.png"  style="cursor:pointer" width="16" height="16" title="Удалить" />
 			</td>
 		</tr>
@@ -220,14 +220,14 @@
 </div>
 
 <div style="padding-left:15px;padding-top:2px;">
-<a href="#" onclick="check_all(); return false;">Отметить все</a>  /  <a href="#" onclick="uncheck_all(); return false;">Снять выделение</a> 
+<a href="#" onclick="check_all(); return false;">{lang('a_cancel_all')}</a>  /  <a href="#" onclick="uncheck_all(); return false;">{lang('a_unselect_all')}</a> 
 </div>
 
 <div class="footer_block" align="right">
-С отмечеными:
-<input type="submit" name="delete"  class="button_silver" value="Переместить" onclick="show_move_window('move');" />
-<input type="submit" name="delete"  class="button_silver" value="Копировать" onclick="show_move_window('copy');" />
-<input type="submit" name="delete"  class="button_red" style="font-weight:bold;" value="Удалить" onclick="delete_sel_pages({$cat_id}); return false;" />
+{lang('a_with_selected')}:
+<input type="submit" name="delete"  class="button_silver" value="{lang('a_repalce')}" onclick="show_move_window('move');" />
+<input type="submit" name="delete"  class="button_silver" value="{lang('a_copy')}" onclick="show_move_window('copy');" />
+<input type="submit" name="delete"  class="button_red" style="font-weight:bold;" value="{lang('a_delete')}" onclick="delete_sel_pages({$cat_id}); return false;" />
 </div>
 
 <div align="center" style="padding:5px;" id="pagination">

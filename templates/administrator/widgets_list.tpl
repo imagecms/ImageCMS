@@ -1,6 +1,6 @@
 <div class="top-navigation">
     <ul>
-        <li style="padding:5px;"><input type="button" class="button_silver_130" onclick="ajax_div('page', base_url + 'admin/widgets_manager/create_tpl'); return false;" value="Создать Виджет" /></li>
+        <li style="padding:5px;"><input type="button" class="button_silver_130" onclick="ajax_div('page', base_url + 'admin/widgets_manager/create_tpl'); return false;" value="{lang('a_create_widget')}" /></li>
     </ul>
 </div>
 <div class="form_overflow"></div>
@@ -9,11 +9,11 @@
 <div id="sortable">
 		  <table id="widgets_table" >
 		  	<thead>
-                <th width="5px" axis="number">ID</th>
-                <th axis="string">Имя</th>
-                <th axis="string">Тип</th>
-                <th axis="string">Описание</th>
-                <th axis="date">Создан</th>
+                <th width="5px" axis="number">{lang('a_id')}</th>
+                <th axis="string">{lang('a_n')}</th>
+                <th axis="string">{lang('a_type')}</th>
+                <th axis="string">{lang('a_desc')}</th>
+                <th axis="date">{lang('a_cr')}</th>
                 <th></th>
 			</thead>
 			<tbody>
@@ -24,10 +24,10 @@
                 <td>
                     {switch $widget.type}
                         {case 'module':}
-                            Модуль {$widget.data}
+                            {lang('a_module')} {$widget.data}
                         {break}
                         {case 'html':}
-                            html
+                            {lang('a_html')}
                         {break}
                     {/switch}
                 </td>
@@ -35,14 +35,14 @@
                 <td>{date('d-m-Y',$widget.created)}</td>
                 <td align="right">
                     {if $widget.config == TRUE}
-                        <img src="{$THEME}/images/edit.png" title="Изменить данные" onclick="ajax_div('page', base_url + 'admin/widgets_manager/edit_module_widget/{$widget.id}'); return false;" style="cursor:pointer;" />
-                        <img src="{$THEME}/images/module_admin.png" title="Настройки Виджета" onclick="edit_widget({$widget.id}); return false;" style="cursor:pointer;" />
+                        <img src="{$THEME}/images/edit.png" title="{lang('a_change_data')}" onclick="ajax_div('page', base_url + 'admin/widgets_manager/edit_module_widget/{$widget.id}'); return false;" style="cursor:pointer;" />
+                        <img src="{$THEME}/images/module_admin.png" title="{lang('a_widget_sett')}" onclick="edit_widget({$widget.id}); return false;" style="cursor:pointer;" />
                     {/if}
                     {if $widget.type == 'html'}
-                        <img src="{$THEME}/images/edit.png" title="Настройки" onclick="edit_widget_html({$widget.id}); return false;" style="cursor:pointer;" />
+                        <img src="{$THEME}/images/edit.png" title="{lang('a_sett')}" onclick="edit_widget_html({$widget.id}); return false;" style="cursor:pointer;" />
                     {/if}
 
-                    <img src="{$THEME}/images/delete.png"  onclick="confim_delete_widget('{$widget.name}');" title="Удалить"  style="cursor:pointer;" />
+                    <img src="{$THEME}/images/delete.png"  onclick="confim_delete_widget('{$widget.name}');" title="{lang('a_delete')}"  style="cursor:pointer;" />
                 </td>
       		</tr>
             {/foreach}
