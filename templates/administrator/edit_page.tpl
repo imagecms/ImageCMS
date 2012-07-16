@@ -26,28 +26,28 @@
 </div>
 
 <div id="tabs-block"  style="float:left;width:100%">
-	<h4>Содержание</h4>
+	<h4>{lang('a_content')}</h4>
 	<div id="text_id2" style="padding-left:10px;">
 
         { $this->template_vars['page_editing'] = TRUE }
 
         <div style="padding:3px;"></div>
         <div id="fast_category_list" style="float:left;">
-            Категория: <select name="category" onchange="change_comments_status();" id="category_selectbox">
-                <option value="0">Нет</option>
+            {lang('a_category')}: <select name="category" onchange="change_comments_status();" id="category_selectbox">
+                <option value="0">{lang('a_no')}</option>
                    { $this->view("cats_select.tpl", $this->template_vars ) }
                 </select>
         </div>
 
-        <img  src="{$THEME}/images/plus2.png" style="padding-left:5px;padding-top:2px;cursor:pointer;float:left;" onclick="show_fast_add_cat();" title="Создать категорию" />
+        <img  src="{$THEME}/images/plus2.png" style="padding-left:5px;padding-top:2px;cursor:pointer;float:left;" onclick="show_fast_add_cat();" title="{lang('a_create_cat')}" />
 
 		<div class="form_overflow" style="padding:5px;"></div>
 
-		Заголовок:
+		{lang('a_title')}:
         <input type="text" name="page_title" value="{htmlspecialchars($title)}" id="page_title_u" class="textbox_long" /> 
 		<div class="form_overflow"></div>
  
-        <div id="page_header"> Предварительное содержание:</div>
+        <div id="page_header"> {lang('a_prev_cont')}:</div>
          {if $orig_page}
             {literal}
                 <script type="text/javascript">
@@ -76,7 +76,7 @@
 		    {encode($prev_text)}
 		</textarea>
 
-        <div id="page_header"> Полное содержание:</div>
+        <div id="page_header"> {lang('a_full_cont')}:</div>
          {if $orig_page}
             {literal}
                 <script type="text/javascript">
@@ -108,35 +108,35 @@
 		<div style="height:25px;"></div>
     </div>
 
-	<h4 title="Настройки">Настройки</h4>
+	<h4 title="Настройки">{lang('a_sett')}</h4>
 	<div style="padding:8px;">
 
-		<div class="form_text">URL:</div>
+		<div class="form_text">{lang('a_url')}:</div>
 		<div class="form_input"><input type="text" name="page_url" {if $lang_alias != 0} disabled="disabled" {/if} value="{$url}" id="page_url" class="textbox_long" /> 
-        <img onclick="translite_title($('page_title_u').value);" align="absmiddle" style="cursor:pointer" src="{$THEME}/images/translit.png" width="16" height="16" title="Транслитерация заголовка." /> 
-        <div class="lite">(только латинские символы)</div>
+        <img onclick="translite_title($('page_title_u').value);" align="absmiddle" style="cursor:pointer" src="{$THEME}/images/translit.png" width="16" height="16" title="{lang('a_trans_title')}." /> 
+        <div class="lite">({lang('a_just_lat')})</div>
         </div>
         <div class="form_overflow"></div>
 
-		<div class="form_text">Теги:</div>
+		<div class="form_text">{lang('a_tags')}:</div>
 		<div class="form_input"><input type="text" name="search_tags" value="{foreach $tags as $tag}{$tag.value},{/foreach}" id="tags" class="textbox_long" /></div>
 		<div class="form_overflow"></div>
 
-		<div class="form_text">Meta title:</div>
+		<div class="form_text">{lang('a_meta_title')}:</div>
 		<div class="form_input"><input type="text" name="meta_title" value="{$meta_title}" class="textbox_long" /></div>
 		<div class="form_overflow"></div>
 
-		<div class="form_text">Meta description:</div>
+		<div class="form_text">{lang('a_meta_description')}:</div>
 		<div class="form_input">
 		<textarea name="page_description" class="textarea" id="page_description" rows="8" cols="48">{$description}</textarea>
-		<img onclick="create_description(  tinyMCE.get('prev_text').getContent() );" src="{$THEME}/images/arrow-down.png" title="Сгенерировать описание" style="cursor:pointer" width="16" height="16" />
+		<img onclick="create_description(  tinyMCE.get('prev_text').getContent() );" src="{$THEME}/images/arrow-down.png" title="{lang('a_gen_desc')}" style="cursor:pointer" width="16" height="16" />
 		</div>
 		<div class="form_overflow"></div>
 
-		<div class="form_text">Meta keywords:</div>
+		<div class="form_text">{lang('a_meta_keywords')}:</div>
 		<div class="form_input">
 			<textarea name="page_keywords" id="page_keywords" class="textarea" rows="8" cols="28">{$keywords}</textarea>
-			<img src="{$THEME}/images/arrow-down.png" style="cursor:pointer" width="16" height="16" title="Сгенерировать ключевые слова" onclick="retrive_keywords( tinyMCE.get('full_text').getContent() + tinyMCE.get('prev_text').getContent() );" />
+			<img src="{$THEME}/images/arrow-down.png" style="cursor:pointer" width="16" height="16" title="{lang('a_gen_key_words')}" onclick="retrive_keywords( tinyMCE.get('full_text').getContent() + tinyMCE.get('prev_text').getContent() );" />
 
 			<div style="max-width:600px" id="keywords_list">
 
@@ -144,23 +144,23 @@
 		</div>
 		<div class="form_overflow"></div>
 
-		<div class="form_text">Главный шаблон:</div>
+		<div class="form_text">{lang('a_main_tpl')}:</div>
 		<div class="form_input">
 			<input type="text" name="main_tpl" value="{$main_tpl}" class="textbox_long" /> .tpl
-			<div class="lite">По умолчанию  main.tpl</div>
+			<div class="lite">{lang('a_by_default')}  main.tpl</div>
 		</div>
 		<div class="form_overflow"></div>
 
-		<div class="form_text">Шаблон Страницы:</div>
+		<div class="form_text">{lang('a_page_tpl')}:</div>
 		<div class="form_input">
 			<input type="text" name="full_tpl" value="{$full_tpl}" class="textbox_long" /> .tpl
-			<div class="lite">По умолчанию  page_full.tpl</div>
+			<div class="lite">{lang('a_by_default')}  page_full.tpl</div>
 		</div>
 		<div class="form_overflow"></div>
 
 		<div class="form_text"></div>
 		<div class="form_input">
-			<label><input type="checkbox" name="comments_status" value="1" {if $comments_status == 1} checked="checked" {/if} /> Разрешить комментирование</label>
+			<label><input type="checkbox" name="comments_status" value="1" {if $comments_status == 1} checked="checked" {/if} /> {lang('a_comm_alow')}</label>
 		</div>
 		<div class="form_overflow"></div>
 
@@ -171,33 +171,33 @@
 </div>
 
 <div id="sidebar2">
-    <div><h3><a onclick="side_panel('show');">показать настройки</a></h3></div>
+    <div><h3><a onclick="side_panel('show');">{lang('a_show_sett')}</a></h3></div>
 </div>
 
 <div id="sidebar1">
-	<div id="side_bar_right"><h3>Настройки (<a onclick="side_panel('hide');">скрыть</a>)</h3></div>
+	<div id="side_bar_right"><h3>{lang('a_sett')} (<a onclick="side_panel('hide');">{lang('a_hide')}</a>)</h3></div>
 
     <div style="padding:5px;" id="vertical_slide">
         <p style="padding-left:15px;">
-        <b>Статус публикации: </b><br />
+        <b>{lang('a_pub_stat')}: </b><br />
             <select name="post_status" id="post_status">
-                <option value="publish" {if $post_status == "publish"} selected="selected" {/if} >Опубликовано</option>
-                <option value="pending" {if $post_status == "pending"} selected="selected" {/if} >Ожидает одобрения</option>
-                <option value="draft" {if $post_status == "draft"} selected="selected" {/if} >Не опубликовано</option>
+                <option value="publish" {if $post_status == "publish"} selected="selected" {/if} >{lang('a_published')}</option>
+                <option value="pending" {if $post_status == "pending"} selected="selected" {/if} >{lang('a_wait_approve')}</option>
+                <option value="draft" {if $post_status == "draft"} selected="selected" {/if} >{lang('a_not_publ')}</option>
             </select>
         </p>
 
         <hr />
 	
 	<p style="padding-left:15px;">
-	    <b>Дата и время создания:</b>
+	    <b>{lang('a_date_and_time_cr')}:</b>
 		<p style="padding-left:15px;"><input id="create_date" name="create_date" tabindex="7" value="{$create_date}" type="text" class="textbox_short" /></p>
 		<p style="padding-left:15px;"><input id="create_time" name="create_time" tabindex="8" type="text" value="{$create_time}" class="textbox_short" /></p>
 	    </p>
 	<hr />
 
         <p style="padding-left:15px;">
-            <b>Дата и время публикации:</b>
+            <b>{lang('a_date_and_time_p')}:</b>
             <p style="padding-left:15px;"><input id="publish_date" name="publish_date" tabindex="7" value="{$publish_date}" type="text" class="textbox_short" /></p>
             <p style="padding-left:15px;"><input id="publish_time" name="publish_time" tabindex="8" type="text" value="{$publish_time}" class="textbox_short" /></p>
         </p>
@@ -205,9 +205,9 @@
         <hr />
 
         <p style="padding-left:15px">
-        <b>Доступ:</b><br />
+        <b>{lang('a_access')}:</b><br />
             <select multiple="multiple" name="roles[]">
-                <option value="0" {$all_selected} >Все</option>
+                <option value="0" {$all_selected} >{lang('a_all')}</option>
                 {foreach $roles as $role}
                   <option {$role.selected} value="{$role.id}">{$role.alt_name}</option>
                 {/foreach}
@@ -218,7 +218,7 @@
 
         <div style="padding-left:15px;">
             {if $show_langs == "1"}
-            <b>Редактировать на языке:</b>
+            <b>{lang('a_edit_on_language')}:</b>
                 <div style="padding-left:15px;">
                     <ul>
                         {foreach $langs as $lang}
@@ -237,8 +237,8 @@
 {form_csrf()}
 
 <div class="footer_block" align="right">
-    <input type="submit" name="button" id="page_save_button" class="button_silver_130" value="Сохранить" onclick="ajax_me('edit_page_form{$update_page_id}');" />
-    <input type="submit" class="button_red" value="Удалить" onclick="confirm_delete_page('{$update_page_id}'); return false;" />
+    <input type="submit" name="button" id="page_save_button" class="button_silver_130" value="{lang('a_save')}" onclick="ajax_me('edit_page_form{$update_page_id}');" />
+    <input type="submit" class="button_red" value="{lang('a_delete')}" onclick="confirm_delete_page('{$update_page_id}'); return false;" />
 </div>
 
 </form>

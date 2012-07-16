@@ -1,16 +1,16 @@
 <div id="module_manager_tabs">
-<h4 title="Настройки">Модули</h4>
+<h4 title="Настройки">{lang('a_modules')}</h4>
     <div id="modules_table">
         {if count($installed) != 0 }
         <div id="sortable">
               <table id="modules_table">
               <thead>
-                    <th axis="string">Модуль</th>
-                    <th axis="string">Описание</th>
-                    <th axis="string">URL</th>
-                    <th axis="string">Версия</th>
-                    <th>Автозагрузка</th>
-                    <th>URL доступ</th>
+                    <th axis="string">{lang('a_module')}</th>
+                    <th axis="string">{lang('a_desc')}</th>
+                    <th axis="string">{lang('a_url')}</th>
+                    <th axis="string">{lang('a_version')}</th>
+                    <th>{lang('a_autoload')}</th>
+                    <th>{lang('a_url_access')}</th>
                     <th></th>
                     <th></th>
                 </thead>
@@ -46,13 +46,13 @@
                 {/if}
                 </td>
                 <td>
-                    <img src="{$THEME}/images/preferences.png" onclick="com_settings('{$item.name}');" title="Настройки" width="16" height="16" />
+                    <img src="{$THEME}/images/preferences.png" onclick="com_settings('{$item.name}');" title="{lang('a_sett')}" width="16" height="16" />
                 {if $item['admin_file'] == "1"}
-                    <img src="{$THEME}/images/module_admin.png" onclick="com_admin('{$item.name}');" title="Администрирование" width="16" height="16" />
+                    <img src="{$THEME}/images/module_admin.png" onclick="com_admin('{$item.name}');" title="{lang('a_maintance')}" width="16" height="16" />
                 {/if}
                 </td>
                 <td>
-                <img src="{$THEME}/images/delete.png" onclick="confirm_delete_module('{$item.menu_name}','{$item.name}');" title="Удалить" width="16" height="16" />
+                <img src="{$THEME}/images/delete.png" onclick="confirm_delete_module('{$item.menu_name}','{$item.name}');" title="{lang('a_delete')}" width="16" height="16" />
                 </td>
             </tr>
             {/foreach}
@@ -62,7 +62,7 @@
         </div>
 
         {if count($not_installed) > 0 }
-        <h4 title="Настройки">Установить модули</h4>
+        <h4 title="{lang('a_sett')}">{lang('a_install_modules')}</h4>
         <div id="not_installed_tabs"> 
             <div style="font-size:12px;">
             <div class="form_input"></div>
@@ -72,7 +72,7 @@
                 <div class="form_input">
                 {$item.description} <br/>
                 Версия: {$item.version} <br/>
-                <a href="#" onclick="install_module('{$item.com_name}'); return false;">Установить</a>
+                <a href="#" onclick="install_module('{$item.com_name}'); return false;">{lang('a_install')}</a>
                 </div>
             <div class="form_overflow"></div>
             {/foreach}
@@ -83,7 +83,7 @@
 </div>
 
 	{else:}
-    	<div align="center"><p><h3>Модули не установлены!</h3></p></div>
+    	<div align="center"><p><h3>{lang('a_modules_not_installed')}</h3></p></div>
 	{/if}
 
 
