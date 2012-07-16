@@ -41,13 +41,13 @@ function show_m_install_window(id)
         <li>
         <form style="width:100%;" onsubmit="pages_table.filter(this.id); return false;">Поиск:
                 <input type="text" name="keyword"  />
-                <input type="submit" value="Поиск" class="button_green" onclick="showMessage('Сообщение', 'Поиск модулей на стадии разработки.'); return false;" />
+                <input type="submit" value="Поиск" class="button_green" onclick="showMessage('{lang('a_message')}', '{lang('a_modules_search_in_dev')}'); return false;" />
          {form_csrf()}
          </form>
         </li>
         <li>
             {if $install_type == 'ftp'}
-                <span class="lite">Для упрощенной установки модулей установите права на запись(0777) на директорию ./application/modules/</span>
+                <span class="lite">{lang('a_for_simple_install')} ./application/modules/</span>
             {/if}
         </li>
     </ul>
@@ -60,10 +60,10 @@ function show_m_install_window(id)
             {if count($modules) > 0}
                 <table border="0" cellpadding="3" cellspacing="4" width="100%" id="modules_list_table">
                 <thead>
-                    <th>Имя</th>
-                    <th>Версия</th>
-                    <th>Описание</th>
-                    <th>Действия</th>
+                    <th>{lang('a_n')}</th>
+                    <th>{lang('a_version')}</th>
+                    <th>{lang('a_desc')}</th>
+                    <th>{lang('a_actions')}</th>
                 </thead>
 
                 {foreach $modules as $m}
@@ -73,7 +73,7 @@ function show_m_install_window(id)
                     <td style="min-width:300px;">{$m.description}</td>
                     <td width="100px;" align="right">
                         <div style="padding-right:50px;">
-                        <a href="#" onclick="show_m_install_window({$m.id}); return false;">Установить</a>
+                        <a href="#" onclick="show_m_install_window({$m.id}); return false;">{lang('a_install')}</a>
                         </div>
                     </td>
                 </tr>
@@ -91,7 +91,7 @@ function show_m_install_window(id)
                 </table>
 
             {else:}
-                По вашему запросу модулей не найдено.
+                {lang('a_for_your_request')}
             {/if}
         {/if}
 
@@ -100,12 +100,12 @@ function show_m_install_window(id)
 
                 <table border="0" cellpadding="3" cellspacing="4" width="100%" id="modules_list_table">
                 <thead>
-                    <th>Поиск модулей</th>
+                    <th>{lang('a_modules_search')}</th>
                 </thead>
 
                 
                 <tr valign="top">
-                    <td style="min-width:150px;">Здесь вы можете осуществить поиск модулей и установить их в автоматическом режиме.</td>
+                    <td style="min-width:150px;">{lang('a_modules_search_text')}</td>
                 </tr>
                 
                 </table>
@@ -117,7 +117,7 @@ function show_m_install_window(id)
 
         <table border="0" cellpadding="3" cellspacing="4" id="modules_list_table">
         <thead>
-            <th width="200px">Категории</th>
+            <th width="200px">{lang('a_categories')}</th>
         </thead>
 
         <tr valign="top" width="100%">

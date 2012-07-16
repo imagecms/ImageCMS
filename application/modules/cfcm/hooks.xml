@@ -153,7 +153,7 @@ if (count($pages) > 0 AND is_array($pages))
 <!-- Add new tab on add page. --> 
 <hook id="admin_tpl_add_page">
 <![CDATA[
-    echo '<h4>Дополнительные Поля</h4>';
+    echo '<h4>'.lang("a_additional_fields").'</h4>';
 	echo '<div style="padding:8px;" id="cfcm_fields_block"></div>';
 
     echo '

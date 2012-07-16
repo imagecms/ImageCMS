@@ -3,8 +3,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-        <title>Панель Управления - Image CMS</title>
-        <meta name="description" content="Панель Управления - Image CMS" />
+        <title>{lang('a_controll_panel')} - Image CMS</title>
+        <meta name="description" content="{lang('a_controll_panel')} - Image CMS" />
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/style.css" />
         <!--[if IE 7]><link rel="stylesheet" type="text/css" href="css/ie_7.css" /><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="css/ie8_7_6.css" /><![endif]-->
@@ -26,7 +26,7 @@
         <?php
         $ci = get_instance();
         if($ci->config->item('is_installed') === TRUE AND file_exists(APPPATH.'modules/install/install.php'))
-        die('<span style="font-size:18px;"><br/><br/>Для продолжения работы, удалите файл ./application/modules/install/install.php</div>');
+        die('<span style="font-size:18px;"><br/><br/>{lang('a_delete_install')} ./application/modules/install/install.php</div>');
             ?>
 
             <div class="main_body">
@@ -37,7 +37,7 @@
                         </a>
                     </div>
                     <div class="order_partner_ship frame_standart_form fonds">
-                        <h1 class="t_a_c">Авторизация</h1>
+                        <h1 class="t_a_c">{lang('a_auth')}</h1>
 
                         <form method="post" action="{$BASE_URL}admin/login/" class="standart_form" id="with_out_article">
                             {if $login_failed}
@@ -58,19 +58,19 @@
                                 <label style="margin-bottom:50px">
                                     {$lang_captcha}:<br/>
                                     <div id="captcha">{$cap_image}</div>
-                                        <a href="" onclick="ajax_div('captcha','{$BASE_URL}/admin/login/update_captcha');return false;">Обновить код</a>
+                                        <a href="" onclick="ajax_div('captcha','{$BASE_URL}/admin/login/update_captcha');return false;">{lang('a_code_refresh')}</a>
                                         <input type="text" name="captcha" />{$captcha_error}
                                 </label>
                             {/if}
                             
                             <div class="t_a_c">
                                 <label class="d_i_b w_auto h_auto m_r_9 pos_rel">
-                                    <input type="checkbox" name="remember" value="1"/>Запомнить</label>
+                                    <input type="checkbox" name="remember" value="1"/>{lang('a_remember')}</label>
                                 <div class="button_clean button_blue">
-                                    <input type="submit" value="Отправить"/>
+                                    <input type="submit" value="{lang('a_send')}"/>
                                 </div>
                                 <div class="o_h">
-                                    <a href="/auth/register/">Регистрация</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/auth/forgot_password/">Забыли пароль?</a>
+                                    <a href="/auth/register/">{lang('a_reg')}</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/auth/forgot_password/">{lang('a_forget_pass')}</a>
                                 </div>
                             </div>
                             {form_csrf()}
@@ -82,8 +82,8 @@
             <footer class="b_c_n">
                 <div class="container w_260">
                     <div class="d_t_c l_h_17">
-                        <span class="l_h_27">2009-2012 © ООО «Сайт Имидж»</span>
-                        ImageCMS активно развивается в плане создания качественных интернет-магазинов
+                        <span class="l_h_27">{lang('a_site_image_ooo')}</span>
+                        {lang('a_site_image_text')}
                     </div>            
                 </div>
             </footer>
