@@ -3,8 +3,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-	<title>Панель Управления | Image CMS</title>
-	<meta name="description" content="Панель Управления - Image CMS" />
+	<title>{lang('a_controll_panel')} | Image CMS</title>
+	<meta name="description" content="{lang('a_controll_panel')} - Image CMS" />
 
 	<link rel="stylesheet" href="{$THEME}/css/content.css" type="text/css" />
 	<link rel="stylesheet" href="{$THEME}/css/rdTree.css" type="text/css" />
@@ -61,7 +61,7 @@
          border:2px solid #eedddd;
          border-radius:10px;">
         <img src="{$THEME}/images/logo1.png" width="130px;" />
-        <div style="margin-top:40px;" >Для использования кабинета администрирования, крайне необходима активация JavaScript!</div>
+        <div style="margin-top:40px;" >{lang('a_use_js')}</div>
     </div>
 </NOSCRIPT>
 <div id="desktop">
@@ -91,29 +91,29 @@
 </div>
 
 <div style="float:right;color:#fff;padding-top:11px;padding-right:8px;"> 
-    Добро пожаловать, <span style="color: #CCCCCC">{$username}</span>
+    {lang('a_wellcome')}, <span style="color: #CCCCCC">{$username}</span>
 </div>
 
 <div id="desktopNavbar">
 <ul>
-	<li><a class="returnFalse" href="#">Содержимое</a>
+	<li><a class="returnFalse" href="#">{lang('a_cont')}</a>
 		<ul>
-			<li><a id="add_page_link" href="#">Создать</a></li>
-			<li><a id="" href="#" class="returnFalse" onclick="ajax_div('page',base_url + 'admin/pages/GetPagesByCategory/0');">Без категории</a></li>
-			<li class="divider"><a id="" href="#" onclick="com_admin('cfcm'); return false;">Конструктор полей</a></li>
+			<li><a id="add_page_link" href="#">{lang('a_create')}</a></li>
+			<li><a id="" href="#" class="returnFalse" onclick="ajax_div('page',base_url + 'admin/pages/GetPagesByCategory/0');">{lang('a_without_cat')}</a></li>
+			<li class="divider"><a id="" href="#" onclick="com_admin('cfcm'); return false;">{lang('a_field_constructor')}</a></li>
 		</ul>
 	</li>
 
-	<li><a class="returnFalse" href="">Категории</a>
+	<li><a class="returnFalse" href="">{lang('a_categories')}</a>
 		<ul>
-			<li><a id="create_cat_link_" href="#" onclick="ajax_div('page', base_url + 'admin/categories/create_form'); return false;">Создать</a></li>
-				<li><a class="returnFalse" onclick="ajax_div('page', base_url + 'admin/categories/cat_list'); return false;" href="#">Редактировать</a></li>
+			<li><a id="create_cat_link_" href="#" onclick="ajax_div('page', base_url + 'admin/categories/create_form'); return false;">{lang('a_create')}</a></li>
+				<li><a class="returnFalse" onclick="ajax_div('page', base_url + 'admin/categories/cat_list'); return false;" href="#">{lang('a_edit')}</a></li>
 		</ul>
 	</li>
 
-	<li><a class="returnFalse" href="">Меню</a>
+	<li><a class="returnFalse" href="">{lang('a_menu')}</a>
 		<ul>
-			<li><a href="#" id="menu_manager_link" onclick="com_admin('menu'); return false;">Управление</a></li>
+			<li><a href="#" id="menu_manager_link" onclick="com_admin('menu'); return false;">{lang('a_control')}</a></li>
 			<li class="divider returnFalse"><a href="#"></a></li>
             {foreach $menus as $menu}
 			<li><a href="#" onclick="ajax_div('page',base_url + 'admin/components/cp/menu/menu_item/{$menu.name}'); return false;">{$menu.main_title}</a></li>
@@ -122,10 +122,10 @@
 	</li>
 
 	<li>
-	<a class="returnFalse" href="#" onclick="ajax_div('page', base_url + 'admin/components/modules_table/'); return false;">Модули</a>
+	<a class="returnFalse" href="#" onclick="ajax_div('page', base_url + 'admin/components/modules_table/'); return false;">{lang('a_modules')}</a>
 		<ul>
-		<li><a id="all_modules_link" href="#" onclick="ajax_div('page', base_url + 'admin/components/modules_table/'); return false;">Все Модули</a></li> 
-		<li><a id="mod_search_link" href="#" onclick="ajax_div('page', base_url + 'admin/mod_search/'); return false;">Поиск</a></li>
+		<li><a id="all_modules_link" href="#" onclick="ajax_div('page', base_url + 'admin/components/modules_table/'); return false;">{lang('a_all_modules')}</a></li> 
+		<li><a id="mod_search_link" href="#" onclick="ajax_div('page', base_url + 'admin/mod_search/'); return false;">{lang('a_search')}</a></li>
 	    <li class="divider returnFalse"><a href="#"></a></li>
 			{if $components}
 			{foreach $components as $component}
@@ -138,28 +138,28 @@
 		</ul>
 	</li>
 
-	<li><a class="returnFalse" href="#" onclick="ajax_div('page', base_url + 'admin/widgets_manager'); return false;">Виджеты</a>
+	<li><a class="returnFalse" href="#" onclick="ajax_div('page', base_url + 'admin/widgets_manager'); return false;">{lang('a_widgets')}</a>
 	</li>
 
 	<li>
-	<a class="returnFalse" href="">Система</a>
+	<a class="returnFalse" href="">{lang('a_system')}</a>
 		<ul>
-			<li><a id="settings_link" class="returnFalse" href="#">Конфигурация Сайта</a></li>
+			<li><a id="settings_link" class="returnFalse" href="#">{lang('a_site_settings')}</a></li>
             <!-- <li><a id="main_page_link" href="">Главная Страница</a></li> -->
-			<li><a id="languages_link" href="">Языки</a></li> 
-			<li><a class="returnFalse arrow-right" href="">Кеш</a>
+			<li><a id="languages_link" href="">{lang('a_languages')}</a></li> 
+			<li><a class="returnFalse arrow-right" href="">{lang('a_cache')}</a>
 				<ul>
-					<li><a  href="javascript:delete_cache('all')">Очистить полностью</a></li>
-					<li><a  href="javascript:delete_cache('expried')">Очистить устаревшие</a></li>
+					<li><a  href="javascript:delete_cache('all')">{lang('a_clean_all')}</a></li>
+					<li><a  href="javascript:delete_cache('expried')">{lang('a_clean_old')}</a></li>
 				</ul>
 			</li>
-            <li class="divider"><a href="#" onclick="ajax_div('page', base_url + 'admin/admin_logs'); return false;">Журнал событий</a></li>
-            <li><a href="#" onclick="ajax_div('page', base_url + 'admin/backup'); return false;">Резервное копирование</a></li>
+            <li class="divider"><a href="#" onclick="ajax_div('page', base_url + 'admin/admin_logs'); return false;">{lang('a_event_journal')}</a></li>
+            <li><a href="#" onclick="ajax_div('page', base_url + 'admin/backup'); return false;">{lang('a_backup_copy')}</a></li>
 		</ul>
 	</li>
 
-	<li><a href="{$BASE_URL}" target="_blank">Просмотреть сайт</a></li>
-	<li><a href="{$BASE_URL}admin/logout">Выход</a></li>
+	<li><a href="{$BASE_URL}" target="_blank">{lang('a_show_site')}</a></li>
+	<li><a href="{$BASE_URL}admin/logout">{lang('a_exit')}</a></li>
 </ul>
 
 

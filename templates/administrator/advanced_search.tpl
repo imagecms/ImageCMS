@@ -2,10 +2,10 @@
     <div style="float:left;">
     <div style="padding-left:10px;">
         <form style="width:100%;" onsubmit="return false;" method="post" action="{$BASE_URL}admin/admin_search" id="g_search_form">
-            <input type="text" value="{$search_title}" name="search_text" class="textbox_long" onclick="if (this.value=='Поиск страниц...') this.value='';" onblur="if (this.value=='') this.value='Поиск страниц...';" />
+            <input type="text" value="{$search_title}" name="search_text" class="textbox_long" onclick="if (this.value=='{lang('a_search_pages')}...') this.value='';" onblur="if (this.value=='') this.value='{lang('a_search_pages')}...';" />
             <input type="submit" value="Search" class="search_submit" onclick="ajax_form('g_search_form', 'page');"/>
            
-            <a href="javascript:ajax_div('page', base_url + 'admin/admin_search/advanced_search')">Расширенный поиск</a>
+            <a href="javascript:ajax_div('page', base_url + 'admin/admin_search/advanced_search')">{lang('a_advanced_search')}</a>
          </form>
     </div>
 
@@ -32,14 +32,14 @@
     <?php } ?>   
     <?php } ?> 
 
-	<div class="form_text">Текст</div>
+	<div class="form_text">{lang('text')}</div>
 	<div class="form_input">
         <input type="text" class="textbox_long" value="" name="search_text" />
     </div>
 	<div class="form_overflow"></div>
 
 
-	<div class="form_text">Категории</div>
+	<div class="form_text">{lang('a_categories')}</div>
 	<div class="form_input">
         <select name="category[]" multiple="multiple" style="width:270px;">
         <option value="0">root</option>
@@ -51,10 +51,10 @@
 
     {$cfcm_groups = $this->CI->db->get('content_field_groups')}
     {if $cfcm_groups->num_rows() > 0}
-	<div class="form_text">Группа для поиска:</div>
+	<div class="form_text">{lang('a_search_group')}:</div>
 	<div class="form_input">
     <select id="cfcm_search_group_id" onchange="filter_load_form();">
-            <option value="0">-- Выберите группу --</option>
+            <option value="0">-- {lang('a_choose_group')} --</option>
         {foreach $cfcm_groups->result_array() as $g}
             <option value="{$g.id}">{$g.name}</option>
         {/foreach}
@@ -68,7 +68,7 @@
 
 	<div class="form_text"></div>
 	<div class="form_input">
-        <input type="submit" value="Поиск" class="button_silver"  onclick="ajax_me('filter_form');" />
+        <input type="submit" value="{lang('a_search')}" class="button_silver"  onclick="ajax_me('filter_form');" />
     </div>
 	<div class="form_overflow"></div>
 
