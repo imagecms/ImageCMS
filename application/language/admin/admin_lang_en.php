@@ -33,4 +33,6 @@
     $lang['access']		=	'Access';
     $lang['all']		=	'All';
     $lang['additional_fields']  =	'Additional fields';
+    $lang['image']              =	'Image';
+    $lang['create']             =	'Create';
 ?>
