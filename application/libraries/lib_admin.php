@@ -41,7 +41,7 @@
                 $this->CI->template->add_array($this->CI->lang->load('admin','admin', TRUE));
                 $this->CI->lang->load('admin', 'admin');
                 $this->CI->lang->load('controller', 'admin');
-                //$this->CI->template->add_array($this->CI->lang->load('controller','admin', TRUE));
+                $this->CI->lang->load('basemodules', 'admin');
 
 		$this->CI->load->helper('javascript');
 		$this->CI->load->helper('admin');

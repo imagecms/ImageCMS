@@ -60,7 +60,7 @@ class Admin extends MY_Controller {
                 'class' => 'textbox_long',
             ),
             'captcha' => array(
-                'label' => 'Код протекции',
+                'label' => lang('amt_protection_code'),
             ),
         );
 
@@ -80,20 +80,20 @@ class Admin extends MY_Controller {
     public function create_field() {
         $form = $this->get_form('create_field');
         $form->action = $this->get_url('create_field');
-        $form->title = 'Создание Поля';
+        $form->title = lang('amt_field_creating');
 
         if ($_POST) {
 
             if (empty($_POST['field_name'])) {
-                showMessage('Укажите <b>имя</b> поля.', false, 'r');
+                showMessage(lang('amt_type_field_name'), false, 'r');
                 exit;
             }
             if (empty($_POST['label'])) {
-                showMessage('Укажите <b>Label</b> поля.', false, 'r');
+                showMessage(lang('amt_type_field_label'), false, 'r');
                 exit;
             }
             if (!preg_match("/^[0-9a-z_]+$/i", $_POST['field_name'])) {
-                showMessage('Поле <b>имя</b> должно быть только <b>латинскими</b> буквами и без <b>пробелов</b>.', false, 'r');
+                showMessage(lang('amt_just_latin'), false, 'r');
                 exit;
             }
 
@@ -102,7 +102,7 @@ class Admin extends MY_Controller {
                 $data['field_name'] = 'field_' . $data['field_name'];
 
                 if ($this->db->get_where('content_fields', array('field_name' => $data['field_name']))->num_rows() > 0) {
-                    showMessage('Выберите другое <b>имя</b>.', false, 'r');
+                    showMessage(lang('amt_select_another_name'), false, 'r');
                 } else {
                     // Set field weight.
                     $this->db->select_max('weight');
@@ -110,7 +110,7 @@ class Admin extends MY_Controller {
                     $data['weight'] = $query->weight + 1;
 
                     $this->db->insert('content_fields', $data);
-                    showMessage('Поле создано.');
+                    showMessage(lang('amt_field_created'));
 
                     updateDiv('page', $this->get_url('edit_field/' . $data['field_name']));
                 }
@@ -130,7 +130,7 @@ class Admin extends MY_Controller {
     public function edit_field_data_type($field_name) {
         $form = $this->get_form('create_field');
         $form->action = $this->get_url('edit_field_data_type/' . $field_name);
-        $form->title = 'Редактирование Поля';
+        $form->title = lang('amt_field_edit');
 
         $field = $this->db->get_where('content_fields', array('field_name' => $field_name))->row_array();
 
@@ -148,7 +148,7 @@ class Admin extends MY_Controller {
                 $this->db->where('field_name', $field_name);
                 $this->db->update('content_fields', $data);
 
-                showMessage('После обновлено.');
+                showMessage(lang('amt_field_updated'));
                 updateDiv('page', $this->get_url('index'));
             }
             else {
@@ -188,7 +188,7 @@ class Admin extends MY_Controller {
 
             $form = $this->load->module('cfcm/cfcm_forms')->edit_field($field->type);
 
-            $form->title = 'Редактирование поля ' . $field->label;
+            $form->title = lang('amt_field_editing') . $field->label;
             $form->action = $this->get_url('edit_field/' . $name);
 
             $form->setAttributes($field_data);
@@ -204,7 +204,7 @@ class Admin extends MY_Controller {
 
                 $this->db->where('field_name', $field->field_name);
                 $this->db->update('content_fields', array('data' => serialize($data)));
-                showMessage('Поле обновлено.');
+                showMessage(lang('amt_field_updated'));
                 updateDiv('page', $this->get_url('index'));
                 exit;
             }
@@ -217,24 +217,24 @@ class Admin extends MY_Controller {
             $this->display_tpl('_form');
         }
         else {
-            echo 'Поле не найдено.';
+            echo lang('amt_field_not_found');
         }
     }
 
     public function create_group() {
         $form = $this->get_form('create_group_form');
         $form->action = $this->get_url('create_group');
-        $form->title = 'Создание Группы';
+        $form->title = lang('amt_group_creating');
 
         if ($_POST) {
             if (empty($_POST['name'])) {
-                showMessage('Укажите название группы', false, 'r');
+                showMessage(lang('amt_type_group_name'), false, 'r');
                 exit;
             }
 
             if ($form->isValid()) {
                 $this->db->insert('content_field_groups', $form->getData());
-                showMessage('Группа создана.');
+                showMessage(lang('amt_group_created'));
 
                 updateDiv('page', $this->get_url('edit_group/' . $this->db->insert_id()));
             } else {
@@ -258,13 +258,13 @@ class Admin extends MY_Controller {
         if ($group->num_rows() == 1) {
             $group = $group->row_array();
         } else {
-            showMessage('Группа не найдена.', false, 'r');
+            showMessage(lang('amt_group_not_found'), false, 'r');
             exit;
         }
 
         $form = $this->get_form('create_group_form');
         $form->action = $this->get_url('edit_group/' . $id);
-        $form->title = 'Редактирование группы id ' . $group['id'];
+        $form->title = lang('amt_group_editing_id') . $group['id'];
 
         if ($_POST)
             if ($form->isValid()) {
@@ -273,7 +273,7 @@ class Admin extends MY_Controller {
                 $this->db->limit(1);
                 $this->db->where('id', $id);
                 $this->db->update('content_field_groups', $data);
-                showMessage('Группа обновлена.');
+                showMessage(lang('amt_group_updated'));
 
                 updateDiv('page', $this->get_url('list_groups'));
             } else {
@@ -381,10 +381,10 @@ class Admin extends MY_Controller {
                 $this->display_tpl('_onpage_form');
                 echo '<input type="hidden" name="cfcm_use_group" value="' . $group->id . '" />';
             } else {
-                echo 'В группе нет полей';
+                echo lang('amt_no_field_in_group');
             }
         } else {
-            echo 'Для категории ' . $category->name . ' группа полей не назначена.';
+            echo lang('amt_for_category') . $category->name . lang('amt_field_group_not_selected');
         }
     }
 

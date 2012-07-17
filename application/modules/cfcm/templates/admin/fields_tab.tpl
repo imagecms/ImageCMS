@@ -1,4 +1,4 @@
-    <h4>Доп. Поля</h4>
+    <h4>{lang('amt_additional_fields')}</h4>
 	<div style="padding:8px;" id="cfcm_fields_block"></div>
 
     {literal}

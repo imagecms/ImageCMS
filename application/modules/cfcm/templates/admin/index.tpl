@@ -12,12 +12,12 @@
 <div id="sortable" >
 		  <table id="cfcfm_fields_table">
 		  	<thead>
-                <th axis="string">Label</th>
-                <th axis="string">Имя</th>
-                <th axis="string">Тип</th>
-                <th axis="string">Группа</th>
+                <th axis="string">{lang('amt_label')}</th>
+                <th axis="string">{lang('amt_name')}</th>
+                <th axis="string">{lang('amt_type')}</th>
+                <th axis="string">{lang('amt_group')}</th>
                 <th>
-                    Вес
+                    {lang('amt_weight')}
 <img src="{$THEME}/images/save.png" align="absmiddle" style="cursor:pointer;width:22px;height:22px;" onclick="save_cfcfm_fields_weight(); return false;" />
                 </th>
                 <th width="100px"></th>
@@ -35,8 +35,8 @@
                         <input type="text" value="{$f.weight}" style="width:26px;" class="field_pos" id="field{$f.field_name}" />  
                     </td>
                     <td align="right">
-<img onclick="ajax_div('page', base_url + 'admin/components/cp/cfcm/edit_field_data_type/{$f.field_name}');" style="cursor:pointer" src="{$THEME}/images/edit_page.png" width="16" height="16" title="Редактировать" />
-<img onclick="confirm_delete_cfcfm_field('{$f.field_name}');" src="{$THEME}/images/delete.png"  style="cursor:pointer" width="16" height="16" title="Удалить" />  
+<img onclick="ajax_div('page', base_url + 'admin/components/cp/cfcm/edit_field_data_type/{$f.field_name}');" style="cursor:pointer" src="{$THEME}/images/edit_page.png" width="16" height="16" title="{lang('amt_edit')}" />
+<img onclick="confirm_delete_cfcfm_field('{$f.field_name}');" src="{$THEME}/images/delete.png"  style="cursor:pointer" width="16" height="16" title="{lang('amt_delete')}" />  
                     </td>
                 </tr>        
     		{/foreach}
@@ -65,7 +65,7 @@
 
 {else:}
 <div id="notice">
-    Список полей пустой. <a href="javascript:ajax_div('page', base_url + 'admin/components/cp/cfcm/create_field');">Создать поле.</a>
+    {lang('amt_empty_field_list')}<a href="javascript:ajax_div('page', base_url + 'admin/components/cp/cfcm/create_field');">{lang('amt_create_field')}</a>
 </div>
 {/if}
 
