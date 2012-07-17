@@ -1,23 +1,23 @@
 <div>
-	<div class="form_text">Автор:</div>
+	<div class="form_text">{lang('amt_author')}:</div>
 	<div class="form_input"><input type="text" class="textbox_long" value="{$comment.user_name}" id="comment_author" /></div>
 	<div class="form_overflow"></div>
 
-	<div class="form_text">E-mail:</div>
+	<div class="form_text">{lang('amt_email')}:</div>
 	<div class="form_input"><input type="text" class="textbox_long" value="{$comment.user_mail}" id="comment_email" /></div>
 	<div class="form_overflow"></div>
 
-	<div class="form_text">Статус:</div>
+	<div class="form_text">{lang('amt_status')}:</div>
 	<div class="form_input">
         <select id="comment_status">
-            <option value="0" {if $comment.status == 0} selected="selected" {/if}>Одобрен</option>
-            <option value="1" {if $comment.status == 1} selected="selected" {/if}>Ждет одобрения</option>
-            <option value="2" {if $comment.status == 2} selected="selected" {/if}>Спам</option>
+            <option value="0" {if $comment.status == 0} selected="selected" {/if}>{lang('amt_app')}</option>
+            <option value="1" {if $comment.status == 1} selected="selected" {/if}>{lang('amt_waiting_for_app')}</option>
+            <option value="2" {if $comment.status == 2} selected="selected" {/if}>{lang('amt_spam')}</option>
         </select>
     </div>
 	<div class="form_overflow"></div>
 
-	<div class="form_text">Содержание:</div>
+	<div class="form_text">{lang('amt_content')}:</div>
 	<div class="form_input">
         <textarea id="comment_text" style="width:300px;height:180px;">{$comment.text}</textarea>
     </div>
@@ -25,8 +25,8 @@
 
 	<div class="form_text"></div>
 	<div class="form_input">
-        <input type="submit" name="button" class="button" value="Сохранить" onclick="update_comment_data({$comment.id});" />
-        <input type="button" name="button" class="button" value="Отмена" onclick="MochaUI.closeWindow($('edit_comment_window')); return false;" />
+        <input type="submit" name="button" class="button" value="{lang('amt_save')}" onclick="update_comment_data({$comment.id});" />
+        <input type="button" name="button" class="button" value="{lang('amt_cancel')}" onclick="MochaUI.closeWindow($('edit_comment_window')); return false;" />
 	</div>
 </div>
 
