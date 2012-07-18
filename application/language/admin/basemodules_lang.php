@@ -122,4 +122,21 @@
     //$lang['amt_max_char_count']                                               = 'Максимальное число символов';
     //$lang['amt_save']                                                         = 'Сохранить';
     //$lang['amt_to_widget_list']                                               = 'Перейти к списку виджетов';
+    
+    //modules/comments/templates/settings.tpl
+    $lang['amt_comment_settings']                                               = 'Настройки комментариев';
+    //$lang['amt_cancel']                                                       = 'Отмена';
+    $lang['amt_max_comment_length']                                             = 'Максимальная длина комментария';
+    $lang['amt_restrictions']                                                   = 'Ограничение комментирования';
+    $lang['amt_restrictions_frequency']                                         = 'Ограничение частоты комментирования в минутах. 0 - Отключить проверку. ';
+    $lang['amt_disallove_comments_for_unregistered']                            = ' Запретить комментирование для не зарегистрированных пользователей.';
+    $lang['amt_admin_approve_on']                                               = ' Включить одобрение комментариев администратором.';
+    $lang['amt_use_captcha']                                                    = ' Использовать код протекции.';
+    //$lang['amt_save']                                                         = 'Сохранить';
+    //$lang['amt_cancel']                                                       = 'Отмена';
+    
+    //modules/comments/admin.php
+    
+    
+    
 ?>
