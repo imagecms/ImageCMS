@@ -750,3 +750,96 @@ div.d_comment:hover {
     width: 50%;
     opacity: 1;
 }
+
+span.check_yandex {
+    background-image: url("../images/b-share-icon.png");
+    display: inline-block;
+    height: 16px;
+    margin: 0 8px -4px;
+    width: 16px;
+    background-position: 0 -17px;
+}
+
+span.check_vkcom {
+    background-image: url("../images/b-share-icon.png");
+    display: inline-block;
+    height: 16px;
+    margin: 0 8px -4px;
+    width: 16px;
+    background-position: 0 0px;
+}
+
+span.check_facebook {
+    background-image: url("../images/b-share-icon.png");
+    display: inline-block;
+    height: 16px;
+    margin: 0 8px -4px;
+    width: 16px;
+    background-position: 0 -68px;
+}
+
+span.check_twitter {
+    background-image: url("../images/b-share-icon.png");
+    display: inline-block;
+    height: 16px;
+    margin: 0 8px -4px;
+    width: 16px;
+    background-position: 0 -51px;
+}
+
+span.check_odnoclass {
+    background-image: url("../images/b-share-icon.png");
+    display: inline-block;
+    height: 16px;
+    margin: 0 8px -4px;
+    width: 16px;
+    background-position: 0 -170px;
+}
+
+span.check_myworld {
+    background-image: url("../images/b-share-icon.png");
+    display: inline-block;
+    height: 16px;
+    margin: 0 8px -4px;
+    width: 16px;
+    background-position: 0 -85px;
+}
+
+span.check_lj {
+    background-image: url("../images/b-share-icon.png");
+    display: inline-block;
+    height: 16px;
+    margin: 0 8px -4px;
+    width: 16px;
+    background-position: 0 -34px;
+}
+
+span.check_ff {
+    background-image: url("../images/b-share-icon.png");
+    display: inline-block;
+    height: 16px;
+    margin: 0 8px -4px;
+    width: 16px;
+    background-position: 0 -102px;
+}
+
+span.check_mc {
+    background-image: url("../images/b-share-icon.png");
+    display: inline-block;
+    height: 16px;
+    margin: 0 8px -4px;
+    width: 16px;
+    background-position: 0 -341px;
+}
+
+span.check_gg {
+    background-image: url("../images/b-share-icon.png");
+    display: inline-block;
+    height: 16px;
+    margin: 0 8px -4px;
+    width: 16px;
+    background-position: 0 -426px;
+}
+
+
+
