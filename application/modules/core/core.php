@@ -514,7 +514,9 @@ class Core extends MY_Controller {
 
 		$this->db->select('content.*');
 		$this->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url', FALSE);
+		$this->db->select('content_permissions.data as roles', FALSE);
 		$this->db->order_by($category['order_by'], $category['sort_order']);
+		$this->db->join('content_permissions','content_permissions.page_id = content.id', 'left');
 
 		if ($count === FALSE)
 		{
@@ -535,11 +537,21 @@ class Core extends MY_Controller {
 			$this->db->from('content');
 			return $this->db->count_all_results();
 		}
-
-		$pages = $query->result_array();
+		$all_pages_cat=$query->result_array();
+		if (count($all_pages_cat)> 0)
+		    {
+			foreach ($all_pages_cat as $v)
+			{
+			if ($this->check_page_access(unserialize($v['roles']),FALSE))
+				{
+				$pages[]=$v;
+				}
+			}
+		}
+		//$pages = $query->result_array();
 
 		($hook = get_hook('core_return_category_pages')) ? eval($hook) : NULL;
-
+	
 		return $pages;
 	}
 
@@ -883,7 +895,7 @@ class Core extends MY_Controller {
 	/*
 	 * Check user access for page
 	 */
-	function check_page_access($roles)
+	function check_page_access($roles, $show_deny=TRUE)
 	{
 		($hook = get_hook('core_check_page_access')) ? eval($hook) : NULL;
 
@@ -914,13 +926,14 @@ class Core extends MY_Controller {
 			}
 		}
 
-		if($access == FALSE)
+		if($access == FALSE AND $show_deny)
 		{
 			($hook = get_hook('core_page_access_deny')) ? eval($hook) : NULL;
 
 			$this->dx_auth->deny_access('deny');
 			exit;
 		}
+		return $access;
 	}
 
 	/**
