@@ -31,7 +31,7 @@
 
                 <div class="form_text">Одноклассники<span class="check_odnoclass"></span></div>
 		<div class="form_input">
-                    <input type="checkbox" name="ss[ondoclass]" value="1" {if $settings.odnoclass == 1}checked="checked"{/if}/>
+                    <input type="checkbox" name="ss[odnoclass]" value="1" {if $settings.odnoclass == 1}checked="checked"{/if}/>
                 </div>
 		<div class="form_overflow"></div>
 
