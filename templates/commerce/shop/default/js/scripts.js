@@ -10,44 +10,55 @@ $(document).ready(function(){
     ltie7 = ie&&(ieV <= 7),
     ltie8 = ie&&(ieV <= 8);
 
-    select_tab=0;
-
-    $this_s = $('.scroll-box:eq('+select_tab+')')
-    first_elem=$this_s.find('li:eq(0)');
-    width_elem=first_elem.outerWidth();        
-    vidstup=first_elem.outerWidth(true)-width_elem;
-    count_elem=$this_s.find('li').length;
-    width=width_elem*count_elem;
-
-    if (count_elem % 2 !=0){
-        width=width+width_elem;
-    }
-    first_elem.parent().css('width',width/2+Math.round(count_elem/2)*vidstup);
-    $this_s.jScrollPane({
-        'showArrows':true
-    });
-    $tabs=$('.nav_tabs').tabs();
-    $tabs.tabs('select', select_tab);
+    nav_tabs_li = $('.nav_tabs li');
+    tabs_div = $('.tabs > div');
     
-    $('.nav_tabs li a').click(function(){
-        $('.nav_tabs').tabs();
+    $('.nav_tabs li a').one('click', function(event){
+        event.stopPropagation();
+        
+        nav_tabs_li.removeClass('ui-tabs-selected');
+        $(this).parent().addClass('ui-tabs-selected');
+        tabs_div.hide();
+        $($(this).attr('href')).show();
+        
         $this = $($(this).attr('href')).children('.scroll-box');
-        if (!$this.is('.jspScrollable')){
-            first_elem=$this.find('li:eq(0)');            
-            width_elem=first_elem.outerWidth();            
-            vidstup=first_elem.outerWidth(true)-width_elem;
-            count_elem=$this.find('li').length;
-            width=width_elem*count_elem;
+                
+        first_elem=$this.find('li:eq(0)');            
+        width_elem=first_elem.outerWidth();            
+        vidstup=first_elem.outerWidth(true)-width_elem;
+        count_elem_2 = count_elem=$this.find('li').length;
+        width=width_elem*count_elem;
 
-            if (count_elem % 2 !=0){
-                width=width+width_elem;
-            }
-            first_elem.parent().css('width',width/2+Math.round(count_elem/2)*vidstup);
+        if (count_elem % 2 !=0){
+            width=width+width_elem;
+        }
+        if (count_elem > 2) {
+            width = width/2;
+            count_elem_2 = count_elem/2;
+        }
+        if (count_elem <= 4) {
+            width = width-30;
+            $this.find('li').css('margin-right',15);
+        }
+        first_elem.parent().css('width',width+Math.round(count_elem)*vidstup);
+        if (!$this.is('.jspScrollable') && count_elem > 4){
             $this.jScrollPane({
                 'showArrows':true
             });
         }
-    })
+        return false;
+    }).filter(':first').click();
+    
+    $('.nav_tabs li a').click(function(){
+        
+        nav_tabs_li.removeClass('ui-tabs-selected');
+        $(this).parent().addClass('ui-tabs-selected');
+        tabs_div.hide();
+        $($(this).attr('href')).show();
+
+        return false;
+    }).filter(':first').click();
+    
     $('.formCost input[type="text"], .count input').keypress(function(event){
         var key, keyChar;
         if(!event) var event = window.event;

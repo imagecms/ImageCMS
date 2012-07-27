@@ -163,4 +163,4 @@
             <div class="button_middle_blue buttons t-a_c"><input type="submit" value="Подобрать"/></div>
         </div>
     </form>
-</div>
+</div>   

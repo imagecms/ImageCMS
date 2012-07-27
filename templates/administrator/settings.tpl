@@ -21,7 +21,17 @@
 	<div class="form_overflow"></div>
     
 	<div class="form_text">{lang('a_google_id')}:</div>
-	<div class="form_input"><input type="text" name="google_analytics_id" value="{$google_analytics_id}" class="textbox_long" /></div>
+	<div class="form_input"><input type="text" name="google_analytics_id" value="{$google_analytics_id}" class="textbox_long" />
+            <div class="lite">Код должен быть в формате "ua-54545845"</div>
+        </div>
+	<div class="form_overflow"></div>
+        
+        <div class="form_text">G.Webmaster:</div>
+	<div class="form_input"><input type="text" name="google_webmaster" value="{$google_webmaster}" class="textbox_long" /></div>
+	<div class="form_overflow"></div>
+        
+        <div class="form_text">Я.Вэбмастер:</div>
+	<div class="form_input"><input type="text" name="yandex_webmaster" value="{$yandex_webmaster}" class="textbox_long" /></div>
 	<div class="form_overflow"></div>
 
 	<div class="form_text">{lang('a_editor_theme')}:</div>
@@ -31,6 +41,7 @@
             <option value="{$theme}" {if $theme_selected == $theme } selected="selected" {/if} >{$v}</option>
         {/foreach}
 	</select> <div class="lite">{lang('a_after_reboot')}</div>
+        
 	</div>
 	<div class="form_overflow"></div>
 
