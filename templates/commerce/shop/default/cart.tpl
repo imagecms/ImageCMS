@@ -1,7 +1,7 @@
 <div class="center">    
     <h1>Оформление заказа</h1>
     {if count($items) > 0}
-    <form method="post" action="{site_url(uri_string())}">
+    <form method="post" action="{site_url(uri_string())}" id="cartForm">
         
         <table class="cleaner_table forCartProducts" cellspacing="0">
             <caption>Корзина</caption>
@@ -99,28 +99,28 @@
                     <span class="red">*</span>
                     {/if}
                     Ваше имя
-                    <input type="text" name="userInfo[fullName]" value="{$profile.name}">
+                    <input type="text"{if $isRequired['userInfo[fullName]']} class="required"{/if} name="userInfo[fullName]" value="{$profile.name}">
                 </label>
                 <label class="f_l">
                     {if $isRequired['userInfo[email]']}
                     <span class="red">*</span>
                     {/if}
                     Электронный адрес
-                    <input type="text" name="userInfo[email]" value="{$profile.email}">
+                    <input type="text"{if $isRequired['userInfo[email]']} class="required email"{/if} name="userInfo[email]" value="{$profile.email}">
                 </label>
                 <label class="f_l">
                     {if $isRequired['userInfo[phone]']}
                     <span class="red">*</span>
                     {/if}
                     Телефон
-                    <input type="text" name="userInfo[phone]" value="{$profile.phone}">
+                    <input type="text"{if $isRequired['userInfo[phone]']} class="required"{/if} name="userInfo[phone]" value="{$profile.phone}">
                 </label>
                 <label class="f_l">
                     {if $isRequired['userInfo[deliverTo]']}
                     <span class="red">*</span>
                     {/if}
                     Адрес получателя
-                    <input type="text" name="userInfo[deliverTo]" value="{echo $profile.address}">
+                    <input type="text"{if $isRequired['userInfo[deliverTo]']} class="required"{/if} name="userInfo[deliverTo]" value="{echo $profile.address}">
                 </label>
             </div>
             <label class="c_b d_b">
@@ -128,7 +128,7 @@
                     <span class="red">*</span>
                     {/if}
                 Комментарий
-                <textarea name="userInfo[commentText]"></textarea> 
+                <textarea{if $isRequired['userInfo[commentText]']} class="required"{/if} name="userInfo[commentText]"></textarea> 
             </label>
         </div>
         <div class="foot_cleaner c_b t-a_c">

@@ -303,6 +303,8 @@ $(document).ready(function(){
         });
         return false;
     })
+    
+    $("#cartForm").validate();
 
     function bindNotifMeForm(){
         $('.order_call #notifMe').bind('submit',function(){
