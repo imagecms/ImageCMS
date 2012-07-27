@@ -1,24 +1,24 @@
 <div class="top-navigation">
     <ul>
-        <li><p>Настройки виджета <b>{$widget.name}</b></p></li>
+        <li><p>{lang('amt_widget_settings')}<b>{$widget.name}</b></p></li>
     </ul>
 </div>
 
 <form action="{$BASE_URL}admin/widgets_manager/update_widget/{$widget.id}" id="widget_form" method="post">
-    <div class="form_text">Страницы</div>
+    <div class="form_text">{lang('amt_pages')}</div>
     <div class="form_input"> 
         <select name="display">
-            <option value="recent"  {if $widget.settings.display == 'recent'} selected="selected" {/if} >Последние</option>
-            <option value="popular" {if $widget.settings.display == 'popular'} selected="selected" {/if}    >Популярные</option>
+            <option value="recent"  {if $widget.settings.display == 'recent'} selected="selected" {/if} >{lang('amt_last')}</option>
+            <option value="popular" {if $widget.settings.display == 'popular'} selected="selected" {/if}>{lang('amt_popular')}</option>
         </select>
     </div>
     <div class="form_overflow"></div>
 
-    <div class="form_text">Категории</div>
+    <div class="form_text">{lang('amt_categories')}</div>
     <div class="form_input"> 
 
         <select name="categories[]" multiple="multiple">
-        <option value="0">Без категории</option>
+        <option value="0">{lang('amt_without_category')}</option>
         <option disabled="disabled"> </option>
         {build_cats_tree($cats, $widget.settings.categories)}
         <?php  function build_cats_tree($cats, $selected_cats = array()) { ?>        
@@ -32,13 +32,13 @@
     </div>
     <div class="form_overflow"></div>
 
-    <div class="form_text">Количество новостей для отображения</div>
+    <div class="form_text">{lang('amt_displayed_news_count')}</div>
     <div class="form_input"> 
         <input type="text" class="textbox_long" name="news_count" value="{$widget.settings.news_count}" /> 
     </div>
     <div class="form_overflow"></div>
 
-    <div class="form_text">Максимальное число символов</div>
+    <div class="form_text">{lang('amt_max_char_count')}</div>
     <div class="form_input"> 
         <input type="text" class="textbox_long" name="max_symdols" value="{$widget.settings.max_symdols}" />
     </div>
@@ -46,7 +46,7 @@
 
     <div class="form_text"></div>
     <div class="form_input">
-        <input type="submit" class="button" value="Сохранить" onclick="ajax_me('widget_form');" /> 
-        <a href="#" onclick="ajax_div('page', base_url + 'admin/widgets_manager/'); return false" >Перейти к списку виджетов</a>
+        <input type="submit" class="button" value="{lang('amt_save')}" onclick="ajax_me('widget_form');" /> 
+        <a href="#" onclick="ajax_div('page', base_url + 'admin/widgets_manager/'); return false" >{lang('amt_to_widget_list')}</a>
     </div>
 {form_csrf()}</form>

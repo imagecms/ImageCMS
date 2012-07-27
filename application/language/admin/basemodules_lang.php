@@ -136,6 +136,22 @@
     //$lang['amt_cancel']                                                       = 'Отмена';
     
     //modules/comments/admin.php
+    //modules/comments/comments_widgets.php
+    $lang['amt_comments_count']                                                 = 'Количество комментариев';
+    $lang['amt_symbol_count']                                                   = 'Количество символов';
+    $lang['amt_settings_saved']                                                 = 'Настройки сохранены.';
+    $lang['amt_reviews_count']                                                  = 'Количество отзывов';
+    
+    //modules/core/recent_news_form.tpl
+    $lang['amt_pages']                                                          = 'Страницы';
+    $lang['amt_last']                                                           = 'Последние';
+    $lang['amt_popular']                                                        = 'Популярные';
+    $lang['amt_categories']                                                     = 'Категории';
+    $lang['amt_without_category']                                               = 'Без категории';
+    $lang['amt_displayed_news_count']                                           = 'Количество новостей для отображения';
+    
+    
+    
     
     
     
