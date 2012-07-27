@@ -283,6 +283,9 @@ $(document).ready(function(){
             }
         });
     });
+    
+    $('.met_del:checked').trigger('click');
+    
     $('.met_buy').live('click',function(){
         $('#paymentMethodId').val($(this).val());
     });

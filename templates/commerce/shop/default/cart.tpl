@@ -63,6 +63,7 @@
         </table>
         <div class="f_l method_deliver_buy">
             <div class="block_title_18"><span class="title_18">Выберите способ доставки</span></div>
+            
             {$counter = true}
             {foreach $deliveryMethods as $deliveryMethod}
             {$del_id = $deliveryMethod->getId()}
