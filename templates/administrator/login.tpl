@@ -22,13 +22,11 @@
 	<script type="text/javascript" src="{$JS_URL}/mocha/functions.js"></script>
     </head>
     <body>
-
         <?php
         $ci = get_instance();
         if($ci->config->item('is_installed') === TRUE AND file_exists(APPPATH.'modules/install/install.php'))
-        die('<span style="font-size:18px;"><br/><br/>{lang('a_delete_install')} ./application/modules/install/install.php</div>');
+        die('<span style="font-size:18px;"><br/><br/>'.lang('a_delete_install') .'/application/modules/install/install.php</div>');
             ?>
-
             <div class="main_body">
                 <div class="container w_665">
                     <div class="logo_with_out_article">

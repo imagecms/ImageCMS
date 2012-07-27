@@ -283,6 +283,9 @@ $(document).ready(function(){
             }
         });
     });
+    
+    $('.met_del:checked').trigger('click');
+    
     $('.met_buy').live('click',function(){
         $('#paymentMethodId').val($(this).val());
     });
@@ -300,6 +303,8 @@ $(document).ready(function(){
         });
         return false;
     })
+    
+    $("#cartForm").validate();
 
     function bindNotifMeForm(){
         $('.order_call #notifMe').bind('submit',function(){
