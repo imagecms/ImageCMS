@@ -100,8 +100,14 @@ class Core extends MY_Controller {
         /* Show Google Analytics code if some value inserted in admin panel */
         if ($this->settings['google_analytics_id'])
             ($hook = get_hook('render_google_analytics')) ? eval($hook) : NULL;
-
-		// DETECT LANGUAGE
+        
+        if ($this->settings['google_webmaster'])
+            ($hook = get_hook('render_google_webmaster')) ? eval($hook) : NULL;
+        
+        if ($this->settings['yandex_webmaster'])
+            ($hook = get_hook('render_yandex_webmaster')) ? eval($hook) : NULL;
+	
+        // DETECT LANGUAGE
 		if ($this->uri->total_segments() >= 1)
 		{
 			if(array_key_exists($this->uri->segment(1),$this->langs))

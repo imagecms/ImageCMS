@@ -58,3 +58,18 @@
     $this->tpl_data['renderGA'] = $GACode;
 ]]>
 </hook>
+
+<hook id="render_google_webmaster">
+<![CDATA[
+    $GWebmaster = '
+        <meta name="google-site-verification" content="'.$this->settings['google_webmaster'].'" />';
+    $this->tpl_data['gmeta'] = $GWebmaster;
+]]>
+</hook>
+
+<hook id="render_yandex_webmaster">
+<![CDATA[
+    $YaWebmaster = '<meta name="yandex-verification" content="'.$this->settings['yandex_webmaster'].'" />';
+    $this->tpl_data['yameta'] = $YaWebmaster;
+]]>
+</hook>
