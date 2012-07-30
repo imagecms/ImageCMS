@@ -59,11 +59,11 @@
                         <div class="foot_cleaner">
                             <div class="f_r">
                                 <div class="price f-s_26 f_l">
-                                    {if $total < $items[$key].delivery_free_from}
-                                    {$total += $items[$key].delivery_price}
+                                    {if $total < $item.delivery_free_from}
+                                    {$total += $item.delivery_price}
                                     {/if}
                                     {echo $total}
-                                    {if $items[$key].delivery_price > 0}<span class="d_b">Доставка: {echo $items[$key].delivery_price} руб.</span>{/if}
+                                    {if $item.delivery_price > 0}<span class="d_b">Доставка: {echo $item.delivery_price} руб.</span>{/if}
                                     <sub>{$CS}</sub>
                                     <!--<span class="d_b">{$total_nc} {$NextCS}</span>-->
                                 </div>

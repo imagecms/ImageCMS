@@ -315,6 +315,7 @@ $(document).ready(function(){
     });
 
     function recount(){
+        $.fancybox.showActivity();
         $("#cartForm").find('input[name=makeOrder]').val(0);
         $.ajax({
         type: 'post',
