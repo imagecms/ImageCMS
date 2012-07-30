@@ -12,14 +12,14 @@ class Admin extends MY_Controller {
     public $conf = array(
         'engine'              => 'gd2',   // Image library. Possible values: GD, GD2, ImageMagick, NetPBM 
         'max_file_size'       => 5,       // Max file size for upload in Mb.
-		'max_archive_size'    => 50,
+	'max_archive_size'    => 50,
         'max_width'           => 0,       // Max image width.
         'max_height'          => 0,       // Max image height.
         'allowed_types'       => 'gif|jpg|jpeg|png|zip',   // Allowed image types.
-		'allowed_archive_types'=> 'zip',
+	'allowed_archive_types'=> 'zip',
         'upload_path'         => './uploads/gallery/', // Image upload dir. With ending slash.
         'upload_url'          => 'uploads/gallery/',   // Image upload url. With ending slash.
-		'cache_path'	      => './system/cache/',
+	'cache_path'	      => './system/cache/',
         'quality'             => '90%',    // Image quality
         'thumb_width'         => '100',    // Thumb width. min. 20px; max 1000px;
         'thumb_height'        => '100',    // Thumb height min. 20px; max 1000px;
@@ -29,9 +29,9 @@ class Admin extends MY_Controller {
         'maintain_ratio'      => TRUE,     // Specifies whether to maintain the original aspect ratio when resizing. 
         'maintain_ratio_prev' => TRUE,     // Specifies whether to maintain the original aspect ratio when resizing prev image. 
         'maintain_ratio_icon' => TRUE,     // Specifies whether to maintain the original aspect ratio when resizing icon.
-    	'crop'			  	  => TRUE,     // Specifies whether to crop image for save the original aspect ratio when resizing.
-    	'crop_prev'			  => TRUE,     // Specifies whether to crop image for save the original aspect ratio when resizing prev image.
-    	'crop_icon'			  => TRUE,     // Specifies whether to crop image for save the original aspect ratio when resizing icon. 
+    	'crop'                => TRUE,     // Specifies whether to crop image for save the original aspect ratio when resizing.
+    	'crop_prev'           => TRUE,     // Specifies whether to crop image for save the original aspect ratio when resizing prev image.
+    	'crop_icon'           => TRUE,     // Specifies whether to crop image for save the original aspect ratio when resizing icon. 
         'prev_img_width'      => '500',    // Preview image width
         'prev_img_height'     => '375',    // Preview image height
        
@@ -80,7 +80,7 @@ class Admin extends MY_Controller {
         if ( ! is_really_writable( $this->conf['upload_path'] ) OR ! file_exists( $this->conf['upload_path'] ) )
         {
             $this->template->add_array(array(
-                'error' => 'Для продолжения работы с галереей создайте директорию <b>'.$this->conf['upload_path'].'</b> и установите права на запись.'
+                'error' => lang('amt_delete_folder_to_continue').$this->conf['upload_path'].lang('amt_write_perm')
             ));
 
             $this->display_tpl('error');
@@ -205,17 +205,17 @@ class Admin extends MY_Controller {
                 $this->load->library('Form_validation');
                 $val = $this->form_validation;
 
-                $val->set_rules('max_file_size', 'Размер файла', 'required|is_natural'); 
-                $val->set_rules('max_width', 'Максимальная ширина', 'required|is_natural'); 
-                $val->set_rules('max_height', 'Максимальная высота', 'required|is_natural'); 
-                $val->set_rules('quality', 'Качество', 'required|is_natural'); 
-                $val->set_rules('prev_img_width', 'Ширина предварительного изображения', 'required|is_natural'); 
-                $val->set_rules('prev_img_height', 'Высота предварительного изображения', 'required|is_natural'); 
-                $val->set_rules('thumb_width', 'Ширина иконки', 'required|is_natural'); 
-                $val->set_rules('thumb_height', 'Высота иконки', 'required|is_natural'); 
-                $val->set_rules('watermark_text', 'Водяной текст', 'max_length[100]'); 
-                $val->set_rules('watermark_font_size', 'Размер шрифта', 'required|is_natural'); 
-                $val->set_rules('watermark_image_opacity', 'Прозрачность', 'required|is_natural|min_length[1]|max_length[3]'); 
+                $val->set_rules('max_file_size', lang('amt_file_size'), 'required|is_natural'); 
+                $val->set_rules('max_width', lang('amt_max_width'), 'required|is_natural'); 
+                $val->set_rules('max_height', lang('amt_max_height'), 'required|is_natural'); 
+                $val->set_rules('quality', lang('amt_quality'), 'required|is_natural'); 
+                $val->set_rules('prev_img_width', lang('amt_previmage_width'), 'required|is_natural'); 
+                $val->set_rules('prev_img_height', lang('amt_previmage_height'), 'required|is_natural'); 
+                $val->set_rules('thumb_width', lang('amt_col_width'), 'required|is_natural'); 
+                $val->set_rules('thumb_height', lang('amt_col_height'), 'required|is_natural'); 
+                $val->set_rules('watermark_text', lang('amt_watermark_text'), 'max_length[100]'); 
+                $val->set_rules('watermark_font_size', lang('amt_font_size'), 'required|is_natural'); 
+                $val->set_rules('watermark_image_opacity', lang('amt_transparency'), 'required|is_natural|min_length[1]|max_length[3]'); 
 
                 if ($this->form_validation->run($this) == FALSE)
                 {
@@ -226,14 +226,14 @@ class Admin extends MY_Controller {
                 // Check if watermark image exists.
                 if ($_POST['watermark_type'] == 'overlay' AND ! file_exists($_POST['watermark_image']) )
                 {
-                    showMessage('Укажите правильный путь к изображению водяного знака.',false,'r');
+                    showMessage(lang('amt_select_correct_path_to_image'),false,'r');
                     return FALSE;
                 }
 
                 // Check if watermark font exists.
                 if ($_POST['watermark_type'] == 'text' AND ! file_exists($_POST['watermark_font_path']) )
                 {
-                    showMessage('Укажите правильный путь к шрифту.',false,'r');
+                    showMessage(lang('amt_select_correct_path_to_font'),false,'r');
                     return FALSE;
                 }
 
@@ -272,7 +272,7 @@ class Admin extends MY_Controller {
                     $this->db->where('name', 'gallery');
                     $this->db->update('components', array('settings' => serialize($params)));
 
-                    showMessage('Настройки сохранены');
+                    showMessage(lang('amt_settings_saved'));
 
             break;
         }
@@ -287,9 +287,9 @@ class Admin extends MY_Controller {
     {
         $this->load->library('Form_validation');
 
-        $this->form_validation->set_rules('name', 'Имя', 'required|min_length[3]|max_length[250]');
-        $this->form_validation->set_rules('email', 'Описание', 'max_length[500]');
-        $this->form_validation->set_rules('category_id', 'Категория', 'required');
+        $this->form_validation->set_rules('name', lang('amt_name'), 'required|min_length[3]|max_length[250]');
+        $this->form_validation->set_rules('email', lang('amt_description'), 'max_length[500]');
+        $this->form_validation->set_rules('category_id', lang('amt_category'), 'required');
 			
 		if ($this->form_validation->run($this) == FALSE)
 		{
@@ -349,7 +349,7 @@ class Admin extends MY_Controller {
         }
         else
         {
-            show_error('Can\'t load album info.');
+            show_error(lang('amt_cant_load_album_info'));
         }
     }
 
@@ -382,7 +382,7 @@ class Admin extends MY_Controller {
         }
         else
         {
-            show_error('Can\'t load album info.');
+            show_error(lang('amt_cant_load_album_info'));
         }    
     }
 
@@ -441,7 +441,7 @@ class Admin extends MY_Controller {
         }
         else
         {
-            show_error('Can\'t load image info.');
+            show_error(lang('amt_cant_load_image_info'));
         }
     }
 
@@ -456,7 +456,7 @@ class Admin extends MY_Controller {
         {
             $this->load->library('Form_validation');
 
-            $this->form_validation->set_rules('new_name', 'Имя', 'trim|required|alpha_dash');
+            $this->form_validation->set_rules('new_name', lang('amt_name'), 'trim|required|alpha_dash');
 
             if ($this->form_validation->run($this) == FALSE)
             {
@@ -489,7 +489,7 @@ class Admin extends MY_Controller {
         }
         else
         {
-            showMessage('Can\'t load image info.',false,'r');
+            showMessage(lang('amt_cant_load_image_info'),false,'r');
         }
     }
 
@@ -552,7 +552,7 @@ class Admin extends MY_Controller {
         }
         else
         {
-            showMessage('Can\'t load image info.',false,'r');
+            showMessage(lang('amt_cant_load_image_info'),false,'r');
         }
     }
 
@@ -613,9 +613,9 @@ class Admin extends MY_Controller {
         $this->load->library('Form_validation');
         $val = $this->form_validation;
 
-        $val->set_rules('name', 'Имя', 'trim|required|max_length[250]|min_length[1]');
-        $val->set_rules('description', 'Описание', 'max_length[500]');
-        $val->set_rules('position', 'Позиция', 'numeric');
+        $val->set_rules('name', lang('amt_name'), 'trim|required|max_length[250]|min_length[1]');
+        $val->set_rules('description', lang('amt_description'), 'max_length[500]');
+        $val->set_rules('position', lang('amt_position'), 'numeric');
 					
 		if ($val->run() == FALSE)
 		{
@@ -653,9 +653,9 @@ class Admin extends MY_Controller {
         $this->load->library('Form_validation');
         $val = $this->form_validation;
 
-        $val->set_rules('name', 'Имя', 'trim|required|max_length[250]|min_length[1]');
-        $val->set_rules('description', 'Описание', 'max_length[500]');
-        $val->set_rules('position', 'Позиция', 'numeric');
+        $val->set_rules('name', lang('amt_name'), 'trim|required|max_length[250]|min_length[1]');
+        $val->set_rules('description', lang('amt_description'), 'max_length[500]');
+        $val->set_rules('position', lang('amt_position'), 'numeric');
 					
 		if ($val->run() == FALSE)
 		{
@@ -671,7 +671,7 @@ class Admin extends MY_Controller {
 
             $this->gallery_m->update_category($data, $id);
 
-            showMessage('Изменения сохранены');
+            showMessage(lang('amt_changes_saved'));
             updateDiv('page', site_url('admin/components/cp/gallery'));
 		}
     }

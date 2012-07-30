@@ -142,7 +142,7 @@
     $lang['amt_settings_saved']                                                 = 'Настройки сохранены.';
     $lang['amt_reviews_count']                                                  = 'Количество отзывов';
     
-    //modules/core/recent_news_form.tpl
+    //modules/core/templatesrecent_news_form.tpl
     $lang['amt_pages']                                                          = 'Страницы';
     $lang['amt_last']                                                           = 'Последние';
     $lang['amt_popular']                                                        = 'Популярные';
@@ -150,9 +150,187 @@
     $lang['amt_without_category']                                               = 'Без категории';
     $lang['amt_displayed_news_count']                                           = 'Количество новостей для отображения';
     
+    //modules/core/core.php
+    $lang['amt_load_module_error']                                              = 'Ошибка загрузки модуля';
+    $lang['amt_cant_locate_tmp_file']                                           = 'Can\'t locate category template file.';
+    
+    //modules/core/core_widgets.php
+    $lang['amt_news_count']                                                     = 'Количество новостей';
+    $lang['amt_max_symbol_count']                                               = 'Максимальное количество символов';
+    
+    //modules/feedback/templates/admin/settings.tpl
+    $lang['amt_feedback_settings']                                              = 'Настройки Обратной связи';
+    $lang['amt_select_email']                                                   = 'Укажите e-mail на который будут отправляться письма';
+    $lang['amt_max_message_length']                                             = 'Максимальная длина сообщения';
+    
+    //modules/feedback/admin.php
+    $lang['amt_settings_saved']                                                 = 'Настройки сохрарены';
+    
+    //modules/gallery/templates/admin/album.tpl
+    $lang['amt_albums']                                                         = 'Альбомы';
+    $lang['amt_gallery']                                                        = 'Галерея';
+    $lang['amt_no_images']                                                      = 'Нет изображений';
+    $lang['amt_cr']                                                             = 'Создан';
+    $lang['amt_up']                                                             = 'Обновлен';
+    $lang['amt_views']                                                          = 'Просмотров';
+    $lang['amt_no_albums']                                                      = 'Альбомов не найдено.';
+    
+    //modules/gallery/templates/admin/album_params.tpl
+    $lang['amt_category']                                                       = 'Категория';
+    $lang['amt_position']                                                       = 'Позиция';
+    $lang['amt_template_file']                                                  = 'Файл шаблона';
+    $lang['amt_by_default']                                                     = 'По умолчанию:';
+    $lang['amt_album_delete']                                                   = 'Удаление альбома';
+    $lang['amt_delete_all_images']                                              = 'Удалить все изображения.';
+    
+    //modules/gallery/templates/admin/categories.tpl
+    $lang['amt_create_cat']                                                     = 'Создать Категорию';
+    $lang['amt_create_album']                                                   = 'Создать Альбом';
+    $lang['amt_settings']                                                       = 'Настройки';
+    $lang['amt_crea']                                                           = 'Создано';
+    
+    //modules/gallery/templates/admin/create_album.tpl
+    //modules/gallery/templates/admin/create_category.tpl
+    $lang['amt_to_create']                                                      = 'Создать';
+    
+    //modules/gallery/templates/edit_album.tpl
+    $lang['amt_download_file']                                                  = 'Загрузить файл';
+    
+    //modules/gallery/templates/edit_category.tpl
+    $lang['amt_category_edit']                                                  = 'Редактировать категорию';
+    
+    //modules/gallery/templates/edit_image.tpl
+    $lang['amt_album']                                                          = 'Альбом';
+    $lang['amt_downloaded']                                                     = 'Скачан';
+    $lang['amt_file_size']                                                      = 'Размер файла';
+    $lang['amt_image_size']                                                     = 'Размеры изображения';
+    $lang['amt_preview']                                                        = 'Обложка';
+    $lang['amt_new_name']                                                       = 'Новое имя';
+    
+    //modules/gallery/templates/settings.tpl
+    $lang['amt_albums_and_categories']                                          = 'Категории и альбомы';
+    $lang['amt_to_sort']                                                        = 'Сортировать';
+    $lang['amt_by_date']                                                        = 'По дате';
+    $lang['amt_by_abc']                                                         = 'По алфавиту';
+    $lang['amt_by_position']                                                    = 'По позиции';
+    $lang['amt_by_desc']                                                        = 'Убыванию';
+    $lang['amt_by_asc']                                                         = 'Возрастанию';
+    $lang['amt_images']                                                         = 'Изображения';
+    $lang['amt_max_file_size']                                                  = 'Максимальный размер файла';
+    $lang['amt_in_mb']                                                          = 'в мегабайтах';
+    $lang['amt_max_width']                                                      = 'Максимальная ширина';
+    $lang['amt_max_height']                                                     = 'Максимальная высота';
+    $lang['amt_quality']                                                        = 'Качество';
+    $lang['amt_save_ratio']                                                     = 'Сохранять пропорции';
+    $lang['amt_yes']                                                            = 'Да';
+    $lang['amt_no']                                                             = 'Нет';
+    $lang['amt_cut_borders']                                                    = 'Обрезать края';
+    $lang['amt_image_preview']                                                  = 'Предварительный просмотр изображений';
+    $lang['amt_width']                                                          = 'Ширина';
+    $lang['amt_px']                                                             = 'px';
+    $lang['amt_width']                                                          = 'Высота';
+    $lang['amt_image_icons']                                                    = 'Иконки изображений';
+    $lang['amt_water_mark']                                                     = 'Водяной знак';
+    $lang['amt_hor_align']                                                      = 'Горизонтальное выравнивание';
+    $lang['amt_left']                                                           = 'слева';
+    $lang['amt_center']                                                         = 'по центру';
+    $lang['amt_right']                                                          = 'справа';
+    $lang['amt_ver_align']                                                      = 'Вертикальное выравнивание';
+    $lang['amt_top']                                                            = 'вверху';
+    $lang['amt_in_the_middle']                                                  = 'посередине';
+    $lang['amt_bottom']                                                         = 'снизу';
+    $lang['amt_image']                                                          = 'Изображение';
+    $lang['amt_path_to_image']                                                  = 'Путь к изображению';
+    $lang['amt_should_be_on_server']                                            = 'Файл должен находится на сервере. Например';
+    $lang['amt_transparency']                                                   = 'Прозрачность';
+    $lang['amt_select_value']                                                   = 'Укажите значение от 1 до 100.';
+    $lang['amt_offset']                                                         = 'Смещение';
+    $lang['amt_font_size']                                                      = 'Размер шрифта';
+    $lang['amt_font_color']                                                     = 'Цвет шрифта';
+    $lang['amt_path_to_font']                                                   = 'Путь к шрифту';
+    
+    //modules/gallery/admin.php
+    $lang['amt_delete_folder_to_continue']                                      = 'Для продолжения работы с галереей создайте директорию <b>';
+    $lang['amt_write_perm']                                                     = '</b> и установите права на запись.';
+    $lang['amt_previmage_width']                                                = 'Ширина предварительного изображения';
+    $lang['amt_previmage_height']                                               = 'Высота предварительного изображения';
+    $lang['amt_col_width']                                                      = 'Ширина иконки';
+    $lang['amt_col_height']                                                     = 'Высота иконки';
+    $lang['amt_watermark_text']                                                 = 'Водяной текст';
+    $lang['amt_select_correct_path_to_image']                                   = 'Укажите правильный путь к изображению водяного знака.';
+    $lang['amt_select_correct_path_to_font']                                    = 'Укажите правильный путь к шрифту.';
+    $lang['amt_settings_saved']                                                 = 'Настройки сохранены';
+    $lang['amt_cant_load_album_info']                                           = 'Can\'t load album info.';
+    $lang['amt_cant_load_image_info']                                           = 'Can\'t load image info.';
+    $lang['amt_changes_saved']                                                  = 'Изменения сохранены';
     
     
+    //modules/gallery/gallery_widgets.php
+    $lang['amt_image_limit']                                                    = 'Лимит изображений';
     
+    //modules/group_mailer/templates/admin/form.tpl
+    $lang['amt_send_mail_to_users']                                             = 'Отправка писем пользователям.';
+    $lang['amt_theme']                                                          = 'Тема';
+    $lang['amt_your_name']                                                      = 'Ваше Имя';
+    $lang['amt_your_email']                                                     = 'Ваш Email';
+    $lang['amt_message']                                                        = 'Сообщение';
+    $lang['amt_hello']                                                          = 'Здравствуйте';
+    $lang['amt_best_regards']                                                   = 'С уважением,Администрация';
+    $lang['amt_send_to_group']                                                  = 'Отправить группам';
+    $lang['amt_format']                                                         = 'Форматирование';
+    $lang['amt_html']                                                           = 'HTML';
+    $lang['amt_plain_text']                                                     = 'Plain Text';
     
+    //modules/group_mailer/admin.php
+    $lang['amt_send']                                                           = 'Отправил';
+    $lang['amt_users_email_topic']                                              = ' пользователям E-Mail c темой ';
+    $lang['amt_message_send']                                                   = 'Сообщений отправлено';
+    $lang['amt_count_from']                                                     = 'шт. из ';
+    $lang['amt_not_any_message_from']                                           = 'Ни одно сообщение из ';
+    $lang['amt_count_not_send']                                                 = 'шт. не отправлено!';
     
-?>
+    //modules/image_box/main_window.tpl
+    $lang['amt_files_upload']                                                   = 'Загрузка файлов';
+    $lang['amt_select_file']                                                    = 'Выберите файл';
+    $lang['amt_or_select_url']                                                  = 'Или укажите URL';
+    $lang['amt_max_image_width']                                                = 'Максимальная ширина изображения';
+    $lang['amt_max_image_height']                                               = 'Максимальная высота изображения';
+    $lang['amt_image_quality']                                                  = 'Качество изображения';
+    
+    //modules/install/views/done.php
+//    $lang['amt_install_complete']                                               = 'Установка завершена.';
+//    $lang['amt_to_controll_panel']                                              = 'Перейти в панель управления';
+//    $lang['amt_main_page']                                                      = 'Главная страница';
+//    
+//    //modules/install/views/main.php
+//    $lang['amt_imagecms_install']                                               = 'ImageCMS - Установка';
+//    
+//    //modules/install/views/step_1.php
+//    $lang['amt_path_scan']                                                      = 'Проверка директорий';
+//    $lang['amt_change_perm']                                                    = 'Для того, чтобы продолжить установку системы, установите права на запись(chmod 0777) на следующие директории:';
+//    $lang['amt_check_php_sett']                                                 = 'Проверка параметров PHP';
+//    $lang['amt_check_php_ext']                                                  = 'Проверка модулей PHP';
+//    $lang['amt_forward']                                                        = 'Далее';
+//    $lang['amt_refresh']                                                        = 'Обновить';
+    
+    //modules/install/install.php
+    //$lang['amt_site_name']                                                      = 'Название сайта';
+    
+    //modules/menu/templates/category_selector.tpl
+    $lang['amt_select_category']                                                = 'Выбeрите Категорию';
+    $lang['amt_params']                                                         = 'Параметры';
+    $lang['amt_title']                                                          = 'Заголовок';
+    $lang['amt_parent']                                                         = 'Родитель';
+    $lang['amt_position_after']                                                 = 'Позиция после';
+    $lang['amt_first']                                                          = 'Первый';
+    $lang['amt_access_level']                                                   = 'Уровень доступа';
+    $lang['amt_all']                                                            = 'amt_all';
+    $lang['amt_hide']                                                           = 'Скрыть';
+    $lang['amt_open_in_new_window']                                             = 'Открывать в новом окне';
+    
+    //modules/menu/templates/create_item.tpl
+    $lang['amt_modules']                                                        = 'Модули';
+    $lang['amt_url']                                                            = 'URL';
+    
+    //modules/menu/templates/create_menu.tpl
+    $lang['amt_create_menu']                                                    = 'Создать Меню';

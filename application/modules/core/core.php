@@ -46,15 +46,7 @@ class Core extends MY_Controller {
 		}
 
 		($hook = get_hook('core_settings_loaded')) ? eval($hook) : NULL;  
-                
 
-                
-                
-                
-                
-                
-                
-                
                 // Set site main template
 		$this->config->set_item('template', $this->settings['site_template']);
 
@@ -69,10 +61,7 @@ class Core extends MY_Controller {
 		{
 			$data_type = 'bridge';
 		}
-                
-                
-                
-                
+               
 		if ($this->settings['site_offline'] == 'yes')
 		{
                     if($this->session->userdata('DX_role_id') != 2){
@@ -85,17 +74,8 @@ class Core extends MY_Controller {
                     //show_error('Сайт на реконструкции.');
                     //$this->template->show('offline');
                     }
-                    
-                    
-                    
 			//show_error('Site is offline.');
 		}
-                
-                
-                
-                
-
-
         
         /* Show Google Analytics code if some value inserted in admin panel */
         if ($this->settings['google_analytics_id'])
@@ -421,7 +401,7 @@ class Core extends MY_Controller {
 				{
 					$module->index();
 				}else{
-					$this->error('Ошибка загрузки модуля '.$modName);
+					$this->error(lang('amt_load_module_error').$modName);
 				}
 
 			break;
@@ -618,7 +598,7 @@ class Core extends MY_Controller {
 			if (! file_exists( $this->template->template_dir. $cat_tpl .'.tpl' ))
 			{
 				($hook = get_hook('core_dispcat_tpl_error')) ? eval($hook) : NULL;
-				show_error('Can\'t locate category template file.');
+				show_error(lang('amt_cant_locate_tmp_file'));
 			}
 
 			($hook = get_hook('core_dispcat_read_ptpl')) ? eval($hook) : NULL;
