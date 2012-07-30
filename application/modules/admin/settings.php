@@ -147,21 +147,23 @@ class Settings extends MY_Controller{
 
 
 		$data_m = array(
-            'site_title' => $this->lib_admin->db_post('title'),
-            'site_short_title' => $this->lib_admin->db_post('short_title'),
-            'site_description' => $this->lib_admin->db_post('description'),
-            'site_keywords' => $this->lib_admin->db_post('keywords'),
-            'create_keywords' => $this->input->post('create_keywords'),
-            'create_description' => $this->input->post('create_description'),
-            'create_cat_keywords' => $this->input->post('create_cat_keywords'),
-            'create_cat_description' => $this->input->post('create_cat_description'),
-            'add_site_name' => $this->input->post('add_site_name'),
-            'add_site_name_to_cat' => $this->input->post('add_site_name_to_cat'),
-            'delimiter' => $this->input->post('delimiter'),
-            'site_template' => $this->input->post('template'),
-            'editor_theme' => $this->input->post('editor_theme'),
-            'site_offline' => $this->input->post('site_offline'),
-            'google_analytics_id' => $this->input->post('google_analytics_id'),
+                    'site_title' => $this->lib_admin->db_post('title'),
+                    'site_short_title' => $this->lib_admin->db_post('short_title'),
+                    'site_description' => $this->lib_admin->db_post('description'),
+                    'site_keywords' => $this->lib_admin->db_post('keywords'),
+                    'create_keywords' => $this->input->post('create_keywords'),
+                    'create_description' => $this->input->post('create_description'),
+                    'create_cat_keywords' => $this->input->post('create_cat_keywords'),
+                    'create_cat_description' => $this->input->post('create_cat_description'),
+                    'add_site_name' => $this->input->post('add_site_name'),
+                    'add_site_name_to_cat' => $this->input->post('add_site_name_to_cat'),
+                    'delimiter' => $this->input->post('delimiter'),
+                    'site_template' => $this->input->post('template'),
+                    'editor_theme' => $this->input->post('editor_theme'),
+                    'site_offline' => $this->input->post('site_offline'),
+                    'google_analytics_id' => $this->input->post('google_analytics_id'),
+                    'google_webmaster' => $this->input->post('google_webmaster'),
+                    'yandex_webmaster' => $this->input->post('yandex_webmaster'),
 		);
 
         ($hook = get_hook('admin_save_settings')) ? eval($hook) : NULL;
