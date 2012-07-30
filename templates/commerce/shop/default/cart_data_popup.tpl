@@ -26,7 +26,7 @@
                     </td>
                     <td>
                         <div class="price f-s_16 f_l">{echo $prod->firstVariant->toCurrency()} <sub>{$CS}</sub>
-                            <span class="d_b">{echo $prod->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>
+                            <!--<span class="d_b">{echo $prod->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>-->
                         </div>
                     </td>
                     <td>
@@ -42,8 +42,11 @@
                         </div>-->
                     </td>
                     <td>
-                        <div class="price f-s_18 f_l">{echo $summary = $prod->firstVariant->toCurrency() * $catr.quantity} <sub>{$CS}</sub>
-                            <span class="d_b">{echo $summary_nextc = $prod->firstVariant->toCurrency('Price', $NextCSId) * $catr.quantity} {$NextCS}</span>
+                        <div class="price f-s_18 f_l">
+                            {$summary = $prod->firstVariant->toCurrency() * $catr.quantity}
+                            {echo $summary}
+                            <sub>{$CS}</sub>
+                            <!--<span class="d_b">{echo $summary_nextc = $prod->firstVariant->toCurrency('Price', $NextCSId) * $catr.quantity} {$NextCS}</span>-->
                         </div>
                     </td>
                     <td>
@@ -62,7 +65,9 @@
                                 <a href="{shop_url('cart')}">Оформить заказ</a>
                             </div>
                             <div class="f_r">
-                                <div class="price f-s_26 f_l">{$total} <sub>{$CS}</sub><span class="d_b">{echo $total_nc} {$NextCS}</span></div>
+                                <div class="price f-s_26 f_l">{$total} <sub>{$CS}</sub>
+                                    <!--<span class="d_b">{echo $total_nc} {$NextCS}</span>-->
+                                </div>
                             </div>
                             <div class="sum f_r">
                                 Сумма:
