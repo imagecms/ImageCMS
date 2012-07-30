@@ -91,9 +91,11 @@
             <div id="paymentMethods">
                 {$counter = true}
                 {foreach $paymentMethods as $paymentMethod}
+                    
                 <label>
                     <input type="radio"{if $counter} checked="checked"{$counter = false}{$pay_id = $paymentMethod->getId()}{/if} name="met_buy" class="met_buy" value="{echo $pay_id}" />{echo $paymentMethod->getName()}
                 </label>                        
+                
                 {/foreach}
             </div>
             {/if}            
