@@ -1,5 +1,5 @@
 <div style="padding:5px;color:#73BACD;background-color:#73BACD;color:#fff">
-    <h2>Создать Меню:</h2>
+    <h2>{lang('amt_create_menu')}:</h2>
 </div>
     <form action="{$SELF_URL}/create_menu" method="post" id="form_create_root_menu">
         <div class="form_text">Имя:</div>

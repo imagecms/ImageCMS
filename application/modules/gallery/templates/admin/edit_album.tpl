@@ -6,11 +6,11 @@
 
 
                <div style="height:16px;width:130px;float:left;text-align: center; overflow: hidden;" class="button_silver_130">
-               <div style="color:#000000;">Выбрать файл</div>
+               <div style="color:#000000;">{lang('amt_select_file')}</div>
                <input type="file" name="file[]" id="file" size="1" style="margin-top: -50px; margin-left:-410px; -moz-opacity: 0; filter: alpha(opacity=0); opacity: 0; font-size: 150px; height: 100px;" multiple="multiple"/>
                </div>
 
-                <input type="submit" name="action" value="Загрузить файл" class="button_silver_130" />
+                <input type="submit" name="action" value="{lang('amt_download_file')}" class="button_silver_130" />
                 <iframe id="upload_target" name="upload_target" src="" style="width:0;height:0;border:0px solid #fff;display:none;"></iframe>
                 {form_csrf()}</form>
             </li>
@@ -23,7 +23,7 @@
         </div>
 
         <div align="right" style="padding:7px 13px;">
-            <a href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/'); return false;"  >Галерея</a> 
+            <a href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/'); return false;"  >{lang('amt_gallery')}</a> 
             >
             <a href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/category/{$category.id}'); return false;">{$category.name}</a> 
             > 
@@ -47,7 +47,7 @@
             </div>
 
             <div style="height:16px;float:right;" align="right">
-                <img src="{$THEME}/images/edit.png" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/edit_image/{$item.id}'); return false;" title="Редактировать" width="16" height="16" style="cursor:pointer;" />                
+                <img src="{$THEME}/images/edit.png" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/edit_image/{$item.id}'); return false;" title="{lang('amt_edit')}" width="16" height="16" style="cursor:pointer;" />                
                 <img src="{$THEME}/images/delete.png" onclick="confirm_delete_image({$item.id}, {$album.id},'{$item.file_name}');" title="Удалить" width="16" height="16" style="cursor:pointer;" />                
             </div>
         </div>
