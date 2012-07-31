@@ -10,8 +10,8 @@ class Admin extends MY_Controller {
 	private $sub_menu  = array();
 	private $sub_menus  = array();
 	private $padding = 0;
-    private $menu_result = array();
-    private $for_delete = array();
+        private $menu_result = array();
+        private $for_delete = array();
 
 	function __construct()
 	{
@@ -21,9 +21,9 @@ class Admin extends MY_Controller {
         $this->load->library('DX_Auth');
 
         $this->cache->delete_group('menus');
-		$this->load->library('Form_validation');    
+	$this->load->library('Form_validation');    
         $this->load->library('lib_admin');
-		$this->load->module('menu'); 
+	$this->load->module('menu'); 
         $this->load->model('menu_model');
 
         $this->template->assign('langs', $this->_get_langs());
@@ -85,7 +85,7 @@ class Admin extends MY_Controller {
 		$this->menu->prepare_menu_array( $this->get_name_by_id($id) );
 		$this->root_menu =& $this->menu->menu_array;
 		$this->sub_menu =& $this->menu->sub_menu_array;
-        $this->process_root($this->root_menu);
+                $this->process_root($this->root_menu);
 		$this->template->assign('menu_result',$this->menu_result);
 
 		// roles
@@ -442,11 +442,11 @@ class Admin extends MY_Controller {
         $this->check_menu_data();
 
 		$val = $this->form_validation;
-		$val->set_rules('menu_name', 'Имя', 'required|min_length[2]|max_length[25]|alpha_dash');
-		$val->set_rules('main_title', 'Название', 'required|max_length[100]');
-		$val->set_rules('menu_desc', 'Описание', 'max_length[500]');
-		$val->set_rules('menu_tpl', 'Шаблон', 'max_length[500]');
-		$val->set_rules('menu_expand_level', 'Уровень раскрытия', 'numeric|max_length[2]');
+		$val->set_rules('menu_name', lang('amt_name'), 'required|min_length[2]|max_length[25]|alpha_dash');
+		$val->set_rules('main_title', lang('amt_tname'), 'required|max_length[100]');
+		$val->set_rules('menu_desc', lang('amt_description'), 'max_length[500]');
+		$val->set_rules('menu_tpl', lang('amt_template'), 'max_length[500]');
+		$val->set_rules('menu_expand_level', lang('amt_open_level'), 'numeric|max_length[2]');
 
 
 		if ($this->form_validation->run($this) == FALSE)
@@ -486,7 +486,7 @@ class Admin extends MY_Controller {
 
    		if ($_POST['menu_name'] == NULL)
 		{
-			showMessage('Поле Имя обязательно для заполения!.',false,'r');
+			showMessage(lang('amt_name_required'),false,'r');
 			exit;
 		}
 

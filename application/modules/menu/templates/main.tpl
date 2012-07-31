@@ -1,8 +1,8 @@
 <div id="menus_table">
 <div class="top-navigation">
     <ul>
-        <li style="padding:5px;"><input type="button" class="button_silver_130" onclick="create_link_window({$insert_id}); return false;" value="Создать ссылку" /></li>
-        <li><input type="button" class="button_silver" onclick="ajax_div('menus_table', '{$SELF_URL}/'); return false;" value="Отмена" /></li>
+        <li style="padding:5px;"><input type="button" class="button_silver_130" onclick="create_link_window({$insert_id}); return false;" value="{lang('amt_create_link')}" /></li>
+        <li><input type="button" class="button_silver" onclick="ajax_div('menus_table', '{$SELF_URL}/'); return false;" value="{lang('amt_cancel')}" /></li>
     </ul>
 </div>
 
@@ -10,18 +10,18 @@
 <div id="sortable">
 	<table width="100%" border="0" align="left" class="items_table" style="text-align:left;">
 	  <thead>
-		<th width="15px">ID</th>
-		<th align="left">Название</th>
-		<th>Ссылка</th>
+		<th width="15px">{lang('amt_id')}</th>
+		<th align="left">{lang('amt_tname')}</th>
+		<th>{lang('amt_link')}</th>
 		<th align="left">
-        Тип
+        {lang('amt_type')}
         </th>
 		<th>
         <div align="center">
-        Позиция  <img src="{$THEME}/images/save.png" align="absmiddle" style="cursor:pointer;width:22px;height:22px;" onclick="save_position(); return false;" />
+        {lang('amt_position')}  <img src="{$THEME}/images/save.png" align="absmiddle" style="cursor:pointer;width:22px;height:22px;" onclick="save_position(); return false;" />
         </div>
         </th>
-		<th>Скрытая</th>
+		<th>{lang('amt_hidden')}</th>
 		<th></th>
 	  </thead>
 	  <tbody>
@@ -39,16 +39,16 @@
 			<td>
            	{ switch $item['item_type'] }
 		    { case "page": }
-			    Страница
+			    {lang('amt_page')}
                 {break;}
 		    { case "category": }
-			    Категория
+			    {lang('amt_category')}
                 {break;}
 		    { case "module" }
-			    Модуль
+			    {lang('amt_module')}
                 {break;}
             { case "url": }
-                URL
+                {lang('amt_url')}
                 {break;}
         	{ /switch } 
             </td>
