@@ -5,8 +5,8 @@
     <textarea name="data" style="width:100%;height:540px;">{htmlspecialchars($file_data)}</textarea>
 
     <p align="right">
-        <input type="submit" class="button_silver_130" value="Сохранить" onclick="ajax_me('update_file_form');" style="margin-right:5px;"/>  
-        <input type="button" class="button_red_130" value="Удалить" onclick="confirm_delete_file('{$path}');" />
+        <input type="submit" class="button_silver_130" value="{lang('amt_save')}" onclick="ajax_me('update_file_form');" style="margin-right:5px;"/>  
+        <input type="button" class="button_red_130" value="{lang('amt_delete')}" onclick="confirm_delete_file('{$path}');" />
     </p>
 </form>
 

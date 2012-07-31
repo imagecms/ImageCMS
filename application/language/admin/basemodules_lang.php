@@ -370,5 +370,114 @@
     
     //modules/navigation/templates/admin/create.tpl
     $lang['amt_new_poll']                                                       = 'Создание нового голосования';
+    $lang['amt_answer']                                                         = 'Ответ';
     
+    //modules/navigation/templates/admin/edit.tpl
+    $lang['amt_poll_edit']                                                      = 'Редактирование голосования';
+    $lang['amt_next_answer']                                                    = 'Следующий ответ';
     
+    //modules/navigation/templates/admin/list.tpl
+    $lang['amt_empty_poll_list']                                                = 'Список голосований пустой.';
+    $lang['amt_poll_list']                                                      = 'Список голосований';
+    
+    //modules/navigation/admin.php
+    $lang['amt_poll_not_found']                                                 = 'Голосование не найдено.';
+    
+    //modules/rss/templates/admin/settings.tpl
+    $lang['amt_rss_channel_sett']                                               = 'Параметры RSS канала';
+    $lang['amt_sel_cat_f_trans']                                                = 'Выберите категории для трансляции.';
+    $lang['amt_pages_count']                                                    = 'Количество страниц';
+    $lang['amt_select_pages_count_for_display']                                 = 'Укажите количество страниц для отображения.';
+    $lang['amt_cache']                                                          = 'Кеш';
+    $lang['amt_cache_life_in_minutes']                                          = 'Укажите время жизни кеш-файла в минутах.';
+    
+    //modules/search/search.php
+    $lang['amt_lang_select_table']                                              = 'Ошибка. Укажите таблицу для поиска.';
+    
+    //modules/site_map/templates/admin/settings.tpl
+    $lang['amt_site_map_settings']                                              = 'Настройки карты сайта';
+    $lang['amt_priority']                                                       = 'Приоритеты';
+    $lang['amt_simple_pages']                                                   = 'Обычные страницы';
+    $lang['amt_changefreq']                                                     = 'Частота изменения страниц';
+    $lang['amt_other_pages']                                                    = 'Другие страницы';
+    
+    //modules/template_editor/tags/templates/admin/tags_admin.tpl
+    $lang['amt_all_tags']                                                       = 'Все теги';
+    
+    //modules/template_editor/templates/admin/index.tpl
+    $lang['amt_template_editor']                                                = 'Редактор шаблонов';
+    
+    //modules/template_editor/admin/index.tpl    
+    $lang['amt_access_denied']                                                  = 'Доступ запрещен.';
+    $lang['amt_file_not_found']                                                 = 'Файл не найден.';
+    $lang['amt_check_write_perm']                                               = 'Ошибка записи файла. Проверьте права на запись.';
+    $lang['amt_select_file_name']                                               = 'Укажите имя файла.';
+    $lang['amt_file_created']                                                   = 'Файл создан.';
+    $lang['amt_err_deleting_file']                                              = 'Ошибка удаления файла.';
+    $lang['amt_err_deleting']                                                   = 'Ошибка укаления';
+    
+    //modules/user_manager/templates/edit_user.tpl
+    $lang['amt_user_login']                                                     = 'Логин';
+    $lang['amt_new_pass']                                                       = 'Новый пароль';
+    $lang['amt_new_pass_confirm']                                               = 'Подтвердите пароль';
+    $lang['amt_ban']                                                            = 'Бан';
+    $lang['amt_ban_reason']                                                     = 'Причина Бана';
+    
+    //modules/user_manager/templates/groups.tpl
+    $lang['amt_prev_content']                                                   = 'Предварительное содержание';
+    $lang['amt_identif']                                                        = 'Идентификатор';
+    $lang['amt_just_latin']                                                     = 'только латинские символы';
+    
+    //modules/user_manager/templates/main.tpl
+    $lang['amt_users']                                                          = 'Пользователи';
+    $lang['amt_create_new_user']                                                = 'Создать нового пользователя.';
+    $lang['amt_user_search']                                                    = 'Поиск пользователей.';
+    $lang['amt_login_or_mail']                                                  = 'Логин или Email';
+    $lang['amt_all_groups']                                                     = 'Все группы';
+    $lang['amt_groups']                                                         = 'Группы';
+    $lang['amt_perm_div']                                                       = 'Разделение прав';
+    
+    //modules/user_manager/templates/users_table.tpl
+    $lang['amt_filter']                                                         = 'Фильтр';
+    $lang['amt_clean']                                                          = 'Очистить';
+    $lang['amt_last_ip']                                                        = 'Последний IP';
+    $lang['amt_last_entry']                                                     = 'Последний Вход';
+    $lang['amt_to_ban']                                                         = 'Забанить';
+    $lang['amt_to_unban']                                                       = 'Разбанить';
+    
+    //modules/user_manager/admin.php
+    $lang['amt_password']                                                       = 'Пароль';
+    $lang['amt_login_exists']                                                   = 'Пользователь с таким логином уже зарегистрирован.';
+    $lang['amt_email_exists']                                                   = 'Пользователь с такой почтой уже зарегистрирован.';
+    $lang['amt_create_user']                                                    = 'Создал пользователя ';
+    $lang['amt_user_created']                                                   = 'Пользователь создан.';
+    $lang['amt_banned_user']                                                    = 'Забанил пользователя ';
+    $lang['amt_unbanned_user']                                                  = 'Разбанил пользователя ';
+    $lang['amt_deleted_user']                                                   = 'Удалил пользователя ';
+    $lang['amt_users_not_found']                                                = 'Пользователей не найдено.';
+    $lang['amt_updated_user']                                                   = 'Обновил пользователя ';
+    $lang['amt_created_group']                                                  = 'Создал группу ';
+    $lang['amt_group_created']                                                  = 'Группа создана';
+    $lang['amt_changed_group']                                                  = 'Изменил группу ';
+    $lang['amt_group_saved']                                                    = 'Группа сохранена';
+    $lang['amt_error_deleting']                                                 = 'Ошибка удаления';
+    $lang['amt_deleted_group']                                                  = 'Удалил группу ';
+    
+    //modules/user_support/templates/admin/create_department.tpl
+    $lang['amt_all_tickets']                                                    = 'Все билеты';
+    $lang['amt_departments']                                                    = 'Департаменты';
+    
+    //modules/user_support/templates/admin/departments.tpl
+    $lang['amt_create_department']                                              = 'Создать департамент';
+    $lang['amt_dep']                                                            = 'Отдел';
+    $lang['amt_last_comment']                                                   = 'Посл. комментарий';
+    $lang['amt_prior']                                                          = 'Приоритет';
+    $lang['amt_ticket_theme']                                                   = 'Тема билета';
+    $lang['amt_ticket_num']                                                     = 'Номер билета';
+    $lang['amt_imp']                                                            = 'Степень важности';
+    $lang['amt_corresp']                                                        = 'Корреспонденция';
+    $lang['amt_added']                                                          = 'Добавлено';
+    $lang['amt_leave_message']                                                  = 'Оставить сообщение';
+    $lang['amt_send']                                                           = 'Отослать';
+    $lang['amt_dep_name']                                                       = 'Название департамента';
+    $lang['amt_dep_created'] = 'Департамент создан';

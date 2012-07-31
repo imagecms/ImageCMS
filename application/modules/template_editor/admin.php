@@ -83,12 +83,12 @@ class Admin extends MY_Controller {
         $file=TEMPLATES_PATH.$path; 
         
         if ($this->get_file_ext($file)=='php')
-            die('Доступ запрещен.');
+            die(lang('amt_access_denied'));
 
         if (file_exists($file))
             $file_data = read_file($file);
         else
-            die('Файл не найден.');
+            die(lang('amt_file_not_found'));
         
         $this->template->add_array(array(
             'file_data'=>$file_data,
@@ -106,12 +106,12 @@ class Admin extends MY_Controller {
         if (file_exists($file))
         {
             if ( ! write_file($file, $this->input->post('data'))) 
-                showMessage('Ошибка записи файла. Проверьте права на запись.',false,'r'); 
+                showMessage(lang('amt_check_write_perm'),false,'r'); 
             else
-                showMessage('Изменения сохранены.');
+                showMessage(lang('amt_changes_saved'));
         }
         else
-            showMessage('Файл не найден.',false,'r');  
+            showMessage(lang('amt_file_not_found'),false,'r');  
     }
 
     public function create_file()
@@ -127,7 +127,7 @@ class Admin extends MY_Controller {
 
             if (trim($file_name) == '')
             {
-                showMessage('Укажите имя файла.',false,'r');
+                showMessage(lang('amt_select_file_name'),false,'r');
                 exit;
             }
             else
@@ -137,10 +137,10 @@ class Admin extends MY_Controller {
                 $file=htmlspecialchars(TEMPLATES_PATH.$path.'/'.$file_name.'.tpl');
                 
                 if ( ! write_file($file, ' ')) 
-                    showMessage('Ошибка записи файла. Проверьте права на запись.',false,'r'); 
+                    showMessage(lang('amt_check_write_perm'),false,'r'); 
                 else
                 {
-                    showMessage('Файл создан.');
+                    showMessage(lang('amt_file_created'));
                     closeWindow('create_filetemplate_window');
                     updateDiv('page',site_url('admin/components/cp/template_editor/renderDir/'.$path));
                 }
@@ -163,7 +163,7 @@ class Admin extends MY_Controller {
         {
             if (!unlink(TEMPLATES_PATH.$path))
             {
-                showMessage('Ошибка удаления файла.',false,'r');
+                showMessage(lang('amt_err_deleting_file'),false,'r');
             }
             else
             {
@@ -174,7 +174,7 @@ class Admin extends MY_Controller {
         }
         else
         {
-            showMessage('Ошибка укаления',false,'r');
+            showMessage(lang('amt_err_deleting'),false,'r');
         }
     }
 

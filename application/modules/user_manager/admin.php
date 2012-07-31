@@ -91,10 +91,10 @@ class Admin extends MY_Controller {
 		$this->load->model('dx_auth/users', 'user2');
 		$val = $this->form_validation;
 
-                $val->set_rules('username', lang('lang_login'), 'trim|required|xss_clean|alpha_dash');
-                $val->set_rules('password', lang('lang_password'), 'trim|min_length['.$this->config->item('DX_login_min_length').']|max_length['.$this->config->item('DX_login_max_length').']|required|xss_clean');
-                $val->set_rules('password_conf', lang('lang_confirm_password'), 'matches[password]|required');
-		$val->set_rules('email', lang('lang_email'), 'trim|required|xss_clean|valid_email');
+                $val->set_rules('username', lang('amt_user_login'), 'trim|required|xss_clean|alpha_dash');
+                $val->set_rules('password', lang('amt_password'), 'trim|min_length['.$this->config->item('DX_login_min_length').']|max_length['.$this->config->item('DX_login_max_length').']|required|xss_clean');
+                $val->set_rules('password_conf', lang('amt_new_pass_confirm'), 'matches[password]|required');
+		$val->set_rules('email', lang('amt_email'), 'trim|required|xss_clean|valid_email');
 
         ($hook = get_hook('users_create_set_val_rules')) ? eval($hook) : NULL;
 
@@ -105,14 +105,14 @@ class Admin extends MY_Controller {
 		// check user
 		if($this->user2->check_username($user)->num_rows() > 0)
 		{
-			showMessage(lang('lang_login_exists'),false,'r');
+			showMessage(lang('amt_login_exists'),false,'r');
 			exit;
 		}
 
 		// check user mail
 		if($this->user2->check_email($email)->num_rows() > 0)
 		{
-			showMessage(lang('lang_email_exists'),false,'r');
+			showMessage(lang('amt_email_exists'),false,'r');
 			exit;
 		}
 
@@ -134,9 +134,9 @@ class Admin extends MY_Controller {
 				$user_info = $this->user2->get_user_by_username($user)->row_array();
 				$this->user2->set_role($user_info['id'], $role);
 
-                $this->lib_admin->log('Создал пользователя '.$val->set_value('username'));
+                $this->lib_admin->log(lang('amt_create_user').$val->set_value('username'));
 
-				showMessage('Пользователь создан.');
+				showMessage(lang('amt_user_created'));
 			}else{
 				showMessage (validation_errors(),false,'r');
 			}
@@ -161,21 +161,21 @@ class Admin extends MY_Controller {
                         cp_check_perm('user_edit');
                         ($hook = get_hook('users_ban')) ? eval($hook) : NULL;
 						$this->users->ban_user($value);
-                        $this->lib_admin->log('Забанил пользователя '.$value);
+                        $this->lib_admin->log(lang('amt_banned_user').$value);
 					break;
 
 					case 2: //unban
                         cp_check_perm('user_edit');
                         ($hook = get_hook('users_unban')) ? eval($hook) : NULL;
 						$this->users->unban_user($value);
-                        $this->lib_admin->log('Разбанил пользователя '.$value);
+                        $this->lib_admin->log(lang('amt_unbanned_user').$value);
 					break;
 
 					case 3: //delete
                         cp_check_perm('user_delete');
                         ($hook = get_hook('users_delete')) ? eval($hook) : NULL;
 						$this->users->delete_user($value);
-                        $this->lib_admin->log('Удалил пользователя '.$value); 
+                        $this->lib_admin->log(lang('amt_deleted_user').$value); 
 					break;
 				}
 			}
@@ -208,7 +208,7 @@ class Admin extends MY_Controller {
 
 		if($query->num_rows() == 0)
 		{
-			showMessage('Пользователей не найдено.',false,'r');
+			showMessage(lang('amt_users_not_found'),false,'r');
 		}else{
 			$users = $query->result_array();
 
@@ -229,7 +229,7 @@ class Admin extends MY_Controller {
 
 			// recount users
 			if(count($users) == 0) {
-				showMessage('Пользователей не найдено.',false,'r');
+				showMessage(lang('amt_users_not_found'),false,'r');
 				exit;
 			}
 
@@ -253,7 +253,7 @@ class Admin extends MY_Controller {
 
 		if($user->num_rows() == 0)
 		{
-			exit('user not found');
+			exit(lang('amt_users_not_found'));
 		}else{
 			$this->template->add_array($user->row_array());
 			$this->set_tpl_roles();
@@ -272,25 +272,25 @@ class Admin extends MY_Controller {
 
 		$val = $this->form_validation;
 
-		$val->set_rules('username', lang('lang_login'), 'trim|required|xss_clean');
-                $val->set_rules('new_pass', lang('lang_password'), 'trim|max_length['.$this->config->item('DX_login_max_length').']|xss_clean');
-                $val->set_rules('new_pass_conf', lang('lang_confirm_password'), 'matches[new_pass]');
+		$val->set_rules('username', lang('amt_user_login'), 'trim|required|xss_clean');
+                $val->set_rules('new_pass', lang('amt_password'), 'trim|max_length['.$this->config->item('DX_login_max_length').']|xss_clean');
+                $val->set_rules('new_pass_conf', lang('amt_new_pass_confirm'), 'matches[new_pass]');
 
-		$val->set_rules('email', lang('lang_email'), 'trim|required|xss_clean|valid_email');
+		$val->set_rules('email', lang('amt_email'), 'trim|required|xss_clean|valid_email');
 
 		$user_data = $this->user2->get_user_field($user_id,array('username','email'))->row_array();
                 
                 if(strlen($this->input->post('new_pass')) !== 0)
                     {
-                    $val->set_rules('new_pass', lang('lang_password'), 'trim|min_length['.$this->config->item('DX_login_min_length').']|max_length['.$this->config->item('DX_login_max_length').']|required|xss_clean');
-                    $val->set_rules('new_pass_conf', lang('lang_confirm_password'), 'matches[new_pass]|required');
+                    $val->set_rules('new_pass', lang('amt_password'), 'trim|min_length['.$this->config->item('DX_login_min_length').']|max_length['.$this->config->item('DX_login_max_length').']|required|xss_clean');
+                    $val->set_rules('new_pass_conf', lang('amt_new_pass_confirm'), 'matches[new_pass]|required');
                     }
 
 		if($user_data['username'] != $this->input->post('username'))
 		{
 			if($this->user2->check_username($this->input->post('username'))->num_rows() > 0)
 			{
-				showMessage(lang('lang_login_exists'),false,'r');
+				showMessage(lang('amt_login_exists'),false,'r');
 				exit;
 			}
 		}
@@ -299,7 +299,7 @@ class Admin extends MY_Controller {
 		{
 			if($this->user2->check_email($this->input->post('email'))->num_rows() > 0)
 			{
-				showMessage(lang('lang_email_exists'),false,'r');
+				showMessage(lang('amt_email_exists'),false,'r');
 				exit;
 			}
 		}
@@ -326,9 +326,9 @@ class Admin extends MY_Controller {
 				$this->db->where('id',$user_id);
 				$this->db->update('users',$data);
 
-                $this->lib_admin->log('Обновил пользователя '.$data['username']);
+                $this->lib_admin->log(lang('amt_updated_user').$data['username']);
 
-				showMessage('Изменения сохранены');
+				showMessage(lang('amt_changes_saved'));
 
 			}else{
 				showMessage (validation_errors(),false,'r');
@@ -350,9 +350,9 @@ class Admin extends MY_Controller {
 	{
         cp_check_perm('roles_create');
 
-		$this->form_validation->set_rules('name', 'Идентификатор', 'required|trim|max_length[150]|min_length[2]|alpha_dash');
-		$this->form_validation->set_rules('alt_name', 'Название', 'required|trim|max_length[150]|min_length[2]');
-		$this->form_validation->set_rules('desc', 'Описание', 'trim|max_length[300]|min_length[2]');
+		$this->form_validation->set_rules('name', lang('amt_identif'), 'required|trim|max_length[150]|min_length[2]|alpha_dash');
+		$this->form_validation->set_rules('alt_name', lang('amt_tname'), 'required|trim|max_length[150]|min_length[2]');
+		$this->form_validation->set_rules('desc', lang('amt_description'), 'trim|max_length[300]|min_length[2]');
 
 		if ($this->form_validation->run($this) == FALSE)
 		{
@@ -370,9 +370,9 @@ class Admin extends MY_Controller {
 
 			$this->db->insert('roles',$data);
 
-            $this->lib_admin->log('Создал группу '.$data['name']);
+            $this->lib_admin->log(lang('amt_created_group').$data['name']);
 
-			showMessage('Группа создана');
+			showMessage(lang('amt_group_created'));
             $this->update_groups_block();
 		}
 	}
@@ -396,9 +396,9 @@ class Admin extends MY_Controller {
 	{
         cp_check_perm('roles_edit'); 
 
-		$this->form_validation->set_rules('alt_name', 'Имя', 'required|trim|max_length[150]|min_length[2]');
-		$this->form_validation->set_rules('name', 'Идентификатор', 'required|trim|max_length[150]|min_length[2]|alpha');
-		$this->form_validation->set_rules('desc', 'Описание', 'trim|max_length[500]|min_length[2]');
+		$this->form_validation->set_rules('alt_name', lang('amt_name'), 'required|trim|max_length[150]|min_length[2]');
+		$this->form_validation->set_rules('name', lang('amt_identif'), 'required|trim|max_length[150]|min_length[2]|alpha');
+		$this->form_validation->set_rules('desc', lang('amt_description'), 'trim|max_length[500]|min_length[2]');
 
 		if ($this->form_validation->run($this) == FALSE)
 		{
@@ -430,9 +430,9 @@ class Admin extends MY_Controller {
 			$this->db->where('id',intval($id));
 			$this->db->update('roles',$data);
 
-            $this->lib_admin->log('Изменил группу '.$id);
+            $this->lib_admin->log(lang('amt_changed_group').$id);
 
-			showMessage('Группа сохранена');
+			showMessage(lang('amt_group_saved'));
             $this->update_groups_block();
             closeWindow('group_edit_window');
 		}
@@ -446,7 +446,7 @@ class Admin extends MY_Controller {
 		{
 			case 1:
 			case 2:
-    			showMessage('Ошибка удаления',false,'r');
+    			showMessage(lang('amt_error_deleting'),false,'r');
 	    		exit;
 			break;
 		}
@@ -457,7 +457,7 @@ class Admin extends MY_Controller {
 		$this->db->where('id',intval($id));
 		$this->db->delete('roles');
 
-        $this->lib_admin->log('Удалил группу '.$id); 
+        $this->lib_admin->log(lang('amt_deleted_group').$id); 
 
 		$this->update_groups_block();
 	}
@@ -495,7 +495,7 @@ class Admin extends MY_Controller {
             $this->db->delete('permissions');
         }
 
-        showMessage('Изменения сохранены');
+        showMessage(lang('amt_changes_saved'));
     }
 
     function show_edit_prems_tpl($selected_role = 1)
