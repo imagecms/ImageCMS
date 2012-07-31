@@ -334,3 +334,33 @@
     
     //modules/menu/templates/create_menu.tpl
     $lang['amt_create_menu']                                                    = 'Создать Меню';
+    $lang['amt_tname']                                                          = 'Название';
+    $lang['amt_template_folder']                                                = 'Папка шаблона';
+    $lang['amt_open_menu_folder']                                               = 'Раскрывать меню, уровень';
+    
+    //modules/menu/templates/edit_menu.tpl
+    $lang['amt_edit_menu']                                                      = 'Редактировать Меню';
+    
+    //modules/menu/templates/main.tpl
+    $lang['amt_create_link']                                                    = 'Создать ссылку';
+    $lang['amt_link']                                                           = 'Ссылка';
+    $lang['amt_hidden']                                                         = 'Скрытая';
+    $lang['amt_module']                                                         = 'Модуль';
+    
+    //modules/menu/templates/module_selector.tpl
+    $lang['amt_select_module']                                                  = 'Выбeрите Модуль';
+    $lang['amt_function']                                                       = 'Функция';
+    $lang['amt_all']                                                            = 'Все';
+    
+    //modules/menu/templates/pages_selector.tpl
+    $lang['amt_root']                                                           = 'root';
+    $lang['amt_search']                                                         = 'Поиск';
+    
+    //modules/menu/templates/url_selector.tpl
+    $lang['amt_select_page_link']                                               = 'Укажите ссылку на страницу';
+    
+    //modules/menu/admin.php
+    $lang['amt_template']                                                       = 'Шаблон';
+    $lang['amt_open_level']                                                     = 'Уровень раскрытия';
+    $lang['amt_name_required']                                                  = 'Поле Имя обязательно для заполения!.';
+    
