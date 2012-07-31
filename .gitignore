@@ -2,13 +2,11 @@
 /application/logs
 /captcha
 /uploads
-gitpush
-db.sql
+/gitpush
+/db.sql
 application/config/config.php
-/application/config/config.php
-application/config/database.php
-application/modules/shop/
-application/modules/shop
+/application/config/database.php
+/application/modules/shop
 Thumbs.db
 .idea/
 /nbproject
