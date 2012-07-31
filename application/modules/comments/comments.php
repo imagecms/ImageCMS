@@ -420,15 +420,6 @@ class Comments extends MY_Controller {
             }
         }
     }
-    
-    public function getyes($comid) {
-        
-    }
-    
-    public function getno($comid) {
-        
-    }
-    
 }
 
 /* End of file comments.php */
