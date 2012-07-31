@@ -284,8 +284,6 @@ $(document).ready(function(){
         });
     });
     
-    $('.met_del:checked').trigger('click');
-    
     $('.met_buy').live('click',function(){
         $('#paymentMethodId').val($(this).val());
     });
@@ -305,7 +303,36 @@ $(document).ready(function(){
     })
     
     $("#cartForm").validate();
+    
+    $('.met_del:checked').trigger('click');
+    
+    $("input.met_del").click(function(){
+        recount();
+    });
+    
+    $('.met_del:checked').each(function() {
+        recount();
+    });
 
+    function recount(){
+        $.fancybox.showActivity();
+        $("#cartForm").find('input[name=makeOrder]').val(0);
+        $.ajax({
+        type: 'post',
+        data: $("#cartForm").serialize() + '&recount=1',
+        url: '/shop/cart',
+        success: function(msg){
+            $('.cart_data_holder').load('/shop/ajax/getCartDataHtml');
+            if($('.plus_minus button').hasClass('inCartProducts'))
+                $('.forCartProducts').html(msg);                        
+            else
+                showResponse(msg);
+            $("#cartForm").find('input[name=makeOrder]').val(1);
+            $.fancybox.hideActivity();
+        }
+    });
+    }
+      
     function bindNotifMeForm(){
         $('.order_call #notifMe').bind('submit',function(){
             $this = $(this);

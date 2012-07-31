@@ -20,7 +20,9 @@
             <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}</a>
         </td>
         <td>
-            <div class="price f-s_16 f_l">{echo $item.model->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $item.model->firstVariant->toCurrency('Price', 1)} $</span></div>
+            <div class="price f-s_16 f_l">{echo $item.model->firstVariant->toCurrency()} <sub>{$CS}</sub>
+                <!--<span class="d_b">{echo $item.model->firstVariant->toCurrency('Price', 1)} $</span>-->
+                </div>
         </td>
         <td>
             <div class="count">
@@ -32,8 +34,12 @@
             </div>
         </td>
         <td>
-            <div class="price f-s_18 f_l">{echo $summary = $item.model->firstVariant->toCurrency() * $item.quantity} <sub>{$CS}</sub>
-                <span class="d_b">{echo $summary_nextc = $item.model->firstVariant->toCurrency('Price', 1) * $item.quantity} $</span></div>
+            <div class="price f-s_18 f_l">{$summary = $item.model->firstVariant->toCurrency() * $item.quantity}
+                {echo $summary}
+                <sub>{$CS}</sub>
+                
+                <!--<span class="d_b">{echo $summary_nextc = $item.model->firstVariant->toCurrency('Price', 1) * $item.quantity} $</span>-->
+            </div>
         </td>
         <td>
             <a href="{shop_url('cart/delete/'.$key)}" class="delete_text inCartProducts">&times;</a>
@@ -48,7 +54,15 @@
         <td colspan="6">
             <div class="foot_cleaner">
                 <div class="f_r">
-                    <div class="price f-s_26 f_l">{$total} <sub>{$CS}</sub><span class="d_b">{$total_nc} $</span></div>
+                    <div class="price f-s_26 f_l">
+                        {if $total < $item.delivery_free_from}
+                        {$total += $item.delivery_price}
+                        {/if}
+                        {echo $total}
+                        <sub>{$CS}</sub>
+                        {if $total < $item.delivery_free_from}<span class="d_b">(+{echo $item.delivery_price} руб)</span>{/if}
+                        <!--<span class="d_b">{$total_nc} $</span>-->
+                        </div>
                 </div>
                 <div class="f_r sum">Сумма:</div>
             </div>
