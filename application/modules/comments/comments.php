@@ -71,10 +71,10 @@ class Comments extends MY_Controller {
         $this->load->model('base');
         $this->init_settings();
 
-        if (($comments = $this->cache->fetch('comments_' . $item_id . $this->module, 'comments')) !== FALSE) {
-            ($hook = get_hook('comments_fetch_cache_ok')) ? eval($hook) : NULL;
-            // Comments fetched from cahce file
-        } else {
+//        if (($comments = $this->cache->fetch('comments_' . $item_id . $this->module, 'comments')) !== FALSE) {
+//            ($hook = get_hook('comments_fetch_cache_ok')) ? eval($hook) : NULL;
+//            // Comments fetched from cahce file
+//        } else {
             $this->db->where('module', $this->module);
             $comments = $this->base->get($item_id);
 
@@ -84,7 +84,7 @@ class Comments extends MY_Controller {
                 ($hook = get_hook('comments_store_cache')) ? eval($hook) : NULL;
                 $this->cache->store('comments_' . $item_id . $this->module, $comments, $this->cache_ttl, 'comments');
             }
-        }
+        //}
 
         if (is_array($comments)) {
             $i = 0;
@@ -215,6 +215,19 @@ class Comments extends MY_Controller {
             $comment_text_minus = trim(htmlspecialchars($this->input->post('comment_text_minus')));
             $comment_text_minus = str_replace("\n", '<br/>', $comment_text_minus);
             $rate = $this->input->post('ratec');
+            if($this->input->post('ratec'))
+            {
+                if (SProductsQuery::create()->findPk($item_id) !== null) {
+                    $model = SProductsRatingQuery::create()->findPk($item_id);
+                    if ($model === null) {
+                        $model = new SProductsRating;
+                        $model->setProductId($item_id);
+                    }
+                    $model->setVotes($model->getVotes() + 1);
+                    $model->setRating($model->getRating() + $rate);
+                    $model->save();
+                }
+            }
             $parent = $this->input->post('parent');
 
             if ($comment_text != '') {
@@ -378,29 +391,33 @@ class Comments extends MY_Controller {
 
     public function setyes() {
         $comid = $this->input->post('comid');
-        if ($this->session->userdata('comment' . $comid) != true) {
+        if ($this->session->userdata('commentl' . $comid) != 1) {
             $row = $this->db->where('id', $comid)->get('comments')->row();
             $like = $row->like;
             $like = $like + 1;
             $data = array('like' => $like);
             $this->db->where('id', $comid);
             $this->db->update('comments', $data);
-            $this->session->set_userdata('comment' . $comid, true);
-            return $like;
+            $this->session->set_userdata('commentl' . $comid, 1);
+            if($this->input->is_ajax_request()) {
+                return json_encode(array("y_count" => "$like"));
+            }
         }
     }
 
     public function setno() {
         $comid = $this->input->post('comid');
-        if ($this->session->userdata('comment' . $comid) != true) {
+        if ($this->session->userdata('commentl' . $comid) != 1) {
             $row = $this->db->where('id', $comid)->get('comments')->row();
             $disslike = $row->disslike;
             $disslike = $disslike + 1;
             $data = array('disslike' => $disslike);
             $this->db->where('id', $comid);
             $this->db->update('comments', $data);
-            $this->session->set_userdata('comment' . $comid, true);
-            return $disslike;
+            $this->session->set_userdata('commentl' . $comid, 1);
+            if($this->input->is_ajax_request()) {
+                return json_encode(array("n_count" => "$disslike"));
+            }
         }
     }
     
