@@ -25,7 +25,9 @@
                         <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}</a>
                     </td>
                     <td>
-                        <div class="price f-s_16 f_l">{echo $item.model->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $item.model->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span></div>
+                        <div class="price f-s_16 f_l">{echo $item.model->firstVariant->toCurrency()} <sub>{$CS}</sub>
+                            <!--<span class="d_b">{echo $item.model->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>-->
+                        </div>
                     </td>
                     <td>
                         <div class="count">
@@ -37,8 +39,11 @@
                         </div>
                     </td>
                     <td>
-                        <div class="price f-s_18 f_l">{echo $summary = $item.model->firstVariant->toCurrency() * $item.quantity} <sub>{$CS}</sub>
-                            <span class="d_b">{echo $summary_nextc = $item.model->firstVariant->toCurrency('Price', $NextCSId) * $item.quantity} {$NextCS}</span></div>
+                        <div class="price f-s_18 f_l">{$summary = $item.model->firstVariant->toCurrency() * $item.quantity}
+                                                {echo $summary}
+                            <sub>{$CS}</sub>
+                            <!--<span class="d_b">{echo $summary_nextc = $item.model->firstVariant->toCurrency('Price', $NextCSId) * $item.quantity} {$NextCS}</span>-->
+                        </div>
                     </td>
                     <td>
                         <a href="{shop_url('cart/delete/'.$key)}" class="delete_text inCartProducts">&times;</a>
@@ -53,7 +58,15 @@
                     <td colspan="6">
                         <div class="foot_cleaner">
                             <div class="f_r">
-                                <div class="price f-s_26 f_l">{$total} <sub>{$CS}</sub><span class="d_b">{$total_nc} {$NextCS}</span></div>
+                                <div class="price f-s_26 f_l">
+                                    {if $total < $item.delivery_free_from}
+                                    {$total += $item.delivery_price}
+                                    {/if}
+                                    {echo $total}
+                                    {if $item.delivery_price > 0}<span class="d_b">Доставка: {echo $item.delivery_price} руб.</span>{/if}
+                                    <sub>{$CS}</sub>
+                                    <!--<span class="d_b">{$total_nc} {$NextCS}</span>-->
+                                </div>
                             </div>
                             <div class="f_r sum">Сумма:</div>
                         </div>
@@ -67,8 +80,9 @@
             
             {$counter = true}
             {foreach $deliveryMethods as $deliveryMethod}
+            {literal}
             {$del_id = $deliveryMethod->getId()}
-            <label><input type="radio" {if $counter} checked="checked" {$del_id = $deliveryMethod->getId()} {$counter = false}{$del_price = ceil($deliveryMethod->getPrice())}{$del_freefrom = ceil($deliveryMethod->getFreeFrom())}{/if} name="met_del" class="met_del" value="{echo $del_id}" data-price="{echo ceil($deliveryMethod->getPrice())}" data-freefrom="{echo ceil($deliveryMethod->getFreeFrom())}"/>{echo $deliveryMethod->getName()}</label>                
+            <label><input type="radio" {if $counter} checked="checked" {$del_id = $deliveryMethod->getId()} {$counter = false}{$del_price = ceil($deliveryMethod->getPrice())}{$del_freefrom = ceil($deliveryMethod->getFreeFrom())}{/if} name="met_del" class="met_del" value="{echo $del_id}" data-price="{echo ceil($deliveryMethod->getPrice())}" data-freefrom="{echo ceil($deliveryMethod->getFreeFrom())}"/>{echo $deliveryMethod->getName()}</label>
             {/foreach}
 
             <!--    Show payment methods    -->
