@@ -44,11 +44,11 @@
                             <label>
 
 
-                                {$lang_login}:
+                                {lang('a_login')}:
                                 <input type="text" name="login"/>{$login_error}</br>
                             </label>
                             <label>
-                                {$lang_password}:
+                                {lang('a_pass')}:
                                 <input type="password" name="password"/>{$password_error}</br>
                             </label>
                             {if $use_captcha == "1"}
