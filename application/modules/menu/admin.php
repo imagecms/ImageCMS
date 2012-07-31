@@ -491,11 +491,11 @@ class Admin extends MY_Controller {
 		}
 
     	$val = $this->form_validation;
-		$val->set_rules('menu_name', 'Имя', 'required|min_length[2]|max_length[25]|alpha_dash');
-		$val->set_rules('main_title', 'Название', 'required|max_length[100]');
-		$val->set_rules('menu_desc', 'Описание', 'max_length[500]');
-		$val->set_rules('menu_tpl', 'Шаблон', 'max_length[500]');
-		$val->set_rules('menu_expand_level', 'Уровень раскрытия', 'numeric|max_length[2]');
+		$val->set_rules('menu_name', lang('amt_name'), 'required|min_length[2]|max_length[25]|alpha_dash');
+		$val->set_rules('main_title', lang('amt_tname'), 'required|max_length[100]');
+		$val->set_rules('menu_desc', lang('amt_description'), 'max_length[500]');
+		$val->set_rules('menu_tpl', lang('amt_template'), 'max_length[500]');
+		$val->set_rules('menu_expand_level', lang('amt_open_level'), 'numeric|max_length[2]');
 
 
 		if ($this->form_validation->run($this) == FALSE)
@@ -525,13 +525,13 @@ class Admin extends MY_Controller {
     {
 		if ($_POST['menu_name'] == NULL)
 		{
-			showMessage('Поле Имя обязательно для заполения!.',false,'r');
+			showMessage(lang('amt_name_required'),false,'r');
 			exit;
 		}
 
 		if ( $this->db->get_where('menus',array('name'=>$_POST['menu_name']))->num_rows() > 0 )
 		{
-			showMessage('Меню с таким именем уже существует!',false,'r');
+			showMessage(lang('amt_user_exists'),false,'r');
 			exit;
 		}
     }

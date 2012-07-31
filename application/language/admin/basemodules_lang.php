@@ -363,4 +363,12 @@
     $lang['amt_template']                                                       = 'Шаблон';
     $lang['amt_open_level']                                                     = 'Уровень раскрытия';
     $lang['amt_name_required']                                                  = 'Поле Имя обязательно для заполения!.';
+    $lang['amt_user_exists']                                                    = 'Меню с таким именем уже существует!';
+    
+    //modules/navigation/templates/widget_navigation.tpl
+    $lang['amt_navigation']                                                     = 'Навигация';
+    
+    //modules/navigation/templates/admin/create.tpl
+    $lang['amt_new_poll']                                                       = 'Создание нового голосования';
+    
     
