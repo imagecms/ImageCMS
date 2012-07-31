@@ -2,7 +2,7 @@
         <div style="float:left;">
             <ul>
             <li>
-                <p>Создание нового голосования</p>
+                <p>{lang('amt_new_poll')}</p>
             </li>
             </ul>
         </div>
