@@ -56,7 +56,7 @@ class Admin extends MY_Controller {
         $this->db->where('name', 'sitemap');
         $this->db->update('components', array('settings' => serialize($data)));
 
-        showMessage('Изменения сохранены');
+        showMessage(lang('amt_changes_saved'));
     }
 
     /**

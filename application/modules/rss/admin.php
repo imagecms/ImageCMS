@@ -46,7 +46,7 @@ class Admin extends MY_Controller {
         $this->db->where('name', 'rss');
         $this->db->update('components', array('settings' => serialize($data)));
 
-        showMessage('Изменения сохранены.');
+        showMessage(lang('amt_changes_saved'));
     }
 
     private function get_settings()

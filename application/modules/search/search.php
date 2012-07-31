@@ -206,7 +206,7 @@ class Search extends MY_Controller {
         $collect_ids = FALSE;
 
         if ($this->table == '') {
-            $error = 'Ошибка. Укажите таблицу для поиска.';
+            $error = lang('amt_lang_select_table');
             return $error;
         }
 

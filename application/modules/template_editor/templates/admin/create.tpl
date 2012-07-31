@@ -4,5 +4,5 @@
 <input type="hidden" name="path" value="{$path}" />
     <input type="text" name="file_name" class="textbox"/> .tpl
         
-    <input type="submit" class="button_silver" value="Создать" onclick="ajax_me('update_file_form');" />
+    <input type="submit" class="button_silver" value="{lang('amt_to_create')}" onclick="ajax_me('update_file_form');" />
 </form>
