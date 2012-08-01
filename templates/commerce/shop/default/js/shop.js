@@ -518,4 +518,60 @@ $(document).ready(function(){
             });
         }
     }
+    $('option.selectVar').on('click', function(){
+       
+       var vid = $(this).attr('value');
+       var pid = $(this).attr('data-pid');
+       var img = $(this).attr('data-img');
+       var pr = $(this).attr('data-pr');
+       var spr = $(this).attr('data-spr');
+       var vnumber = $(this).attr('data-vnumber');
+       var vname = $(this).attr('data-vname');
+       var cs = $(this).attr('data-cs');
+       $('#mim'+pid).addClass('smallpimagev');
+       $('#vim'+pid).removeClass().attr('src', 'http://stable.com/uploads/shop/'+img).attr('alt', vname);
+       $('#code'+pid).html('Код '+vnumber);
+       $('#pricem'+pid).html(pr);
+       $('#prices'+pid).html(spr+' '+cs);
+       $('#buy'+pid).attr('data-varid', vid);
+       $('#buy'+pid).attr('data-prodid', pid);
+    });
+    
+//     $('.buy .goBuy').on('click',function(){
+//        $.fancybox.showActivity();
+//        var id_var  = $(this).attr('data-varid');
+//        var id      = $(this).attr('data-prodid');
+//        var $this   = $(this);
+//        $.ajax({
+//            type: 'post',
+//            data: "quantity="+1+"&productId="+id+"&variantId="+id_var,
+//            url: '/shop/cart/add',
+//            success: function(msg){
+//                $('.cart_data_holder').load('/shop/ajax/getCartDataHtml');
+//                if ($this.parent().hasClass('button_big_green'))
+//                {
+//                    $('.in_cart').html('Уже в корзине');
+//                    $this.parent().removeClass('button_big_green').addClass('button_big_blue')
+//                    $this.html('Оформить заказ');
+//                }
+//                else
+//                {
+//                    $this
+//                    .removeClass('goBuy')
+//                    .addClass('goToCart')
+//                    .html('Оформить <br/> заказ')
+//                    .parent('div')
+//                    .removeClass('button_gs')
+//                    .addClass('button_middle_blue');
+//                }
+//                // $('.in_cart').html('Уже в корзине');
+//                $this
+//                .attr('href', '/shop/cart')
+//                .unbind('click');
+//                showResponse(msg);
+//                $.fancybox.hideActivity();
+//            }
+//        });
+//        return false;
+//    });
 });
