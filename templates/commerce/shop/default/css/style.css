@@ -867,3 +867,6 @@ div.rating_nohover div.five span {
 .rating_nohover.fivestar {
     background-position: 0 -80px;
 }
+.smallpimagev {
+    display: none;
+}

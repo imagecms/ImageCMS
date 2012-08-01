@@ -48,14 +48,15 @@
                         <li {if $product->firstvariant->getstock()== 0}class="not_avail"{/if}>
                             <div class="photo_block">
                                 <a href="{shop_url('product/' . $product->getUrl())}">
-                                    <img src="{productImageUrl($product->getMainModimage())}" alt="{echo ShopCore::encode($product->name)}" />
+                                    <img id="mim{echo $product->getId()}" src="{productImageUrl($product->getMainModimage())}" alt="{echo ShopCore::encode($product->name)}" />
+                                    <img id="vim{echo $product->getId()}" class="smallpimagev" src="" alt="" />
                                 </a>
                             </div>
                             <div class="func_description">
                                 <a href="{shop_url('product/' . $product->getUrl())}" class="title">{echo ShopCore::encode($product->name)}</a>
                                 <div class="f-s_0">
                                     <!--    Show Product Number -->
-                                {if $product->firstVariant->getNumber()}<span class="code">Код {echo ShopCore::encode($product->firstVariant->getNumber())}</span>{/if}
+                                {if $product->firstVariant->getNumber()}<span id="code{echo $product->getId()}" class="code">Код {echo ShopCore::encode($product->firstVariant->getNumber())}</span>{/if}
                                 <!--    Show Product Number -->
 
                                 <!--<div class="di_b star"><img src="{$SHOP_THEME}images/temp/STAR.png"></div>-->
@@ -89,12 +90,24 @@
         <a href="{shop_url('product/'.$product->getId().'?cmn=on')}"  class="response">
             {echo $product->totalComments()} {echo SStringHelper::Pluralize($product->totalComments(), array('отзыв', 'отзывы', 'отзывов'))}</a>
         <!--    Show Comments count -->
+        
+        {if count($product->getProductVariants())>1}
+            <select name="selectVar">
+            {foreach $product->getProductVariants() as $pv}
+                <option class="selectVar" value="{echo $pv->getId()}" data-cs="{$NextCS}" data-spr="{echo ShopCore::app()->SCurrencyHelper->convert($pv->getPrice(), $NextCSId)}" data-pr="{echo $pv->getPrice()}" data-pid="{echo $product->getId()}" data-img="{echo $pv->getsmallimage()}" data-vname="{echo $pv->getName()}" data-vnumber="{echo $pv->getNumber()}">{echo $pv->getName()}</option>
+            {/foreach}
+            </select>
+        {/if}
 
     </div>
     <div class="f_l">
         <div class="buy">
-            <div class="price f-s_18 f_l">{echo $product->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $product->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span></div>
-            <div class="{$style.class} buttons"><a class="{$style.identif}" href="{$style.link}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" >{$style.message}</a></div>
+            <div class="price f-s_18 f_l">
+                <span id="pricem{echo $product->getId()}">{echo $product->firstVariant->toCurrency()}</span>
+                <sub>{$CS}</sub>
+                <span id="prices{echo $product->getId()}" class="d_b">{echo $product->firstVariant->toCurrency('Price', $NextCSId)}{$NextCS}</span>
+            </div>
+            <div class="{$style.class} buttons"><a id="buy{echo $product->getId()}" class="{$style.identif}" href="{$style.link}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" >{$style.message}</a></div>
         </div>
     </div>
     <div class="f_r t-a_r">
