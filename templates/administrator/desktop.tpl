@@ -32,6 +32,11 @@
 	<script type="text/javascript" src="{$JS_URL}/tinymce/tiny_mce.js.php"></script>
 	<script type="text/javascript" src="{$JS_URL}/tinymce/plugins/tinybrowser/tb_tinymce.js.php"></script>
 	<script type="text/javascript" src="{$JS_URL}/tinymce/plugins/tinybrowser/tb_standalone.js.php"></script>
+    
+    <!-- jQuery with noConflict -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript">jQuery.noConflict();</script>
+    <!-- jQuery with noConflict -->
 
     {($hook = get_hook('admin_tpl_desktop_head')) ? eval($hook) : NULL;}
 
