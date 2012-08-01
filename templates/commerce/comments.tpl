@@ -71,12 +71,10 @@
 
     <label>Плюсы
         <textarea name="comment_text_plus" id="comment_plus" rows="5" cols="50">{$_POST.comment_text}</textarea> 
-        <span style="color:red;">*</span>
     </label>
         
     <label>Минусы
         <textarea name="comment_text_minus" id="comment_minus" rows="5" cols="50">{$_POST.comment_text}</textarea> 
-        <span style="color:red;">*</span>
     </label>
     {if $use_captcha}
         <!--        <div style="padding-bottom:4px;">
@@ -145,8 +143,8 @@
                         <a href="#" class="t-d_n"><span class="js">Ответить</span><span class="blue_arrow"></span></a>
                         Отзыв был полезен?
                         <span></span>
-                        <span class="usefullyes" data-comid="{echo $comment.id}"><span class="js"> Да</span></span>{if $comment.like !=0}<span class="a{$comment.id} yesholder">({echo $comment.like})</span>{/if}/
-                        <span class="usefullno" data-comid="{echo $comment.id}"><span class="js">Нет</span></span>{if $comment.disslike !=0}<span class="{$comment.id} noholder">({echo $comment.disslike})</span>{/if}
+                        <span class="usefullyes" data-comid="{echo $comment.id}"><span class="js"> Да</span></span><span id="yesholder{$comment.id}">({echo $comment.like})</span>/
+                        <span class="usefullno" data-comid="{echo $comment.id}"><span class="js">Нет</span></span><span id="noholder{$comment.id}">({echo $comment.disslike})</span>
                     </span>
                 </div>
                     <form action="" method="post" class="comment_form">

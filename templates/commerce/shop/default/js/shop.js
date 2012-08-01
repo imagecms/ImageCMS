@@ -21,12 +21,16 @@ $(document).ready(function(){
         $.ajax({
             type: "POST",
             data: "pid="+currentProductId+"&val="+val,
-            url:'/shop/ajax/rate'
+            dataType: "json",
+            url:'/shop/ajax/rate',
+            success: function(obj){
+                $('#'+currentProductId+'_star_rating').removeClass().addClass('rating '+obj.classrate+' star_rait');
+              console.log(obj.classrate);
+            }
         });
     });
     
     $('span.clicktemprate').on('click',function(){
-        //$.fancybox.showActivity();
        var rate = $(this).attr('title');
        var ratec;
        if (rate == 1) ratec = "onestar";
@@ -36,17 +40,17 @@ $(document).ready(function(){
        if (rate == 5) ratec = "fivestar";
        $('#comment_block').removeClass().addClass('rating '+ratec+' star_rait');
        $('#ratec').attr('value', rate);
-       //$('span.clickrate').trigger('click');
     });
     
     $('.usefullyes').on('click', function(){
-       comid = $(this).attr('data-comid');
+       var comid = $(this).attr('data-comid');
        $.ajax({
           type: "POST",
           data: "comid="+comid,
+          dataType: "json",
           url: '/comments/setyes',
-          success: function(data){
-              $('.a'+ comid + ' yesholder').html(data);
+          success: function(obj){
+              $('#yesholder'+comid).html("("+obj.y_count+")");
           }
        }); 
     });
@@ -56,7 +60,11 @@ $(document).ready(function(){
        $.ajax({
           type: "POST",
           data: "comid="+comid,
-          url: '/comments/setno'
+          dataType: "json",
+          url: '/comments/setno',
+          success: function(obj){
+              $('#noholder'+comid).html("("+obj.y_count+")");
+          }
        }); 
     });
     
