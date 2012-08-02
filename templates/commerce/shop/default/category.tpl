@@ -92,9 +92,9 @@
         <!--    Show Comments count -->
         
         {if count($product->getProductVariants())>1}
-            <select name="selectVar">
+            <select class="m-l_10" name="selectVar">
             {foreach $product->getProductVariants() as $pv}
-                <option class="selectVar" value="{echo $pv->getId()}" data-cs="{$NextCS}" data-spr="{echo ShopCore::app()->SCurrencyHelper->convert($pv->getPrice(), $NextCSId)}" data-pr="{echo $pv->getPrice()}" data-pid="{echo $product->getId()}" data-img="{echo $pv->getsmallimage()}" data-vname="{echo $pv->getName()}" data-vnumber="{echo $pv->getNumber()}">{echo $pv->getName()}</option>
+                <option class="selectVar" value="{echo $pv->getId()}" data-st="{echo $pv->getStock()}" data-cs="{$NextCS}" data-spr="{echo ShopCore::app()->SCurrencyHelper->convert($pv->getPrice(), $NextCSId)}" data-pr="{echo $pv->getPrice()}" data-pid="{echo $product->getId()}" data-img="{echo $pv->getsmallimage()}" data-vname="{echo $pv->getName()}" data-vnumber="{echo $pv->getNumber()}">{echo $pv->getName()}</option>
             {/foreach}
             </select>
         {/if}
@@ -107,7 +107,9 @@
                 <sub>{$CS}</sub>
                 <span id="prices{echo $product->getId()}" class="d_b">{echo $product->firstVariant->toCurrency('Price', $NextCSId)}{$NextCS}</span>
             </div>
-            <div class="{$style.class} buttons"><a id="buy{echo $product->getId()}" class="{$style.identif}" href="{$style.link}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" >{$style.message}</a></div>
+            <div id="p{echo $product->getId()}" class="{$style.class} buttons">
+                <a id="buy{echo $product->getId()}" class="{$style.identif}" href="{$style.link}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" >{$style.message}</a>
+            </div>
         </div>
     </div>
     <div class="f_r t-a_r">

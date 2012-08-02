@@ -20,17 +20,19 @@
                 {foreach $model->getSOrderProductss() as $item}
                 {$total = $total + $item->getQuantity() * $item->toCurrency()}
                 {$product = $item->getSProducts()}
+                {$variant = getVariant($item->getProductId(), $item->getVariantId())}
                 {if $item->getKitId() > 0}
                 {if $item->getIsMain()}
                 <tr>
                     <td>
-                        {if $product->getMainImage()}
+                        {if $variant->getsmallImage()}
                         <a href="{shop_url('product/' . $product->getUrl())}" class="photo_block">
-                            <img src="{productImageUrl($product->getSmallModimage())}" border="0" alt="{echo ShopCore::encode($product->getName())}"/>
-                        </a>{/if}
+                            <img src="{productImageUrl($variant->getsmallimage())}" border="0" alt="{echo ShopCore::encode($product->getName())} - {echo ShopCore::encode($variant->name)}"/>
+                        </a>
+                        {/if}
                     </td>
                     <td>
-                        <a href="{shop_url('product/' . $product->getUrl())}">{echo ShopCore::encode($product->getName())}</a> {$item->getVariantName()}
+                        <a href="{shop_url('product/' . $product->getUrl())}">{echo ShopCore::encode($product->getName())} - {echo ShopCore::encode($variant->name)}</a> 
                     </td>
                     <td>{echo $item->toCurrency()} {$CS}</td>
                     <td rowspan="{echo $kits[$item->getKitId()]['total']}">
@@ -43,12 +45,12 @@
                     <td style="width:90px;padding:2px;">
                         <div style="width:90px;height:90px;overflow:hidden;">
                             {if $product->getMainImage()}
-                            <img src="{productImageUrl($product->getSmallModimage())}" border="0" alt="{echo ShopCore::encode($product->getName())}"/>
+                            <img src="{productImageUrl($variant->getsmallimage())}" border="0" alt="{echo ShopCore::encode($product->getName())} - {echo ShopCore::encode($variant->name)}"/>
                             {/if}
                         </div>
                     </td>
                     <td>
-                        <a href="{shop_url('product/' . $product->getUrl())}">{echo ShopCore::encode($product->getName())}</a> {$item->getVariantName()}
+                        <a href="{shop_url('product/' . $product->getUrl())}">{echo ShopCore::encode($product->getName())} - {echo ShopCore::encode($variant->name)}</a> 
                     </td>
                     <td>{echo $item->toCurrency()} {$CS}</td>
                 </tr>
@@ -57,14 +59,14 @@
                 <tr>
                     <td>
                         <a href="{shop_url('product/' . $product->getUrl())}" class="photo_block">
-                            <img src="{productImageUrl($product->getSmallModimage())}" alt="{echo ShopCore::encode($product->getName())}"/>
+                            <img src="{productImageUrl($variant->getsmallimage())}" alt="{echo ShopCore::encode($product->getName())} - {echo ShopCore::encode($variant->name)}"/>
                         </a>
                     </td>
                     <td>
-                        <a href="{shop_url('product/' . $product->getUrl())}">{echo ShopCore::encode($product->getName())}</a> {$item->getVariantName()}
+                        <a href="{shop_url('product/' . $product->getUrl())}">{echo ShopCore::encode($product->getName())} - {echo ShopCore::encode($variant->name)}</a> 
                     </td>
                     <td>
-                        <div class="price f-s_16 f_l">{echo $item->toCurrency()}<sub> {$CS}</sub><span class="d_b">{echo $item->toCurrency('Price', $NextCSId)} {$NextCS}</span></div>
+                        <div class="price f-s_16 f_l">{echo $variant->getPrice()}<sub> {$CS}</sub><span class="d_b">{echo ShopCore::app()->SCurrencyHelper->convert($variant->getPrice(), $NextCSId)} {$NextCS}</span></div>
                     </td>
                     <td>
                         <div class="count">

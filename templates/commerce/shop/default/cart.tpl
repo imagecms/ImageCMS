@@ -14,18 +14,20 @@
                 <col span="1" width="25">
             </colgroup>
             <tbody>
-                {foreach $items as $key=>$item}                
+                {foreach $items as $key=>$item}
+                 {$variant = getVariant($item.productId, $item.variantId)}
+                 
                 <tr>
                     <td>
                         <a href="{shop_url('product/' . $item.model->getUrl())}" class="photo_block">
-                            <img src="{productImageUrl($item.model->getMainModimage())}" alt="{echo ShopCore::encode($item.model->getName())}"/>
+                            <img src="{productImageUrl($variant->getsmallimage())}" alt="{echo ShopCore::encode($item.model->getName())} - {echo ShopCore::encode($variant->name)}"/>
                         </a>
                     </td>
                     <td>
-                        <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}</a>
+                        <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())} - {echo ShopCore::encode($variant->name)}</a>
                     </td>
                     <td>
-                        <div class="price f-s_16 f_l">{echo $item.model->firstVariant->toCurrency()} <sub>{$CS}</sub>
+                        <div class="price f-s_16 f_l">{echo $variant->getPrice()} <sub>{$CS}</sub>
                             <!--<span class="d_b">{echo $item.model->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>-->
                         </div>
                     </td>
@@ -39,7 +41,7 @@
                         </div>
                     </td>
                     <td>
-                        <div class="price f-s_18 f_l">{$summary = $item.model->firstVariant->toCurrency() * $item.quantity}
+                        <div class="price f-s_18 f_l">{$summary = $variant->getPrice() * $item.quantity}
                                                 {echo $summary}
                             <sub>{$CS}</sub>
                             <!--<span class="d_b">{echo $summary_nextc = $item.model->firstVariant->toCurrency('Price', $NextCSId) * $item.quantity} {$NextCS}</span>-->
