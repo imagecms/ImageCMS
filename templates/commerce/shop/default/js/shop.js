@@ -591,6 +591,7 @@ $(document).ready(function(){
        var vname = $(this).attr('data-vname');
        var cs = $(this).attr('data-cs');
        var st = $(this).attr('data-st');
+       var pp = $(this).attr('data-pp');
        $('#mim'+pid).addClass('smallpimagev');
        $('#vim'+pid).removeClass().attr('src', 'http://stable.com/uploads/shop/'+img).attr('alt', vname);
        $('#code'+pid).html('Код '+vnumber);
@@ -600,7 +601,7 @@ $(document).ready(function(){
        $('#buy'+pid).attr('data-prodid', pid);
        $.ajax({
            type: "post",
-           data: "pid="+pid+"&vid="+vid+"&stock="+st,
+           data: "pid="+pid+"&vid="+vid+"&stock="+st+"&pp="+pp,
            dataType: "json",
            url: '/shop/category/getStyle',
            success: function(obj){

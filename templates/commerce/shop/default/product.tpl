@@ -47,7 +47,9 @@
             </div>
             <div class="photo_block">
                 <a class="grouped_elements" rel="gal1" href="{productImageUrl($model->getMainImage())}">
-                    <img src="{productImageUrl($model->getMainImage())}"/>
+<!--                    <img id="mim{echo $model->getId()}" src="{productImageUrl($model->getMainImage())}" alt=""/>-->
+                    <img id="mim{echo $model->getId()}" src="{productImageUrl($model->getMainimage())}" alt="{echo ShopCore::encode($model->name)}" />
+                    <img id="vim{echo $model->getId()}" class="smallpimagev" src="" alt="" />
                 </a>
             </div>
             <div class="func_description">
@@ -90,34 +92,26 @@
                     </span>-->
                     </div>
                     <span class="response">{echo $model->totalComments()} {echo SStringHelper::Pluralize($model->totalComments(), array('отзыв', 'отзывы', 'отзывов'))}</span>
+                    {if count($model->getProductVariants())>1}
+                        <select class="m-l_10" name="selectVar">
+                            {foreach $model->getProductVariants() as $pv}
+                                 <option class="selectVar" value="{echo $pv->getId()}" data-pp="1" data-st="{echo $pv->getStock()}" data-cs="{$NextCS}" data-spr="{echo ShopCore::app()->SCurrencyHelper->convert($pv->getPrice(), $NextCSId)}" data-pr="{echo $pv->getPrice()}" data-pid="{echo $model->getId()}" data-img="{echo $pv->getmainimage()}" data-vname="{echo $pv->getName()}" data-vnumber="{echo $pv->getNumber()}">{echo $pv->getName()}</option>
+                            {/foreach}
+                         </select>
+                    {/if}
                     </div>
                     {echo $CI->load->module('share')->_make_share_form()}
                 <div class="buy clearfix">
-
-
-                    <div class="price f-s_26">{echo $model->firstVariant->toCurrency()} 
+                    {$style = productInCartI($cart_data, $model->getId(), $model->firstVariant->getId(), $model->firstVariant->getStock())}
+                    
+                    <div class="price f-s_26"><span id="pricem{echo $model->getId()}">{echo $model->firstVariant->toCurrency()}</span>
                         <sub>{$CS}</sub>
-                        <span class="d_b">{echo $model->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>
+                        <span id="prices{echo $model->getId()}" class="d_b">{echo $model->firstVariant->toCurrency('Price', $NextCSId)}{$NextCS}</span>
                     </div>
                     <div class="in_cart"></div>
-                    {if $model->firstvariant->getstock()== 0}
-                        <div class="in_cart">Нет в наличии</div>
-                        <div class="buttons button_big_greys f_l">
-                            <a href="" class="goNotifMe" data-prodid="{echo $model->getId()}" data-varid="{echo $model->firstvariant->getId()}">Сообщить о появлении</a>
+                        <div id="p{echo $model->getId()}" class="{$style.class}">
+                            <a id="buy{echo $model->getId()}" class="{$style.identif}" href="{$style.link}" data-varid="{echo $model->firstVariant->getId()}" data-prodid="{echo $model->getId()}" >{$style.message}</a>
                         </div>
-                    {else:}
-                        {if !is_in_cart($model->getId())}
-                            <div class="buttons button_big_green f_l"> 
-                                <a href="" class="goBuy" data-prodid="{echo $model->getId()}" data-varid="{echo $model->firstVariant->getId()}" >Купить</a>
-                            </div>
-                    
-                        {else:}
-                            <div class="in_cart">Уже в корзине</div>
-                            <div class="buttons button_big_blue f_l">
-                                <a href="/shop/cart" data-prodid="{echo $model->getId()}" data-varid="{echo $model->firstvariant->getId()}">Оформить заказ</a>
-                            </div>
-                        {/if}
-                    {/if}
                     <div class="f_l">
                         <span class="ajax_refer_marg">
                             {if $forCompareProducts && in_array($model->getId(), $forCompareProducts)}
