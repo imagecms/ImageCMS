@@ -5,7 +5,7 @@
       <datasource id="Shop">
         <adapter>mysql</adapter>
         <connection>
-          <dsn>mysql:host=localhost;dbname=bigts</dsn>
+          <dsn>mysql:host=localhost;dbname=imagecms</dsn>
           <user>root</user>
           <password>kolo90da90</password>
           <settings>
