@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <propel>
+    <datasources default="Shop">
+      <datasource id="Shop">
+        <adapter>mysql</adapter>
+        <connection>
+          <dsn>mysql:host=localhost;dbname=bigts</dsn>
+          <user>root</user>
+          <password>kolo90da90</password>
+          <settings>
+            <setting id="charset">utf8</setting>
+          </settings>
+        </connection>
+      </datasource>
+    </datasources>
+  </propel>
+</config>
