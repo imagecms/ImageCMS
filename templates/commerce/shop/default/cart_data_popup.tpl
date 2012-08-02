@@ -15,17 +15,18 @@
             <tbody>
                 {foreach $inCart as $key => $catr}
                 {$prod = getProduct($catr.productId)}
+                {$variant = getVariant($catr.productId, $catr.variantId)}
                 <tr>
                     <td>
                         <a href="{shop_url('product/'.$prod->getId())}" class="photo_block">
-                            <img src="{productImageUrl($prod->getMainModimage())}" alt="{echo ShopCore::encode($prod->name)}" />
+                            <img src="{productImageUrl($variant->getSmallImage())}" alt="{echo ShopCore::encode($prod->name)} - {echo ShopCore::encode($variant->name)}" />
                         </a>
                     </td>
                     <td>
-                        <a href="{shop_url('product/'.$prod->getId())}">{echo ShopCore::encode($prod->name)}</a>
+                        <a href="{shop_url('product/'.$prod->getId())}">{echo ShopCore::encode($prod->name)} - {echo ShopCore::encode($variant->name)}</a>
                     </td>
                     <td>
-                        <div class="price f-s_16 f_l">{echo $prod->firstVariant->toCurrency()} <sub>{$CS}</sub>
+                        <div class="price f-s_16 f_l">{echo $variant->getPrice()} <sub>{$CS}</sub>
                             <!--<span class="d_b">{echo $prod->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>-->
                         </div>
                     </td>
@@ -43,7 +44,7 @@
                     </td>
                     <td>
                         <div class="price f-s_18 f_l">
-                            {$summary = $prod->firstVariant->toCurrency() * $catr.quantity}
+                            {$summary = $variant->getPrice() * $catr.quantity}
                             {echo $summary}
                             <sub>{$CS}</sub>
                             <!--<span class="d_b">{echo $summary_nextc = $prod->firstVariant->toCurrency('Price', $NextCSId) * $catr.quantity} {$NextCS}</span>-->
