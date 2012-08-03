@@ -610,9 +610,6 @@ $(document).ready(function(){
                 if (obj.stidentif == "goNotifMe") bindgoNotifMe();
                 if (obj.stidentif == "goBuy") bindGoBuy();
                 $.fancybox.hideActivity();
-                    
-              //$('#noholder'+comid).html("("+obj.y_count+")");
-              //console.log(obj);
            }
            })
            return false;
