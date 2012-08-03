@@ -61,31 +61,31 @@
 
                                 <!--<div class="di_b star"><img src="{$SHOP_THEME}images/temp/STAR.png"></div>-->
                                 {$rating = $product->getRating()}
-                            {if $rating == 0}{$r = "nostar"}    {/if}
-                        {if $rating == 1}{$r = "onestar"}   {/if}
-                    {if $rating == 2}{$r = "twostar"}   {/if}
-                {if $rating == 3}{$r = "threestar"} {/if}
-            {if $rating == 4}{$r = "fourstar"}  {/if}
-        {if $rating == 5}{$r = "fivestar"}  {/if}
-        <div class="star_rating">
-            <div id="{echo $model->getId()}_star_rating" class="rating_nohover {echo $r} star_rait" data-id="{echo $model->getId()}">
-                <div id="1" class="rate one">
-                    <span title="1">1</a>
-                </div>
-                <div id="2" class="rate two">
-                    <span title="2">2</a>
-                </div>
-                <div id="3" class="rate three">
-                    <span title="3">3</a>
-                </div>
-                <div id="4" class="rate four">
-                    <span title="4">4</a>
-                </div>
-                <div id="5" class="rate five">
-                    <span title="5">5</a>
-                </div>
-            </div>
-        </div>
+                                {if $rating == 0}{$r = "nostar"}    {/if}
+                                {if $rating == 1}{$r = "onestar"}   {/if}
+                                {if $rating == 2}{$r = "twostar"}   {/if}
+                                {if $rating == 3}{$r = "threestar"} {/if}
+                                {if $rating == 4}{$r = "fourstar"}  {/if}
+                                {if $rating == 5}{$r = "fivestar"}  {/if}
+                                <div class="star_rating">
+                                    <div id="{echo $model->getId()}_star_rating" class="rating_nohover {echo $r} star_rait" data-id="{echo $model->getId()}">
+                                        <div id="1" class="rate one">
+                                            <span title="1">1</a>
+                                        </div>
+                                        <div id="2" class="rate two">
+                                            <span title="2">2</a>
+                                        </div>
+                                        <div id="3" class="rate three">
+                                            <span title="3">3</a>
+                                        </div>
+                                        <div id="4" class="rate four">
+                                            <span title="4">4</a>
+                                        </div>
+                                        <div id="5" class="rate five">
+                                            <span title="5">5</a>
+                                        </div>
+                                    </div>
+                                </div>
         <!--    Show Comments count -->
         <a href="{shop_url('product/'.$product->getId().'?cmn=on')}"  class="response">
             {echo $product->totalComments()} {echo SStringHelper::Pluralize($product->totalComments(), array('отзыв', 'отзывы', 'отзывов'))}</a>

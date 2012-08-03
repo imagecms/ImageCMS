@@ -85,13 +85,31 @@
                             <a href="{shop_url('product/'.$p->getUrl())}" class="title">{echo ShopCore::encode($p->getName())}</a>
                             <div class="f-s_0">
                                 <span class="code">Код: {echo $p->firstvariant->getNumber()}</span>
-                                <div class="di_b star">
-                                    {$rating = $p->getRating()}
-                                    <input class="hover-star chs{echo $p->getId()}" type="radio" name="rating-{echo $p->getId()}" value="1" data-id="{echo $p->getId()}" {if $rating==1}checked="checked"{/if}/>
-                                           <input class="hover-star chs{echo $p->getId()}" type="radio" name="rating-{echo $p->getId()}" value="2" data-id="{echo $p->getId()}" {if $rating==2}checked="checked"{/if}/>
-                                           <input class="hover-star chs{echo $p->getId()}" type="radio" name="rating-{echo $p->getId()}" value="3" data-id="{echo $p->getId()}" {if $rating==3}checked="checked"{/if}/>
-                                           <input class="hover-star chs{echo $p->getId()}" type="radio" name="rating-{echo $p->getId()}" value="4" data-id="{echo $p->getId()}" {if $rating==4}checked="checked"{/if}/>
-                                           <input class="hover-star chs{echo $p->getId()}" type="radio" name="rating-{echo $p->getId()}" value="5" data-id="{echo $p->getId()}" {if $rating==5}checked="checked"{/if}/>
+                                {$rating = $p->getRating()}
+                                {if $rating == 0}{$r = "nostar"}    {/if}
+                                {if $rating == 1}{$r = "onestar"}   {/if}
+                                {if $rating == 2}{$r = "twostar"}   {/if}
+                                {if $rating == 3}{$r = "threestar"} {/if}
+                                {if $rating == 4}{$r = "fourstar"}  {/if}
+                                {if $rating == 5}{$r = "fivestar"}  {/if}
+                                <div class="star_rating">
+                                    <div id="{echo $p->getId()}_star_rating" class="rating_nohover {echo $r} star_rait" data-id="{echo $p->getId()}">
+                                        <div id="1" class="rate one">
+                                            <span title="1">1</a>
+                                        </div>
+                                        <div id="2" class="rate two">
+                                            <span title="2">2</a>
+                                        </div>
+                                        <div id="3" class="rate three">
+                                            <span title="3">3</a>
+                                        </div>
+                                        <div id="4" class="rate four">
+                                            <span title="4">4</a>
+                                        </div>
+                                        <div id="5" class="rate five">
+                                            <span title="5">5</a>
+                                        </div>
+                                    </div>
                                 </div>
                                 <a href="#" class="response">{echo $p->totalComments()} {echo SStringHelper::Pluralize($p->totalComments(), array('отзыв', 'отзывы', 'отзывов'))}</a>
                                 <div class="social_small di_b">
