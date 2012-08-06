@@ -7,8 +7,10 @@
 /application/config/config.php
 /application/config/database.php
 /application/modules/shop
+/application/libraries/fake
 Thumbs.db
 .idea/
+.settings/
 /nbproject
 .directory
 /.project

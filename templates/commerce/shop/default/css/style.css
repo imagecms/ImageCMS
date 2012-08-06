@@ -870,3 +870,9 @@ div.rating_nohover div.five span {
 .smallpimagev {
     display: none;
 }
+
+/**/
+
+.form_text{color: #2A2A2A;font-size: 14px;margin-top: 14px; width: 200px;}
+.cartCustomData input{width: 205px;height: 24px;line-height: 24px;}
+ span.required {color: #D80600;}
