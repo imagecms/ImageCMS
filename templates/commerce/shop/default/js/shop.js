@@ -63,7 +63,7 @@ $(document).ready(function(){
           dataType: "json",
           url: '/comments/setno',
           success: function(obj){
-              $('#noholder'+comid).html("("+obj.y_count+")");
+              $('#noholder'+comid).html("("+obj.n_count+")");
           }
        }); 
     });

@@ -47,7 +47,12 @@
                             </div>
                             <div class="f_l">
                                 <div class="buy">
-                                    <div class="price f-s_18 f_l">{echo $product->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $product->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span></div>
+                                    <div class="price f-s_18 f_l">{echo $product->firstVariant->toCurrency()} 
+                                        <sub>{$CS}</sub>
+                                        {if $NextCS != $CS}
+                                        <span class="d_b">{echo $product->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>
+                                        {/if}
+                                    </div>
                                     <div class="{$style.class} buttons"><a class="{$style.identif}" href="{$style.link}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" >{$style.message}</a></div>
                                 </div>
                             </div>
@@ -99,7 +104,12 @@
                         <div class="func_description">
                             <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                             <div class="buy">
-                                <div class="price f-s_14">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span></div>
+                                <div class="price f-s_14">{echo $hotProduct->firstVariant->toCurrency()} 
+                                    <sub>{$CS}</sub>
+                                    {if $NextCS != $CS}
+                                    <span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>
+                                    {/if}
+                                </div>
                             </div>
                         </div>
                     </li>
@@ -122,7 +132,12 @@
                         <div class="func_description">
                             <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                             <div class="buy">
-                                <div class="price f-s_14">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span></div>
+                                <div class="price f-s_14">{echo $hotProduct->firstVariant->toCurrency()} 
+                                    <sub>{$CS}</sub>
+                                    {if $NextCS != $CS}
+                                    <span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>
+                                    {/if}
+                                </div>
                             </div>
                         </div>
                     </li>

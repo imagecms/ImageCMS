@@ -55,7 +55,11 @@
         <td colspan="6">
             <div class="foot_cleaner">
                 <div class="f_r">
-                    <div class="price f-s_26 f_l">
+                        {if $NextCS == $CS}
+                            <div class="price f-s_26_lh_50 f_l">
+                        {else:}
+                            <div class="price f-s_26 f_l">
+                        {/if}
                         {if $total < $item.delivery_free_from}
                         {$total += $item.delivery_price}
                         {/if}
