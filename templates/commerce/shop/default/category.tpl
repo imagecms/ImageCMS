@@ -61,40 +61,40 @@
 
                                 <!--<div class="di_b star"><img src="{$SHOP_THEME}images/temp/STAR.png"></div>-->
                                 {$rating = $product->getRating()}
-                            {if $rating == 0}{$r = "nostar"}    {/if}
-                        {if $rating == 1}{$r = "onestar"}   {/if}
-                    {if $rating == 2}{$r = "twostar"}   {/if}
-                {if $rating == 3}{$r = "threestar"} {/if}
-            {if $rating == 4}{$r = "fourstar"}  {/if}
-        {if $rating == 5}{$r = "fivestar"}  {/if}
-        <div class="star_rating">
-            <div id="{echo $model->getId()}_star_rating" class="rating_nohover {echo $r} star_rait" data-id="{echo $model->getId()}">
-                <div id="1" class="rate one">
-                    <span title="1">1</a>
-                </div>
-                <div id="2" class="rate two">
-                    <span title="2">2</a>
-                </div>
-                <div id="3" class="rate three">
-                    <span title="3">3</a>
-                </div>
-                <div id="4" class="rate four">
-                    <span title="4">4</a>
-                </div>
-                <div id="5" class="rate five">
-                    <span title="5">5</a>
-                </div>
-            </div>
-        </div>
+                                {if $rating == 0}{$r = "nostar"}    {/if}
+                                {if $rating == 1}{$r = "onestar"}   {/if}
+                                {if $rating == 2}{$r = "twostar"}   {/if}
+                                {if $rating == 3}{$r = "threestar"} {/if}
+                                {if $rating == 4}{$r = "fourstar"}  {/if}
+                                {if $rating == 5}{$r = "fivestar"}  {/if}
+                                <div class="star_rating">
+                                    <div id="{echo $model->getId()}_star_rating" class="rating_nohover {echo $r} star_rait" data-id="{echo $model->getId()}">
+                                        <div id="1" class="rate one">
+                                            <span title="1">1</a>
+                                        </div>
+                                        <div id="2" class="rate two">
+                                            <span title="2">2</a>
+                                        </div>
+                                        <div id="3" class="rate three">
+                                            <span title="3">3</a>
+                                        </div>
+                                        <div id="4" class="rate four">
+                                            <span title="4">4</a>
+                                        </div>
+                                        <div id="5" class="rate five">
+                                            <span title="5">5</a>
+                                        </div>
+                                    </div>
+                                </div>
         <!--    Show Comments count -->
         <a href="{shop_url('product/'.$product->getId().'?cmn=on')}"  class="response">
             {echo $product->totalComments()} {echo SStringHelper::Pluralize($product->totalComments(), array('отзыв', 'отзывы', 'отзывов'))}</a>
         <!--    Show Comments count -->
         
         {if count($product->getProductVariants())>1}
-            <select name="selectVar">
+            <select class="m-l_10" name="selectVar">
             {foreach $product->getProductVariants() as $pv}
-                <option class="selectVar" value="{echo $pv->getId()}" data-cs="{$NextCS}" data-spr="{echo ShopCore::app()->SCurrencyHelper->convert($pv->getPrice(), $NextCSId)}" data-pr="{echo $pv->getPrice()}" data-pid="{echo $product->getId()}" data-img="{echo $pv->getsmallimage()}" data-vname="{echo $pv->getName()}" data-vnumber="{echo $pv->getNumber()}">{echo $pv->getName()}</option>
+                <option class="selectVar" value="{echo $pv->getId()}" data-st="{echo $pv->getStock()}" data-cs="{$NextCS}" data-spr="{echo ShopCore::app()->SCurrencyHelper->convert($pv->getPrice(), $NextCSId)}" data-pr="{echo $pv->getPrice()}" data-pid="{echo $product->getId()}" data-img="{echo $pv->getsmallimage()}" data-vname="{echo $pv->getName()}" data-vnumber="{echo $pv->getNumber()}">{echo $pv->getName()}</option>
             {/foreach}
             </select>
         {/if}
@@ -105,9 +105,13 @@
             <div class="price f-s_18 f_l">
                 <span id="pricem{echo $product->getId()}">{echo $product->firstVariant->toCurrency()}</span>
                 <sub>{$CS}</sub>
+                {if $NextCS != $CS}
                 <span id="prices{echo $product->getId()}" class="d_b">{echo $product->firstVariant->toCurrency('Price', $NextCSId)}{$NextCS}</span>
+                {/if}
             </div>
-            <div class="{$style.class} buttons"><a id="buy{echo $product->getId()}" class="{$style.identif}" href="{$style.link}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" >{$style.message}</a></div>
+            <div id="p{echo $product->getId()}" class="{$style.class} buttons">
+                <a id="buy{echo $product->getId()}" class="{$style.identif}" href="{$style.link}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" >{$style.message}</a>
+            </div>
         </div>
     </div>
     <div class="f_r t-a_r">
@@ -162,7 +166,12 @@
                         <div class="func_description">
                             <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                             <div class="buy">
-                                <div class="price f-s_14">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span></div>
+                                <div class="price f-s_14">{echo $hotProduct->firstVariant->toCurrency()} 
+                                    <sub>{$CS}</sub>
+                                    {if $NextCS != $CS}
+                                    <span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>
+                                    {/if}
+                                </div>
                             </div>
                         </div>
                     </li>
@@ -189,7 +198,12 @@
                         <div class="func_description">
                             <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                             <div class="buy">
-                                <div class="price f-s_14">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span></div>
+                                <div class="price f-s_14">{echo $hotProduct->firstVariant->toCurrency()} 
+                                    <sub>{$CS}</sub>
+                                    {if $NextCS != $CS}
+                                    <span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>
+                                    {/if}
+                                </div>
                             </div>
                         </div>
                     </li>

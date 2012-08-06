@@ -31,7 +31,11 @@
                             <div class="func_description">
                                 <a href="{shop_url('product/' . $product->getUrl())}" class="title">{echo $product->getName()}</a>
                                 <div class="buy">
-                                    <div class="price f-s_14">{echo $product->firstVariant->toCurrency()} <sub>{$CS}</sub><br/><span>{echo $product->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span></div>
+                                    <div class="price f-s_14">{echo $product->firstVariant->toCurrency()} <sub>{$CS}</sub><br/>
+                                    {if $NextCS != $CS}
+                                    <span>{echo $product->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>
+                                    {/if}
+                                    </div>
                                     <div class="buttons {$style.class}">
                                         <a class="{$style.identif}" href="{$style.link}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" >{$style.message}</a>
                                     </div>
