@@ -75,45 +75,81 @@
                 <ul class="products">
                     {$count = 1;}
                     {foreach $products as $p}
+                    {$style = productInCart($cart_data, $p->getId(), $p->firstVariant->getId(), $p->firstVariant->getStock())}
                     <li {if $count == 3} class="last" {$count = 0}{/if} {if $count == 1} style="clear:left;" {/if}>
                         <div class="photo_block">
                             <a href="{shop_url('product/' . $p->getUrl())}">
-                                <img src="{productImageUrl($p->getId() . '_small.jpg')}" border="0"  alt="image" />
+<!--                                <img src="{productImageUrl($p->getId() . '_small.jpg')}" border="0"  alt="image" />-->
+                                <img id="mim{echo $p->getId()}" src="{productImageUrl($p->getId() . '_small.jpg')}" alt="{echo ShopCore::encode($p->name)}" />
+                                <img id="vim{echo $p->getId()}" class="smallpimagev" src="" alt="" />
                             </a>
                         </div>
                         <div class="func_description">
                             <a href="{shop_url('product/'.$p->getUrl())}" class="title">{echo ShopCore::encode($p->getName())}</a>
                             <div class="f-s_0">
-                                <span class="code">Код: {echo $p->firstvariant->getNumber()}</span>
-                                <div class="di_b star">
-                                    {$rating = $p->getRating()}
-                                    <input class="hover-star chs{echo $p->getId()}" type="radio" name="rating-{echo $p->getId()}" value="1" data-id="{echo $p->getId()}" {if $rating==1}checked="checked"{/if}/>
-                                           <input class="hover-star chs{echo $p->getId()}" type="radio" name="rating-{echo $p->getId()}" value="2" data-id="{echo $p->getId()}" {if $rating==2}checked="checked"{/if}/>
-                                           <input class="hover-star chs{echo $p->getId()}" type="radio" name="rating-{echo $p->getId()}" value="3" data-id="{echo $p->getId()}" {if $rating==3}checked="checked"{/if}/>
-                                           <input class="hover-star chs{echo $p->getId()}" type="radio" name="rating-{echo $p->getId()}" value="4" data-id="{echo $p->getId()}" {if $rating==4}checked="checked"{/if}/>
-                                           <input class="hover-star chs{echo $p->getId()}" type="radio" name="rating-{echo $p->getId()}" value="5" data-id="{echo $p->getId()}" {if $rating==5}checked="checked"{/if}/>
+                                {if $p->firstVariant->getNumber()}<span id="code{echo $p->getId()}" class="code">Код {echo ShopCore::encode($p->firstVariant->getNumber())}</span>{/if}
+                                {$rating = $p->getRating()}
+                                {if $rating == 0}{$r = "nostar"}    {/if}
+                                {if $rating == 1}{$r = "onestar"}   {/if}
+                                {if $rating == 2}{$r = "twostar"}   {/if}
+                                {if $rating == 3}{$r = "threestar"} {/if}
+                                {if $rating == 4}{$r = "fourstar"}  {/if}
+                                {if $rating == 5}{$r = "fivestar"}  {/if}
+                                <div class="star_rating">
+                                    <div id="{echo $p->getId()}_star_rating" class="rating_nohover {echo $r} star_rait" data-id="{echo $p->getId()}">
+                                        <div id="1" class="rate one">
+                                            <span title="1">1</a>
+                                        </div>
+                                        <div id="2" class="rate two">
+                                            <span title="2">2</a>
+                                        </div>
+                                        <div id="3" class="rate three">
+                                            <span title="3">3</a>
+                                        </div>
+                                        <div id="4" class="rate four">
+                                            <span title="4">4</a>
+                                        </div>
+                                        <div id="5" class="rate five">
+                                            <span title="5">5</a>
+                                        </div>
+                                    </div>
                                 </div>
                                 <a href="#" class="response">{echo $p->totalComments()} {echo SStringHelper::Pluralize($p->totalComments(), array('отзыв', 'отзывы', 'отзывов'))}</a>
-                                <div class="social_small di_b">
-                                    <a href="#" class="facebook"></a>
-                                    <a href="#" class="vkontakte"></a>
-                                    <a href="#" class="twitter"></a>
-                                    <a href="#" class="mail"></a>
-                                </div>
+                                {if count($p->getProductVariants())>1}
+                                    <select class="m-l_10" name="selectVar">
+                                        {foreach $p->getProductVariants() as $pv}
+                                            <option class="selectVar" value="{echo $pv->getId()}" data-st="{echo $pv->getStock()}" data-cs="{$NextCS}" data-spr="{echo ShopCore::app()->SCurrencyHelper->convert($pv->getPrice(), $NextCSId)}" data-pr="{echo $pv->getPrice()}" data-pid="{echo $p->getId()}" data-img="{echo $pv->getsmallimage()}" data-vname="{echo $pv->getName()}" data-vnumber="{echo $pv->getNumber()}">{echo $pv->getName()}</option>
+                                        {/foreach}
+                                    </select>
+                                {/if}
                             </div>
-                            <div class="f_l">
+<!--                            <div class="f_l">
                                 <div class="buy">
                                     <div class="price f-s_18 f_l">{echo $p->firstVariant->toCurrency()}<sub>{$CS}</sub><span class="d_b">{echo $p->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span></div>
-                                    <div class="button_gs buttons">
-                                        {if $p->firstvariant->getstock()== 0}
-                                        <div class="buttons button_gs">
-                                            <a id="send-request" href="">Сообщить о появлении</a>
+                                        <div class="button_gs buttons">
+                                            {if $p->firstvariant->getstock()== 0}
+                                            <div class="buttons button_gs">
+                                                <a id="send-request" href="">Сообщить о появлении</a>
+                                            </div>
+                                            {else:}
+                                            <div class="buttons button_gs">
+                                                <a href="" class="goBuy" data-prodid="{echo $p->getId()}" data-varid="{echo $p->firstVariant->getId()}" >Купить</a>
+                                            </div>
+                                            {/if}
                                         </div>
-                                        {else:}
-                                        <div class="buttons button_gs">
-                                            <a href="" class="goBuy" data-prodid="{echo $p->getId()}" data-varid="{echo $p->firstVariant->getId()}" >Купить</a>
-                                        </div>
+                                    </div>
+                                </div>-->
+                            <div class="f_l">
+                                <div class="buy">
+                                    <div class="price f-s_18 f_l">
+                                        <span id="pricem{echo $p->getId()}">{echo $p->firstVariant->toCurrency()}</span>
+                                        <sub>{$CS}</sub>
+                                        {if $NextCS != $CS}
+                                        <span id="prices{echo $p->getId()}" class="d_b">{echo $p->firstVariant->toCurrency('Price', $NextCSId)}{$NextCS}</span>
                                         {/if}
+                                    </div>
+                                    <div id="p{echo $p->getId()}" class="{$style.class} buttons">
+                                        <a id="buy{echo $p->getId()}" class="{$style.identif}" href="{$style.link}" data-varid="{echo $p->firstVariant->getId()}" data-prodid="{echo $p->getId()}" >{$style.message}</a>
                                     </div>
                                 </div>
                             </div>
