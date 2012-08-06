@@ -66,7 +66,12 @@
                         <a href="{shop_url('product/' . $product->getUrl())}">{echo ShopCore::encode($product->getName())} - {echo ShopCore::encode($variant->name)}</a> 
                     </td>
                     <td>
-                        <div class="price f-s_16 f_l">{echo $variant->getPrice()}<sub> {$CS}</sub><span class="d_b">{echo ShopCore::app()->SCurrencyHelper->convert($variant->getPrice(), $NextCSId)} {$NextCS}</span></div>
+                        <div class="price f-s_16 f_l">{echo $variant->getPrice()}
+                            <sub> {$CS}</sub>
+                            {if $NextCS != $CS}
+                            <span class="d_b">{echo ShopCore::app()->SCurrencyHelper->convert($variant->getPrice(), $NextCSId)} {$NextCS}</span>
+                            {/if}
+                        </div>
                     </td>
                     <td>
                         <div class="count">
@@ -74,7 +79,12 @@
                         </div>
                     </td>
                     <td>
-                        <div class="price f-s_18 f_l">{echo $item->getQuantity() * $item->toCurrency()} <sub> {$CS}</sub><span class="d_b">{echo $item->toCurrency('Price', $NextCSId)} {$NextCS}</span></div>
+                        <div class="price f-s_18 f_l">{echo $item->getQuantity() * $item->toCurrency()} 
+                            <sub> {$CS}</sub>
+                            {if $NextCS != $CS}
+                            <span class="d_b">{echo $item->toCurrency('Price', $NextCSId)} {$NextCS}</span>
+                            {/if}
+                        </div>
                     </td>
                 </tr>
                 {/if}

@@ -66,7 +66,11 @@
                                 <a href="{shop_url('cart')}">Оформить заказ</a>
                             </div>
                             <div class="f_r">
-                                <div class="price f-s_26 f_l">{$total} <sub>{$CS}</sub>
+                                {if $NextCS == $CS}
+                                    <div class="price f-s_26_lh_50 f_l">{$total} <sub>{$CS}</sub>
+                                {else:}
+                                    <div class="price f-s_26 f_l">{$total} <sub>{$CS}</sub>
+                                {/if}
                                     <!--<span class="d_b">{echo $total_nc} {$NextCS}</span>-->
                                 </div>
                             </div>

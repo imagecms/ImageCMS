@@ -144,7 +144,9 @@
                                     <div class="price f-s_18 f_l">
                                         <span id="pricem{echo $p->getId()}">{echo $p->firstVariant->toCurrency()}</span>
                                         <sub>{$CS}</sub>
+                                        {if $NextCS != $CS}
                                         <span id="prices{echo $p->getId()}" class="d_b">{echo $p->firstVariant->toCurrency('Price', $NextCSId)}{$NextCS}</span>
+                                        {/if}
                                     </div>
                                     <div id="p{echo $p->getId()}" class="{$style.class} buttons">
                                         <a id="buy{echo $p->getId()}" class="{$style.identif}" href="{$style.link}" data-varid="{echo $p->firstVariant->getId()}" data-prodid="{echo $p->getId()}" >{$style.message}</a>

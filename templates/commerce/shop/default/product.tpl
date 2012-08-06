@@ -106,7 +106,9 @@
                     
                     <div class="price f-s_26"><span id="pricem{echo $model->getId()}">{echo $model->firstVariant->toCurrency()}</span>
                         <sub>{$CS}</sub>
+                        {if $NextCS != $CS}
                         <span id="prices{echo $model->getId()}" class="d_b">{echo $model->firstVariant->toCurrency('Price', $NextCSId)}{$NextCS}</span>
+                        {/if}
                     </div>
                     <div class="in_cart"></div>
                         <div id="p{echo $model->getId()}" class="{$style.class}">
@@ -210,7 +212,9 @@
 
                                     <div class="price f-s_16 f_l">{echo $model->firstVariant->toCurrency()} 
                                         <sub>{$CS}</sub>
+                                        {if $NextCS != $CS}
                                         <span class="d_b">{echo $model->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>
+                                        {/if}
                                     </div>
 
                                 </div>
@@ -241,13 +245,19 @@
                                             {if $shopKitProduct->getDiscount()}
 
                                                 <del class="price f-s_12 price-c_9">{echo $s1_1 = $kitFirstVariant->toCurrency()}<sub> {$CS}</sub>
+                                                    {if $NextCS != $CS}
                                                     <span>{echo $s1_2 = $kitFirstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span></del>
-
+                                                    {/if}
 
                                                 <div class="price f-s_14 price-c_red">{echo $s2_1 = (int)$kitFirstVariant->toCurrency()*(100-$shopKitProduct->getDiscount())/100}<sub> {$CS}</sub><span>{echo $s2_2 = (int)$kitFirstVariant->toCurrency('Price', $NextCSId)*(100-$shopKitProduct->getDiscount())/100} {$NextCS}</span></div>
 
                                             {else:}
-                                                <div class="price f-s_14">{echo $kitFirstVariant->toCurrency()}<sub> {$CS}</sub><span>{echo $kitFirstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span></div>   
+                                                <div class="price f-s_14">{echo $kitFirstVariant->toCurrency()}
+                                                    <sub> {$CS}</sub>
+                                                    {if $NextCS != $CS}}
+                                                    <span>{echo $kitFirstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>
+                                                    {/if}
+                                                </div>   
                                             {/if}
                                         </div>
                                     </div>
@@ -264,16 +274,19 @@
                                         <div class="buy">
                                             {if $dis}
 
-                                                <del class="price f-s_12 price-c_9">{$sum1_1}<sub> {$CS}</sub><span>{echo $sum1_2} {$NextCS}</span></del>
-
+                                                <del class="price f-s_12 price-c_9">{$sum1_1}<sub> {$CS}</sub>
+                                                    {if $NextCS != $CS}
+                                                    <span>{echo $sum1_2} {$NextCS}</span></del>
+                                                    {/if}
                                             {/if}
-                                            <div class="price f-s_18">{echo $sum2_1} <sub> {$CS}</sub><span> {echo $sum2_2}  {$NextCS}</span></div>
+                                            <div class="price f-s_18">{echo $sum2_1} <sub> {$CS}</sub>
+                                                {if $NextCS != $CS}
+                                                <span> {echo $sum2_2}  {$NextCS}</span></div>
+                                                {/if}
                                         </div>
                                         <div class="buttons button_gs">
                                             <div class="buy">
-
                                                 {foreach $kits as $kit}
-
                                                     <a class="goBuy" kitId="{echo $kit->id}" instance="ShopKit" data-varid="86" data-prodid="{echo $kit->productId}" href="">Купить</a>
                                                 {/foreach}
                                             </div>
@@ -311,7 +324,12 @@
                                 <div class="func_description">
                                     <a href="{site_url('shop/product/'.$sp->getId())}" class="title">{echo ShopCore::encode($sp->getName())}</a>
                                     <div class="buy">
-                                        <div class="price f-s_14">{echo $sp->firstVariant->toCurrency()}<sub> {$CS}</sub><span>{echo $sp->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span> </div>                                                                             
+                                        <div class="price f-s_14">{echo $sp->firstVariant->toCurrency()}
+                                            <sub> {$CS}</sub>
+                                            {if $NextCS != $CS}
+                                            <span>{echo $sp->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span> 
+                                            {/if}
+                                        </div>                                                                             
                                         <div class="{$style.class} buttons">                                            
                                             <a class="{$style.identif}" href="{$style.link}" data-varid="{echo $sp->firstVariant->getId()}"  data-prodid="{echo $sp->getId()}" >{$style.message}</a>
                                         </div>
@@ -366,7 +384,12 @@
                                     <div class="info">
                                         <a href="{shop_url('product/'.$p->getUrl())}" class="title">{echo ShopCore::encode($p->getName())}</a>
                                         <div class="buy">
-                                            <div class="price f-s_16 f_l">{echo $p->firstVariant->toCurrency()}<sub> {$CS}</sub><span class="d_b">{echo $p->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span></div>
+                                            <div class="price f-s_16 f_l">{echo $p->firstVariant->toCurrency()}
+                                                <sub> {$CS}</sub>
+                                                {if $NextCS != $CS}
+                                                <span class="d_b">{echo $p->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>
+                                                {/if}
+                                            </div>
                                             <div class="{$style.class} buttons"><a class="{$style.identif}" href="{$style.link}" data-varid="{echo $p->firstVariant->getId()}" data-prodid="{echo $p->getId()}" >{$style.message}</a></div> 
                                         </div>
                                     </div>
@@ -398,7 +421,12 @@
                             <div class="info">
                                 <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                                 <div class="buy">
-                                    <div class="price f-s_16 f_l">{echo $hotProduct->firstVariant->toCurrency()} <sub>{$CS}</sub><span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span></div>                               
+                                    <div class="price f-s_16 f_l">{echo $hotProduct->firstVariant->toCurrency()} 
+                                        <sub>{$CS}</sub>
+                                        {if $NextCS != $CS}
+                                        <span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>
+                                        {/if}
+                                    </div>                               
                                     <div class="{$style.class} buttons"><a class="{$style.identif}" data-varid="{echo $hotProduct->firstVariant->getId()}" data-prodid="{echo $hotProduct->getId()}" href="{shop_url('product/' . $hotProduct->getUrl())}">{$style.message}</a></div>
                                 </div>   
                             </div>
