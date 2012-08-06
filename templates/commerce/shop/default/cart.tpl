@@ -146,6 +146,11 @@
                 Комментарий
                 <textarea{if $isRequired['userInfo[commentText]']} class="required"{/if} name="userInfo[commentText]"></textarea> 
             </label>
+            
+            <div>
+                {echo ShopCore::app()->CustomFieldsWidgetHelper->renderPartOfFormWithCustomFields(-1, 'order', 'cartCustomData') }
+            </div>
+            
         </div>
         <div class="foot_cleaner c_b t-a_c">
             <div class="buttons button_big_blue">
