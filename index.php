@@ -18,6 +18,8 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
+ini_set('display_errors','On');
+
 	define('ENVIRONMENT', 'development');
 /*
  *---------------------------------------------------------------
