@@ -55,12 +55,12 @@
 	</div>
 	<div class="form_overflow"></div>
         
-        <div class="form_text">Выбор языка:</div>
+        <div class="form_text">{lang('a_lang_select')}</div>
 	<div class="form_input">
 	<select name="lang_sel">
             {$arr = get_lang_admin_folders()}
             {foreach $arr as $a}
-                <option value="{$a}"> {echo str_replace('_lang', '', $a)}</option>
+                <option value="{$a}" {if $lang_sel == $a}selected="selected"{/if}> {echo str_replace('_lang', '', $a)} </option>
             {/foreach}
 	</select>
 	</div>

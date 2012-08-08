@@ -531,3 +531,4 @@ $lang['a_change_data'] = 'Изменить данные';
 $lang['a_widget_sett'] = 'Настройки Виджета';
 //$lang['a_sett'] = 'Настройки';
 //$lang['a_delete'] = 'Удалить';
+$lang['a_lang_select'] = 'Выбор языка для админ панели';
