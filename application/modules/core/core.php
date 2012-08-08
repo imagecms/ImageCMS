@@ -110,7 +110,7 @@ class Core extends MY_Controller {
 
 				$this->template->set_config_value('tpl_path', TEMPLATES_PATH.$this->langs[$uri_lang]['template'].'/');
 
-			   ($hook = get_hook('core_changed_tpl_path')) ? eval($hook) : NULL;
+                                ($hook = get_hook('core_changed_tpl_path')) ? eval($hook) : NULL;
 
 				$this->load_functions_file($this->langs[$uri_lang]['template']);
 
