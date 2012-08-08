@@ -46,6 +46,7 @@
                 $this->CI->template->add_array($this->CI->lang->load('admin','admin'.$folder, TRUE));
                 $this->CI->lang->load('admin', 'admin'.$folder);
                 $this->CI->lang->load('controller', 'admin'.$folder);
+                $this->CI->lang->load('admin_shop', 'admin'.$folder);
                 $this->CI->lang->load('basemodules', 'admin'.$folder);
 
 		$this->CI->load->helper('javascript');
