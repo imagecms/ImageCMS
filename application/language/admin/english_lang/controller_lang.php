@@ -1,6 +1,6 @@
 <?php
 
-$lang['ac_cleaned_cache'] = 'Cleared the cache';  
+    $lang['ac_cleaned_cache'] = 'Cleared the cache';  
     $lang['ac_files_deleted'] = 'Files deleted';
     $lang['ac_cache_cleared'] = 'Cache has been cleared'; 
     $lang['ac_old_files_deleted'] = 'Outdated files  have been deleted';  
