@@ -278,4 +278,5 @@ $lang['a_to_widget_list'] = 'Switch  to widget list';
 $lang['a_cr'] = 'Has been created'; 
 $lang['a_change_data'] = 'Change data';
 $lang['a_widget_sett'] = 'Widget settings';
+$lang['a_lang_select'] = 'Select admin language';
 ?>
