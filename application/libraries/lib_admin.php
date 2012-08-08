@@ -37,11 +37,16 @@
 // 		$this->CI->lang->load('main','russian');
 // 		$this->CI->config->set_item('language','russian');
 //		$this->CI->template->add_array($this->CI->lang->load('main','russian',TRUE));
+                
+                //$sett = $this->cms_admin->get_settings();
+                //$sett = ShopCore::$ci->cms_admin->get_settings();
+                $sett = $this->CI->db->where('s_name', 'main')->get('settings')->row();
+                $folder = '/'.$sett->lang_sel;
  		$this->CI->config->set_item('language','russian');
-                $this->CI->template->add_array($this->CI->lang->load('admin','admin', TRUE));
-                $this->CI->lang->load('admin', 'admin');
-                $this->CI->lang->load('controller', 'admin');
-                $this->CI->lang->load('basemodules', 'admin');
+                $this->CI->template->add_array($this->CI->lang->load('admin','admin'.$folder, TRUE));
+                $this->CI->lang->load('admin', 'admin'.$folder);
+                $this->CI->lang->load('controller', 'admin'.$folder);
+                $this->CI->lang->load('basemodules', 'admin'.$folder);
 
 		$this->CI->load->helper('javascript');
 		$this->CI->load->helper('admin');

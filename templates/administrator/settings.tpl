@@ -48,9 +48,20 @@
 	<div class="form_text">{lang('a_site_shutdown')}:</div>
 	<div class="form_input">
 	<select name="site_offline">
-     {foreach $work_values as $k => $v}
-        <option value="{$k}" {if $site_offline == $k} selected="selected" {/if} >{$v}</option>
-     {/foreach}
+            {foreach $work_values as $k => $v}
+                <option value="{$k}" {if $site_offline == $k} selected="selected" {/if} >{$v}</option>
+            {/foreach}
+	</select>
+	</div>
+	<div class="form_overflow"></div>
+        
+        <div class="form_text">Выбор языка:</div>
+	<div class="form_input">
+	<select name="lang_sel">
+            {$arr = get_lang_admin_folders()}
+            {foreach $arr as $a}
+                <option value="{$a}"> {echo str_replace('_lang', '', $a)}</option>
+            {/foreach}
 	</select>
 	</div>
 	<div class="form_overflow"></div>
