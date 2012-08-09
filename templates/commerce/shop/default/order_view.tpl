@@ -20,19 +20,24 @@
                 {foreach $model->getSOrderProductss() as $item}
                 {$total = $total + $item->getQuantity() * $item->toCurrency()}
                 {$product = $item->getSProducts()}
-                {$variant = getVariant($item->getProductId(), $item->getVariantId())}
+                {$variants = $item->getSProducts()->getProductVariants()}
+                {foreach $variants as $v}
+                    {if $v->getId() == $item->getVariantId()}
+                        {$variant = $v}
+                    {/if}
+                {/foreach}
                 {if $item->getKitId() > 0}
                 {if $item->getIsMain()}
                 <tr>
                     <td>
                         {if $variant->getsmallImage()}
                         <a href="{shop_url('product/' . $product->getUrl())}" class="photo_block">
-                            <img src="{productImageUrl($variant->getsmallimage())}" border="0" alt="{echo ShopCore::encode($product->getName())} - {echo ShopCore::encode($variant->name)}"/>
+                            <img src="{productImageUrl($variant->getsmallimage())}" border="0" alt="{echo ShopCore::encode($product->getName())}{if count($variants)>1} - {echo ShopCore::encode($variant->name)}{/if}"/>
                         </a>
                         {/if}
                     </td>
                     <td>
-                        <a href="{shop_url('product/' . $product->getUrl())}">{echo ShopCore::encode($product->getName())} - {echo ShopCore::encode($variant->name)}</a> 
+                        <a href="{shop_url('product/' . $product->getUrl())}">{echo ShopCore::encode($product->getName())}{if count($variants)>1} - {echo ShopCore::encode($variant->name)}{/if}</a> 
                     </td>
                     <td>{echo $item->toCurrency()} {$CS}</td>
                     <td rowspan="{echo $kits[$item->getKitId()]['total']}">
