@@ -30,14 +30,14 @@
                 {if $item->getIsMain()}
                 <tr>
                     <td>
-                        {if $variant->getsmallImage()}
+                        {if $product->getmainimage()}
                         <a href="{shop_url('product/' . $product->getUrl())}" class="photo_block">
-                            <img src="{productImageUrl($variant->getsmallimage())}" border="0" alt="{echo ShopCore::encode($product->getName())}{if count($variants)>1} - {echo ShopCore::encode($variant->name)}{/if}"/>
+                             <img src="{productImageUrl($product->getSmallModimage())}" border="0" alt="{echo ShopCore::encode($product->getName())}"/>
                         </a>
                         {/if}
                     </td>
                     <td>
-                        <a href="{shop_url('product/' . $product->getUrl())}">{echo ShopCore::encode($product->getName())}{if count($variants)>1} - {echo ShopCore::encode($variant->name)}{/if}</a> 
+                        <a href="{shop_url('product/' . $product->getUrl())}">{echo ShopCore::encode($product->getName())}</a> 
                     </td>
                     <td>{echo $item->toCurrency()} {$CS}</td>
                     <td rowspan="{echo $kits[$item->getKitId()]['total']}">
@@ -50,12 +50,13 @@
                     <td style="width:90px;padding:2px;">
                         <div style="width:90px;height:90px;overflow:hidden;">
                             {if $product->getMainImage()}
-                            <img src="{productImageUrl($variant->getsmallimage())}" border="0" alt="{echo ShopCore::encode($product->getName())} - {echo ShopCore::encode($variant->name)}"/>
+                            <img src="{productImageUrl($product->getSmallModimage())}" border="0" alt="{echo ShopCore::encode($product->getName())}"/>
                             {/if}
                         </div>
                     </td>
                     <td>
-                        <a href="{shop_url('product/' . $product->getUrl())}">{echo ShopCore::encode($product->getName())} - {echo ShopCore::encode($variant->name)}</a> 
+                        <a href="{shop_url('product/' . $product->getUrl())}">{echo ShopCore::encode($product->getName())}</a> 
+                    </td>
                     </td>
                     <td>{echo $item->toCurrency()} {$CS}</td>
                 </tr>
@@ -64,11 +65,11 @@
                 <tr>
                     <td>
                         <a href="{shop_url('product/' . $product->getUrl())}" class="photo_block">
-                            <img src="{productImageUrl($variant->getsmallimage())}" alt="{echo ShopCore::encode($product->getName())} - {echo ShopCore::encode($variant->name)}"/>
+                            <img src="{if count($variants)>1}{productImageUrl($variant->getsmallimage())}{else:}{productImageUrl($product->getSmallModimage())}{/if}" alt="{echo ShopCore::encode($product->getName())}{if count($variants)>1} - {echo ShopCore::encode($variant->name)}{/if}"/>
                         </a>
                     </td>
                     <td>
-                        <a href="{shop_url('product/' . $product->getUrl())}">{echo ShopCore::encode($product->getName())} - {echo ShopCore::encode($variant->name)}</a> 
+                        <a href="{shop_url('product/' . $product->getUrl())}">{echo ShopCore::encode($product->getName())}{if count($variants)>1} - {echo ShopCore::encode($variant->name)}{/if}</a> 
                     </td>
                     <td>
                         <div class="price f-s_16 f_l">{echo $variant->getPrice()}

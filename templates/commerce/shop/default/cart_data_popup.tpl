@@ -24,7 +24,7 @@
                 <tr>
                     <td>
                         <a href="{shop_url('product/'.$prod->getId())}" class="photo_block">
-                            <img src="{productImageUrl($variant->getSmallImage())}" alt="{echo ShopCore::encode($prod->name)}{if count($variants)>1} - {echo ShopCore::encode($variant->name)} {/if}"/>
+                            <img src="{if count($variants)>1}{productImageUrl($variant->getsmallimage())}{else:}{productImageUrl($prod->getMainModimage())}{/if}" alt="{echo ShopCore::encode($prod->name)}{if count($variants)>1} - {echo ShopCore::encode($variant->name)} {/if}"/>
                         </a>
                     </td>
                     <td>
