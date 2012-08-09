@@ -593,7 +593,7 @@ $(document).ready(function(){
         var st = $(this).attr('data-st');
         var pp = $(this).attr('data-pp');
         $('#mim'+pid).addClass('smallpimagev');
-        $('#vim'+pid).removeClass().attr('src', 'http://stable.com/uploads/shop/'+img).attr('alt', vname);
+        $('#vim'+pid).removeClass().attr('src', '/uploads/shop/'+img).attr('alt', vname);
         $('#code'+pid).html('Код '+vnumber);
         $('#pricem'+pid).html(pr);
         $('#prices'+pid).html(spr+' '+cs);
