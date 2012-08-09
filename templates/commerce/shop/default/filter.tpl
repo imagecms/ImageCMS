@@ -139,11 +139,11 @@
             <div class="title">{echo $prop->getName()}</div>
             <div class="clearfix check_form">
                 {if $propertiesInCategory[$prop->getId()]}
-                {$count_properties = array_count_values($propertiesInCategory[$prop->getId()])}
+                {$count_properties = array_count_values($propertiesInCategory[$prop->getId()])}                
                 {else:}
                 {$count_properties = array('0')}
                 {/if}
-                {foreach $prop->asArray() as $key=>$val}
+                {foreach $prop->asArray() as $key=>$val}                
                 {$count_property = $count_properties[$val];}
                 {if is_property_in_get($prop->getId(), $key)}{$check = 'checked="checked"'} {else:} {$check = ''}{/if}
                 {if $count_property}

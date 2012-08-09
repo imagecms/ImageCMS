@@ -24,48 +24,48 @@ $(document).ready(function(){
             dataType: "json",
             url:'/shop/ajax/rate',
             success: function(obj){
-                $('#'+currentProductId+'_star_rating').removeClass().addClass('rating '+obj.classrate+' star_rait');
-              console.log(obj.classrate);
-            }
+                if(obj.classrate != null)
+                    $('#'+currentProductId+'_star_rating').removeClass().addClass('rating '+obj.classrate+' star_rait');
+            }            
         });
     });
     
     $('span.clicktemprate').on('click',function(){
-       var rate = $(this).attr('title');
-       var ratec;
-       if (rate == 1) ratec = "onestar";
-       if (rate == 2) ratec = "twostar";
-       if (rate == 3) ratec = "threestar";
-       if (rate == 4) ratec = "fourstar";
-       if (rate == 5) ratec = "fivestar";
-       $('#comment_block').removeClass().addClass('rating '+ratec+' star_rait');
-       $('#ratec').attr('value', rate);
+        var rate = $(this).attr('title');
+        var ratec;
+        if (rate == 1) ratec = "onestar";
+        if (rate == 2) ratec = "twostar";
+        if (rate == 3) ratec = "threestar";
+        if (rate == 4) ratec = "fourstar";
+        if (rate == 5) ratec = "fivestar";
+        $('#comment_block').removeClass().addClass('rating '+ratec+' star_rait');
+        $('#ratec').attr('value', rate);
     });
     
     $('.usefullyes').on('click', function(){
-       var comid = $(this).attr('data-comid');
-       $.ajax({
-          type: "POST",
-          data: "comid="+comid,
-          dataType: "json",
-          url: '/comments/setyes',
-          success: function(obj){
-              $('#yesholder'+comid).html("("+obj.y_count+")");
-          }
-       }); 
+        var comid = $(this).attr('data-comid');
+        $.ajax({
+            type: "POST",
+            data: "comid="+comid,
+            dataType: "json",
+            url: '/comments/setyes',
+            success: function(obj){
+                $('#yesholder'+comid).html("("+obj.y_count+")");
+            }
+        }); 
     });
     
-     $('.usefullno').on('click', function(){
-       var comid = $(this).attr('data-comid');
-       $.ajax({
-          type: "POST",
-          data: "comid="+comid,
-          dataType: "json",
-          url: '/comments/setno',
-          success: function(obj){
-              $('#noholder'+comid).html("("+obj.n_count+")");
-          }
-       }); 
+    $('.usefullno').on('click', function(){
+        var comid = $(this).attr('data-comid');
+        $.ajax({
+            type: "POST",
+            data: "comid="+comid,
+            dataType: "json",
+            url: '/comments/setno',
+            success: function(obj){
+                $('#noholder'+comid).html("("+obj.n_count+")");
+            }
+        }); 
     });
     
     $('.buy .goBuy').on('click',function(){
@@ -217,24 +217,24 @@ $(document).ready(function(){
         return false;
     })
     function bindgoNotifMe(){
-    $('.goNotifMe').bind('click', function(){
-        $.fancybox.showActivity();
-        var id_var  = $(this).attr('data-varid');
-        var id      = $(this).attr('data-prodid');
-        var $this   = $(this);
-        $.ajax({
-            type: 'post',
-            data: "ProductId="+id,
-            url: '/shop/ajax/getNotifyingRequest',
-            success: function(msg){
-                showResponse(msg);
-                bindNotifMeForm();
-                $.fancybox.hideActivity();
+        $('.goNotifMe').bind('click', function(){
+            $.fancybox.showActivity();
+            var id_var  = $(this).attr('data-varid');
+            var id      = $(this).attr('data-prodid');
+            var $this   = $(this);
+            $.ajax({
+                type: 'post',
+                data: "ProductId="+id,
+                url: '/shop/ajax/getNotifyingRequest',
+                success: function(msg){
+                    showResponse(msg);
+                    bindNotifMeForm();
+                    $.fancybox.hideActivity();
+                }
             }
-        }
-        );
-        return false;
-    });
+            );
+            return false;
+        });
     }
     /* End of Event */
 
@@ -346,19 +346,19 @@ $(document).ready(function(){
         $.fancybox.showActivity();
         $("#cartForm").find('input[name=makeOrder]').val(0);
         $.ajax({
-        type: 'post',
-        data: $("#cartForm").serialize() + '&recount=1',
-        url: '/shop/cart',
-        success: function(msg){
-            $('.cart_data_holder').load('/shop/ajax/getCartDataHtml');
-            if($('.plus_minus button').hasClass('inCartProducts'))
-                $('.forCartProducts').html(msg);                        
-            else
-                showResponse(msg);
-            $("#cartForm").find('input[name=makeOrder]').val(1);
-            $.fancybox.hideActivity();
-        }
-    });
+            type: 'post',
+            data: $("#cartForm").serialize() + '&recount=1',
+            url: '/shop/cart',
+            success: function(msg){
+                $('.cart_data_holder').load('/shop/ajax/getCartDataHtml');
+                if($('.plus_minus button').hasClass('inCartProducts'))
+                    $('.forCartProducts').html(msg);                        
+                else
+                    showResponse(msg);
+                $("#cartForm").find('input[name=makeOrder]').val(1);
+                $.fancybox.hideActivity();
+            }
+        });
     }
       
     function bindNotifMeForm(){
@@ -385,42 +385,42 @@ $(document).ready(function(){
     function bindGoBuy()
     {
         $('.buy .goBuy').bind('click',function(){
-        $.fancybox.showActivity();
-        var id_var  = $(this).attr('data-varid');
-        var id      = $(this).attr('data-prodid');
-        var $this   = $(this);
-        $.ajax({
-            type: 'post',
-            data: "quantity="+1+"&productId="+id+"&variantId="+id_var,
-            url: '/shop/cart/add',
-            success: function(msg){
-                $('.cart_data_holder').load('/shop/ajax/getCartDataHtml');
-                if ($this.parent().hasClass('button_big_green'))
-                {
-                    $('.in_cart').html('Уже в корзине');
-                    $this.parent().removeClass('button_big_green').addClass('button_big_blue')
-                    $this.html('Оформить заказ');
-                }
-                else
-                {
+            $.fancybox.showActivity();
+            var id_var  = $(this).attr('data-varid');
+            var id      = $(this).attr('data-prodid');
+            var $this   = $(this);
+            $.ajax({
+                type: 'post',
+                data: "quantity="+1+"&productId="+id+"&variantId="+id_var,
+                url: '/shop/cart/add',
+                success: function(msg){
+                    $('.cart_data_holder').load('/shop/ajax/getCartDataHtml');
+                    if ($this.parent().hasClass('button_big_green'))
+                    {
+                        $('.in_cart').html('Уже в корзине');
+                        $this.parent().removeClass('button_big_green').addClass('button_big_blue')
+                        $this.html('Оформить заказ');
+                    }
+                    else
+                    {
+                        $this
+                        .removeClass('goBuy')
+                        .addClass('goToCart')
+                        .html('Оформить <br/> заказ')
+                        .parent('div')
+                        .removeClass('button_gs')
+                        .addClass('button_middle_blue');
+                    }
+                    // $('.in_cart').html('Уже в корзине');
                     $this
-                    .removeClass('goBuy')
-                    .addClass('goToCart')
-                    .html('Оформить <br/> заказ')
-                    .parent('div')
-                    .removeClass('button_gs')
-                    .addClass('button_middle_blue');
+                    .attr('href', '/shop/cart')
+                    .unbind('click');
+                    showResponse(msg);
+                    $.fancybox.hideActivity();
                 }
-                // $('.in_cart').html('Уже в корзине');
-                $this
-                .attr('href', '/shop/cart')
-                .unbind('click');
-                showResponse(msg);
-                $.fancybox.hideActivity();
-            }
+            });
+            return false;
         });
-        return false;
-    });
     }
     
     function bindLoginForm(){
@@ -581,38 +581,38 @@ $(document).ready(function(){
         }
     }
     $('option.selectVar').on('click', function(){
-       $.fancybox.showActivity();
-       var vid = $(this).attr('value');
-       var pid = $(this).attr('data-pid');
-       var img = $(this).attr('data-img');
-       var pr = $(this).attr('data-pr');
-       var spr = $(this).attr('data-spr');
-       var vnumber = $(this).attr('data-vnumber');
-       var vname = $(this).attr('data-vname');
-       var cs = $(this).attr('data-cs');
-       var st = $(this).attr('data-st');
-       var pp = $(this).attr('data-pp');
-       $('#mim'+pid).addClass('smallpimagev');
-       $('#vim'+pid).removeClass().attr('src', 'http://stable.com/uploads/shop/'+img).attr('alt', vname);
-       $('#code'+pid).html('Код '+vnumber);
-       $('#pricem'+pid).html(pr);
-       $('#prices'+pid).html(spr+' '+cs);
-       $('#buy'+pid).attr('data-varid', vid);
-       $('#buy'+pid).attr('data-prodid', pid);
-       $.ajax({
-           type: "post",
-           data: "pid="+pid+"&vid="+vid+"&stock="+st+"&pp="+pp,
-           dataType: "json",
-           url: '/shop/category/getStyle',
-           success: function(obj){
+        $.fancybox.showActivity();
+        var vid = $(this).attr('value');
+        var pid = $(this).attr('data-pid');
+        var img = $(this).attr('data-img');
+        var pr = $(this).attr('data-pr');
+        var spr = $(this).attr('data-spr');
+        var vnumber = $(this).attr('data-vnumber');
+        var vname = $(this).attr('data-vname');
+        var cs = $(this).attr('data-cs');
+        var st = $(this).attr('data-st');
+        var pp = $(this).attr('data-pp');
+        $('#mim'+pid).addClass('smallpimagev');
+        $('#vim'+pid).removeClass().attr('src', 'http://stable.com/uploads/shop/'+img).attr('alt', vname);
+        $('#code'+pid).html('Код '+vnumber);
+        $('#pricem'+pid).html(pr);
+        $('#prices'+pid).html(spr+' '+cs);
+        $('#buy'+pid).attr('data-varid', vid);
+        $('#buy'+pid).attr('data-prodid', pid);
+        $.ajax({
+            type: "post",
+            data: "pid="+pid+"&vid="+vid+"&stock="+st+"&pp="+pp,
+            dataType: "json",
+            url: '/shop/category/getStyle',
+            success: function(obj){
                 $('#p'+pid).removeClass().addClass(obj.stclass+' buttons');
                 $('#buy'+pid).removeClass().addClass(obj.stidentif).html(obj.stmsg).attr('href', obj.stlink).unbind('click');
                 if (obj.stidentif == "goNotifMe") bindgoNotifMe();
                 if (obj.stidentif == "goBuy") bindGoBuy();
                 $.fancybox.hideActivity();
-           }
-           })
-           return false;
+            }
+        })
+        return false;
     });
     
 
