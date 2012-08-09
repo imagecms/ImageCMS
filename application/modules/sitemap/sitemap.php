@@ -8,19 +8,19 @@
 
 class Sitemap extends MY_Controller {
 
-    public $pages_priority     = '0.5'; // priority for pages
-    public $cats_priority      = '0.9'; // priority for categories
-    public $main_page_priority = '1'; // priority for main page
-    public $pages_changefreq   = 'weekly'; 
-    public $main_page_changefreq   = 'weekly';      
-    public $changefreq   = 'weekly'; 
-    public $gzip_level   = 9;
-    public $result       = '';
-    public $langs        = array();
-    public $default_lang = array();
-    public $sitemap_ttl  = 3600;
-    public $sitemap_key  = 'sitemap_';
-    public $items        = array(); 
+    public $pages_priority          = '0.5'; // priority for pages
+    public $cats_priority           = '0.9'; // priority for categories
+    public $main_page_priority      = '1'; // priority for main page
+    public $pages_changefreq        = 'daily'; 
+    public $main_page_changefreq    = 'daily';      
+    public $changefreq              = 'daily'; 
+    public $gzip_level              = 9;
+    public $result                  = '';
+    public $langs                   = array();
+    public $default_lang            = array();
+    public $sitemap_ttl             = 3600;
+    public $sitemap_key             = 'sitemap_';
+    public $items                   = array(); 
 
 	function __construct()
 	{
@@ -30,6 +30,10 @@ class Sitemap extends MY_Controller {
         // Get langs
         $this->langs = $this->core->langs;
         $this->default_lang = $this->core->def_lang[0];
+        if(uri_string() == 'sitemap.xml'){
+            $this->build_xml_map();
+            exit();
+        }
 	}
 
     public function index()
@@ -107,12 +111,12 @@ class Sitemap extends MY_Controller {
 
 	public function _create_map()
     {
-        if (($data = $this->cache->fetch($this->sitemap_key)) !== FALSE)
-        {
-            $this->result = $data;
-        } 
-        else
-        {
+//        if (($data = $this->cache->fetch($this->sitemap_key)) !== FALSE)
+//        {
+//            $this->result = $data;
+//        } 
+//        else
+  //      {
             $this->initialize($this->_load_settings());
 
             // Add main page
@@ -180,11 +184,54 @@ class Sitemap extends MY_Controller {
                     'priority'   => $this->pages_priority
                 );
             }
-
+            
+            $shop_categories = $this->_shop_category_pages();
+            //var_dump($shop_categories);
+            foreach ($shop_categories as $shopcat)
+            {
+                
+                $url = site_url('shop/category/'.$shopcat['full_path']);
+                $this->items[] = array(
+                   'loc' => $url,
+                   'lastmod' => '',
+                   'changefreq' => 'daily',
+                   'priority' => '0.9',
+                );
+            }
+            
+            $shop_brands = $this->_shop_brands_pages();
+            foreach($shop_brands as $shopbr)
+            {
+                $url = site_url('shop/brand/'.$shopbr['url']);
+                $this->items[] = array(
+                   'loc' => $url,
+                   'lastmod' => '',
+                   'changefreq' => 'daily',
+                   'priority' => '0.9',
+                );
+            }
+            
+            $shop_products = $this->_shop_products_pages();
+            foreach($shop_products as $shopprod)
+            {
+                $url = site_url('shop/product/'.$shopprod['url']);
+                if ($shopprod['updated'] > 0) {
+                    $date = date('Y-m-d', $shopprod['updated']);
+                } else {
+                    $date = date('Y-m-d', $shopprod['created']);
+                }
+                $this->items[] = array(
+                   'loc' => $url,
+                   'lastmod' => $date,
+                   'changefreq' => 'daily',
+                   'priority' => '0.9',
+                );
+            }
+            
             $this->result = $this->generate_xml($this->items);
 
             $this->cache->store($this->sitemap_key, $this->result, $this->sitemap_ttl);
-        }
+       // }
     }
 
     public function _get_all_pages()
@@ -298,7 +345,25 @@ class Sitemap extends MY_Controller {
         $this->db->where('name', 'sitemap');
         $this->db->update('components', array('enabled' => '1', 'settings' => serialize($data)));
     }
-
+    public function _shop_category_pages()
+    {
+        $this->db->select('full_path');
+        $this->db->where('active', 1);
+        return $this->db->get('shop_category')->result_array();
+    }
+    
+    public function _shop_brands_pages()
+    {
+        $this->db->select('url');
+        //$this->db->where('sub_brand_id', 0);
+        return $this->db->get('shop_brands')->result_array();
+    }
+    
+    public function _shop_products_pages()
+    {
+        $this->db->select('url, updated, created');
+        return $this->db->get('shop_products')->result_array();
+    }
 }
 
 /* End of file sitemap.php */
