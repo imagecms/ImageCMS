@@ -15,15 +15,20 @@
             <tbody>
                 {foreach $inCart as $key => $catr}
                 {$prod = getProduct($catr.productId)}
-                {$variant = getVariant($catr.productId, $catr.variantId)}
+                {$variants = $prod->getProductVariants()}
+                {foreach $variants as $v}
+                    {if $v->getId() == $catr.variantId}
+                        {$variant = $v}
+                    {/if}
+                {/foreach}
                 <tr>
                     <td>
                         <a href="{shop_url('product/'.$prod->getId())}" class="photo_block">
-                            <img src="{productImageUrl($variant->getSmallImage())}" alt="{echo ShopCore::encode($prod->name)} - {echo ShopCore::encode($variant->name)}" />
+                            <img src="{productImageUrl($variant->getSmallImage())}" alt="{echo ShopCore::encode($prod->name)}{if count($variants)>1} - {echo ShopCore::encode($variant->name)} {/if}"/>
                         </a>
                     </td>
                     <td>
-                        <a href="{shop_url('product/'.$prod->getId())}">{echo ShopCore::encode($prod->name)} - {echo ShopCore::encode($variant->name)}</a>
+                        <a href="{shop_url('product/'.$prod->getId())}">{echo ShopCore::encode($prod->name)}{if count($variants)>1} - {echo ShopCore::encode($variant->name)}{/if}</a>
                     </td>
                     <td>
                         <div class="price f-s_16 f_l">{echo $variant->getPrice()} <sub>{$CS}</sub>
