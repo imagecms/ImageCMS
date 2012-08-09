@@ -9,16 +9,21 @@
     <col span="1" width="25">
 </colgroup>
 <tbody>
-    {foreach $items as $key=>$item}     
-    {$variant = getVariant($item.productId, $item.variantId)}
+    {foreach $items as $key=>$item}
+    {$variants = $item.model->getProductVariants()}
+                {foreach $variants as $v}
+                    {if $v->getId() == $item.variantId}
+                        {$variant = $v}
+                    {/if}
+                {/foreach}
     <tr>
         <td>
             <a href="{shop_url('product/' . $item.model->getUrl())}" class="photo_block">
-                <img src="{productImageUrl($variant->getsmallimage())}" alt="{echo ShopCore::encode($item.model->getName())} - {echo ShopCore::encode($variant->name)}"/>
+                <img src="{productImageUrl($variant->getsmallimage())}" alt="{echo ShopCore::encode($item.model->getName())}{if count($variants)>1} - {echo ShopCore::encode($variant->name)}{/if}"/>
             </a>
         </td>
         <td>
-            <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())} - {echo ShopCore::encode($variant->name)}</a>
+            <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}{if count($variants)>1} - {echo ShopCore::encode($variant->name)}{/if}</a>
         </td>
         <td>
             <div class="price f-s_16 f_l">{echo $variant->getPrice()} <sub>{$CS}</sub>
