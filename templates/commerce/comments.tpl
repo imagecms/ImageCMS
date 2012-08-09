@@ -15,14 +15,12 @@
         {/if}
     </span>
 </div>
-{if $comment_errors}
-    <div class="errors">
-        {$comment_errors}
-    </div>
-{/if}
 <form action="" method="post" class="comment_form clearfix">
     <input type="hidden" name="comment_item_id" value="{$item_id}" />
     <input type="hidden" name="redirect" value="{uri_string()}" />
+    {if $comment_errors}
+         <span class="red">   {$comment_errors}</span>
+    {/if}
 
     {if !$is_logged_in}
 
