@@ -55,12 +55,13 @@ class Comments extends MY_Controller {
         $settings = $this->base->get_settings();
 
         ($hook = get_hook('comments_settigs_init')) ? eval($hook) : NULL;
-
-        foreach ($settings as $k => $v) {
-            $this->$k = $v;
+        if (is_array($settings)){
+            foreach ($settings as $k => $v) {
+                $this->$k = $v;
+            }
         }
     }
-
+    
     /**
      * Fetch comments and load template
      */
@@ -420,6 +421,100 @@ class Comments extends MY_Controller {
             }
         }
     }
+    
+     public function _install()
+    {
+        
+    	if( $this->dx_auth->is_admin() == FALSE) exit;
+
+        $this->load->dbforge();
+
+        $fields = array(
+            'id' => array(
+                         'type' => 'INT',
+                         'constraint' => 11,
+                         'auto_increment' => TRUE,
+                     ),
+            'module' => array(
+                         'type' => 'varchar',
+                         'constraint' => 25,
+                     ),
+            'user_id'=> array(
+                         'type' => 'INT',
+                         'constraint' => 11,
+            ),
+            'user_name'=> array(
+                         'type' => 'varchar',
+                         'constraint' => 50,
+            ),
+            'user_mail'=> array(
+                         'type' => 'varchar',
+                         'constraint' => 50,
+            ),
+            'user_site'=> array(
+                         'type' => 'varchar',
+                         'constraint' => 250,
+            ),
+            'item_id'=> array(
+                         'type' => 'bigint',
+                         'constraint' => 11,
+            ),
+            'text'=> array(
+                         'type' => 'varchar',
+                         'constraint' => 500,
+            ),
+            'date'=> array(
+                         'type' => 'int',
+                         'constraint' => 11,
+            ),
+            'status'=> array(
+                         'type' => 'smallint',
+                         'constraint' => 1,
+            ),
+            'agent'=> array(
+                         'type' => 'varchar',
+                         'constraint' => 250,
+            ),
+            'user_ip'=> array(
+                         'type' => 'varchar',
+                         'constraint' => 64,
+            ),
+            'rate'=> array(
+                         'type' => 'int',
+                         'constraint' => 11,
+            ),
+            'text_plus'=> array(
+                         'type' => 'varchar',
+                         'constraint' => 500,
+            ),
+            'text_minus'=> array(
+                         'type' => 'varchar',
+                         'constraint' => 500,
+            ),
+            'like'=> array(
+                         'type' => 'int',
+                         'constraint' => 11,
+                         'default' => 0,
+            ),
+            'disslike'=> array(
+                         'type' => 'int',
+                         'constraint' => 11,
+                         'default' => 0,
+            ),
+            'parent'=> array(
+                         'type' => 'int',
+                         'constraint' => 11,
+            ),
+                 );
+        $this->dbforge->add_key('id', TRUE);
+        $this->dbforge->add_field($fields);
+        $this->dbforge->create_table('comments', TRUE);
+
+        // Enable module autoload
+        $this->db->where('name', 'comments');
+        $this->db->update('components', array('autoload' => '1'));
+    }
+
 }
 
 /* End of file comments.php */
