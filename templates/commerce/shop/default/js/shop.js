@@ -24,8 +24,9 @@ $(document).ready(function(){
             dataType: "json",
             url:'/shop/ajax/rate',
             success: function(obj){
+                if (obj.classrate != null){
                 $('#'+currentProductId+'_star_rating').removeClass().addClass('rating '+obj.classrate+' star_rait');
-              console.log(obj.classrate);
+                }
             }
         });
     });
