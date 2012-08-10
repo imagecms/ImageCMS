@@ -70,7 +70,7 @@
                 <select name="lang_sel">
                     {$arr = get_lang_admin_folders()}
                     {foreach $arr as $a}
-                    <option value="{$a}" {if $lang_sel == $a}selected="selected"{/if}> {echo str_replace('_lang', '', $a)} </option>
+                    <option value="{$a}" {if $lang_sel == $a}selected="selected"{/if}> {echo str_replace('_lang', '', $a)} {if $a == 'english_lang'}(beta){/if} </option>
                     {/foreach}
                 </select>
             </div>
