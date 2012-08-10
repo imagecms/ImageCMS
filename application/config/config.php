@@ -88,8 +88,8 @@ $config['static_base_url'] = $config['base_url'];
 |
 */
 $config['index_page'] = "";
-$config['is_installed'] = TRUE;
-$config['rebuild_hooks_tree'] = TRUE;
+$config['is_installed'] = FALSE;
+$config['rebuild_hooks_tree'] = FALSE;
 /*
 |--------------------------------------------------------------------------
 | URI PROTOCOL
@@ -171,7 +171,7 @@ $config['charset'] = "UTF-8";
 | setting this variable to TRUE (boolean).  See the user guide for details.
 |
 */
-$config['enable_hooks'] = FALSE;
+$config['enable_hooks'] = TRUE;
 
 
 /*
