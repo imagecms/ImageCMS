@@ -156,6 +156,7 @@ class Install extends MY_Controller {
 			$this->form_validation->set_rules('admin_login', 'Логин администратора', 'required|min_length[4]');
 			$this->form_validation->set_rules('admin_pass', 'Пароль администратора', 'required|min_length[5]');
 			$this->form_validation->set_rules('admin_mail', 'Почта администратра', 'required|valid_email');
+			$this->form_validation->set_rules('lang_sel', 'Язык', 'required');
 
 			if ($this->form_validation->run() == FALSE)
 			{
@@ -246,6 +247,7 @@ class Install extends MY_Controller {
 
 		// Update site title
 		mysql_query('UPDATE `settings` SET `site_title`=\''.mysql_real_escape_string($this->input->post('site_title')).'\' ', $link);
+        mysql_query('UPDATE `settings` SET `lang_sel`=\''.mysql_real_escape_string($this->input->post('lang_sel')).'\' ', $link);
 
 		// Create admin account
 		$this->load->helper('cookie');
