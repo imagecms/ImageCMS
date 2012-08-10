@@ -1,23 +1,11 @@
--- phpMyAdmin SQL Dump
--- version 3.3.2deb1ubuntu1
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Generation Time: Jun 19, 2012 at 06:51 PM
--- Server version: 5.1.63
--- PHP Version: 5.3.2-1ubuntu4.15
-
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
-
---
--- Database: `imageshop`
---
 
 -- --------------------------------------------------------
 
@@ -79,11 +67,6 @@ CREATE TABLE IF NOT EXISTS `category_translate` (
   KEY `name` (`name`,`lang`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
---
--- Dumping data for table `category_translate`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -92,32 +75,32 @@ CREATE TABLE IF NOT EXISTS `category_translate` (
 
 CREATE TABLE IF NOT EXISTS `comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `module` varchar(25) NOT NULL DEFAULT 'core',
-  `user_id` int(11) NOT NULL,
-  `user_name` varchar(50) NOT NULL,
-  `user_mail` varchar(50) NOT NULL,
-  `user_site` varchar(250) NOT NULL,
-  `item_id` bigint(11) NOT NULL,
-  `text` varchar(500) NOT NULL,
-  `date` int(11) NOT NULL,
-  `status` smallint(1) NOT NULL,
-  `agent` varchar(250) NOT NULL,
-  `user_ip` varchar(64) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `module` (`module`),
-  KEY `item_id` (`item_id`),
-  KEY `date` (`date`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
+  `module` varchar(25) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `user_name` varchar(50) DEFAULT NULL,
+  `user_mail` varchar(50) DEFAULT NULL,
+  `user_site` varchar(250) DEFAULT NULL,
+  `item_id` bigint(11) DEFAULT NULL,
+  `text` varchar(500) DEFAULT NULL,
+  `date` int(11) DEFAULT NULL,
+  `status` smallint(1) DEFAULT NULL,
+  `agent` varchar(250) DEFAULT NULL,
+  `user_ip` varchar(64) DEFAULT NULL,
+  `rate` int(11) DEFAULT NULL,
+  `text_plus` varchar(500) DEFAULT NULL,
+  `text_minus` varchar(500) DEFAULT NULL,
+  `like` int(11) DEFAULT '0',
+  `disslike` int(11) DEFAULT '0',
+  `parent` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `comments`
 --
 
-INSERT INTO `comments` (`id`, `module`, `user_id`, `user_name`, `user_mail`, `user_site`, `item_id`, `text`, `date`, `status`, `agent`, `user_ip`) VALUES
-(10, 'core', 1, 'admin', 'admin@localhost.loc', '', 32, 'Первый комментарий.', 1267280509, 0, 'Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/532.8 (KHTML, like Gecko) Chrome/4.0.302.2 Safari/532.8', '127.0.0.5'),
-(25, 'shop', 1, 'admin', 'admin@localhost.loc', '', 108, 'Отличный выбор!', 1328007661, 0, 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.7 (KHTML, like Gecko) Chrome/16.0.912.77 Safari/535.7', '127.0.0.2'),
-(28, 'shop', 1, 'admin', 'admin@localhost.loc', '', 108, '&quot;&gt;', 1333614943, 0, 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.83 Safari/535.11', '127.0.0.2'),
-(29, 'shop', 0, 'Kaero', 'grooteam@gmada.ss', '', 71, 'dasdasd', 1337863239, 0, 'Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:12.0) Gecko/20100101 Firefox/12.0', '127.0.0.1');
+INSERT INTO `comments` (`id`, `module`, `user_id`, `user_name`, `user_mail`, `user_site`, `item_id`, `text`, `date`, `status`, `agent`, `user_ip`, `rate`, `text_plus`, `text_minus`, `like`, `disslike`, `parent`) VALUES
+(4, 'shop', 1, 'admin', 'admin@localhost.loc', '', 75, 'Отличный выбор', 1344593562, 0, 'Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:14.0) Gecko/20100101 Firefox/14.0.1', '127.0.0.1', 5, '', '', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -138,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `components` (
   KEY `identif` (`identif`),
   KEY `enabled` (`enabled`),
   KEY `autoload` (`autoload`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=123 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=125 ;
 
 --
 -- Dumping data for table `components`
@@ -147,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `components` (
 INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_menu`, `settings`) VALUES
 (1, 'user_manager', 'user_manager', 0, 0, 0, NULL),
 (2, 'auth', 'auth', 1, 0, 0, NULL),
-(4, 'comments', 'comments', 1, 1, 1, 'a:5:{s:18:"max_comment_length";i:550;s:6:"period";i:0;s:11:"can_comment";i:0;s:11:"use_captcha";b:0;s:14:"use_moderation";b:0;}'),
+(124, 'comments', 'comments', 1, 0, 1, NULL),
 (7, 'navigation', 'navigation', 0, 0, 1, NULL),
 (30, 'tags', 'tags', 1, 1, 1, NULL),
 (92, 'gallery', 'gallery', 1, 0, 1, 'a:26:{s:13:"max_file_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:2:"95";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:0;s:14:"prev_img_width";s:3:"500";s:15:"prev_img_height";s:3:"500";s:11:"thumb_width";s:3:"100";s:12:"thumb_height";s:3:"100";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:19:"watermark_font_path";s:20:"./system/fonts/1.ttf";s:15:"watermark_image";s:0:"";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";}'),
@@ -333,10 +316,42 @@ CREATE TABLE IF NOT EXISTS `content_tags` (
   KEY `tag_id` (`tag_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=119 ;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `content_tags`
+-- Table structure for table `custom_fields`
 --
 
+CREATE TABLE IF NOT EXISTS `custom_fields` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `field_type_id` int(11) NOT NULL,
+  `field_name` varchar(64) NOT NULL,
+  `field_label` varchar(64) NOT NULL,
+  `field_description` text,
+  `is_required` tinyint(1) NOT NULL DEFAULT '1',
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `is_private` tinyint(1) NOT NULL DEFAULT '0',
+  `possible_values` text,
+  `validators` varchar(255) DEFAULT NULL,
+  `field_access_rules` text,
+  `entity` varchar(32) DEFAULT NULL,
+  `options` varchar(65) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `custom_fields_data`
+--
+
+CREATE TABLE IF NOT EXISTS `custom_fields_data` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `field_id` int(11) NOT NULL,
+  `entity_id` int(11) NOT NULL,
+  `field_data` text,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -466,11 +481,6 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
   KEY `time` (`time`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=57 ;
 
---
--- Dumping data for table `login_attempts`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -485,7 +495,7 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `date` (`date`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=76 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=103 ;
 
 --
 -- Dumping data for table `logs`
@@ -566,7 +576,34 @@ INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
 (72, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1340120888),
 (73, 1, 'admin', 'Очистил кеш', 1340121004),
 (74, 1, 'admin', 'Изменил настройки сайта', 1340121068),
-(75, 1, 'admin', 'Изменил настройки сайта', 1340121079);
+(75, 1, 'admin', 'Изменил настройки сайта', 1340121079),
+(76, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1341221521),
+(77, 1, 'admin', 'Очистил кеш', 1341225009),
+(78, 1, 'admin', 'Очистил кеш', 1341238429),
+(79, 1, 'admin', 'Удалил модуль comments', 1344517676),
+(80, 1, 'admin', 'Установил модуль comments', 1344517684),
+(81, 1, 'admin', 'Удалил модуль comments', 1344517770),
+(82, 1, 'admin', 'Установил модуль comments', 1344517877),
+(83, 1, 'admin', 'Изменил настройки модуля comments', 1344517916),
+(84, 1, 'admin', 'Очистил кеш', 1344517962),
+(85, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1344524231),
+(86, 1, 'admin', 'Очистил кеш', 1344524407),
+(87, 1, 'admin', 'Изменил настройки сайта', 1344524555),
+(88, 1, 'admin', 'Изменил настройки сайта', 1344524594),
+(89, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1344585406),
+(90, 1, 'admin', 'Изменил настройки сайта', 1344585959),
+(91, 1, 'admin', 'Changed wesite settings', 1344586559),
+(92, 1, 'admin', 'Changed wesite settings', 1344586565),
+(93, 1, 'admin', 'Changed wesite settings', 1344586569),
+(94, 1, 'admin', 'Изменил настройки сайта', 1344586701),
+(95, 1, 'admin', 'Changed wesite settings', 1344587945),
+(96, 1, 'admin', 'Изменил настройки сайта', 1344588191),
+(97, 1, 'admin', 'Changed wesite settings', 1344588197),
+(98, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1344592635),
+(99, 1, 'admin', 'Вышел из панели управления', 1344592991),
+(100, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1344593290),
+(101, 1, 'admin', 'Изменил настройки модуля comments', 1344593517),
+(102, 1, 'admin', 'Изменил настройки модуля comments', 1344593524);
 
 -- --------------------------------------------------------
 
@@ -708,7 +745,7 @@ CREATE TABLE IF NOT EXISTS `propel_migration` (
 --
 
 INSERT INTO `propel_migration` (`version`) VALUES
-(1340009682);
+(1344519311);
 
 -- --------------------------------------------------------
 
@@ -758,11 +795,6 @@ CREATE TABLE IF NOT EXISTS `search` (
   KEY `datetime` (`datetime`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
---
--- Dumping data for table `search`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -787,12 +819,15 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `site_template` varchar(50) NOT NULL,
   `site_offline` varchar(5) NOT NULL,
   `google_analytics_id` varchar(40) DEFAULT NULL,
+  `google_webmaster` varchar(40) DEFAULT NULL,
+  `yandex_webmaster` varchar(100) DEFAULT NULL,
   `main_type` varchar(50) NOT NULL,
   `main_page_id` int(11) NOT NULL,
   `main_page_cat` text NOT NULL,
   `main_page_module` varchar(50) NOT NULL,
   `sidepanel` varchar(5) NOT NULL,
   `lk` varchar(250) DEFAULT NULL,
+  `lang_sel` varchar(50) NOT NULL DEFAULT 'russian_lang',
   PRIMARY KEY (`id`),
   KEY `s_name` (`s_name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
@@ -801,8 +836,8 @@ CREATE TABLE IF NOT EXISTS `settings` (
 -- Dumping data for table `settings`
 --
 
-INSERT INTO `settings` (`id`, `s_name`, `site_title`, `site_short_title`, `site_description`, `site_keywords`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`) VALUES
-(2, 'main', 'ImageCMS Shop - интернет-магазин качественной техники', 'ImageCMS Shop', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники', 'auto', 'auto', '0', '0', 1, 1, '/', 'full', 'commerce', 'no', '', 'module', 69, '56', 'shop', '', '');
+INSERT INTO `settings` (`id`, `s_name`, `site_title`, `site_short_title`, `site_description`, `site_keywords`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `google_webmaster`, `yandex_webmaster`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`) VALUES
+(2, 'main', 'ImageCMS Shop - интернет-магазин качественной техники', 'ImageCMS Shop', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники', 'auto', 'auto', '0', '0', 1, 1, '/', 'full', 'commerce', 'no', '', '', '', 'module', 69, '56', 'shop', '', '', 'russian_lang');
 
 -- --------------------------------------------------------
 
@@ -934,11 +969,6 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks` (
   KEY `shop_callbacks_I_4` (`date`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
 
---
--- Dumping data for table `shop_callbacks`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -1038,6 +1068,8 @@ CREATE TABLE IF NOT EXISTS `shop_category` (
   `active` tinyint(1) DEFAULT NULL,
   `external_id` varchar(255) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
+  `tpl` varchar(250) DEFAULT NULL,
+  `order_method` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_category_I_2` (`url`),
   KEY `shop_category_I_3` (`active`),
@@ -1050,24 +1082,24 @@ CREATE TABLE IF NOT EXISTS `shop_category` (
 -- Dumping data for table `shop_category`
 --
 
-INSERT INTO `shop_category` (`id`, `url`, `parent_id`, `position`, `full_path`, `full_path_ids`, `active`, `external_id`, `image`) VALUES
-(52, 'avto_muzyka_i_video', 0, 17, 'avto_muzyka_i_video', 'a:0:{}', 1, NULL, NULL),
-(51, 'bluetooth', 48, 16, 'domashniaia_elektronika/bluetooth', 'a:1:{i:0;i:48;}', 1, NULL, NULL),
-(50, 'telefony', 48, 15, 'domashniaia_elektronika/telefony', 'a:1:{i:0;i:48;}', 1, NULL, NULL),
-(48, 'domashniaia_elektronika', 0, 13, 'domashniaia_elektronika', 'a:0:{}', 1, NULL, NULL),
-(46, 'fotoprintery', 44, 11, 'foto_i_kamery/fotoprintery', 'a:1:{i:0;i:44;}', 1, NULL, NULL),
-(45, 'tsifrovye_kamery', 44, 10, 'foto_i_kamery/tsifrovye_kamery', 'a:1:{i:0;i:44;}', 1, NULL, NULL),
-(44, 'foto_i_kamery', 0, 9, 'foto_i_kamery', 'a:0:{}', 1, NULL, NULL),
-(43, 'saund_bary', 40, 8, 'domashnee_audio/saund_bary', 'a:1:{i:0;i:40;}', 1, NULL, NULL),
-(41, 'domashnie_teatry', 40, 6, 'domashnee_audio/domashnie_teatry', 'a:1:{i:0;i:40;}', 1, NULL, NULL),
-(40, 'domashnee_audio', 0, 5, 'domashnee_audio', 'a:0:{}', 1, NULL, NULL),
-(36, 'video', 0, 1, 'video', 'a:0:{}', 1, NULL, NULL),
-(37, 'tv_hdtv', 36, 2, 'video/tv_hdtv', 'a:1:{i:0;i:36;}', 1, NULL, NULL),
-(38, 'dvd_dvr_pleery', 36, 3, 'video/dvd_dvr_pleery', 'a:1:{i:0;i:36;}', 1, NULL, NULL),
-(39, 'blu-ray', 36, 4, 'video/blu-ray', 'a:1:{i:0;i:36;}', 1, NULL, NULL),
-(53, 'subwoofer', 52, 18, 'avto_muzyka_i_video/subwoofer', 'a:1:{i:0;i:52;}', 1, NULL, NULL),
-(54, 'cd_chendzhery', 52, 19, 'avto_muzyka_i_video/cd_chendzhery', 'a:1:{i:0;i:52;}', 1, NULL, NULL),
-(55, 'gps', 52, 20, 'avto_muzyka_i_video/gps', 'a:1:{i:0;i:52;}', 1, NULL, NULL);
+INSERT INTO `shop_category` (`id`, `url`, `parent_id`, `position`, `full_path`, `full_path_ids`, `active`, `external_id`, `image`, `tpl`, `order_method`) VALUES
+(52, 'avto_muzyka_i_video', 0, 17, 'avto_muzyka_i_video', 'a:0:{}', 1, NULL, NULL, NULL, NULL),
+(51, 'bluetooth', 48, 16, 'domashniaia_elektronika/bluetooth', 'a:1:{i:0;i:48;}', 1, NULL, NULL, NULL, NULL),
+(50, 'telefony', 48, 15, 'domashniaia_elektronika/telefony', 'a:1:{i:0;i:48;}', 1, NULL, NULL, NULL, NULL),
+(48, 'domashniaia_elektronika', 0, 13, 'domashniaia_elektronika', 'a:0:{}', 1, NULL, NULL, NULL, NULL),
+(46, 'fotoprintery', 44, 11, 'foto_i_kamery/fotoprintery', 'a:1:{i:0;i:44;}', 1, NULL, NULL, NULL, NULL),
+(45, 'tsifrovye_kamery', 44, 10, 'foto_i_kamery/tsifrovye_kamery', 'a:1:{i:0;i:44;}', 1, NULL, NULL, NULL, NULL),
+(44, 'foto_i_kamery', 0, 9, 'foto_i_kamery', 'a:0:{}', 1, NULL, NULL, NULL, NULL),
+(43, 'saund_bary', 40, 8, 'domashnee_audio/saund_bary', 'a:1:{i:0;i:40;}', 1, NULL, NULL, NULL, NULL),
+(41, 'domashnie_teatry', 40, 6, 'domashnee_audio/domashnie_teatry', 'a:1:{i:0;i:40;}', 1, NULL, NULL, NULL, NULL),
+(40, 'domashnee_audio', 0, 5, 'domashnee_audio', 'a:0:{}', 1, NULL, NULL, NULL, NULL),
+(36, 'video', 0, 1, 'video', 'a:0:{}', 1, NULL, NULL, NULL, NULL),
+(37, 'tv_hdtv', 36, 2, 'video/tv_hdtv', 'a:1:{i:0;i:36;}', 1, NULL, NULL, NULL, NULL),
+(38, 'dvd_dvr_pleery', 36, 3, 'video/dvd_dvr_pleery', 'a:1:{i:0;i:36;}', 1, NULL, NULL, NULL, NULL),
+(39, 'blu-ray', 36, 4, 'video/blu-ray', 'a:1:{i:0;i:36;}', 1, NULL, NULL, NULL, NULL),
+(53, 'subwoofer', 52, 18, 'avto_muzyka_i_video/subwoofer', 'a:1:{i:0;i:52;}', 1, NULL, NULL, NULL, NULL),
+(54, 'cd_chendzhery', 52, 19, 'avto_muzyka_i_video/cd_chendzhery', 'a:1:{i:0;i:52;}', 1, NULL, NULL, NULL, NULL),
+(55, 'gps', 52, 20, 'avto_muzyka_i_video/gps', 'a:1:{i:0;i:52;}', 1, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1162,7 +1194,7 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods` (
 --
 
 INSERT INTO `shop_delivery_methods` (`id`, `price`, `free_from`, `enabled`, `is_price_in_percent`) VALUES
-(7, 0.00, 0.00, 1, 0),
+(7, 200.00, 1000.00, 1, 0),
 (5, 0.00, 0.00, 1, 0),
 (6, 0.00, 0.00, 1, 0);
 
@@ -1213,8 +1245,6 @@ INSERT INTO `shop_delivery_methods_systems` (`delivery_method_id`, `payment_meth
 (5, 2),
 (5, 3),
 (5, 4),
-(6, 1),
-(6, 2),
 (6, 3),
 (6, 4),
 (7, 1);
@@ -1251,6 +1281,22 @@ INSERT INTO `shop_discounts` (`id`, `name`, `active`, `date_start`, `date_stop`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `shop_gifts`
+--
+
+CREATE TABLE IF NOT EXISTS `shop_gifts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `key` varchar(255) DEFAULT NULL,
+  `active` int(11) DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
+  `created` int(11) DEFAULT NULL,
+  `espdate` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `shop_kit`
 --
 
@@ -1262,11 +1308,6 @@ CREATE TABLE IF NOT EXISTS `shop_kit` (
   PRIMARY KEY (`id`),
   KEY `shop_kit_FI_1` (`product_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `shop_kit`
---
-
 
 -- --------------------------------------------------------
 
@@ -1281,11 +1322,6 @@ CREATE TABLE IF NOT EXISTS `shop_kit_product` (
   PRIMARY KEY (`product_id`,`kit_id`),
   KEY `shop_kit_product_FI_2` (`kit_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `shop_kit_product`
---
-
 
 -- --------------------------------------------------------
 
@@ -1315,11 +1351,6 @@ CREATE TABLE IF NOT EXISTS `shop_notifications` (
   KEY `shop_notifications_FI_1` (`product_id`),
   KEY `shop_notifications_FI_2` (`variant_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `shop_notifications`
---
-
 
 -- --------------------------------------------------------
 
@@ -1389,22 +1420,22 @@ CREATE TABLE IF NOT EXISTS `shop_orders` (
   `user_id` int(11) DEFAULT NULL,
   `payment_method` int(11) DEFAULT NULL,
   `total_price` float(10,2) DEFAULT NULL,
+  `external_id` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_orders_I_1` (`key`),
   KEY `shop_orders_I_2` (`status`),
   KEY `shop_orders_I_3` (`date_created`),
   KEY `shop_orders_FI_1` (`delivery_method`),
   KEY `shop_orders_FI_2` (`payment_method`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `shop_orders`
 --
 
-INSERT INTO `shop_orders` (`id`, `key`, `delivery_method`, `delivery_price`, `status`, `paid`, `user_full_name`, `user_email`, `user_phone`, `user_deliver_to`, `user_comment`, `date_created`, `date_updated`, `user_ip`, `user_id`, `payment_method`, `total_price`) VALUES
-(1, '9y6z99576n', 5, 0.00, 1, NULL, 'Administrator', 'admin@example.com', '', 'Тестер Siteimage', '', 1336662355, 1336662355, '127.0.0.1', 1, 1, 219.99),
-(4, '6niq064559', 7, 0.00, 1, NULL, 'Administrator', 'admin@example.com', '', '', '', 1337695305, 1337695305, '127.0.0.1', 1, 1, 2799.97),
-(7, '8510ub81h3', 5, 0.00, 2, 1, 'Administrator', 'admin@localhost.loc', '', '', '', 1337850902, 1337850902, '127.0.0.1', 1, 4, 1697.99);
+INSERT INTO `shop_orders` (`id`, `key`, `delivery_method`, `delivery_price`, `status`, `paid`, `user_full_name`, `user_email`, `user_phone`, `user_deliver_to`, `user_comment`, `date_created`, `date_updated`, `user_ip`, `user_id`, `payment_method`, `total_price`, `external_id`) VALUES
+(12, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(13, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1426,20 +1457,7 @@ CREATE TABLE IF NOT EXISTS `shop_orders_products` (
   PRIMARY KEY (`id`),
   KEY `shop_orders_products_I_1` (`order_id`),
   KEY `shop_orders_products_FI_1` (`product_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
-
---
--- Dumping data for table `shop_orders_products`
---
-
-INSERT INTO `shop_orders_products` (`id`, `order_id`, `product_id`, `variant_id`, `product_name`, `variant_name`, `price`, `quantity`, `kit_id`, `is_main`) VALUES
-(1, 1, 108, 119, 'Plantronics CS55 Wireless Earset', '', 219.99, 1, NULL, NULL),
-(7, 4, 72, 83, 'LG 47LD450 - 47" Widescreen 1080p LCD HDTV', '', 999.99, 1, NULL, NULL),
-(8, 4, 73, 84, 'Panasonic Viera TC-L42U22 42', '', 899.99, 1, NULL, NULL),
-(9, 4, 74, 85, 'Samsung LN40C650 40" LCD TV', '', 899.99, 1, NULL, NULL),
-(13, 7, 75, 86, 'Calypso CLP-32LC1A 32" LCD 720p LCD', '', 299.00, 1, NULL, NULL),
-(14, 7, 72, 83, 'LG 47LD450 - 47" Widescreen 1080p LCD HDTV', '', 999.99, 1, NULL, NULL),
-(15, 7, 76, 87, 'Calypso CLP-32LE110 32 русс', 'Красный', 399.00, 1, NULL, NULL);
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 -- --------------------------------------------------------
 
@@ -1458,13 +1476,6 @@ CREATE TABLE IF NOT EXISTS `shop_orders_status_history` (
   KEY `shop_orders_status_history_I_1` (`order_id`),
   KEY `shop_orders_status_history_FI_2` (`status_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
-
---
--- Dumping data for table `shop_orders_status_history`
---
-
-INSERT INTO `shop_orders_status_history` (`id`, `order_id`, `status_id`, `user_id`, `date_created`, `comment`) VALUES
-(7, 7, 2, 1, 1337851929, NULL);
 
 -- --------------------------------------------------------
 
@@ -1590,6 +1601,8 @@ CREATE TABLE IF NOT EXISTS `shop_products` (
   `external_id` varchar(255) DEFAULT NULL,
   `mainModImage` varchar(255) DEFAULT NULL,
   `smallModImage` varchar(255) DEFAULT NULL,
+  `tpl` varchar(250) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_products_I_2` (`url`),
   KEY `shop_products_I_3` (`brand_id`),
@@ -1601,66 +1614,66 @@ CREATE TABLE IF NOT EXISTS `shop_products` (
 -- Dumping data for table `shop_products`
 --
 
-INSERT INTO `shop_products` (`id`, `url`, `active`, `hit`, `brand_id`, `category_id`, `related_products`, `mainImage`, `smallImage`, `created`, `updated`, `old_price`, `views`, `hot`, `action`, `added_to_cart_count`, `enable_comments`, `external_id`, `mainModImage`, `smallModImage`) VALUES
-(71, '71', 1, NULL, 28, 37, '74,72,73', '71_main.jpg', '71_small.jpg', 1307542725, 1337881902, 1150.00, 62, 1, 1, 1, 1, NULL, '71_mainMod.jpg', '71_smallMod.jpg'),
-(72, '72', 1, NULL, 27, 37, '', '72_main.jpg', '72_small.jpg', 1307542324, 1337930724, 0.00, 25, 1, 1, 6, 1, NULL, '72_mainMod.jpg', '72_smallMod.jpg'),
-(73, '73', 1, NULL, 30, 37, '', '73_main.jpg', '73_small.jpg', 1307541561, 1337883015, 0.00, 28, 1, 1, 4, 1, NULL, '73_mainMod.jpg', '73_smallMod.jpg'),
-(74, '74', 1, NULL, 31, 37, '', '74_main.jpg', '74_small.jpg', 1307543711, 1337881567, 0.00, 57, 1, 1, 3, 1, NULL, '74_mainMod.jpg', '74_smallMod.jpg'),
-(75, '75', 1, NULL, 31, 37, '', '75_main.jpg', '75_small.jpg', 1307544631, 1337883138, 0.00, 93, 1, NULL, 3, 1, NULL, '75_mainMod.jpg', '75_smallMod.jpg'),
-(76, '76', 1, NULL, 0, 37, '84,73', '76_main.jpg', '76_small.jpg', 1307543917, 1337881285, 0.00, 334, 1, 1, 4, 1, NULL, '76_mainMod.jpg', '76_smallMod.jpg'),
-(96, '96', 1, 1, 0, 45, '', '96_main.jpg', '96_small.jpg', 1307542081, 1337885246, 0.00, 2, NULL, NULL, NULL, 1, NULL, '96_mainMod.jpg', '96_smallMod.jpg'),
-(77, '77', 1, NULL, 0, 38, '', '77_main.jpg', '77_small.jpg', 1307542980, 1337931461, 0.00, 7, NULL, NULL, NULL, 1, NULL, '77_mainMod.jpg', '77_smallMod.jpg'),
-(78, '78', 1, NULL, 0, 38, '', '78_main.jpg', '78_small.jpg', 1307543572, 1337883493, 0.00, 2, NULL, NULL, 2, 1, NULL, '78_mainMod.jpg', '78_smallMod.jpg'),
-(79, '79', 1, NULL, 0, 38, '', '79_main.jpg', '79_small.jpg', 1307544450, 1337883384, 0.00, 1, NULL, NULL, NULL, 1, NULL, '79_mainMod.jpg', '79_smallMod.jpg'),
-(80, '80', 1, NULL, 26, 38, '', '80_main.jpg', '80_small.jpg', 1307544569, 1337883343, 0.00, 4, NULL, NULL, 1, 1, NULL, '80_mainMod.jpg', '80_smallMod.jpg'),
-(81, '81', 1, NULL, 30, 38, '', '81_main.jpg', '81_small.jpg', 1307544442, 1337930753, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '81_mainMod.jpg', '81_smallMod.jpg'),
-(82, '82', 1, NULL, 0, 39, '', '82_main.jpg', '82_small.jpg', 1307542064, 1337884172, 0.00, 5, NULL, NULL, NULL, 1, NULL, '82_mainMod.jpg', '82_smallMod.jpg'),
-(83, '83', 1, NULL, 0, 39, '', '83_main.jpg', '83_small.jpg', 1307545378, 1337884074, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '83_mainMod.jpg', '83_smallMod.jpg'),
-(84, '84', 1, NULL, 0, 39, '', '84_main.jpg', '84_small.jpg', 1307541602, 1337883993, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '84_mainMod.jpg', '84_smallMod.jpg'),
-(85, '85', 1, NULL, 0, 39, '', '85_main.jpg', '85_small.jpg', 1307544238, 1337883847, 0.00, 5, NULL, NULL, NULL, 1, NULL, '85_mainMod.jpg', '85_smallMod.jpg'),
-(86, '86', 1, NULL, 0, 39, '', '86_main.jpg', '86_small.jpg', 1307545023, 1337883763, 0.00, 1, NULL, NULL, NULL, 1, NULL, '86_mainMod.jpg', '86_smallMod.jpg'),
-(87, '87', 1, NULL, 0, 41, '', '87_main.jpg', '87_small.jpg', 1307541766, 1337884534, 0.00, 16, NULL, NULL, NULL, 1, NULL, '87_mainMod.jpg', '87_smallMod.jpg'),
-(88, '88', 1, NULL, 0, 41, '', '88_main.jpg', '88_small.jpg', 1307544977, 1337884469, 0.00, 1, NULL, NULL, NULL, 1, NULL, '88_mainMod.jpg', '88_smallMod.jpg'),
-(95, '95', 1, NULL, 0, 45, '', '95_main.jpg', '95_small.jpg', 1307542081, 1337885304, 0.00, 4, NULL, NULL, NULL, 1, NULL, '95_mainMod.jpg', '95_smallMod.jpg'),
-(89, '89', 1, NULL, 0, 41, '', '89_main.jpg', '89_small.jpg', 1307541636, 1337884382, 0.00, 1, NULL, NULL, NULL, 1, NULL, '89_mainMod.jpg', '89_smallMod.jpg'),
-(90, '90', 1, NULL, 0, 41, '', '90_main.jpg', '90_small.jpg', 1307543337, 1337884302, 0.00, 3, NULL, NULL, NULL, 1, NULL, '90_mainMod.jpg', '90_smallMod.jpg'),
-(91, '91', 1, NULL, 0, 41, '', '91_main.jpg', '91_small.jpg', 1307544214, 1337884258, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '91_mainMod.jpg', '91_smallMod.jpg'),
-(92, '92', 1, NULL, 0, 43, '', '92_main.jpg', '92_small.jpg', 1307544791, 1337884861, 0.00, 1, NULL, NULL, NULL, 1, NULL, '92_mainMod.jpg', '92_smallMod.jpg'),
-(93, '93', 1, NULL, 0, 43, '', '93_main.jpg', '93_small.jpg', 1307542628, 1337884821, 0.00, 1, NULL, NULL, NULL, 1, NULL, '93_mainMod.jpg', '93_smallMod.jpg'),
-(94, '94', 1, NULL, 0, 43, '', '94_main.jpg', '94_small.jpg', 1307544425, 1337884748, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '94_mainMod.jpg', '94_smallMod.jpg'),
-(97, '97', 1, NULL, 0, 45, '', '97_main.jpg', '97_small.jpg', 1307541628, 1337885206, 0.00, 2, NULL, NULL, NULL, 1, NULL, '97_mainMod.jpg', '97_smallMod.jpg'),
-(98, '98', 1, 1, 0, 45, '', '98_main.jpg', '98_small.jpg', 1307542730, 1337885026, 0.00, 14, NULL, NULL, NULL, 1, NULL, '98_mainMod.jpg', '98_smallMod.jpg'),
-(99, '99', 1, NULL, 0, 45, '', '99_main.jpg', '99_small.jpg', 1307543877, 1337884953, 0.00, 1, NULL, NULL, NULL, 1, NULL, '99_mainMod.jpg', '99_smallMod.jpg'),
-(100, '100', 1, NULL, 0, 46, '', '100_main.jpg', '100_small.jpg', 1307543018, 1337885677, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '100_mainMod.jpg', '100_smallMod.jpg'),
-(101, '101', 1, NULL, 0, 46, '', '101_main.jpg', '101_small.jpg', 1307543107, 1337885614, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '101_mainMod.jpg', '101_smallMod.jpg'),
-(102, '102', 1, NULL, 0, 46, '', '102_main.jpg', '102_small.jpg', 1307545161, 1337885576, 0.00, 6, NULL, NULL, NULL, 1, NULL, '102_mainMod.jpg', '102_smallMod.jpg'),
-(103, '103', 1, NULL, 0, 46, '', '103_main.jpg', '103_small.jpg', 1307543901, 1337885481, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '103_mainMod.jpg', '103_smallMod.jpg'),
-(104, '104', 1, NULL, 0, 46, '', '104_main.jpg', '104_small.jpg', 1307543227, 1337885425, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '104_mainMod.jpg', '104_smallMod.jpg'),
-(105, '105', 1, NULL, 0, 50, '', '105_main.jpg', '105_small.jpg', 1307543429, 1337886062, 0.00, 2, NULL, NULL, NULL, 1, NULL, '105_mainMod.jpg', '105_smallMod.jpg'),
-(106, '106', 1, 1, 0, 50, '', '106_main.jpg', '106_small.jpg', 1307543089, 1337885998, 0.00, 12, NULL, NULL, 1, 1, NULL, '106_mainMod.jpg', '106_smallMod.jpg'),
-(107, '107', 1, NULL, 0, 50, '', '107_main.jpg', '107_small.jpg', 1307541701, 1337885945, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '107_mainMod.jpg', '107_smallMod.jpg'),
-(108, '108', 1, 1, 0, 50, '', '108_main.jpg', '108_small.jpg', 1307544069, 1337885840, 0.00, 125, NULL, NULL, 4, 1, NULL, '108_mainMod.jpg', '108_smallMod.jpg'),
-(109, '109', 1, NULL, 0, 50, '', '109_main.jpg', '109_small.jpg', 1307544627, 1337885755, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '109_mainMod.jpg', '109_smallMod.jpg'),
-(110, '110', 1, NULL, 0, 51, '', '110_main.jpg', '110_small.jpg', 1307543831, 1337886363, 0.00, 5, NULL, NULL, 2, 1, NULL, '110_mainMod.jpg', '110_smallMod.jpg'),
-(111, '111', 1, NULL, 0, 51, '', '111_main.jpg', '111_small.jpg', 1307543077, 1337886318, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '111_mainMod.jpg', '111_smallMod.jpg'),
-(112, '112', 1, NULL, 0, 51, '', '112_main.jpg', '112_small.jpg', 1307543753, 1337886243, 0.00, 5, NULL, NULL, 1, 1, NULL, '112_mainMod.jpg', '112_smallMod.jpg'),
-(113, '113', 1, NULL, 0, 51, '', '113_main.jpg', '113_small.jpg', 1307542831, 1337886210, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '113_mainMod.jpg', '113_smallMod.jpg'),
-(114, '114', 1, NULL, 0, 51, '', '114_main.jpg', '114_small.jpg', 1307543699, 1337886165, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '114_mainMod.jpg', '114_smallMod.jpg'),
-(115, '115', 1, NULL, 0, 53, '', '115_main.jpg', '115_small.jpg', 1307543689, 1337886710, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '115_mainMod.jpg', '115_smallMod.jpg'),
-(116, '116', 1, NULL, 0, 53, '', '116_main.jpg', '116_small.jpg', 1307542992, 1337886664, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '116_mainMod.jpg', '116_smallMod.jpg'),
-(117, '117', 1, NULL, 0, 53, '', '117_main.jpg', '117_small.jpg', 1307542495, 1337886566, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '117_mainMod.jpg', '117_smallMod.jpg'),
-(118, '118', 1, NULL, 0, 53, '', '118_main.jpg', '118_small.jpg', 1307543269, 1337886505, 0.00, 1, NULL, NULL, NULL, 1, NULL, '118_mainMod.jpg', '118_smallMod.jpg'),
-(119, '119', 1, 1, 0, 53, '', '119_main.jpg', '119_small.jpg', 1307543316, 1337886463, 0.00, 7, NULL, NULL, NULL, 1, NULL, '119_mainMod.jpg', '119_smallMod.jpg'),
-(120, '120', 1, NULL, 0, 54, '', '120_main.jpg', '120_small.jpg', 1307542029, 1337887579, 0.00, 1, NULL, NULL, NULL, 1, NULL, '120_mainMod.jpg', '120_smallMod.jpg'),
-(121, '121', 1, NULL, 0, 54, '', '121_main.jpg', '121_small.jpg', 1307543909, 1337887020, 0.00, 4, NULL, NULL, NULL, 1, NULL, '121_mainMod.jpg', '121_smallMod.jpg'),
-(122, '122', 1, NULL, 0, 54, '', '122_main.jpg', '122_small.jpg', 1307543511, 1337886968, 0.00, 1, NULL, NULL, NULL, 1, NULL, '122_mainMod.jpg', '122_smallMod.jpg'),
-(123, '123', 1, NULL, 0, 54, '', '123_main.jpg', '123_small.jpg', 1307543925, 1337886912, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '123_mainMod.jpg', '123_smallMod.jpg'),
-(124, '124', 1, NULL, 0, 54, '', '124_main.jpg', '124_small.jpg', 1307542680, 1337886835, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '124_mainMod.jpg', '124_smallMod.jpg'),
-(125, '125', 1, NULL, 0, 55, '', '125_main.jpg', '125_small.jpg', 1307542859, 1337887433, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '125_mainMod.jpg', '125_smallMod.jpg'),
-(126, '126', 1, NULL, 0, 55, '', '126_main.jpg', '126_small.jpg', 1307545111, 1337887374, 0.00, 1, NULL, NULL, NULL, 1, NULL, '126_mainMod.jpg', '126_smallMod.jpg'),
-(127, '127', 1, NULL, 0, 55, '', '127_main.jpg', '127_small.jpg', 1307541663, 1337887330, 0.00, 1, NULL, NULL, NULL, 1, NULL, '127_mainMod.jpg', '127_smallMod.jpg'),
-(128, '128', 1, NULL, 0, 36, '', '128_main.jpg', '128_small.jpg', 1307543046, 1328721887, 0.00, 4, NULL, NULL, NULL, 1, NULL, NULL, NULL),
-(129, '129', 1, NULL, 0, 55, '', '129_main.jpg', '129_small.jpg', 1307542398, 1337887298, 0.00, 55, NULL, NULL, NULL, 1, NULL, '129_mainMod.jpg', '129_smallMod.jpg');
+INSERT INTO `shop_products` (`id`, `url`, `active`, `hit`, `brand_id`, `category_id`, `related_products`, `mainImage`, `smallImage`, `created`, `updated`, `old_price`, `views`, `hot`, `action`, `added_to_cart_count`, `enable_comments`, `external_id`, `mainModImage`, `smallModImage`, `tpl`, `user_id`) VALUES
+(71, '71', 1, NULL, 28, 37, '74,72,73', '71_main.jpg', '71_small.jpg', 1307542725, 1344512902, 1150.00, 68, 1, 1, 1, 1, NULL, '71_mainMod.jpg', '71_smallMod.jpg', '', NULL),
+(72, '72', 1, NULL, 27, 37, '', '72_main.jpg', '72_small.jpg', 1307542324, 1344512865, 0.00, 27, 1, 1, 6, 1, NULL, '72_mainMod.jpg', '72_smallMod.jpg', '', NULL),
+(73, '73', 1, NULL, 30, 37, '', '73_main.jpg', '73_small.jpg', 1307541561, 1344513030, 0.00, 74, 1, 1, 5, 1, NULL, '73_mainMod.jpg', '73_smallMod.jpg', '', NULL),
+(74, '74', 1, NULL, 31, 37, '', '74_main.jpg', '74_small.jpg', 1307543711, 1344518725, 0.00, 59, 1, 1, 3, 1, NULL, '74_mainMod.jpg', '74_smallMod.jpg', '', NULL),
+(75, '75', 1, NULL, 31, 37, '', '75_main.jpg', '75_small.jpg', 1307544631, 1344523754, 0.00, 101, 1, NULL, 5, 1, NULL, '75_mainMod.jpg', '75_smallMod.jpg', '', NULL),
+(76, '76', 1, NULL, 0, 37, '', '76_main.jpg', '76_small.jpg', 1307543917, 1344524062, 0.00, 386, 1, 1, 4, 1, NULL, '76_mainMod.jpg', '76_smallMod.jpg', '', NULL),
+(96, '96', 1, 1, 0, 45, '', '96_main.jpg', '96_small.jpg', 1307542081, 1337885246, 0.00, 2, NULL, NULL, NULL, 1, NULL, '96_mainMod.jpg', '96_smallMod.jpg', NULL, NULL),
+(77, '77', 1, NULL, 28, 38, '', '77_main.jpg', '77_small.jpg', 1307542980, 1344517369, 0.00, 7, NULL, NULL, NULL, 1, NULL, '77_mainMod.jpg', '77_smallMod.jpg', '', NULL),
+(78, '78', 1, NULL, 26, 38, '', '78_main.jpg', '78_small.jpg', 1307543572, 1344517359, 0.00, 2, NULL, NULL, 2, 1, NULL, '78_mainMod.jpg', '78_smallMod.jpg', '', NULL),
+(79, '79', 1, NULL, 30, 38, '', '79_main.jpg', '79_small.jpg', 1307544450, 1344517347, 0.00, 1, NULL, NULL, NULL, 1, NULL, '79_mainMod.jpg', '79_smallMod.jpg', '', NULL),
+(80, '80', 1, NULL, 26, 38, '', '80_main.jpg', '80_small.jpg', 1307544569, 1344516598, 0.00, 13, NULL, NULL, 1, 1, NULL, '80_mainMod.jpg', '80_smallMod.jpg', '', NULL),
+(81, '81', 1, NULL, 30, 38, '', '81_main.jpg', '81_small.jpg', 1307544442, 1344516586, 0.00, 1, NULL, NULL, NULL, 1, NULL, '81_mainMod.jpg', '81_smallMod.jpg', '', NULL),
+(82, '82', 1, NULL, 0, 39, '', '82_main.jpg', '82_small.jpg', 1307542064, 1337884172, 0.00, 5, NULL, NULL, NULL, 1, NULL, '82_mainMod.jpg', '82_smallMod.jpg', NULL, NULL),
+(83, '83', 1, NULL, 0, 39, '', '83_main.jpg', '83_small.jpg', 1307545378, 1337884074, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '83_mainMod.jpg', '83_smallMod.jpg', NULL, NULL),
+(84, '84', 1, NULL, 0, 39, '', '84_main.jpg', '84_small.jpg', 1307541602, 1337883993, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '84_mainMod.jpg', '84_smallMod.jpg', NULL, NULL),
+(85, '85', 1, NULL, 0, 39, '', '85_main.jpg', '85_small.jpg', 1307544238, 1337883847, 0.00, 5, NULL, NULL, NULL, 1, NULL, '85_mainMod.jpg', '85_smallMod.jpg', NULL, NULL),
+(86, '86', 1, NULL, 0, 39, '', '86_main.jpg', '86_small.jpg', 1307545023, 1337883763, 0.00, 1, NULL, NULL, NULL, 1, NULL, '86_mainMod.jpg', '86_smallMod.jpg', NULL, NULL),
+(87, '87', 1, NULL, 0, 41, '', '87_main.jpg', '87_small.jpg', 1307541766, 1344518595, 0.00, 24, NULL, NULL, NULL, 1, NULL, '87_mainMod.jpg', '87_smallMod.jpg', '', NULL),
+(88, '88', 1, NULL, 0, 41, '', '88_main.jpg', '88_small.jpg', 1307544977, 1344518555, 0.00, 1, NULL, NULL, NULL, 1, NULL, '88_mainMod.jpg', '88_smallMod.jpg', '', NULL),
+(95, '95', 1, NULL, 0, 45, '', '95_main.jpg', '95_small.jpg', 1307542081, 1337885304, 0.00, 4, NULL, NULL, NULL, 1, NULL, '95_mainMod.jpg', '95_smallMod.jpg', NULL, NULL),
+(89, '89', 1, NULL, 0, 41, '', '89_main.jpg', '89_small.jpg', 1307541636, 1344518543, 0.00, 1, NULL, NULL, NULL, 1, NULL, '89_mainMod.jpg', '89_smallMod.jpg', '', NULL),
+(90, '90', 1, NULL, 0, 41, '', '90_main.jpg', '90_small.jpg', 1307543337, 1344518132, 0.00, 3, NULL, NULL, NULL, 1, NULL, '90_mainMod.jpg', '90_smallMod.jpg', '', NULL),
+(91, '91', 1, NULL, 0, 41, '', '91_main.jpg', '91_small.jpg', 1307544214, 1344518442, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '91_mainMod.jpg', '91_smallMod.jpg', '', NULL),
+(92, '92', 1, NULL, 0, 43, '', '92_main.jpg', '92_small.jpg', 1307544791, 1337884861, 0.00, 1, NULL, NULL, NULL, 1, NULL, '92_mainMod.jpg', '92_smallMod.jpg', NULL, NULL),
+(93, '93', 1, NULL, 0, 43, '', '93_main.jpg', '93_small.jpg', 1307542628, 1337884821, 0.00, 1, NULL, NULL, NULL, 1, NULL, '93_mainMod.jpg', '93_smallMod.jpg', NULL, NULL),
+(94, '94', 1, NULL, 0, 43, '', '94_main.jpg', '94_small.jpg', 1307544425, 1337884748, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '94_mainMod.jpg', '94_smallMod.jpg', NULL, NULL),
+(97, '97', 1, NULL, 0, 45, '', '97_main.jpg', '97_small.jpg', 1307541628, 1337885206, 0.00, 2, NULL, NULL, NULL, 1, NULL, '97_mainMod.jpg', '97_smallMod.jpg', NULL, NULL),
+(98, '98', 1, 1, 0, 45, '', '98_main.jpg', '98_small.jpg', 1307542730, 1337885026, 0.00, 14, NULL, NULL, NULL, 1, NULL, '98_mainMod.jpg', '98_smallMod.jpg', NULL, NULL),
+(99, '99', 1, NULL, 0, 45, '', '99_main.jpg', '99_small.jpg', 1307543877, 1337884953, 0.00, 1, NULL, NULL, NULL, 1, NULL, '99_mainMod.jpg', '99_smallMod.jpg', NULL, NULL),
+(100, '100', 1, NULL, 0, 46, '', '100_main.jpg', '100_small.jpg', 1307543018, 1337885677, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '100_mainMod.jpg', '100_smallMod.jpg', NULL, NULL),
+(101, '101', 1, NULL, 0, 46, '', '101_main.jpg', '101_small.jpg', 1307543107, 1337885614, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '101_mainMod.jpg', '101_smallMod.jpg', NULL, NULL),
+(102, '102', 1, NULL, 0, 46, '', '102_main.jpg', '102_small.jpg', 1307545161, 1337885576, 0.00, 8, NULL, NULL, NULL, 1, NULL, '102_mainMod.jpg', '102_smallMod.jpg', NULL, NULL),
+(103, '103', 1, NULL, 0, 46, '', '103_main.jpg', '103_small.jpg', 1307543901, 1337885481, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '103_mainMod.jpg', '103_smallMod.jpg', NULL, NULL),
+(104, '104', 1, NULL, 0, 46, '', '104_main.jpg', '104_small.jpg', 1307543227, 1337885425, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '104_mainMod.jpg', '104_smallMod.jpg', NULL, NULL),
+(105, '105', 1, NULL, 0, 50, '', '105_main.jpg', '105_small.jpg', 1307543429, 1337886062, 0.00, 2, NULL, NULL, NULL, 1, NULL, '105_mainMod.jpg', '105_smallMod.jpg', NULL, NULL),
+(106, '106', 1, 1, 0, 50, '', '106_main.jpg', '106_small.jpg', 1307543089, 1337885998, 0.00, 12, NULL, NULL, 1, 1, NULL, '106_mainMod.jpg', '106_smallMod.jpg', NULL, NULL),
+(107, '107', 1, NULL, 0, 50, '', '107_main.jpg', '107_small.jpg', 1307541701, 1337885945, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '107_mainMod.jpg', '107_smallMod.jpg', NULL, NULL),
+(108, '108', 1, 1, 0, 50, '', '108_main.jpg', '108_small.jpg', 1307544069, 1337885840, 0.00, 125, NULL, NULL, 4, 1, NULL, '108_mainMod.jpg', '108_smallMod.jpg', NULL, NULL),
+(109, '109', 1, NULL, 0, 50, '', '109_main.jpg', '109_small.jpg', 1307544627, 1337885755, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '109_mainMod.jpg', '109_smallMod.jpg', NULL, NULL),
+(110, '110', 1, NULL, 0, 51, '', '110_main.jpg', '110_small.jpg', 1307543831, 1337886363, 0.00, 5, NULL, NULL, 2, 1, NULL, '110_mainMod.jpg', '110_smallMod.jpg', NULL, NULL),
+(111, '111', 1, NULL, 0, 51, '', '111_main.jpg', '111_small.jpg', 1307543077, 1337886318, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '111_mainMod.jpg', '111_smallMod.jpg', NULL, NULL),
+(112, '112', 1, NULL, 0, 51, '', '112_main.jpg', '112_small.jpg', 1307543753, 1337886243, 0.00, 5, NULL, NULL, 1, 1, NULL, '112_mainMod.jpg', '112_smallMod.jpg', NULL, NULL),
+(113, '113', 1, NULL, 0, 51, '', '113_main.jpg', '113_small.jpg', 1307542831, 1337886210, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '113_mainMod.jpg', '113_smallMod.jpg', NULL, NULL),
+(114, '114', 1, NULL, 0, 51, '', '114_main.jpg', '114_small.jpg', 1307543699, 1337886165, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '114_mainMod.jpg', '114_smallMod.jpg', NULL, NULL),
+(115, '115', 1, NULL, 0, 53, '', '115_main.jpg', '115_small.jpg', 1307543689, 1337886710, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '115_mainMod.jpg', '115_smallMod.jpg', NULL, NULL),
+(116, '116', 1, NULL, 0, 53, '', '116_main.jpg', '116_small.jpg', 1307542992, 1337886664, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '116_mainMod.jpg', '116_smallMod.jpg', NULL, NULL),
+(117, '117', 1, NULL, 0, 53, '', '117_main.jpg', '117_small.jpg', 1307542495, 1337886566, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '117_mainMod.jpg', '117_smallMod.jpg', NULL, NULL),
+(118, '118', 1, NULL, 0, 53, '', '118_main.jpg', '118_small.jpg', 1307543269, 1337886505, 0.00, 1, NULL, NULL, NULL, 1, NULL, '118_mainMod.jpg', '118_smallMod.jpg', NULL, NULL),
+(119, '119', 1, 1, 0, 53, '', '119_main.jpg', '119_small.jpg', 1307543316, 1337886463, 0.00, 7, NULL, NULL, NULL, 1, NULL, '119_mainMod.jpg', '119_smallMod.jpg', NULL, NULL),
+(120, '120', 1, NULL, 0, 54, '', '120_main.jpg', '120_small.jpg', 1307542029, 1337887579, 0.00, 1, NULL, NULL, NULL, 1, NULL, '120_mainMod.jpg', '120_smallMod.jpg', NULL, NULL),
+(121, '121', 1, NULL, 0, 54, '', '121_main.jpg', '121_small.jpg', 1307543909, 1337887020, 0.00, 5, NULL, NULL, NULL, 1, NULL, '121_mainMod.jpg', '121_smallMod.jpg', NULL, NULL),
+(122, '122', 1, NULL, 0, 54, '', '122_main.jpg', '122_small.jpg', 1307543511, 1337886968, 0.00, 1, NULL, NULL, NULL, 1, NULL, '122_mainMod.jpg', '122_smallMod.jpg', NULL, NULL),
+(123, '123', 1, NULL, 0, 54, '', '123_main.jpg', '123_small.jpg', 1307543925, 1337886912, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '123_mainMod.jpg', '123_smallMod.jpg', NULL, NULL),
+(124, '124', 1, NULL, 0, 54, '', '124_main.jpg', '124_small.jpg', 1307542680, 1337886835, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '124_mainMod.jpg', '124_smallMod.jpg', NULL, NULL),
+(125, '125', 1, NULL, 0, 55, '', '125_main.jpg', '125_small.jpg', 1307542859, 1337887433, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '125_mainMod.jpg', '125_smallMod.jpg', NULL, NULL),
+(126, '126', 1, NULL, 0, 55, '', '126_main.jpg', '126_small.jpg', 1307545111, 1337887374, 0.00, 1, NULL, NULL, NULL, 1, NULL, '126_mainMod.jpg', '126_smallMod.jpg', NULL, NULL),
+(127, '127', 1, NULL, 0, 55, '', '127_main.jpg', '127_small.jpg', 1307541663, 1337887330, 0.00, 1, NULL, NULL, NULL, 1, NULL, '127_mainMod.jpg', '127_smallMod.jpg', NULL, NULL),
+(128, '128', 1, NULL, 0, 36, '', '128_main.jpg', '128_small.jpg', 1307543046, 1328721887, 0.00, 4, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL),
+(129, '129', 1, NULL, 0, 55, '', '129_main.jpg', '129_small.jpg', 1307542398, 1337887298, 0.00, 55, NULL, NULL, NULL, 1, NULL, '129_mainMod.jpg', '129_smallMod.jpg', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1708,7 +1721,7 @@ INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `
 (95, 'ru', 'Canon EOS Rebel T2i 18 Megapixel Digital', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
 (89, 'ru', 'Panasonic SCPTX7 Home Theater', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
 (90, 'ru', 'Samsung HT-C7530W 5.1 Channel', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
-(91, 'ru', 'Sony BDV-E770W Home Theater', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
+(91, 'ru', 'Sony BDV-E770W Home Theater1', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
 (92, 'ru', 'Samsung HW-C700 7.2 Channel', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
 (93, 'ru', 'Yamaha HS80M Powered Speaker', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
 (94, 'ru', 'Yamaha NSIW760 Speaker', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
@@ -1746,7 +1759,8 @@ INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `
 (128, 'ru', 'TOMTOM XL 350 Automobile', '', '', '', '', ''),
 (129, 'ru', 'TOMTOM XXL 550M Automobile Portable Navigator', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
 (76, 'ua', 'Calypso CLP-32LE110 32 укр', '', '', '', '', ''),
-(73, 'ua', 'Panasonic Viera TC-L42U22 42 укр', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', '');
+(73, 'ua', 'Panasonic Viera TC-L42U22 42 укр', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
+(91, 'ua', 'Sony BDV-E770W Home Theater', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -1766,17 +1780,19 @@ CREATE TABLE IF NOT EXISTS `shop_products_rating` (
 --
 
 INSERT INTO `shop_products_rating` (`product_id`, `votes`, `rating`) VALUES
-(71, 1, 2),
+(71, 2, 7),
 (81, 1, 5),
 (88, 1, 1),
-(76, 3, 11),
+(76, 5, 18),
 (82, 1, 4),
 (77, 2, 7),
 (73, 1, 2),
 (108, 1, 2),
 (72, 1, 5),
 (74, 1, 3),
-(75, 1, 4);
+(75, 2, 9),
+(87, 1, 4),
+(80, 2, 10);
 
 -- --------------------------------------------------------
 
@@ -1940,7 +1956,6 @@ INSERT INTO `shop_product_images` (`product_id`, `image_name`, `position`) VALUE
 (74, '74_1.jpg', 1),
 (74, '74_2.jpg', 2),
 (76, '76_0.jpg', 0),
-(76, '76_1.jpg', 1),
 (76, '76_2.jpg', 2),
 (81, '81_0.jpg', 0),
 (81, '81_1.jpg', 1);
@@ -1957,7 +1972,6 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties` (
   `active` tinyint(1) DEFAULT NULL,
   `show_in_compare` tinyint(1) DEFAULT NULL,
   `position` int(11) NOT NULL,
-  `data` text,
   `show_on_site` tinyint(1) DEFAULT NULL,
   `multiple` tinyint(1) DEFAULT NULL,
   `external_id` varchar(255) DEFAULT NULL,
@@ -1975,14 +1989,13 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties` (
 -- Dumping data for table `shop_product_properties`
 --
 
-INSERT INTO `shop_product_properties` (`id`, `csv_name`, `active`, `show_in_compare`, `position`, `data`, `show_on_site`, `multiple`, `external_id`, `show_in_filter`, `main_property`) VALUES
-(20, 'displaytech', 1, 1, 1, 'a:3:{i:0;s:3:"LCD";i:1;s:3:"LED";i:2;s:6:"Plasma";}', 1, 0, NULL, 1, NULL),
-(21, 'razmerekrana', 1, 1, 2, 'a:11:{i:0;s:2:"32";i:1;s:2:"38";i:2;s:2:"39";i:3;s:2:"40";i:4;s:2:"41";i:5;s:2:"42";i:6;s:2:"43";i:7;s:2:"44";i:8;s:2:"45";i:9;s:2:"46";i:10;s:2:"47";}', 1, 0, NULL, 1, NULL),
-(22, 'hdmi', 1, 1, 3, 'a:2:{i:0;s:8:"есть";i:1;s:6:"нет";}', 1, 0, NULL, 1, NULL),
-(23, 'power', 1, 1, 4, 'a:3:{i:0;s:8:"1 кВт";i:1;s:8:"2 кВт";i:2;s:8:"3 кВт";}', 1, 0, NULL, 1, NULL),
-(24, 'digitalopticalinput', 1, 1, 5, 'a:4:{i:0;s:1:"2";i:1;s:1:"3";i:2;s:1:"4";i:3;s:1:"5";}', 1, 0, NULL, 0, NULL),
-(25, 'focus', 1, 1, 6, 'a:2:{i:0;s:28:"автоматическая";i:1;s:12:"ручная";}', 1, 0, NULL, 0, NULL),
-(26, 'megapixel', 1, 1, 7, 'a:5:{i:0;s:1:"5";i:1;s:2:"10";i:2;s:2:"15";i:3;s:2:"20";i:4;s:2:"25";}', 1, 0, NULL, 0, NULL);
+INSERT INTO `shop_product_properties` (`id`, `csv_name`, `active`, `show_in_compare`, `position`, `show_on_site`, `multiple`, `external_id`, `show_in_filter`, `main_property`) VALUES
+(20, 'displaytech', 1, 1, 1, 1, 0, NULL, 1, 0),
+(21, 'razmerekrana', 1, 1, 2, 1, 0, NULL, 1, 0),
+(22, 'hdmi', 1, 1, 3, 1, 0, NULL, 1, 0),
+(23, 'power', 1, 1, 4, 1, 0, NULL, 1, 0),
+(25, 'focus', 1, 1, 6, 1, 0, NULL, 0, NULL),
+(26, 'megapixel', 1, 1, 7, 1, 0, NULL, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -2006,14 +2019,12 @@ INSERT INTO `shop_product_properties_categories` (`property_id`, `category_id`) 
 (20, 37),
 (21, 36),
 (21, 37),
-(22, 40),
+(22, 38),
 (22, 41),
 (23, 36),
 (23, 38),
 (23, 40),
 (23, 41),
-(24, 40),
-(24, 41),
 (25, 44),
 (25, 45),
 (26, 44),
@@ -2031,51 +2042,50 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_data` (
   `property_id` int(11) DEFAULT NULL,
   `product_id` int(11) DEFAULT NULL,
   `value` varchar(500) NOT NULL,
+  `locale` varchar(5) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_product_properties_data_I_1` (`value`(333)),
   KEY `shop_product_properties_data_FI_2` (`product_id`),
   KEY `shop_product_properties_data_FI_1` (`property_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=206 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=132 ;
 
 --
 -- Dumping data for table `shop_product_properties_data`
 --
 
-INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `value`) VALUES
-(204, 21, 72, '46'),
-(203, 20, 72, 'LED'),
-(174, 21, 71, '47'),
-(173, 20, 71, 'LED'),
-(178, 21, 73, '47'),
-(177, 20, 73, 'LED'),
-(168, 21, 74, '47'),
-(167, 20, 74, 'LED'),
-(164, 21, 76, '47'),
-(163, 20, 76, 'LED'),
-(196, 23, 87, '1 кВт'),
-(193, 23, 88, '1 кВт'),
-(192, 22, 88, 'есть'),
-(190, 23, 89, '1 кВт'),
-(189, 22, 89, 'есть'),
-(187, 23, 90, '1 кВт'),
-(186, 22, 90, 'есть'),
-(184, 23, 91, '1 кВт'),
-(183, 22, 91, 'есть'),
-(200, 25, 97, 'автоматическая'),
-(199, 25, 98, 'автоматическая'),
-(201, 25, 96, 'автоматическая'),
-(202, 25, 95, 'автоматическая'),
-(198, 25, 99, 'автоматическая'),
-(180, 21, 75, '47'),
-(179, 20, 75, 'LED'),
-(195, 22, 87, 'есть'),
-(182, 23, 80, '1 кВт'),
-(205, 23, 81, '1 кВт'),
-(185, 24, 91, '2'),
-(188, 24, 90, '2'),
-(191, 24, 89, '2'),
-(194, 24, 88, '2'),
-(197, 24, 87, '2');
+INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `value`, `locale`) VALUES
+(29, 20, 72, 'Plasma', 'ru'),
+(111, 21, 74, '26''''', 'ru'),
+(119, 21, 75, '26''''', 'ru'),
+(110, 20, 74, 'LED', 'ru'),
+(37, 20, 73, 'Plasma', 'ru'),
+(118, 20, 75, 'LED', 'ru'),
+(131, 21, 76, '26''''', 'ru'),
+(30, 21, 72, '26''''', 'ru'),
+(34, 21, 71, '24''''', 'ru'),
+(33, 20, 71, 'LED', 'ru'),
+(130, 20, 76, 'LED', 'ru'),
+(38, 21, 73, '28''''', 'ru'),
+(70, 23, 79, '220 кВт', 'ru'),
+(64, 23, 80, '420 кВт', 'ru'),
+(63, 22, 80, 'Нет', 'ru'),
+(62, 23, 81, '220 кВт', 'ru'),
+(61, 22, 81, 'Нет', 'ru'),
+(72, 23, 78, '420 кВт', 'ru'),
+(71, 22, 78, 'Нет', 'ru'),
+(69, 22, 79, 'Есть', 'ru'),
+(74, 23, 77, '420 кВт', 'ru'),
+(73, 22, 77, 'Нет', 'ru'),
+(98, 23, 91, '220 кВт', 'ru'),
+(89, 23, 90, '220 кВт', 'ru'),
+(88, 22, 90, 'Нет', 'ru'),
+(97, 22, 91, 'Есть', 'ru'),
+(101, 23, 89, '420 кВт', 'ru'),
+(100, 22, 89, 'Есть', 'ru'),
+(102, 22, 88, 'Нет', 'ru'),
+(103, 23, 88, '420 кВт', 'ru'),
+(109, 23, 87, '220 кВт', 'ru'),
+(108, 22, 87, 'Есть', 'ru');
 
 -- --------------------------------------------------------
 
@@ -2087,6 +2097,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_i18n` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `locale` varchar(5) NOT NULL,
+  `data` text,
   PRIMARY KEY (`id`,`locale`),
   KEY `shop_product_properties_i18n_I_2` (`name`),
   KEY `shop_product_properties_i18n_I_1` (`name`)
@@ -2096,15 +2107,14 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_i18n` (
 -- Dumping data for table `shop_product_properties_i18n`
 --
 
-INSERT INTO `shop_product_properties_i18n` (`id`, `name`, `locale`) VALUES
-(26, 'Количество мегапикселей', 'ru'),
-(25, 'Настройка фокуса', 'ru'),
-(24, 'Количество цифровых входов', 'ru'),
-(23, 'Мощность', 'ru'),
-(22, 'HDMI', 'ru'),
-(21, 'Размер экрана', 'ru'),
-(20, 'Технология дисплея', 'ru'),
-(20, 'Технологія дисплею', 'ua');
+INSERT INTO `shop_product_properties_i18n` (`id`, `name`, `locale`, `data`) VALUES
+(26, 'Количество мегапикселей', 'ru', NULL),
+(25, 'Настройка фокуса', 'ru', NULL),
+(23, 'Мощность', 'ru', 'a:2:{i:0;s:10:"420 кВт";i:1;s:10:"220 кВт";}'),
+(22, 'HDMI', 'ru', 'a:2:{i:0;s:8:"Есть";i:1;s:6:"Нет";}'),
+(21, 'Размер экрана', 'ru', 'a:4:{i:0;s:4:"22''''";i:1;s:4:"24''''";i:2;s:4:"26''''";i:3;s:4:"28''''";}'),
+(20, 'Технология дисплея', 'ru', 'a:3:{i:0;s:3:"LED";i:1;s:6:"Plasma";i:2;s:3:"LCD";}'),
+(20, 'Технологія дисплею', 'ua', 'a:3:{i:0;s:3:"LED";i:1;s:6:"Plasma";i:2;s:3:"LCD";}');
 
 -- --------------------------------------------------------
 
@@ -2128,7 +2138,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_variants` (
   KEY `shop_product_variants_I_3` (`number`),
   KEY `shop_product_variants_I_5` (`price`),
   KEY `shop_product_variants_I_4` (`price`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=208 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=209 ;
 
 --
 -- Dumping data for table `shop_product_variants`
@@ -2140,7 +2150,7 @@ INSERT INTO `shop_product_variants` (`id`, `product_id`, `price`, `number`, `sto
 (84, 73, 899.98999, 'TC-L42', 1, 0, NULL, NULL, NULL),
 (85, 74, 899.98999, 'LN40C', 9, 0, NULL, NULL, NULL),
 (86, 75, 299.00000, 'CLP-32', 9, 0, NULL, NULL, NULL),
-(87, 76, 399.00000, 'CLP-32L', 4, 0, '', '', NULL),
+(87, 76, 399.00000, 'CLP-32L', 4, 0, '76_vM87.jpg', '76_vS87.jpg', NULL),
 (88, 77, 244.00000, '', 1, 0, NULL, NULL, NULL),
 (89, 78, 67.79000, '', 2, 0, NULL, NULL, NULL),
 (90, 79, 39.95000, '', 9, 0, NULL, NULL, NULL),
@@ -2193,8 +2203,8 @@ INSERT INTO `shop_product_variants` (`id`, `product_id`, `price`, `number`, `sto
 (137, 126, 130.13000, '', 5, 0, NULL, NULL, NULL),
 (138, 127, 100.35000, '', 8, 0, NULL, NULL, NULL),
 (140, 129, 119.99000, '', 9, 0, NULL, NULL, NULL),
-(141, 76, 299.00000, 'CLP-33L', 0, 1, '', '', NULL),
-(142, 76, 499.00000, 'CLP-34L', 6, 2, '', '', NULL),
+(141, 76, 299.00000, 'CLP-33L', 0, 1, '76_vM141.jpg', '76_vS141.jpg', NULL),
+(142, 76, 499.00000, 'CLP-34L', 6, 2, '76_vM142.jpg', '76_vS142.jpg', NULL),
 (192, 128, 179.99001, '', 2, 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -2236,7 +2246,7 @@ INSERT INTO `shop_product_variants_i18n` (`id`, `locale`, `name`) VALUES
 (99, 'ru', ''),
 (100, 'ru', ''),
 (101, 'ru', ''),
-(102, 'ru', ''),
+(102, 'ru', 'Sony BDV-E770W Home Theater'),
 (103, 'ru', ''),
 (104, 'ru', ''),
 (105, 'ru', ''),
@@ -2979,7 +2989,7 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 ('userInfoSenderName', '', 'ru'),
 ('userInfoMessageTheme', '', 'ru'),
 ('adminMessageCallback', '<h1>Спасибо за заказ звонка</h1>\n<div>В ближайшее время наши менеджеры свяжутся с Вами</div>', ''),
-('1CCatSettings', 'a:4:{s:3:"zip";s:8:"zip=no\\n";s:8:"filesize";s:6:"1024\\n";s:7:"validIP";s:9:"127.0.0.1";s:8:"password";s:0:"";}', ''),
+('1CCatSettings', 'a:4:{s:3:"zip";s:6:"zip=no";s:8:"filesize";s:15:"file_limit=1024";s:7:"validIP";s:9:"127.0.0.1";s:8:"password";s:0:"";}', ''),
 ('adminMessages', 'a:3:{s:8:"incoming";s:0:"";s:8:"callback";s:27:"вфы вфыв фыв фы";s:5:"order";s:0:"";}', 'ru'),
 ('selectedProductCats', 'a:5:{i:0;s:2:"36";i:1;s:2:"37";i:2;s:2:"38";i:3;s:2:"39";i:4;s:2:"41";}', ''),
 ('adminMessageIncoming', '<h1>Спасибо</h1>\n<div>В ближайшее время наши менеджеры свяжутся с Вами</div>', ''),
@@ -2987,7 +2997,12 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 ('mainModImageWidth', '140', ''),
 ('mainModImageHeight', '100', ''),
 ('smallModImageWidth', '90', ''),
-('smallModImageHeight', '90', '');
+('smallModImageHeight', '90', ''),
+('order_method', '1', ''),
+('watermark_interest', '', ''),
+('ordersManagerEmail', '', ''),
+('ordersSendManagerMessage', 'true', ''),
+('1CSettingsOS', 'a:1:{i:0;s:1:"2";}', '');
 
 -- --------------------------------------------------------
 
@@ -3007,6 +3022,7 @@ CREATE TABLE IF NOT EXISTS `shop_user_profile` (
   `key` varchar(255) NOT NULL,
   `wish_list_data` text,
   `role_id` int(11) DEFAULT NULL,
+  `user_external_id` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_user_profile_I_1` (`key`),
   KEY `shop_user_profile_FI_1` (`role_id`)
@@ -3016,8 +3032,8 @@ CREATE TABLE IF NOT EXISTS `shop_user_profile` (
 -- Dumping data for table `shop_user_profile`
 --
 
-INSERT INTO `shop_user_profile` (`id`, `user_id`, `name`, `phone`, `address`, `cart_data`, `user_email`, `date_created`, `key`, `wish_list_data`, `role_id`) VALUES
-(1, 1, 'Administrator', 'asdasdasd', 'dasdasd', 'a:0:{}', 'admin@localhost.loc', NULL, '', 'a:0:{}', 10);
+INSERT INTO `shop_user_profile` (`id`, `user_id`, `name`, `phone`, `address`, `cart_data`, `user_email`, `date_created`, `key`, `wish_list_data`, `role_id`, `user_external_id`) VALUES
+(1, 1, 'Administrator', '550956556', 'Россия, г Москва', 'a:0:{}', 'admin@localhost.loc', NULL, '', 'a:0:{}', 10, NULL);
 
 -- --------------------------------------------------------
 
@@ -3081,11 +3097,6 @@ CREATE TABLE IF NOT EXISTS `tags` (
   KEY `value` (`value`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
 
---
--- Dumping data for table `tags`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -3115,13 +3126,6 @@ CREATE TABLE IF NOT EXISTS `users` (
   KEY `password` (`password`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=91 ;
 
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `role_id`, `username`, `password`, `email`, `banned`, `ban_reason`, `newpass`, `newpass_key`, `newpass_time`, `last_ip`, `last_login`, `created`, `modified`) VALUES
-(1, 2, 'admin', '$1$tAfsqkpo$xP9ByZNdprtoB24BeGWly0', 'admin@localhost.loc', 0, NULL, NULL, NULL, NULL, '127.0.0.1', '2012-06-19 19:48:08', '2008-11-30 04:56:32', '2012-06-19 18:48:08');
-
 -- --------------------------------------------------------
 
 --
@@ -3143,7 +3147,8 @@ CREATE TABLE IF NOT EXISTS `user_autologin` (
 --
 
 INSERT INTO `user_autologin` (`key_id`, `user_id`, `user_agent`, `last_ip`, `last_login`) VALUES
-('d0a935a7e38a7b35e448e762c8c39f88', 1, 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.83 Safari/535.11', '127.0.0.1', '2012-03-26 10:55:20');
+('d0a935a7e38a7b35e448e762c8c39f88', 1, 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.83 Safari/535.11', '127.0.0.1', '2012-03-26 07:55:20'),
+('1388e04d059f1df2eaf874377f606512', 1, 'Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:13.0) Gecko/20100101 Firefox/13.0.1', '127.0.0.1', '2012-07-02 09:32:01');
 
 -- --------------------------------------------------------
 
@@ -3182,11 +3187,6 @@ CREATE TABLE IF NOT EXISTS `user_temp` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `user_temp`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -3216,3 +3216,7 @@ INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `desc
 (4, 'recent_product_comments', 'module', 'comments', 'recent_product_comments', 'a:2:{s:14:"comments_count";s:1:"5";s:13:"symbols_count";s:1:"0";}', '', '', 1308300371),
 (5, 'tags', 'module', 'tags', 'tags_cloud', '', 'tags', '', 1312362714),
 (6, 'path', 'module', 'navigation', 'widget_navigation', '', 'path', '', 1328631622);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
