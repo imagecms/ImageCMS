@@ -1,10 +1,10 @@
 <div id="gallery_main_block">
     <div class="top-navigation">
     <ul style="float:left;">
-        <li><p>Альбомы</p></li>
+        <li><p>{lang('amt_albums')}</p></li>
     </ul>
         <div align="right" style="float:right;padding:7px 13px;">
-            <a href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/'); return false;">Галерея</a> 
+            <a href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/'); return false;">{lang('amt_gallery')}</a> 
             > 
             <a href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/category/{$category.id}'); return false;">{$category.name}</a>  
         </div>
@@ -26,17 +26,17 @@
                         </a>
                         {else:}
                             <br/>
-                            <b>Нет изображений</b>
+                            <b>{lang('amt_no_images')}</b>
                         {/if}
                         </div>
                     </td>
                     <td valign="top">
                         <div style="padding-left:10px;">
-                            Имя: {$item.name}<br/>
-                            Описание: {truncate(strip_tags($item.description), 55, '...')}<br/>
-                            Создан: {date('Y-m-d H:i', $item.created)}<br/>
-                            Обновлен: {if $item.updated != NULL} {date('Y-m-d H:i', $item.updated)}  {else:} 0000-00-00 00:00 {/if}<br/>
-                            Просмотров: {$item.views}<br />
+                            {lang('amt_name')}: {$item.name}<br/>
+                            {lang('amt_description')}: {truncate(strip_tags($item.description), 55, '...')}<br/>
+                            {lang('amt_cr')}: {date('Y-m-d H:i', $item.created)}<br/>
+                            {lang('amt_up')}: {if $item.updated != NULL} {date('Y-m-d H:i', $item.updated)}  {else:} 0000-00-00 00:00 {/if}<br/>
+                            {lang('amt_views')}: {$item.views}<br />
                             <p align="right">
                             <img src="{$THEME}/images/edit.png" onclick="ajax_div('albums_list', base_url + 'admin/components/cp/gallery/edit_album_params/{$item.id}'); return false;" title="Редактировать" style="cursor:pointer;" />
                             <img src="{$THEME}/images/images.png" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/edit_album/{$item.id}'); return false;" title="Просмотр Изображений" style="cursor:pointer;" />
@@ -50,7 +50,7 @@
 
         {else:}
             <div id="notice">
-                Альбомов не найдено.
+                {lang('amt_no_albums')}
             </div>
         {/if}
     </div>

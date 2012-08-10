@@ -1,7 +1,7 @@
 <div class="top-navigation">
     <div style="float:left;">
         <ul>
-        <li><p>Редактор шаблонов</p></li>
+        <li><p>{lang('amt_template_editor')}</p></li>
             {$navigation}
         </ul>
     </div>

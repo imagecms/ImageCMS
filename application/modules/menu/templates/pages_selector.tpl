@@ -4,9 +4,9 @@
                 <td width="100%" valign="top">
                     <div style="float:left;padding-right:10px;">
 
-                        Категории:
+                        {lang('amt_categories')}:
                         <select id="category_sel" onclick="load_pages(this.value, 0); return false;">
-                        <option value="0">root</option>
+                        <option value="0">{lang('amt_root')}</option>
                         {$cats}
                         </select>
 
@@ -24,7 +24,7 @@
                 </td>
                 <td valign="top">
                 <div style="width:350px;" id="item_params">
-                        <h3>Параметры:</h3>
+                        <h3>{lang('amt_params')}:</h3>
                 </div>
                 </td>
             </tr>
@@ -38,30 +38,30 @@
                     <!-- Link params -->
                     <input type="hidden" id="owner_id" value="{$insert_id}" />
 
-                    <div class="field_text">Тип</div>
+                    <div class="field_text">{lang('amt_type')}</div>
                     <div class="field_input" id="item_type">
-                        Страница
+                        {lang('amt_page')}
                     </div>
                     <div class="form_overflow"></div>
 
-                    <div class="field_text">ID</div>
+                    <div class="field_text">{lang('amt_id')}</div>
                     <div class="field_input" id="item_id">
                         0
                     </div>
                     <div class="form_overflow"></div>
 
 
-                    <div class="field_text">Заголовок</div>
+                    <div class="field_text">{lang('amt_title')}</div>
                     <div class="field_input">
                         <input type="text" class="textbox" value="" name="item_title"  id="item_title" />
                     </div>
 
                     <div class="form_overflow"></div>
 
-                    <div class="field_text">Родитель</div>
+                    <div class="field_text">{lang('amt_parent')}</div>
                     <div class="field_input">
                        	<select name="item_parent_id" id="item_parent_id">
-                        <option value="0">Нет</option>
+                        <option value="0">{lang('amt_no')}</option>
                         {foreach $menu_result as $item}
                         <option  value="{$item.id}">{for $i=0; $i <= $item['padding']; $i++ } -{/for} {$item.title}</option>
                         {/foreach}
@@ -71,11 +71,11 @@
                     <div class="form_overflow"></div>
 
 
-                    <div class="field_text">Позиция после</div>
+                    <div class="field_text">{lang('amt_position_after')}</div>
                     <div class="field_input">
                        	<select name="position_after" id="position_after">
-                        <option value="0">Нет</option>
-                        <option value="first">Первый</option>
+                        <option value="0">{lang('amt_no')}</option>
+                        <option value="first">{lang('amt_first')}</option>
                         {foreach $menu_result as $item}
                         <option  value="{$item.id}">{for $i=0; $i <= $item['padding']; $i++ } -{/for} {$item.title}</option>
                         {/foreach}
@@ -83,18 +83,18 @@
                     </div>
                     <div class="form_overflow"></div>
 
-                    <div class="field_text">Изображение</div>
+                    <div class="field_text">{lang('amt_image')}</div>
                     <div class="field_input">
                         <input type="text" class="textbox" value="" name="page_image"  id="page_image" />
-                        <img width="16" height="16" align="absmiddle" src="{$THEME}/images/images.png" title="Выбрать Изображение" style="cursor: pointer;" onclick="tinyBrowserPopUp('image', 'page_image');" />
+                        <img width="16" height="16" align="absmiddle" src="{$THEME}/images/images.png" title="{lang('amt_select_image')}" style="cursor: pointer;" onclick="tinyBrowserPopUp('image', 'page_image');" />
                     </div>
 
                     <div class="form_overflow"></div>
 
-                    <div class="field_text">Уровень доступа</div>
+                    <div class="field_text">{lang('amt_access_level')}</div>
                     <div class="field_input">
                         <select id="item_roles" name="item_roles[]" multiple="multiple">
-                        <option value="0">Все</option>
+                        <option value="0">{lang('amt_all')}</option>
                         {foreach $roles as $role}
                           <option value ="{$role.id}">{$role.alt_name}</option>
                         {/foreach}
@@ -104,29 +104,29 @@
                     <div class="form_overflow"></div>
 
                    <div class="field_text">
-                        Скрыть
+                        {lang('amt_hide')}
                     </div>
                     <div class="field_input">
-                       <input type="radio" name="hidden_v" id="page_hidden"  onclick="item_hidden = 1;" /> Да
-                       <input type="radio" name="hidden_v" id="page_nohidden" onclick="item_hidden = 0;"  checked="checked" /> Нет
+                       <input type="radio" name="hidden_v" id="page_hidden"  onclick="item_hidden = 1;" /> {lang('amt_yes')}
+                       <input type="radio" name="hidden_v" id="page_nohidden" onclick="item_hidden = 0;"  checked="checked" /> {lang('amt_no')}
                     </div>
 
 		    <div class="form_overflow"></div>
 
 	            <div class="field_text">
-                        Открывать в новом окне
+                        {lang('amt_open_in_new_window')}
                     </div>
                     <div class="field_input">
-                       <input type="radio" name="new_page" id="page_newpage"  onclick="page_newpage = 1;" /> Да
-                       <input type="radio" name="new_page" id="page_nonewpage" onclick="page_newpage = 0;"  checked="checked" /> Нет
+                       <input type="radio" name="new_page" id="page_newpage"  onclick="page_newpage = 1;" /> {lang('amt_yes')}
+                       <input type="radio" name="new_page" id="page_nonewpage" onclick="page_newpage = 0;"  checked="checked" /> {lang('amt_no')}
                     </div>
 
                     <div class="form_overflow"></div>
 
                     <div class="field_text"></div>
                     <div class="field_input">
-                        <input type="button" value="Создать" id="page_btn" class="button" onclick="insert_element(); return false;" />
-                        <input type="button" value="Отмена" class="button" onclick="MochaUI.closeWindow( $('createnewlink') ); return false;" />
+                        <input type="button" value="{lang('amt_to_create')}" id="page_btn" class="button" onclick="insert_element(); return false;" />
+                        <input type="button" value="{lang('amt_cancel')}" class="button" onclick="MochaUI.closeWindow( $('createnewlink') ); return false;" />
                     </div>
 
                     <div class="form_overflow"></div>
@@ -136,7 +136,7 @@
 
         <div style="position:absolute;bottom:40px;right:20px;">
         <form onsubmit="make_search(0); return false;">
-            Поиск <input type="text" class="textbox" id="search_text" />
+            {lang('amt_search')} <input type="text" class="textbox" id="search_text" />
             <img src="{$THEME}/images/search.png" width="24" height="24" align="absmiddle" onclick="make_search(0); return false;" />
         {form_csrf()}</form>
         </div>

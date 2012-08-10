@@ -1,10 +1,10 @@
 <div class="top-navigation">
 	<div style="float:left;">
 		<ul>
-		<li><a {if $status == 'all' OR $status== NULL}class="selected"{/if} href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/comments/index/status/all/page/0'); return false;">Все комментарии</a></li>
-		<li><a {if $status == 'waiting'}class="selected"{/if} href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/comments/index/status/waiting/page/0'); return false;">Ожидают модерации ({$total_waiting})</a></li>
-		<li><a {if $status == 'approved'}class="selected"{/if} href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/comments/index/status/approved/page/0'); return false;" >Одобренные</a></li>
-		<li><a {if $status == 'spam'}class="selected"{/if} href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/comments/index/status/spam/page/0'); return false;">Спам ({$total_spam})</a></li>
+		<li><a {if $status == 'all' OR $status== NULL}class="selected"{/if} href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/comments/index/status/all/page/0'); return false;">{lang('amt_all_comments')}</a></li>
+		<li><a {if $status == 'waiting'}class="selected"{/if} href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/comments/index/status/waiting/page/0'); return false;">{lang('amt_waighting_for_moderation')}({$total_waiting})</a></li>
+		<li><a {if $status == 'approved'}class="selected"{/if} href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/comments/index/status/approved/page/0'); return false;" >{lang('amt_approved')}</a></li>
+		<li><a {if $status == 'spam'}class="selected"{/if} href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/comments/index/status/spam/page/0'); return false;">{lang('amt_spam')}({$total_spam})</a></li>
 		</ul>
 	</div>
 
@@ -19,13 +19,13 @@
 		  <table id="comments_table">
 			<thead>
 				<th width="10"></th>
-				<th axis="string" width="10">ID</th>
-				<th axis="string">Текст</th>
-				<th axis="string">Пользователь</th>
-				<th axis="string">E-Mail</th>
-				<th axis="string">Страница</th>
-				<th axis="string">IP</th>
-				<th axis="string">Дата</th>
+				<th axis="string" width="10">{lang('amt_id')}</th>
+				<th axis="string">{lang('amt_text')}</th>
+				<th axis="string">{lang('amt_user')}</th>
+				<th axis="string">{lang('amt_email')}</th>
+				<th axis="string">{lang('amt_page')}</th>
+				<th axis="string">{lang('amt_ip')}</th>
+				<th axis="string">{lang('amt_date')}</th>
 				<th></th>
 			</thead>
 			<tbody>
@@ -37,13 +37,13 @@
 				<span onclick="edit_comment({$item.id});">{truncate(htmlspecialchars($item.text), 80, '...')}</span>
 				<div class="comment_status">
 					{if $item.status == 0}
-						<a href="#" onclick="set_comment_status({$item.id}, 1); return false;">Отклонить</a> | <a onclick="set_comment_status({$item.id}, 2); return false;" href="#">Спам</a> |
+						<a href="#" onclick="set_comment_status({$item.id}, 1); return false;">{lang('amt_bann')}</a> | <a onclick="set_comment_status({$item.id}, 2); return false;" href="#">{lang('amt_spam')}</a> |
 					{elseif($item.status == 1):}
-						<a href="#" onclick="set_comment_status({$item.id}, 0); return false;">Одобрить</a> | <a onclick="set_comment_status({$item.id}, 2); return false;" href="#">Спам</a> |
+						<a href="#" onclick="set_comment_status({$item.id}, 0); return false;">{lang('amt_approve')}</a> | <a onclick="set_comment_status({$item.id}, 2); return false;" href="#">{lang('amt_spam')}</a> |
 					{elseif($item.status == 2):}
-						<a href="#" onclick="set_comment_status({$item.id}, 0); return false;">Одобрить</a> |
+						<a href="#" onclick="set_comment_status({$item.id}, 0); return false;">{lang('amt_approve')}</a> |
 					{/if}
-						<a href="#" onclick="delete_comment({$item.id}); return false;" style="color: #E06242;">Удалить</a>
+						<a href="#" onclick="delete_comment({$item.id}); return false;" style="color: #E06242;">{lang('amt_delete')}</a>
 				</div>
 			</td>
 			<td>{$item.user_name}</td>
@@ -62,8 +62,8 @@
 			<td>{$item.user_ip}</td>
 			<td>{date('d-m-Y H:i', $item.date)}</td>
 			<td>
-				<img onclick="edit_comment({$item.id});" style="cursor:pointer" src="{$THEME}/images/edit_page.png" width="16" height="16" title="Редактировать" />
-				<img onclick="delete_comment({$item.id});" src="{$THEME}/images/delete.png"  style="cursor:pointer" width="16" height="16" title="Удалить" />
+				<img onclick="edit_comment({$item.id});" style="cursor:pointer" src="{$THEME}/images/edit_page.png" width="16" height="16" title="{lang('amt_edit')}" />
+				<img onclick="delete_comment({$item.id});" src="{$THEME}/images/delete.png"  style="cursor:pointer" width="16" height="16" title="{lang('amt_delete')}" />
 			</td>
 		</tr>
 		{/foreach}
@@ -94,12 +94,12 @@
 		</script>
 
 <div style="padding-left:15px;padding-top:2px;">
-<a href="#" onclick="check_all(); return false;">Отметить все</a>  /  <a href="#" onclick="uncheck_all(); return false;">Снять выделение</a> 
+<a href="#" onclick="check_all(); return false;">{lang('amt_select_all')}</a>  /  <a href="#" onclick="uncheck_all(); return false;">{lang('amt_cancel_selection')}</a> 
 </div>
 
 <p align="right" style="padding:5px;padding-top:10px;">
-С отмечеными:
-<input type="submit" name="delete"  class="button" value="Удалить" onclick="delete_sel_comments(); return false;" />
+{lang('amt_with_selected')}
+<input type="submit" name="delete"  class="button" value="{lang('amt_delete')}" onclick="delete_sel_comments(); return false;" />
 </p>
 
 <div align="center" style="padding:5px;">
@@ -107,7 +107,7 @@
 </div>
 
 {else:}
-	<div id="notice">Ничего не найдено.</div>
+	<div id="notice">{lang('amt_nothing_found')}</div>
 {/if}
 
 {literal}

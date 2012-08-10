@@ -49,7 +49,7 @@ class Gallery_Widgets extends MY_Controller {
             case 'update_settings':
 
                 $this->load->library('Form_validation');
-                $this->form_validation->set_rules('limit', 'Лимит изображений', 'trim|required|integer');
+                $this->form_validation->set_rules('limit', lang('amt_image_limit'), 'trim|required|integer');
 
                 if ($this->form_validation->run($this) == FALSE)
                 {
@@ -64,7 +64,7 @@ class Gallery_Widgets extends MY_Controller {
 
                 $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
 
-                showMessage('Настройки сохранены.');
+                showMessage(lang('amt_settings_saved'));
             break;
 
             case 'install_defaults':

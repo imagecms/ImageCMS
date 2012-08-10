@@ -29,7 +29,7 @@ class Sys_upgrade extends MY_Controller {
 
         if (!function_exists('ftp_connect'))
         {
-            showMessage('Функция ftp_connect недоступна.',false,'r');
+            showMessage(lang('ac_ftp_fun_dis'),false,'r');
             exit;
         }
 
@@ -45,7 +45,7 @@ class Sys_upgrade extends MY_Controller {
         }
         else
         {
-            showMessage('Вы используете последнюю версию.','Поздравляем!','g');
+            showMessage(lang('ac_ur_usign_last_ver'),lang('ac_congrat'),'g');
             exit;
         }
 
@@ -59,7 +59,7 @@ class Sys_upgrade extends MY_Controller {
 
         if ($this->ftp->connect($config) == FALSE)
         {
-            showMessage('Ошибка подключения к серверу. Проверте имя пользователя или пароль.',false,'r');
+            showMessage(lang('ac_err_conn_to_serv'),false,'r');
             exit;
         }
         
@@ -82,7 +82,7 @@ class Sys_upgrade extends MY_Controller {
         if ($error == TRUE)
         { 
             $this->ftp->close();
-            showMessage('Ошибка. Не правильный путь к корневой директории.',false,'r');
+            showMessage(lang('ac_err_wrong_path_to_root'),false,'r');
             exit;
         }
         else
@@ -93,7 +93,7 @@ class Sys_upgrade extends MY_Controller {
             if(($fh = fopen($file, 'r')) == FALSE)
             {
                 $this->ftp->close();
-                showMessage('Ошибка загрузки файл обновлений.',false,'r');
+                showMessage(lang('ac_err_down_update_files'),false,'r');
                 exit;
             }
             else
@@ -126,7 +126,7 @@ class Sys_upgrade extends MY_Controller {
                     @rmdir($tmp_folder);
                     @unlink($tmp_file);
 
-                    showMessage('Ошибка извлечения файлов из архива.',false,'r');
+                    showMessage(lang('ac_error_extract'),false,'r');
                     exit;
                 }
 
@@ -159,7 +159,7 @@ class Sys_upgrade extends MY_Controller {
                 $this->load->library('cms_hooks');
                 $this->cms_hooks->build_hooks();
 
-                showMessage('Обновление завершено.',false,'g');
+                showMessage(lang('ac_update_completed'),false,'g');
                 updateDiv('page', site_url('admin/dashboard/index'));
             }
         } 

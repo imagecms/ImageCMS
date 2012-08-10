@@ -202,7 +202,7 @@ class Admin extends MY_Controller {
         if (!empty($_POST))
         {
             $this->load->library('Form_validation');
-            $this->form_validation->set_rules('name', 'Название департамента', 'required|xss_clean|max_length[45]'); 
+            $this->form_validation->set_rules('name', lang('amt_dep_name'), 'required|xss_clean|max_length[45]'); 
 
             if ($this->form_validation->run($this) == FALSE)
             {
@@ -214,7 +214,7 @@ class Admin extends MY_Controller {
                     'name'=>htmlspecialchars($this->input->post('name')),
                 ));
 
-                showMessage('Департамент создан');
+                showMessage(lang('amt_dep_created'));
                 updateDiv('page', site_url('admin/components/cp/user_support/departments'));
             } 
         }
@@ -234,7 +234,7 @@ class Admin extends MY_Controller {
             if (!empty($_POST))
             {
                 $this->load->library('Form_validation');
-                $this->form_validation->set_rules('name', 'Название департамента', 'required|xss_clean|max_length[45]'); 
+                $this->form_validation->set_rules('name', lang('amt_dep_name'), 'required|xss_clean|max_length[45]'); 
 
                 if ($this->form_validation->run($this) == FALSE)
                 {
@@ -247,7 +247,7 @@ class Admin extends MY_Controller {
                         'name'=>$this->input->post('name'),         
                     ));
 
-                    showMessage('Изменения сохранены');
+                    showMessage(lang('amt_changes_saved'));
                     updateDiv('page', site_url('admin/components/cp/user_support/departments'));
                 }
             }
