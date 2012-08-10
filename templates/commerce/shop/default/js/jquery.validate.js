@@ -117,7 +117,7 @@ $.extend($.fn, {
 		return result;
 	},
 	// http://docs.jquery.com/Plugins/Validation/rules
-	rules: function(command, argument) {
+	rules: function(command, argument) {f
 		var element = this[0];
 
 		if (command) {
@@ -265,9 +265,9 @@ $.extend($.validator, {
 	},
 
 	messages: {
-		required: "This field is required.",
+		required: "Oбязательно для заполнения",
 		remote: "Please fix this field.",
-		email: "Please enter a valid email address.",
+		email: "Введите правильный адрес электронной почты.",
 		url: "Please enter a valid URL.",
 		date: "Please enter a valid date.",
 		dateISO: "Please enter a valid date (ISO).",
