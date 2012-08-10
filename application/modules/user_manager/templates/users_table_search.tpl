@@ -1,14 +1,14 @@
 <div id="sortable">
 		  <table id="users_table2">
 		  	<thead>
-				<th axis="string" width="">ID</th>
-				<th axis="string">Логин</th>
-				<th axis="string">E-Mail</th>
-				<th axis="string">Группа</th>
-				<th axis="string">Бан</th>
-				<th axis="string">Последний IP</th>
-				<th axis="date">Последний Вход</th>
-				<th axis="date">Создан</th>
+				<th axis="string" width="">{lang('amt_id')}</th>
+				<th axis="string">{lang('amt_user_login')}</th>
+				<th axis="string">{lang('amt_email')}</th>
+				<th axis="string">{lang('amt_group')}</th>
+				<th axis="string">{lang('amt_ban')}</th>
+				<th axis="string">{lang('amt_last_ip')}</th>
+				<th axis="date">{lang('amt_last_entry')}</th>
+				<th axis="date">{lang('amt_cr')}</th>
 				<th axis="none"></th>
 			</thead>
 			<tbody>
@@ -25,7 +25,7 @@
 			<td>{$user.last_login}</td>
 			<td>{$user.created}</td>
 			<td  class="rightAlign">
-			<img onclick="edit_user({$user.id});" style="cursor:pointer" src="{$THEME}/images/edit_page.png" width="16" height="16" title="Редактировать" />
+			<img onclick="edit_user({$user.id});" style="cursor:pointer" src="{$THEME}/images/edit_page.png" width="16" height="16" title="{lang('amt_edit')}" />
 			</td>
 		</tr>
 		{/foreach}

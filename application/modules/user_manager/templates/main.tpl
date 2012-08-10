@@ -1,35 +1,35 @@
 <div id="user_manager_tabs">
 
-<h4 title="">Пользователи</h4>
+<h4 title="">{lang('amt_users')}</h4>
 <div style="padding:3px;">
 	<div id="users_ajax_table"></div>
 </div>
 
-<h4 title="">Создать</h4>
+<h4 title="">{lang('amt_to_create')}</h4>
 <div style="padding:3px;">
 
 	<div class="form_text"></div>
-	<div class="form_input"><h3>Создать нового пользователя.</h3></div>
+	<div class="form_input"><h3>{lang('amt_create_new_user')}</h3></div>
 	<div class="form_overflow"></div>
 
 		<form action="{$SELF_URL}/create_user/" id="user_create" method="post" style="width:100%">
-			<div class="form_text">{lang('lang_login')}:</div>
+			<div class="form_text">{lang('amt_user_login')}:</div>
 			<div class="form_input"><input type="text" name="username" value="" class="textbox_long" /></div>
 			<div class="form_overflow"></div>
 
-                        <div class="form_text">{lang('lang_password')}:</div>
+                        <div class="form_text">{lang('amt_new_pass')}:</div>
                         <div class="form_input"><input type="password" name="password" value="" class="textbox_long" /></div>
 			<div class="form_overflow"></div>
 
-                        <div class="form_text">{lang('lang_confirm_password')}:</div>
+                        <div class="form_text">{lang('amt_new_pass_confirm')}:</div>
                         <div class="form_input"><input type="password" name="password_conf" value="" class="textbox_long" /></div>
                         <div class="form_overflow"></div>
 
-                        <div class="form_text">{lang('lang_email')}:</div>
+                        <div class="form_text">{lang('amt_email')}:</div>
 			<div class="form_input"><input type="text" name="email" value="" class="textbox_long" /></div>
 			<div class="form_overflow"></div>
 
-			<div class="form_text">Группа:</div>
+			<div class="form_text">{lang('amt_group')}:</div>
 			<div class="form_input">
 				<select name="role">
 				{foreach $roles as $role}
@@ -41,31 +41,31 @@
 
 			<div class="form_text"></div>
 			<div class="form_input">
-			<input type="submit" name="button" class="button" value="Создать" onclick="ajax_me('user_create');" />
+			<input type="submit" name="button" class="button" value="{lang('amt_to_create')}" onclick="ajax_me('user_create');" />
 			</div>
 			<div class="form_overflow"></div>
 		{form_csrf()}</form>
 </div>
 
-<h4 title="">Поиск</h4>
+<h4 title="">{lang('amt_search')}</h4>
 <div style="padding:3px;">
 
 	<div class="form_text"></div>
-	<div class="form_input"><h3>Поиск пользователей.</h3></div>
+	<div class="form_input"><h3>{lang('amt_user_search')}</h3></div>
 	<div class="form_overflow"></div>
 
 	<form action="{$SELF_URL}/search/" id="user_search" method="post" style="width:100%">
 
-	<div class="form_text">Логин или Email</div>
+	<div class="form_text">{lang('amt_login_or_mail')}</div>
 	<div class="form_input">
 	<input type="text" name="s_data" id="s_data" value="" class="textbox_long" />
 	</div>
 	<div class="form_overflow"></div>
 
-	<div class="form_text">Группа:</div>
+	<div class="form_text">{lang('amt_group')}:</div>
 	<div class="form_input">
 		<select name="role" id="role">
-		 <option value ="0">Все группы</option>
+		 <option value ="0">{lang('amt_all_groups')}</option>
 		{foreach $roles as $role}
 		  <option value ="{$role.id}">{$role.alt_name}</option>
 		{/foreach}
@@ -75,7 +75,7 @@
 
 	<div class="form_text"></div>
 	<div class="form_input">
-		<input type="submit" class="button" value="Поиск" onclick="ajax_form('user_search','u_search_result');" />
+		<input type="submit" class="button" value="{lang('amt_search')}" onclick="ajax_form('user_search','u_search_result');" />
 	</div>
 	<div class="form_overflow"></div>
 	{form_csrf()}</form>
@@ -86,10 +86,10 @@
 
 </div> <!-- /user_manager_tabs -->
 
-<h4 title="">Группы</h4>
+<h4 title="">{lang('amt_groups')}</h4>
     <div style="padding:3px;" id="groups_block"></div>
 
-<h4 title="">Разделение прав</h4>
+<h4 title="">{lang('amt_perm_div')}</h4>
     <div style="padding:3px;" id="perms_editor_block"></div>
 
 </div>

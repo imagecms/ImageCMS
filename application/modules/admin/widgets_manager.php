@@ -65,8 +65,8 @@ class Widgets_Manager extends MY_Controller {
 
         if ( !is_really_writable($widgets_path) )
         {
-            echo '<div id="notice_error">
-                Для продолжения работы с виджетами установите права на запись директории <b>'.$widgets_path.'</b>
+            echo '<div id="notice_error">'.
+                lang('ac_to_contin_work_set_perm').'<b>'.$widgets_path.'</b>
             </div>';
             exit;
         }
@@ -83,16 +83,16 @@ class Widgets_Manager extends MY_Controller {
 
         if ($this->db->get_where('widgets', array('name' => $this->input->post('name')))->num_rows() > 0)
         {
-            showMessage('Виджет с таким именем уже создан. Укажите другое имя.',false,'r');
+            showMessage(lang('ac_widget_w_n_cr'),false,'r');
             return FALSE;
         }
             
         if ($type == 'module')
         {
-            $this->form_validation->set_rules('desc', 'Описание', 'trim|min_length[1]|max_length[500]');
-            $this->form_validation->set_rules('name', 'Имя', 'trim|required|alpha_dash');
-            $this->form_validation->set_rules('module', 'Модуль', 'trim|required');
-            $this->form_validation->set_rules('method', 'Метод', 'trim|required');
+            $this->form_validation->set_rules('desc', lang('ac_val_desc'), 'trim|min_length[1]|max_length[500]');
+            $this->form_validation->set_rules('name', lang('ac_val_name'), 'trim|required|alpha_dash');
+            $this->form_validation->set_rules('module', lang('ac_val_module'), 'trim|required');
+            $this->form_validation->set_rules('method', lang('ac_val_method'), 'trim|required');
 
             if ($this->form_validation->run($this) == FALSE)
             {
@@ -138,16 +138,16 @@ class Widgets_Manager extends MY_Controller {
                     $this->$module->$m('install_defaults', $data);
                 }
 
-                $this->lib_admin->log('Создал виджет '.$data['name']);
+                $this->lib_admin->log(lang('ac_created_widget').$data['name']);
 
                 //showMessage('Виджет создан.');
                 updateDiv('page', site_url('admin/widgets_manager'));
             }
         }elseif ($type == 'html') {
 
-            $this->form_validation->set_rules('desc', 'Описание', 'trim|min_length[1]|max_length[500]');
-            $this->form_validation->set_rules('name', 'Имя', 'trim|required|alpha_dash');
-            $this->form_validation->set_rules('html_code', 'HTML', 'trim|required');
+            $this->form_validation->set_rules('desc', lang('ac_val_desc'), 'trim|min_length[1]|max_length[500]');
+            $this->form_validation->set_rules('name', lang('ac_val_name'), 'trim|required|alpha_dash');
+            $this->form_validation->set_rules('html_code', lang('ac_val_html'), 'trim|required');
             
             if ($this->form_validation->run($this) == FALSE)
             {
@@ -161,7 +161,7 @@ class Widgets_Manager extends MY_Controller {
                     'created' => time()
                 );
 
-                $this->lib_admin->log('Создал виджет '.$data['name']);
+                $this->lib_admin->log(lang('ac_created_widget').$data['name']);
 
                 $this->db->insert('widgets', $data);
 
@@ -198,7 +198,7 @@ class Widgets_Manager extends MY_Controller {
             }elseif($widget['type'] == 'html'){
             }
         }else{
-            show_error('Error: widget not found!');
+            show_error(lang('ac_err_wid_not_found'));
         }
     }
 
@@ -214,8 +214,8 @@ class Widgets_Manager extends MY_Controller {
 
             if ($update_info == 'info')
             {
-                $this->form_validation->set_rules('desc', 'Описание', 'trim|min_length[1]|max_length[500]');
-                $this->form_validation->set_rules('name', 'Имя', 'trim|required|alpha_dash');
+                $this->form_validation->set_rules('desc', lang('ac_val_desc'), 'trim|min_length[1]|max_length[500]');
+                $this->form_validation->set_rules('name', lang('ac_val_name'), 'trim|required|alpha_dash');
             
                 if ($this->form_validation->run($this) == FALSE)
                 {
@@ -231,9 +231,9 @@ class Widgets_Manager extends MY_Controller {
                 $this->db->where('id', $widget['id']);
                 $this->db->update('widgets', $data);
 
-                $this->lib_admin->log('Изменил виджет '.$data['name']);
+                $this->lib_admin->log(lang('ac_ch_widget').$data['name']);
 
-                showMessage('Изменения сохранены');
+                showMessage(lang('ac_changes_saved'));
                 return TRUE;
             }
 
@@ -244,9 +244,9 @@ class Widgets_Manager extends MY_Controller {
 
             }elseif($widget['type'] == 'html'){
 
-            $this->form_validation->set_rules('desc', 'Описание', 'trim|min_length[1]|max_length[500]');
-            $this->form_validation->set_rules('name', 'Имя', 'trim|required|alpha_dash');
-            $this->form_validation->set_rules('html_code', 'HTML', 'trim|required');
+            $this->form_validation->set_rules('desc', lang('ac_val_desc'), 'trim|min_length[1]|max_length[500]');
+            $this->form_validation->set_rules('name', lang('ac_val_name'), 'trim|required|alpha_dash');
+            $this->form_validation->set_rules('html_code', lang('ac_val_html'), 'trim|required');
             
             if ($this->form_validation->run($this) == FALSE)
             {
@@ -265,13 +265,13 @@ class Widgets_Manager extends MY_Controller {
                 $this->db->where('id', $id);
                 $this->db->update('widgets', $data);
 
-                $this->lib_admin->log('Изменил виджет '.$data['name']);
+                $this->lib_admin->log(lang('ac_ch_widget').$data['name']);
 
                 //updateDiv('page', site_url('admin/widgets_manager'));
-                showMessage('Изменения сохранены');
+                showMessage(lang('ac_changes_saved'));
             }
         }else{
-            show_error('Error: widget not found!');
+            show_error(lang('ac_err_wid_not_found'));
         } 
     }
 
@@ -307,7 +307,7 @@ class Widgets_Manager extends MY_Controller {
             @unlink(PUBPATH.'/templates/'.$query['site_template'].'/widgets/'.$name.'.tpl'); 
         }
 
-        $this->lib_admin->log('Удалил виджет '.$name);
+        $this->lib_admin->log(lang('ac_wid_del').$name);
     }
 
     public function get($id)
@@ -421,7 +421,7 @@ class Widgets_Manager extends MY_Controller {
     {
         if ($dir == 'core')
         {
-            return 'Ядро';
+            return lang('ac_core');
         }
 
         $info = $this->load->module('admin/components')->get_module_info($dir); 

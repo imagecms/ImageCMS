@@ -13,10 +13,10 @@
 <div id="sortable" >
 		  <table id="cfcfm_fields_table">
 		  	<thead>
-                <th style="width:15px;">ID</th>
-                <th>Имя</th>
-                <th>Описание</th>
-                <th>Поля</th>
+                <th style="width:15px;">{lang('amt_id')}</th>
+                <th>{lang('amt_name')}</th>
+                <th>{lang('amt_description')}</th>
+                <th>{lang('amt_fields')}</th>
                 <th width="100px"></th>
             </thead>
 			<tbody>
@@ -31,8 +31,8 @@
                         {echo $this->CI->db->get_where('content_fields', array('group' => $g.id))->num_rows()}
                     </td>
                     <td align="right">
-<img onclick="ajax_div('page', base_url + 'admin/components/cp/cfcm/edit_group/{$g.id}');" style="cursor:pointer" src="{$THEME}/images/edit_page.png" width="16" height="16" title="Редактировать" />
-<img onclick="confirm_delete_cfcfm_group('{$g.id}');" src="{$THEME}/images/delete.png"  style="cursor:pointer" width="16" height="16" title="Удалить" /> 
+<img onclick="ajax_div('page', base_url + 'admin/components/cp/cfcm/edit_group/{$g.id}');" style="cursor:pointer" src="{$THEME}/images/edit_page.png" width="16" height="16" title="{lang('amt_edit')}" />
+<img onclick="confirm_delete_cfcfm_group('{$g.id}');" src="{$THEME}/images/delete.png"  style="cursor:pointer" width="16" height="16" title="{lang('amt_delete')}" /> 
                     </td>
                 </tr>        
     		{/foreach}
@@ -60,7 +60,7 @@
 
 {else:}
 <div id="notice">
-    Список групп пустой. <a href="javascript:ajax_div('page', base_url + 'admin/components/cp/cfcm/create_group');">Создать Группу.</a>
+    {lang('amt_empty_group_list')}<a href="javascript:ajax_div('page', base_url + 'admin/components/cp/cfcm/create_group');">{lang('amt_create_group')}</a>
 </div>
 {/if}
 

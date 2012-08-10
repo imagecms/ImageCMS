@@ -93,7 +93,7 @@ class Mod_search extends MY_Controller {
 
         if ($module_data['module_data'] == FALSE)
         {
-            echo 'Ошибка. Информация о модуле не найдена.';
+            echo lang('ac_error_not_found');
             return;
         }
 
@@ -120,7 +120,7 @@ class Mod_search extends MY_Controller {
 
         if (!function_exists('ftp_connect') AND $use_dir == FALSE)
         {
-            showMessage('Функция ftp_connect недоступна.',false,'r');
+            showMessage(lang('ac_ftp_fun_dis'),false,'r');
             exit;
         }
 
@@ -137,7 +137,7 @@ class Mod_search extends MY_Controller {
 
             if ($this->ftp->connect($config) == FALSE)
             {
-                showMessage('Ошибка подключения к серверу. Проверте имя пользователя или пароль.');
+                showMessage(lang('ac_err_conn_to_serv'));
             }
         }
         
@@ -164,7 +164,7 @@ class Mod_search extends MY_Controller {
 
             if ($error == TRUE)
             {
-                showMessage('Не правильный путь к корневой директории.',false,'r');
+                showMessage(lang('ac_wrong_path_to_root'),false,'r');
                 exit;
             }
             else
@@ -179,7 +179,7 @@ class Mod_search extends MY_Controller {
 
         if(($fh = fopen($module_data['file'], 'r')) == FALSE)
         {
-            showMessage('Ошибка загрузки файла.',false,'r');
+            showMessage(lang('ac_error_down_file'),false,'r');
         }
         else
         {
@@ -204,7 +204,7 @@ class Mod_search extends MY_Controller {
             {
                 if ( ! mkdir($tmp_folder.$name.'/'))
                 {
-                    showMessage('Ошибка создания временной директории.',false,'r');
+                    showMessage(lang('ac_error_cr_temp_dir'),false,'r');
                     fclose($fh);
 
                     if ($use_dir == FALSE)
@@ -228,13 +228,13 @@ class Mod_search extends MY_Controller {
                 }
                 else
                 {
-                    showMessage('Для продолжения уставки удалите директорию '.APPPATH.'modules/'.$name,'Внимание!','r');
+                    showMessage(lang('ac_to_continue').APPPATH.'modules/'.$name,lang('ac_atten'),'r');
                     exit;
                 }
 
                 if (($zip_result = $this->pclzip->extract(PCLZIP_OPT_PATH, APPPATH.'modules/'.$name.'/')) == 0)
                 {
-                    showMessage('Ошибка извлечения файлов из архива.',false,'r');
+                    showMessage(lang('ac_error_extract'),false,'r');
                     exit;
                 }
 
@@ -245,7 +245,7 @@ class Mod_search extends MY_Controller {
             
                 if (!$this->components->install($name))
                 {
-                    showMessage('Ошибка установки модуля.',false,'r');
+                    showMessage(lang('ac_error_install_module'),false,'r');
                 }
 
                 // Delete temp dir
@@ -255,7 +255,7 @@ class Mod_search extends MY_Controller {
                 // Delete temp .zip file
                 @unlink($tmp_folder.$name.'.zip');
 
-                showMessage('Модуль установлен.',false,'g');
+                showMessage(lang('ac_module_installed'),false,'g');
 
                 // Close install window
                 closeWindow('mod_install_w');
@@ -265,7 +265,7 @@ class Mod_search extends MY_Controller {
 
             if (($zip_result = $this->pclzip->extract(PCLZIP_OPT_PATH, $tmp_folder.$name.'/')) == 0)
             {
-                showMessage('Ошибка извлечения файлов из архива.',false,'r');
+                showMessage(lang('ac_error_extract'),false,'r');
             }
             else
             {
@@ -284,7 +284,7 @@ class Mod_search extends MY_Controller {
                 {
                     if (!$this->ftp->mirror($tmp_folder.$name.'/', $dest_folder))
                     {
-                        showMessage('Ошибка создания временной директории.',false,'r'); 
+                        showMessage(lang('ac_error_cr_temp_dir'),false,'r'); 
                     }
                 }
 
@@ -293,7 +293,7 @@ class Mod_search extends MY_Controller {
             
                 if (!$this->components->install($name))
                 {
-                    showMessage('Ошибка установки модуля.',false,'r');
+                    showMessage(lang('ac_error_install_module'),false,'r');
                 }
 
                 // Delete temp dir
@@ -303,7 +303,7 @@ class Mod_search extends MY_Controller {
                 // Delete temp .zip file
                 @unlink($tmp_folder.$name.'.zip');
 
-                showMessage('Модуль установлен.',false,'g');
+                showMessage(lang('ac_module_installed'),false,'g');
 
                 // Close install window
                 closeWindow('mod_install_w');

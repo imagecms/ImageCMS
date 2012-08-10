@@ -1,11 +1,11 @@
 <div class="top-navigation">
     <ul style="float:left;">
-        <li><p>Категории</p></li>
+        <li><p>{lang('amt_categories')}</p></li>
     </ul>
     <div align="right" style="float:right;padding:7px 13px;">
-        <input type="button" class="button_silver_130" value="Создать Категорию" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/show_create_category'); return false;" />
-        <input type="button" class="button_silver_130" value="Создать Альбом" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/show_crate_album'); return false;" />
-        <input type="button" class="button_silver_130" value="Настройки" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/settings'); return false;" />
+        <input type="button" class="button_silver_130" value="{lang('amt_create_cat')}" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/show_create_category'); return false;" />
+        <input type="button" class="button_silver_130" value="{lang('amt_create_album')}" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/show_crate_album'); return false;" />
+        <input type="button" class="button_silver_130" value="{lang('amt_settings')}" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/settings'); return false;" />
     </div>
 </div>
 
@@ -15,11 +15,11 @@
 		  <table id="cats_table">
 		  	<thead>
                 <th width="5px"></th>
-				<th width="5px;">ID</th>
-                <th axis="string">Имя</th>
-                <th axis="string">Альбомы</th>
-                <th axis="string">Описание</th>
-                <th axis="date">Создано</th>
+				<th width="5px;">{lang('amt_id')}</th>
+                <th axis="string">{lang('amt_name')}</th>
+                <th axis="string">{lang('amt_albums')}</th>
+                <th axis="string">{lang('amt_description')}</th>
+                <th axis="date">{lang('amt_crea')}</th>
                 <th></th>
 			</thead>
 			<tbody>

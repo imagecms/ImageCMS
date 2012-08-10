@@ -2,11 +2,11 @@
     <div id="sortable">
 	<table width="100%" border="0" align="left" class="items_table" id="mt1">
 	  <thead>
-		<th width="15px">ID</th>
-		<th>Название</th>
-		<th>Имя</th>
-		<th>Описание</th>
-		<th>Создано</th>
+		<th width="15px">{lang('amt_id')}</th>
+		<th>{lang('amt_tname')}</th>
+		<th>{lang('amt_name')}</th>
+		<th>{lang('amt_description')}</th>
+		<th>{lang('amt_crea')}</th>
 		<th></th>
 	  </thead>
 	  <tbody>
@@ -32,7 +32,7 @@
 <div class="form_overflow"></div>
 
     <div align="right" style="padding:5px;">
-            <input type="button" class="button" value="Создать Меню" onclick="open_create_winow(); return false;" />
+            <input type="button" class="button" value="{lang('amt_create_menu')}" onclick="open_create_winow(); return false;" />
     </div>
 
     {literal}

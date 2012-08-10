@@ -87,8 +87,8 @@ class Core_Widgets extends MY_Controller {
             break;
 
             case 'update_settings':
-                $this->form_validation->set_rules('news_count', 'Количество новостей', 'trim|required|is_natural_no_zero|min_length[1]');
-                $this->form_validation->set_rules('max_symdols', 'Максимальное количество символов', 'trim|required|is_natural|min_length[1]');
+                $this->form_validation->set_rules('news_count', lang('amt_news_count'), 'trim|required|is_natural_no_zero|min_length[1]');
+                $this->form_validation->set_rules('max_symdols', lang('amt_max_symbol_count'), 'trim|required|is_natural|min_length[1]');
 
                 if ($this->form_validation->run($this) == FALSE)
                 {
@@ -103,7 +103,7 @@ class Core_Widgets extends MY_Controller {
                     );                       
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
-                    showMessage('Настройки сохранены.');
+                    showMessage(lang('amt_settings_saved'));
                 }
             break;
 

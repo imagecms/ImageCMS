@@ -85,7 +85,7 @@ class Pages extends MY_Controller {
 	{
 		($hook = get_hook('admin_on_page_delete')) ? eval($hook) : NULL;
 
-		$this->lib_admin->log('Удалил страницу ID '.$page_id);
+		$this->lib_admin->log(lang('ac_delete_page').$page_id);
 
 		// Delete content_permissions
 		$this->db->where('page_id',$page_id);
@@ -111,18 +111,18 @@ class Pages extends MY_Controller {
 
 		cp_check_perm('page_create');
 
-		$this->form_validation->set_rules('page_title', 'Заголовок', 'trim|required|min_length[1]|max_length[500]');
-		$this->form_validation->set_rules('page_url', 'URL', 'alpha_dash');
-		$this->form_validation->set_rules('page_keywords', 'Ключевые слова', 'trim');
-		$this->form_validation->set_rules('prev_text', 'Пред. Содержание', 'trim|required');
-		$this->form_validation->set_rules('page_description', 'Описание', 'trim');
-		$this->form_validation->set_rules('full_tpl', 'Шаблон Страницы', 'trim|max_length[150]|min_length[2]');
-		$this->form_validation->set_rules('create_date', 'Дата создания', 'required|valid_date');
-		$this->form_validation->set_rules('create_time', 'Время создания', 'required|valid_time');
-		$this->form_validation->set_rules('publish_date', 'Дата создания', 'required|valid_date');
-		$this->form_validation->set_rules('publish_time', 'Время создания', 'required|valid_time');
+		$this->form_validation->set_rules('page_title', lang('ac_val_t'), 'trim|required|min_length[1]|max_length[500]');
+		$this->form_validation->set_rules('page_url', lang('ac_val_url'), 'alpha_dash');
+		$this->form_validation->set_rules('page_keywords', lang('ac_val_keywords'), 'trim');
+		$this->form_validation->set_rules('prev_text', lang('ac_val_prev_cont'), 'trim|required');
+		$this->form_validation->set_rules('page_description', lang('ac_val_desc'), 'trim');
+		$this->form_validation->set_rules('full_tpl', lang('ac_val_page_tpl'), 'trim|max_length[150]|min_length[2]');
+		$this->form_validation->set_rules('create_date', lang('ac_val_cr_date'), 'required|valid_date');
+		$this->form_validation->set_rules('create_time', lang('ac_val_time_cr'), 'required|valid_time');
+		$this->form_validation->set_rules('publish_date', lang('ac_val_pub_date'), 'required|valid_date');
+		$this->form_validation->set_rules('publish_time', lang('ac_val_pub_time'), 'required|valid_time');
 
-		$this->form_validation->set_rules('main_tpl', 'Главный шаблон страницы', 'trim|max_length[50]|min_length[2]');
+		$this->form_validation->set_rules('main_tpl', lang('ac_main_tpl'), 'trim|max_length[50]|min_length[2]');
 
 		($hook = get_hook('admin_page_add_set_rules')) ? eval($hook) : NULL;
 
@@ -155,7 +155,7 @@ class Pages extends MY_Controller {
 
 			if($query->num_rows() > 0)
 			{
-				showMessage ('Страница c таким URL уже существует! Укажите другой URL.',false,'r');
+				showMessage (lang('ac_page_is_al_cr'),false,'r');
 				exit;
 			}
 			// end check
@@ -218,12 +218,12 @@ class Pages extends MY_Controller {
 
 			$this->on_page_add($data);
 
-			$this->lib_admin->log('
-			Создал страницу
-			<a href="#" onclick="ajax_div(\'page\',\''.site_url('admin/pages/edit/'.$page_id).'\'); return false;">'.$data['title'].'</a>'
+			$this->lib_admin->log(
+			lang('ac_created_page').
+			'<a href="#" onclick="ajax_div(\'page\',\''.site_url('admin/pages/edit/'.$page_id).'\'); return false;">'.$data['title'].'</a>'
 			);
 
-			showMessage ('Страница создана');
+			showMessage (lang('ac_page_created'));
 			updateDiv('page',site_url('admin/pages/edit/'.$page_id.'/'.$data['lang']));
 		}
 	}
@@ -279,7 +279,7 @@ class Pages extends MY_Controller {
 
 		if($this->cms_admin->get_page($page_id) == FALSE)
 		{
-			showMessage('Страница '.$page_id.' не найдена',false,'r');
+			showMessage(lang('ac_page').$page_id.lang('ac_not_found'),false,'r');
 			exit;
 		}
 
@@ -405,7 +405,7 @@ class Pages extends MY_Controller {
 
 					if($new_p_id > 0)
 					{
-						showMessage('Страница на языке <b>'.$cur_lang['lang_name']. '</b> создана. ID: <b>'.$new_p_id.'</b>');
+						showMessage(lang('ac_page_in_language').'<b>'.$cur_lang['lang_name']. '</b>'.lang('ac_creat').'<b>'.$new_p_id.'</b>');
 						updateDiv('page',site_url('admin/pages/edit/'.$page_id.'/'.$lang));
 						exit;
 					}else{
@@ -426,17 +426,17 @@ class Pages extends MY_Controller {
 
 		cp_check_perm('page_edit');
 
-		$this->form_validation->set_rules('page_title', 'Заголовок', 'trim|required|min_length[1]|max_length[500]');
-		$this->form_validation->set_rules('page_url', 'URL', 'alpha_dash');
-		$this->form_validation->set_rules('page_keywords', 'Ключевые слова', 'trim');
-		$this->form_validation->set_rules('prev_text', 'Пред. Содержание', 'trim|required');
-		$this->form_validation->set_rules('page_description', 'Описание', 'trim');
-		$this->form_validation->set_rules('full_tpl', 'Шаблон Страницы', 'trim|max_length[50]|min_length[2]');
-		$this->form_validation->set_rules('main_tpl', 'Главный шаблон cтраницы', 'trim|max_length[50]|min_length[2]');
-		$this->form_validation->set_rules('create_date', 'Дата создания', 'required|valid_date');
-		$this->form_validation->set_rules('create_time', 'Время создания', 'required|valid_time');
-		$this->form_validation->set_rules('publish_date', 'Дата создания', 'required|valid_date');
-		$this->form_validation->set_rules('publish_time', 'Время создания', 'required|valid_time');
+		$this->form_validation->set_rules('page_title', lang('ac_val_t'), 'trim|required|min_length[1]|max_length[500]');
+		$this->form_validation->set_rules('page_url', lang('ac_val_url'), 'alpha_dash');
+		$this->form_validation->set_rules('page_keywords', lang('ac_val_keywords'), 'trim');
+		$this->form_validation->set_rules('prev_text', lang('ac_val_prev_cont'), 'trim|required');
+		$this->form_validation->set_rules('page_description', lang('ac_val_desc'), 'trim');
+		$this->form_validation->set_rules('full_tpl', lang('ac_val_page_tpl'), 'trim|max_length[50]|min_length[2]');
+		$this->form_validation->set_rules('main_tpl', lang('ac_val_main_page_tpl'), 'trim|max_length[50]|min_length[2]');
+		$this->form_validation->set_rules('create_date', lang('ac_val_cr_date'), 'required|valid_date');
+		$this->form_validation->set_rules('create_time', lang('ac_val_time_cr'), 'required|valid_time');
+		$this->form_validation->set_rules('publish_date', lang('ac_val_pub_date'), 'required|valid_date');
+		$this->form_validation->set_rules('publish_time', lang('ac_val_pub_date'), 'required|valid_time');
 
 		($hook = get_hook('admin_page_update_set_rules')) ? eval($hook) : NULL;
 
@@ -468,7 +468,7 @@ class Pages extends MY_Controller {
 
 			if($query->num_rows() > 0)
 			{
-				showMessage ('Страница c URL: <b>'.$url.'</b> в категории ID: '.$this->input->post('category').' уже существует! Укажите другой URL.',false,'r');
+				showMessage (lang('ac_page_with_url').'<b>'.$url.'</b>'.lang('ac_in_cat_id').$this->input->post('category').lang('ac_allready_exist'),false,'r');
 				exit;
 			}
 			// end check
@@ -527,12 +527,12 @@ class Pages extends MY_Controller {
 
 			if ($this->cms_admin->update_page($page_id, $data) >= 1)
 			{
-				$this->lib_admin->log('
-				Изменил страницу
-				<a href="#" onclick="ajax_div(\'page\',\''.site_url('admin/pages/edit/'.$page_id).'\'); return false;">'.$data['title'].'</a>'
+				$this->lib_admin->log(
+				lang('ac_changed_page').
+				'<a href="#" onclick="ajax_div(\'page\',\''.site_url('admin/pages/edit/'.$page_id).'\'); return false;">'.$data['title'].'</a>'
 				);
 
-				showMessage ('Содержание страницы обновлено.');
+				showMessage (lang('ac_page_cont_updated'));
 			}else{
 				showMessage ('',false,'r');
 			}
@@ -552,7 +552,7 @@ class Pages extends MY_Controller {
 
 		if($settings['main_page_id'] == $page_id AND $settings['main_type'] == 'page')
 		{
-			jsCode("alertBox.alert('<h1>Ошибка</h1>Нельзя удалить заглавную страницу!');");
+			jsCode("alertBox.alert(".lang('ac_error_deleting_main_cat').");");
 			return FALSE;
 		}
 
@@ -572,7 +572,7 @@ class Pages extends MY_Controller {
 
 			if ($show_messages == TRUE)
 			{
-				showMessage('Страница удалена.');
+				showMessage(lang('ac_page_deleted'));
 				updateDiv('page',site_url('admin/pages/GetPagesByCategory/'.$page['category']));
 			}
 			return TRUE;
@@ -590,7 +590,7 @@ class Pages extends MY_Controller {
 
 		if ($show_messages == TRUE)
 		{
-			showMessage('Страница удалена.');
+			showMessage(lang('ac_page_deleted'));
 			updateDiv('page',site_url('admin/pages/edit/'.$root_page['id'].'/'.$root_page['lang']));
 		}
 	}
@@ -780,7 +780,7 @@ class Pages extends MY_Controller {
 
 		if($text == '')
 		{
-			echo 'Передана пустая строка';
+			echo lang('ac_empty_string');
 			exit;
 		}
 
@@ -836,7 +836,7 @@ class Pages extends MY_Controller {
 				$this->cms_admin->update_page($page['id'],$data);
 
 				jsCode(" $('p_status_".$page_id."').src = theme + '/images/pending.png'; ");
-				jsCode(" $('p_status_".$page_id."').title = 'Ожидает Одобрения'; ");
+				jsCode(" $('p_status_".$page_id."').title = '".lang('ac_wait_for_appr')."'; ");
 			break;
 
 			case 'pending':
@@ -844,7 +844,7 @@ class Pages extends MY_Controller {
 				$this->cms_admin->update_page($page['id'],$data);
 
 				jsCode(" $('p_status_".$page_id."').src = theme + '/images/draft.png'; ");
-				jsCode(" $('p_status_".$page_id."').title = 'Не опубликовано'; ");
+				jsCode(" $('p_status_".$page_id."').title = '".lang('ac_not_publ')."'; ");
 			break;
 
 			case 'draft':
@@ -852,7 +852,7 @@ class Pages extends MY_Controller {
 				$this->cms_admin->update_page($page['id'],$data);
 
 				jsCode(" $('p_status_".$page_id."').src = theme + '/images/publish.png'; ");
-				jsCode(" $('p_status_".$page_id."').title = 'Опубликовано'; ");
+				jsCode(" $('p_status_".$page_id."').title = '".lang('ac_published')."'; ");
 			break;
 		}
 	}

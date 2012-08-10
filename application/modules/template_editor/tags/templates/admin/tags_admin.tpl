@@ -2,7 +2,7 @@
         <div style="float:left;">
             <ul>
             <li>
-                <p>Все теги ({count($tags_cloud)})</p>
+                <p>{lang('amt_all_tags')} ({count($tags_cloud)})</p>
             </li>
             </ul>
         </div>

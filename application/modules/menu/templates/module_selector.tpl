@@ -2,11 +2,11 @@
         <table width="100%" border="0" cellpadding="2" cellspacing="2">
             <tr>
                 <td width="100%" valign="top">
-                    Выбeрите Модуль
+                    {lang('amt_select_module')}
                 </td>
                 <td valign="top">
                 <div style="width:350px;" id="item_params">  
-                        <h3>Параметры:</h3> 
+                        <h3>{lang('amt_params')}:</h3> 
                 </div>
                 </td>
             </tr>
@@ -23,24 +23,24 @@
                     <!-- Link params -->              
                    <input type="hidden" id="owner_id" value="{$insert_id}" /> 
 
-                    <div class="field_text">Тип</div>
+                    <div class="field_text">{lang('amt_type')}</div>
                     <div class="field_input" id="module_type">
-                        Модуль
+                        {lang('amt_module')}
                     </div>
                     <div class="form_overflow"></div>
 
-                    <div class="field_text">Имя</div>
+                    <div class="field_text">{lang('amt_name')}</div>
                     <div class="field_input" id="module_name"></div>
                     <div class="form_overflow"></div>
                     
 
-                    <div class="field_text">Заголовок</div>
+                    <div class="field_text">{lang('amt_title')}</div>
                     <div class="field_input">
                         <input type="text" class="textbox" value="" name="module_title"  id="module_title" />
                     </div>
                     <div class="form_overflow"></div>                  
 
-                    <div class="field_text">Функция</div>
+                    <div class="field_text">{lang('amt_function')}</div>
                     <div class="field_input">
                         <input type="text" class="textbox" value="" name="module_method"  id="module_method" />
                         <br/>
@@ -48,10 +48,10 @@
                     </div>
                     <div class="form_overflow"></div>   
 
-                    <div class="field_text">Родитель</div>
+                    <div class="field_text">{lang('amt_parent')}</div>
                     <div class="field_input">
                        	<select name="module_parent_id" id="module_parent_id">
-                        <option value="0">Нет</option>
+                        <option value="0">{lang('amt_no')}</option>
                         {foreach $menu_result as $item}
                         <option  value="{$item.id}">{ for $i=0; $i < $item['padding']; $i++ }-{/for} {$item.title}</option>  
                         {/foreach}
@@ -61,11 +61,11 @@
                     <div class="form_overflow"></div>
 
 
-                    <div class="field_text">Позиция после</div>
+                    <div class="field_text">{lang('amt_position_after')}</div>
                     <div class="field_input">
                        	<select name="module_position_after" id="module_position_after">
-                        <option value="0">Нет</option>
-                        <option value="first">Первый</option>
+                        <option value="0">{lang('amt_no')}</option>
+                        <option value="first">{lang('amt_first')}</option>
                         {foreach $menu_result as $item}
                         <option  value="{$item.id}">{for $i=0; $i < $item['padding']; $i++ }-{/for} {$item.title}</option>  
                         {/foreach}
@@ -74,17 +74,17 @@
                     <div class="form_overflow"></div>
                     
                     
-                    <div class="field_text">Изображение</div>
+                    <div class="field_text">{lang('amt_image')}</div>
                     <div class="field_input">
                         <input type="text" class="textbox" value="" name="mod_image"  id="mod_image" />
-                        <img width="16" height="16" align="absmiddle" src="{$THEME}/images/images.png" title="Выбрать Изображение" style="cursor: pointer;" onclick="tinyBrowserPopUp('image', 'mod_image');" />
+                        <img width="16" height="16" align="absmiddle" src="{$THEME}/images/images.png" title="{lang('amt_select_image')}" style="cursor: pointer;" onclick="tinyBrowserPopUp('image', 'mod_image');" />
                     </div>                    
 
 
-                    <div class="field_text">Уровень доступа</div>
+                    <div class="field_text">{lang('amt_access_level')}</div>
                     <div class="field_input">
                         <select id="module_roles" name="module_roles[]" multiple="multiple">
-                        <option value="0">Все</option>
+                        <option value="0">{lang('amt_all')}</option>
                         {foreach $roles as $role}
                           <option value ="{$role.id}">{$role.alt_name}</option>
                         {/foreach}
@@ -94,29 +94,29 @@
                     <div class="form_overflow"></div>
 
                    <div class="field_text">
-                        Скрыть
+                        {lang('amt_hide')}
                     </div>
                     <div class="field_input">
-                       <input type="radio" name="modhidden_v" id="mod_hidden" onclick="module_hidden = 1;" /> Да
-                       <input type="radio" name="modhidden_v" id="mod_nohidden"  onclick="module_hidden = 0;"  checked="checked" /> Нет
+                       <input type="radio" name="modhidden_v" id="mod_hidden" onclick="module_hidden = 1;" /> {lang('amt_yes')}
+                       <input type="radio" name="modhidden_v" id="mod_nohidden"  onclick="module_hidden = 0;"  checked="checked" /> {lang('amt_no')}
                     </div>
 
                     <div class="form_overflow"></div>
 		    
 		    <div class="field_text">
-                        Открывать в новом окне
+                        {lang('amt_open_in_new_window')}
                     </div>
                     <div class="field_input">
-                       <input type="radio" name="modnew_page" id="mod_newpage"  onclick="mod_newpage = 1;" /> Да
-                       <input type="radio" name="modnew_page" id="mod_nonewpage" onclick="mod_newpage = 0;"  checked="checked" /> Нет
+                       <input type="radio" name="modnew_page" id="mod_newpage"  onclick="mod_newpage = 1;" /> {lang('amt_yes')}
+                       <input type="radio" name="modnew_page" id="mod_nonewpage" onclick="mod_newpage = 0;"  checked="checked" /> {lang('amt_no')}
                     </div>
 
                     <div class="form_overflow"></div>
 
                     <div class="field_text"></div>
                     <div class="field_input">
-                        <input type="button" value="Создать" id="mod_btn" class="button" onclick="insert_module(); return false;" />
-                        <input type="button" value="Отмена" class="button" onclick="MochaUI.closeWindow( $('createnewlink') ); return false;" />
+                        <input type="button" value="{lang('amt_to_create')}" id="mod_btn" class="button" onclick="insert_module(); return false;" />
+                        <input type="button" value="{lang('amt_cancel')}" class="button" onclick="MochaUI.closeWindow( $('createnewlink') ); return false;" />
                     </div>
 
                     <div class="form_overflow"></div>                 
