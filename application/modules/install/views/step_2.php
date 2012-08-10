@@ -10,13 +10,16 @@ if (validation_errors() OR $other_errors) {
     <p>
     <div class="form_text">Название сайта</div>
     <div class="form_input">
-        <input type="text" class="textbox" value="<?php echo $_POST['site_title'] ?>" name="site_title">
+        <input type="text" class="textbox" value="<?php echo $_POST['site_title'] ?>" name="site_title"  autocomplete="off">
     </div>
     <div class="form_overflow"></div>
     
     <div class="form_text">Язык административной части</div>
     <div class="form_input">
-        <input type="text" class="textbox" value="<?php echo $_POST['site_title'] ?>" name="site_title">
+        <select name="lang_sel">
+            <option value="russian_lang" >Русский</option>
+            <option value="english_lang" >English (beta)</option>
+        </select>
     </div>
     <div class="form_overflow"></div>
 
