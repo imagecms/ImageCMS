@@ -151,8 +151,9 @@
     $lang['a_there']            =	'существует';
     $lang['a_product']          =	'Товар';
     $lang['a_products']         =	'Продукт';
-    $lang['a_orders']           =	'Доставки';
-    $lang['a_order']           =	'заказов';
+    $lang['a_orders']           =	'Заказы';
+    $lang['a_orders_']           =	'заказов';
+    $lang['a_order']           =	'Заказы';
     $lang['a_request_notification']=	'Запросы об уведомлении';
     $lang['a_product_no_icon']  =	'Товары без картинок';
     $lang['a_callback']         =	'Callback';

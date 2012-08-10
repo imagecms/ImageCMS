@@ -22,7 +22,7 @@
         <div class="p-t_19 clearfix">
             <div class="f_l">
                 <a href="{site_url('auth/register')}" class="button_middle_blue_neigh f_l reg_me">
-                    Регисрация
+                    Регистрация
                 </a>
             </div>
             <div class="f_r buttons button_middle_blue">
