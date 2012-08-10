@@ -20,8 +20,10 @@
 <!-- END STAR RATING -->
 
 <!--
-{include_tpl ('sidebar')}
+{include_tpl('sidebar')}
 -->
+
+
 <div class="content">
     <div class="center">
         <div class="filter">
