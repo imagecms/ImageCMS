@@ -2,18 +2,18 @@
         <table width="100%" border="0" cellpadding="2" cellspacing="2">
             <tr>
                 <td width="100%" valign="top">
-                    Укажите ссылку на страницу
+                    {lang('amt_select_page_link')}
                 </td>
                 <td valign="top">
                 <div style="width:350px;" id="item_params">  
-                        <h3>Параметры:</h3> 
+                        <h3>{lang('amt_params')}:</h3> 
                 </div>
                 </td>
             </tr>
             <tr>
                 <td valign="top">
                     <div>
-                        URL: <input type="text" class="textbox_long" id="url_to_page" style="width:350px;" value="" />
+                        {lang('amt_url')}: <input type="text" class="textbox_long" id="url_to_page" style="width:350px;" value="" />
                     </div>
                 </td>              
                
@@ -21,17 +21,17 @@
                     <!-- Link params -->              
                    <input type="hidden" id="owner_id" value="{$insert_id}" /> 
                 
-                    <div class="field_text">Заголовок</div>
+                    <div class="field_text">{lang('amt_title')}</div>
                     <div class="field_input">
                         <input type="text" class="textbox" value="" name="url_title"  id="url_title" />
                     </div>
                     
                     <div class="form_overflow"></div>                  
 
-                    <div class="field_text">Родитель</div>
+                    <div class="field_text">{lang('amt_parent')}</div>
                     <div class="field_input">
                        	<select name="url_parent_id" id="url_parent_id">
-                        <option value="0">Нет</option>
+                        <option value="0">{lang('amt_no')}</option>
                         {foreach $menu_result as $item}
                         <option  value="{$item.id}">{for $i=0; $i < $item['padding']; $i++ }-{/for} {$item.title}</option>  
                         {/foreach}
@@ -41,11 +41,11 @@
                     <div class="form_overflow"></div>
 
 
-                    <div class="field_text">Позиция после</div>
+                    <div class="field_text">{lang('amt_position_after')}</div>
                     <div class="field_input">
                        	<select name="url_position_after" id="url_position_after">
-                        <option value="0">Нет</option>
-                        <option value="first">Первый</option>
+                        <option value="0">{lang('amt_no')}</option>
+                        <option value="first">{lang('amt_first')}</option>
                         {foreach $menu_result as $item}
                         <option  value="{$item.id}">{for $i=0; $i < $item['padding']; $i++ }-{/for} {$item.title}</option>  
                         {/foreach}
@@ -54,17 +54,17 @@
                     <div class="form_overflow"></div>
                     
 
-                    <div class="field_text">Изображение</div>
+                    <div class="field_text">{lang('amt_image')}</div>
                     <div class="field_input">
                         <input type="text" class="textbox" value="" name="url_image"  id="url_image" />
-                        <img width="16" height="16" align="absmiddle" src="{$THEME}/images/images.png" title="Выбрать Изображение" style="cursor: pointer;" onclick="tinyBrowserPopUp('image', 'url_image');" />
+                        <img width="16" height="16" align="absmiddle" src="{$THEME}/images/images.png" title="{lang('amt_select_image')}" style="cursor: pointer;" onclick="tinyBrowserPopUp('image', 'url_image');" />
                     </div>    
                                         
 
-                    <div class="field_text">Уровень доступа</div>
+                    <div class="field_text">{lang('amt_access_level')}</div>
                     <div class="field_input">
                         <select id="url_roles" name="url_roles[]" multiple="multiple">
-                        <option value="0">Все</option>
+                        <option value="0">{lang('amt_all')}</option>
                         {foreach $roles as $role}
                           <option value ="{$role.id}">{$role.alt_name}</option>
                         {/foreach}
@@ -74,29 +74,29 @@
                     <div class="form_overflow"></div>
 
                    <div class="field_text">
-                        Скрыть
+                        {lang('amt_hide')}
                     </div>
                     <div class="field_input">
-                       <input type="radio" name="hidden_v" id="url_hiddenv" onclick="url_hidden = 1;" /> Да
-                       <input type="radio" name="hidden_v" id="url_nohiddenv" onclick="url_hidden = 0;"  checked="checked" /> Нет
+                       <input type="radio" name="hidden_v" id="url_hiddenv" onclick="url_hidden = 1;" /> {lang('amt_yes')}
+                       <input type="radio" name="hidden_v" id="url_nohiddenv" onclick="url_hidden = 0;"  checked="checked" /> {lang('amt_no')}
                     </div>
 
                     <div class="form_overflow"></div>
 
 	            <div class="field_text">
-                        Открывать в новом окне
+                        {lang('amt_open_in_new_window')}
                     </div>
                     <div class="field_input">
-			<input type="radio" name="urlnew_page" id="url_newpage"  onclick="url_newpage = 1;" /> Да
-		        <input type="radio" name="urlnew_page" id="url_nonewpage" onclick="url_newpage = 0;"  checked="checked" /> Нет
+			<input type="radio" name="urlnew_page" id="url_newpage"  onclick="url_newpage = 1;" /> {lang('amt_yes')}
+		        <input type="radio" name="urlnew_page" id="url_nonewpage" onclick="url_newpage = 0;"  checked="checked" /> {lang('amt_no')}
                      </div>
 
                     <div class="form_overflow"></div>
 
                     <div class="field_text"></div>
                     <div class="field_input">
-                        <input type="button" value="Создать" id="url_btn" class="button" onclick="insert_url(); return false;" />
-                        <input type="button" value="Отмена" class="button" onclick="MochaUI.closeWindow( $('createnewlink') ); return false;" />
+                        <input type="button" value="{lang('amt_to_create')}" id="url_btn" class="button" onclick="insert_url(); return false;" />
+                        <input type="button" value="{lang('amt_cancel')}" class="button" onclick="MochaUI.closeWindow( $('createnewlink') ); return false;" />
                     </div>
 
                     <div class="form_overflow"></div>                 

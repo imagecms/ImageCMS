@@ -46,8 +46,8 @@ class Admin extends MY_Controller {
                 {
                     $this->load->library('form_validation');
 
-                    $this->form_validation->set_rules('email', 'E-mail', 'trim|valid_email|required|xss_clean');
-                    $this->form_validation->set_rules('message_max_len', 'Макс. длина сообщения', 'trim|integer|required|xss_clean');
+                    $this->form_validation->set_rules('email', lang('amt_email'), 'trim|valid_email|required|xss_clean');
+                    $this->form_validation->set_rules('message_max_len', lang('amt_max_message_length'), 'trim|integer|required|xss_clean');
 
                     if ($this->form_validation->run($this) == FALSE)
                     {
@@ -62,7 +62,7 @@ class Admin extends MY_Controller {
                         $this->db->where('name', 'feedback');
                         $this->db->update('components', array('settings' => serialize($data)));
 
-                        showMessage('Настройки сохрарены');
+                        showMessage(lang('amt_settings_saved'));
                     }
                 }
             break;

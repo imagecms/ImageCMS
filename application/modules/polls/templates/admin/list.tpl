@@ -1,6 +1,6 @@
 {if $polls->num_rows()==0}
-    <div id="notice" style="width:500px;">Список голосований пустой.
-    <a href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/polls/create'); return false;">Создать.</a>
+    <div id="notice" style="width:500px;">{lang('amt_empty_poll_list')}
+    <a href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/polls/create'); return false;">{lang('amt_to_create')}.</a>
     </div>
     {return}
 {/if}
@@ -9,13 +9,13 @@
         <div style="float:left;">
             <ul>
             <li>
-                <p>Список голосований</p>
+                <p>{lang('amt_poll_list')}</p>
             </li>
             </ul>
         </div>
 
         <div align="right" style="padding:7px 13px;">
-        <input type="button" class="button_silver_130" value="Создать" onclick="ajax_div('page', base_url + 'admin/components/cp/polls/create'); return fa;se;" />
+        <input type="button" class="button_silver_130" value="{lang('amt_to_create')}" onclick="ajax_div('page', base_url + 'admin/components/cp/polls/create'); return false;" />
         </div>
 </div>
 <div style="clear:both;"></div>
@@ -25,8 +25,8 @@
 <div id="sortable" >
 		  <table id="pages_table">
 		  	<thead>
-                <th width="5px">ID</th>
-				<th>Название</th>
+                <th width="5px">{lang('amt_id')}</th>
+				<th>{lang('amt_tname')}</th>
 				<th width="24px;"></th>
 			</thead>
 			<tbody>
@@ -37,7 +37,7 @@
                 {encode($poll.name)}
             </td>
             <td>
-			<img onclick="confirm_delete_poll({$poll.id});" src="{$THEME}/images/delete.png"  style="cursor:pointer" width="16" height="16" title="Удалить" />
+			<img onclick="confirm_delete_poll({$poll.id});" src="{$THEME}/images/delete.png"  style="cursor:pointer" width="16" height="16" title="{lang('amt_delete')}" />
 			</td>
 		</tr>
 		{/foreach}

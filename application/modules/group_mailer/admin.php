@@ -42,10 +42,10 @@ class Admin extends MY_Controller {
         // Load form validation class
         $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('subject', 'Тема', 'required|trim');
-        $this->form_validation->set_rules('name', 'Ваше Имя', 'required|trim');
-        $this->form_validation->set_rules('email', 'Ваш Email', 'required|trim|valid_email');
-        $this->form_validation->set_rules('message', 'Сообщение', 'required|trim');
+        $this->form_validation->set_rules('subject', lang('amt_theme'), 'required|trim');
+        $this->form_validation->set_rules('name', lang('amt_your_name'), 'required|trim');
+        $this->form_validation->set_rules('email', lang('amt_your_email'), 'required|trim|valid_email');
+        $this->form_validation->set_rules('message', lang('amt_message'), 'required|trim');
         
 		if ($this->form_validation->run($this) == FALSE)
 		{
@@ -98,7 +98,7 @@ class Admin extends MY_Controller {
                 }
 
                 $this->load->library('lib_admin');
-                $this->lib_admin->log('Отправил('.$counter['true'].'/'.$counter['all'].') пользователям E-Mail c темой '.$_POST['subject']);
+                $this->lib_admin->log(lang('amt_send').'('.$counter['true'].'/'.$counter['all'].')'.lang("amt_users_email_topic").')'.$_POST['subject']);
                 $class='b';
                 if ($counter['true'] == $counter['all'])
                     {$class='g';}
@@ -106,11 +106,11 @@ class Admin extends MY_Controller {
                     {$class='r';}
                 if ($class !== 'r')
                     {
-                    showMessage('Сообщений отправлено: '.$counter['true'].'шт. из '.$counter['all'].'шт.',false,$class);
+                    showMessage(lang('amt_message_send').': '.$counter['true'].lang('amt_count_from').$counter['all'].'шт.',false,$class);
                     }
                 else
                     {
-                    showMessage('Ни одно сообщение из '.$counter['all'].'шт. не отправлено!',false,$class);
+                    showMessage(lang('amt_not_any_message_from').$counter['all'].lang('amt_count_not_send'),false,$class);
                     }
                     
                 updateDiv('page', site_url('admin/components/cp/group_mailer/index'));

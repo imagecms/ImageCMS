@@ -6,11 +6,11 @@
                 <!-- <input name="userfile" id="file" size="27" type="file" /> -->
 
                 <div style="height:16px;width:130px;float:left;text-align: center; overflow: hidden;" class="button_silver_130">
-                <div style="color:#000000;">Выбрать файл</div>
+                <div style="color:#000000;">{lang('amt_select_file')}</div>
                 <input type="file" name="userfile" id="file" size="1" style="margin-top: -50px; margin-left:-410px; -moz-opacity: 0; filter: alpha(opacity=0); opacity: 0; font-size: 150px; height: 100px;" />
                 </div>
 
-                <input type="submit" name="action" value="Загрузить файл" class="button_silver_130" />
+                <input type="submit" name="action" value="{lang('amt_download_file')}" class="button_silver_130" />
                 <iframe id="upload_target" name="upload_target" src="" style="width:0;height:0;border:0px solid #fff;display:none;"></iframe>
                 {form_csrf()}</form>
             </li>
@@ -21,7 +21,7 @@
         </div>
 
         <div align="right" style="padding:7px 13px;">
-            <a href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/'); return false;"  >Галерея</a> 
+            <a href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/'); return false;"  >{lang('amt_gallery')}</a> 
             >
             <a href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/category/{$category.id}'); return false;">{$category.name}</a> 
             >
@@ -37,44 +37,44 @@
 </div>
 
 <div style="float:left;padding:10px;">
-	<div class="form_text">Альбом</div>
+	<div class="form_text">{lang('amt_album')}</div>
 	<div class="form_input">
         <a href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/edit_album/{$album.id}'); return false;">{$album.name}</a>
     </div>
 	<div class="form_overflow"></div> 
 
-	<div class="form_text">Имя</div>
+	<div class="form_text">{lang('amt_name')}</div>
 	<div class="form_input">{truncate($image.file_name, 25)}{$image.file_ext}</div>
 	<div class="form_overflow"></div>
 
-	<div class="form_text">Загружен</div>
+	<div class="form_text">{lang('amt_downloaded')}</div>
 	<div class="form_input">{date('Y-m-d H:i', $image.uploaded)}</div>
 	<div class="form_overflow"></div>
 
-	<div class="form_text">Просмотров</div>
+	<div class="form_text">{lang('amt_views')}</div>
 	<div class="form_input">{$image.views}</div>
 	<div class="form_overflow"></div>
 
-	<div class="form_text">Размер файла</div>
+	<div class="form_text">{lang('amt_file_size')}</div>
 	<div class="form_input">{$image.file_size}</div>
 	<div class="form_overflow"></div> 
 
-	<div class="form_text">Размеры изображения</div>
+	<div class="form_text">{lang('amt_image_size')}</div>
 	<div class="form_input">{$image.width}px / {$image.height}px</div>
 	<div class="form_overflow"></div> 
 
     <form method="post" action="{site_url('admin/components/run/gallery/update_info/' . $image.id)}" id="change_img_desc">
-        <div class="form_text">Обложка</div>
+        <div class="form_text">{lang('amt_preview')}</div>
         <div class="form_input"><input type="checkbox" name="cover" value="1" {if $image.id == $album['cover_id']} checked="checked" {/if} /></div>
         <div class="form_overflow"></div>
 
-        <div class="form_text">Позиция</div>
+        <div class="form_text">{lang('amt_position')}</div>
         <div class="form_input">
             <input type="text" class="textbox_short" value="{$image.position}" name="position" />
         </div>
         <div class="form_overflow"></div>
       
-        <div class="form_text">Описание</div>
+        <div class="form_text">{lang('amt_description')}</div>
         <div class="form_input">
                     <textarea name="description" class="textarea">{$image.description}</textarea>
         </div>
@@ -82,8 +82,8 @@
 
         <div class="form_text"></div>
         <div class="form_input">
-          <input type="submit" class="button_silver" value="Сохранить" onclick="ajax_me('change_img_desc');"  />  
-          <input type="button" class="button_silver" value="Отмена" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/edit_album/{$album.id}'); return false;" />
+          <input type="submit" class="button_silver" value="{lang('amt_save')}" onclick="ajax_me('change_img_desc');"  />  
+          <input type="button" class="button_silver" value="{lang('amt_cancel')}" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/edit_album/{$album.id}'); return false;" />
         </div>
         <div class="form_overflow"></div>
     {form_csrf()}</form>
@@ -92,12 +92,12 @@
 	<div class="form_input"></div>
 	<div class="form_overflow"></div> 
 
-	<div class="form_text">Новое имя</div>
+	<div class="form_text">{lang('amt_new_name')}</div>
 	<div class="form_input">
         <form method="post" action="{site_url('admin/components/cp/gallery/rename_image/' . $image.id)}" id="change_imn_name_form">
             <input type="text" class="textbox_short" name="new_name" />
             <br /><br />
-            <input type="submit" class="button_silver" value="Сохранить" onclick="ajax_me('change_imn_name_form');" />  
+            <input type="submit" class="button_silver" value="{lang('amt_save')}" onclick="ajax_me('change_imn_name_form');" />  
         {form_csrf()}</form>
     </div>
 	<div class="form_overflow"></div>

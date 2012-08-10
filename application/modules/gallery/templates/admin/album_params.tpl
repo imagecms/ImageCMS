@@ -1,6 +1,6 @@
 <form method="post" action="{site_url('admin/components/cp/gallery/update_album/' . $album.id )}" id="create_album_form" style="width:100%;">
 
-   		<div class="form_text">Категория:</div>
+   		<div class="form_text">{lang('amt_category')}:</div>
 		<div class="form_input">
             <select name="category_id">
             {foreach $categories as $item}
@@ -10,27 +10,27 @@
         </div>
 		<div class="form_overflow"></div> 
 
-        <div class="form_text">Имя:</div>
+        <div class="form_text">{lang('amt_name')}:</div>
 		<div class="form_input"><input type="text" name="name" value="{htmlspecialchars($album.name)}" class="textbox_long" /></div>
 		<div class="form_overflow"></div> 
 
-   		<div class="form_text">Описание:</div>
+   		<div class="form_text">{lang('amt_description')}:</div>
 		<div class="form_input"><textarea name="description" class="mceEditor">{htmlspecialchars($album.description)}</textarea></div>
 		<div class="form_overflow"></div> 
 
-   		<div class="form_text">Позиция:</div>
+   		<div class="form_text">{lang('amt_position')}:</div>
 		<div class="form_input"><input type="text" name="position" value="{$album.position}" class="textbox_long" /></div>
 		<div class="form_overflow"></div> 
 
-                <div class="form_text">Файл шаблона:</div>
+                <div class="form_text">{lang('amt_template_file')}:</div>
                 <div class="form_input"><input type="text" name="tpl_file" value="{$album.tpl_file}" class="textbox_long" />.tpl
-                <div class="lite">По умолчанию: album.tpl</div></div>
+                <div class="lite">{lang('amt_by_default')} album.tpl</div></div>
                 <div class="form_overflow"></div>
 
    		<div class="form_text"></div>
 		<div class="form_input">
-            <input type="submit" name="button"  class="button_130" value="Сохранить" onclick="ajax_me('create_album_form');" /> 
-            <a href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/category/{$album.category_id}'); return false;" style="padding:5px;">Отмена</a> 
+            <input type="submit" name="button"  class="button_130" value="{lang('amt_save')}" onclick="ajax_me('create_album_form');" /> 
+            <a href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/category/{$album.category_id}'); return false;" style="padding:5px;">{lang('amt_cancel')}</a> 
         </div>
 		<div class="form_overflow"></div> 
 
@@ -40,18 +40,18 @@
 <form method="post" action="" style="width:100%;margin-top:50px;">
 
    		<div class="form_text"></div>
-		<div class="form_input"><b>Удаление альбома</b></div>
+		<div class="form_input"><b>{lang('amt_album_delete')}</b></div>
 		<div class="form_overflow"></div> 
 
    		<div class="form_text"></div>
 		<div class="form_input">
-            <label><input type="checkbox" value="1" name="delete_folder" id="delete_folder" /> Удалить все изображения.</label>
+            <label><input type="checkbox" value="1" name="delete_folder" id="delete_folder" /> {lang('amt_delete_all_images')}</label>
         </div>
 		<div class="form_overflow"></div> 
 
    		<div class="form_text"></div>
 		<div class="form_input">
-            <input type="button" name="button"  class="button_130" value="Удалить" onclick="confirm_delete_album({$album.id}, '{str_replace(array("'",'"'), '', $album.name)}');" /> 
+            <input type="button" name="button"  class="button_130" value="{lang('amt_delete')}" onclick="confirm_delete_album({$album.id}, '{str_replace(array("'",'"'), '', $album.name)}');" /> 
         </div>
 		<div class="form_overflow"></div> 
 

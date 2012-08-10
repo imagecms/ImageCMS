@@ -1,9 +1,9 @@
 <div id="global_selector">
 	<ul>
-		<li><a href="{$SELF_URL}/display_selector/{$insert_id}/page">Страницы</a></li>
-		<li><a href="{$SELF_URL}/display_selector/{$insert_id}/category">Категории</a></li>
-		<li><a href="{$SELF_URL}/display_selector/{$insert_id}/module">Модули</a></li>
-		<li><a href="{$SELF_URL}/display_selector/{$insert_id}/url">URL</a></li>
+		<li><a href="{$SELF_URL}/display_selector/{$insert_id}/page">{lang('amt_pages')}</a></li>
+		<li><a href="{$SELF_URL}/display_selector/{$insert_id}/category">{lang('amt_categories')}</a></li>
+		<li><a href="{$SELF_URL}/display_selector/{$insert_id}/module">{lang('amt_modules')}</a></li>
+		<li><a href="{$SELF_URL}/display_selector/{$insert_id}/url">{lang('amt_url')}</a></li>
 	</ul>
 </div>
 
