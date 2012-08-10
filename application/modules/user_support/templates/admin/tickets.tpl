@@ -2,11 +2,11 @@
     <div style="float:left;">
         <ul>
         <li>
-            <p><input type="button" class="button_silver_130" value="Все билеты" onclick="ajax_div('page', base_url + 'admin/components/cp/user_support'); return false;" /></p>
+            <p><input type="button" class="button_silver_130" value="{lang('amt_all_tickets')}" onclick="ajax_div('page', base_url + 'admin/components/cp/user_support'); return false;" /></p>
         </li>
     
         <li>
-            <input type="button" class="button_silver_130" value="Департаменты" onclick="ajax_div('page', base_url + 'admin/components/cp/user_support/departments'); return false;" />
+            <input type="button" class="button_silver_130" value="{lang('amt_departments')}" onclick="ajax_div('page', base_url + 'admin/components/cp/user_support/departments'); return false;" />
         </li>
 
         </ul>
@@ -21,14 +21,14 @@
 		  	<thead>
                 <th width="5px"></th>
 				<th axis="number" width="5px;">ID</th>
-                <th axis="string">Тема</th>
-                <th axis="string">Отдел</th>
-                <th axis="string">Посл. комментарий</th>
-		        <th axis="string">Автор</th>
-                <th axis="string">Статус</th>
-                <th axis="string">Приоритет</th>
-                <th axis="date">Создан</th>
-                <th axis="date">Обновлен</th>
+                <th axis="string">{lang('amt_theme')}</th>
+                <th axis="string">{lang('amt_dep')}</th>
+                <th axis="string">{lang('amt_last_comment')}</th>
+		        <th axis="string">{lang('amt_author')}</th>
+                <th axis="string">{lang('amt_status')}</th>
+                <th axis="string">{lang('amt_prior')}</th>
+                <th axis="date">{lang('amt_cr')}</th>
+                <th axis="date">{lang('amt_up')}</th>
                 <th></th>
 			</thead>
 			<tbody>
@@ -48,7 +48,7 @@
                 <td>{date('d-m-Y', $t.date)}</td>
                 <td>{date('d-m-Y', $t.updated)}</td>
                 <td>
-                    <img onclick="confirm_ticket_delete({$t.id});" src="{$THEME}/images/delete.png"  style="cursor:pointer" width="16" height="16" title="Удалить" />
+                    <img onclick="confirm_ticket_delete({$t.id});" src="{$THEME}/images/delete.png"  style="cursor:pointer" width="16" height="16" title="{lang('amt_delete')}" />
                 </td>
             </tr>
 		{/foreach}
@@ -73,12 +73,12 @@
 </div>
 
 <div style="padding-left:15px;padding-top:2px;">
-<a href="#" onclick="check_all(); return false;">Отметить все</a>  /  <a href="#" onclick="uncheck_all(); return false;">Снять выделение</a> 
+<a href="#" onclick="check_all(); return false;">{lang('amt_select_all')}</a>  /  <a href="#" onclick="uncheck_all(); return false;">{lang('amt_cancel_selection')}</a> 
 </div>
 
 <p align="right" style="padding:5px;padding-top:10px;">
-С отмечеными:
-<input type="submit" name="delete"  class="button_silver" style="font-weight:bold;" value="Удалить" onclick="delete_sel_tickets(); return false;" />
+{lang('amt_with_selected')}:
+<input type="submit" name="delete"  class="button_silver" style="font-weight:bold;" value="{lang('amt_delete')}" onclick="delete_sel_tickets(); return false;" />
 </p>
 <div align="center" style="padding:5px;" id="pagination">
 {$paginator}

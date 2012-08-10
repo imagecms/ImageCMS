@@ -9,7 +9,7 @@ class Admin_logs extends MY_Controller {
 		parent::__construct();
 
 		$this->load->library('DX_Auth');
-        admin_or_redirect(); 
+                admin_or_redirect(); 
 
 		$this->load->library('lib_admin');
 		$this->load->library('pagination');

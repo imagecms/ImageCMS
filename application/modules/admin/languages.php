@@ -46,11 +46,11 @@ class Languages extends MY_Controller{
 	{
         cp_check_perm('lang_create');
 
-		$this->form_validation->set_rules('name', 'Название', 'trim|required|min_length[1]|max_length[100]');
-		$this->form_validation->set_rules('identif', 'Идентификатор', 'trim|required|min_length[1]|max_length[100]|alpha_dash');
-		$this->form_validation->set_rules('image', 'Изображение', 'max_length[250]');
-		$this->form_validation->set_rules('folder', 'Папка', 'required|max_length[250]');
-		$this->form_validation->set_rules('template', 'Шаблон', 'required|max_length[250]');
+		$this->form_validation->set_rules('name', lang('ac_val_title'), 'trim|required|min_length[1]|max_length[100]');
+		$this->form_validation->set_rules('identif', lang('ac_val_identif'), 'trim|required|min_length[1]|max_length[100]|alpha_dash');
+		$this->form_validation->set_rules('image', lang('ac_val_image'), 'max_length[250]');
+		$this->form_validation->set_rules('folder', lang('ac_val_folder'), 'required|max_length[250]');
+		$this->form_validation->set_rules('template', lang('ac_val_template'), 'required|max_length[250]');
 
 		if ($this->form_validation->run($this) == FALSE)
 		{
@@ -69,11 +69,11 @@ class Languages extends MY_Controller{
 
 			$this->cms_admin->insert_lang($data);
 
-            $this->lib_admin->log('Создал язык '.$data['lang_name']);
+            $this->lib_admin->log(lang('ac_cr_language').$data['lang_name']);
 
             $this->cache->delete('main_site_langs');
 
-			showMessage('Язык создан');
+			showMessage(lang('ac_language_created'));
 			closeWindow('languages_create_lang_w');
 			updateDiv('languages_page_w_content',site_url('admin/languages/'));
 
@@ -107,11 +107,11 @@ class Languages extends MY_Controller{
 	{
         cp_check_perm('lang_edit');
 
-		$this->form_validation->set_rules('name', 'Название', 'trim|required|min_length[1]|max_length[100]');
-		$this->form_validation->set_rules('identif', 'Идентификатор', 'trim|required|min_length[1]|max_length[100]|alpha_dash');
-		$this->form_validation->set_rules('image', 'Изображение', 'max_length[250]');
-		$this->form_validation->set_rules('folder', 'Папка', 'required|max_length[250]');
-		$this->form_validation->set_rules('template', 'Шаблон', 'required|max_length[250]');
+		$this->form_validation->set_rules('name', lang('ac_val_title'), 'trim|required|min_length[1]|max_length[100]');
+		$this->form_validation->set_rules('identif', lang('ac_val_identif'), 'trim|required|min_length[1]|max_length[100]|alpha_dash');
+		$this->form_validation->set_rules('image', lang('ac_val_image'), 'max_length[250]');
+		$this->form_validation->set_rules('folder', lang('ac_val_folder'), 'required|max_length[250]');
+		$this->form_validation->set_rules('template', lang('ac_val_template'), 'required|max_length[250]');
 
 		if ($this->form_validation->run($this) == FALSE)
 		{
@@ -130,11 +130,11 @@ class Languages extends MY_Controller{
 
 			$this->cms_admin->update_lang($data,$lang_id);
 
-            $this->lib_admin->log('Изменил язык '.$data['lang_name']);
+            $this->lib_admin->log(lang('ac_changed_language').$data['lang_name']);
 
             $this->cache->delete('main_site_langs');
 
-			showMessage('Изменения сохранены');
+			showMessage(lang('ac_changes_saved'));
 			closeWindow('edit_language_w');
 			updateDiv('languages_page_w_content',site_url('admin/languages/'));
 
@@ -156,7 +156,7 @@ class Languages extends MY_Controller{
 
 		if($lang['default'] == 1)
 		{
-			showMessage('Вы не можете удалить этот язык. Он используеться по умолчанию.','Блокировка','r');
+			showMessage(lang('ac_cant_delete_language'),lang('ac_block'),'r');
 			exit;
 		}
 
@@ -168,9 +168,9 @@ class Languages extends MY_Controller{
 
         $this->cache->delete('main_site_langs');
 
-        $this->lib_admin->log('Удалил язык ID '.$id);
+        $this->lib_admin->log(lang('ac_delete_language').$id);
 
-		showMessage('Язык удален!');
+		showMessage(lang('ac_language_deleted'));
 		updateDiv('languages_page_w_content',site_url('admin/languages/'));
 	}
 
@@ -191,9 +191,9 @@ class Languages extends MY_Controller{
 
 		$lang = $this->cms_admin->get_lang($lang_id);
 
-        $this->lib_admin->log('Назначил язык '.$lang['lang_name'].' по умолчанию');
+        $this->lib_admin->log(lang('ac_set_language').$lang['lang_name'].lang('ac_by_default'));
 
-		showMessage('Язык по умолчанию установлен: <b>'.$lang['lang_name'].'</b>');
+		showMessage(lang('ac_def_lang_is_set').'<b>'.$lang['lang_name'].'</b>');
 	}
 
 	/**

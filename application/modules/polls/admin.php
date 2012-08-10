@@ -29,7 +29,7 @@ class Admin extends MY_Controller {
         {
             // Validate end create new polls
             $this->load->library('Form_validation');
-            $this->form_validation->set_rules('name', 'Название', 'required');
+            $this->form_validation->set_rules('name', lang('amt_tname'), 'required');
 
             if ($this->form_validation->run() == FALSE)
             {
@@ -79,7 +79,7 @@ class Admin extends MY_Controller {
         $poll = $this->db->get('cms_polls');
 
         if ($poll->num_rows() == 0)
-            exit('Голосование не найдено.');
+            exit(lang('amt_poll_not_found'));
 
         $poll = $poll->row_array();
 
@@ -96,7 +96,7 @@ class Admin extends MY_Controller {
         {
             // Save polls name
             $this->load->library('Form_validation');
-            $this->form_validation->set_rules('name', 'Название', 'required');
+            $this->form_validation->set_rules('name', lang('amt_tname'), 'required');
 
             if ($this->form_validation->run() == FALSE)
             {

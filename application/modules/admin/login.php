@@ -53,7 +53,7 @@ class Login extends MY_Controller {
         }
 
         if ($this->dx_auth->is_max_login_attempts_exceeded()) {
-            $this->form_validation->set_rules('captcha', lang('lang_captcha'), 'trim|required|xss_clean|callback_captcha_check');
+            $this->form_validation->set_rules('captcha', lang('ac_lang_captcha'), 'trim|required|xss_clean|callback_captcha_check');
         }
 
         if ($this->form_validation->run($this) == FALSE) {
@@ -68,11 +68,11 @@ class Login extends MY_Controller {
             $rezult = $this->dx_auth->login($this->input->post('login'), $this->input->post('password'), $remember);
 
             if ($rezult == TRUE) {
-                $this->lib_admin->log('Вошел в панель управления IP ' . $this->input->ip_address());
+                $this->lib_admin->log(lang('ac_entered_in_cp_ip') . $this->input->ip_address());
 
                 redirect('admin', 'refresh');
             } else {
-                $this->template->assign('login_failed', $this->lang->line('error_login'));
+                $this->template->assign('login_failed', lang('ac_error_login'));
             }
         }
 
@@ -90,11 +90,11 @@ class Login extends MY_Controller {
         $result = TRUE;
 
         if ($this->dx_auth->is_captcha_expired()) {
-            $this->form_validation->set_message('captcha_check', lang('lang_captcha_error'));
+            $this->form_validation->set_message('captcha_check', lang('ac_lang_captcha_error'));
 //			$result = FALSE;
             $result = TRUE;
         } elseif (!$this->dx_auth->is_captcha_match($code)) {
-            $this->form_validation->set_message('captcha_check', lang('lang_captcha_error'));
+            $this->form_validation->set_message('captcha_check', lang('ac_lang_captcha_error'));
 //			$result = FALSE;
             $result = TRUE;
         }

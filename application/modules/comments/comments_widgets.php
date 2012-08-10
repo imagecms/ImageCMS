@@ -71,8 +71,8 @@ class Comments_Widgets extends MY_Controller {
             break;
 
             case 'update_settings':
-                $this->form_validation->set_rules('comments_count', 'Количество комментариев', 'trim|required|is_natural_no_zero|min_length[1]');
-                $this->form_validation->set_rules('symbols_count', 'Количество символов', 'required|trim|is_natural');
+                $this->form_validation->set_rules('comments_count', lang('amt_comments_count'), 'trim|required|is_natural_no_zero|min_length[1]');
+                $this->form_validation->set_rules('symbols_count', lang('amt_symbol_count'), 'required|trim|is_natural');
 
                 if ($this->form_validation->run($this) == FALSE)
                 {
@@ -85,7 +85,7 @@ class Comments_Widgets extends MY_Controller {
                     ); 
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
-                    showMessage('Настройки сохранены.');
+                    showMessage(lang('amt_settings_saved'));
                 }
             break;
 
@@ -147,8 +147,8 @@ class Comments_Widgets extends MY_Controller {
             break;
 
             case 'update_settings':
-                $this->form_validation->set_rules('comments_count', 'Количество отзывов', 'trim|required|is_natural_no_zero|min_length[1]');
-                $this->form_validation->set_rules('symbols_count', 'Количество символов', 'required|trim|is_natural');
+                $this->form_validation->set_rules('comments_count', lang('amt_reviews_count'), 'trim|required|is_natural_no_zero|min_length[1]');
+                $this->form_validation->set_rules('symbols_count', lang('amt_symbol_count'), 'required|trim|is_natural');
 
                 if ($this->form_validation->run($this) == FALSE)
                 {
@@ -161,7 +161,7 @@ class Comments_Widgets extends MY_Controller {
                     ); 
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
-                    showMessage('Настройки сохранены.');
+                    showMessage(lang('amt_settings_saved'));
                 }
             break;
 

@@ -2,11 +2,11 @@
     <div style="float:left;">
         <ul>
         <li>
-            <p><input type="button" class="button_silver_130" value="Все билеты" onclick="ajax_div('page', base_url + 'admin/components/cp/user_support'); return false;" /></p>
+            <p><input type="button" class="button_silver_130" value="{lang('amt_all_tickets')}" onclick="ajax_div('page', base_url + 'admin/components/cp/user_support'); return false;" /></p>
         </li>
     
         <li>
-            <input type="button" class="button_silver_130" value="Департаменты" onclick="ajax_div('page', base_url + 'admin/components/cp/user_support/departments'); return false;" />
+            <input type="button" class="button_silver_130" value="{lang('amt_departments')}" onclick="ajax_div('page', base_url + 'admin/components/cp/user_support/departments'); return false;" />
         </li>
 
         </ul>
@@ -16,7 +16,7 @@
         <ul>
     
         <li>
-            <p><input type="button" class="button_green_130" value="Создать департамент" onclick="ajax_div('page', base_url + 'admin/components/cp/user_support/create_department'); return false;" /></p>
+            <p><input type="button" class="button_green_130" value="{lang('amt_create_department')}" onclick="ajax_div('page', base_url + 'admin/components/cp/user_support/create_department'); return false;" /></p>
         </li>
 
         </ul>
@@ -31,7 +31,7 @@
 		  	<thead>
                 <!--<th width="5px"></th>-->
 				<th axis="number" width="5px;">ID</th>
-                <th axis="string">Название</th>
+                <th axis="string">{lang('amt_tname')}</th>
                 <th style="width:32px;"></th>
 			</thead>
 			<tbody>
@@ -44,7 +44,7 @@
                     <a href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/user_support/edit_department/{$d.id}'); return false;" >{truncate($d.name, 70, '...')}</a>
                 </td>
                 <td>
-                    <img onclick="confirm_department_delete({$d.id});" src="{$THEME}/images/delete.png"  style="cursor:pointer" width="16" height="16" title="Удалить" />
+                    <img onclick="confirm_department_delete({$d.id});" src="{$THEME}/images/delete.png"  style="cursor:pointer" width="16" height="16" title="{lang('amt_delete')}" />
                 </td>
 
             </tr>

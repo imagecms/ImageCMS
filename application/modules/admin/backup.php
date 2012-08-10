@@ -35,7 +35,7 @@ class Backup extends MY_Controller {
     {
         if (!is_really_writable('./application/backups'))
         {
-            showMessage('Директория ./application/backups не доступна для записи.',false,'r');
+            showMessage(lang('ac_msg_dir'),false,'r');
             exit;
         }
 
@@ -77,9 +77,9 @@ class Backup extends MY_Controller {
             $tmp_file = './system/cache/'.$this->generate_file_name($_POST['file_type']); 
             write_file($tmp_file, $this->get_backup_str($_POST['file_type']));  
 
-		    $this->email->to($_POST['email']);
+	    $this->email->to($_POST['email']);
             $this->email->from($user['email']);
-            $this->email->subject('Резервное копирование '.date('d-m-Y H:i:s'));
+            $this->email->subject(lang('ac_backup_copy').date('d-m-Y H:i:s'));
             $this->email->message(' ');
             $this->email->attach($tmp_file);
             $this->email->send();
@@ -113,7 +113,7 @@ class Backup extends MY_Controller {
 
     private function done()
     {
-        showMessage('Резервное копирование завершено.');
+        showMessage(lang('ac_backup_complete'));
     }
 
     private function generate_file_name($file_type)
