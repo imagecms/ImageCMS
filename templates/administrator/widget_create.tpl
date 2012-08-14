@@ -20,7 +20,7 @@
 <div class="form_input">
     <select name="widget_type" id="widget_type_sel" onchange="load_create_tpl(); return false;">
         <option value="module">{lang('a_module')}</option>
-        <option value="html">{lang['a_html']}</option>
+        <option value="html">{lang('a_html')}</option>
     </select>
 </div>
 <div class="form_overflow"></div>
