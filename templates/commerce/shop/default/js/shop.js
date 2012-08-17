@@ -231,8 +231,7 @@ $(document).ready(function(){
                     bindNotifMeForm();
                     $.fancybox.hideActivity();
                 }
-            }
-            );
+            });
             return false;
         });
     }
