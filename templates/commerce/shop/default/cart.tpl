@@ -82,6 +82,9 @@
                             <div class="f_r sum">Сумма:</div>
                         </div>
                     </td>
+                    <td>
+            <div>якась там </div>
+                        </td>
                 </tr>
             </tfoot>
             <input type="hidden" name="forCart" value ="1"/>

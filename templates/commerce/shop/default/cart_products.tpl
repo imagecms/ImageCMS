@@ -54,6 +54,15 @@
     {$total     += $summary}
     {$total_nc  += $summary_nextc}
     {/foreach}
+    <td>
+        <div class="form_text">
+            У Вас есть подарочный сертификат?
+        </div>
+        <div class="form_input">
+            <input type="text" name="giftcert" class="textbox_logn"/>
+            <input type="button" name="giftcert" value="Применить"/>
+        </div>
+    </td>
 </tbody>
 <tfoot>
     <tr>
