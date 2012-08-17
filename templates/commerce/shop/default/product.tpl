@@ -103,9 +103,18 @@
                     {echo $CI->load->module('share')->_make_share_form()}
                 <div class="buy clearfix">
                     {$style = productInCartI($cart_data, $model->getId(), $model->firstVariant->getId(), $model->firstVariant->getStock())}
-                    
                     <div class="price f-s_26"><span id="pricem{echo $model->getId()}">{echo $model->firstVariant->toCurrency()}</span>
                         <sub>{$CS}</sub>
+                        {if $model->getOldPrice() > 0}
+                            {if $model->getOldPrice() > $model->firstVariant->toCurrency()}
+                                <div>
+                                    <del class="price f-s_12 price-c_9">
+                                        {echo $model->getOldPrice()}
+                                        <sub> {$CS}</sub>
+                                    </del>
+                                </div>
+                            {/if}
+                        {/if}
                         {if $NextCS != $CS}
                         <span id="prices{echo $model->getId()}" class="d_b">{echo $model->firstVariant->toCurrency('Price', $NextCSId)}{$NextCS}</span>
                         {/if}
