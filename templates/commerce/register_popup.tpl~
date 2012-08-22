@@ -3,6 +3,8 @@
     {if !$succes}
     <form method="post" action="{site_url('auth/register')}" id="reg">
         {if validation_errors() OR $info_message}<div class="errors">{validation_errors()}{$info_message}</div>{/if}
+        <label>{lang('lang_login')}</label>
+        <input type="text" size="30" name="username" id="username" value="{set_value('username')}"/>
         <label>{lang('lang_email')}
             <input type="text" name="email" id="email" value="{set_value('email')}" />
         </label>
