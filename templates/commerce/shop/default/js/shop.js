@@ -655,6 +655,8 @@ $(document).ready(function(){
         })
         return false;
     });
-    
+    $('.giftcertcheck').on('click', function(){
+        recount();
+    });
 
 });

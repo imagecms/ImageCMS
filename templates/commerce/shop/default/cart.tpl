@@ -73,23 +73,30 @@
                                     {if $total < $item.delivery_free_from}
                                     {$total += $item.delivery_price}
                                     {/if}
+                                    {if isset($item.gift_cert_price)}
+                                        {$total -= $item.gift_cert_price}
+                                    {/if}
                                     {echo $total}
-                                    {if $item.delivery_price > 0}<span class="d_b">Доставка: {echo $item.delivery_price} руб.</span>{/if}
                                     <sub>{$CS}</sub>
+                                    {if $item.delivery_price > 0}<span style="font-size:16px;">Доставка: {echo $item.delivery_price} руб</span>{/if}
+                                    {if $item.gift_cert_price > 0}<span style="font-size:16px;">Подарочный сертификат: {echo $item.gift_cert_price} руб</span>{/if}
                                     <!--<span class="d_b">{$total_nc} {$NextCS}</span>-->
                                 </div>
                             </div>
-                            <div class="f_r sum">Сумма:</div>
                         </div>
                     </td>
-                    <td>
-            <div>якась там </div>
-                        </td>
                 </tr>
             </tfoot>
             <input type="hidden" name="forCart" value ="1"/>
         </table>
         <div class="f_l method_deliver_buy">
+            {if ShopCore::app()->SSettings->__get('usegifts') == 1}
+                <div class="block_title_18"><span class="title_18">У Вас есть подарочный сертификат?</span></div>
+                    <label>
+                        <input type="text" name="giftcert" id="giftcertkey"/>
+                        <input type="button" name="giftcert" value="Применить" class="giftcertcheck"/></label>
+                    
+            {/if}
             <div class="block_title_18"><span class="title_18">Выберите способ доставки</span></div>
             
             {$counter = true}
