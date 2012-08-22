@@ -27,7 +27,8 @@
         {$yameta}
         {$renderGA}
     </head>
-    <body>        
+    <body>   
+       
         <div class="main_body">
             <div class="top">
                 <div class="center">
@@ -47,7 +48,7 @@
                 </div>
                 <div class="phone">
                     <address>+8 (067) <span>572-58-18</span></address>
-                    <span class="js showCallback">Заказать звонок</span>
+                    <span class="js showCallbackBottom">Заказать звонок</span>
                 </div>
                 <ul class="user_menu">
                     <!--    Show callback's form    -->
@@ -127,7 +128,7 @@
                         <a href="#" class="odnoklasniki"></a>
                     </div>
                     <a href="http://imagecms.net" target="_blank" class="red">Создание интернет магазина</a>
-                    <div>SEO оптимизация сайта</div>
+                    <div class="s">SEO оптимизация сайта</div>
                 </div>
             </div>
         </div><!-- footer -->

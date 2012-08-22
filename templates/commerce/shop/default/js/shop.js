@@ -315,7 +315,24 @@ $(document).ready(function(){
         $('#paymentMethodId').val($(this).val());
     });
 
+
+      $('.showCallbackBottom').on('click', function(){
+        
+        $.fancybox.showActivity();
+        $.ajax({
+            type: 'post',
+            url: '/shop/shop/callbackBottom',
+            success: function(msg){
+                showResponse(msg);
+                bindCallbackForm1();
+                $.fancybox.hideActivity();
+            }
+        });
+        return false;
+    })
+    
     $('.showCallback').on('click', function(){
+        
         $.fancybox.showActivity();
         $.ajax({
             type: 'post',
@@ -328,6 +345,10 @@ $(document).ready(function(){
         });
         return false;
     })
+
+
+
+  
     
     $("#cartForm").validate();
     
@@ -511,6 +532,26 @@ $(document).ready(function(){
             return false;
         })
     }
+    
+           function bindCallbackForm1(){
+        $('.order_call form').bind('submit',function(){
+            $this = $(this);
+            $.ajax({
+                type: 'post',
+                url: '/shop/shop/callbackBottom',
+                data: $this.serialize(),
+                beforeSend: function(){
+                    $.fancybox.showActivity();
+                },
+                success: function(msg){
+                    showResponse(msg);
+                    bindCallbackForm1();
+                    $.fancybox.hideActivity();
+                }
+            });
+            return false;
+        })
+    }
 
     function bindCallbackForm(){
         $('.order_call form').bind('submit',function(){
@@ -531,6 +572,7 @@ $(document).ready(function(){
             return false;
         })
     }
+ 
 
     function showResponse(responseText, statusText, xhr, $form){
         try {
