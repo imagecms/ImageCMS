@@ -102,9 +102,14 @@
                         <div class="foot_cleaner">
                             <div class="f_r">
                                 <div class="price f-s_26 f_l" style="margin-top: 25px;">
+                                    {if $model->getgiftcertprice()>0}
+                                        {$total -= $model->getgiftcertprice()}
+                                    {/if}
                                     {if $total >= $deliveryMethod->getFreeFrom()}
                                     {echo $total} {$CS}
-                                    {else:}{echo $total + $model->getDeliveryPrice()} {$CS}{/if}</div>
+                                    {else:}
+                                    {echo $total + $model->getDeliveryPrice()} {$CS}
+                                    {/if}</div>
                             </div>
                             <div class="f_l" style="width: 775px;">
                                 <ul class="info_curr_buy f_l" >
@@ -116,6 +121,12 @@
                                         <span>Cтатус:</span>
                                         <b>{echo SOrders::getStatusName('Id',$model->getStatus())} {if $model->getDeliveryMethod() > 0}</b>
                                     </li>
+                                    {if $model->getGiftCertKey() != null}
+                                    <li>
+                                        <span>Сертификат: </span>
+                                        <b>(- {echo $model->getgiftCertPrice()} {$CS})</b>
+                                    </li>
+                                    {/if}
                                     <li>
                                         <span>Доставка:</span>
                                         <b>{echo $model->getSDeliveryMethods()->getName()}{/if}</b>
