@@ -54,15 +54,6 @@
     {$total     += $summary}
     {$total_nc  += $summary_nextc}
     {/foreach}
-    <td>
-        <div class="form_text">
-            У Вас есть подарочный сертификат?
-        </div>
-        <div class="form_input">
-            <input type="text" name="giftcert" class="textbox_logn"/>
-            <input type="button" name="giftcert" value="Применить"/>
-        </div>
-    </td>
 </tbody>
 <tfoot>
     <tr>
@@ -75,11 +66,15 @@
                             <div class="price f-s_26 f_l">
                         {/if}
                         {if $total < $item.delivery_free_from}
-                        {$total += $item.delivery_price}
+                            {$total += $item.delivery_price}
+                        {/if}
+                        {if isset($item.gift_cert_price)}
+                            {$total -= $item.gift_cert_price}
                         {/if}
                         {echo $total}
                         <sub>{$CS}</sub>
                         {if $total < $item.delivery_free_from}<span class="d_b">(+{echo $item.delivery_price} руб)</span>{/if}
+                        {if isset($item.gift_cert_price)}<span class="d_b">(-{echo $item.gift_cert_price} руб)</span>{/if}
                         <!--<span class="d_b">{$total_nc} $</span>-->
                         </div>
                 </div>
