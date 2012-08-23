@@ -23,7 +23,7 @@
         <div class="header">
             <ul>
                 <li>
-                    <a href="seacrch.html" tabindex="1">
+                    <a href="/shop/search" tabindex="1">
                         <span class="icon search_icon"></span><br/>
                         Поиск
                     </a>
