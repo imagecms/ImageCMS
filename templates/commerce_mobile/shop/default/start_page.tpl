@@ -1,0 +1,1 @@
+<ul class="main_menu">{echo ShopCore::app()->SCategoryTree->ulWithTitleMobile()}</ul>
