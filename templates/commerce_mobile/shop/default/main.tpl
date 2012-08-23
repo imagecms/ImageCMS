@@ -29,7 +29,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="cleaner.html" tabindex="2">
+                    <a href="/shop/cart" tabindex="2">
                         <span class="icon cleaner_icon"></span><br/>
                         Корзина (1)
                     </a>
