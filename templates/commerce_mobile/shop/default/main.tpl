@@ -41,11 +41,6 @@
             </a>
         </div>
         <span class="head_foot"></span>
-        <div class="baner">
-            <a href="#" class="figure">
-                <img src="{$SHOP_THEME}/images/temp/baner.jpg"/>
-            </a>
-        </div>
         
         {$shop_content}
         
