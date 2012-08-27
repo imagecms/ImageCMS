@@ -616,5 +616,22 @@ $(document).ready(function(){
     $('.giftcertcheck').on('click', function(){
         recount();
     });
-
+    
+    $('.addtoSpy').on('click', function(){
+        $.fancybox.showActivity();
+        var vid = $(this).attr('data-varid');
+        var pid = $(this).attr('data-prodid');
+        var uid = $(this).attr('data-user_id');
+        var pp = $(this).attr('data-price');
+        $.ajax({
+            type: "post",
+            data: "uid="+uid+"&pid="+pid+"&pp="+pp,
+            url: "/shop/product_spy/spy",
+            success: function(){
+                $this.html('Вы уже следите за этим товаром').removeClass('js').removeClass('gray');
+                $this.unbind('click');
+                $.fancybox.hideActivity(); 
+            }
+        });
+    });
 });
