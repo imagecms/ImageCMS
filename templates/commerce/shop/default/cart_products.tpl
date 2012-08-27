@@ -66,11 +66,15 @@
                             <div class="price f-s_26 f_l">
                         {/if}
                         {if $total < $item.delivery_free_from}
-                        {$total += $item.delivery_price}
+                            {$total += $item.delivery_price}
+                        {/if}
+                        {if isset($item.gift_cert_price)}
+                            {$total -= $item.gift_cert_price}
                         {/if}
                         {echo $total}
                         <sub>{$CS}</sub>
                         {if $total < $item.delivery_free_from}<span class="d_b">(+{echo $item.delivery_price} руб)</span>{/if}
+                        {if isset($item.gift_cert_price)}<span class="d_b">(-{echo $item.gift_cert_price} руб)</span>{/if}
                         <!--<span class="d_b">{$total_nc} $</span>-->
                         </div>
                 </div>

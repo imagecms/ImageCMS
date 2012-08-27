@@ -8,8 +8,12 @@ RewriteEngine on
 # RewriteCond %{HTTP_HOST} ^www.site.com$ [NC]
 # RewriteRule ^(.*)$ http://site.com/$1 [L,R=301]
 
+#RewriteCond %{REQUEST_URI} ^(.*)//(.*)$
+#RewriteRule . %1/%2 [R=301,L]
+
 RewriteCond $1 !^(index\.php|user_guide|uploads/.*|favicon\.ico|favicon\.png|captcha/.*|application/modules/.*/templates|templates|js|robots\.txt|application/controllers/install/images/.*)
 RewriteRule ^(.*)$ /index.php/$1 [L]
+
 
 ####################################
 # or
