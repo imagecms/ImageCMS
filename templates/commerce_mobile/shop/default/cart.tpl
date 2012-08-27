@@ -2,6 +2,7 @@
             <h1>Корзина</h1>
         </div>
         {if count($items) > 0}
+        <form method="POST" action="{shop_url('cart')}">
         <ul class="catalog">
           {foreach $items as $key=>$item}
             {$variants = $item.model->getProductVariants()}
@@ -19,9 +20,9 @@
                         <a href="{shop_url('cart/delete/'.$key)}" class="remove_ref red"><span>×</span> Удалить</a>
                     </span>
                     <span class="descr">
-                        <a href="tovar.html" class="title">{echo ShopCore::encode($item.model->getName())}</a>
+                        <a href="{shop_url('product/' . $item.model->getUrl())}" class="title">{echo ShopCore::encode($item.model->getName())}</a>
                         <span class="d_b price">{$summary = $variant->getPrice() * $item.quantity}{echo $summary} {$CS}</span>
-                        <input type="text" value="{$item.quantity}"/><span class="count">шт.</span>
+                        <input type="text" price="{echo $variant->getPrice()}" value="{$item.quantity}" onblur=""/><span class="count">шт.</span>
                     </span>
                 </div>
             </li>
@@ -45,11 +46,13 @@
             <span class="but_buy inp">
                 <span class="b_buy_in">
                     <span class="helper"></span>
-                    <input type="submit" value="Оформить заказ" class="v-a_m"/>
+                    <input type="submit" name="setOrderMobile" value="Оформить заказ" class="v-a_m"/>
                 </span>
             </span>
         </div>
         <div class="main_f_i_f-r"></div>
+        {form_csrf()}
+        </form>
         {else:}
         <div class="main_frame_inside">
             <div class="gen_sum">

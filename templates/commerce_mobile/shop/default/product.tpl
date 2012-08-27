@@ -3,7 +3,6 @@
 # @var editProductUrl
 # @var jsCode
 #}
-
         <div class="content_head">
             <div class="crumbs">{renderCategoryPath($model->getMainCategory())}
                 <h1>{echo ShopCore::encode($model->getName())}</h1></div>
@@ -15,11 +14,18 @@
                     <div class="descr">
                         <span class="d_b price">{echo $model->firstVariant->toCurrency()} {$CS}</span>
                         <div class="but_buy">
-                            <a href="#">
+                            <form method="POST" name="orderForm" action="{shop_url('cart/add')}">
+                            <a href="{shop_url('cart')}" onclick="orderForm.submit();return false;">
                                 <span class="helper"></span>
                                 <!--<span class="v-a_m">Купить</span>-->
                                 <span class="v-a_m">Оформить заказ</span>
                             </a>
+                                <input type="hidden" name="productId" value="{echo $model->getId()}" />
+                                <input type="hidden" name="variantId" value="{echo $model->firstVariant->getId()}" />
+                                <input type="hidden" name="quantity" value="1" />
+                                <input type="hidden" name="mobile" value="1" />
+                                {form_csrf()}
+                           </form>
                         </div>
                     </div>
                 </div>

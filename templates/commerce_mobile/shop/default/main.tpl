@@ -23,16 +23,13 @@
         <div class="header">
             <ul>
                 <li>
-                    <a href="/shop/search" tabindex="1">
+                    <a href="{shop_url('search')}" tabindex="1">
                         <span class="icon search_icon"></span><br/>
                         Поиск
                     </a>
                 </li>
                 <li>
-                    <a href="/shop/cart" tabindex="2">
-                        <span class="icon cleaner_icon"></span><br/>
-                        Корзина (1)
-                    </a>
+                    {include_tpl('cart_data')}
                 </li>
             </ul>
             <a href="/" class="f_l logo">

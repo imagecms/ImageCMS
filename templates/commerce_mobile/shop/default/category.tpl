@@ -8,9 +8,10 @@
 # @var cart_data
 #}
 
+
         <div class="content_head">
             <div class="crumbs">{renderCategoryPath($model)}</div>
-            <a href="filter.html" class="check_filter h_f"><span class="helper"></span><span class="v-a_m"><span class="check_filter_ico icon"></span><span class="title">Подбор по параметрам</span></span></a>
+            <a href="{shop_url('category/'.$model->getFullPath())}?filteronly" class="check_filter h_f"><span class="helper"></span><span class="v-a_m"><span class="check_filter_ico icon"></span><span class="title">Подбор по параметрам</span></span></a>
         </div>
         <ul class="catalog">
         {foreach $products as $product}
@@ -25,10 +26,11 @@
             </li>
         {/foreach}
         </ul>
+            <!--    Pagination    -->
+            {echo $pagination}
+            <!--    Pagination    -->
         <ul class="pagination">
-            <!--    Pagination    -->
-            <div class="pagination"><div class="t-a_c">{$pagination}</div></div>
-            <!--    Pagination    -->
+            
             <li>
                 <span class="active">
                     <span class="helper"></span>
