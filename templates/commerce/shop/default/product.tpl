@@ -124,19 +124,29 @@
                             <a id="buy{echo $model->getId()}" class="{$style.identif}" href="{$style.link}" data-varid="{echo $model->firstVariant->getId()}" data-prodid="{echo $model->getId()}" >{$style.message}</a>
                         </div>
                     <div class="f_l">
-                        <span class="ajax_refer_marg">
+                        <span class="ajax_refer_marg" style="margin-top: -2px">
                             {if $forCompareProducts && in_array($model->getId(), $forCompareProducts)}
                                 <a href="{shop_url('compare')}">Сравнить</a>
                             {else:}
                                 <a href="{shop_url('compare/add/'. $model->getId())}" data-prodid="{echo $model->getId()}" class="js gray toCompare">Добавить к сравнению</a>
                             {/if}
                         </span>
-                        <span>
+                        <span class="ajax_refer_marg" style="margin-top: -2px">
                             {if !is_in_wish($model->getId())}
                                 <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" data-varid="{echo $model->firstVariant->getId()}" data-prodid="{echo $model->getId()}" href="#" class="js gray addToWList">Сохранить в список желаний</a>
                             {else:}
                                 <a href="/shop/wish_list">Уже в списке желаний</a>
-                            {/if}</span>
+                            {/if}
+                        </span>
+                            {if ShopCore::$ci->dx_auth->is_logged_in()===true}
+                                <span class="ajax_refer_marg" style="margin-top: -2px">
+                                {if is_in_spy(ShopCore::$ci->dx_auth->get_user_id(), $model->getId())}
+                                    <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" data-price="{echo $model->firstVariant->toCurrency()}" data-user_id="{echo ShopCore::$ci->dx_auth->get_user_id()}" data-varid="{echo $model->firstVariant->getId()}" data-prodid="{echo $model->getId()}" href="#" class="js gray addtoSpy">Следить за этим товаром</a>
+                                {else:}
+                                    <a href="#">Вы уже следите за этим товаром</a>
+                                {/if}
+                                </span>
+                            {/if}
                     </div>
                 </div>
                 <p class="c_b">{echo $model->getShortDescription()}</p>
