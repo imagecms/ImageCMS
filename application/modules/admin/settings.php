@@ -134,7 +134,6 @@ class Settings extends MY_Controller {
                 break;
         }
 
-
         $data_m = array(
             'site_title' => $this->lib_admin->db_post('title'),
             'site_short_title' => $this->lib_admin->db_post('short_title'),

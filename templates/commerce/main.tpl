@@ -23,7 +23,7 @@
         <script type="text/javascript" src="{$SHOP_THEME}js/jquery.validate.js"></script>
         {$renderGA}
     </head>
-    <body>        
+    <body>
         <div class="main_body">
             <div class="top">
                 <div class="center">
