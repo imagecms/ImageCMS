@@ -38,7 +38,7 @@
                 {if sizeof($model->getSProductImagess()) > 0}
                     {foreach $model->getSProductImagess() as $image}
                         <span>
-                            <a  class="grouped_elements" rel="gal1" href="{echo $image->getThumbUrl()}">                         
+                            <a  class="grouped_elements fancybox-thumb" rel="fancybox-thumb" href="{echo $image->getThumbUrl()}" data-title-id="fancyboxAdditionalContent">                         
                                 <img src="{echo $image->getThumbUrl()}" width="90"/>
                             </a>                                
                         </span>
@@ -46,12 +46,40 @@
                 {/if}                
             </div>
             <div class="photo_block">
-                <a class="grouped_elements" rel="gal1" href="{productImageUrl($model->getMainImage())}">
+                <a class="grouped_elements fancybox-thumb" rel="fancybox-thumb" href="{productImageUrl($model->getMainImage())}" data-title-id="fancyboxAdditionalContent" >
 <!--                    <img id="mim{echo $model->getId()}" src="{productImageUrl($model->getMainImage())}" alt=""/>-->
                     <img id="mim{echo $model->getId()}" src="{productImageUrl($model->getMainimage())}" alt="{echo ShopCore::encode($model->name)}" />
                     <img id="vim{echo $model->getId()}" class="smallpimagev" src="" alt="" />
                 </a>
             </div>
+                
+             <!-- Fancybox additional blocks -->
+             
+             
+            <link rel="stylesheet" href="{$SHOP_THEME}/js/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.6" type="text/css" media="screen" />
+            <script type="text/javascript" src="{$SHOP_THEME}/js/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.6"></script>
+
+            <div id="fancyboxAdditionalContent" style="display: none;">
+                <div class="price f-s_26">
+                    <span id="pricem76">399</span>
+                    <sub>руб</sub>
+                    <span id="prices76" class="d_b">159.6$</span>
+                </div>
+                <div class="in_cart"></div>
+                <div id="p76" class="buttons button_big_green">
+                    <a id="buy76" class="goBuy" href="#" data-varid="87" data-prodid="76">Купить</a>
+                </div>
+            </div>
+             
+             {literal}
+             <script>
+
+             </script>
+             {/literal}
+             
+             
+            <!-- -->
+                
             <div class="func_description">
                 <div class="crumbs">
                     {renderCategoryPath($model->getMainCategory())}
@@ -456,3 +484,5 @@
         </div>
     </div>
 </div>
+            
+            
