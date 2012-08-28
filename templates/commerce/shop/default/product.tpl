@@ -38,7 +38,7 @@
                 {if sizeof($model->getSProductImagess()) > 0}
                     {foreach $model->getSProductImagess() as $image}
                         <span>
-                            <a  class="grouped_elements" rel="gal1" href="{echo $image->getThumbUrl()}">                         
+                            <a  class="grouped_elements fancybox-thumb" rel="fancybox-thumb" href="{echo $image->getThumbUrl()}" data-title-id="fancyboxAdditionalContent">                         
                                 <img src="{echo $image->getThumbUrl()}" width="90"/>
                             </a>                                
                         </span>
@@ -46,12 +46,40 @@
                 {/if}                
             </div>
             <div class="photo_block">
-                <a class="grouped_elements" rel="gal1" href="{productImageUrl($model->getMainImage())}">
+                <a class="grouped_elements fancybox-thumb" rel="fancybox-thumb" href="{productImageUrl($model->getMainImage())}" data-title-id="fancyboxAdditionalContent" >
 <!--                    <img id="mim{echo $model->getId()}" src="{productImageUrl($model->getMainImage())}" alt=""/>-->
                     <img id="mim{echo $model->getId()}" src="{productImageUrl($model->getMainimage())}" alt="{echo ShopCore::encode($model->name)}" />
                     <img id="vim{echo $model->getId()}" class="smallpimagev" src="" alt="" />
                 </a>
             </div>
+                
+             <!-- Fancybox additional blocks -->
+             
+             
+            <link rel="stylesheet" href="{$SHOP_THEME}/js/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.6" type="text/css" media="screen" />
+            <script type="text/javascript" src="{$SHOP_THEME}/js/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.6"></script>
+
+            <div id="fancyboxAdditionalContent" style="display: none;">
+                <div class="price f-s_26">
+                    <span id="pricem76">399</span>
+                    <sub>руб</sub>
+                    <span id="prices76" class="d_b">159.6$</span>
+                </div>
+                <div class="in_cart"></div>
+                <div id="p76" class="buttons button_big_green">
+                    <a id="buy76" class="goBuy" href="#" data-varid="87" data-prodid="76">Купить</a>
+                </div>
+            </div>
+             
+             {literal}
+             <script>
+
+             </script>
+             {/literal}
+             
+             
+            <!-- -->
+                
             <div class="func_description">
                 <div class="crumbs">
                     {renderCategoryPath($model->getMainCategory())}
@@ -124,19 +152,29 @@
                             <a id="buy{echo $model->getId()}" class="{$style.identif}" href="{$style.link}" data-varid="{echo $model->firstVariant->getId()}" data-prodid="{echo $model->getId()}" >{$style.message}</a>
                         </div>
                     <div class="f_l">
-                        <span class="ajax_refer_marg">
+                        <span class="ajax_refer_marg" style="margin-top: -2px">
                             {if $forCompareProducts && in_array($model->getId(), $forCompareProducts)}
                                 <a href="{shop_url('compare')}">Сравнить</a>
                             {else:}
                                 <a href="{shop_url('compare/add/'. $model->getId())}" data-prodid="{echo $model->getId()}" class="js gray toCompare">Добавить к сравнению</a>
                             {/if}
                         </span>
-                        <span>
+                        <span class="ajax_refer_marg" style="margin-top: -2px">
                             {if !is_in_wish($model->getId())}
                                 <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" data-varid="{echo $model->firstVariant->getId()}" data-prodid="{echo $model->getId()}" href="#" class="js gray addToWList">Сохранить в список желаний</a>
                             {else:}
                                 <a href="/shop/wish_list">Уже в списке желаний</a>
-                            {/if}</span>
+                            {/if}
+                        </span>
+                            {if ShopCore::$ci->dx_auth->is_logged_in()===true}
+                                <span class="ajax_refer_marg" style="margin-top: -2px">
+                                {if !is_in_spy(ShopCore::$ci->dx_auth->get_user_id(), $model->getId())}
+                                    <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" data-price="{echo $model->firstVariant->toCurrency()}" data-user_id="{echo ShopCore::$ci->dx_auth->get_user_id()}" data-varid="{echo $model->firstVariant->getId()}" data-prodid="{echo $model->getId()}" href="#" class="js gray addtoSpy">Следить за этим товаром</a>
+                                {else:}
+                                    <a href="#">Вы уже следите за этим товаром</a>
+                                {/if}
+                                </span>
+                            {/if}
                     </div>
                 </div>
                 <p class="c_b">{echo $model->getShortDescription()}</p>
@@ -446,3 +484,5 @@
         </div>
     </div>
 </div>
+            
+            
