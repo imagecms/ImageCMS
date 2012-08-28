@@ -623,6 +623,7 @@ $(document).ready(function(){
         var pid = $(this).attr('data-prodid');
         var uid = $(this).attr('data-user_id');
         var pp = $(this).attr('data-price');
+        var $this = $(this);
         $.ajax({
             type: "post",
             data: "uid="+uid+"&pid="+pid+"&pp="+pp,

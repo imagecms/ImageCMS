@@ -79,7 +79,7 @@
             <div class="main_menu center">
                 <ul class="clearfix">{echo ShopCore::app()->SCategoryTree->ulWithTitle()}</ul>
             </div><!-- main_menu -->
-
+            
             {$shop_content}
 
             <div class="hfooter"></div>
