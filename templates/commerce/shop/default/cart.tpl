@@ -21,6 +21,7 @@
                         {$variant = $v}
                     {/if}
                 {/foreach}
+                {$vprices = currency_convert($variant->getPrice(), $variant->getCurrency())}
                 <tr>
                     <td>
                         <a href="{shop_url('product/' . $item.model->getUrl())}" class="photo_block">
@@ -31,7 +32,7 @@
                         <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}{if count($variants)>1} - {echo ShopCore::encode($variant->name)}{/if}</a>
                     </td>
                     <td>
-                        <div class="price f-s_16 f_l">{echo $variant->getPrice()} <sub>{$CS}</sub>
+                        <div class="price f-s_16 f_l">{echo $vprices.main.price} <sub>{$vprices.main.symbol}</sub>
                             <!--<span class="d_b">{echo $item.model->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>-->
                         </div>
                     </td>
@@ -45,9 +46,9 @@
                         </div>
                     </td>
                     <td>
-                        <div class="price f-s_18 f_l">{$summary = $variant->getPrice() * $item.quantity}
+                        <div class="price f-s_18 f_l">{$summary = $vprices.main.price * $item.quantity}
                                                 {echo $summary}
-                            <sub>{$CS}</sub>
+                            <sub>{$vprices.main.symbol}</sub>
                             <!--<span class="d_b">{echo $summary_nextc = $item.model->firstVariant->toCurrency('Price', $NextCSId) * $item.quantity} {$NextCS}</span>-->
                         </div>
                     </td>
@@ -70,10 +71,16 @@
                                     <div class="price f-s_26 f_l">
                                 {/if}
                                 <div class="price f-s_26 f_l">
+                                    {if isset($item.delivery_price)}
+                                        {$dprice =  currency_convert($item.delivery_price, Null)}
+                                        {$item.delivery_price = $dprice.main.price}
+                                    {/if}
                                     {if $total < $item.delivery_free_from}
                                     {$total += $item.delivery_price}
                                     {/if}
                                     {if isset($item.gift_cert_price)}
+                                        {$cprice = currency_convert($item.gift_cert_price, Null)}
+                                        {$item.gift_cert_price = $cprice.main.price}
                                         {$total -= $item.gift_cert_price}
                                     {/if}
                                     {echo $total}

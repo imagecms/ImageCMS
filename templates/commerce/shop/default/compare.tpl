@@ -34,6 +34,7 @@
                                 <ul class="comparison_slider_right{echo $cnc++}">                                   
                                     
                                     {foreach $products as $product}
+                                        {$prices = currency_convert($product->firstvariant->getPrice(), $product->firstvariant->getCurrency())}
                                         {if $product->category_id == $category['Id']}
 
                                             <li class="list_desire">
@@ -53,9 +54,9 @@
                                                     <div class="func_description">
                                                         <a href="{shop_url('product/' . $product->getUrl())}" class="title">{echo $product->getName()}</a>
                                                         <div class="buy">
-                                                            <div class="price f-s_14">{echo $product->firstVariant->toCurrency()} <sub>{$CS}</sub>
+                                                            <div class="price f-s_14">{echo $prices.main.price} <sub>{$prices.main.symbol}</sub>
                                                                 <br/>
-                                                                <span>{echo $product->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>
+                                                                <span>{echo $prices.second.price} {$prices.second.symbol}</span>
                                                             </div>
 
 

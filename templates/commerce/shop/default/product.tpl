@@ -123,7 +123,21 @@
                     {if count($model->getProductVariants())>1}
                         <select class="m-l_10" name="selectVar">
                             {foreach $model->getProductVariants() as $pv}
-                                 <option class="selectVar" value="{echo $pv->getId()}" data-pp="1" data-st="{echo $pv->getStock()}" data-cs="{$NextCS}" data-spr="{echo ShopCore::app()->SCurrencyHelper->convert($pv->getPrice(), $NextCSId)}" data-pr="{echo $pv->getPrice()}" data-pid="{echo $model->getId()}" data-img="{echo $pv->getmainimage()}" data-vname="{echo $pv->getName()}" data-vnumber="{echo $pv->getNumber()}">{echo $pv->getName()}</option>
+                                {$var_prices = currency_convert($pv->getPrice(), $pv->getCurrency())}
+<!--                                 <option class="selectVar" value="{echo $pv->getId()}" data-pp="1" data-st="{echo $pv->getStock()}" data-cs="{$NextCS}" data-spr="{echo ShopCore::app()->SCurrencyHelper->convert($pv->getPrice(), $NextCSId)}" data-pr="{echo $pv->getPrice()}" data-pid="{echo $model->getId()}" data-img="{echo $pv->getmainimage()}" data-vname="{echo $pv->getName()}" data-vnumber="{echo $pv->getNumber()}">{echo $pv->getName()}</option>-->
+                                 <option class="selectVar"
+                                         value="{echo $pv->getId()}" 
+                                         data-pp="1" 
+                                         data-st="{echo $pv->getStock()}" 
+                                         data-cs="{echo $var_prices.second.symbol}" 
+                                         data-spr="{echo $var_prices.second.price}" 
+                                         data-pr="{echo $var_prices.main.price}" 
+                                         data-pid="{echo $model->getId()}" 
+                                         data-img="{echo $pv->getmainimage()}" 
+                                         data-vname="{echo $pv->getName()}" 
+                                         data-vnumber="{echo $pv->getNumber()}">
+                                            {echo $pv->getName()}
+                                 </option>
                             {/foreach}
                          </select>
                     {/if}
@@ -131,8 +145,14 @@
                     {echo $CI->load->module('share')->_make_share_form()}
                 <div class="buy clearfix">
                     {$style = productInCartI($cart_data, $model->getId(), $model->firstVariant->getId(), $model->firstVariant->getStock())}
-                    <div class="price f-s_26"><span id="pricem{echo $model->getId()}">{echo $model->firstVariant->toCurrency()}</span>
-                        <sub>{$CS}</sub>
+                    <div class="price f-s_26">
+                        <span id="pricem{echo $model->getId()}">
+                            {$prices = currency_convert($model->firstVariant->getPrice(), $model->firstVariant->getCurrency())}
+                            {echo $prices.main.price}
+                        </span>
+                        <sub>{$prices.main.symbol}</sub>
+                        {if $NextCS != $CS}{/if}
+                            <span id="prices{echo $model->getId()}" class="d_b">{echo $prices.second.price} {echo $prices.second.symbol}</span>
                         {if $model->getOldPrice() > 0}
                             {if $model->getOldPrice() > $model->firstVariant->toCurrency()}
                                 <div>
@@ -142,9 +162,6 @@
                                     </del>
                                 </div>
                             {/if}
-                        {/if}
-                        {if $NextCS != $CS}
-                        <span id="prices{echo $model->getId()}" class="d_b">{echo $model->firstVariant->toCurrency('Price', $NextCSId)}{$NextCS}</span>
                         {/if}
                     </div>
                     <div class="in_cart"></div>
@@ -257,10 +274,10 @@
                                 <a href="{'/shop/product/'.$model->getId()}">{echo ShopCore::encode($model->getName())}</a>
                                 <div class="buy">
 
-                                    <div class="price f-s_16 f_l">{echo $model->firstVariant->toCurrency()} 
-                                        <sub>{$CS}</sub>
+                                    <div class="price f-s_16 f_l">{echo $prices.main.price}
+                                        <sub>{echo $prices.main.symbol}</sub>
                                         {if $NextCS != $CS}
-                                        <span class="d_b">{echo $model->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>
+                                        <span class="d_b">{echo $prices.second.price} {echo $prices.second.symbol}</span>
                                         {/if}
                                     </div>
 
@@ -268,10 +285,9 @@
                             </div>
                             <div class="plus_eval">+</div>
                             {$i = 0}
-                            {$sum1_1 = $sum2_1 = $model->firstVariant->toCurrency()}
-                            {$sum1_2 = $sum2_2 = $model->firstVariant->toCurrency('Price', 1)}
+                            {$sum1_1 = $sum2_1 = $prices.main.price}
+                            {$sum1_2 = $sum2_2 = $prices.second.price}
                             {foreach $kits[0]->getShopKitProducts() as $shopKitProduct}
-
                                 {$ap = $shopKitProduct->getSProducts()}
                                 {$ap->setLocale(ShopController::getCurrentLocale())}
 
@@ -289,20 +305,25 @@
                                         <div class="buy">
 
                                             {$kitFirstVariant = $ap->getKitFirstVariant($shopKitProduct)}
+                                            {$kit_prices = currency_convert($kitFirstVariant->getPrice(), $kitFirstVariant->getCurrency())}
                                             {if $shopKitProduct->getDiscount()}
 
-                                                <del class="price f-s_12 price-c_9">{echo $s1_1 = $kitFirstVariant->toCurrency()}<sub> {$CS}</sub>
+                                                <del class="price f-s_12 price-c_9">{echo $s1_1 = $kit_prices.main.price}<sub> {$kit_prices.main.symbol}</sub>
                                                     {if $NextCS != $CS}
-                                                    <span>{echo $s1_2 = $kitFirstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span></del>
+                                                    <span>{echo $s1_2 = $kit_prices.second.price} {$kit_prices.second.symbol}</span></del>
                                                     {/if}
 
-                                                <div class="price f-s_14 price-c_red">{echo $s2_1 = (int)$kitFirstVariant->toCurrency()*(100-$shopKitProduct->getDiscount())/100}<sub> {$CS}</sub><span>{echo $s2_2 = (int)$kitFirstVariant->toCurrency('Price', $NextCSId)*(100-$shopKitProduct->getDiscount())/100} {$NextCS}</span></div>
+                                                <div class="price f-s_14 price-c_red">
+                                                    {echo $s2_1 = $kit_prices.main.price*(100-$shopKitProduct->getDiscount())/100}
+                                                    <sub> {$kit_prices.main.symbol}</sub>
+                                                    <span>{echo $s2_2 = $kit_prices.second.price*(100-$shopKitProduct->getDiscount())/100} {$kit_prices.second.symbol}</span>
+                                                </div>
 
                                             {else:}
-                                                <div class="price f-s_14">{echo $kitFirstVariant->toCurrency()}
-                                                    <sub> {$CS}</sub>
+                                                <div class="price f-s_14">{echo $kit_prices.main.price}
+                                                    <sub> {$kit_prices.main.symbol}</sub>
                                                     {if $NextCS != $CS}}
-                                                    <span>{echo $kitFirstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>
+                                                    <span>{echo $kit_prices.second.price} {$kit_prices.second.symbol}</span>
                                                     {/if}
                                                 </div>   
                                             {/if}
@@ -320,15 +341,14 @@
                                     <div class="button_block">
                                         <div class="buy">
                                             {if $dis}
-
-                                                <del class="price f-s_12 price-c_9">{$sum1_1}<sub> {$CS}</sub>
+                                                <del class="price f-s_12 price-c_9">{$sum1_1}<sub> {$kit_prices.main.symbol}</sub>
                                                     {if $NextCS != $CS}
-                                                    <span>{echo $sum1_2} {$NextCS}</span></del>
+                                                    <span>{echo $sum1_2} {$kit_prices.second.symbol}</span></del>
                                                     {/if}
                                             {/if}
-                                            <div class="price f-s_18">{echo $sum2_1} <sub> {$CS}</sub>
+                                            <div class="price f-s_18">{echo $sum2_1} <sub> {$kit_prices.main.symbol}</sub>
                                                 {if $NextCS != $CS}
-                                                <span> {echo $sum2_2}  {$NextCS}</span></div>
+                                                <span> {echo $sum2_2}  {$kit_prices.second.symbol}</span></div>
                                                 {/if}
                                         </div>
                                         <div class="buttons button_gs">
@@ -360,6 +380,7 @@
                 <ul>
                     {$simprod = getSimilarProduct($model, 20)}
                     {foreach $simprod as $sp}
+                        {$sim_prod = currency_convert($sp->firstvariant->getPrice(), $sp->firstvariant->getCurrency())}
                         {$style = productInCart($cart_data, $sp->getId(), $sp->firstVariant->getId(), $sp->firstVariant->getStock())}
                         <li>
                             <div class="f_l smallest_item {if $sp->firstvariant->getstock()==0}not_avail{/if}">
@@ -371,10 +392,10 @@
                                 <div class="func_description">
                                     <a href="{site_url('shop/product/'.$sp->getId())}" class="title">{echo ShopCore::encode($sp->getName())}</a>
                                     <div class="buy">
-                                        <div class="price f-s_14">{echo $sp->firstVariant->toCurrency()}
-                                            <sub> {$CS}</sub>
+                                        <div class="price f-s_14">{echo $sim_prod.main.price}
+                                            <sub> {$sim_prod.main.symbol}</sub>
                                             {if $NextCS != $CS}
-                                            <span>{echo $sp->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span> 
+                                            <span>{echo $sim_prod.second.price} {$sim_prod.second.symbol}</span> 
                                             {/if}
                                         </div>                                                                             
                                         <div class="{$style.class} buttons">                                            
@@ -421,7 +442,8 @@
             {if $model->getRelatedProductsModels()}
                 <div id="third">
                     <ul class="accessories f-s_0">
-                        {foreach $model->getRelatedProductsModels() as $p} 
+                        {foreach $model->getRelatedProductsModels() as $p}
+                            {$rel_prod = currency_convert($p->firstvariant->getPrice(), $p->firstvariant->getCurrency())}
                             {$style = productInCart($cart_data, $p->getId(), $p->firstVariant->getId(), $p->firstVariant->getStock())}
                             <li>
                                 <div class="small_item">
@@ -431,10 +453,10 @@
                                     <div class="info">
                                         <a href="{shop_url('product/'.$p->getUrl())}" class="title">{echo ShopCore::encode($p->getName())}</a>
                                         <div class="buy">
-                                            <div class="price f-s_16 f_l">{echo $p->firstVariant->toCurrency()}
-                                                <sub> {$CS}</sub>
+                                            <div class="price f-s_16 f_l">{echo $rel_prod.main.price}
+                                                <sub> {$rel_prod.main.symbol}</sub>
                                                 {if $NextCS != $CS}
-                                                <span class="d_b">{echo $p->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>
+                                                <span class="d_b">{echo $rel_prod.second.price} {$rel_prod.second.symbol}</span>
                                                 {/if}
                                             </div>
                                             <div class="{$style.class} buttons"><a class="{$style.identif}" href="{$style.link}" data-varid="{echo $p->firstVariant->getId()}" data-prodid="{echo $p->getId()}" >{$style.message}</a></div> 
@@ -456,7 +478,8 @@
                 <span>Новинки</span>
             </div>
             <ul>                  
-                {foreach getPromoBlock('hot', 3) as $hotProduct}                                     
+                {foreach getPromoBlock('hot', 3) as $hotProduct}  
+                    {$hot_prices = currency_convert($hotProduct->firstvariant->getPrice(), $hotProduct->firstvariant->getCurrency())}
                     {$style = productInCart($cart_data, $hotProduct->getId(), $hotProduct->firstVariant->getId(), $hotProduct->firstVariant->getStock())}
                     <li>
                         <div class="small_item">
@@ -468,10 +491,10 @@
                             <div class="info">
                                 <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                                 <div class="buy">
-                                    <div class="price f-s_16 f_l">{echo $hotProduct->firstVariant->toCurrency()} 
-                                        <sub>{$CS}</sub>
+                                    <div class="price f-s_16 f_l">{echo $hot_prices.main.price} 
+                                        <sub>{$hot_prices.main.symbol}</sub>
                                         {if $NextCS != $CS}
-                                        <span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>
+                                        <span class="d_b">{echo $hot_prices.second.price} {$hot_prices.second.symbol}</span>
                                         {/if}
                                     </div>                               
                                     <div class="{$style.class} buttons"><a class="{$style.identif}" data-varid="{echo $hotProduct->firstVariant->getId()}" data-prodid="{echo $hotProduct->getId()}" href="{shop_url('product/' . $hotProduct->getUrl())}">{$style.message}</a></div>
