@@ -72,7 +72,7 @@
         <div class="tabs f_l">
             <ul class="nav_tabs">
                 <li><a href="#first">Новинки</a></li>
-                <li><a href="#second">Акції</a></li>
+                <li><a href="#second">Акции</a></li>
             </ul>
             <div id="first">
                 <div class="horizontal-only scroll-box">
