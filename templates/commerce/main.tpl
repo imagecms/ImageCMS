@@ -29,7 +29,11 @@
                 <div class="center">
                     {load_menu('top_menu')}
                     <ul class="user_menu m-l_19">{include_tpl('/shop/default/auth_data')}</ul>
-                    <ul class="user_menu cart_data_holder">{include_tpl('/shop/default/cart_data')}</ul>
+                    <ul class="user_menu cart_data_holder">
+                           <li><a href="/" style="color:silver;">ru</a></li>
+                    <li style="margin-left: 0; padding-left: 5px;"><a href="{$BASE_URL}en" style="color:silver;">en</a></li>
+                        {include_tpl('/shop/default/cart_data')}
+                    </ul>
                 </div>
             </div><!-- top -->
             <div class="header center">
@@ -37,8 +41,8 @@
                 <div class="frame_form_search">
                     <form action="{shop_url('search')}" method="get" class="clearfix">
 <!--                        <input type="text" value="Поиск по сайту" name="text" />-->
-                        <input type="text" size="30" name="text" value="Поиск по сайту" onfocus="if(this.value=='Поиск по сайту') this.value='';" onblur="if(this.value=='') this.value='Поиск по сайту';" />
-                        <input type="submit" class="submit"  value="Найти" />
+                        <input type="text" size="30" name="text" value="{lang('s_search')} {lang('s_po')} {lang('s_site')}" onfocus="if(this.value=='{lang('s_search')} {lang('s_po')} {lang('s_site')}') this.value='';" onblur="if(this.value=='') this.value='{lang('s_search')} {lang('s_po')} {lang('s_site')}';" />
+                        <input type="submit" class="submit"  value="{lang('s_search')}" />
                         <div class="search_drop d_n">
                             <ul>
                                 <li class="smallest_item">
@@ -83,11 +87,11 @@
                 </div>
                 <div class="phone">
                     <address>+8 (067) <span>572-58-18</span></address>
-                    <span class="js showCallback">Заказать звонок</span>
+                    <span class="js showCallback">{lang('s_orderc')} {lang('s_call')}</span>
                 </div>
                 <ul class="user_menu">
                     <!--    Show callback's form    -->
-                    <li><a href="#" class="js">Онлайн консультация</a></li>
+                    <li><a href="#" class="js">{lang('s_O_C')}</a></li>
                     <!--    Show callback's form    -->
 
                     <!--    Wish list item's for Header    -->

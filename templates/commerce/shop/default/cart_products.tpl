@@ -1,5 +1,5 @@
 {if count($items)}
-<caption>Корзина</caption>
+<caption>{lang('s_cart')}</caption>
 <colgroup>
     <col span="1" width="120">
     <col span="1" width="396">
@@ -56,11 +56,11 @@
     {/foreach}
     <td>
         <div class="form_text">
-            У Вас есть подарочный сертификат?
+            {lang('s_do_you_have')}
         </div>
         <div class="form_input">
             <input type="text" name="giftcert" class="textbox_logn"/>
-            <input type="button" name="giftcert" value="Применить"/>
+            <input type="button" name="giftcert" value="{lang('s_apply_sertif')}"/>
         </div>
     </td>
 </tbody>
@@ -79,16 +79,16 @@
                         {/if}
                         {echo $total}
                         <sub>{$CS}</sub>
-                        {if $total < $item.delivery_free_from}<span class="d_b">(+{echo $item.delivery_price} руб)</span>{/if}
+                        {if $total < $item.delivery_free_from}<span class="d_b">(+{echo $item.delivery_price})</span>{/if}
                         <!--<span class="d_b">{$total_nc} $</span>-->
                         </div>
                 </div>
-                <div class="f_r sum">Сумма:</div>
+                <div class="f_r sum">{lang('s_summ')}:</div>
             </div>
         </td>
     </tr>
 </tfoot>
 <input type="hidden" name="forCart" value="1" />
 {else:}
-    Корзина пуста
+    {lang('s_cart_empty')}
 {/if}

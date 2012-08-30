@@ -6,14 +6,14 @@
 {$this->registerMeta('<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">')}
 <div class="content">
     <div class="center">
-        <h1>Список пожеланий</h1>
+        <h1>{lang('s_WL')}</h1>
         {if !$items}
         <div class="comparison_slider">
-            <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t('Список пожеланий пуст')}</div>
+            <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t(lang('s_list_wish_empty'))}</div>
         </div>
         {else:}
         <table class="cleaner_table forCartProducts" cellspacing="0">
-            <caption>Добавлено продуктов  {if $items}({count($items)}){/if}</caption>
+            <caption>{lang('s_added_PR')}  {if $items}({count($items)}){/if}</caption>
             <colgroup>
                 <col width="140" span="1">
                 <col width="371" span="1">
@@ -85,7 +85,7 @@
                             <div class="f_r">
                                 <div class="price f-s_26 f_l">{$total} <sub>{$CS}</sub><span class="d_b">{$total_nc} $</span></div>
                             </div>
-                            <div class="f_r sum">Сумма:</div>
+                            <div class="f_r sum">{lang('s_summ')}:</div>
                         </div>
                     </td>
                 </tr>
@@ -102,11 +102,11 @@
                                 <input type="hidden" name="wishkey" value="{$profile.key}"/>
                                 <input type="hidden" name="email" value="{$profile.email}"/>
                                 <input type="hidden" name="sname" value="{$profile.name}"/>
-                                <input type="submit" name="sendwish" value="Отправить WishList другу"/>
+                                <input type="submit" name="sendwish" value="{lang('s_s_wish_list')}"/>
                                 {form_csrf()}
                             </form>                    
                             {else:}
-                                Для того, чтобы отправить WishList другу, Вам необходимо авторизироватся
+                                {lang('s_to_sen_wish_auth')}
                             {/if}
         {/if}
     </div>

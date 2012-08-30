@@ -25,9 +25,9 @@
 
 	<div class="fieldName"></div>
 	<div class="field">
-		<a href="{site_url('auth/')}">Вход</a>
+		<a href="{$BASE_URL}auth/">{lang('s_log_out')}</a>
 		&nbsp;
-		<a href="{site_url('auth/register')}">Регистрация</a>
+		<a href="{$BASE_URL}auth/register}">{lang('lang_register')}</a>
 	</div>
 	<div class="clear"></div>
 	{form_csrf()}
