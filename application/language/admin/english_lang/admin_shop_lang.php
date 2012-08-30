@@ -504,7 +504,7 @@ $lang['a_set_order_status'] =	'Set another status for these orders';
     $lang['a_order_statuses_list'] = 'Orders statuses list';
     $lang['a_os_list_is_empty'] = 'Orders statuses list is empty';
     $lang['a_os_edit'] = 'Orders status edit';
-    $lang['a_os_create'] = 'Orders status edit';
+    $lang['a_os_create'] = 'Orders status create';
     
     
 ?>
