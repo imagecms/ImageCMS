@@ -4,7 +4,12 @@
         <meta charset="utf-8" />
         <title>{$site_title}</title>
         <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/style.css" media="all" />
+        <!--
         <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/jquery.fancybox-1.3.4.css" media="all" />
+        -->
+        
+        <link rel="stylesheet" href="{$SHOP_THEME}/js/fancybox/source/jquery.fancybox.css?v=2.1.0" type="text/css" media="screen" />
+        
         <link rel="icon" type="image/x-icon" href="{$SHOP_THEME}images/favicon.png"/>
         <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/ie8_7_6.css" /><![endif]-->
         <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/ie_7.css" /><![endif]-->
@@ -15,7 +20,14 @@
         <script type="text/javascript" src="{$SHOP_THEME}/js/jScrollPane.min.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/cusel-min-2.4.1.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.ui-slider.js" ></script>
+        <!--
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.fancybox-1.3.4.pack.js" ></script>
+        -->
+        
+        
+        <script type="text/javascript" src="{$SHOP_THEME}/js/fancybox/source/jquery.fancybox.js?v=2.1.0"></script>
+
+        
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.form.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/imagecms.filter.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/scripts.js"></script>
@@ -27,7 +39,8 @@
         {$yameta}
         {$renderGA}
     </head>
-    <body>        
+    <body>   
+       
         <div class="main_body">
             <div class="top">
                 <div class="center">
@@ -52,7 +65,9 @@
                 </div>
                 <div class="phone">
                     <address>+8 (067) <span>572-58-18</span></address>
+
                     <span class="js showCallback">{lang('s_orderc')} {lang('s_call')}</span>
+
                 </div>
                 <ul class="user_menu">
                     <!--    Show callback's form    -->
@@ -84,7 +99,7 @@
             <div class="main_menu center">
                 <ul class="clearfix">{echo ShopCore::app()->SCategoryTree->ulWithTitle()}</ul>
             </div><!-- main_menu -->
-
+            
             {$shop_content}
 
             <div class="hfooter"></div>
@@ -131,8 +146,10 @@
                         <a href="#" class="twitter"></a>
                         <a href="#" class="odnoklasniki"></a>
                     </div>
+
                     <a href="http://imagecms.net" target="_blank" class="red">{lang('s_footer_create')}</a>
                     <div>{lang('s_footer_seo')}</div>
+
                 </div>
             </div>
         </div><!-- footer -->
