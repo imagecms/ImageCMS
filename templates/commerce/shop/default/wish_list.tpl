@@ -24,6 +24,7 @@
             </colgroup>
             <tbody>
                 {foreach $items as $key=>$item}
+                {$prices = currency_convert($item.model->firstvariant->getPrice(), $item.model->firstvariant->getCurrency())}
                 {$style = productInCart($cart_data, $item.model->getId(), $item.model->firstVariant->getId(), $item.model->firstVariant->getStock())}
                 <tr>
                     <td>
@@ -35,10 +36,10 @@
                         <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}</a>
                     </td>
                     <td>
-                        <div class="price f-s_16 f_l">{echo $item.model->firstVariant->toCurrency()} 
-                            <sub>{$CS}</sub>
+                        <div class="price f-s_16 f_l">{$prices.main.price}
+                            <sub>{$prices.main.symbol}</sub>
                             {if $NextCS != $CS}
-                            <span class="d_b">{echo $item.model->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>
+                                <span class="d_b">{echo $prices.second.price} {$prices.second.symbol}</span>
                             {/if}
                         </div>
                     </td>
@@ -55,10 +56,10 @@
                         </form>
                     </td>
                     <td>
-                        <div class="price f-s_18 f_l">{echo $summary = $item.model->firstVariant->toCurrency() * 1} 
-                            <sub>{$CS}</sub>
+                        <div class="price f-s_18 f_l">{echo $summary = $prices.main.price * 1} 
+                            <sub>{$prices.main.symbol}</sub>
                             {if $NextCS != $CS}
-                            <span class="d_b">{echo $summary_nextc = $item.model->firstVariant->toCurrency('Price', $NextCSId) * 1} {$NextCS}</span>
+                                <span class="d_b">{echo $summary_nextc = $prices.second.price} {$prices.second.symbol}</span>
                             {/if}
                             </div>
                     </td>
@@ -83,7 +84,7 @@
                     <td colspan="6">
                         <div class="foot_cleaner">
                             <div class="f_r">
-                                <div class="price f-s_26 f_l">{$total} <sub>{$CS}</sub><span class="d_b">{$total_nc} $</span></div>
+                                <div class="price f-s_26 f_l">{$total} <sub>{$CS}</sub><span class="d_b">{$total_nc} {$NextCS}</span></div>
                             </div>
                             <div class="f_r sum">{lang('s_summ')}:</div>
                         </div>

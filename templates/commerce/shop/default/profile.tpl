@@ -128,15 +128,38 @@
                     </tbody>
                 </table>
             </div>
+            
+            <div class="history_order f_r">
+                <div class="block_title_18"><span class="title_18">Вы следите за следующими товарами</span></div>
+
+                Товаров в слежении:
+                <span style="font-weight: bold;">
+                    {echo count($goodsinspy)}
+                </span>
+                {if count($goodsinspy)>0}
+                <table cellspacing="0">
+                    <colgroup>
+                        <col span="1" width="100">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Номер товара</th>
+                            <th>Название товара</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {foreach $goodsinspy as $good}
+                            <tr>
+                                <td>{echo $good->getId()}</td>
+                                <td>{echo $good->getName() }</td>
+                            </tr>
+                        {/foreach}
+                    </tbody>
+                </table>
+                    {/if}
+            </div>
         </div>
         <div class="center">
-            {$this->registerMeta('<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">')}
-            <div  class="msg_form_edit">
-                {if $errors}
-                <div class="msg_form_edit_prof">
-                    {echo $errors}
-                </div>
-                {/if}</div>
         </div>
     </div></div>
 

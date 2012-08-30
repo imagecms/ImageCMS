@@ -37,6 +37,8 @@
                                     <option value="36" {if ShopCore::$_GET['user_per_page']=='36'}selected="selected"{/if} >36</option>
                                 </select>
                             </div>
+                            {if isset($_GET['lp'])}<input type="hidden" name="lp" value="{echo $_GET['lp']}">{/if}
+                            {if isset($_GET['rp'])}<input type="hidden" name="rp" value="{echo $_GET['rp']}">{/if}
                         </form>
                     </div>
                 </div>
@@ -45,6 +47,7 @@
                     {echo $order_method}
                     {foreach $products as $product}
                         {$style = productInCart($cart_data, $product->getId(), $product->firstVariant->getId(), $product->firstVariant->getStock())}
+                        {$prices = currency_convert($product->firstvariant->getPrice(), $product->firstvariant->getCurrency())}
                         <li {if $product->firstvariant->getstock()== 0}class="not_avail"{/if}>
                             <div class="photo_block">
                                 <a href="{shop_url('product/' . $product->getUrl())}">
@@ -94,7 +97,8 @@
         {if count($product->getProductVariants())>1}
             <select class="m-l_10" name="selectVar">
             {foreach $product->getProductVariants() as $pv}
-                <option class="selectVar" value="{echo $pv->getId()}" data-st="{echo $pv->getStock()}" data-cs="{$NextCS}" data-spr="{echo ShopCore::app()->SCurrencyHelper->convert($pv->getPrice(), $NextCSId)}" data-pr="{echo $pv->getPrice()}" data-pid="{echo $product->getId()}" data-img="{echo $pv->getsmallimage()}" data-vname="{echo $pv->getName()}" data-vnumber="{echo $pv->getNumber()}">{echo $pv->getName()}</option>
+                {$variant_prices = currency_convert($pv->getPrice(), $pv->getCurrency())}
+                <option class="selectVar" value="{echo $pv->getId()}" data-st="{echo $pv->getStock()}" data-cs="{$variant_prices.second.symbol}" data-spr="{echo $variant_prices.second.price}" data-pr="{echo $variant_prices.main.price}" data-pid="{echo $product->getId()}" data-img="{echo $pv->getsmallimage()}" data-vname="{echo $pv->getName()}" data-vnumber="{echo $pv->getNumber()}">{echo $pv->getName()}</option>
             {/foreach}
             </select>
         {/if}
@@ -103,10 +107,10 @@
     <div class="f_l">
         <div class="buy">
             <div class="price f-s_18 f_l">
-                <span id="pricem{echo $product->getId()}">{echo $product->firstVariant->toCurrency()}</span>
-                <sub>{$CS}</sub>
+                <span id="pricem{echo $product->getId()}">{echo $prices.main.price}</span>
+                <sub>{$prices.main.symbol}</sub>
                 {if $NextCS != $CS}
-                <span id="prices{echo $product->getId()}" class="d_b">{echo $product->firstVariant->toCurrency('Price', $NextCSId)}{$NextCS}</span>
+                <span id="prices{echo $product->getId()}" class="d_b">{echo $prices.second.price} {$prices.second.symbol}</span>
                 {/if}
             </div>
             <div id="p{echo $product->getId()}" class="{$style.class} buttons">
@@ -157,6 +161,7 @@
                 </div>               
                 <ul>
                   {foreach getPromoBlock('hot', 3, $product->category_id) as $hotProduct}
+                    {$hot_prices = currency_convert($hotProduct->firstVariant->getPrice(), $hotProduct->firstVariant->getCurrency())}
                     <li class="smallest_item">
                         <div class="photo_block">
                             <a href="{shop_url('product/' . $hotProduct->getUrl())}">
@@ -166,10 +171,10 @@
                         <div class="func_description">
                             <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                             <div class="buy">
-                                <div class="price f-s_14">{echo $hotProduct->firstVariant->toCurrency()} 
-                                    <sub>{$CS}</sub>
+                                <div class="price f-s_14">{echo $hot_prices.main.price} 
+                                    <sub>{$hot_prices.main.symbol}</sub>
                                     {if $NextCS != $CS}
-                                    <span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>
+                                    <span class="d_b">{echo $hot_prices.second.price} {$hot_prices.second.symbol}</span>
                                     {/if}
                                 </div>
                             </div>
@@ -189,6 +194,7 @@
                 </div>
                 <ul>
                     {foreach getPromoBlock('action', 3, $product->category_id) as $hotProduct}
+                    {$action_prices = currency_convert($hotProduct->firstVariant->getPrice(), $hotProduct->firstVariant->getCurrency())}
                     <li class="smallest_item">
                         <div class="photo_block">
                             <a href="{shop_url('product/' . $hotProduct->getUrl())}">
@@ -198,10 +204,10 @@
                         <div class="func_description">
                             <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                             <div class="buy">
-                                <div class="price f-s_14">{echo $hotProduct->firstVariant->toCurrency()} 
-                                    <sub>{$CS}</sub>
+                                <div class="price f-s_14">{echo $action_prices.main.price} 
+                                    <sub>{$action_prices.main.symbol}</sub>
                                     {if $NextCS != $CS}
-                                    <span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>
+                                    <span class="d_b">{echo $action_prices.second.price} {$action_prices.second.symbol}</span>
                                     {/if}
                                 </div>
                             </div>
