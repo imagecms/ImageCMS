@@ -58,7 +58,7 @@
                 </div>
                 <h1>{echo ShopCore::encode($model->getName())}</h1>
                 <div class="f-s_0">
-                    <span class="code">Код: {echo $model->firstvariant->getNumber()}</span>
+                    <span class="code">{lang('s_kod')}: {echo $model->firstvariant->getNumber()}</span>
                     {$rating = $model->getRating()}
                     {if $rating == 0}{$r = "nostar"}    {/if}
                     {if $rating == 1}{$r = "onestar"}   {/if}
@@ -91,7 +91,7 @@
                         <span itemprop="reviewCount" class="reviewCount">0  </span>чоловік.
                     </span>-->
                     </div>
-                    <span class="response">{echo $model->totalComments()} {echo SStringHelper::Pluralize($model->totalComments(), array('отзыв', 'отзывы', 'отзывов'))}</span>
+                   <span class="response">{echo $model->totalComments()} {echo SStringHelper::Pluralize($model->totalComments(), array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}</span>
                     {if count($model->getProductVariants())>1}
                         <select class="m-l_10" name="selectVar">
                             {foreach $model->getProductVariants() as $pv}
@@ -126,16 +126,16 @@
                     <div class="f_l">
                         <span class="ajax_refer_marg">
                             {if $forCompareProducts && in_array($model->getId(), $forCompareProducts)}
-                                <a href="{shop_url('compare')}">Сравнить</a>
+                                <a href="{shop_url('compare')}">{lang('s_compare')}</a>
                             {else:}
-                                <a href="{shop_url('compare/add/'. $model->getId())}" data-prodid="{echo $model->getId()}" class="js gray toCompare">Добавить к сравнению</a>
+                                <a href="{shop_url('compare/add/'. $model->getId())}" data-prodid="{echo $model->getId()}" class="js gray toCompare">{lang('s_add')} {lang('s_to')} {lang('s_compares')}</a>
                             {/if}
                         </span>
                         <span>
                             {if !is_in_wish($model->getId())}
-                                <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" data-varid="{echo $model->firstVariant->getId()}" data-prodid="{echo $model->getId()}" href="#" class="js gray addToWList">Сохранить в список желаний</a>
+                                <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" data-varid="{echo $model->firstVariant->getId()}" data-prodid="{echo $model->getId()}" href="#" class="js gray addToWList">{lang('s_slw')}</a>
                             {else:}
-                                <a href="/shop/wish_list">Уже в списке желаний</a>
+                                <a href="/shop/wish_list">{lang('s_ilw')}</a>
                             {/if}</span>
                     </div>
                 </div>
@@ -150,7 +150,7 @@
             <li>
                 <img src="{$SHOP_THEME}images/order_phone.png">
                 <div>
-                    <div class="title">Заказ по телефону:</div>
+                    <div class="title">{lang('s_zaka_phone')}:</div>
                     <span></span>
                     <span></span> 
                     <span></span>
@@ -159,7 +159,7 @@
             <li>
                 <img src="{$SHOP_THEME}images/buy.png">
                 <div>
-                    <div class="title">Оплата <span><a href="/oplata">(узнать больше)</a></span></div>
+                    <div class="title">{lang('s_pay')} <span><a href="/oplata">({lang('s_learn')} {lang('s_incre')})</a></span></div>
                     {foreach $payment_methods as $methods}
                         <span class="small_marker">{echo $methods.name}</span>
                     {/foreach}
@@ -168,7 +168,7 @@
             <li>
                 <img src="{$SHOP_THEME}images/deliver.png">
                 <div>
-                    <div class="title">Доставка <span><a href="/dostavka">(узнать больше)</a></span></div>
+                    <div class="title">{lang('s_delivery1')} <span><a href="/dostavka">({lang('s_learn')} {lang('s_incre')})</a></span></div>
                     {foreach $delivery_methods as $methods}
                         <span class="small_marker">{echo $methods.name}</span>
                     {/foreach}
@@ -317,7 +317,7 @@
 
     {if count(getSimilarProduct($model, 20)) > 1}
         <div class="featured carusel_frame">
-            <div class="f-s_18 c_6 center">Похожие товары</div>
+            <div class="f-s_18 c_6 center">{lang('s_similar_product')}</div>
             <div class="carusel">
                 <ul>
                     {$simprod = getSimilarProduct($model, 20)}
@@ -358,15 +358,15 @@
         <div class="tabs f_l w_770 info_tovar">
             <ul class="nav_tabs">
                 {if $model->getFullDescription()}
-                    <li><a href="#first">Информация</a></li>
+                    <li><a href="#first">{lang('s_information')}</a></li>
                 {/if}
                 {if ShopCore::app()->SPropertiesRenderer->renderPropertiesTable($model)}
-                    <li><a href="#second">Характеристики</a></li>
+                    <li><a href="#second">{lang('s_properties')}</a></li>
                 {/if}
                 {if $model->getRelatedProductsModels()}
-                    <li><a href="#third">Аксессуары</a></li>
+                    <li><a href="#third">{lang('s_accessories')}</a></li>
                 {/if}
-                <li><a href="#four">{echo SStringHelper::Pluralize($model->totalComments(), array('Отзыв', 'Отзывы', 'Отзывов'))}({echo $model->totalComments()})</a></li>
+                <li><a href="#four">{echo SStringHelper::Pluralize($model->totalComments(), array(lang('s_reviews'), lang('s_reviews'), lang('s_reviews')))}({echo $model->totalComments()})</a></li>
             </ul>
             {if $model->getFullDescription()}
                 <div id="first">
@@ -415,7 +415,7 @@
         </div>
         <div class="nowelty_auction m-t_29">
             <div class="box_title">
-                <span>Новинки</span>
+                <span>{lang('s_new')}</span>
             </div>
             <ul>                  
                 {foreach getPromoBlock('hot', 3) as $hotProduct}                                     

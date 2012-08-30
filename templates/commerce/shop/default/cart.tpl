@@ -1,10 +1,10 @@
 <div class="center">    
-    <h1>Оформление заказа</h1>
+    <h1>{lang('s_formulation')} {lang('s_order')}</h1>
     {if count($items) > 0}
     <form method="post" action="{site_url(uri_string())}" id="cartForm">
         
         <table class="cleaner_table forCartProducts" cellspacing="0">
-            <caption>Корзина</caption>
+            <caption>{lang('s_cart')}</caption>
             <colgroup>
                 <col span="1" width="120">
                 <col span="1" width="396">
@@ -74,23 +74,23 @@
                                     {$total += $item.delivery_price}
                                     {/if}
                                     {echo $total}
-                                    {if $item.delivery_price > 0}<span class="d_b">Доставка: {echo $item.delivery_price} руб.</span>{/if}
+                                    {if $item.delivery_price > 0}<span class="d_b">{lang('s_delivery')}: {echo $item.delivery_price}</span>{/if}
                                     <sub>{$CS}</sub>
                                     <!--<span class="d_b">{$total_nc} {$NextCS}</span>-->
                                 </div>
                             </div>
-                            <div class="f_r sum">Сумма:</div>
+                            <div class="f_r sum">{lang('s_summ')}:</div>
                         </div>
                     </td>
                     <td>
-            <div>якась там </div>
+            <div> </div>
                         </td>
                 </tr>
             </tfoot>
             <input type="hidden" name="forCart" value ="1"/>
         </table>
         <div class="f_l method_deliver_buy">
-            <div class="block_title_18"><span class="title_18">Выберите способ доставки</span></div>
+            <div class="block_title_18"><span class="title_18">{lang('s_sdm')}</span></div>
             
             {$counter = true}
             {foreach $deliveryMethods as $deliveryMethod}
@@ -101,7 +101,7 @@
 
             <!--    Show payment methods    -->
             {if sizeof($paymentMethods) > 0}
-            <div class="block_title_18"><span class="title_18">Выберите способ оплаты</span></div>
+            <div class="block_title_18"><span class="title_18">{lang('s_spm')}</span></div>
             <div id="paymentMethods">
                 {$counter = true}
                 {foreach $paymentMethods as $paymentMethod}
@@ -122,34 +122,34 @@
                 {if validation_errors()}
                 <div class="foot_cleaner red" style="background-color: #FFBFBF;border: 1px solid #FF0400;padding: 0 7px">{validation_errors()}</div>
                 {/if}
-                <span class="title_18">Адрес получателя</span></div>
+                <span class="title_18">{lang('s_addresrec')}</span></div>
             <div class="label_block">
                 <label class="f_l">
                     {if $isRequired['userInfo[fullName]']}
                     <span class="red">*</span>
                     {/if}
-                    Ваше имя
+                   {lang('s_you')} {lang('s_name')}
                     <input type="text"{if $isRequired['userInfo[fullName]']} class="required"{/if} name="userInfo[fullName]" value="{$profile.name}">
                 </label>
                 <label class="f_l">
                     {if $isRequired['userInfo[email]']}
                     <span class="red">*</span>
                     {/if}
-                    Электронный адрес
+                    {lang('s_el_addres')} {lang('s_address')}
                     <input type="text"{if $isRequired['userInfo[email]']} class="required email"{/if} name="userInfo[email]" value="{$profile.email}">
                 </label>
                 <label class="f_l">
                     {if $isRequired['userInfo[phone]']}
                     <span class="red">*</span>
                     {/if}
-                    Телефон
+                    {lang('s_phone')}
                     <input type="text"{if $isRequired['userInfo[phone]']} class="required"{/if} name="userInfo[phone]" value="{$profile.phone}">
                 </label>
                 <label class="f_l">
                     {if $isRequired['userInfo[deliverTo]']}
                     <span class="red">*</span>
                     {/if}
-                    Адрес получателя
+                    {lang('s_address')} {lang('s_recipient')}
                     <input type="text"{if $isRequired['userInfo[deliverTo]']} class="required"{/if} name="userInfo[deliverTo]" value="{echo $profile.address}">
                 </label>
             </div>
@@ -157,7 +157,7 @@
                 {if $isRequired['userInfo[commentText]']}
                     <span class="red">*</span>
                     {/if}
-                Комментарий
+                 {lang('s_comment')}
                 <textarea{if $isRequired['userInfo[commentText]']} class="required"{/if} name="userInfo[commentText]"></textarea> 
             </label>
             
@@ -168,7 +168,7 @@
         </div>
         <div class="foot_cleaner c_b t-a_c">
             <div class="buttons button_big_blue">
-                <input type="submit" value="Оформить заказ"/>
+                <input type="submit" value="{lang('s_formulation')} {lang('s_order')}"/>
             </div>
         </div>   
         <input type="hidden" name="deliveryMethodId" id="deliveryMethodId" value="{echo $del_id}" />
@@ -180,7 +180,7 @@
     </form>
     {else:}
         <div class="comparison_slider">
-            <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t('Корзина пуста')}</div>
+            <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t(lang('s_cart_empty'))}</div>
         </div>
     {/if}
 </div>

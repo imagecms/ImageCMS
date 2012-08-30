@@ -2,7 +2,7 @@
 {if $inCart}
 <div class="fancy wish_list">
     <form method="post" action="{shop_url('cart')}" >
-        <h1 class="m-l_19">Корзина</h1>
+        <h1 class="m-l_19">{lang('s_cart')}</h1>
         <table class="cleaner_table"  cellspacing="0">
             <colgroup>
                 <col span="1" width="140">
@@ -68,7 +68,7 @@
                     <td colspan="6">
                         <div class="foot_cleaner">
                             <div class="f_r buttons button_big_blue">
-                                <a href="{shop_url('cart')}">Оформить заказ</a>
+                                <a href="{shop_url('cart')}">{lang('s_formulation')} {lang('s_order')}</a>
                             </div>
                             <div class="f_r">
                                 {if $NextCS == $CS}
@@ -80,7 +80,7 @@
                                 </div>
                             </div>
                             <div class="sum f_r">
-                                Сумма:
+                                 {lang('s_summ')}:
                             </div>
                         </div>
                     </td>

@@ -27,7 +27,7 @@
 <div class="content">
     <div class="center">
         <div class="filter">
-            <div class="title padding_filter">Найдено в категориях:</div>
+            <div class="title padding_filter">{lang('s_found')} {lang('s_in')} {lang('lang_categories1')}:</div>
             <div class="padding_filter check_frame">
                 <div class="left" id="subcategorys">
                     <form method="get" action="" id="seacrh_p_form">
@@ -68,9 +68,9 @@
                 <div class="box_title clearfix">
                     <div class="f-s_24 f_l">
                         {if !empty(ShopCore::$_GET['text'])}
-                        Вы искали: "<span class="highlight">{encode($_GET['text'])}</span>"{/if}
+                        {lang('s_youre')}  {lang('s_looking')}: "<span class="highlight">{encode($_GET['text'])}</span>"{/if}
                         <span class="count_search">
-                            ({$totalProducts}) {echo SStringHelper::Pluralize($totalProducts, array('продукт','продукта','продуктов'))}
+                                     ({$totalProducts}) {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}
                         </span></div>
                     <div class="clear"></div>
                 {if $totalProducts > 0}
@@ -116,7 +116,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="#" class="response">{echo $p->totalComments()} {echo SStringHelper::Pluralize($p->totalComments(), array('отзыв', 'отзывы', 'отзывов'))}</a>
+                             <a href="#" class="response">{echo $p->totalComments()} {echo SStringHelper::Pluralize($p->totalComments(), array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}</a>
                                 {if count($p->getProductVariants())>1}
                                     <select class="m-l_10" name="selectVar">
                                         {foreach $p->getProductVariants() as $pv}
@@ -158,16 +158,16 @@
                             <div class="f_r t-a_r">
                                 <span class="ajax_refer_marg">
                                     {if $forCompareProducts && in_array($p->getId(), $forCompareProducts)}
-                                    <a href="{shop_url('compare')}" class="js gray">Сравнить</a>
+                                    <a href="{shop_url('compare')}" class="js gray">{lang('s_compare')}</a>
                                     {else:}
-                                    <a href="{shop_url('compare/add/'. $p->getId())}" data-prodid="{echo $p->getId()}" class="js gray toCompare">Добавить к сравнению</a>
+                                    <a href="{shop_url('compare/add/'. $p->getId())}" data-prodid="{echo $p->getId()}" class="js gray toCompare">{lang('s_compare_add')}</a>
                                     {/if}</span>
-                                <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" data-varid="{echo $p->firstVariant->getId()}" data-prodid="{echo $p->getId()}" href="#" class="js gray addToWList">Сохранить в список желаний</a>
+                                <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" data-varid="{echo $p->firstVariant->getId()}" data-prodid="{echo $p->getId()}" href="#" class="js gray addToWList">{lang('s_slw')}</a>
                             </div>
                         </div>
                         <p class="c_b">
                             {echo $p->getShortDescription()}
-                            <a href="{shop_url('product/'.$p->getUrl())}" class="t-d_n"><span class="t-d_u">Детальніше</span> ></a>
+                            <a href="{shop_url('product/'.$p->getUrl())}" class="t-d_n"><span class="t-d_u">{lang('s_more')}</span> ></a>
                         </p>
                     </li>
                     {if $count == 3}<li class="separator"></li>{$count=0}{/if}
@@ -177,7 +177,7 @@
                 {if $pagination}<div class="pagination"><div class="t-a_c">{$pagination}</div></div>{/if}
                 {else:}
                 <p>
-                    {echo ShopCore::t('По вашему запросу ничего не найдено')}.
+                    {echo ShopCore::t(lang('s_not_found'))}.
                 </p>
                 {/if}
             </div>
