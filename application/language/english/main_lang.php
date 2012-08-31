@@ -297,6 +297,20 @@ $lang['s_sle_product'] = 'Track this Item';
 $lang['s_sle_product_alerady'] = 'You are already following this Item';
 $lang['s_all_infor_b'] = '(learn more)';
 $lang['s_no_prod_category'] = 'No products in category';
+$lang['s_profile_me'] = 'My Account';
+$lang['s_profile_me_address'] = 'Address for service';
+$lang['s_profile_me_bascket'] = 'Go to basket';
+$lang['s_profile_me_change_password'] = 'Change Password';
+$lang['s_profile_me_change_view_wishlist'] = 'View Wishlist';
+$lang['s_edit_personal_information'] = 'Edit personal information';
+$lang['s_name_and_surname'] = 'Name and surname';
+$lang['s_order_history'] = 'Order History';
+$lang['s_to_fal_do'] = 'Do you follow the following goods';
+$lang['s_to_fal_mo_ti'] = 'Goods in order to monitor';
+$lang['s_to_falitem_number'] = 'Item Number';
+$lang['s_to_falo_product_name'] = 'Product Name';
+$lang['s_to_additional_information'] = 'Additional information';
+$lang['s_to_call_me'] = 'Call me';
 
 
 /* End of file main_lang.php */
