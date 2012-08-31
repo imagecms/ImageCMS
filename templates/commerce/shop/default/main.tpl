@@ -23,23 +23,24 @@
         <script type="text/javascript" src="{$SHOP_THEME}js/jquery.validate.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}js/autocomplete.js"></script>
         {$gmeta}
-        
+
         {$yameta}
         {$renderGA}
     </head>
     <body>        
+
         <div class="main_body">
             <div class="top">
                 <div class="center">
                     {load_menu('top_menu')}
                     <ul class="user_menu m-l_19 auth_data">{include_tpl('auth_data')}</ul>
-                    
+
                     <ul class="user_menu cart_data_holder">
-                    <li><a href="/" style="color:silver;">ru</a></li>
-                    <li style="margin-left: 0; padding-left: 5px;"><a href="{$BASE_URL}en" style="color:silver;">en</a></li>
-                    {include_tpl('cart_data')}</ul>
+                        <li><a href="/" style="color:silver;">ru</a></li>
+                        <li style="margin-left: 0; padding-left: 5px;"><a href="{$BASE_URL}en" style="color:silver;">en</a></li>
+                        {include_tpl('cart_data')}</ul>
                 </div>
-                 
+
             </div><!-- top -->
             <div class="header center">
                 <a href="{shop_url('')}" class="logo"></a>
@@ -58,15 +59,15 @@
                     <!--    Show callback's form    -->
                     <li class="p-l_0">
                         <form action="" method="post" name="currencyChangeForm" id="currencyChangeForm">
-                        {lang('s_currency')}: <select class="changeCurrency" name="setCurrency" >
-                            {foreach get_currencies() as $currency}
-                                <option {if ShopCore::app()->SCurrencyHelper->current->getId() == $currency->getId()}selected{/if} value="{echo $currency->getId()}">{echo encode($currency->getName())}</option>
-                            {/foreach}                            
+                            {lang('s_currency')}: <select class="changeCurrency" name="setCurrency" >
+                                {foreach get_currencies() as $currency}
+                                    <option {if ShopCore::app()->SCurrencyHelper->current->getId() == $currency->getId()}selected{/if} value="{echo $currency->getId()}">{echo encode($currency->getName())}</option>
+                                {/foreach}                            
                             </select>
                             {form_csrf()}
                         </form>
                     </li>
-                    
+
                     <!--    Show callback's form    -->
 
                     <!--    Wish list item's for Header    -->
@@ -95,11 +96,11 @@
                     <div class="carusel clearfix">
                         <ul>
                             {foreach ShopCore::app()->SBrandsHelper->mostProductBrands(15, TRUE) as $brand}
-                            <li>
-                                <a href="{shop_url($brand.full_url)}">
-                                    <img src="{media_url($brand.img_fullpath)}" title="{$brand.name}" />
-                                </a>
-                            </li>
+                                <li>
+                                    <a href="{shop_url($brand.full_url)}">
+                                        <img src="{media_url($brand.img_fullpath)}" title="{$brand.name}" />
+                                    </a>
+                                </li>
                             {/foreach}
                         </ul>
                     </div>

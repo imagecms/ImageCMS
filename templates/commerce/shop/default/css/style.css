@@ -575,7 +575,7 @@ span.code{color: #999;font-size: 11px;margin-right: 9px;}
 
 .validate_error_ml{color: red;}
 
-.enter_reg,.enter_form{width: 230px;}
+.enter_reg,.enter_form, .forgot_form{width: 230px;}
 .enter_reg ul,.enter_form ul{background-color: #e6e6e6;overflow: hidden;}
 .enter_reg li,.enter_form li{float: left;text-align: center;position: relative;background-color: transparent;}
 .enter_reg li:hover,.enter_form li:hover{background-color: #efefef;-webkit-transition: background-color 0.5s ease-in-out;-moz-transition: background-color 0.5s ease-in-out;-o-transition: background-color 0.5s ease-in-out;transition: opacity 0.3s ease-in-out;}
@@ -614,9 +614,9 @@ span.code{color: #999;font-size: 11px;margin-right: 9px;}
 .contacts_info address{margin: 4px 0 23px;}
 .contacts_info address span{display: block;}
 
-.enter_form{padding: 10px 15px;}
-.enter_form .errors{color: red; font-size: 12px;}
-.enter_form .errors p {margin-bottom: 5px;}
+.enter_form, .forgot_form{padding: 10px 15px;}
+.enter_form .errors, .forgot_form .errors{color: red; font-size: 12px;}
+.enter_form .errors p , .forgot_form .errors p{margin-bottom: 5px;}
 .authcomplete{padding: 10px 15px;}
 
 .footer_info{text-align: right;color: #707070;line-height: 22px;}
