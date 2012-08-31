@@ -211,10 +211,6 @@ $lang['s_price']                        =               'Цена';
 $lang['s_finish']                       =               'Итог';
 $lang['s_WL_PV']                      =               'товаров';
 $lang['s_сomments_contact']                      =               'Коментарии';
-$lang['s_log_out']                      =               'Вход';
-$lang['s_log_out']                      =               'Вход';
-$lang['s_log_out']                      =               'Вход';
-$lang['s_log_out']                      =               'Вход';
 
 $lang ['s_sdm'] = 'Выберите способ доставки';
 $lang ['s_spm'] = 'Выберите способ оплаты';
