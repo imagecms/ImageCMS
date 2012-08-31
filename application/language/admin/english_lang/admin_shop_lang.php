@@ -400,10 +400,6 @@ $lang['a_set_order_status'] =	'Set another status for these orders';
     $lang['a_js_status_notice'] =	' Change the status of marked notifications?';
     $lang['a_js_add_product']              =	'Product addition';
     $lang['a_js_delete_product_order']              =	'Delete the product from the order?';
-<<<<<<< HEAD
-    
-       
-=======
     $lang['a_all_orders']       =	'Total orders';
     $lang['a_empty_orders_list'] = 'Orders list is empty';
     $lang['a_payment_method'] = 'Payment method';
@@ -517,11 +513,3 @@ $lang['a_set_order_status'] =	'Set another status for these orders';
     $lang['a_roles_list'] = 'Roles list';
     
 ?>
->>>>>>> 4bbf8355a481314ed2414762349fae8e23fff9b2
-
-
-    
-    
-    
-    
-
