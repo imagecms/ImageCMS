@@ -425,9 +425,6 @@
     $lang['a_perm_groups'] = 'Группы привилегий';
     $lang['a_show_site'] = 'Посмотреть сайт';
     $lang['a_exit'] = 'Выход';
-<<<<<<< HEAD
-
-=======
     $lang['a_empty_orders_list'] = 'Список заказов пустой';
     $lang['a_delivery_price'] = 'Цена Доставки';
     $lang['a_order'] = 'Заказ';
@@ -537,5 +534,4 @@
     $lang['a_role_group_list'] = 'Создание групы ролей';
     $lang['a_role_group_list'] = 'Редактирование групы ролей';
     $lang['a_roles_list'] = 'Список ролей';
->>>>>>> 4bbf8355a481314ed2414762349fae8e23fff9b2
 ?>
