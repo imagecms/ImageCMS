@@ -60,7 +60,7 @@
                 </div>
                 <div class="phone">
                     <address>+8 (067) <span>572-58-18</span></address>
-                    <span class="js showCallbackBottom">Заказать звонок</span>
+                    <span class="js showCallback">Заказать звонок</span>
                 </div>
                 <ul class="user_menu">
                     <!--    Show callback's form    -->
