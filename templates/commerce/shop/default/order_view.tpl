@@ -5,10 +5,10 @@
 #}
 <div class="content">
     <div class="center">
-        <h1>Личный кабинет</h1>
-        {if $CI->session->flashdata('makeOrder') === true}<div style="padding:10px;border: 1px #f5f5dc solid;">Спасибо за Ваш заказ.</div>{/if}
+        <h1>{lang('s_privat')} {lang('s_office')}</h1>
+        {if $CI->session->flashdata('makeOrder') === true}<div style="padding:10px;border: 1px #f5f5dc solid;">{lang('s_thank_order')}</div>{/if}
         <table class="cleaner_table" cellspacing="0">
-            <caption>Заказ №{echo $model->getId()}</caption>
+            <caption>{lang('s_order')} №{echo $model->getId()}</caption>
             <colgroup>
                 <col span="1" width="120">
                 <col span="1" width="400">
@@ -41,7 +41,7 @@
                     </td>
                     <td>{echo $item->toCurrency()} {$CS}</td>
                     <td rowspan="{echo $kits[$item->getKitId()]['total']}">
-                        {echo $item->getQuantity()} шт.
+                        {echo $item->getQuantity()} {lang('s_pcs')}.
                     </td>
                     <td rowspan="{echo $kits[$item->getKitId()]['total']}">{echo $item->getQuantity() * $kits[$item->getKitId()]['price']} {$CS}</td>
                 </tr>
@@ -81,7 +81,7 @@
                     </td>
                     <td>
                         <div class="count">
-                            {echo $item->getQuantity()} шт.
+                            {echo $item->getQuantity()} {lang('s_pcs1')}.
                         </div>
                     </td>
                     <td>
@@ -102,37 +102,26 @@
                         <div class="foot_cleaner">
                             <div class="f_r">
                                 <div class="price f-s_26 f_l" style="margin-top: 25px;">
-                                    {if $model->getgiftcertprice()>0}
-                                        {$total -= $model->getgiftcertprice()}
-                                    {/if}
                                     {if $total >= $deliveryMethod->getFreeFrom()}
                                     {echo $total} {$CS}
-                                    {else:}
-                                    {echo $total + $model->getDeliveryPrice()} {$CS}
-                                    {/if}</div>
+                                    {else:}{echo $total + $model->getDeliveryPrice()} {$CS}{/if}</div>
                             </div>
                             <div class="f_l" style="width: 775px;">
                                 <ul class="info_curr_buy f_l" >
                                     <li>
-                                        <span>Оплачен:</span>
+                                        <span>{lang('s_paid')}:</span>
                                         <b>{if $model->getPaid() == true} Да{else: }Нет{/if}</b>
                                     </li>
                                     <li>
-                                        <span>Cтатус:</span>
+                                        <span>{lang('s_status')}:</span>
                                         <b>{echo SOrders::getStatusName('Id',$model->getStatus())} {if $model->getDeliveryMethod() > 0}</b>
                                     </li>
-                                    {if $model->getGiftCertKey() != null}
                                     <li>
-                                        <span>Сертификат: </span>
-                                        <b>(- {echo $model->getgiftCertPrice()} {$CS})</b>
-                                    </li>
-                                    {/if}
-                                    <li>
-                                        <span>Доставка:</span>
+                                        <span>{lang('s_dostavka')}:</span>
                                         <b>{echo $model->getSDeliveryMethods()->getName()}{/if}</b>
                                     </li>
                                     {if $paymentMethods[0] != null && !$model->getPaid()}
-                                    <li><span>Оплата:</span>
+                                    <li><span>{lang('s_pay')}:</span>
                                         <b>
                                             <div class="sp"></div>
                                             <ul>
@@ -150,7 +139,7 @@
                                     {/if}
                                 </ul>
                                 <div class="sum f_r">
-                                    Сумма:
+                                    {lang('s_summ')}:
                                 </div>
                             </div>
                         </div>

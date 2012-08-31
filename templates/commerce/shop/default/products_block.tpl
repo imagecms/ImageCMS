@@ -19,7 +19,7 @@
 						<span style="font-size:14px;">{echo $p->firstVariant->toCurrency()} {$CS}</span>
 					{/if}
 				</div>
-				<div class="compare"><a href="{shop_url('compare/add/' . $p->getId())}">Сравнить</a></div>
+				<div class="compare"><a href="{shop_url('compare/add/' . $p->getId())}">{lang('s_compare')}</a></div>
 			</li>
 			{if $count == 3}<li class="separator"></li> {$count=0}{/if}
 			{$count++}
@@ -34,6 +34,6 @@
 		<div class="sp"></div>
 		{else:}
 		<p>
-			{echo ShopCore::t('В категории нет продуктов')}.
+			{echo ShopCore::t(lang('s_in') lang('s_category') lang('s_no') lang('s_product'))}.
 		</p>
 {/if}

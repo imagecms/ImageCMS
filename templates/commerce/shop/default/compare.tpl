@@ -1,10 +1,10 @@
 <div id="has"  >
     <div class="content" >
         <div class="center">
-            <h1>Сравнение товаров</h1>
+            <h1>{lang('s_compare_tovars')}</h1>
             {if count($products) > 0}
-                   <a class="active" style="cursor: pointer">Все параметры</a><br />
-                   <a class="prod_dif" id="all" style="cursor:pointer;">Только отличия</a>
+                   <a class="active" style="cursor: pointer">{lang('s_all_par')}</a><br />
+                   <a class="prod_dif" id="all" style="cursor:pointer;">{lang('s_only_diff')}</a>
                    
 {$cnt = 1}
 {$cnc = 1}
@@ -12,7 +12,7 @@
                     <div class="comparison_slider">
                         <div class="parameters_compr" style="position: relative; min-width: 50px;">        
 
-                            <div class="title">Категория: {echo $category.Name}</div>
+                            <div class="title">{lang('lang_categories')}: {echo $category.Name}</div>
 
                         </div>
                             <div class="comparison_slider_left">
@@ -34,7 +34,6 @@
                                 <ul class="comparison_slider_right{echo $cnc++}">                                   
                                     
                                     {foreach $products as $product}
-                                        {$prices = currency_convert($product->firstvariant->getPrice(), $product->firstvariant->getCurrency())}
                                         {if $product->category_id == $category['Id']}
 
                                             <li class="list_desire">
@@ -54,20 +53,20 @@
                                                     <div class="func_description">
                                                         <a href="{shop_url('product/' . $product->getUrl())}" class="title">{echo $product->getName()}</a>
                                                         <div class="buy">
-                                                            <div class="price f-s_14">{echo $prices.main.price} <sub>{$prices.main.symbol}</sub>
+                                                            <div class="price f-s_14">{echo $product->firstVariant->toCurrency()} <sub>{$CS}</sub>
                                                                 <br/>
-                                                                <span>{echo $prices.second.price} {$prices.second.symbol}</span>
+                                                                <span>{echo $product->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>
                                                             </div>
 
 
                                                             {if $product->firstvariant->getstock()== 0}
                                                                 <div class="buttons button_greys">
-                                                                    <a id="goNotifMe" href="http://watermarkimagecms.loc/shop/product/74" data-prodid="{echo $product->getId()}" data-varid="{echo $product->firstVariant->getId()}">Сообщить <br /> о появлении</a>
+                                                                    <a id="goNotifMe" href="http://watermarkimagecms.loc/shop/product/74" data-prodid="{echo $product->getId()}" data-varid="{echo $product->firstVariant->getId()}">{lang('s_soob')}</a>
                                                                
                                                           
                                                         {else:}
                                                             <div class="buttons button_gs">
-                                                                <a href="" class="goBuy" data-prodid="{echo $product->getId()}" data-varid="{echo $product->firstVariant->getId()}" >Купить</a>
+                                                                <a href="" class="goBuy" data-prodid="{echo $product->getId()}" data-varid="{echo $product->firstVariant->getId()}" >{lang('s_buy')}</a>
 
                                                             {/if}
 
@@ -103,7 +102,7 @@
             
                     {else:}
                         <div class="comparison_slider">
-                            <div class="f-s_18 m-t_29 t-a_c">Список сравнений пуст</div>
+                            <div class="f-s_18 m-t_29 t-a_c">{lang('s_compare_list_em')}</div>
                         </div>
                         {/if}
                         </div>

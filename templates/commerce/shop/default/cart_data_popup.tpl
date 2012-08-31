@@ -2,7 +2,7 @@
 {if $inCart}
 <div class="fancy wish_list">
     <form method="post" action="{shop_url('cart')}" >
-        <h1 class="m-l_19">Корзина</h1>
+        <h1 class="m-l_19">{lang('s_cart')}</h1>
         <table class="cleaner_table"  cellspacing="0">
             <colgroup>
                 <col span="1" width="140">
@@ -21,7 +21,6 @@
                         {$variant = $v}
                     {/if}
                 {/foreach}
-                {$vprices = currency_convert($variant->getPrice(), $variant->getCurrency())}
                 <tr>
                     <td>
                         <a href="{shop_url('product/'.$prod->getId())}" class="photo_block">
@@ -32,7 +31,7 @@
                         <a href="{shop_url('product/'.$prod->getId())}">{echo ShopCore::encode($prod->name)}{if count($variants)>1} - {echo ShopCore::encode($variant->name)}{/if}</a>
                     </td>
                     <td>
-                        <div class="price f-s_16 f_l">{echo $vprices.main.price} <sub>{$vprices.main.symbol}</sub>
+                        <div class="price f-s_16 f_l">{echo $variant->getPrice()} <sub>{$CS}</sub>
                             <!--<span class="d_b">{echo $prod->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>-->
                         </div>
                     </td>
@@ -50,9 +49,9 @@
                     </td>
                     <td>
                         <div class="price f-s_18 f_l">
-                            {$summary = $vprices.main.price * $catr.quantity}
+                            {$summary = $variant->getPrice() * $catr.quantity}
                             {echo $summary}
-                            <sub>{$vprices.main.symbol}</sub>
+                            <sub>{$CS}</sub>
                             <!--<span class="d_b">{echo $summary_nextc = $prod->firstVariant->toCurrency('Price', $NextCSId) * $catr.quantity} {$NextCS}</span>-->
                         </div>
                     </td>
@@ -69,7 +68,7 @@
                     <td colspan="6">
                         <div class="foot_cleaner">
                             <div class="f_r buttons button_big_blue">
-                                <a href="{shop_url('cart')}">Оформить заказ</a>
+                                <a href="{shop_url('cart')}">{lang('s_formulation')} {lang('s_order')}</a>
                             </div>
                             <div class="f_r">
                                 {if $NextCS == $CS}
@@ -81,7 +80,7 @@
                                 </div>
                             </div>
                             <div class="sum f_r">
-                                Сумма:
+                                 {lang('s_summ')}:
                             </div>
                         </div>
                     </td>
