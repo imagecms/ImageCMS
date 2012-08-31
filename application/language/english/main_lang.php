@@ -293,6 +293,10 @@ $lang['s_c_of_z_'] = 'Formulation order';
 $lang['s_filter_s_foa'] = 'with filters';
 $lang['s_filter_search_f_paramet'] = 'Search with parameters';
 $lang['s_filter_all_reset'] = 'Reset all filters';
+$lang['s_sle_product'] = 'Track this Item';
+$lang['s_sle_product_alerady'] = 'You are already following this Item';
+$lang['s_all_infor_b'] = '(learn more)';
+$lang['s_no_prod_category'] = 'No products in category';
 
 
 /* End of file main_lang.php */
