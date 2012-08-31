@@ -39,8 +39,7 @@
         {$yameta}
         {$renderGA}
     </head>
-    <body>   
-       
+    <body>
         <div class="main_body">
             <div class="top">
                 <div class="center">
