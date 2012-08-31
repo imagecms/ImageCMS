@@ -4,12 +4,7 @@
         <meta charset="utf-8" />
         <title>{$site_title}</title>
         <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/style.css" media="all" />
-        <!--
         <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/jquery.fancybox-1.3.4.css" media="all" />
-        -->
-        
-        <link rel="stylesheet" href="{$SHOP_THEME}/js/fancybox/source/jquery.fancybox.css?v=2.1.0" type="text/css" media="screen" />
-        
         <link rel="icon" type="image/x-icon" href="{$SHOP_THEME}images/favicon.png"/>
         <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/ie8_7_6.css" /><![endif]-->
         <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/ie_7.css" /><![endif]-->
@@ -20,14 +15,7 @@
         <script type="text/javascript" src="{$SHOP_THEME}/js/jScrollPane.min.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/cusel-min-2.4.1.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.ui-slider.js" ></script>
-        <!--
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.fancybox-1.3.4.pack.js" ></script>
-        -->
-        
-        
-        <script type="text/javascript" src="{$SHOP_THEME}/js/fancybox/source/jquery.fancybox.js?v=2.1.0"></script>
-
-        
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.form.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/imagecms.filter.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/scripts.js"></script>
@@ -35,46 +23,51 @@
         <script type="text/javascript" src="{$SHOP_THEME}js/jquery.validate.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}js/autocomplete.js"></script>
         {$gmeta}
-        
+
         {$yameta}
         {$renderGA}
     </head>
-    <body>   
-       
+    <body>        
+
         <div class="main_body">
             <div class="top">
                 <div class="center">
                     {load_menu('top_menu')}
                     <ul class="user_menu m-l_19 auth_data">{include_tpl('auth_data')}</ul>
-                    <ul class="user_menu cart_data_holder">{include_tpl('cart_data')}</ul>
+
+                    <ul class="user_menu cart_data_holder">
+                        <li><a href="/" style="color:silver;">ru</a></li>
+                        <li style="margin-left: 0; padding-left: 5px;"><a href="{$BASE_URL}en" style="color:silver;">en</a></li>
+                        {include_tpl('cart_data')}</ul>
                 </div>
+
             </div><!-- top -->
             <div class="header center">
                 <a href="{shop_url('')}" class="logo"></a>
                 <div class="frame_form_search">
                     <form name="search" class="clearfix" action="{shop_url('search')}" method="get" id="autocomlete">
-                        <input type="text" name="text" value="Поиск по сайту"  onfocus="if(this.value=='Поиск по сайту') this.value='';" onblur="if(this.value=='') this.value='Поиск по сайту';"  id="inputString" autocomplete="off" onkeyup="lookup(event);" class="place_hold"/>
-                        <input type="submit" id="search_submit"  value="Найти" class="icon"/>
+                        <input type="text" name="text" value="{lang('s_se_thi_sit')}"  onfocus="if(this.value=='{lang('s_se_thi_sit')}') this.value='';" onblur="if(this.value=='') this.value='{lang('s_se_thi_sit')}';"  id="inputString" autocomplete="off" onkeyup="lookup(event);" class="place_hold"/>
+                        <input type="submit" id="search_submit"  value="{lang('s_search')}" class="icon"/>
                         <span id="suggestions"style="display: none; width: 0px; right: 0px;"></span>
                     </form>
                 </div>
                 <div class="phone">
                     <address>+8 (067) <span>572-58-18</span></address>
-                    <span class="js showCallbackBottom">Заказать звонок</span>
+                    <span class="js showCallback">{lang('s_orderc')} {lang('s_call')}</span>
                 </div>
                 <ul class="user_menu">
                     <!--    Show callback's form    -->
                     <li class="p-l_0">
                         <form action="" method="post" name="currencyChangeForm" id="currencyChangeForm">
-                        Валюта: <select class="changeCurrency" name="setCurrency" >
-                            {foreach get_currencies() as $currency}
-                                <option {if ShopCore::app()->SCurrencyHelper->current->getId() == $currency->getId()}selected{/if} value="{echo $currency->getId()}">{echo encode($currency->getName())}</option>
-                            {/foreach}                            
+                            {lang('s_currency')}: <select class="changeCurrency" name="setCurrency" >
+                                {foreach get_currencies() as $currency}
+                                    <option {if ShopCore::app()->SCurrencyHelper->current->getId() == $currency->getId()}selected{/if} value="{echo $currency->getId()}">{echo encode($currency->getName())}</option>
+                                {/foreach}                            
                             </select>
                             {form_csrf()}
                         </form>
                     </li>
-                    
+
                     <!--    Show callback's form    -->
 
                     <!--    Wish list item's for Header    -->
@@ -83,7 +76,7 @@
                     <!--    Wish list item's for Header    -->
 
                     <!--    Products in compare list for Header    -->
-                    <li id="compareHolder" class="compare blue{if $CI->session->userdata('shopForCompare') && count($CI->session->userdata('shopForCompare'))} is_avail{/if}">
+                    <li id="compareHolder" class="compare blue {if $CI->session->userdata('shopForCompare') && count($CI->session->userdata('shopForCompare'))} is_avail{/if}">
                         {include_tpl('compare_data')}</li>
                     <!--    Products in compare list for Header    -->
                 </ul>
@@ -92,7 +85,7 @@
             <div class="main_menu center">
                 <ul class="clearfix">{echo ShopCore::app()->SCategoryTree->ulWithTitle()}</ul>
             </div><!-- main_menu -->
-            
+
             {$shop_content}
 
             <div class="hfooter"></div>
@@ -103,11 +96,11 @@
                     <div class="carusel clearfix">
                         <ul>
                             {foreach ShopCore::app()->SBrandsHelper->mostProductBrands(15, TRUE) as $brand}
-                            <li>
-                                <a href="{shop_url($brand.full_url)}">
-                                    <img src="{media_url($brand.img_fullpath)}" title="{$brand.name}" />
-                                </a>
-                            </li>
+                                <li>
+                                    <a href="{shop_url($brand.full_url)}">
+                                        <img src="{media_url($brand.img_fullpath)}" title="{$brand.name}" />
+                                    </a>
+                                </li>
                             {/foreach}
                         </ul>
                     </div>
@@ -117,15 +110,15 @@
                 {load_menu('footer_menu')}
                 <ul class="contacts f_l">
                     <li>
-                        <span class="b">Тел:</span>
+                        <span class="b">{lang('s_phone')}:</span>
                         <span>+8 (067) 572-58-18<br/>+8 (067) 572-58-18</span>
                     </li>
                     <li>
-                        <span class="b">Email:</span>
+                        <span class="b">{lang('s_email')}:</span>
                         <span>SiteImageCMS@gmail.com</span>
                     </li>
                     <li>
-                        <span class="b">Skype:</span>
+                        <span class="b">{lang('s_skype')}:</span>
                         <span>SiteImageCMS</span>
                     </li>
                 </ul>
@@ -139,8 +132,8 @@
                         <a href="#" class="twitter"></a>
                         <a href="#" class="odnoklasniki"></a>
                     </div>
-                    <a href="http://imagecms.net" target="_blank" class="red">Создание интернет магазина</a>
-                    <div class="s">SEO оптимизация сайта</div>
+                    <a href="http://imagecms.net" target="_blank" class="red">{lang('s_footer_create')}</a>
+                    <div>{lang('s_footer_seo')}</div>
                 </div>
             </div>
         </div><!-- footer -->

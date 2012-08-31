@@ -306,6 +306,7 @@ class Auth extends MY_Controller {
         if ($val->run() AND $this->dx_auth->forgot_password($val->set_value('login'))) {
             $data['auth_message'] = lang('lang_acc_mail_sent');
             $this->template->assign('info_message', $data['auth_message']);
+            $this->template->assign('succes', TRUE);
         }
 
         if ($this->dx_auth->_auth_error != NULL) {
@@ -314,7 +315,11 @@ class Auth extends MY_Controller {
 
         ($hook = get_hook('auth_show_forgot_pass_tpl')) ? eval($hook) : NULL;
 
-        $this->template->show('forgot_password');
+        if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
+            $this->template->display('forgot_password_popup');
+        } else {
+            $this->template->show('forgot_password');
+        }
     }
 
     function reset_password() {
@@ -420,3 +425,4 @@ class Auth extends MY_Controller {
 }
 
 /* End of file auth.php */
+
