@@ -11,40 +11,10 @@ $(document).ready(function(){
      *      "<a href="#" data-prodid="12" data-varid="21" class="goBuy">Buy product</a>"
      *      Where 'data-prodid' - product ID and 'data-varid' - variant ID
      */
-    /*
     $("a.grouped_elements").fancybox({
         showNavArrows: true,
         cyclic: true
     });
-    */
-        var fancyOptions = {
-        helpers	: {
-            title: { type: 'inside' }    
-        },
-        beforeLoad: function() {
-            var el, id = $(this.element).data('title-id');
-
-            if (id) {
-                el = $('#' + id);
-
-                if (el.length) {
-                    this.title = el.html();
-                }
-            }
-        }
-        };
-        
-        if ($('.fancybox-thumb').last().hasClass('withThumbs'))
-            fancyOptions.helpers.thumbs = {
-                    width	: 50,
-                    height	: 50};
-        if ($('.fancybox-thumb').last().hasClass('withButtons'))    
-            fancyOptions.helpers.buttons = {};
-            
-        //console.log(fancyOptions);
-   
-        $('.fancybox-thumb').fancybox(fancyOptions);
-   
     
     $('span.clickrate').on('click', function(){
         var val = $(this).attr('title');
@@ -345,24 +315,7 @@ $(document).ready(function(){
         $('#paymentMethodId').val($(this).val());
     });
 
-
-      $('.showCallbackBottom').on('click', function(){
-        
-        $.fancybox.showActivity();
-        $.ajax({
-            type: 'post',
-            url: '/shop/shop/callbackBottom',
-            success: function(msg){
-                showResponse(msg);
-                bindCallbackForm1();
-                $.fancybox.hideActivity();
-            }
-        });
-        return false;
-    })
-    
     $('.showCallback').on('click', function(){
-        
         $.fancybox.showActivity();
         $.ajax({
             type: 'post',
@@ -375,10 +328,6 @@ $(document).ready(function(){
         });
         return false;
     })
-
-
-
-  
     
     $("#cartForm").validate();
     
@@ -562,26 +511,6 @@ $(document).ready(function(){
             return false;
         })
     }
-    
-           function bindCallbackForm1(){
-        $('.order_call form').bind('submit',function(){
-            $this = $(this);
-            $.ajax({
-                type: 'post',
-                url: '/shop/shop/callbackBottom',
-                data: $this.serialize(),
-                beforeSend: function(){
-                    $.fancybox.showActivity();
-                },
-                success: function(msg){
-                    showResponse(msg);
-                    bindCallbackForm1();
-                    $.fancybox.hideActivity();
-                }
-            });
-            return false;
-        })
-    }
 
     function bindCallbackForm(){
         $('.order_call form').bind('submit',function(){
@@ -602,7 +531,6 @@ $(document).ready(function(){
             return false;
         })
     }
- 
 
     function showResponse(responseText, statusText, xhr, $form){
         try {
@@ -685,26 +613,6 @@ $(document).ready(function(){
         })
         return false;
     });
-    $('.giftcertcheck').on('click', function(){
-        recount();
-    });
     
-    $('.addtoSpy').on('click', function(){
-        $.fancybox.showActivity();
-        var vid = $(this).attr('data-varid');
-        var pid = $(this).attr('data-prodid');
-        var uid = $(this).attr('data-user_id');
-        var pp = $(this).attr('data-price');
-        var $this = $(this);
-        $.ajax({
-            type: "post",
-            data: "uid="+uid+"&pid="+pid+"&pp="+pp,
-            url: "/shop/product_spy/spy",
-            success: function(){
-                $this.html('Вы уже следите за этим товаром').removeClass('js').removeClass('gray');
-                $this.unbind('click');
-                $.fancybox.hideActivity(); 
-            }
-        });
-    });
+
 });

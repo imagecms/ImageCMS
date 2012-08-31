@@ -21,7 +21,6 @@
                         {$variant = $v}
                     {/if}
                 {/foreach}
-                {$vprices = currency_convert($variant->getPrice(), $variant->getCurrency())}
                 <tr>
                     <td>
                         <a href="{shop_url('product/' . $item.model->getUrl())}" class="photo_block">
@@ -32,7 +31,7 @@
                         <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}{if count($variants)>1} - {echo ShopCore::encode($variant->name)}{/if}</a>
                     </td>
                     <td>
-                        <div class="price f-s_16 f_l">{echo $vprices.main.price} <sub>{$vprices.main.symbol}</sub>
+                        <div class="price f-s_16 f_l">{echo $variant->getPrice()} <sub>{$CS}</sub>
                             <!--<span class="d_b">{echo $item.model->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>-->
                         </div>
                     </td>
@@ -46,9 +45,9 @@
                         </div>
                     </td>
                     <td>
-                        <div class="price f-s_18 f_l">{$summary = $vprices.main.price * $item.quantity}
+                        <div class="price f-s_18 f_l">{$summary = $variant->getPrice() * $item.quantity}
                                                 {echo $summary}
-                            <sub>{$vprices.main.symbol}</sub>
+                            <sub>{$CS}</sub>
                             <!--<span class="d_b">{echo $summary_nextc = $item.model->firstVariant->toCurrency('Price', $NextCSId) * $item.quantity} {$NextCS}</span>-->
                         </div>
                     </td>
@@ -71,51 +70,31 @@
                                     <div class="price f-s_26 f_l">
                                 {/if}
                                 <div class="price f-s_26 f_l">
-                                    {if isset($item.delivery_price)}
-                                        {$dprice =  currency_convert($item.delivery_price, Null)}
-                                        {$item.delivery_price = $dprice.main.price}
-                                    {/if}
                                     {if $total < $item.delivery_free_from}
                                     {$total += $item.delivery_price}
                                     {/if}
-                                    {if isset($item.gift_cert_price)}
-                                        {$cprice = currency_convert($item.gift_cert_price, Null)}
-                                        {$item.gift_cert_price = $cprice.main.price}
-                                        {$total -= $item.gift_cert_price}
-                                    {/if}
                                     {echo $total}
-                                    <sub>{$CS}</sub>
                                     {if $item.delivery_price > 0}<span class="d_b">{lang('s_delivery')}: {echo $item.delivery_price}</span>{/if}
-                                    {if $item.gift_cert_price > 0}<span style="font-size:16px;">Подарочный сертификат: {echo $item.gift_cert_price} руб</span>{/if}
+                                    <sub>{$CS}</sub>
                                     <!--<span class="d_b">{$total_nc} {$NextCS}</span>-->
                                 </div>
                             </div>
-
                             <div class="f_r sum">{lang('s_summ')}:</div>
                         </div>
                     </td>
                     <td>
             <div> </div>
                         </td>
-
                 </tr>
             </tfoot>
             <input type="hidden" name="forCart" value ="1"/>
         </table>
         <div class="f_l method_deliver_buy">
-
-            {if ShopCore::app()->SSettings->__get('usegifts') == 1}
-                <div class="block_title_18"><span class="title_18">У Вас есть подарочный сертификат?</span></div>
-                    <label>
-                        <input type="text" name="giftcert" id="giftcertkey"/>
-                        <div class="block_title_18"><span class="title_18">{lang('s_sdm')}</span></div>
-                    
-            {/if}
-            <div class="block_title_18"><span class="title_18">Выберите способ доставки</span></div>
+            <div class="block_title_18"><span class="title_18">{lang('s_sdm')}</span></div>
             
             {$counter = true}
             {foreach $deliveryMethods as $deliveryMethod}
-            
+            {literal}
             {$del_id = $deliveryMethod->getId()}
             <label><input type="radio" {if $counter} checked="checked" {$del_id = $deliveryMethod->getId()} {$counter = false}{$del_price = ceil($deliveryMethod->getPrice())}{$del_freefrom = ceil($deliveryMethod->getFreeFrom())}{/if} name="met_del" class="met_del" value="{echo $del_id}" data-price="{echo ceil($deliveryMethod->getPrice())}" data-freefrom="{echo ceil($deliveryMethod->getFreeFrom())}"/>{echo $deliveryMethod->getName()}</label>
             {/foreach}
