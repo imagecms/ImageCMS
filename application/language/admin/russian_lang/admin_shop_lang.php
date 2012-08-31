@@ -534,4 +534,11 @@
     $lang['a_role_group_list'] = 'Создание групы ролей';
     $lang['a_role_group_list'] = 'Редактирование групы ролей';
     $lang['a_roles_list'] = 'Список ролей';
+    $lang['a_memcached'] = 'Кеширование';
+    $lang['a_memcached_settings'] = 'Настройки кеширования Memcached';
+    $lang['a_memcached_on'] = 'Включено';
+    $lang['a_memcached_hostname'] = 'Адрес Memcached сервера';
+    $lang['a_memcached_port'] = 'Порт Memcached сервера';
+    $lang['a_memcached_namespace'] = 'Пространство имен Memcached';
+    $lang['a_memcached_expires'] = 'Время жизни кеша, мс';
 ?>
