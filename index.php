@@ -25,12 +25,12 @@
 //    $_SESSION['vreferer'] = $_SERVER['HTTP_REFERER'];
 //}
 
-//if (isset($_POST['signed_request'])) {
-    if(file_exists('application/modules/social_servises/facebook.php')){
-        require 'application/modules/social_servises/facebook.php';
-        $facebook = new facebook();
-        exit();
-    }
+if (isset($_POST['signed_request'])) {
+//    if(file_exists('application/modules/social_servises/facebook.php')){
+//        require 'application/modules/social_servises/facebook.php';
+//        $facebook = new facebook();
+//        exit();
+//    }
     $secret = "4a3cdc076553fd9c12041f5bcb3cada6";
     $signed_request = $_POST['signed_request'];
     
@@ -69,7 +69,7 @@
         $_SESSION['facebook_user'] = $data;
         $_SESSION['freferer'] = $_SERVER['HTTP_REFERER'];
         unset($_POST);
- //   }
+   }
 }
 
 define('ENVIRONMENT', 'development');
