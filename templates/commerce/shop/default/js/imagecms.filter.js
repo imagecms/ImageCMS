@@ -56,7 +56,7 @@ $(document).ready(function(){
                         $this.parent().addClass('active');
                         left=$this.parent().width();
                         if(!$.exists_nabir($this.parent().find('.apply'))){
-                            win=$this.parent().append("<span class='apply'><span><span>"+'Найдено <span>'+filterResponse.totalCount+'</span> товаров'+"</span><a href='#'>Показать</a></span></span>");
+                            win=$this.parent().append("<span class='apply'><span><span>"+ found_filter_lang + '<span> '+filterResponse.totalCount+'</span> ' +found_filter_PR + "</span><a href='#'>" + found_filter_SH + "</a></span></span>");
                             $this.parent().find('.apply').stop().show(200);
                         }
                         else{

@@ -22,8 +22,11 @@
     var def_max= {$def_price_max};
     var cur_min= {$min_price};
     var cur_max= {$max_price};
-    
+    var found_filter_lang= '{lang('s_found')}';
+    var found_filter_PR= '{lang('s_WL_PV')}';
+    var found_filter_SH= '{lang('s_js_fisa')}';
     {literal}
+        
     $(document).ready(function() {
         if ($('#user_per_page_c').val() == '')
             $('#user_per_page_c').val($('#cusel-scroll-count').children('span:first-child').html());
