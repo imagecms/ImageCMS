@@ -312,6 +312,8 @@ $lang['s_to_fal_mo_ti'] = 'Товаров в слежении';
 $lang['s_to_falitem_number'] = 'Номер товара';
 $lang['s_to_falo_product_name'] = 'Название товара';
 $lang['s_to_additional_information'] = 'Дополнительная информация';
-$lang['s_to_call_me'] = 'Позвоните мне call me';
+$lang['s_to_call_me'] = 'Позвоните мне';
+$lang['s_sea_found_in_categories'] = 'Найдено в категориях';
+$lang['s_sea_search_for'] = 'Вы искали';
 
 /* End of file main_lang.php */
