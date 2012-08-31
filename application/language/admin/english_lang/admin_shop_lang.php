@@ -400,12 +400,128 @@ $lang['a_set_order_status'] =	'Set another status for these orders';
     $lang['a_js_status_notice'] =	' Change the status of marked notifications?';
     $lang['a_js_add_product']              =	'Product addition';
     $lang['a_js_delete_product_order']              =	'Delete the product from the order?';
+<<<<<<< HEAD
     
        
-
-
-    
-    
-    
+=======
+    $lang['a_all_orders']       =	'Total orders';
+    $lang['a_empty_orders_list'] = 'Orders list is empty';
+    $lang['a_payment_method'] = 'Payment method';
+    $lang['a_delivery_method'] = 'Delivery Method';
+    $lang['a_delivery_price'] = 'Delivery Price';
+    $lang['a_order'] = 'Order';
+    $lang['a_delivery_address'] = 'Delivery Address';
+    $lang['a_orders_in_cart'] = 'Orders in cart';
+    $lang['a_add_new_pr_to_order'] = 'Add new product to cart';
+    $lang['a_gift_certificate'] = 'Gift Certificate';
+    $lang['a_status_history']  = 'Status history';
+    $lang['a_delivery_and_payment'] = 'Delivery and payment';
+    $lang['a_product_name'] = 'Product name';
+    $lang['a_variant_name'] = 'Product variant name';
+    $lang['a_add_warehouse'] = 'Add warehouse';
+    $lang['a_enable_comments'] = 'Enable comments';
+    $lang['a_currency'] = 'Currency';
+    $lang['a_small_image_create'] = 'Create small image';
+    $lang['a_create_kit'] = 'Create product kit';
+    $lang['a_kit_edit'] = 'Edit product kit';
+    $lang['a_main_product'] = 'Main product';
+    $lang['a_added_products'] = 'Added products';
+    $lang['a_discount'] = 'Discount';
+    $lang['a_properties_review'] = 'Properties list review';
+    $lang['a_empty_propery_list'] = 'Empty property list';
+    $lang['a_create_product_property'] = 'Product property creating';
+    $lang['a_product_kits_review'] = 'Product kits review';
+    $lang['a_active_category'] = 'Active';
+    $lang['a_empty_category_list'] = 'Category list is empty';
+    $lang['a_user_create'] = 'Create user';
+    $lang['a_users_list'] = 'Users list';
+    $lang['a_total_users'] = 'Total users';
+    $lang['a_create_additional_field'] = 'Additional field create';
+    $lang['a_field_activity'] = 'Active';
+    $lang['a_field_type'] = 'Field type';
+    $lang['a_additional_fields_list'] = 'Additional fields list';
+    $lang['a_empty_additional_fields_list'] = 'List is empty.';
+    $lang['a_create_gift_cert'] = 'Gift certificate create';
+    $lang['a_certificate_sum'] = 'Gift certificate price';
+    $lang['a_certificate_key'] = 'Key';
+    $lang['a_generate'] = 'Generate';
+    $lang['a_active_to'] = 'Active until';
+    $lang['a_gift_certificate_list'] = 'Gift certificate list';
+    $lang['a_gift_certificate_list_empty'] = 'Gift certificate list is empty.';
+    $lang['a_unique_key'] = 'Unique key';
+    $lang['a_cert_price'] = 'Price';
+    $lang['a_valid_to'] = 'Valid to';
+    $lang['a_cert_active'] = 'Active';
+    $lang['a_unactive'] = 'Not active';
+    $lang['a_create_gift_certificate'] = 'Create gift certificate';
+    $lang['a_gift_certificate_edit'] = 'Gift certificate edit';
+    $lang['a_gift_certificate_settings'] = 'Gift certificate settings';
+    $lang['a_use_gift_certificates'] = 'Use gift certificates?';
+    $lang['a_spy_list'] = 'List of products in monitoring';
+    $lang['a_spy_list_is_empty'] = '<b>"Product price monitoring"</b> list is empty.';
+    $lang['a_user_id'] = 'User Id';
+    $lang['a_product_id'] = 'Product Id';
+    $lang['a_brands_stat'] = 'Brands statistics';
+    $lang['a_orders_stat'] = 'Orders statistics';
+    $lang['a_orders_price'] = 'Total orders price';
+    $lang['a_goods_count_on_site'] = 'Products count shown on site';
+    $lang['a_goods_count_in_admin'] = 'Products count in control panel';
+    $lang['a_by_hit'] = 'By hit';
+    $lang['a_by_new'] = 'By new';
+    $lang['a_by_action'] = 'By action';
+    $lang['a_main_mod_image'] = 'Another main image variant';
+    $lang['a_small_mod_image'] = 'Another small image variant';
+    $lang['a_message_theme'] = 'Subject';
+    $lang['a_message_format'] = 'Message format';
+    $lang['a_message_text'] = 'Message text';
+    $lang['a_send_to_admin'] = "Send notification about new callback to administrator";
+    $lang['a_email_for_notification'] = 'Email for sending notifications about new Callbacks';
+    $lang['a_register_after_order'] = 'User registartion after making order';
+    $lang['a_site_link'] = 'Site address';
+    $lang['a_top_sell_settings'] = 'Top sale block settings';
+    $lang['a_site_name'] = 'Site name';
+    $lang['a_webmaster_email'] = 'Site webmaster email';
+    $lang['a_category_list_edit'] = 'Category list editing';
+    $lang['a_category_selecting'] = 'Displayed categories selection';
+    $lang['a_1c_settings'] = '1C settings';
+    $lang['a_select_order_status'] = 'Select order statuses for import';
+    $lang['a_sett_notifications'] = 'Notifications';
+    $lang['a_notification_settings'] = 'Notification settings';
+    $lang['a_edit_notifications'] = 'Notifications editing';
+    $lang['a_api_for_mail_chimp'] = 'API Key for Mail Chimp';
+    $lang['a_key_for_list'] = 'Key for Mail Chimp list';
+    $lang['a_delivery_methods_list'] = 'Delivery methods list';
+    $lang['a_empty_dm_list'] = 'Delivery methods list is empty';
+    $lang['a_dm_edit'] = 'Delivery method edit';
+    $lang['a_dm_create'] = 'Delivery method create';
+    $lang['a_list_is_empty'] = 'List is empty.';
+    $lang['a_pm_list'] = 'Payment methods list';
+    $lang['a_pm_list_is_empty'] = 'Payment methods list is empty';
+    $lang['a_pm_edit'] = 'Payment method edit';
+    $lang['a_pm_create'] = 'Payment method create';
+    $lang['a_currency_list'] = 'Currency list';
+    $lang['a_currency_list_is_empty'] = 'Currency list is empty';
+    $lang['a_currency_edit'] = 'Currency edit';
+    $lang['a_currency_create'] = 'Currency create';
+    $lang['a_text_sepp'] = 'Text separator';
+    $lang['a_order_statuses_list'] = 'Orders statuses list';
+    $lang['a_os_list_is_empty'] = 'Orders statuses list is empty';
+    $lang['a_os_edit'] = 'Orders status edit';
+    $lang['a_os_create'] = 'Orders status create';
+    $lang['a_role_list'] = 'Roles list';
+    $lang['a_role_create'] = 'Role create';
+    $lang['a_role_edit'] = 'Role edit';
+    $lang['a_role_group_list'] = 'Roles groups list';
+    $lang['a_role_group_list'] = 'Roles group create';
+    $lang['a_role_group_list'] = 'Roles group edit';
+    $lang['a_roles_list'] = 'Roles list';
     
 ?>
+>>>>>>> 4bbf8355a481314ed2414762349fae8e23fff9b2
+
+
+    
+    
+    
+    
+
