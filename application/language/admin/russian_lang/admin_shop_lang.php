@@ -64,7 +64,7 @@
     $lang['a_select_file']      =	'Выбрать файл';
     $lang['a_file']      =	'Файл';
     $lang['a_server_zadat']      =	'Задать пароль для доступа c сервера 1C';
-    $lang['a_filter']           =	'Фильтер';
+    $lang['a_filter']           =	'Фильтр';
     $lang['a_select']           =	'Выберите';
     $lang['a_move']             =	'Переместить';
     $lang['a_footer_save_add_product']   =	'Сохранить и добавить продукт';
@@ -98,6 +98,7 @@
     $lang['a_text']             =	'Текст';
     $lang['a_review']           =	'Просмотр';
     $lang['a_all']              =	'Всего';
+    $lang['a_all_orders']       =	'Всего заказов';
     $lang['a_copy']             =	'копию';
     $lang['a_sort']             =	'Сортировка по';
     $lang['a_sort_id']          =	'Сортировка по ID';
@@ -130,7 +131,7 @@
     $lang['a_review_theme']     =	'Просмотр тем обращения';
     $lang['a_id_collback']      =	'ID(Номер Callback\'a)';
     $lang['a_manager_status']   =	'Менеджер оставивший последний статус';
-    $lang['a_comment']          =	'Коментарий';
+    $lang['a_comment']          =	'Комментарий';
     $lang['a_status_new_request'] =	'Статус будет назначен всем новым запросам.';
     $lang['a_notifications']    =	'Уведомления о появлении';
     $lang['a_notice_email']     =	'Уведомление по E-mail';
@@ -190,7 +191,7 @@
     $lang['a_wishlist']         =	'WishList';
     $lang['a_additional']       =	'Дополнительное';
     $lang['a_field']            =	'Поле';
-    $lang['a_collback']            =	'Collback';
+    $lang['a_collback']            =	'Callback';
     $lang['a_label']            =	'Label';
     $lang['a_pay']              =	'оплаты';
     $lang['a_field_required']   =	'обязательное';
@@ -202,15 +203,15 @@
     $lang['a_translite_header'] =	'Транслитерация заголовка';
     $lang['a_parent']           =	'Родитель';
     $lang['a_pattern']          =	'Шаблон';
-    $lang['a_pattern_category'] =	'Основний шаблон категории. По умолчанию  category.tpl';
-    $lang['a_pattern_product']  =	'Основной шаблон продукта. По умолчанию  product.tpl';
+    $lang['a_pattern_category'] =	'Основной шаблон категории. По-умолчанию  category.tpl';
+    $lang['a_pattern_product']  =	'Основной шаблон продукта. По-умолчанию  product.tpl';
     $lang['a_default_method_sort']=	'Выбор метода сортировки по-умолчанию';
     $lang['a_on']               =	'По';
     $lang['a_hit']              =	'хит';
-    $lang['a_date_more']        =	'дате создания (с более ранних)';
-    $lang['a_date_later']       =	'дате создания (с более поздних)';
-    $lang['a_count_later']      =	'количеству просмотров (по убыванию)';
-    $lang['a_count_more']       =	'количеству просмотров (по возрастанию)';
+    $lang['a_date_more']        =	'По дате создания (с более ранних)';
+    $lang['a_date_later']       =	'По дате создания (с более поздних)';
+    $lang['a_count_later']      =	'По количеству просмотров (по убыванию)';
+    $lang['a_count_more']       =	'По количеству просмотров (по возрастанию)';
     $lang['a_novelty']          =	'новинки';
     $lang['a_stock']            =	'акции';
     $lang['a_footer_cancel']    =	'Отмена';
@@ -229,7 +230,7 @@
     $lang['a_counr_rates']      =	'Пересчитать цены?';
     $lang['a_free']             =	'Бесплатен';
     $lang['a_from']             =	'от';
-    $lang['a_kit']              =	'набор';
+    $lang['a_kit']              =	'Набор';
     $lang['a_fixation']         =	'Прикрепление';
     $lang['a_map']              =	'карте';
     $lang['a_and']              =	'и';
@@ -255,7 +256,7 @@
     $lang['a_select_small_image']=	'Выбрать маленькое изображение для варианта';
     $lang['a_not_set']          =	'Не указан';
     $lang['a_general_image']    =	'Основное изображение';
-    $lang['a_small_image']      =	'маленькое изображение';
+    $lang['a_small_image']      =	'Маленькое изображение';
     $lang['a_warehouses']       =	'Склади';
     $lang['a_vkl']              =	'Включить';
     $lang['a_old_price']        =	'Старая цена';
@@ -284,12 +285,12 @@
     $lang['a_vater_mark']       =	'Водяной знак';
     $lang['a_gorizont']         =	'Горизонтальное выравнивание';
     $lang['a_vertikal']         =	'Вертикальное выравнивание';
-    $lang['a_left']             =	'Лево';
-    $lang['a_right']            =	'Право';
-    $lang['a_center']           =	'Центр';
-    $lang['a_top']              =	'Вверх';
+    $lang['a_left']             =	'Слева';
+    $lang['a_right']            =	'Справа';
+    $lang['a_center']           =	'По центру';
+    $lang['a_top']              =	'По верхнему краю';
     $lang['a_body']             =	'Посередине';
-    $lang['a_bottom']           =	'снизу';
+    $lang['a_bottom']           =	'По нижнему краю';
     $lang['a_patch']            =	'Путь';
     $lang['a_file_server']      =	'Файл должен находится на сервере. Например: ./uploads/images/logo.png';
     $lang['a_opacity']          =	'Прозрачность';
@@ -298,8 +299,9 @@
     $lang['a_size_font']        =	'Размер шрифта';
     $lang['a_color_font']       =	'Цвет шрифта';
     $lang['a_patch_font']       =	'Путь к шрифту';
-    $lang['a_email_administrato_order']=	'Уведомление администратора совершении заказа на почту';
+    $lang['a_email_administrato_order'] = 'Уведомление администратора о совершении заказа на почту';
     $lang['a_send']             =	'Отправлять';
+    $lang['a_send_f']             =	'Отправить';
     $lang['a_end']             =	'завершен';
     $lang['a_administrator']    =	'Администратора';
     $lang['a_email_users_order']=	'Уведомление покупателя о совершении заказа';
@@ -307,14 +309,14 @@
     $lang['a_sender']           =	'отправителя';
     $lang['a_message']          =	'сообщение';
     $lang['a_format']           =	'Формат';
-    $lang['a_key']              =	'Ключь';
+    $lang['a_key']              =	'Ключ';
     $lang['a_uses_select_var']  =	'Вы можете использовать следующие переменные';
     $lang['a_settings_n']                 =	'Имя пользователя совершившего заказ';
     $lang['a_settings_e']                 =	'Email адрес заказчика';
     $lang['a_settings_num']                 =	'Номер телефона заказчика';
     $lang['a_settings_addr']                 =	'Адрес доставки кторый указал пользователь';
     $lang['a_settings_id']                 =	'ID заказа';
-    $lang['a_settings_key']                 =	'Ключь для просмотра заказа';
+    $lang['a_settings_key']                 =	'Ключ для просмотра заказа';
     $lang['a_settings_href']                 =	'Ссылка по которой можно просмотреть заказ';
     $lang['a_settings_change_status']                 =	'Уведомление покупателя о смене статуса заказа';
     $lang['a_settings_new_status']                 =	'Новый статус заказа';
@@ -322,7 +324,7 @@
     $lang['a_settings_nw']                 =	'Имя пользователя сформовавшего WishList';
     $lang['a_settings_numw']                 =	'Номер телефона пользователя сформовавшего WishList';
     $lang['a_settings_comw']                 =	'Комментарий пользователя сформовавшего WishList';
-    $lang['a_settings_keyw']                 =	'Ключь для просмотра WishList\'а';
+    $lang['a_settings_keyw']                 =	'Ключ для просмотра WishList\'а';
     $lang['a_settings_hrefw']                 =	'Ссылка по которой можно просмотреть WishList';
     $lang['a_settings_ipw']                 =	'IP адрес компьютера пользователя сформировавшего WishList';
     $lang['a_settings_datew']                 =	'Дата отправки WishList\'а';
@@ -417,6 +419,8 @@
     $lang['a_users'] = 'Пользователи';
     $lang['a_delivery_methods'] = 'Способы доставки';
     $lang['a_payment_methods'] = 'Способы Оплаты';
+    $lang['a_payment_method'] = 'Способ Оплаты';
+    $lang['a_delivery_method'] = 'Способ Доставки';
     $lang['a_auto'] = 'Автоматизация';
     $lang['a_export'] = 'Экспорт';
     $lang['a_orders_statuses'] = 'Статусы заказов';
@@ -527,13 +531,15 @@
     $lang['a_os_list_is_empty'] = 'Список статусов заказов пустой';
     $lang['a_os_edit'] = 'Редактирование статуса заказа';
     $lang['a_os_create'] = 'Создание статуса заказа';
+    
     $lang['a_role_list'] = 'Список ролей';
     $lang['a_role_create'] = 'Создание роли';
     $lang['a_role_edit'] = 'Редактирование роли';
     $lang['a_role_group_list'] = 'Список груп ролей';
-    $lang['a_role_group_list'] = 'Создание групы ролей';
-    $lang['a_role_group_list'] = 'Редактирование групы ролей';
-    $lang['a_roles_list'] = 'Список ролей';
+    $lang['a_role_group_create'] = 'Создание групы ролей';
+    $lang['a_role_group_edit'] = 'Редактирование групы ролей';
+    $lang['a_roles_list'] = 'Список привилегий';
+    
     $lang['a_memcached'] = 'Кеширование';
     $lang['a_memcached_settings'] = 'Настройки кеширования Memcached';
     $lang['a_memcached_on'] = 'Включено';

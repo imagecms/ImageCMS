@@ -299,6 +299,7 @@ $lang['a_set_order_status'] =	'Set another status for these orders';
     $lang['a_patch_font']       =	'Path to font ';
     $lang['a_email_administrato_order']=  ' Administrator notification about the order placement by e-mail';
     $lang['a_send']             =	'Send';
+    $lang['a_send_f']             =	'Send';
     $lang['a_end']             =	'Completed';
     $lang['a_administrator']    =	'Administrator';
     $lang['a_email_users_order']=	'Customer notification about the order placement';
@@ -504,13 +505,15 @@ $lang['a_set_order_status'] =	'Set another status for these orders';
     $lang['a_os_list_is_empty'] = 'Orders statuses list is empty';
     $lang['a_os_edit'] = 'Orders status edit';
     $lang['a_os_create'] = 'Orders status create';
+    
     $lang['a_role_list'] = 'Roles list';
     $lang['a_role_create'] = 'Role create';
     $lang['a_role_edit'] = 'Role edit';
     $lang['a_role_group_list'] = 'Roles groups list';
-    $lang['a_role_group_list'] = 'Roles group create';
-    $lang['a_role_group_list'] = 'Roles group edit';
-    $lang['a_roles_list'] = 'Roles list';
+    $lang['a_role_group_create'] = 'Roles group create';
+    $lang['a_role_group_edit'] = 'Roles group edit';
+    $lang['a_roles_list'] = 'Privileges list';
+    
     $lang['a_memcached'] = 'Caching';
     $lang['a_memcached_settings'] = 'Memcached cache settings';
     $lang['a_memcached_on'] = 'Turned ON';
@@ -518,5 +521,4 @@ $lang['a_set_order_status'] =	'Set another status for these orders';
     $lang['a_memcached_port'] = 'Memcached server port';
     $lang['a_memcached_namespace'] = 'Memcached server namespace';
     $lang['a_memcached_expires'] = 'Cache lifetime, ms';
-    
 ?>

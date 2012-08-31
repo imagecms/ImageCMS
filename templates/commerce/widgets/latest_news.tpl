@@ -1,5 +1,5 @@
 <div class="f_r news">
-    <div class="box_title"><span>{lang('s_news')}</span></div>
+    <div class="box_title"><span>Новости</span></div>
     {foreach $recent_news as $item}
         <div class="title">
             <a href="{site_url($item.full_url)}">{$item.title}</a>

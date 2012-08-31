@@ -1,4 +1,4 @@
-<h3>{lang('s_last_comments')}</h3>
+<h3>Последние отзывы</h3>
 <div class="news">
 	{foreach $comments as $comment}
 		<div class="newsitem">

@@ -62,6 +62,8 @@ $lang['error_page_404']  = 'Page not found.';
 $lang['no_pages_in_cat'] = 'In the category has no pages.';
 $lang['uri_access_deny'] = 'Access is denied.';
 
+
+
 $lang['lang_tags'] = 'Tags';
 
 // Pagination
@@ -71,8 +73,6 @@ $lang['first_link'] = 'The first';
 // Search 
 $lang['no_pages_found'] ='Nothing was found';
 $lang['search_title']   ='Search';
-// Register component
-
 
 $lang ['s_log_out'] = 'Log in';
 $lang ['s_manufacturer'] = 'Manufacturer';
@@ -102,7 +102,7 @@ $lang ['s_you'] = 'Your';
 $lang ['s_your'] = 'Vashomu';
 $lang ['s_name'] = 'name';
 $lang ['s_phone'] = 'Phone';
-$lang ['s_dop'] = 'more';
+$lang ['s_dop'] = 'More';
 $lang ['s_information'] = 'Information';
 $lang ['s_coll'] = 'Call';
 $lang ['s_me'] = 'I';
@@ -287,5 +287,9 @@ $lang['s_home'] = 'Home';
 $lang['s_zaka_phone'] = 'Order by phone';
 $lang['s_delivery1'] = 'Delivery';
 $lang['s_similar_product'] = 'Similar products';
-        
+$lang['s_c_uoy_name_u'] = 'You name';
+$lang['s_c_uoy_user_el'] = 'E-mail Address';
+$lang['s_c_of_z_'] = 'Formulation order';
+
+
 /* End of file main_lang.php */

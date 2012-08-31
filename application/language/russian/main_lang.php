@@ -8,13 +8,10 @@
 
 // menu
 $lang['lang_categories'] = 'Категории';
-$lang['lang_categories1'] = 'Категориях';
 
 // Auth module
 $lang['lang_register'] = 'Регистрация';
 $lang['lang_login'] = 'Логин';
-$lang['s_manufacturer'] = 'Производитель';
-$lang['s_naideno'] = 'Found';
 $lang['lang_password'] = 'Пароль';
 $lang['lang_confirm_password'] = 'Повторите Пароль';
 $lang['lang_confirm_new_pass'] = 'Повторите новый пароль';
@@ -73,6 +70,7 @@ $lang['first_link'] = 'Первая';
 // Search 
 $lang['no_pages_found'] ='Ничего не найдено';
 $lang['search_title']   ='Поиск';
+
 
 $lang['s_log_out']                      =               'Вход';
 $lang['s_shop']                         =               'магазин';
@@ -221,6 +219,7 @@ $lang['s_log_out']                      =               'Вход';
 $lang ['s_sdm'] = 'Выберите способ доставки';
 $lang ['s_spm'] = 'Выберите способ оплаты';
 $lang ['s_addresrec'] = 'адрес получателя';
+$lang ['s_do_you_syrp_pr'] = 'Подарочный сертификат';
 $lang ['s_do_you_have'] = 'У вас есть подарочный сертификат?';
 $lang ['s_apply_sertif'] = 'Применить';
 $lang ['s_slw'] = 'Сохранить в списке желаний';
@@ -289,8 +288,8 @@ $lang['s_home'] = 'На главную';
 $lang['s_zaka_phone'] = 'Заказать по телефону';
 $lang['s_delivery1'] = 'Доставки';
 $lang['s_similar_product'] = 'Похожие товары';
-$lang['s_similar_product'] = 'Added products';
-
-
+$lang['s_c_uoy_name_u'] = 'Ваше имя';
+$lang['s_c_uoy_user_el'] = 'Электронный адрес';
+$lang['s_c_of_z_'] = 'Оформить заказ';
 
 /* End of file main_lang.php */

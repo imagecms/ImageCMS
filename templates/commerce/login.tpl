@@ -29,7 +29,7 @@
 		<div class="fieldName">{$cap_image}</div>
 		{if $captcha_type == 'captcha'}
 		<div class="field">
-			<input type="text" name="captcha" id="captcha" value="{lang('lang_captcha')}" onfocus="if(this.value=='{lang('lang_captcha')}') this.value='';" onblur="if(this.value=='') this.value='{lang('lang_captcha')}';"/>
+			<input type="text" name="captcha" id="captcha" value="Код протекции" onfocus="if(this.value=='Код протекции') this.value='';" onblur="if(this.value=='') this.value='Код протекции';"/>
 		</div>
 		{/if}
 		<div class="clear"></div>
