@@ -95,7 +95,7 @@ $lang ['s_list'] = 'list';
 $lang ['s_already'] = 'early';
 $lang ['s_similar'] = 'Tags';
 $lang ['s_all_result'] = 'View all results';
-$lang ['s_more'] = 'more';
+$lang ['s_more'] = 'More';
 $lang ['s_looking'] = 'looking for';
 $lang ['s_theme'] = 'theme';
 $lang ['s_you'] = 'Your';
@@ -290,6 +290,9 @@ $lang['s_similar_product'] = 'Similar products';
 $lang['s_c_uoy_name_u'] = 'You name';
 $lang['s_c_uoy_user_el'] = 'E-mail Address';
 $lang['s_c_of_z_'] = 'Formulation order';
+$lang['s_filter_s_foa'] = 'with filters';
+$lang['s_filter_search_f_paramet'] = 'Search with parameters';
+$lang['s_filter_all_reset'] = 'Reset all filters';
 
 
 /* End of file main_lang.php */

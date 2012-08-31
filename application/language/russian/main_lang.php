@@ -228,7 +228,7 @@ $lang ['s_compare_tovars'] = 'Сравнение товаров';
 $lang ['s_all_par'] = 'Все параметры';
 $lang ['s_only_diff'] = 'Только Различия';
 $lang ['s_soob'] = 'Объявить';
-$lang ['s_compare_list_em'] = 'Список сравнения пуст';
+$lang ['s_compare_list_em'] = 'Список сравнений пуст';
 $lang ['s_added_PR'] = 'Добавлено ​​продуктов';
 $lang ['s_list_comp'] = 'Список сравнения';
 $lang ['s_se_thi_sit'] = 'Поиск по сайту';
@@ -291,5 +291,8 @@ $lang['s_similar_product'] = 'Похожие товары';
 $lang['s_c_uoy_name_u'] = 'Ваше имя';
 $lang['s_c_uoy_user_el'] = 'Электронный адрес';
 $lang['s_c_of_z_'] = 'Оформить заказ';
+$lang['s_filter_s_foa'] = 'с фильтрами';
+$lang['s_filter_search_f_paramet'] = 'Подбор по параметрам';
+$lang['s_filter_all_reset'] = 'Сбросить все фильтры';
 
 /* End of file main_lang.php */
