@@ -273,7 +273,6 @@ $(document).ready(function(){
         });
     });      
     
-    
     if ($("a[rel=group]").length > 0){
         $("a[rel=group]").fancybox({
             'padding' : 0,

@@ -229,7 +229,7 @@
     $lang['a_counr_rates']      =	'Пересчитать цены?';
     $lang['a_free']             =	'Бесплатен';
     $lang['a_from']             =	'от';
-    $lang['a_kit']              =	'Набор';
+    $lang['a_kit']              =	'набор';
     $lang['a_fixation']         =	'Прикрепление';
     $lang['a_map']              =	'карте';
     $lang['a_and']              =	'и';
