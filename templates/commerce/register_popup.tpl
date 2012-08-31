@@ -30,9 +30,12 @@
                 </div>
             </div>
             <div class="f_l">
-                <a href="{site_url('auth/login')}" class="button_middle_blue_neigh f_l auth_me">
+                <a href="{site_url('auth/login')}" class="button_middle_blue_neigh d_b auth_me" style="height:18px;">
                     Авторизация
                 </a>
+            <a href="{site_url('auth/forgot_password')}" class="button_middle_blue_neigh fg_pass">
+                Забыли пароль
+            </a>                    
             </div>
         </div>
 

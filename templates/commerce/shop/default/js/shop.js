@@ -17,9 +17,11 @@ $(document).ready(function(){
         cyclic: true
     });
     */
-        var fancyOptions = {
+    var fancyOptions = {
         helpers	: {
-            title: { type: 'inside' }    
+            title: {
+                type: 'inside'
+            }
         },
         beforeLoad: function() {
             var el, id = $(this.element).data('title-id');
@@ -32,20 +34,21 @@ $(document).ready(function(){
                 }
             }
         }
+    };
+
+    if ($('.fancybox-thumb').last().hasClass('withThumbs'))
+        fancyOptions.helpers.thumbs = {
+            width	: 50,
+            height	: 50
         };
-        
-        if ($('.fancybox-thumb').last().hasClass('withThumbs'))
-            fancyOptions.helpers.thumbs = {
-                    width	: 50,
-                    height	: 50};
-        if ($('.fancybox-thumb').last().hasClass('withButtons'))    
-            fancyOptions.helpers.buttons = {};
-            
-        //console.log(fancyOptions);
-   
-        $('.fancybox-thumb').fancybox(fancyOptions);
-   
-    
+    if ($('.fancybox-thumb').last().hasClass('withButtons'))
+        fancyOptions.helpers.buttons = {};
+
+    //console.log(fancyOptions);
+
+    $('.fancybox-thumb').fancybox(fancyOptions);
+
+
     $('span.clickrate').on('click', function(){
         var val = $(this).attr('title');
         $.ajax({
@@ -56,10 +59,10 @@ $(document).ready(function(){
             success: function(obj){
                 if(obj.classrate != null)
                     $('#'+currentProductId+'_star_rating').removeClass().addClass('rating '+obj.classrate+' star_rait');
-            }            
+            }
         });
     });
-    
+
     $('span.clicktemprate').on('click',function(){
         var rate = $(this).attr('title');
         var ratec;
@@ -71,7 +74,7 @@ $(document).ready(function(){
         $('#comment_block').removeClass().addClass('rating '+ratec+' star_rait');
         $('#ratec').attr('value', rate);
     });
-    
+
     $('.usefullyes').on('click', function(){
         var comid = $(this).attr('data-comid');
         $.ajax({
@@ -82,9 +85,9 @@ $(document).ready(function(){
             success: function(obj){
                 $('#yesholder'+comid).html("("+obj.y_count+")");
             }
-        }); 
+        });
     });
-    
+
     $('.usefullno').on('click', function(){
         var comid = $(this).attr('data-comid');
         $.ajax({
@@ -95,9 +98,9 @@ $(document).ready(function(){
             success: function(obj){
                 $('#noholder'+comid).html("("+obj.n_count+")");
             }
-        }); 
+        });
     });
-    
+
     $('.buy .goBuy').on('click',function(){
         $.fancybox.showActivity();
         var id_var  = $(this).attr('data-varid');
@@ -146,6 +149,7 @@ $(document).ready(function(){
                 showResponse(msg);
                 bindLoginForm();
                 bindRegisterLink();
+                bindForgotPasswordLink();
                 $.fancybox.hideActivity();
             }
         });
@@ -292,7 +296,7 @@ $(document).ready(function(){
             success: function(msg){
                 $('.cart_data_holder').load('/shop/ajax/getCartDataHtml');
                 if($this.hasClass('inCartProducts'))
-                    $('.forCartProducts').html(msg);                        
+                    $('.forCartProducts').html(msg);
                 else
                     showResponse(msg);
                 $form.find('input[name=makeOrder]').val(1);
@@ -340,14 +344,14 @@ $(document).ready(function(){
             }
         });
     });
-    
+
     $('.met_buy').live('click',function(){
         $('#paymentMethodId').val($(this).val());
     });
 
 
-      $('.showCallbackBottom').on('click', function(){
-        
+    $('.showCallbackBottom').on('click', function(){
+
         $.fancybox.showActivity();
         $.ajax({
             type: 'post',
@@ -360,9 +364,9 @@ $(document).ready(function(){
         });
         return false;
     })
-    
+
     $('.showCallback').on('click', function(){
-        
+
         $.fancybox.showActivity();
         $.ajax({
             type: 'post',
@@ -378,16 +382,16 @@ $(document).ready(function(){
 
 
 
-  
-    
+
+
     $("#cartForm").validate();
-    
+
     $('.met_del:checked').trigger('click');
-    
+
     $("input.met_del").click(function(){
         recount();
     });
-    
+
     $('.met_del:checked').each(function() {
         recount();
     });
@@ -402,7 +406,7 @@ $(document).ready(function(){
             success: function(msg){
                 $('.cart_data_holder').load('/shop/ajax/getCartDataHtml');
                 if($('.plus_minus button').hasClass('inCartProducts'))
-                    $('.forCartProducts').html(msg);                        
+                    $('.forCartProducts').html(msg);
                 else
                     showResponse(msg);
                 $("#cartForm").find('input[name=makeOrder]').val(1);
@@ -410,7 +414,7 @@ $(document).ready(function(){
             }
         });
     }
-      
+
     function bindNotifMeForm(){
         $('.order_call #notifMe').bind('submit',function(){
             $this = $(this);
@@ -429,9 +433,9 @@ $(document).ready(function(){
             });
             return false;
         })
-        
+
     }
-    
+
     function bindGoBuy()
     {
         $('.buy .goBuy').bind('click',function(){
@@ -472,7 +476,7 @@ $(document).ready(function(){
             return false;
         });
     }
-    
+
     function bindLoginForm(){
         $('.enter_form form').bind('submit',function(){
             $this = $(this);
@@ -487,6 +491,7 @@ $(document).ready(function(){
                     showResponse(msg);
                     bindLoginForm();
                     bindRegisterLink();
+                    bindForgotPasswordLink();
                     var obj = $.parseJSON(msg);
                     if (typeof obj != 'undefined') {
                         if (obj != null) {
@@ -497,6 +502,7 @@ $(document).ready(function(){
                         }
                     }
                     $('.reg_me').bind('click', bindRegisterForm());
+                    $('.fg_pass').bind('click', bindForgotPasswordForm());
                     $.fancybox.hideActivity();
                 }
             });
@@ -517,6 +523,7 @@ $(document).ready(function(){
                 success: function(msg){
                     showResponse(msg);
                     bindRegisterForm();
+                    bindForgotPasswordLink();
                     bindLoginLink();
                     $.fancybox.hideActivity();
                 }
@@ -524,6 +531,29 @@ $(document).ready(function(){
             return false;
         })
     }
+
+    function bindForgotPasswordForm(){
+        $('.forgot_form form').bind('submit',function(){
+            $this = $(this);
+            $.ajax({
+                type: 'post',
+                url: '/auth/forgot_password',
+                data: $this.serialize(),
+                beforeSend: function(){
+                    $.fancybox.showActivity();
+                },
+                success: function(msg){
+                    showResponse(msg);
+                    bindForgotPasswordForm();
+                    bindLoginLink();
+                    bindRegisterLink();
+                    $.fancybox.hideActivity();
+                }
+            });
+            return false;
+        })
+    }
+
     function bindRegisterLink(){
         $('.reg_me').bind('click',function(){
             $this = $(this);
@@ -537,12 +567,14 @@ $(document).ready(function(){
                     showResponse(msg);
                     bindRegisterForm();
                     bindLoginLink();
+                    bindForgotPasswordLink();
                     $.fancybox.hideActivity();
                 }
             });
             return false;
         })
     }
+
     function bindLoginLink(){
         $('.auth_me').bind('click',function(){
             $this = $(this);
@@ -556,14 +588,35 @@ $(document).ready(function(){
                     showResponse(msg);
                     bindLoginForm();
                     bindRegisterLink();
+                    bindForgotPasswordLink();
                     $.fancybox.hideActivity();
                 }
             });
             return false;
         })
     }
-    
-           function bindCallbackForm1(){
+    function bindForgotPasswordLink(){
+        $('.fg_pass').bind('click',function(){
+            $this = $(this);
+            $.ajax({
+                type: 'post',
+                url: '/auth/forgot_password',
+                beforeSend: function(){
+                    $.fancybox.showActivity();
+                },
+                success: function(msg){
+                    showResponse(msg);
+                    bindForgotPasswordForm();
+                    bindRegisterLink();
+                    bindLoginLink();
+                    $.fancybox.hideActivity();
+                }
+            });
+            return false;
+        })
+    }
+
+    function bindCallbackForm1(){
         $('.order_call form').bind('submit',function(){
             $this = $(this);
             $.ajax({
@@ -602,7 +655,7 @@ $(document).ready(function(){
             return false;
         })
     }
- 
+
 
     function showResponse(responseText, statusText, xhr, $form){
         try {
@@ -688,7 +741,7 @@ $(document).ready(function(){
     $('.giftcertcheck').on('click', function(){
         recount();
     });
-    
+
     $('.addtoSpy').on('click', function(){
         $.fancybox.showActivity();
         var vid = $(this).attr('data-varid');
@@ -703,7 +756,7 @@ $(document).ready(function(){
             success: function(){
                 $this.html('Вы уже следите за этим товаром').removeClass('js').removeClass('gray');
                 $this.unbind('click');
-                $.fancybox.hideActivity(); 
+                $.fancybox.hideActivity();
             }
         });
     });
