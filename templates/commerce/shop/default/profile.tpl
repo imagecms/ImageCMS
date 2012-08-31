@@ -1,43 +1,43 @@
 <div class="main_body">
     <div class="content">
         <div class="center">
-            <h1>{lang('s_privat')} {lang('s_office')}</h1>
+            <h1>Личный кабинет</h1>
             <div class="personal_info f_l">
-                <div class="block_title_18"><span class="title_18">{lang('s_main')} {lang('s_data')}</span></div>
+                <div class="block_title_18"><span class="title_18">Мои данные</span></div>
                 <ul>
                     <li>
-                        <span>{lang('s_you')} {lang('s_name')}:</span>
+                        <span>Ваше имя:</span>
                         <b>{echo encode($profile->getName())}</b>
                     </li>
                     <li>
-                        <span>{lang('s_el_addres')} {lang('s_address')}:</span>
+                        <span>Электронный адрес:</span>
                         <b>{echo encode($user.email)}</b>
                     </li>
                     <li>
-                        <span>{lang('s_phone')}:</span>
+                        <span>Телефон:</span>
                         <b>{echo encode($profile->getPhone())}</b>
                     </li>
                     <li>
-                        <span>{lang('s_address')} {lang('s_for')} {lang('s_delivery')} :</span>
+                        <span>Адрес для доставки:</span>
                         <b>{echo encode($profile->getAddress())}</b>
                     </li>
                 </ul>
 <!--                <a href="#" class="f_l w-s_n-w" id="change_info">Изменить личные данные</a>-->
-                <a href="{shop_url('/cart')}" class="f_r w-s_n-w">{lang('s_go')} {lang('s_in')} {lang('s_cart')}</a>
+                <a href="{shop_url('/cart')}" class="f_r w-s_n-w">Перейти в корзину</a>
                 <div class="clear"></div>
-                <a href="#" class="f_l w-s_n-w" id="change_password">{lang('s_change')} {lang('lang_password')} </a>
-                <a href="{shop_url('wish_list')}" class="f_r w-s_n-w" style="width: 136px;">{lang('s_see')} {lang('s_wlist')} </a>
+                <a href="#" class="f_l w-s_n-w" id="change_password">Изменить пароль </a>
+                <a href="{shop_url('wish_list')}" class="f_r w-s_n-w" style="width: 136px;">Посмотреть Wish List </a>
                 
                 <form action="{shop_url('profile')}" method="post" name="editFormpass">
                     <div style="clear: left;width: 50%;display: none;" id="change_password_fields">
                         <div class="fancy fancy_profile">
-                            {lang('lang_old_password')}:
+                            Старый пароль:
                             <input type="password" class="input" name="old_password">
                             <div class="clear"></div>
-                            {lang('lang_new_password')}:
+                            Новый пароль:
                             <input type="password" class="input" name="password">
                             <div class="clear"></div>
-                            {lang('s_newpassword')}:
+                            Подтверждение нового пароля:
                             <input type="password" class="input" name="confirm_new_password">
                             <div class="clear"></div>
 
@@ -45,7 +45,7 @@
                                 <div class="p-t_19 c_b clearfix">
                                     <div class="buttons button_middle_blue f_r">
                                         <input type="hidden" value="1" name="cangePassword" />
-                                        <a href="#" id="checkout" onClick="document.editFormpass.submit();">{echo ShopCore::t(lang('s_save'))}</a>
+                                        <a href="#" id="checkout" onClick="document.editFormpass.submit();">{echo ShopCore::t('Сохранить')}</a>
                                     </div>
                                 </div>
                             </div>
@@ -57,17 +57,17 @@
                         <form action="{shop_url('profile')}" method="post" name="editForm">
                              <div style="clear: left;width: 50%;" id="change_info_edit">
                                   <div class="fancy fancy_profile" style="width: 193px;">
-                                       <h3>{lang('s_change')} {lang('s_private')} {lang('s_data')}</h3>
-                            {lang('s_name')}, {lang('s_famili')}:
+                                       <h3>Изменить личные данные</h3>
+                            Имя, фамилия:
                             <input type="text" class="input" value="{echo encode($profile->getName())}" name="name"/>
                             <div class="clear"></div>
-                            {lang('s_email')}:
+                            Email:
                             <input type="text" value="{echo encode($user.email)}" name="email"/>
                             <div class="clear"></div>
-                            {lang('s_address')} {lang('s_delivery')}:
+                            Адрес доставки:
                             <input type="text" value="{echo encode($profile->getAddress())}" name="address"/>
                             <div class="clear"></div>
-                            {lang('s_phone')}:
+                            Телефон:
                             <input type="text" value="{echo encode($profile->getPhone())}" name="phone"/>
                            
                             <div class="clear"></div>
@@ -78,7 +78,7 @@
                                 <div class="buttons button_middle_blue f_r">
                                     
                             <input type="hidden" value="1" name="changeName"/>
-                            <input type="submit" id="checkout"  value="{lang('s_save')}"/>
+                            <input type="submit" id="checkout"  value="Сохранить"/>
                              </div></div>
                           
                              </div>
@@ -88,12 +88,12 @@
                     </form>
 
             <div class="history_order f_r">
-                <div class="block_title_18"><span class="title_18">{lang('s_history')} {lang('s_order')}</span></div>
+                <div class="block_title_18"><span class="title_18">История заказов</span></div>
 
-                {lang('s_in_p')} {lang('s_cart_p')}:
+                В корзине:
                 <span style="font-weight: bold;">
                     {echo ShopCore::app()->SCart->totalItems()}
-                    {echo SStringHelper::Pluralize(ShopCore::app()->SCart->totalItems(), array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}
+                    {echo SStringHelper::Pluralize(ShopCore::app()->SCart->totalItems(), array('товар','товара','товаров'))}
                 </span>
                 <table cellspacing="0">
                     <colgroup>
@@ -107,18 +107,18 @@
                     <thead>
                         <tr>
                             <th>№</th>
-                            <th>{lang('s_pay')}</th>
-                            <th>{lang('s_status')}</th>
-                            <th>{lang('s_create')}</th>
-                            <th>{lang('s_refresh')}</th>
-                            <th>{lang('s_summ')}</th>
+                            <th>Оплата</th>
+                            <th>Статус</th>
+                            <th>Созданный</th>
+                            <th>Обновлено</th>
+                            <th>Сумма</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             {foreach $orders as $order}
                             <td><a rel="nofollow" href="{shop_url('cart/view/' . $order->getKey())}">{echo $order->getId()}</a></td>
-                            <td>{if $order->getPaid()} {lang('s_yes')} {else:} {lang('s_no')} {/if}</td>
+                            <td>{if $order->getPaid()} Да {else:} Нет {/if}</td>
                             <td>{echo SOrders::getStatusName('Id', $order->getStatus())}</td>
                             <td>{date("d-m-Y H:i", $order->getDateCreated())}</td>
                             <td>{date("d-m-Y H:i", $order->getDateUpdated())}</td>
@@ -128,15 +128,38 @@
                     </tbody>
                 </table>
             </div>
+            
+            <div class="history_order f_r">
+                <div class="block_title_18"><span class="title_18">Вы следите за следующими товарами</span></div>
+
+                Товаров в слежении:
+                <span style="font-weight: bold;">
+                    {echo count($goodsinspy)}
+                </span>
+                {if count($goodsinspy)>0}
+                <table cellspacing="0">
+                    <colgroup>
+                        <col span="1" width="100">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Номер товара</th>
+                            <th>Название товара</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {foreach $goodsinspy as $good}
+                            <tr>
+                                <td>{echo $good->getId()}</td>
+                                <td>{echo $good->getName() }</td>
+                            </tr>
+                        {/foreach}
+                    </tbody>
+                </table>
+                    {/if}
+            </div>
         </div>
         <div class="center">
-            {$this->registerMeta('<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">')}
-            <div  class="msg_form_edit">
-                {if $errors}
-                <div class="msg_form_edit_prof">
-                    {echo $errors}
-                </div>
-                {/if}</div>
         </div>
     </div></div>
 

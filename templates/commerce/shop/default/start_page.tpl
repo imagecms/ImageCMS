@@ -28,12 +28,12 @@
 
     {$cart_data = ShopCore::app()->SCart->getData()}
     <div class="featured carusel_frame">
-        <div class="box_title center"><span class="f-s_24">{lang('s_PP')}</span></div>
+        <div class="box_title center"><span class="f-s_24">Популярные товары</span></div>
         <div class="carusel">
             <ul>
                 {foreach getPromoBlock('popular', 10) as $hotProduct}
-                {//var_dump($hotProduct)}
                 {$style = productInCart($cart_data, $hotProduct->getId(), $hotProduct->firstVariant->getId(), $hotProduct->firstVariant->getStock())}
+                {$prices = currency_convert($hotProduct->firstvariant->getPrice(), $hotProduct->firstvariant->getCurrency())}
                 <li {if $hotProduct->firstvariant->getstock()==0}class="not_avail"{/if}>
                     <div class="small_item">
                         <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="img">
@@ -48,11 +48,11 @@
 
                             <div class="buy">
                                 <div class="price f-s_16 f_l">
-                                    {echo $hotProduct->firstVariant->toCurrency()}
+                                    {echo $prices.main.price}
 
-                                    <sub>{$CS}</sub>
+                                    <sub>{$prices.main.symbol}</sub>
                                     {if $NextCS != $CS}
-                                    <span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>
+                                    <span class="d_b">{echo $prices.second.price} {$prices.second.symbol}</span>
                                     {/if}
                                 </div>
                                 <div class="{$style.class} buttons">
@@ -71,13 +71,14 @@
     <div class="center clearfix">
         <div class="tabs f_l">
             <ul class="nav_tabs">
-                <li><a href="#first">{lang('s_new')}</a></li>
-                <li><a href="#second">{lang('s_action')}</a></li>
+                <li><a href="#first">Новинки</a></li>
+                <li><a href="#second">Акции</a></li>
             </ul>
             <div id="first">
                 <div class="horizontal-only scroll-box">
                     <ul>
                         {foreach getPromoBlock('hot', 10) as $hotProduct}
+                        {$hot_prices = currency_convert($hotProduct->firstvariant->getPrice(), $hotProduct->firstvariant->getCurrency())}
                         {$style = productInCart($cart_data, $hotProduct->getId(), $hotProduct->firstVariant->getId(), $hotProduct->firstVariant->getStock())}
                         <li {if $hotProduct->firstvariant->getstock()==0}class="not_avail"{/if}>
                             <div class="small_item">
@@ -90,10 +91,10 @@
                                     <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                                     <div class="buy">
 
-                                        <div class="price f-s_16 f_l">{echo $hotProduct->firstVariant->toCurrency()} 
-                                            <sub>{$CS}</sub>
+                                        <div class="price f-s_16 f_l">{echo $hot_prices.main.price} 
+                                            <sub>{$hot_prices.main.symbol}</sub>
                                             {if $NextCS != $CS}
-                                            <span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>
+                                            <span class="d_b">{echo $hot_prices.second.price} {$hot_prices.second.symbol}</span>
                                             {/if}
                                         </div>
                                         <div class="{$style.class} buttons"><a class="{$style.identif}" data-varid="{echo $hotProduct->firstVariant->getId()}" data-prodid="{echo $hotProduct->getId()}" href="{shop_url('product/' . $hotProduct->getUrl())}">{$style.message}</a></div>
@@ -109,6 +110,7 @@
                 <div class="horizontal-only scroll-box">
                     <ul>
                         {foreach getPromoBlock('action', 10) as $hotProduct}
+                        {$hot_prices = currency_convert($hotProduct->firstvariant->getPrice(), $hotProduct->firstvariant->getCurrency())}
                         {$style = productInCart($cart_data, $hotProduct->getId(), $hotProduct->firstVariant->getId(), $hotProduct->firstVariant->getStock())}
                         <li {if $hotProduct->firstvariant->getstock()==0}class="not_avail"{/if}>
                             <div class="small_item">
@@ -120,10 +122,10 @@
                                 <div class="info">
                                     <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                                     <div class="buy">
-                                        <div class="price f-s_16 f_l">{echo $hotProduct->firstVariant->toCurrency()}
-                                            <sub>{$CS}</sub>
+                                        <div class="price f-s_16 f_l">{echo $hot_prices.main.price} 
+                                            <sub>{$hot_prices.main.symbol}</sub>
                                             {if $NextCS != $CS}
-                                            <span class="d_b">{echo $hotProduct->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>
+                                            <span class="d_b">{echo $hot_prices.second.price} {$hot_prices.second.symbol}</span>
                                             {/if}
                                         </div>
                                         <div class="{$style.class} buttons"><a class="{$style.identif}"  data-varid="{echo $hotProduct->firstVariant->getId()}" data-prodid="{echo $hotProduct->getId()}" href="{shop_url('product/' . $hotProduct->getUrl())}">{$style.message}</a></div>

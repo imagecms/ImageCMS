@@ -6,14 +6,14 @@
 {$this->registerMeta('<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">')}
 <div class="content">
     <div class="center">
-        <h1>{lang('s_WL')}</h1>
+        <h1>Список пожеланий</h1>
         {if !$items}
         <div class="comparison_slider">
-            <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t(lang('s_list_wish_empty'))}</div>
+            <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t('Список пожеланий пуст')}</div>
         </div>
         {else:}
         <table class="cleaner_table forCartProducts" cellspacing="0">
-            <caption>{lang('s_added_PR')}  {if $items}({count($items)}){/if}</caption>
+            <caption>Добавлено продуктов  {if $items}({count($items)}){/if}</caption>
             <colgroup>
                 <col width="140" span="1">
                 <col width="371" span="1">
@@ -24,6 +24,7 @@
             </colgroup>
             <tbody>
                 {foreach $items as $key=>$item}
+                {$prices = currency_convert($item.model->firstvariant->getPrice(), $item.model->firstvariant->getCurrency())}
                 {$style = productInCart($cart_data, $item.model->getId(), $item.model->firstVariant->getId(), $item.model->firstVariant->getStock())}
                 <tr>
                     <td>
@@ -35,10 +36,10 @@
                         <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}</a>
                     </td>
                     <td>
-                        <div class="price f-s_16 f_l">{echo $item.model->firstVariant->toCurrency()} 
-                            <sub>{$CS}</sub>
+                        <div class="price f-s_16 f_l">{$prices.main.price}
+                            <sub>{$prices.main.symbol}</sub>
                             {if $NextCS != $CS}
-                            <span class="d_b">{echo $item.model->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>
+                                <span class="d_b">{echo $prices.second.price} {$prices.second.symbol}</span>
                             {/if}
                         </div>
                     </td>
@@ -55,10 +56,10 @@
                         </form>
                     </td>
                     <td>
-                        <div class="price f-s_18 f_l">{echo $summary = $item.model->firstVariant->toCurrency() * 1} 
-                            <sub>{$CS}</sub>
+                        <div class="price f-s_18 f_l">{echo $summary = $prices.main.price * 1} 
+                            <sub>{$prices.main.symbol}</sub>
                             {if $NextCS != $CS}
-                            <span class="d_b">{echo $summary_nextc = $item.model->firstVariant->toCurrency('Price', $NextCSId) * 1} {$NextCS}</span>
+                                <span class="d_b">{echo $summary_nextc = $prices.second.price} {$prices.second.symbol}</span>
                             {/if}
                             </div>
                     </td>
@@ -83,9 +84,9 @@
                     <td colspan="6">
                         <div class="foot_cleaner">
                             <div class="f_r">
-                                <div class="price f-s_26 f_l">{$total} <sub>{$CS}</sub><span class="d_b">{$total_nc} $</span></div>
+                                <div class="price f-s_26 f_l">{$total} <sub>{$CS}</sub><span class="d_b">{$total_nc} {$NextCS}</span></div>
                             </div>
-                            <div class="f_r sum">{lang('s_summ')}:</div>
+                            <div class="f_r sum">Сумма:</div>
                         </div>
                     </td>
                 </tr>
@@ -102,11 +103,11 @@
                                 <input type="hidden" name="wishkey" value="{$profile.key}"/>
                                 <input type="hidden" name="email" value="{$profile.email}"/>
                                 <input type="hidden" name="sname" value="{$profile.name}"/>
-                                <input type="submit" name="sendwish" value="{lang('s_s_wish_list')}"/>
+                                <input type="submit" name="sendwish" value="Отправить WishList другу"/>
                                 {form_csrf()}
                             </form>                    
                             {else:}
-                                {lang('s_to_sen_wish_auth')}
+                                Для того, чтобы отправить WishList другу, Вам необходимо авторизироватся
                             {/if}
         {/if}
     </div>

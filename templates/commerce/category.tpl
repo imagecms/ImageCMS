@@ -11,7 +11,7 @@
             <h5><a href="{site_url($page.full_url)}">{$page.title}</a></h5>
             <span class="post-pub-info">
                 {date('d-m-Y', $page.publish_date)} |
-                {lang('s_section')}: <a href="{site_url($page.cat_url)}">{get_category_name($page.category)}</a>
+                Раздел: <a href="{site_url($page.cat_url)}">{get_category_name($page.category)}</a>
             </span>
 
             {$page.prev_text}
@@ -26,7 +26,7 @@
             {/if}
 
             <div class="postinfo">
-               <a href="{site_url($page.full_url)}#comments">{lang('s_сomments_contact')} ({$page.comments_count})</a>
+               <a href="{site_url($page.full_url)}#comments">Комментарии ({$page.comments_count})</a>
                &nbsp;&nbsp;
                <a href="{site_url($page.full_url)}">{lang('full_article')}</a>
             </div>

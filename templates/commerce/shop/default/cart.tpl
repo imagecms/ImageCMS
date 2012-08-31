@@ -4,7 +4,7 @@
     <form method="post" action="{site_url(uri_string())}" id="cartForm">
         
         <table class="cleaner_table forCartProducts" cellspacing="0">
-            <caption>{lang('s_cart')}</caption>
+            <caption>Корзина</caption>
             <colgroup>
                 <col span="1" width="120">
                 <col span="1" width="396">
@@ -21,6 +21,7 @@
                         {$variant = $v}
                     {/if}
                 {/foreach}
+                {$vprices = currency_convert($variant->getPrice(), $variant->getCurrency())}
                 <tr>
                     <td>
                         <a href="{shop_url('product/' . $item.model->getUrl())}" class="photo_block">
@@ -31,7 +32,7 @@
                         <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}{if count($variants)>1} - {echo ShopCore::encode($variant->name)}{/if}</a>
                     </td>
                     <td>
-                        <div class="price f-s_16 f_l">{echo $variant->getPrice()} <sub>{$CS}</sub>
+                        <div class="price f-s_16 f_l">{echo $vprices.main.price} <sub>{$vprices.main.symbol}</sub>
                             <!--<span class="d_b">{echo $item.model->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>-->
                         </div>
                     </td>
@@ -45,9 +46,9 @@
                         </div>
                     </td>
                     <td>
-                        <div class="price f-s_18 f_l">{$summary = $variant->getPrice() * $item.quantity}
+                        <div class="price f-s_18 f_l">{$summary = $vprices.main.price * $item.quantity}
                                                 {echo $summary}
-                            <sub>{$CS}</sub>
+                            <sub>{$vprices.main.symbol}</sub>
                             <!--<span class="d_b">{echo $summary_nextc = $item.model->firstVariant->toCurrency('Price', $NextCSId) * $item.quantity} {$NextCS}</span>-->
                         </div>
                     </td>
@@ -70,26 +71,39 @@
                                     <div class="price f-s_26 f_l">
                                 {/if}
                                 <div class="price f-s_26 f_l">
+                                    {if isset($item.delivery_price)}
+                                        {$dprice =  currency_convert($item.delivery_price, Null)}
+                                        {$item.delivery_price = $dprice.main.price}
+                                    {/if}
                                     {if $total < $item.delivery_free_from}
                                     {$total += $item.delivery_price}
                                     {/if}
+                                    {if isset($item.gift_cert_price)}
+                                        {$cprice = currency_convert($item.gift_cert_price, Null)}
+                                        {$item.gift_cert_price = $cprice.main.price}
+                                        {$total -= $item.gift_cert_price}
+                                    {/if}
                                     {echo $total}
-                                    {if $item.delivery_price > 0}<span class="d_b">{lang('s_delivery')}: {echo $item.delivery_price}</span>{/if}
                                     <sub>{$CS}</sub>
+                                    {if $item.delivery_price > 0}<span style="font-size:16px;">{lang('s_delivery')}: {echo $item.delivery_price} руб</span>{/if}
+                                    {if $item.gift_cert_price > 0}<span style="font-size:16px;">{lang('s_do_you_syrp_pr')}: {echo $item.gift_cert_price} руб</span>{/if}
                                     <!--<span class="d_b">{$total_nc} {$NextCS}</span>-->
                                 </div>
                             </div>
-                            <div class="f_r sum">{lang('s_summ')}:</div>
                         </div>
                     </td>
-                    <td>
-            <div> </div>
-                        </td>
                 </tr>
             </tfoot>
             <input type="hidden" name="forCart" value ="1"/>
         </table>
         <div class="f_l method_deliver_buy">
+            {if ShopCore::app()->SSettings->__get('usegifts') == 1}
+                <div class="block_title_18"><span class="title_18">{lang('s_do_you_have')}</span></div>
+                    <label>
+                        <input type="text" name="giftcert" id="giftcertkey"/>
+                        <input type="button" name="giftcert" value="{lang('s_apply_sertif')}" class="giftcertcheck"/></label>
+                    
+            {/if}
             <div class="block_title_18"><span class="title_18">{lang('s_sdm')}</span></div>
             
             {$counter = true}
@@ -128,14 +142,14 @@
                     {if $isRequired['userInfo[fullName]']}
                     <span class="red">*</span>
                     {/if}
-                   {lang('s_you')} {lang('s_name')}
+                    {lang('s_c_uoy_name_u')}
                     <input type="text"{if $isRequired['userInfo[fullName]']} class="required"{/if} name="userInfo[fullName]" value="{$profile.name}">
                 </label>
                 <label class="f_l">
                     {if $isRequired['userInfo[email]']}
                     <span class="red">*</span>
                     {/if}
-                    {lang('s_el_addres')} {lang('s_address')}
+                    {lang('s_c_uoy_user_el')}
                     <input type="text"{if $isRequired['userInfo[email]']} class="required email"{/if} name="userInfo[email]" value="{$profile.email}">
                 </label>
                 <label class="f_l">
@@ -149,7 +163,7 @@
                     {if $isRequired['userInfo[deliverTo]']}
                     <span class="red">*</span>
                     {/if}
-                    {lang('s_address')} {lang('s_recipient')}
+                    {lang('s_addresrec')}
                     <input type="text"{if $isRequired['userInfo[deliverTo]']} class="required"{/if} name="userInfo[deliverTo]" value="{echo $profile.address}">
                 </label>
             </div>
@@ -157,7 +171,7 @@
                 {if $isRequired['userInfo[commentText]']}
                     <span class="red">*</span>
                     {/if}
-                 {lang('s_comment')}
+                {lang('s_comment')}
                 <textarea{if $isRequired['userInfo[commentText]']} class="required"{/if} name="userInfo[commentText]"></textarea> 
             </label>
             
@@ -168,7 +182,7 @@
         </div>
         <div class="foot_cleaner c_b t-a_c">
             <div class="buttons button_big_blue">
-                <input type="submit" value="{lang('s_formulation')} {lang('s_order')}"/>
+                <input type="submit" value="{lang('s_c_of_z_')}"/>
             </div>
         </div>   
         <input type="hidden" name="deliveryMethodId" id="deliveryMethodId" value="{echo $del_id}" />
