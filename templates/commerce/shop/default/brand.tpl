@@ -34,14 +34,14 @@
                             <a href="{shop_url('product/' . $product->getUrl())}" class="title">{echo ShopCore::encode($product->name)}</a>
                             <div class="f-s_0">
                                 <!--    Show Product Number -->
-                                    {if $product->firstVariant->getNumber()}<span class="code">Код {echo ShopCore::encode($product->firstVariant->getNumber())}</span>{/if}
+                                    {if $product->firstVariant->getNumber()}<span class="code">{lang('s_kod')} {echo ShopCore::encode($product->firstVariant->getNumber())}</span>{/if}
                                 <!--    Show Product Number -->
 
                                 <!--<div class="di_b star"><img src="{$SHOP_THEME}images/temp/STAR.png"></div>-->
 
                                 <!--    Show Comments count -->
                                     <a href="{shop_url('product/'.$product->getId().'?cmn=on')}"  class="response">
-                                        {echo $product->totalComments()} {echo SStringHelper::Pluralize($product->totalComments(), array('отзыв', 'отзывы', 'отзывов'))}</a>
+                                        {echo $product->totalComments()} {echo SStringHelper::Pluralize($product->totalComments(), array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}</a>
                                 <!--    Show Comments count -->
 
                             </div>
@@ -59,22 +59,22 @@
                             <div class="f_r t-a_r">
                                 <span class="ajax_refer_marg">
                                     {if $forCompareProducts && in_array($product->getId(), $forCompareProducts)}
-                                        <a href="{shop_url('compare')}" class="">Сравнить</a>
+                                        <a href="{shop_url('compare')}" class="">{lang('s_compare')}</a>
                                     {else:}
-                                        <a href="{shop_url('compare/add/'. $product->getId())}" data-prodid="{echo $product->getId()}" class="js gray toCompare">Добавить к сравнению</a>
+                                        <a href="{shop_url('compare/add/'. $product->getId())}" data-prodid="{echo $product->getId()}" class="js gray toCompare">{lang('s_compare_add')}</a>
                                     {/if}
                                 </span>
                                 {if !is_in_wish($product->getId())}
-                                    <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" href="#" class="js gray addToWList">Сохранить в список желаний</a>
+                                    <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" href="#" class="js gray addToWList">{lang('s_save_W_L')}</a>
                                 {else:}
-                                    <a href="/shop/wish_list">Уже в списке желаний</a>
+                                    <a href="/shop/wish_list">{lang('s_ilw')}</a>
                                 {/if}
                             </div>
                         </div>
                         {if $product->countProperties() > 0}
                         <p class="c_b">
                             {echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInline($product)}
-                            <a href="{shop_url('product/' . $product->getUrl())}" class="t-d_n"><span class="t-d_u">Подробнее</span> ></a>
+                            <a href="{shop_url('product/' . $product->getUrl())}" class="t-d_n"><span class="t-d_u">{lang('s_more')}</span> ></a>
                         </p>
                         {/if}
                     </li>
