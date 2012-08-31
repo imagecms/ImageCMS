@@ -377,6 +377,25 @@ $(document).ready(function(){
         return false;
     })
 
+<<<<<<< HEAD
+
+    $('.showFeedback').on('click', function(){
+        $.fancybox.showActivity();
+        $.ajax({
+            type: 'post',
+            url: '/feedback',
+            success: function(msg){
+                showResponse(msg);
+                bindFeedbackForm();
+                $.fancybox.hideActivity();
+            }
+        });
+        return false;
+    });
+  
+    
+=======
+>>>>>>> 962b56f3ec72178e56919c4cc58c01cdd492d4dc
     $("#cartForm").validate();
 
     $('.met_del:checked').trigger('click');
@@ -648,7 +667,31 @@ $(document).ready(function(){
             });
             return false;
         })
+<<<<<<< HEAD
+    };
+    
+    function bindFeedbackForm(){
+        $('.feedback_form form').bind('submit',function(){
+            $this = $(this);
+            $.ajax({
+                type: 'post',
+                url: '/feedback',
+                data: $this.serialize(),
+                beforeSend: function(){
+                    $.fancybox.showActivity();
+                },
+                success: function(msg){
+                    showResponse(msg);
+                    bindFeedbackForm();
+                    $.fancybox.hideActivity();
+                }
+            });
+            return false;
+        })
+    };
+=======
     }
+>>>>>>> 962b56f3ec72178e56919c4cc58c01cdd492d4dc
 
     function showResponse(responseText, statusText, xhr, $form){
         try {
