@@ -1,10 +1,10 @@
 <?php
 
-class facebook {
+class facebook{
     public $settings = array();
-    function __construct() {
+    public function __construct() {
         //load settings
-        $ci = & get_instance();
+        $ci = &get_instance();
         $row = $ci->db->where('name', 'facebook_int')->get('Shop_settings')->row();
         $this->settings = unserialize($row->value);
     }
