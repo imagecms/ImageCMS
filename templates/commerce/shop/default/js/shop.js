@@ -377,7 +377,19 @@ $(document).ready(function(){
     })
 
 
-
+    $('.showFeedback').on('click', function(){
+        $.fancybox.showActivity();
+        $.ajax({
+            type: 'post',
+            url: '/feedback',
+            success: function(msg){
+                showResponse(msg);
+                bindFeedbackForm();
+                $.fancybox.hideActivity();
+            }
+        });
+        return false;
+    });
   
     
     $("#cartForm").validate();
@@ -601,8 +613,27 @@ $(document).ready(function(){
             });
             return false;
         })
-    }
- 
+    };
+    
+    function bindFeedbackForm(){
+        $('.feedback_form form').bind('submit',function(){
+            $this = $(this);
+            $.ajax({
+                type: 'post',
+                url: '/feedback',
+                data: $this.serialize(),
+                beforeSend: function(){
+                    $.fancybox.showActivity();
+                },
+                success: function(msg){
+                    showResponse(msg);
+                    bindFeedbackForm();
+                    $.fancybox.hideActivity();
+                }
+            });
+            return false;
+        })
+    };
 
     function showResponse(responseText, statusText, xhr, $form){
         try {
