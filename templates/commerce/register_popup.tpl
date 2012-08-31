@@ -33,8 +33,8 @@
                 <a href="{site_url('auth/login')}" class="button_middle_blue_neigh f_l auth_me">
                     {lang('lang_login_page')}
                 </a>
-                <a href="{site_url('auth/login')}" class="button_middle_blue_neigh f_l auth_me">
-                    {lang('lang_login_page')}
+                <a href="{site_url($modules.auth . '/forgot_password')}" class="button_middle_blue_neigh f_l auth_me">
+                    {lang('lang_forgot_password')}
                 </a>
             </div>
         </div>

@@ -313,6 +313,7 @@ $lang['s_to_additional_information'] = 'Additional information';
 $lang['s_to_call_me'] = 'Call me';
 $lang['s_sea_found_in_categories'] = 'Found in categories';
 $lang['s_sea_search_for'] = 'You searched for';
+$lang['s_js_fisa'] = 'Show';
 
 
 /* End of file main_lang.php */

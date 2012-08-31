@@ -118,11 +118,12 @@
                 <!--   New products block     -->
 
                 <!--   Promo products block     -->
+                   {if count(getPromoBlock('action', 3, $product->category_id))}
                 <div class="box_title">
-                    <span>Акции</span>
+                    <span>{lang('s_action')}</span>
                 </div>
                 <ul>
-                    {foreach getPromoBlock('action', 3) as $hotProduct}
+                    {foreach getPromoBlock('action', 3, $product->category_id) as $hotProduct}
                     <li class="smallest_item">
                         <div class="photo_block">
                             <a href="{shop_url('product/' . $hotProduct->getUrl())}">
@@ -143,6 +144,8 @@
                     </li>
                     {/foreach}
                 </ul>
+                
+               {/if}
                 <!--   Promo products block     -->
             </div>
             <!--   Right sidebar     -->
