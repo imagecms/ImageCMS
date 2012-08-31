@@ -4,7 +4,7 @@
     <form method="post" action="{site_url(uri_string())}" id="cartForm">
         
         <table class="cleaner_table forCartProducts" cellspacing="0">
-            <caption>Корзина</caption>
+            <caption>{lang('s_cart')}</caption>
             <colgroup>
                 <col span="1" width="120">
                 <col span="1" width="396">
@@ -88,6 +88,7 @@
                                     {if $item.delivery_price > 0}<span style="font-size:16px;">{lang('s_delivery')}: {echo $item.delivery_price} руб</span>{/if}
                                     {if $item.gift_cert_price > 0}<span style="font-size:16px;">{lang('s_do_you_syrp_pr')}: {echo $item.gift_cert_price} руб</span>{/if}
                                     <!--<span class="d_b">{$total_nc} {$NextCS}</span>-->
+                                 
                                 </div>
                             </div>
                         </div>
