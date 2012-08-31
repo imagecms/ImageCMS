@@ -531,4 +531,11 @@
     $lang['a_os_list_is_empty'] = 'Список статусов заказов пустой';
     $lang['a_os_edit'] = 'Редактирование статуса заказа';
     $lang['a_os_create'] = 'Создание статуса заказа';
+    $lang['a_role_list'] = 'Список ролей';
+    $lang['a_role_create'] = 'Создание роли';
+    $lang['a_role_edit'] = 'Редактирование роли';
+    $lang['a_role_group_list'] = 'Список груп ролей';
+    $lang['a_role_group_list'] = 'Создание групы ролей';
+    $lang['a_role_group_list'] = 'Редактирование групы ролей';
+    $lang['a_roles_list'] = 'Список ролей';
 ?>
