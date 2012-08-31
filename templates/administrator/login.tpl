@@ -65,7 +65,7 @@
                                 <label class="d_i_b w_auto h_auto m_r_9 pos_rel">
                                     <input type="checkbox" name="remember" value="1"/>{lang('a_remember')}</label>
                                 <div class="button_clean button_blue">
-                                    <input type="submit" value="{lang('a_send')}"/>
+                                    <input type="submit" value="{lang('a_send_f')}"/>
                                 </div>
                                 <div class="o_h">
                                     <a href="/auth/register/">{lang('a_reg')}</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/auth/forgot_password/">{lang('a_forget_pass')}</a>
