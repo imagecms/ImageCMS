@@ -311,6 +311,8 @@ $lang['s_to_falitem_number'] = 'Item Number';
 $lang['s_to_falo_product_name'] = 'Product Name';
 $lang['s_to_additional_information'] = 'Additional information';
 $lang['s_to_call_me'] = 'Call me';
+$lang['s_sea_found_in_categories'] = 'Found in categories';
+$lang['s_sea_search_for'] = 'You searched for';
 
 
 /* End of file main_lang.php */
