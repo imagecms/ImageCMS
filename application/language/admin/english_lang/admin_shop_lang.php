@@ -505,13 +505,14 @@ $lang['a_set_order_status'] =	'Set another status for these orders';
     $lang['a_os_list_is_empty'] = 'Orders statuses list is empty';
     $lang['a_os_edit'] = 'Orders status edit';
     $lang['a_os_create'] = 'Orders status create';
+    
     $lang['a_role_list'] = 'Roles list';
     $lang['a_role_create'] = 'Role create';
     $lang['a_role_edit'] = 'Role edit';
     $lang['a_role_group_list'] = 'Roles groups list';
-    $lang['a_role_group_list'] = 'Roles group create';
-    $lang['a_role_group_list'] = 'Roles group edit';
-    $lang['a_roles_list'] = 'Roles list';
+    $lang['a_role_group_create'] = 'Roles group create';
+    $lang['a_role_group_edit'] = 'Roles group edit';
+    $lang['a_roles_list'] = 'Privileges list';
     
 ?>
 
