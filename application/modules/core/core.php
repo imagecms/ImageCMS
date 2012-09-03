@@ -35,7 +35,7 @@ class Core extends MY_Controller {
 		$com_links = array();
 
 		$cat_path = $this->uri->uri_string();
-
+                
 		($hook = get_hook('core_init')) ? eval($hook) : NULL;
 
 		// Load settings

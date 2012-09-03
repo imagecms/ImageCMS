@@ -1,0 +1,1 @@
+<a href="{shop_url('compare')}">Список сравнений</a> ({if $CI->session->userdata('shopForCompare')}{count($CI->session->userdata('shopForCompare'))}{else:}0{/if})
