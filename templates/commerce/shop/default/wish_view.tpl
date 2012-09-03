@@ -4,14 +4,14 @@
 
 <div class="spLine"></div>
 {if !$newData}
-    {echo ShopCore::t('Список пожеланий пуст')}
+    {echo ShopCore::t(lang('s_list_wish_empty'))}
     {return}
 {/if}
 <table class="wishListTable" width="100%">
     <thead align="left">
-        <th>{echo ShopCore::t('Фото')}</th>
-        <th>{echo ShopCore::t('Название')}</th>
-        <th>{echo ShopCore::t('Цена')}</th>
+        <th>{echo ShopCore::t(lang('s_foto'))}</th>
+        <th>{echo ShopCore::t(lang('s_naz'))}</th>
+        <th>{echo ShopCore::t(lang('s_price'))}</th>
     </thead>
     <tbody>
     {$total = 0}
@@ -44,7 +44,7 @@
         {$total} {$CS}
     </span>
     <span class="label">
-        {echo ShopCore::t('Итог')}
+        {echo ShopCore::t(lang('s_finish'))}
     </span>
 </div>
 
