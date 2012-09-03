@@ -4,7 +4,7 @@
 # @var jsCode
 #}
         <div class="content_head">
-            <div class="crumbs">{renderCategoryPath($model->getMainCategory())}
+            <div class="crumbs">{renderCategoryPathNoSeo($model->getMainCategory())}
                 <h1>{echo ShopCore::encode($model->getName())}</h1></div>
         </div>
         <ul class="catalog tovar_frame">
@@ -18,7 +18,7 @@
                             <a href="{shop_url('cart')}" onclick="orderForm.submit();return false;">
                                 <span class="helper"></span>
                                 <!--<span class="v-a_m">Купить</span>-->
-                                <span class="v-a_m">Оформить заказ</span>
+                                <span class="v-a_m">В корзину</span>
                             </a>
                                 <input type="hidden" name="productId" value="{echo $model->getId()}" />
                                 <input type="hidden" name="variantId" value="{echo $model->firstVariant->getId()}" />

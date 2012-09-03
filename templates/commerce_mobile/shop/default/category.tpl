@@ -10,7 +10,7 @@
 
 
         <div class="content_head">
-            <div class="crumbs">{renderCategoryPath($model)}</div>
+            <div class="crumbs">{renderCategoryPathNoSeo($model)}</div>
             <a href="{shop_url('category/'.$model->getFullPath())}?filteronly" class="check_filter h_f"><span class="helper"></span><span class="v-a_m"><span class="check_filter_ico icon"></span><span class="title">Подбор по параметрам</span></span></a>
         </div>
         <ul class="catalog">
@@ -26,31 +26,6 @@
             </li>
         {/foreach}
         </ul>
-            <!--    Pagination    -->
+		<div class="pagination">
             {echo $pagination}
-            <!--    Pagination    -->
-        <ul class="pagination">
-            
-            <li>
-                <span class="active">
-                    <span class="helper"></span>
-                    <span class="v-a_m">1</span>
-                </span>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="helper"></span>
-                    <span class="v-a_m">2</span>
-                </a>
-            </li>
-            <li class="hellip">
-                <span class="helper"></span>
-                <span class="v-a_m">...</span>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="helper"></span>
-                    <span class="v-a_m">23</span>
-                </a>
-            </li>
-        </ul>
+        </div>
