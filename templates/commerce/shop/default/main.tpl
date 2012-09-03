@@ -53,7 +53,7 @@
                 </div>
             </div><!-- top -->
             <div class="header center">
-                <a href="{shop_url('')}" class="logo"></a>
+                <a href="{$BASE_URL}" class="logo"></a>
                 <div class="frame_form_search">
                     <form name="search" class="clearfix" action="{shop_url('search')}" method="get" id="autocomlete">                        
                          <input type="text" name="text" value="{lang('s_se_thi_sit')}"  onfocus="if(this.value=='{lang('s_se_thi_sit')}') this.value='';" onblur="if(this.value=='') this.value='{lang('s_se_thi_sit')}';"  id="inputString" autocomplete="off" onkeyup="lookup(event);" class="place_hold"/>
@@ -71,7 +71,7 @@
                     <!--    Show callback's form    -->
                     <li class="p-l_0">
                         <form action="" method="post" name="currencyChangeForm" id="currencyChangeForm">
-                        Валюта: <select class="changeCurrency" name="setCurrency" >
+                        {lang('s_currency')}: <select class="changeCurrency" name="setCurrency" >
                             {foreach get_currencies() as $currency}
                                 <option {if ShopCore::app()->SCurrencyHelper->current->getId() == $currency->getId()}selected{/if} value="{echo $currency->getId()}">{echo encode($currency->getName())}</option>
                             {/foreach}                            
