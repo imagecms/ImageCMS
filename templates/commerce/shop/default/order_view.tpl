@@ -8,7 +8,7 @@
         <h1>{lang('s_private_office')}</h1>
         {if $CI->session->flashdata('makeOrder') === true}<div style="padding:10px;border: 1px #f5f5dc solid;">{lang('s_thank_order')}</div>{/if}
         <table class="cleaner_table" cellspacing="0">
-            <caption>Заказ №{echo $model->getId()}</caption>
+            <caption>{lang('s_order')} №{echo $model->getId()}</caption>
             <colgroup>
                 <col span="1" width="120">
                 <col span="1" width="400">
@@ -150,7 +150,7 @@
                                     {/if}
                                 </ul>
                                 <div class="sum f_r">
-                                    {lang('s_total')}:
+                                    {lang('s_summ')}:
                                 </div>
                             </div>
                         </div>
