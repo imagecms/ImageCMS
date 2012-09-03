@@ -7,7 +7,7 @@
 {/if}
 <div class="di_b">
     <span class="comment_ajax_refer b-r_4 visible">
-        <a href="#" class="t-d_n"><span class="js">Оставить отзыв</span><span class="blue_arrow"></span></a>
+        <a href="#" class="t-d_n"><span class="js">{lang('s_leave_comment')}</span><span class="blue_arrow"></span></a>
         {if $is_logged_in}
             {lang('lang_logged_in_as')} {$username}
         {else:}
@@ -39,7 +39,7 @@
 
     {/if}
     <label>
-        Ваш рейтинг
+         {lang('s_you_raiting')}
         <div class="star_rating">
             <div id="comment_block" class="rating {echo $r} star_rait" data-id="{echo $item_id}">
                 <div id="1" class="rate one">
@@ -62,16 +62,16 @@
         <input id="ratec" name="ratec" type="hidden" value=""/>
     </label><br/>
 
-    <label>{lang('lang_comment_text')}
+    <label>{lang('s_text_comment_one')}
         <textarea name="comment_text" id="comment_text" rows="10" cols="50">{$_POST.comment_text}</textarea> 
         <span style="color:red;">*</span>
     </label>
 
-    <label>Плюсы
+    <label>{lang('s_plus')}
         <textarea name="comment_text_plus" id="comment_plus" rows="5" cols="50">{$_POST.comment_text}</textarea> 
     </label>
         
-    <label>Минусы
+    <label>{lang('s_cons')}
         <textarea name="comment_text_minus" id="comment_minus" rows="5" cols="50">{$_POST.comment_text}</textarea> 
     </label>
     {if $use_captcha}
@@ -88,7 +88,7 @@
 </div>-->
     {/if}
     <label class="buttons button_middle_blue f_l">
-        <input type="submit" value="Оставить отзыв"/>
+        <input type="submit" value="{lang('s_leave_comment')}"/>
     </label>
 
     {form_csrf()}
@@ -126,37 +126,37 @@
                 </div>
                 {/if}
                 <b>{$comment.user_name}</b>
-                <div class="c_9 f-s_11">Оставлен {date('d-m-Y H:i', $comment.date)}</div>
+                <div class="c_9 f-s_11">{lang('s_on_comment')} {date('d-m-Y H:i', $comment.date)}</div>
                 <p>{$comment.text}</p>
                 {if $comment.text_plus != Null}
-                <p><b>Плюсы</b></br>
+                <p><b>{lang('s_plus')}</b></br>
                     {$comment.text_plus}</p>
                 {/if}
                 {if $comment.text_minus != Null}
-                <p><b>Минусы</b></br>
+                <p><b>{lang('s_cons')}</b></br>
                     {$comment.text_minus}</p>
                 {/if}
                 <div class="di_b">
                     <span class="comment_ajax_refer b-r_4 visible">
-                        <a href="#" class="t-d_n"><span class="js">Ответить</span><span class="blue_arrow"></span></a>
-                        Отзыв был полезен?
+                        <a href="#" class="t-d_n"><span class="js">{lang('s_comment_answer')}</span><span class="blue_arrow"></span></a>
+                        {lang('s_review_comment')}
                         <span></span>
-                        <span class="usefullyes" data-comid="{echo $comment.id}"><span class="js"> Да</span></span><span id="yesholder{$comment.id}">({echo $comment.like})</span>/
-                        <span class="usefullno" data-comid="{echo $comment.id}"><span class="js">Нет</span></span><span id="noholder{$comment.id}">({echo $comment.disslike})</span>
+                        <span class="usefullyes" data-comid="{echo $comment.id}"><span class="js">{lang('s_yes')}</span></span><span id="yesholder{$comment.id}">({echo $comment.like})</span>/
+                        <span class="usefullno" data-comid="{echo $comment.id}"><span class="js">{lang('s_no')}</span></span><span id="noholder{$comment.id}">({echo $comment.disslike})</span>
                     </span>
                 </div>
                     <form action="" method="post" class="comment_form">
                         <input type="hidden" name="comment_item_id" value="{$item_id}"/>
                         <input type="hidden" name="redirect" value="{uri_string()}"/>
                         {if !$is_logged_in}
-                        <label>{lang('lang_comment_author')}
+                        <label>{lang('s_text_comment_one')}
                             <input type="text" name="comment_author" id="comment_author" value="{get_cookie('comment_author')}"/> <span style="color:red;">*</span>
                         </label>
                         <label>{lang('lang_comment_email')}
                             <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/> <span style="color:red;">*</span>
                         </label>
                         {/if}
-                        <label>{lang('lang_comment_text')}
+                        <label>{lang('s_text_comment_one')}
                             <textarea name="comment_text" id="comment_text" rows="10" cols="50">{$_POST.comment_text}</textarea> 
                             <span style="color:red;">*</span>
                         </label>
@@ -175,7 +175,7 @@
                     </div>-->
                         {/if}
                         <label class="buttons button_middle_blue f_l">
-                            <input type="submit" value="Оставить отзыв"/>
+                            <input type="submit" value="{lang('s_leave_comment')}"/>
                         </label>
 
                         {form_csrf()}
@@ -185,7 +185,7 @@
                             {if $com_ch.parent == $comment.id}
                             <li style="padding-left: 50px">
                                 <b>{$com_ch.user_name}</b>
-                                <div class="c_9 f-s_11">Оставлен {date('d-m-Y H:i', $com_ch.date)}</div>
+                                <div class="c_9 f-s_11">lang('s_on_comment')} {date('d-m-Y H:i', $com_ch.date)}</div>
                                 <p>{$com_ch.text}</p>
                             </li>
                             {/if}

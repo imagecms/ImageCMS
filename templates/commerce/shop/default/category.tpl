@@ -21,13 +21,13 @@
                     <div class="f_r">
                         <form method="GET">
                             <div class="lineForm f_l w_145">
-                                <select id="sort" name="order">
-                                    <option value="rating" {if ShopCore::$_GET['order']=='rating'}selected="selected"{/if}>по рейтингу</option>
-                                    <option value="price" {if ShopCore::$_GET['order']=='price'}selected="selected"{/if}>от дешевых к дорогим</option>
-                                    <option value="price_desc" {if ShopCore::$_GET['order']=='price_desc'}selected="selected"{/if} >от дорогих к дешевым</option>
-                                    <option value="hit" {if ShopCore::$_GET['order']=='hit'}selected="selected"{/if}>популярные</option>
-                                    <option value="hot" {if ShopCore::$_GET['order']=='hot'}selected="selected"{/if}>новинки</option>
-                                    <option value="action" {if ShopCore::$_GET['order']=='action'}selected="selected"{/if}>акции</option>
+                      <select id="sort" name="order">
+                                    <option value="rating" {if ShopCore::$_GET['order']=='rating'}selected="selected"{/if}>{lang('s_po')} {lang('s_rating')}</option>
+                                    <option value="price" {if ShopCore::$_GET['order']=='price'}selected="selected"{/if}>{lang('s_dewevye')}</option>
+                                    <option value="price_desc" {if ShopCore::$_GET['order']=='price_desc'}selected="selected"{/if} >{lang('s_dor')}</option>
+                                    <option value="hit" {if ShopCore::$_GET['order']=='hit'}selected="selected"{/if}>{lang('s_popular')}</option>
+                                    <option value="hot" {if ShopCore::$_GET['order']=='hot'}selected="selected"{/if}>{lang('s_new')}</option>
+                                    <option value="action" {if ShopCore::$_GET['order']=='action'}selected="selected"{/if}>{lang('s_action')}</option>
                                 </select>
                             </div>
                             <div class="lineForm f_l w_50 m-l_10">
@@ -59,7 +59,7 @@
                                 <a href="{shop_url('product/' . $product->getUrl())}" class="title">{echo ShopCore::encode($product->name)}</a>
                                 <div class="f-s_0">
                                     <!--    Show Product Number -->
-                                {if $product->firstVariant->getNumber()}<span id="code{echo $product->getId()}" class="code">Код {echo ShopCore::encode($product->firstVariant->getNumber())}</span>{/if}
+                                {if $product->firstVariant->getNumber()}<span id="code{echo $product->getId()}" class="code">{lang('s_kod')} {echo ShopCore::encode($product->firstVariant->getNumber())}</span>{/if}
                                 <!--    Show Product Number -->
 
                                 <!--<div class="di_b star"><img src="{$SHOP_THEME}images/temp/STAR.png"></div>-->
@@ -91,7 +91,7 @@
                                 </div>
         <!--    Show Comments count -->
         <a href="{shop_url('product/'.$product->getId().'?cmn=on')}"  class="response">
-            {echo $product->totalComments()} {echo SStringHelper::Pluralize($product->totalComments(), array('отзыв', 'отзывы', 'отзывов'))}</a>
+            {echo $product->totalComments()} {echo SStringHelper::Pluralize($product->totalComments(), array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}</a>
         <!--    Show Comments count -->
         
         {if count($product->getProductVariants())>1}
@@ -121,22 +121,22 @@
     <div class="f_r t-a_r">
         <span class="ajax_refer_marg">
             {if $forCompareProducts && in_array($product->getId(), $forCompareProducts)}
-                <a href="{shop_url('compare')}" class="">Сравнить</a>
+                <a href="{shop_url('compare')}" class="">{lang('s_compare')}</a>
             {else:}
-                <a href="{shop_url('compare/add/'. $product->getId())}" data-prodid="{echo $product->getId()}" class="js gray toCompare">Добавить к сравнению</a>
+                <a href="{shop_url('compare/add/'. $product->getId())}" data-prodid="{echo $product->getId()}" class="js gray toCompare">{lang('s_compare_add')}</a>
             {/if}
         </span>                       
         {if !is_in_wish($product->getId())}
-            <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" href="#" class="js gray addToWList">Сохранить в список желаний</a>
+            <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" href="#" class="js gray addToWList">{lang('s_slw')}</a>
         {else:}
-            <a href="/shop/wish_list">Уже в списке желаний</a>
+            <a href="/shop/wish_list">{lang('s_ilw')}</a>
         {/if}
     </div>
 </div>
 {if $product->countProperties() > 0}
     <p class="c_b">
         {echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInline($product)}
-        <a href="{shop_url('product/' . $product->getUrl())}" class="t-d_n"><span class="t-d_u">Подробнее</span> →</a>
+        <a href="{shop_url('product/' . $product->getUrl())}" class="t-d_n"><span class="t-d_u">{lang('s_more')}</span> →</a>
     </p>
 {/if}
 </li>
@@ -157,7 +157,7 @@
       {if count(getPromoBlock('hot', 3, $product->category_id))}
                
                 <div class="box_title">
-                    <span>Новинки</span>
+                    <span>{lang('s_new')}</span>
                 </div>               
                 <ul>
                   {foreach getPromoBlock('hot', 3, $product->category_id) as $hotProduct}
@@ -190,7 +190,7 @@
                 <!--   Promo products block     -->                
               {if count(getPromoBlock('action', 3, $product->category_id))}
                 <div class="box_title">
-                    <span>Акции</span>
+                    <span>{lang('s_action')}</span>
                 </div>
                 <ul>
                     {foreach getPromoBlock('action', 3, $product->category_id) as $hotProduct}

@@ -56,31 +56,9 @@
         {/foreach}
         </ul>
        {if $pagination}
-       {$pagination}
-        <ul class="pagination">
-            <li>
-                <span class="active">
-                    <span class="helper"></span>
-                    <span class="v-a_m">1</span>
-                </span>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="helper"></span>
-                    <span class="v-a_m">2</span>
-                </a>
-            </li>
-            <li class="hellip">
-                <span class="helper"></span>
-                <span class="v-a_m">...</span>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="helper"></span>
-                    <span class="v-a_m">23</span>
-                </a>
-            </li>
-        </ul>
+	   <div class="pagination">
+            {echo $pagination}
+        </div>
        {/if}
     {else:}
     <h1>{echo ShopCore::t('По вашему запросу ничего не найдено')}.</h1>
