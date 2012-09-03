@@ -55,7 +55,7 @@
 		<div class="field">
 			<a href="{site_url($modules.auth . '/forgot_password')}">{lang('lang_forgot_password')}</a>
 			&nbsp;
-			<a href="{site_url('auth/login')}">Вход</a>
+			<a href="{site_url('auth/login')}">{lang('s_enter')}</a>
 		</div>
 		<div class="clear"></div>
 

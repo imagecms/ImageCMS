@@ -514,9 +514,11 @@ $lang['a_set_order_status'] =	'Set another status for these orders';
     $lang['a_role_group_edit'] = 'Roles group edit';
     $lang['a_roles_list'] = 'Privileges list';
     
+    $lang['a_memcached'] = 'Caching';
+    $lang['a_memcached_settings'] = 'Memcached cache settings';
+    $lang['a_memcached_on'] = 'Turned ON';
+    $lang['a_memcached_hostname'] = 'Memcached server address';
+    $lang['a_memcached_port'] = 'Memcached server port';
+    $lang['a_memcached_namespace'] = 'Memcached server namespace';
+    $lang['a_memcached_expires'] = 'Cache lifetime, ms';
 ?>
-
-    
-    
-    
-

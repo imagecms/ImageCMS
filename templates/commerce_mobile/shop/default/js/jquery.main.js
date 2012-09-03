@@ -79,3 +79,10 @@ $(document).ready(function(){
         $('.head_cle_foot').replaceWith('<div class="'+$('.head_cle_foot').attr('class')+'"></div>');
     }
 });
+$(window).load(function(){
+    if ($.exists('.check_filter')){
+        $('html, body').animate({
+            'scrollTop': ($('.check_filter').offset().top)
+            });
+    }
+})
