@@ -141,7 +141,7 @@ $(document).ready(function(){
         $.fancybox.showActivity();
         $.ajax({
             type: 'post',
-            url: '/auth/login',
+            url: b_url + 'auth/login',
             success: function(msg){
                 showResponse(msg);
                 bindLoginForm();
@@ -366,7 +366,7 @@ $(document).ready(function(){
         $.fancybox.showActivity();
         $.ajax({
             type: 'post',
-            url: '/shop/shop/callback',
+            url: b_url + '/shop/shop/callback',
             success: function(msg){
                 showResponse(msg);
                 bindCallbackForm();
@@ -497,6 +497,7 @@ $(document).ready(function(){
                         }
                     }
                     $('.reg_me').bind('click', bindRegisterForm());
+                    $('.auth_forgot_password').bind('click', bindForgotPasswordForm());
                     $.fancybox.hideActivity();
                 }
             });
@@ -509,7 +510,7 @@ $(document).ready(function(){
             $this = $(this);
             $.ajax({
                 type: 'post',
-                url: '/auth/register',
+                url: b_url + '/auth/register',
                 data: $this.serialize(),
                 beforeSend: function(){
                     $.fancybox.showActivity();
@@ -529,7 +530,7 @@ $(document).ready(function(){
             $this = $(this);
             $.ajax({
                 type: 'post',
-                url: '/auth/register',
+                url: b_url + '/auth/register',
                 beforeSend: function(){
                     $.fancybox.showActivity();
                 },
@@ -543,12 +544,53 @@ $(document).ready(function(){
             return false;
         })
     }
+    function bindForgotPasswordLink(){
+        $('.auth_forgot_password').bind('click',function(){
+            $this = $(this);
+            $.ajax({
+                type: 'post',
+                url: b_url + '/auth/forgot_password',
+                beforeSend: function(){
+                    $.fancybox.showActivity();
+                },
+                success: function(msg){
+                    showResponse(msg);
+                    bindForgotPasswordForm();
+                    bindLoginLink();
+                    $.fancybox.hideActivity();
+                }
+            });
+            return false;
+        })
+    }
+    
+    function bindForgotPasswordForm(){
+        $('.enter_form form').bind('submit',function(){
+            $this = $(this);
+            $.ajax({
+                type: 'post',
+                url: b_url + '/auth/forgot_password',
+                data: $this.serialize(),
+                beforeSend: function(){
+                    $.fancybox.showActivity();
+                },
+                success: function(msg){
+                    showResponse(msg);
+                    bindForgotPasswordForm();
+                    bindLoginLink();
+                    $.fancybox.hideActivity();
+                }
+            });
+            return false;
+        })
+    }
+    
     function bindLoginLink(){
         $('.auth_me').bind('click',function(){
             $this = $(this);
             $.ajax({
                 type: 'post',
-                url: '/auth/login',
+                url: b_url + '/auth/login',
                 beforeSend: function(){
                     $.fancybox.showActivity();
                 },
