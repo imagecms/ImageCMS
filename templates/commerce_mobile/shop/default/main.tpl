@@ -51,7 +51,7 @@
                         <span class="title">Мобильная версия</span>
                     </span>
                     {$settings = ShopCore::app()->SMobileVersion->loadSettings()}
-                    <a href="{$settings[MobileVersionSite]}" class="desctop frame_version">
+                    <a href="http://{str_replace('http://', '', $settings[MobileVersionSite])}" class="desctop frame_version">
                         <span class="frame_desctop">
                             <span class="icon comp"></span>
                             <span class="title">Полная версия</span>
