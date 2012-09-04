@@ -153,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `components` (
   KEY `identif` (`identif`),
   KEY `enabled` (`enabled`),
   KEY `autoload` (`autoload`)
-) ENGINE=MyISAM AUTO_INCREMENT=126 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=127 DEFAULT CHARSET=utf8;
 
 -- 
 -- Data for table `components`
@@ -177,7 +177,8 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
   ('95', 'filter', 'filter', '1', '0', '0', NULL),
   ('96', 'cfcm', 'cfcm', '0', '0', '0', NULL),
   ('121', 'shop', 'shop', '1', '0', '0', NULL),
-  ('123', 'share', 'share', '0', '0', '0', NULL);
+  ('123', 'share', 'share', '0', '0', '0', NULL),
+  ('126', 'mailer', 'mailer', '1', '0', '0', NULL);
 
 -- 
 -- Structure for table `content`
@@ -230,16 +231,16 @@ INSERT INTO `content` (`id`, `title`, `meta_title`, `url`, `cat_url`, `keywords`
   ('66', 'Доставка', '', 'dostavka', '', 'доставка', 'Доставка', '<p>Мы поддерживаем доставку службой Автомир по всему миру.</p>\n<p>Также возможна доставка курьером для всех больших городов Украины и России (возможность доставки курьером в Вашем городе уточняйте по телефону <strong>0 800 820 22 22</strong>).</p>\n<p>При желании Вы можете сами забрать купленный товар в наших офисах.</p>', '', '0', '', '', '0', '1', '0', 'publish', 'admin', '1291295844', '1291295851', '1291743683', '125', '3', '0'),
   ('67', 'Помощь', '', 'help', '', 'помощь', 'Помощь', '<p>Для того, чтобы приобрести товар в нашем магазине, Вам нужно выполнить несколько простых шагов:</p>\n<ul>\n<li>Выбрать нужный товар, воспользовавшить навигацией слева, либо поиском.</li>\n<li>Добавить товар в корзину.</li>\n<li>Перейти в корзину, выбрать способ доставки и указать Ваши контактные данные.</li>\n<li>Подтвердить заказ и выбрать способ оплаты.</li>\n</ul>\n<p>После этого наши менеджеры свяжуться с Вами и помогут с оплатой и доставкой товара, а также проконсультируют по любому вопросу.</p>', '', '0', '', '', '0', '1', '0', 'publish', 'admin', '1291295855', '1291295867', '1291743919', '74', '3', '0'),
   ('68', 'Контакты', '', 'contact_us', '', 'контакты', 'Контакты', '<p><strong>Горячий телефон</strong>: 0 800 80 80 800</p>\n<p><strong>Главный офис в Москве</strong></p>\n<p>ул. Гагарина 1/2</p>\n<p>тел. 095 095 00 00</p>\n<p>&nbsp;</p>\n<p><strong>Главный офис в Киеве</strong></p>\n<p>ул. Гагарина 1/2</p>\n<p>тел. 098 098 00 00</p>', '', '0', '', '', '0', '1', '0', 'publish', 'admin', '1291295870', '1291295888', '1291744068', '73', '3', '0'),
-  ('74', 'Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!', '', 'aktsiia-k-fotoapparatu-nikon-s9100-karta-pamiati-8gb-v-podarok-1', 'novosti_i_aktsii/', 'windows, отримує, подарунок, сумку, ноутбука, кожен, покупець, акційних, ноутбуків, передвстановленою', 'ОС Windows отримує в подарунок сумку для ноутбука! Кожен покупець акційних ноутбуків з передвстановленою ОС Windows отримує в подарунок сумку для ноутбука!', '<p>ОС Windows отримує в подарунок сумку для ноутбука! Кожен покупець акційних ноутбуків з передвстановленою ОС Windows отримує в подарунок сумку для ноутбука!</p>', '', '56', '', '', '0', '1', '0', 'publish', 'admin', '1336737588', '1336737588', '0', '2', '3', '0'),
-  ('73', 'Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!', '', 'aktsiia-k-fotoapparatu-nikon-s9100-karta-pamiati-8gb-v-podarok', 'novosti_i_aktsii/', 'windows, отримує, подарунок, сумку, ноутбука, кожен, покупець, акційних, ноутбуків, передвстановленою', 'ОС Windows отримує в подарунок сумку для ноутбука! Кожен  покупець акційних ноутбуків з передвстановленою ОС Windows отримує в  подарунок сумку для ноутбука!', '<p><span id=\"result_box\" lang=\"en\"><span>Windows,</span> <span>receives</span> <span>a gift</span> <span>bag</span> <span>for</span> <span>your laptop</span><span>!</span> <span>Each</span> <span>purchaser</span> <span>of promotional</span> <span>notebooks</span> <span>preloaded with</span> <span>Windows,</span> <span>receives</span> <span>a gift</span> <span>bag</span> <span>for</span> <span>your laptop</span><span>!</span></span></p>', '', '56', '', '', '0', '1', '0', 'publish', 'admin', '1336477654', '1336477654', '1343743335', '0', '3', '0'),
-  ('75', 'Contact', '', 'contact_us', '', 'ssss', 'ssss', '<p><span id=\"result_box\" lang=\"en\"><span>Hot Phone</span><span>:</span> <span>0800</span> <span>80</span> <span>80 800</span><br /><br /> <span>Head office in</span> <span>Moscow</span><br /><br /> <span>street</span><span>.</span> <span>Gagarin</span> <span>half</span><br /><br /> <span>tel.</span> <span>095</span> <span>095</span> <span>00</span> <span>00</span><br /><br /> <span>The main office</span> <span>in Kiev</span><br /><br /> <span>street</span><span>.</span> <span>Gagarin</span> <span>half</span><br /><br /> <span>tel.</span> <span>098</span> <span>098</span> <span>00</span> <span>00</span></span></p>', '', '0', '', '', '0', '1', '4', 'publish', 'admin', '1291295870', '1291295888', '1343664873', '34', '30', '68'),
+  ('74', 'Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!', '', 'aktsiia-k-fotoapparatu-nikon-s9100-karta-pamiati-8gb-v-podarok-1', 'novosti_i_aktsii/', 'windows, отримує, подарунок, сумку, ноутбука, кожен, покупець, акційних, ноутбуків, передвстановленою', 'ОС Windows отримує в подарунок сумку для ноутбука! Кожен покупець акційних ноутбуків з передвстановленою ОС Windows отримує в подарунок сумку для ноутбука!', '<p>ОС Windows получает в подарок сумку для ноутбука! Каждый покупатель акционных ноутбуков с предустановленной ОС Windows получает в подарок сумку для ноутбука!</p>', '', '56', '', '', '0', '1', '0', 'publish', 'admin', '1336737588', '1336737588', '1346689293', '3', '3', '0'),
+  ('73', 'Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!', '', 'aktsiia-k-fotoapparatu-nikon-s9100-karta-pamiati-8gb-v-podarok', 'novosti_i_aktsii/', 'windows, отримує, подарунок, сумку, ноутбука, кожен, покупець, акційних, ноутбуків, передвстановленою', 'ОС Windows отримує в подарунок сумку для ноутбука! Кожен  покупець акційних ноутбуків з передвстановленою ОС Windows отримує в  подарунок сумку для ноутбука!', '<p><span id=\"result_box\" lang=\"ru\"><span>&nbsp;ОС Windows,</span> <span>получает в подарок</span> <span>сумку</span> <span>для ноутбука</span><span>!</span> <span>Каждая покупка</span> <span>рекламных</span> <span>ноутбуков</span> <span>с предустановленной</span> <span>Windows,</span> <span>получает в подарок</span> <span>сумку</span> <span>для ноутбука</span><span>!</span></span></p>', '', '56', '', '', '0', '1', '0', 'publish', 'admin', '1336477654', '1336477654', '1346689653', '0', '3', '0'),
+  ('75', 'Contact', '', 'contact_us', '', 'ssss', 'ssss', '<p><span id=\"result_box\" lang=\"en\"><span>Hot Phone</span><span>:</span> <span>0800</span> <span>80</span> <span>80 800</span><br /><br /> <span>Head office in</span> <span>Moscow</span><br /><br /> <span>street</span><span>.</span> <span>Gagarin</span> <span>half</span><br /><br /> <span>tel.</span> <span>095</span> <span>095</span> <span>00</span> <span>00</span><br /><br /> <span>The main office</span> <span>in Kiev</span><br /><br /> <span>street</span><span>.</span> <span>Gagarin</span> <span>half</span><br /><br /> <span>tel.</span> <span>098</span> <span>098</span> <span>00</span> <span>00</span></span></p>', '', '0', '', '', '0', '1', '4', 'publish', 'admin', '1291295870', '1291295888', '1343664873', '35', '30', '68'),
   ('76', 'Delivery', '', 'dostavka', '', 'support, the, delivery, service, autoworld, around, world, also, possible, all, major, cities, ukraine, and, russia, possibility, courier, your, area, please, call, desired, you, can, pick, purchased, goods, themselves, our, offices', 'We support the delivery of service Autoworld around the world. It is also possible delivery to all major cities of Ukraine and Russia (the possibility of delivery by courier in your area please call 0800820 22 22.) If desired, you can pick up the purchase', '<p><span id=\"result_box\" lang=\"en\"><span>We support the</span> <span>delivery of</span> <span>service</span> <span>Autoworld</span> <span>around the world.</span><br /><br /> <span>It is also possible</span> <span>delivery</span> <span>to all</span> <span>major cities</span> <span>of Ukraine and Russia</span> <span>(the possibility of</span> <span>delivery</span> <span>by courier</span> <span>in your area</span> <span>please call</span> <span>0800820</span> <span>22 22</span><span>.)</span><br /><br /> <span>If desired,</span> <span>you can</span> <span>pick up the</span> <span>purchased goods</span> <span>themselves</span> <span>in our offices.</span></span></p>', '', '0', '', '', '0', '1', '4', 'publish', 'admin', '1291295844', '1291295851', '1343664842', '8', '30', '66'),
   ('77', 'Help', '', 'help', '', 'order, purchase, goods, our, store, you, must, follow, few, simple, steps, choose, the, right, product, vospolzovavshit, navigation, left, search, add, products, cart, shopping, select, shipping, method, and, provide, your, contact', 'In order to purchase goods in our store, you must follow a few simple steps: Choose the right product, vospolzovavshit navigation on the left, or search. Add products to cart. Go to the shopping cart, select shipping method and provide your contact inform', '<p><span id=\"result_box\" lang=\"en\"><span>In order to</span> <span>purchase goods</span> <span>in our store,</span> <span>you must follow</span> <span>a few simple steps</span><span>:</span><br /><br />&nbsp;&nbsp;&nbsp;&nbsp; <span>Choose</span> <span>the right product,</span> <span>vospolzovavshit</span> <span>navigation</span> <span>on the left</span><span>, or</span> <span>search.</span><br />&nbsp;&nbsp;&nbsp;&nbsp; <span>Add products</span> <span>to cart</span><span>.</span><br />&nbsp;&nbsp;&nbsp;&nbsp; <span>Go to the</span> <span>shopping cart,</span> <span>select</span> <span>shipping method</span> <span>and provide</span> <span>your contact information.</span><br />&nbsp;&nbsp;&nbsp;&nbsp; <span>Proceed to checkout</span> <span>and select the</span> <span>payment method.</span><br /><br /> <span>After that,</span> <span>our managers</span> <span>will contact</span> <span>you and</span> <span>help you</span> <span>with payment</span> <span>and delivery</span> <span>of the goods</span><span>, as well</span> <span>as give advice on</span> <span>any subject.</span></span></p>', '', '0', '', '', '0', '1', '0', 'publish', 'admin', '1291295855', '1291295867', '1343664897', '11', '30', '67'),
   ('78', 'Payment', '', 'oplata', '', 'our, store, supports, all, currently, available, methods, payment, also, there, possibility, pay, the, courier, for, delivery, major, cities, ukraine, and, russia, ability, your, area, please, call', 'Our store supports all currently available methods of payment. Also there is a possibility to pay the courier for delivery to all major cities of Ukraine and Russia. (ability to pay for the courier in your area please call 0800820 22 22.)', '<p><span id=\"result_box\" lang=\"en\"><span>Our store</span> <span>supports all</span> <span>currently available</span> <span>methods of payment.</span><br /><br /> <span>Also there is</span> <span>a possibility to pay</span> <span>the courier</span> <span>for delivery</span> <span>to all</span> <span>major cities</span> <span>of Ukraine</span> <span>and Russia.</span> <span>(ability to</span> <span>pay for</span> <span>the courier</span> <span>in your area</span> <span>please call</span> <span>0800820</span> <span>22 22</span><span>.)</span></span></p>', '', '0', '', '', '0', '1', '0', 'publish', 'admin', '1291295824', '1291295836', '1343664949', '1', '30', '65'),
   ('79', 'About us', '', 'about', '', 'shop, imagecms, offers, huge, selection, vehicles, suit, every, taste, the, best, prices, our, store, has, more, than, years, and, during, that, time, was, not, single, return, goods, serve, hundreds, customers', 'Shop ImageCMS Shop offers a huge selection of vehicles to suit every taste at the best prices. Our store has more than 5 years and during that time was not a single return of the goods. We serve hundreds of customers every day and do it with joy. Buy equi', '<p><span id=\"result_box\" lang=\"en\"><span>Shop</span> <span>ImageCMS Shop</span> <span>offers</span> <span>a huge selection</span> <span>of vehicles</span> <span>to suit every taste</span> <span>at the best prices</span><span>.</span><br /><br /> <span>Our store</span> <span>has more than</span> <span>5 years</span> <span>and during that time</span> <span>was not a single</span> <span>return of the goods</span><span>.</span><br /><br /> <span>We serve</span> <span>hundreds of</span> <span>customers</span> <span>every day</span> <span>and do</span> <span>it with joy.</span><br /><br /> <span>Buy</span> <span>equipment from</span> <span>us and</span> <span>become the owner of</span> <span>the world\'s best</span> <span>technology</span><span>!</span></span></p>', '', '0', '', '', '0', '1', '0', 'publish', 'admin', '1291295776', '1291295792', '1343745649', '5', '30', '64'),
   ('80', 'Site', '', 'o-sajte', '', 'new', 'new', '<p><span id=\"result_box\" lang=\"en\"><span>This is</span> <span>the basic template</span> <span>ImageCMS,</span> <span>which</span> <span>relizovany</span> <span>the following functions</span><span>: display</span> <span>gallery</span><span>, displaying</span> <span>static</span> <span>articles</span><span>, displaying</span> <span>a corporate blog</span><span>, displaying</span> <span>the feedback form.</span><br /><br /> <span>General view of the</span> <span>template, you can</span> <span>edit and</span> <span>change the</span> <span>logo,</span> <span>a graphic</span> <span>box on</span> <span>your</span> <span>case</span><span>.</span><br /><br /> <span>On the left</span> <span>you can see</span> <span>in the sidebar</span> <span>list of</span> <span>categories of</span> <span>the blog,</span> <span>which is easily</span> <span>inserted</span> <span>by using the</span> <span>{sub_category_list ()}</span> <span>in the file</span> <span>main.tpl.</span> <span>Also</span> <span>in the left</span> <span>sidebar</span> <span>is</span> <span>a search form</span> <span>on the site,</span> <span>recent comments</span> <span>widget</span> <span>and the widget</span> <span>tag</span> <span>site.</span> <span>In</span> <span>this</span> <span>sidebar</span> <span>you can also</span> <span>add a widget</span><span>, or</span> <span>the latest</span> <span>popular</span> <span>news,</span> <span>as well as any</span> <span>counters,</span> <span>widgets</span><span>.</span><br /><br /> <span>The top menu</span> <span>is implemented</span> <span>by the module</span> <span>menu</span><span>.</span> <span>And manage</span> <span>its content</span> <span>can be</span> <span>part</span> <span>of the</span> <span>administration</span> <span>in Menu</span> <span>-</span> <span>Main Menu.</span> <span>It</span> <span>is usually</span> <span>possible to add</span> <span>page</span> <span>about the company</span><span>, contacts,</span> <span>services, etc.</span><br /><br /> <span>For more</span> <span>information, contact the</span> <span>official</span> <span>section of the documentation</span><span>: http://www.imagecms.net/wiki</span><br /><br /> <span>Discuss</span> <span>additional opportunities</span><span>, as well as</span> <span>questions about</span> <span>installation, configuration,</span> <span>the system can be</span> <span>on the official forum</span><span>: http://forum.imagecms.net/</span></span></p>', '', '0', 'page_static', '', '0', '1', '0', 'publish', 'admin', '1267203253', '1267203328', '1343722704', '0', '30', '35'),
-  ('81', 'Action! Go to the camera Nikon S9100 - Memory Card 8 GB as a gift', '', 'aktsiia-k-fotoapparatu-nikon-s9100-karta-pamiati-8gb-v-podarok', 'novosti_i_aktsii/', 'windows, otrimuє, podarunok, laptop, bag, kozeny, pokupets, aktsіynih, noutbukіv, peredvstanovlenoyu, the', 'Windows OS otrimuє in podarunok laptop bag! Kozeny pokupets aktsіynih noutbukіv s peredvstanovlenoyu of Windows otrimuє podarunok in the laptop bag!', '<p><span id=\"result_box\" lang=\"en\"><span>Windows OS</span> <span>otrimuє</span> <span>in</span> <span>podarunok</span> <span>laptop bag</span><span>!</span> <span>Kozeny</span> <span>pokupets</span> <span>aktsіynih</span> <span>noutbukіv</span> <span>s</span> <span>peredvstanovlenoyu</span> <span>of Windows</span> <span>otrimuє</span> <span>podarunok</span> <span>in the</span> <span>laptop bag</span><span>!</span></span></p>', '', '56', '', '', '0', '1', '0', 'publish', 'admin', '1336477654', '1336477654', '1343743284', '3', '30', '73'),
-  ('82', '', NULL, 'aktsiia-k-fotoapparatu-nikon-s9100-karta-pamiati-8gb-v-podarok-1', 'novosti_i_aktsii/', NULL, NULL, NULL, '', '56', '', '', '0', '1', '0', 'publish', 'admin', '1336737588', '1336737588', '0', '0', '30', '74');
+  ('81', 'Action! Go to the camera Nikon S9100 - Memory Card 8 GB as a gift', '', 'aktsiia-k-fotoapparatu-nikon-s9100-karta-pamiati-8gb-v-podarok', 'novosti_i_aktsii/', 'windows, otrimuє, podarunok, laptop, bag, kozeny, pokupets, aktsіynih, noutbukіv, peredvstanovlenoyu, the', 'Windows OS otrimuє in podarunok laptop bag! Kozeny pokupets aktsіynih noutbukіv s peredvstanovlenoyu of Windows otrimuє podarunok in the laptop bag!', '<p><span id=\"result_box\" lang=\"en\"><span>Windows,</span> <span>receives a gift</span> <span>bag</span> <span>for a</span> <span>laptop!</span> <span>Each purchase</span> <span>advertising</span> <span>laptops</span> <span>preloaded with</span> <span>Windows,</span> <span>receives a gift</span> <span>bag for</span> <span>a laptop</span><span>!</span></span></p>', '', '56', '', '', '0', '1', '0', 'publish', 'admin', '1336477654', '1336477654', '1346689406', '4', '30', '73'),
+  ('82', 'Action! To the camera Nikon S9100 - 8GB memory card for free!', '', 'aktsiia-k-fotoapparatu-nikon-s9100-karta-pamiati-8gb-v-podarok-1', 'novosti_i_aktsii/', 'windows, operating, system, receives, gift, bag, for, laptop, each, purchaser, promotional, notebooks, with', 'Windows operating system receives a gift bag for a laptop! Each purchaser of promotional notebooks with Windows receives a gift bag for a laptop!', '<p><span id=\"result_box\" lang=\"en\"><span>Windows</span> <span>operating system</span> <span>receives a gift</span> <span>bag for</span> <span>a laptop</span><span>!</span> <span>Each purchaser</span> <span>of promotional</span> <span>notebooks</span> <span>with Windows</span> <span>receives a gift</span> <span>bag for</span> <span>a laptop</span><span>!</span></span></p>', '', '56', '', '', '0', '1', '0', 'publish', 'admin', '1336737588', '1336737588', '1346689276', '0', '30', '74');
 
 -- 
 -- Structure for table `content_field_groups`
@@ -303,7 +304,7 @@ CREATE TABLE IF NOT EXISTS `content_fields_data` (
   KEY `item_id` (`item_id`),
   KEY `item_type` (`item_type`),
   KEY `field_name` (`field_name`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 -- 
 -- Data for table `content_fields_data`
@@ -317,7 +318,9 @@ INSERT INTO `content_fields_data` (`id`, `item_id`, `item_type`, `field_name`, `
   ('7', '73', 'page', 'field_field1', ''),
   ('8', '73', 'page', 'field_pole2', '0'),
   ('11', '81', 'page', 'field_field1', ''),
-  ('12', '81', 'page', 'field_pole2', '0');
+  ('12', '81', 'page', 'field_pole2', '0'),
+  ('13', '82', 'page', 'field_field1', ''),
+  ('14', '82', 'page', 'field_pole2', '0');
 
 -- 
 -- Structure for table `content_permissions`
@@ -495,8 +498,8 @@ CREATE TABLE IF NOT EXISTS `languages` (
 -- 
 
 INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `template`, `default`) VALUES
-  ('3', 'Русский', 'ru', '', 'russian', 'commerce', '0'),
-  ('30', 'English', 'en', '', 'english', 'commerce', '1');
+  ('3', 'Русский', 'ru', '', 'russian', 'commerce', '1'),
+  ('30', 'English', 'en', '', 'english', 'commerce', '0');
 
 -- 
 -- Structure for table `login_attempts`
@@ -525,7 +528,7 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `date` (`date`)
-) ENGINE=MyISAM AUTO_INCREMENT=159 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=177 DEFAULT CHARSET=utf8;
 
 -- 
 -- Data for table `logs`
@@ -689,7 +692,48 @@ INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
   ('155', '1', 'admin', 'Вошел в панель управления IP 127.0.0.1', '1346426990'),
   ('156', '1', 'admin', 'Установил модуль user_support', '1346427036'),
   ('157', '1', 'admin', 'Удалил модуль user_support', '1346427057'),
-  ('158', '1', 'admin', 'Вошел в панель управления IP 127.0.0.1', '1346682174');
+  ('158', '1', 'admin', 'Вошел в панель управления IP 127.0.0.1', '1346682174'),
+  ('159', '1', 'admin', 'Вошел в панель управления IP 127.0.0.1', '1346685108'),
+  ('160', '1', 'admin', 'Вошел в панель управления IP 127.0.0.1', '1346686365'),
+  ('161', '1', 'admin', 'Вошел в панель управления IP 127.0.0.1', '1346686825'),
+  ('162', '1', 'admin', 'Вошел в панель управления IP 127.0.0.1', '1346689135'),
+  ('163', '1', 'admin', 'Изменил страницу<a href=\"#\" onclick=\"ajax_div(\'page\',\'http://pushlang.loc/admin/pages/edit/82\'); return false;\">Action! To the camera Nikon S9100 - 8GB memory card for free!</a>', '1346689276'),
+  ('164', '1', 'admin', 'Изменил страницу<a href=\"#\" onclick=\"ajax_div(\'page\',\'http://pushlang.loc/admin/pages/edit/74\'); return false;\">Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!</a>', '1346689293'),
+  ('165', '1', 'admin', 'Изменил страницу<a href=\"#\" onclick=\"ajax_div(\'page\',\'http://pushlang.loc/admin/pages/edit/73\'); return false;\">Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!</a>', '1346689386'),
+  ('166', '1', 'admin', 'Изменил страницу<a href=\"#\" onclick=\"ajax_div(\'page\',\'http://pushlang.loc/admin/pages/edit/81\'); return false;\">Action! Go to the camera Nikon S9100 - Memory Card 8 GB as a gift</a>', '1346689406'),
+  ('167', '1', 'admin', 'Изменил страницу<a href=\"#\" onclick=\"ajax_div(\'page\',\'http://pushlang.loc/admin/pages/edit/73\'); return false;\">Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!</a>', '1346689653'),
+  ('168', '1', 'admin', 'Вошел в панель управления IP 127.0.0.1', '1346693110'),
+  ('169', '1', 'admin', 'Вошел в панель управления IP 127.0.0.1', '1346744686'),
+  ('170', '1', 'admin', 'Назначил язык Русский по умолчанию', '1346745879'),
+  ('171', '1', 'admin', 'Вошел в панель управления IP 127.0.0.1', '1346749198'),
+  ('172', '1', 'admin', 'Вошел в панель управления IP 127.0.0.1', '1346751348'),
+  ('173', '1', 'admin', 'Установил модуль mailer', '1346751469'),
+  ('174', '1', 'admin', 'Отослать(0/4) пользователям E-Mail c темой )Test mailer', '1346751667'),
+  ('175', '1', 'admin', 'Отослать(4/4) пользователям E-Mail c темой )Test mailer', '1346751707'),
+  ('176', '1', 'admin', 'Отослать(5/5) пользователям E-Mail c темой )Test mailer', '1346752270');
+
+-- 
+-- Structure for table `mail`
+-- 
+
+DROP TABLE IF EXISTS `mail`;
+CREATE TABLE IF NOT EXISTS `mail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) DEFAULT NULL,
+  `date` int(15) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+-- 
+-- Data for table `mail`
+-- 
+
+INSERT INTO `mail` (`id`, `email`, `date`) VALUES
+  ('1', 'mail@mail.ru', '1346751549'),
+  ('2', 'grooteam@gmail.com', '1346751603'),
+  ('3', 'pefoliosinc@gmail.com', '1346751631'),
+  ('4', 'kamael.92@inbox.ru', '1346751639'),
+  ('5', 'sdd@mail.ru', '1346751800');
 
 -- 
 -- Structure for table `menu_translate`
@@ -1084,16 +1128,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks` (
   KEY `shop_callbacks_I_2` (`status_id`),
   KEY `shop_callbacks_I_3` (`theme_id`),
   KEY `shop_callbacks_I_4` (`date`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
-
--- 
--- Data for table `shop_callbacks`
--- 
-
-INSERT INTO `shop_callbacks` (`id`, `user_id`, `status_id`, `theme_id`, `phone`, `name`, `comment`, `date`) VALUES
-  ('16', NULL, '1', '1', 'пвапв', 'вап', 'вапвап', '1343638203'),
-  ('17', NULL, '1', '1', '213212', 'dad', 'asdasd', '1343638316'),
-  ('18', NULL, '1', '1', '213212', 'dad', 'asdasd', '1343638316');
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 -- 
 -- Structure for table `shop_callbacks_statuses`
@@ -1445,13 +1480,6 @@ CREATE TABLE IF NOT EXISTS `shop_kit` (
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- 
--- Data for table `shop_kit`
--- 
-
-INSERT INTO `shop_kit` (`id`, `product_id`, `active`, `position`) VALUES
-  ('2', '76', '1', '0');
-
--- 
 -- Structure for table `shop_kit_product`
 -- 
 
@@ -1463,13 +1491,6 @@ CREATE TABLE IF NOT EXISTS `shop_kit_product` (
   PRIMARY KEY (`product_id`,`kit_id`),
   KEY `shop_kit_product_FI_2` (`kit_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- 
--- Data for table `shop_kit_product`
--- 
-
-INSERT INTO `shop_kit_product` (`product_id`, `kit_id`, `discount`) VALUES
-  ('74', '2', '25');
 
 -- 
 -- Structure for table `shop_notification_statuses`
@@ -1623,7 +1644,7 @@ CREATE TABLE IF NOT EXISTS `shop_orders` (
   KEY `shop_orders_I_3` (`date_created`),
   KEY `shop_orders_FI_1` (`delivery_method`),
   KEY `shop_orders_FI_2` (`payment_method`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 -- 
 -- Data for table `shop_orders`
@@ -1635,13 +1656,10 @@ INSERT INTO `shop_orders` (`id`, `key`, `delivery_method`, `delivery_price`, `st
   ('11', 'li865v3686', '7', '0', '1', NULL, 'Administrator', 'admin@localhost.loc', '+7123456789', 'Россия, г Москва', '', '1343641791', '1343641791', '127.0.0.1', '1', '1', '44.77', NULL, NULL, NULL),
   ('12', 'u2051a676j', '7', '0', '1', NULL, 'Administrator', 'admin@localhost.loc', '+7123456789', 'Россия, г Москва', '', '1343665999', '1343665999', '127.0.0.1', '1', '1', '99.95', NULL, NULL, NULL),
   ('13', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-  ('14', '39i22yk730', '7', '0', '1', NULL, 'Administrator', 'admin@localhost.loc', '+7123456789', 'Россия, г Москва', '', '1343741580', '1343741580', '127.0.0.1', '1', '1', '698', NULL, NULL, NULL),
-  ('15', 'q1p872y633', '6', '0', '1', NULL, 'admin', 'admin@localhost.loc', '', '', '', '1345648821', '1345648821', '127.0.0.1', '1', '1', '2439.76', NULL, NULL, NULL),
-  ('16', 's817x2919c', '6', '0', '1', NULL, 'admin', 'admin@localhost.loc', '', '', '', '1346331365', '1346331365', '127.0.0.1', '1', '1', '134.31', NULL, NULL, NULL),
-  ('17', 'm0480f37c5', '6', '0', '1', NULL, 'admin', 'admin@localhost.loc', '', '', '', '1346331568', '1346331568', '127.0.0.1', '1', '1', '44.77', NULL, NULL, NULL),
-  ('18', 'r7i730769c', '6', '0', '1', NULL, 'admin', 'admin@localhost.loc', '', '', '', '1346418286', '1346418286', '127.0.0.1', '1', '1', '2799.97', NULL, NULL, NULL),
-  ('19', '92v295w9x4', '5', '0', '1', NULL, 'admin', 'admin@localhost.loc', '', '', '', '1346682418', '1346682418', '127.0.0.1', '1', '2', '2699.97', NULL, NULL, NULL),
-  ('20', '40089b3p2e', '6', '0', '1', NULL, 'admin', 'admin@localhost.loc', '', '', '', '1346682600', '1346682600', '127.0.0.1', '1', '1', '44.77', NULL, NULL, NULL);
+  ('25', '0rb0c17689', '6', '0', '1', NULL, 'admin', 'admin@localhost.loc', '', '', '', '1346752992', '1346752992', '127.0.0.1', '1', '1', '44.77', NULL, NULL, NULL),
+  ('22', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+  ('23', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+  ('24', 'av6194655y', '6', '0', '1', NULL, 'Andry', 'Andry@gmail.com', '', '', '', '1346752857', '1346752857', '127.0.0.1', NULL, '1', '44.77', NULL, NULL, NULL);
 
 -- 
 -- Structure for table `shop_orders_products`
@@ -1662,7 +1680,7 @@ CREATE TABLE IF NOT EXISTS `shop_orders_products` (
   PRIMARY KEY (`id`),
   KEY `shop_orders_products_I_1` (`order_id`),
   KEY `shop_orders_products_FI_1` (`product_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
 -- 
 -- Data for table `shop_orders_products`
@@ -1673,18 +1691,8 @@ INSERT INTO `shop_orders_products` (`id`, `order_id`, `product_id`, `variant_id`
   ('18', '9', '87', '98', 'Sony HT-SS370 Home Theater', '', '349', '2', NULL, NULL),
   ('20', '11', '80', '91', 'LG DN898 DVD Player', '', '44.77', '1', NULL, NULL),
   ('21', '12', '94', '105', 'Yamaha NSIW760 Speaker', '', '99.95', '1', NULL, NULL),
-  ('22', '14', '75', '86', 'Calypso CLP-32LC1A 32\" LCD 720p LCD', '', '299', '1', NULL, NULL),
-  ('23', '14', '76', '87', 'Calypso CLP-32LE110 32\" LED 720p HDTV', 'Красный', '399', '1', NULL, NULL),
-  ('24', '15', '75', '86', 'Calypso CLP-32LC1A 32\" LCD 720p LCD', '', '299', '5', NULL, NULL),
-  ('25', '15', '80', '91', 'LG DN898 DVD Player', '', '44.77', '1', NULL, NULL),
-  ('26', '15', '74', '85', 'Samsung LN40C650 40\" LCD TV', '', '899.99', '1', NULL, NULL),
-  ('27', '16', '80', '91', 'LG DN898 DVD Player', '', '44.77', '3', NULL, NULL),
-  ('28', '17', '80', '91', 'LG DN898 DVD Player', '', '44.77', '1', NULL, NULL),
-  ('29', '18', '72', '83', 'LG 47LD450 - 47\" Widescreen 1080p LCD HDTV', '', '999.99', '1', NULL, NULL),
-  ('30', '18', '73', '84', 'Panasonic Viera TC-L42U22 42\" LCD TV', '', '899.99', '1', NULL, NULL),
-  ('31', '18', '74', '85', 'Samsung LN40C650 40\" LCD TV', '', '899.99', '1', NULL, NULL),
-  ('32', '19', '73', '84', 'Panasonic Viera TC-L42U22 42\" LCD TV', '', '899.99', '3', NULL, NULL),
-  ('33', '20', '80', '91', 'LG DN898 DVD Player', '', '44.77', '1', NULL, NULL);
+  ('36', '25', '80', '91', 'LG DN898 DVD Player', '', '44.77', '1', NULL, NULL),
+  ('35', '24', '80', '91', 'LG DN898 DVD Player', '', '44.77', '1', NULL, NULL);
 
 -- 
 -- Structure for table `shop_orders_status_history`
@@ -2009,7 +2017,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_data` (
   KEY `shop_product_properties_data_I_1` (`value`(333)),
   KEY `shop_product_properties_data_FI_2` (`product_id`),
   KEY `shop_product_properties_data_FI_1` (`property_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
 
 -- 
 -- Data for table `shop_product_properties_data`
@@ -2017,17 +2025,29 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_data` (
 
 INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `value`, `locale`) VALUES
   ('12', '20', '76', 'LED', 'ru'),
-  ('14', '20', '75', 'Plasma', 'ru'),
-  ('4', '20', '74', 'LCD', 'ru'),
-  ('5', '21', '74', '24', 'ru'),
-  ('6', '20', '72', 'LCD', 'ru'),
-  ('7', '21', '72', '25', 'ru'),
+  ('38', '21', '74', '24', 'ru'),
+  ('37', '20', '74', 'LCD', 'ru'),
+  ('40', '21', '72', '25', 'ru'),
+  ('39', '20', '72', 'LCD', 'ru'),
   ('8', '22', '91', 'Да', 'ru'),
   ('9', '23', '91', '1500 Вт', 'ru'),
   ('10', '24', '91', '2', 'ru'),
-  ('11', '21', '76', '16', 'en'),
+  ('16', '20', '76', 'LED', 'en'),
   ('13', '21', '76', '16', 'ru'),
-  ('15', '21', '75', '24', 'ru');
+  ('35', '20', '75', 'Plasma', 'ru'),
+  ('17', '21', '76', '16', 'en'),
+  ('18', '20', '75', 'Plasma', 'en'),
+  ('19', '21', '75', '24', 'en'),
+  ('41', '20', '73', 'LED', 'ru'),
+  ('28', '20', '73', 'LED', 'en'),
+  ('22', '22', '91', 'Да', 'en'),
+  ('23', '23', '91', '1500 Вт', 'en'),
+  ('24', '24', '91', '2', 'en'),
+  ('34', '21', '74', '24', 'en'),
+  ('33', '20', '74', 'LCD', 'en'),
+  ('32', '21', '72', '25', 'en'),
+  ('31', '20', '72', 'LCD', 'en'),
+  ('36', '21', '75', '24', 'ru');
 
 -- 
 -- Structure for table `shop_product_properties_i18n`
@@ -2059,7 +2079,7 @@ INSERT INTO `shop_product_properties_i18n` (`id`, `name`, `locale`, `data`) VALU
   ('20', 'Технологія дисплею', 'ua', 'a:4:{i:0;s:6:\"LED-ua\";i:1;s:9:\"Plasma-ua\";i:2;s:9:\"Litium-ua\";i:3;s:8:\"Freon-ua\";}'),
   ('20', 'Display Technology', 'en', ''),
   ('21', 'Screen Size', 'en', ''),
-  ('22', 'HDMI', 'en', ''),
+  ('22', 'HDMI', 'en', 'a:2:{i:0;s:3:\"Yes\";i:1;s:2:\"No\";}'),
   ('23', 'Power', 'en', ''),
   ('24', 'Number of digital inputs', 'en', ''),
   ('25', 'Setting the focus', 'en', ''),
@@ -2095,10 +2115,10 @@ CREATE TABLE IF NOT EXISTS `shop_product_variants` (
 -- 
 
 INSERT INTO `shop_product_variants` (`id`, `product_id`, `price`, `number`, `stock`, `position`, `mainImage`, `smallImage`, `external_id`, `currency`) VALUES
-  ('82', '71', '1000', 'KDL4', '1', '1', NULL, NULL, NULL, NULL),
-  ('83', '72', '999.98999', 'LD450', '6', '0', NULL, NULL, NULL, NULL),
-  ('84', '73', '899.98999', 'TC-L42', '1', '0', NULL, NULL, NULL, NULL),
-  ('85', '74', '899.98999', 'LN40C', '9', '0', NULL, NULL, NULL, NULL),
+  ('82', '71', '1000', 'KDL4', '1', '0', NULL, NULL, NULL, '1'),
+  ('83', '72', '999.98999', 'LD450', '6', '0', NULL, NULL, NULL, '1'),
+  ('84', '73', '899.98999', 'TC-L42', '1', '0', NULL, NULL, NULL, '1'),
+  ('85', '74', '899.98999', 'LN40C', '9', '0', NULL, NULL, NULL, '1'),
   ('86', '75', '299', 'CLP-32', '0', '0', NULL, NULL, NULL, '1'),
   ('87', '76', '399', 'CLP-32L', '0', '0', '', '', NULL, '1'),
   ('88', '77', '244', '', '1', '0', NULL, NULL, NULL, NULL),
@@ -2111,47 +2131,47 @@ INSERT INTO `shop_product_variants` (`id`, `product_id`, `price`, `number`, `sto
   ('95', '84', '100.51', '', '8', '0', NULL, NULL, NULL, NULL),
   ('96', '85', '219.99001', 'D01B570', '7', '0', NULL, NULL, NULL, NULL),
   ('97', '86', '154', '', '4', '0', NULL, NULL, NULL, NULL),
-  ('98', '87', '349', '', '7', '0', NULL, NULL, NULL, NULL),
-  ('99', '88', '549.98999', '', '8', '0', NULL, NULL, NULL, NULL),
-  ('100', '89', '371.98999', '', '9', '0', NULL, NULL, NULL, NULL),
-  ('101', '90', '999', '', '2', '0', NULL, NULL, NULL, NULL),
-  ('102', '91', '548', '', '1', '0', NULL, NULL, NULL, NULL),
+  ('98', '87', '349', '', '7', '0', NULL, NULL, NULL, '1'),
+  ('99', '88', '549.98999', '', '8', '0', NULL, NULL, NULL, '1'),
+  ('100', '89', '371.98999', '', '9', '0', NULL, NULL, NULL, '1'),
+  ('101', '90', '999', '', '2', '0', NULL, NULL, NULL, '1'),
+  ('102', '91', '548', '', '1', '0', NULL, NULL, NULL, '1'),
   ('103', '92', '297', '', '4', '0', NULL, NULL, NULL, NULL),
-  ('104', '93', '349.98999', '', '8', '0', NULL, NULL, NULL, NULL),
-  ('105', '94', '99.95', '', '4', '0', NULL, NULL, NULL, NULL),
-  ('106', '95', '799', '', '5', '0', NULL, NULL, NULL, NULL),
-  ('107', '96', '699', '', '6', '0', NULL, NULL, NULL, NULL),
-  ('108', '97', '799', '', '1', '0', NULL, NULL, NULL, NULL),
-  ('109', '98', '549', '', '4', '0', NULL, NULL, NULL, NULL),
-  ('110', '99', '499.98999', '', '8', '0', NULL, NULL, NULL, NULL),
-  ('111', '100', '179.87', '', '2', '0', NULL, NULL, NULL, NULL),
-  ('112', '101', '74.99', '', '9', '0', NULL, NULL, NULL, NULL),
-  ('113', '102', '549.98999', '', '0', '0', NULL, NULL, NULL, NULL),
-  ('114', '103', '86.91', '', '8', '0', NULL, NULL, NULL, NULL),
-  ('115', '104', '799.98999', '', '1', '0', NULL, NULL, NULL, NULL),
-  ('116', '105', '99.95', '', '2', '0', NULL, NULL, NULL, NULL),
-  ('117', '106', '72.05', '', '7', '0', NULL, NULL, NULL, NULL),
-  ('118', '107', '219.28', '', '5', '0', NULL, NULL, NULL, NULL),
-  ('119', '108', '219.99001', '', '2', '0', NULL, NULL, NULL, NULL),
-  ('120', '109', '123.37', '', '9', '0', NULL, NULL, NULL, NULL),
-  ('121', '110', '36.95', '', '5', '0', NULL, NULL, NULL, NULL),
-  ('122', '111', '20.4', '', '7', '0', NULL, NULL, NULL, NULL),
-  ('123', '112', '12.99', '', '6', '0', NULL, NULL, NULL, NULL),
-  ('124', '113', '10.99', '', '9', '0', NULL, NULL, NULL, NULL),
-  ('125', '114', '19.99', '', '3', '0', NULL, NULL, NULL, NULL),
-  ('126', '115', '45', '', '5', '0', NULL, NULL, NULL, NULL),
-  ('127', '116', '60.99', '', '6', '0', NULL, NULL, NULL, NULL),
-  ('128', '117', '47.22', '', '7', '0', NULL, NULL, NULL, NULL),
-  ('129', '118', '56', '', '2', '0', NULL, NULL, NULL, NULL),
-  ('130', '119', '69', '', '5', '0', NULL, NULL, NULL, NULL),
-  ('131', '120', '30.71', '', '6', '0', NULL, NULL, NULL, NULL),
-  ('132', '121', '28.18', '', '4', '0', NULL, NULL, NULL, NULL),
-  ('133', '122', '35', '', '6', '0', NULL, NULL, NULL, NULL),
-  ('134', '123', '42', '', '1', '0', NULL, NULL, NULL, NULL),
-  ('135', '124', '34', '', '2', '0', NULL, NULL, NULL, NULL),
+  ('104', '93', '349.98999', '', '8', '0', NULL, NULL, NULL, '1'),
+  ('105', '94', '99.95', '', '4', '0', NULL, NULL, NULL, '1'),
+  ('106', '95', '799', '', '5', '0', NULL, NULL, NULL, '1'),
+  ('107', '96', '699', '', '6', '0', NULL, NULL, NULL, '1'),
+  ('108', '97', '799', '', '1', '0', NULL, NULL, NULL, '1'),
+  ('109', '98', '549', '', '4', '0', NULL, NULL, NULL, '1'),
+  ('110', '99', '499.98999', '', '8', '0', NULL, NULL, NULL, '1'),
+  ('111', '100', '179.87', '', '2', '0', NULL, NULL, NULL, '1'),
+  ('112', '101', '74.99', '', '9', '0', NULL, NULL, NULL, '1'),
+  ('113', '102', '549.98999', '', '0', '0', NULL, NULL, NULL, '1'),
+  ('114', '103', '86.91', '', '8', '0', NULL, NULL, NULL, '1'),
+  ('115', '104', '799.98999', '', '1', '0', NULL, NULL, NULL, '1'),
+  ('116', '105', '99.95', '', '2', '0', NULL, NULL, NULL, '1'),
+  ('117', '106', '72.05', '', '7', '0', NULL, NULL, NULL, '1'),
+  ('118', '107', '219.28', '', '5', '0', NULL, NULL, NULL, '1'),
+  ('119', '108', '219.99001', '', '2', '0', NULL, NULL, NULL, '1'),
+  ('120', '109', '123.37', '', '9', '0', NULL, NULL, NULL, '1'),
+  ('121', '110', '36.95', '', '5', '0', NULL, NULL, NULL, '1'),
+  ('122', '111', '20.4', '', '7', '0', NULL, NULL, NULL, '1'),
+  ('123', '112', '12.99', '', '6', '0', NULL, NULL, NULL, '1'),
+  ('124', '113', '10.99', '', '9', '0', NULL, NULL, NULL, '1'),
+  ('125', '114', '19.99', '', '3', '0', NULL, NULL, NULL, '1'),
+  ('126', '115', '45', '', '5', '0', NULL, NULL, NULL, '1'),
+  ('127', '116', '60.99', '', '6', '0', NULL, NULL, NULL, '1'),
+  ('128', '117', '47.22', '', '7', '0', NULL, NULL, NULL, '1'),
+  ('129', '118', '56', '', '2', '0', NULL, NULL, NULL, '1'),
+  ('130', '119', '69', '', '5', '0', NULL, NULL, NULL, '1'),
+  ('131', '120', '30.71', '', '6', '0', NULL, NULL, NULL, '1'),
+  ('132', '121', '28.18', '', '4', '0', NULL, NULL, NULL, '1'),
+  ('133', '122', '35', '', '6', '0', NULL, NULL, NULL, '1'),
+  ('134', '123', '42', '', '1', '0', NULL, NULL, NULL, '1'),
+  ('135', '124', '34', '', '2', '0', NULL, NULL, NULL, '1'),
   ('141', '76', '299', 'CLP-33L', '0', '1', '', '', NULL, '1'),
   ('142', '76', '499', 'CLP-34L', '6', '2', '', '', NULL, '1'),
-  ('192', '128', '179.99001', '', '2', '0', NULL, NULL, NULL, NULL);
+  ('192', '128', '179.99001', '', '2', '0', NULL, NULL, NULL, '1');
 
 -- 
 -- Structure for table `shop_product_variants_i18n`
@@ -2225,9 +2245,9 @@ INSERT INTO `shop_product_variants_i18n` (`id`, `locale`, `name`) VALUES
   ('133', 'ru', ''),
   ('134', 'ru', ''),
   ('135', 'ru', ''),
-  ('142', 'en', ''),
-  ('141', 'en', ''),
-  ('87', 'en', ''),
+  ('142', 'en', 'White'),
+  ('141', 'en', 'Green'),
+  ('87', 'en', 'Red'),
   ('105', 'en', ''),
   ('141', 'ru', 'Зеленый'),
   ('142', 'ru', 'Белый'),
@@ -2242,7 +2262,21 @@ INSERT INTO `shop_product_variants_i18n` (`id`, `locale`, `name`) VALUES
   ('89', 'en', ''),
   ('88', 'en', ''),
   ('93', 'en', ''),
-  ('92', 'en', '');
+  ('92', 'en', ''),
+  ('103', 'en', ''),
+  ('99', 'en', ''),
+  ('98', 'en', ''),
+  ('111', 'en', ''),
+  ('106', 'en', ''),
+  ('123', 'en', ''),
+  ('121', 'en', ''),
+  ('118', 'en', ''),
+  ('117', 'en', ''),
+  ('116', 'en', ''),
+  ('192', 'en', ''),
+  ('127', 'en', ''),
+  ('133', 'en', ''),
+  ('132', 'en', '');
 
 -- 
 -- Structure for table `shop_products`
@@ -2284,61 +2318,61 @@ CREATE TABLE IF NOT EXISTS `shop_products` (
 -- 
 
 INSERT INTO `shop_products` (`id`, `url`, `active`, `hit`, `brand_id`, `category_id`, `related_products`, `mainImage`, `smallImage`, `created`, `updated`, `old_price`, `views`, `hot`, `action`, `added_to_cart_count`, `enable_comments`, `external_id`, `mainModImage`, `smallModImage`, `tpl`, `user_id`) VALUES
-  ('71', '71', '1', '1', '28', '37', '74,72,73', '71_main.jpg', '71_small.jpg', '1307542725', '1337881902', '1150', '103', '1', '1', '1', '1', NULL, '71_mainMod.jpg', '71_smallMod.jpg', NULL, NULL),
-  ('72', '72', '1', '1', '27', '37', '', '72_main.jpg', '72_small.jpg', '1307542324', '1343729188', '0', '29', '1', '1', '8', '1', NULL, '72_mainMod.jpg', '72_smallMod.jpg', '', NULL),
-  ('73', '73', '1', '1', '30', '37', '', '73_main.jpg', '73_small.jpg', '1307541561', '1343729178', '0', '78', '1', '1', '8', '1', NULL, '73_mainMod.jpg', '73_smallMod.jpg', '', NULL),
-  ('74', '74', '1', '1', '31', '37', '', '74_main.jpg', '74_small.jpg', '1307543711', '1343729170', '0', '63', '1', '1', '5', '1', NULL, '74_mainMod.jpg', '74_smallMod.jpg', '', NULL),
-  ('75', '75', '1', '1', '31', '37', '73', '75_main.jpg', '75_small.jpg', '1307544631', '1346414539', '0', '184', '1', NULL, '9', '1', NULL, '75_mainMod.jpg', '75_smallMod.jpg', '', NULL),
-  ('76', '76', '1', '1', '0', '37', '84,73', '76_main.jpg', '76_small.jpg', '1307543917', '1346414528', '0', '510', '1', '1', '5', '1', NULL, '76_mainMod.jpg', '76_smallMod.jpg', '', NULL),
-  ('96', '96', '1', '1', '0', '45', '', '96_main.jpg', '96_small.jpg', '1307542081', '1343729314', '0', '2', NULL, NULL, NULL, '1', NULL, '96_mainMod.jpg', '96_smallMod.jpg', '', NULL),
+  ('71', '71', '1', '1', '28', '37', '74,72,73', '71_main.jpg', '71_small.jpg', '1307542725', '1346753086', '1150', '104', '1', '1', '1', '1', NULL, '71_mainMod.jpg', '71_smallMod.jpg', '', NULL),
+  ('72', '72', '1', '1', '27', '37', '', '72_main.jpg', '72_small.jpg', '1307542324', '1346753083', '0', '29', '1', '1', '8', '1', NULL, '72_mainMod.jpg', '72_smallMod.jpg', '', NULL),
+  ('73', '73', '1', '1', '30', '37', '', '73_main.jpg', '73_small.jpg', '1307541561', '1346753091', '0', '82', '1', '1', '8', '1', NULL, '73_mainMod.jpg', '73_smallMod.jpg', '', NULL),
+  ('74', '74', '1', '1', '31', '37', '', '74_main.jpg', '74_small.jpg', '1307543711', '1346753078', '0', '72', '1', '1', '5', '1', NULL, '74_mainMod.jpg', '74_smallMod.jpg', '', NULL),
+  ('75', '75', '1', '1', '31', '37', '73', '75_main.jpg', '75_small.jpg', '1307544631', '1346753074', '0', '202', '1', NULL, '9', '1', NULL, '75_mainMod.jpg', '75_smallMod.jpg', '', NULL),
+  ('76', '76', '1', '1', '0', '37', '84,73', '76_main.jpg', '76_small.jpg', '1307543917', '1346746005', '0', '551', '1', '1', '5', '1', NULL, '76_mainMod.jpg', '76_smallMod.jpg', '', NULL),
+  ('96', '96', '1', '1', '0', '45', '', '96_main.jpg', '96_small.jpg', '1307542081', '1346746867', '0', '2', NULL, NULL, NULL, '1', NULL, '96_mainMod.jpg', '96_smallMod.jpg', '', NULL),
   ('77', '77', '1', NULL, '0', '38', '', '77_main.jpg', '77_small.jpg', '1307542980', '1337931461', '0', '7', NULL, NULL, NULL, '1', NULL, '77_mainMod.jpg', '77_smallMod.jpg', NULL, NULL),
   ('78', '78', '1', NULL, '0', '38', '', '78_main.jpg', '78_small.jpg', '1307543572', '1337883493', '0', '2', NULL, NULL, '2', '1', NULL, '78_mainMod.jpg', '78_smallMod.jpg', NULL, NULL),
-  ('79', '79', '1', NULL, '0', '38', '', '79_main.jpg', '79_small.jpg', '1307544450', '1337883384', '0', '1', '1', NULL, NULL, '1', NULL, '79_mainMod.jpg', '79_smallMod.jpg', NULL, NULL),
-  ('80', '80', '1', '1', '26', '38', '', '80_main.jpg', '80_small.jpg', '1307544569', '1343729205', '0', '24', '1', '1', '8', '1', NULL, '80_mainMod.jpg', '80_smallMod.jpg', '', NULL),
+  ('79', '79', '1', NULL, '0', '38', '', '79_main.jpg', '79_small.jpg', '1307544450', '1337883384', '0', '2', '1', NULL, NULL, '1', NULL, '79_mainMod.jpg', '79_smallMod.jpg', NULL, NULL),
+  ('80', '80', '1', '1', '26', '38', '', '80_main.jpg', '80_small.jpg', '1307544569', '1343729205', '0', '28', '1', '1', '11', '1', NULL, '80_mainMod.jpg', '80_smallMod.jpg', '', NULL),
   ('81', '81', '1', '1', '30', '38', '', '81_main.jpg', '81_small.jpg', '1307544442', '1346682373', '0', '2', '1', '1', NULL, '1', NULL, '81_mainMod.jpg', '81_smallMod.jpg', '', NULL),
   ('82', '82', '1', NULL, '0', '39', '', '82_main.jpg', '82_small.jpg', '1307542064', '1337884172', '0', '5', NULL, NULL, NULL, '1', NULL, '82_mainMod.jpg', '82_smallMod.jpg', NULL, NULL),
   ('83', '83', '1', NULL, '0', '39', '', '83_main.jpg', '83_small.jpg', '1307545378', '1343729236', '0', NULL, NULL, NULL, NULL, '1', NULL, '83_mainMod.jpg', '83_smallMod.jpg', '', NULL),
   ('84', '84', '1', NULL, '0', '39', '', '84_main.jpg', '84_small.jpg', '1307541602', '1343729228', '0', NULL, NULL, NULL, NULL, '1', NULL, '84_mainMod.jpg', '84_smallMod.jpg', '', NULL),
   ('85', '85', '1', NULL, '0', '39', '', '85_main.jpg', '85_small.jpg', '1307544238', '1343729220', '0', '5', NULL, NULL, NULL, '1', NULL, '85_mainMod.jpg', '85_smallMod.jpg', '', NULL),
   ('86', '86', '1', NULL, '0', '39', '', '86_main.jpg', '86_small.jpg', '1307545023', '1343729213', '0', '1', NULL, NULL, NULL, '1', NULL, '86_mainMod.jpg', '86_smallMod.jpg', '', NULL),
-  ('87', '87', '1', NULL, '0', '41', '', '87_main.jpg', '87_small.jpg', '1307541766', '1337884534', '0', '23', NULL, NULL, '2', '1', NULL, '87_mainMod.jpg', '87_smallMod.jpg', NULL, NULL),
-  ('88', '88', '1', NULL, '0', '41', '', '88_main.jpg', '88_small.jpg', '1307544977', '1337884469', '0', '1', NULL, NULL, NULL, '1', NULL, '88_mainMod.jpg', '88_smallMod.jpg', NULL, NULL),
-  ('95', '95', '1', NULL, '0', '45', '', '95_main.jpg', '95_small.jpg', '1307542081', '1337885304', '0', '4', NULL, NULL, NULL, '1', NULL, '95_mainMod.jpg', '95_smallMod.jpg', NULL, NULL),
-  ('89', '89', '1', NULL, '0', '41', '', '89_main.jpg', '89_small.jpg', '1307541636', '1343729264', '0', '1', NULL, NULL, NULL, '1', NULL, '89_mainMod.jpg', '89_smallMod.jpg', '', NULL),
-  ('90', '90', '1', NULL, '0', '41', '', '90_main.jpg', '90_small.jpg', '1307543337', '1343729255', '0', '3', NULL, NULL, NULL, '1', NULL, '90_mainMod.jpg', '90_smallMod.jpg', '', NULL),
-  ('91', '91', '1', NULL, '0', '41', '', '91_main.jpg', '91_small.jpg', '1307544214', '1343729246', '0', NULL, NULL, NULL, NULL, '1', NULL, '91_mainMod.jpg', '91_smallMod.jpg', '', NULL),
+  ('87', '87', '1', NULL, '0', '41', '', '87_main.jpg', '87_small.jpg', '1307541766', '1346746803', '0', '24', NULL, NULL, '2', '1', NULL, '87_mainMod.jpg', '87_smallMod.jpg', '', NULL),
+  ('88', '88', '1', NULL, '0', '41', '', '88_main.jpg', '88_small.jpg', '1307544977', '1346746795', '0', '1', NULL, NULL, NULL, '1', NULL, '88_mainMod.jpg', '88_smallMod.jpg', '', NULL),
+  ('95', '95', '1', NULL, '0', '45', '', '95_main.jpg', '95_small.jpg', '1307542081', '1346746875', '0', '4', NULL, NULL, NULL, '1', NULL, '95_mainMod.jpg', '95_smallMod.jpg', '', NULL),
+  ('89', '89', '1', NULL, '0', '41', '', '89_main.jpg', '89_small.jpg', '1307541636', '1346746786', '0', '1', NULL, NULL, NULL, '1', NULL, '89_mainMod.jpg', '89_smallMod.jpg', '', NULL),
+  ('90', '90', '1', NULL, '0', '41', '', '90_main.jpg', '90_small.jpg', '1307543337', '1346746776', '0', '3', NULL, NULL, NULL, '1', NULL, '90_mainMod.jpg', '90_smallMod.jpg', '', NULL),
+  ('91', '91', '1', NULL, '0', '41', '', '91_main.jpg', '91_small.jpg', '1307544214', '1346746765', '0', NULL, NULL, NULL, NULL, '1', NULL, '91_mainMod.jpg', '91_smallMod.jpg', '', NULL),
   ('92', '92', '1', NULL, '0', '43', '', '92_main.jpg', '92_small.jpg', '1307544791', '1337884861', '0', '1', NULL, NULL, NULL, '1', NULL, '92_mainMod.jpg', '92_smallMod.jpg', NULL, NULL),
-  ('93', '93', '1', NULL, '0', '43', '', '93_main.jpg', '93_small.jpg', '1307542628', '1343729281', '0', '1', NULL, NULL, NULL, '1', NULL, '93_mainMod.jpg', '93_smallMod.jpg', '', NULL),
-  ('94', '94', '1', '1', '0', '43', '', '94_main.jpg', '94_small.jpg', '1307544425', '1343665527', '0', '41', '1', '1', '1', '1', NULL, '94_mainMod.jpg', '94_smallMod.jpg', '', NULL),
-  ('97', '97', '1', NULL, '0', '45', '', '97_main.jpg', '97_small.jpg', '1307541628', '1343729306', '0', '33', NULL, NULL, NULL, '1', NULL, '97_mainMod.jpg', '97_smallMod.jpg', '', NULL),
-  ('98', '98', '1', '1', '0', '45', '', '98_main.jpg', '98_small.jpg', '1307542730', '1343729298', '0', '17', NULL, NULL, NULL, '1', NULL, '98_mainMod.jpg', '98_smallMod.jpg', '', NULL),
-  ('99', '99', '1', NULL, '0', '45', '', '99_main.jpg', '99_small.jpg', '1307543877', '1343729290', '0', '2', NULL, NULL, NULL, '1', NULL, '99_mainMod.jpg', '99_smallMod.jpg', '', NULL),
-  ('100', '100', '1', NULL, '0', '46', '', '100_main.jpg', '100_small.jpg', '1307543018', '1337885677', '0', NULL, NULL, NULL, NULL, '1', NULL, '100_mainMod.jpg', '100_smallMod.jpg', NULL, NULL),
-  ('101', '101', '1', NULL, '0', '46', '', '101_main.jpg', '101_small.jpg', '1307543107', '1343729442', '0', NULL, NULL, NULL, NULL, '1', NULL, '101_mainMod.jpg', '101_smallMod.jpg', '', NULL),
-  ('102', '102', '1', NULL, '0', '46', '', '102_main.jpg', '102_small.jpg', '1307545161', '1343729433', '0', '13', NULL, NULL, NULL, '1', NULL, '102_mainMod.jpg', '102_smallMod.jpg', '', NULL),
-  ('103', '103', '1', NULL, '0', '46', '', '103_main.jpg', '103_small.jpg', '1307543901', '1343729425', '0', NULL, NULL, NULL, NULL, '1', NULL, '103_mainMod.jpg', '103_smallMod.jpg', '', NULL),
-  ('104', '104', '1', NULL, '0', '46', '', '104_main.jpg', '104_small.jpg', '1307543227', '1343729417', '0', NULL, NULL, NULL, NULL, '1', NULL, '104_mainMod.jpg', '104_smallMod.jpg', '', NULL),
-  ('105', '105', '1', NULL, '0', '50', '', '105_main.jpg', '105_small.jpg', '1307543429', '1337886062', '0', '2', NULL, NULL, NULL, '1', NULL, '105_mainMod.jpg', '105_smallMod.jpg', NULL, NULL),
-  ('106', '106', '1', '1', '0', '50', '', '106_main.jpg', '106_small.jpg', '1307543089', '1337885998', '0', '13', NULL, NULL, '1', '1', NULL, '106_mainMod.jpg', '106_smallMod.jpg', NULL, NULL),
-  ('107', '107', '1', NULL, '0', '50', '', '107_main.jpg', '107_small.jpg', '1307541701', '1337885945', '0', NULL, NULL, NULL, NULL, '1', NULL, '107_mainMod.jpg', '107_smallMod.jpg', NULL, NULL),
-  ('108', '108', '1', '1', '0', '50', '', '108_main.jpg', '108_small.jpg', '1307544069', '1343729460', '0', '125', NULL, NULL, '4', '1', NULL, '108_mainMod.jpg', '108_smallMod.jpg', '', NULL),
-  ('109', '109', '1', NULL, '0', '50', '', '109_main.jpg', '109_small.jpg', '1307544627', '1343729452', '0', '1', NULL, NULL, NULL, '1', NULL, '109_mainMod.jpg', '109_smallMod.jpg', '', NULL),
-  ('110', '110', '1', NULL, '0', '51', '', '110_main.jpg', '110_small.jpg', '1307543831', '1337886363', '0', '5', NULL, NULL, '2', '1', NULL, '110_mainMod.jpg', '110_smallMod.jpg', NULL, NULL),
-  ('111', '111', '1', NULL, '0', '51', '', '111_main.jpg', '111_small.jpg', '1307543077', '1343729499', '0', NULL, NULL, NULL, NULL, '1', NULL, '111_mainMod.jpg', '111_smallMod.jpg', '', NULL),
-  ('112', '112', '1', NULL, '0', '51', '', '112_main.jpg', '112_small.jpg', '1307543753', '1337886243', '0', '5', NULL, NULL, '1', '1', NULL, '112_mainMod.jpg', '112_smallMod.jpg', NULL, NULL),
-  ('113', '113', '1', NULL, '0', '51', '', '113_main.jpg', '113_small.jpg', '1307542831', '1343729479', '0', NULL, NULL, NULL, NULL, '1', NULL, '113_mainMod.jpg', '113_smallMod.jpg', '', NULL),
-  ('114', '114', '1', NULL, '0', '51', '', '114_main.jpg', '114_small.jpg', '1307543699', '1343729469', '0', NULL, NULL, NULL, NULL, '1', NULL, '114_mainMod.jpg', '114_smallMod.jpg', '', NULL),
-  ('115', '115', '1', NULL, '0', '53', '', '115_main.jpg', '115_small.jpg', '1307543689', '1343729534', '0', '4', NULL, NULL, NULL, '1', NULL, '115_mainMod.jpg', '115_smallMod.jpg', '', NULL),
-  ('116', '116', '1', NULL, '0', '53', '', '116_main.jpg', '116_small.jpg', '1307542992', '1337886664', '0', NULL, NULL, NULL, NULL, '1', NULL, '116_mainMod.jpg', '116_smallMod.jpg', NULL, NULL),
-  ('117', '117', '1', NULL, '0', '53', '', '117_main.jpg', '117_small.jpg', '1307542495', '1343729526', '0', NULL, NULL, NULL, NULL, '1', NULL, '117_mainMod.jpg', '117_smallMod.jpg', '', NULL),
-  ('118', '118', '1', NULL, '0', '53', '', '118_main.jpg', '118_small.jpg', '1307543269', '1343729518', '0', '1', NULL, NULL, NULL, '1', NULL, '118_mainMod.jpg', '118_smallMod.jpg', '', NULL),
-  ('119', '119', '1', '1', '0', '53', '', '119_main.jpg', '119_small.jpg', '1307543316', '1343729510', '0', '7', NULL, NULL, NULL, '1', NULL, '119_mainMod.jpg', '119_smallMod.jpg', '', NULL),
-  ('120', '120', '1', NULL, '0', '54', '', '120_main.jpg', '120_small.jpg', '1307542029', '1343730812', '0', '4', NULL, NULL, NULL, '1', NULL, '120_mainMod.jpg', '120_smallMod.jpg', '', NULL),
-  ('121', '121', '1', NULL, '0', '54', '', '121_main.jpg', '121_small.jpg', '1307543909', '1337887020', '0', '4', NULL, NULL, NULL, '1', NULL, '121_mainMod.jpg', '121_smallMod.jpg', NULL, NULL),
-  ('122', '122', '1', NULL, '0', '54', '', '122_main.jpg', '122_small.jpg', '1307543511', '1337886968', '0', '1', NULL, NULL, NULL, '1', NULL, '122_mainMod.jpg', '122_smallMod.jpg', NULL, NULL),
-  ('123', '123', '1', NULL, '0', '54', '', '123_main.jpg', '123_small.jpg', '1307543925', '1343729550', '0', NULL, NULL, NULL, NULL, '1', NULL, '123_mainMod.jpg', '123_smallMod.jpg', '', NULL),
-  ('124', '124', '1', NULL, '0', '54', '', '124_main.jpg', '124_small.jpg', '1307542680', '1343729542', '0', NULL, NULL, NULL, NULL, '1', NULL, '124_mainMod.jpg', '124_smallMod.jpg', '', NULL),
-  ('128', '128', '1', NULL, '0', '36', '', '128_main.jpg', '128_small.jpg', '1307543046', '1328721887', '0', '4', NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL);
+  ('93', '93', '1', NULL, '0', '43', '', '93_main.jpg', '93_small.jpg', '1307542628', '1346746828', '0', '1', NULL, NULL, NULL, '1', NULL, '93_mainMod.jpg', '93_smallMod.jpg', '', NULL),
+  ('94', '94', '1', '1', '0', '43', '', '94_main.jpg', '94_small.jpg', '1307544425', '1346746821', '0', '41', '1', '1', '1', '1', NULL, '94_mainMod.jpg', '94_smallMod.jpg', '', NULL),
+  ('97', '97', '1', NULL, '0', '45', '', '97_main.jpg', '97_small.jpg', '1307541628', '1346746860', '0', '33', NULL, NULL, NULL, '1', NULL, '97_mainMod.jpg', '97_smallMod.jpg', '', NULL),
+  ('98', '98', '1', '1', '0', '45', '', '98_main.jpg', '98_small.jpg', '1307542730', '1346746854', '0', '17', NULL, NULL, NULL, '1', NULL, '98_mainMod.jpg', '98_smallMod.jpg', '', NULL),
+  ('99', '99', '1', NULL, '0', '45', '', '99_main.jpg', '99_small.jpg', '1307543877', '1346746848', '0', '2', NULL, NULL, NULL, '1', NULL, '99_mainMod.jpg', '99_smallMod.jpg', '', NULL),
+  ('100', '100', '1', NULL, '0', '46', '', '100_main.jpg', '100_small.jpg', '1307543018', '1346746916', '0', NULL, NULL, NULL, NULL, '1', NULL, '100_mainMod.jpg', '100_smallMod.jpg', '', NULL),
+  ('101', '101', '1', NULL, '0', '46', '', '101_main.jpg', '101_small.jpg', '1307543107', '1346746909', '0', NULL, NULL, NULL, NULL, '1', NULL, '101_mainMod.jpg', '101_smallMod.jpg', '', NULL),
+  ('102', '102', '1', NULL, '0', '46', '', '102_main.jpg', '102_small.jpg', '1307545161', '1346746902', '0', '13', NULL, NULL, NULL, '1', NULL, '102_mainMod.jpg', '102_smallMod.jpg', '', NULL),
+  ('103', '103', '1', NULL, '0', '46', '', '103_main.jpg', '103_small.jpg', '1307543901', '1346746894', '0', NULL, NULL, NULL, NULL, '1', NULL, '103_mainMod.jpg', '103_smallMod.jpg', '', NULL),
+  ('104', '104', '1', NULL, '0', '46', '', '104_main.jpg', '104_small.jpg', '1307543227', '1346746886', '0', NULL, NULL, NULL, NULL, '1', NULL, '104_mainMod.jpg', '104_smallMod.jpg', '', NULL),
+  ('105', '105', '1', NULL, '0', '50', '', '105_main.jpg', '105_small.jpg', '1307543429', '1346746952', '0', '2', NULL, NULL, NULL, '1', NULL, '105_mainMod.jpg', '105_smallMod.jpg', '', NULL),
+  ('106', '106', '1', '1', '0', '50', '', '106_main.jpg', '106_small.jpg', '1307543089', '1346746946', '0', '13', NULL, NULL, '1', '1', NULL, '106_mainMod.jpg', '106_smallMod.jpg', '', NULL),
+  ('107', '107', '1', NULL, '0', '50', '', '107_main.jpg', '107_small.jpg', '1307541701', '1346746940', '0', NULL, NULL, NULL, NULL, '1', NULL, '107_mainMod.jpg', '107_smallMod.jpg', '', NULL),
+  ('108', '108', '1', '1', '0', '50', '', '108_main.jpg', '108_small.jpg', '1307544069', '1346746933', '0', '125', NULL, NULL, '4', '1', NULL, '108_mainMod.jpg', '108_smallMod.jpg', '', NULL),
+  ('109', '109', '1', NULL, '0', '50', '', '109_main.jpg', '109_small.jpg', '1307544627', '1346746926', '0', '1', NULL, NULL, NULL, '1', NULL, '109_mainMod.jpg', '109_smallMod.jpg', '', NULL),
+  ('110', '110', '1', NULL, '0', '51', '', '110_main.jpg', '110_small.jpg', '1307543831', '1346746993', '0', '5', NULL, NULL, '2', '1', NULL, '110_mainMod.jpg', '110_smallMod.jpg', '', NULL),
+  ('111', '111', '1', NULL, '0', '51', '', '111_main.jpg', '111_small.jpg', '1307543077', '1346746987', '0', NULL, NULL, NULL, NULL, '1', NULL, '111_mainMod.jpg', '111_smallMod.jpg', '', NULL),
+  ('112', '112', '1', NULL, '0', '51', '', '112_main.jpg', '112_small.jpg', '1307543753', '1346746977', '0', '5', NULL, NULL, '1', '1', NULL, '112_mainMod.jpg', '112_smallMod.jpg', '', NULL),
+  ('113', '113', '1', NULL, '0', '51', '', '113_main.jpg', '113_small.jpg', '1307542831', '1346746969', '0', NULL, NULL, NULL, NULL, '1', NULL, '113_mainMod.jpg', '113_smallMod.jpg', '', NULL),
+  ('114', '114', '1', NULL, '0', '51', '', '114_main.jpg', '114_small.jpg', '1307543699', '1346746961', '0', NULL, NULL, NULL, NULL, '1', NULL, '114_mainMod.jpg', '114_smallMod.jpg', '', NULL),
+  ('115', '115', '1', NULL, '0', '53', '', '115_main.jpg', '115_small.jpg', '1307543689', '1346747036', '0', '4', NULL, NULL, NULL, '1', NULL, '115_mainMod.jpg', '115_smallMod.jpg', '', NULL),
+  ('116', '116', '1', NULL, '0', '53', '', '116_main.jpg', '116_small.jpg', '1307542992', '1346747030', '0', NULL, NULL, NULL, NULL, '1', NULL, '116_mainMod.jpg', '116_smallMod.jpg', '', NULL),
+  ('117', '117', '1', NULL, '0', '53', '', '117_main.jpg', '117_small.jpg', '1307542495', '1346747023', '0', NULL, NULL, NULL, NULL, '1', NULL, '117_mainMod.jpg', '117_smallMod.jpg', '', NULL),
+  ('118', '118', '1', NULL, '0', '53', '', '118_main.jpg', '118_small.jpg', '1307543269', '1346747017', '0', '1', NULL, NULL, NULL, '1', NULL, '118_mainMod.jpg', '118_smallMod.jpg', '', NULL),
+  ('119', '119', '1', '1', '0', '53', '', '119_main.jpg', '119_small.jpg', '1307543316', '1346747011', '0', '7', NULL, NULL, NULL, '1', NULL, '119_mainMod.jpg', '119_smallMod.jpg', '', NULL),
+  ('120', '120', '1', NULL, '0', '54', '', '120_main.jpg', '120_small.jpg', '1307542029', '1346747081', '0', '4', NULL, NULL, NULL, '1', NULL, '120_mainMod.jpg', '120_smallMod.jpg', '', NULL),
+  ('121', '121', '1', NULL, '0', '54', '', '121_main.jpg', '121_small.jpg', '1307543909', '1346747075', '0', '4', NULL, NULL, NULL, '1', NULL, '121_mainMod.jpg', '121_smallMod.jpg', '', NULL),
+  ('122', '122', '1', NULL, '0', '54', '', '122_main.jpg', '122_small.jpg', '1307543511', '1346747058', '0', '1', NULL, NULL, NULL, '1', NULL, '122_mainMod.jpg', '122_smallMod.jpg', '', NULL),
+  ('123', '123', '1', NULL, '0', '54', '', '123_main.jpg', '123_small.jpg', '1307543925', '1346747052', '0', NULL, NULL, NULL, NULL, '1', NULL, '123_mainMod.jpg', '123_smallMod.jpg', '', NULL),
+  ('124', '124', '1', NULL, '0', '54', '', '124_main.jpg', '124_small.jpg', '1307542680', '1346747044', '0', NULL, NULL, NULL, NULL, '1', NULL, '124_mainMod.jpg', '124_smallMod.jpg', '', NULL),
+  ('128', '128', '1', NULL, '0', '36', '', '128_main.jpg', '128_small.jpg', '1307543046', '1346747321', '0', '9', NULL, NULL, NULL, '1', NULL, '128_mainMod.jpg', '128_smallMod.jpg', '', NULL);
 
 -- 
 -- Structure for table `shop_products_i18n`
@@ -2368,7 +2402,7 @@ INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `
   ('73', 'ru', 'Panasonic Viera TC-L42U22 42\" LCD TV', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
   ('74', 'ru', 'Samsung LN40C650 40\" LCD TV', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br />На все продукты мы предоставляем гарантию качества.<br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', '', ''),
   ('75', 'ru', 'Calypso CLP-32LC1A 32\" LCD 720p LCD', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
-  ('76', 'ru', 'Calypso CLP-32LE110 32\" LED 720p HDTV', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br />На все продукты мы предоставляем гарантию качества.<br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
+  ('76', 'ru', 'Calypso CLP-32LE110 32', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br />На все продукты мы предоставляем гарантию качества.<br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
   ('96', 'ru', 'Canon VIXIA HF R11 Digital', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
   ('77', 'ru', 'Sony EXTERNAL DVDIRECT DVD', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
   ('78', 'ru', 'Panasonic DVD-S58 DVD Player', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
@@ -2417,38 +2451,38 @@ INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `
   ('122', 'ru', 'Panasonic CX-DP880U 8-Disc', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
   ('123', 'ru', 'JVC - XCM200 - 12-Disc CD', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
   ('124', 'ru', 'JVC - CHX1500RF - FM Modulation', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
-  ('115', 'en', 'Pioneer TS-SW3041D Shallow-Mount Subwoofer', '', '', '', '', ''),
-  ('124', 'en', 'JVC - CHX1500RF - FM Modulation', '', '', '', '', ''),
-  ('123', 'en', 'JVC - XCM200 - 12-Disc CD', '', '', '', '', ''),
-  ('120', 'en', 'Pioneer JD-1212S 12-disc CD', '', '', '', '', ''),
-  ('102', 'en', 'Epson Stylus R1900 Photo Printer', '', '', '', '', ''),
-  ('101', 'en', 'Canon PIXMA iP4820 Premium', '', '', '', '', ''),
-  ('109', 'en', 'Panasonic KX-TG6445 Cordless Phone', '', '', '', '', ''),
-  ('108', 'en', 'Plantronics CS55 Wireless Earset', '', '', '', '', ''),
-  ('114', 'en', 'Samsung AWEP450PBECSTA Bluetooth Headset Black', '', '', '', '', ''),
-  ('113', 'en', 'LG HBM-210 Bluetooth Headset', '', '', '', '', ''),
-  ('111', 'en', 'Plantronics Discovery 665 Wireless', '', '', '', '', ''),
-  ('119', 'en', 'Pioneer TSSW2541D Subwoofer', '', '', '', '', ''),
-  ('118', 'en', 'Pioneer TS-W251R Subwoofer', '', '', '', '', ''),
-  ('117', 'en', 'Pyle PLSQ10D Red Label Square', '', '', '', '', ''),
+  ('115', 'en', 'Pioneer TS-SW3041D Shallow-Mount Subwoofer', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('124', 'en', 'JVC - CHX1500RF - FM Modulation', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('123', 'en', 'JVC - XCM200 - 12-Disc CD', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('120', 'en', 'Pioneer JD-1212S 12-disc CD', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('102', 'en', 'Epson Stylus R1900 Photo Printer', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('101', 'en', 'Canon PIXMA iP4820 Premium', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('109', 'en', 'Panasonic KX-TG6445 Cordless Phone', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('108', 'en', 'Plantronics CS55 Wireless Earset', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('114', 'en', 'Samsung AWEP450PBECSTA Bluetooth Headset Black', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('113', 'en', 'LG HBM-210 Bluetooth Headset', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('111', 'en', 'Plantronics Discovery 665 Wireless', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('119', 'en', 'Pioneer TSSW2541D Subwoofer', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('118', 'en', 'Pioneer TS-W251R Subwoofer', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('117', 'en', 'Pyle PLSQ10D Red Label Square', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
   ('83', 'en', 'Sony BDP-S470 Network', '', '', '', '', ''),
-  ('91', 'en', 'Sony BDV-E770W Home Theater1', '', '', '', '', ''),
-  ('90', 'en', 'Samsung HT-C7530W 5.1 Channel', '', '', '', '', ''),
-  ('89', 'en', 'Panasonic SCPTX7 Home Theater', '', '', '', '', ''),
-  ('93', 'en', 'Yamaha HS80M Powered Speaker', '', '', '', '', ''),
-  ('99', 'en', 'Samsung NX100 Interchangeable Lens', '', '', '', '', ''),
-  ('98', 'en', 'Samsung NX10 14 Megapixel Digital', '', '', '', '', ''),
-  ('97', 'en', 'Sony Handycam HDR-CX3', '', '', '', '', ''),
-  ('96', 'en', 'Canon VIXIA HF R11 Digital', '', '', '', '', ''),
-  ('104', 'en', 'Epson Stylus Photo R2880 Color', '', '', '', '', ''),
-  ('103', 'en', 'Epson Stylus C88+ Inkjet Printer', '', '', '', '', ''),
+  ('91', 'en', 'Sony BDV-E770W Home Theater1', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('90', 'en', 'Samsung HT-C7530W 5.1 Channel', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('89', 'en', 'Panasonic SCPTX7 Home Theater', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('93', 'en', 'Yamaha HS80M Powered Speaker', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('99', 'en', 'Samsung NX100 Interchangeable Lens', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('98', 'en', 'Samsung NX10 14 Megapixel Digital', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('97', 'en', 'Sony Handycam HDR-CX3', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('96', 'en', 'Canon VIXIA HF R11 Digital', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('104', 'en', 'Epson Stylus Photo R2880 Color', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('103', 'en', 'Epson Stylus C88+ Inkjet Printer', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
   ('128', 'ru', 'TOMTOM XL 350 Automobile', '', '', '', '', ''),
-  ('94', 'en', 'Yamaha NSIW760 Speaker', '', '', '', '', ''),
-  ('76', 'en', 'Calypso CLP-32LE110 32\" LED 720p HDTV', '', '', '', '', ''),
-  ('75', 'en', 'Calypso CLP-32LC1A 32\" LCD 720p LCD', '', '', '', '', ''),
-  ('74', 'en', 'Samsung LN40C650 40\" LCD TV', '', '', '', '', ''),
-  ('73', 'en', 'Panasonic Viera TC-L42U22 42\" LCD TV', '', '', '', '', ''),
-  ('72', 'en', 'LG 47LD450 - 47\" Widescreen 1080p LCD HDTV', '', '', '', '', ''),
+  ('94', 'en', 'Yamaha NSIW760 Speaker', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('76', 'en', 'Calypso CLP-32LE110 32', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('75', 'en', 'Calypso CLP-32LC1A 32\" LCD 720p LCD', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('74', 'en', 'Samsung LN40C650 40\" LCD TV', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('73', 'en', 'Panasonic Viera TC-L42U22 42\" LCD TV', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('72', 'en', 'LG 47LD450 - 47\" Widescreen 1080p LCD HDTV', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
   ('81', 'en', 'Samsung DVD-H1080 - 1080p', '', '', '', '', ''),
   ('80', 'en', 'LG DN898 DVD Player', '', '', '', '', ''),
   ('86', 'en', 'Samsung BD-C6900 1080p 3D Blu-ray', '', '', '', '', ''),
@@ -2461,7 +2495,21 @@ INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `
   ('79', 'en', 'Panasonic DVD-S38 DVD', '', '', '', '', ''),
   ('78', 'en', 'Panasonic DVD-S58 DVD Player', '', '', '', '', ''),
   ('77', 'en', 'Sony EXTERNAL DVDIRECT DVD', '', '', '', '', ''),
-  ('82', 'en', 'Samsung BD-C5500 Blu-ray', '', '', '', '', '');
+  ('82', 'en', 'Samsung BD-C5500 Blu-ray', '', '', '', '', ''),
+  ('92', 'en', 'Samsung HW-C700 7.2 Channel', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('88', 'en', 'Samsung HW-C770BS 7.1 Channel', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('87', 'en', 'Sony HT-SS370 Home Theater', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('100', 'en', 'Canon PIXMA iP100 Photo Printer', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('95', 'en', 'Canon EOS Rebel T2i 18 Megapixel Digital', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('112', 'en', 'Motorola H270 Bluetooth Headset', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('110', 'en', 'Motorola H720 Earset - Mono', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('107', 'en', 'Plantronics CS70N Wireless Earset', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('106', 'en', 'Panasonic KX-TG7433B Expandable', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('105', 'en', 'Panasonic KX-TG6582T Cordless Phone', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('128', 'en', 'TOMTOM XL 350 Automobile', '', '', '', '', ''),
+  ('116', 'en', 'Pyle PLT-AB8 Subwoofer - PLTAB8', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('122', 'en', 'Panasonic CX-DP880U 8-Disc', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
+  ('121', 'en', 'Pioneer JD-612V 6-disc CD Magazine', '', '<p><span id=\"result_box\" lang=\"en\"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', '');
 
 -- 
 -- Structure for table `shop_products_rating`
@@ -2491,7 +2539,8 @@ INSERT INTO `shop_products_rating` (`product_id`, `votes`, `rating`) VALUES
   ('72', '1', '5'),
   ('74', '2', '8'),
   ('75', '2', '9'),
-  ('94', '1', '4');
+  ('94', '1', '4'),
+  ('87', '1', '5');
 
 -- 
 -- Structure for table `shop_rbac_group`
@@ -3154,7 +3203,7 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
   ('smallAddImageWidth', '90', ''),
   ('smallAddImageHeight', '90', ''),
   ('forgotPasswordMessageText', 'Здравствуйте!\n\nНа сайте %webSiteName% создан запрос на восстановление пароля для Вашего аккаунта.\n\nДля завершения процедуры восстановления пароля перейдите по ссылке %resetPasswordUri% \n\nВаш новый пароль для входа: %password%\n\nЕсли это письмо попало к Вам по ошибке просто проигнорируйте его.\n\n\nПри возникновении любых вопросов, обращайтесь по телефонам:  \n(012)  345-67-89 , (012)  345-67-89 \n---\n\nС уважением, \nсотрудники службы продаж %webSiteName%', ''),
-  ('watermark_wm_hor_alignment', 'Лево', ''),
+  ('watermark_wm_hor_alignment', 'Слева', ''),
   ('watermark_wm_vrt_alignment', 'bottom', ''),
   ('watermark_watermark_type', 'text', ''),
   ('watermark_watermark_image', '', ''),
@@ -3217,7 +3266,7 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
   ('userInfoSenderName', '', 'en'),
   ('userInfoMessageTheme', '', 'en'),
   ('1CSettingsOS', 'N;', ''),
-  ('MemcachedSettings', 'a:6:{s:11:\"MEMCACHE_ON\";b:0;s:12:\"CACHE_DRIVER\";s:9:\"memcached\";s:17:\"MEMCACHE_HOSTNAME\";s:9:\"localhost\";s:13:\"MEMCACHE_PORT\";s:5:\"11211\";s:18:\"MEMCACHE_NAMESPACE\";s:13:\"imagecms_shop\";s:13:\"CACHE_EXPIRES\";s:4:\"3600\";}', ''),
+  ('MemcachedSettings', 'a:5:{s:11:\"MEMCACHE_ON\";b:0;s:17:\"MEMCACHE_HOSTNAME\";s:9:\"localhost\";s:13:\"MEMCACHE_PORT\";s:5:\"11211\";s:18:\"MEMCACHE_NAMESPACE\";s:13:\"imagecms_shop\";s:13:\"CACHE_EXPIRES\";s:4:\"3600\";}', ''),
   ('adminMessageMonkey', '', ''),
   ('adminMessageMonkeylist', '', '');
 
@@ -3270,7 +3319,7 @@ CREATE TABLE IF NOT EXISTS `shop_user_profile` (
 -- 
 
 INSERT INTO `shop_user_profile` (`id`, `user_id`, `name`, `phone`, `address`, `cart_data`, `user_email`, `date_created`, `key`, `wish_list_data`, `role_id`, `user_external_id`) VALUES
-  ('6', '1', 'admin', NULL, NULL, NULL, NULL, NULL, '', 'a:5:{i:1;a:2:{i:0;i:75;i:1;i:86;}i:2;a:2:{i:0;i:76;i:1;i:87;}i:3;a:2:{i:0;i:96;i:1;i:107;}i:4;a:2:{i:0;i:77;i:1;i:88;}i:5;a:2:{i:0;i:78;i:1;i:89;}}', '10', NULL);
+  ('6', '1', 'admin', NULL, NULL, NULL, NULL, NULL, '', 'a:0:{}', '10', NULL);
 
 -- 
 -- Structure for table `shop_warehouse`
@@ -3422,7 +3471,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- 
 
 INSERT INTO `users` (`id`, `role_id`, `username`, `password`, `email`, `banned`, `ban_reason`, `newpass`, `newpass_key`, `newpass_time`, `last_ip`, `last_login`, `created`, `modified`) VALUES
-  ('1', '2', 'admin', '$1$tAfsqkpo$xP9ByZNdprtoB24BeGWly0', 'admin@localhost.loc', '0', NULL, NULL, NULL, NULL, '127.0.0.1', '2012-09-03 18:22:54', '2008-11-30 04:56:32', '2012-09-03 17:22:54');
+  ('1', '2', 'admin', '$1$tAfsqkpo$xP9ByZNdprtoB24BeGWly0', 'admin@localhost.loc', '0', NULL, NULL, NULL, NULL, '127.0.0.1', '2012-09-04 14:01:59', '2008-11-30 04:56:32', '2012-09-04 13:01:59');
 
 -- 
 -- Structure for table `widgets`

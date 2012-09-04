@@ -62,7 +62,7 @@
 
                                                             {if $product->firstvariant->getstock()== 0}
                                                                 <div class="buttons button_greys">
-                                                                           <a id="goNotifMe" href="{$BASE_URL}shop/product/{echo $product->getId()}" data-prodid="{echo $product->getId()}" data-varid="{echo $product->firstVariant->getId()}">{lang('s_soob')}</a>
+                                                                           <a id="goNotifMe" href="{$BASE_URL}shop/product/{echo $product->getId()}" data-prodid="{echo $product->getId()}" data-varid="{echo $product->firstVariant->getId()}">{lang('s_RN')}</a>
                                                                
                                                           
                                                         {else:}

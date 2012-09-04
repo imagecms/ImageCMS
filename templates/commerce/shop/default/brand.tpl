@@ -91,7 +91,7 @@
             <div class="nowelty_auction">
                 <!--   New products block     -->
                 <div class="box_title">
-                    <span>Новинки</span>
+                    <span>{lang('s_new')}</span>
                 </div>
                 <ul>
                     {foreach getPromoBlock('hot', 3) as $hotProduct}

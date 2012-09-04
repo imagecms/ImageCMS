@@ -1,0 +1,1 @@
+<ul class="footer_menu f_l">{$wrapper}</ul>

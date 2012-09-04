@@ -2,7 +2,7 @@
 
 <hook id="core_init">
 <![CDATA[
-
+  
 ]]>
 </hook>
 <hook id="render_google_analytics">

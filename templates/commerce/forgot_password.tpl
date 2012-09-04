@@ -1,3 +1,4 @@
+<div class="fancy enter_form"> 
 <div id="titleExt">{widget('path')}<span class="ext">{lang('lang_forgot_password')}</span></div>
 
 {if validation_errors() OR $info_message}
@@ -32,3 +33,4 @@
 	<div class="clear"></div>
 	{form_csrf()}
 </form>
+</div>
