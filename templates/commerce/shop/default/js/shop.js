@@ -17,9 +17,11 @@ $(document).ready(function(){
         cyclic: true
     });
     */
-        var fancyOptions = {
+    var fancyOptions = {
         helpers	: {
-            title: { type: 'inside' }    
+            title: {
+                type: 'inside'
+            }    
         },
         beforeLoad: function() {
             var el, id = $(this.element).data('title-id');
@@ -32,18 +34,19 @@ $(document).ready(function(){
                 }
             }
         }
-        };
+    };
         
-        if ($('.fancybox-thumb').last().hasClass('withThumbs'))
-            fancyOptions.helpers.thumbs = {
-                    width	: 50,
-                    height	: 50};
-        if ($('.fancybox-thumb').last().hasClass('withButtons'))    
-            fancyOptions.helpers.buttons = {};
+    if ($('.fancybox-thumb').last().hasClass('withThumbs'))
+        fancyOptions.helpers.thumbs = {
+            width	: 50,
+            height	: 50
+        };
+    if ($('.fancybox-thumb').last().hasClass('withButtons'))    
+        fancyOptions.helpers.buttons = {};
             
-        //console.log(fancyOptions);
+    //console.log(fancyOptions);
    
-        $('.fancybox-thumb').fancybox(fancyOptions);
+    $('.fancybox-thumb').fancybox(fancyOptions);
    
     
     $('span.clickrate').on('click', function(){
@@ -346,7 +349,7 @@ $(document).ready(function(){
     });
 
 
-      $('.showCallbackBottom').on('click', function(){
+    $('.showCallbackBottom').on('click', function(){
         
         $.fancybox.showActivity();
         $.ajax({
@@ -605,7 +608,7 @@ $(document).ready(function(){
         })
     }
     
-           function bindCallbackForm1(){
+    function bindCallbackForm1(){
         $('.order_call form').bind('submit',function(){
             $this = $(this);
             $.ajax({
@@ -743,10 +746,72 @@ $(document).ready(function(){
             data: "uid="+uid+"&pid="+pid+"&pp="+pp,
             url: "/shop/product_spy/spy",
             success: function(){
-                $this.html('Вы уже следите за этим товаром').removeClass('js').removeClass('gray');
+                $this.html('Отписатся от слежения').removeClass('js').removeClass('gray').removeClass('addtoSpy').addClass('deleteFromSpy');
                 $this.unbind('click');
+                bindeletefromspy();
                 $.fancybox.hideActivity(); 
             }
         });
     });
+    function bindeletefromspy()
+    {
+        $('.deleteFromSpy').on('click',function(){
+            $this = $(this);
+            var pid = $(this).attr('data-prodid');
+            var uid = $(this).attr('data-user_id');
+            $.ajax({
+                type: 'post',
+                url: '/shop/product_spy/deletefromspy',
+                data: "uid="+uid+"&pid="+pid,
+                success: function(){
+                    $this.html('Добавить в слежение').addClass('js').addClass('gray').removeClass('deleteFromSpy').addClass('addtoSpy');
+                    $this.unbind('click');
+                    bindaddtoSpy();
+                    $.fancybox.hideActivity();
+                }
+            });
+            return false;
+        });
+    }
+    $('.deleteFromSpy').on('click',function(){
+        $this = $(this);
+        var pid = $(this).attr('data-prodid');
+        var uid = $(this).attr('data-user_id');
+        $.ajax({
+            type: 'post',
+            url: '/shop/product_spy/deletefromspy',
+            data: "uid="+uid+"&pid="+pid,
+            success: function(){
+                $this.html('Добавить в слежение').addClass('js').addClass('gray').removeClass('deleteFromSpy').addClass('addtoSpy');
+//                $this.parents("tr").remove();
+//                console.log($this.parent().find('tr').length)
+//                if ($this.parent().find('tr').length == 0) $this.parents('table').remove();                
+                $this.unbind('click');
+                bindaddtoSpy();
+                $.fancybox.hideActivity();
+            }
+        });
+        return false;
+    });
+    function bindaddtoSpy()
+    {
+        $('.addtoSpy').bind('click', function(){
+            $.fancybox.showActivity();
+            var vid = $(this).attr('data-varid');
+            var pid = $(this).attr('data-prodid');
+            var uid = $(this).attr('data-user_id');
+            var pp = $(this).attr('data-price');
+            var $this = $(this);
+            $.ajax({
+                type: "post",
+                data: "uid="+uid+"&pid="+pid+"&pp="+pp,
+                url: "/shop/product_spy/spy",
+                success: function(){
+                    $this.html('Отписатся от слежения').removeClass('js').removeClass('gray').removeClass('addtoSpy').addClass('deleteFromSpy');
+                    bindeletefromspy();
+                    $.fancybox.hideActivity(); 
+                }
+            });
+        });
+    }
 });
