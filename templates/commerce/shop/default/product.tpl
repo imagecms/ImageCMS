@@ -189,7 +189,13 @@
             {if !is_in_spy(ShopCore::$ci->dx_auth->get_user_id(), $model->getId())}
                 <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" data-price="{echo $model->firstVariant->toCurrency()}" data-user_id="{echo ShopCore::$ci->dx_auth->get_user_id()}" data-varid="{echo $model->firstVariant->getId()}" data-prodid="{echo $model->getId()}" href="#" class="js gray addtoSpy">{lang('s_sle_product')}</a>
             {else:}
-                <a href="#">{lang('s_sle_product_alerady')}</a>
+                <a data-user_id="{echo ShopCore::$ci->dx_auth->get_user_id()}" 
+                   data-varid="{echo $model->firstVariant->getId()}" 
+                   data-prodid="{echo $model->getId()}" 
+                   href="#" 
+                   class="deleteFromSpy">
+                    {lang('s_sle_product_alerady')}
+                </a>
             {/if}
         </span>
     {/if}

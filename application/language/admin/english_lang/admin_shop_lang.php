@@ -151,7 +151,8 @@
     $lang['a_there']            =	'exists';
     $lang['a_product']          =	'Goods';
     $lang['a_products']         =	'Product';
-    $lang['a_orders']           =	'Delivery';
+    //$lang['a_orders']           =	'Delivery';
+    $lang['a_orders']           =	'Orders';
     $lang['a_order']           =	'Orders';
     $lang['a_request_notification']=	'Request a notification';
     $lang['a_product_no_icon']  =	'Products without icons';
