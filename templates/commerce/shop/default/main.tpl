@@ -40,7 +40,6 @@
         {$renderGA}
     </head>
     <body>
-
         <div class="main_body">
             <div class="top">
                 <div class="center">

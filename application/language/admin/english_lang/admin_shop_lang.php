@@ -525,6 +525,7 @@ $lang['a_set_order_status'] =	'Set another status for these orders';
     $lang['a_mobile_version'] = 'Mobile version';
     $lang['a_mobile_version_settings'] = 'Mobile version settings';
     $lang['a_mobile_version_on'] = 'Turned on';
+    $lang['a_mobile_version_site'] = 'Site address';
     $lang['a_mobile_version_address'] = 'Subdomain address';
     $lang['a_mobile_version_template'] = 'Mobile version site template';
 ?>
