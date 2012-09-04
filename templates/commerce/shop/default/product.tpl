@@ -70,23 +70,13 @@
                     <a id="buy76" class="goBuy" href="#" data-varid="87" data-prodid="76">{lang('s_buy')}</a>
                 </div>
             </div>
-
-            {literal}
-                <script>
-
-                </script>
-            {/literal}
-
-
-            <!-- -->
-
             <div class="func_description">
                 <div class="crumbs">
                     {renderCategoryPath($model->getMainCategory())}
                 </div>
                 <h1>{echo ShopCore::encode($model->getName())}</h1>
                 <div class="f-s_0">
-                    <span class="code">Код: {echo $model->firstvariant->getNumber()}</span>
+                    <span class="code">{lang('s_kod')}: {echo $model->firstvariant->getNumber()}</span>
                     {$rating = $model->getRating()}
                 {if $rating == 0}{$r = "nostar"}    {/if}
             {if $rating == 1}{$r = "onestar"}   {/if}
