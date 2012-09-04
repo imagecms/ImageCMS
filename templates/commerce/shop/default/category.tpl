@@ -9,7 +9,6 @@
 #}
 
 {$forCompareProducts = $CI->session->userdata('shopForCompare')}
-
 <div class="content">
     <div class="center">
         {include_tpl('filter')}

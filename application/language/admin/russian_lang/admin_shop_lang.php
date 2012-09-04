@@ -551,6 +551,7 @@
     $lang['a_mobile_version'] = 'Мобильная версия';
     $lang['a_mobile_version_settings'] = 'Настройки мобильной версии сайта';
     $lang['a_mobile_version_on'] = 'Включено';
+    $lang['a_mobile_version_site'] = 'Адрес сайта';
     $lang['a_mobile_version_address'] = 'Адрес поддомена';
     $lang['a_mobile_version_template'] = 'Шаблон';
 ?>
