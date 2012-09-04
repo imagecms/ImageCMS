@@ -25,25 +25,9 @@ class Template extends Mabilis {
         //$this->compile_dir = BASEPATH.'cache/templates_c/';
         //$this->template_dir = TEMPLATES_PATH.$this->CI->config->item('template').'/';
         $this->modules_template_dir = TEMPLATES_PATH . 'modules/';
-
-        if (isset($_SESSION['freferer'])) {
-            $facebook = ShopCore::app()->SSettings->__get('facebook_int');
-            $facebook = unserialize($facebook);
-            if ($facebook['use'] == 1) {
-                $tpl = $facebook['template'];
-            }
-        } else {
-            $tpl = $this->CI->config->item('template');
-        }
-        if(isset($_SESSION['vreferer'])){
-            $vk = ShopCore::app()->SSettings->__get('vk_int');
-            $vk = unserialize($vk);
-            if ($vk['use'] == 1) {
-                $tpl = $vk['template'];
-            }
-        }else{
-            $tpl = $this->CI->config->item('template');
-        }
+        
+        $tpl = $this->CI->config->item('template');
+            
         $config = array(
             //'tpl_path'        => TEMPLATES_PATH.$this->CI->config->item('template').'/',
             'tpl_path' => TEMPLATES_PATH . $tpl . '/',
