@@ -9,7 +9,7 @@
     <span class="comment_ajax_refer b-r_4 visible">
         <a href="#" class="t-d_n"><span class="js">{lang('s_leave_comment')}</span><span class="blue_arrow"></span></a>
         {if $is_logged_in}
-            {lang('lang_logged_in_as')} {$username}
+            {lang('s_lang_logged')} {$username}
         {else:}
 <!--            <span>Для того, чтобы оставить комментарий, Вы должны <a href="{site_url('auth/login')}" class="js red">авторизироваться</a> на сайте</span>-->
         {/if}

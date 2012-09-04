@@ -80,7 +80,7 @@ class Settings extends MY_Controller {
 
         if ($handle = opendir(TEMPLATES_PATH)) {
             while (false !== ($file = readdir($handle))) {
-                if ($file != "." && $file != ".." && $file != 'administrator' && $file != 'modules') {
+                if ($file != "." && $file != ".." && $file != 'administrator' && $file != 'modules' && !stristr($file, '_mobile')) {
                     if (!is_file(TEMPLATES_PATH . $file)) {
                         $new_arr[$file] = $file;
                     }

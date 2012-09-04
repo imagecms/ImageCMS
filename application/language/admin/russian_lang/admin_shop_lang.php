@@ -547,4 +547,10 @@
     $lang['a_memcached_port'] = 'Порт Memcached сервера';
     $lang['a_memcached_namespace'] = 'Пространство имен Memcached';
     $lang['a_memcached_expires'] = 'Время жизни кеша, мс';
+    
+    $lang['a_mobile_version'] = 'Мобильная версия';
+    $lang['a_mobile_version_settings'] = 'Настройки мобильной версии сайта';
+    $lang['a_mobile_version_on'] = 'Включено';
+    $lang['a_mobile_version_address'] = 'Адрес поддомена';
+    $lang['a_mobile_version_template'] = 'Шаблон';
 ?>
