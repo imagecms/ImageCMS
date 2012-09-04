@@ -145,13 +145,22 @@
                         <tr>
                             <th>{lang('s_to_falitem_number')}</th>
                             <th>{lang('s_to_falo_product_name')}</th>
+<!--                            <th></th>-->
                         </tr>
                     </thead>
                     <tbody>
                         {foreach $goodsinspy as $good}
                             <tr>
                                 <td>{echo $good->getId()}</td>
-                                <td>{echo $good->getName() }</td>
+                                <td><a href="{$BASE_URL}shop/product/{echo $good->getId()}">{echo $good->getName() }</td>
+<!--                                <td>
+                                    <a  data-user_id="{echo ShopCore::$ci->dx_auth->get_user_id()}" 
+                                        data-prodid="{echo $good->getId()}" 
+                                        href="#" 
+                                        class="deleteFromSpy">
+                                            {lang('s_sle_product_alerady')}
+                                    </a>
+                                </td>-->
                             </tr>
                         {/foreach}
                     </tbody>
