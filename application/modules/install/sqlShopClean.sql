@@ -1,12 +1,10 @@
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
-
 
 -- --------------------------------------------------------
 
@@ -66,7 +64,16 @@ CREATE TABLE IF NOT EXISTS `category_translate` (
   `lang` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`,`lang`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `category_translate`
+--
+
+INSERT INTO `category_translate` (`id`, `alias`, `name`, `title`, `short_desc`, `image`, `keywords`, `description`, `lang`) VALUES
+(6, 1, 'Home', '', '', '', '', '', 30),
+(7, 1, 'Главная', '', '', '', '', '', 3),
+(8, 56, 'News and Events', '', '', '', '', '', 30);
 
 -- --------------------------------------------------------
 
@@ -76,32 +83,35 @@ CREATE TABLE IF NOT EXISTS `category_translate` (
 
 CREATE TABLE IF NOT EXISTS `comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `module` varchar(25) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `user_name` varchar(50) DEFAULT NULL,
-  `user_mail` varchar(50) DEFAULT NULL,
-  `user_site` varchar(250) DEFAULT NULL,
-  `item_id` bigint(11) DEFAULT NULL,
-  `text` varchar(500) DEFAULT NULL,
-  `date` int(11) DEFAULT NULL,
-  `status` smallint(1) DEFAULT NULL,
-  `agent` varchar(250) DEFAULT NULL,
-  `user_ip` varchar(64) DEFAULT NULL,
-  `rate` int(11) DEFAULT NULL,
+  `module` varchar(25) NOT NULL DEFAULT 'core',
+  `user_id` int(11) NOT NULL,
+  `user_name` varchar(50) NOT NULL,
+  `user_mail` varchar(50) NOT NULL,
+  `user_site` varchar(250) NOT NULL,
+  `item_id` bigint(11) NOT NULL,
+  `text` varchar(500) NOT NULL,
+  `date` int(11) NOT NULL,
+  `status` smallint(1) NOT NULL,
+  `agent` varchar(250) NOT NULL,
+  `user_ip` varchar(64) NOT NULL,
+  `rate` int(11) NOT NULL,
   `text_plus` varchar(500) DEFAULT NULL,
   `text_minus` varchar(500) DEFAULT NULL,
-  `like` int(11) DEFAULT '0',
-  `disslike` int(11) DEFAULT '0',
+  `like` int(11) NOT NULL,
+  `disslike` int(11) NOT NULL,
   `parent` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+  PRIMARY KEY (`id`),
+  KEY `module` (`module`),
+  KEY `item_id` (`item_id`),
+  KEY `date` (`date`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=64 ;
 
 --
 -- Dumping data for table `comments`
 --
 
 INSERT INTO `comments` (`id`, `module`, `user_id`, `user_name`, `user_mail`, `user_site`, `item_id`, `text`, `date`, `status`, `agent`, `user_ip`, `rate`, `text_plus`, `text_minus`, `like`, `disslike`, `parent`) VALUES
-(4, 'shop', 1, 'admin', 'admin@localhost.loc', '', 75, 'Отличный выбор', 1344593562, 0, 'Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:14.0) Gecko/20100101 Firefox/14.0.1', '127.0.0.1', 5, '', '', 0, 0, 0);
+(25, 'shop', 1, 'admin', 'admin@localhost.loc', '', 108, 'Отличный выбор!', 1328007661, 0, 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.7 (KHTML, like Gecko) Chrome/16.0.912.77 Safari/535.7', '127.0.0.2', 0, NULL, NULL, 0, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -122,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `components` (
   KEY `identif` (`identif`),
   KEY `enabled` (`enabled`),
   KEY `autoload` (`autoload`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=125 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=126 ;
 
 --
 -- Dumping data for table `components`
@@ -131,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `components` (
 INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_menu`, `settings`) VALUES
 (1, 'user_manager', 'user_manager', 0, 0, 0, NULL),
 (2, 'auth', 'auth', 1, 0, 0, NULL),
-(124, 'comments', 'comments', 1, 0, 1, NULL),
+(4, 'comments', 'comments', 1, 1, 1, 'a:5:{s:18:"max_comment_length";i:550;s:6:"period";i:0;s:11:"can_comment";i:0;s:11:"use_captcha";b:0;s:14:"use_moderation";b:0;}'),
 (7, 'navigation', 'navigation', 0, 0, 1, NULL),
 (30, 'tags', 'tags', 1, 1, 1, NULL),
 (92, 'gallery', 'gallery', 1, 0, 1, 'a:26:{s:13:"max_file_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:2:"95";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:0;s:14:"prev_img_width";s:3:"500";s:15:"prev_img_height";s:3:"500";s:11:"thumb_width";s:3:"100";s:12:"thumb_height";s:3:"100";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:19:"watermark_font_path";s:20:"./system/fonts/1.ttf";s:15:"watermark_image";s:0:"";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";}'),
@@ -145,7 +155,8 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (86, 'group_mailer', 'group_mailer', 0, 0, 1, NULL),
 (95, 'filter', 'filter', 1, 0, 0, NULL),
 (96, 'cfcm', 'cfcm', 0, 0, 0, NULL),
-(121, 'shop', 'shop', 1, 0, 0, NULL);
+(121, 'shop', 'shop', 1, 0, 0, NULL),
+(123, 'share', 'share', 0, 0, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -186,7 +197,7 @@ CREATE TABLE IF NOT EXISTS `content` (
   KEY `category` (`category`),
   KEY `created` (`created`),
   KEY `updated` (`updated`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=75 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=83 ;
 
 --
 -- Dumping data for table `content`
@@ -194,13 +205,21 @@ CREATE TABLE IF NOT EXISTS `content` (
 
 INSERT INTO `content` (`id`, `title`, `meta_title`, `url`, `cat_url`, `keywords`, `description`, `prev_text`, `full_text`, `category`, `full_tpl`, `main_tpl`, `position`, `comments_status`, `comments_count`, `post_status`, `author`, `publish_date`, `created`, `updated`, `showed`, `lang`, `lang_alias`) VALUES
 (35, 'О сайте', '', 'o-sajte', '', 'это, базовый, шаблон, imagecms, котором, релизованы, следующие, функции, вывод, фотогалереи, статической, статьи, блога', 'Это базовый шаблон ImageCMS, на котором релизованы следующие функции: вывод фотогалереи, вывод статической статьи, вывод блога.', '<p>Это базовый шаблон ImageCMS, на котором релизованы следующие функции: отображение фотогалереи, отображение статической статьи, отображение корпоративного блога, отображение формы обратной связи.</p>\n<p>Общий вид шаблона можно отредактировать и изменить лого, графическую вставку на свои тематические.</p>\n<p>Слева в сайдбаре Вы видите список категорий блога, который легко вставляется с помощью функции {sub_category_list()} в файле main.tpl. Также в левом сайдбаре находится форма поиска по сайту, виджет последних комментариев и виджет тегов сайта. В этот сайдбар можно также добавить виджет последних либо популярных новостей, а также любые счетчики, информеры.</p>\n<p>Верхнее меню реализовано с помощью модуля Меню. Управлять его содержимым можно из административной части в разделе Меню - Главное меню. Сюда как правило можно еще добавить страницы: о компании, контакты, услуги и т.п.</p>\n<p>За дополнительной информацией обращайтесь в официальный раздел документации: <a href="http://www.imagecms.net/wiki">http://www.imagecms.net/wiki</a></p>\n<p>Обсудить дополнительные возможности, а также вопросы по установке, настройке системы можно на официальном форуме: <a href="http://forum.imagecms.net/index.php">http://forum.imagecms.net/</a></p>', '', 0, 'page_static', '', 0, 1, 0, 'publish', 'admin', 1267203253, 1267203328, 1290100400, 8, 3, 0),
-(64, 'О магазине', '', 'about', '', 'магазине', 'О магазине', '<p>Магазин ImageCMS Shop предоставляет огромный выбор техники на любой вкус по лучшим ценам.</p>\n<p>Наш магазин существует более 5 лет и за это время не было ни единого возврата товара.</p>\n<p>Мы обслуживаем ежедневно сотни покупателей и делаем это с радостью.</p>\n<p><strong>Покупайте технику у нас и становитесь обладателем лучшей в мире техники!!!</strong></p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295776, 1291295792, 1291743386, 285, 3, 0),
+(64, 'О магазине', '', 'about', '', 'магазине', 'О магазине', '<p>Магазин ImageCMS Shop предоставляет огромный выбор техники на любой вкус по лучшим ценам.</p>\n<p>Наш магазин существует более 5 лет и за это время не было ни единого возврата товара.</p>\n<p>Мы обслуживаем ежедневно сотни покупателей и делаем это с радостью.</p>\n<p><strong>Покупайте технику у нас и становитесь обладателем лучшей в мире техники!!!</strong></p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295776, 1291295792, 1291743386, 287, 3, 0),
 (65, 'Оплата', '', 'oplata', '', 'оплата', 'Оплата', '<p>Наш магазин поддерживает все доступные на данный момент методы оплаты.</p>\n<p>Также действует возможность оплаты курьеру при доставке для всех крупных городов Украины и России. (возможность оплаты курьеру в Вашем городе уточняйте по телефону <strong>0 800 820 22 22</strong>).</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295824, 1291295836, 1291743521, 167, 3, 0),
-(66, 'Доставка', '', 'dostavka', '', 'доставка', 'Доставка', '<p>Мы поддерживаем доставку службой Автомир по всему миру.</p>\n<p>Также возможна доставка курьером для всех больших городов Украины и России (возможность доставки курьером в Вашем городе уточняйте по телефону <strong>0 800 820 22 22</strong>).</p>\n<p>При желании Вы можете сами забрать купленный товар в наших офисах.</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295844, 1291295851, 1291743683, 123, 3, 0),
-(67, 'Помощь', '', 'help', '', 'помощь', 'Помощь', '<p>Для того, чтобы приобрести товар в нашем магазине, Вам нужно выполнить несколько простых шагов:</p>\n<ul>\n<li>Выбрать нужный товар, воспользовавшить навигацией слева, либо поиском.</li>\n<li>Добавить товар в корзину.</li>\n<li>Перейти в корзину, выбрать способ доставки и указать Ваши контактные данные.</li>\n<li>Подтвердить заказ и выбрать способ оплаты.</li>\n</ul>\n<p>После этого наши менеджеры свяжуться с Вами и помогут с оплатой и доставкой товара, а также проконсультируют по любому вопросу.</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295855, 1291295867, 1291743919, 73, 3, 0),
-(68, 'Контакты', '', 'contact_us', '', 'контакты', 'Контакты', '<p><strong>Горячий телефон</strong>: 0 800 80 80 800</p>\n<p><strong>Главный офис в Москве</strong></p>\n<p>ул. Гагарина 1/2</p>\n<p>тел. 095 095 00 00</p>\n<p>&nbsp;</p>\n<p><strong>Главный офис в Киеве</strong></p>\n<p>ул. Гагарина 1/2</p>\n<p>тел. 098 098 00 00</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295870, 1291295888, 1291744068, 67, 3, 0),
-(74, 'Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!', '', 'aktsiia-k-fotoapparatu-nikon-s9100-karta-pamiati-8gb-v-podarok-1', 'novosti_i_aktsii/', 'windows, отримує, подарунок, сумку, ноутбука, кожен, покупець, акційних, ноутбуків, передвстановленою', 'ОС Windows отримує в подарунок сумку для ноутбука! Кожен покупець акційних ноутбуків з передвстановленою ОС Windows отримує в подарунок сумку для ноутбука!', '<p>ОС Windows отримує в подарунок сумку для ноутбука! Кожен покупець акційних ноутбуків з передвстановленою ОС Windows отримує в подарунок сумку для ноутбука!</p>', '', 56, '', '', 0, 1, 0, 'publish', 'admin', 1336737588, 1336737588, 0, 2, 3, 0),
-(73, 'Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!', '', 'aktsiia-k-fotoapparatu-nikon-s9100-karta-pamiati-8gb-v-podarok', 'novosti_i_aktsii/', 'windows, отримує, подарунок, сумку, ноутбука, кожен, покупець, акційних, ноутбуків, передвстановленою', 'ОС Windows отримує в подарунок сумку для ноутбука! Кожен  покупець акційних ноутбуків з передвстановленою ОС Windows отримує в  подарунок сумку для ноутбука!', '<p>ОС Windows отримує в подарунок сумку для ноутбука! Кожен  покупець акційних ноутбуків з передвстановленою ОС Windows отримує в  подарунок сумку для ноутбука!</p>', '', 56, '', '', 0, 1, 0, 'publish', 'admin', 1336477654, 1336477654, 1336737669, 0, 3, 0);
+(66, 'Доставка', '', 'dostavka', '', 'доставка', 'Доставка', '<p>Мы поддерживаем доставку службой Автомир по всему миру.</p>\n<p>Также возможна доставка курьером для всех больших городов Украины и России (возможность доставки курьером в Вашем городе уточняйте по телефону <strong>0 800 820 22 22</strong>).</p>\n<p>При желании Вы можете сами забрать купленный товар в наших офисах.</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295844, 1291295851, 1291743683, 125, 3, 0),
+(67, 'Помощь', '', 'help', '', 'помощь', 'Помощь', '<p>Для того, чтобы приобрести товар в нашем магазине, Вам нужно выполнить несколько простых шагов:</p>\n<ul>\n<li>Выбрать нужный товар, воспользовавшить навигацией слева, либо поиском.</li>\n<li>Добавить товар в корзину.</li>\n<li>Перейти в корзину, выбрать способ доставки и указать Ваши контактные данные.</li>\n<li>Подтвердить заказ и выбрать способ оплаты.</li>\n</ul>\n<p>После этого наши менеджеры свяжуться с Вами и помогут с оплатой и доставкой товара, а также проконсультируют по любому вопросу.</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295855, 1291295867, 1291743919, 75, 3, 0),
+(68, 'Контакты', '', 'contact_us', '', 'контакты', 'Контакты', '<p><strong>Горячий телефон</strong>: 0 800 80 80 800</p>\n<p><strong>Главный офис в Москве</strong></p>\n<p>ул. Гагарина 1/2</p>\n<p>тел. 095 095 00 00</p>\n<p>&nbsp;</p>\n<p><strong>Главный офис в Киеве</strong></p>\n<p>ул. Гагарина 1/2</p>\n<p>тел. 098 098 00 00</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295870, 1291295888, 1291744068, 73, 3, 0),
+(74, 'Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!', '', 'aktsiia-k-fotoapparatu-nikon-s9100-karta-pamiati-8gb-v-podarok-1', 'novosti_i_aktsii/', 'windows, отримує, подарунок, сумку, ноутбука, кожен, покупець, акційних, ноутбуків, передвстановленою', 'ОС Windows отримує в подарунок сумку для ноутбука! Кожен покупець акційних ноутбуків з передвстановленою ОС Windows отримує в подарунок сумку для ноутбука!', '<p>ОС Windows получает в подарок сумку для ноутбука! Каждый покупатель акционных ноутбуков с предустановленной ОС Windows получает в подарок сумку для ноутбука!</p>', '', 56, '', '', 0, 1, 0, 'publish', 'admin', 1336737588, 1336737588, 1346689293, 3, 3, 0),
+(73, 'Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!', '', 'aktsiia-k-fotoapparatu-nikon-s9100-karta-pamiati-8gb-v-podarok', 'novosti_i_aktsii/', 'windows, отримує, подарунок, сумку, ноутбука, кожен, покупець, акційних, ноутбуків, передвстановленою', 'ОС Windows отримує в подарунок сумку для ноутбука! Кожен  покупець акційних ноутбуків з передвстановленою ОС Windows отримує в  подарунок сумку для ноутбука!', '<p><span id="result_box" lang="ru"><span>&nbsp;ОС Windows,</span> <span>получает в подарок</span> <span>сумку</span> <span>для ноутбука</span><span>!</span> <span>Каждая покупка</span> <span>рекламных</span> <span>ноутбуков</span> <span>с предустановленной</span> <span>Windows,</span> <span>получает в подарок</span> <span>сумку</span> <span>для ноутбука</span><span>!</span></span></p>', '', 56, '', '', 0, 1, 0, 'publish', 'admin', 1336477654, 1336477654, 1346689653, 0, 3, 0),
+(75, 'Contact', '', 'contact_us', '', 'ssss', 'ssss', '<p><span id="result_box" lang="en"><span>Hot Phone</span><span>:</span> <span>0800</span> <span>80</span> <span>80 800</span><br /><br /> <span>Head office in</span> <span>Moscow</span><br /><br /> <span>street</span><span>.</span> <span>Gagarin</span> <span>half</span><br /><br /> <span>tel.</span> <span>095</span> <span>095</span> <span>00</span> <span>00</span><br /><br /> <span>The main office</span> <span>in Kiev</span><br /><br /> <span>street</span><span>.</span> <span>Gagarin</span> <span>half</span><br /><br /> <span>tel.</span> <span>098</span> <span>098</span> <span>00</span> <span>00</span></span></p>', '', 0, '', '', 0, 1, 4, 'publish', 'admin', 1291295870, 1291295888, 1343664873, 35, 30, 68),
+(76, 'Delivery', '', 'dostavka', '', 'support, the, delivery, service, autoworld, around, world, also, possible, all, major, cities, ukraine, and, russia, possibility, courier, your, area, please, call, desired, you, can, pick, purchased, goods, themselves, our, offices', 'We support the delivery of service Autoworld around the world. It is also possible delivery to all major cities of Ukraine and Russia (the possibility of delivery by courier in your area please call 0800820 22 22.) If desired, you can pick up the purchase', '<p><span id="result_box" lang="en"><span>We support the</span> <span>delivery of</span> <span>service</span> <span>Autoworld</span> <span>around the world.</span><br /><br /> <span>It is also possible</span> <span>delivery</span> <span>to all</span> <span>major cities</span> <span>of Ukraine and Russia</span> <span>(the possibility of</span> <span>delivery</span> <span>by courier</span> <span>in your area</span> <span>please call</span> <span>0800820</span> <span>22 22</span><span>.)</span><br /><br /> <span>If desired,</span> <span>you can</span> <span>pick up the</span> <span>purchased goods</span> <span>themselves</span> <span>in our offices.</span></span></p>', '', 0, '', '', 0, 1, 4, 'publish', 'admin', 1291295844, 1291295851, 1343664842, 8, 30, 66),
+(77, 'Help', '', 'help', '', 'order, purchase, goods, our, store, you, must, follow, few, simple, steps, choose, the, right, product, vospolzovavshit, navigation, left, search, add, products, cart, shopping, select, shipping, method, and, provide, your, contact', 'In order to purchase goods in our store, you must follow a few simple steps: Choose the right product, vospolzovavshit navigation on the left, or search. Add products to cart. Go to the shopping cart, select shipping method and provide your contact inform', '<p><span id="result_box" lang="en"><span>In order to</span> <span>purchase goods</span> <span>in our store,</span> <span>you must follow</span> <span>a few simple steps</span><span>:</span><br /><br />&nbsp;&nbsp;&nbsp;&nbsp; <span>Choose</span> <span>the right product,</span> <span>vospolzovavshit</span> <span>navigation</span> <span>on the left</span><span>, or</span> <span>search.</span><br />&nbsp;&nbsp;&nbsp;&nbsp; <span>Add products</span> <span>to cart</span><span>.</span><br />&nbsp;&nbsp;&nbsp;&nbsp; <span>Go to the</span> <span>shopping cart,</span> <span>select</span> <span>shipping method</span> <span>and provide</span> <span>your contact information.</span><br />&nbsp;&nbsp;&nbsp;&nbsp; <span>Proceed to checkout</span> <span>and select the</span> <span>payment method.</span><br /><br /> <span>After that,</span> <span>our managers</span> <span>will contact</span> <span>you and</span> <span>help you</span> <span>with payment</span> <span>and delivery</span> <span>of the goods</span><span>, as well</span> <span>as give advice on</span> <span>any subject.</span></span></p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295855, 1291295867, 1343664897, 11, 30, 67),
+(78, 'Payment', '', 'oplata', '', 'our, store, supports, all, currently, available, methods, payment, also, there, possibility, pay, the, courier, for, delivery, major, cities, ukraine, and, russia, ability, your, area, please, call', 'Our store supports all currently available methods of payment. Also there is a possibility to pay the courier for delivery to all major cities of Ukraine and Russia. (ability to pay for the courier in your area please call 0800820 22 22.)', '<p><span id="result_box" lang="en"><span>Our store</span> <span>supports all</span> <span>currently available</span> <span>methods of payment.</span><br /><br /> <span>Also there is</span> <span>a possibility to pay</span> <span>the courier</span> <span>for delivery</span> <span>to all</span> <span>major cities</span> <span>of Ukraine</span> <span>and Russia.</span> <span>(ability to</span> <span>pay for</span> <span>the courier</span> <span>in your area</span> <span>please call</span> <span>0800820</span> <span>22 22</span><span>.)</span></span></p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295824, 1291295836, 1343664949, 1, 30, 65),
+(79, 'About us', '', 'about', '', 'shop, imagecms, offers, huge, selection, vehicles, suit, every, taste, the, best, prices, our, store, has, more, than, years, and, during, that, time, was, not, single, return, goods, serve, hundreds, customers', 'Shop ImageCMS Shop offers a huge selection of vehicles to suit every taste at the best prices. Our store has more than 5 years and during that time was not a single return of the goods. We serve hundreds of customers every day and do it with joy. Buy equi', '<p><span id="result_box" lang="en"><span>Shop</span> <span>ImageCMS Shop</span> <span>offers</span> <span>a huge selection</span> <span>of vehicles</span> <span>to suit every taste</span> <span>at the best prices</span><span>.</span><br /><br /> <span>Our store</span> <span>has more than</span> <span>5 years</span> <span>and during that time</span> <span>was not a single</span> <span>return of the goods</span><span>.</span><br /><br /> <span>We serve</span> <span>hundreds of</span> <span>customers</span> <span>every day</span> <span>and do</span> <span>it with joy.</span><br /><br /> <span>Buy</span> <span>equipment from</span> <span>us and</span> <span>become the owner of</span> <span>the world''s best</span> <span>technology</span><span>!</span></span></p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295776, 1291295792, 1343745649, 5, 30, 64),
+(80, 'Site', '', 'o-sajte', '', 'new', 'new', '<p><span id="result_box" lang="en"><span>This is</span> <span>the basic template</span> <span>ImageCMS,</span> <span>which</span> <span>relizovany</span> <span>the following functions</span><span>: display</span> <span>gallery</span><span>, displaying</span> <span>static</span> <span>articles</span><span>, displaying</span> <span>a corporate blog</span><span>, displaying</span> <span>the feedback form.</span><br /><br /> <span>General view of the</span> <span>template, you can</span> <span>edit and</span> <span>change the</span> <span>logo,</span> <span>a graphic</span> <span>box on</span> <span>your</span> <span>case</span><span>.</span><br /><br /> <span>On the left</span> <span>you can see</span> <span>in the sidebar</span> <span>list of</span> <span>categories of</span> <span>the blog,</span> <span>which is easily</span> <span>inserted</span> <span>by using the</span> <span>{sub_category_list ()}</span> <span>in the file</span> <span>main.tpl.</span> <span>Also</span> <span>in the left</span> <span>sidebar</span> <span>is</span> <span>a search form</span> <span>on the site,</span> <span>recent comments</span> <span>widget</span> <span>and the widget</span> <span>tag</span> <span>site.</span> <span>In</span> <span>this</span> <span>sidebar</span> <span>you can also</span> <span>add a widget</span><span>, or</span> <span>the latest</span> <span>popular</span> <span>news,</span> <span>as well as any</span> <span>counters,</span> <span>widgets</span><span>.</span><br /><br /> <span>The top menu</span> <span>is implemented</span> <span>by the module</span> <span>menu</span><span>.</span> <span>And manage</span> <span>its content</span> <span>can be</span> <span>part</span> <span>of the</span> <span>administration</span> <span>in Menu</span> <span>-</span> <span>Main Menu.</span> <span>It</span> <span>is usually</span> <span>possible to add</span> <span>page</span> <span>about the company</span><span>, contacts,</span> <span>services, etc.</span><br /><br /> <span>For more</span> <span>information, contact the</span> <span>official</span> <span>section of the documentation</span><span>: http://www.imagecms.net/wiki</span><br /><br /> <span>Discuss</span> <span>additional opportunities</span><span>, as well as</span> <span>questions about</span> <span>installation, configuration,</span> <span>the system can be</span> <span>on the official forum</span><span>: http://forum.imagecms.net/</span></span></p>', '', 0, 'page_static', '', 0, 1, 0, 'publish', 'admin', 1267203253, 1267203328, 1343722704, 0, 30, 35),
+(81, 'Action! Go to the camera Nikon S9100 - Memory Card 8 GB as a gift', '', 'aktsiia-k-fotoapparatu-nikon-s9100-karta-pamiati-8gb-v-podarok', 'novosti_i_aktsii/', 'windows, otrimuє, podarunok, laptop, bag, kozeny, pokupets, aktsіynih, noutbukіv, peredvstanovlenoyu, the', 'Windows OS otrimuє in podarunok laptop bag! Kozeny pokupets aktsіynih noutbukіv s peredvstanovlenoyu of Windows otrimuє podarunok in the laptop bag!', '<p><span id="result_box" lang="en"><span>Windows,</span> <span>receives a gift</span> <span>bag</span> <span>for a</span> <span>laptop!</span> <span>Each purchase</span> <span>advertising</span> <span>laptops</span> <span>preloaded with</span> <span>Windows,</span> <span>receives a gift</span> <span>bag for</span> <span>a laptop</span><span>!</span></span></p>', '', 56, '', '', 0, 1, 0, 'publish', 'admin', 1336477654, 1336477654, 1346689406, 4, 30, 73),
+(82, 'Action! To the camera Nikon S9100 - 8GB memory card for free!', '', 'aktsiia-k-fotoapparatu-nikon-s9100-karta-pamiati-8gb-v-podarok-1', 'novosti_i_aktsii/', 'windows, operating, system, receives, gift, bag, for, laptop, each, purchaser, promotional, notebooks, with', 'Windows operating system receives a gift bag for a laptop! Each purchaser of promotional notebooks with Windows receives a gift bag for a laptop!', '<p><span id="result_box" lang="en"><span>Windows</span> <span>operating system</span> <span>receives a gift</span> <span>bag for</span> <span>a laptop</span><span>!</span> <span>Each purchaser</span> <span>of promotional</span> <span>notebooks</span> <span>with Windows</span> <span>receives a gift</span> <span>bag for</span> <span>a laptop</span><span>!</span></span></p>', '', 56, '', '', 0, 1, 0, 'publish', 'admin', 1336737588, 1336737588, 1346689276, 0, 30, 74);
 
 -- --------------------------------------------------------
 
@@ -246,7 +265,7 @@ CREATE TABLE IF NOT EXISTS `content_fields_data` (
   KEY `item_id` (`item_id`),
   KEY `item_type` (`item_type`),
   KEY `field_name` (`field_name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `content_fields_data`
@@ -258,7 +277,11 @@ INSERT INTO `content_fields_data` (`id`, `item_id`, `item_type`, `field_name`, `
 (5, 72, 'page', 'field_field1', ''),
 (6, 72, 'page', 'field_pole2', '0'),
 (7, 73, 'page', 'field_field1', ''),
-(8, 73, 'page', 'field_pole2', '0');
+(8, 73, 'page', 'field_pole2', '0'),
+(11, 81, 'page', 'field_field1', ''),
+(12, 81, 'page', 'field_pole2', '0'),
+(13, 82, 'page', 'field_field1', ''),
+(14, 82, 'page', 'field_pole2', '0');
 
 -- --------------------------------------------------------
 
@@ -293,14 +316,15 @@ CREATE TABLE IF NOT EXISTS `content_permissions` (
   `data` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `page_id` (`page_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
 
 --
 -- Dumping data for table `content_permissions`
 --
 
 INSERT INTO `content_permissions` (`id`, `page_id`, `data`) VALUES
-(21, 35, 'a:3:{i:0;a:1:{s:7:"role_id";s:1:"0";}i:1;a:1:{s:7:"role_id";s:1:"1";}i:2;a:1:{s:7:"role_id";s:1:"2";}}');
+(21, 35, 'a:3:{i:0;a:1:{s:7:"role_id";s:1:"0";}i:1;a:1:{s:7:"role_id";s:1:"1";}i:2;a:1:{s:7:"role_id";s:1:"2";}}'),
+(23, 80, 'a:3:{i:0;a:1:{s:7:"role_id";s:1:"0";}i:1;a:1:{s:7:"role_id";s:1:"1";}i:2;a:1:{s:7:"role_id";s:1:"2";}}');
 
 -- --------------------------------------------------------
 
@@ -338,7 +362,7 @@ CREATE TABLE IF NOT EXISTS `custom_fields` (
   `entity` varchar(32) DEFAULT NULL,
   `options` varchar(65) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -465,7 +489,7 @@ CREATE TABLE IF NOT EXISTS `languages` (
 
 INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `template`, `default`) VALUES
 (3, 'Русский', 'ru', '', 'russian', 'commerce', 1),
-(30, 'Украинский', 'ua', '', 'english', 'commerce', 0);
+(30, 'English', 'en', '', 'english', 'commerce', 0);
 
 -- --------------------------------------------------------
 
@@ -480,7 +504,7 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
   PRIMARY KEY (`id`),
   KEY `ip_address` (`ip_address`),
   KEY `time` (`time`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=57 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=64 ;
 
 -- --------------------------------------------------------
 
@@ -496,7 +520,7 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `date` (`date`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=103 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=174 ;
 
 --
 -- Dumping data for table `logs`
@@ -537,12 +561,12 @@ INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
 (32, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1336658719),
 (33, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1336662094),
 (34, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1336732290),
-(35, 1, 'admin', '\n			Создал страницу\n			<a href="#" onclick="ajax_div(''page'',''http://imagecms.shop/admin/pages/edit/73''); return false;">Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!</a>', 1336736882),
-(36, 1, 'admin', '\n				Изменил страницу\n				<a href="#" onclick="ajax_div(''page'',''http://imagecms.shop/admin/pages/edit/73''); return false;">Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!</a>', 1336737315),
+(35, 1, 'admin', '\n      Создал страницу\n     <a href="#" onclick="ajax_div(''page'',''http://imagecms.shop/admin/pages/edit/73''); return false;">Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!</a>', 1336736882),
+(36, 1, 'admin', '\n        Изменил страницу\n        <a href="#" onclick="ajax_div(''page'',''http://imagecms.shop/admin/pages/edit/73''); return false;">Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!</a>', 1336737315),
 (37, 1, 'admin', 'Изменил язык Русский', 1336737433),
 (38, 1, 'admin', 'Удалил страницу ID 69', 1336737581),
-(39, 1, 'admin', '\n			Создал страницу\n			<a href="#" onclick="ajax_div(''page'',''http://imagecms.shop/admin/pages/edit/74''); return false;">Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!</a>', 1336737610),
-(40, 1, 'admin', '\n				Изменил страницу\n				<a href="#" onclick="ajax_div(''page'',''http://imagecms.shop/admin/pages/edit/73''); return false;">Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!</a>', 1336737669),
+(39, 1, 'admin', '\n      Создал страницу\n     <a href="#" onclick="ajax_div(''page'',''http://imagecms.shop/admin/pages/edit/74''); return false;">Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!</a>', 1336737610),
+(40, 1, 'admin', '\n        Изменил страницу\n        <a href="#" onclick="ajax_div(''page'',''http://imagecms.shop/admin/pages/edit/73''); return false;">Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!</a>', 1336737669),
 (41, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1336986072),
 (42, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1336987777),
 (43, 1, 'admin', 'Изменил настройки сайта', 1337011518),
@@ -581,30 +605,101 @@ INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
 (76, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1341221521),
 (77, 1, 'admin', 'Очистил кеш', 1341225009),
 (78, 1, 'admin', 'Очистил кеш', 1341238429),
-(79, 1, 'admin', 'Удалил модуль comments', 1344517676),
-(80, 1, 'admin', 'Установил модуль comments', 1344517684),
-(81, 1, 'admin', 'Удалил модуль comments', 1344517770),
-(82, 1, 'admin', 'Установил модуль comments', 1344517877),
-(83, 1, 'admin', 'Изменил настройки модуля comments', 1344517916),
-(84, 1, 'admin', 'Очистил кеш', 1344517962),
-(85, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1344524231),
-(86, 1, 'admin', 'Очистил кеш', 1344524407),
-(87, 1, 'admin', 'Изменил настройки сайта', 1344524555),
-(88, 1, 'admin', 'Изменил настройки сайта', 1344524594),
-(89, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1344585406),
-(90, 1, 'admin', 'Изменил настройки сайта', 1344585959),
-(91, 1, 'admin', 'Changed wesite settings', 1344586559),
-(92, 1, 'admin', 'Changed wesite settings', 1344586565),
-(93, 1, 'admin', 'Changed wesite settings', 1344586569),
-(94, 1, 'admin', 'Изменил настройки сайта', 1344586701),
-(95, 1, 'admin', 'Changed wesite settings', 1344587945),
-(96, 1, 'admin', 'Изменил настройки сайта', 1344588191),
-(97, 1, 'admin', 'Changed wesite settings', 1344588197),
-(98, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1344592635),
-(99, 1, 'admin', 'Вышел из панели управления', 1344592991),
-(100, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1344593290),
-(101, 1, 'admin', 'Изменил настройки модуля comments', 1344593517),
-(102, 1, 'admin', 'Изменил настройки модуля comments', 1344593524);
+(79, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1342006563),
+(80, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1343634959),
+(81, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1343638277),
+(82, 1, 'admin', 'Изменил язык English', 1343660593),
+(83, 1, 'admin', 'Изменил настройки сайта', 1343662835),
+(84, 1, 'admin', 'Изменил настройки сайта', 1343662840),
+(85, 1, 'admin', '\n                    Создал перевод категории \n                    <a href="#" onclick="edit_category(1); return false;">Главная</a>', 1343663189),
+(86, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(1); return false;">Главная</a>', 1343663190),
+(87, 1, 'admin', '\n                    Создал перевод категории \n                    <a href="#" onclick="edit_category(1); return false;">Главная</a>', 1343663206),
+(88, 1, 'admin', '\n                    Изменил перевод категории \n                    <a href="#" onclick="edit_category(1); return false;">Главная</a>', 1343663210),
+(89, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(1); return false;">Главная</a>', 1343663212),
+(90, 1, 'admin', '\n				Изменил страницу\n				<a href="#" onclick="ajax_div(''page'',''http://www.imagecmsshop.loc/admin/pages/edit/75''); return false;">Contact</a>', 1343663245),
+(91, 1, 'admin', '\n				Изменил страницу\n				<a href="#" onclick="ajax_div(''page'',''http://www.imagecmsshop.loc/admin/pages/edit/76''); return false;">Delivery</a>', 1343664818),
+(92, 1, 'admin', '\n				Изменил страницу\n				<a href="#" onclick="ajax_div(''page'',''http://www.imagecmsshop.loc/admin/pages/edit/76''); return false;">Delivery</a>', 1343664842),
+(93, 1, 'admin', '\n				Изменил страницу\n				<a href="#" onclick="ajax_div(''page'',''http://www.imagecmsshop.loc/admin/pages/edit/75''); return false;">Contact</a>', 1343664873),
+(94, 1, 'admin', '\n				Изменил страницу\n				<a href="#" onclick="ajax_div(''page'',''http://www.imagecmsshop.loc/admin/pages/edit/77''); return false;">Help</a>', 1343664897),
+(95, 1, 'admin', '\n				Изменил страницу\n				<a href="#" onclick="ajax_div(''page'',''http://www.imagecmsshop.loc/admin/pages/edit/78''); return false;">Payment</a>', 1343664949),
+(96, 1, 'admin', 'Назначил язык English по умолчанию', 1343666453),
+(97, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1343722531),
+(98, 1, 'admin', '\n				Изменил страницу\n				<a href="#" onclick="ajax_div(''page'',''http://www.imagecmsshop.loc/admin/pages/edit/80''); return false;">Site</a>', 1343722690),
+(99, 1, 'admin', '\n				Изменил страницу\n				<a href="#" onclick="ajax_div(''page'',''http://www.imagecmsshop.loc/admin/pages/edit/80''); return false;">Site</a>', 1343722704),
+(100, 1, 'admin', 'Назначил язык Русский по умолчанию', 1343722791),
+(101, 1, 'admin', 'Назначил язык English по умолчанию', 1343722888),
+(102, 1, 'admin', 'Назначил язык Русский по умолчанию', 1343729093),
+(103, 1, 'admin', 'Назначил язык English по умолчанию', 1343731979),
+(104, 1, 'admin', 'Назначил язык Русский по умолчанию', 1343732620),
+(105, 1, 'admin', 'Назначил язык English по умолчанию', 1343732630),
+(106, 1, 'admin', '\n				Изменил страницу\n				<a href="#" onclick="ajax_div(''page'',''http://www.imagecmsshop.loc/admin/pages/edit/81''); return false;">Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок</a>', 1343742434),
+(107, 1, 'admin', '\n				Изменил страницу\n				<a href="#" onclick="ajax_div(''page'',''http://www.imagecmsshop.loc/admin/pages/edit/81''); return false;">Action! Go to the camera Nikon S9100 - Memory Card 8 GB as a gift</a>', 1343743284),
+(108, 1, 'admin', '\n				Изменил страницу\n				<a href="#" onclick="ajax_div(''page'',''http://www.imagecmsshop.loc/admin/pages/edit/73''); return false;">Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!</a>', 1343743335),
+(109, 1, 'admin', 'Назначил язык Русский по умолчанию', 1343743942),
+(110, 1, 'admin', 'Назначил язык English по умолчанию', 1343744091),
+(111, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1343745310),
+(112, 1, 'admin', '\n                    Создал перевод категории \n                    <a href="#" onclick="edit_category(56); return false;">Новости и акции</a>', 1343745337),
+(113, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(56); return false;">Новости и акции</a>', 1343745338),
+(114, 1, 'admin', '\n				Изменил страницу\n				<a href="#" onclick="ajax_div(''page'',''http://www.imagecmsshop.loc/admin/pages/edit/79''); return false;">О магазине</a>', 1343745634),
+(115, 1, 'admin', '\n				Изменил страницу\n				<a href="#" onclick="ajax_div(''page'',''http://www.imagecmsshop.loc/admin/pages/edit/79''); return false;">About us</a>', 1343745649),
+(116, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1343746228),
+(117, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1343817774),
+(118, 1, 'admin', 'Очистил кеш', 1343817792),
+(119, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1343821049),
+(120, 1, 'admin', 'Очистил кеш', 1343823630),
+(121, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1343824889),
+(122, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1344417771),
+(123, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1344421833),
+(124, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1344934178),
+(125, 91, 'admin', 'Вышел из панели управления', 1345645124),
+(126, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1345645129),
+(127, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346317936),
+(128, 1, 'admin', 'Назначил язык Русский по умолчанию', 1346317945),
+(129, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346324068),
+(130, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346324574),
+(131, 1, 'admin', 'Назначил язык English по умолчанию', 1346324584),
+(132, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346324961),
+(133, 1, 'admin', 'Назначил язык Русский по умолчанию', 1346324967),
+(134, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346325655),
+(135, 1, 'admin', 'Назначил язык English по умолчанию', 1346325661),
+(136, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346327229),
+(137, 1, 'admin', 'Вышел из панели управления', 1346327242),
+(138, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346327269),
+(139, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346328114),
+(140, 1, 'admin', 'Назначил язык Русский по умолчанию', 1346328122),
+(141, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346329962),
+(142, 1, 'admin', 'Назначил язык English по умолчанию', 1346329969),
+(143, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346330003),
+(144, 1, 'admin', 'Установил модуль share', 1346335886),
+(145, 1, 'admin', 'Установил модуль mailer', 1346336110),
+(146, 1, 'admin', 'Удалил модуль mailer', 1346337410),
+(147, 1, 'admin', 'Назначил язык Русский по умолчанию', 1346412457),
+(148, 1, 'admin', 'Назначил язык English по умолчанию', 1346412500),
+(149, 1, 'admin', 'Назначил язык Русский по умолчанию', 1346412518),
+(150, 1, 'admin', 'Назначил язык English по умолчанию', 1346413745),
+(151, 1, 'admin', 'Назначил язык Русский по умолчанию', 1346414503),
+(152, 1, 'admin', 'Назначил язык English по умолчанию', 1346419627),
+(153, 1, 'admin', 'Назначил язык Русский по умолчанию', 1346419656),
+(154, 1, 'admin', 'Назначил язык English по умолчанию', 1346420326),
+(155, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346426990),
+(156, 1, 'admin', 'Установил модуль user_support', 1346427036),
+(157, 1, 'admin', 'Удалил модуль user_support', 1346427057),
+(158, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346682174),
+(159, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346685108),
+(160, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346686365),
+(161, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346686825),
+(162, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346689135),
+(163, 1, 'admin', 'Изменил страницу<a href="#" onclick="ajax_div(''page'',''http://pushlang.loc/admin/pages/edit/82''); return false;">Action! To the camera Nikon S9100 - 8GB memory card for free!</a>', 1346689276),
+(164, 1, 'admin', 'Изменил страницу<a href="#" onclick="ajax_div(''page'',''http://pushlang.loc/admin/pages/edit/74''); return false;">Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!</a>', 1346689293),
+(165, 1, 'admin', 'Изменил страницу<a href="#" onclick="ajax_div(''page'',''http://pushlang.loc/admin/pages/edit/73''); return false;">Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!</a>', 1346689386),
+(166, 1, 'admin', 'Изменил страницу<a href="#" onclick="ajax_div(''page'',''http://pushlang.loc/admin/pages/edit/81''); return false;">Action! Go to the camera Nikon S9100 - Memory Card 8 GB as a gift</a>', 1346689406),
+(167, 1, 'admin', 'Изменил страницу<a href="#" onclick="ajax_div(''page'',''http://pushlang.loc/admin/pages/edit/73''); return false;">Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!</a>', 1346689653),
+(168, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346693110),
+(169, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346744686),
+(170, 1, 'admin', 'Назначил язык Русский по умолчанию', 1346745879),
+(171, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346749198),
+(172, 1, 'admin', 'Очистил кеш', 1346752792),
+(173, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346759724);
 
 -- --------------------------------------------------------
 
@@ -698,17 +793,53 @@ CREATE TABLE IF NOT EXISTS `menu_translate` (
   PRIMARY KEY (`id`),
   KEY `item_id` (`item_id`),
   KEY `lang_id` (`lang_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=52 ;
 
 --
 -- Dumping data for table `menu_translate`
 --
 
 INSERT INTO `menu_translate` (`id`, `item_id`, `lang_id`, `title`) VALUES
-(1, 8, 3, 'Главная'),
-(2, 8, 30, 'Головна'),
-(3, 9, 3, 'О Магазине'),
-(4, 9, 30, 'Про магазин');
+(32, 8, 30, 'Home'),
+(31, 8, 3, 'Главная'),
+(6, 9, 30, 'About'),
+(5, 9, 3, 'О Магазине'),
+(7, 13, 3, 'Контакты'),
+(8, 13, 30, 'Contacts'),
+(11, 10, 3, 'Оплата'),
+(12, 10, 30, 'Delivery'),
+(15, 12, 3, 'Помощь'),
+(16, 12, 30, 'Help'),
+(17, 14, 3, 'Главная'),
+(18, 14, 30, 'Home'),
+(19, 15, 3, 'О магазине'),
+(20, 15, 30, 'About'),
+(21, 16, 3, 'Доставка'),
+(22, 16, 30, 'Delivery'),
+(23, 17, 3, 'Помощь'),
+(24, 17, 30, 'Help'),
+(25, 18, 3, 'Контакты'),
+(26, 18, 30, 'Contacts'),
+(29, 19, 3, 'Главная'),
+(30, 19, 30, 'Home'),
+(33, 20, 3, 'Видео'),
+(34, 20, 30, 'Video'),
+(36, 21, 3, 'О магазине'),
+(37, 21, 30, 'About'),
+(38, 22, 3, 'Домашнее аудио'),
+(39, 22, 30, 'Home music'),
+(40, 23, 3, 'Доставка и оплата'),
+(41, 23, 30, 'Delivery'),
+(42, 24, 3, 'Фото и камеры'),
+(43, 24, 30, 'Photo and Camera'),
+(44, 25, 3, 'Помощь'),
+(45, 25, 30, 'Help'),
+(46, 26, 3, 'Домашняя электроника'),
+(47, 26, 30, 'Home Electronics'),
+(48, 27, 3, 'Контакты'),
+(49, 27, 30, 'Contacts'),
+(50, 28, 3, 'Авто музыка и видео'),
+(51, 28, 30, 'Auto Tabs');
 
 -- --------------------------------------------------------
 
@@ -746,7 +877,7 @@ CREATE TABLE IF NOT EXISTS `propel_migration` (
 --
 
 INSERT INTO `propel_migration` (`version`) VALUES
-(1344519311);
+(1346160931);
 
 -- --------------------------------------------------------
 
@@ -820,15 +951,13 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `site_template` varchar(50) NOT NULL,
   `site_offline` varchar(5) NOT NULL,
   `google_analytics_id` varchar(40) DEFAULT NULL,
-  `google_webmaster` varchar(40) DEFAULT NULL,
-  `yandex_webmaster` varchar(100) DEFAULT NULL,
   `main_type` varchar(50) NOT NULL,
   `main_page_id` int(11) NOT NULL,
   `main_page_cat` text NOT NULL,
   `main_page_module` varchar(50) NOT NULL,
   `sidepanel` varchar(5) NOT NULL,
   `lk` varchar(250) DEFAULT NULL,
-  `lang_sel` varchar(50) NOT NULL DEFAULT 'russian_lang',
+  `lang_sel` varchar(15) NOT NULL DEFAULT 'russian_lang',
   PRIMARY KEY (`id`),
   KEY `s_name` (`s_name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
@@ -837,8 +966,8 @@ CREATE TABLE IF NOT EXISTS `settings` (
 -- Dumping data for table `settings`
 --
 
-INSERT INTO `settings` (`id`, `s_name`, `site_title`, `site_short_title`, `site_description`, `site_keywords`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `google_webmaster`, `yandex_webmaster`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`) VALUES
-(2, 'main', 'ImageCMS Shop - интернет-магазин качественной техники', 'ImageCMS Shop', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники', 'auto', 'auto', '0', '0', 1, 1, '/', 'full', 'commerce', 'no', '', '', '', 'module', 69, '56', 'shop', '', '', 'russian_lang');
+INSERT INTO `settings` (`id`, `s_name`, `site_title`, `site_short_title`, `site_description`, `site_keywords`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`) VALUES
+(2, 'main', 'test', 'ImageCMS Shop', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники', 'auto', 'auto', '0', '0', 1, 1, '/', 'full', 'commerce', 'no', '', 'module', 69, '56', 'shop', '', '', 'russian_lang');
 
 -- --------------------------------------------------------
 
@@ -851,7 +980,7 @@ CREATE TABLE IF NOT EXISTS `shop_banners` (
   `position` smallint(6) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_banners_I_1` (`position`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `shop_banners`
@@ -883,11 +1012,14 @@ CREATE TABLE IF NOT EXISTS `shop_banners_i18n` (
 --
 
 INSERT INTO `shop_banners_i18n` (`id`, `locale`, `name`, `text`, `url`, `image`) VALUES
-(1, 'ru', 'Samsung LN40C650 40" LCD TV', '<p>Высоко технологический продукт, который поможет Вам оценить качество.</p>', '/shop/product/74', '1_ru.jpg'),
+(1, 'ru', 'Samsung LN40C650 40', '<p>Высоко технологический продукт, который поможет Вам оценить качество.</p>', '/shop/product/74', '1_ru.jpg'),
 (3, 'ru', 'Panasonic KX-TG7433B Expandable', '<p>Высоко технологический продукт, который поможет Вам оценить качество.</p>', '/shop/product/106', '3_ru.jpg'),
 (4, 'ru', 'Samsung NX10 14 Megapixel Digital', '<p>Высоко технологический продукт, который поможет Вам оценить качество.</p>', '/shop/product/98', '4_ru.jpg'),
 (4, 'ua', 'Samsung NX10 14 Megapixel Digital', '<p>Високо технологічний продукт, який допоможе Вам оцінити якість.</p>', '/shop/product/98', '4_ua.jpg'),
-(3, 'ua', 'Panasonic KX-TG7433B Expandable', '<p>Високо технологічний продукт, який допоможе Вам оцінити якість.</p>', '/shop/product/106', '3_ua.jpg');
+(3, 'ua', 'Panasonic KX-TG7433B Expandable', '<p>Високо технологічний продукт, який допоможе Вам оцінити якість.</p>', '/shop/product/106', '3_ua.jpg'),
+(4, 'en', 'Samsung NX10 14 Megapixel Digital', '<p> high technology product that will help you evaluate the quality. </ p>', '/shop/product/74', '4_en.jpg'),
+(3, 'en', 'Panasonic KX-TG7433B Expandable', '<p> high technology product that will help you evaluate the quality. </ p>', '/shop/product/75', '3_en.jpg'),
+(1, 'en', 'Samsung LN40C650 40', '<p><span id=', '/shop/product/76', '1_en.jpg');
 
 -- --------------------------------------------------------
 
@@ -903,6 +1035,19 @@ CREATE TABLE IF NOT EXISTS `shop_brands` (
   KEY `shop_brands_I_2` (`url`),
   KEY `shop_brands_I_1` (`url`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
+
+--
+-- Dumping data for table `shop_brands`
+--
+
+INSERT INTO `shop_brands` (`id`, `url`, `image`) VALUES
+(30, 'bravo-computers', 'bravo-computers.png'),
+(31, 'samsung', 'samsung.png'),
+(32, 'panasonic', NULL),
+(26, 'hewlett-packard', 'hewlett-packard.png'),
+(27, 'apple', 'apple.png'),
+(28, 'brain', 'brain.png'),
+(29, 'impression-computers', 'impression-computers.png');
 
 -- --------------------------------------------------------
 
@@ -921,6 +1066,26 @@ CREATE TABLE IF NOT EXISTS `shop_brands_i18n` (
   PRIMARY KEY (`id`,`locale`),
   KEY `shop_brands_i18n_I_1` (`name`(333))
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `shop_brands_i18n`
+--
+
+INSERT INTO `shop_brands_i18n` (`id`, `locale`, `name`, `description`, `meta_title`, `meta_description`, `meta_keywords`) VALUES
+(31, 'ru', 'Samsung', '', '', '', ''),
+(32, 'ru', 'Panasonic', '', '', '', ''),
+(30, 'ru', 'Bravo Computers', '', '', '', ''),
+(26, 'ru', 'Hewlett Packard', '', '', '', ''),
+(27, 'ru', 'Apple', '', '', '', ''),
+(28, 'ru', 'Brain', '', '', '', ''),
+(29, 'ru', 'Impression Computers', '', '', '', ''),
+(31, 'en', 'Samsung', '', '', '', ''),
+(29, 'en', 'Impression Computers', '', '', '', ''),
+(26, 'en', 'Hewlett Packard', '', '', '', ''),
+(30, 'en', 'Bravo Computers', '', '', '', ''),
+(28, 'en', 'Brain', '', '', '', ''),
+(27, 'en', 'Apple', '', '', '', ''),
+(32, 'en', 'Panasonic', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -942,7 +1107,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks` (
   KEY `shop_callbacks_I_2` (`status_id`),
   KEY `shop_callbacks_I_3` (`theme_id`),
   KEY `shop_callbacks_I_4` (`date`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1097,8 +1262,8 @@ CREATE TABLE IF NOT EXISTS `shop_currencies` (
 --
 
 INSERT INTO `shop_currencies` (`id`, `name`, `main`, `is_default`, `code`, `symbol`, `rate`) VALUES
-(1, 'Доллары', 0, 0, 'USD', '$', 0.400),
-(2, 'Рубли', 1, 1, 'RUR', 'руб', 1.000);
+(1, 'Dollars', 0, 0, 'USD', '$', 0.400),
+(2, 'Ruble', 1, 1, 'RUR', 'RUR', 1.000);
 
 -- --------------------------------------------------------
 
@@ -1122,7 +1287,7 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods` (
 --
 
 INSERT INTO `shop_delivery_methods` (`id`, `price`, `free_from`, `enabled`, `is_price_in_percent`) VALUES
-(7, 200.00, 1000.00, 1, 0),
+(7, 0.00, 0.00, 1, 0),
 (5, 0.00, 0.00, 1, 0),
 (6, 0.00, 0.00, 1, 0);
 
@@ -1149,7 +1314,10 @@ INSERT INTO `shop_delivery_methods_i18n` (`id`, `locale`, `name`, `description`)
 (7, 'ru', 'Самовывоз', ''),
 (5, 'ru', 'Курьером', '<p>Только по Киеву и Москве</p>'),
 (6, 'ru', 'АвтоМир', '<p>Доставка по всему миру</p>'),
-(7, 'ua', 'Самовивезення', '');
+(7, 'ua', 'Самовивезення', ''),
+(5, 'en', 'Courier', ''),
+(6, 'en', 'AutoWorld', ''),
+(7, 'en', 'Pickup', '');
 
 -- --------------------------------------------------------
 
@@ -1173,6 +1341,8 @@ INSERT INTO `shop_delivery_methods_systems` (`delivery_method_id`, `payment_meth
 (5, 2),
 (5, 3),
 (5, 4),
+(6, 1),
+(6, 2),
 (6, 3),
 (6, 4),
 (7, 1);
@@ -1198,13 +1368,6 @@ CREATE TABLE IF NOT EXISTS `shop_discounts` (
   `user_group` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `shop_discounts`
---
-
-INSERT INTO `shop_discounts` (`id`, `name`, `active`, `date_start`, `date_stop`, `discount`, `min_price`, `max_price`, `categories`, `products`, `description`, `user_group`) VALUES
-(4, 'Скидка на Видео технику', 1, 1293829200, 1309377600, '10%', 0.00, 0.00, 'a:3:{i:0;s:2:"37";i:1;s:2:"38";i:2;s:2:"39";}', '', '<p>Скидка на Видео технику в размере 10%</p>', 'N;');
 
 -- --------------------------------------------------------
 
@@ -1235,7 +1398,7 @@ CREATE TABLE IF NOT EXISTS `shop_kit` (
   `position` smallint(6) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_kit_FI_1` (`product_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -1278,7 +1441,15 @@ CREATE TABLE IF NOT EXISTS `shop_notifications` (
   KEY `shop_notifications_I_5` (`active_to`),
   KEY `shop_notifications_FI_1` (`product_id`),
   KEY `shop_notifications_FI_2` (`variant_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `shop_notifications`
+--
+
+INSERT INTO `shop_notifications` (`id`, `product_id`, `variant_id`, `user_name`, `user_email`, `user_phone`, `user_comment`, `status`, `date_created`, `active_to`, `manager_id`, `notified_by_email`) VALUES
+(2, 102, 113, 'фывывфыв', 'asdsasad@mail.ru', 'фывфвфыв', 'ыфв', 2, 1343638402, 1343638402, NULL, 0),
+(3, 102, 113, 'фвыв', 'asdsa@mail.ru', 'adsdasd', 'asdsdsdd', 1, 1343744944, 1343744944, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -1349,21 +1520,28 @@ CREATE TABLE IF NOT EXISTS `shop_orders` (
   `payment_method` int(11) DEFAULT NULL,
   `total_price` float(10,2) DEFAULT NULL,
   `external_id` varchar(255) DEFAULT NULL,
+  `gift_cert_key` varchar(25) DEFAULT NULL,
+  `gift_cert_price` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_orders_I_1` (`key`),
   KEY `shop_orders_I_2` (`status`),
   KEY `shop_orders_I_3` (`date_created`),
   KEY `shop_orders_FI_1` (`delivery_method`),
   KEY `shop_orders_FI_2` (`payment_method`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
 
 --
 -- Dumping data for table `shop_orders`
 --
 
-INSERT INTO `shop_orders` (`id`, `key`, `delivery_method`, `delivery_price`, `status`, `paid`, `user_full_name`, `user_email`, `user_phone`, `user_deliver_to`, `user_comment`, `date_created`, `date_updated`, `user_ip`, `user_id`, `payment_method`, `total_price`, `external_id`) VALUES
-(12, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(13, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `shop_orders` (`id`, `key`, `delivery_method`, `delivery_price`, `status`, `paid`, `user_full_name`, `user_email`, `user_phone`, `user_deliver_to`, `user_comment`, `date_created`, `date_updated`, `user_ip`, `user_id`, `payment_method`, `total_price`, `external_id`, `gift_cert_key`, `gift_cert_price`) VALUES
+(10, 'i5077926yf', 5, 0.00, 1, NULL, 'Administrator', 'admin@localhost.loc', '+7123456789', 'Россия, г Москва', '', 1342007508, 1342007508, '127.0.0.1', 1, 4, 999.99, NULL, NULL, NULL),
+(9, 'n0z76159t2', 7, 0.00, 2, 1, 'Administrator', 'admin@localhost.loc', '+7123456789', 'Россия, г Москва', '', 1342007474, 1342007474, '127.0.0.1', 1, 1, 698.00, NULL, NULL, NULL),
+(11, 'li865v3686', 7, 0.00, 1, NULL, 'Administrator', 'admin@localhost.loc', '+7123456789', 'Россия, г Москва', '', 1343641791, 1343641791, '127.0.0.1', 1, 1, 44.77, NULL, NULL, NULL),
+(12, 'u2051a676j', 7, 0.00, 1, NULL, 'Administrator', 'admin@localhost.loc', '+7123456789', 'Россия, г Москва', '', 1343665999, 1343665999, '127.0.0.1', 1, 1, 99.95, NULL, NULL, NULL),
+(13, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(22, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(23, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1385,7 +1563,17 @@ CREATE TABLE IF NOT EXISTS `shop_orders_products` (
   PRIMARY KEY (`id`),
   KEY `shop_orders_products_I_1` (`order_id`),
   KEY `shop_orders_products_FI_1` (`product_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35 ;
+
+--
+-- Dumping data for table `shop_orders_products`
+--
+
+INSERT INTO `shop_orders_products` (`id`, `order_id`, `product_id`, `variant_id`, `product_name`, `variant_name`, `price`, `quantity`, `kit_id`, `is_main`) VALUES
+(19, 10, 72, 83, 'LG 47LD450 - 47" Widescreen 1080p LCD HDTV', '', 999.99, 1, NULL, NULL),
+(18, 9, 87, 98, 'Sony HT-SS370 Home Theater', '', 349.00, 2, NULL, NULL),
+(20, 11, 80, 91, 'LG DN898 DVD Player', '', 44.77, 1, NULL, NULL),
+(21, 12, 94, 105, 'Yamaha NSIW760 Speaker', '', 99.95, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1403,7 +1591,14 @@ CREATE TABLE IF NOT EXISTS `shop_orders_status_history` (
   PRIMARY KEY (`id`),
   KEY `shop_orders_status_history_I_1` (`order_id`),
   KEY `shop_orders_status_history_FI_2` (`status_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `shop_orders_status_history`
+--
+
+INSERT INTO `shop_orders_status_history` (`id`, `order_id`, `status_id`, `user_id`, `date_created`, `comment`) VALUES
+(8, 9, 2, 1, 1342007520, NULL);
 
 -- --------------------------------------------------------
 
@@ -1465,7 +1660,7 @@ CREATE TABLE IF NOT EXISTS `shop_payment_methods` (
   KEY `shop_payment_methods_I_2` (`position`),
   KEY `shop_payment_methods_FI_1` (`currency_id`),
   KEY `shop_payment_methods_I_1` (`position`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `shop_payment_methods`
@@ -1500,7 +1695,11 @@ INSERT INTO `shop_payment_methods_i18n` (`id`, `locale`, `name`, `description`) 
 (1, 'ru', 'Оплата курьеру', '<p>Оплата через веб-моней</p>'),
 (2, 'ru', 'Оплата через Банк', '<p>Оплата через ОщадБанк Украины</p>'),
 (3, 'ru', 'СберБанк России', '<p>Оплата через СберБанк России</p>'),
-(4, 'ru', 'Robokassa', '<p>Оплата с помощью Robokassa</p>');
+(4, 'ru', 'Robokassa', '<p>Оплата с помощью Robokassa</p>'),
+(1, 'en', 'Payment for the courier', ''),
+(2, 'en', 'Payment by bank', ''),
+(3, 'en', 'Sberbank of Russia', ''),
+(4, 'en', 'Robokassa', '');
 
 -- --------------------------------------------------------
 
@@ -1575,19 +1774,19 @@ CREATE TABLE IF NOT EXISTS `shop_products_rating` (
 --
 
 INSERT INTO `shop_products_rating` (`product_id`, `votes`, `rating`) VALUES
-(71, 2, 7),
+(71, 1, 2),
 (81, 1, 5),
 (88, 1, 1),
-(76, 5, 18),
+(76, 3, 11),
 (82, 1, 4),
 (77, 2, 7),
 (73, 1, 2),
-(108, 1, 2),
+(108, 2, 6),
 (72, 1, 5),
-(74, 1, 3),
+(74, 2, 8),
 (75, 2, 9),
-(87, 1, 4),
-(80, 2, 10);
+(94, 1, 4),
+(87, 1, 5);
 
 -- --------------------------------------------------------
 
@@ -1641,6 +1840,19 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties` (
   KEY `shop_product_properties_I_1` (`active`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
 
+--
+-- Dumping data for table `shop_product_properties`
+--
+
+INSERT INTO `shop_product_properties` (`id`, `csv_name`, `active`, `show_in_compare`, `position`, `show_on_site`, `multiple`, `external_id`, `show_in_filter`, `main_property`) VALUES
+(20, 'displaytech', 1, 1, 1, 1, 0, NULL, 1, 0),
+(21, 'razmerekrana', 1, 1, 2, 1, 0, NULL, 0, 0),
+(22, 'hdmi', 1, 1, 3, 1, 0, NULL, 1, 0),
+(23, 'power', 1, 1, 4, 1, 0, NULL, 0, 0),
+(24, 'digitalopticalinput', 1, 1, 5, 1, 0, NULL, 0, 0),
+(25, 'focus', 1, 1, 6, 1, 0, NULL, 0, 0),
+(26, 'megapixel', 1, 1, 7, 1, 0, NULL, 0, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -1670,7 +1882,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_data` (
   KEY `shop_product_properties_data_I_1` (`value`(333)),
   KEY `shop_product_properties_data_FI_2` (`product_id`),
   KEY `shop_product_properties_data_FI_1` (`property_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=132 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35 ;
 
 -- --------------------------------------------------------
 
@@ -1688,6 +1900,27 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_i18n` (
   KEY `shop_product_properties_i18n_I_1` (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `shop_product_properties_i18n`
+--
+
+INSERT INTO `shop_product_properties_i18n` (`id`, `name`, `locale`, `data`) VALUES
+(26, 'Количество мегапикселей', 'ru', NULL),
+(25, 'Настройка фокуса', 'ru', NULL),
+(24, 'Количество цифровых входов', 'ru', NULL),
+(23, 'Мощность', 'ru', ''),
+(22, 'HDMI', 'ru', 'a:2:{i:0;s:4:"Да";i:1;s:6:"Нет";}'),
+(21, 'Размер экрана', 'ru', ''),
+(20, 'Технология дисплея', 'ru', 'a:3:{i:0;s:3:"LED";i:1;s:3:"LCD";i:2;s:6:"Plasma";}'),
+(20, 'Технологія дисплею', 'ua', 'a:4:{i:0;s:6:"LED-ua";i:1;s:9:"Plasma-ua";i:2;s:9:"Litium-ua";i:3;s:8:"Freon-ua";}'),
+(20, 'Display Technology', 'en', ''),
+(21, 'Screen Size', 'en', ''),
+(22, 'HDMI', 'en', 'a:2:{i:0;s:3:"Yes";i:1;s:2:"No";}'),
+(23, 'Power', 'en', ''),
+(24, 'Number of digital inputs', 'en', ''),
+(25, 'Setting the focus', 'en', ''),
+(26, 'The number of megapixels', 'en', '');
+
 -- --------------------------------------------------------
 
 --
@@ -1704,13 +1937,15 @@ CREATE TABLE IF NOT EXISTS `shop_product_variants` (
   `mainImage` varchar(255) DEFAULT NULL,
   `smallImage` varchar(255) DEFAULT NULL,
   `external_id` varchar(255) DEFAULT NULL,
+  `currency` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_product_variants_I_1` (`product_id`),
   KEY `shop_product_variants_I_2` (`position`),
   KEY `shop_product_variants_I_3` (`number`),
   KEY `shop_product_variants_I_5` (`price`),
-  KEY `shop_product_variants_I_4` (`price`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=209 ;
+  KEY `shop_product_variants_I_4` (`price`),
+  KEY `shop_product_variants_FI_2` (`currency`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=208 ;
 
 -- --------------------------------------------------------
 
@@ -2336,8 +2571,8 @@ CREATE TABLE IF NOT EXISTS `shop_settings` (
 --
 
 INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
-('mainImageWidth', '370', ''),
-('mainImageHeight', '320', ''),
+('mainImageWidth', '750', ''),
+('mainImageHeight', '635', ''),
 ('smallImageWidth', '140', ''),
 ('smallImageHeight', '140', ''),
 ('addImageWidth', '800', ''),
@@ -2392,7 +2627,7 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 ('smallAddImageWidth', '90', ''),
 ('smallAddImageHeight', '90', ''),
 ('forgotPasswordMessageText', 'Здравствуйте!\n\nНа сайте %webSiteName% создан запрос на восстановление пароля для Вашего аккаунта.\n\nДля завершения процедуры восстановления пароля перейдите по ссылке %resetPasswordUri% \n\nВаш новый пароль для входа: %password%\n\nЕсли это письмо попало к Вам по ошибке просто проигнорируйте его.\n\n\nПри возникновении любых вопросов, обращайтесь по телефонам:  \n(012)  345-67-89 , (012)  345-67-89 \n---\n\nС уважением, \nсотрудники службы продаж %webSiteName%', ''),
-('watermark_wm_hor_alignment', 'right', ''),
+('watermark_wm_hor_alignment', 'Слева', ''),
 ('watermark_wm_vrt_alignment', 'bottom', ''),
 ('watermark_watermark_type', 'text', ''),
 ('watermark_watermark_image', '', ''),
@@ -2433,10 +2668,53 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 ('smallModImageWidth', '90', ''),
 ('smallModImageHeight', '90', ''),
 ('order_method', '1', ''),
-('watermark_interest', '', ''),
+('forgotPasswordMessageText', 'Здравствуйте!\n\nНа сайте %webSiteName% создан запрос на восстановление пароля для Вашего аккаунта.\n\nДля завершения процедуры восстановления пароля перейдите по ссылке %resetPasswordUri% \n\nВаш новый пароль для входа: %password%\n\nЕсли это письмо попало к Вам по ошибке просто проигнорируйте его.\n\n\nПри возникновении любых вопросов, обращайтесь по телефонам:  \n(012)  345-67-89 , (012)  345-67-89 \n---\n\nС уважением, \nсотрудники службы продаж %webSiteName%', 'en'),
+('ordersMessageText', 'Здравствуйте, %userName%.  \n\nМы благодарны Вам за то, что совершили заказ в нашем магазине "ImageCMS Shop" \nВы указали следующие контактные данные: \n\nEmail адрес: %userEmail% \nНомер телефона: %userPhone% \nАдрес доставки: %userDeliver%  \n\nМенеджеры нашего магазина вскоре свяжутся с Вами и помогут с оформлением и оплатой товара.  \n\nТакже, Вы можете всегда посмотреть за статусом Вашего заказа, перейдя по ссылке:  %orderLink%.  \n\nСпасибо за ваш заказ, искренне Ваши, сотрудники ImageCMS Shop.  \n\nПри возникновении любых вопросов, обращайтесь за телефонами:  \n+7 (095) 222-33-22 +38 (098) 222-33-22', 'en'),
+('ordersSenderName', 'DemoShop ImageCms.net', 'en'),
+('ordersMessageTheme', 'Данные для просмотра совершенной покупки', 'en'),
 ('ordersManagerEmail', '', ''),
 ('ordersSendManagerMessage', 'true', ''),
-('1CSettingsOS', 'a:1:{i:0;s:1:"2";}', '');
+('notifyOrderStatusMessageText', '', 'en'),
+('notifyOrderStatusSenderName', '', 'en'),
+('notifyOrderStatusMessageTheme', '', 'en'),
+('wishListsMessageText', '', 'en'),
+('wishListsSenderName', '', 'en'),
+('wishListsMessageTheme', '', 'en'),
+('notificationsMessageText', '', 'en'),
+('notificationsSenderName', '', 'en'),
+('notificationsMessageTheme', '', 'en'),
+('callbacksMessageText', '', 'en'),
+('callbacksSenderName', '', 'en'),
+('callbacksMessageTheme', '', 'en'),
+('userInfoMessageText', '', 'en'),
+('userInfoSenderName', '', 'en'),
+('userInfoMessageTheme', '', 'en'),
+('1CSettingsOS', 'N;', ''),
+('MemcachedSettings', 'a:5:{s:11:"MEMCACHE_ON";b:0;s:17:"MEMCACHE_HOSTNAME";s:9:"localhost";s:13:"MEMCACHE_PORT";s:5:"11211";s:18:"MEMCACHE_NAMESPACE";s:13:"imagecms_shop";s:13:"CACHE_EXPIRES";s:4:"3600";}', ''),
+('adminMessageMonkey', '', ''),
+('adminMessageMonkeylist', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shop_spy`
+--
+
+CREATE TABLE IF NOT EXISTS `shop_spy` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `shop_spy`
+--
+
+INSERT INTO `shop_spy` (`id`, `user_id`, `product_id`, `price`) VALUES
+(1, 1, 73, 899),
+(2, 1, 74, 899);
 
 -- --------------------------------------------------------
 
@@ -2460,14 +2738,7 @@ CREATE TABLE IF NOT EXISTS `shop_user_profile` (
   PRIMARY KEY (`id`),
   KEY `shop_user_profile_I_1` (`key`),
   KEY `shop_user_profile_FI_1` (`role_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
-
---
--- Dumping data for table `shop_user_profile`
---
-
-INSERT INTO `shop_user_profile` (`id`, `user_id`, `name`, `phone`, `address`, `cart_data`, `user_email`, `date_created`, `key`, `wish_list_data`, `role_id`, `user_external_id`) VALUES
-(1, 1, 'Administrator', '550956556', 'Россия, г Москва', 'a:0:{}', 'admin@localhost.loc', NULL, '', 'a:0:{}', 10, NULL);
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -2540,7 +2811,7 @@ CREATE TABLE IF NOT EXISTS `tags` (
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) NOT NULL DEFAULT '1',
-  `username` varchar(25) NOT NULL,
+  `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(100) NOT NULL,
   `banned` tinyint(1) NOT NULL DEFAULT '0',
@@ -2558,8 +2829,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   KEY `role_id` (`role_id`),
   KEY `banned` (`banned`),
   KEY `password` (`password`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=91 ;
-
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -2577,14 +2847,6 @@ CREATE TABLE IF NOT EXISTS `user_autologin` (
   KEY `last_ip` (`last_ip`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `user_autologin`
---
-
-INSERT INTO `user_autologin` (`key_id`, `user_id`, `user_agent`, `last_ip`, `last_login`) VALUES
-('d0a935a7e38a7b35e448e762c8c39f88', 1, 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.83 Safari/535.11', '127.0.0.1', '2012-03-26 07:55:20'),
-('1388e04d059f1df2eaf874377f606512', 1, 'Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:13.0) Gecko/20100101 Firefox/13.0.1', '127.0.0.1', '2012-07-02 09:32:01');
-
 -- --------------------------------------------------------
 
 --
@@ -2596,8 +2858,7 @@ CREATE TABLE IF NOT EXISTS `user_profile` (
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
-
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 

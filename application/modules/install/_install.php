@@ -234,8 +234,8 @@ class Install extends MY_Controller {
 
         mysql_query($sql, $link);
 
-        $sql = "INSERT INTO `clients`.`shop_user_profile` (`id` ,`user_id` ,`name` ,`phone` ,`address` ,`cart_data` ,`user_email` ,`date_created` ,`key` ,`wish_list_data` ,`role_id` ,`user_external_id`)
-                        VALUES (NULL , '1', '$admin_login', NULL , NULL , NULL , '$admin_mail' , NULL , '', NULL , '10', NULL);";
+        $sql = "INSERT INTO `shop_user_profile` (`id` ,`user_id` ,`name` ,`phone` ,`address` ,`cart_data` ,`user_email` ,`date_created` ,`key` ,`wish_list_data` ,`role_id` ,`user_external_id`)
+                        VALUES ('1' , '1', '$admin_login', NULL , NULL , NULL , '$admin_mail' , NULL , '', NULL , '10', NULL);";
         mysql_query($sql, $link);
 
         // Rewrite config file
