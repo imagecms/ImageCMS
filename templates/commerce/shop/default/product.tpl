@@ -232,7 +232,7 @@
 <!-----------------------------------------------------------------------Акционное предложение начало-->
 
 {if $model->getShopKits()->count() > 0}
-        <div class="f-s_18 c_6 center">Акционное предложение</div>
+        <div class="f-s_18 c_6 center">{lang('s_spec_promotion')}</div>
         <div class="promotion carusel_frame">
             <div class="carusel">
                 <ul class="">
@@ -329,8 +329,6 @@
 
                                     {if !$prod_in_cart}                                       
                                         <a data-id="{echo $kid->getId()}" class="add_cart_kid" id="kitBuy">{lang('s_buy')}</a>
-                                    {else:}
-                                      <a href="/shop/cart" class="">Оформить заказ</a>                                        
                                     {/if}
                                     </div>
                                     </div>
