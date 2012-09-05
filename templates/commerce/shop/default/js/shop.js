@@ -808,6 +808,7 @@ $(document).ready(function(){
                 url: "/shop/product_spy/spy",
                 success: function(){
                     $this.html('Отписатся от слежения').removeClass('js').removeClass('gray').removeClass('addtoSpy').addClass('deleteFromSpy');
+                    $this.unbind('click');
                     bindeletefromspy();
                     $.fancybox.hideActivity(); 
                 }
