@@ -39,8 +39,8 @@
                         <div class="count">
                             <input name="products[{$key}]" type="text" value="{$item.quantity}"/>
                             <span class="plus_minus">
-                                <button class="count_up inCartProducts">&#9650;</button>
-                                <button class="count_down inCartProducts">&#9660;</button>
+                                <button class="count_up">&#9650;</button>
+                                <button class="count_down">&#9660;</button>
                             </span>
                         </div>
                     </td>
@@ -51,7 +51,7 @@
                         </div>
                     </td>
                     <td>
-                        <a href="{shop_url('cart/delete/'.$key)}" class="delete_text inCartProducts">&times;</a>
+                        <a href="{shop_url('cart/delete/'.$key)}" class="delete_text">&times;</a>
                     </td>
                 </tr>
                  {elseif($item.model instanceof ShopKit):}
