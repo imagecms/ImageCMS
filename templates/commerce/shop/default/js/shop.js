@@ -101,6 +101,32 @@ $(document).ready(function(){
         }); 
     });
     
+     $('.add_cart_kid ').live('click',function(){
+        var id      = $(this).attr('data-id');
+        var $this   = $(this);
+         $.fancybox.showActivity();
+         $.ajax({
+            type: 'post',
+            data: "quantity="+1+"&kitId="+id,
+            url: '/shop/cart/add/ShopKit',
+            beforeSend: function(){
+                $('#kitBuy').show();
+            },
+            success: function(msg){
+                $('.bask_block').load('/shop/ajax/getCartDataHtml');
+               $this
+                .attr('href', '/shop/cart')
+                .unbind('click');
+                showResponse(msg);
+                $.fancybox.hideActivity();
+                $this.hide();
+                
+                
+           }
+        })
+        return false;
+    });
+    
     $('.buy .goBuy').on('click',function(){
         $.fancybox.showActivity();
         var id_var  = $(this).attr('data-varid');
@@ -378,9 +404,6 @@ $(document).ready(function(){
         });
         return false;
     })
-
-
-
   
     
     $("#cartForm").validate();
