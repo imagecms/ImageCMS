@@ -75,15 +75,15 @@
                                                                     <div class="count">
                                         <input type="text" name="products[{$key}]" value="{$item.quantity}">
                                         <span class="plus_minus">
-                                            <button class="count_up inCartProducts">&#9650;</button>
-                                            <button class="count_down inCartProducts">&#9660;</button>
+                                            <button class="count_up">&#9650;</button>
+                                            <button class="count_down">&#9660;</button>
                                         </span>
                                     </div>
                                 </td>
                                 <td rowspan="{echo $item.model->countProducts()}">
                                     {echo $summary = ShopCore::app()->SCurrencyHelper->convert($item.totalAmount)} {$CS}
                                 </td>
-                                <td rowspan="{echo $item.model->countProducts()}"><a href="{shop_url('cart/delete/' . $key)}" rel="nofollow" class="delete_text inCartProducts">&times;</a></td>
+                                <td rowspan="{echo $item.model->countProducts()}"><a href="{shop_url('cart/delete/' . $key)}" rel="nofollow" class="delete_text">&times;</a></td>
 
                             </tr>
                             {foreach $item.model->getShopKitProducts() as $shopKitProduct}
