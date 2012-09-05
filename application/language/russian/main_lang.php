@@ -105,7 +105,7 @@ $lang['s_coll']                         =               'Позвоните';
 $lang['s_me']                           =               'мне';
 $lang['s_coll_order']                   =               'Заказать звонок';
 $lang['s_formulation']                  =               'Оформление';
-$lang['s_order']                        =               'заказа';
+$lang['s_order']                        =               'Заказ';
 $lang['s_cart']                         =               'Корзина';
 $lang['s_cart_p']                       =               'Корзине';
 $lang['s_summ']                         =               'Сумма';
@@ -217,7 +217,7 @@ $lang ['s_spm'] = 'Выберите способ оплаты';
 $lang ['s_addresrec'] = 'Адрес получателя';
 $lang ['s_do_you_syrp_pr'] = 'Подарочный сертификат';
 $lang ['s_do_you_have'] = 'У вас есть подарочный сертификат?';
-$lang ['s_do_you_cer_tif'] = 'Certificate';
+$lang ['s_do_you_cer_tif'] = 'Сертификат';
 $lang ['s_apply_sertif'] = 'Применить';
 $lang ['s_slw'] = 'Сохранить в списке желаний';
 $lang ['s_ilw'] = 'Уже в списке желаний';
@@ -312,5 +312,6 @@ $lang['s_to_call_me'] = 'Позвоните мне';
 $lang['s_sea_found_in_categories'] = 'Найдено в категориях';
 $lang['s_sea_search_for'] = 'Вы искали';
 $lang['s_js_fisa'] = 'Показать';
+$lang['s_spec_promotion'] = 'Акционное предложение';
 
 /* End of file main_lang.php */

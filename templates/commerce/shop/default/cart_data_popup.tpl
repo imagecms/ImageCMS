@@ -33,7 +33,6 @@
                     </td>
                     <td>
                         <div class="price f-s_16 f_l">{echo $vprices.main.price} <sub>{$vprices.main.symbol}</sub>
-                            <!--<span class="d_b">{echo $item.model->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>-->
                         </div>
                     </td>
                     <td>
@@ -48,8 +47,7 @@
                     <td>
                         <div class="price f-s_18 f_l">{$summary = $vprices.main.price * $item.quantity}
                                                 {echo $summary}
-                            <sub>{$vprices.main.symbol}</sub>
-                            <!--<span class="d_b">{echo $summary_nextc = $item.model->firstVariant->toCurrency('Price', $NextCSId) * $item.quantity} {$NextCS}</span>-->
+                            <sub>{$vprices.main.symbol}</sub>                           
                         </div>
                     </td>
                     <td>
@@ -71,8 +69,7 @@
                                     <br /><span style="font-size:16px;">{echo $item.model->getMainProduct()->firstVariant->toCurrency()} {$CS}</span>
                                 </td>
                                 <td rowspan="{echo $item.model->countProducts()}">
-                                    {echo ShopCore::app()->SCurrencyHelper->convert($item.price)} {$CS}
-                                    <span class="d_b">{echo $summary_nextc = $item.price} {$NextCS}</span>                                
+                                    {echo ShopCore::app()->SCurrencyHelper->convert($item.price)} {$CS}                             
                                 </td>
                                 <td rowspan="{echo $item.model->countProducts()}">
                                                                     <div class="count">
@@ -85,7 +82,6 @@
                                 </td>
                                 <td rowspan="{echo $item.model->countProducts()}">
                                     {echo $summary = ShopCore::app()->SCurrencyHelper->convert($item.totalAmount)} {$CS}
-                                 <span class="d_b">{echo $summary_nextc = $item.totalAmount} {$NextCS}</span>
                                 </td>
                                 <td rowspan="{echo $item.model->countProducts()}"><a href="{shop_url('cart/delete/' . $key)}" rel="nofollow" class="delete_text inCartProducts">&times;</a></td>
 
