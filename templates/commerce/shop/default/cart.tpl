@@ -34,7 +34,6 @@
                     </td>
                     <td>
                         <div class="price f-s_16 f_l">{echo $vprices.main.price} <sub>{$vprices.main.symbol}</sub>
-                            <!--<span class="d_b">{echo $item.model->firstVariant->toCurrency('Price', $NextCSId)} {$NextCS}</span>-->
                         </div>
                     </td>
                     <td>
@@ -50,7 +49,6 @@
                         <div class="price f-s_18 f_l">{$summary = $vprices.main.price * $item.quantity}
                                                 {echo $summary}
                             <sub>{$vprices.main.symbol}</sub>
-                            <!--<span class="d_b">{echo $summary_nextc = $item.model->firstVariant->toCurrency('Price', $NextCSId) * $item.quantity} {$NextCS}</span>-->
                         </div>
                     </td>
                     <td>
