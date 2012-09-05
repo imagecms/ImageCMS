@@ -266,6 +266,7 @@ $lang ['s_site_ltd'] = 'Ltd. "Site Image"';
 $lang['lang_login_page'] = 'Authorization';
 $lang['s_nomer_telephona'] = 'Telephone number';
 $lang['s_con_password'] = 'Confirm password';
+$lang ['s_do_you_cer_tif'] = 'Certificate';
 
 $lang['s_cart_p'] = 'Cart';
 $lang['s_in_p'] = 'In';
@@ -314,6 +315,7 @@ $lang['s_to_call_me'] = 'Call me';
 $lang['s_sea_found_in_categories'] = 'Found in categories';
 $lang['s_sea_search_for'] = 'You searched for';
 $lang['s_js_fisa'] = 'Show';
+$lang['s_spec_promotion'] = 'Special promotion';
 
 
 /* End of file main_lang.php */
