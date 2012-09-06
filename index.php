@@ -19,6 +19,9 @@
  *
  */
 
+// phpinfo();
+ini_set('display_errors', true);
+
 define('ENVIRONMENT', 'development');
 /*
  * ---------------------------------------------------------------

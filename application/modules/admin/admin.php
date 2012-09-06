@@ -22,6 +22,8 @@ class Admin extends MY_Controller {
 		$this->load->library('lib_admin');
 		$this->load->library('lib_category');
 		$this->lib_admin->init_settings();
+		
+		$this->output->enable_profiler(true);
 	}
 
     
@@ -51,7 +53,8 @@ class Admin extends MY_Controller {
 
         ($hook = get_hook('admin_show_desktop')) ? eval($hook) : NULL;
 
-		$this->template->show('desktop', FALSE);
+// 		$this->template->show('desktop', FALSE);
+		$this->template->show('new_desktop', FALSE);
 	}
 
     public function sys_info($action = '')
