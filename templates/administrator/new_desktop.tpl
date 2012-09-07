@@ -6,19 +6,24 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap-responsive.css">
+        <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap-notify.css">
     </head>
     <body>
         <div class="main_body">
+        
+        <!-- Here be notifications -->
+        <div class="notifications top-right"></div>
+        
             <header>
                 <section class="container">
 
-                    <a href="#" class="logo span3">
+                    <a href="/admin" class="logo span3">
                         <img src="{$THEME}/img/logo.png"/>
                     </a>
                     <div class="pull-right span3">
                         <div class="clearfix">
                             <div class="pull-left">Здравствуйте, <a href="#">Admin<i class="my_icon exit_ico"></i></a></div>
-                            <div class="pull-right">Просмотр <a href="#">сайта <span class="f-s_14">→</span></a></div>
+                            <div class="pull-right">Просмотр <a href="{$BASE_URL}" target="_blank">сайта <span class="f-s_14">→</span></a></div>
                         </div>
                         <form method="post" action="#">
                             <div class="input-append search">
@@ -52,7 +57,7 @@
                 <div class="container">
                     <nav class="navbar navbar-inverse">
                         <ul class="nav">
-                            <li class="active"><a href="/admin/pages"><i class="icon-home"></i><span>Главная</span></a></li>
+                            <li ><a href="/admin/pages"><i class="icon-home"></i><span>Главная</span></a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-align-justify"></i>{lang('a_content')}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
@@ -83,7 +88,7 @@
                                 
                                 </ul>
                             </li>
-                            <li class="dropdown active">
+                            <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-circle-arrow-down"></i>{lang('a_modules')}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="/admin/components/modules_table/" class="pjax">{lang('a_all_modules')}</a></li> 
@@ -152,13 +157,14 @@
                     </div>
                     <div class="span4 t-a_r">
                         <div class="muted">Copyright © imageCMS 2012</div>
-                        <a href="/admin/pages">Документация</a>
+                        <a href="http://wiki.imagecms.net" target="blank">Документация</a>
                     </div>
                 </div>
             </div>
         </footer>
         <script src="{$THEME}/js/jquery-1.7.2.min.js" type="text/javascript"></script>
         <script src="{$THEME}/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="{$THEME}/js/bootstrap-notify.js" type="text/javascript"></script>
         <script src="{$THEME}/js/jquery-ui-1.7.3.custom.min.js" type="text/javascript"></script>
         <script src="{$THEME}/js/pjax/jquery.pjax.js" type="text/javascript"></script>
         <script src="{$THEME}/js/scripts.js" type="text/javascript"></script>
@@ -166,18 +172,13 @@
          <script>
 
          $(document).ready(function(){
-        	 
         	 //menu active sniffer
-        	 
         	 $('a.pjax').on('click', function(e){
         		 $('nav li').removeClass('active');
         		 $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
         		 $.pjax({url: $(this).attr('href'), container:'#mainContent'})
             	 return false;
              })
-             
-             
-             
          })
          
          
