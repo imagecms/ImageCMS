@@ -128,7 +128,7 @@
                     </tbody>
                 </table>
             </div>
-            
+
             <div class="history_order f_r">
                 <div class="block_title_18"><span class="title_18">{lang('s_to_fal_do')}</span></div>
 
@@ -145,22 +145,24 @@
                         <tr>
                             <th>{lang('s_to_falitem_number')}</th>
                             <th>{lang('s_to_falo_product_name')}</th>
-<!--                            <th></th>-->
+                            <th>Разница </th>
                         </tr>
                     </thead>
                     <tbody>
                         {foreach $goodsinspy as $good}
+                            {$product = $good->getProduct()}
                             <tr>
-                                <td>{echo $good->getId()}</td>
-                                <td><a href="{$BASE_URL}shop/product/{echo $good->getId()}">{echo $good->getName() }</td>
-<!--                                <td>
-                                    <a  data-user_id="{echo ShopCore::$ci->dx_auth->get_user_id()}" 
+                                <td>{echo $product[0]->getId()}</td>
+                                <td><a href="{$BASE_URL}shop/product/{echo $good->getId()}">{echo $product[0]->getName()}</td>
+                                <td>
+<!--                                    <a  data-user_id="{echo ShopCore::$ci->dx_auth->get_user_id()}" 
                                         data-prodid="{echo $good->getId()}" 
                                         href="#" 
                                         class="deleteFromSpy">
                                             {lang('s_sle_product_alerady')}
-                                    </a>
-                                </td>-->
+                                    </a>-->
+                                            {echo $good->getdist()} {$CS}
+                                </td>
                             </tr>
                         {/foreach}
                     </tbody>
@@ -169,6 +171,7 @@
             </div>
         </div>
         <div class="center">
+            {echo $_SESSION['old_price']}
         </div>
     </div></div>
 
