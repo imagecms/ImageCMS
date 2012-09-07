@@ -144,8 +144,9 @@
                     <thead>
                         <tr>
                             <th>{lang('s_to_falitem_number')}</th>
-                            <th>{lang('s_to_falo_product_name')}</th>
-                            <th>Разница </th>
+                            <th style="width:300px;">{lang('s_to_falo_product_name')}</th>
+                            <th style="width:100px;">Разница</th>
+                            <th style="width:100px;">Отписатся</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -155,13 +156,10 @@
                                 <td>{echo $product[0]->getId()}</td>
                                 <td><a href="{$BASE_URL}shop/product/{echo $good->getId()}">{echo $product[0]->getName()}</td>
                                 <td>
-<!--                                    <a  data-user_id="{echo ShopCore::$ci->dx_auth->get_user_id()}" 
-                                        data-prodid="{echo $good->getId()}" 
-                                        href="#" 
-                                        class="deleteFromSpy">
-                                            {lang('s_sle_product_alerady')}
-                                    </a>-->
-                                            {echo $good->getdist()} {$CS}
+                                            {echo $good->getdist()}
+                                </td>
+                                <td>
+                                    <a href="{echo $good->getLink()}">Отписатся</a>
                                 </td>
                             </tr>
                         {/foreach}
@@ -171,7 +169,6 @@
             </div>
         </div>
         <div class="center">
-            {echo $_SESSION['old_price']}
         </div>
     </div></div>
 
