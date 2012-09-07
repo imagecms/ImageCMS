@@ -1,3 +1,10 @@
+                <ul class="breadcrumb">
+                    <li><a href="#">Главная</a> <span class="divider">/</span></li>
+                    <li class="active">Список товаров</li>
+                </ul>
+
+<section class="mini-layout">
+                
 <form method="post" action="{$BASE_URL}admin/pages/add" id="add_page_form" style="width:100%;">
 
 <div id="tabs-block"  style="float:left;width:100%;">
@@ -222,3 +229,5 @@
 
 	</script>
 {/literal}
+
+</section>
