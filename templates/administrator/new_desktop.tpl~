@@ -54,7 +54,7 @@
                         <ul class="nav">
                             <li class="active"><a href="/admin/pages"><i class="icon-home"></i><span>Главная</span></a></li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-align-justify"></i>{lang('a_content')}<b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-align-justify"></i>Содержимое<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="/admin/pages" class="pjax">{lang('a_create')}</a></li>
                                     <li><a href="/admin/pages/GetPagesByCategory/0" class="pjax" >Все содержимое по категориях</a></li>
@@ -65,60 +65,38 @@
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list"></i>{lang('a_categories')}<b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list"></i>Категории<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-									<li><a href="/admin/categories/create_form" class="pjax">{lang('a_create')}</a></li>
+									<li><a href="admin/categories/create_form" class="pjax">{lang('a_create')}</a></li>
 									<li><a href="/admin/categories/cat_list" class="pjax">{lang('a_edit')}</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list-alt"></i>{lang('a_menu')}<b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list-alt"></i>Меню<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                
-                                    <li><a href="/admin/components/cp/menu" class="pjax">{lang('a_control')}</a></li>
-									<li class="divider"></li>
-						            {foreach $menus as $menu}
-										<li><a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="pjax	">{$menu.main_title}</a></li>
-						            {/foreach}	
-                                
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown active">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-circle-arrow-down"></i>{lang('a_modules')}<b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-circle-arrow-down"></i>Модули<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/admin/components/modules_table/" class="pjax">{lang('a_all_modules')}</a></li> 
-									<li><a href="/admin/mod_search/" class="pjax">{lang('a_search')}</a></li>
-								    <li class="divider returnFalse"></a></li>
-										{if $components}
-										{foreach $components as $component}
-							                {if $component['installed'] == TRUE AND $component['admin_file'] == 1}
-											<li><a href="/admin/components/cp/{$component.com_name}" class="pjax" >{$component.menu_name}</a></li>
-							                {/if}
-										{/foreach}
-										{/if}
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-th"></i>{lang('a_widgets')}<b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-th"></i>Виджеты<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                	<li><a href="/admin/widgets_manager/create_tpl" class="pjax">{lang('a_create')}</a></li>
-                                    <li><a href="/admin/widgets_manager" class="pjax">{lang('a_edit')}</a></li>
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-hdd"></i>{lang('a_system')}<b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-hdd"></i>Система<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/admin/settings" class="pjax">{lang('a_site_settings')}</a></li>
-									<li><a href="/admin/languages" class="pjax">{lang('a_languages')}</a></li> 
-									<li class="dropdown"><a class="returnFalse arrow-right" href="">{lang('a_cache')}</a>
-										<ul class="dropdown-menu">
-											<li><a  href="javascript:delete_cache('all')">{lang('a_clean_all')}</a></li>
-											<li><a  href="javascript:delete_cache('expried')">{lang('a_clean_old')}</a></li>
-										</ul>
-									</li>
-						            <li class="divider"></li>
-						            <li><a href="/admin/admin_logs" class="pjax">{lang('a_event_journal')}</a></li>
-						            <li><a href="/admin/backup" class="pjax">{lang('a_backup_copy')}</a></li>
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -167,16 +145,10 @@
 
          $(document).ready(function(){
         	 
-        	 //menu active sniffer
-        	 
         	 $('a.pjax').on('click', function(e){
-        		 $('nav li').removeClass('active');
-        		 $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
         		 $.pjax({url: $(this).attr('href'), container:'#mainContent'})
             	 return false;
              })
-             
-             
              
          })
          
