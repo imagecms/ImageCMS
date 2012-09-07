@@ -63,7 +63,7 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list"></i>Категории<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Action</a></li>
+                                    <li><a href="/admin/sys_info">Action</a></li>
                                     <li><a href="#">Another action</a></li>
                                     <li><a href="#">Something else here</a></li>
                                     <li class="divider"></li>
@@ -153,10 +153,10 @@
         
         	 $('ul li ul a').on('click', function(e){
             	 $('#mainLayout').load($(this).attr('href'));
-            	 alert(0);
+//            	 alert(0);
+                 window.history.pushState(null, 'test', $(this).attr('href'));
             	 return false;
              })
-             
          })
          
          
