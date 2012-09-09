@@ -167,6 +167,7 @@
         <script src="{$THEME}/js/bootstrap-notify.js" type="text/javascript"></script>
         <script src="{$THEME}/js/jquery-ui-1.7.3.custom.min.js" type="text/javascript"></script>
         <script src="{$THEME}/js/pjax/jquery.pjax.js" type="text/javascript"></script>
+        <script src="{$THEME}/js/jquery.form.js" type="text/javascript"></script>
         <script src="{$THEME}/js/scripts.js" type="text/javascript"></script>
         <script src="{$THEME}/js/functions.js" type="text/javascript"></script>
          {literal}
@@ -177,7 +178,7 @@
         	 $('a.pjax').on('click', function(e){
         		 $('nav li').removeClass('active');
         		 $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
-        		 $.pjax({url: $(this).attr('href'), container:'#mainContent'})
+        		 $.pjax({url: $(this).attr('href'), container:'#mainContent'});
             	 return false;
              })
          })
@@ -186,5 +187,6 @@
          </script>
          }
          {/literal} 
+         <div id="jsOutput" style="display: none;"></div>
     </body>
 </html>

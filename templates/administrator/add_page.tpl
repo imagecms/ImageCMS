@@ -16,8 +16,8 @@
                             <span class="help-inline"></span>
                             <div class="d-i_b">
                                 <a href="#" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
-                                <button type="button" class="btn btn-small action_on"><i class="icon-ok"></i>Сохранить</button>
-                                <button type="button" class="btn btn-small action_on"><i class="icon-check"></i>Сохранить и выйти</button>
+                                <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form"><i class="icon-ok"></i>Сохранить</button>
+                                <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form"><i class="icon-check"></i>Сохранить и выйти</button>
                                 <div class="dropdown d-i_b">
                                     <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
                                         Русский
@@ -168,7 +168,7 @@
                             </label>
                         	<div class="controls">
                         	<textarea name="page_description" class="textarea" id="page_description" rows="8" cols="28"></textarea>
-							<img onclick="create_description(  tinyMCE.get('prev_text').getContent() );" src="{$THEME}/images/arrow-down.png" title="{lang('a_gen_desc')}" style="cursor:pointer" width="16" height="16" />
+							<img onclick="create_description('#prev_text', '#page_description' );" src="{$THEME}/images/arrow-down.png" title="{lang('a_gen_desc')}" style="cursor:pointer" width="16" height="16" />
                         	</div>
                         </div>
                         
@@ -178,7 +178,7 @@
                             </label>
                         	<div class="controls">
                         	<textarea name="page_keywords" id="page_keywords" rows="8" class="textarea" cols="28"></textarea>
-							<img src="{$THEME}/images/arrow-down.png" style="cursor:pointer" title="{lang('a_gen_key_words')}" onclick="retrive_keywords( tinyMCE.get('full_text').getContent() + tinyMCE.get('prev_text').getContent() );" />
+							<img src="{$THEME}/images/arrow-down.png" style="cursor:pointer" title="{lang('a_gen_key_words')}" onclick="retrive_keywords('#prev_text', '#keywords_list' );" />
 				
 							<div style="max-width:600px" id="keywords_list">
 				
@@ -268,7 +268,8 @@
                         	{lang('a_date_and_time_cr')}:    
                             </label>
                         	<div class="controls">
-           					<input id="create_date" name="create_date" tabindex="7" value="{$cur_date}" type="text" class="input-small" />
+           					<input id="create_date" name="create_date" tabindex="7" value="{$cur_date}" type="text" data-placement="top" data-original-title="выберите дату" data-rel="tooltip" class="datepicker input-small"  />
+           					<i class="icon-calendar"></i>
 							<input id="create_time" name="create_time" tabindex="8" type="text" value="{$cur_time}" class="input-small" />			             	
                         	</div>
                         </div>
@@ -278,7 +279,8 @@
            					{lang('a_date_and_time_p')}:                 
                             </label>
                         	<div class="controls">
-            				<input id="publish_date" name="publish_date" tabindex="7" value="{$cur_date}" type="text" class="input-small" />
+            				<input id="publish_date" name="publish_date" tabindex="7" value="{$cur_date}" type="text" data-placement="top" data-original-title="выберите дату" data-rel="tooltip" class="datepicker input-small" />
+            				<i class="icon-calendar"></i>
 							<input id="publish_time" name="publish_time" tabindex="8" type="text" value="{$cur_time}" class="input-small" />            	
                         	</div>
                         </div>
@@ -316,81 +318,28 @@
 
 {literal}
 	<script type="text/javascript">
-	
-           var cms_tabs = null;
-           var sp_param = Cookie.read('sidepanel'); 
-
-            window.addEvent('domready', function() {
-
-            if (sp_param == 'show')
-            {
-                document.getElementById('sidebar1').style.display='none'; 
-                document.getElementById('sidebar2').style.display='block';     
-            }
-
-			pub_date_cal = new Calendar({ publish_date: 'Y-m-d' }, { direction: .0, tweak: {x: -150, y: 22} });
-			create_date_cal = new Calendar({ create_date: 'Y-m-d' }, { direction: .0, tweak: {x: -150, y: 22} });
 
 			new Autocompleter.Request.JSON('tags', base_url + 'admin/pages/json_tags', {
 				'postVar': 'search_tags'
 			});
-
-			cms_tabs = new SimpleTabs('tabs-block', {
-			selector: 'h4'
-			});        
- 
-
-            load_editor();
-	    
-		function load_editor2()        {
-                    tinyMCE.init({
-                        mode : 'specific_textareas',
-                        editor_selector : 'mceEditor2',
-                        language: 'ru',
-                        theme : 'advanced',
-                        skin : "o2k7",
-                        skin_variant : "silver",
-                        plugins : "safari,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,inlinepopups",
-                        theme_advanced_buttons1 : "imagebox, bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,|,undo,redo,|,forecolor,backcolor,|,styleselect,formatselect,fontselect,fontsizeselect ",
-                        theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,outdent,indent,blockquote,|,link,unlink,anchor,image,media,|,pagebreak,cleanup,code,|,fullscreen ",
-                        theme_advanced_buttons3 : "",
-                        theme_advanced_toolbar_location : "top",
-                        theme_advanced_toolbar_align : "left",
-                        theme_advanced_statusbar_location : "bottom",
-                        theme_advanced_resizing : true,
-                        content_css : theme + "/css/content.css",
-                        paste_use_dialog : false,
-                        theme_advanced_resizing : true,
-                        file_browser_callback : "tinyBrowser",
-                        theme_advanced_resize_horizontal : true,
-                        apply_source_formatting : true,
-                        force_br_newlines : true,
-                        force_p_newlines : false,
-                        relative_urls : false,
-                        setup : function(ed) {
-                            ed.addButton('imagebox', {
-                                title : 'Imagebox',
-                                image : '/application/modules/imagebox/templates/images/button.png',
-                                onclick : function() {
-                                    show_main_window();
-                                    }
-                                    });
-                            },
-                            });
-                    };
-	    
-	    	var editor_loaded = false;
-		
-		$('tabs-block').getElements('a').addEvent('mouseover', function(event){
-		    if (!editor_loaded)
-		    {
-			load_editor2();
-			editor_loaded = true;
+			
+			$(document).ready(function{
+				alert('asads');	
+			})
+			
+			
+		    if ($.exists('.datepicker')) {
+		        $( ".datepicker" ).datepicker({
+		            showOtherMonths: true,
+		            selectOtherMonths: true,
+		            prevText: '',
+		            nextText: ''
+		        });
 		    }
-		    });	
-		});
+		    $('.ui-datepicker').addClass('dropdown-menu'); 
 
 	</script>
 {/literal}
+
 
 </section>

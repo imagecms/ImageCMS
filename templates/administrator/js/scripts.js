@@ -355,4 +355,9 @@ $(document).ready(function(){
         var $this=$(this);
         $this.parent().prev().val($this.val());
     });
+    
+    $('.formSubmit').live('click', function(){
+    	$( $(this).data('form') ).ajaxSubmit({target: '#jsOutput'});
+    });
+    
 });
