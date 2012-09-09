@@ -110,11 +110,12 @@
                         </span>-->
 </div>
 <span class="response">{echo $model->totalComments()} {echo SStringHelper::Pluralize($model->totalComments(), array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}</span>
+</br><span>{echo ShopCore::app()->SProductSpy->getsubscribescount($model->getId())}</span>
+
 {if count($model->getProductVariants())>1}
     <select class="m-l_10" name="selectVar">
         {foreach $model->getProductVariants() as $pv}
             {$var_prices = currency_convert($pv->getPrice(), $pv->getCurrency())}
-            {var_dump($var_prices)}
 <!--                                 <option class="selectVar" value="{echo $pv->getId()}" data-pp="1" data-st="{echo $pv->getStock()}" data-cs="{$NextCS}" data-spr="{echo ShopCore::app()->SCurrencyHelper->convert($pv->getPrice(), $NextCSId)}" data-pr="{echo $pv->getPrice()}" data-pid="{echo $model->getId()}" data-img="{echo $pv->getmainimage()}" data-vname="{echo $pv->getName()}" data-vnumber="{echo $pv->getNumber()}">{echo $pv->getName()}</option>-->
             <option class="selectVar"
                     value="{echo $pv->getId()}" 
@@ -142,8 +143,9 @@
             {echo $prices.main.price}
         </span>
         <sub>{$prices.main.symbol}</sub>
-    {if $NextCS != $CS}{/if}
-    <span id="prices{echo $model->getId()}" class="d_b">{echo $prices.second.price} {echo $prices.second.symbol}</span>
+    {if $NextCS != $CS}
+        <span id="prices{echo $model->getId()}" class="d_b">{echo $prices.second.price} {echo $prices.second.symbol}</span>
+    {/if}
     {if $model->getOldPrice() > 0}
         {if $model->getOldPrice() > $model->firstVariant->toCurrency()}
             <div>

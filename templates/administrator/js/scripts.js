@@ -22,13 +22,12 @@ $(document).ready(function(){
     
     //  tabs
     $('.myTab a').live('click', function (e) {
-    	alert('q');
         var hst = $(window).scrollTop()
         $this_href = $(this).attr('href');
-        if (!$.exists_nabir($($this_href))){
-            $('.tab-pane:last').load('set/'+$this_href.substring(1)+'.html').siblings().removeClass('active').end().addClass('active').attr('id', $this_href.substring(1));
-            $('.tab-content').append('<div class="tab-pane"></div>')
-        }
+//        if (!$.exists_nabir($($this_href))){
+//            $('.tab-pane:last').load('set/'+$this_href.substring(1)+'.html').siblings().removeClass('active').end().addClass('active').attr('id', $this_href.substring(1));
+//            $('.tab-content').append('<div class="tab-pane"></div>')
+//        }
         $(this).tab('show');
         e.preventDefault();
         location.hash = $this_href;
