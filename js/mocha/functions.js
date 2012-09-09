@@ -262,6 +262,7 @@ function translite_cat_name(str)
 		}).post({'str': str});
 }
 
+/*
 function retrive_keywords(str)
 {
 			var req = new Request.HTML({
@@ -271,6 +272,8 @@ function retrive_keywords(str)
 		}).post({'keys': str});
 }
 
+*/
+/*
 function create_description(str)
 {
 		var req = new Request.HTML({
@@ -279,6 +282,7 @@ function create_description(str)
 		onComplete: function(responseTree,responseElements,responseHTML,responseJavaScript) { $('page_description').value = responseHTML;	}
 		}).post({'text': str});
 }
+*/
 
 function block_screen()
 {

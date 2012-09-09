@@ -224,7 +224,10 @@ class Pages extends MY_Controller {
 			);
 
 			showMessage (lang('ac_page_created'));
-			updateDiv('page',site_url('admin/pages/edit/'.$page_id.'/'.$data['lang']));
+			
+			echo '<script>$.pjax({url: "/admin/pages/edit/'.$page_id.'", container:"#mainContent"});</script>';
+			
+			//updateDiv('page',site_url('admin/pages/edit/'.$page_id.'/'.$data['lang']));
 		}
 	}
 
@@ -805,7 +808,8 @@ class Pages extends MY_Controller {
 					$size=22;
 				}
 
-				echo '<a class="underline" onclick="$(\'page_keywords\').value = $(\'page_keywords\').value + \''.$key.', \' " style="font-size:'.$size.'px">'.$key.'</a> &nbsp;';
+				$append = $key.', ';
+				echo '<a class="underline" onclick="$(\'#page_keywords\').append (\''.$append.'\' );" style="font-size:'.$size.'px">'.$key.'</a> &nbsp;';
 			}
 	}
 
