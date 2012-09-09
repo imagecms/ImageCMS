@@ -1,155 +1,318 @@
                 <ul class="breadcrumb">
                     <li><a href="#">Главная</a> <span class="divider">/</span></li>
-                    <li class="active">Список товаров</li>
+                    <li class="active"> Создание новой страницы</li>
                 </ul>
+
+
 
 <section class="mini-layout">
                 
-<form method="post" action="{$BASE_URL}admin/pages/add" id="add_page_form" style="width:100%;">
+                    <div class="frame_title clearfix">
+                        <div class="pull-left w-s_n">
+                            <span class="help-inline"></span>
+                            <span class="title w-s_n">Создание новой страницы</span>
+                        </div>
+                        <div class="pull-right">
+                            <span class="help-inline"></span>
+                            <div class="d-i_b">
+                                <a href="#" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
+                                <button type="button" class="btn btn-small action_on"><i class="icon-ok"></i>Сохранить</button>
+                                <button type="button" class="btn btn-small action_on"><i class="icon-check"></i>Сохранить и выйти</button>
+                                <div class="dropdown d-i_b">
+                                    <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
+                                        Русский
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Английский</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>                            
+                    </div>  
 
-<div id="tabs-block"  style="float:left;width:100%;">
+					<div class="clearfix">
+                            <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
+                                <a href="#content_article" class="btn btn-small active">Содержание</a>
+                                <a href="#parameters_article" class="btn btn-small ">Параметры</a>
+                                <a href="#addfields_article" class="btn btn-small">Дополнительные поля</a>
+                                <a href="#setings_article" class="btn btn-small">Настройки</a>
+                            </div>
+                            <div class="pull-right m-t_20">
+                                <a href="#">Просмотр страницы <span class="f-s_14">→</span></a>
+                            </div>
+                        </div>             
+<form method="post" action="{$BASE_URL}admin/pages/add" id="add_page_form" class="form-horizontal">
+<div id="content_big_td" class="tab-content">                
 
-	<h4>{lang('a_content')}</h4>
-	<div id="text_id2" style="padding-left:10px;">
+<div class="tab-pane active" id="content_article">
 
-        <div style="padding:3px;"></div>
-        <div id="fast_category_list" style="float:left;">
-            {lang('a_category')}: <select name="category" ONCHANGE="change_comments_status();" id="category_selectbox">
+
+<table class="table table-striped table-bordered table-hover table-condensed">
+
+                                    <thead>
+                                        <tr>
+                                            <th colspan="6">
+                                                Содержание
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                    <td colspan="6">
+
+<div class="inside_padd">
+<div class="span9">
+
+        <div class="control-group">
+        <label class="control-label">
+            {lang('a_category')}:
+        </label>
+        	<div class="controls">
+            	<select name="category" ONCHANGE="change_comments_status();" id="category_selectbox" style="float: left;width: 457px !important;">
                 <option value="0" selected="selected">{lang('a_no')}</option>
                 { $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['sel_cat'])); }
                 </select> 
+                <img  src="{$THEME}/images/plus2.png" style="padding-left:5px;padding-top:2px;cursor:pointer;float:left;" title="{lang('a_create_cat')}" />
+        	</div>
         </div>
 
-        <img  src="{$THEME}/images/plus2.png" style="padding-left:5px;padding-top:2px;cursor:pointer;float:left;" onclick="show_fast_add_cat();" title="{lang('a_create_cat')}" />
 
-		<div class="form_overflow" style="padding:5px;"></div>
-
+        <div class="control-group">
+        <label class="control-label">
 		{lang('a_title')}:
-        <input type="text" name="page_title" value="" id="page_title_u" class="textbox_long" />
-	
-		<div class="form_overflow"></div>
- 
-        <div id="page_header"> {lang('a_prev_cont')}:</div>
-		<textarea id="prev_text" class="mceEditor" name="prev_text" rows="15" cols="180"  style="width:700px;height:200px;"></textarea>
-
-        <div id="page_header"> {lang('a_full_cont')}:</div>
-		<textarea id="full_text" class="mceEditor" name="full_text" rows="15" cols="180" style="width:700px;height:400px;"></textarea>
-    </div>
-	<h4>{lang('a_param')}</h4>
-	<div style="padding:8px;">
-
-		<div class="form_text">{lang('a_url')}:</div>
-		<div class="form_input"><input type="text" name="page_url" value="" id="page_url" class="textbox_long" /> 
-        <img onclick="translite_title($('page_title_u').value);" align="absmiddle" style="cursor:pointer" src="{$THEME}/images/translit.png" width="16" height="16" title="{lang('a_trans_title')}." /> 
-        <div class="lite">({lang('a_just_lat')})</div>
+        </label>
+        	<div class="controls">
+			<input type="text" name="page_title" value="" id="page_title_u" class="textbox_long" />
+        	</div>
         </div>
-        <div class="form_overflow"></div>
 
-		<div class="form_text">{lang('a_tags')}:</div>
-		<div class="form_input"><input type="text" name="search_tags" value="" id="tags" class="textbox_long" /></div>
-		<div class="form_overflow"></div>
+		<div class="control-group">
+        <label class="control-label">
+		{lang('a_prev_cont')}:
+        </label>
+        	<div class="controls">
+			<textarea id="prev_text" class="mceEditor" name="prev_text" rows="10" cols="180" ></textarea>
+        	</div>
+        </div>
+ 
+		<div class="control-group">
+        <label class="control-label">
+		{lang('a_full_cont')}:
+        </label>
+        	<div class="controls">
+			<textarea id="full_text" class="mceEditor" name="full_text" rows="10" cols="180" ></textarea>
+        	</div>
+        </div>
 
-		<div class="form_text">{lang('a_meta_title')}:</div>
-		<div class="form_input"><input type="text" name="meta_title" value=""  class="textbox_long" /></div>
-		<div class="form_overflow"></div>
-
-		<div class="form_text">{lang('a_meta_description')}:</div>
-			<div class="form_input"><textarea name="page_description" class="textarea" id="page_description" rows="8" cols="28"></textarea>
-			<img onclick="create_description(  tinyMCE.get('prev_text').getContent() );" src="{$THEME}/images/arrow-down.png" title="{lang('a_gen_desc')}" style="cursor:pointer" width="16" height="16" />
 		</div>
-		<div class="form_overflow"></div>
-
-		<div class="form_text">{lang('a_meta_keywords')}:</div>
-		<div class="form_input">
-			<textarea name="page_keywords" id="page_keywords" rows="8" class="textarea" cols="28"></textarea>
-			<img src="{$THEME}/images/arrow-down.png" style="cursor:pointer" title="{lang('a_gen_key_words')}" onclick="retrive_keywords( tinyMCE.get('full_text').getContent() + tinyMCE.get('prev_text').getContent() );" />
-
-			<div style="max-width:600px" id="keywords_list">
-
-			</div>
 		</div>
-		<div class="form_overflow"></div>
+		</td>
+		</tr>
+		</tbody>
+		</table>
+    </div>
+    
+    <div class="tab-pane" id="parameters_article">
+    
+    
+    
+    <table class="table table-striped table-bordered table-hover table-condensed">
 
-		<div class="form_text">{lang('a_main_tpl')}:</div>
-		<div class="form_input">
-			<input type="text" name="main_tpl" value="" class="textbox_long" /> .tpl
-			<div class="lite">{lang('a_by_default')}  main.tpl</div>
-		</div>
-		<div class="form_overflow"></div>
+    <thead>
+        <tr>
+            <th colspan="6">
+				{lang('a_param')}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td colspan="6">
 
-		<div class="form_text">{lang('a_page_tpl')}:</div>
-		<div class="form_input">
-			<input type="text" name="full_tpl" value="" class="textbox_long" /> .tpl
-			<div class="lite">{lang('a_by_default')}  page_full.tpl</div>
-		</div>
-		<div class="form_overflow"></div>
+            <div class="inside_padd">
+                <div class="span9">
 
-		<div class="form_text"></div>
-		<div class="form_input">
-			<label><input name="comments_status"  value="1" checked="checked" type="checkbox" id="comments_status" /> {lang('a_comm_alow')}</label>
-		</div>
-		<div class="form_overflow"></div>
+                        <div class="control-group">
+                            <label class="control-label">
+                    		{lang('a_url')}:
+                            </label>
+                        	<div class="controls">
+                			<input type="text" name="page_url" value="" id="page_url" class="textbox_long" /> 
+                			 	<img onclick="translite_title('#page_title_u', '#page_url');" align="absmiddle" style="cursor:pointer" src="{$THEME}/images/translit.png" width="16" height="16" title="{lang('a_trans_title')}." /> 
+        						<div class="lite">({lang('a_just_lat')})</div>
+                        	</div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label class="control-label">
+                            {lang('a_tags')}:
+                            </label>
+                        	<div class="controls">
+                        	<input type="text" name="search_tags" value="" id="tags" class="textbox_long" />
+                        	</div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label class="control-label">
+                            {lang('a_meta_title')}:
+                            </label>
+                        	<div class="controls">
+                        	<input type="text" name="meta_title" value=""  class="textbox_long" />
+                        	</div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label class="control-label">
+                            {lang('a_meta_description')}:
+                            </label>
+                        	<div class="controls">
+                        	<textarea name="page_description" class="textarea" id="page_description" rows="8" cols="28"></textarea>
+							<img onclick="create_description(  tinyMCE.get('prev_text').getContent() );" src="{$THEME}/images/arrow-down.png" title="{lang('a_gen_desc')}" style="cursor:pointer" width="16" height="16" />
+                        	</div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label class="control-label">
+                            {lang('a_meta_keywords')}:
+                            </label>
+                        	<div class="controls">
+                        	<textarea name="page_keywords" id="page_keywords" rows="8" class="textarea" cols="28"></textarea>
+							<img src="{$THEME}/images/arrow-down.png" style="cursor:pointer" title="{lang('a_gen_key_words')}" onclick="retrive_keywords( tinyMCE.get('full_text').getContent() + tinyMCE.get('prev_text').getContent() );" />
+				
+							<div style="max-width:600px" id="keywords_list">
+				
+							</div>
+                        	</div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label class="control-label">
+                            {lang('a_main_tpl')}:
+                            </label>
+                        	<div class="controls">
+                        	<input type="text" name="main_tpl" value="" class="textbox_long" /> .tpl
+							<div class="lite">{lang('a_by_default')}  main.tpl</div>
+                        	</div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label class="control-label">
+                            {lang('a_page_tpl')}:
+                            </label>
+                        	<div class="controls">
+                        	<input type="text" name="full_tpl" value="" class="textbox_long" /> .tpl
+							<div class="lite">{lang('a_by_default')}  page_full.tpl</div>
+                        	</div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label class="control-label">
+                             {lang('a_comm_alow')}
+                            </label>
+                        	<div class="controls">
+							<input name="comments_status"  value="1" checked="checked" type="checkbox" id="comments_status" />                        	
+                        	</div>
+                        </div>
+
+                </div>
+            </div>
+
+    	</td>
+	</tr>
+	</tbody>
+</table>
+
+	
 	</div>
 
-    {($hook = get_hook('admin_tpl_add_page')) ? eval($hook) : NULL;}
-{literal}
-<script type="text/javascript">
-
-</script>
-{/literal}
-</div>
-	<div id="sidebar2">
-		<div><h3><a href="#" onclick="side_panel('show'); return false;">{lang('a_show_sett')}</a></h3></div>
-	</div>
-	<div id="sidebar1">
-	<div id="side_bar_right"><h3>{lang('a_sett')} (<a href="" onclick="side_panel('hide'); return false;">{lang('a_hide')}</a>)</h3></div>
-
-	<div style="padding:5px;">
-		<p style="padding-left:15px;">
-		<b>{lang('a_pub_stat')}: </b><br />
-		<select name="post_status" id="post_status">
-		<option selected="selected" value="publish">{lang('a_published')}</option>
-		<option value="pending">{lang('a_wait_approve')}</option>
-		<option value="draft">{lang('a_not_publ')}</option>
-		</select>
-		</p>
-		<hr />
-		<p style="padding-left:15px;">
-		<b>{lang('a_date_and_time_cr')}:</b>
-			<p style="padding-left:15px;"><input id="create_date" name="create_date" tabindex="7" value="{$cur_date}" type="text" class="textbox_short" /></p>
-			<p style="padding-left:15px;"><input id="create_time" name="create_time" tabindex="8" type="text" value="{$cur_time}" class="textbox_short" /></p>
-		</p>
-		<hr />
-		<p style="padding-left:15px;">
-		<b>{lang('a_date_and_time_p')}:</b>
-			<p style="padding-left:15px;"><input id="publish_date" name="publish_date" tabindex="7" value="{$cur_date}" type="text" class="textbox_short" /></p>
-			<p style="padding-left:15px;"><input id="publish_time" name="publish_time" tabindex="8" type="text" value="{$cur_time}" class="textbox_short" /></p>
-		</p>
-		<hr />
-		<div style="padding-left:15px">
-			<b>{lang('a_access')}:</b>
-			<p>
-			<select multiple="multiple" name="roles[]">
-			<option value="0">{lang('a_all')}</option>
-			{foreach $roles as $role}
-			  <option value ="{$role.id}">{$role.alt_name}</option>
-			{/foreach}
-			</select>
-			</p>
-		</div>
-
-		</div>
-
-    {($hook = get_hook('admin_tpl_add_page_side_bar')) ? eval($hook) : NULL;}
-
+	<div class="tab-pane" id="addfields_article">
+		{($hook = get_hook('admin_tpl_add_page')) ? eval($hook) : NULL;}
 	</div>
 
+<div class="tab-pane" id="setings_article">
 
-<div class="footer_block" align="right">
-    <input type="submit" name="button"  class="button_130" value="{lang('a_create_page')}" onclick="ajax_me('add_page_form');" />
-</div>
+<table class="table table-striped table-bordered table-hover table-condensed">
 
-{form_csrf()}</form>
+    <thead>
+        <tr>
+            <th colspan="6">
+			{lang('a_sett')}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td colspan="6">
+
+            <div class="inside_padd">
+                <div class="span9">
+
+                        <div class="control-group">
+                            <label class="control-label">
+                    		{lang('a_pub_stat')}:
+                            </label>
+                        	<div class="controls">
+                			 <select name="post_status" id="post_status">
+								<option selected="selected" value="publish">{lang('a_published')}</option>
+								<option value="pending">{lang('a_wait_approve')}</option>
+								<option value="draft">{lang('a_not_publ')}</option>
+							</select>
+                        	</div>
+                        </div>
+                        
+                        <hr />
+                        
+                        <div class="control-group">
+                            <label class="control-label">
+                        	{lang('a_date_and_time_cr')}:    
+                            </label>
+                        	<div class="controls">
+           					<input id="create_date" name="create_date" tabindex="7" value="{$cur_date}" type="text" class="input-small" />
+							<input id="create_time" name="create_time" tabindex="8" type="text" value="{$cur_time}" class="input-small" />			             	
+                        	</div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label class="control-label">
+           					{lang('a_date_and_time_p')}:                 
+                            </label>
+                        	<div class="controls">
+            				<input id="publish_date" name="publish_date" tabindex="7" value="{$cur_date}" type="text" class="input-small" />
+							<input id="publish_time" name="publish_time" tabindex="8" type="text" value="{$cur_time}" class="input-small" />            	
+                        	</div>
+                        </div>
+
+						<div class="control-group">
+                            <label class="control-label">
+               				{lang('a_access')}:             
+                            </label>
+                        	<div class="controls">
+                			<select multiple="multiple" name="roles[]">
+								<option value="0">{lang('a_all')}</option>
+								{foreach $roles as $role}
+								  <option value ="{$role.id}">{$role.alt_name}</option>
+								{/foreach}
+							</select>        	
+            	           	</div>
+                        </div>
+                        
+                        
+                        {($hook = get_hook('admin_tpl_add_page_side_bar')) ? eval($hook) : NULL;}
+                        
+                </div>
+            </div>
+
+    	</td>
+	</tr>
+	</tbody>
+</table>
+
+		</div>
+	</div>
+
+{form_csrf()}
+</form>
 
 {literal}
 	<script type="text/javascript">

@@ -241,6 +241,8 @@ block_screen();
 		}).post({'param': param});
 }
 
+
+/*
 function translite_title(str)
 {
         var req = new Request.HTML({
@@ -249,6 +251,7 @@ function translite_title(str)
 			onComplete: function(responseTree,responseElements,responseHTML,responseJavaScript) { $('page_url').value = responseHTML;	}
 		}).post({'str': str});
 }
+*/
 
 function translite_cat_name(str)
 {

@@ -738,6 +738,7 @@ $(document).ready(function(){
         $('#prices'+pid).html(spr+' '+cs);
         $('#buy'+pid).attr('data-varid', vid);
         $('#buy'+pid).attr('data-prodid', pid);
+        //$('.addtoSpy').attr('data-varid', vid);
         $.ajax({
             type: "post",
             data: "pid="+pid+"&vid="+vid+"&stock="+st+"&pp="+pp,
@@ -766,7 +767,7 @@ $(document).ready(function(){
         var $this = $(this);
         $.ajax({
             type: "post",
-            data: "uid="+uid+"&pid="+pid+"&pp="+pp,
+            data: "uid="+uid+"&pid="+pid+"&vid="+vid+"&pp="+pp,
             url: "/shop/product_spy/spy",
             success: function(){
                 $this.html('Отписатся от слежения').removeClass('js').removeClass('gray').removeClass('addtoSpy').addClass('deleteFromSpy');
@@ -827,7 +828,7 @@ $(document).ready(function(){
             var $this = $(this);
             $.ajax({
                 type: "post",
-                data: "uid="+uid+"&pid="+pid+"&pp="+pp,
+                data: "uid="+uid+"&pid="+pid+"&vid="+vid+"&pp="+pp,
                 url: "/shop/product_spy/spy",
                 success: function(){
                     $this.html('Отписатся от слежения').removeClass('js').removeClass('gray').removeClass('addtoSpy').addClass('deleteFromSpy');

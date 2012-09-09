@@ -168,6 +168,7 @@
         <script src="{$THEME}/js/jquery-ui-1.7.3.custom.min.js" type="text/javascript"></script>
         <script src="{$THEME}/js/pjax/jquery.pjax.js" type="text/javascript"></script>
         <script src="{$THEME}/js/scripts.js" type="text/javascript"></script>
+        <script src="{$THEME}/js/functions.js" type="text/javascript"></script>
          {literal}
          <script>
 
