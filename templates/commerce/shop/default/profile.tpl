@@ -146,6 +146,7 @@
                             <th>{lang('s_to_falitem_number')}</th>
                             <th style="width:300px;">{lang('s_to_falo_product_name')}</th>
                             <th style="width:100px;">Разница</th>
+                            <th style="width:100px;">Разница в процентах</th>
                             <th style="width:100px;">Отписатся</th>
                         </tr>
                     </thead>
@@ -157,6 +158,9 @@
                                 <td><a href="{$BASE_URL}shop/product/{echo $good->getId()}">{echo $product[0]->getName()}</td>
                                 <td>
                                             {echo $good->getdist()}
+                                </td>
+                                <td>
+                                            {echo $good->getpercentdist()}
                                 </td>
                                 <td>
                                     <a href="{echo $good->getLink()}">Отписатся</a>
