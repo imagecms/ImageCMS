@@ -155,7 +155,7 @@
                             {$product = $good->getProduct()}
                             <tr>
                                 <td>{echo $product[0]->getId()}</td>
-                                <td><a href="{$BASE_URL}shop/product/{echo $good->getId()}">{echo $product[0]->getName()}</td>
+                                <td><a href="{$BASE_URL}shop/product/{echo $product[0]->getId()}">{echo $product[0]->getName()}</td>
                                 <td>
                                             {echo $good->getdist()}
                                 </td>
