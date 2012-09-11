@@ -5,7 +5,7 @@
     </ul>
         <div align="right" style="float:right;padding:7px 13px;">
             <a href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/'); return false;">{lang('amt_gallery')}</a> 
-            > 
+            &NestedGreaterGreater;
             <a href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/category/{$category.id}'); return false;">{$category.name}</a>  
         </div>
     </div>
