@@ -554,4 +554,5 @@
     $lang['a_mobile_version_site'] = 'Адрес сайта';
     $lang['a_mobile_version_address'] = 'Адрес поддомена';
     $lang['a_mobile_version_template'] = 'Шаблон';
+    $lang['a_count_rates'] = 'Пересчитать цены?';
 ?>
