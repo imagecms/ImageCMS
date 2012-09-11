@@ -129,10 +129,19 @@
                                 {if $NextCS == $CS}
                                     <div class="price f-s_26_lh_50 f_l">{$total} <sub>{$CS}</sub>
                                 {else:}
-                                    <div class="price f-s_26 f_l">{$total} <sub>{$CS}</sub>
-                                {/if}
-                                    <!--<span class="d_b">{echo $total_nc} {$NextCS}</span>-->
+                                     <div class="price f-s_26 f_l">
+                                     {if  !is_object($discountCom->getDiscount())} 
+                                        <del class="price price-c_red f-s_12 price-c_9">{echo $total} {$CS}</del> 
+                                        <span class="price f-s_12 price-c_9" style="font-size: 14px;">Скидка {echo $discountCom->getDiscount()}%</span><br />
+                                            {echo $total - $total / 100 * $discountCom->getDiscount()} {$CS}
+                                            {else:}
+                                                 {echo $total}
+                                    {/if}
+                                    
+                                     
+                                                                   
                                 </div>
+                                {/if}
                             </div>
                             <div class="sum f_r">
                                 {lang('s_summ')}:
