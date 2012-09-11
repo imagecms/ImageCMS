@@ -70,7 +70,7 @@
                         <form action="" method="post" name="currencyChangeForm" id="currencyChangeForm">
                             {lang('s_currency')}: <select class="changeCurrency" name="setCurrency" >
                                 {foreach get_currencies() as $currency}
-                                    <option {if ShopCore::app()->SCurrencyHelper->current->getId() == $currency->getId()}selected{/if} value="{echo $currency->getId()}">{echo encode($currency->getName())}</option>
+                                    <option {if ShopCore::app()->SCurrencyHelper->additional->getId() == $currency->getId()}selected{/if} value="{echo $currency->getId()}">{echo encode($currency->getName())}</option>
                                 {/foreach}
                             </select>
                             {form_csrf()}
