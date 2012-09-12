@@ -18,7 +18,7 @@
     </div>
 
     <div align="right" style="padding:7px 13px;">
- <input type="button" class="button_silver_130" value="{lang('a_create_page')}" onclick="ajax_div('page', base_url + 'admin/pages/index/category/{$cat_id}'); return fa;se;" />
+ <input type="button" class="button_silver_130" value="{lang('a_create_page')}" onclick="ajax_div('page', base_url + 'admin/pages/index/category/{$cat_id}'); return false;" />
     </div>
 </div>
 
