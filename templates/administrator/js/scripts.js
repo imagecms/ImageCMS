@@ -235,7 +235,7 @@ $(document).ready(function(){
     
     show_tovar_text = 'показывать товар';
     hide_tovar_text = 'не показывать товар';
-    $('.prod-on_off').on('click', function(){
+    $('.prod-on_off').live('click', function(){
         var $this = $(this);
         if ($this.hasClass('disable_tovar')){
             $this.animate({

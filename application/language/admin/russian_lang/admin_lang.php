@@ -355,6 +355,7 @@ $lang['a_install_modules'] = 'Установить модули';
 //$lang['a_sett'] = 'Настройки';
 //$lang['a_install'] = 'Установить';
 $lang['a_modules_not_installed'] = 'Модули не установлены!';
+$lang['a_no_modules_for_install'] = 'Нет модулей для установки!';
 $lang['a_message'] = 'Сообщение';
 $lang['a_modules_search_in_dev'] = 'Поиск модулей на стадии разработки.';
 $lang['a_for_simple_install'] = 'Для упрощенной установки модулей установите права на запись(0777) на директорию';

@@ -170,6 +170,7 @@
         <script src="{$THEME}/js/jquery.form.js" type="text/javascript"></script>
         <script src="{$THEME}/js/scripts.js" type="text/javascript"></script>
         <script src="{$THEME}/js/functions.js" type="text/javascript"></script>
+        <script src="{$THEME}/js/admin_base.js" type="text/javascript"></script>
         {literal}
             <script>
 

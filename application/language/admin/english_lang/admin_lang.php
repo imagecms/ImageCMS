@@ -279,4 +279,5 @@ $lang['a_cr'] = 'Has been created';
 $lang['a_change_data'] = 'Change data';
 $lang['a_widget_sett'] = 'Widget settings';
 $lang['a_lang_select'] = 'Select admin language';
+$lang['a_no_modules_for_install'] = "There isn't any module for install!";
 ?>
