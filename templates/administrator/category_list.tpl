@@ -1,11 +1,32 @@
-<div id="sortable">
-		  <table id="pages_table" >
-		  	<thead>
-                <th width="5px">{lang('a_id')}</th>
-				<th>{lang('a_title')}</th>
-				<th>{lang('a_pages')}</th>
-				<th>{lang('a_url')}</th>
-				<th></th>
+     <section class="mini-layout">
+                        <div class="frame_title clearfix">
+                            <div class="pull-left">
+                                <span class="help-inline"></span>
+                                <span class="title">Категории</span>
+                            </div>
+                            <div class="pull-right">
+                                <div class="d-i_b">
+                                    <button type="button" class="btn btn-small disabled action_on"><i class="icon-trash"></i>Удалить</button>
+                                    <button type="button" class="btn btn-small btn-success"><i class="icon-plus-sign icon-white"></i>Создать категорию</button>
+                                </div>
+                            </div>                            
+                        </div>
+ <div class="frame_table">
+                            <div id="category">
+                                <div class="row-category head">
+                                    <div class="t-a_c">
+                                        <span class="frame_label">
+                                            <span class="niceCheck b_n">
+                                                <input type="checkbox"/>
+                                            </span>
+                                        </span>
+                                    </div>
+                               <div>{lang('a_id')}</div>
+				<tdivh>{lang('a_title')}</div>
+				<div>{lang('a_pages')}</div>
+				<div>{lang('a_url')}</div>
+				<div></div>
+                                </div>
 			</thead>
 			<tbody>
 		{foreach $tree as $item}
