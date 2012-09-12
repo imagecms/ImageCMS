@@ -10,12 +10,19 @@ if ( ! function_exists('get_page'))
 		$ci->db->limit(1);
 		$ci->db->select('content.*');
 		$ci->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url');
+		$ci->db->select('content_permissions.data as roles', FALSE);
 		$ci->db->where('id', $id);
+		$ci->db->join('content_permissions','content_permissions.page_id = content.id', 'left');
 		$query = $ci->db->get('content');
 
 		if ($query->num_rows() == 1)
 		{
-			return $query->row_array();
+			$page = $query->row_array();
+			if ($ci->core->check_page_access(unserialize($page['roles']),FALSE))
+			{
+			return $page;
+			}
+			
 		}
 
 		return FALSE;
@@ -48,7 +55,9 @@ if ( ! function_exists('category_pages'))
 
 		$ci->db->select('content.*');
 		$ci->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url', FALSE);
+		$ci->db->select('content_permissions.data as roles', FALSE);
 		$ci->db->order_by($category['order_by'], $category['sort_order']);
+		$ci->db->join('content_permissions','content_permissions.page_id = content.id', 'left');
 
 		if ($limit > 0)
 		{
@@ -56,10 +65,19 @@ if ( ! function_exists('category_pages'))
 		}
 
 		$query = $ci->db->get('content');
-
-		//var_dump($query);
-
-		return $query->result_array();
+		$all_pages_cat=$query->result_array();//cutter
+		if (count($all_pages_cat)> 0)
+		{
+			foreach ($all_pages_cat as $v)
+			{
+				if ($ci->core->check_page_access(unserialize($v['roles']),FALSE))
+				{
+					$pages[]=$v;
+				}
+			}
+		}
+		return $pages;
+		//return $query->result_array();
 	}
 }
 
