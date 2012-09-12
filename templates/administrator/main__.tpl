@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
+
     <head>
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="{$THEME}/css/style.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap-responsive.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap-notify.css">
     </head>
@@ -23,8 +22,8 @@
                     </a>
                     <div class="pull-right span3">
                         <div class="clearfix">
-                            <div class="pull-left m-r_10">Здравствуйте, <a href="#">Admin<i class="my_icon exit_ico"></i></a></div>
-                            <div class="pull-right m-l_10">Просмотр <a href="{$BASE_URL}" target="_blank">сайта <span class="f-s_14">→</span></a></div>
+                            <div class="pull-left">Здравствуйте, <a href="#">Admin<i class="my_icon exit_ico"></i></a></div>
+                            <div class="pull-right">Просмотр <a href="{$BASE_URL}" target="_blank">сайта <span class="f-s_14">→</span></a></div>
                         </div>
                         <form method="post" action="#">
                             <div class="input-append search">
@@ -37,17 +36,17 @@
                     </div>
                     <div class="btn-group">
                         <div class="span4 d-i_b">
-                            <a href="#" class="btn btn-large" data-title="asdfg" data-rel="tooltip">
+                            <a href="#" class="btn btn-large">
                                 <i class="icon-bask active"></i>
                                 <span class="badge badge-important">6</span>
                             </a>
-                            <a href="#" class="btn btn-large" data-title="asdfg" data-rel="tooltip">
+                            <a href="#" class="btn btn-large">
                                 <i class="icon-report_exists"></i>
                             </a>
-                            <a href="#" class="btn btn-large" data-title="asdfg" data-rel="tooltip">
+                            <a href="#" class="btn btn-large">
                                 <i class="icon-callback"></i>
                             </a>
-                            <a href="#" class="btn btn-large" data-title="asdfg" data-rel="tooltip">
+                            <a href="#" class="btn btn-large">
                                 <i class="icon-comment_head"></i>
                             </a>
                         </div>
@@ -58,33 +57,33 @@
                 <div class="container">
                     <nav class="navbar navbar-inverse">
                         <ul class="nav">
-                            <li ><a href="/admin/pages"><i class="icon-home"></i><span>Главная</span></a></li>
+                            <li ><a href="/admin/pages"><i class="pjax icon-home"></i><span>Главная</span></a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-align-justify"></i>{lang('a_content')}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/admin/pages">{lang('a_create')}</a></li>
-                                    <li><a href="/admin/pages/GetPagesByCategory/0">Все содержимое по категориях</a></li>
-                                    <li><a href="/admin/pages/GetPagesByCategory/0">{lang('a_without_cat')}</a></li>
+                                    <li><a href="/admin/pages" class="pjax">{lang('a_create')}</a></li>
+                                    <li><a href="/admin/pages/GetPagesByCategory/0" class="pjax" >Все содержимое по категориях</a></li>
+                                    <li><a href="/admin/pages/GetPagesByCategory/0" class="pjax" >{lang('a_without_cat')}</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="/admin/components/cp/cfcm">{lang('a_field_constructor')}</a></li>
+                                    <li><a href="/admin/components/cp/cfcm" class="pjax">{lang('a_field_constructor')}</a></li>
 
                                 </ul>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list"></i>{lang('a_categories')}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/admin/categories/create_form">{lang('a_create')}</a></li>
-                                    <li><a href="/admin/categories/cat_list">{lang('a_edit')}</a></li>
+                                    <li><a href="/admin/categories/create_form" class="pjax">{lang('a_create')}</a></li>
+                                    <li><a href="/admin/categories/cat_list" class="pjax">{lang('a_edit')}</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list-alt"></i>{lang('a_menu')}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
 
-                                    <li><a href="/admin/components/cp/menu">{lang('a_control')}</a></li>
+                                    <li><a href="/admin/components/cp/menu" class="pjax">{lang('a_control')}</a></li>
                                     <li class="divider"></li>
                                     {foreach $menus as $menu}
-                                        <li><a href="/admin/components/cp/menu/menu_item/{$menu.name}">{$menu.main_title}</a></li>
+                                        <li><a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="pjax	">{$menu.main_title}</a></li>
                                     {/foreach}
 
                                 </ul>
@@ -92,13 +91,13 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-circle-arrow-down"></i>{lang('a_modules')}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/admin/components/modules_table/">{lang('a_all_modules')}</a></li>
-                                    <li><a href="/admin/mod_search/">{lang('a_search')}</a></li>
+                                    <li><a href="/admin/components/modules_table/" class="pjax">{lang('a_all_modules')}</a></li>
+                                    <li><a href="/admin/mod_search/" class="pjax">{lang('a_search')}</a></li>
                                     <li class="divider returnFalse"></a></li>
                                     {if $components}
                                         {foreach $components as $component}
                                             {if $component['installed'] == TRUE AND $component['admin_file'] == 1}
-                                                <li><a href="/admin/components/cp/{$component.com_name}">{$component.menu_name}</a></li>
+                                                <li><a href="/admin/components/cp/{$component.com_name}" class="pjax" >{$component.menu_name}</a></li>
                                             {/if}
                                         {/foreach}
                                     {/if}
@@ -107,24 +106,24 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-th"></i>{lang('a_widgets')}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/admin/widgets_manager/create_tpl">{lang('a_create')}</a></li>
-                                    <li><a href="/admin/widgets_manager">{lang('a_edit')}</a></li>
+                                    <li><a href="/admin/widgets_manager/create_tpl" class="pjax">{lang('a_create')}</a></li>
+                                    <li><a href="/admin/widgets_manager" class="pjax">{lang('a_edit')}</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-hdd"></i>{lang('a_system')}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/admin/settings">{lang('a_site_settings')}</a></li>
-                                    <li><a href="/admin/languages">{lang('a_languages')}</a></li>
+                                    <li><a href="/admin/settings" class="pjax">{lang('a_site_settings')}</a></li>
+                                    <li><a href="/admin/languages" class="pjax">{lang('a_languages')}</a></li>
                                     <li class="dropdown"><a class="returnFalse arrow-right" href="">{lang('a_cache')}</a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="javascript:delete_cache('all')">{lang('a_clean_all')}</a></li>
-                                            <li><a href="javascript:delete_cache('expried')">{lang('a_clean_old')}</a></li>
+                                            <li><a  href="javascript:delete_cache('all')">{lang('a_clean_all')}</a></li>
+                                            <li><a  href="javascript:delete_cache('expried')">{lang('a_clean_old')}</a></li>
                                         </ul>
                                     </li>
                                     <li class="divider"></li>
-                                    <li><a href="/admin/admin_logs">{lang('a_event_journal')}</a></li>
-                                    <li><a href="/admin/backup">{lang('a_backup_copy')}</a></li>
+                                    <li><a href="/admin/admin_logs" class="pjax">{lang('a_event_journal')}</a></li>
+                                    <li><a href="/admin/backup" class="pjax">{lang('a_backup_copy')}</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -143,13 +142,12 @@
                     <div class="span4">
                         Интерфейс:
                         <div class="dropup d-i_b">
-                            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                                 Русский
                                 <span class="caret"></span>
-                            </button>
+                            </a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">Английский</a></li>
-                                <li><a href="#">Русский</a></li>
                             </ul>
                         </div>
                     </div>
