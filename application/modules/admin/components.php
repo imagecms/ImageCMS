@@ -27,7 +27,7 @@ class Components extends MY_Controller {
         $not_installed = array();
 
         $fs_modules = $this->find_components();
-        $db_modules = $this->db->get('components')->result_array();
+        $db_modules = $this->db->order_by('position', 'asc')->get('components')->result_array();
 
         // Find not installed modules
         $count = count($fs_modules);
@@ -72,7 +72,6 @@ class Components extends MY_Controller {
 
     function install($module = '') {
         cp_check_perm('module_install');
-
         $module = strtolower($module);
 
         ($hook = get_hook('admin_install_module')) ? eval($hook) : NULL;
@@ -98,15 +97,19 @@ class Components extends MY_Controller {
 
             $this->lib_admin->log(lang('ac_istall') . $data['name']);
 
-            //showMessage('Модуль Установлен');
-            $result = true;
-            echo json_encode(array('result' => $result));
-            //return TRUE;
+            if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
+                $result = true;
+                echo json_encode(array('result' => $result));
+            } else {
+                return TRUE;
+            }
         } else {
-            //showMessage('Ошибка установки модуля.');
-            $result = true;
-            echo json_encode(array('result' => $result));
-            //return FALSE;
+            if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
+                $result = true;
+                echo json_encode(array('result' => $result));
+            } else {
+                return FALSE;
+            }
         }
     }
 
@@ -329,13 +332,13 @@ class Components extends MY_Controller {
                 $this->db->where('id', $mid)->set('autoload', $autoload)->update('components');
                 $row->autoload = $autoload;
                 echo json_encode(array('result' => $row));
-            }else{
+            }else {
                 $result = false;
                 echo json_encode(array('result' => $result));
             }
         }
     }
-    
+
     function change_url_access() {
         if (isset($_POST['mid'])) {
             $mid = $_POST['mid'];
@@ -349,7 +352,7 @@ class Components extends MY_Controller {
                 $this->db->where('id', $mid)->set('enabled', $enabled)->update('components');
                 $row->enabled = $enabled;
                 echo json_encode(array('result' => $row));
-            }else{
+            }else {
                 $result = false;
                 echo json_encode(array('result' => $result));
             }
