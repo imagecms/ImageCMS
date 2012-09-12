@@ -45,8 +45,7 @@
                 <div class="center">
                     {load_menu('top_menu')}
                     <ul class="user_menu m-l_19 auth_data">{include_tpl('auth_data')}</ul>
-                    <ul class="user_menu cart_data_holder">
-                        <li><a href="{$base_URL}discount" style="color:black;">Скидки</a></li>
+                    <ul class="user_menu cart_data_holder">                        
 <!--                        <li><a href="/" style="color:silver;">ru</a></li>
                         <li style="margin-left: 0; padding-left: 5px;"><a href="{$BASE_URL}en" style="color:silver;">en</a></li>-->
                         {include_tpl('cart_data')}</ul>

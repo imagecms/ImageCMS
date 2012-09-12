@@ -135,7 +135,7 @@
                         {if isset($item.gift_cert_price)}
                             {$total -= $item.gift_cert_price}
                         {/if}
-                         {if !empty($discountCom->getDiscount())} 
+                         {if $discountCom->getDiscount()} 
                                         <del class="price price-c_red f-s_12 price-c_9">{echo $total} {$CS}</del> 
                                         <span class="price f-s_12 price-c_9" style="font-size: 14px;">Скидка {echo $discountCom->getDiscount()}%</span>
                                     {/if}
