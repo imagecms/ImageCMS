@@ -54,7 +54,7 @@ class Admin extends MY_Controller {
         ($hook = get_hook('admin_show_desktop')) ? eval($hook) : NULL;
 
 // 		$this->template->show('desktop', FALSE);
-		$this->template->show('main', FALSE);
+		$this->template->show('dashboard', TRUE);
 	}
 
     public function sys_info($action = '')
