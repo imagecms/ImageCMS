@@ -85,7 +85,7 @@
                             </div>
                         </td>
                         <td> {//echo $summary = ShopCore::app()->SCurrencyHelper->convert($item.totalAmount)}
-                            <div class="price f-s_18 f_l">{echo $variant->getPrice() * $item->getQuantity()}{//echo $item->getQuantity() * $item->toCurrency()} 
+                            <div class="price f-s_18 f_l">{echo $variant->getPrice() * $item->getQuantity()} 
                                 <sub> {$CS}</sub>
                                 {if $NextCS != $CS}
                                     <span class="d_b">{echo $item->toCurrency('Price', $NextCSId)} {$NextCS}</span>
