@@ -83,7 +83,7 @@ class Template extends Mabilis {
     public function show($file = FALSE, $load_main = TRUE, $data = array()) {
 
         $CI = &get_instance();
-        if ($CI->uri->segment(1) == 'admin') {
+        if ($CI->uri->segment(1) == 'admin' && $CI->uri->segment(2) == '') {
             $load_main = (!$CI->input->is_ajax_request()) ? TRUE : FALSE;            
         }
 

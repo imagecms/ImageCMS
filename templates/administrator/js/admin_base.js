@@ -33,7 +33,30 @@ $(document).ready(function(){
             }
         });
     });
-    
+//    function plus_minus()
+//    {
+//        var show_tovar_text = 'показывать товар';
+//        var hide_tovar_text = 'не показывать товар';
+//        $('.mod-on_off').live('click', function(){
+//            var $this = $(this);
+//            if ($this.hasClass('disable_tovar')){
+//                $this.animate({
+//                    'left': '0'
+//                }, 200).removeClass('disable_tovar');
+//                $this.parent().attr('data-original-title', show_tovar_text)
+//                $('.tooltip-inner').text(show_tovar_text);
+//                $this.parents('td').next().children().removeClass('disabled');
+//            }
+//            else{
+//                $(this).animate({
+//                    'left': '-28px'
+//                }, 200).addClass('disable_tovar');
+//                $(this).parent().attr('data-original-title', hide_tovar_text)
+//                $('.tooltip-inner').text(hide_tovar_text);
+//                $this.parents('td').next().children().addClass('disabled');
+//            }
+//        });
+//    }
     $('.mod_instal').live('click', function(){
         var mname = $(this).attr('data-mname');
         var $this = $(this);
