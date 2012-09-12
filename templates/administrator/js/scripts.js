@@ -16,7 +16,8 @@ $(document).ready(function(){
     $('.popover_ref').each(function(){
         var $this = $(this);
         $this.popover({
-            'content':$this.next().html()
+            'content':$this.next().html(),
+            'placement':'left'
         })
     })
     
@@ -24,10 +25,10 @@ $(document).ready(function(){
     $('.myTab a').live('click', function (e) {
         var hst = $(window).scrollTop()
         $this_href = $(this).attr('href');
-//        if (!$.exists_nabir($($this_href))){
-//            $('.tab-pane:last').load('set/'+$this_href.substring(1)+'.html').siblings().removeClass('active').end().addClass('active').attr('id', $this_href.substring(1));
-//            $('.tab-content').append('<div class="tab-pane"></div>')
-//        }
+        if (!$.exists_nabir($($this_href))){
+            $('.tab-pane:last').load('set/'+$this_href.substring(1)+'.html').siblings().removeClass('active').end().addClass('active').attr('id', $this_href.substring(1));
+            $('.tab-content').append('<div class="tab-pane"></div>')
+        }
         $(this).tab('show');
         e.preventDefault();
         location.hash = $this_href;
@@ -41,6 +42,10 @@ $(document).ready(function(){
     
     //  tooltip
     $('[data-rel="tooltip"], [rel="tooltip"]').tooltip();
+    $('.row-category').tooltip({
+        'title':'перетащите категорию',
+        'placement':'left'
+    });
     //sortable
     if ($.exists('.sortable')) {
         $('.sortable tr').not(':has(tr)').tooltip({
@@ -50,7 +55,7 @@ $(document).ready(function(){
             axis: 'y',
             cursor: 'move',
             scroll: false,
-            cancel: '.head_body, .btn, .frame_label, td p, td span',
+            cancel: '.head_body, .btn, .frame_label, td p, td span, td a, td input',
             helper: function(e, tr)
             {
                 var $originals = tr.children();
@@ -126,7 +131,14 @@ $(document).ready(function(){
             changeCheckStart($(this));
         });
     }
-    $(".frame_label").click(function() {
+    if ($.exists('.niceRadio')) {
+        $(".niceRadio").each(function() {
+            active_R_b_p = '-179px -17px';
+            n_active_R_b_p = '-179px 0';
+            changeRadioStart($(this));
+        });
+    }
+    $(".frame_label:has(.niceCheck)").click(function() {
         var $this = $(this);
         if ($this.closest('thead')[0] != undefined){
             changeCheck($this.find('> span:eq(0)'))
@@ -142,10 +154,33 @@ $(document).ready(function(){
                 })
             }
         }
+        else if ($this.closest('.head')[0] != undefined){
+            changeCheck($this.find('> span:eq(0)'))
+            if ($this.hasClass('active')){
+                $this.parents('#category').find('.frame_label').each(function(){
+                    changeCheckallchecks($(this).find('> span:eq(0)'));
+                })
+            }
+            else
+            {
+                $(this).parents('#category').find('.frame_label').each(function(){
+                    changeCheckallreset($(this).find('> span:eq(0)'));
+                })
+            }
+        }
+        else if ($this.closest('.head')[0] != undefined){
+            
+        }
         else{
             changeCheck($this.find('> span:eq(0)'));
         }
         if (!$this.is('.no_connection')) dis_un_dis();
+        return false;
+    });
+
+    $(".frame_label:has(.niceRadio)").click(function() {
+        var $this = $(this);
+        changeRadio($this.find('> span:eq(0)'));
         return false;
     });
     function textcomment_s_h(status, el){
@@ -158,6 +193,7 @@ $(document).ready(function(){
                 var textcomment_h = textcomment.outerHeight();
                 textcomment.hide().next().show().find('textarea').css('height', textcomment_h+13);
             }
+            if (status == 's' && textcomment.css('display') == 'none') return true;
             else{
                 textcomment.show().next().hide();
             }
@@ -170,10 +206,22 @@ $(document).ready(function(){
         el.parent().addClass('active');
         input.attr("checked", true);
 
-        if (el.closest('.frame_level_3').length > 0) el.closest('tr').addClass('active');
-        else el.closest('.sortable').children('tr').has(el).addClass('active');
+        if (el.closest('.sortable').children('tr').length > 0) el.closest('.sortable').children('tr').has(el).addClass('active');
         
-        textcomment_s_h('s', el);
+        else if (el.closest('.simple_tr').length > 0) el.closest('.simple_tr').addClass('active');
+        
+        else{
+            if (el.closest('.frame_level_3').length > 0) el.closest('.row-category').addClass('active');
+        
+            else
+            {
+                temp_nabir = el.closest('.row-category').parent().find('.row-category');
+                temp_nabir.addClass('active');
+                temp_nabir.find('.frame_label').each(function(){
+                    changeCheckallchecks($(this).find('> span:eq(0)'));
+                })
+            }
+        }
     }
     function check2(el, input){
         var el = el;
@@ -181,11 +229,42 @@ $(document).ready(function(){
         el.css("background-position", n_active_b_p);
         el.parent().removeClass('active');
         input.attr("checked", false);
-            
-        if (el.closest('.frame_level_3').length > 0) el.closest('tr').removeClass('active');
-        else el.closest('.sortable').children('tr').has(el).removeClass('active');
         
-        textcomment_s_h('h', el);
+        if (el.closest('.sortable').children('tr').length > 0) el.closest('.sortable').children('tr').has(el).removeClass('active')
+        
+        else if (el.closest('.simple_tr').length > 0) el.closest('.simple_tr').removeClass('active');
+        
+        else{
+            if (el.closest('.frame_level_3').length > 0) el.closest('.row-category').removeClass('active');
+        
+            else
+            {
+                temp_nabir = el.closest('.row-category').parent().find('.row-category');
+                temp_nabir.removeClass('active');
+                temp_nabir.find('.frame_label').each(function(){
+                    changeCheckallreset($(this).find('> span:eq(0)'));
+                })
+            }
+        }
+    }
+    function check3(el, input){
+        var el = el;
+        var input = input;
+        el.css("background-position", active_R_b_p);
+        el.parent().addClass('active');
+        input.attr("checked", true);
+        el.parents('.row-category, tr').addClass('active');
+        $('[name='+input.attr('name')+']').not(input).each(function(){
+            check4($(this).parent(), $(this))
+        })
+    }
+    function check4(el, input){
+        var el = el;
+        var input = input;
+        el.css("background-position", n_active_R_b_p);
+        el.parent().removeClass('active');
+        el.parents('.row-category, tr').removeClass('active');
+        input.attr("checked", false);
     }
     function changeCheck(el)
     {
@@ -193,10 +272,18 @@ $(document).ready(function(){
         var input = el.find("input");
         if(!input.attr("checked")) {
             check1(el, input);
+            textcomment_s_h('s', el);
         }
         else{
             check2(el, input);
+            textcomment_s_h('h', el);
         }
+    }
+    function changeRadio(el)
+    {
+        var el = el;
+        var input = el.find("input");
+        check3(el, input);
     }
     function changeCheckallchecks(el)
     {
@@ -206,6 +293,7 @@ $(document).ready(function(){
         el.parent().addClass('active');
         input.attr("checked", true);
         el.parents('.sortable').children('tr').addClass('active');
+        el.closest('.simple_tr').addClass('active');
         
         textcomment_s_h('s', el);
     }
@@ -217,6 +305,7 @@ $(document).ready(function(){
         el.parent().removeClass('active');
         input.attr("checked", false);
         el.parents('.sortable').children('tr').removeClass('active');
+        el.closest('.simple_tr').removeClass('active');
         
         textcomment_s_h('h', el);
     }
@@ -232,9 +321,29 @@ $(document).ready(function(){
         }
         el.removeClass('b_n');
     }
+    function changeRadioStart(el)
+    {
+        var el = el,
+        input = el.find("input");
+        el.removeClass('b_n');
+        if(input.attr("checked")){
+            check3(el, input);
+        }
+        return false;
+    }
+    $('.all_select').on('click', function(){
+        $(this).parents('table').find('.frame_label').each(function(){
+            changeCheckallchecks($(this).find('> span:eq(0)'));
+        })
+    })
+    $('.all_diselect').on('click', function(){
+        $(this).parents('table').find('.frame_label').each(function(){
+            changeCheckallreset($(this).find('> span:eq(0)'));
+        })
+    })
     
-    show_tovar_text = 'показывать товар';
-    hide_tovar_text = 'не показывать товар';
+    show_tovar_text = 'показывать';
+    hide_tovar_text = 'не показывать';
     $('.prod-on_off').on('click', function(){
         var $this = $(this);
         if ($this.hasClass('disable_tovar')){
@@ -318,14 +427,15 @@ $(document).ready(function(){
             (e.target.nodeName!="TR")&&
             (e.target.nodeName!="P")&&
             (e.target.nodeName!="SPAN")&&
-            (!e.target.nodeName!="A")
+            (!e.target.nodeName!="A")&&
+            (e.target.nodeName!="DD")
             )
             {
             e=e||event;
             cancelEvent(e);
             addHandler(document,'selectstart',returnFalse,false);
         }
-        if(($(e.target).hasClass('niceCheck')) || $(e.target).hasClass('frame_label')){
+        if(($(e.target).hasClass('niceCheck')) || $(e.target).hasClass('frame_label') || ($(e.target).hasClass('niceRadio') || ($(e.target).hasClass('.row-category')) || ($(e.target).parent('.row-category').length > 0) )){
             e=e||event;
             cancelEvent(e);
             addHandler(document,'selectstart',returnFalse,false);
@@ -338,12 +448,12 @@ $(document).ready(function(){
     
     $('#category .btn:has(.icon-plus)').on('click', function(){
         var $this = $(this);
-        $this.closest('tr').next().show();
+        $this.closest('.row-category').next().show();
         $this.hide().prev().show();
     })
     $('#category .btn:has(.icon-minus)').on('click', function(){
         var $this = $(this);
-        $this.closest('tr').next().hide();
+        $this.closest('.row-category').next().hide();
         $this.hide().next().show();
     })
     
@@ -353,11 +463,7 @@ $(document).ready(function(){
     
     $('[type="file"]').change(function(){
         var $this=$(this);
-        $this.parent().prev().val($this.val());
+        $this.parent().prev().children().val($this.val());
     });
-    
-    $('.formSubmit').live('click', function(){
-    	$( $(this).data('form') ).ajaxSubmit({target: '#jsOutput'});
-    });
-    
+    $('.item_menu .row-category:even').addClass('even');
 });
