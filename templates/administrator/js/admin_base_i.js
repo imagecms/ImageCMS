@@ -145,6 +145,10 @@ $(document).ready(function(){
         });
     });
     
+    $('span.selwid').bind('click', function(){
+        var title = $(this).attr('data-title');
+        $('.selmod').html('<b>'+title+'</b>');
+    });
 });
 
 

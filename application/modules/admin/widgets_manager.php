@@ -176,7 +176,11 @@ class Widgets_Manager extends MY_Controller {
     public function create_tpl()
     {
         cp_check_perm('widget_create');
-
+        
+        $blocks = $this->display_create_tpl('tmodule');
+                
+        $this->template->assign('blocks', $blocks);
+                
         $this->template->show('widget_create', FALSE);
     }
 
@@ -346,6 +350,11 @@ class Widgets_Manager extends MY_Controller {
      */ 
     public function display_create_tpl($type = FALSE)
     {
+        if($type == 'tmodule')
+        {
+            $case = true;
+            $type = 'module'; 
+        }
         switch($type)
         {
             case 'module':
@@ -375,7 +384,8 @@ class Widgets_Manager extends MY_Controller {
                 $this->template->add_array(array(
                     'widgets' => $widgets
                     ));
-        
+                if($case)
+                    return $widgets;
                 $this->template->show('widget_create_module', FALSE);
             break;
 
