@@ -38,6 +38,11 @@ $lang['a_meta_title'] = 'Meta title';
 $lang['a_meta_description'] = 'Meta description';
 $lang['a_meta_keywords'] = 'Meta keywords';
 $lang['a_create_page'] = 'Create a page';
+$lang['a_W_G'] = 'G.Webmaster';
+$lang['a_Y_W'] = 'Я.Webmaster';
+$lang['a_code_in_google'] = 'The code should be in the format "ua-54545845"';
+$lang['a_site_offline_help'] = 'The site will be available only to the Administrator';
+$lang['a_saves'] = 'Save';
 
 
 
