@@ -367,6 +367,23 @@ class Components extends MY_Controller {
             }
         }
     }
+    
+    function save_components_positions($positions)
+    {
+        $positions = explode(',',$positions);
+        if(is_array($positions))
+        {
+            foreach($positions as $key=>$value){
+                if($this->db->where('id', (int)$value)->set('position', $key)->update('components')){
+                    $result = true;    
+                    echo json_encode(array('result'=>$result));
+                }else{
+                    $result = false;    
+                    echo json_encode(array('result'=>$result));
+                }
+            }
+        }
+    }
 
 }
 
