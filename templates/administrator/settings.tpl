@@ -33,7 +33,7 @@
                         <li class="active"><a href="#setings">{lang('a_sett')}</a></li>
                         <li><a href="#homePage">{lang('a_main_page')}</a></li>
                         <li><a href="#metatag">{lang('a_meta_tags')}</a></li>                             
-                        <li><a href="#metatag">{lang('a_languages')}</a></li>                             
+                        <li><a href="#lang">{lang('a_languages')}</a></li>                             
                     </ul>
                 </div>
                 <div class="span9 content_big_td">
