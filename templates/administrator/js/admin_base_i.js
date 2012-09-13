@@ -87,7 +87,6 @@ $(document).ready(function(){
                         success: function(obj){
                             if(obj.result)
                             {
-                                //alert('Модуль'+inp.attr('value')+'успешно удален');
                                 location.reload();
                             }else
                             {
@@ -111,10 +110,8 @@ $(document).ready(function(){
                                 dataType:   "json",
                                 url:        '/admin/components/deinstall/'+inp.attr('value'),
                                 success: function(obj){
-                                    console.log(obj);
                                     if(obj.result)
                                     {
-                                        //alert('Модуль'+inp.attr('value')+'успешно удален');
                                         location.reload();
                                     }else
                                     {
@@ -128,6 +125,28 @@ $(document).ready(function(){
             }
         }
     });
+        
+    $( ".sortable" ).bind( "sortstop", function(event, ui) {
+        var rows =  $('#mtbl').children('tr');
+        var arr = new Array();
+        rows.each(function(){
+           arr[$(this).index()] = $(this).attr('data-id'); 
+        });
+        console.log(arr);
+        $.ajax({
+            type:       'post',
+            
+            dataType:   "json",
+            url:        '/admin/components/save_components_positions/'+arr,
+            success: function(obj){
+                if(obj.result)
+                    {
+                        alert("positions changed successfull");
+                    }
+            }
+        });
+    });
+    
 });
 
 

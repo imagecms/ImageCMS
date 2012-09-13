@@ -38,7 +38,7 @@
                             </thead>
                             <tbody class="sortable" id="mtbl">
                                 {foreach $installed as $module}
-                                    <tr data-title="перетащите модуль">
+                                    <tr data-title="перетащите модуль" data-id="{$module.id}">
                                         <td>
                                             <span class="frame_label">
                                                 <span class="niceCheck b_n">
