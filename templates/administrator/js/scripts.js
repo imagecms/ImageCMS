@@ -341,10 +341,10 @@ $(document).ready(function(){
             changeCheckallreset($(this).find('> span:eq(0)'));
         })
     })
-    
+
     show_tovar_text = 'показывать';
     hide_tovar_text = 'не показывать';
-    $('.prod-on_off').on('click', function(){
+    $('.prod-on_off').live('click', function(){
         var $this = $(this);
         if ($this.hasClass('disable_tovar')){
             $this.animate({
