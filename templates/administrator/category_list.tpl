@@ -38,8 +38,8 @@
                             {sub_categories_admin($tree)}
                             {foreach $tree as $item}         
 {if $item.parent_id == "0"}
-                                <div class="frame_level_0 sortable">                                                                   
-                                    <div class="row-category">
+                                <div class="frame_level_0 sortable" >                                                                   
+                                    <div class="row-category" >
                                         <div class="t-a_c">
                                             <span class="frame_label">
                                                 <span class="niceCheck b_n">
@@ -48,16 +48,16 @@
                                             </span>
                                         </div>                                             	
                                         <div><p>{$item.id}</p></div>
-                                        <div class="share_alt">
+                                        <div class="share_alt" >
                                             <a href="#" class="go_to_site pull-right btn btn-small" data-rel="tooltip" data-placement="top" data-original-title="перейти на сайт"><i class="icon-share-alt"></i></a>
-                                            <div class="title ">
+                                            <div class="title" onclick="edit_category({$item.id}); return false;">
                                                 <button type="button" class="btn btn-small my_btn_s" style="display: none; margin-top: 1px;" data-rel="tooltip" data-placement="top" data-original-title="свернуть категорию">
                                                     <i class="my_icon icon-minus"></i>
                                                 </button>
                                                 <button type="button" class="btn btn-small my_btn_s btn-primary" data-rel="tooltip" data-placement="top" data-original-title="розвернуть категорию">
                                                     <i class="my_icon icon-plus"></i>
                                                 </button>                                  
-     <a href="#" data-rel="tooltip" data-placement="top" data-original-title="редактировать категорию">{truncate($item.name, 100)}</a>
+     <a href="{$ADMIN_URL}edit/{$item.id}" data-rel="tooltip" data-placement="top" data-original-title="редактировать категорию" >{truncate($item.name, 100)}</a>
                                                
 
                                             </div>
@@ -98,7 +98,6 @@
                                         <div><p>{$item.pages}</p></div>                                                
                                     </div>
                                      {/if}
-                                     
                                     </div>
                                 {/foreach}
                             </div>
