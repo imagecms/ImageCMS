@@ -115,7 +115,8 @@ class Components extends MY_Controller {
 
     function deinstall($module = '') {
         cp_check_perm('module_deinstall');
-
+//        echo $module;
+//        exit();
         $module = strtolower($module);
 
         ($hook = get_hook('admin_deinstall_module')) ? eval($hook) : NULL;
@@ -129,17 +130,25 @@ class Components extends MY_Controller {
 
             $this->db->limit(1);
             $this->db->delete('components', array('name' => $module));
-
             $this->lib_admin->log(lang('ac_deinstall') . $module);
+            if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
+                $result = true;
+                echo json_encode(array('result'=>$result));
+            }
         } else {
-            showMessage(lang('ac_deinstall_error'), false, 'r');
+            //showMessage(lang('ac_deinstall_error'), false, 'r');
+            if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
+                $result = false;
+                echo json_encode(array('result'=>$result));
+            }
         }
 
         // Update hooks
         $this->load->library('cms_hooks');
         $this->cms_hooks->build_hooks();
-
-        $this->modules_table();
+        if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
+            $this->modules_table();
+        }
     }
 
     function find_components($in_menu = FALSE) {
