@@ -47,19 +47,17 @@
         });
         function openator(name_window,type_file)
 	{
-	new MochaUI.Window({
-            {/literal}
-            id: Math.random(),
-            title: name_window,
-            loadMethod: 'iframe',
-            maximizable: true,
-            resizable : true,
-            minimizable : true,
-            contentURL: base_url + 'js/tinymce/plugins/tinybrowser/tinybrowser.php?type=' + type_file +'&feid=open_to_new_window',
-            type: 'window',
-            width: 800,
-            height: 600
-            {literal}
+            new MochaUI.Window({
+                id: Math.random(),
+                title: name_window,
+                loadMethod: 'iframe',
+                maximizable: true,
+                resizable : true,
+                minimizable : true,
+                contentURL: base_url + 'js/tinymce/plugins/tinybrowser/tinybrowser.php?type=' + type_file +'&feid=open_to_new_window',
+                type: 'window',
+                width: 800,
+                height: 600
             });
    	}
     </script>
