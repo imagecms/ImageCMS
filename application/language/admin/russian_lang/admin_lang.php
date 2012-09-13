@@ -39,6 +39,12 @@ $lang['a_meta_title'] = 'Meta title';
 $lang['a_meta_description'] = 'Meta description';
 $lang['a_meta_keywords'] = 'Meta keywords';
 $lang['a_create_page'] = 'Создать Страницу';
+$lang['a_code_in_google'] = 'Код должен быть в формате "ua-54545845"';
+$lang['a_W_G'] = 'G.Вэбмастер';
+$lang['a_Y_W'] = 'Я.Вэбмастер';
+$lang['a_site_offline_help'] = 'Сайт будет доступен только для Администратора';
+$lang['a_Y_W'] = 'Я.Вэбмастер';
+$lang['a_saves'] = 'Сохранить';
 
 
 
