@@ -22,9 +22,9 @@
 
         <div align="right" style="padding:7px 13px;">
             <a href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/'); return false;"  >{lang('amt_gallery')}</a> 
-            >
+            &NestedGreaterGreater;
             <a href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/category/{$category.id}'); return false;">{$category.name}</a> 
-            >
+            &NestedGreaterGreater;
             <a href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/edit_album/{$album.id}'); return false;">{$album.name}</a>     
         </div>
     </div>
@@ -33,7 +33,7 @@
 
 
 <div style="float:left;padding:10px;min-width:500px;" align="center">
-   <img src="{site_url($album_url . '/' . $image['file_name'] .'_prev'. $image['file_ext'])}" style="border:4px solid #D8D8D8;" />     
+   <img src="{media_url($album_url . '/' . $image['file_name'] .'_prev'. $image['file_ext'])}" style="border:4px solid #D8D8D8;" />     
 </div>
 
 <div style="float:left;padding:10px;">

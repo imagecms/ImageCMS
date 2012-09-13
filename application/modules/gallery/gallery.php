@@ -51,7 +51,7 @@ class Gallery extends MY_Controller {
                 ));
         }
 
-        $this->display_tpl('albums');
+        $this->displayTpl('public/albums');
     }
 
     /**
@@ -80,7 +80,7 @@ class Gallery extends MY_Controller {
                 'gallery_category' => $this->gallery_m->get_categories($this->settings['order_by'], $this->settings['sort_order']), 
             ));
 
-            $this->display_tpl('albums');
+            $this->displayTpl('public/albums');
         }
     }
 
@@ -162,11 +162,11 @@ class Gallery extends MY_Controller {
 
             if ($album['tpl_file'])
                 {
-                echo $this->display_tpl($album['tpl_file']);
+                echo $this->displayTpl($album['tpl_file']);
                 }
             else
                 {
-                $this->display_tpl('album');
+                $this->displayTpl('public/album');
                 }
         }
     }
@@ -191,7 +191,7 @@ class Gallery extends MY_Controller {
       
         $this->core->set_meta_tags(array($album['name']));
 
-        $this->display_tpl('thumbnails');
+        $this->displayTpl('public/thumbnails');
     }
 
     function post_comment()
@@ -249,65 +249,5 @@ class Gallery extends MY_Controller {
         if( $this->dx_auth->is_admin() == FALSE) exit;
         $this->load->model('install')->deinstall();
     }
-
-    /**
-     * Display template file
-     */ 
-	private function display_tpl($file = '')
-    {
-        /**
-        if ( file_exists($this->template->template_dir . 'gallery') )
-        {
-            if ( file_exists($this->template->template_dir . 'gallery/main.tpl')   )
-            {
-                $this->template->add_array(array(
-                        'content' => $this->template->fetch('gallery/' . $file),
-                    ));
-
-                $this->template->display('gallery/main');
-            }
-            else
-            {
-                $this->template->show('gallery/' . $file);
-            }
-        }
-        else
-        {
-            $this->template->add_array(array(
-                'content' => $this->fetch_tpl($file),
-            ));
-
-            $file = realpath(dirname(__FILE__)).'/templates/public/main.tpl';  
-		    $this->template->display('file:' . $file);
-        }
-        **/
-
-        $this->template->add_array(array(
-                'content' => $this->fetch_tpl($file),
-            ));
-
-        if (file_exists(realpath(dirname(__FILE__)).'/templates/public/main.tpl'))
-        {
-            $file = realpath(dirname(__FILE__)).'/templates/public/main.tpl';  
-		    $this->template->display('file:' . $file);
-        }
-        else
-        {
-            // Use main site template
-            $this->template->show();
-            exit;
-        }
-	}
-
-    /**
-     * Fetch template file
-     */ 
-	private function fetch_tpl($file = '')
-	{
-        $file =  realpath(dirname(__FILE__)).'/templates/public/'.$file.'.tpl';  
-		return $this->template->fetch('file:'.$file);
-	}
-
 }
-
 /* End of file gallery.php */

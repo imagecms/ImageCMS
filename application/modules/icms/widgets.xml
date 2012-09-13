@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets>
+    
+    <widget>
+        <title>Дерево категорий</title>
+        <description>Отображает категорию с подкатегориями в виде каталога</description>
+        <method>icms_category_tree</method>
+    </widget>
+    
+</widgets>

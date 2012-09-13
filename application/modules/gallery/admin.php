@@ -83,7 +83,7 @@ class Admin extends MY_Controller {
                 'error' => lang('amt_delete_folder_to_continue').$this->conf['upload_path'].lang('amt_write_perm')
             ));
 
-            $this->display_tpl('error');
+            $this->displayTpl('admin/error', false);
 
             exit;
         }
@@ -135,13 +135,13 @@ class Admin extends MY_Controller {
             'albums'     => $albums,
         ));
 
-        $this->display_tpl('categories');
+        $this->displayTpl('admin/categories', false);
     }
 
     /**
      * Display category albums
      */
-	public function category($id)
+    public function category($id)
     {
         $albums = $this->gallery_m->get_albums($this->conf['order_by'], $this->conf['sort_order'], $id);
 
@@ -152,7 +152,7 @@ class Admin extends MY_Controller {
             for($i = 0; $i < $cnt; $i++)
             {
                 // Create url to album cover
-                $albums[$i]['cover_url'] = site_url($upload_url . $albums[$i]['id'] . '/_admin_thumbs/' . $albums[$i]['cover_name'] . $albums[$i]['cover_ext']);
+                $albums[$i]['cover_url'] = media_url($upload_url . $albums[$i]['id'] . '/_admin_thumbs/' . $albums[$i]['cover_name'] . $albums[$i]['cover_ext']);
 
                 $upload_url = $this->conf['upload_url'];
 
@@ -162,7 +162,7 @@ class Admin extends MY_Controller {
 
                     if ($image != FALSE)
                     {    
-                        $albums[$i]['cover_url'] = site_url($upload_url . $albums[$i]['id'] . '/_admin_thumbs/' . $image['file_name'] . $image['file_ext']);
+                        $albums[$i]['cover_url'] = media_url($upload_url . $albums[$i]['id'] . '/_admin_thumbs/' . $image['file_name'] . $image['file_ext']);
                     }
                     else
                     {
@@ -171,7 +171,7 @@ class Admin extends MY_Controller {
                 }
                 else
                 {
-                     $albums[$i]['cover_url'] = site_url($upload_url . $albums[$i]['id'] . '/_admin_thumbs/' . $albums[$i]['cover_name'] . $albums[$i]['cover_ext']);
+                     $albums[$i]['cover_url'] = media_url($upload_url . $albums[$i]['id'] . '/_admin_thumbs/' . $albums[$i]['cover_name'] . $albums[$i]['cover_ext']);
                 }
             }
 
@@ -184,7 +184,7 @@ class Admin extends MY_Controller {
                 'category' => $this->gallery_m->get_category($id)
             ));
 
-        $this->display_tpl('album_list');
+        $this->displayTpl('admin/album_list', false);
     }
 
     /**
@@ -197,7 +197,7 @@ class Admin extends MY_Controller {
             case 'show':
                 $this->template->assign('settings', $this->gallery_m->load_settings());
 
-                $this->display_tpl('settings');
+                $this->displayTpl('admin/settings', false);
             break;
 
             case 'update':
@@ -345,7 +345,7 @@ class Admin extends MY_Controller {
                 'categories' => $this->gallery_m->get_categories($album['category_id']),
             ));
 
-            $this->display_tpl('album_params');
+            $this->displayTpl('admin/album_params', false);
         }
         else
         {
@@ -399,7 +399,7 @@ class Admin extends MY_Controller {
             'categories' => $cats, 
         ));
 
-        $this->display_tpl('create_album');
+        $this->displayTpl('admin/create_album', false);
     }
 
     /**
@@ -409,15 +409,13 @@ class Admin extends MY_Controller {
     {
 	$album = $this->gallery_m->get_album($id);
 
-	
-    
         $this->template->add_array(array(
             'album'     => $album,
             'category'  => $this->gallery_m->get_category($album['category_id']),
             'album_url' => $this->conf['upload_url'] . $id
         ));
 
-        $this->display_tpl('edit_album');  
+        $this->displayTpl('admin/edit_album', false);  
     }
 
     // --------------------------------------------------------------------
@@ -437,7 +435,7 @@ class Admin extends MY_Controller {
                 'album_url' => $this->conf['upload_url'] . $album['id']
             ));
 
-            $this->display_tpl('edit_image');
+            $this->displayTpl('admin/edit_image', false);
         }
         else
         {
@@ -605,7 +603,7 @@ class Admin extends MY_Controller {
 
     public function show_create_category()
     {
-        $this->display_tpl('create_category');
+        $this->displayTpl('admin/create_category', false);
     }
 
     public function create_category()
@@ -645,7 +643,7 @@ class Admin extends MY_Controller {
                 'category' => $category
             ));
 
-        $this->display_tpl('edit_category');
+        $this->displayTpl('admin/edit_category', false);
     }
 
     public function update_category($id)
@@ -1097,24 +1095,6 @@ class Admin extends MY_Controller {
         $this->image_lib->initialize($config);
         $this->image_lib->watermark();
     }
-
-    /**
-     * Display template file
-     */ 
-	private function display_tpl($file = '')
-	{
-        $file =  realpath(dirname(__FILE__)).'/templates/admin/'.$file.'.tpl';  
-		$this->template->display('file:'.$file);
-	}
-
-    /**
-     * Fetch template file
-     */ 
-	private function fetch_tpl($file = '')
-	{
-        $file =  realpath(dirname(__FILE__)).'/templates/admin/'.$file.'.tpl';  
-		return $this->template->fetch('file:'.$file);
-	}
 
 }
 
