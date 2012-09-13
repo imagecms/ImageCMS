@@ -135,11 +135,15 @@
                         {if isset($item.gift_cert_price)}
                             {$total -= $item.gift_cert_price}
                         {/if}
-                        {echo $total}
-                        <sub>{$CS}</sub>
+                         {if $discountCom->getDiscount()} 
+                                        <del class="price price-c_red f-s_12 price-c_9">{echo $total} {$CS}</del> 
+                                        <span class="price f-s_12 price-c_9" style="font-size: 14px;">Скидка {echo $discountCom->getDiscount()}%</span>
+                                    {/if}
+                                    {echo $total - $total / 100 * $discountCom->getDiscount()} {$CS} 
+                        <sub>{//$CS}</sub>
                         {if $total < $item.delivery_free_from}<span class="d_b">(+{echo $dprice.main.price} {$dprice.main.symbol})</span>{/if}
                         {if isset($item.gift_cert_price)}<span class="d_b">(-{echo $item.gift_cert_price} руб)</span>{/if}
-                        <!--<span class="d_b">{$total_nc} $</span>-->
+                       
                         </div>
                 </div>
                 <div class="f_r sum">{lang('s_summ')}:</div>
