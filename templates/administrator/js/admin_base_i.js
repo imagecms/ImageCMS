@@ -62,7 +62,7 @@ $(document).ready(function(){
                         $('#nimt').remove();
                         $('#nimc').html('</br><div class="alert alert-info">Нето модулей для установки</div>');
                     }
-                location.reload();
+                    location.reload();
                 }
             }
         });
@@ -75,9 +75,57 @@ $(document).ready(function(){
             alert('Сначала выберите модуль для удаления');
         }
         else{
-            //alert('delete button has been clicked');
-            var inputs = $('.niceCheck').children('input');
-            console.log(inputs);
+            if($('.niceCheck:first-child').children('input').attr('value') === 'On')
+            {
+                var inputs = $('.niceCheck').children('input');
+                inputs.each(function(){
+                    var inp = $(this);
+                    $.ajax({
+                        type:       'post',
+                        dataType:   "json",
+                        url:        '/admin/components/deinstall/'+inp.attr('value'),
+                        success: function(obj){
+                            if(obj.result)
+                            {
+                                //alert('Модуль'+inp.attr('value')+'успешно удален');
+                                location.reload();
+                            }else
+                            {
+                                alert('Ошибка удаления модуля');
+                            }
+                        }
+                    });
+                });
+            }
+            else
+            {
+                var inputs = $('.niceCheck').children('input');
+                inputs.each(function(){
+                    var inp = $(this);
+                    if(inp.attr('checked') === 'checked')
+                    {
+                        if(inp.attr('value') != 'On')
+                        {
+                            $.ajax({
+                                type:       'post',
+                                dataType:   "json",
+                                url:        '/admin/components/deinstall/'+inp.attr('value'),
+                                success: function(obj){
+                                    console.log(obj);
+                                    if(obj.result)
+                                    {
+                                        //alert('Модуль'+inp.attr('value')+'успешно удален');
+                                        location.reload();
+                                    }else
+                                    {
+                                        alert('Ошибка удаления модуля');
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
+            }
         }
     });
 });

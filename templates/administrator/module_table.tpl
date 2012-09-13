@@ -42,7 +42,7 @@
                                         <td>
                                             <span class="frame_label">
                                                 <span class="niceCheck b_n">
-                                                    <input type="checkbox" name="check{$module.id}" value="{$module.id}"/>
+                                                    <input type="checkbox" name="check{$module.id}" value="{$module.name}"/>
                                                 </span>
                                             </span>
                                         </td>
