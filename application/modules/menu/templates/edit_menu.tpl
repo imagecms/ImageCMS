@@ -1,7 +1,7 @@
 <div style="padding:5px;color:#73BACD;background-color:#73BACD;color:#fff">
     <h2>{lang('amt_edit_menu')}:</h2>
 </div>
-    <form action="{$SELF_URL}/update_menu/{$id}" method="post" id="form_edit_root_menu">
+    <form action="{site_url('admin/components/cp/menu/update_menu/'.$id)}" method="post" id="form_edit_root_menu">
         <div class="form_text">{lang('amt_name')}:</div>
         <div class="form_input"><input type="text" class="textbox" name="menu_name" value="{$name}" /></div>
         <div class="form_overflow"></div>

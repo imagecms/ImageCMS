@@ -1,4 +1,4 @@
-<form action="{$BASE_URL}admin/components/cp/menu/translate_item/{$id}" method="post" id="item_t_save_form" style="width:100%;">
+<form action="{site_url('admin/components/cp/menu/translate_item/' . $id )}" method="post" id="item_t_save_form" style="width:100%;">
 
 {foreach $langs as $l}
 	<div class="form_text">{$l.lang_name}:</div>

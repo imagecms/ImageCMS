@@ -14,7 +14,7 @@
 	  {foreach $menus as $item}
 	  	<tr>
 			<td>{$item.id}</td>
-			<td><a href="#" onclick="ajax_div('menus_table','{$SELF_URL}/menu_item/{$item.name}'); return false;">{$item.main_title}</a></td>
+			<td><a href="#" onclick="ajax_div('menus_table', base_url + 'admin/components/cp/menu/menu_item/{$item.name}'); return false;">{$item.main_title}</a></td>
 			<td>{$item.name}</td>
 			<td>{$item.description}</td>
 			<td>{$item.created}</td>

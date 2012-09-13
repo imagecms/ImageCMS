@@ -2,7 +2,7 @@
 <div class="top-navigation">
     <ul>
         <li style="padding:5px;"><input type="button" class="button_silver_130" onclick="create_link_window({$insert_id}); return false;" value="{lang('amt_create_link')}" /></li>
-        <li><input type="button" class="button_silver" onclick="ajax_div('menus_table', '{$SELF_URL}/'); return false;" value="{lang('amt_cancel')}" /></li>
+        <li><input type="button" class="button_silver" onclick="ajax_div('menus_table', '{$SELF_URL}'); return false;" value="{lang('amt_cancel')}" /></li>
     </ul>
 </div>
 

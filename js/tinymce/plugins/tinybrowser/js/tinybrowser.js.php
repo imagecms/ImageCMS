@@ -44,6 +44,13 @@ elseif($mainpage && !isset($_GET['feid']) && $tinybrowser['integration'] == 'fck
 	}
 	<?php
 	}
+        // cutter открытие нового окна с файлом/изображением
+        elseif($mainpage && $_GET['feid'] == 'open_to_new_window')
+        {?>
+        function selectURL(url) {window.open( url, "_blank" );}
+        <?php
+        }
+        // end cutter
 elseif($mainpage && $_GET['feid'] != '')
 	{?>
 	function selectURL(url) {
