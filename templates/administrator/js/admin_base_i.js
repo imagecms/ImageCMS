@@ -126,22 +126,20 @@ $(document).ready(function(){
         }
     });
         
-    $( ".sortable" ).bind( "sortstop", function(event, ui) {
+    $( "#mtbl" ).bind( "sortstop", function(event, ui) {
         var rows =  $('#mtbl').children('tr');
         var arr = new Array();
         rows.each(function(){
            arr[$(this).index()] = $(this).attr('data-id'); 
         });
-        console.log(arr);
         $.ajax({
             type:       'post',
-            
             dataType:   "json",
             url:        '/admin/components/save_components_positions/'+arr,
             success: function(obj){
                 if(obj.result)
                     {
-                        alert("positions changed successfull");
+                        //alert("positions changed successfull");
                     }
             }
         });
