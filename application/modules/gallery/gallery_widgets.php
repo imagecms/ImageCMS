@@ -43,7 +43,8 @@ class Gallery_Widgets extends MY_Controller {
         switch ($action)
         {
             case 'show_settings': 
-                $this->display_tpl('latest_fotos_form', array('widget' => $widget_data));
+                $this->template->add_array(array('widget' => $widget_data));
+                $this->displayTpl('latest_fotos_form', false);
             break;
 
             case 'update_settings':
@@ -77,23 +78,4 @@ class Gallery_Widgets extends MY_Controller {
             break;
         }
     }
-
-
-    // Template functions
-	function display_tpl($file, $vars = array())
-    {
-        $this->template->add_array($vars);
-
-        $file = realpath(dirname(__FILE__)).'/templates/'.$file.'.tpl';  
-		$this->template->display('file:'.$file);
-	}
-
-	function fetch_tpl($file, $vars = array())
-    {
-        $this->template->add_array($vars);
-
-        $file = realpath(dirname(__FILE__)).'/templates/'.$file.'.tpl';  
-		return $this->template->fetch('file:'.$file);
-	}
-
 }
