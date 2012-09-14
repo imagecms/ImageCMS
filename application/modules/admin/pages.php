@@ -765,27 +765,42 @@ class Pages extends MY_Controller {
 
         switch ($page['post_status']) {
             case 'publish':
-                $data = array('post_status' => 'pending');
+                //$data = array('post_status' => 'pending');
+                $data = array('post_status' => 'draft');
                 $this->cms_admin->update_page($page['id'], $data);
-
+                /*
                 jsCode(" $('p_status_" . $page_id . "').src = theme + '/images/pending.png'; ");
                 jsCode(" $('p_status_" . $page_id . "').title = '" . lang('ac_wait_for_appr') . "'; ");
+                 */
                 break;
 
             case 'pending':
-                $data = array('post_status' => 'draft');
+                //$data = array('post_status' => 'draft');
+                $data = array('post_status' => 'publish');
                 $this->cms_admin->update_page($page['id'], $data);
-
+                /*
                 jsCode(" $('p_status_" . $page_id . "').src = theme + '/images/draft.png'; ");
                 jsCode(" $('p_status_" . $page_id . "').title = '" . lang('ac_not_publ') . "'; ");
+                 */
                 break;
 
             case 'draft':
                 $data = array('post_status' => 'publish');
                 $this->cms_admin->update_page($page['id'], $data);
-
+                /*
                 jsCode(" $('p_status_" . $page_id . "').src = theme + '/images/publish.png'; ");
                 jsCode(" $('p_status_" . $page_id . "').title = '" . lang('ac_published') . "'; ");
+                 */
+                break;
+            
+            //For new admin interface
+            default :
+                $data = array('post_status' => 'publish');
+                $this->cms_admin->update_page($page['id'], $data);
+                /*
+                jsCode(" $('p_status_" . $page_id . "').src = theme + '/images/publish.png'; ");
+                jsCode(" $('p_status_" . $page_id . "').title = '" . lang('ac_published') . "'; ");
+                 */
                 break;
         }
     }
