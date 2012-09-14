@@ -812,11 +812,16 @@ class Pages extends MY_Controller {
      * @cat_id int
      * @cur_page int
      */
-    function GetPagesByCategory($cat_id, $cur_page = 0) {
-        $db_where = array(
-            'category' => $cat_id,
-            'lang_alias' => 0
-        );
+    function GetPagesByCategory($cat_id = NULL, $cur_page = 0) {
+        if ($cat_id != NULL)
+            $db_where = array(
+                'category' => $cat_id,
+                'lang_alias' => 0
+            );
+        else{
+            $this->db->select('content.*, category.name as cat_name');
+            $db_where = array('lang_alias' => 0);
+        }
 
         ($hook = get_hook('admin_get_pages_by_cat')) ? eval($hook) : NULL;
 
@@ -825,22 +830,14 @@ class Pages extends MY_Controller {
 
         $row_count = $this->_Config['per_page'];
 
-        $category = $this->lib_category->get_category($cat_id);
-
-        if ($cat_id != 0) {
-            if ($category['order_by'] == NULL OR $category['sort_order'] == NULL) {
-                $category['order_by'] = 'created';
-                $category['sort_order'] = 'desc';
-            }
-
-            $this->db->order_by($category['order_by'], $category['sort_order']);
-        }
+        if ($cat_id != NULL)
+            $category = $this->lib_category->get_category($cat_id);
         
-        else {
-            $category['order_by'] = 'position';
-            $category['sort_order'] = 'asc';
-            $this->db->order_by($category['order_by'], $category['sort_order']);
-        }
+        $this->db->order_by('category', 'asc');
+        $this->db->order_by('position', 'asc');
+        
+        if ($cat_id == NULL)
+            $this->db->join('category', 'category.id = content.category');
 
         $query = $this->db->get_where('content', $db_where, $row_count, $offset);
 
@@ -860,11 +857,16 @@ class Pages extends MY_Controller {
             // End pagination
 
             $pages = $query->result_array();
+            
+            $catsQuery = $this->db->get('category');
+            $allCats = $catsQuery->result_array();
 
             $this->template->add_array(array(
                 'paginator' => $this->pagination->create_links_ajax(),
                 'pages' => $pages,
-                'cat_id' => $cat_id
+                'cat_id' => $cat_id,
+                'category' => $category,
+                'cats' => $allCats
             ));
 
             $this->template->show('pages', FALSE);
