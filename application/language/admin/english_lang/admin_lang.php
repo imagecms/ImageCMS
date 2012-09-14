@@ -45,6 +45,9 @@ $lang['a_Y_W'] = 'Я.Webmaster';
 $lang['a_code_in_google'] = 'The code should be in the format "ua-54545845"';
 $lang['a_site_offline_help'] = 'The site will be available only to the Administrator';
 $lang['a_saves'] = 'Save';
+$lang['a_us_in_admin'] = 'User';
+$lang['a_d_m_admin'] = 'Date/time';
+$lang['a_action_admin'] = 'Action';
 
 
 

@@ -130,11 +130,11 @@
                                                     <div class="controls">
                                                         <div>
                                                             <span class="f_l span8">
-                                                                <input type="text" disabled="disabled" name="image" id="cat_image" value="{$image}" class="textbox_long" />
+                                                                <input type="text" disabled="disabled" name="image" id="cat_image" value="{$image}" />
                                                             </span>
                                                             <span class="btn btn-small p_r">
                                                                 <i class="icon-camera"></i>&nbsp;&nbsp;{lang('a_select_image')}
-                                                                <input type="file" class="btn-small btn" id="inputImg"/>
+                                                                <input type="file" class="btn-small btn" id="inputImg" onclick="tinyBrowserPopUp('image', 'cat_image');"/>
                                                             </span>
                                                         </div>
                                                         <p class="help-block span8">
@@ -330,3 +330,26 @@
 </div>
                                                     {form_csrf()}
                                                     </form>
+                                                    {literal}
+<script type="text/javascript">
+		
+
+        load_editor();
+
+        function translate_category_window(cat_id, lang)
+        {
+            MochaUI.search_p_Window = function(){
+                new MochaUI.Window({
+                    id: 'translate_category_w',
+                    title: 'Первевод категории',
+                    loadMethod: 'xhr',
+                    contentURL: base_url + 'admin/categories/translate/' + cat_id + '/' + lang,
+                    width: 600,
+                    height: 600
+                });
+            }
+
+            MochaUI.search_p_Window();
+        }
+</script>
+{/literal}
