@@ -834,8 +834,12 @@ class Pages extends MY_Controller {
             }
 
             $this->db->order_by($category['order_by'], $category['sort_order']);
-        } else {
-            $this->db->order_by('created', 'desc');
+        }
+        
+        else {
+            $category['order_by'] = 'position';
+            $category['sort_order'] = 'asc';
+            $this->db->order_by($category['order_by'], $category['sort_order']);
         }
 
         $query = $this->db->get_where('content', $db_where, $row_count, $offset);

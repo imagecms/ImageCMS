@@ -22,6 +22,8 @@ $lang['a_main_tpl'] = 'Главный шаблон';
 $lang['a_by_default'] = 'По умолчанию';
 $lang['a_page_tpl'] = 'Шаблон Страницы';
 $lang['a_comm_alow'] = 'Разрешить комментирование';
+$lang['a_show'] = 'показывать';
+$lang['a_dont_show'] = 'не показывать';
 $lang['a_show_sett'] = 'показать настройки';
 $lang['a_sett'] = 'Настройки';
 $lang['a_hide'] = 'скрыть';
@@ -208,6 +210,7 @@ $lang['a_controll_panel'] = 'Панель Управления';
 $lang['a_use_js'] = 'Для использования кабинета администрирования, крайне необходима активация JavaScript!';
 $lang['a_wellcome'] = 'Добро пожаловать';
 $lang['a_cont'] = 'Содержимое';
+$lang['a_cont_nocat'] = 'Содержимое без категории';
 //$lang['a_create'] = 'Создать';
 $lang['a_without_cat'] = 'Без категории';
 $lang['a_field_constructor'] = 'Конструктор полей';
@@ -228,6 +231,7 @@ $lang['a_clean_old'] = 'Очистить устаревшие';
 $lang['a_event_journal'] = 'Журнал событий';
 $lang['a_backup_copy'] = 'Резервное копирование';
 $lang['a_show_site'] = 'Просмотреть сайт';
+$lang['a_goto_site'] = 'перейти на сайт';
 $lang['a_exit'] = 'Выход';
 
 //edit_page.tpl
@@ -539,3 +543,5 @@ $lang['a_widget_sett'] = 'Настройки Виджета';
 //$lang['a_sett'] = 'Настройки';
 //$lang['a_delete'] = 'Удалить';
 $lang['a_lang_select'] = 'Выбор языка для админ панели';
+
+$lang['a_numbers_only'] = 'только цифры';
