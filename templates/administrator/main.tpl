@@ -189,7 +189,7 @@
                 })
             })
 
-
+            base_url = '{/literal}{$BASE_URL}{literal}';
             </script>
             }
         {/literal}

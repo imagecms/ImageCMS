@@ -14,7 +14,7 @@
                     <button type="button" class="btn btn-small disabled action_on">Копировать</button>
                     <button type="button" class="btn btn-small disabled action_on"><i class="icon-move"></i>Переместить</button>
                     <button type="button" class="btn btn-small disabled action_on"><i class="icon-trash"></i>Удалить</button>
-                    <button type="button" class="btn btn-small btn-success"><i class="icon-plus-sign icon-white"></i>Создать статью</button>
+                    <button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$BASE_URL}admin/pages'"><i class="icon-plus-sign icon-white"></i>Создать статью</button>
                 </div>
             </div>                            
         </div>
