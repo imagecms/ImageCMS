@@ -96,7 +96,11 @@ class Widgets_Manager extends MY_Controller {
 
             if ($this->form_validation->run($this) == FALSE)
             {
-                showMessage (validation_errors(),false,'r');
+                if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
+                    echo json_encode(array('result'=> false, 'message'=>validation_errors()));
+                }else{
+                    showMessage (validation_errors(),false,'r');
+                }
             }else{
                 $data = array(
                     'description' => $this->input->post('desc'),
@@ -140,8 +144,12 @@ class Widgets_Manager extends MY_Controller {
 
                 $this->lib_admin->log(lang('ac_created_widget').$data['name']);
 
-                //showMessage('Виджет создан.');
-                updateDiv('page', site_url('admin/widgets_manager'));
+                if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
+                    echo json_encode(array('result'=> true, 'message'=>'Успех!'));
+                }else{
+                    //showMessage('Виджет создан.');
+                    updateDiv('page', site_url('admin/widgets_manager'));
+                }
             }
         }elseif ($type == 'html') {
 
@@ -151,7 +159,11 @@ class Widgets_Manager extends MY_Controller {
             
             if ($this->form_validation->run($this) == FALSE)
             {
-                showMessage (validation_errors(),false,'r');
+                if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
+                    echo json_encode(array('result'=> false, 'message'=>validation_errors()));
+                }else{
+                    showMessage (validation_errors(),false,'r');
+                }
             }else{
                 $data = array(
                     'description' => $this->input->post('desc'),
@@ -164,8 +176,14 @@ class Widgets_Manager extends MY_Controller {
                 $this->lib_admin->log(lang('ac_created_widget').$data['name']);
 
                 $this->db->insert('widgets', $data);
-
-                updateDiv('page', site_url('admin/widgets_manager'));
+                
+                
+                if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
+                    echo json_encode(array('result'=> true, 'message'=>'Успех!'));
+                }else{
+                    //showMessage('Виджет создан.');
+                    updateDiv('page', site_url('admin/widgets_manager'));
+                }
             }
         }
     }
