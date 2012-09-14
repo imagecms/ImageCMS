@@ -30,11 +30,40 @@ $(document).ready(function(){
     
     $('a.ajax_load').click(function(event){
         event.preventDefault();
+        $('#mainContent').load($(this).attr('href'));
+        /*
         $.ajax({
             type: 'get',
             url: $(this).attr('href'),
             success: function(result){
                 $('#mainContent').html(result);
+            }
+        });
+        */
+    });
+    
+    $('#categorySelect').on('change', function(){
+        //$('#mainContent').load($(this).attr('url')+$(this).val());
+        window.location.href = $(this).attr('url')+$(this).val();
+    });
+    
+    $('button.action_on').click(function(event){
+        event.preventDefault();
+        var pagesArray = {};
+        
+        $('.pages-table > tbody').children('tr').children('td.t-a_c').find('input:checked').each(function(){
+            pagesArray['pages['+$(this).attr('data-id')+']'] = 'chkb_'+$(this).attr('data-id');
+        });
+        
+        pagesArray['new_cat'] = $('#categorySelect').val();
+        
+        $.ajax({
+            type: 'post',
+            data: pagesArray,
+            url: $(this).attr('url'),
+            success: function(result){
+                //$('#mainContent').html(result);
+                window.location.href = '/admin/pages/GetPagesByCategory/'+pagesArray['new_cat'];
             }
         });
     });

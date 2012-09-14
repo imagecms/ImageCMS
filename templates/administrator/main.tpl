@@ -192,7 +192,6 @@
 
             base_url = '{/literal}{$BASE_URL}{literal}';
             </script>
-            }
         {/literal}
         <div id="jsOutput" style="display: none;"></div>
     </body>
