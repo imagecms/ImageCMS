@@ -27,7 +27,7 @@ class Components extends MY_Controller {
         $not_installed = array();
 
         $fs_modules = $this->find_components();
-        $db_modules = $this->db->get('components')->result_array();
+        $db_modules = $this->db->order_by('position', 'asc')->get('components')->result_array();
 
         // Find not installed modules
         $count = count($fs_modules);
@@ -72,7 +72,6 @@ class Components extends MY_Controller {
 
     function install($module = '') {
         cp_check_perm('module_install');
-
         $module = strtolower($module);
 
         ($hook = get_hook('admin_install_module')) ? eval($hook) : NULL;
@@ -98,21 +97,26 @@ class Components extends MY_Controller {
 
             $this->lib_admin->log(lang('ac_istall') . $data['name']);
 
-            //showMessage('Модуль Установлен');
-            $result = true;
-            echo json_encode(array('result' => $result));
-            //return TRUE;
+            if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
+                $result = true;
+                echo json_encode(array('result' => $result));
+            } else {
+                return TRUE;
+            }
         } else {
-            //showMessage('Ошибка установки модуля.');
-            $result = true;
-            echo json_encode(array('result' => $result));
-            //return FALSE;
+            if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
+                $result = true;
+                echo json_encode(array('result' => $result));
+            } else {
+                return FALSE;
+            }
         }
     }
 
     function deinstall($module = '') {
         cp_check_perm('module_deinstall');
-
+//        echo $module;
+//        exit();
         $module = strtolower($module);
 
         ($hook = get_hook('admin_deinstall_module')) ? eval($hook) : NULL;
@@ -126,17 +130,25 @@ class Components extends MY_Controller {
 
             $this->db->limit(1);
             $this->db->delete('components', array('name' => $module));
-
             $this->lib_admin->log(lang('ac_deinstall') . $module);
+            if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
+                $result = true;
+                echo json_encode(array('result'=>$result));
+            }
         } else {
-            showMessage(lang('ac_deinstall_error'), false, 'r');
+            //showMessage(lang('ac_deinstall_error'), false, 'r');
+            if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
+                $result = false;
+                echo json_encode(array('result'=>$result));
+            }
         }
 
         // Update hooks
         $this->load->library('cms_hooks');
         $this->cms_hooks->build_hooks();
-
-        $this->modules_table();
+        if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
+            $this->modules_table();
+        }
     }
 
     function find_components($in_menu = FALSE) {
@@ -329,13 +341,13 @@ class Components extends MY_Controller {
                 $this->db->where('id', $mid)->set('autoload', $autoload)->update('components');
                 $row->autoload = $autoload;
                 echo json_encode(array('result' => $row));
-            }else{
+            }else {
                 $result = false;
                 echo json_encode(array('result' => $result));
             }
         }
     }
-    
+
     function change_url_access() {
         if (isset($_POST['mid'])) {
             $mid = $_POST['mid'];
@@ -349,10 +361,26 @@ class Components extends MY_Controller {
                 $this->db->where('id', $mid)->set('enabled', $enabled)->update('components');
                 $row->enabled = $enabled;
                 echo json_encode(array('result' => $row));
-            }else{
+            }else {
                 $result = false;
                 echo json_encode(array('result' => $result));
             }
+        }
+    }
+    
+    function save_components_positions($positions)
+    {
+        $positions = explode(',',$positions);
+        if(is_array($positions))
+        {
+            foreach($positions as $key=>$value){
+                if($this->db->where('id', (int)$value)->set('position', $key)->update('components')){
+                    $result = true;    
+                }else{
+                    $result = false;    
+                }
+            }
+        echo json_encode(array('result'=>$result));
         }
     }
 
