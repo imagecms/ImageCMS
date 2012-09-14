@@ -130,7 +130,7 @@ $(document).ready(function(){
         var rows =  $('#mtbl').children('tr');
         var arr = new Array();
         rows.each(function(){
-           arr[$(this).index()] = $(this).attr('data-id'); 
+            arr[$(this).index()] = $(this).attr('data-id'); 
         });
         $.ajax({
             type:       'post',
@@ -138,12 +138,80 @@ $(document).ready(function(){
             url:        '/admin/components/save_components_positions/'+arr,
             success: function(obj){
                 if(obj.result)
-                    {
-                        //alert("positions changed successfull");
-                    }
+                {
+                //alert("positions changed successfull");
+                }
             }
         });
     });
+    
+    $('span.selwid').bind('click', function(){
+        var title = $(this).attr('data-title');
+        var mname = $(this).attr('data-mname');
+        var mmethod = $(this).attr('data-method');
+        $('.selmod').html('<b>'+title+'</b>');
+        $('#sw').attr('value', mname);
+        $('#swm').attr('value', mmethod);
+    });
+    
+    $('#inputType').on('change', function(){
+        if($(this).attr('value') === 'html')
+        {
+            $('#moduleholder').hide('slow', function(){
+                $('#textareaholder').css('display', '')
+            });
+            $('#mod_name').hide('slow');
+            
+        }else{
+            $('#textareaholder').hide('slow', function(){
+                $('#moduleholder').css('display', 'inline-table');
+            });
+        }
+    });
+    
+    $('.submit_form').live('click', function(){
+        var options = {
+            dataType: "json",
+            success: function(obj) {
+                if(obj.result === false)
+                    {
+                        $('.alert').css('display', '');
+                        $('.alert').children('span').html(obj.message);
+                    }else{
+//                        $('.alert').addClass('alert-success');
+//                        $('.alert').children('span').html('Виджет успешно ');
+                        var url = '/admin/widgets_manager';
+                        //$(location).attr('href',url);
+                        redirect_url(url);
+                    }
+            }
+        };
+        $('#wid_cr_form').ajaxSubmit(options);
+    });
+    
+    $('.submit_an_create').live('click', function(){
+        var options = {
+            dataType: "json",
+            success: function(obj) {
+                if(obj.result === false)
+                    {
+                        $('.alert').css('display', '');
+                        $('.alert').children('span').html(obj.message);
+                    }else{
+                        var url = '/admin/widgets_manager/create_tpl';
+//                        $('.alert').addClass('alert-success');
+//                        $('.alert').children('span').html('Виджет успешно создан');
+                        redirect_url(url);
+                    }
+            }
+        };
+        $('#wid_cr_form').ajaxSubmit(options);
+    });
+    
+    function redirect_url(url)
+    {
+        $(location).attr('href',url);
+    }
     
 });
 
