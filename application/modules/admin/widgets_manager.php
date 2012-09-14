@@ -96,7 +96,11 @@ class Widgets_Manager extends MY_Controller {
 
             if ($this->form_validation->run($this) == FALSE)
             {
-                showMessage (validation_errors(),false,'r');
+                if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
+                    echo json_encode(array('result'=> false, 'message'=>validation_errors()));
+                }else{
+                    showMessage (validation_errors(),false,'r');
+                }
             }else{
                 $data = array(
                     'description' => $this->input->post('desc'),
@@ -140,8 +144,12 @@ class Widgets_Manager extends MY_Controller {
 
                 $this->lib_admin->log(lang('ac_created_widget').$data['name']);
 
-                //showMessage('Виджет создан.');
-                updateDiv('page', site_url('admin/widgets_manager'));
+                if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
+                    echo json_encode(array('result'=> true, 'message'=>'Успех!'));
+                }else{
+                    //showMessage('Виджет создан.');
+                    updateDiv('page', site_url('admin/widgets_manager'));
+                }
             }
         }elseif ($type == 'html') {
 
@@ -151,7 +159,11 @@ class Widgets_Manager extends MY_Controller {
             
             if ($this->form_validation->run($this) == FALSE)
             {
-                showMessage (validation_errors(),false,'r');
+                if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
+                    echo json_encode(array('result'=> false, 'message'=>validation_errors()));
+                }else{
+                    showMessage (validation_errors(),false,'r');
+                }
             }else{
                 $data = array(
                     'description' => $this->input->post('desc'),
@@ -164,8 +176,14 @@ class Widgets_Manager extends MY_Controller {
                 $this->lib_admin->log(lang('ac_created_widget').$data['name']);
 
                 $this->db->insert('widgets', $data);
-
-                updateDiv('page', site_url('admin/widgets_manager'));
+                
+                
+                if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
+                    echo json_encode(array('result'=> true, 'message'=>'Успех!'));
+                }else{
+                    //showMessage('Виджет создан.');
+                    updateDiv('page', site_url('admin/widgets_manager'));
+                }
             }
         }
     }
@@ -176,7 +194,11 @@ class Widgets_Manager extends MY_Controller {
     public function create_tpl()
     {
         cp_check_perm('widget_create');
-
+        
+        $blocks = $this->display_create_tpl('tmodule');
+                
+        $this->template->assign('blocks', $blocks);
+                
         $this->template->show('widget_create', FALSE);
     }
 
@@ -346,6 +368,11 @@ class Widgets_Manager extends MY_Controller {
      */ 
     public function display_create_tpl($type = FALSE)
     {
+        if($type == 'tmodule')
+        {
+            $case = true;
+            $type = 'module'; 
+        }
         switch($type)
         {
             case 'module':
@@ -375,7 +402,8 @@ class Widgets_Manager extends MY_Controller {
                 $this->template->add_array(array(
                     'widgets' => $widgets
                     ));
-        
+                if($case)
+                    return $widgets;
                 $this->template->show('widget_create_module', FALSE);
             break;
 

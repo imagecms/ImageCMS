@@ -47,7 +47,7 @@ class Admin extends MY_Controller {
         $config['field_error_class'] = 'field_error';
         $config['element_prefix'] = '<p class="clear">';
         $config['element_suffix'] = '</p>';
-        $config['label_class'] = 'left';
+        $config['label_class'] = '';
         $config['required_flag'] = ' *';
         $config['required_label_class'] = 'required';
         $config['checkgroup_delimiter'] = '';
