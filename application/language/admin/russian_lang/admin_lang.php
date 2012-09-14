@@ -47,6 +47,9 @@ $lang['a_Y_W'] = 'Я.Вэбмастер';
 $lang['a_site_offline_help'] = 'Сайт будет доступен только для Администратора';
 $lang['a_Y_W'] = 'Я.Вэбмастер';
 $lang['a_saves'] = 'Сохранить';
+$lang['a_us_in_admin'] = 'Пользователь';
+$lang['a_d_m_admin'] = 'Дата/час';
+$lang['a_action_admin'] = 'Действие';
 
 
 
