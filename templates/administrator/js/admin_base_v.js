@@ -14,6 +14,8 @@ $(document).ready(function(){
             positionsArray['pages_pos['+$(this).index()+']'] = 'page'+$(this).attr('data-id')+'_'+$(this).index();
         });
         
+        console.log(positionsArray);
+        
         $.ajax({
             type: 'post',
             data: positionsArray,
@@ -22,6 +24,17 @@ $(document).ready(function(){
                 if(obj.result){
                     //alert("positions changed successfull");
                 }
+            }
+        });
+    });
+    
+    $('a.ajax_load').click(function(event){
+        event.preventDefault();
+        $.ajax({
+            type: 'get',
+            url: $(this).attr('href'),
+            success: function(result){
+                $('#mainContent').html(result);
             }
         });
     });

@@ -32,7 +32,7 @@
                         <th class="span1">ID</th>
                         <th class="span4">{lang('a_title')}</th>
                         <th class="span3">{lang('a_url')}</th>
-                        <!--<th class="span2">Категория</th>-->
+                        {if $cat_id != "0"}<th class="span2">Категория</th>{/if}
                         <th class="span1">{lang('a_status')}</th>
                     </tr>
                     <tr class="head_body">
@@ -47,9 +47,16 @@
                         <td>
                             <input type="text"/>
                         </td>
-                        <!--<td>
-                            <select></select>
-                        </td>-->
+                        {if $cat_id != "0"}
+                        <td>
+                            <select>
+                                <option value=""></option>
+                                {foreach $cats as $cat}
+                                <option value="{$cat.id}" {if $cat.id == $cat_id}selected="selected"{/if}>{$cat.name}</option>
+                                {/foreach}
+                            </select>
+                        </td>
+                        {/if}
                         <td>
 
                         </td>
@@ -68,10 +75,10 @@
                         <td><span>{$page.id}</span></td>
                         <td class="share_alt">
                             <a href="{$BASE_URL}{$page.cat_url}{$page.url}" target="_blank" class="go_to_site pull-right btn btn-small"  data-rel="tooltip" data-placement="top" data-original-title="{lang('a_goto_site')}"><i class="icon-share-alt"></i></a>
-                            <a href="{$BASE_URL}{$page.cat_url}{$page.url}" target="_blank" class="title">{$page.title}</a>
+                            <a href="{$BASE_URL}admin/pages/edit/{$page.id}" class="title ajax_load">{$page.title}</a>
                         </td>
                         <td><span>{truncate($page.url, 40, '...')}</span></td>
-                        <!--<td><span>cfn</span></td>-->
+                        {if $cat_id != "0"}<td><span>{if $page.cat_name}{$page.cat_name}{else:}{$category.name}{/if}</span></td>{/if}
                         <td>
                             <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if $page['post_status'] == 'publish'}{lang('a_show')}{else:}{lang('a_dont_show')}{/if}" onclick="change_page_status('{$page.id}');">
                                 <span class="prod-on_off {if $page['post_status'] != 'publish'}disable_tovar{/if}" style="{if $page['post_status'] != 'publish'}left: -28px;{/if}"></span>
