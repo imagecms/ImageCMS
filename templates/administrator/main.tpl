@@ -58,7 +58,7 @@
                 <div class="container">
                     <nav class="navbar navbar-inverse">
                         <ul class="nav">
-                            <li ><a href="/admin/pages"><i class="icon-home"></i><span>Главная</span></a></li>
+                            <li ><a href="/admin/dashboard"><i class="icon-home"></i><span>Главная</span></a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-align-justify"></i>{lang('a_content')}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
@@ -189,7 +189,7 @@
                 })
             })
 
-
+            base_url = '{/literal}{$BASE_URL}{literal}';
             </script>
             }
         {/literal}
