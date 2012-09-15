@@ -130,7 +130,7 @@ class Admin extends MY_Controller {
             case 'all':
                 $files = $this->cache->delete_all();
                 if ($files)
-                    $message = lang('ac_files_deleted') . ': ' . $files;
+                    $message = lang('ac_files_deleted') . ':' . $files;
                 else
                     $message = lang('ac_cache_cleared');
                 break;
@@ -144,7 +144,7 @@ class Admin extends MY_Controller {
                 break;
             default: 
             {
-                $message = 'Ошибка очистки кеша';
+                $message = 'Ошибка очистки кэша';
                 $result = false;
             }
         }
