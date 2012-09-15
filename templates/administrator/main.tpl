@@ -116,12 +116,13 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="/admin/settings">{lang('a_site_settings')}</a></li>
                                     <li><a href="/admin/languages">{lang('a_languages')}</a></li>
-                                    <li class="dropdown"><a class="returnFalse arrow-right" href="">{lang('a_cache')}</a>
+                                    <li><a href="/admin/cache_all">{lang('a_cache')}</a></li>
+<!--                                    <li class="dropdown"><a class="returnFalse arrow-right" href="">{lang('a_cache')}</a>
                                         <ul class="dropdown-menu">
                                             <li><a href="javascript:delete_cache('all')">{lang('a_clean_all')}</a></li>
                                             <li><a href="javascript:delete_cache('expried')">{lang('a_clean_old')}</a></li>
                                         </ul>
-                                    </li>
+                                    </li>-->
                                     <li class="divider"></li>
                                     <li><a href="/admin/admin_logs">{lang('a_event_journal')}</a></li>
                                     <li><a href="/admin/backup">{lang('a_backup_copy')}</a></li>
