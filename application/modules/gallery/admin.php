@@ -141,7 +141,7 @@ class Admin extends MY_Controller {
     /**
      * Display category albums
      */
-	public function category($id)
+    public function category($id)
     {
         $albums = $this->gallery_m->get_albums($this->conf['order_by'], $this->conf['sort_order'], $id);
 
@@ -152,7 +152,7 @@ class Admin extends MY_Controller {
             for($i = 0; $i < $cnt; $i++)
             {
                 // Create url to album cover
-                $albums[$i]['cover_url'] = site_url($upload_url . $albums[$i]['id'] . '/_admin_thumbs/' . $albums[$i]['cover_name'] . $albums[$i]['cover_ext']);
+                $albums[$i]['cover_url'] = media_url($upload_url . $albums[$i]['id'] . '/_admin_thumbs/' . $albums[$i]['cover_name'] . $albums[$i]['cover_ext']);
 
                 $upload_url = $this->conf['upload_url'];
 
@@ -162,7 +162,7 @@ class Admin extends MY_Controller {
 
                     if ($image != FALSE)
                     {    
-                        $albums[$i]['cover_url'] = site_url($upload_url . $albums[$i]['id'] . '/_admin_thumbs/' . $image['file_name'] . $image['file_ext']);
+                        $albums[$i]['cover_url'] = media_url($upload_url . $albums[$i]['id'] . '/_admin_thumbs/' . $image['file_name'] . $image['file_ext']);
                     }
                     else
                     {
@@ -171,7 +171,7 @@ class Admin extends MY_Controller {
                 }
                 else
                 {
-                     $albums[$i]['cover_url'] = site_url($upload_url . $albums[$i]['id'] . '/_admin_thumbs/' . $albums[$i]['cover_name'] . $albums[$i]['cover_ext']);
+                     $albums[$i]['cover_url'] = media_url($upload_url . $albums[$i]['id'] . '/_admin_thumbs/' . $albums[$i]['cover_name'] . $albums[$i]['cover_ext']);
                 }
             }
 
@@ -409,8 +409,6 @@ class Admin extends MY_Controller {
     {
 	$album = $this->gallery_m->get_album($id);
 
-	
-    
         $this->template->add_array(array(
             'album'     => $album,
             'category'  => $this->gallery_m->get_category($album['category_id']),
