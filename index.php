@@ -20,7 +20,7 @@
  */
 
 // phpinfo();
-ini_set('display_errors', true);
+ini_set('display_errors', "On");
 
 define('ENVIRONMENT', 'development');
 /*
