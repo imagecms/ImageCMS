@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title></title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>{lang('a_controll_panel')} | Image CMS</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="description" content="{lang('a_controll_panel')} - Image CMS" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/style.css">
@@ -63,10 +64,10 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-align-justify"></i>{lang('a_content')}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="/admin/pages">{lang('a_create')}</a></li>
-                                    <li><a href="/admin/pages/GetPagesByCategory/0">Все содержимое по категориях</a></li>
+                                    <li><a href="/admin/pages/GetPagesByCategory/">Все содержимое по категориях</a></li>
                                     <li><a href="/admin/pages/GetPagesByCategory/0">{lang('a_without_cat')}</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="/admin/components/cp/cfcm">{lang('a_field_constructor')}</a></li>
+                                    <li><a href="/admin/components/cp/cfcm" class="ajax_load">{lang('a_field_constructor')}</a></li>
 
                                 </ul>
                             </li>
@@ -81,10 +82,10 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list-alt"></i>{lang('a_menu')}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
 
-                                    <li><a href="/admin/components/cp/menu">{lang('a_control')}</a></li>
+                                    <li><a href="/admin/components/cp/menu" class="ajax_load">{lang('a_control')}</a></li>
                                     <li class="divider"></li>
                                     {foreach $menus as $menu}
-                                        <li><a href="/admin/components/cp/menu/menu_item/{$menu.name}">{$menu.main_title}</a></li>
+                                        <li><a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="ajax_load">{$menu.main_title}</a></li>
                                     {/foreach}
 
                                 </ul>
@@ -192,7 +193,6 @@
 
             base_url = '{/literal}{$BASE_URL}{literal}';
             </script>
-            }
         {/literal}
         <div id="jsOutput" style="display: none;"></div>
     </body>
