@@ -33,8 +33,7 @@
                                                 <div class="control-group m-t_10">
                                                     <label class="control-label" for="inputName">Всего файлов кеширования:</label>
                                                     <div class="controls">
-                                                        <span>{echo $allFile}</span>
-                                                        <span>{echo $allDell}</span>
+                                                        <span>{echo $allFile}</span>                                                      
                                                     </div>
                                                 </div>
                                                 <div class="control-group m-t_10">
@@ -44,24 +43,22 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="control-group">
-                                                    <label class="control-label" for="inputDesc">Удалить из template_c</label>
-                                                    <div class="controls">
-                                                        <input type="radio" name="del" value="template" /> 
-                                                        <p class="help-block">{lang('a_save_path')} ./application/backups.</p>
-                                                    </div>
-                                                </div>
 
                                                 <div class="control-group m-t_10">
-                                                    <label class="control-label" for="inputLocal">Удалить все:</label>
+                                                    <label class="control-label" for="inputLocal">{lang('a_clean_all')}:</label>
                                                     <div class="controls">
+                                                        <a id="delAll" href="javascript:delete_cache('all')">222</a>
 
-                                                        <input type="radio" class="input-small" name="all" value="email" />                                                                               
+
+                                                        <button type="button" href="javascript:delete_cache('all')" id="delAll" class="btn btn-small"  ><i class="icon-trash" ></i>Удалить</button>
+
+
+
 
                                                     </div>
                                                 </div>
 
-                                               
+
                                             </div>
                                         </div>
                                     </td>

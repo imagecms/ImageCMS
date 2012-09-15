@@ -297,24 +297,24 @@ class Cache {
      * @access public
      */
     public function delete_all() {
-        if (!($dh = opendir($this->_Config['store']))) {
-            $this->log_cache_error('Delete All :: Error Opening Store ' . $this->_Config['store']);
-            return false;
-        }
-
-        $n = 0;
-
-        // Remove any expired cache items
-        while ($file = readdir($dh)) {
-            if (($file != '.') && ($file != '..') && ($file != 'index.html') && is_file($cache_file = $this->_Config['store'] . $file)) {
-                if (substr($file, 0, 6) == 'cache_' OR ($file == 'hooks.php')) {
-                    @unlink($cache_file);
+       if ($handle = opendir($this->_Config['store'])) {
+            $n = 0;
+            
+            while (false !== ($file = readdir($handle))) {               
+                if (substr($file, 0, 6) != 'cache_' && $file != 'hooks.php' && $file != "." && $file != ".." && $file != "/" && strstr($file, '.') != TRUE) {
+                  
+                    $files_all = opendir("./system/cache/" . $file);
+                    while (false !== ($fileT = readdir($files_all))) {
+                        if ($fileT != "." && $fileT != ".." && $fileT != "/") {
+                            $n++;
+                           @unlink("./system/cache/".$file."/".$fileT);                       
+                        }
+                    }
+                }
+                if (substr($file, 0, 6) == 'cache_' || $file == 'hooks.php') {                    
+                    @unlink("./system/cache/".$file);
                     $n++;
                 }
-            }
-
-            if (is_dir($this->_Config['store'] . $file) AND $file != 'templates_c') {
-                $this->delete_group($file);
             }
         }
 
@@ -328,21 +328,17 @@ class Cache {
         if ($handle = opendir($this->_Config['store'])) {
             $n = 0;
             
-            while (false !== ($file = readdir($handle))) {
-                echo $ss = strstr($file, '.');
+            while (false !== ($file = readdir($handle))) {               
                 if (substr($file, 0, 6) != 'cache_' && $file != 'hooks.php' && $file != "." && $file != ".." && $file != "/" && strstr($file, '.') != TRUE) {
-                   
+                  
                     $files_all = opendir("./system/cache/" . $file);
                     while (false !== ($fileT = readdir($files_all))) {
                         if ($fileT != "." && $fileT != ".." && $fileT != "/") {
-                            $n++;
-                           @unlink("./system/cache/".$file."/".$fileT);                       
+                            $n++;                                         
                         }
                     }
                 }
                 if (substr($file, 0, 6) == 'cache_' || $file == 'hooks.php') {
-                    
-                    @unlink("./system/cache/".$file);
                     $n++;
                 }
             }

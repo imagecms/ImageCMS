@@ -137,9 +137,9 @@ class Admin extends MY_Controller {
 			case 'all':
 				$files = $this->cache->delete_all();
 				if ($files)
-					showMessage (lang('ac_files_deleted').': '.$files);
+					showMessage(lang('ac_files_deleted').': '.$files);
 				else
-					showMessage (lang('ac_cache_cleared'));
+					showMessage(lang('ac_cache_cleared'));
 			break;
 
 			case 'expried':
