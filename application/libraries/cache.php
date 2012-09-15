@@ -325,25 +325,24 @@ class Cache {
 
     
     public function cache_file() {
-
         if ($handle = opendir($this->_Config['store'])) {
-
             $n = 0;
-
+            
             while (false !== ($file = readdir($handle))) {
-                if (substr($file, 0, 6) != 'cache_' && substr($file, 0, 10) !="MemCached_" &&  $file != 'hooks.php' && $file != "." && $file != ".." && $file != "/" ) {
+                echo $ss = strstr($file, '.');
+                if (substr($file, 0, 6) != 'cache_' && $file != 'hooks.php' && $file != "." && $file != ".." && $file != "/" && strstr($file, '.') != TRUE) {
                    
                     $files_all = opendir("./system/cache/" . $file);
                     while (false !== ($fileT = readdir($files_all))) {
                         if ($fileT != "." && $fileT != ".." && $fileT != "/") {
-                           echo $fileT."<br />";
                             $n++;
-                           @unlink($fileT);
-                        // $this->delete_files($fileT);
+                           @unlink("./system/cache/".$file."/".$fileT);                       
                         }
                     }
                 }
                 if (substr($file, 0, 6) == 'cache_' || $file == 'hooks.php') {
+                    
+                    @unlink("./system/cache/".$file);
                     $n++;
                 }
             }
