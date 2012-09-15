@@ -33,7 +33,7 @@
 
 
 <div style="float:left;padding:10px;min-width:500px;" align="center">
-   <img src="{site_url($album_url . '/' . $image['file_name'] .'_prev'. $image['file_ext'])}" style="border:4px solid #D8D8D8;" />     
+   <img src="{media_url($album_url . '/' . $image['file_name'] .'_prev'. $image['file_ext'])}" style="border:4px solid #D8D8D8;" />     
 </div>
 
 <div style="float:left;padding:10px;">
