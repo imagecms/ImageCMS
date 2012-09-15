@@ -31,19 +31,17 @@
                                         <div class="inside_padd">
                                             <div class="row-fluid">
                                                 <div class="control-group m-t_10">
-                                                    <label class="control-label" for="inputName">Всего файлов кеширования:</label>
+                                                    <label class="control-label" for="inputName">{lang('a_all_cache_file')}:</label>
                                                     <div class="controls">
                                                         <span class="filesCount">{echo $allFile}</span>                                                      
                                                     </div>
                                                 </div>
                                                 <div class="control-group m-t_10">
-                                                    <label class="control-label" for="inputName">Удалить из root:</label>
-                                                    <div class="controls">
-                                                        <input type="radio" name="del" value="root" checked="checked" id="inputName"/>
+                                                    <label class="control-label" for="inputLocal">{lang('a_clean_old')}</label>
+                                                    <div class="controls">                                                        
+                                                        <button type="button" data-target="/admin/delete_cache" data-param="expried" id="delAll" class="btn btn-small clearCashe" ><i class="icon-trash" ></i> Очистить</button>
                                                     </div>
                                                 </div>
-
-
                                                 <div class="control-group m-t_10">
                                                     <label class="control-label" for="inputLocal">{lang('a_clean_all')}</label>
                                                     <div class="controls">                                                        

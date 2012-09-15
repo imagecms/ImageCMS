@@ -50,6 +50,7 @@ $lang['a_saves'] = 'Сохранить';
 $lang['a_us_in_admin'] = 'Пользователь';
 $lang['a_d_m_admin'] = 'Дата/час';
 $lang['a_action_admin'] = 'Действие';
+$lang['a_all_cache_file'] = 'Всего файлов кэширования';
 
 
 

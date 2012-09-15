@@ -48,6 +48,7 @@ $lang['a_saves'] = 'Save';
 $lang['a_us_in_admin'] = 'User';
 $lang['a_d_m_admin'] = 'Date/time';
 $lang['a_action_admin'] = 'Action';
+$lang['a_all_cache_file'] = 'Total file caching';
 
 
 
