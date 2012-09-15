@@ -33,7 +33,7 @@
                                                 <div class="control-group m-t_10">
                                                     <label class="control-label" for="inputName">Всего файлов кеширования:</label>
                                                     <div class="controls">
-                                                        <span>{echo $allFile}</span>                                                      
+                                                        <span class="filesCount">{echo $allFile}</span>                                                      
                                                     </div>
                                                 </div>
                                                 <div class="control-group m-t_10">
@@ -45,16 +45,9 @@
 
 
                                                 <div class="control-group m-t_10">
-                                                    <label class="control-label" for="inputLocal">{lang('a_clean_all')}:</label>
-                                                    <div class="controls">
-                                                        <a id="delAll" href="javascript:delete_cache('all')">222</a>
-
-
-                                                        <button type="button" href="javascript:delete_cache('all')" id="delAll" class="btn btn-small"  ><i class="icon-trash" ></i>Удалить</button>
-
-
-
-
+                                                    <label class="control-label" for="inputLocal">{lang('a_clean_all')}</label>
+                                                    <div class="controls">                                                        
+                                                        <button type="button" data-target="/admin/delete_cache" data-param="all" id="delAll" class="btn btn-small clearCashe" ><i class="icon-trash" ></i> Очистить</button>
                                                     </div>
                                                 </div>
 
