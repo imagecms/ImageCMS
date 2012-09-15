@@ -1,17 +1,22 @@
 $(document).ready(function(){
-
-    });
     
-    $('#delAll').on('click', function(){
-	alert('ALERT ALERT');
-})
-//  $.ajax({
-//            type: 'post',
-//            data: pagesArray,
-//            url: $(this).attr('url'),
-//            success: function(result){
-//                //$('#mainContent').html(result);
-//                window.location.href = '/admin/pages/GetPagesByCategory/';
-//            }
-//        });
+    $('.clearCashe').on('click', function(){
+        $this = $(this);
+        $.ajax({
+            type: 'post',
+            dataType: 'json',
+            data: 'param='+$this.attr('data-param'),
+            url: $this.data('target'),
+            success: function(obj){
+                console.log(obj.color);
+                if(obj.result == true)
+                    showMessage(null, obj.message, obj.color);
+                else
+                    showMessage(obj.message, null, obj.color);
+                console.log(obj.fileCount);
+                $('.filesCount').text(obj.filesCount);
+            }
+        });
+    })
 
+});
