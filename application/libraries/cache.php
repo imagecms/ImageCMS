@@ -215,23 +215,63 @@ class Cache {
     }
 
     public function Clean() {
-        if (!($dh = opendir($this->_Config['store']))) {
-            $this->log_cache_error('Clean :: Error Opening Store ' . $this->_Config['store']);
-            return false;
-        }
+//        if (!($dh = opendir($this->_Config['store']))) {
+//            $this->log_cache_error('Clean :: Error Opening Store ' . $this->_Config['store']);
+//            return false;
+//        }
 
-        $this->log_cache_error('Clean :: Autoclean started');
+        //$this->log_cache_error('Clean :: Autoclean started');
 
         $n = 0;
-
+        
+           //if ($handle = opendir($this->_Config['store'])) {}
+   
+            
+//            while (false !== ($file = readdir($handle))) {               
+//                if (substr($file, 0, 6) != 'cache_'  && $file != 'hooks.php' && $file != "." && $file != ".." && $file != "/" && strstr($file, '.') != TRUE) {
+//                    $stat = stat($this->_Config['store']);
+//                    $files_all = opendir("./system/cache/" . $file);
+//                    while (false !== ($fileT = readdir($files_all))) {
+//                        if ($fileT != "." && $fileT != ".." && $fileT != "/" && (time() - $stat['mtime']) > $this->_Config['auto_clean_life']) {
+//                            $n++;
+//                           @unlink("./system/cache/".$file."/".$fileT);                       
+//                        }
+//                    }
+//                }
+//                $stats = stat($this->_Config['store']);
+//                if (substr($file, 0, 6) == 'cache_' || $file == 'hooks.php' && (time() - $stats['mtime']) > $this->_Config['auto_clean_life'] && is_file($cache_file = $this->_Config['store'] . $file)) {                    
+//                    @unlink("./system/cache/".$file);
+//                    $n++;
+//                }
+//            }
+//        }
         while ($file = readdir($dh)) {
-            if (($file != '.') && ($file != '..') && ($file != 'index.html') && is_file($cache_file = $this->_Config['store'] . $file)) {
-                if (($this->_Config['auto_clean_all'] == TRUE) || (substr($file, 0, 8) == 'cache_')) {
-                    if ((time() - @filemtime($cache_file)) > $this->_Config['auto_clean_life']) {
-                        @unlink($cache_file);
-                        $n++;
+            
+            if (($file != '.') && ($file != '..') && ($file != 'index.html')) {
+                
+                      if (substr($file, 0, 6) != 'cache_' && $file != 'hooks.php' && $file != "." && $file != ".." && $file != "/" && strstr($file, '.') != TRUE) {
+                          
+                    $files_all = opendir("./system/cache/" . $file);
+                    while (false !== ($fileT = readdir($files_all))) {
+                        $stat = stat($this->_Config['store']);
+                           // echo $stat['mtime'];
+                        if ($fileT != "." && $fileT != ".." && $fileT != "/" && (time() - $stat['mtime']) > $this->_Config['auto_clean_life']) {
+                           @unlink("./system/cache/".$file."/".$fileT);
+                           $n++;                                       
+                        }else{
+                            echo 'ddddddddddddddd';
+                        }
                     }
                 }
+              //  $stat = stat($this->_Config['store']);
+                //if (($this->_Config['auto_clean_all'] == TRUE) || (substr($file, 0, 6) == 'cache_')) {
+                    
+                    if ((time() - $stat['mtime']) > $this->_Config['auto_clean_life']) {
+                       
+                        @unlink($file);
+                        $n++;
+                    }
+               // }
             }
         }
 
@@ -297,24 +337,26 @@ class Cache {
      * @access public
      */
     public function delete_all() {
-        if (!($dh = opendir($this->_Config['store']))) {
-            $this->log_cache_error('Delete All :: Error Opening Store ' . $this->_Config['store']);
-            return false;
-        }
-
-        $n = 0;
-
-        // Remove any expired cache items
-        while ($file = readdir($dh)) {
-            if (($file != '.') && ($file != '..') && ($file != 'index.html') && is_file($cache_file = $this->_Config['store'] . $file)) {
-                if (substr($file, 0, 6) == 'cache_' OR ($file == 'hooks.php')) {
-                    @unlink($cache_file);
-                    $n++;
+       if ($handle = opendir($this->_Config['store'])) {
+            $n = 0;
+            
+            while (false !== ($file = readdir($handle))) {               
+                if (substr($file, 0, 6) != 'cache_' && $file != 'hooks.php' && $file != "." && $file != ".." && $file != "/" && strstr($file, '.') != TRUE) {
+                  
+                    $files_all = opendir("./system/cache/" . $file);
+                    while (false !== ($fileT = readdir($files_all))) {
+                        if ($fileT != "." && $fileT != ".." && $fileT != "/") {
+                            $n++;
+                           @unlink("./system/cache/".$file."/".$fileT);     
+                           
+                        }
+                    }
                 }
-            }
-
-            if (is_dir($this->_Config['store'] . $file) AND $file != 'templates_c') {
-                $this->delete_group($file);
+                if (substr($file, 0, 6) == 'cache_' || $file == 'hooks.php' || strstr($file, '.') == TRUE) {                    
+                    $n++;
+                    
+                    @unlink("./system/cache/".$file);
+                }
             }
         }
 
@@ -324,25 +366,28 @@ class Cache {
     }
 
     
-    public function cache_file() {
+    public function cache_file() {    
         if ($handle = opendir($this->_Config['store'])) {
             $n = 0;
             
-            while (false !== ($file = readdir($handle))) {
-                echo $ss = strstr($file, '.');
+            while (false !== ($file = readdir($handle))) {               
                 if (substr($file, 0, 6) != 'cache_' && $file != 'hooks.php' && $file != "." && $file != ".." && $file != "/" && strstr($file, '.') != TRUE) {
-                   
+                  
                     $files_all = opendir("./system/cache/" . $file);
                     while (false !== ($fileT = readdir($files_all))) {
-                        if ($fileT != "." && $fileT != ".." && $fileT != "/") {
-                            $n++;
-                           @unlink("./system/cache/".$file."/".$fileT);                       
+                        if ($fileT != "." && $fileT != ".." && $fileT != "/" && strstr($fileT, '~') != TRUE) {
+                          //  echo $fileT.'<br />';
+                            
+                            //if(@filemtime($fileT) != FALSE){echo 'TRUE';}else{echo 'FALSE';}
+                            // $stat = stat($this->_Config['store']);
+                           // echo $stat['mtime'];
+                            //echo date('d-m-Y H:i:s', $stat['mtime']);
+                            //(time() - @filemtime($fileT)) > $this->_Config['auto_clean_life']
+                            $n++;                                         
                         }
                     }
                 }
-                if (substr($file, 0, 6) == 'cache_' || $file == 'hooks.php') {
-                    
-                    @unlink("./system/cache/".$file);
+                if (substr($file, 0, 6) == 'cache_' || $file == 'hooks.php' && strstr($fileT, '~') != TRUE) {
                     $n++;
                 }
             }

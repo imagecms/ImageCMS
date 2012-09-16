@@ -31,37 +31,25 @@
                                         <div class="inside_padd">
                                             <div class="row-fluid">
                                                 <div class="control-group m-t_10">
-                                                    <label class="control-label" for="inputName">Всего файлов кеширования:</label>
+                                                    <label class="control-label" for="inputName">{lang('a_all_cache_file')}:</label>
                                                     <div class="controls">
-                                                        <span>{echo $allFile}</span>
-                                                        <span>{echo $allDell}</span>
+                                                        <span class="filesCount">{echo $allFile}</span>                                                      
                                                     </div>
                                                 </div>
                                                 <div class="control-group m-t_10">
-                                                    <label class="control-label" for="inputName">Удалить из root:</label>
-                                                    <div class="controls">
-                                                        <input type="radio" name="del" value="root" checked="checked" id="inputName"/>
+                                                    <label class="control-label" for="inputLocal">{lang('a_clean_old')}</label>
+                                                    <div class="controls">                                                        
+                                                        <button type="button" data-target="/admin/delete_cache" data-param="expried" id="delAll" class="btn btn-small clearCashe" ><i class="icon-trash" ></i> Очистить</button>
                                                     </div>
                                                 </div>
-
-                                                <div class="control-group">
-                                                    <label class="control-label" for="inputDesc">Удалить из template_c</label>
-                                                    <div class="controls">
-                                                        <input type="radio" name="del" value="template" /> 
-                                                        <p class="help-block">{lang('a_save_path')} ./application/backups.</p>
-                                                    </div>
-                                                </div>
-
                                                 <div class="control-group m-t_10">
-                                                    <label class="control-label" for="inputLocal">Удалить все:</label>
-                                                    <div class="controls">
-
-                                                        <input type="radio" class="input-small" name="all" value="email" />                                                                               
-
+                                                    <label class="control-label" for="inputLocal">{lang('a_clean_all')}</label>
+                                                    <div class="controls">                                                        
+                                                        <button type="button" data-target="/admin/delete_cache" data-param="all" id="delAll" class="btn btn-small clearCashe" ><i class="icon-trash" ></i> Очистить</button>
                                                     </div>
                                                 </div>
 
-                                               
+
                                             </div>
                                         </div>
                                     </td>

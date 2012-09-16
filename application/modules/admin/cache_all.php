@@ -19,7 +19,7 @@ class Cache_all extends MY_Controller{
 	{      
             
                 $this->template->assign('allFile',$this->cache->cache_file());
-               // $this->template->assign('allDell',$this->cache->delete_all());
+                //$this->template->assign('allDell',$this->cache->delete_all());
                 
 		$langs = $this->cms_admin->get_langs();
                 
