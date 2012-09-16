@@ -36,6 +36,8 @@
                             </div>
                         </form>
                     </div>
+                    
+                    {if $CI->uri->segment(4) == 'shop'}
                     <div class="btn-group">
                         <div class="span4 d-i_b">
                             <a href="#" class="btn btn-large" data-title="asdfg" data-rel="tooltip">
@@ -53,6 +55,8 @@
                             </a>
                         </div>
                     </div>
+                    {/if}
+                    
                 </section>
             </header>
             <div class="frame_nav" id="mainAdminMenu">
