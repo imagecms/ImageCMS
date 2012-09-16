@@ -23,7 +23,7 @@ class Admin extends MY_Controller {
 		$this->load->library('lib_category');
 		$this->lib_admin->init_settings();
 		
-// 		$this->output->enable_profiler(true);
+		$this->output->enable_profiler(true);
 	}
 
     

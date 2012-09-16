@@ -55,8 +55,8 @@
                     </div>
                 </section>
             </header>
-            <div class="frame_nav">
-                <div class="container">
+            <div class="frame_nav" id="mainAdminMenu">
+                <div class="container" id="baseAdminMenu">
                     <nav class="navbar navbar-inverse">
                         <ul class="nav">
                             <li ><a href="/admin/dashboard"><i class="icon-home"></i><span>Главная</span></a></li>
@@ -130,9 +130,11 @@
                                 </ul>
                             </li>
                         </ul>
-                        <a class="btn btn-small pull-right btn-info" href="#">Администрировать сайт <span class="f-s_14">→</span></a>
+                        <a class="btn btn-small pull-right btn-info pjax" onclick="$('#baseAdminMenu').hide(); $('#shopAdminMenu').show(); return true;" href="/admin/components/run/shop/orders/index">Администрировать магазин <span class="f-s_14">→</span></a>
                     </nav>
                 </div>
+                
+            	<div class="container" id="shopAdminMenu"> {include_tpl('shop_menu.tpl')} </div>
             </div>
             <div class="container" id="mainContent">
                 {$content}
@@ -178,10 +180,24 @@
         <script src="{$THEME}/js/admin_base_m.js" type="text/javascript"></script>        
         <script src="{$THEME}/js/admin_base_v.js" type="text/javascript"></script>        
         <script src="{$THEME}/js/admin_base_y.js" type="text/javascript"></script>        
-        {literal}
+        
             <script>
+            {if $CI->uri->segment('4') == 'shop'}
+            var isShop = true;
+            {else:}
+            var isShop = false;
+            {/if}
+            
+            {literal}
 
             $(document).ready(function(){
+            		
+            	if (!isShop)
+            		$('#shopAdminMenu').hide();
+            	else
+            		$('#baseAdminMenu').hide();
+            		
+            	
                     //menu active sniffer
                     $('a.pjax').on('click', function(e){
                             $('nav li').removeClass('active');
