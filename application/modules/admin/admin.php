@@ -25,8 +25,12 @@ class Admin extends MY_Controller {
         $this->load->library('lib_category');
         $this->lib_admin->init_settings();
 
-// 		$this->output->enable_profiler(true);
-    }
+		$this->load->library('lib_admin');
+		$this->load->library('lib_category');
+		$this->lib_admin->init_settings();
+		
+		$this->output->enable_profiler(true);
+	}
 
     public function index() {
         // Disable license check.
