@@ -22,6 +22,8 @@ $lang['a_by_default'] = 'by default';
 $lang['a_page_tpl'] = 'Page Template';
 $lang['a_comm_alow'] = 'Comment permission'; 
 $lang['a_show_sett'] = 'show setting';
+$lang['a_show'] = 'show';
+$lang['a_dont_show'] = 'don\'t show';
 $lang['a_sett'] = 'Settings';
 $lang['a_hide'] = 'hide';
 $lang['a_pub_stat'] = 'Publication status'; 
@@ -43,6 +45,10 @@ $lang['a_Y_W'] = 'Я.Webmaster';
 $lang['a_code_in_google'] = 'The code should be in the format "ua-54545845"';
 $lang['a_site_offline_help'] = 'The site will be available only to the Administrator';
 $lang['a_saves'] = 'Save';
+$lang['a_us_in_admin'] = 'User';
+$lang['a_d_m_admin'] = 'Date/time';
+$lang['a_action_admin'] = 'Action';
+$lang['a_all_cache_file'] = 'Total file caching';
 
 
 
@@ -139,6 +145,7 @@ $lang['a_controll_panel'] = 'Operation panel';
 $lang['a_use_js'] = 'To use your personal account, activate JavaScript, please.'; 
 $lang['a_wellcome'] = 'Welcome'; 
 $lang['a_cont'] = 'Contents';  
+$lang['a_cont_nocat'] = 'Contents without a category';
 $lang['a_without_cat'] = 'Without a category';  
 $lang['a_field_constructor'] = 'Field constructor'; 
 $lang['a_menu'] = 'Menu';
@@ -154,6 +161,7 @@ $lang['a_clean_old'] = 'Clear old or Delete outdated posts or information';
 $lang['a_event_journal'] = 'Event journal';  
 $lang['a_backup_copy'] = 'Backup copying';  
 $lang['a_show_site'] = 'View a site';  
+$lang['a_goto_site'] = 'goto site';
 $lang['a_exit'] = 'Exit';  
 
 //fast_cat_add.tpl
@@ -285,4 +293,6 @@ $lang['a_change_data'] = 'Change data';
 $lang['a_widget_sett'] = 'Widget settings';
 $lang['a_lang_select'] = 'Select admin language';
 $lang['a_no_modules_for_install'] = "There isn't any module for install!";
+
+$lang['a_numbers_only'] = 'numbers only';
 ?>
