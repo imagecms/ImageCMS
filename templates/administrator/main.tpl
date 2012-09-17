@@ -40,7 +40,21 @@
                     
                     
                     <div class="btn-group" id="topPanelNotifications">
-                        <div class="span4 d-i_b" ></div>
+                       <div class="span4 d-i_b">
+
+                            <a href="/admin/components/run/shop/orders/index" class="btn btn-large" data-title="Заказы" data-rel="tooltip" data-original-title="Заказы">
+                                <i class="icon-bask "></i>
+                            </a>
+                            <a href="#" class="btn btn-large" data-title="asdfg" data-rel="tooltip" data-original-title="">
+                                <i class="icon-report_exists"></i>
+                            </a>
+                            <a href="#" class="btn btn-large" data-title="Callback" data-rel="tooltip" data-original-title="Callback">
+                                <i class="icon-callback "></i>
+                                                            </a>
+                            <a href="#" class="btn btn-large" data-title="Запросы об уведомлении" data-rel="tooltip" data-original-title="Запросы об уведомлении">
+                                <i class="icon-comment_head "></i>
+                                                            </a>
+</div>
                     </div>
                     
                     
@@ -121,7 +135,7 @@
                                 </ul>
                             </li>
                         </ul>
-                        <a class="btn btn-small pull-right btn-info pjax" onclick="loadShopInterface();" href="/admin/components/run/shop/orders/index">Администрировать магазин <span class="f-s_14">→</span></a>
+                        <a class="btn btn-small pull-right btn-info pjax" onclick="loadShopInterface();" href="/admin/components/run/shop/dashboard">Администрировать магазин <span class="f-s_14">→</span></a>
                     </nav>
                 </div>
                 
