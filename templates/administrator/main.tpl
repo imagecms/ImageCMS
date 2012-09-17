@@ -36,6 +36,8 @@
                             </div>
                         </form>
                     </div>
+                    
+                    {if $CI->uri->segment(4) == 'shop'}
                     <div class="btn-group">
                         <div class="span4 d-i_b">
                             <a href="#" class="btn btn-large" data-title="asdfg" data-rel="tooltip">
@@ -53,10 +55,12 @@
                             </a>
                         </div>
                     </div>
+                    {/if}
+                    
                 </section>
             </header>
-            <div class="frame_nav">
-                <div class="container">
+            <div class="frame_nav" id="mainAdminMenu">
+                <div class="container" id="baseAdminMenu">
                     <nav class="navbar navbar-inverse">
                         <ul class="nav">
                             <li ><a href="/admin/dashboard"><i class="icon-home"></i><span>Главная</span></a></li>
@@ -117,21 +121,24 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="/admin/settings">{lang('a_site_settings')}</a></li>
                                     <li><a href="/admin/languages">{lang('a_languages')}</a></li>
-                                    <li class="dropdown"><a class="returnFalse arrow-right" href="">{lang('a_cache')}</a>
+                                    <li><a href="/admin/cache_all">{lang('a_cache')}</a></li>
+<!--                                    <li class="dropdown"><a class="returnFalse arrow-right" href="">{lang('a_cache')}</a>
                                         <ul class="dropdown-menu">
                                             <li><a href="javascript:delete_cache('all')">{lang('a_clean_all')}</a></li>
                                             <li><a href="javascript:delete_cache('expried')">{lang('a_clean_old')}</a></li>
                                         </ul>
-                                    </li>
+                                    </li>-->
                                     <li class="divider"></li>
                                     <li><a href="/admin/admin_logs">{lang('a_event_journal')}</a></li>
                                     <li><a href="/admin/backup">{lang('a_backup_copy')}</a></li>
                                 </ul>
                             </li>
                         </ul>
-                        <a class="btn btn-small pull-right btn-info" href="#">Администрировать сайт <span class="f-s_14">→</span></a>
+                        <a class="btn btn-small pull-right btn-info pjax" onclick="$('#baseAdminMenu').hide(); $('#shopAdminMenu').show(); return true;" href="/admin/components/run/shop/orders/index">Администрировать магазин <span class="f-s_14">→</span></a>
                     </nav>
                 </div>
+                
+            	<div class="container" id="shopAdminMenu"> {include_tpl('shop_menu.tpl')} </div>
             </div>
             <div class="container" id="mainContent">
                 {$content}
@@ -177,10 +184,24 @@
         <script src="{$THEME}/js/admin_base_m.js" type="text/javascript"></script>        
         <script src="{$THEME}/js/admin_base_v.js" type="text/javascript"></script>        
         <script src="{$THEME}/js/admin_base_y.js" type="text/javascript"></script>        
-        {literal}
+        
             <script>
+            {if $CI->uri->segment('4') == 'shop'}
+            var isShop = true;
+            {else:}
+            var isShop = false;
+            {/if}
+            
+            {literal}
 
             $(document).ready(function(){
+            		
+            	if (!isShop)
+            		$('#shopAdminMenu').hide();
+            	else
+            		$('#baseAdminMenu').hide();
+            		
+            	
                     //menu active sniffer
                     $('a.pjax').on('click', function(e){
                             $('nav li').removeClass('active');

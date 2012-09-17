@@ -20,7 +20,7 @@
         <div class="tab-pane active" id="modules">
             <div class="row-fluid">
                 <div class="alert" style="display:none;">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
+<!--                    <button type="button" class="close" data-dismiss="alert">×</button>-->
                     <span><strong>Warning!</strong> Best check yo self, you're not looking too good.</span>
                 </div>
                 <form method="post" action="{$BASE_URL}admin/widgets_manager/create" class="form-horizontal" id="wid_cr_form">
