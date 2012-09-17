@@ -58,8 +58,6 @@ $(document).ready(function(){
         else
             pagesArray['new_cat'] = 0;
         
-        console.log();
-        
         $.ajax({
             type: 'post',
             data: pagesArray,
@@ -69,6 +67,23 @@ $(document).ready(function(){
                 window.location.href = '/admin/pages/GetPagesByCategory/'+pagesArray['new_cat'];
             }
         });
+    });
+    
+    $( "#pages_action_dialog" ).dialog("destroy");
+    
+    $("#pages_action_dialog").dialog({
+        resizable: false,
+        autoOpen: false,
+        height:140,
+        modal: true,
+        buttons: {
+                "Delete all items": function() {
+                        $( this ).dialog( "close" );
+                },
+                Cancel: function() {
+                        $( this ).dialog( "close" );
+                }
+        }
     });
     
 });
