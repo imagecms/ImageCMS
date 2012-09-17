@@ -25,7 +25,7 @@
                                     <th class="span1">
                                         <span class="frame_label">
                                             <span class="niceCheck b_n">
-                                                <input type="checkbox"/>
+                                                <input type="checkbox" value="On"/>
                                             </span>
                                         </span>
                                     </th>
