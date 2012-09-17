@@ -9,7 +9,8 @@ $(document).ready(function(){
             url:        '/admin/components/change_autoload',
             success: function(obj){
                 if(obj.result === false){
-                    alert('Что-то пошло не так. Статус автозагрузки не изменен.');
+                    //alert('Что-то пошло не так. Статус автозагрузки не изменен.');
+                    showMessage('Ошибка', 'Что-то пошло не так. Статус автозагрузки не изменен.');
                 }
             }
         });
@@ -27,7 +28,8 @@ $(document).ready(function(){
             url:        '/admin/components/change_url_access',
             success: function(obj){
                 if(obj.result === false){
-                    alert('Что-то пошло не так. Доступ по URL не изменен.');
+                    showMessage('Ошибка', 'Что-то пошло не так. Доступ по URL не изменен.');
+                //alert('Что-то пошло не так. Доступ по URL не изменен.');
                 }else{
                     if(obj.result.enabled === 1)
                     {
@@ -60,8 +62,9 @@ $(document).ready(function(){
                     if($('tbody.nim').children('tr').contents().length === 0)
                     {
                         $('#nimt').remove();
-                        $('#nimc').html('</br><div class="alert alert-info">Нето модулей для установки</div>');
+                        $('#nimc').html('</br><div class="alert alert-info">Нету модулей для установки</div>');
                     }
+                    showMessage('Установка модуля', 'Модуль успешно устновлен');
                     location.reload();
                 }
             }
@@ -75,35 +78,36 @@ $(document).ready(function(){
             alert('Сначала выберите модуль для удаления');
         }
         else{
-            if($('.niceCheck:first-child').children('input').attr('value') === 'On')
-            {
-                var inputs = $('.niceCheck').children('input');
-                inputs.each(function(){
-                    var inp = $(this);
-                    $.ajax({
-                        type:       'post',
-                        dataType:   "json",
-                        url:        '/admin/components/deinstall/'+inp.attr('value'),
-                        success: function(obj){
-                            if(obj.result)
-                            {
-                                location.reload();
-                            }else
-                            {
-                                alert('Ошибка удаления модуля');
-                            }
-                        }
-                    });
-                });
-            }
-            else
-            {
-                var inputs = $('.niceCheck').children('input');
-                inputs.each(function(){
-                    var inp = $(this);
-                    if(inp.attr('checked') === 'checked')
+            if(confirm('Удалить модуль?')){
+                if($('.niceCheck:first-child').children('input').attr('checked') === 'checked')
+                {
+                    if($('.niceCheck:first-child').children('input').attr('value') === 'On')
                     {
-                        if(inp.attr('value') != 'On')
+                        var inputs = $('.niceCheck').children('input');
+                        inputs.each(function(){
+                            var inp = $(this);
+                            $.ajax({
+                                type:       'post',
+                                dataType:   "json",
+                                url:        '/admin/components/deinstall/'+inp.attr('value'),
+                                success: function(obj){
+                                    if(obj.result)
+                                    {
+                                    }else
+                                    {
+                                    }
+                                }
+                            });
+                        });
+                        location.reload();
+                    }
+                }
+                else
+                {
+                    var inputs = $('.niceCheck').children('input');
+                    inputs.each(function(){
+                        var inp = $(this);
+                        if(inp.attr('checked') === 'checked')
                         {
                             $.ajax({
                                 type:       'post',
@@ -112,16 +116,15 @@ $(document).ready(function(){
                                 success: function(obj){
                                     if(obj.result)
                                     {
-                                        location.reload();
                                     }else
                                     {
-                                        alert('Ошибка удаления модуля');
                                     }
                                 }
                             });
                         }
-                    }
-                });
+                    });
+                    location.reload();
+                }
             }
         }
     });
@@ -139,7 +142,6 @@ $(document).ready(function(){
             success: function(obj){
                 if(obj.result)
                 {
-                //alert("positions changed successfull");
                 }
             }
         });
@@ -174,16 +176,13 @@ $(document).ready(function(){
             dataType: "json",
             success: function(obj) {
                 if(obj.result === false)
-                    {
-                        $('.alert').css('display', '');
-                        $('.alert').children('span').html(obj.message);
-                    }else{
-//                        $('.alert').addClass('alert-success');
-//                        $('.alert').children('span').html('Виджет успешно ');
-                        var url = '/admin/widgets_manager';
-                        //$(location).attr('href',url);
-                        redirect_url(url);
-                    }
+                {
+                    showMessage('Создание виджета', 'Ошибка'+obj.message);
+                }else{
+                    var url = '/admin/widgets_manager';
+                    showMessage('Создание виджета', 'Виджет успешно создан');
+                    redirect_url(url);
+                }
             }
         };
         $('#wid_cr_form').ajaxSubmit(options);
@@ -194,15 +193,13 @@ $(document).ready(function(){
             dataType: "json",
             success: function(obj) {
                 if(obj.result === false)
-                    {
-                        $('.alert').css('display', '');
-                        $('.alert').children('span').html(obj.message);
-                    }else{
-                        var url = '/admin/widgets_manager/create_tpl';
-//                        $('.alert').addClass('alert-success');
-//                        $('.alert').children('span').html('Виджет успешно создан');
-                        redirect_url(url);
-                    }
+                {
+                    showMessage('Создание виджета', 'Ошибка'+obj.message);
+                }else{
+                    var url = '/admin/widgets_manager/create_tpl';
+                    showMessage('Создание виджета', 'Виджет успешно создан');
+                    redirect_url(url);
+                }
             }
         };
         $('#wid_cr_form').ajaxSubmit(options);
@@ -213,6 +210,67 @@ $(document).ready(function(){
         $(location).attr('href',url);
     }
     
+    $('#cr_wid_page').live('click', function(){
+        var url = '/admin/widgets_manager/create_tpl';
+        redirect_url(url);
+    });
+    
+    $('#del_sel_wid').live('click', function(){
+        var $this = $(this);
+        if($this.hasClass('disabled'))
+        {
+            alert('Сначала выберите виджет для удаления');
+        }else
+        {
+            if(confirm('Удалить виджет?'))
+            {
+                if($('.niceCheck:first-child').children('input').attr('value') === 'On')
+                {
+                    var inputs = $('.niceCheck').children('input');
+                    inputs.each(function(){
+                        var inp = $(this);
+                        $.ajax({
+                            type:       'post',
+                            dataType:   "json",
+                            url:        '/admin/widgets_manager/delete/'+inp.attr('value'),
+                            success: function(obj){
+                                if(obj.result)
+                                {
+                                }else
+                                {
+                                }
+                            }
+                        });
+                    });
+                    location.reload();
+                }else{
+                    var inputs = $('.niceCheck').children('input');
+                    var count = 0;
+                    inputs.each(function(){
+                        var inp = $(this);
+                        if(inp.attr('checked') === 'checked')
+                        {
+                            $.ajax({
+                                type:       'post',
+                                dataType:   "json",
+                                url:        '/admin/widgets_manager/delete/'+inp.attr('value'),
+                                success: function(obj){
+                                    if(obj.result)
+                                    {
+                                        count++;
+                                    }else
+                                    {
+                                    }
+                                }
+                            });
+                        }
+                    });
+                    showMessage('Удаление виджетов', 'Удалено'+count+'виджетов');
+                    location.reload();
+                }
+            }
+        }
+    });
 });
 
 

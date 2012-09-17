@@ -7,7 +7,7 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <button type="button" class="btn btn-small disabled action_on" id="module_delete"><i class="icon-trash"></i>Удалить</button>
+                    <button type="button" class="btn btn-small disabled action_on" id="module_delete"><i class="icon-trash"></i>{lang('a_delete')}</button>
                 </div>
             </div>    
         </div>
@@ -25,7 +25,7 @@
                                     <th class="span1">
                                         <span class="frame_label">
                                             <span class="niceCheck b_n">
-                                                <input type="checkbox"/>
+                                                <input type="checkbox" value="On"/>
                                             </span>
                                         </span>
                                     </th>
@@ -38,7 +38,7 @@
                             </thead>
                             <tbody class="sortable" id="mtbl">
                                 {foreach $installed as $module}
-                                    <tr data-title="перетащите модуль" data-id="{$module.id}">
+                                    <tr data-title="{lang('a_drug_module')}" data-id="{$module.id}">
                                         <td>
                                             <span class="frame_label">
                                                 <span class="niceCheck b_n">
@@ -65,12 +65,12 @@
                                             <p>{if $module['enabled'] == "1"}{anchor($module.identif,$module.identif,array('target'=>'_blank'))}{else:}-{/if}</p>
                                         </td>
                                         <td>
-                                            <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="включить"  data-off="выключить">
+                                            <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{lang('a_turn_on')}"  data-off="{lang('a_turn_off')}">
                                                 <span class="prod-on_off autoload_ch {if !$module.autoload}disable_tovar{/if}" data-mid="{$module.id}"></span>
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="выключить"  data-off="выключить">
+                                            <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{lang('a_turn_on')}"  data-off="{lang('a_turn_off')}">
                                                 <span class="prod-on_off urlen_ch {if !$module.enabled}disable_tovar{/if}" data-mid="{$module.id}" data-murl="{$BASE_URL}{$module.identif}" data-mname="{$module.identif}"></span>
                                             </div>
                                         </td>
