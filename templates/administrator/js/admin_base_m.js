@@ -19,6 +19,9 @@ $(document).ready(function(){
         });
     })
     
-     
+            $('#del').live('click', function(){
+     alert('Delete menu');
+    })
 
 });
+
