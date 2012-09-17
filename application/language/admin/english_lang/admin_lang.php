@@ -295,4 +295,13 @@ $lang['a_lang_select'] = 'Select admin language';
 $lang['a_no_modules_for_install'] = "There isn't any module for install!";
 
 $lang['a_numbers_only'] = 'numbers only';
+$lang['a_drug_module'] = 'Drug module';
+$lang['a_turn_off'] = 'switch off';
+$lang['a_turn_on'] = 'switch on';
+$lang['a_widgets_list'] = 'Widgets list';
+$lang['a_no_widgets_created'] = 'No widgets created';
+$lang['a_widget_creating'] = 'Widget creating';
+$lang['a_save_an_create_new_w'] = 'Save and create new widget';
+$lang['a_module_name'] = 'Module name';
+$lang['a_drug_block'] = 'drug block';
 ?>

@@ -2,12 +2,12 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">Список виджетов</span>
+            <span class="title">{lang('a_widgets_list')}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <button type="button" class="btn btn-small disabled action_on" id="del_sel_wid"><i class="icon-trash"></i>Удалить</button>
-                <button type="button" class="btn btn-small" id="cr_wid_page"><i class="icon-plus-sign"></i>Создать виджет</button>
+                <button type="button" class="btn btn-small disabled action_on" id="del_sel_wid"><i class="icon-trash"></i>{lang('a_delete')}</button>
+                <button type="button" class="btn btn-small" id="cr_wid_page"><i class="icon-plus-sign"></i>{lang('a_create_widget')}</button>
             </div>
         </div>  
     </div>
@@ -29,7 +29,7 @@
                             <th>{lang('a_n')}</th>
                             <th>{lang('a_type')}</th>
                             <th>{lang('a_desc')}</th>
-                            <th class="span1">Создан</th>
+                            <th class="span1">{lang('a_cr')}</th>
                         </tr>    
                     </thead>
                     <tbody class="sortable">
@@ -63,9 +63,9 @@
             </form>
         </div>
         {else:}
+            </br>
             <div class="alert alert-info">
-                </br>
-                Нет созданых виджетов
+                {lang('a_no_widgets_created')}
             </div>
         {/if}
     </div>
