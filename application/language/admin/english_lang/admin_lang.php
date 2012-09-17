@@ -295,4 +295,6 @@ $lang['a_lang_select'] = 'Select admin language';
 $lang['a_no_modules_for_install'] = "There isn't any module for install!";
 
 $lang['a_numbers_only'] = 'numbers only';
+$lang['a_copy_move_title'] = 'pages';
+
 ?>

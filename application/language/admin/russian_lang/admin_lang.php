@@ -549,3 +549,4 @@ $lang['a_widget_sett'] = 'Настройки Виджета';
 $lang['a_lang_select'] = 'Выбор языка для админ панели';
 
 $lang['a_numbers_only'] = 'только цифры';
+$lang['a_copy_move_title'] = 'страницы';
