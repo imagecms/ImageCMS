@@ -9,6 +9,7 @@
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/style.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap-responsive.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap-notify.css">
+        <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/ui-lightness/jquery-ui-1.8.23.custom.css">
     </head>
     <body>
         <div class="main_body">
@@ -158,10 +159,10 @@
                 </div>
             </div>
         </footer>
-        <script src="{$THEME}/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+        <script src="{$THEME}/js/jquery-1.8.0.min.js" type="text/javascript"></script>
+        <script src="{$THEME}/js/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script>
         <script src="{$THEME}/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="{$THEME}/js/bootstrap-notify.js" type="text/javascript"></script>
-        <script src="{$THEME}/js/jquery-ui-1.7.3.custom.min.js" type="text/javascript"></script>
         <script src="{$THEME}/js/pjax/jquery.pjax.js" type="text/javascript"></script>
         <script src="{$THEME}/js/jquery.form.js" type="text/javascript"></script>
         <script src="{$THEME}/js/scripts.js" type="text/javascript"></script>

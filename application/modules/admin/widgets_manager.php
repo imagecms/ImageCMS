@@ -25,8 +25,8 @@ class Widgets_Manager extends MY_Controller {
     {
         $this->_is_wratible();
 
-        $this->db->order_by('created', 'desc');
-        $query = $this->db->get('widgets');
+        //$this->db->order_by('created', 'desc');
+        $query = $this->db->order_by('id', 'asc')->get('widgets');
 
         if ($query->num_rows() > 0)
         {
@@ -330,6 +330,11 @@ class Widgets_Manager extends MY_Controller {
         }
 
         $this->lib_admin->log(lang('ac_wid_del').$name);
+        
+        if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
+            echo json_encode(array('result'=> true));
+        }
+        
     }
 
     public function get($id)

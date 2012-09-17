@@ -14,8 +14,6 @@ $(document).ready(function(){
             positionsArray['pages_pos['+$(this).index()+']'] = 'page'+$(this).attr('data-id')+'_'+$(this).index();
         });
         
-        console.log(positionsArray);
-        
         $.ajax({
             type: 'post',
             data: positionsArray,
@@ -47,25 +45,44 @@ $(document).ready(function(){
         window.location.href = $(this).attr('url')+$(this).val();
     });
     
-    $('button.action_on').click(function(event){
+    $( "#pages_action_dialog" ).dialog("destroy");
+    
+    $('button.pages_action').click(function(event){
         event.preventDefault();
         var pagesArray = {};
+        var actionURL = $(this).attr('url');
+        
+        $("span.ui-dialog-title").html($(this).attr('dialog-title'));
         
         $('.pages-table > tbody').children('tr').children('td.t-a_c').find('input:checked').each(function(){
             pagesArray['pages['+$(this).attr('data-id')+']'] = 'chkb_'+$(this).attr('data-id');
         });
         
-        pagesArray['new_cat'] = $('#categorySelect').val();
-        
-        $.ajax({
-            type: 'post',
-            data: pagesArray,
-            url: $(this).attr('url'),
-            success: function(result){
-                //$('#mainContent').html(result);
-                window.location.href = '/admin/pages/GetPagesByCategory/'+pagesArray['new_cat'];
+        $("#pages_action_dialog").dialog({
+            resizable: false,
+            height:240,
+            modal: true,
+            buttons: {
+                "Продолжить": function() {
+                    pagesArray['new_cat'] = $('#CopyMoveCategorySelect').val();
+
+                    $.ajax({
+                        type: 'post',
+                        data: pagesArray,
+                        url: actionURL,
+                        success: function(result){
+                            window.location.href = '/admin/pages/GetPagesByCategory/'+pagesArray['new_cat'];
+                        }
+                    });
+                },
+                "Отмена": function() {
+                    $( this ).dialog( "close" );
+                }
             }
         });
     });
+    
+    
+    
     
 });
