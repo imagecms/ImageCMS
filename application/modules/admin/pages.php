@@ -605,7 +605,13 @@ class Pages extends MY_Controller {
         $this->db->select('category');
         $page = $this->db->get_where('content', array('id' => substr($_POST['pages'][0], 5)))->row_array();
 
-        $category = $this->lib_category->get_category($_POST['new_cat']);
+        if ((int)$_POST['new_cat'] > 0)
+            $category = $this->lib_category->get_category($_POST['new_cat']);
+        else {
+            $category['id'] = 0;
+            $category['path_url'] = '';
+        }
+        
 
         if (count($ids) > 0) {
             foreach ($ids as $k => $v) {
