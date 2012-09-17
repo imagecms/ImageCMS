@@ -550,3 +550,13 @@ $lang['a_lang_select'] = 'Выбор языка для админ панели';
 
 $lang['a_numbers_only'] = 'только цифры';
 $lang['a_copy_move_title'] = 'страницы';
+
+$lang['a_drug_module'] = 'Перетащите модуль';
+$lang['a_turn_off'] = 'выключить';
+$lang['a_turn_on'] = 'включить';
+$lang['a_widgets_list'] = 'Список виджетов';
+$lang['a_no_widgets_created'] = 'Нет созданых виджетов';
+$lang['a_widget_creating'] = 'Создание виджета';
+$lang['a_save_an_create_new_w'] = 'Сохранить и создать новый виджет';
+$lang['a_module_name'] = 'Название модуля';
+$lang['a_drug_block'] = 'перетащите блок';

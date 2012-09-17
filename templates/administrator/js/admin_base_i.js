@@ -29,7 +29,7 @@ $(document).ready(function(){
             success: function(obj){
                 if(obj.result === false){
                     showMessage('Ошибка', 'Что-то пошло не так. Доступ по URL не изменен.');
-                    //alert('Что-то пошло не так. Доступ по URL не изменен.');
+                //alert('Что-то пошло не так. Доступ по URL не изменен.');
                 }else{
                     if(obj.result.enabled === 1)
                     {
@@ -79,25 +79,28 @@ $(document).ready(function(){
         }
         else{
             if(confirm('Удалить модуль?')){
-                if($('.niceCheck:first-child').children('input').attr('value') === 'On')
+                if($('.niceCheck:first-child').children('input').attr('checked') === 'checked')
                 {
-                    var inputs = $('.niceCheck').children('input');
-                    inputs.each(function(){
-                        var inp = $(this);
-                        $.ajax({
-                            type:       'post',
-                            dataType:   "json",
-                            url:        '/admin/components/deinstall/'+inp.attr('value'),
-                            success: function(obj){
-                                if(obj.result)
-                                {
-                                }else
-                                {
+                    if($('.niceCheck:first-child').children('input').attr('value') === 'On')
+                    {
+                        var inputs = $('.niceCheck').children('input');
+                        inputs.each(function(){
+                            var inp = $(this);
+                            $.ajax({
+                                type:       'post',
+                                dataType:   "json",
+                                url:        '/admin/components/deinstall/'+inp.attr('value'),
+                                success: function(obj){
+                                    if(obj.result)
+                                    {
+                                    }else
+                                    {
+                                    }
                                 }
-                            }
+                            });
                         });
-                    });
-                    location.reload();
+                        location.reload();
+                    }
                 }
                 else
                 {
