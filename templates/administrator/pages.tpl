@@ -11,9 +11,9 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <button type="button" class="btn btn-small disabled action_on" url="{$BASE_URL}admin/pages/move_pages/copy">{lang('a_copy')}</button>
-                    <button type="button" class="btn btn-small disabled action_on" url="{$BASE_URL}admin/pages/move_pages/move"><i class="icon-move"></i>{lang('a_repalce')}</button>
-                    <button type="button" class="btn btn-small disabled action_on" url="{$BASE_URL}admin/pages/delete_pages/"><i class="icon-trash"></i>{lang('a_delete')}</button>
+                    <button type="button" class="btn btn-small disabled action_on pages_action" url="{$BASE_URL}admin/pages/move_pages/copy">{lang('a_copy')}</button>
+                    <button type="button" class="btn btn-small disabled action_on pages_action" url="{$BASE_URL}admin/pages/move_pages/move"><i class="icon-move"></i>{lang('a_repalce')}</button>
+                    <button type="button" class="btn btn-small disabled action_on pages_action" url="{$BASE_URL}admin/pages/delete_pages/"><i class="icon-trash"></i>{lang('a_delete')}</button>
                     <button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$BASE_URL}admin/pages'"><i class="icon-plus-sign icon-white"></i>{lang('a_create_page')}</button>
                 </div>
             </div>                            
