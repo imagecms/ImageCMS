@@ -64,6 +64,7 @@
         </div>
         {else:}
             <div class="alert alert-info">
+                </br>
                 Нет созданых виджетов
             </div>
         {/if}
