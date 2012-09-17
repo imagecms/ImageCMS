@@ -14,8 +14,6 @@ $(document).ready(function(){
             positionsArray['pages_pos['+$(this).index()+']'] = 'page'+$(this).attr('data-id')+'_'+$(this).index();
         });
         
-        console.log(positionsArray);
-        
         $.ajax({
             type: 'post',
             data: positionsArray,
@@ -47,7 +45,7 @@ $(document).ready(function(){
         window.location.href = $(this).attr('url')+$(this).val();
     });
     
-    $('button.action_on').click(function(event){
+    $('button.pages_action').click(function(event){
         event.preventDefault();
         var pagesArray = {};
         
@@ -55,7 +53,12 @@ $(document).ready(function(){
             pagesArray['pages['+$(this).attr('data-id')+']'] = 'chkb_'+$(this).attr('data-id');
         });
         
-        pagesArray['new_cat'] = $('#categorySelect').val();
+        if (parseInt($('#categorySelect').val(), 10) > 0)
+            pagesArray['new_cat'] = $('#categorySelect').val();
+        else
+            pagesArray['new_cat'] = 0;
+        
+        console.log();
         
         $.ajax({
             type: 'post',
