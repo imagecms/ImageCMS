@@ -1,38 +1,115 @@
-<form action="{$BASE_URL}admin/languages/insert" method="post" id="lang_create_form" style="width:100%;">
-	<div class="form_text">{lang('a_name')}:</div>
-	<div class="form_input"><input type="text" name="name" id="" class="textbox_short" /></div>
-	<div class="form_overflow"></div>
+<form action="{$BASE_URL}admin/languages/insert" method="post"  >
+    <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="#">Главная</a> <span class="divider">/</span></li>
+            <li class="active">Список товаров</li>
+        </ul>
 
-	<div class="form_text">{lang('a_identif')}:</div>
-	<div class="form_input"><input type="text" name="identif" id="" class="textbox_short" /></div>
-	<div class="form_overflow"></div>
+        <section class="mini-layout">
+            <div class="frame_title clearfix">
+                <div class="pull-left">
+                    <span class="help-inline"></span>
+                    <span class="title">{lang('a_param')}</span>
+                </div>
 
-	<div class="form_text">{lang('a_image_url')}:</div>
-	<div class="form_input"><input type="text" name="image" id="" class="textbox_short" /></div>
-	<div class="form_overflow"></div>
+                <div class="pull-right">
+                    <div class="d-i_b">                        
+                        <a href="#" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
+                        <button type="submit" value="{lang('a_create')}"  class="btn btn-small action_on"><i class="icon-ok"></i>{lang('a_create')}</button>
+                        <button type="button" class="btn btn-small action_on"><i class="icon-check"></i>Создать и выйти</button>
+                        <div class="dropdown d-i_b">
+                            <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
+                                Русский
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Английский</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>                            
+            </div>
+            <div class="content_big_td">
+                <div class="clearfix">
 
-	<div class="form_text">{lang('a_folder')}:</div>
-	<div class="form_input">
-		<select name="folder">
-        {foreach $lang_folders as $folder}
-        <option value="{$folder}">{$folder}</option>
-        {/foreach}
-		</select>
-	</div>
-	<div class="form_overflow"></div>
+                    <div class="pull-right m-t_20">
+                        <a href="#">Просмотр страницы <span class="f-s_14">→</span></a>
+                    </div>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="parameters">
+                        <table class="table table-striped table-bordered table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th colspan="6">
+                                        Информация
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="6">
+                                        <div class="inside_padd">
+                                            <div class="form-horizontal">
 
+                                                <div class="row-fluid">
+                                                    <div class="control-group">
+                                                        <label class="control-label" for="inputName">{lang('a_name')}:</label>
+                                                        <div class="controls">
+                                                            <input type="text" name="name" id="" />
+                                                        </div>
+                                                    </div>    
+                                                    <div class="row-fluid">
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="inputName">{lang('a_identif')}:</label>
+                                                            <div class="controls">
+                                                                <input type="text" name="identif" id=""  />
+                                                            </div>
+                                                        </div> 
 
-	<div class="form_text">{lang('a_tpl')}:</div>
-	<div class="form_input">
-		<select name="template">
-        {foreach $templates as $tpl_folder}
-        <option value="{$tpl_folder}">{$tpl_folder}</option>
-        {/foreach}
-		</select>
-	</div>
-	<div class="form_overflow"></div>
+                                                        <div class="row-fluid">
+                                                            <div class="control-group">
+                                                                <label class="control-label" for="inputName">{lang('a_image_url')}:</label>
+                                                                <div class="controls">
+                                                                    <input type="text" name="image" id="inputName"/>
+                                                                </div>
+                                                            </div>   
+                                                            <div class="control-group">
+                                                                <label class="control-label" for="inputParent">{lang('a_folder')}:</label>
+                                                                <div class="controls">
+                                                                    <select name="folder">
+                                                                        {foreach $lang_folders as $folder}
+                                                                            <option value="{$folder}">{$folder}</option>
+                                                                        {/foreach}
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="control-group">
+                                                                <label class="control-label" for="inputParent">{lang('a_tpl')}:</label>
+                                                                <div class="controls">
+                                                                    <select name="template">
+                                                                        {foreach $templates as $tpl_folder}
+                                                                            <option value="{$tpl_folder}">{$tpl_folder}</option>
+                                                                        {/foreach}
+                                                                    </select>
+                                                                </div>
+                                                            </div>
 
-	<div class="form_text"></div>
-	<div class="form_input"><input type="submit" name="button" class="button"  value="{lang('a_create')}" onclick="ajax_me('lang_create_form');" /></div>
-	<div class="form_overflow"></div>
-{form_csrf()}</form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </td>
+                                                </tr>
+                                                </tbody>
+                                                </table>
+                                            </div>
+
+                                            
+                                            <div class="tab-pane">
+
+                                            </div>
+                                        </div>
+                                        </div>
+                                        </section>
+                                        </div>{form_csrf()}
+                                        </form>            
