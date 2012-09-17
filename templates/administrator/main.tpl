@@ -37,25 +37,11 @@
                         </form>
                     </div>
                     
-                    {if $CI->uri->segment(4) == 'shop'}
-                    <div class="btn-group">
-                        <div class="span4 d-i_b">
-                            <a href="#" class="btn btn-large" data-title="asdfg" data-rel="tooltip">
-                                <i class="icon-bask active"></i>
-                                <span class="badge badge-important">6</span>
-                            </a>
-                            <a href="#" class="btn btn-large" data-title="asdfg" data-rel="tooltip">
-                                <i class="icon-report_exists"></i>
-                            </a>
-                            <a href="#" class="btn btn-large" data-title="asdfg" data-rel="tooltip">
-                                <i class="icon-callback"></i>
-                            </a>
-                            <a href="#" class="btn btn-large" data-title="asdfg" data-rel="tooltip">
-                                <i class="icon-comment_head"></i>
-                            </a>
-                        </div>
+                    
+                    <div class="btn-group" id="topPanelNotifications">
+                        <div class="span4 d-i_b" ></div>
                     </div>
-                    {/if}
+                    
                     
                 </section>
             </header>
@@ -134,7 +120,7 @@
                                 </ul>
                             </li>
                         </ul>
-                        <a class="btn btn-small pull-right btn-info pjax" onclick="$('#baseAdminMenu').hide(); $('#shopAdminMenu').show(); return true;" href="/admin/components/run/shop/orders/index">Администрировать магазин <span class="f-s_14">→</span></a>
+                        <a class="btn btn-small pull-right btn-info pjax" onclick="loadShopInterface();" href="/admin/components/run/shop/orders/index">Администрировать магазин <span class="f-s_14">→</span></a>
                     </nav>
                 </div>
                 
