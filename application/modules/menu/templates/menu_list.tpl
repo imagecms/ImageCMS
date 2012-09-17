@@ -60,7 +60,7 @@
                                                                                             </div>-->
                                         </td>
                                         <td>{$item.created}</td>
-                                        <td><a onclick="edit_menu({$item.id}); return false;" >Редактировать</a></td>
+                                        <td><a href="{$BASE_URL}admin/components/cp/menu/edit_menu/{$item.id}" >Редактировать</a></td>
                                     </tr>
 
                                     </tr>
@@ -76,9 +76,7 @@
                         {literal}
         <script language="text/javascript">
           
-            $('#del').on('click', function(){
-     alert('Delete menu');
-    })
+     
  			window.addEvent('domready', function(){
 				menus_table = new sortableTable('mt1', {overCls: 'over', sortOn: -1 ,onClick: function(){}});
                 menus_table.altRow();
