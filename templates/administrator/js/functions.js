@@ -56,7 +56,7 @@ function updateNotificationsTotal()
 
 function loadShopInterface()
 {
-	$('a.logo').attr('href', '/admin/components/run/shop/orders/index');
+	$('a.logo').attr('href', '/admin/components/run/shop/dashboard');
 
     // Switch menu
 	$('#baseAdminMenu').hide();
