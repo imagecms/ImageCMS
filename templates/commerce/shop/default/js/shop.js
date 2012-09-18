@@ -807,9 +807,6 @@ $(document).ready(function(){
             data: "uid="+uid+"&pid="+pid,
             success: function(){
                 $this.html('Добавить в слежение').addClass('js').addClass('gray').removeClass('deleteFromSpy').addClass('addtoSpy');
-//                $this.parents("tr").remove();
-//                console.log($this.parent().find('tr').length)
-//                if ($this.parent().find('tr').length == 0) $this.parents('table').remove();                
                 $this.unbind('click');
                 bindaddtoSpy();
                 $.fancybox.hideActivity();
