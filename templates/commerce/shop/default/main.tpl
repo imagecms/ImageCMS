@@ -45,7 +45,7 @@
                 <div class="center">
                     {load_menu('top_menu')}
                     <ul class="user_menu m-l_19 auth_data">{include_tpl('auth_data')}</ul>
-                    <ul class="user_menu cart_data_holder">
+                    <ul class="user_menu cart_data_holder">                        
 <!--                        <li><a href="/" style="color:silver;">ru</a></li>
                         <li style="margin-left: 0; padding-left: 5px;"><a href="{$BASE_URL}en" style="color:silver;">en</a></li>-->
                         {include_tpl('cart_data')}</ul>
@@ -70,7 +70,7 @@
                         <form action="" method="post" name="currencyChangeForm" id="currencyChangeForm">
                             {lang('s_currency')}: <select class="changeCurrency" name="setCurrency" >
                                 {foreach get_currencies() as $currency}
-                                    <option {if ShopCore::app()->SCurrencyHelper->current->getId() == $currency->getId()}selected{/if} value="{echo $currency->getId()}">{echo encode($currency->getName())}</option>
+                                    <option {if ShopCore::app()->SCurrencyHelper->additional->getId() == $currency->getId()}selected{/if} value="{echo $currency->getId()}">{echo encode($currency->getName())}</option>
                                 {/foreach}
                             </select>
                             {form_csrf()}
