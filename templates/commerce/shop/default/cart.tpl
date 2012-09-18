@@ -146,7 +146,7 @@
                                     <sub>{$CS}</sub>
                                     {if $item.delivery_price > 0}<span style="font-size:16px;">{lang('s_delivery')}: {echo $item.delivery_price} руб</span>{/if}
                                     {if $item.gift_cert_price > 0}<span style="font-size:16px;">{lang('s_do_you_syrp_pr')}: {echo $item.gift_cert_price} руб</span>{/if}
-                                    <!--<span class="d_b">{$total_nc} {$NextCS}</span>-->
+                                    
                                  
                                 </div>
                             </div>
