@@ -78,5 +78,54 @@ function loadBaseInterface()
 	$('#topPanelNotifications').hide();
 }
 
+function chOrderStatus(status){
+	var ids = new Array();
+	$('input[name=ids]:checked').each(function(){
+		ids.push($(this).val());
+	});
+	$.post('/admin/components/run/shop/orders/ajaxChangeOrdersStatus/'+status, {ids:ids}, function(data){
+		$('#mainContent').after(data);
+		$.pjax({url:window.location.pathname, container:'#mainContent'});
+		});
+	return true;
+}
 
 
+function chOrderPaid(paid){
+	var ids = new Array();
+	$('input[name=ids]:checked').each(function(){
+		ids.push($(this).val());
+	});
+	$.post('/admin/components/run/shop/orders/ajaxChangeOrdersPaid/'+paid, {ids:ids}, function(data){
+		$('#mainContent').after(data);
+		$.pjax({url:window.location.pathname, container:'#mainContent'});
+		});
+	return true;
+}
+
+function deleteOrders(){
+	
+	$('#orders_delete_dialog').dialog({
+		modal: true,
+		buttons: {
+			"Delete all items": function() {
+				$( this ).dialog( "close" );
+				
+				var ids = new Array();
+				$('input[name=ids]:checked').each(function(){
+					ids.push($(this).val());
+				});
+				$.post('/admin/components/run/shop/orders/ajaxDeleteOrders/', {ids:ids}, function(data){
+					$('#mainContent').after(data);
+					$.pjax({url:window.location.pathname, container:'#mainContent'});
+					});
+				return true;
+				
+			},
+			Cancel: function() {
+				$( this ).dialog( "close" );
+				return false;
+			}
+		}
+	});
+}
