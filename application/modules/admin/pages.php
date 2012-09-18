@@ -214,7 +214,8 @@ class Pages extends MY_Controller {
 
             showMessage(lang('ac_page_created'));
 
-            echo '<script>$.pjax({url: "/admin/pages/edit/' . $page_id . '", container:"#mainContent"});</script>';
+            pjax('/admin/pages/edit/');
+//             echo '<script>$.pjax({url: "/admin/pages/edit/' . $page_id . '", container:"#mainContent"});</script>';
 
             //updateDiv('page',site_url('admin/pages/edit/'.$page_id.'/'.$data['lang']));
         }
