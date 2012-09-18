@@ -37,6 +37,11 @@
 		$message = str_replace("</p>",'',$message);
 		echo "<script type=\"text/javascript\"> showMessage('".$title."','".$message."','".$class."'); </script>";
 	}
+	
+	function pjax($url, $selector='#mainContent')
+	{
+		echo '<script>$.pjax({url: "'.$url.'", container:"'.$selector.'"});</script>';
+	}
 
 	/**
 	 * Build new MochaUI window

@@ -9,6 +9,7 @@
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/style.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap-responsive.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap-notify.css">
+        <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/ui-lightness/jquery-ui-1.8.23.custom.css">
     </head>
     <body>
         <div class="main_body">
@@ -37,25 +38,25 @@
                         </form>
                     </div>
                     
-                    {if $CI->uri->segment(4) == 'shop'}
-                    <div class="btn-group">
-                        <div class="span4 d-i_b">
-                            <a href="#" class="btn btn-large" data-title="asdfg" data-rel="tooltip">
-                                <i class="icon-bask active"></i>
-                                <span class="badge badge-important">6</span>
+                    
+                    <div class="btn-group" id="topPanelNotifications">
+                       <div class="span4 d-i_b">
+
+                            <a href="/admin/components/run/shop/orders/index" class="btn btn-large" data-title="Заказы" data-rel="tooltip" data-original-title="Заказы">
+                                <i class="icon-bask "></i>
                             </a>
-                            <a href="#" class="btn btn-large" data-title="asdfg" data-rel="tooltip">
+                            <a href="#" class="btn btn-large" data-title="asdfg" data-rel="tooltip" data-original-title="">
                                 <i class="icon-report_exists"></i>
                             </a>
-                            <a href="#" class="btn btn-large" data-title="asdfg" data-rel="tooltip">
-                                <i class="icon-callback"></i>
-                            </a>
-                            <a href="#" class="btn btn-large" data-title="asdfg" data-rel="tooltip">
-                                <i class="icon-comment_head"></i>
-                            </a>
-                        </div>
+                            <a href="#" class="btn btn-large" data-title="Callback" data-rel="tooltip" data-original-title="Callback">
+                                <i class="icon-callback "></i>
+                                                            </a>
+                            <a href="#" class="btn btn-large" data-title="Запросы об уведомлении" data-rel="tooltip" data-original-title="Запросы об уведомлении">
+                                <i class="icon-comment_head "></i>
+                                                            </a>
+</div>
                     </div>
-                    {/if}
+                    
                     
                 </section>
             </header>
@@ -134,7 +135,7 @@
                                 </ul>
                             </li>
                         </ul>
-                        <a class="btn btn-small pull-right btn-info pjax" onclick="$('#baseAdminMenu').hide(); $('#shopAdminMenu').show(); return true;" href="/admin/components/run/shop/orders/index">Администрировать магазин <span class="f-s_14">→</span></a>
+                        <a class="btn btn-small pull-right btn-info pjax" onclick="loadShopInterface();" href="/admin/components/run/shop/dashboard">Администрировать магазин <span class="f-s_14">→</span></a>
                     </nav>
                 </div>
                 
@@ -172,10 +173,10 @@
                 </div>
             </div>
         </footer>
-        <script src="{$THEME}/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+        <script src="{$THEME}/js/jquery-1.8.0.min.js" type="text/javascript"></script>
+        <script src="{$THEME}/js/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script>
         <script src="{$THEME}/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="{$THEME}/js/bootstrap-notify.js" type="text/javascript"></script>
-        <script src="{$THEME}/js/jquery-ui-1.7.3.custom.min.js" type="text/javascript"></script>
         <script src="{$THEME}/js/pjax/jquery.pjax.js" type="text/javascript"></script>
         <script src="{$THEME}/js/jquery.form.js" type="text/javascript"></script>
         <script src="{$THEME}/js/scripts.js" type="text/javascript"></script>

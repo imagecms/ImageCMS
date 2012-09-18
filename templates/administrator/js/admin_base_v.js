@@ -45,30 +45,73 @@ $(document).ready(function(){
         window.location.href = $(this).attr('url')+$(this).val();
     });
     
+    $( "#pages_action_dialog" ).dialog("destroy");
+    
     $('button.pages_action').click(function(event){
         event.preventDefault();
         var pagesArray = {};
+        var actionURL = $(this).attr('url');
+        var checkedPages = $('.pages-table > tbody').children('tr').children('td.t-a_c').find('input:checked');
         
-        $('.pages-table > tbody').children('tr').children('td.t-a_c').find('input:checked').each(function(){
+        checkedPages.each(function(){
             pagesArray['pages['+$(this).attr('data-id')+']'] = 'chkb_'+$(this).attr('data-id');
         });
         
-        if (parseInt($('#categorySelect').val(), 10) > 0)
-            pagesArray['new_cat'] = $('#categorySelect').val();
-        else
-            pagesArray['new_cat'] = 0;
+        if (checkedPages.size() < 1)
+            return false;
         
-        console.log();
+        if ($(this).hasClass('pages_delete')) {
+            $("#pages_delete_dialog").dialog({
+                resizable: false,
+                height:180,
+                modal: true,
+                buttons: {
+                    "Продолжить": function() {
+                        $.ajax({
+                            type: 'post',
+                            data: pagesArray,
+                            url: actionURL,
+                            success: function(result){
+                                //window.location.href = '/admin/pages/GetPagesByCategory/'+pagesArray['new_cat'];
+                                window.location.href = window.location.href;
+                            }
+                        });
+                    },
+                    "Отмена": function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+        }
         
-        $.ajax({
-            type: 'post',
-            data: pagesArray,
-            url: $(this).attr('url'),
-            success: function(result){
-                //$('#mainContent').html(result);
-                window.location.href = '/admin/pages/GetPagesByCategory/'+pagesArray['new_cat'];
-            }
-        });
+        else {
+            $("#pages_action_dialog").dialog({
+                resizable: false,
+                height:180,
+                modal: true,
+                buttons: {
+                    "Продолжить": function() {
+                        pagesArray['new_cat'] = $('#CopyMoveCategorySelect').val();
+
+                        $.ajax({
+                            type: 'post',
+                            data: pagesArray,
+                            url: actionURL,
+                            success: function(result){
+                                window.location.href = '/admin/pages/GetPagesByCategory/'+pagesArray['new_cat'];
+                            }
+                        });
+                    },
+                    "Отмена": function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+        }
+        
     });
+    
+    
+    
     
 });

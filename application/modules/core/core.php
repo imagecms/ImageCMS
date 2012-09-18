@@ -752,6 +752,7 @@ class Core extends MY_Controller {
 	 */
 	function error_404()
 	{
+		($hook = get_hook('core_init_error_404')) ? eval($hook) : NULL;
 		header('HTTP/1.1 404 Not Found');
 		($hook = get_hook('core_display_error_404')) ? eval($hook) : NULL;
 
