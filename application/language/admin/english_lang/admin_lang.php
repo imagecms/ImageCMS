@@ -295,7 +295,9 @@ $lang['a_lang_select'] = 'Select admin language';
 $lang['a_no_modules_for_install'] = "There isn't any module for install!";
 
 $lang['a_numbers_only'] = 'numbers only';
-$lang['a_copy_move_title'] = 'pages';
+$lang['a_copy_move_title'] = 'Copy/Move pages';
+$lang['a_delete_pages_title'] = 'Delete pages';
+$lang['a_delete_pages_promt'] = 'Delete selected pages';
 
 $lang['a_drug_module'] = 'Drug module';
 $lang['a_turn_off'] = 'switch off';
