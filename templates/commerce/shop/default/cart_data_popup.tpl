@@ -130,10 +130,11 @@
                                     <div class="price f-s_26_lh_50 f_l">{$total} <sub>{$CS}</sub>
                                 {else:}
                                      <div class="price f-s_26 f_l">
-                                     {if $discountCom->getDiscount()} 
+                                     {if count($discountCom)} 
                                         <del class="price price-c_red f-s_12 price-c_9">{echo $total} {$CS}</del> 
                                         <span class="price f-s_12 price-c_9" style="font-size: 14px;">Скидка {echo $discountCom->getDiscount()}%</span><br />
                                             {echo $total - $total / 100 * $discountCom->getDiscount()} {$CS}
+                                            
                                             {else:}
                                                  {echo $total}
                                     {/if}

@@ -128,10 +128,13 @@
                                             <b>(-{echo $model->getgiftCertPrice()} {$CS})</b>
                                         </li>
                                     {/if}                                    
-                                     {if $discountCom->getDiscount() > 0}
+                                     {if count($discountCom)}
                                         <li>
                                             <span>Скидка: </span>
-                                            <b>(-{echo $discountCom->getDiscount()}%)</b>
+                                            <b>(-{echo $model->getComulativ()}%)
+                                            
+                                           </b>
+<!--                                            <b>(-{echo $discountCom->getDiscount()}%)</b>-->
                                         </li>
                                     {/if}
                                     <li>
