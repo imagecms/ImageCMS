@@ -8,7 +8,7 @@ class MY_Pagination extends CI_Pagination {
     {
         parent::__construct();
     }
-
+    
 	public function create_links_ajax()
 	{
         $CI =& get_instance(); 

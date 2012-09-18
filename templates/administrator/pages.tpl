@@ -1,3 +1,16 @@
+<div id="pages_action_dialog" title="{lang('a_copy_move_title')}" style="display: none">
+    {lang('a_category')}:
+    <select id="CopyMoveCategorySelect" url="{$BASE_URL}admin/pages/GetPagesByCategory/">
+        <option value="0"></option>
+        {foreach $cats as $cat}
+        <option value="{$cat.id}" {if $cat.id == $cat_id}selected="selected"{/if}>{$cat.name}</option>
+        {/foreach}
+    </select>
+</div>
+<div id="pages_delete_dialog" title="{lang('a_delete_pages_title')}" style="display: none">
+    {lang('a_delete_pages_promt')}
+</div>
+
 <form method="post" action="#">
     <ul class="breadcrumb">
         <li><a href="#">Главная</a> <span class="divider">/</span></li>
@@ -13,7 +26,7 @@
                 <div class="d-i_b">
                     <button type="button" class="btn btn-small disabled action_on pages_action" url="{$BASE_URL}admin/pages/move_pages/copy">{lang('a_copy')}</button>
                     <button type="button" class="btn btn-small disabled action_on pages_action" url="{$BASE_URL}admin/pages/move_pages/move"><i class="icon-move"></i>{lang('a_repalce')}</button>
-                    <button type="button" class="btn btn-small disabled action_on pages_action" url="{$BASE_URL}admin/pages/delete_pages/"><i class="icon-trash"></i>{lang('a_delete')}</button>
+                    <button type="button" class="btn btn-small disabled action_on pages_action pages_delete" url="{$BASE_URL}admin/pages/delete_pages/"><i class="icon-trash"></i>{lang('a_delete')}</button>
                     <button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$BASE_URL}admin/pages'"><i class="icon-plus-sign icon-white"></i>{lang('a_create_page')}</button>
                 </div>
             </div>                            

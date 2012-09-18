@@ -50,5 +50,5 @@
                                 </ul>
                             </li>
                         </ul>
-                        <a class="btn btn-small pull-right btn-info pjax" onclick=" $('#shopAdminMenu').hide(); $('#baseAdminMenu').show(); return true;"  href="/admin/dashboard/index">Администрировать сайт <span class="f-s_14">→</span></a>
+                        <a class="btn btn-small pull-right btn-info pjax" onclick=" loadBaseInterface();"  href="/admin/dashboard/index"><span class="f-s_14">←</span> Администрировать сайт </a>
                     </nav>

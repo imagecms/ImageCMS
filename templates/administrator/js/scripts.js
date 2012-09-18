@@ -111,6 +111,7 @@ $(document).ready(function(){
             return false
         }
         else $(this).tooltip('hide');
+        
     });
     //not_standart_checks----------------------
     function dis_un_dis(){
@@ -466,4 +467,20 @@ $(document).ready(function(){
         $this.parent().prev().children().val($this.val());
     });
     $('.item_menu .row-category:even').addClass('even');
+    
+    window.setInterval('updateNotificationsTotal()', 5000);
+    
+    
+    //list filter
+    
+    $('.listFilterForm').live('change', function(){
+    	$('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
+    });
+    
+    $('.listFilterSubmitButton').live('click', function(){
+    	if (!$(this).attr('disabled')  && !$(this).hasClass('disabled'))
+    	{
+    		$('.listFilterForm').ajaxSubmit({target: '#mainContent'});
+    	}
+    });
 });
