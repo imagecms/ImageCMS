@@ -215,12 +215,12 @@ class Cache {
     }
 
     public function Clean() {
-//        if (!($dh = opendir($this->_Config['store']))) {
-//            $this->log_cache_error('Clean :: Error Opening Store ' . $this->_Config['store']);
-//            return false;
-//        }
+        if (!($dh = opendir($this->_Config['store']))) {
+            $this->log_cache_error('Clean :: Error Opening Store ' . $this->_Config['store']);
+            return false;
+        }
 
-        //$this->log_cache_error('Clean :: Autoclean started');
+        $this->log_cache_error('Clean :: Autoclean started');
 
         $n = 0;
         
@@ -253,25 +253,23 @@ class Cache {
                           
                     $files_all = opendir("./system/cache/" . $file);
                     while (false !== ($fileT = readdir($files_all))) {
-                        $stat = stat($this->_Config['store']);
+                       // $stat = stat($this->_Config['store']);
                            // echo $stat['mtime'];
-                        if ($fileT != "." && $fileT != ".." && $fileT != "/" && (time() - $stat['mtime']) > $this->_Config['auto_clean_life']) {
+                        if ($fileT != "." && $fileT != ".." && $fileT != "/" && (time() - @$stat['mtime']) > $this->_Config['auto_clean_life']) {
                            @unlink("./system/cache/".$file."/".$fileT);
                            $n++;                                       
-                        }else{
-                            echo 'ddddddddddddddd';
                         }
                     }
                 }
               //  $stat = stat($this->_Config['store']);
-                //if (($this->_Config['auto_clean_all'] == TRUE) || (substr($file, 0, 6) == 'cache_')) {
+                if (($this->_Config['auto_clean_all'] == TRUE) || (substr($file, 0, 6) == 'cache_')) {
                     
-                    if ((time() - $stat['mtime']) > $this->_Config['auto_clean_life']) {
+                    if ((time() - @$stat['mtime']) > $this->_Config['auto_clean_life']) {
                        
                         @unlink($file);
                         $n++;
                     }
-               // }
+                }
             }
         }
 

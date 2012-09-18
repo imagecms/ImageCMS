@@ -12,8 +12,7 @@
                 </div>
                 <div class="pull-right">
                     <div class="d-i_b">
-                        <input type="button" class="button" value="{lang('amt_create_menu')}" onclick="open_create_winow(); return false;" />
-                        <button type="button" class="btn btn-small btn-success"><i class="icon-list-alt icon-white"></i>Создать категорию</button>
+                        <button type="button" class="btn btn-small btn-success" id="createMenu"><i class="icon-list-alt icon-white"></i>{lang('amt_create_menu')}</button>
                         <button type="button" class="btn btn-small disabled action_on"><i class="icon-trash"></i>Удалить</button>
                     </div>
                 </div>                            
@@ -51,7 +50,7 @@
                                         </td>
                                         <td ><p>{$item.id}</p></td>
                                         <td>
-                                            <a href="#" id="del" onclick="ajax_div('menus_table','{$SELF_URL}/menu_item/{$item.name}'); return false;">{$item.main_title}</a>
+                                            <a href="{$SELF_URL}/menu_item/{$item.name}" id="del" >{$item.main_title}</a>
                                         </td>
                                         <td><p>{$item.name}</p></td>
                                         <td>{$item.description}
