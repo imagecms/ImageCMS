@@ -4,7 +4,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-   $lang['a_content'] = 'Content';
+$lang['a_content'] = 'Content';
 $lang['a_category'] = 'Category';
 $lang['a_no'] = 'No';
 $lang['a_create_cat'] = 'Create a category';
@@ -49,6 +49,10 @@ $lang['a_us_in_admin'] = 'User';
 $lang['a_d_m_admin'] = 'Date/time';
 $lang['a_action_admin'] = 'Action';
 $lang['a_all_cache_file'] = 'Total file caching';
+$lang['a_menu_chech'] = 'Menu Update';
+$lang['a_menu_field_emp'] = 'Name field sieve';
+$lang['a_fail'] = 'Fail';
+$lang['a_menu_create'] = 'Create menu';
 
 
 

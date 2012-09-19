@@ -438,7 +438,18 @@ class Admin extends MY_Controller {
 	function create_menu()
 	{
         cp_check_perm('menu_create');
+                    if ($_POST['menu_name'] == NULL)                    
+                                    {           $title = lang('a_fail');    
+                                                $message = lang('a_menu_field_emp');
+                                                $result = false;
+                                                echo json_encode(array(
+                                                'title' => $title,
+                                                'message' => $message,
+                                                'result' => $result,
 
+                                            ));
+                                            exit;
+                                    }
         $this->check_menu_data();
 
 		$val = $this->form_validation;
@@ -451,7 +462,11 @@ class Admin extends MY_Controller {
 
 		if ($this->form_validation->run($this) == FALSE)
 		{
-			showMessage ( validation_errors() ,false,'r');
+                $title = lang('a_fail');        
+                $message = validation_errors();
+                $result = false;
+
+                    
 		}else{
 
 			$data = array(
@@ -464,11 +479,23 @@ class Admin extends MY_Controller {
 			);
 
             $this->menu_model->insert_menu($data);
-
-            // Update menu list and close window
-            updateDiv('menu_module_block',site_url('admin/components/cp/menu/index'));
-            closeWindow('create_menu_w'); 
+            
+                $title = lang('a_message');        
+                $message = lang('a_menu_create');
+                $result = true;
+      
 		}
+                        
+    
+		
+                
+                
+          echo json_encode(array(
+            'title' => $title,
+            'message' => $message,
+            'result' => $result,
+            
+           ));  
 	}
 
     function edit_menu($id)
@@ -478,19 +505,28 @@ class Admin extends MY_Controller {
         $menu_data = $this->menu_model->get_menu($id);
         $this->template->add_array($menu_data);
         $this->display_tpl('edit_menu');
+   
     }
 
     function update_menu($id)
     {
         cp_check_perm('menu_edit');
 
-   		if ($_POST['menu_name'] == NULL)
-		{
-			showMessage(lang('amt_name_required'),false,'r');
+        
+   		if ($_POST['menu_name'] == NULL)                    
+		{           $title = lang('a_fail');    
+                            $message = lang('a_menu_field_emp');
+                            $result = false;
+                            echo json_encode(array(
+                            'title' => $title,
+                            'message' => $message,
+                            'result' => $result,
+
+                        ));
 			exit;
 		}
 
-    	$val = $this->form_validation;
+                $val = $this->form_validation;
 		$val->set_rules('menu_name', lang('amt_name'), 'required|min_length[2]|max_length[25]|alpha_dash');
 		$val->set_rules('main_title', lang('amt_tname'), 'required|max_length[100]');
 		$val->set_rules('menu_desc', lang('amt_description'), 'max_length[500]');
@@ -500,8 +536,11 @@ class Admin extends MY_Controller {
 
 		if ($this->form_validation->run($this) == FALSE)
 		{
-			showMessage ( validation_errors() ,false,'r');
+                    $title = lang('a_fail');  
+                    $message = validation_errors();
+                    $result = false;
 		}else{
+                    
 
 			$data = array(
 				'name' => $this->input->post('menu_name'),
@@ -511,12 +550,24 @@ class Admin extends MY_Controller {
 				'expand_level' => $this->input->post('menu_expand_level'),
 				'created' => date('Y-m-d H:i:s')
 			);
+                        
 
-            $this->db->where('id', $id);
-            $this->db->update('menus', $data);
-
-            updateDiv('menu_module_block',site_url('admin/components/cp/menu/index'));
+                        $this->db->where('id', $id);
+                        $this->db->update('menus', $data);
+                $title = lang('a_message');        
+                $message = lang('a_menu_chech');
+                $result = true;
+    
 		}
+                
+                
+          echo json_encode(array(
+            'title' => $title,
+            'message' => $message,
+            'result' => $result,
+            
+           ));  
+            
 
 
     }
@@ -525,13 +576,13 @@ class Admin extends MY_Controller {
     {
 		if ($_POST['menu_name'] == NULL)
 		{
-			showMessage(lang('amt_name_required'),false,'r');
+			//showMessage(lang('amt_name_required'),false,'r');
 			exit;
 		}
 
 		if ( $this->db->get_where('menus',array('name'=>$_POST['menu_name']))->num_rows() > 0 )
 		{
-			showMessage(lang('amt_user_exists'),false,'r');
+			//showMessage(lang('amt_user_exists'),false,'r');
 			exit;
 		}
     }
@@ -560,6 +611,20 @@ class Admin extends MY_Controller {
 
         //delete main menu
         $this->menu_model->delete_menu($name);
+        
+                $title = lang('a_message');        
+                $message = lang('a_menu_chech');
+                $result = true;
+    
+		
+                
+                
+          echo json_encode(array(
+            'title' => $title,
+            'message' => $message,
+            'result' => $result,
+            
+           )); 
     }
    
     function create_tpl()
@@ -600,7 +665,7 @@ class Admin extends MY_Controller {
             $data['links'] = ceil($total / $per_page);
             if ($data['links'] == 1) $data['links'] = 0;
             
-            echo json_encode($data);
+            //echo json_encode($data);
         }
     }
 
@@ -701,8 +766,8 @@ class Admin extends MY_Controller {
     // Template functions
 	function display_tpl($file)
 	{
-        $file =  realpath(dirname(__FILE__)).'/templates/'.$file.'.tpl';  
-		$this->template->display('file:'.$file);
+        $file =  realpath(dirname(__FILE__)).'/templates/'.$file;  
+		$this->template->show('file:'.$file);
 	}
 
 	function fetch_tpl($file)
