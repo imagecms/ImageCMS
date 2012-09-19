@@ -13,8 +13,8 @@
                 <div class="pull-right">
                     <div class="d-i_b">
                         <a href="{$BASE_URL}admin/components/cp/menu" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
-                        <button type="submit" class="btn btn-small action_on saveButton" selfUrl="{$SELF_URL}" idMenu="{$id}"><i class="icon-ok"></i>Сохранить</button>
-                        <button type="button" class="btn btn-small action_on "><i class="icon-check"></i>Сохранить и выйти</button>
+                        <button type="submit" class="btn btn-small action_on saveButton"  idMenu="{$id}"><i class="icon-ok"></i>Сохранить</button>
+                        <button type="button" class="btn btn-small action_on"><i class="icon-check"></i>Сохранить и выйти</button>
                     </div>
                 </div>                            
             </div>

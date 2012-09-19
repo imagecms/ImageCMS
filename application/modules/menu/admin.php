@@ -438,7 +438,18 @@ class Admin extends MY_Controller {
 	function create_menu()
 	{
         cp_check_perm('menu_create');
+                    if ($_POST['menu_name'] == NULL)                    
+                                    {           $title = lang('a_fail');    
+                                                $message = lang('a_menu_field_emp');
+                                                $result = false;
+                                                echo json_encode(array(
+                                                'title' => $title,
+                                                'message' => $message,
+                                                'result' => $result,
 
+                                            ));
+                                            exit;
+                                    }
         $this->check_menu_data();
 
 		$val = $this->form_validation;
@@ -451,7 +462,11 @@ class Admin extends MY_Controller {
 
 		if ($this->form_validation->run($this) == FALSE)
 		{
-			showMessage ( validation_errors() ,false,'r');
+                $title = lang('a_fail');        
+                $message = validation_errors();
+                $result = false;
+
+                    
 		}else{
 
 			$data = array(
@@ -464,9 +479,23 @@ class Admin extends MY_Controller {
 			);
 
             $this->menu_model->insert_menu($data);
-
+            
+                $title = lang('a_message');        
+                $message = lang('a_menu_create');
+                $result = true;
       
 		}
+                        
+    
+		
+                
+                
+          echo json_encode(array(
+            'title' => $title,
+            'message' => $message,
+            'result' => $result,
+            
+           ));  
 	}
 
     function edit_menu($id)
@@ -484,11 +513,12 @@ class Admin extends MY_Controller {
         cp_check_perm('menu_edit');
 
         
-   		if ($_POST['menu_name'] == NULL)
-		{
-                            $message = 'Поле Имя порожнее';
+   		if ($_POST['menu_name'] == NULL)                    
+		{           $title = lang('a_fail');    
+                            $message = lang('a_menu_field_emp');
                             $result = false;
                             echo json_encode(array(
+                            'title' => $title,
                             'message' => $message,
                             'result' => $result,
 
@@ -506,12 +536,9 @@ class Admin extends MY_Controller {
 
 		if ($this->form_validation->run($this) == FALSE)
 		{
-//			//$message = validation_errors();
-//                        $message = 'Меню ne обновлено';
-//                        $result = false;
-//                        $color = 'r';
-//                    $message = validation_errors();
-//                    $result = false;
+                    $title = lang('a_fail');  
+                    $message = validation_errors();
+                    $result = false;
 		}else{
                     
 
@@ -527,17 +554,15 @@ class Admin extends MY_Controller {
 
                         $this->db->where('id', $id);
                         $this->db->update('menus', $data);
-                        
-//            $message = 'Меню обновлено';
-//            $result = true;
-//            $color = '';
-                $message = 'Меню обновилось';
+                $title = lang('a_message');        
+                $message = lang('a_menu_chech');
                 $result = true;
     
 		}
                 
                 
           echo json_encode(array(
+            'title' => $title,
             'message' => $message,
             'result' => $result,
             
@@ -586,6 +611,20 @@ class Admin extends MY_Controller {
 
         //delete main menu
         $this->menu_model->delete_menu($name);
+        
+                $title = lang('a_message');        
+                $message = lang('a_menu_chech');
+                $result = true;
+    
+		
+                
+                
+          echo json_encode(array(
+            'title' => $title,
+            'message' => $message,
+            'result' => $result,
+            
+           )); 
     }
    
     function create_tpl()
