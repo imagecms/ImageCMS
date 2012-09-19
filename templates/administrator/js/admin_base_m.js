@@ -63,7 +63,8 @@ $(document).ready(function(){
                 
                 }else{
                     
-                    showMessage(obj.title, obj.message, 'r');}
+                    showMessage(obj.title, obj.message, 'r');
+                }
                     
                
             }
@@ -71,9 +72,42 @@ $(document).ready(function(){
 
     });
     
+    
+    
+    
+    $('.createUsers').live('click', function(){  
+        var adminUrl = $(this).attr('admin-ur');
+        $.ajax({
+            type: 'post',
+            dataType: 'json',
+            data: $('#userCreate').serialize(),
+            url: adminUrl,
+            success: function(obj){
+                
+                if(obj.result == true){
+                    
+                    var url = '/admin/components/run/users/index';
+                    redirect_url(url);
+                    showMessage(obj.title, obj.message);
+                
+                }else{
+                    
+                    showMessage(obj.title, obj.message, 'r');
+                }
+                    
+               
+            }
+        });
+
+    });
+    
+    
+    
+    
+    
     $('.deleteMenu').live('click', function(){
 
-       var data_id = $(this).attr('product_id');
+        var data_id = $(this).attr('product_id');
         $.ajax({
             type: 'post',
             dataType: 'json',
@@ -88,7 +122,7 @@ $(document).ready(function(){
                
             }
         });   
-       alert(data_id);
+        alert(data_id);
        
     });
     
