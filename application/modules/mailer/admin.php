@@ -41,7 +41,6 @@ class Admin extends MY_Controller {
     }
 
     public function send_email() {
-        echo 'sdsdds';
         // Load form validation class
         $this->load->library('form_validation');
 

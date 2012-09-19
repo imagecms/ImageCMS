@@ -48,6 +48,27 @@ function ajax_div(target, url)
 	$('#'+target).load(url);
 }
 
+//submit form
+$('.formSubmit').live('click',function(){
+	var selector = $(this).data('form');
+	var action = $(this).data('action');
+	$(selector).validate()
+	if ($(selector).valid())
+	{
+		var options = {
+				target: '.notifications',
+				beforeSubmit: function (formData){
+					formData.push( {name: "action", value: action} );
+					console.log(formData);
+				},
+				success: function () {return true;}
+		};
+		console.log($(selector));
+		$(selector).ajaxSubmit(options);
+	}
+	return false;
+});
+
 function updateNotificationsTotal()
 {
 	$('#topPanelNotifications>div').load('/admin/components/run/shop/notifications/getAvailableNotification');
@@ -78,5 +99,54 @@ function loadBaseInterface()
 	$('#topPanelNotifications').hide();
 }
 
+//orders
 
+var orders = new Object({
+	
+	chOrderStatus:function (status){
+		var ids = new Array();
+		$('input[name=ids]:checked').each(function(){
+			ids.push($(this).val());
+		});
+		$.post('/admin/components/run/shop/orders/ajaxChangeOrdersStatus/'+status, {ids:ids}, function(data){
+			$('#mainContent').after(data);
+			$.pjax({url:window.location.pathname, container:'#mainContent'});
+			});
+		return true;
+	},
+
+
+	chOrderPaid:function (paid){
+		var ids = new Array();
+		$('input[name=ids]:checked').each(function(){
+			ids.push($(this).val());
+		});
+		$.post('/admin/components/run/shop/orders/ajaxChangeOrdersPaid/'+paid, {ids:ids}, function(data){
+			$('#mainContent').after(data);
+			$.pjax({url:window.location.pathname, container:'#mainContent'});
+			});
+		return true;
+	},
+
+	deleteOrders:function (){
+		
+		$('.modal').modal();
+		
+	},
+
+	deleteOrdersConfirm:function ()
+	{
+		var ids = new Array();
+		$('input[name=ids]:checked').each(function(){
+			ids.push($(this).val());
+		});
+		$.post('/admin/components/run/shop/orders/ajaxDeleteOrders/', {ids:ids}, function(data){
+			$('#mainContent').after(data);
+			$.pjax({url:window.location.pathname, container:'#mainContent'});
+			});
+		$('.modal').modal('hide');
+		return true;
+	}
+	
+});
 

@@ -249,9 +249,9 @@ class Components extends MY_Controller {
     }
 
     // Load component admin class in iframe/xhr
-    function init_window() {
+    function init_window($module) {
         // buildWindow($id,$title,$contentURL,$width,$height,$method = 'iframe')
-        $module = $this->input->post('component');
+        //$module = $this->input->post('component');
         $info_file = realpath(APPPATH . 'modules/' . $module) . '/module_info.php';
 
         if (file_exists($info_file)) {
@@ -259,11 +259,15 @@ class Components extends MY_Controller {
 
             switch ($com_info['admin_type']) {
                 case 'window':
-                    buildWindow($module . '_window', 'Модуль: ' . $com_info['menu_name'], site_url('admin/components/cp/' . $module), $com_info['w'], $com_info['h'], $com_info['window_type']);
+                    //buildWindow($module . '_window', 'Модуль: ' . $com_info['menu_name'], site_url('admin/components/cp/' . $module), $com_info['w'], $com_info['h'], $com_info['window_type']);
+                    //pjax('/admin/components/cp/'.$module, '.row-fluid');
+                    $this->cp($module);
                     break;
 
                 case 'inside':
-                    updateDiv('page', site_url('admin/components/cp/' . $module));
+                    //pjax('/admin/components/cp/'.$module, '.row-fluid');
+                    $this->cp($module);
+                    //updateDiv('page', site_url('admin/components/cp/' . $module));
                     break;
             }
         }
@@ -274,14 +278,15 @@ class Components extends MY_Controller {
         if ($func == FALSE)
             $func = 'index';
 
-        ($hook = get_hook('admin_run_module_panel')) ? eval($hook) : NULL;
+        //($hook = get_hook('admin_run_module_panel')) ? eval($hook) : NULL;
 
         $this->load->module('core/core');
         $args = $this->core->grab_variables(6);
 
         $this->template->assign('SELF_URL', site_url('admin/components/cp/' . $module));
 
-        echo '<div id="' . $module . '_module_block">' . modules::run($module . '/admin/' . $func, $args) . '</div>';
+        //echo '<div id="' . $module . '_module_block">' . modules::run($module . '/admin/' . $func, $args) . '</div>';
+        echo modules::run($module . '/admin/' . $func, $args);
 
         //ajax_links($module);
     }
@@ -289,6 +294,21 @@ class Components extends MY_Controller {
     /**
      * Run module
      */
+//    function show_module($module){
+//        $func = $this->uri->segment(5);
+//        if ($func == FALSE)
+//            $func = 'index';
+//
+//        //($hook = get_hook('admin_run_module_panel')) ? eval($hook) : NULL;
+//
+//        $this->load->module('core/core');
+//        $args = $this->core->grab_variables(6);
+//
+//        $this->template->assign('SELF_URL', site_url('admin/components/cp/' . $module));
+//        echo modules::run($module . '/admin/' . $func, $args);
+//        pjax('/application/modules/'.$module.'/admin');
+//    }
+    
     function run($module) {
         $func = $this->uri->segment(5);
         if ($func == FALSE)

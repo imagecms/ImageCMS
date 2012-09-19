@@ -39,7 +39,7 @@
                 <span title="{$item.file_name}{$item.file_ext}">{truncate($item['file_name'], 10)}{$item.file_ext}</span>
             </div>
             <div align="center" style="width:150px;height:110px;">
-                <img title="{$item.file_name}{$item.file_ext}" src="{site_url($album_url . '/_admin_thumbs/' . $item['file_name'] . $item['file_ext'])}" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/edit_image/{$item.id}'); return false;"  style="cursor:pointer;border:4px solid #FFFFFF;" />
+                <img title="{$item.file_name}{$item.file_ext}" src="{media_url($album_url . '/_admin_thumbs/' . $item['file_name'] . $item['file_ext'])}" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/edit_image/{$item.id}'); return false;"  style="cursor:pointer;border:4px solid #FFFFFF;" />
             </div>
 
             <div style="float:left">

@@ -184,7 +184,8 @@
         <script src="{$THEME}/js/admin_base_i.js" type="text/javascript"></script>        
         <script src="{$THEME}/js/admin_base_m.js" type="text/javascript"></script>        
         <script src="{$THEME}/js/admin_base_v.js" type="text/javascript"></script>        
-        <script src="{$THEME}/js/admin_base_y.js" type="text/javascript"></script>        
+        <script src="{$THEME}/js/admin_base_y.js" type="text/javascript"></script>    
+        <script src="{$THEME}/js/jquery-validate/jquery.validate.min.js" type="text/javascript"></script>
         
             <script>
             {if $CI->uri->segment('4') == 'shop'}
@@ -204,7 +205,7 @@
             		
             	
                     //menu active sniffer
-                    $('a.pjax').on('click', function(e){
+                    $('a.pjax').live('click', function(e){
                             $('nav li').removeClass('active');
                             $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
                             $.pjax({url: $(this).attr('href'), container:'#mainContent'});
