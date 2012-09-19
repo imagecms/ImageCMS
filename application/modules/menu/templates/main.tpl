@@ -1,185 +1,104 @@
-<div id="menus_table">
-<div class="top-navigation">
-    <ul>
-        <li style="padding:5px;"><input type="button" class="button_silver_130" onclick="create_link_window({$insert_id}); return false;" value="{lang('amt_create_link')}" /></li>
-        <li><input type="button" class="button_silver" onclick="ajax_div('menus_table', '{$SELF_URL}/'); return false;" value="{lang('amt_cancel')}" /></li>
-    </ul>
-</div>
-
-{if $menu_result}
-<div id="sortable">
-	<table width="100%" border="0" align="left" class="items_table" style="text-align:left;">
-	  <thead>
-		<th width="15px">{lang('amt_id')}</th>
-		<th align="left">{lang('amt_tname')}</th>
-		<th>{lang('amt_link')}</th>
-		<th align="left">
-        {lang('amt_type')}
-        </th>
-		<th>
-        <div align="center">
-        {lang('amt_position')}  <img src="{$THEME}/images/save.png" align="absmiddle" style="cursor:pointer;width:22px;height:22px;" onclick="save_position(); return false;" />
-        </div>
-        </th>
-		<th>{lang('amt_hidden')}</th>
-		<th></th>
-	  </thead>
-	  <tbody>
-	  {foreach $menu_result as $item}
-			<tr class="{ counter("row_even","row_odd") }">
-			<td>{$item.id}</td>
-			<td>
-				{if $item.padding == "0"}
-					<strong><a href="{$item.link}"  onclick="edit_item({$item.id},{$insert_id}); return false;"   style="padding-left:{$item.padding}px;">{$item.title}</a></strong>
-				{else:}
-					<a href="{$item.link}" onclick="edit_item({$item.id},{$insert_id}); return false;"  style="padding-left:{$item.padding}px;">{for $i=0; $i < $item['padding'];$i++}-{/for} {$item.title}</a>
-				{/if}
-			</td>
-			<td>{$item.url}</td>
-			<td>
-           	{ switch $item['item_type'] }
-		    { case "page": }
-			    {lang('amt_page')}
-                {break;}
-		    { case "category": }
-			    {lang('amt_category')}
-                {break;}
-		    { case "module" }
-			    {lang('amt_module')}
-                {break;}
-            { case "url": }
-                {lang('amt_url')}
-                {break;}
-        	{ /switch } 
-            </td>
-			<td><div align="center"> <input type="text" value="{$item.position}" style="width:23px;" class="item_pos" id="item{$item.id}" /> </div></td>
-			<td>
-               {if $item['hidden'] == "0"}
-                 <div id="item_visible"></div>
-               {else:}
-                <div id="item_nonvisible"></div> 
-               {/if}
-            </td>
-			<td>
-            {if count($langs) > 1}
+<div class="container">
+    <form method="post" action="#">
+        <ul class="breadcrumb">
+            <li><a href="#">Главная</a> <span class="divider">/</span></li>
+            <li class="active">Главное меню</li>
+        </ul>
+        <section class="mini-layout">
+            <div class="frame_title clearfix">
+                <div class="pull-left">
+                    <span class="help-inline"></span>
+                    <span class="title">Главное меню</span>
+                </div>
+                <div class="pull-right">
+                    <div class="d-i_b"><a href="admin/components/cp/menu/create_item/{$insert_id}">Create</a>
+                        <button type="button" class="btn btn-small btn-success createLink"><i class="icon-list-alt icon-white"></i>Создать ссылку</button>
+                        <button type="button" class="btn btn-small disabled action_on"><i class="icon-trash"></i>Удалить</button>
+                        <div class="dropdown d-i_b">
+                            <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
+                                Русский
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Английский</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>                            
+            </div>
+            <div class="tab-content">
+                <div class="row-fluid">
+                    <table class="table table-striped table-bordered table-hover table-condensed">
+                        <thead>
+                            <tr>
+                                <th class="t-a_c span1">
+                                    <span class="frame_label">
+                                        <span class="niceCheck b_n">
+                                            <input type="checkbox"/>
+                                        </span>
+                                    </span>
+                                </th>
+                                <th class="span1">{lang('amt_id')}</th>
+                                <th class="span3">{lang('amt_tname')}</th>
+                                <th class="span3">{lang('amt_link')}</th>
+                                <th class="span1">{lang('amt_type')}</th>
+                                <th class="span1"> {lang('amt_position')}<img src="{$THEME}/images/save.png" align="absmiddle" style="cursor:pointer;width:22px;height:22px;" onclick="save_position(); return false;" /></th>
+                                <th class="span1">{lang('amt_hidden')}</th>
+                                <th class="span1">{lang('amt_hidden')}</th>
+                            </tr>
+                        </thead>
+                        <tbody class="sortable">
+                            {foreach $menu_result as $item}
+                                <tr data-title="перетащите пользователя">
+                                    <td class="t-a_c">
+                                        <span class="frame_label">
+                                            <span class="niceCheck b_n">
+                                                <input type="checkbox"/>
+                                            </span>
+                                        </span>
+                                    </td>
+                                    <td><p>{$item.id}</p></td>
+                                    <td>
+                                        <a href="#">{$item.title}</a>
+                                    </td>
+                                    <td><p>{$item.url}</p></td>
+                                    <td><p>{ switch $item['item_type'] }
+                                            { case "page": }
+                                            {lang('amt_page')}
+                                            {break;}
+                                            { case "category": }
+                                            {lang('amt_category')}
+                                            {break;}
+                                            { case "module" }
+                                            {lang('amt_module')}
+                                            {break;}
+                                            { case "url": }
+                                            {lang('amt_url')}
+                                            {break;}
+                                            { /switch } </p></td>
+                                    <td><p><input type="text" value="{$item.position}" style="width:23px;" class="item_pos" id="item{$item.id}" /></p></td>
+                                    <td>
+                                        <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="показывать пункт меню">
+                                            {if $item['hidden'] == "0"}
+                                                <span class="prod-on_off"></span>
+                                                {else:}
+                                                    <span class="prod-on_on"></span>
+                                                     {/if}
+                                        </div>
+                                    </td>
+                                     <td><p>
+                                               {if count($langs) > 1}
     	        <img onclick="translate_m_item({$item.id}); return false;" src="{$THEME}/images/translit.png" width="16" height="16" /> 	
             {/if}
 				<img onclick="edit_item({$item.id},{$insert_id}); return false;" src="{$THEME}/images/edit.png" width="16" height="16" />
-				<img onclick="delete_item({$item.id},'{$item.name}'); return false;" src="{$THEME}/images/delete.png" width="16" height="16" />
-			</td>
-		  </tr>
-	  {/foreach}
-	  </tbody>
-	</table>
-	</div>
- {/if}
-
-<div class="form_overflow"></div>
-
+				
+                                         </p></td>
+                                </tr>
+                            {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </form>
 </div>
-
-<script type="text/javascript">
-var insert_id = {$insert_id};
-</script>
-
-{literal}
-        <style type="text/css">
-            #item_visible{
-            background-color:#8EAF3B;width:10px;height:10px;
-            }
-            #item_nonvisible{
-            background-color:silver;width:10px;height:10px;     
-            }
-        </style>
-
-		<script type="text/javascript">
-
-        var menu_action = 'insert';
-        var menu_update_id = 0;
-
-        function translate_m_item(iid)
-        {
-            MochaUI.translate_m_Window = function() {
-                new MochaUI.Window({
-                    id: 'translate_m_Window',
-                    title: 'Перевод меню',
-                    loadMethod: 'xhr',
-                    contentURL: base_url + 'admin/components/cp/menu/translate_window/' + iid,
-                    width: 490,
-                    height: 300
-                });
-            }
-            
-            MochaUI.translate_m_Window();
-        }
-
-        function save_position()
-        {
-            var pos = new Array();     
-
-            var items = $('menus_table').getElements('input');
-            items.each(function(el,i){
-                    if(el.hasClass('item_pos')) 
-                    {
-                        id = el.id;
-                        val = el.value;
-                        new_pos = id + '_' + val;
-                        pos.include( new_pos );
-                    }  
-                    });
-        
-            var req = new Request.HTML({
-               method: 'post',
-               url: base_url + 'admin/components/cp/menu/save_positions/',
-               onRequest: function() { },
-               onComplete: function(response) {  
-                    ajax_div('menus_table', base_url + 'admin/components/cp/menu/list_menu_items/' + insert_id);   
-                }
-            }).post({'items_pos': pos });
-        }
-
-		function edit_item(item_id,menu_id)
-		{
-            menu_action = 'update';
-            menu_update_id = item_id;
-
-    			new MochaUI.Window({
-					id: 'createnewlink',
-					title: 'Редактировать Сcылку',
-					type: 'window',
-					loadMethod: 'xhr',
-					contentURL: base_url + 'admin/components/cp/menu/create_item/' + menu_id,
-					width: 750,
-					height: 550
-				});
-		}
-
-        function create_link_window(menu_id)
-        {
-            menu_action = 'insert';
-            menu_update_id = 0;
-
-				new MochaUI.Window({
-					id: 'createnewlink',
-					title: 'Создать Сcылку',
-					type: 'window',
-					loadMethod: 'xhr',
-					contentURL: base_url + 'admin/components/cp/menu/create_item/' + menu_id,
-					width: 750,
-					height: 550
-				});
-        }
-
-        function delete_item(id,name)
-        {
-        	var req = new Request.HTML({
-			method: 'post',
-			url: base_url + 'admin/components/cp/menu/delete_item/' + id,
-			evalResponse: true,
-			onComplete: function(response) {
-                ajax_div('menus_table',base_url + 'admin/components/cp/menu/menu_item/' + name );                    
-            }
-	    	}).send(); 
-        }
-		</script>
-{/literal}
