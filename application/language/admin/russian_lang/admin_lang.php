@@ -51,6 +51,10 @@ $lang['a_us_in_admin'] = 'Пользователь';
 $lang['a_d_m_admin'] = 'Дата/час';
 $lang['a_action_admin'] = 'Действие';
 $lang['a_all_cache_file'] = 'Всего файлов кэширования';
+$lang['a_menu_chech'] = 'Меню обновилось';
+$lang['a_menu_field_emp'] = 'Поле Имя порожнее';
+$lang['a_fail'] = 'Ошибка';
+$lang['a_menu_create'] = 'Меню создано';
 
 
 

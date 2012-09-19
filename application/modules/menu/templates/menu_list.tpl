@@ -1,5 +1,5 @@
 <div class="container">
-    <form method="post" action="#">
+    <form id="deleteMenu">
         <ul class="breadcrumb">
             <li><a href="#">Главная</a> <span class="divider">/</span></li>
             <li class="active">Список товаров</li>
@@ -12,24 +12,25 @@
                 </div>
                 <div class="pull-right">
                     <div class="d-i_b">
-                        <input type="button" class="button" value="{lang('amt_create_menu')}" onclick="open_create_winow(); return false;" />
-                        <button type="button" class="btn btn-small btn-success"><i class="icon-list-alt icon-white"></i>Создать категорию</button>
-                        <button type="button" class="btn btn-small disabled action_on"><i class="icon-trash"></i>Удалить</button>
+                        <button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$BASE_URL}admin/components/cp/menu/create_tpl'"><i class="icon-list-alt icon-white"></i>{lang('amt_create_menu')}</button>
+                        
+                        <button type="button" class="btn btn-small disabled action_on deleteMenu"><i class="icon-trash"></i>Удалить</button>
                     </div>
                 </div>                            
             </div>
+                       
             <div class="tab-content">
                 <div class="row-fluid">
                     <table class="table table-striped table-bordered table-hover table-condensed">
                         <thead>
                             <tr>
                                 <th class="t-a_c span1">
-                                    <span class="frame_label">
-                                        <span class="niceCheck b_n">
-                                            <input type="checkbox"/>
-                                        </span>
-                                    </span>
-                                </th>
+                                                <span class="frame_label">
+                                                    <span class="niceCheck b_n">
+                                                        <input type="checkbox"/>
+                                                    </span>
+                                                </span>
+                                            </th>
                                 <th class="span1">{lang('amt_id')}</th>
                                 <th class="span3">{lang('amt_tname')}</th>
                                 <th class="span3">{lang('amt_name')}</th>
@@ -38,20 +39,20 @@
                                 <th class="span2">Редактировать</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody >
                             {if count($menus) > 0}
                                 {foreach $menus as $item}
                                     <tr data-title="перетащите пользователя" class="simple_tr">
                                         <td class="t-a_c">
-                                            <span class="frame_label">
-                                                <span class="niceCheck b_n">
-                                                    <input type="checkbox"/>
+                                                <span class="frame_label">
+                                                    <span class="niceCheck b_n" >
+                                                        <input type="checkbox" product_id="{$item.id}"/>
+                                                    </span>
                                                 </span>
-                                            </span>
-                                        </td>
+                                            </td>
                                         <td ><p>{$item.id}</p></td>
                                         <td>
-                                            <a href="#" id="del" onclick="ajax_div('menus_table','{$SELF_URL}/menu_item/{$item.name}'); return false;">{$item.main_title}</a>
+                                            <a href="{$SELF_URL}/menu_item/{$item.name}" id="del" >{$item.main_title}</a>
                                         </td>
                                         <td><p>{$item.name}</p></td>
                                         <td>{$item.description}
@@ -77,10 +78,7 @@
         <script language="text/javascript">
           
      
- 			window.addEvent('domready', function(){
-				menus_table = new sortableTable('mt1', {overCls: 'over', sortOn: -1 ,onClick: function(){}});
-                menus_table.altRow();
-			}); 
+ 			
   
             function open_create_winow()
             {
