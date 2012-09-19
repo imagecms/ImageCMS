@@ -224,25 +224,28 @@ $(document).ready(function(){
         {
             if(confirm('Удалить виджет?'))
             {
-                if($('.niceCheck:first-child').children('input').attr('value') === 'On')
+                if($('.niceCheck:first-child').children('input').attr('checked') === 'checked')
                 {
-                    var inputs = $('.niceCheck').children('input');
-                    inputs.each(function(){
-                        var inp = $(this);
-                        $.ajax({
-                            type:       'post',
-                            dataType:   "json",
-                            url:        '/admin/widgets_manager/delete/'+inp.attr('value'),
-                            success: function(obj){
-                                if(obj.result)
-                                {
-                                }else
-                                {
+                    if($('.niceCheck:first-child').children('input').attr('value') === 'On')
+                    {
+                        var inputs = $('.niceCheck').children('input');
+                        inputs.each(function(){
+                            var inp = $(this);
+                            $.ajax({
+                                type:       'post',
+                                dataType:   "json",
+                                url:        '/admin/widgets_manager/delete/'+inp.attr('value'),
+                                success: function(obj){
+                                    if(obj.result)
+                                    {
+                                    }else
+                                    {
+                                    }
                                 }
-                            }
+                            });
                         });
-                    });
-                    location.reload();
+                        location.reload();
+                    }
                 }else{
                     var inputs = $('.niceCheck').children('input');
                     var count = 0;
@@ -269,6 +272,19 @@ $(document).ready(function(){
                     location.reload();
                 }
             }
+        }
+    });
+    
+    $('#watermark_type').on('change', function(){
+        if($(this).attr('value') === 'overlay'){
+            $('.fortextblock').hide('slow', function(){
+                $('.forimageblock').css('display', '');
+            });
+        }
+        if($(this).attr('value') === 'text'){
+            $('.forimageblock').hide('slow', function(){
+                $('.fortextblock').css('display', '');
+            });
         }
     });
 });

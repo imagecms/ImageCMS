@@ -483,4 +483,6 @@ $(document).ready(function(){
     		$('.listFilterForm').ajaxSubmit({target: '#mainContent'});
     	}
     });
+    
+    
 });
