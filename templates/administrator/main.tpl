@@ -205,7 +205,7 @@
             		
             	
                     //menu active sniffer
-                    $('a.pjax').on('click', function(e){
+                    $('a.pjax').live('click', function(e){
                             $('nav li').removeClass('active');
                             $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
                             $.pjax({url: $(this).attr('href'), container:'#mainContent'});
