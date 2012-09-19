@@ -48,6 +48,22 @@ function ajax_div(target, url)
 	$('#'+target).load(url);
 }
 
+//submit form
+$('.formSubmit').click(function(){
+	var selector = $(this).data('form');
+	$(selector).validate()
+	if ($(selector).valid())
+	{
+		var options = {
+				target: '.notifications',
+				success: function () {return true;}
+		};
+		console.log($(selector));
+		$(selector).ajaxSubmit(options);
+	}
+	return false;
+});
+
 function updateNotificationsTotal()
 {
 	$('#topPanelNotifications>div').load('/admin/components/run/shop/notifications/getAvailableNotification');

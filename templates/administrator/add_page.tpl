@@ -83,7 +83,7 @@
 		{lang('a_title')}:
         </label>
         	<div class="controls">
-			<input type="text" name="page_title" value="" id="page_title_u" class="textbox_long" />
+			<input type="text" name="page_title" value="" id="page_title_u" class="textbox_long required" />
         	</div>
         </div>
 
@@ -92,7 +92,7 @@
 		{lang('a_prev_cont')}:
         </label>
         	<div class="controls">
-			<textarea id="prev_text" class="mceEditor" name="prev_text" rows="10" cols="180" ></textarea>
+			<textarea id="prev_text" class="mceEditor required" name="prev_text" rows="10" cols="180" ></textarea>
         	</div>
         </div>
  
