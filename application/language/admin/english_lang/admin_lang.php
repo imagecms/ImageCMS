@@ -54,6 +54,8 @@ $lang['a_menu_field_emp'] = 'Name field sieve';
 $lang['a_fail'] = 'Fail';
 $lang['a_menu_create'] = 'Create menu';
 $lang['a_ps'] = 'Pcs';
+$lang['a_del_o_met'] = 'Paid';
+$lang['a_purch_product_c'] = 'Purchased Product';
 
 
 
