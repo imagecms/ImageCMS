@@ -55,6 +55,7 @@ $lang['a_menu_chech'] = 'Меню обновилось';
 $lang['a_menu_field_emp'] = 'Поле Имя порожнее';
 $lang['a_fail'] = 'Ошибка';
 $lang['a_menu_create'] = 'Меню создано';
+$lang['a_ps'] = 'шт';
 
 
 

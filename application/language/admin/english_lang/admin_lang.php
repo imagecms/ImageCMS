@@ -53,6 +53,7 @@ $lang['a_menu_chech'] = 'Menu Update';
 $lang['a_menu_field_emp'] = 'Name field sieve';
 $lang['a_fail'] = 'Fail';
 $lang['a_menu_create'] = 'Create menu';
+$lang['a_ps'] = 'Pcs';
 
 
 
