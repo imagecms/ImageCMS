@@ -39,8 +39,8 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i>Настройки<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="/admin/components/run/shop/settings" class="pjax">Глобальные настройки</a></li>
-                                    <li><a href="#" class="pjax">Способы доставки</a></li>
-                                    <li><a href="#" class="pjax">Способы оплаты</a></li>
+                                    <li><a href="/admin/components/run/shop/deliverymethods/c_list" class="pjax">Способы доставки</a></li>
+                                    <li><a href="/admin/components/run/shop/paymentmethods/index" class="pjax">Способы оплаты</a></li>
                                     <li><a href="#" class="pjax">Валюты</a></li>
                                     <li><a href="#" class="pjax">Бренды</a></li>
                                     <li><a href="#" class="pjax">Склады</a></li>
