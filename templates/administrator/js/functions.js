@@ -150,8 +150,36 @@ var orders = new Object({
 	
 	addProduct:function(modelId)
 	{
-		$('.modal .modal-body').load('/admin/components/run/shop/orders/ajaxEditAddToCartWindow/'+modelId);
+		productName = '';
+		variants='';
+		$('.modal .modal-body').load('/admin/components/run/shop/orders/ajaxEditAddToCartWindow/'+modelId, function(){
+			$('#product_name').autocomplete({
+				source: '/admin/components/run/shop/orders/ajaxGetProductList/?categoryId='+$('#Categories').val(),
+				select: function(event, ui){
+//					console.log(ui);
+//					console.log(ui.item);
+					productName = ui.item.label;
+//					console.log(ui.item.label);
+//					console.log(ui.item);
+//					console.log(ui.item.variants.lenght);
+					$('#product_id').val(ui.item.value);
+					vKeys = Object.keys(ui.item.variants);
+					
+					for (var i=0; i<vKeys.length; i++)
+						 
+						$('#product_variant_name').append(new Option(ui.item.variants[ vKeys[i] ].name + ui.item.variants[ vKeys[i] ].price + " " + ui.item.cs, vKeys[i], true, true));
+					},
+				close: function(){$('#product_name').val(productName);}	
+			});
+			
+			$('#Categories').change(function(){ $('#product_name').val(''); });
+		});
 		$('.modal').modal('show');
+		$('#addToCartConfirm').live('click', function(){
+			if ($('.modal form').valid())
+				$('.modal').modal('hide');
+		});
+		return false;
 	}
 	
 });
