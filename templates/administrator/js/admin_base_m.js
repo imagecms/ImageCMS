@@ -72,36 +72,30 @@ $(document).ready(function(){
 
     });
     
-    
-    
-    
-    $('.createUsers').live('click', function(){  
-        var adminUrl = $(this).attr('admin-ur');
-        $.ajax({
-            type: 'post',
-            dataType: 'json',
-            data: $('#userCreate').serialize(),
-            url: adminUrl,
-            success: function(obj){
-                
-                if(obj.result == true){
-                    
-                    var url = '/admin/components/run/users/index';
-                    redirect_url(url);
-                    showMessage(obj.title, obj.message);
-                
-                }else{
-                    
-                    showMessage(obj.title, obj.message, 'r');
-                }
-                    
-               
-            }
-        });
 
+        
+ 
+    
+    $('.export').live('click', function(){ 
+        
+//        console.log($('input[name=export]:checked').val());
+//        return false;
+        
+        if($('input[name=export]:checked').val() == 'csv'){
+            
+            $('#exportUsers').submit();
+            
+        }//else{
+//            $.ajax({
+//            type: 'post',
+//            dataType: 'json',
+//            data: $('#exportUsers').serialize(),
+//            url: '/admin/components/run/shop/system/exportUsers'
+//
+//        });
+//        } 
     });
-    
-    
+       
     
     
     
