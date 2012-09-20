@@ -127,6 +127,7 @@ table thead td, table thead th{
 .b_n.niceCheck, .b_n.niceRadio{background: none !important;}
 .b_n.niceCheck input, .b_n.niceRadio input{display: block !important;}
 input, textarea, select{width: 100% !important;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
+input[type="checkbox"], input[type="radio"]{width: auto !important;}
 select, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input{height: 28px !important;min-width: 50px;}
 table select, table input[type="text"], table input[type="password"], table input[type="datetime"], table input[type="datetime-local"], table input[type="date"], table input[type="month"], table input[type="time"], table input[type="week"], table input[type="number"], table input[type="email"], table input[type="url"], table input[type="search"], table input[type="tel"], table input[type="color"], table .uneditable-input{height: 27px !important;margin-bottom: 0;}
 label, input, button, select, textarea{font-size: 12px !important;}
