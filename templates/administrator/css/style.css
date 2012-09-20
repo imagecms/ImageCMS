@@ -297,3 +297,7 @@ form > *{font-size: 12px;}
 .nav > .active > a > [class*=" icon-"]{background-image: url("../img/glyphicons-halflings-white.png");}
 
 .help-block{margin-left: 0 !important;}
+
+.thumbnail > img.sel_template {
+    border: 3px solid;
+}
