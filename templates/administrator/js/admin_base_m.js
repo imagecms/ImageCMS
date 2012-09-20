@@ -63,7 +63,8 @@ $(document).ready(function(){
                 
                 }else{
                     
-                    showMessage(obj.title, obj.message, 'r');}
+                    showMessage(obj.title, obj.message, 'r');
+                }
                     
                
             }
@@ -71,9 +72,36 @@ $(document).ready(function(){
 
     });
     
+
+        
+ 
+    
+    $('.export').live('click', function(){ 
+        
+//        console.log($('input[name=export]:checked').val());
+//        return false;
+        
+        if($('input[name=export]:checked').val() == 'csv'){
+            
+            $('#exportUsers').submit();
+            
+        }//else{
+//            $.ajax({
+//            type: 'post',
+//            dataType: 'json',
+//            data: $('#exportUsers').serialize(),
+//            url: '/admin/components/run/shop/system/exportUsers'
+//
+//        });
+//        } 
+    });
+       
+    
+    
+    
     $('.deleteMenu').live('click', function(){
 
-       var data_id = $(this).attr('product_id');
+        var data_id = $(this).attr('product_id');
         $.ajax({
             type: 'post',
             dataType: 'json',
@@ -88,7 +116,7 @@ $(document).ready(function(){
                
             }
         });   
-       alert(data_id);
+        alert(data_id);
        
     });
     

@@ -22,9 +22,9 @@
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>Пользователи<b class="caret"></b></a>
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>Пользователи<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#" class="pjax">Список пользователей</a></li>
+                                    <li><a href="/admin/components/run/shop/users/index" class="pjax">Список пользователей</a></li>
                                     <li><a href="#" class="pjax">Разделение прав</a></li>
                                 </ul>
                             </li>
