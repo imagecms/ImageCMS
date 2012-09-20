@@ -230,6 +230,7 @@
     $lang['a_counr_rates']      =	'Пересчитать цены?';
     $lang['a_free']             =	'Бесплатен';
     $lang['a_from']             =	'от';
+    $lang['a_from_to']             =	'до';
     $lang['a_kit']              =	'Набор';
     $lang['a_fixation']         =	'Прикрепление';
     $lang['a_map']              =	'карте';
@@ -555,4 +556,35 @@
     $lang['a_mobile_version_address'] = 'Адрес поддомена';
     $lang['a_mobile_version_template'] = 'Шаблон';
     $lang['a_count_rates'] = 'Пересчитать цены?';
+    $lang['a_count_rates'] = 'Пользователь';
+    $lang['a_helper_user'] = 'выберите дату';
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 ?>
