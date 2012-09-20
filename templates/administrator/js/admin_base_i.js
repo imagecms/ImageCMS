@@ -287,6 +287,14 @@ $(document).ready(function(){
             });
         }
     });
+    
+    $('.select_tpl').live('click', function(){
+        var path = $(this).attr('data-path');
+        $('img.tpl_image').removeClass('sel_template');
+        $(this).children('img').addClass('sel_template');
+        $('#systemTemplatePath').attr('value', path);
+    });
+    
 });
 
 
