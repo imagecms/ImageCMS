@@ -15,10 +15,10 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list-alt"></i>Каталог товаров<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="/admin/components/run/shop/categories/c_list" class="pjax">Категории</a></li>
-                                    <li><a href="#" class="pjax">Товары</a></li>
-                                    <li><a href="#" class="pjax">Свойства товаров</a></li>
-                                    <li><a href="#" class="pjax">Наборы товаров</a></li>
-                                    <li><a href="#" class="pjax">Товары без картинок</a></li>
+                                    <li><a href="/admin/components/run/shop/search/index" class="pjax">Товары</a></li>
+                                    <li><a href="/admin/components/run/shop/properties/index" class="pjax">Свойства товаров</a></li>
+                                    <li><a href="/admin/components/run/shop/kits/kit_list" class="pjax">Наборы товаров</a></li>
+                                    <li><a href="/admin/components/run/shop/search/index?WithoutImages=1" class="pjax">Товары без картинок</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
