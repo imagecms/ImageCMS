@@ -146,7 +146,15 @@ var orders = new Object({
 			});
 		$('.modal').modal('hide');
 		return true;
+	},
+	
+	addProduct:function(modelId)
+	{
+		$('.modal .modal-body').load('/admin/components/run/shop/orders/ajaxEditAddToCartWindow/'+modelId);
+		$('.modal').modal('show');
 	}
 	
 });
+
+
 
