@@ -200,9 +200,25 @@ var orderStatuses = new Object({
 	},
 	deleteOne:function(id){
 		$('.modal .modal-body').load('/admin/components/run/shop/orderstatuses/ajaxDeleteWindow/'+id, function(){
-			
+			return true;
 		});
 		$('.modal').modal('show');
+	}
+});
+
+var callbacks = new Object({
+	deleteOne:function(id){
+		$.post('/admin/components/run/shop/callbacks/deleteCallback', {id:id}, function(data){
+			$('.notifications').append(data);
+		});
+	},
+	
+	changeStatus:function(id, statusId)
+	{
+		$.post('/admin/components/run/shop/callbacks/changeStatus', {CallbackId:id, StatusId:statusId, hash:window.location.hash}, function(data){
+			$('.notifications').append(data);
+		})
+		console.log([id, statusId]);
 	}
 });
 
