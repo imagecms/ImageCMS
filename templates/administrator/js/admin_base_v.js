@@ -122,4 +122,40 @@ $(document).ready(function(){
         });
     });
     
+    $('.products_table').find('button.setHit').bind('click', function(){
+        var btn = $(this);
+        
+        $.ajax({
+            type: 'POST',
+            url: base_url + 'admin/components/run/shop/products/ajaxChangeHit/' + btn.attr('data-id'),
+            onComplete: function(response) {}
+        });
+        
+        btn.toggleClass('btn-primary active');
+    });
+    
+    $('.products_table').find('button.setHot').bind('click', function(){
+        var btn = $(this);
+        
+        $.ajax({
+            type: 'POST',
+            url: base_url + 'admin/components/run/shop/products/ajaxChangeHot/' + btn.attr('data-id'),
+            onComplete: function(response) {}
+        });
+        
+        btn.toggleClass('btn-primary active');
+    });
+    
+    $('.products_table').find('button.setAction').bind('click', function(){
+        var btn = $(this);
+        
+        $.ajax({
+            type: 'POST',
+            url: base_url + 'admin/components/run/shop/products/ajaxChangeAction/' + btn.attr('data-id'),
+            onComplete: function(response) {}
+        });
+        
+        btn.toggleClass('btn-primary active');
+    });
+    
 });
