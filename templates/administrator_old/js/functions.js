@@ -44,6 +44,6 @@ function retrive_keywords(from, to)
 
 function ajax_div(target, url)
 {
-	$('#'+target).load(url);
+	$(target).load(url);
 }
 
