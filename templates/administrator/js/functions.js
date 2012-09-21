@@ -180,8 +180,30 @@ var orders = new Object({
 				$('.modal').modal('hide');
 		});
 		return false;
+	},
+	
+	deleteProduct:function(id){
+		$('.notifications').load('/admin/components/run/shop/orders/ajaxDeleteProduct/'+id);
 	}
 	
+});
+
+var orderStatuses = new Object({
+	reorderPositions:function(){
+		var i=1;
+		$('.sortable tr').each(function(){
+			$(this).find('input').val(i);
+			i++;
+		});	
+		$('#orderStatusesList').ajaxSubmit({target:'.notifications'});
+		return true;
+	},
+	deleteOne:function(id){
+		$('.modal .modal-body').load('/admin/components/run/shop/orderstatuses/ajaxDeleteWindow/'+id, function(){
+			
+		});
+		$('.modal').modal('show');
+	}
 });
 
 
