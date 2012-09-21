@@ -827,7 +827,11 @@ class Pages extends MY_Controller {
             );
         else{
             $this->db->select('content.*, category.name as cat_name');
-            $db_where = array('lang_alias' => 0);
+            
+            $db_where = array(
+                'category !=' => 0,
+                'lang_alias' => 0
+            );
         }
 
         ($hook = get_hook('admin_get_pages_by_cat')) ? eval($hook) : NULL;
@@ -847,7 +851,7 @@ class Pages extends MY_Controller {
             $this->db->join('category', 'category.id = content.category');
 
         $query = $this->db->get_where('content', $db_where, $row_count, $offset);
-
+        
         $this->db->where($db_where);
         $this->db->from('content');
         $total_pages = $this->db->count_all_results();
@@ -859,6 +863,24 @@ class Pages extends MY_Controller {
             $config['uri_segment'] = 5;
             $config['total_rows'] = $total_pages;
             $config['per_page'] = $this->_Config['per_page'];
+            
+            $config['separate_controls'] = true;
+            $config['full_tag_open'] = '<div class="pagination pull-left"><ul>';
+            $config['full_tag_close'] = '</ul></div>';
+            $config['controls_tag_open'] = '<div class="pagination pull-right"><ul>';
+            $config['controls_tag_close'] = '</ul></div>';
+            $config['next_link'] = 'Next&nbsp;&gt;';
+            $config['prev_link'] = '&lt;&nbsp;Prev';
+            $config['cur_tag_open'] = '<li class="btn-primary active"><span>';
+            $config['cur_tag_close'] = '</span></li>';
+            $config['prev_tag_open'] = '<li>';
+            $config['prev_tag_close'] = '</li>';
+            $config['next_tag_open'] = '<li>';
+            $config['next_tag_close'] = '</li>';
+            $config['num_tag_close'] = '</li>';
+            $config['num_tag_open'] = '<li>';
+            $config['num_tag_close'] = '</li>';
+            
             $this->pagination->num_links = 5;
             $this->pagination->initialize($config);
             // End pagination
@@ -875,7 +897,7 @@ class Pages extends MY_Controller {
                 'category' => $category,
                 'cats' => $allCats
             ));
-
+            
             $this->template->show('pages', FALSE);
         } else {
 

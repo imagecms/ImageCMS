@@ -217,6 +217,9 @@ table{table-layout: fixed;}
 .row-category > div + div + div + div + div{width: 15%;}
 /*.row-category > div + div + div + div + div + div{width: 7%;}*/
 
+.p_cat_row-category > div + div + div + div + div{width: 8%;}
+.p_cat_row-category > div + div + div + div + div + div{width: 7%;}
+
 table p{margin: 0;}
 .table-striped > tbody > tr:nth-child(odd) td, .table-striped > tbody tr:nth-child(odd) th {background-color: #f9f9f9;}
 .table tbody tr.active td, .row-category.active{background-color: #fff9e0 !important;}

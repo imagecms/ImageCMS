@@ -270,6 +270,7 @@
     $lang['a_delete_privilege'] =	'Чтобы удалить привилегию с группы - назначьте ее другой группе.';
     $lang['a_specify']          =	'Укажите';
     $lang['a_art']              =	'артикул';
+    $lang['a_art_b']              =	'Артикул';
     $lang['a_or']               =	'или';
     $lang['a_no_active']        =	'Неактивен';
     $lang['a_empty_select_result']=	'Запрос вернул пустой результат.';
