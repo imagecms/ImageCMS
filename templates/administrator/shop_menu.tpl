@@ -6,7 +6,7 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="{$ADMIN_URL}orders/index" class="pjax">Все заказы</a></li>
                                     <li><a href="{$ADMIN_URL}orderstatuses">Статусы заказов</a></li>
-                                    <li><a href="#">Колбеки</a></li>
+                                    <li><a href="{$ADMIN_URL}callbacks">Колбеки</a></li>
                                     <li><a href="#">Сообщения о появлении</a></li>
                                     <li><a href="#">Комментарии</a></li>
                                 </ul>
