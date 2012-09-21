@@ -92,6 +92,10 @@ class MY_Pagination extends CI_Pagination {
 
   		// And here we go...
 		$output = '';
+                
+                // Check for separated controls
+                if ($this->separate_controls)
+                    $controls_output = '';
 
 		// Render the "First" link
 		if  ($this->cur_page > $this->num_links)
@@ -104,8 +108,17 @@ class MY_Pagination extends CI_Pagination {
 		{
 			$i = $uri_page_number - $this->per_page;
 			if ($i == 0) $i = 'offset';
-			$output .= $this->prev_tag_open.'<a href="javascript:ajax_div(\''.$this->container.'\',\''.$this->base_url.$i.'/'.$this->suffix.'\') ">'.$this->prev_link.'</a>'.$this->prev_tag_close;
+                        
+                        if (!$this->separate_controls)
+                            $output .= $this->prev_tag_open.'<a href="javascript:ajax_div(\''.$this->container.'\',\''.$this->base_url.$i.'/'.$this->suffix.'\') ">'.$this->prev_link.'</a>'.$this->prev_tag_close;
+                        else
+                            $controls_output .= $this->prev_tag_open.'<a href="javascript:ajax_div(\''.$this->container.'\',\''.$this->base_url.$i.'/'.$this->suffix.'\') ">'.$this->prev_link.'</a>'.$this->prev_tag_close;
 		}
+                
+                else {
+                    if ($this->separate_controls)
+                        $controls_output .= str_replace('>', ' class="disabled">', $this->prev_tag_open).'<span>'.$this->prev_link.'</span>'.$this->prev_tag_close;
+                }
 
 		// Write the digit links
 		for ($loop = $start -1; $loop <= $end; $loop++)
@@ -129,7 +142,10 @@ class MY_Pagination extends CI_Pagination {
 		// Render the "next" link
 		if ($this->cur_page < $num_pages)
 		{
+                    if (!$this->separate_controls)
 			$output .= $this->next_tag_open.'<a href="javascript:ajax_div(\''.$this->container.'\',\''.$this->base_url.($this->cur_page * $this->per_page).'/'.$this->suffix.'\') ">'.$this->next_link.'</a>'.$this->next_tag_close;
+                    else
+                        $controls_output .= $this->next_tag_open.'<a href="javascript:ajax_div(\''.$this->container.'\',\''.$this->base_url.($this->cur_page * $this->per_page).'/'.$this->suffix.'\') ">'.$this->next_link.'</a>'.$this->next_tag_close;
 		}
 
 		// Render the "Last" link
@@ -142,9 +158,16 @@ class MY_Pagination extends CI_Pagination {
 		// Kill double slashes.  Note: Sometimes we can end up with a double slash
 		// in the penultimate link so we'll kill all double slashes.
 		$output = preg_replace("#([^:])//+#", "\\1/", $output);
-
-		// Add the wrapper HTML if exists
+                
+                // Add the wrapper HTML if exists
 		$output = $this->full_tag_open.$output.$this->full_tag_close;
+                
+                if ($this->separate_controls){
+                    $controls_output = preg_replace("#([^:])//+#", "\\1/", $controls_output);
+                    $controls_output = $this->controls_tag_open.$controls_output.$this->controls_tag_close;
+                    
+                    $output = $output.$controls_output;
+                }
 
 		return $output;
 	}
