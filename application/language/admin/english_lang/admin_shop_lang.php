@@ -269,6 +269,7 @@ $lang['a_set_order_status'] =	'Set another status for these orders';
     $lang['a_delete_privilege'] =	'To delete group privilege  assign it to another group. ';
     $lang['a_specify']          =	'Specify';
     $lang['a_art']              =	'Item';
+    $lang['a_art_b']              =	'Reference';
     $lang['a_or']               =	'or';
     $lang['a_no_active']        =	'inactive';
     $lang['a_empty_select_result']=	'Request showed no result';

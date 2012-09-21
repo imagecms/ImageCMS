@@ -301,7 +301,51 @@ $(document).ready(function(){
         $(this).children('img').addClass('sel_template');
         $('#mobileTemplatePath').attr('value', path);
     });
-
+    
+    $('.currency_del').live('click', function(){
+        var currency_id = $(this).data('currid');
+        if(confirm('Удалить валюту с ID: '+currency_id))
+        {
+            $.ajax({
+                type: 'post',
+                data: 'id='+currency_id,
+                url:  '/admin/components/run/shop/currencies/delete',
+                success: function(data){
+                    $('.notifications').append(data);
+                }
+            });
+        }
+    });
+    
+    $('.currency_def').live('click', function(){
+        var currency_id = $(this).data('currid');
+        $.ajax({
+            type:   'post',
+            data:   'id='+currency_id,
+            url:    '/admin/components/run/shop/currencies/makeCurrencyDefault',
+            success: function(data){
+                if(data){
+                    $('.currency_def').removeClass('active');
+                    $('#currdef'+currency_id).addClass('active');
+                }
+            }
+        });
+    });
+    
+    $('.currency_main').live('click', function(){
+        var currency_id = $(this).data('currid');
+        $.ajax({
+            type: 'post',
+            data:   'id='+currency_id,
+            url:    '/admin/components/run/shop/currencies/makeCurrencyMain',
+            success: function(data){
+                if(data){
+                    $('.currency_main').removeClass('active');
+                    $('#currmain'+currency_id).addClass('active');
+                }
+            }
+        });
+    });
 });
 
 
