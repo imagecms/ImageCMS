@@ -112,6 +112,14 @@ $(document).ready(function(){
     });
     
     
-    
+    $('.products_table').find('span.prod-on_off').bind('click', function(){
+        var page_id = $(this).attr('data-id');
+        
+        $.ajax({
+            type: 'POST',
+            url: base_url + 'admin/components/run/shop/products/ajaxChangeActive/' + page_id,
+            onComplete: function(response) { }
+        });
+    });
     
 });
