@@ -7,7 +7,7 @@ function change_page_status(page_id) {
 }
 
 $(document).ready(function(){
-    $( ".pages-table" ).bind( "sortstop", function(event, ui) {
+    $( ".pages-table" ).live( "sortstop", function(event, ui) {
         var positionsArray = {};
         
         $('.pages-table > tbody').children('tr').each(function(){
@@ -112,7 +112,7 @@ $(document).ready(function(){
     });
     
     
-    $('.products_table').find('span.prod-on_off').bind('click', function(){
+    $('.products_table').find('span.prod-on_off').live('click', function(){
         var page_id = $(this).attr('data-id');
         
         $.ajax({
@@ -122,7 +122,7 @@ $(document).ready(function(){
         });
     });
     
-    $('.products_table').find('button.setHit').bind('click', function(){
+    $('.products_table').find('button.setHit').live('click', function(){
         var btn = $(this);
         
         $.ajax({
@@ -134,7 +134,7 @@ $(document).ready(function(){
         btn.toggleClass('btn-primary active');
     });
     
-    $('.products_table').find('button.setHot').bind('click', function(){
+    $('.products_table').find('button.setHot').live('click', function(){
         var btn = $(this);
         
         $.ajax({
@@ -146,7 +146,7 @@ $(document).ready(function(){
         btn.toggleClass('btn-primary active');
     });
     
-    $('.products_table').find('button.setAction').bind('click', function(){
+    $('.products_table').find('button.setAction').live('click', function(){
         var btn = $(this);
         
         $.ajax({
