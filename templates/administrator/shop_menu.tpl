@@ -45,7 +45,7 @@
                                     <li><a href="#" class="pjax">Бренды</a></li>
                                     <li><a href="/admin/components/run/shop/warehouses/index" class="pjax">Склады</a></li>
                                     <li><a href="#" class="pjax">Автоматизация</a></li>
-                                    <li><a href="#" class="pjax">Баннеры</a></li>
+                                    <li><a href="/admin/components/run/shop/banners/index" class="pjax">Баннеры</a></li>
                                     <li><a href="#" class="pjax">Скидки</a></li>
                                 </ul>
                             </li>
