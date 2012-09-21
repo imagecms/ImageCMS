@@ -42,7 +42,7 @@
                                     <li><a href="/admin/components/run/shop/currencies" class="pjax">Валюты</a></li>
                                     <li><a href="/admin/components/run/shop/deliverymethods/c_list" class="pjax">Способы доставки</a></li>
                                     <li><a href="/admin/components/run/shop/paymentmethods/index" class="pjax">Способы оплаты</a></li>
-                                    <li><a href="#" class="pjax">Бренды</a></li>
+                                    <li><a href="/admin/components/run/shop/brands/c_list" class="pjax">Бренды</a></li>
                                     <li><a href="#" class="pjax">Склады</a></li>
                                     <li><a href="#" class="pjax">Автоматизация</a></li>
                                     <li><a href="#" class="pjax">Баннеры</a></li>
