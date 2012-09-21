@@ -66,6 +66,10 @@ $(document).ready(function(){
                 });
                 $helper.addClass('active');
                 return $helper;
+            },
+            change: function(){
+            	var chFn = $('.sortable').data('chfunction');
+            	return eval(chFn+'()');
             }
         });
     }

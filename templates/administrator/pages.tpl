@@ -104,15 +104,7 @@
         </div>
         {if $paginator > ''}
         <div class="clearfix">
-            <div class="pagination pull-left">
-                {$paginator}
-            </div>
-            <div class="pagination pull-right">
-                <ul>
-                    <li class="disabled"><span>Prev</span></li>
-                    <li><a href="#">Next</a></li>
-                </ul>
-            </div>
+            {$paginator}
         </div>
         {/if}
     </section>
