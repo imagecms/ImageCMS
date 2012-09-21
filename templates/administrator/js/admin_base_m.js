@@ -1,4 +1,14 @@
+  function change_status(hrefFn) {  
+    $.ajax({
+        type: 'POST',
+        url: hrefFn,
+        onComplete: function(response) { }
+    });
+}
+
 $(document).ready(function(){
+    
+  
     
     $('.clearCashe').on('click', function(){
         $this = $(this);

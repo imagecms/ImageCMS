@@ -14,11 +14,12 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list-alt"></i>Каталог товаров<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="{$ADMIN_URL}categories/c_list" class="pjax">Категории</a></li>
-                                    <li><a href="#" class="pjax">Товары</a></li>
-                                    <li><a href="#" class="pjax">Свойства товаров</a></li>
-                                    <li><a href="#" class="pjax">Наборы товаров</a></li>
-                                    <li><a href="#" class="pjax">Товары без картинок</a></li>
+
+                                    <li><a href="/admin/components/run/shop/categories/c_list" class="pjax">Категории</a></li>
+                                    <li><a href="/admin/components/run/shop/search/index" class="pjax">Товары</a></li>
+                                    <li><a href="/admin/components/run/shop/properties/index" class="pjax">Свойства товаров</a></li>
+                                    <li><a href="/admin/components/run/shop/kits/kit_list" class="pjax">Наборы товаров</a></li>
+                                    <li><a href="/admin/components/run/shop/search/index?WithoutImages=1" class="pjax">Товары без картинок</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -38,12 +39,14 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i>Настройки<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
+                                
                                     <li><a href="{$ADMIN_URL}settings" class="pjax">Глобальные настройки</a></li>
+                                    <li><a href="{$ADMIN_URL}currencies" class="pjax">Валюты</a></li>
                                     <li><a href="{$ADMIN_URL}deliverymethods/c_list" class="pjax">Способы доставки</a></li>
                                     <li><a href="{$ADMIN_URL}paymentmethods/index" class="pjax">Способы оплаты</a></li>
-                                    <li><a href="#" class="pjax">Валюты</a></li>
+
                                     <li><a href="#" class="pjax">Бренды</a></li>
-                                    <li><a href="#" class="pjax">Склады</a></li>
+                                    <li><a href="/admin/components/run/shop/warehouses/index" class="pjax">Склады</a></li>
                                     <li><a href="#" class="pjax">Автоматизация</a></li>
                                     <li><a href="#" class="pjax">Баннеры</a></li>
                                     <li><a href="#" class="pjax">Скидки</a></li>
