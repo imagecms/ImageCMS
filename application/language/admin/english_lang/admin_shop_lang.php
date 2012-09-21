@@ -176,8 +176,8 @@
     $lang['a_role']             =	'Role';
     $lang['a_fio']              =	'Full name';
     $lang['a_fio_full']         =	'Full name';
-    $lang['a_summ_purchases']   =	'purchase price';
-    $lang['a_summ']             =	'total price';
+    $lang['a_summ_purchases']   =	'Purchase price';
+    $lang['a_summ']             =	'Total price';
     $lang['a_summ_delivery']    =	'Price includes delivery';
     $lang['a_callback_number_user']=	"Callback with a user's  phone number";
     $lang['a_request_number_phone']=	" Arrival requests with a user's phone number";
@@ -229,6 +229,7 @@
     $lang['a_counr_rates']      =	'Calculate the total price again ?';
     $lang['a_free']             =	'Free';
     $lang['a_from']             =	'from';
+    $lang['a_from_to']             =	'to';
     $lang['a_kit']              =	'kit';
     $lang['a_fixation']         =	'Attachment';
     $lang['a_map']              =	'map';
@@ -268,6 +269,7 @@ $lang['a_set_order_status'] =	'Set another status for these orders';
     $lang['a_delete_privilege'] =	'To delete group privilege  assign it to another group. ';
     $lang['a_specify']          =	'Specify';
     $lang['a_art']              =	'Item';
+    $lang['a_art_b']              =	'Reference';
     $lang['a_or']               =	'or';
     $lang['a_no_active']        =	'inactive';
     $lang['a_empty_select_result']=	'Request showed no result';
@@ -530,4 +532,7 @@ $lang['a_set_order_status'] =	'Set another status for these orders';
     $lang['a_mobile_version_address'] = 'Subdomain address';
     $lang['a_mobile_version_template'] = 'Mobile version site template';
     $lang['a_count_rates'] = 'Recount prices?';
+    $lang['a_user'] = 'User';
+    $lang['a_helper_user'] = 'choose a date';
+    
 ?>
