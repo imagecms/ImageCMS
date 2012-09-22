@@ -79,52 +79,24 @@ $(document).ready(function(){
         }
         else{
             if(confirm('Удалить модуль?')){
-                if($('.niceCheck:first-child').children('input').attr('checked') === 'checked')
-                {
-                    if($('.niceCheck:first-child').children('input').attr('value') === 'On')
-                    {
-                        var inputs = $('.niceCheck').children('input');
-                        inputs.each(function(){
-                            var inp = $(this);
-                            $.ajax({
-                                type:       'post',
-                                dataType:   "json",
-                                url:        '/admin/components/deinstall/'+inp.attr('value'),
-                                success: function(obj){
-                                    if(obj.result)
-                                    {
-                                    }else
-                                    {
-                                    }
-                                }
-                            });
-                        });
-                        location.reload();
-                    }
-                }
-                else
-                {
-                    var inputs = $('.niceCheck').children('input');
-                    inputs.each(function(){
-                        var inp = $(this);
-                        if(inp.attr('checked') === 'checked')
-                        {
-                            $.ajax({
-                                type:       'post',
-                                dataType:   "json",
-                                url:        '/admin/components/deinstall/'+inp.attr('value'),
-                                success: function(obj){
-                                    if(obj.result)
-                                    {
-                                    }else
-                                    {
-                                    }
-                                }
-                            });
+                var arr = new Array;
+                var inputs = $('.niceCheck').children('input');
+                inputs.each(function(){
+                    var inp = $(this);
+                    if(inp.attr('checked') === 'checked'){
+                        if(inp.attr('value') != 'On'){
+                            arr.push(inp.attr('value'));
                         }
-                    });
-                    location.reload();
+                    }
+                });
+                $.post('/admin/components/deinstall',                          
+                {
+                    modules: arr
+                },
+                function(data){
+                    $('.notifications').append(data);
                 }
+                );
             }
         }
     });
@@ -224,53 +196,24 @@ $(document).ready(function(){
         {
             if(confirm('Удалить виджет?'))
             {
-                if($('.niceCheck:first-child').children('input').attr('checked') === 'checked')
-                {
-                    if($('.niceCheck:first-child').children('input').attr('value') === 'On')
-                    {
-                        var inputs = $('.niceCheck').children('input');
-                        inputs.each(function(){
-                            var inp = $(this);
-                            $.ajax({
-                                type:       'post',
-                                dataType:   "json",
-                                url:        '/admin/widgets_manager/delete/'+inp.attr('value'),
-                                success: function(obj){
-                                    if(obj.result)
-                                    {
-                                    }else
-                                    {
-                                    }
-                                }
-                            });
-                        });
-                        location.reload();
-                    }
-                }else{
-                    var inputs = $('.niceCheck').children('input');
-                    var count = 0;
-                    inputs.each(function(){
-                        var inp = $(this);
-                        if(inp.attr('checked') === 'checked')
-                        {
-                            $.ajax({
-                                type:       'post',
-                                dataType:   "json",
-                                url:        '/admin/widgets_manager/delete/'+inp.attr('value'),
-                                success: function(obj){
-                                    if(obj.result)
-                                    {
-                                        count++;
-                                    }else
-                                    {
-                                    }
-                                }
-                            });
+                var arr = new Array;
+                var inputs = $('.niceCheck').children('input');
+                inputs.each(function(){
+                    var inp = $(this);
+                    if(inp.attr('checked') === 'checked'){
+                        if(inp.attr('value') != 'On'){
+                            arr.push(inp.attr('value'));
                         }
-                    });
-                    showMessage('Удаление виджетов', 'Удалено'+count+'виджетов');
-                    location.reload();
+                    }
+                });
+                $.post('/admin/widgets_manager/delete',                          
+                {
+                    widget_name: arr
+                },
+                function(data){
+                    $('.notifications').append(data);
                 }
+                );
             }
         }
     });
@@ -345,6 +288,53 @@ $(document).ready(function(){
                 }
             }
         });
+    });
+    
+    $('#del_sel_brand').live('click', function(){
+        var $this = $(this);
+        if($this.hasClass('disabled'))
+        {
+            alert('Сначала выберите брэнд для удаления');
+        }else
+        {
+            var arr = new Array();
+            if(confirm('Удалить брэнд?'))
+            {
+                if($('.niceCheck:first-child').children('input').attr('checked') === 'checked')
+                {
+                    if($('.niceCheck:first-child').children('input').attr('value') === 'On')
+                    {
+                        var inputs = $('.niceCheck').children('input');
+                        inputs.each(function(){
+                            var inp = $(this);
+                            if(inp.attr('checked') === 'checked')
+                            {
+                                if(inp.attr('value') != 'On'){
+                                    arr.push(inp.attr('value'));
+                                }
+                            }
+                        });
+                    }
+                }else{
+                    var inputs = $('.niceCheck').children('input');
+                    inputs.each(function(){
+                        var inp = $(this);
+                        if(inp.attr('checked') === 'checked')
+                        {
+                            arr.push(inp.attr('value'));
+                        }
+                    });
+                }
+                $.post('/admin/components/run/shop/brands/delete',                          
+                {
+                    id: arr
+                },
+                function(data){
+                    $('.notifications').append(data);
+                }
+                );
+            }
+        }
     });
 });
 

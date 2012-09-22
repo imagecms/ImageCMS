@@ -315,26 +315,21 @@ class Widgets_Manager extends MY_Controller {
         cp_check_perm('widget_delete'); 
 
         $name = $this->input->post('widget_name');
-
-        $this->db->where('name', $name);
-        $this->db->limit(1);
+        $this->db->where_in('name', $name);
         $this->db->delete('widgets');
 
         $this->db->where('s_name', 'main');
         $this->db->select('site_template');
         $query = $this->db->get('settings')->row_array();
-
-        if ( file_exists(PUBPATH.'/templates/'.$query['site_template'].'/widgets/'.$name.'.tpl') )
-        {
-            @unlink(PUBPATH.'/templates/'.$query['site_template'].'/widgets/'.$name.'.tpl'); 
+        foreach($name as $n){
+            if ( file_exists(PUBPATH.'/templates/'.$query['site_template'].'/widgets/'.$n.'.tpl') )
+            {
+                @unlink(PUBPATH.'/templates/'.$query['site_template'].'/widgets/'.$n.'.tpl'); 
+            }
+            $this->lib_admin->log(lang('ac_wid_del').$n);
         }
-
-        $this->lib_admin->log(lang('ac_wid_del').$name);
-        
-        if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
-            echo json_encode(array('result'=> true));
-        }
-        
+        showMessage('Виджет(ы) успешно удален(ы)');
+        pjax('/admin/widgets_manager');
     }
 
     public function get($id)
