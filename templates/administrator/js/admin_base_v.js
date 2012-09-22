@@ -111,6 +111,26 @@ $(document).ready(function(){
         
     });
     
+    $( ".products_table" ).live( "sortstop", function(event, ui) {
+        var positionsArray = {};
+        
+        $('.products_table > tbody').children('tr').each(function(){
+            positionsArray['pages_pos['+$(this).index()+']'] = 'page'+$(this).attr('data-id')+'_'+$(this).index();
+        });
+        /*
+        $.ajax({
+            type: 'post',
+            data: positionsArray,
+            url: '/admin/pages/save_positions/',
+            success: function(obj){
+                if(obj.result){
+                    //alert("positions changed successfull");
+                }
+            }
+        });
+        */
+    });
+    
     
     $('.products_table').find('span.prod-on_off').live('click', function(){
         var page_id = $(this).attr('data-id');
