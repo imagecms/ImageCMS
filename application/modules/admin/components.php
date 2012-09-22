@@ -113,41 +113,34 @@ class Components extends MY_Controller {
         }
     }
 
-    function deinstall($module = '') {
+    function deinstall() {
         cp_check_perm('module_deinstall');
-//        echo $module;
-//        exit();
-        $module = strtolower($module);
+        $modules = $_POST['modules'];
+        foreach ($modules as $module) {
+            $module = strtolower($module);
 
-        ($hook = get_hook('admin_deinstall_module')) ? eval($hook) : NULL;
+            ($hook = get_hook('admin_deinstall_module')) ? eval($hook) : NULL;
 
-        if (file_exists(APPPATH . 'modules/' . $module . '/' . $module . '.php') AND $this->is_installed($module) == 1) {
-            $this->load->module($module);
+            if (file_exists(APPPATH . 'modules/' . $module . '/' . $module . '.php') AND $this->is_installed($module) == 1) {
+                $this->load->module($module);
 
-            if (method_exists($module, '_deinstall') === TRUE) {
-                $this->$module->_deinstall();
+                if (method_exists($module, '_deinstall') === TRUE) {
+                    $this->$module->_deinstall();
+                }
+
+                $this->db->limit(1);
+                $this->db->delete('components', array('name' => $module));
+                $this->lib_admin->log(lang('ac_deinstall') . $module);
+                showMessage('Модуль успешно дэинсталирован', false, 'r');
+                pjax('/admin/components/modules_table');
+            } else {
+                showMessage(lang('ac_deinstall_error'), false, 'r');
+                pjax('/admin/components/modules_table');
             }
 
-            $this->db->limit(1);
-            $this->db->delete('components', array('name' => $module));
-            $this->lib_admin->log(lang('ac_deinstall') . $module);
-            if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
-                $result = true;
-                echo json_encode(array('result'=>$result));
-            }
-        } else {
-            //showMessage(lang('ac_deinstall_error'), false, 'r');
-            if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
-                $result = false;
-                echo json_encode(array('result'=>$result));
-            }
-        }
-
-        // Update hooks
-        $this->load->library('cms_hooks');
-        $this->cms_hooks->build_hooks();
-        if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
-            $this->modules_table();
+            // Update hooks
+            $this->load->library('cms_hooks');
+            $this->cms_hooks->build_hooks();
         }
     }
 
@@ -308,7 +301,7 @@ class Components extends MY_Controller {
 //        echo modules::run($module . '/admin/' . $func, $args);
 //        pjax('/application/modules/'.$module.'/admin');
 //    }
-    
+
     function run($module) {
         $func = $this->uri->segment(5);
         if ($func == FALSE)
@@ -387,20 +380,18 @@ class Components extends MY_Controller {
             }
         }
     }
-    
-    function save_components_positions($positions)
-    {
-        $positions = explode(',',$positions);
-        if(is_array($positions))
-        {
-            foreach($positions as $key=>$value){
-                if($this->db->where('id', (int)$value)->set('position', $key)->update('components')){
-                    $result = true;    
-                }else{
-                    $result = false;    
+
+    function save_components_positions($positions) {
+        $positions = explode(',', $positions);
+        if (is_array($positions)) {
+            foreach ($positions as $key => $value) {
+                if ($this->db->where('id', (int) $value)->set('position', $key)->update('components')) {
+                    $result = true;
+                } else {
+                    $result = false;
                 }
             }
-        echo json_encode(array('result'=>$result));
+            echo json_encode(array('result' => $result));
         }
     }
 
