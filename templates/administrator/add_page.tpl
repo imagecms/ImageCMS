@@ -316,30 +316,5 @@
 {form_csrf()}
 </form>
 
-{literal}
-	<script type="text/javascript">
-
-			new Autocompleter.Request.JSON('tags', base_url + 'admin/pages/json_tags', {
-				'postVar': 'search_tags'
-			});
-			
-			$(document).ready(function{
-				alert('asads');	
-			})
-			
-			
-		    if ($.exists('.datepicker')) {
-		        $( ".datepicker" ).datepicker({
-		            showOtherMonths: true,
-		            selectOtherMonths: true,
-		            prevText: '',
-		            nextText: ''
-		        });
-		    }
-		    $('.ui-datepicker').addClass('dropdown-menu'); 
-
-	</script>
-{/literal}
-
 
 </section>
