@@ -132,31 +132,37 @@ $(document).ready(function(){
     });
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    $('.createLink').live('click', function(){
+  
+        
 
-        alert('Create Link');
-    });
-    
-    
-    function redirect_url(url)
-    {
-        $(location).attr('href',url);
-    }
+	
+     
     
 
+});
+
+
+var delete_function = new Object({
+    
+    deleteFunction:function (){
+		
+		$('.modal').modal();
+		
+	},
+        
+        
+	deleteFunctionConfirm:function (href)
+	{
+		var ids = new Array();
+		$('input[name=ids]:checked').each(function(){
+			ids.push($(this).val());
+		});
+		$.post(href, {ids:ids}, function(data){
+			$('#mainContent').after(data);
+			$.pjax({url:window.location.pathname, container:'#mainContent'});
+			});
+		$('.modal').modal('hide');
+		return true;
+	}
+    
 });
