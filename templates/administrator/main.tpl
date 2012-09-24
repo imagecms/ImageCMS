@@ -181,13 +181,14 @@
         <script src="{$THEME}/js/bootstrap-notify.js" type="text/javascript"></script>
         <script src="{$THEME}/js/pjax/jquery.pjax.js" type="text/javascript"></script>
         <script src="{$THEME}/js/jquery.form.js" type="text/javascript"></script>
+        <script type="text/javascript" src="/js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
+        <script src="{$THEME}/js/jquery-validate/jquery.validate.min.js" type="text/javascript"></script>
         <script src="{$THEME}/js/scripts.js" type="text/javascript"></script>
         <script src="{$THEME}/js/functions.js" type="text/javascript"></script>
         <script src="{$THEME}/js/admin_base_i.js" type="text/javascript"></script>        
         <script src="{$THEME}/js/admin_base_m.js" type="text/javascript"></script>        
         <script src="{$THEME}/js/admin_base_v.js" type="text/javascript"></script>        
         <script src="{$THEME}/js/admin_base_y.js" type="text/javascript"></script>    
-        <script src="{$THEME}/js/jquery-validate/jquery.validate.min.js" type="text/javascript"></script>
         
             <script>
             {if $CI->uri->segment('4') == 'shop'}

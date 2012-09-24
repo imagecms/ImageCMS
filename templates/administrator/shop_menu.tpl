@@ -12,7 +12,7 @@
                                     <li><a href="{$ADMIN_URL}callbacks/statuses">Статусы колбеков</a></li>
                                     <li><a href="{$ADMIN_URL}callbacks/themes">Темы колбеков</a></li>
                                     <li class="nav-header">Прочее</li>
-                                    <li><a href="#">Сообщения о появлении</a></li>
+                                    <li><a href="{$ADMIN_URL}notifications">Сообщения о появлении</a></li>
                                     <li><a href="#">Комментарии</a></li>
                                 </ul>
                             </li>
