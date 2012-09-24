@@ -534,6 +534,8 @@ $lang['a_set_order_status'] =	'Set another status for these orders';
     $lang['a_count_rates'] = 'Recount prices?';
     $lang['a_user'] = 'User';
     $lang['a_helper_user'] = 'choose a date';
+    $lang['a_products_del_title'] = 'Delete products';
+    $lang['a_products_del_body'] = 'Really delete selected products?';
     
     
     
