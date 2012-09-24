@@ -215,10 +215,74 @@ var callbacks = new Object({
 	
 	changeStatus:function(id, statusId)
 	{
-		$.post('/admin/components/run/shop/callbacks/changeStatus', {CallbackId:id, StatusId:statusId, hash:window.location.hash}, function(data){
+		$.post('/admin/components/run/shop/callbacks/changeStatus', {CallbackId:id, StatusId:statusId}, function(data){
 			$('.notifications').append(data);
-		})
-		console.log([id, statusId]);
+		});
+		$('#callback_'+id).closest('tr').data('status', statusId);
+		this.reorderList(id);
+	},
+	reorderList:function(id)
+	{
+		var stId = $(' #callback_'+id).data('status');
+		//var html = $('#callback_'+id);
+		console.log(id);
+		console.log(stId);
+//		$('#callback_'+id).remove()
+//		$('#callbacks_'+stId ).append(html);
+		$('#callbacks_'+stId + ' table tbody' ).append($('#callback_'+id));
+		console.log($('#callback_'+$(this).data('id')));
+		
+//		$('.tab-pane tr').each(function(id){
+//			var stId = $(this).data('status');
+//			$('#callbacks_'+stId + ' #callback_'+id).append($('#callback_'+$(this).data('id'))).remove();
+//			console.log($('#callback_'+$(this).data('id')));
+//		});
+	},
+	
+	changeTheme:function(id, themeId)
+	{
+		$.post('/admin/components/run/shop/callbacks/changeTheme', {CallbackId:id, ThemeId:themeId}, function(data){
+			$('.notifications').append(data);
+		});
+	},
+	
+	setDefaultStatus:function(id, element)
+	{
+		
+		$('.prod-on_off').addClass('disable_tovar').css('left', '-28px');
+		$.post('/admin/components/run/shop/callbacks/setDefaultStatus', {id:id}, function(data){
+			$('.notifications').append(data);
+		});
+		//console.log(element);
+		//if ((element).removeClass('disable_tovar'))
+		return true;
+	},
+	
+	deleteStatus:function(id)
+	{
+		$.post('/admin/components/run/shop/callbacks/deleteStatus', {id:id}, function(data){
+			$('.notifications').append(data);
+		});
+	},
+	
+	deleteTheme:function(id)
+	{
+		$.post('/admin/components/run/shop/callbacks/deleteTheme', {id:id}, function(data){
+			$('.notifications').append(data);
+		});
+	},
+	
+	reorderThemes:function()
+	{
+		var positions = new Array();
+		$('.sortable tr').each(function(){
+			positions.push($(this).data('id'));
+		});	
+		
+		$.post('/admin/components/run/shop/callbacks/reorderThemes', {positions:positions}, function(data){
+			$('.notifications').append(data);
+		});
+		return true;
 	}
 });
 
