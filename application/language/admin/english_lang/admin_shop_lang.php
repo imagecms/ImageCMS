@@ -537,4 +537,21 @@ $lang['a_set_order_status'] =	'Set another status for these orders';
     $lang['a_products_del_title'] = 'Delete products';
     $lang['a_products_del_body'] = 'Really delete selected products?';
     
+    
+    
+    
+    
+    
+    //new
+    
+    $lang['a_pr_discount_c'] = 'Процент скидки';
+    $lang['a_just_number_com'] = 'Just like the number 10';
+    $lang['a_amout_will_com'] = 'Amount of which will be a discount.';
+    $lang['a_the_there_com'] = 'The amount to which there will be a discount';
+    $lang['a_create_duscount_com'] = 'Creating cumulative discount';
+    $lang['a_empty_user_com'] = 'This discount does not enjoy';
+    $lang['a_discount_user_one_com'] = 'Off manually entered';
+    $lang['a_data_com'] = 'Data';
+    $lang['a_edit_comulat_com'] = 'Editing cumulative discount';
+    
 ?>
