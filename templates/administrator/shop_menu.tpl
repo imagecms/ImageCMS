@@ -44,16 +44,16 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i>Настройки<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                
                                     <li><a href="{$ADMIN_URL}settings" class="pjax">Глобальные настройки</a></li>
                                     <li><a href="{$ADMIN_URL}currencies" class="pjax">Валюты</a></li>
                                     <li><a href="{$ADMIN_URL}deliverymethods/c_list" class="pjax">Способы доставки</a></li>
                                     <li><a href="{$ADMIN_URL}paymentmethods/index" class="pjax">Способы оплаты</a></li>
-                                    <li><a href="#" class="pjax">Бренды</a></li>
+                                    <li><a href="{$ADMIN_URL}brands/c_list" class="pjax">Бренды</a></li>
                                     <li><a href="/admin/components/run/shop/warehouses/index" class="pjax">Склады</a></li>
+
                                     <li><a href="#" class="pjax">Автоматизация</a></li>
                                     <li><a href="/admin/components/run/shop/banners/index" class="pjax">Баннеры</a></li>
-                                    <li><a href="#" class="pjax">Скидки</a></li>
+                                    <li><a href="/admin/components/run/shop/discounts/index" class="pjax">Скидки</a></li>
                                 </ul>
                             </li>
                         </ul>
