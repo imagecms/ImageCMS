@@ -300,31 +300,17 @@ $(document).ready(function(){
             var arr = new Array();
             if(confirm('Удалить брэнд?'))
             {
-                if($('.niceCheck:first-child').children('input').attr('checked') === 'checked')
-                {
-                    if($('.niceCheck:first-child').children('input').attr('value') === 'On')
+                var inputs = $('.niceCheck').children('input');
+                inputs.each(function(){
+                    var inp = $(this);
+                    if(inp.attr('checked') === 'checked')
                     {
-                        var inputs = $('.niceCheck').children('input');
-                        inputs.each(function(){
-                            var inp = $(this);
-                            if(inp.attr('checked') === 'checked')
-                            {
-                                if(inp.attr('value') != 'On'){
-                                    arr.push(inp.attr('value'));
-                                }
-                            }
-                        });
-                    }
-                }else{
-                    var inputs = $('.niceCheck').children('input');
-                    inputs.each(function(){
-                        var inp = $(this);
-                        if(inp.attr('checked') === 'checked')
-                        {
+                        if(inp.attr('value') != 'On'){
                             arr.push(inp.attr('value'));
                         }
-                    });
-                }
+                    }
+                });
+            }
                 $.post('/admin/components/run/shop/brands/delete',                          
                 {
                     id: arr
@@ -334,7 +320,6 @@ $(document).ready(function(){
                 }
                 );
             }
-        }
     });
 });
 
