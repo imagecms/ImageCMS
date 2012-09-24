@@ -559,6 +559,8 @@
     $lang['a_count_rates'] = 'Пересчитать цены?';
     $lang['a_count_rates'] = 'Пользователь';
     $lang['a_helper_user'] = 'выберите дату';
+    $lang['a_products_del_title'] = 'Удаление товаров';
+    $lang['a_products_del_body'] = 'Удалить выбранные товары?';
     
     
     
