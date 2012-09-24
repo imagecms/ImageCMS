@@ -49,6 +49,7 @@
                                     <li><a href="#" class="pjax">Автоматизация</a></li>
                                     <li><a href="/admin/components/run/shop/banners/index" class="pjax">Баннеры</a></li>
                                     <li><a href="/admin/components/run/shop/discounts/index" class="pjax">Скидки</a></li>
+                                    <li><a href="/admin/components/run/shop/comulativ/index" class="pjax">Накопительние скидки</a></li>
                                 </ul>
                             </li>
                         </ul>
