@@ -7,7 +7,7 @@ function change_page_status(page_id) {
 }
 
 $(document).ready(function(){
-    $( ".pages-table" ).bind( "sortstop", function(event, ui) {
+    $( ".pages-table" ).live( "sortstop", function(event, ui) {
         var positionsArray = {};
         
         $('.pages-table > tbody').children('tr').each(function(){
@@ -111,8 +111,28 @@ $(document).ready(function(){
         
     });
     
+    $( ".products_table" ).live( "sortstop", function(event, ui) {
+        var positionsArray = {};
+        
+        $('.products_table > tbody').children('tr').each(function(){
+            positionsArray['pages_pos['+$(this).index()+']'] = 'page'+$(this).attr('data-id')+'_'+$(this).index();
+        });
+        /*
+        $.ajax({
+            type: 'post',
+            data: positionsArray,
+            url: '/admin/pages/save_positions/',
+            success: function(obj){
+                if(obj.result){
+                    //alert("positions changed successfull");
+                }
+            }
+        });
+        */
+    });
     
-    $('.products_table').find('span.prod-on_off').bind('click', function(){
+    
+    $('.products_table').find('span.prod-on_off').live('click', function(){
         var page_id = $(this).attr('data-id');
         
         $.ajax({
@@ -120,6 +140,42 @@ $(document).ready(function(){
             url: base_url + 'admin/components/run/shop/products/ajaxChangeActive/' + page_id,
             onComplete: function(response) { }
         });
+    });
+    
+    $('.products_table').find('button.setHit').live('click', function(){
+        var btn = $(this);
+        
+        $.ajax({
+            type: 'POST',
+            url: base_url + 'admin/components/run/shop/products/ajaxChangeHit/' + btn.attr('data-id'),
+            onComplete: function(response) {}
+        });
+        
+        btn.toggleClass('btn-primary active');
+    });
+    
+    $('.products_table').find('button.setHot').live('click', function(){
+        var btn = $(this);
+        
+        $.ajax({
+            type: 'POST',
+            url: base_url + 'admin/components/run/shop/products/ajaxChangeHot/' + btn.attr('data-id'),
+            onComplete: function(response) {}
+        });
+        
+        btn.toggleClass('btn-primary active');
+    });
+    
+    $('.products_table').find('button.setAction').live('click', function(){
+        var btn = $(this);
+        
+        $.ajax({
+            type: 'POST',
+            url: base_url + 'admin/components/run/shop/products/ajaxChangeAction/' + btn.attr('data-id'),
+            onComplete: function(response) {}
+        });
+        
+        btn.toggleClass('btn-primary active');
     });
     
 });
