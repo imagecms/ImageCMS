@@ -244,6 +244,45 @@ var callbacks = new Object({
 		$.post('/admin/components/run/shop/callbacks/changeTheme', {CallbackId:id, ThemeId:themeId}, function(data){
 			$('.notifications').append(data);
 		});
+	},
+	
+	setDefaultStatus:function(id, element)
+	{
+		
+		$('.prod-on_off').addClass('disable_tovar').css('left', '-28px');
+		$.post('/admin/components/run/shop/callbacks/setDefaultStatus', {id:id}, function(data){
+			$('.notifications').append(data);
+		});
+		//console.log(element);
+		//if ((element).removeClass('disable_tovar'))
+		return true;
+	},
+	
+	deleteStatus:function(id)
+	{
+		$.post('/admin/components/run/shop/callbacks/deleteStatus', {id:id}, function(data){
+			$('.notifications').append(data);
+		});
+	},
+	
+	deleteTheme:function(id)
+	{
+		$.post('/admin/components/run/shop/callbacks/deleteTheme', {id:id}, function(data){
+			$('.notifications').append(data);
+		});
+	},
+	
+	reorderThemes:function()
+	{
+		var positions = new Array();
+		$('.sortable tr').each(function(){
+			positions.push($(this).data('id'));
+		});	
+		
+		$.post('/admin/components/run/shop/callbacks/reorderThemes', {positions:positions}, function(data){
+			$('.notifications').append(data);
+		});
+		return true;
 	}
 });
 
