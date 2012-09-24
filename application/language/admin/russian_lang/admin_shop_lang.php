@@ -566,7 +566,24 @@
     
     
     
+    //new
     
+    $lang['a_'] = '';
+    $lang['a_'] = '';
+    $lang['a_amout_will_com'] = 'Сумма от которой будет скидка. Amount of which will be a discount.';
+    $lang['a_pr_discount_com'] = 'Процент скидки';
+    $lang['a_just_number_com'] = 'Только число например: 10';
+    $lang['a_the_there_com'] = 'Сумма до которой будет сущестувать скидка';
+    $lang['a_create_duscount_com'] = 'Создание накопительной скидки';
+    $lang['a_empty_user_com'] = 'Данной скидкой не пользуются';
+    $lang['a_discount_user_one_com'] = 'Скидка введенная вручную';
+    $lang['a_data_com'] = 'Данные';
+    $lang['a_edit_comulat_com'] = 'Редактирование накопительной скидки';
+    $lang['a_'] = '';
+    $lang['a_'] = '';
+    $lang['a_'] = '';
+    $lang['a_'] = '';
+    $lang['a_'] = '';
     
     
     
