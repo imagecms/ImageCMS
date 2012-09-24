@@ -67,9 +67,13 @@ $(document).ready(function(){
                 $helper.addClass('active');
                 return $helper;
             },
-            change: function(){
+            stop: function(){
             	var chFn = $('.sortable').data('chfunction');
-            	return eval(chFn+'()');
+            	console.log(typeof chFn);
+            	if (chFn)
+            		return eval(chFn+'()');
+            	else
+            		return false;
             }
         });
     }
