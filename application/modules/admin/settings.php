@@ -163,7 +163,14 @@ class Settings extends MY_Controller {
 
         $this->lib_admin->log(lang('ac_changed_site_sett'));
 
-        showMessage(lang('ac_sett_saved'), false, 'g');
+        showMessage(lang('ac_sett_saved'));
+        $action = $_POST['action'];
+        if($action == 'edit'){
+            pjax('/admin/settings');
+        }else{
+            pjax('/admin');
+        }
+        
     }
 
     /**

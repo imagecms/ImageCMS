@@ -374,6 +374,33 @@ $(document).ready(function(){
         }
     });
     
+    $('#del_sel_group').live('click', function(){
+        if(confirm('Удалить группу?'))
+        {
+            var arr = getcheckedvalues();
+            $.post('/admin/components/run/shop/rbac/group_delete',{
+                id: arr
+            },
+            function(data){
+                $('.notifications').append(data);
+            }
+            );
+        }
+    });
+    
+    $('#del_sel_priv').live('click', function(){
+        if(confirm('Удалить группу?'))
+        {
+            var arr = getcheckedvalues();
+            $.post('/admin/components/run/shop/rbac/privilege_delete',{
+                id: arr
+            },
+            function(data){
+                $('.notifications').append(data);
+            }
+            );
+        }
+    });
     
     
 });
