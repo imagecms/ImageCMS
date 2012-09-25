@@ -205,8 +205,10 @@
     $lang['a_pattern_category'] =	'Main category template. By default  category.tpl';
     $lang['a_pattern_product']  =	'Product main template. By default  product.tpl';
     $lang['a_default_method_sort']=	'Choice of a sorting  method by default';
-   $lang['a_on']               =	'By';
+    $lang['a_on']               =	'By';
     $lang['a_hit']              =	'Hit';
+    $lang['a_hot']              =	'New';
+    $lang['a_action']              =	'Promotion';
     $lang['a_date_more']        =	'Creation date  (from the latest)';
     $lang['a_date_later']       =	'Creation date  (from the oldest)';
     $lang['a_count_later']      =	'number of views  (in descending order)';
