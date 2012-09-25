@@ -9,7 +9,6 @@ $(document).ready(function(){
             url:        '/admin/components/change_autoload',
             success: function(obj){
                 if(obj.result === false){
-                    //alert('Что-то пошло не так. Статус автозагрузки не изменен.');
                     showMessage('Ошибка', 'Что-то пошло не так. Статус автозагрузки не изменен.');
                 }
             }
@@ -79,16 +78,7 @@ $(document).ready(function(){
         }
         else{
             if(confirm('Удалить модуль?')){
-                var arr = new Array;
-                var inputs = $('.niceCheck').children('input');
-                inputs.each(function(){
-                    var inp = $(this);
-                    if(inp.attr('checked') === 'checked'){
-                        if(inp.attr('value') != 'On'){
-                            arr.push(inp.attr('value'));
-                        }
-                    }
-                });
+                var arr = getcheckedvalues();
                 $.post('/admin/components/deinstall',                          
                 {
                     modules: arr
@@ -196,16 +186,7 @@ $(document).ready(function(){
         {
             if(confirm('Удалить виджет?'))
             {
-                var arr = new Array;
-                var inputs = $('.niceCheck').children('input');
-                inputs.each(function(){
-                    var inp = $(this);
-                    if(inp.attr('checked') === 'checked'){
-                        if(inp.attr('value') != 'On'){
-                            arr.push(inp.attr('value'));
-                        }
-                    }
-                });
+                var arr = getcheckedvalues();
                 $.post('/admin/widgets_manager/delete',                          
                 {
                     widget_name: arr
@@ -297,34 +278,9 @@ $(document).ready(function(){
             alert('Сначала выберите брэнд для удаления');
         }else
         {
-            var arr = new Array();
             if(confirm('Удалить брэнд?'))
             {
-                if($('.niceCheck:first-child').children('input').attr('checked') === 'checked')
-                {
-                    if($('.niceCheck:first-child').children('input').attr('value') === 'On')
-                    {
-                        var inputs = $('.niceCheck').children('input');
-                        inputs.each(function(){
-                            var inp = $(this);
-                            if(inp.attr('checked') === 'checked')
-                            {
-                                if(inp.attr('value') != 'On'){
-                                    arr.push(inp.attr('value'));
-                                }
-                            }
-                        });
-                    }
-                }else{
-                    var inputs = $('.niceCheck').children('input');
-                    inputs.each(function(){
-                        var inp = $(this);
-                        if(inp.attr('checked') === 'checked')
-                        {
-                            arr.push(inp.attr('value'));
-                        }
-                    });
-                }
+                var arr = getcheckedvalues();
                 $.post('/admin/components/run/shop/brands/delete',                          
                 {
                     id: arr
@@ -336,6 +292,90 @@ $(document).ready(function(){
             }
         }
     });
+    
+    //get values from niceCheck checkboxes
+    function getcheckedvalues()
+    {
+        var arr = new Array();
+        var inputs = $('.niceCheck').children('input');
+        inputs.each(function(){
+            var inp = $(this);
+            if(inp.attr('checked') === 'checked')
+            {
+                if(inp.attr('value') != 'On'){
+                    arr.push(inp.attr('value'));
+                }
+            }
+        });
+        return arr;
+    }
+    
+    $('#del_sel_role').live('click', function(){
+        if(confirm('Удалить роль?'))
+        {
+            var arr = getcheckedvalues();
+            $.post('/admin/components/run/shop/rbac/role_delete',{
+                id: arr
+            },
+            function(data){
+                $('.notifications').append(data);
+            }
+            );
+        }
+    });
+    
+    $('.SRolesImp').on('blur', function(){
+        list = new Object;
+        list.index = $(this).parents('tr').attr('data-id');
+        list.value = $(this).attr('value');
+        $.post('/admin/components/run/shop/rbac/role_save_positions',{
+            item: list
+        },
+        function(data){
+            $('.notifications').append(data);
+        }
+        );
+    });
+    
+    $('.maincheck').bind('change', function(){
+        var ch = '';
+        if($(this).attr('checked')==='checked'){
+            ch = $(this).attr('checked');
+        }
+        var tbl = $(this).parents('table').children('tbody').children('tr').children('td:first-child');
+        tbl.each(function(){
+            if(ch){
+                $(this).children('input').attr('checked', ch);
+            }else{
+                $(this).children('input').removeAttr('checked');
+            }
+        })
+    });
+    
+    $('.chldcheck').bind('change', function(){
+        var tbl = $(this).parents('table').children('thead').children('tr').children('th:first-child');
+        if($(this).attr('checked')!='checked')
+        {
+            tbl.children('input').removeAttr('checked');
+        }
+        var c = 0;
+        $(this).parents('tbody').children('tr').each(function(){
+           c++; 
+        });
+        var par = $(this).parents('tbody').children('tr').children('td:first-child').children('input');
+        var i = 0;
+        par.each(function(){
+            if($(this).attr('checked')==='checked'){
+                i++;
+            }
+        });
+        if(c===i){
+            tbl.children('input').attr('checked', 'checked');
+        }
+    });
+    
+    
+    
 });
 
 
