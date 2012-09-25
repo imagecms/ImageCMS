@@ -1,59 +1,58 @@
-<form action="{$BASE_URL}admin/settings/save" method="post" id="save_form" style="width:100%;">
-    <div class="container">
-        <ul class="breadcrumb">
-            <li><a href="#">Главная</a> <span class="divider">/</span></li>
-            <li class="active">Список товаров</li>
-        </ul>
-        <section class="mini-layout">
-            <div class="frame_title clearfix">
-                <div class="pull-left">
-                    <span class="help-inline"></span>
-                    <span class="title">Настройки</span>
-                </div>
-                <div class="pull-right">
-                    <div class="d-i_b">
-                        <a href="#" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
-                        <button type="submit" class="btn btn-small action_on"><i class="icon-ok"></i>{lang('a_saves')}</button>
-                        <button type="button" class="btn btn-small action_on"><i class="icon-check"></i>Сохранить и выйти</button>
-                        <div class="dropdown d-i_b">
-                            <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
-                                Русский
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Английский</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>                            
-            </div>
-            <div class="row-fluid">
-                <div class="span3 m-t_10">
-                    <ul class="nav myTab nav-tabs nav-stacked">
-                        <li class="active"><a href="#setings">{lang('a_sett')}</a></li>
-                        <li><a href="#homePage">{lang('a_main_page')}</a></li>
-                        <li><a href="#metatag">{lang('a_meta_tags')}</a></li>                             
-                        <li><a href="#lang">{lang('a_languages')}</a></li>                             
-                    </ul>
-                </div>
-                <div class="span9 content_big_td">
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="setings">                                    
-                            <table class="table table-striped table-bordered table-hover table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th colspan="6">
-                                            {lang('a_sett')}
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td colspan="6">
-                                            <div class="inside_padd">
-                                                <div class="form-horizontal">
-                                                    <div class="row-fluid">
 
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a href="#">Главная</a> <span class="divider">/</span></li>
+        <li class="active">Список товаров</li>
+    </ul>
+    <section class="mini-layout">
+        <div class="frame_title clearfix">
+            <div class="pull-left">
+                <span class="help-inline"></span>
+                <span class="title">Настройки</span>
+            </div>
+            <div class="pull-right">
+                <div class="d-i_b">
+                    <a href="#" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
+                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#saveSettings" data-action="edit"><i class="icon-ok"></i>{lang('a_saves')}</button>
+                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#saveSettings" data-action="close"><i class="icon-check"></i>Сохранить и выйти</button>
+                    <div class="dropdown d-i_b">
+                        <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
+                            Русский
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Английский</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>                            
+        </div>
+        <div class="row-fluid">
+            <div class="span3 m-t_10">
+                <ul class="nav myTab nav-tabs nav-stacked">
+                    <li class="active"><a href="#setings">{lang('a_sett')}</a></li>
+                    <li><a href="#homePage">{lang('a_main_page')}</a></li>
+                    <li><a href="#metatag">{lang('a_meta_tags')}</a></li>                          
+                </ul>
+            </div>
+            <div class="span9 content_big_td">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="setings">                                    
+                        <table class="table table-striped table-bordered table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th colspan="6">
+                                        {lang('a_sett')}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="6">
+                                        <div class="inside_padd">
+                                            <div class="form-horizontal">
+                                                <div class="row-fluid">
+                                                    <form action="{$BASE_URL}admin/settings/save" method="post" id="saveSettings">
                                                         <div class="control-group m-t_10">
                                                             <label class="control-label" for="inputLocal">{lang('a_site_title')}:</label>
                                                             <div class="controls">
@@ -158,161 +157,161 @@
                                                         </div>
 
 
-                                                    </div>
                                                 </div>
                                             </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="tab-pane" id="homePage">                                    
-                            <table class="table table-striped table-bordered table-hover table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th colspan="6">
-                                            {lang('a_main_page')}
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td colspan="6">
-                                            <div class="inside_padd">
-                                                <div class="form-horizontal">
-                                                    <div class="row-fluid">
-
-                                                        <div class="control-group m-t_10">
-                                                            <label class="control-label" for="inputLocal">{lang('a_category')}:</label>
-                                                            <div class="controls">
-
-                                                                <input type="radio" class="input-small" name="main_type" value="category" {if $main_type == "category"} checked="checked" {/if} />
-
-                                                                <select class="input-small" name="main_page_cat">
-                                                                    { $this->view("cats_select.tpl", $this->template_vars); }
-                                                                </select>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="control-group m-t_10">
-                                                            <label class="control-label" for="inputLocal">{lang('a_page')}:</label>
-                                                            <div class="controls">
-
-                                                                <input type="radio" class="input-small" name="main_type" value="page" {if $main_type == "page"} checked="checked" {/if} />
-
-                                                                <input type="text" class="input-small" name="main_page_pid" class="textbox_long" style="width:100px" value="{$main_page_id}" /> - {lang('a_page_id')}
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="control-group m-t_10">
-                                                            <label class="control-label" for="inputLocal">{lang('a_module')}:</label>
-                                                            <div class="controls">
-
-                                                                <input type="radio"  class="input-small" name="main_type" value="category" {if $main_type == "category"} checked="checked" {/if} />
-
-                                                                <select name="main_page_module" class="input-small">
-                                                                    {foreach $modules as $m}
-                                                                        {$mData = modules::run('admin/components/get_module_info',$m['name'])}
-                                                                        {//if $mData['main_page'] === true}
-                                                                        <option {if $m['name'] == $main_page_module}selected="selected"{/if} value="{$m['name']}">{echo $mData['menu_name']}</option>
-                                                                        {///if}
-                                                                    {/foreach}
-                                                                </select>
-                                                            </div>
-                                                        </div>
-
-
-
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="tab-pane" id="homePage">                                    
-                            <table class="table table-striped table-bordered table-hover table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th colspan="6">
-                                            {lang('a_meta_tags')}
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td colspan="6">
-                                            <div class="inside_padd">
-                                                <div class="form-horizontal">
-                                                    <div class="row-fluid">
-
-                                                        <div class="control-group m-t_10">
-                                                            <label class="control-label" for="inputLocal">{lang('a_site_title')}:</label>
-                                                            <div class="controls">
-                                                                <select name="add_site_name">
-                                                                    <option value="1" {if $add_site_name == "1"}selected="selected"{/if}>{lang('a_yes')}</option>
-                                                                    <option value="0" {if $add_site_name == "0"}selected="selected"{/if} >{lang('a_no')}</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="control-group m-t_10">
-                                                            <label class="control-label" for="inputLocal">{lang('a_cat_name')}:</label>
-                                                            <div class="controls">
-                                                                <select name="add_site_name_to_cat">
-                                                                    <option value="1" {if $add_site_name_to_cat == "1"}selected="selected"{/if}>{lang('a_yes')}</option>
-                                                                    <option value="0" {if $add_site_name_to_cat == "0"}selected="selected"{/if}>{lang('a_no')}</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="control-group m-t_10">
-                                                            <label class="control-label" for="inputLocal">{lang('a_separator')}:</label>
-                                                            <div class="controls">
-                                                                <input type="text" value="{$delimiter}" name="delimiter" class="textbox_long" style="width:80px;" />
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="control-group m-t_10">
-                                                            <label class="control-label" for="inputLocal">{lang('a_meta_keywords')}:</label>
-                                                            <div class="controls">
-                                                                <select name="create_keywords">
-                                                                    <option value="auto" {if $create_keywords == "auto"}selected="selected"{/if}>{lang('a_auto_form')}</option>
-                                                                    <option value="empty" {if $create_keywords == "empty"}selected="selected"{/if}>{lang('a_leave_empty')}</option>
-                                                                </select>
-                                                                <span class="help-block">
-                                                                    {lang('a_if_not_pointed')}
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="control-group m-t_10">
-                                                            <label class="control-label" for="inputLocal">{lang('a_meta_description')}:</label>
-                                                            <div class="controls">
-                                                                <select name="create_description">
-                                                                    <option value="auto" {if $create_description == "auto"}selected="selected"{/if}>{lang('a_auto_form')}</option>
-                                                                    <option value="empty" {if $create_description == "empty"}selected="selected"{/if}>{lang('a_leave_empty')}</option>
-                                                                </select>
-                                                                <span class="help-block">
-                                                                    {lang('a_if_not_pointed1')}
-                                                                </span>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>                    
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
+
+                    <div class="tab-pane" id="homePage">                                    
+                        <table class="table table-striped table-bordered table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th colspan="6">
+                                        {lang('a_main_page')}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="6">
+                                        <div class="inside_padd">
+                                            <div class="form-horizontal">
+                                                <div class="row-fluid">
+
+                                                    <div class="control-group m-t_10">
+                                                        <label class="control-label" for="inputLocal">{lang('a_category')}:</label>
+                                                        <div class="controls">
+
+                                                            <input type="radio" class="input-small" name="main_type" value="category" {if $main_type == "category"} checked="checked" {/if} />
+
+                                                            <select name="main_page_cat" class="input-small">
+                    { $this->view("cats_select.tpl", $this->template_vars); }
+                </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="control-group m-t_10">
+                                                        <label class="control-label" for="inputLocal">{lang('a_page')}:</label>
+                                                        <div class="controls">
+
+                                                            <input type="radio" name="main_type" value="page" {if $main_type == "page"} checked="checked" {/if} />
+
+                                                            <input type="text" class="input-small" name="main_page_pid" class="textbox_long" style="width:100px" value="{$main_page_id}" /> - {lang('a_page_id')}
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="control-group m-t_10">
+                                                        <label class="control-label" for="inputLocal">{lang('a_module')}:</label>
+                                                        <div class="controls">
+
+                                                            <input type="radio" name="main_type" value="module" {if $main_type == "module"} checked="checked" {/if} />
+
+                                                            <select name="main_page_module" class="input-small">
+                                                                {foreach $modules as $m}
+                                                                    {$mData = modules::run('admin/components/get_module_info',$m['name'])}
+                                                                    {//if $mData['main_page'] === true}
+                                                                    <option {if $m['name'] == $main_page_module}selected="selected"{/if} value="{$m['name']}">{echo $mData['menu_name']}</option>
+                                                                    {///if}
+                                                                {/foreach}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane" id="homePage">                                    
+                        <table class="table table-striped table-bordered table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th colspan="6">
+                                        {lang('a_meta_tags')}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="6">
+                                        <div class="inside_padd">
+                                            <div class="form-horizontal">
+                                                <div class="row-fluid">
+
+                                                    <div class="control-group m-t_10">
+                                                        <label class="control-label" for="inputLocal">{lang('a_site_title')}:</label>
+                                                        <div class="controls">
+                                                            <select name="add_site_name">
+                                                                <option value="1" {if $add_site_name == "1"}selected="selected"{/if}>{lang('a_yes')}</option>
+                                                                <option value="0" {if $add_site_name == "0"}selected="selected"{/if} >{lang('a_no')}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="control-group m-t_10">
+                                                        <label class="control-label" for="inputLocal">{lang('a_cat_name')}:</label>
+                                                        <div class="controls">
+                                                            <select name="add_site_name_to_cat">
+                                                                <option value="1" {if $add_site_name_to_cat == "1"}selected="selected"{/if}>{lang('a_yes')}</option>
+                                                                <option value="0" {if $add_site_name_to_cat == "0"}selected="selected"{/if}>{lang('a_no')}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="control-group m-t_10">
+                                                        <label class="control-label" for="inputLocal">{lang('a_separator')}:</label>
+                                                        <div class="controls">
+                                                            <input type="text" value="{$delimiter}" name="delimiter" class="textbox_long" style="width:80px;" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="control-group m-t_10">
+                                                        <label class="control-label" for="inputLocal">{lang('a_meta_keywords')}:</label>
+                                                        <div class="controls">
+                                                            <select name="create_keywords">
+                                                                <option value="auto" {if $create_keywords == "auto"}selected="selected"{/if}>{lang('a_auto_form')}</option>
+                                                                <option value="empty" {if $create_keywords == "empty"}selected="selected"{/if}>{lang('a_leave_empty')}</option>
+                                                            </select>
+                                                            <span class="help-block">
+                                                                {lang('a_if_not_pointed')}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="control-group m-t_10">
+                                                        <label class="control-label" for="inputLocal">{lang('a_meta_description')}:</label>
+                                                        <div class="controls">
+                                                            <select name="create_description">
+                                                                <option value="auto" {if $create_description == "auto"}selected="selected"{/if}>{lang('a_auto_form')}</option>
+                                                                <option value="empty" {if $create_description == "empty"}selected="selected"{/if}>{lang('a_leave_empty')}</option>
+                                                            </select>
+                                                            <span class="help-block">
+                                                                {lang('a_if_not_pointed1')}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>                    
                 </div>
-        </section>
-    </div>
-    {form_csrf()}
+            </div>
+    </section>
+</div>
+{form_csrf()}
 </form>                       

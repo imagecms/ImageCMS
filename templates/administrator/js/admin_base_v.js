@@ -239,8 +239,6 @@ $(document).ready(function(){
         if (checkedProducts.size() < 1)
             return false;
         
-        console.log('dfsfas');
-        
         $('.products_delete_dialog').modal('hide');
         
         //$('.products_delete_dialog').modal();
@@ -268,6 +266,24 @@ $(document).ready(function(){
             }
         });
         */
+    });
+    
+    $('.prodFilterSelect').live('change', function(event){
+        var getString = '/admin/components/run/shop/search/index/?s';
+        
+        $('.products_table > thead').children('tr.head_body').children('td').find('select').each(function(){
+            if ($(this).attr('name') == '')
+                $(this).attr('name', $(this).children(':selected').attr('name'));
+            
+            if ($(this).val() > '')
+                getString = getString + '&' + $(this).attr('name')+'='+$(this).val();
+        });
+    
+        
+        $.pjax({
+            url:getString,
+            container:'#mainContent'
+        });
     });
     
 });

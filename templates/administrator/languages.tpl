@@ -13,9 +13,10 @@
                 <div class="d-i_b">
 
                     <a href="#" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
-                    <button type="submit" class="btn btn-small action_on" onclick="MochaUI.languages_create_lang_w();"><i class="icon-ok"></i>{lang('a_save')}</button>
+                     <button type="button" class="btn btn-small btn-success" onclick="window.location.href='/admin/languages/create_form'"><i class="icon-list-alt icon-white"></i>Создать язык</button>
+                    <button type="button" class="btn btn-small action_on"><i class="icon-ok"></i>{lang('a_save')}</button>
                     <button type="button" class="btn btn-small action_on"><i class="icon-check"></i>Сохранить и выйти</button>
-                    <a href="{$ADMIN_URL}languages/create_form">Create</a>
+                    
                     <div class="dropdown d-i_b">
                         <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
                             Русский
@@ -51,7 +52,7 @@
                                 </thead>
                                 <tbody class="sortable ui-sortable">
                                     {foreach $langs as $lang}                                  
-                                    <td><p><a href="{$ADMIN_URL}languages/edit/{$lang.id}">{$lang.lang_name}</a></p></td>
+                                    <td><p><a href="{$BASE_URL}admin/languages/edit/{$lang.id}">{$lang.lang_name}</a></p></td>
                                     <td><p>{$lang.folder}</p></td>
                                     <td><p>{$lang.identif}</p></td>
                                     <td><p>{$lang.template}</p></td>
