@@ -1,4 +1,4 @@
-<form action="{$BASE_URL}admin/languages/insert" method="post"  >
+
     <div class="container">
         <ul class="breadcrumb">
             <li><a href="#">Главная</a> <span class="divider">/</span></li>
@@ -15,8 +15,8 @@
                 <div class="pull-right">
                     <div class="d-i_b">                        
                         <a href="#" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
-                        <button type="submit" value="{lang('a_create')}"  class="btn btn-small action_on"><i class="icon-ok"></i>{lang('a_create')}</button>
-                        <button type="button" class="btn btn-small action_on"><i class="icon-check"></i>Создать и выйти</button>
+                        <button type="submit" value="{lang('a_create')}"  class="btn btn-small action_on formSubmit" data-form="#createLang"><i class="icon-ok"></i>{lang('a_create')}</button>
+                       
                         <div class="dropdown d-i_b">
                             <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
                                 Русский
@@ -48,6 +48,7 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <form action="{$BASE_URL}admin/languages/insert" method="post"  id="createLang" >
                                     <td colspan="6">
                                         <div class="inside_padd">
                                             <div class="form-horizontal">
