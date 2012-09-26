@@ -148,7 +148,7 @@
     $lang['a_change']          =	'Изменить';
     $lang['a_request']          =	'Запрос';
     $lang['a_about']            =	'об';
-    $lang['a_abandoned']        =	'оставлен';
+    $lang['a_abandoned']        =	'Оставлен';
     $lang['a_status_set']       =	'Статус установил';
     $lang['a_user_name']        =	'Имя';
     $lang['a_there']            =	'существует';
@@ -587,7 +587,7 @@
     $lang['a_discount_user_one_com'] = 'Скидка введенная вручную';
     $lang['a_data_com'] = 'Данные';
     $lang['a_edit_comulat_com'] = 'Редактирование накопительной скидки';
-    $lang['a_'] = '';
+    $lang['a_sel_collback_shop'] = 'Запрос об уведомлений';
     $lang['a_'] = '';
     $lang['a_'] = '';
     $lang['a_'] = '';
