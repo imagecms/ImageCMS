@@ -564,5 +564,6 @@ $lang['a_set_order_status'] =	'Set another status for these orders';
     $lang['a_discount_user_one_com'] = 'Off manually entered';
     $lang['a_data_com'] = 'Data';
     $lang['a_edit_comulat_com'] = 'Editing cumulative discount';
+    $lang['a_sel_collback_shop'] = 'The request for notification';
     
 ?>
