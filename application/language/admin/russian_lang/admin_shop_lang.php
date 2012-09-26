@@ -20,6 +20,7 @@
     $lang['main_tpl']		=	'Главный шаблон';
     $lang['by_default']		=	'По умолчанию';
     $lang['page_tpl']		=	'Шаблон Страницы';
+    $lang['page_view']		=	'Просмотр страницы';
     $lang['comm_alow']		=	'Разрешить комментирование';
     $lang['show_sett']		=	'показать настройки';
     $lang['sett']		=	'Настройки'; 
@@ -70,6 +71,7 @@
     $lang['a_footer_save_add_product']   =	'Сохранить и добавить продукт';
     $lang['a_footer_save_create']=	'Сохранить и создать новую запись';
     $lang['a_footer_save_edit'] =	'Сохранить и редактировать';
+    $lang['a_footer_save_exit'] =	'Сохранить и выйти';
     $lang['a_footer_save']      =	'Сохранить';
     $lang['a_save']             =	'Сохранены';
     $lang['a_edit']             =	'Редактирование';
@@ -411,6 +413,8 @@
     $lang['a_cr'] = 'Создать';
     $lang['a_goods_properties'] = 'Свойства товаров';
     $lang['a_goods_kits'] = 'Наборы товаров';
+    $lang['a_item_kits'] = 'Наборы';
+    $lang['a_goods_list'] = 'Список товаров';
     $lang['a_to_edit'] = 'Редактировать';
     $lang['a_modules'] = 'Модули';
     $lang['a_brands'] = 'Бренды';
@@ -450,6 +454,7 @@
     $lang['a_small_image_create'] = 'Создать маленькое изображение';
     $lang['a_create_kit'] = 'Создание набора';
     $lang['a_kit_edit'] = 'Редактирование набора';
+    $lang['a_product_edit'] = 'Редактирование товара';
     $lang['a_main_product'] = 'Главный товар';
     $lang['a_added_products'] = 'Прикрепленные товары';
     $lang['a_discount'] = 'Скидка';
@@ -563,6 +568,7 @@
     $lang['a_helper_user'] = 'выберите дату';
     $lang['a_products_del_title'] = 'Удаление товаров';
     $lang['a_products_del_body'] = 'Удалить выбранные товары?';
+    $lang['a_back'] = 'Вернуться';
     
     
     
