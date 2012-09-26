@@ -38,7 +38,6 @@ class Admin extends MY_Controller {
         // Disable license check.
         // From version 1.3.7
         //$this->check();
-
         $this->load->module('admin/components');
         $components = $this->components->find_components(TRUE);
 
