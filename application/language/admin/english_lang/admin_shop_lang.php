@@ -20,6 +20,7 @@
     $lang['main_tpl']		=	'Main template';
     $lang['by_default']		=	'By default';
     $lang['page_tpl']		=	'Page template';
+    $lang['page_view']		=	'View page';
     $lang['comm_alow']		=	'Comment permission';
     $lang['show_sett']		=	'Show settings';
     $lang['sett']		=	'Settings'; 
@@ -71,6 +72,7 @@
     $lang['a_footer_save_create']=	'Save and create a new record';
     $lang['a_footer_save_edit'] =	' Save and edit';
     $lang['a_footer_save']      =	'Save';
+    $lang['a_footer_save_exit'] =       'Save and exit';
     $lang['a_save']             =	'Have been saved';
     $lang['a_edit']             =	'Editing';
     $lang['a_ID']               =	'ID';
@@ -149,8 +151,8 @@
     $lang['a_status_set']       =	'Status has been set';
     $lang['a_user_name']        =	'Name';
     $lang['a_there']            =	'exists';
-    $lang['a_product']          =	'Goods';
-    $lang['a_products']         =	'Product';
+    $lang['a_products']          =	'Goods';
+    $lang['a_product']         =	'Product';
     //$lang['a_orders']           =	'Delivery';
     $lang['a_orders']           =	'Orders';
     $lang['a_order']           =	'Orders';
@@ -205,8 +207,10 @@
     $lang['a_pattern_category'] =	'Main category template. By default  category.tpl';
     $lang['a_pattern_product']  =	'Product main template. By default  product.tpl';
     $lang['a_default_method_sort']=	'Choice of a sorting  method by default';
-   $lang['a_on']               =	'By';
+    $lang['a_on']               =	'By';
     $lang['a_hit']              =	'Hit';
+    $lang['a_hot']              =	'New';
+    $lang['a_action']              =	'Promotion';
     $lang['a_date_more']        =	'Creation date  (from the latest)';
     $lang['a_date_later']       =	'Creation date  (from the oldest)';
     $lang['a_count_later']      =	'number of views  (in descending order)';
@@ -424,6 +428,7 @@ $lang['a_set_order_status'] =	'Set another status for these orders';
     $lang['a_small_image_create'] = 'Create small image';
     $lang['a_create_kit'] = 'Create product kit';
     $lang['a_kit_edit'] = 'Edit product kit';
+    $lang['a_product_edit'] = 'Edit product';
     $lang['a_main_product'] = 'Main product';
     $lang['a_added_products'] = 'Added products';
     $lang['a_discount'] = 'Discount';
@@ -534,5 +539,31 @@ $lang['a_set_order_status'] =	'Set another status for these orders';
     $lang['a_count_rates'] = 'Recount prices?';
     $lang['a_user'] = 'User';
     $lang['a_helper_user'] = 'choose a date';
+    $lang['a_products_del_title'] = 'Delete products';
+    $lang['a_products_del_body'] = 'Really delete selected products?';
+    
+    $lang['a_goods_kits'] = 'Item kits list';
+    $lang['a_goods_list'] = 'Items list';
+    $lang['a_images'] = 'Images';
+    $lang['a_item_kits'] = 'Kits';
+    $lang['a_back'] = 'Back';
+    
+    
+    
+    
+    
+    
+    //new
+    
+    $lang['a_pr_discount_c'] = 'Процент скидки';
+    $lang['a_just_number_com'] = 'Just like the number 10';
+    $lang['a_amout_will_com'] = 'Amount of which will be a discount.';
+    $lang['a_the_there_com'] = 'The amount to which there will be a discount';
+    $lang['a_create_duscount_com'] = 'Creating cumulative discount';
+    $lang['a_empty_user_com'] = 'This discount does not enjoy';
+    $lang['a_discount_user_one_com'] = 'Off manually entered';
+    $lang['a_data_com'] = 'Data';
+    $lang['a_edit_comulat_com'] = 'Editing cumulative discount';
+    $lang['a_sel_collback_shop'] = 'The request for notification';
     
 ?>

@@ -223,52 +223,27 @@ class Cache {
         $this->log_cache_error('Clean :: Autoclean started');
 
         $n = 0;
-        
-           //if ($handle = opendir($this->_Config['store'])) {}
-   
-            
-//            while (false !== ($file = readdir($handle))) {               
-//                if (substr($file, 0, 6) != 'cache_'  && $file != 'hooks.php' && $file != "." && $file != ".." && $file != "/" && strstr($file, '.') != TRUE) {
-//                    $stat = stat($this->_Config['store']);
-//                    $files_all = opendir("./system/cache/" . $file);
-//                    while (false !== ($fileT = readdir($files_all))) {
-//                        if ($fileT != "." && $fileT != ".." && $fileT != "/" && (time() - $stat['mtime']) > $this->_Config['auto_clean_life']) {
-//                            $n++;
-//                           @unlink("./system/cache/".$file."/".$fileT);                       
-//                        }
-//                    }
-//                }
-//                $stats = stat($this->_Config['store']);
-//                if (substr($file, 0, 6) == 'cache_' || $file == 'hooks.php' && (time() - $stats['mtime']) > $this->_Config['auto_clean_life'] && is_file($cache_file = $this->_Config['store'] . $file)) {                    
-//                    @unlink("./system/cache/".$file);
-//                    $n++;
-//                }
-//            }
-//        }
+
         while ($file = readdir($dh)) {
-            
+            $stat = stat($this->_Config['store']);
             if (($file != '.') && ($file != '..') && ($file != 'index.html')) {
-                
-                      if (substr($file, 0, 6) != 'cache_' && $file != 'hooks.php' && $file != "." && $file != ".." && $file != "/" && strstr($file, '.') != TRUE) {
-                          
+
+                if (substr($file, 0, 6) != 'cache_' && $file != 'hooks.php' && $file != "." && $file != ".." && $file != "/" && strstr($file, '.') != TRUE && (time() - $stat['mtime']) > $this->_Config['auto_clean_life']) {
+
                     $files_all = opendir("./system/cache/" . $file);
                     while (false !== ($fileT = readdir($files_all))) {
-                       // $stat = stat($this->_Config['store']);
-                           // echo $stat['mtime'];
+                        $stat = stat($this->_Config['store']);
+                        // echo $stat['mtime'];
                         if ($fileT != "." && $fileT != ".." && $fileT != "/" && (time() - @$stat['mtime']) > $this->_Config['auto_clean_life']) {
-                           @unlink("./system/cache/".$file."/".$fileT);
-                           $n++;                                       
+                            @unlink("./system/cache/" . $file . "/" . $fileT);
+                            $n++;
                         }
                     }
                 }
-              //  $stat = stat($this->_Config['store']);
-                if (($this->_Config['auto_clean_all'] == TRUE) || (substr($file, 0, 6) == 'cache_')) {
-                    
-                    if ((time() - @$stat['mtime']) > $this->_Config['auto_clean_life']) {
-                       
-                        @unlink($file);
-                        $n++;
-                    }
+
+                if (strstr($file, '.') === TRUE && (time() - $stat['mtime']) > $this->_Config['auto_clean_life']) {
+                    @unlink($file);
+                    $n++;
                 }
             }
         }
@@ -335,25 +310,27 @@ class Cache {
      * @access public
      */
     public function delete_all() {
-       if ($handle = opendir($this->_Config['store'])) {
+        if ($handle = opendir($this->_Config['store'])) {
             $n = 0;
-            
-            while (false !== ($file = readdir($handle))) {               
+
+            while (false !== ($file = readdir($handle))) {
                 if (substr($file, 0, 6) != 'cache_' && $file != 'hooks.php' && $file != "." && $file != ".." && $file != "/" && strstr($file, '.') != TRUE) {
-                  
+
                     $files_all = opendir("./system/cache/" . $file);
                     while (false !== ($fileT = readdir($files_all))) {
                         if ($fileT != "." && $fileT != ".." && $fileT != "/") {
                             $n++;
-                           @unlink("./system/cache/".$file."/".$fileT);     
-                           
+                            @unlink("./system/cache/" . $file . "/" . $fileT);
                         }
                     }
                 }
-                if (substr($file, 0, 6) == 'cache_' || $file == 'hooks.php' || strstr($file, '.') == TRUE) {                    
-                    $n++;
-                    
-                    @unlink("./system/cache/".$file);
+                if (substr($file, 0, 6) == 'cache_' || $file == 'hooks.php' || strstr($file, '.') === TRUE) {
+
+                    if (substr($file, 0, 6) === 'cache_' || strstr($file, '.') == TRUE) {
+
+                        $n++;
+                    }
+                    @unlink("./system/cache/" . $file);
                 }
             }
         }
@@ -363,25 +340,17 @@ class Cache {
         return $n;
     }
 
-    
-    public function cache_file() {    
+    public function cache_file() {
         if ($handle = opendir($this->_Config['store'])) {
             $n = 0;
-            
-            while (false !== ($file = readdir($handle))) {               
+
+            while (false !== ($file = readdir($handle))) {
                 if (substr($file, 0, 6) != 'cache_' && $file != 'hooks.php' && $file != "." && $file != ".." && $file != "/" && strstr($file, '.') != TRUE) {
-                  
+
                     $files_all = opendir("./system/cache/" . $file);
                     while (false !== ($fileT = readdir($files_all))) {
                         if ($fileT != "." && $fileT != ".." && $fileT != "/" && strstr($fileT, '~') != TRUE) {
-                          //  echo $fileT.'<br />';
-                            
-                            //if(@filemtime($fileT) != FALSE){echo 'TRUE';}else{echo 'FALSE';}
-                            // $stat = stat($this->_Config['store']);
-                           // echo $stat['mtime'];
-                            //echo date('d-m-Y H:i:s', $stat['mtime']);
-                            //(time() - @filemtime($fileT)) > $this->_Config['auto_clean_life']
-                            $n++;                                         
+                            $n++;
                         }
                     }
                 }
