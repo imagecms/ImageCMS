@@ -402,6 +402,25 @@ $(document).ready(function(){
         }
     });
     
+    $('#del_sel_property').live('click', function(){
+        if(confirm('Удалить свойство?'))
+        {
+            var arr = getcheckedvalues();
+            $.post('/admin/components/run/shop/properties/delete',{
+                id: arr
+            },
+            function(data){
+                $('.notifications').append(data);
+            }
+            );
+        }
+    });
+    
+    $('.catfilter').on('change', function(){
+        $.pjax({url:'/admin/components/run/shop/properties/index/'+$(this).attr('value'), container: '#mainContent'});
+    });
+    
+    
     
 });
 
