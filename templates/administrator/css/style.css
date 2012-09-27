@@ -163,6 +163,26 @@ a.btn{text-decoration: none;}
 td[colspan]{padding: 0 !important;border-left: 0 !important;border-top: 0 !important;}
 td[colspan] table{width: 100%;}
 table{table-layout: fixed;}
+.mceEditor table {table-layout: auto;}
+table.mceLayout{ border-radius: 3px; overflow: hidden;}
+
+/*		tinyMce restyle		*/
+a.mceButton {border-radius: 2px;}
+.defaultSkin a.mceButtonActive, .defaultSkin a.mceButtonSelected, .defaultSkin a.mceButtonEnabled:hover
+{
+	border: 1px solid #008FE8 !important;
+	background-color: #C2E0E0 !important;
+}
+
+.defaultSkin table.mceSplitButtonEnabled:hover a.mceAction, .defaultSkin .mceSplitButtonHover a.mceAction, .defaultSkin .mceSplitButtonSelected a.mceAction, .defaultSkin table.mceSplitButtonEnabled:hover a.mceOpen, .defaultSkin .mceSplitButtonHover a.mceOpen, .defaultSkin .mceSplitButtonSelected a.mceOpen
+{
+	border-color: #008FE8 !important;
+	background-color: #C2E0E0 !important;
+	border-right: 0;
+}
+
+/**/
+
 .content_big_td td{border-left: 1px solid #DDD !important;border-top: 1px solid #DDD !important;}
 .no_vis{visibility: hidden;height: 0;}
 .no_vis td, .no_vis th{padding-top: 0 !important;padding-bottom: 0 !important;}
