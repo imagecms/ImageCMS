@@ -66,16 +66,20 @@
                 </div>
                 <ul class="user_menu">
                     <!--    Show callback's form    -->
-                    <li class="p-l_0">
-                        <form action="" method="post" name="currencyChangeForm" id="currencyChangeForm">
-                            {lang('s_currency')}: <select class="changeCurrency" name="setCurrency" >
-                                {foreach get_currencies() as $currency}
-                                    <option {if ShopCore::app()->SCurrencyHelper->additional->getId() == $currency->getId()}selected{/if} value="{echo $currency->getId()}">{echo encode($currency->getName())}</option>
-                                {/foreach}
-                            </select>
-                            {form_csrf()}
-                        </form>
-                    </li>
+                    {if count(get_currencies())>1}
+                        <li class="p-l_0">
+                            <form action="" method="post" name="currencyChangeForm" id="currencyChangeForm">
+                                {lang('s_currency')}: <select class="changeCurrency" name="setCurrency" >
+                                    {foreach get_currencies() as $currency}
+                                        <option {if ShopCore::app()->SCurrencyHelper->additional->getId() == $currency->getId()}selected{/if} value="{echo $currency->getId()}">{echo encode($currency->getName())}</option>
+                                    {/foreach}
+                                </select>
+                                {form_csrf()}
+                            </form>
+                        </li>
+                    {else:}
+                        <li>&nbsp;</li>
+                    {/if}
 
                     <!--    Show callback's form    -->
 
@@ -104,7 +108,7 @@
                 <div class="carusel_frame brand box_title">
                     <div class="carusel clearfix">
                         <ul>
-                            {foreach ShopCore::app()->SBrandsHelper->mostProductBrands(15, TRUE) as $brand}
+                            {foreach ShopCore::app()->SBrandsHelper->mostProductBrands(3, TRUE) as $brand}
                                 <li>
                                     <a href="{shop_url($brand.full_url)}">
                                         <img src="{media_url($brand.img_fullpath)}" title="{$brand.name}" />
@@ -146,7 +150,6 @@
                 </div>
             </div>
         </div><!-- footer -->
-
         <div class="h_bg_{whereami()}"></div>
     </body>
 </html>
