@@ -5,6 +5,17 @@ function change_status(hrefFn) {
         onComplete: function(response) { }
     });
 }
+//var changeStatus2 =  new Object({
+//
+////changestatus:function(id, statusId)
+////	{
+////		$.post('/admin/components/run/shop/notifications/changeStatus/', {CallbackId:id, StatusId:statusId}, function(data){
+////			$('.notifications').append(data);
+////		});
+////		$('#notification_1').closest('tr').data('status', statusId);
+////		this.reorderList(id);
+////	}
+////    });
 
 $(document).ready(function(){
     
