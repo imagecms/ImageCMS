@@ -45,7 +45,7 @@
                 <div class="center">
                     {load_menu('top_menu')}
                     <ul class="user_menu m-l_19 auth_data">{include_tpl('auth_data')}</ul>
-                    <ul class="user_menu cart_data_holder">
+                    <ul class="user_menu cart_data_holder">                        
 <!--                        <li><a href="/" style="color:silver;">ru</a></li>
                         <li style="margin-left: 0; padding-left: 5px;"><a href="{$BASE_URL}en" style="color:silver;">en</a></li>-->
                         {include_tpl('cart_data')}</ul>
@@ -108,7 +108,7 @@
                 <div class="carusel_frame brand box_title">
                     <div class="carusel clearfix">
                         <ul>
-                            {foreach ShopCore::app()->SBrandsHelper->mostProductBrands(3, TRUE) as $brand}
+                            {foreach ShopCore::app()->SBrandsHelper->mostProductBrands(15, TRUE) as $brand}
                                 <li>
                                     <a href="{shop_url($brand.full_url)}">
                                         <img src="{media_url($brand.img_fullpath)}" title="{$brand.name}" />
