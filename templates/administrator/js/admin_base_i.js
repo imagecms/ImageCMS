@@ -402,6 +402,61 @@ $(document).ready(function(){
         }
     });
     
+    $('#del_sel_property').live('click', function(){
+        if(confirm('Удалить свойство?'))
+        {
+            var arr = getcheckedvalues();
+            $.post('/admin/components/run/shop/properties/delete',{
+                id: arr
+            },
+            function(data){
+                $('.notifications').append(data);
+            }
+            );
+        }
+    });
+    
+    $('.catfilter').on('change', function(){
+        $.pjax({url:'/admin/components/run/shop/properties/index/'+$(this).attr('value'), container: '#mainContent'});
+    });
+    
+    $('#del_sel_cert').live('click', function(){
+        if(confirm('Удалить сертификат(ы)?'))
+        {
+            var arr = getcheckedvalues();
+            $.post('/admin/components/run/shop/gifts/delete',{
+                id: arr
+            },
+            function(data){
+                $('.notifications').append(data);
+            }
+            );
+        }
+    });
+    
+    $('#generateButton').live('click', function(){
+         $.ajax({
+           type: "post",
+           dataType: "json",
+           url: '/admin/components/run/shop/gifts/generateKey',
+           success: function(obj){
+               $('#keyholder').attr('value', obj.key);    
+           }
+           })
+    });
+    
+    $('.ch_active').live('click', function(){
+        var cid = $(this).attr('data-cid');
+        var $this = $(this);
+        $.ajax({
+            type:       'post',
+            url:        '/admin/components/run/shop/gifts/ChangeActive/'+cid,
+            success: function(data){
+                $('.notifications').append(data);
+            }
+        });
+    });
+    
     
 });
 
