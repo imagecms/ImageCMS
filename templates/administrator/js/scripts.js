@@ -80,6 +80,7 @@ $(document).ready(function(){
     //data-picker
     if ($.exists('.datepicker')) {
         $( ".datepicker" ).datepicker({
+            dateFormat: 'yy-mm-dd',
             showOtherMonths: true,
             selectOtherMonths: true,
             prevText: '',
