@@ -1,9 +1,11 @@
 function change_status(hrefFn) {  
-    $.ajax({
-        type: 'POST',
-        url: hrefFn,
-        onComplete: function(response) { }
-    });
+//    $.ajax({
+//        type: 'POST',
+//        url: hrefFn,
+//        onComplete: function(response) {alert(response); $('.notifications').append(response) }
+//    });
+    
+    $.post(hrefFn, {}, function(data){$('.notifications').append(data)} )
 }
 //var changeStatus2 =  new Object({
 //
