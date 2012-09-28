@@ -21,7 +21,15 @@ function change_status(hrefFn) {
 
 $(document).ready(function(){
     
-  
+  $(".selValitadot").click(function() {
+      
+    $("#validatorSelect").show();
+});
+$(".selValitadot1").click(function() {
+      
+    $("#validatorSelect").hide();
+});
+
     
     $('.clearCashe').on('click', function(){
         $this = $(this);
