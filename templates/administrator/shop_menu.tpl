@@ -11,6 +11,9 @@
                                     <li><a href="{$ADMIN_URL}callbacks">Колбеки</a></li>
                                     <li><a href="{$ADMIN_URL}callbacks/statuses">Статусы колбеков</a></li>
                                     <li><a href="{$ADMIN_URL}callbacks/themes">Темы колбеков</a></li>
+                                    <li class="nav-header">{lang('a_notifications')}</li>
+                                    <li><a href="{$ADMIN_URL}notifications">Сообщения о появлении</a></li>
+                                    <li><a href="{$ADMIN_URL}notificationstatuses/index">Статусы о появлении</a></li>
                                     <li class="nav-header">Прочее</li>
                                     <li><a href="{$ADMIN_URL}notifications">Сообщения о появлении</a></li>
                                     <li><a href="#">Комментарии</a></li>
