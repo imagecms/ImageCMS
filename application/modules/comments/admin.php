@@ -179,6 +179,8 @@ class Admin extends MY_Controller {
     public function update() {
         $data = array(
             'text' => $this->input->post('text'),
+            'text_plus' => $this->input->post('text_plus'),
+            'text_minus' => $this->input->post('text_minus'),
             'user_name' => htmlspecialchars($this->input->post('user_name')),
             'user_mail' => htmlspecialchars($this->input->post('user_mail')),
             'status' => (int) $this->input->post('status'),
