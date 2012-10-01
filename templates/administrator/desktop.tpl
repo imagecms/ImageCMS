@@ -129,17 +129,16 @@
 	<li>
 	<a class="returnFalse" href="#" onclick="ajax_div('page', base_url + 'admin/components/modules_table/'); return false;">{lang('a_modules')}</a>
 		<ul>
-		<li><a id="all_modules_link" href="#" onclick="ajax_div('page', base_url + 'admin/components/modules_table/'); return false;">{lang('a_all_modules')}</a></li> 
-		<li><a id="mod_search_link" href="#" onclick="ajax_div('page', base_url + 'admin/mod_search/'); return false;">{lang('a_search')}</a></li>
-	    <li class="divider returnFalse"><a href="#"></a></li>
-			{if $components}
-			{foreach $components as $component}
-                {if $component['installed'] == TRUE AND $component['admin_file'] == 1}
-				<li><a id="" href="#" onclick="com_admin('{$component.com_name}'); return false;">{$component.menu_name}</a>
-				</li>
-                {/if}
-			{/foreach}
-			{/if}
+                    <li><a id="all_modules_link" href="#" onclick="ajax_div('page', base_url + 'admin/components/modules_table/'); return false;">{lang('a_all_modules')}</a></li> 
+                    <li><a id="mod_search_link" href="#" onclick="ajax_div('page', base_url + 'admin/mod_search/'); return false;">{lang('a_search')}</a></li>
+                    <li class="divider returnFalse"><a href="#"></a></li>
+                    {if $components}
+                        {foreach $components as $component}
+                            {if $component['installed'] == TRUE AND $component['admin_file'] == 1}
+                                <li><a id="" href="#" onclick="com_admin('{$component.com_name}'); return false;">{$component.menu_name}</a></li>
+                            {/if}
+                        {/foreach}
+                    {/if}
 		</ul>
 	</li>
 
