@@ -213,7 +213,7 @@ class Admin extends MY_Controller {
         
         showMessage("Успех", "Статус обновлен");
         $this->load->helper('url');
-        $url = str_replace(base_url(), '',$_SERVER['HTTP_REFERER']);
+        $url = '/'.str_replace(base_url(), '',$_SERVER['HTTP_REFERER']);
         pjax($url);
     }
 
@@ -236,7 +236,7 @@ class Admin extends MY_Controller {
         
         showMessage('Комментарий(и) успешно удален(ы)');
         $this->load->helper('url');
-        $url = str_replace(base_url(), '',$_SERVER['HTTP_REFERER']);
+        $url = '/'.str_replace(base_url(), '',$_SERVER['HTTP_REFERER']);
         pjax($url);
     }
 
