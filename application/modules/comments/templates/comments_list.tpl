@@ -1,236 +1,265 @@
-<div class="top-navigation">
-	<div style="float:left;">
-		<ul>
-		<li><a {if $status == 'all' OR $status== NULL}class="selected"{/if} href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/comments/index/status/all/page/0'); return false;">{lang('amt_all_comments')}</a></li>
-		<li><a {if $status == 'waiting'}class="selected"{/if} href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/comments/index/status/waiting/page/0'); return false;">{lang('amt_waighting_for_moderation')}({$total_waiting})</a></li>
-		<li><a {if $status == 'approved'}class="selected"{/if} href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/comments/index/status/approved/page/0'); return false;" >{lang('amt_approved')}</a></li>
-		<li><a {if $status == 'spam'}class="selected"{/if} href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/comments/index/status/spam/page/0'); return false;">{lang('amt_spam')}({$total_spam})</a></li>
-		</ul>
-	</div>
-
-	<div align="right" style="padding:5px;">
-		<input type="button" class="button_silver_130" value="Настройки" onclick="ajax_div('page', base_url + 'admin/components/cp/comments/show_settings'); return false;" />
-	</div>
-</div>
-<div style="clear:both;"></div>
-
-{if is_array($comments)}
-<div id="sortable">
-		  <table id="comments_table">
-			<thead>
-				<th width="10"></th>
-				<th axis="string" width="10">{lang('amt_id')}</th>
-				<th axis="string">{lang('amt_text')}</th>
-				<th axis="string">{lang('amt_user')}</th>
-				<th axis="string">{lang('amt_email')}</th>
-				<th axis="string">{lang('amt_page')}</th>
-				<th axis="string">{lang('amt_ip')}</th>
-				<th axis="string">{lang('amt_date')}</th>
-				<th></th>
-			</thead>
-			<tbody>
-		{foreach $comments as $item }
-		<tr id="comment_tr_{$item.id}" {if $item.status == 1 AND $status == 'all'} class="status1" {/if}>
-			<td><input type="checkbox" id="chkb_{$item.id}" class="chbx"/></td>
-			<td align="center">{$item.id}</td>
-			<td>
-				<span onclick="edit_comment({$item.id});">{truncate(htmlspecialchars($item.text), 80, '...')}</span>
-				<div class="comment_status">
-					{if $item.status == 0}
-						<a href="#" onclick="set_comment_status({$item.id}, 1); return false;">{lang('amt_bann')}</a> | <a onclick="set_comment_status({$item.id}, 2); return false;" href="#">{lang('amt_spam')}</a> |
-					{elseif($item.status == 1):}
-						<a href="#" onclick="set_comment_status({$item.id}, 0); return false;">{lang('amt_approve')}</a> | <a onclick="set_comment_status({$item.id}, 2); return false;" href="#">{lang('amt_spam')}</a> |
-					{elseif($item.status == 2):}
-						<a href="#" onclick="set_comment_status({$item.id}, 0); return false;">{lang('amt_approve')}</a> |
-					{/if}
-						<a href="#" onclick="delete_comment({$item.id}); return false;" style="color: #E06242;">{lang('amt_delete')}</a>
-				</div>
-			</td>
-			<td>{$item.user_name}</td>
-			<td>{$item.user_mail}</td>
-			<td>
-			{if $item.module == 'core'}
-				<a href="{$item.page_url}#comment_{$item.id}" target="_blank" title="{$item.page_title}">{truncate($item.page_title, 25, '...')}</a>
-			{/if}
-			{if $item.module == 'shop'}
-				{if $this->CI->db->where('name','shop')->get('components')->num_rows() > 0}
-					{$p_name = encode(SProductsQuery::create()->filterById($item.item_id)->findOne()->name)}
-					<a href="/shop/product/{$item.item_id}" target="_blank">{truncate($p_name,25,'...')}</a>
-				{/if}
-			{/if}
-			</td>
-			<td>{$item.user_ip}</td>
-			<td>{date('d-m-Y H:i', $item.date)}</td>
-			<td>
-				<img onclick="edit_comment({$item.id});" style="cursor:pointer" src="{$THEME}/images/edit_page.png" width="16" height="16" title="{lang('amt_edit')}" />
-				<img onclick="delete_comment({$item.id});" src="{$THEME}/images/delete.png"  style="cursor:pointer" width="16" height="16" title="{lang('amt_delete')}" />
-			</td>
-		</tr>
-		{/foreach}
-			</tbody>
-			<tfoot>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</tfoot>
-		  </table>
-</div>
-
-		<script type="text/javascript">
-		{literal}
-			window.addEvent('domready', function(){
-				comments_table = new sortableTable('comments_table', {overCls: 'over', sortOn: -1 ,onClick: function(){}}); 
-				comments_table.altRow();
-			});
-		{/literal}
-		</script>
-
-<div style="padding-left:15px;padding-top:2px;">
-<a href="#" onclick="check_all(); return false;">{lang('amt_select_all')}</a>  /  <a href="#" onclick="uncheck_all(); return false;">{lang('amt_cancel_selection')}</a> 
-</div>
-
-<p align="right" style="padding:5px;padding-top:10px;">
-{lang('amt_with_selected')}
-<input type="submit" name="delete"  class="button" value="{lang('amt_delete')}" onclick="delete_sel_comments(); return false;" />
-</p>
-
-<div align="center" style="padding:5px;">
-{$paginator}
-</div>
-
-{else:}
-	<div id="notice">{lang('amt_nothing_found')}</div>
-{/if}
-
-{literal}
-		<style type="text/css">
-		.comment_status {
-			visibility: hidden;
-		}
-
-		tr:hover .comment_status {
-			visibility: visible;
-		}
-
-		#sortable tr.status1 {
-			background-color: #F9FFCC;
-		}
-
-		#sortable tr.status1:hover {
-			background-color:#354158;
-		}
-		</style>
-
-		<script type="text/javascript">
-		var comments_cur_url = '{/literal}{$comments_cur_url}{literal}';
-
-			function set_comment_status(comment_id, status_id)
-			{
-				var req = new Request.HTML({
-					method: 'post',
-					url: base_url + 'admin/components/cp/comments/update_status/',
-					onComplete: function(response) {
-							ajax_div('page', comments_cur_url);
-						}
-				}).post({'id': comment_id, 'status': status_id});
-			}
-
-			function check_all()
-			{
-				var items = $('comments_table').getElements('input');
-				items.each(function(el,i){
-				if(el.hasClass('chbx'))
-				{
-					el.checked = true;
-				}
-				});
-			}
-
-			function uncheck_all()
-			{
-				var items = $('comments_table').getElements('input');
-				items.each(function(el,i){
-				if(el.hasClass('chbx'))
-				{
-					el.checked = false;
-				}
-				});
-			}
-
-			function edit_comment(id)
-			{
-				new MochaUI.Window({
-				id: 'edit_comment_window',
-				title: 'Редактирование комментария',
-				loadMethod: 'xhr',
-				contentURL: base_url + 'admin/components/cp/comments/edit/' + id,
-				width: 500,
-				height: 280
-				});
-			}
-
-			function delete_comment(id)
-			{
-				alertBox.confirm('<h1>Удалить коментраий ID ' + id + '? </h1>', {onComplete:
-					function(returnvalue) {
-					if(returnvalue)
-					{
-						var req = new Request.HTML({
-						   method: 'post',
-						   url: base_url + 'admin/components/cp/comments/delete',
-						   onRequest: function() { },
-						   onComplete: function(response) {
-								ajax_div('page', comments_cur_url);
-							}
-						}).post({'id': id });
-
-						//comment_tr = 'comment_tr_' + id;
-						//var myVS = new Fx.Slide(comment_tr);
-						//myVS.slideOut();
-						//$(comment_tr).setStyle('display', 'none');
-					}
-					}
-				});
-			}
-
-			function delete_sel_comments()
-			{
-			alertBox.confirm('<h1> </h1><p>Удалить отмеченые комментарии? </p>', {onComplete:
-			function(returnvalue){
-			if(returnvalue)
-			{
-				var items_arr = new Array();
-
-				var items = $('comments_table').getElements('input');
-				items.each(function(el,i){
-						if(el.checked == true)
-						{
-							id = el.id;
-							val = el.value;
-							el_info = id;
-							items_arr.include( el_info );
-						}
-						});
-
-				var req = new Request.HTML({
-				   method: 'post',
-				   url: base_url + 'admin/components/cp/comments/delete_many',
-				   onRequest: function() { },
-				   onComplete: function(response) {
-						 ajax_div('page', comments_cur_url);
-					}
-				}).post({'comments': items_arr });
-			}
-			}
-			});
-			}
-		</script>
-{/literal}
+<section class="mini-layout">
+    <div class="frame_title clearfix">
+        <div class="pull-left">
+            <span class="help-inline"></span>
+            <span class="title">Комментарии</span>
+        </div>
+        <div class="pull-right">
+            <div class="d-i_b">
+                <button type="button" class="btn btn-small disabled action_on" id="comment_delete"><i class="icon-trash"></i>{lang('a_delete')}</button>
+                <a class="btn btn-small pjax" href="/admin/components/cp/comments/show_settings"><i class="icon-wrench"></i>Настройки</a>
+            </div>
+        </div>    
+    </div>
+    <div class="btn-group myTab m-t_20" data-toggle="buttons-radio">
+        <a class="btn btn-small pjax {if $status == 'all' OR $status== NULL}active{/if}" href="/admin/components/cp/comments/index/status/all/page/0">{lang('amt_all_comments')}</a>
+        <a class="btn btn-small pjax {if $status == 'waiting'}active{/if}" href="/admin/components/cp/comments/index/status/waiting/page/0">{lang('amt_waighting_for_moderation')}({$total_waiting})</a>
+        <a class="btn btn-small pjax {if $status == 'approved'}active{/if}" href="/admin/components/cp/comments/index/status/approved/page/0">{lang('amt_approved')}</a>
+        <a class="btn btn-small pjax {if $status == 'spam'}active{/if}" href="/admin/components/cp/comments/index/status/spam/page/0">{lang('amt_spam')}({$total_spam})</a>
+    </div>
+    <div class="tab-content">
+    {if count($comments) > 0 AND is_array($comments)}
+            <div class="tab-pane active" id="modules">
+                <div class="row-fluid">
+                    <table class="table table-striped table-bordered table-hover table-condensed">
+                        <thead>
+                            <tr>
+                                <th class="t-a_c span1">
+                                    <span class="frame_label">
+                                        <span class="niceCheck b_n">
+                                            <input type="checkbox" value="On"/>
+                                        </span>
+                                    </span>
+                                </th>
+                                <th class="span1">{lang('amt_id')}</th>
+                                <th class="span4">{lang('amt_text')}</th>
+                                <th class="span2">Оценка</th>
+                                <th class="span2">{lang('amt_user')}</th>
+                                <th class="span3">{lang('amt_page')}</th>
+                            </tr>
+                        </thead>
+                        <tbody class="sortable">
+                            {foreach $comments as $item }
+                                {if count($item.child) == 0}
+                                    <tr data-title="перетащите комментарий">
+                                        <td class="t-a_c">
+                                            <span class="frame_label">
+                                                <span class="niceCheck b_n">
+                                                    <input type="checkbox" value="{echo $item.id}"/>
+                                                </span>
+                                            </span>
+                                        </td>
+                                        <td>{$item.id}</td>
+                                        <td>
+                                            <span class="time muted">{date('d-m-Y H:i', $item.date)}</span>
+                                            <span class="text_comment" id="comment_text_holder{$item.id}">{truncate(htmlspecialchars($item.text), 80, '...')}</span>
+                                            <span class="frame_edit_comment ref_group" id="comment_text_editor{$item.id}">
+                                                <textarea id="edited_com_text{$item.id}">{$item.text}</textarea>
+                                                <span class="js ref comment_update" data-cid="{$item.id}" data-uname="{$item.user_name}" data-uemail="{$item.user_mail}" data-cstatus="{$item.status}">Сохранить</span>
+                                                {if $item.status == 1}<a href="#" class="to_approved" data-id="{$item.id}">В одобренные</a>{/if}
+                                                {if $item.status != 2}
+                                                    <a href="#" class="to_spam" data-id="{$item.id}">В спам</a>
+                                                {else:}
+                                                    <a href="#" class="to_waiting" data-id="{$item.id}">В ожидающие модерации</a>
+                                                {/if}
+                                                <a href="#" class="ref_remove com_del" data-id="{$item.id}">Удалить</a>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="p_r frame_rating">
+                                                <div class="patch_disabled"></div>
+                                                <div class="star">
+                                                    <img src="/templates/administrator/img/temp/star.png"/>
+                                                </div>
+                                                <a href="#">
+                                                    <i class="icon-thumbs-up"></i>
+                                                    <span>+{$item.like}</span>
+                                                </a>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <a href="#">
+                                                    <i class="icon-thumbs-down"></i>
+                                                    <span>-{$item.disslike}</span>
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td><a href="#">{$item.user_name}</a></td>
+                                        <td>
+                                            {if $item.module == 'core'}
+                                                <a href="{$item.page_url}#comment_{$item.id}" target="_blank" title="{$item.page_title}">{truncate($item.page_title, 25, '...')}</a>
+                                            {/if}
+                                            {if $item.module == 'shop'}
+                                                {if $this->CI->db->where('name','shop')->get('components')->num_rows() > 0}
+                                                    {$p_name = encode(SProductsQuery::create()->filterById($item.item_id)->findOne()->name)}
+                                                    <a href="/shop/product/{$item.item_id}" target="_blank">{truncate($p_name,25,'...')}</a>
+                                                {/if}
+                                            {/if}
+                                        </td>
+                                    </tr>
+                                {else:}    
+                                    <tr>
+                                        <td colspan="6">
+                                            <table>
+                                                <thead>
+                                                    <tr class="no_vis">
+                                                        <th class="span1"></th>
+                                                        <th class="span1"></th>
+                                                        <th class="span4"></th>
+                                                        <th class="span2"></th>
+                                                        <th class="span2"></th>
+                                                        <th class="span3"></th>
+                                                    </tr>
+                                                </thead>
+                                                    <tbody>
+                                                        <tr data-title="перетащите комментарий">
+                                                            <td class="t-a_c">
+                                                                <span class="frame_label">
+                                                                    <span class="niceCheck b_n">
+                                                                        <input type="checkbox" value="{echo $item.id}"/>
+                                                                    </span>
+                                                                </span>
+                                                            </td>
+                                                            <td>{$item.id}</td>
+                                                            <td>
+                                                                <span class="time muted">{date('d-m-Y H:i', $item.date)}</span>
+                                                                <span class="text_comment" id="comment_text_holder{$item.id}">{truncate(htmlspecialchars($item.text), 80, '...')}</span>
+                                                                <span class="frame_edit_comment ref_group" id="comment_text_editor{$item.id}">
+                                                                    <textarea id="edited_com_text{$item.id}">{$item.text}</textarea>
+                                                                    <span class="js ref comment_update" data-cid="{$item.id}" data-uname="{$item.user_name}" data-uemail="{$item.user_mail}" data-cstatus="{$item.status}">Сохранить</span>
+                                                                    {if $item.status == 1}<a href="#" class="to_approved" data-id="{$item.id}">В одобренные</a>{/if}
+                                                                    {if $item.status != 2}
+                                                                        <a href="#" class="to_spam" data-id="{$item.id}">В спам</a>
+                                                                    {else:}
+                                                                        <a href="#" class="to_waiting" data-id="{$item.id}">В ожидающие модерации</a>
+                                                                    {/if}
+                                                                    <a href="#" class="ref_remove com_del" data-id="{$item.id}">Удалить</a>
+                                                                </span>
+                                                            </td>
+                                                            <td>
+                                                                <div class="p_r frame_rating">
+                                                                    <div class="patch_disabled"></div>
+                                                                    <div class="star">
+                                                                        <img src="/templates/administrator/img/temp/star.png"/>
+                                                                    </div>
+                                                                    <a href="#">
+                                                                        <i class="icon-thumbs-up"></i>
+                                                                        <span>+{$item.like}</span>
+                                                                    </a>
+                                                                    &nbsp;&nbsp;&nbsp;
+                                                                    <a href="#">
+                                                                        <i class="icon-thumbs-down"></i>
+                                                                        <span>-{$item.disslike}</span>
+                                                                    </a>
+                                                                </div>
+                                                            </td>
+                                                            <td><a href="#">{$item.user_name}</a></td>
+                                                            <td>
+                                                                {if $item.module == 'core'}
+                                                                    <a href="{$item.page_url}#comment_{$item.id}" target="_blank" title="{$item.page_title}">{truncate($item.page_title, 25, '...')}</a>
+                                                                {/if}
+                                                                {if $item.module == 'shop'}
+                                                                    {if $this->CI->db->where('name','shop')->get('components')->num_rows() > 0}
+                                                                        {$p_name = encode(SProductsQuery::create()->filterById($item.item_id)->findOne()->name)}
+                                                                        <a href="/shop/product/{$item.item_id}" target="_blank">{truncate($p_name,25,'...')}</a>
+                                                                    {/if}
+                                                                {/if}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="6">
+                                                                <table>
+                                                                    <thead>
+                                                                        <tr class="no_vis">
+                                                                            <th class="span1"></th>
+                                                                            <th class="span1"></th>
+                                                                            <th class="span4"></th>
+                                                                            <th class="span2"></th>
+                                                                            <th class="span2"></th>
+                                                                            <th class="span3"></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody class="sortable">
+                                                                        {foreach $item.child as $ic}
+                                                                            <tr data-title="перетащите комментарий">
+                                                                                <td class="t-a_c">
+                                                                                    <span class="frame_label">
+                                                                                        <span class="niceCheck b_n">
+                                                                                            <input type="checkbox" value="{echo $ic.id}"/>
+                                                                                        </span>
+                                                                                    </span>
+                                                                                </td>
+                                                                                <td>{$ic.id}</td>
+                                                                                <td>
+                                                                                    <span class="simple_tree pull-left">&#8627;</span>
+                                                                                    <div class="o_h">
+                                                                                        <span class="time muted">{date('d-m-Y H:i', $ic.date)}</span>
+                                                                                        <span class="text_comment" id="comment_text_holder{$ic.id}">{truncate(htmlspecialchars($ic.text), 80, '...')}</span>
+                                                                                        <span class="frame_edit_comment ref_group" id="comment_text_editor{$ic.id}">
+                                                                                            <textarea id="edited_com_text{$ic.id}">{$ic.text}</textarea>
+                                                                                            <span class="js ref comment_update" data-cid="{$ic.id}" data-uname="{$ic.user_name}" data-uemail="{$ic.user_mail}" data-cstatus="{$ic.status}">Сохранить</span>
+                                                                                            {if $ic.status == 1}<a href="#" class="to_approved" data-id="{$ic.id}">В одобренные</a>{/if}
+                                                                                            {if $ic.status != 2}
+                                                                                                <a href="#" class="to_spam" data-id="{$ic.id}">В спам</a>
+                                                                                            {else:}
+                                                                                                <a href="#" class="to_waiting" data-id="{$ic.id}">В ожидающие модерации</a>
+                                                                                            {/if}
+                                                                                            <a href="#" class="ref_remove com_del" data-id="{$ic.id}">Удалить</a>
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="p_r frame_rating">
+                                                                                        <div class="patch_disabled"></div>
+                                                                                        <div class="star">
+                                                                                            <img src="/templates/administrator/img/temp/star.png"/>
+                                                                                        </div>
+                                                                                        <a href="#">
+                                                                                            <i class="icon-thumbs-up"></i>
+                                                                                            <span>+{$ic.like}</span>
+                                                                                        </a>
+                                                                                        &nbsp;&nbsp;&nbsp;
+                                                                                        <a href="#">
+                                                                                            <i class="icon-thumbs-down"></i>
+                                                                                            <span>-{$ic.disslike}</span>
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td><a href="#">{$ic.user_name}</a></td>
+                                                                                <td>
+                                                                                    {if $ic.module == 'core'}
+                                                                                        <a href="{$item.page_url}#comment_{$ic.id}" target="_blank" title="{$ic.page_title}">{truncate($ic.page_title, 25, '...')}</a>
+                                                                                    {/if}
+                                                                                    {if $ic.module == 'shop'}
+                                                                                        {if $this->CI->db->where('name','shop')->get('components')->num_rows() > 0}
+                                                                                            {$p_name = encode(SProductsQuery::create()->filterById($ic.item_id)->findOne()->name)}
+                                                                                            <a href="/shop/product/{$ic.item_id}" target="_blank">{truncate($p_name,25,'...')}</a>
+                                                                                        {/if}
+                                                                                    {/if}
+                                                                                </td>
+                                                                            </tr>
+                                                                        {/foreach}
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                {/if}
+                            {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {else:}
+            </br>
+            <div class="alert alert-info">
+                {lang('amt_nothing_found')}
+            </div>
+        {/if}
+        </div>
+        <div class="clearfix">
+            {$paginator}
+        </div>
+    </div>
+</section>

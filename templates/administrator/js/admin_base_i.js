@@ -457,6 +457,89 @@ $(document).ready(function(){
         });
     });
     
+    $('.comment_update').live('click', function(){
+        var id = $(this).attr('data-cid');
+        var user_name = $(this).attr('data-uname');
+        var user_mail = $(this).attr('data-uemail');
+        var status = $(this).attr('data-cstatus');
+        var text = $('#edited_com_text'+id).attr('value');
+        $.ajax({
+                type: 'post',
+                dataType: "json",
+                url: '/admin/components/cp/comments/update',
+                data: 'id='+id+'&user_name='+user_name+'&user_mail='+user_mail+'&text='+text+'&status='+status,
+                success: function(obj){
+                    $('.notifications').append(obj.response);
+                    if(obj.result === 'success')
+                    {
+                        $('#comment_text_editor'+id).css('display', 'none');
+                        $('#comment_text_holder'+id).html(text).css('display', 'inline');
+                    }
+            }
+        });
+    });
+    
+    $('.to_spam').live('click', function(){
+        var id = $(this).attr('data-id');
+        $.ajax({
+            type:   'post',
+            url:    '/admin/components/cp/comments/update_status',
+            data:   'id='+id+'&status='+2,
+            success: function(data){
+                $('.notifications').append(data);
+            }
+        });
+    });
+    
+    $('#comment_delete').live('click', function(){
+        if(confirm('Удалить комментарий(и)?'))
+        {
+            var arr = getcheckedvalues();
+            $.post('/admin/components/cp/comments/delete',{
+                id: arr
+            },
+            function(data){
+                $('.notifications').append(data);
+            }
+            );
+        }
+    });
+    
+    $('.com_del').live('click', function(){
+        var id = $(this).attr('data-id');
+        $.post('/admin/components/cp/comments/delete',{
+            id: id
+        },
+        function(data){
+            $('.notifications').append(data);
+        }
+        );
+    });
+    
+    $('.to_approved').live('click', function(){
+        var id = $(this).attr('data-id');
+        $.ajax({
+            type:   'post',
+            url:    '/admin/components/cp/comments/update_status',
+            data:   'id='+id+'&status='+0,
+            success: function(data){
+                $('.notifications').append(data);
+            }
+        });
+    });
+    
+    $('.to_waiting').live('click', function(){
+        var id = $(this).attr('data-id');
+        $.ajax({
+            type:   'post',
+            url:    '/admin/components/cp/comments/update_status',
+            data:   'id='+id+'&status='+1,
+            success: function(data){
+                $('.notifications').append(data);
+            }
+        });
+    });
+    
     
 });
 
