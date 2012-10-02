@@ -123,12 +123,16 @@ class Admin extends MY_Controller {
         if(is_array($comments))
             $comments = $this->proccess_child_comments($comments);
         
+        $all_comments = count($this->db->get('comments')->result_array());
+        
         $this->render('comments_list', array(
             'comments_cur_url' => site_url(trim_slashes($this->uri->uri_string())),
             'comments' => $comments,
             'status' => $status,
             'total_waiting' => $this->comments->count_by_status(1),
             'total_spam' => $this->comments->count_by_status(2),
+            'total_app' => $this->comments->count_by_status(0),
+            'all_comm' => $all_comments,
         ));
     }
     

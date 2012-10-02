@@ -12,10 +12,18 @@
         </div>    
     </div>
     <div class="btn-group myTab m-t_20" data-toggle="buttons-radio">
-        <a class="btn btn-small pjax {if $status == 'all' OR $status== NULL}active{/if}" href="/admin/components/cp/comments/index/status/all/page/0">{lang('amt_all_comments')}</a>
-        <a class="btn btn-small pjax {if $status == 'waiting'}active{/if}" href="/admin/components/cp/comments/index/status/waiting/page/0">{lang('amt_waighting_for_moderation')}({$total_waiting})</a>
-        <a class="btn btn-small pjax {if $status == 'approved'}active{/if}" href="/admin/components/cp/comments/index/status/approved/page/0">{lang('amt_approved')}</a>
-        <a class="btn btn-small pjax {if $status == 'spam'}active{/if}" href="/admin/components/cp/comments/index/status/spam/page/0">{lang('amt_spam')}({$total_spam})</a>
+        <a class="btn btn-small pjax {if $status == 'all' OR $status== NULL}active{/if}" href="/admin/components/cp/comments/index/status/all/page/0">{lang('amt_all_comments')}
+            {if $all_comm}<span style="top:-13px;" class="badge badge-important">{$all_comm}</span>{/if}
+        </a>
+        <a class="btn btn-small pjax {if $status == 'waiting'}active{/if}" href="/admin/components/cp/comments/index/status/waiting/page/0">{lang('amt_waighting_for_moderation')}
+            {if $total_waiting>0}<span style="top:-13px;" class="badge badge-important">{$total_waiting}</span>{/if}
+        </a>
+        <a class="btn btn-small pjax {if $status == 'approved'}active{/if}" href="/admin/components/cp/comments/index/status/approved/page/0">{lang('amt_approved')}
+            {if $total_app>0}<span style="top:-13px;" class="badge badge-important">{$total_app}</span>{/if}
+        </a>
+        <a class="btn btn-small pjax {if $status == 'spam'}active{/if}" href="/admin/components/cp/comments/index/status/spam/page/0">{lang('amt_spam')}
+            {if $total_spam>0}<span style="top:-13px;" class="badge badge-important">{$total_spam}</span>{/if}
+        </a>
     </div>
     <div class="tab-content">
     {if count($comments) > 0 AND is_array($comments)}
