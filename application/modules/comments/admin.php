@@ -194,9 +194,13 @@ class Admin extends MY_Controller {
 
         $this->_recount_comments($comment['item_id'], $comment['module']);
 
-        $resp = "<script type='text/javascript'> showMessage('Измения сохранены','Успех<br/><strong>Запросов к базе: 6</strong>',''); </script>";
-
-        echo json_encode(array('response'=> $resp, 'result'=> 'success'));
+//        $resp = "<script type='text/javascript'> showMessage('Измения сохранены','Успех<br/><strong>Запросов к базе: 6</strong>',''); </script>";
+//
+//        echo json_encode(array('response'=> $resp, 'result'=> 'success'));
+        showMessage('Успех', 'Измениния сохранены');
+        $this->load->helper('url');
+        $url = '/'.str_replace(base_url(), '',$_SERVER['HTTP_REFERER']);
+        pjax($url);
     }
 
     public function update_status() {

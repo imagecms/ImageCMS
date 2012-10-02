@@ -472,17 +472,18 @@ $(document).ready(function(){
         var text_minus = $('#edited_com_text_minus'+id).attr('value');
         $.ajax({
             type: 'post',
-            dataType: "json",
+            //dataType: "json",
             url: '/admin/components/cp/comments/update',
             data: 'id='+id+'&user_name='+user_name+'&user_mail='+user_mail+'&text='+text+'&status='+status+'&text_plus='+text_plus+'&text_minus='+text_minus,
-            success: function(obj){
-                $('.notifications').append(obj.response);
-                if(obj.result === 'success')
-                {
-//                    $(this).parents('tr').removeClass('active');
-//                    $('#comment_text_editor'+id).css('display', 'none');
-//                    $('#comment_text_holder'+id).html(text).css('display', 'inline');
-                }
+            success: function(data){
+                //$('.notifications').append(obj.response);
+                $('.notifications').append(data);
+//                if(obj.result === 'success')
+//                {
+////                    $(this).parents('tr').removeClass('active');
+////                    $('#comment_text_editor'+id).css('display', 'none');
+////                    $('#comment_text_holder'+id).html(text).css('display', 'inline');
+//                }
             }
         });
     });
