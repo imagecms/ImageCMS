@@ -75,7 +75,7 @@
         <textarea name="comment_text_minus" id="comment_minus" rows="5" cols="50">{$_POST.comment_text}</textarea> 
     </label>
     {if $use_captcha}
-        <!--        <div style="padding-bottom:4px;">
+           <div style="padding-bottom:4px;">
                     <p class="clear">
         {if $captcha_type == 'captcha'}
             <label for="captcha" style="width:140px;" class="left">{lang('lang_captcha')}</label>
@@ -85,7 +85,7 @@
         <label class="left" style="width:140px;" >&nbsp;</label>
         {$cap_image}
     </p>
-</div>-->
+</div>
     {/if}
     <label class="buttons button_middle_blue f_l">
         <input type="submit" value="{lang('s_leave_comment')}"/>
@@ -161,19 +161,6 @@
                             <span style="color:red;">*</span>
                         </label>
                         <input type="hidden" name="parent" value="{echo $comment.id}">
-                        {if $use_captcha}
-                            <!--        <div style="padding-bottom:4px;">
-                                        <p class="clear">
-                            {if $captcha_type == 'captcha'}
-                                <label for="captcha" style="width:140px;" class="left">{lang('lang_captcha')}</label>
-                                <input type="text" name="captcha" id="captcha" />  <span style="color:red;">*</span>
-                            {/if}
-                            <br/>
-                            <label class="left" style="width:140px;" >&nbsp;</label>
-                            {$cap_image}
-                        </p>
-                    </div>-->
-                        {/if}
                         <label class="buttons button_middle_blue f_l">
                             <input type="submit" value="{lang('s_leave_comment')}"/>
                         </label>
