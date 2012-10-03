@@ -66,6 +66,7 @@
                 </div>
                 <ul class="user_menu">
                     <!--    Show callback's form    -->
+<<<<<<< HEAD
                     <li class="p-l_0">
                         <form action="" method="post" name="currencyChangeForm" id="currencyChangeForm">
                             {lang('s_currency')}: <select class="changeCurrency" name="setCurrency" >
@@ -76,6 +77,22 @@
                             {form_csrf()}
                         </form>
                     </li>
+=======
+                    {if count(get_currencies())>1}
+                        <li class="p-l_0">
+                            <form action="" method="post" name="currencyChangeForm" id="currencyChangeForm">
+                                {lang('s_currency')}: <select class="changeCurrency" name="setCurrency" >
+                                    {foreach get_currencies() as $currency}
+                                        <option {if ShopCore::app()->SCurrencyHelper->additional->getId() == $currency->getId()}selected{/if} value="{echo $currency->getId()}">{echo encode($currency->getName())}</option>
+                                    {/foreach}
+                                </select>
+                                {form_csrf()}
+                            </form>
+                        </li>
+                    {else:}
+                        <li>&nbsp;</li>
+                    {/if}
+>>>>>>> c693c3bf77da62b9bebd79e7e7cc35f7bb1fb916
 
                     <!--    Show callback's form    -->
 
@@ -146,7 +163,6 @@
                 </div>
             </div>
         </div><!-- footer -->
-
         <div class="h_bg_{whereami()}"></div>
     </body>
 </html>
