@@ -24,16 +24,10 @@
 
     {if !$is_logged_in}
 
-        <label>{lang('lang_comment_author')}
-            <input type="text" name="comment_author" id="comment_author" value="{get_cookie('comment_author')}"/> <span style="color:red;">*</span></label>
-
-
-
-        <label>{lang('lang_comment_email')}
-            <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/> <span style="color:red;">*</span></label>
-
-
-
+        <label>{lang('lang_comment_author')} <span style="color:red;">*</span>
+            <input type="text" name="comment_author" id="comment_author" value="{get_cookie('comment_author')}"/></label>
+        <label>{lang('lang_comment_email')} <span style="color:red;">*</span>
+            <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/></label>
         <label>{lang('lang_comment_site')}
             <input type="text" name="comment_site" id="comment_site" value="{get_cookie('comment_site')}"/></label>
 
@@ -62,15 +56,14 @@
         <input id="ratec" name="ratec" type="hidden" value=""/>
     </label><br/>
 
-    <label>{lang('s_text_comment_one')}
+    <label>{lang('s_text_comment_one')}<span style="color:red;">*</span>
         <textarea name="comment_text" id="comment_text" rows="10" cols="50">{$_POST.comment_text}</textarea> 
-        <span style="color:red;">*</span>
     </label>
 
     <label>{lang('s_plus')}
         <textarea name="comment_text_plus" id="comment_plus" rows="5" cols="50">{$_POST.comment_text}</textarea> 
     </label>
-        
+       
     <label>{lang('s_cons')}
         <textarea name="comment_text_minus" id="comment_minus" rows="5" cols="50">{$_POST.comment_text}</textarea> 
     </label>
@@ -149,16 +142,15 @@
                         <input type="hidden" name="comment_item_id" value="{$item_id}"/>
                         <input type="hidden" name="redirect" value="{uri_string()}"/>
                         {if !$is_logged_in}
-                        <label>{lang('s_text_comment_one')}
-                            <input type="text" name="comment_author" id="comment_author" value="{get_cookie('comment_author')}"/> <span style="color:red;">*</span>
+                        <label>{lang('s_text_comment_one')} <span style="color:red;">*</span>
+                            <input type="text" name="comment_author" id="comment_author" value="{get_cookie('comment_author')}"/>
                         </label>
-                        <label>{lang('lang_comment_email')}
-                            <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/> <span style="color:red;">*</span>
+                        <label>{lang('lang_comment_email')} <span style="color:red;">*</span>
+                            <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
                         </label>
                         {/if}
-                        <label>{lang('s_text_comment_one')}
+                        <label>{lang('s_text_comment_one')} <span style="color:red;">*</span>
                             <textarea name="comment_text" id="comment_text" rows="10" cols="50">{$_POST.comment_text}</textarea> 
-                            <span style="color:red;">*</span>
                         </label>
                         <input type="hidden" name="parent" value="{echo $comment.id}">
                         {if $use_captcha}
