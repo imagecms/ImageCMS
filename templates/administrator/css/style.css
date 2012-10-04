@@ -324,3 +324,8 @@ form > *{font-size: 12px;}
 .thumbnail > img.sel_template {
     border: 3px solid;
 }
+
+tr.active span.u_ed {display: inline-block;}
+tr.active span.m_ed{display: inline-block;}
+tr.active a.u_ed{display: none;}
+tr.active a.m_ed{display: none;}

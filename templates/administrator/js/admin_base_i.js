@@ -360,7 +360,7 @@ $(document).ready(function(){
         }
         var c = 0;
         $(this).parents('tbody').children('tr').each(function(){
-           c++; 
+            c++; 
         });
         var par = $(this).parents('tbody').children('tr').children('td:first-child').children('input');
         var i = 0;
@@ -417,7 +417,10 @@ $(document).ready(function(){
     });
     
     $('.catfilter').on('change', function(){
-        $.pjax({url:'/admin/components/run/shop/properties/index/'+$(this).attr('value'), container: '#mainContent'});
+        $.pjax({
+            url:'/admin/components/run/shop/properties/index/'+$(this).attr('value'), 
+            container: '#mainContent'
+        });
     });
     
     $('#del_sel_cert').live('click', function(){
@@ -435,14 +438,14 @@ $(document).ready(function(){
     });
     
     $('#generateButton').live('click', function(){
-         $.ajax({
-           type: "post",
-           dataType: "json",
-           url: '/admin/components/run/shop/gifts/generateKey',
-           success: function(obj){
-               $('#keyholder').attr('value', obj.key);    
-           }
-           })
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            url: '/admin/components/run/shop/gifts/generateKey',
+            success: function(obj){
+                $('#keyholder').attr('value', obj.key);    
+            }
+        })
     });
     
     $('.ch_active').live('click', function(){
@@ -456,6 +459,112 @@ $(document).ready(function(){
             }
         });
     });
+    
+    $('.comment_update').live('click', function(){
+        var id = $(this).attr('data-cid');
+//        var user_name = $(this).attr('data-uname');
+//        var user_mail = $(this).attr('data-uemail');
+        var user_name = $('#u_ed'+id).attr('value');
+        var user_mail = $('#m_ed'+id).attr('value');
+        var status = $(this).attr('data-cstatus');
+        var text = $('#edited_com_text'+id).attr('value');
+        var text_plus = $('#edited_com_text_plus'+id).attr('value');
+        var text_minus = $('#edited_com_text_minus'+id).attr('value');
+        $.ajax({
+            type: 'post',
+            //dataType: "json",
+            url: '/admin/components/cp/comments/update',
+            data: 'id='+id+'&user_name='+user_name+'&user_mail='+user_mail+'&text='+text+'&status='+status+'&text_plus='+text_plus+'&text_minus='+text_minus,
+            success: function(data){
+                //$('.notifications').append(obj.response);
+                $('.notifications').append(data);
+//                if(obj.result === 'success')
+//                {
+////                    $(this).parents('tr').removeClass('active');
+////                    $('#comment_text_editor'+id).css('display', 'none');
+////                    $('#comment_text_holder'+id).html(text).css('display', 'inline');
+//                }
+            }
+        });
+    });
+    
+    $('.to_spam').live('click', function(){
+        var id = $(this).attr('data-id');
+        $.ajax({
+            type:   'post',
+            url:    '/admin/components/cp/comments/update_status',
+            data:   'id='+id+'&status='+2,
+            success: function(data){
+                $('.notifications').append(data);
+            }
+        });
+    });
+    
+    $('#comment_delete').live('click', function(){
+        if($(this).hasClass('disabled')){}else{
+            if(confirm('Удалить комментарий(и)?'))
+            {
+                var arr = getcheckedvalues();
+                $.post('/admin/components/cp/comments/delete',{
+                    id: arr
+                },
+                function(data){
+                    $('.notifications').append(data);
+                }
+                );
+            }
+        }
+    });
+    
+    $('.com_del').live('click', function(){
+        var id = $(this).attr('data-id');
+        $.post('/admin/components/cp/comments/delete',{
+            id: id
+        },
+        function(data){
+            $('.notifications').append(data);
+        }
+        );
+    });
+    
+    $('.to_approved').live('click', function(){
+        var id = $(this).attr('data-id');
+        $.ajax({
+            type:   'post',
+            url:    '/admin/components/cp/comments/update_status',
+            data:   'id='+id+'&status='+0,
+            success: function(data){
+                $('.notifications').append(data);
+            }
+        });
+    });
+    
+    $('.to_waiting').live('click', function(){
+        var id = $(this).attr('data-id');
+        $.ajax({
+            type:   'post',
+            url:    '/admin/components/cp/comments/update_status',
+            data:   'id='+id+'&status='+1,
+            success: function(data){
+                $('.notifications').append(data);
+            }
+        });
+    });
+    
+    $('.comment_update_cancel').live('click', function(){
+        var id = $(this).attr('data-cid');
+        $('#nc'+id).trigger('click');
+    });
+    
+    $('.text_comment, a.u_ed, a.m_ed').live('click', function(){
+        var id = $(this).parents('tr').attr('data-id');
+        display_edit_fields(id);
+    });
+    
+    function display_edit_fields(id)
+    {
+        $('#nc'+id).trigger('click');
+    }
     
     
 });

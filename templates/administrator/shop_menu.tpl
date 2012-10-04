@@ -6,14 +6,18 @@
                                 <ul class="dropdown-menu">
                                 	<li class="nav-header">{lang('a_orders')}</li>
                                     <li><a href="{$ADMIN_URL}orders/index" class="pjax">Все заказы</a></li>
-                                    <li><a href="{$ADMIN_URL}orderstatuses" class="pjax">Статусы заказов</a></li>
+                                    <li><a href="{$ADMIN_URL}orderstatuses">Статусы заказов</a></li>
                                     <li class="nav-header">{lang('a_callbacks')}</li>
-                                    <li><a href="{$ADMIN_URL}callbacks" class="pjax">Колбеки</a></li>
-                                    <li><a href="{$ADMIN_URL}callbacks/statuses" class="pjax">Статусы колбеков</a></li>
-                                    <li><a href="{$ADMIN_URL}callbacks/themes" class="pjax">Темы колбеков</a></li>
-                                    <li class="nav-header">Прочее</li>
-                                    <li><a href="{$ADMIN_URL}notifications" class="pjax">Сообщения о появлении</a></li>
-                                    <li><a href="#">Комментарии</a></li>
+                                    <li><a href="{$ADMIN_URL}callbacks">Колбеки</a></li>
+                                    <li><a href="{$ADMIN_URL}callbacks/statuses">Статусы колбеков</a></li>
+                                    <li><a href="{$ADMIN_URL}callbacks/themes">Темы колбеков</a></li>
+                                    <li class="nav-header">{lang('a_notifications')}</li>
+                                    <li><a href="{$ADMIN_URL}notifications">Сообщения о появлении</a></li>
+                                    <li><a href="{$ADMIN_URL}notificationstatuses/index">Статусы о появлении</a></li>
+                                    <li class="nav-header">Прочее</li>                                  
+                                    <li><a href="/admin/components/cp/comments">Комментарии</a></li>
+
+
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -59,6 +63,7 @@
                                     <li><a href="/admin/components/run/shop/discounts/index" class="pjax">Скидки</a></li>
                                     <li><a href="/admin/components/run/shop/comulativ/index" class="pjax">Накопительние скидки</a></li>
                                     <li><a href="/admin/components/run/shop/gifts" class="pjax">Подарочные сертификаты</a></li>
+                                    <li><a href="/admin/components/run/shop/customfields" class="pjax">Дополнительные поля</a></li>
                                 </ul>
                             </li>
                         </ul>

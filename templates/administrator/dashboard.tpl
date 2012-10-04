@@ -155,7 +155,7 @@
                                             <span style="font-size:11px;">{date('d-m-Y H:i', $c.date)}</span>
                                             <br/>
                                             <i>{$c.user_name}:</i>
-                                            <a class="pjax" href="/admin/components/cp/comments/edit/{$c.id}">
+                                            <a class="pjax" href="/admin/components/cp/comments">
                                                 {truncate($c.text, 50, '...')}
                                             </a>
                                         </td>
