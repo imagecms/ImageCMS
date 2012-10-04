@@ -1,7 +1,7 @@
 @charset 'utf-8';
 *{margin: 0; padding: 0; outline: none; vertical-align: baseline;outline: none;}
 a img{border: 0;display: inline-block;}
-img{max-width: 100%;}
+img{max-width: 100%;max-height: 100%;}
 html{height: 100%}
 body{height: 100%; background: #fff; font-family: Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;font-size: 12px;line-height: 1.5;}
 input, select, textarea{ font-family: Arial, Helvetica, sans-serif; font-size: 12px;}
@@ -302,12 +302,14 @@ a.jspArrowLeft{background-position: 0 -15px;}
 .news p{color: #707070;margin: 7px 0 22px;}
 .date{color:#fff;font-size: 11px;background-color: #999;padding: 0 1px 0 4px;margin-left: 6px;line-height: 1.6;display: inline-block;height: 17px;}
 
-.brand {margin: 23px 0 43px;padding-bottom: 36px;}
-.brand a{display: block;}
-.brand .prev,.brand .next{width: 25px;height: 24px;margin-top: -12px;padding: 0;}
+.brand .carusel{width: 936px;}
+.brand {margin: 23px 0 43px;padding-bottom: 36px;text-align:center;}
+.brand .prev,.brand .next{width: 25px;height: 24px;margin-top: -22px;padding: 0;display:none;}
 .brand .next{right: 0px;background-position: 0 -70px;}
 .brand .prev{left: 0px;background-position: 0 -45px;}
-.brand li{margin-right: 36px;width: 120px;padding-top: 20px;float: left;}
+.brand li{margin-right: 36px;width: 120px;padding-top: 20px;display:inline-block;float:none !important;vertical-align: middle;}
+.brand a{display:block;}
+.brand img{max-height:100%;}
 .carousel_js .prev, .carousel_js .next{display: none;} 
 
 .filter{width: 220px;float: left;background-color: #f2f2f2;padding-bottom: 10px;}
