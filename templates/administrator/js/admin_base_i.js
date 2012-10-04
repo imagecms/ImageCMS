@@ -566,6 +566,30 @@ $(document).ready(function(){
         $('#nc'+id).trigger('click');
     }
     
+    $('#translateCategoryTitle').live('click', function(){
+        var str = $('#inputName').attr('value');
+        $.ajax({
+            type:   'post',
+            url:    '/admin/components/run/shop/categories/ajax_translit',
+            data:   'str='+str,
+            success: function(data){
+                $('#inputUrl').attr('value', data);
+            }
+        });
+    });
+    
+    $('.cat_change_active').live('click', function(){
+        var id = $(this).attr('data-id');
+        $.ajax({
+            type:   "post",
+            url:    '/admin/components/run/shop/categories/changeActive',
+            data:   'id='+id,
+            success: function(data){
+                $('.notifications').append(data);
+            }
+        });
+    });
+    
     
 });
 
