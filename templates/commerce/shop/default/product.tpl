@@ -344,7 +344,6 @@
                         {foreach $kid->getShopKitProducts() as $coompl}
                             {$ap = $coompl->getSProducts()}
                             {$kp = currency_convert($ap->getFirstVariant()->getPrice(), $ap->getFirstVariant()->getCurrency())}
-                            <div>
                                 <div class="f_l smallest_item">                                        
                                     <div class="photo_block">
                                         <a href="{shop_url('product/' . $ap->getUrl())}">
@@ -467,7 +466,7 @@
             {$sim_prod = currency_convert($sp->firstvariant->getPrice(), $sp->firstvariant->getCurrency())}
             {$style = productInCart($cart_data, $sp->getId(), $sp->firstVariant->getId(), $sp->firstVariant->getStock())}
             <li>
-                <div class="f_l smallest_item {if $sp->firstvariant->getstock()==0}not_avail{/if}">
+                <div class="smallest_item {if $sp->firstvariant->getstock()==0}not_avail{/if}">
                     <div class="photo_block">
                         <a href="{site_url('shop/product/'.$sp->getId())}">
                             <img src="{productImageUrl($sp->getSmallModImage())}"/>

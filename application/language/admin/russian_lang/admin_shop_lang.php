@@ -464,7 +464,7 @@
     $lang['a_product_kits_review'] = 'Просмотр наборов продуктов';
     $lang['a_active_category'] = 'Активная';
     $lang['a_empty_category_list'] = 'Список категорий пустой';
-    $lang['a_user_create'] = 'Создание пользователя';
+    $lang['a_user_create'] = 'Создать пользователя';
     $lang['a_users_list'] = 'Список пользователей';
     $lang['a_total_users'] = 'Всего пользователей';
     $lang['a_create_additional_field'] = 'Создание дополнительного поля';

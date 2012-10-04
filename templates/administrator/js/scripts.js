@@ -68,12 +68,12 @@ $(document).ready(function(){
                 return $helper;
             },
             stop: function(){
-            	var chFn = $('.sortable').data('chfunction');
-            	console.log(typeof chFn);
-            	if (chFn)
-            		return eval(chFn+'()');
-            	else
-            		return false;
+                var chFn = $('.sortable').data('chfunction');
+                console.log(typeof chFn);
+                if (chFn)
+                    return eval(chFn+'()');
+                else
+                    return false;
             }
         });
     }
@@ -483,15 +483,51 @@ $(document).ready(function(){
     //list filter
     
     $('.listFilterForm').live('change', function(){
-    	$('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
-    });
+        $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
+        $('.listFilterSubmitButton').focus();
+    })
     
     $('.listFilterSubmitButton').live('click', function(){
-    	if (!$(this).attr('disabled')  && !$(this).hasClass('disabled'))
-    	{
-    		$('.listFilterForm').ajaxSubmit({target: '#mainContent'});
-    	}
+        if (!$(this).attr('disabled')  && !$(this).hasClass('disabled'))
+        {
+            $('.listFilterForm').ajaxSubmit({
+                target: '#mainContent'
+            });
+        }
+    });
+    if ($.exists('#usersDatas')) $('#usersDatas').typeahead({
+        source:usersDatas
     });
     
+    
+    
+//    $('[data-provide="typeahead"]').on('focus', function(){
+//        $(this).on('keyup', function(event){
+//            var key, keyChar;
+//            if(!event) var event = window.event;
+//
+//            if (event.keyCode) key = event.keyCode;
+//            else if(event.which) key = event.which;
+//            
+//            var active_drop = $('.typeahead .active');
+//            var first_drop = $('.typeahead li:first');
+//            var last_drop = $('.typeahead li:last');
+//            
+//            if (key == 40) {
+//                if (!last_drop.hasClass('active')) active_drop.removeClass('active').next().addClass('active');
+//                else {
+//                    first_drop.addClass('active');
+//                    last_drop.removeClass('active');
+//                }
+//            }
+//            if (key == 38) {
+//                if (!first_drop.hasClass('active')) active_drop.removeClass('active').prev().addClass('active');
+//                else {
+//                    first_drop.removeClass('active');
+//                    last_drop.addClass('active');
+//                }
+//            }
+//        })
+//    })
     
 });
