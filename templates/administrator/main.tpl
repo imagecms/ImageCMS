@@ -189,8 +189,9 @@
         <script src="/js/jqupload/js/main.js" type="text/javascript"></script>
         <script src="/js/jqupload/js/jquery.fileupload-ui.js" type="text/javascript"></script>
         
-        <script src="{$THEME}/js/scripts.js" type="text/javascript"></script>
         <script src="{$THEME}/js/functions.js" type="text/javascript"></script>
+        <script src="{$THEME}/js/scripts.js" type="text/javascript"></script>
+        
         <script src="{$THEME}/js/admin_base_i.js" type="text/javascript"></script>        
         <script src="{$THEME}/js/admin_base_m.js" type="text/javascript"></script>        
         <script src="{$THEME}/js/admin_base_v.js" type="text/javascript"></script>        
