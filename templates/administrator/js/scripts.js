@@ -47,7 +47,7 @@ function initAdminArea(){
     else $('.myTab li.active a').click();
     
     //  drop search
-    $('.typeahead').typeahead()
+    $('.typeahead').typeahead();
     
     //  tooltip
     $('[data-rel="tooltip"], [rel="tooltip"]').tooltip();
@@ -492,15 +492,18 @@ function initAdminArea(){
     
     //list filter
     
-    $('#usersDatas').typeahead({source:usersDatas});
+    $('#usersDatas').autocomplete({source:usersDatas});
     
     $('#ordersFilterProduct').autocomplete({
     	source: productsDatas,
-    	select: function (ui, event)
+    	select: function (event, ui)
     	{
-    		console.log(ui.item)
-    		//$('#ordersFilterProduct').val()
-    	}
+    		prodName = ui.item.label;
+    		//console.log(prodName);
+    		$('#ordersFilterProdId').val(ui.item.value);
+    		//$('#ordersFilterProduct').val(ui.originalEvent.target.innerText)
+    	},
+    	close: function(){ $('#ordersFilterProduct').val(prodName); }
     });
     
     $('.listFilterForm').live('focus', function(){
