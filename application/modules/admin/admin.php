@@ -30,7 +30,7 @@ class Admin extends MY_Controller {
         $this->lib_admin->init_settings();
 		
 
-		//$this->output->enable_profiler(true);
+// 		$this->output->enable_profiler(true);
 	}
 
 
