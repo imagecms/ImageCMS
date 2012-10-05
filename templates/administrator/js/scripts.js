@@ -4,7 +4,16 @@ $.exists = function(selector) {
 $.exists_nabir = function(nabir){
     return (nabir.length > 0);
 }
-$(document).ready(function(){
+
+$(document).ajaxComplete( function(event, XHR, ajaxOptions){
+    if (ajaxOptions.url != "/admin/components/run/shop/notifications/getAvailableNotification")
+        initAdminArea();
+});
+
+function initAdminArea(){
+	
+    console.log('initialising of administration area started');
+    var startExecTime = Date.now();
     //  popover "info"
     $('.buy_prod').each(function(){
         var $this = $(this);
@@ -38,7 +47,7 @@ $(document).ready(function(){
     else $('.myTab li.active a').click();
     
     //  drop search
-    $('.typeahead').typeahead()
+    $('.typeahead').typeahead();
     
     //  tooltip
     $('[data-rel="tooltip"], [rel="tooltip"]').tooltip();
@@ -92,6 +101,7 @@ $(document).ready(function(){
     
     //my
     $('html').live('click', function(event) {
+        //$('*').popover('hide');
         if($(event.target).filter('.popover')[0]==undefined && $(event.target).parents('.popover')[0]==undefined && $(event.target).filter('.buy_prod')[0]==undefined && $(event.target).parents('.buy_prod')[0]==undefined && $(event.target).filter('.popover_ref')[0]==undefined && $(event.target).parents('.popover_ref')[0]==undefined){
             $(this).find('.popover').popover('hide');
             $(this).find('.buy_prod').popover('hide');
@@ -481,11 +491,29 @@ $(document).ready(function(){
     
     
     //list filter
-    
+   
     $('.listFilterForm').live('change', function(){
         $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
         $('.listFilterSubmitButton').focus();
     })
+
+    //    $('#usersDatas').autocomplete({source:usersDatas});
+    
+    //    $('#ordersFilterProduct').autocomplete({
+    //    	source: productsDatas,
+    //    	select: function (event, ui)
+    //    	{
+    //    		prodName = ui.item.label;
+    //    		//console.log(prodName);
+    //    		$('#ordersFilterProdId').val(ui.item.value);
+    //    		//$('#ordersFilterProduct').val(ui.originalEvent.target.innerText)
+    //    	},
+    //    	close: function(){ $('#ordersFilterProduct').val(prodName); }
+    //    });
+    
+    $('.listFilterForm').live('focus', function(){
+        $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
+    });
     
     $('.listFilterSubmitButton').live('click', function(){
         if (!$(this).attr('disabled')  && !$(this).hasClass('disabled'))
@@ -498,9 +526,8 @@ $(document).ready(function(){
     if ($.exists('#usersDatas')) $('#usersDatas').typeahead({
         source:usersDatas
     });
-    
-    
-    
+    if ($.exists('#wrapper_gistogram')) gistogram(); 
+        
 //    $('[data-provide="typeahead"]').on('focus', function(){
 //        $(this).on('keyup', function(event){
 //            var key, keyChar;
@@ -530,4 +557,9 @@ $(document).ready(function(){
 //        })
 //    })
     
-});
+};
+//    console.log('initialising of administration area ended');
+//    console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.")
+//}
+//
+$(document).ready(initAdminArea());

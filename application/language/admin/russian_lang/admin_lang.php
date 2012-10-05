@@ -46,7 +46,7 @@ $lang['a_W_G'] = 'G.Вэбмастер';
 $lang['a_Y_W'] = 'Я.Вэбмастер';
 $lang['a_site_offline_help'] = 'Сайт будет доступен только для Администратора';
 $lang['a_Y_W'] = 'Я.Вэбмастер';
-$lang['a_saves'] = 'Сохранить';
+$lang['a_saves'] = 'Сохранены';
 $lang['a_us_in_admin'] = 'Пользователь';
 $lang['a_d_m_admin'] = 'Дата/час';
 $lang['a_action_admin'] = 'Действие';
@@ -215,6 +215,11 @@ $lang['a_cats'] = 'Категорий';
 $lang['a_comments'] = 'Комментариев';
 $lang['a_last_comm'] = 'Последние комментарии';
 $lang['a_cms_news'] = 'Новости ImageCMS.net';
+
+//charts
+$lang['a_days'] = 'Дни';
+$lang['a_sum_orders'] = 'Сумма заказов';
+$lang['a_count_orders'] = 'Количество заказов';
 
 //desktop.tpl
 $lang['a_controll_panel'] = 'Панель Управления';

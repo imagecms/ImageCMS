@@ -57,7 +57,10 @@ $lang['a_ps'] = 'Pcs';
 $lang['a_del_o_met'] = 'Paid';
 $lang['a_purch_product_c'] = 'Purchased Product';
 
-
+//charts
+$lang['a_days'] = 'Days';
+$lang['a_sum_orders'] = 'The amount of orders';
+$lang['a_count_orders'] = 'Number of Orders';
 
 //advanced search
 $lang['a_search_pages'] = 'Page search'; 
