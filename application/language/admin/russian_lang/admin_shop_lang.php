@@ -18,6 +18,7 @@
     $lang['gen_desc']		=	'Сгенерировать описание';
     $lang['gen_key_words']	=	'Сгенерировать ключевые слова';
     $lang['main_tpl']		=	'Главный шаблон';
+    $lang['a_main_a']		= 	'Главная';
     $lang['by_default']		=	'По умолчанию';
     $lang['page_tpl']		=	'Шаблон Страницы';
     $lang['page_view']		=	'Просмотр страницы';
@@ -54,7 +55,7 @@
     $lang['a_name']             =	'Название';
     $lang['a_image']            =	'Изображение';
     $lang['a_add']              =	'Добавить';
-    $lang['a_create']           =	'Создание';
+    $lang['a_create']           =	'Создать';
     $lang['a_created']          =	'Создан';
     $lang['a_url']              =	'URL';
     $lang['a_ip_addres_1c']              =	'IP Адрес сервера 1С';
@@ -73,7 +74,7 @@
     $lang['a_footer_save_edit'] =	'Сохранить и редактировать';
     $lang['a_footer_save_exit'] =	'Сохранить и выйти';
     $lang['a_footer_save']      =	'Сохранить';
-    $lang['a_save']             =	'Сохранены';
+    $lang['a_save']             =	'Сохранить';
     $lang['a_edit']             =	'Редактирование';
     $lang['a_ID']               =	'ID';
     $lang['a_empty_brand']      =	'Список брендов пустой';
@@ -146,6 +147,7 @@
     $lang['a_total']            =	'Количество';
     $lang['a_changed']          =	'Изменено';
     $lang['a_change']          =	'Изменить';
+    $lang['a_change_status']    =	'Изменить статус';
     $lang['a_request']          =	'Запрос';
     $lang['a_about']            =	'об';
     $lang['a_abandoned']        =	'Оставлен';
@@ -155,8 +157,9 @@
     $lang['a_product']          =	'Товар';
     $lang['a_products']         =	'Продукт';
     $lang['a_orders']           =	'Заказы';
-    $lang['a_orders_']           =	'заказов';
-    $lang['a_order']           =	'Заказы';
+    $lang['a_orders_list']		=	'Список завазов'; 
+    $lang['a_orders_']          =	'заказов';
+    $lang['a_order']           	=	'Заказы';
     $lang['a_request_notification']=	'Запросы об уведомлении';
     $lang['a_product_no_icon']  =	'Товары без картинок';
     $lang['a_callback']         =	'Callback';

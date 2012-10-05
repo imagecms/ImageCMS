@@ -171,15 +171,15 @@ table.mceLayout{ border-radius: 3px; overflow: hidden;}
 a.mceButton {border-radius: 2px;}
 .defaultSkin a.mceButtonActive, .defaultSkin a.mceButtonSelected, .defaultSkin a.mceButtonEnabled:hover
 {
-	border: 1px solid #008FE8 !important;
-	background-color: #C2E0E0 !important;
+    border: 1px solid #008FE8 !important;
+    background-color: #C2E0E0 !important;
 }
 
 .defaultSkin table.mceSplitButtonEnabled:hover a.mceAction, .defaultSkin .mceSplitButtonHover a.mceAction, .defaultSkin .mceSplitButtonSelected a.mceAction, .defaultSkin table.mceSplitButtonEnabled:hover a.mceOpen, .defaultSkin .mceSplitButtonHover a.mceOpen, .defaultSkin .mceSplitButtonSelected a.mceOpen
 {
-	border-color: #008FE8 !important;
-	background-color: #C2E0E0 !important;
-	border-right: 0;
+    border-color: #008FE8 !important;
+    background-color: #C2E0E0 !important;
+    border-right: 0;
 }
 
 /**/
@@ -252,12 +252,16 @@ table p{margin: 0;}
 .lev_1, .frame_level .frame_level .lev{overflow: hidden;text-overflow: ellipsis;}
 .frame_level .frame_level .frame_level .lev{padding-left: 45px !important;}
 .frame_level .frame_level .frame_level .frame_level .lev{padding-left: 65px !important;}
+.frame_level .frame_level .frame_level .frame_level .frame_level .lev{padding-left: 85px !important;}
+.frame_level .frame_level .frame_level .frame_level .frame_level .frame_level .lev{padding-left: 105px !important;}
 
 .frame_level .frame_level{display: none;}
 .frame_level td, .frame_level > div{background-color: #f2fff2 !important;}
 .frame_level .frame_level td, .frame_level .frame_level > div{background-color: #e6f8ff !important;}
 .frame_level .frame_level .frame_level td, .frame_level .frame_level .frame_level > div{background-color: #f9f9f9 !important;}
-.frame_level .frame_level .frame_level .frame_level td, .frame_level .frame_level .frame_level .frame_level > div{background-color: #ffffff !important;}
+.frame_level .frame_level .frame_level .frame_level td, .frame_level .frame_level .frame_level .frame_level > div{background-color: #fff5f5 !important;}
+.frame_level .frame_level .frame_level .frame_level .frame_level td, .frame_level .frame_level .frame_level .frame_level .frame_level > div{background-color: #fffafa !important;}
+.frame_level .frame_level .frame_level .frame_level .frame_level .frame_level td, .frame_level .frame_level .frame_level .frame_level .frame_level .frame_level > div{background-color: #ffffff !important;}
 .frame_level:hover td{background-color: whiteSmoke !important;}
 
 tr.active .patch_disabled{z-index: 0;}
@@ -333,3 +337,8 @@ tr.active a.u_ed{display: none;}
 tr.active a.m_ed{display: none;}
 .notifications{z-index: 100;}
 .alert-error{display: inline-block;}
+
+.form-horizontal .help-block{margin-top: 4px;}
+.controls > input[type="checkbox"], .controls > input[type="radio"]{margin-top: 6px;}
+.controls > label{clear: none;}
+.controls > label:first-child{margin-top: 1px;}
