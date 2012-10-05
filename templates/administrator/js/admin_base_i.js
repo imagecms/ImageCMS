@@ -233,9 +233,25 @@ $(document).ready(function(){
             $.ajax({
                 type: 'post',
                 data: 'id='+currency_id,
+                dataType : "json",
                 url:  '/admin/components/run/shop/currencies/delete',
-                success: function(data){
-                    $('.notifications').append(data);
+                success: function(obj){
+                    $('.notifications').append(obj.response);
+                    if(obj.recount){
+                        if(confirm('Валюта используется в продуктах. Произвести перещёт относительно главной валюты?')){
+                            $.ajax({
+                                type: "post",
+                                data: "id="+obj.id,
+                                url:  '/admin/components/run/shop/currencies/recount',
+                                success: function(data){
+                                    $('.notifications').append(data);
+                                }
+                            });
+                        }
+                    }
+                    if(obj.success){
+                        $('#currency_tr'+currency_id).remove();
+                    }
                 }
             });
         }
@@ -589,6 +605,26 @@ $(document).ready(function(){
             }
         });
     });
+    
+    $('#create_tpl').live('click', function(){
+        var name = prompt('Введите название шаблона', '');
+        if (name!=null && name!=""){
+            $.ajax({
+                type:   "post",
+                dataType: "json",
+                url:    "/admin/components/run/shop/categories/create_tpl",
+                data:   "filename="+name,
+                success: function(obj){
+                    $('.notifications').append(obj.responce);
+                    if(obj.result){
+                        $('#inputTemplateCategory').attr('value', name);
+                    }
+                }
+            });
+        }
+    });
+    
+    $('#inputTemplateCategory').autocomplete({source:tpls});
     
     
 });
