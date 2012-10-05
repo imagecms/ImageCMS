@@ -42,8 +42,6 @@ if (!function_exists('check_admin_redirect')) {
     }
 
     function create_language_select($languages, $locale, $url) {
-//        $locale = getDefaultLanguage();
-//        $locale = $locale['identif'];
         if (count($languages) > 1) {
             $html =
                     "<div class='dropdown d-i_b'>";
