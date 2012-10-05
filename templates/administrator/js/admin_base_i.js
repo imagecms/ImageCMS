@@ -590,6 +590,26 @@ $(document).ready(function(){
         });
     });
     
+    $('#create_tpl').live('click', function(){
+        var name = prompt('Введите название шаблона', '');
+        if (name!=null && name!=""){
+            $.ajax({
+                type:   "post",
+                dataType: "json",
+                url:    "/admin/components/run/shop/categories/create_tpl",
+                data:   "filename="+name,
+                success: function(obj){
+                    $('.notifications').append(obj.responce);
+                    if(obj.result){
+                        $('#inputTemplateCategory').attr('value', name);
+                    }
+                }
+            });
+        }
+    });
+    
+    $('#inputTemplateCategory').autocomplete({source:tpls});
+    
     
 });
 
