@@ -510,6 +510,21 @@ function initAdminArea(){
     //    	},
     //    	close: function(){ $('#ordersFilterProduct').val(prodName); }
     //    });
+    if (window.hasOwnProperty('usersDatas'))
+    	$('#usersDatas').autocomplete({source:usersDatas});
+    	
+    if (window.hasOwnProperty('ordersFilterProduct'))
+    $('#ordersFilterProduct').autocomplete({
+    	source: productsDatas,
+    	select: function (event, ui)
+    	{
+    		prodName = ui.item.label;
+    		//console.log(prodName);
+    		$('#ordersFilterProdId').val(ui.item.value);
+    		//$('#ordersFilterProduct').val(ui.originalEvent.target.innerText)
+    	},
+    	close: function(){ $('#ordersFilterProduct').val(prodName); }
+    });
     
     $('.listFilterForm').live('focus', function(){
         $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
@@ -526,6 +541,7 @@ function initAdminArea(){
     if ($.exists('#usersDatas')) $('#usersDatas').typeahead({
         source:usersDatas
     });
+
     if ($.exists('#wrapper_gistogram')) gistogram(); 
         
 //    $('[data-provide="typeahead"]').on('focus', function(){
@@ -562,4 +578,10 @@ function initAdminArea(){
 //    console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.")
 //}
 //
+ 
+    initTinyMCE();
+    
+    console.log('initialising of administration area ended');
+    console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.");
+
 $(document).ready(initAdminArea());
