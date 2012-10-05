@@ -254,7 +254,6 @@ table p{margin: 0;}
 .frame_level .frame_level .frame_level .frame_level .lev{padding-left: 65px !important;}
 .frame_level .frame_level .frame_level .frame_level .frame_level .lev{padding-left: 85px !important;}
 .frame_level .frame_level .frame_level .frame_level .frame_level .frame_level .lev{padding-left: 105px !important;}
-
 .frame_level .frame_level{display: none;}
 .frame_level td, .frame_level > div{background-color: #f2fff2 !important;}
 .frame_level .frame_level td, .frame_level .frame_level > div{background-color: #e6f8ff !important;}
@@ -262,6 +261,8 @@ table p{margin: 0;}
 .frame_level .frame_level .frame_level .frame_level td, .frame_level .frame_level .frame_level .frame_level > div{background-color: #fff5f5 !important;}
 .frame_level .frame_level .frame_level .frame_level .frame_level td, .frame_level .frame_level .frame_level .frame_level .frame_level > div{background-color: #fffafa !important;}
 .frame_level .frame_level .frame_level .frame_level .frame_level .frame_level td, .frame_level .frame_level .frame_level .frame_level .frame_level .frame_level > div{background-color: #ffffff !important;}
+.frame_level:hover td{background-color: whiteSmoke !important;}
+.frame_level .frame_level .frame_level .frame_level td, .frame_level .frame_level .frame_level .frame_level > div{background-color: #ffffff !important;}
 .frame_level:hover td{background-color: whiteSmoke !important;}
 
 tr.active .patch_disabled{z-index: 0;}
