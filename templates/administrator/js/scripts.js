@@ -491,9 +491,10 @@ function initAdminArea(){
     
     
     //list filter
-    
-    $('#usersDatas').autocomplete({source:usersDatas});
-    
+    if (window.hasOwnProperty('usersDatas'))
+    	$('#usersDatas').autocomplete({source:usersDatas});
+    	
+    if (window.hasOwnProperty('ordersFilterProduct'))
     $('#ordersFilterProduct').autocomplete({
     	source: productsDatas,
     	select: function (event, ui)
@@ -516,9 +517,11 @@ function initAdminArea(){
     		$('.listFilterForm').ajaxSubmit({target: '#mainContent'});
     	}
     });
+ 
+    initTinyMCE();
     
     console.log('initialising of administration area ended');
-    console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.")
+    console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.");
 }
 
 $(document).ready(initAdminArea());
