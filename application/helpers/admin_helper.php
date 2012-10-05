@@ -41,4 +41,34 @@ if (!function_exists('check_admin_redirect')) {
         return $new_arr;
     }
 
+    function create_language_select($languages, $locale, $url) {
+//        $locale = getDefaultLanguage();
+//        $locale = $locale['identif'];
+        if (count($languages) > 1) {
+            $html =
+                    "<div class='dropdown d-i_b'>";
+            foreach ($languages as $language) {
+                if ($language['identif'] == $locale) {
+                    $html .= "<a class='btn dropdown-toggle btn-small' data-toggle='dropdown' data-lan='" . $language['identif'] . " href='#'>";
+                    $html .= $language['lang_name'];
+                    $locale = $language['identif'];
+                    $html .= "<input type='hidden' name='Locale' value='" . $language['identif'] . "'/>";
+                    $html .= "<span class='caret'></span>";
+                    $html .= "</a>";
+                }
+            }
+            $html .= "<ul class='dropdown-menu'>";
+            foreach ($languages as $language) {
+                if ($language['identif'] != $locale) {
+                    $html .= "<li>";
+                    $html .= "<a href='" . $url."/". $language['identif'] . "' class='pjax'>" . $language['lang_name'] . "</a>";
+                    $html .= "</li>";
+                }
+            }
+            if (count($languages) > 1)
+                $html .= "</ul></div>";
+        }
+        return $html;
+    }
+
 }
