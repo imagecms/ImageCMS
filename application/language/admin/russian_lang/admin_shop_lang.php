@@ -55,7 +55,7 @@
     $lang['a_name']             =	'Название';
     $lang['a_image']            =	'Изображение';
     $lang['a_add']              =	'Добавить';
-    $lang['a_create']           =	'Создание';
+    $lang['a_create']           =	'Создать';
     $lang['a_created']          =	'Создан';
     $lang['a_url']              =	'URL';
     $lang['a_ip_addres_1c']              =	'IP Адрес сервера 1С';
@@ -74,7 +74,7 @@
     $lang['a_footer_save_edit'] =	'Сохранить и редактировать';
     $lang['a_footer_save_exit'] =	'Сохранить и выйти';
     $lang['a_footer_save']      =	'Сохранить';
-    $lang['a_save']             =	'Сохранены';
+    $lang['a_save']             =	'Сохранить';
     $lang['a_edit']             =	'Редактирование';
     $lang['a_ID']               =	'ID';
     $lang['a_empty_brand']      =	'Список брендов пустой';
@@ -467,7 +467,7 @@
     $lang['a_product_kits_review'] = 'Просмотр наборов продуктов';
     $lang['a_active_category'] = 'Активная';
     $lang['a_empty_category_list'] = 'Список категорий пустой';
-    $lang['a_user_create'] = 'Создание пользователя';
+    $lang['a_user_create'] = 'Создать пользователя';
     $lang['a_users_list'] = 'Список пользователей';
     $lang['a_total_users'] = 'Всего пользователей';
     $lang['a_create_additional_field'] = 'Создание дополнительного поля';

@@ -173,9 +173,7 @@ var orders = new Object({
 	},
 
 	deleteOrders:function (){
-		
 		$('.modal').modal();
-		
 	},
 
 	deleteOrdersConfirm:function ()
@@ -330,5 +328,24 @@ var callbacks = new Object({
 	}
 });
 
+var shopCategories = new Object({
+	deleteCategories:function (){
+		$('.modal').modal();
+	},
+	deleteCategoriesConfirm:function ()
+	{
+		var ids = new Array();
+		$('input[name=id]:checked').each(function(){
+			ids.push($(this).val());
+		});
+//		console.log(ids);
+		$.post('/admin/components/run/shop/categories/delete', {id:ids}, function(data){
+			$('#mainContent').after(data);
+			$.pjax({url:window.location.pathname, container:'#mainContent'});
+			});
+		$('.modal').modal('hide');
+		return true;
+	}
+});
 
 
