@@ -607,8 +607,9 @@ $(document).ready(function(){
             });
         }
     });
-    
-    $('#inputTemplateCategory').autocomplete({source:tpls});
+
+    if (window.hasOwnProperty('tpls'))
+    	$('#inputTemplateCategory').autocomplete({source:tpls});
     
     
 });
