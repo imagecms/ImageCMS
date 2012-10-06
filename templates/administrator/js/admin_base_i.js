@@ -291,7 +291,7 @@ $(document).ready(function(){
         var $this = $(this);
         if($this.hasClass('disabled'))
         {
-            alert('Сначала выберите брэнд для удаления');
+            return false;
         }else
         {
             if(confirm('Удалить брэнд?'))
@@ -327,16 +327,20 @@ $(document).ready(function(){
     }
     
     $('#del_sel_role').live('click', function(){
-        if(confirm('Удалить роль?'))
-        {
-            var arr = getcheckedvalues();
-            $.post('/admin/components/run/shop/rbac/role_delete',{
-                id: arr
-            },
-            function(data){
-                $('.notifications').append(data);
+        if($(this).hasClass('disabled')){
+            return false;
+        }else{
+            if(confirm('Удалить роль?'))
+            {
+                var arr = getcheckedvalues();
+                $.post('/admin/components/run/shop/rbac/role_delete',{
+                    id: arr
+                },
+                function(data){
+                    $('.notifications').append(data);
+                }
+                );
             }
-            );
         }
     });
     
@@ -391,6 +395,9 @@ $(document).ready(function(){
     });
     
     $('#del_sel_group').live('click', function(){
+        if($(this).hasClass('disabled')){
+            return false;
+        }else{
         if(confirm('Удалить группу?'))
         {
             var arr = getcheckedvalues();
@@ -402,9 +409,13 @@ $(document).ready(function(){
             }
             );
         }
+    }
     });
     
     $('#del_sel_priv').live('click', function(){
+        if($(this).hasClass('disabled')){
+            return false;
+        }else{
         if(confirm('Удалить группу?'))
         {
             var arr = getcheckedvalues();
@@ -415,10 +426,13 @@ $(document).ready(function(){
                 $('.notifications').append(data);
             }
             );
-        }
+        }}
     });
     
     $('#del_sel_property').live('click', function(){
+        if($(this).hasClass('disabled')){
+            return false;
+        }else{
         if(confirm('Удалить свойство?'))
         {
             var arr = getcheckedvalues();
@@ -429,7 +443,7 @@ $(document).ready(function(){
                 $('.notifications').append(data);
             }
             );
-        }
+        }}
     });
     
     $('.catfilter').on('change', function(){
@@ -440,6 +454,9 @@ $(document).ready(function(){
     });
     
     $('#del_sel_cert').live('click', function(){
+        if($this.hasClass('disabled')){
+            return false;
+        }else{
         if(confirm('Удалить сертификат(ы)?'))
         {
             var arr = getcheckedvalues();
@@ -450,7 +467,7 @@ $(document).ready(function(){
                 $('.notifications').append(data);
             }
             );
-        }
+        }}
     });
     
     $('#generateButton').live('click', function(){
@@ -478,8 +495,8 @@ $(document).ready(function(){
     
     $('.comment_update').live('click', function(){
         var id = $(this).attr('data-cid');
-//        var user_name = $(this).attr('data-uname');
-//        var user_mail = $(this).attr('data-uemail');
+        //        var user_name = $(this).attr('data-uname');
+        //        var user_mail = $(this).attr('data-uemail');
         var user_name = $('#u_ed'+id).attr('value');
         var user_mail = $('#m_ed'+id).attr('value');
         var status = $(this).attr('data-cstatus');
@@ -494,12 +511,12 @@ $(document).ready(function(){
             success: function(data){
                 //$('.notifications').append(obj.response);
                 $('.notifications').append(data);
-//                if(obj.result === 'success')
-//                {
-////                    $(this).parents('tr').removeClass('active');
-////                    $('#comment_text_editor'+id).css('display', 'none');
-////                    $('#comment_text_holder'+id).html(text).css('display', 'inline');
-//                }
+            //                if(obj.result === 'success')
+            //                {
+            ////                    $(this).parents('tr').removeClass('active');
+            ////                    $('#comment_text_editor'+id).css('display', 'none');
+            ////                    $('#comment_text_holder'+id).html(text).css('display', 'inline');
+            //                }
             }
         });
     });
@@ -625,7 +642,9 @@ $(document).ready(function(){
     });
 
     if (window.hasOwnProperty('tpls'))
-    	$('#inputTemplateCategory').autocomplete({source:tpls});
+        $('#inputTemplateCategory').autocomplete({
+            source:tpls
+        });
     
     
 });
