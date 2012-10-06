@@ -581,7 +581,7 @@ function initAdminArea(){
  
     initTinyMCE();
     
-    console.log('initialising of administration area ended');
-    console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.");
+//    console.log('initialising of administration area ended');
+//    console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.");
 
 $(document).ready(initAdminArea());
