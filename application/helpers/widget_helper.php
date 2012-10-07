@@ -13,10 +13,11 @@
          * @param string $name - widget name
          * @param integer $cache - cache ttl in minutes
          */
-        function widget($name = FALSE, $cache = FALSE)
+        function widget($name = FALSE, $cache = FALSE, $in_data = FALSE)
         {
             $ci =& get_instance(); 
-
+            $ci->template->assign('in_data', $in_data);
+            
             $ci->db->limit(1);
             $query = $ci->db->limit(1)->get_where('widgets', array('name' => $name));
 
@@ -27,9 +28,8 @@
             else
             {
                 return 'Can\'t run widget <b>'.$name.'</b>';
-            }
-
-			if ( ($data = $ci->cache->fetch('widget'.$name, 'widgets')) != FALSE AND $cache != FALSE)
+            }			
+            if ( ($data = $ci->cache->fetch('widget'.$name, 'widgets')) != FALSE AND $cache != FALSE)
             {
                 return $data;
             }
