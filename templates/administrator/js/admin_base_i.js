@@ -516,6 +516,27 @@ $(document).ready(function(){
             }
         });
     });
+    
+    $( "#pmt" ).bind( "sortstop", function(event, ui) {
+        var arr = new Array();
+        $('input[name=ids]').each(function(){
+            arr.push($(this).val());
+        });
+        $.post(
+            '/admin/components/run/shop/paymentmethods/savePositions', 
+            {positions:arr},
+            function(data){
+                $('.notifications').append(data);
+            });
+//        $.ajax({
+//            type:       'post',
+//            data:       'positions='+arr,
+//            url:        '/admin/components/run/shop/savePositions',
+//            success: function(data){
+//                
+//            }
+//        });
+    });
 
 });
 
