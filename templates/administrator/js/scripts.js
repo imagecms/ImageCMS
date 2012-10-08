@@ -8,11 +8,13 @@ $.exists_nabir = function(nabir){
 $(document).ajaxComplete( function(event, XHR, ajaxOptions){
     if (ajaxOptions.url != "/admin/components/run/shop/notifications/getAvailableNotification")
         initAdminArea();
+    $('.tooltip').remove();
+    $('[data-rel="tooltip"], [rel="tooltip"]').tooltip();
 });
 
 function initAdminArea(){
 	
-    console.log('initialising of administration area started');
+    //console.log('initialising of administration area started');
     var startExecTime = Date.now();
     //  popover "info"
     $('.buy_prod').each(function(){
@@ -51,10 +53,6 @@ function initAdminArea(){
     
     //  tooltip
     $('[data-rel="tooltip"], [rel="tooltip"]').tooltip();
-    $('.row-category').tooltip({
-        'title':'перетащите категорию',
-        'placement':'left'
-    });
     //sortable
     if ($.exists('.sortable')) {
         $('.sortable tr').not(':has(tr)').tooltip({
@@ -511,20 +509,24 @@ function initAdminArea(){
     //    	close: function(){ $('#ordersFilterProduct').val(prodName); }
     //    });
     if (window.hasOwnProperty('usersDatas'))
-    	$('#usersDatas').autocomplete({source:usersDatas});
+        $('#usersDatas').autocomplete({
+            source:usersDatas
+        });
     	
     if (window.hasOwnProperty('ordersFilterProduct'))
-    $('#ordersFilterProduct').autocomplete({
-    	source: productsDatas,
-    	select: function (event, ui)
-    	{
-    		prodName = ui.item.label;
-    		//console.log(prodName);
-    		$('#ordersFilterProdId').val(ui.item.value);
-    		//$('#ordersFilterProduct').val(ui.originalEvent.target.innerText)
-    	},
-    	close: function(){ $('#ordersFilterProduct').val(prodName); }
-    });
+        $('#ordersFilterProduct').autocomplete({
+            source: productsDatas,
+            select: function (event, ui)
+            {
+                prodName = ui.item.label;
+                //console.log(prodName);
+                $('#ordersFilterProdId').val(ui.item.value);
+            //$('#ordersFilterProduct').val(ui.originalEvent.target.innerText)
+            },
+            close: function(){
+                $('#ordersFilterProduct').val(prodName);
+            }
+        });
     
     $('.listFilterForm').live('focus', function(){
         $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
@@ -543,6 +545,13 @@ function initAdminArea(){
     });
 
     if ($.exists('#wrapper_gistogram')) gistogram(); 
+    
+    $('.myTab a').on('click', function (e) {
+        $this_href = $(this).attr('href');
+        $(this).siblings().removeClass('active').end().addClass('active');
+    });
+    if (location.hash != '') $("[href="+location.hash+"]").trigger('click');
+    
         
 //    $('[data-provide="typeahead"]').on('focus', function(){
 //        $(this).on('keyup', function(event){
@@ -572,16 +581,15 @@ function initAdminArea(){
 //            }
 //        })
 //    })
-    
 };
 //    console.log('initialising of administration area ended');
 //    console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.")
 //}
 //
  
-    initTinyMCE();
+initTinyMCE();
     
-//    console.log('initialising of administration area ended');
-//    console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.");
+console.log('initialising of administration area ended');
+//console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.");
 
 $(document).ready(initAdminArea());

@@ -224,7 +224,7 @@ $lang['a_count_orders'] = 'Количество заказов';
 //desktop.tpl
 $lang['a_controll_panel'] = 'Панель Управления';
 $lang['a_use_js'] = 'Для использования кабинета администрирования, крайне необходима активация JavaScript!';
-$lang['a_wellcome'] = 'Добро пожаловать';
+$lang['a_wellcome'] = 'Здравствуйте';
 $lang['a_cont'] = 'Содержимое';
 $lang['a_cont_nocat'] = 'Содержимое без категории';
 //$lang['a_create'] = 'Создать';
@@ -574,3 +574,5 @@ $lang['a_widget_creating'] = 'Создание виджета';
 $lang['a_save_an_create_new_w'] = 'Сохранить и создать новый виджет';
 $lang['a_module_name'] = 'Название модуля';
 $lang['a_drug_block'] = 'перетащите блок';
+
+$lang['a_guest'] = 'Гость';

@@ -27,7 +27,16 @@
                     </a>
                     <div class="pull-right span3">
                         <div class="clearfix">
-                            <div class="pull-left m-r_10">Здравствуйте, <a href="#">Admin<i class="my_icon exit_ico"></i></a></div>
+                            <div class="pull-left m-r_10">{lang('a_wellcome')}, 
+                                {if $CI->dx_auth->get_username()}
+                                <a href="/admin/components/run/shop/users/edit/{echo $CI->dx_auth->get_user_id()}">
+                                    {echo $CI->dx_auth->get_username()}
+                                </a>
+                                <a href="/admin/logout"><i class="my_icon exit_ico"></i></a>
+                                {else:}
+                                    {echo lang('a_guest')}
+                                {/if}
+                                </div>
                             <div class="pull-right m-l_10">Просмотр <a href="{$BASE_URL}" target="_blank">сайта <span class="f-s_14">→</span></a></div>
                         </div>
                         <form method="post" action="#">
@@ -47,7 +56,7 @@
                             <a href="/admin/components/run/shop/orders/index" class="btn btn-large" data-title="Заказы" data-rel="tooltip" data-original-title="Заказы">
                                 <i class="icon-bask "></i>
                             </a>
-                            <a href="#" class="btn btn-large" data-title="asdfg" data-rel="tooltip" data-original-title="">
+                            <a href="#" class="btn btn-large" data-title="{lang('a_product_no_icon')}" data-rel="tooltip" data-original-title="">
                                 <i class="icon-report_exists"></i>
                             </a>
                             <a href="#" class="btn btn-large" data-title="Callback" data-rel="tooltip" data-original-title="Callback">
@@ -165,11 +174,11 @@
                         </div>
                     </div>
                     <div class="span4 t-a_c">
-                        Версия: <b>3.01.26</b>
+                        {lang('a_version')}: <b>{$cms_number}</b>
                         <div class="muted">Помогите нам стать еще лучше - <a href="#">сообщите об ошибке</a></div>
                     </div>
                     <div class="span4 t-a_r">
-                        <div class="muted">Copyright © imageCMS 2012</div>
+                        <div class="muted">Copyright © ImageCMS 2012</div>
                         <a href="http://wiki.imagecms.net" target="blank">Документация</a>
                     </div>
                 </div>
@@ -191,7 +200,7 @@
 
         <script src="{$THEME}/js/functions.js" type="text/javascript"></script>
         <script src="{$THEME}/js/scripts.js" type="text/javascript"></script>
-        
+
         <script src="{$THEME}/js/admin_base_i.js" type="text/javascript"></script>        
         <script src="{$THEME}/js/admin_base_m.js" type="text/javascript"></script>        
         <script src="{$THEME}/js/admin_base_v.js" type="text/javascript"></script>        
