@@ -153,7 +153,7 @@ $lang['a_cms_news'] = 'ImageCMS news';
 //desktop.tpl
 $lang['a_controll_panel'] = 'Operation panel';  
 $lang['a_use_js'] = 'To use your personal account, activate JavaScript, please.'; 
-$lang['a_wellcome'] = 'Welcome'; 
+$lang['a_wellcome'] = 'Hello'; 
 $lang['a_cont'] = 'Contents';  
 $lang['a_cont_nocat'] = 'Contents without a category';
 $lang['a_without_cat'] = 'Without a category';  
@@ -318,4 +318,6 @@ $lang['a_widget_creating'] = 'Widget creating';
 $lang['a_save_an_create_new_w'] = 'Save and create new widget';
 $lang['a_module_name'] = 'Module name';
 $lang['a_drug_block'] = 'drug block';
+
+$lang['a_guest'] = 'Guest';
 ?>

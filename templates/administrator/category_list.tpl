@@ -39,7 +39,7 @@
                             {foreach $tree as $item}         
 {if $item.parent_id == "0"}
                                 <div class="frame_level_0 sortable" >                                                                   
-                                    <div class="row-category" >
+                                    <div class="row-category">
                                         <div class="t-a_c">
                                             <span class="frame_label">
                                                 <span class="niceCheck b_n">
