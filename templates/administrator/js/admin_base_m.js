@@ -175,6 +175,9 @@ var delete_function = new Object({
         if($('#module_delete').hasClass('disabled')){
             return false;
         }
+        if($('#del_sel_wid').hasClass('disabled')){
+            return false;
+        }
         $('.modal').modal();
     },
         
