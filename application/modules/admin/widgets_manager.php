@@ -144,12 +144,11 @@ class Widgets_Manager extends MY_Controller {
 
                 $this->lib_admin->log(lang('ac_created_widget').$data['name']);
 
-                if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
-                    echo json_encode(array('result'=> true, 'message'=>'Успех!'));
-                }else{
-                    //showMessage('Виджет создан.');
-                    updateDiv('page', site_url('admin/widgets_manager'));
-                }
+
+                showMessage('Виджет создан.');
+                if($_POST['action'] == 'tomain')
+                    pjax('/admin/widgets_manager/index');
+
             }
         }elseif ($type == 'html') {
 
@@ -176,14 +175,10 @@ class Widgets_Manager extends MY_Controller {
                 $this->lib_admin->log(lang('ac_created_widget').$data['name']);
 
                 $this->db->insert('widgets', $data);
-                
-                
-                if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
-                    echo json_encode(array('result'=> true, 'message'=>'Успех!'));
-                }else{
-                    //showMessage('Виджет создан.');
-                    updateDiv('page', site_url('admin/widgets_manager'));
-                }
+
+                showMessage('Виджет создан.');
+                if($_POST['action'] == 'tomain')
+                    pjax('/admin/widgets_manager/index');
             }
         }
     }
@@ -256,7 +251,8 @@ class Widgets_Manager extends MY_Controller {
                 $this->lib_admin->log(lang('ac_ch_widget').$data['name']);
 
                 showMessage(lang('ac_changes_saved'));
-                return TRUE;
+                if($_POST['action'] == 'tomain')
+                    pjax('/admin/widgets_manager/index');
             }
 
             if($widget['type'] == 'module')
@@ -291,6 +287,8 @@ class Widgets_Manager extends MY_Controller {
 
                 //updateDiv('page', site_url('admin/widgets_manager'));
                 showMessage(lang('ac_changes_saved'));
+                if($_POST['action'] == 'tomain')
+                    pjax('/admin/widgets_manager/index');
             }
         }else{
             show_error(lang('ac_err_wid_not_found'));
@@ -314,7 +312,7 @@ class Widgets_Manager extends MY_Controller {
     {
         cp_check_perm('widget_delete'); 
 
-        $name = $this->input->post('widget_name');
+        $name = $this->input->post('ids');
         $this->db->where_in('name', $name);
         $this->db->delete('widgets');
 

@@ -69,27 +69,6 @@ $(document).ready(function(){
             }
         });
     });
-    
-//    $('#module_delete').live('click', function(){
-//        var $this = $(this);
-//        if($this.hasClass('disabled'))
-//        {
-//            alert('Сначала выберите модуль для удаления');
-//        }
-//        else{
-//            if(confirm('Удалить модуль?')){
-//                var arr = getcheckedvalues();
-//                $.post('/admin/components/deinstall',                          
-//                {
-//                    modules: arr
-//                },
-//                function(data){
-//                    $('.notifications').append(data);
-//                }
-//                );
-//            }
-//        }
-//    });
         
     $( "#mtbl" ).bind( "sortstop", function(event, ui) {
         var rows =  $('#mtbl').children('tr');
@@ -175,28 +154,6 @@ $(document).ready(function(){
     $('#cr_wid_page').live('click', function(){
         var url = '/admin/widgets_manager/create_tpl';
         redirect_url(url);
-    });
-    
-    $('#del_sel_wid').live('click', function(){
-        var $this = $(this);
-        if($this.hasClass('disabled'))
-        {
-            alert('Сначала выберите виджет для удаления');
-        }else
-        {
-            if(confirm('Удалить виджет?'))
-            {
-                var arr = getcheckedvalues();
-                $.post('/admin/widgets_manager/delete',                          
-                {
-                    widget_name: arr
-                },
-                function(data){
-                    $('.notifications').append(data);
-                }
-                );
-            }
-        }
     });
     
     $('#watermark_type').on('change', function(){
@@ -547,6 +504,7 @@ $(document).ready(function(){
         $('#inputTemplateCategory').autocomplete({
             source:tpls
         });
+    
     $('.prop_active').live('click', function(){
         var id = $(this).attr('data-id');
         $.ajax({

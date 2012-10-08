@@ -1,7 +1,3 @@
-<!--<ul class="breadcrumb">
-    <li><a href="#">Главная</a> <span class="divider">/</span></li>
-    <li class="active">Список товаров</li>
-</ul>-->
 <section class="mini-layout">
     <div class="frame_title clearfix">
         <div class="pull-left">
@@ -10,9 +6,9 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-<!--                <a href="{$BASE_URL}admin" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>-->
-                <button type="button" class="btn btn-small action_on submit_form"><i class="icon-ok"></i>{lang('a_saves')}</button>
-                <button type="button" class="btn btn-small action_on submit_an_create"><i class="icon-check"></i>{lang('a_save_an_create_new_w')}</button>
+                <a href="{$BASE_URL}admin/widgets_manager/index/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
+                <button type="button" class="btn btn-small btn-success formSubmit" data-form="#wid_cr_form"><i class="icon-list-alt icon-white"></i>Сохранить</button>
+                <button type="button" class="btn btn-small formSubmit" data-form="#wid_cr_form" data-action="tomain"><i class="icon-check"></i>Сохранить и выйти</button>
             </div>
         </div>                            
     </div>
