@@ -97,6 +97,8 @@ table thead td, table thead th{
     background: linear-gradient(to bottom,  rgba(79,79,82,1) 0%,rgba(65,65,67,1) 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4f4f52', endColorstr='#414143',GradientType=0 ); /* IE6-8 */
 }
+table thead td a, table thead th a{color: #fff;}
+table thead td a:hover, table thead th a:hover{color: #aaa;}
 .f_l{float: left !important;}
 .w-s_n-w{white-space: nowrap;}
 .w-s_n{white-space: normal;}
@@ -121,6 +123,8 @@ table thead td, table thead th{
 .nav-tabs.nav-stacked > .active > a{background-color: #cfcfcf !important;}
 
 .frame_label{font-size: 12px;display: inline-block;}
+.frame_label + .frame_label{margin-top: 5px;}
+.controls .frame_label:first-child{margin-top: 2px;}
 label{cursor: pointer;}
 .niceCheck{width: 16px;height: 16px;cursor: pointer;display: inline-block;background-position: -46px 0;position: relative;top: 1px;}
 .niceRadio{width: 17px;height: 17px;cursor: pointer;display: inline-block;background-position: -179px 0;position: relative;top: 1px;}
