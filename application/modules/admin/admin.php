@@ -28,11 +28,10 @@ class Admin extends MY_Controller {
         $this->load->library('lib_admin');
         $this->load->library('lib_category');
         $this->lib_admin->init_settings();
-		
+
 
 // 		$this->output->enable_profiler(true);
-	}
-
+    }
 
     public function index() {
         // Disable license check.
@@ -58,7 +57,7 @@ class Admin extends MY_Controller {
 
         ($hook = get_hook('admin_show_desktop')) ? eval($hook) : NULL;
 
-// 		$this->template->show('desktop', FALSE);
+//        $this->template->show('desktop', FALSE);
         $this->template->show('dashboard', TRUE);
     }
 
@@ -129,7 +128,7 @@ class Admin extends MY_Controller {
 
         $param = $this->input->post('param');
 
-        $this->lib_admin->log(lang('ac_cleaned_cache'));                
+        $this->lib_admin->log(lang('ac_cleaned_cache'));
 
         switch ($param) {
             case 'all':
@@ -147,18 +146,17 @@ class Admin extends MY_Controller {
                 else
                     $message = lang('ac_cache_cleared');
                 break;
-            default: 
-            {
-                $message = 'Ошибка очистки кэша';
-                $result = false;
-            }
+            default: {
+                    $message = 'Ошибка очистки кэша';
+                    $result = false;
+                }
         }
 
         echo json_encode(array(
             'message' => $message,
             'result' => $result,
             'color' => 'r',
-            'filesCount'=> $this->cache->cache_file()));
+            'filesCount' => $this->cache->cache_file()));
     }
 
     public function sidebar_cats() {
