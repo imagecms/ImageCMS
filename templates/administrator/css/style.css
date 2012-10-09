@@ -337,6 +337,7 @@ form .input-xxlarge {width: 530px !important;}
 
 .help-block{margin-left: 0 !important;}
 
+.thumbnail > img{border: 3px solid transparent;}
 .thumbnail > img.sel_template {
     border: 3px solid;
 }
@@ -352,3 +353,8 @@ tr.active a.m_ed{display: none;}
 .controls > input[type="checkbox"], .controls > input[type="radio"]{margin-top: 6px;}
 .controls > label{clear: none;}
 .controls > label:first-child{margin-top: 1px;}
+
+.f-s_0{font-size: 0;}
+.v-a_m{vertical-align: middle;}
+.required{color: #f55;}
+.t-l_a{table-layout: auto;}

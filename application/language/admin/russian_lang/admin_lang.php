@@ -82,6 +82,7 @@ $lang['a_create'] = 'Создать';
 
 //cat_translate.tpl
 $lang['a_cat_translate'] = 'Перевод категории';
+$lang['a_field_translate'] = 'Переводимое поле';
 $lang['a_name'] = 'Название';
 $lang['a_image'] = 'Изображение';
 $lang['a_select_image'] = 'Выбрать Изображение';
