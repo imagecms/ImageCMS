@@ -178,6 +178,15 @@ var delete_function = new Object({
         if($('#del_sel_wid').hasClass('disabled')){
             return false;
         }
+        if($('#del_sel_pm').hasClass('disabled')){
+            return false;
+        }
+        if($('#del_sel_warehouse').hasClass('disabled')){
+            return false;
+        }
+        if($('#del_sel_role').hasClass('disabled')){
+            return false;
+        }
         $('.modal').modal();
     },
         
