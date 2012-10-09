@@ -15,7 +15,7 @@
         <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/ie_7.css" /><![endif]-->
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery-1.7.2.min.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.cycle.all.js"></script>
-        <script type="text/javascript" src="{$SHOP_THEME}/js/jcarousellite_1.0.1.min.js"></script>
+        <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.jcarousel.min.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery-ui-personalized-1.5.2.packed.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/jScrollPane.min.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/cusel-min-2.4.1.js"></script>
@@ -66,6 +66,7 @@
                 </div>
                 <ul class="user_menu">
                     <!--    Show callback's form    -->
+<<<<<<< HEAD
                     <li class="p-l_0">
                         <form action="" method="post" name="currencyChangeForm" id="currencyChangeForm">
                             {lang('s_currency')}: <select class="changeCurrency" name="setCurrency" >
@@ -76,6 +77,22 @@
                             {form_csrf()}
                         </form>
                     </li>
+=======
+                    {if count(get_currencies())>1}
+                        <li class="p-l_0">
+                            <form action="" method="post" name="currencyChangeForm" id="currencyChangeForm">
+                                {lang('s_currency')}: <select class="changeCurrency" name="setCurrency" >
+                                    {foreach get_currencies() as $currency}
+                                        <option {if ShopCore::app()->SCurrencyHelper->additional->getId() == $currency->getId()}selected{/if} value="{echo $currency->getId()}">{echo encode($currency->getName())}</option>
+                                    {/foreach}
+                                </select>
+                                {form_csrf()}
+                            </form>
+                        </li>
+                    {else:}
+                        <li>&nbsp;</li>
+                    {/if}
+>>>>>>> c693c3bf77da62b9bebd79e7e7cc35f7bb1fb916
 
                     <!--    Show callback's form    -->
 
@@ -101,7 +118,7 @@
         </div>
         <div class="footer">
             <div class="center">
-                <div class="carusel_frame brand box_title">
+                <div class="carusel_frame brand box_title carousel_js">
                     <div class="carusel clearfix">
                         <ul>
                             {foreach ShopCore::app()->SBrandsHelper->mostProductBrands(15, TRUE) as $brand}
@@ -146,7 +163,6 @@
                 </div>
             </div>
         </div><!-- footer -->
-
         <div class="h_bg_{whereami()}"></div>
     </body>
 </html>

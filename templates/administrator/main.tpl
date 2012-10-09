@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>{lang('a_controll_panel')} | Image CMS</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="description" content="{lang('a_controll_panel')} - Image CMS" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap.css">
@@ -27,7 +27,16 @@
                     </a>
                     <div class="pull-right span3">
                         <div class="clearfix">
-                            <div class="pull-left m-r_10">Здравствуйте, <a href="#">Admin<i class="my_icon exit_ico"></i></a></div>
+                            <div class="pull-left m-r_10">{lang('a_wellcome')}, 
+                                {if $CI->dx_auth->get_username()}
+                                <a href="/admin/components/run/shop/users/edit/{echo $CI->dx_auth->get_user_id()}">
+                                    {echo $CI->dx_auth->get_username()}
+                                </a>
+                                <a href="/admin/logout"><i class="my_icon exit_ico"></i></a>
+                                {else:}
+                                    {echo lang('a_guest')}
+                                {/if}
+                                </div>
                             <div class="pull-right m-l_10">Просмотр <a href="{$BASE_URL}" target="_blank">сайта <span class="f-s_14">→</span></a></div>
                         </div>
                         <form method="post" action="#">
@@ -39,27 +48,27 @@
                             </div>
                         </form>
                     </div>
-                    
-                    
+
+
                     <div class="btn-group" id="topPanelNotifications">
-                       <div class="span4 d-i_b">
+                        <div class="span4 d-i_b">
 
                             <a href="/admin/components/run/shop/orders/index" class="btn btn-large" data-title="Заказы" data-rel="tooltip" data-original-title="Заказы">
                                 <i class="icon-bask "></i>
                             </a>
-                            <a href="#" class="btn btn-large" data-title="asdfg" data-rel="tooltip" data-original-title="">
+                            <a href="#" class="btn btn-large" data-title="{lang('a_product_no_icon')}" data-rel="tooltip" data-original-title="">
                                 <i class="icon-report_exists"></i>
                             </a>
                             <a href="#" class="btn btn-large" data-title="Callback" data-rel="tooltip" data-original-title="Callback">
                                 <i class="icon-callback "></i>
-                                                            </a>
+                            </a>
                             <a href="#" class="btn btn-large" data-title="Запросы об уведомлении" data-rel="tooltip" data-original-title="Запросы об уведомлении">
                                 <i class="icon-comment_head "></i>
-                                                            </a>
-</div>
+                            </a>
+                        </div>
                     </div>
-                    
-                    
+
+
                 </section>
             </header>
             <div class="frame_nav" id="mainAdminMenu">
@@ -92,7 +101,7 @@
                                     <li><a href="/admin/components/cp/menu" class="ajax_load">{lang('a_control')}</a></li>
                                     <li class="divider"></li>
                                     {foreach $menus as $menu}
-                                        <li><a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="ajax_load">{$menu.main_title}</a></li>
+                                    <li><a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="ajax_load">{$menu.main_title}</a></li>
                                     {/foreach}
 
                                 </ul>
@@ -104,11 +113,11 @@
                                     <li><a href="/admin/mod_search/">{lang('a_search')}</a></li>
                                     <li class="divider returnFalse"></a></li>
                                     {if $components}
-                                        {foreach $components as $component}
-                                            {if $component['installed'] == TRUE AND $component['admin_file'] == 1}
-                                                <li><a href="/admin/components/cp/{$component.com_name}">{$component.menu_name}</a></li>
-                                            {/if}
-                                        {/foreach}
+                                    {foreach $components as $component}
+                                    {if $component['installed'] == TRUE AND $component['admin_file'] == 1}
+                                    <li><a href="/admin/components/cp/{$component.com_name}">{$component.menu_name}</a></li>
+                                    {/if}
+                                    {/foreach}
                                     {/if}
                                 </ul>
                             </li>
@@ -125,12 +134,12 @@
                                     <li><a href="/admin/settings">{lang('a_site_settings')}</a></li>
                                     <li><a href="/admin/languages">{lang('a_languages')}</a></li>
                                     <li><a href="/admin/cache_all">{lang('a_cache')}</a></li>
-<!--                                    <li class="dropdown"><a class="returnFalse arrow-right" href="">{lang('a_cache')}</a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="javascript:delete_cache('all')">{lang('a_clean_all')}</a></li>
-                                            <li><a href="javascript:delete_cache('expried')">{lang('a_clean_old')}</a></li>
-                                        </ul>
-                                    </li>-->
+                                    <!--                                    <li class="dropdown"><a class="returnFalse arrow-right" href="">{lang('a_cache')}</a>
+                                                                            <ul class="dropdown-menu">
+                                                                                <li><a href="javascript:delete_cache('all')">{lang('a_clean_all')}</a></li>
+                                                                                <li><a href="javascript:delete_cache('expried')">{lang('a_clean_old')}</a></li>
+                                                                            </ul>
+                                                                        </li>-->
                                     <li class="divider"></li>
                                     <li><a href="/admin/admin_logs">{lang('a_event_journal')}</a></li>
                                     <li><a href="/admin/backup">{lang('a_backup_copy')}</a></li>
@@ -140,8 +149,8 @@
                         <a class="btn btn-small pull-right btn-info pjax" onclick="loadShopInterface();" href="/admin/components/run/shop/dashboard">Администрировать магазин <span class="f-s_14">→</span></a>
                     </nav>
                 </div>
-                
-            	<div class="container" id="shopAdminMenu"> {include_tpl('shop_menu.tpl')} </div>
+
+                <div class="container" id="shopAdminMenu"> {include_tpl('shop_menu.tpl')} </div>
             </div>
             <div class="container" id="mainContent">
                 {$content}
@@ -165,11 +174,11 @@
                         </div>
                     </div>
                     <div class="span4 t-a_c">
-                        Версия: <b>3.01.26</b>
+                        {lang('a_version')}: <b>{$cms_number}</b>
                         <div class="muted">Помогите нам стать еще лучше - <a href="#">сообщите об ошибке</a></div>
                     </div>
                     <div class="span4 t-a_r">
-                        <div class="muted">Copyright © imageCMS 2012</div>
+                        <div class="muted">Copyright © ImageCMS 2012</div>
                         <a href="http://wiki.imagecms.net" target="blank">Документация</a>
                     </div>
                 </div>
@@ -183,21 +192,21 @@
         <script src="{$THEME}/js/jquery.form.js" type="text/javascript"></script>
         <script type="text/javascript" src="/js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
         <script src="{$THEME}/js/jquery-validate/jquery.validate.min.js" type="text/javascript"></script>
-        
+
         <script src="/js/jqupload/js/jquery.fileupload.js" type="text/javascript"></script>
         <script src="/js/jqupload/js/jquery.iframe-transport.js" type="text/javascript"></script>
         <script src="/js/jqupload/js/main.js" type="text/javascript"></script>
         <script src="/js/jqupload/js/jquery.fileupload-ui.js" type="text/javascript"></script>
-        
+
         <script src="{$THEME}/js/functions.js" type="text/javascript"></script>
         <script src="{$THEME}/js/scripts.js" type="text/javascript"></script>
-        
+
         <script src="{$THEME}/js/admin_base_i.js" type="text/javascript"></script>        
         <script src="{$THEME}/js/admin_base_m.js" type="text/javascript"></script>        
         <script src="{$THEME}/js/admin_base_v.js" type="text/javascript"></script>        
         <script src="{$THEME}/js/admin_base_y.js" type="text/javascript"></script>    
-        
-            <script>
+
+        <script>
             {if $CI->uri->segment('4') == 'shop'}
             var isShop = true;
             {else:}
@@ -208,23 +217,23 @@
 
             $(document).ready(function(){
             		
-            	if (!isShop)
-            		$('#shopAdminMenu').hide();
-            	else
-            		$('#baseAdminMenu').hide();
+                if (!isShop)
+                    $('#shopAdminMenu').hide();
+                else
+                    $('#baseAdminMenu').hide();
             		
             	
-                    //menu active sniffer
-                    $('a.pjax').live('click', function(e){
-                            $('nav li').removeClass('active');
-                            $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
-                            $.pjax({url: $(this).attr('href'), container:'#mainContent'});
+                //menu active sniffer
+                $('a.pjax').live('click', function(e){
+                    $('nav li').removeClass('active');
+                    $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
+                    $.pjax({url: $(this).attr('href'), container:'#mainContent'});
                     return false;
                 })
             })
 
             base_url = '{/literal}{$BASE_URL}{literal}';
-            </script>
+        </script>
         {/literal}
         <div id="jsOutput" style="display: none;"></div>
     </body>

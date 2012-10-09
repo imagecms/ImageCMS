@@ -57,7 +57,10 @@ $lang['a_ps'] = 'Pcs';
 $lang['a_del_o_met'] = 'Paid';
 $lang['a_purch_product_c'] = 'Purchased Product';
 
-
+//charts
+$lang['a_days'] = 'Days';
+$lang['a_sum_orders'] = 'The amount of orders';
+$lang['a_count_orders'] = 'Number of Orders';
 
 //advanced search
 $lang['a_search_pages'] = 'Page search'; 
@@ -150,7 +153,7 @@ $lang['a_cms_news'] = 'ImageCMS news';
 //desktop.tpl
 $lang['a_controll_panel'] = 'Operation panel';  
 $lang['a_use_js'] = 'To use your personal account, activate JavaScript, please.'; 
-$lang['a_wellcome'] = 'Welcome'; 
+$lang['a_wellcome'] = 'Hello'; 
 $lang['a_cont'] = 'Contents';  
 $lang['a_cont_nocat'] = 'Contents without a category';
 $lang['a_without_cat'] = 'Without a category';  
@@ -315,4 +318,6 @@ $lang['a_widget_creating'] = 'Widget creating';
 $lang['a_save_an_create_new_w'] = 'Save and create new widget';
 $lang['a_module_name'] = 'Module name';
 $lang['a_drug_block'] = 'drug block';
+
+$lang['a_guest'] = 'Guest';
 ?>
