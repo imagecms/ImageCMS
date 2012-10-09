@@ -6,6 +6,7 @@
  */
     $lang['a_content']		=	'Содержание';
     $lang['a_tpl_product']	=	'Шаблон продукта';    
+    $lang['a_product_crete_success']	=	'Товар успешно создан';    
     $lang['a_url_fail']		=	'Указанный URL занят';
     $lang['category']		=	'Категория';
     $lang['']			=	'Нет';
