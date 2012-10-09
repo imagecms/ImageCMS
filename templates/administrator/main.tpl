@@ -174,7 +174,7 @@
                         </div>
                     </div>
                     <div class="span4 t-a_c">
-                        {lang('a_version')}: <b>{$cms_number}</b>
+                        {lang('a_version')}: <b>{echo getCMSNumber()}</b>
                         <div class="muted">Помогите нам стать еще лучше - <a href="#">сообщите об ошибке</a></div>
                     </div>
                     <div class="span4 t-a_r">
