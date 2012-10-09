@@ -69,27 +69,6 @@ $(document).ready(function(){
             }
         });
     });
-    
-    $('#module_delete').live('click', function(){
-        var $this = $(this);
-        if($this.hasClass('disabled'))
-        {
-            alert('Сначала выберите модуль для удаления');
-        }
-        else{
-            if(confirm('Удалить модуль?')){
-                var arr = getcheckedvalues();
-                $.post('/admin/components/deinstall',                          
-                {
-                    modules: arr
-                },
-                function(data){
-                    $('.notifications').append(data);
-                }
-                );
-            }
-        }
-    });
         
     $( "#mtbl" ).bind( "sortstop", function(event, ui) {
         var rows =  $('#mtbl').children('tr');
@@ -177,28 +156,6 @@ $(document).ready(function(){
         redirect_url(url);
     });
     
-    $('#del_sel_wid').live('click', function(){
-        var $this = $(this);
-        if($this.hasClass('disabled'))
-        {
-            alert('Сначала выберите виджет для удаления');
-        }else
-        {
-            if(confirm('Удалить виджет?'))
-            {
-                var arr = getcheckedvalues();
-                $.post('/admin/widgets_manager/delete',                          
-                {
-                    widget_name: arr
-                },
-                function(data){
-                    $('.notifications').append(data);
-                }
-                );
-            }
-        }
-    });
-    
     $('#watermark_type').on('change', function(){
         if($(this).attr('value') === 'overlay'){
             $('.fortextblock').hide('slow', function(){
@@ -224,37 +181,6 @@ $(document).ready(function(){
         $('img.mobile_tpl_image').removeClass('sel_template');
         $(this).children('img').addClass('sel_template');
         $('#mobileTemplatePath').attr('value', path);
-    });
-    
-    $('.currency_del').live('click', function(){
-        var currency_id = $(this).data('currid');
-        if(confirm('Удалить валюту с ID: '+currency_id))
-        {
-            $.ajax({
-                type: 'post',
-                data: 'id='+currency_id,
-                dataType : "json",
-                url:  '/admin/components/run/shop/currencies/delete',
-                success: function(obj){
-                    $('.notifications').append(obj.response);
-                    if(obj.recount){
-                        if(confirm('Валюта используется в продуктах. Произвести перещёт относительно главной валюты?')){
-                            $.ajax({
-                                type: "post",
-                                data: "id="+obj.id,
-                                url:  '/admin/components/run/shop/currencies/recount',
-                                success: function(data){
-                                    $('.notifications').append(data);
-                                }
-                            });
-                        }
-                    }
-                    if(obj.success){
-                        $('#currency_tr'+currency_id).remove();
-                    }
-                }
-            });
-        }
     });
     
     $('.currency_def').live('click', function(){
@@ -287,28 +213,6 @@ $(document).ready(function(){
         });
     });
     
-    $('#del_sel_brand').live('click', function(){
-        var $this = $(this);
-        if($this.hasClass('disabled'))
-        {
-            alert('Сначала выберите брэнд для удаления');
-        }else
-        {
-            if(confirm('Удалить брэнд?'))
-            {
-                var arr = getcheckedvalues();
-                $.post('/admin/components/run/shop/brands/delete',                          
-                {
-                    id: arr
-                },
-                function(data){
-                    $('.notifications').append(data);
-                }
-                );
-            }
-        }
-    });
-    
     //get values from niceCheck checkboxes
     function getcheckedvalues()
     {
@@ -327,16 +231,20 @@ $(document).ready(function(){
     }
     
     $('#del_sel_role').live('click', function(){
-        if(confirm('Удалить роль?'))
-        {
-            var arr = getcheckedvalues();
-            $.post('/admin/components/run/shop/rbac/role_delete',{
-                id: arr
-            },
-            function(data){
-                $('.notifications').append(data);
+        if($(this).hasClass('disabled')){
+            return false;
+        }else{
+            if(confirm('Удалить роль?'))
+            {
+                var arr = getcheckedvalues();
+                $.post('/admin/components/run/shop/rbac/role_delete',{
+                    id: arr
+                },
+                function(data){
+                    $('.notifications').append(data);
+                }
+                );
             }
-            );
         }
     });
     
@@ -391,44 +299,38 @@ $(document).ready(function(){
     });
     
     $('#del_sel_group').live('click', function(){
-        if(confirm('Удалить группу?'))
-        {
-            var arr = getcheckedvalues();
-            $.post('/admin/components/run/shop/rbac/group_delete',{
-                id: arr
-            },
-            function(data){
-                $('.notifications').append(data);
+        if($(this).hasClass('disabled')){
+            return false;
+        }else{
+            if(confirm('Удалить группу?'))
+            {
+                var arr = getcheckedvalues();
+                $.post('/admin/components/run/shop/rbac/group_delete',{
+                    id: arr
+                },
+                function(data){
+                    $('.notifications').append(data);
+                }
+                );
             }
-            );
         }
     });
     
     $('#del_sel_priv').live('click', function(){
-        if(confirm('Удалить группу?'))
-        {
-            var arr = getcheckedvalues();
-            $.post('/admin/components/run/shop/rbac/privilege_delete',{
-                id: arr
-            },
-            function(data){
-                $('.notifications').append(data);
+        if($(this).hasClass('disabled')){
+            return false;
+        }else{
+            if(confirm('Удалить группу?'))
+            {
+                var arr = getcheckedvalues();
+                $.post('/admin/components/run/shop/rbac/privilege_delete',{
+                    id: arr
+                },
+                function(data){
+                    $('.notifications').append(data);
+                }
+                );
             }
-            );
-        }
-    });
-    
-    $('#del_sel_property').live('click', function(){
-        if(confirm('Удалить свойство?'))
-        {
-            var arr = getcheckedvalues();
-            $.post('/admin/components/run/shop/properties/delete',{
-                id: arr
-            },
-            function(data){
-                $('.notifications').append(data);
-            }
-            );
         }
     });
     
@@ -437,20 +339,6 @@ $(document).ready(function(){
             url:'/admin/components/run/shop/properties/index/'+$(this).attr('value'), 
             container: '#mainContent'
         });
-    });
-    
-    $('#del_sel_cert').live('click', function(){
-        if(confirm('Удалить сертификат(ы)?'))
-        {
-            var arr = getcheckedvalues();
-            $.post('/admin/components/run/shop/gifts/delete',{
-                id: arr
-            },
-            function(data){
-                $('.notifications').append(data);
-            }
-            );
-        }
     });
     
     $('#generateButton').live('click', function(){
@@ -478,8 +366,6 @@ $(document).ready(function(){
     
     $('.comment_update').live('click', function(){
         var id = $(this).attr('data-cid');
-//        var user_name = $(this).attr('data-uname');
-//        var user_mail = $(this).attr('data-uemail');
         var user_name = $('#u_ed'+id).attr('value');
         var user_mail = $('#m_ed'+id).attr('value');
         var status = $(this).attr('data-cstatus');
@@ -488,18 +374,10 @@ $(document).ready(function(){
         var text_minus = $('#edited_com_text_minus'+id).attr('value');
         $.ajax({
             type: 'post',
-            //dataType: "json",
             url: '/admin/components/cp/comments/update',
             data: 'id='+id+'&user_name='+user_name+'&user_mail='+user_mail+'&text='+text+'&status='+status+'&text_plus='+text_plus+'&text_minus='+text_minus,
             success: function(data){
-                //$('.notifications').append(obj.response);
                 $('.notifications').append(data);
-//                if(obj.result === 'success')
-//                {
-////                    $(this).parents('tr').removeClass('active');
-////                    $('#comment_text_editor'+id).css('display', 'none');
-////                    $('#comment_text_holder'+id).html(text).css('display', 'inline');
-//                }
             }
         });
     });
@@ -518,17 +396,15 @@ $(document).ready(function(){
     
     $('#comment_delete').live('click', function(){
         if($(this).hasClass('disabled')){}else{
-            if(confirm('Удалить комментарий(и)?'))
-            {
-                var arr = getcheckedvalues();
-                $.post('/admin/components/cp/comments/delete',{
-                    id: arr
-                },
-                function(data){
-                    $('.notifications').append(data);
-                }
-                );
+            var arr = getcheckedvalues();
+            $.post('/admin/components/cp/comments/delete',{
+                id: arr
+            },
+            function(data){
+                $('.notifications').append(data);
             }
+            );
+
         }
     });
     
@@ -625,9 +501,43 @@ $(document).ready(function(){
     });
 
     if (window.hasOwnProperty('tpls'))
-    	$('#inputTemplateCategory').autocomplete({source:tpls});
+        $('#inputTemplateCategory').autocomplete({
+            source:tpls
+        });
     
+    $('.prop_active').live('click', function(){
+        var id = $(this).attr('data-id');
+        $.ajax({
+            type: "post",
+            url: "/admin/components/run/shop/properties/changeActive",
+            data: "id="+id,
+            success: function(data){
+                $('.notifications').append(data);
+            }
+        });
+    });
     
+    $( "#pmt" ).bind( "sortstop", function(event, ui) {
+        var arr = new Array();
+        $('input[name=ids]').each(function(){
+            arr.push($(this).val());
+        });
+        $.post(
+            '/admin/components/run/shop/paymentmethods/savePositions', 
+            {positions:arr},
+            function(data){
+                $('.notifications').append(data);
+            });
+//        $.ajax({
+//            type:       'post',
+//            data:       'positions='+arr,
+//            url:        '/admin/components/run/shop/savePositions',
+//            success: function(data){
+//                
+//            }
+//        });
+    });
+
 });
 
 

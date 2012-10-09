@@ -23,7 +23,7 @@ class Login extends MY_Controller {
         $this->form_validation->CI = & $this;
         $this->lib_admin->init_settings();
 
-        $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+        $this->form_validation->set_error_delimiters('<div class="alert alert-error">', '</div>');
     }
 
     function index() {

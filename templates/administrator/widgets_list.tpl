@@ -1,72 +1,109 @@
-<section class="mini-layout">
-    <div class="frame_title clearfix">
-        <div class="pull-left">
-            <span class="help-inline"></span>
-            <span class="title">{lang('a_widgets_list')}</span>
+<div class="container">
+
+    <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->    
+    <div class="modal hide fade">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Удаление виджета</h3>
         </div>
-        <div class="pull-right">
-            <div class="d-i_b">
-                <button type="button" class="btn btn-small disabled action_on" id="del_sel_wid"><i class="icon-trash"></i>{lang('a_delete')}</button>
-                <button type="button" class="btn btn-small" id="cr_wid_page"><i class="icon-plus-sign"></i>{lang('a_create_widget')}</button>
-            </div>
-        </div>  
+        <div class="modal-body">
+            <p>Удалить выбранные виджеты?</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/widgets_manager/delete')" >Удалить</a>
+            <a href="#" class="btn" onclick="$('.modal').modal('hide');">Отмена</a>
+        </div>
     </div>
-    <div class="tab-content">
-        {if count($widgets)>0}
-        <div class="row-fluid">
-            <form method="post" action="#" class="form-horizontal">
-                <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
-                    <thead>
-                        <tr>
-                            <th class="span1">
-                                <span class="frame_label">
-                                    <span class="niceCheck b_n">
-                                        <input type="checkbox" value="On"/>
-                                    </span>
-                                </span>
-                            </th>
-                            <th class="span1">{lang('a_id')}</th>
-                            <th>{lang('a_n')}</th>
-                            <th>{lang('a_type')}</th>
-                            <th>{lang('a_desc')}</th>
-                            <th class="span1">{lang('a_cr')}</th>
-                        </tr>    
-                    </thead>
-                    <tbody class="sortable">
-                        {foreach $widgets as $widget}
-                            <tr>
-                                <td>
-                                    <span class="frame_label">
-                                        <span class="niceCheck b_n">
-                                            <input type="checkbox" value="{$widget.name}"/>
+
+
+    <div id="delete_dialog" title="Удаление виджета" style="display: none">
+        Удалить брэнды?
+    </div>
+    <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->
+
+    <section class="mini-layout">
+        <div class="frame_title clearfix">
+            <div class="pull-left">
+                <span class="help-inline"></span>
+                <span class="title">{lang('a_widgets_list')}</span>
+            </div>
+            <div class="pull-right">
+                <div class="d-i_b">
+                    <button type="button" class="btn btn-small disabled action_on" onclick="delete_function.deleteFunction()" id="del_sel_wid"><i class="icon-trash"></i>{lang('a_delete')}</button>
+                    <button type="button" class="btn btn-small btn-success" id="cr_wid_page"><i class="icon-list-alt icon-white"></i>{lang('a_create_widget')}</button>
+                </div>
+            </div>  
+        </div>
+        <div class="tab-content">
+            {if count($widgets)>0}
+                <div class="row-fluid">
+                    <form method="post" action="#" class="form-horizontal">
+                        <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                            <thead>
+                                <tr>
+                                    <th class="span1 t-a_c">
+                                        <span class="frame_label">
+                                            <span class="niceCheck b_n">
+                                                <input type="checkbox"/>
+                                            </span>
                                         </span>
-                                    </span>
-                                </td>
-                                <td>{$widget.id}</td>
-                                <td {if $widget.config == TRUE}{/if}  {if $widget.type == 'html'}{/if} >{$widget.name}</td>
-                                <td>
-                                    {switch $widget.type}
-                                        {case 'module':}
+                                    </th>
+                                    <th class="span1">{lang('a_id')}</th>
+                                    <th>{lang('a_n')}</th>
+                                    <th>{lang('a_type')}</th>
+                                    <th>{lang('a_desc')}</th>
+                                    <th class="span1">Настройки</th>
+                                </tr>    
+                            </thead>
+                            <tbody class="sortable">
+                                {foreach $widgets as $widget}
+                                    <tr>
+                                        <td class="span1 t-a_c">
+                                            <span class="frame_label">
+                                                <span class="niceCheck b_n">
+                                                    <input type="checkbox" name="ids" value="{$widget.name}"/>
+                                                </span>
+                                            </span>
+                                        </td>
+                                        <td>{$widget.id}</td>
+                                        <td> 
+                                            <a 
+                                            {if $widget.config == TRUE} 
+                                                 class="pjax" href="/admin/widgets_manager/edit_module_widget/{$widget.id}"
+                                            {/if}  
+                                            {if $widget.type == 'html'} 
+                                                class="pjax" href="/admin/widgets_manager/edit_html_widget/{$widget.id}"
+                                            {/if}
+                                            >{$widget.name}</a>
+                                        </td>
+                                        <td>
+                                            {switch $widget.type}
+                                            {case 'module':}
                                             {lang('a_module')} {$widget.data}
-                                                {break}
-                                        {case 'html':}
+                                            {break}
+                                            {case 'html':}
                                             {lang('a_html')}
-                                        {break}
-                                    {/switch}
-                                </td>
-                                <td>{$widget.description}</td>
-                                <td>{date('d-m-Y',$widget.created)}</td>
-                            </tr>
-                        {/foreach}
-                    </tbody>
-                </table>
-            </form>
+                                            {break}
+                                            {/switch}
+                                        </td>
+                                        <td>{$widget.description}</td>
+                                        <td class="span1">
+                                            {if $widget.config == TRUE}
+                                                <a class="pjax" href="/admin/widgets_manager/edit/{$widget.id}">Настройки</a>
+                                            {/if}
+                                        </td>
+                                    </tr>
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            {else:}
+                </br>
+                <div class="alert alert-info">
+                    {lang('a_no_widgets_created')}
+                </div>
+            {/if}
         </div>
-        {else:}
-            </br>
-            <div class="alert alert-info">
-                {lang('a_no_widgets_created')}
-            </div>
-        {/if}
-    </div>
-</section>
+    </section>
+</div>

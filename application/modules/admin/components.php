@@ -115,7 +115,7 @@ class Components extends MY_Controller {
 
     function deinstall() {
         cp_check_perm('module_deinstall');
-        $modules = $_POST['modules'];
+        $modules = $_POST['ids'];
         foreach ($modules as $module) {
             $module = strtolower($module);
 
@@ -131,7 +131,7 @@ class Components extends MY_Controller {
                 $this->db->limit(1);
                 $this->db->delete('components', array('name' => $module));
                 $this->lib_admin->log(lang('ac_deinstall') . $module);
-                showMessage('Модуль успешно дэинсталирован', false, 'r');
+                showMessage('Модуль успешно деинсталирован');
                 pjax('/admin/components/modules_table');
             } else {
                 showMessage(lang('ac_deinstall_error'), false, 'r');

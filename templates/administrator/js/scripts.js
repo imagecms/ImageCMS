@@ -6,14 +6,16 @@ $.exists_nabir = function(nabir){
 }
 
 $(document).ajaxComplete( function(event, XHR, ajaxOptions){
-	if (ajaxOptions.url != "/admin/components/run/shop/notifications/getAvailableNotification")
-		initAdminArea();
+    if (ajaxOptions.url != "/admin/components/run/shop/notifications/getAvailableNotification")
+        initAdminArea();
+    $('.tooltip').remove();
+    $('[data-rel="tooltip"], [rel="tooltip"]').tooltip();
 });
 
 function initAdminArea(){
 	
-	console.log('initialising of administration area started');
-	var startExecTime = Date.now();
+    //console.log('initialising of administration area started');
+    var startExecTime = Date.now();
     //  popover "info"
     $('.buy_prod').each(function(){
         var $this = $(this);
@@ -51,10 +53,6 @@ function initAdminArea(){
     
     //  tooltip
     $('[data-rel="tooltip"], [rel="tooltip"]').tooltip();
-    $('.row-category').tooltip({
-        'title':'перетащите категорию',
-        'placement':'left'
-    });
     //sortable
     if ($.exists('.sortable')) {
         $('.sortable tr').not(':has(tr)').tooltip({
@@ -76,14 +74,14 @@ function initAdminArea(){
                 $helper.addClass('active');
                 return $helper;
             },
-            stop: function(){
-            	var chFn = $('.sortable').data('chfunction');
-            	console.log(typeof chFn);
-            	if (chFn)
-            		return eval(chFn+'()');
-            	else
-            		return false;
-            }
+//            stop: function(){
+//                var chFn = $('.sortable').data('chfunction');
+//                //console.log(typeof chFn);
+//                if (chFn)
+//                    return eval(chFn+'()');
+//                else
+//                    return false;
+//            }
         });
     }
     //data-picker
@@ -101,7 +99,7 @@ function initAdminArea(){
     
     //my
     $('html').live('click', function(event) {
-    	//$('*').popover('hide');
+        //$('*').popover('hide');
         if($(event.target).filter('.popover')[0]==undefined && $(event.target).parents('.popover')[0]==undefined && $(event.target).filter('.buy_prod')[0]==undefined && $(event.target).parents('.buy_prod')[0]==undefined && $(event.target).filter('.popover_ref')[0]==undefined && $(event.target).parents('.popover_ref')[0]==undefined){
             $(this).find('.popover').popover('hide');
             $(this).find('.buy_prod').popover('hide');
@@ -491,37 +489,107 @@ function initAdminArea(){
     
     
     //list filter
+   
+    $('.listFilterForm').live('change', function(){
+        $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
+        $('.listFilterSubmitButton').focus();
+    })
+
+    //    $('#usersDatas').autocomplete({source:usersDatas});
+    
+    //    $('#ordersFilterProduct').autocomplete({
+    //    	source: productsDatas,
+    //    	select: function (event, ui)
+    //    	{
+    //    		prodName = ui.item.label;
+    //    		//console.log(prodName);
+    //    		$('#ordersFilterProdId').val(ui.item.value);
+    //    		//$('#ordersFilterProduct').val(ui.originalEvent.target.innerText)
+    //    	},
+    //    	close: function(){ $('#ordersFilterProduct').val(prodName); }
+    //    });
     if (window.hasOwnProperty('usersDatas'))
-    	$('#usersDatas').autocomplete({source:usersDatas});
+        $('#usersDatas').autocomplete({
+            source:usersDatas
+        });
     	
     if (window.hasOwnProperty('ordersFilterProduct'))
-    $('#ordersFilterProduct').autocomplete({
-    	source: productsDatas,
-    	select: function (event, ui)
-    	{
-    		prodName = ui.item.label;
-    		//console.log(prodName);
-    		$('#ordersFilterProdId').val(ui.item.value);
-    		//$('#ordersFilterProduct').val(ui.originalEvent.target.innerText)
-    	},
-    	close: function(){ $('#ordersFilterProduct').val(prodName); }
-    });
+        $('#ordersFilterProduct').autocomplete({
+            source: productsDatas,
+            select: function (event, ui)
+            {
+                prodName = ui.item.label;
+                //console.log(prodName);
+                $('#ordersFilterProdId').val(ui.item.value);
+            //$('#ordersFilterProduct').val(ui.originalEvent.target.innerText)
+            },
+            close: function(){
+                $('#ordersFilterProduct').val(prodName);
+            }
+        });
     
     $('.listFilterForm').live('focus', function(){
-    	$('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
+        $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
     });
     
     $('.listFilterSubmitButton').live('click', function(){
-    	if (!$(this).attr('disabled')  && !$(this).hasClass('disabled'))
-    	{
-    		$('.listFilterForm').ajaxSubmit({target: '#mainContent'});
-    	}
+        if (!$(this).attr('disabled')  && !$(this).hasClass('disabled'))
+        {
+            $('.listFilterForm').ajaxSubmit({
+                target: '#mainContent'
+            });
+        }
     });
- 
-    initTinyMCE();
+    if ($.exists('#usersDatas')) $('#usersDatas').typeahead({
+        source:usersDatas
+    });
+
+    if ($.exists('#wrapper_gistogram')) gistogram(); 
     
-    console.log('initialising of administration area ended');
-    console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.");
-}
+    $('.myTab a').on('click', function (e) {
+        $this_href = $(this).attr('href');
+        $(this).siblings().removeClass('active').end().addClass('active');
+    });
+    if (location.hash != '') $("[href="+location.hash+"]").trigger('click');
+    
+        
+//    $('[data-provide="typeahead"]').on('focus', function(){
+//        $(this).on('keyup', function(event){
+//            var key, keyChar;
+//            if(!event) var event = window.event;
+//
+//            if (event.keyCode) key = event.keyCode;
+//            else if(event.which) key = event.which;
+//            
+//            var active_drop = $('.typeahead .active');
+//            var first_drop = $('.typeahead li:first');
+//            var last_drop = $('.typeahead li:last');
+//            
+//            if (key == 40) {
+//                if (!last_drop.hasClass('active')) active_drop.removeClass('active').next().addClass('active');
+//                else {
+//                    first_drop.addClass('active');
+//                    last_drop.removeClass('active');
+//                }
+//            }
+//            if (key == 38) {
+//                if (!first_drop.hasClass('active')) active_drop.removeClass('active').prev().addClass('active');
+//                else {
+//                    first_drop.removeClass('active');
+//                    last_drop.addClass('active');
+//                }
+//            }
+//        })
+//    })
+};
+//    console.log('initialising of administration area ended');
+//    console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.")
+//}
+//
+ 
+initTinyMCE();
+    
+console.log('initialising of administration area ended');
+//console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.");
 
 $(document).ready(initAdminArea());
