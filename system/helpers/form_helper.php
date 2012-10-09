@@ -301,8 +301,9 @@ if ( ! function_exists('form_multiselect'))
  */
 if ( ! function_exists('form_dropdown'))
 {
-	function form_dropdown($name = '', $options = array(), $selected = array(), $extra = '')
+	function form_dropdown($id, $name = '', $options = array(), $selected = array(), $extra = '')
 	{
+            $id--;
 		if ( ! is_array($selected))
 		{
 			$selected = array($selected);
@@ -322,7 +323,7 @@ if ( ! function_exists('form_dropdown'))
 
 		$multiple = (count($selected) > 1 && strpos($extra, 'multiple') === FALSE) ? ' multiple="multiple"' : '';
 
-		$form = '<select name="'.$name.'"'.$extra.$multiple.">\n";
+		$form = '<select id="num_'.$id.'" name="'.$name.'"'.$extra.$multiple.">\n";
 
 		foreach ($options as $key => $val)
 		{
