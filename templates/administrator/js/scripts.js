@@ -8,7 +8,6 @@ $.exists_nabir = function(nabir){
 $(document).ajaxComplete( function(event, XHR, ajaxOptions){
     if (ajaxOptions.url != "/admin/components/run/shop/notifications/getAvailableNotification")
         initAdminArea();
-    $('.tooltip').remove();
     $('[data-rel="tooltip"], [rel="tooltip"]').tooltip();
 });
 
@@ -373,10 +372,10 @@ function initAdminArea(){
             $this.parents('td').next().children().removeClass('disabled');
         }
         else{
-            $(this).animate({
+            $this.animate({
                 'left': '-28px'
             }, 200).addClass('disable_tovar');
-            $(this).parent().attr('data-original-title', hide_tovar_text)
+            $this.parent().attr('data-original-title', hide_tovar_text)
             $('.tooltip-inner').text(hide_tovar_text);
             $this.parents('td').next().children().addClass('disabled');
         }
@@ -453,7 +452,7 @@ function initAdminArea(){
             cancelEvent(e);
             addHandler(document,'selectstart',returnFalse,false);
         }
-        if(($(e.target).hasClass('niceCheck')) || $(e.target).hasClass('frame_label') || ($(e.target).hasClass('niceRadio') || ($(e.target).hasClass('.row-category')) || ($(e.target).parent('.row-category').length > 0) )){
+        if(($(e.target).hasClass('niceCheck')) || $(e.target).hasClass('frame_label') || ($(e.target).hasClass('niceRadio') || ($(e.target).hasClass('.row-category')) || ($(e.target).parent('.row-category').length > 0))){
             e=e||event;
             cancelEvent(e);
             addHandler(document,'selectstart',returnFalse,false);
