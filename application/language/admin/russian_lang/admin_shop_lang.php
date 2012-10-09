@@ -5,6 +5,8 @@
  * and open the template in the editor.
  */
     $lang['a_content']		=	'Содержание';
+    $lang['a_tpl_product']	=	'Шаблон продукта';    
+    $lang['a_url_fail']		=	'Указанный URL занят';
     $lang['category']		=	'Категория';
     $lang['']			=	'Нет';
     $lang['create_cat']		=	'Создать категорию';
@@ -224,6 +226,7 @@
     $lang['a_footer_cancel']    =	'Отмена';
     $lang['a_statistic']        =	'Статистика';
     $lang['a_brand']            =	'бренди';
+    $lang['a_brand_i0']            =	'Бренд';
     $lang['a_na']               =	'на';
     $lang['a_currency']         =	'Валюты';
     $lang['a_code']             =	'Код';
@@ -390,6 +393,7 @@
     $lang['a_i6']               =	'Краткое описание';
     $lang['a_i7']               =	'Полное описание';
     $lang['a_i8']               =	'Пропустить колонку';
+    $lang['a_i9']               =	'Дополнительные Категории';
     $lang['a_top_order']               =	'Заказы';
     $lang['a_export']           =	'Экпорт';
     $lang['a_js_delete']        =	'Удалить ';

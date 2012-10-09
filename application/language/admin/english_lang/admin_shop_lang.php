@@ -5,6 +5,8 @@
  * and open the template in the editor.
  */
     $lang['a_content']		=	'content'; 
+    $lang['a_tpl_product']	=	'Product template'; 
+    $lang['a_url_fail']		=	'The URL you busy';
     $lang['category']		=	'Category';
     $lang['']			=	'No';
     $lang['create_cat']		=	'Сreate a category';
@@ -223,6 +225,7 @@
     $lang['a_footer_cancel']    =	'Cancel';
     $lang['a_statistic']        =	'Statistics';
     $lang['a_brand']            =	'Brands';
+    $lang['a_brand_i0']            =	'Brand name';
     $lang['a_na']               =	'on';
     $lang['a_currency']         =	'Currencies';
     $lang['a_code']             =	'Code';
@@ -390,6 +393,7 @@ $lang['a_set_order_status'] =	'Set another status for these orders';
     $lang['a_i6']               =	'Short description';
     $lang['a_i7']               =	'Full description';
     $lang['a_i8']               =	'Leave out a colomn';
+    $lang['a_i9']               =	'More Categories';
     $lang['a_export']           =	'Export';
     $lang['a_js_delete']        =	'Delete ';
     $lang['a_js_id']            =	'ID : ';
