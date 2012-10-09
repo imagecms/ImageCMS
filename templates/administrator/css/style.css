@@ -320,12 +320,12 @@ form > *{font-size: 12px;}
 .ui-datepicker.dropdown-menu a{padding: 2px 10px;}
 .ui-state-disabled{color: #999;}
 
-input.input-mini {width: 60px !important;}
-input.input-small {width: 90px !important;}
-input.input-medium {width: 150px !important;}
-input.input-large {width: 210px !important;}
-input.input-xlarge {width: 270px !important;}
-input.input-xxlarge {width: 530px !important;}
+form .input-mini {width: 60px !important;}
+form .input-small {width: 90px !important;}
+form .input-medium {width: 150px !important;}
+form .input-large {width: 210px !important;}
+form .input-xlarge {width: 270px !important;}
+form .input-xxlarge {width: 530px !important;}
 .form-horizontal .control-label{width: 180px !important;}
 .form-horizontal .controls{margin-left: 200px !important;}
 .form-horizontal .controls.c_b{margin-left: 0 !important;}
