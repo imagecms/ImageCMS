@@ -73,14 +73,14 @@ function initAdminArea(){
                 $helper.addClass('active');
                 return $helper;
             },
-            stop: function(){
-                var chFn = $('.sortable').data('chfunction');
-                console.log(typeof chFn);
-                if (chFn)
-                    return eval(chFn+'()');
-                else
-                    return false;
-            }
+//            stop: function(){
+//                var chFn = $('.sortable').data('chfunction');
+//                //console.log(typeof chFn);
+//                if (chFn)
+//                    return eval(chFn+'()');
+//                else
+//                    return false;
+//            }
         });
     }
     //data-picker

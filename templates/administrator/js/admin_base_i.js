@@ -229,37 +229,8 @@ $(document).ready(function(){
         });
         return arr;
     }
-    
-    $('#del_sel_role').live('click', function(){
-        if($(this).hasClass('disabled')){
-            return false;
-        }else{
-            if(confirm('Удалить роль?'))
-            {
-                var arr = getcheckedvalues();
-                $.post('/admin/components/run/shop/rbac/role_delete',{
-                    id: arr
-                },
-                function(data){
-                    $('.notifications').append(data);
-                }
-                );
-            }
-        }
-    });
-    
-    $('.SRolesImp').on('blur', function(){
-        list = new Object;
-        list.index = $(this).parents('tr').attr('data-id');
-        list.value = $(this).attr('value');
-        $.post('/admin/components/run/shop/rbac/role_save_positions',{
-            item: list
-        },
-        function(data){
-            $('.notifications').append(data);
-        }
-        );
-    });
+
+
     
     $('.maincheck').bind('change', function(){
         var ch = '';
@@ -516,7 +487,31 @@ $(document).ready(function(){
             }
         });
     });
-
+    
+//  sortstop blocks start   
+    
+    $( "#positions_for_save" ).bind( "sortstop", function(event, ui) {
+        var url = $(this).attr('data-url');
+        save_positions(url);
+    });
+    
+    function save_positions(url){
+        var arr = new Array();
+        $('input[name=ids]').each(function(){
+            arr.push($(this).val());
+        });
+        $.post(
+                url, 
+            {
+                positions:arr
+            },
+            function(data){
+                $('.notifications').append(data);
+            });
+    }
+    
+//  sortstop blocks end    
+    
 });
 
 

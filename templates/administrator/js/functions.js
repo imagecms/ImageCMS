@@ -255,6 +255,17 @@ var callbacks = new Object({
 		});
 	},
 	
+	deleteMany:function(){
+		var id = new Array();
+		$('input[name=ids]:checked').each(function(){
+			id.push($(this).val());
+		});
+		
+		this.deleteOne(id);
+		$('.modal').modal('hide');
+		return true;
+	},
+	
 	changeStatus:function(id, statusId)
 	{
 		$.post('/admin/components/run/shop/callbacks/changeStatus', {CallbackId:id, StatusId:statusId}, function(data){
