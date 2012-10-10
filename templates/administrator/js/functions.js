@@ -419,19 +419,23 @@ var shopCategories = new Object({
     }
 });
 
-$('[data-frame]').each(function(){
-    cloneObject($(this))
+function clone_object(){
+    btn_temp = $('[data-remove="example"]');
+    $('[data-frame]').each(function(){
+        cloneObject($(this))
     })
+}
 function cloneObject(data) {
     var data = data;
     var add_variants = {
         cloneObjectVariant: data.find('[data-rel="add_new_clone"]'),
         frameSetClone: data.find('tbody'),
+        frameСlone: function(){
+            return this.frameSetClone.find('tr:first').clone().find('input').val('').parents('tr')
+        },
         addNewVariant: function(){
-            var frame_clone = this.frameSetClone.find('tr:eq(1)').clone();
-            frame_clone = frame_clone.find('input').val('').parents('tr');
-            console.log(frame_clone)
-            return frame_clone;
+            btn_temp = btn_temp.clone().show();
+            return this.frameСlone().find('td:last').append(btn_temp).parents('tr');
         }
     }
     add_variants.cloneObjectVariant.on('click', function(){
@@ -441,3 +445,4 @@ function cloneObject(data) {
         $(this).closest('tr').remove();
     })
 }
+window.onload = clone_object();
