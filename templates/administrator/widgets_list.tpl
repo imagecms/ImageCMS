@@ -4,20 +4,20 @@
     <div class="modal hide fade">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3>Удаление виджета</h3>
+            <h3>{lang('a_widget_deleting')}</h3>
         </div>
         <div class="modal-body">
-            <p>Удалить выбранные виджеты?</p>
+            <p>{lang('a_delete_selected_widgets')}</p>
         </div>
         <div class="modal-footer">
-            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/widgets_manager/delete')" >Удалить</a>
-            <a href="#" class="btn" onclick="$('.modal').modal('hide');">Отмена</a>
+            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/widgets_manager/delete')" >{lang('a_delete')}</a>
+            <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('a_cancel')}</a>
         </div>
     </div>
 
 
     <div id="delete_dialog" title="Удаление виджета" style="display: none">
-        Удалить брэнды?
+        {lang('a_delete_widgets')}
     </div>
     <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->
 
@@ -52,10 +52,10 @@
                                     <th>{lang('a_n')}</th>
                                     <th>{lang('a_type')}</th>
                                     <th>{lang('a_desc')}</th>
-                                    <th class="span1">Настройки</th>
+                                    <th class="span1 t-a_c">{lang('a_sett')}</th>
                                 </tr>    
                             </thead>
-                            <tbody class="sortable">
+                            <tbody>
                                 {foreach $widgets as $widget}
                                     <tr>
                                         <td class="span1 t-a_c">
@@ -87,9 +87,9 @@
                                             {/switch}
                                         </td>
                                         <td>{$widget.description}</td>
-                                        <td class="span1">
+                                        <td class="span1 t-a_c">
                                             {if $widget.config == TRUE}
-                                                <a class="pjax" href="/admin/widgets_manager/edit/{$widget.id}">Настройки</a>
+                                                <a class="btn-small btn pjax" href="/admin/widgets_manager/edit/{$widget.id}"><i class="icon-wrench"></i></a>
                                             {/if}
                                         </td>
                                     </tr>

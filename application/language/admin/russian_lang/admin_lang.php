@@ -577,3 +577,16 @@ $lang['a_module_name'] = 'Название модуля';
 $lang['a_drug_block'] = 'перетащите блок';
 
 $lang['a_guest'] = 'Гость';
+
+$lang['a_widget_deleting'] = 'Удаление виджета';
+$lang['a_delete_selected_widgets'] = 'Удалить выбранные виджеты?';
+$lang['a_delete_widgets'] = 'Удалить виджеты?';
+
+$lang['a_images_limit'] = 'Лимит изображений';
+$lang['a_algorithm'] = 'Алгоритм';
+$lang['a_latest_images'] = 'Последние изображения';
+$lang['a_random_images'] = 'Случайные изображения';
+
+$lang['a_return'] = 'Вернуться';
+$lang['a_save_and_exit'] = 'Сохранить и выйти';
+$lang['a_widget_success_delete'] = 'Виджет(ы) успешно удален(ы)';
