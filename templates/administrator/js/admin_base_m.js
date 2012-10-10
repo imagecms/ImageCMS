@@ -98,7 +98,18 @@ $(document).ready(function(){
     });
   
     
+ $('.bbb').live('click', function(){ 
+      
+            
+           
+  $("#warehouse_line select").clone().prependTo(".pppp");
+//  $(".bbb").click(function(){
+//      $(this).clone(true).insertAfter(this);
+//    });
 
+            
+        
+    });
         
  
     
@@ -185,6 +196,9 @@ var delete_function = new Object({
             return false;
         }
         if($('#del_sel_role').hasClass('disabled')){
+            return false;
+        }
+        if($('#del_in_search').hasClass('disabled')){
             return false;
         }
         $('.modal').modal();
