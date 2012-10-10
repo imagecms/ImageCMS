@@ -22,7 +22,7 @@
             <header>
                 <section class="container">
 
-                    <a href="/admin" class="logo span3">
+                    <a href="/admin/dashboard" class="logo span3">
                         <img src="{$THEME}/img/logo.png"/>
                     </a>
                     <div class="pull-right span3">
@@ -50,6 +50,7 @@
                     </div>
 
 
+                    {if $CI->dx_auth->is_logged_in()}
                     <div class="btn-group" id="topPanelNotifications">
                         <div class="span4 d-i_b">
 
@@ -67,6 +68,7 @@
                             </a>
                         </div>
                     </div>
+                    {/if}
 
 
                 </section>
@@ -146,11 +148,11 @@
                                 </ul>
                             </li>
                         </ul>
-                        <a class="btn btn-small pull-right btn-info pjax" onclick="loadShopInterface();" href="/admin/components/run/shop/dashboard">Администрировать магазин <span class="f-s_14">→</span></a>
+                        <a class="btn btn-small pull-right btn-info" onclick="loadShopInterface();" href="#">Администрировать магазин <span class="f-s_14">→</span></a>
                     </nav>
                 </div>
-
-                <div class="container" id="shopAdminMenu"> {include_tpl('shop_menu.tpl')} </div>
+                    
+                    <div style="display:none;" class="container" id="shopAdminMenu"  > {include_tpl('shop_menu.tpl')} </div>
             </div>
             <div class="container" id="mainContent">
                 {$content}
@@ -184,6 +186,15 @@
                 </div>
             </div>
         </footer>
+        
+        <script>
+            {if $CI->dx_auth->is_logged_in()}
+            var userLogined = true;
+            {else:}
+            var userLogined = false;
+            {/if}
+        </script>
+        
         <script src="{$THEME}/js/jquery-1.8.0.min.js" type="text/javascript"></script>
         <script src="{$THEME}/js/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script>
         <script src="{$THEME}/js/bootstrap.min.js" type="text/javascript"></script>
@@ -218,7 +229,10 @@
             $(document).ready(function(){
             		
                 if (!isShop)
+                {
                     $('#shopAdminMenu').hide();
+                    $('#topPanelNotifications').hide();   
+                }
                 else
                     $('#baseAdminMenu').hide();
             		

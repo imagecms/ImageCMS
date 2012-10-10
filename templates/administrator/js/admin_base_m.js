@@ -102,7 +102,7 @@ $(document).ready(function(){
       
             
            
-  $("#warehouse_line select").clone().prependTo(".pppp");
+  $(".bbb").clone().prependTo(".pppp");
 //  $(".bbb").click(function(){
 //      $(this).clone(true).insertAfter(this);
 //    });
