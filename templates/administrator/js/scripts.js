@@ -134,13 +134,16 @@ function initAdminArea(){
     function dis_un_dis(){
         var label_act = $('.frame_label.active');
         if (label_act.length > 0){
-            $('.action_on').removeClass('disabled');
+            $('.action_on').removeClass('disabled').attr('disabled',false);
         }
         else
         {
-            $('.action_on').addClass('disabled');
+            $('.action_on').addClass('disabled').attr('disabled',true);
         }
     }
+    $('.btn.disabled').each(function(event){
+        $(this).attr('disabled',true);
+    })
 
     if ($.exists('.niceCheck')) {
         $(".niceCheck").each(function() {
