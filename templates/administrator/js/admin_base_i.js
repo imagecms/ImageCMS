@@ -488,7 +488,7 @@ $(document).ready(function(){
         });
     });
     
-//  sortstop blocks start   
+    //  sortstop blocks start   
     
     $( "#positions_for_save" ).bind( "sortstop", function(event, ui) {
         var url = $(this).attr('data-url');
@@ -501,7 +501,7 @@ $(document).ready(function(){
             arr.push($(this).val());
         });
         $.post(
-                url, 
+            url, 
             {
                 positions:arr
             },
@@ -510,7 +510,103 @@ $(document).ready(function(){
             });
     }
     
-//  sortstop blocks end    
+    //  sortstop blocks end    
+    
+    //autocomplete for main product start
+
+    $('#kitMainProductName').autocomplete({
+        minChars: 0,
+        source: '/admin/components/run/shop/kits/get_products_list/'+$('#kitMainProductName').attr('value')+'&limit=20',
+        select: function(event, ui){
+            $('#MainProductHidden').attr('value', ui.item.identifier.id);
+            $('#kitMainProductName').attr('value', ui.item.label);
+        }
+    });
+    
+    $('#AttachedProducts').autocomplete({
+        minChars: 0,
+        source: '/admin/components/run/shop/kits/get_products_list/'+$('#AttachedProducts').attr('value')+'&limit=20',
+        select: function(event, ui){
+            var mainDisc = $('#mainDisc').attr('value');
+            $('#forAttached').append('<div id="tpm_row'+ui.item.identifier.id+'">'+
+                '<span style="width:8%;" class="pull-left">'+
+                '<span class="help-inline">ID</span>'+
+                '<input type="text" name="AttachedProductsIds[]" value="'+ui.item.identifier.id+'"/>'+
+                '</span>'+
+                '<span style="width: 70%;margin-left: 1%;" class="pull-left">'+
+                '<span class="help-inline">Имя</span>'+
+                '<input type="text" id="AttachedProducts" value="'+ui.item.label+'"/>'+
+                '</span>'+
+                '<span style="width: 8%;margin-left: 1%;" class="pull-left">'+
+                '<span class="help-inline">Скидка %</span>'+
+                '<input type="text" id="AttachedProductsDisc" name="Discounts[]" value="'+mainDisc+'"/>'+
+                '</span>'+
+                '<span style="width: 8%;margin-left: 1%;" class="pull-left">'+
+                '<button class="btn del_tmp_row" data-kid="'+ui.item.identifier.id+'" style="margin-top: 16px;"><i class="icon-trash"></i></button>'+
+                '</span>'+
+                '</div>');
+        },
+        close: function( event, ui ){
+            $('#AttachedProducts').attr('value', '');
+        }
+    });
+
+    //autocomplete for main product end
+    
+    $('.kit_change_active').live('click', function(){
+        var id = $(this).attr('data-kid');
+        $.ajax({
+            type:   "post",
+            url:    "/admin/components/run/shop/kits/kit_change_active/"+id,
+            success: function(data){
+                $('.notifications').append(data);
+            }
+        });
+    });
+    
+    $('.del_tmp_row').live('click', function(){
+        var id = $(this).attr('data-kid');
+        $('#tpm_row'+id).remove();
+    });
+    
+    $('.to_hit').bind('click', function(){
+        var ids = new Array();
+        $('input[name=ids]:checked').each(function(){
+            ids.push($(this).val());
+        });
+        $.post('/admin/components/run/shop/products/ajaxChangeHit', {
+            ids:ids
+        }, function(data){
+                $('.notifications').append(data);
+            }
+        );
+    });
+    
+    $('.tonew').bind('click', function(){
+            var ids = new Array();
+        $('input[name=ids]:checked').each(function(){
+            ids.push($(this).val());
+        });
+        $.post('/admin/components/run/shop/products/ajaxChangeHot', {
+            ids:ids
+        }, function(data){
+                $('.notifications').append(data);
+            }
+        );
+        });
+    
+    $('.toaction').bind('click', function(){
+            var ids = new Array();
+        $('input[name=ids]:checked').each(function(){
+            ids.push($(this).val());
+        });
+        $.post('/admin/components/run/shop/products/ajaxChangeAction', {
+            ids:ids
+        }, function(data){
+                $('.notifications').append(data);
+            }
+        );
+        });
     
 });
 
