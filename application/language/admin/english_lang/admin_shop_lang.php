@@ -6,7 +6,8 @@
  */
     $lang['a_content']		=	'content'; 
     $lang['a_tpl_product']	=	'Product template'; 
-    $lang['a_product_crete_success']	=	'This product has been successfully created';     
+    $lang['a_product_crete_success']	=	'This product has been successfully created';  
+    $lang['a_product_edit_success'] = 'Editing product successfully';   
     $lang['a_url_fail']		=	'The URL you busy';
     $lang['category']		=	'Category';
     $lang['']			=	'No';
