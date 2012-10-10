@@ -81,7 +81,8 @@ $lang['a_file_format'] = 'File format';
 $lang['a_create'] = 'Create';  
 
 //cat_translate.tpl
-$lang['a_cat_translate'] = 'Category translation'; 
+$lang['a_cat_translate'] = 'Category translation';
+$lang['a_field_translate'] = 'Translated field';
 $lang['a_name'] = 'Name ';
 $lang['a_image'] = 'Image';
 $lang['a_select_image'] = 'Choose an image ';
