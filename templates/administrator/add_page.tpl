@@ -49,11 +49,13 @@
             {lang('a_category')}:
         </label>
         	<div class="controls">
+		<span class="span6 f_l">
             	<select name="category" id="category_selectbox">
                 <option value="0" selected="selected">{lang('a_no')}</option>
                 { $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['sel_cat'])); }
-                </select> 
-                <img  src="{$THEME}/images/plus2.png" style="padding-left:5px;padding-top:2px;cursor:pointer;float:left;" title="{lang('a_create_cat')}" />
+                </select>
+		</span>
+                <a onclick="$('.modal').modal(); return false;" class="btn btn-success btn-small" href="#"><i class="icon-plus icon-white"></i> {lang('a_create_cat')}</a>
         	</div>
         </div>
 
@@ -278,10 +280,7 @@
 							</select>        	
             	           	</div>
                         </div>
-                        
-                        
                         {($hook = get_hook('admin_tpl_add_page_side_bar')) ? eval($hook) : NULL;}
-                        
                 </div>
             </div>
 
@@ -289,12 +288,45 @@
 	</tr>
 	</tbody>
 </table>
-
 		</div>
 	</div>
-
 {form_csrf()}
 </form>
-
-
 </section>
+
+<div class="modal hide fade">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3>{lang('a_create_cat')}</h3>
+        </div>
+        <div class="modal-body">
+            
+<form action="/admin/categories/fast_add/create" method="post" id="fast_add_form" class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label">
+                            {lang('a_name')}
+                            </label>
+                        	<div class="controls">
+                        	<input type="text" name="name" value="" class="required">
+                        	</div>
+                        </div>
+        
+                        <div class="control-group">
+                            <label class="control-label">
+                            {lang('a_parent')}
+                            </label>
+                        	<div class="controls">
+                        	<select name="parent_id">
+				<option value="0" selected="selected">{lang('a_no')}</option>
+				    { $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['sel_cat'])); }
+				</select>
+                        	</div>
+                        </div>
+</form>
+	    
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn" onclick="$('.modal').modal('hide');">Отмена</a>
+            <a href="#" class="btn btn-primary" onclick="pagesAdmin.quickAddCategory()">Создать</a>
+        </div>
+    </div>
