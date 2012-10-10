@@ -131,9 +131,9 @@ label{cursor: pointer;}
 .niceCheck input, .niceRadio input{display: none !important;}
 .b_n.niceCheck, .b_n.niceRadio{background: none !important;}
 .b_n.niceCheck input, .b_n.niceRadio input{display: block !important;}
-input[type="text"], input[type="password"], textarea, select{width: 100% !important;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
+input[type="text"], input[type="password"], textarea, select, input[type="file"]{width: 100% !important;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
 input[type="checkbox"], input[type="radio"]{width: auto !important;vertical-align: baseline;margin-right: 5px;}
-select, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input{height: 28px !important;min-width: 50px;}
+select, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input{height: 28px !important;}
 table select, table input[type="text"], table input[type="password"], table input[type="datetime"], table input[type="datetime-local"], table input[type="date"], table input[type="month"], table input[type="time"], table input[type="week"], table input[type="number"], table input[type="email"], table input[type="url"], table input[type="search"], table input[type="tel"], table input[type="color"], table .uneditable-input{height: 27px !important;margin-bottom: 0;}
 label, input, button, select, textarea{font-size: 12px !important;}
 textarea{line-height: 1.5!important;}
@@ -161,6 +161,8 @@ a.btn{text-decoration: none;}
 .breadcrumb li{text-shadow: none !important;}
 .tab-content{position: relative;overflow-y: hidden !important;}
 
+.pull-left + .o_h{min-width: 15px;}
+.label, .badge{display: inline-block;white-space: normal;}
 .frame_table{overflow-y: hidden !important;overflow: auto;}
 .frame_table table:first-child{margin-top: 0;}
 .frame_table.m-t_t table:first-child{margin-top: 10px;}
@@ -242,12 +244,15 @@ a.mceButton {border-radius: 2px;}
 .row-category > div + div + div + div + div{width: 15%;}
 /*.row-category > div + div + div + div + div + div{width: 7%;}*/
 
+.focus:focus {outline: thin dotted #333;outline: 5px auto -webkit-focus-ring-color;outline-offset: -2px;}
+
 .p_cat_row-category > div + div + div + div + div{width: 8%;}
 .p_cat_row-category > div + div + div + div + div + div{width: 7%;}
 
 table p{margin: 0;}
 .table-striped > tbody > tr:nth-child(odd) td, .table-striped > tbody tr:nth-child(odd) th {background-color: #f9f9f9;}
 .table tbody tr.active td, .row-category.active{background-color: #fff9e0 !important;}
+.table th, .table td{word-break: break-word;}
 .my_btn_s{vertical-align: text-bottom !important;line-height: 0 !important;padding: 4px !important;height: 21px;}
 
 .lev_1{padding-left: 20px !important;}
@@ -315,12 +320,12 @@ form > *{font-size: 12px;}
 .ui-datepicker.dropdown-menu a{padding: 2px 10px;}
 .ui-state-disabled{color: #999;}
 
-.input-mini {width: 60px !important;}
-.input-small {width: 90px !important;}
-.input-medium {width: 150px !important;}
-.input-large {width: 210px !important;}
-.input-xlarge {width: 270px !important;}
-.input-xxlarge {width: 530px !important;}
+form .input-mini {width: 60px !important;}
+form .input-small {width: 90px !important;}
+form .input-medium {width: 150px !important;}
+form .input-large {width: 210px !important;}
+form .input-xlarge {width: 270px !important;}
+form .input-xxlarge {width: 530px !important;}
 .form-horizontal .control-label{width: 180px !important;}
 .form-horizontal .controls{margin-left: 200px !important;}
 .form-horizontal .controls.c_b{margin-left: 0 !important;}
@@ -332,6 +337,7 @@ form > *{font-size: 12px;}
 
 .help-block{margin-left: 0 !important;}
 
+.thumbnail > img{border: 3px solid transparent;}
 .thumbnail > img.sel_template {
     border: 3px solid;
 }
@@ -347,3 +353,8 @@ tr.active a.m_ed{display: none;}
 .controls > input[type="checkbox"], .controls > input[type="radio"]{margin-top: 6px;}
 .controls > label{clear: none;}
 .controls > label:first-child{margin-top: 1px;}
+
+.f-s_0{font-size: 0;}
+.v-a_m{vertical-align: middle;}
+.required{color: #f55;}
+.t-l_a{table-layout: auto;}
