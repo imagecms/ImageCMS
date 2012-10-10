@@ -1,10 +1,3 @@
-                <ul class="breadcrumb">
-                    <li><a href="#">Главная</a> <span class="divider">/</span></li>
-                    <li class="active"> Создание новой страницы</li>
-                </ul>
-
-
-
 <section class="mini-layout">
                 
                     <div class="frame_title clearfix">
@@ -15,18 +8,9 @@
                         <div class="pull-right">
                             <span class="help-inline"></span>
                             <div class="d-i_b">
-                                <a href="#" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
-                                <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form"><i class="icon-ok"></i>Сохранить</button>
-                                <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form"><i class="icon-check"></i>Сохранить и выйти</button>
-                                <div class="dropdown d-i_b">
-                                    <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
-                                        Русский
-                                        <span class="caret"></span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Английский</a></li>
-                                    </ul>
-                                </div>
+                                <a href="/admin/pages/GetPagesByCategory" class="pjax t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
+                                <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form" data-action="edit" ><i class="icon-ok"></i>Сохранить</button>
+                                <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form" data-action="close"><i class="icon-check"></i>Сохранить и выйти</button>
                             </div>
                         </div>                            
                     </div>  
@@ -38,15 +22,11 @@
                                 <a href="#addfields_article" class="btn btn-small">Дополнительные поля</a>
                                 <a href="#setings_article" class="btn btn-small">Настройки</a>
                             </div>
-                            <div class="pull-right m-t_20">
-                                <a href="#">Просмотр страницы <span class="f-s_14">→</span></a>
-                            </div>
                         </div>             
 <form method="post" action="{$BASE_URL}admin/pages/add" id="add_page_form" class="form-horizontal">
 <div id="content_big_td" class="tab-content">                
 
 <div class="tab-pane active" id="content_article">
-
 
 <table class="table table-striped table-bordered table-hover table-condensed">
 
@@ -69,7 +49,7 @@
             {lang('a_category')}:
         </label>
         	<div class="controls">
-            	<select name="category" ONCHANGE="change_comments_status();" id="category_selectbox" style="float: left;width: 457px !important;">
+            	<select name="category" id="category_selectbox">
                 <option value="0" selected="selected">{lang('a_no')}</option>
                 { $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['sel_cat'])); }
                 </select> 

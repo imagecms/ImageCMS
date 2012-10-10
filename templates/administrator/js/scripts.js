@@ -492,7 +492,7 @@ function initAdminArea(){
     $('.item_menu .row-category:even').addClass('even');
     
     if (userLogined)
-	window.setInterval('updateNotificationsTotal()', 5000);
+	window.setInterval('updateNotificationsTotal()', 20000);
     
     
     //list filter
