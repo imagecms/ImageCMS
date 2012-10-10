@@ -184,6 +184,7 @@
     $lang['a_password']         =	'Пароль';
     $lang['a_role']             =	'Роль';
     $lang['a_fio']              =	'ФИО';
+    $lang['a_meta_data']              =	'Mета данные';
     $lang['a_fio_full']         =	'Фамилия Имя Отчество';
     $lang['a_summ_purchases']   =	'Сумма покупок';
     $lang['a_summ']             =	'Сумма';
@@ -272,6 +273,7 @@
     $lang['a_warehouses']       =	'Склади';
     $lang['a_vkl']              =	'Включить';
     $lang['a_old_price']        =	'Старая цена';
+    $lang['a_cre_product_i9']        =	'Создание товара';
     $lang['a_properties']       =	'Свойства';
     $lang['a_lat']              =	'Поле должно содержать только латинские символы.';
     $lang['so']                 =	'Чтобы';
