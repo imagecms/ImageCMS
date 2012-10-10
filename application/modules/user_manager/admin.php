@@ -47,6 +47,7 @@ class Admin extends MY_Controller {
 	 */
 	function genre_user_table()
 	{
+            
         cp_check_perm('user_view_data');
 
 		$this->load->model('dx_auth/users', 'users');
@@ -78,6 +79,7 @@ class Admin extends MY_Controller {
 		}
 
 		$this->template->assign('users',$users);
+		$this->template->assign('users1','dasda asdasd as a');
 		$this->template->assign('cur_page',$offset);
 
 		echo $this->fetch_tpl('users_table');
@@ -336,7 +338,7 @@ class Admin extends MY_Controller {
 	}
 
     /*************************************
-     * Groups
+     * Groups                           *   
      ************************************/
 
 	function groups_index()
@@ -547,8 +549,8 @@ class Admin extends MY_Controller {
     // Template functions
 	private function display_tpl($file)
 	{
-        $file =  realpath(dirname(__FILE__)).'/templates/'.$file.'.tpl';  
-		$this->template->display('file:'.$file);
+        $file =  realpath(dirname(__FILE__)).'/templates/'.$file;  
+		$this->template->show('file:'.$file);
 	}
 
 	private function fetch_tpl($file)
