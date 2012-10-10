@@ -50,6 +50,8 @@ function ajax_div(target, url)
 
 //submit form
 $('.formSubmit').live('click',function(){
+        collectMCEData();
+    
 	var selector = $(this).data('form');
 	var action = $(this).data('action');
 	$(selector).validate()
@@ -71,32 +73,37 @@ $('.formSubmit').live('click',function(){
 
 function updateNotificationsTotal()
 {
+    //if (isShop)
 	$('#topPanelNotifications>div').load('/admin/components/run/shop/notifications/getAvailableNotification');
 }
 
 
 function loadShopInterface()
 {
-	$('a.logo').attr('href', '/admin/components/run/shop/dashboard');
-
     // Switch menu
 	$('#baseAdminMenu').hide();
 	$('#shopAdminMenu').show();
 	 
 	updateNotificationsTotal();
-	$('#topPanelNotifications').show();
-
+	$('#topPanelNotifications').fadeIn(300);
+	$.pjax({url:'/admin/components/run/shop/dashboard', container:'#mainContent'});
+        isShop = true;
+	$('a.logo').attr('href', '/admin/components/run/shop/dashboard');
+	return false;
 }
 
 function loadBaseInterface()
 {
-	$('a.logo').attr('href', '/admin');
 
     // Switch menu
 	$('#shopAdminMenu').hide();
 	$('#baseAdminMenu').show();
 	 
-	$('#topPanelNotifications').hide();
+	$('#topPanelNotifications').fadeOut(300);
+	$.pjax({url:'/admin/dashboard', container:'#mainContent'});
+        isShop = false;
+	$('a.logo').attr('href', '/admin/dashboard');	
+	return false;
 }
 
 //tinymce
@@ -143,6 +150,15 @@ function initTinyMCE()
 };
 
 
+function collectMCEData()
+{
+    $('.mceEditor').each(function(){
+        var id = $(this).attr('id');
+        console.log(id);
+        if (tinyMCE.get(id))
+            $('#'+id).val( tinyMCE.get(id).getContent() );
+        })
+}
 //orders
 
 var orders = new Object({
