@@ -424,25 +424,32 @@ function clone_object(){
     $('[data-frame]').each(function(){
         cloneObject($(this))
     })
-}
-function cloneObject(data) {
-    var data = data;
-    var add_variants = {
-        cloneObjectVariant: data.find('[data-rel="add_new_clone"]'),
-        frameSetClone: data.find('tbody'),
-        frameСlone: function(){
-            return this.frameSetClone.find('tr:first').clone().find('input').val('').parents('tr')
-        },
-        addNewVariant: function(){
-            btn_temp = btn_temp.clone().show();
-            return this.frameСlone().find('td:last').append(btn_temp).parents('tr');
+    
+    $('[data-clone="wares"]').on('click', function(event){
+        event.preventDefault();
+        $('.warehouse_line').clone().removeClass().attr('id', 'warehouse_line'+Math.floor(1000*Math.random())).appendTo($('.warehouses_container'));
+    })
+    
+    function cloneObject(data) {
+        var data = data;
+        var add_variants = {
+            cloneObjectVariant: data.find('[data-rel="add_new_clone"]'),
+            frameSetClone: data.find('tbody'),
+            frameСlone: function(){
+                return this.frameSetClone.find('tr:first').clone().find('input').val('').parents('tr')
+            },
+            addNewVariant: function(){
+                btn_temp = btn_temp.clone().show();
+                return this.frameСlone().find('td:last').append(btn_temp).parents('tr');
+            }
         }
+        add_variants.cloneObjectVariant.on('click', function(){
+            add_variants.frameSetClone.append(add_variants.addNewVariant());
+        })
+        $('[data-remove]').live('click', function(){
+            $(this).closest('tr').remove();
+        })
     }
-    add_variants.cloneObjectVariant.on('click', function(){
-        add_variants.frameSetClone.append(add_variants.addNewVariant());
-    })
-    $('[data-remove]').live('click', function(){
-        $(this).closest('tr').remove();
-    })
 }
+
 window.onload = clone_object();
