@@ -189,9 +189,6 @@ function initAdminArea(){
                 })
             }
         }
-        else if ($this.closest('.head')[0] != undefined){
-            
-        }
         else{
             changeCheck($this.find('> span:eq(0)'));
         }
@@ -230,6 +227,8 @@ function initAdminArea(){
         if (el.closest('.sortable').children('tr').length > 0) el.closest('.sortable').children('tr').has(el).addClass('active');
         
         else if (el.closest('.simple_tr').length > 0) el.closest('.simple_tr').addClass('active');
+        
+        else if (el.parent().hasClass('.no_connection') && el.parents('tr').length == 1) el.parents('tr').addClass('active');
         
         else{
             if (el.closest('.frame_level_3').length > 0) el.closest('.row-category').addClass('active');
@@ -315,6 +314,7 @@ function initAdminArea(){
         input.attr("checked", true);
         el.parents('.sortable').children('tr').addClass('active');
         el.closest('.simple_tr').addClass('active');
+        if (el.parents('tr').length == 1) el.parents('tr').addClass('active');
         
         textcomment_s_h('s', el);
     }
@@ -327,6 +327,7 @@ function initAdminArea(){
         input.attr("checked", false);
         el.parents('.sortable').children('tr').removeClass('active');
         el.closest('.simple_tr').removeClass('active');
+        if (el.parents('tr').length == 1) el.parents('tr').removeClass('active');
         
         textcomment_s_h('h', el);
     }
@@ -543,9 +544,13 @@ function initAdminArea(){
             });
         }
     });
-    if ($.exists('#usersDatas')) $('#usersDatas').typeahead({
-        source:usersDatas
-    });
+//    if ($.exists('#usersDatas')) $('#usersDatas').typeahead({
+//        source:usersDatas
+//    });
+    $('#usersDatas').on('keydown', function(event){
+        
+        if (what_key(13)) $('.listFilterForm').trigger('change');
+    })
 
     if ($.exists('#wrapper_gistogram')) gistogram(); 
     
@@ -564,34 +569,12 @@ function initAdminArea(){
         else $this.parent().next().val($type_file).attr('data-rel','tooltip');
     })
         
-    //    $('[data-provide="typeahead"]').on('focus', function(){
-    //        $(this).on('keyup', function(event){
-    //            var key, keyChar;
-    //            if(!event) var event = window.event;
-    //
-    //            if (event.keyCode) key = event.keyCode;
-    //            else if(event.which) key = event.which;
-    //            
-    //            var active_drop = $('.typeahead .active');
-    //            var first_drop = $('.typeahead li:first');
-    //            var last_drop = $('.typeahead li:last');
-    //            
-    //            if (key == 40) {
-    //                if (!last_drop.hasClass('active')) active_drop.removeClass('active').next().addClass('active');
-    //                else {
-    //                    first_drop.addClass('active');
-    //                    last_drop.removeClass('active');
-    //                }
-    //            }
-    //            if (key == 38) {
-    //                if (!first_drop.hasClass('active')) active_drop.removeClass('active').prev().addClass('active');
-    //                else {
-    //                    first_drop.removeClass('active');
-    //                    last_drop.addClass('active');
-    //                }
-    //            }
-    //        })
-    //    })
+    $(window).on('resize', function(event){
+        $('.fade.in').remove();
+    })
+    $('.pjax').on('click', function(){
+        $(window).trigger('resize');
+    })
 };
 //    console.log('initialising of administration area ended');
 //    console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.")
