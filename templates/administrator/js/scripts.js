@@ -62,7 +62,7 @@ function initAdminArea(){
             axis: 'y',
             cursor: 'move',
             scroll: false,
-            cancel: '.head_body, .btn, .frame_label, td p, td span, td a, td input',
+            cancel: '.head_body, .btn, .frame_label, td p, td span, td a, td input, td select',
             helper: function(e, tr)
             {
                 var $originals = tr.children();
@@ -134,13 +134,16 @@ function initAdminArea(){
     function dis_un_dis(){
         var label_act = $('.frame_label.active');
         if (label_act.length > 0){
-            $('.action_on').removeClass('disabled');
+            $('.action_on').removeClass('disabled').attr('disabled',false);
         }
         else
         {
-            $('.action_on').addClass('disabled');
+            $('.action_on').addClass('disabled').attr('disabled',true);
         }
     }
+    $('.btn.disabled').each(function(event){
+        $(this).attr('disabled',true);
+    })
 
     if ($.exists('.niceCheck')) {
         $(".niceCheck").each(function() {
@@ -594,7 +597,6 @@ function initAdminArea(){
 //    console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.")
 //}
 //
- 
 initTinyMCE();
     
 console.log('initialising of administration area ended');
