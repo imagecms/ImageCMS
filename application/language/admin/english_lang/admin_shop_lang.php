@@ -6,13 +6,16 @@
  */
     $lang['a_content']		=	'content'; 
     $lang['a_tpl_product']	=	'Product template'; 
-    $lang['a_product_crete_success']	=	'This product has been successfully created';     
+    $lang['a_product_crete_success']	=	'This product has been successfully created';  
+    $lang['a_product_edit_success'] = 'Editing product successfully';   
     $lang['a_url_fail']		=	'The URL you busy';
+    $lang['a_meta_data']              =	'Mета data';
     $lang['category']		=	'Category';
     $lang['']			=	'No';
     $lang['create_cat']		=	'Сreate a category';
     $lang['title']		=	'Title';
     $lang['prev_cont']		=	'Preliminary content';
+    $lang['a_cre_product_i9']        =	'Product creation';
     $lang['full_cont']		=	'Full content';
     $lang['param']		=	'Options';
     $lang['trans_title']	=	'Тitle transliteration';
