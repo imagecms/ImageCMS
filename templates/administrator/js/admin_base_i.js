@@ -550,6 +550,25 @@ $(document).ready(function(){
             $('#AttachedProducts').attr('value', '');
         }
     });
+    
+    $('#RelatedProducts').autocomplete({
+        minChars: 0,
+        source: '/admin/components/run/shop/kits/get_products_list/'+$('#RelatedProducts').attr('value')+'&limit=20',
+        select: function(event, ui){
+            $('#relatedProductsNames').append('<div id="tpm_row'+ui.item.identifier.id+'">'+
+                '<span style="width: 70%;margin-left: 1%;" class="pull-left">'+
+                '<input type="text" id="AttachedProducts" value="'+ui.item.label+'"/>'+
+                '<input type="hidden" name="RelatedProducts[]" value="'+ui.item.identifier.id+'">'+
+                '</span>'+
+                '<span style="width: 8%;margin-left: 1%;" class="pull-left">'+
+                '<button class="btn btn-small del_tmp_row" data-kid="'+ui.item.identifier.id+'"><i class="icon-trash"></i></button>'+
+                '</span>'+
+                '</div>');
+        },
+        close: function( event, ui ){
+            $('#RelatedProducts').attr('value', '');
+        }
+    });
 
     //autocomplete for main product end
     

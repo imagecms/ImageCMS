@@ -15,7 +15,10 @@ $(document).ajaxComplete( function(event, XHR, ajaxOptions){
 
 function initAdminArea(){
 	
-    //console.log('initialising of administration area started');
+    if (isShop)
+        $('#shopAdminMenu').show();
+        
+    console.log('initialising of administration area started');
     var startExecTime = Date.now();
     //  popover "info"
     $('.buy_prod').each(function(){
@@ -74,14 +77,14 @@ function initAdminArea(){
                 $helper.addClass('active');
                 return $helper;
             },
-            //            stop: function(){
-            //                var chFn = $('.sortable').data('chfunction');
-            //                //console.log(typeof chFn);
-            //                if (chFn)
-            //                    return eval(chFn+'()');
-            //                else
-            //                    return false;
-            //            }
+        //            stop: function(){
+        //                var chFn = $('.sortable').data('chfunction');
+        //                //console.log(typeof chFn);
+        //                if (chFn)
+        //                    return eval(chFn+'()');
+        //                else
+        //                    return false;
+        //            }
         });
     }
     //data-picker
@@ -443,7 +446,7 @@ function initAdminArea(){
 
     function mouseDown(e){
         if(
-        (e.target.nodeName!="TEXTAREA") &&
+            (e.target.nodeName!="TEXTAREA") &&
             (e.target.nodeName!="SELECT") &&
             (e.target.nodeName!="INPUT") &&
             (e.target.nodeName!="TR")&&
@@ -451,8 +454,8 @@ function initAdminArea(){
             (e.target.nodeName!="SPAN")&&
             (!e.target.nodeName!="A")&&
             (e.target.nodeName!="DD")
-    )
-        {
+            )
+            {
             e=e||event;
             cancelEvent(e);
             addHandler(document,'selectstart',returnFalse,false);
@@ -489,7 +492,8 @@ function initAdminArea(){
     });
     $('.item_menu .row-category:even').addClass('even');
     
-    window.setInterval('updateNotificationsTotal()', 5000);
+    if (userLogined)
+        window.setInterval('updateNotificationsTotal()', 5000);
     
     
     //list filter
@@ -525,12 +529,12 @@ function initAdminArea(){
                 prodName = ui.item.label;
                 //console.log(prodName);
                 $('#ordersFilterProdId').val(ui.item.value);
-                //$('#ordersFilterProduct').val(ui.originalEvent.target.innerText)
+            //$('#ordersFilterProduct').val(ui.originalEvent.target.innerText)
             },
-        close: function(){
-            $('#ordersFilterProduct').val(prodName);
-        }
-    });
+            close: function(){
+                $('#ordersFilterProduct').val(prodName);
+            }
+        });
     
     $('.listFilterForm').live('focus', function(){
         $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
@@ -544,9 +548,9 @@ function initAdminArea(){
             });
         }
     });
-//    if ($.exists('#usersDatas')) $('#usersDatas').typeahead({
-//        source:usersDatas
-//    });
+    //    if ($.exists('#usersDatas')) $('#usersDatas').typeahead({
+    //        source:usersDatas
+    //    });
     $('#usersDatas').on('keydown', function(event){
         
         if (what_key(13)) $('.listFilterForm').trigger('change');
@@ -575,16 +579,13 @@ function initAdminArea(){
     $('.pjax').on('click', function(){
         $(window).trigger('resize');
     })
-};
-//    console.log('initialising of administration area ended');
-//    console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.")
-//}
-//
-initTinyMCE();
-    
-console.log('initialising of administration area ended');
-//console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.");
 
+    initTinyMCE();
+    console.log('initialising of administration area ended');
+    console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.")
+}
 $(document).ready(
-initAdminArea()
-);
+    function(){
+        updateNotificationsTotal();
+        initAdminArea()
+    })

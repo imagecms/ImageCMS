@@ -98,10 +98,15 @@ $(document).ready(function(){
     });
   
     
- $('.create').live('click', function(){ 
+ $('.bbb').live('click', function(){ 
       
             
-            $('#image_upload_form').submit();
+           
+  $(".bbb").clone().prependTo(".pppp");
+//  $(".bbb").click(function(){
+//      $(this).clone(true).insertAfter(this);
+//    });
+
             
         
     });
