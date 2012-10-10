@@ -217,7 +217,11 @@ $(document).ready(function(){
             type: 'POST',
             data: variantId,
             url: base_url + 'admin/components/run/shop/products/ajaxUpdatePrice/' + btn.attr('data-id'),
-            onComplete: function(response) {}
+            success: function(data){
+                $('.notifications').append(data);
+            },
+            onComplete: function(response) {
+            }
         });
         
         //btn.toggleClass('btn-primary active');

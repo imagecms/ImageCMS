@@ -98,7 +98,13 @@ $(document).ready(function(){
     });
   
     
-
+ $('.create').live('click', function(){ 
+      
+            
+            $('#image_upload_form').submit();
+            
+        
+    });
         
  
     
@@ -185,6 +191,9 @@ var delete_function = new Object({
             return false;
         }
         if($('#del_sel_role').hasClass('disabled')){
+            return false;
+        }
+        if($('#del_in_search').hasClass('disabled')){
             return false;
         }
         $('.modal').modal();
