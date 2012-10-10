@@ -15,7 +15,10 @@ $(document).ajaxComplete( function(event, XHR, ajaxOptions){
 
 function initAdminArea(){
 	
-    //console.log('initialising of administration area started');
+    if (isShop)
+        $('#shopAdminMenu').show();
+        
+    console.log('initialising of administration area started');
     var startExecTime = Date.now();
     //  popover "info"
     $('.buy_prod').each(function(){
@@ -488,7 +491,8 @@ function initAdminArea(){
     });
     $('.item_menu .row-category:even').addClass('even');
     
-    window.setInterval('updateNotificationsTotal()', 5000);
+    if (userLogined)
+	window.setInterval('updateNotificationsTotal()', 5000);
     
     
     //list filter
@@ -592,16 +596,21 @@ function initAdminArea(){
     //            }
     //        })
     //    })
+    
+    initTinyMCE();
+    console.log('initialising of administration area ended');
+    console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.")
 };
 //    console.log('initialising of administration area ended');
-//    console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.")
+//    
 //}
-//
-initTinyMCE();
-    
-console.log('initialising of administration area ended');
+// 
+
 //console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.");
 
 $(document).ready(
-initAdminArea()
+    function(){
+	updateNotificationsTotal();
+	initAdminArea()
+    }
 );

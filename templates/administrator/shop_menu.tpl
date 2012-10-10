@@ -67,5 +67,5 @@
                                 </ul>
                             </li>
                         </ul>
-                        <a class="btn btn-small pull-right btn-info pjax" onclick=" loadBaseInterface();"  href="/admin/dashboard/index"><span class="f-s_14">←</span> Администрировать сайт </a>
+                        <a class="btn btn-small pull-right btn-info" onclick=" loadBaseInterface();"  href="#"><span class="f-s_14">←</span> Администрировать сайт </a>
                     </nav>
