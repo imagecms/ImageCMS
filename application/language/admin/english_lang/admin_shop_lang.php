@@ -16,6 +16,8 @@
     $lang['title']		=	'Title';
     $lang['prev_cont']		=	'Preliminary content';
     $lang['a_cre_product_i9']        =	'Product creation';
+    $lang['a_banned']               =	'Banned';
+    $lang['a_b_last_ip']              =	'Last IP';
     $lang['full_cont']		=	'Full content';
     $lang['param']		=	'Options';
     $lang['trans_title']	=	'Тitle transliteration';

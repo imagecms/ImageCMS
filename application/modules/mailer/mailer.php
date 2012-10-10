@@ -154,7 +154,7 @@ class Mailer extends MY_Controller {
     private function display_tpl($file = '') {
 
         $file = realpath(dirname(__FILE__)) . '/templates/public/' . $file;
-        $this->template->display('file:' . $file);
+        $this->template->show('file:' . $file);
     }
 
     /**
