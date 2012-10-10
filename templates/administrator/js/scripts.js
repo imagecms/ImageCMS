@@ -62,7 +62,7 @@ function initAdminArea(){
             axis: 'y',
             cursor: 'move',
             scroll: false,
-            cancel: '.head_body, .btn, .frame_label, td p, td span, td a, td input',
+            cancel: '.head_body, .btn, .frame_label, td p, td span, td a, td input, td select',
             helper: function(e, tr)
             {
                 var $originals = tr.children();
@@ -594,7 +594,6 @@ function initAdminArea(){
 //    console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.")
 //}
 //
- 
 initTinyMCE();
     
 console.log('initialising of administration area ended');
