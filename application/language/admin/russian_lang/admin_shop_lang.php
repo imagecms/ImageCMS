@@ -463,6 +463,7 @@
     $lang['a_create_kit'] = 'Создание набора';
     $lang['a_kit_edit'] = 'Редактирование набора';
     $lang['a_product_edit'] = 'Редактирование товара';
+    $lang['a_product_edit_success'] = 'Редактирование товара успешно';
     $lang['a_main_product'] = 'Главный товар';
     $lang['a_added_products'] = 'Прикрепленные товары';
     $lang['a_discount'] = 'Скидка';
