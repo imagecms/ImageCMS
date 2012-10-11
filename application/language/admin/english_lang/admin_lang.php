@@ -321,4 +321,33 @@ $lang['a_module_name'] = 'Module name';
 $lang['a_drug_block'] = 'drug block';
 
 $lang['a_guest'] = 'Guest';
+
+$lang['a_widget_deleting'] = 'Widget delete';
+$lang['a_delete_selected_widgets'] = 'Delete selected widget(s)?';
+$lang['a_delete_widgets'] = 'Delete widgets?';
+
+$lang['a_images_limit'] = 'Images limit';
+$lang['a_algorithm'] = 'Algorithm';
+$lang['a_latest_images'] = 'Last images';
+$lang['a_random_images'] = 'Random images';
+
+$lang['a_return'] = 'Go back';
+$lang['a_save_and_exit'] = 'Save and go back';
+$lang['a_widget_success_delete'] = 'Widget successfully deleted';
+
+$lang['a_positions_updated'] = 'Positions updated';
+$lang['a_show_in_menu'] = 'Show in menu';
+$lang['a_changes_saved'] = 'Changes saved';
+$lang['a_module_delete'] = 'Module deinstalling';
+$lang['a_delete_selected_modules'] = 'Delete selected module(s)?';
+$lang['a_delete_module'] = 'Delete modules?';
+
+$lang['a_facebook_on'] = 'Switch on integration with Facebook?';
+$lang['a_sim_settings'] = 'Integration with social servises module settings';
+$lang['a_secret_key'] = 'Secret key';
+$lang['a_application_number'] = 'Application number';
+$lang['a_select_template'] = 'Select template folder';
+$lang['a_vk_on'] = 'Switch on integration with VKontakte?';
+$lang['a_protection_key'] = 'Protection key';
+
 ?>

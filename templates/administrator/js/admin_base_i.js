@@ -1,4 +1,8 @@
 $(document).ready(function(){
+
+//***************Scripts for modules table***************    
+    
+    //*****changes autoload for any module*****
     $('.autoload_ch').live('click', function(){
         var mid = $(this).attr('data-mid');
         var $this = $(this);
@@ -14,7 +18,9 @@ $(document).ready(function(){
             }
         });
     });
+    //*****changes autoload for any module*****
     
+    //*****changes url access for any module*****
     $('.urlen_ch').live('click', function(){
         var mid = $(this).attr('data-mid');
         var murl = $(this).attr('data-murl');
@@ -28,7 +34,6 @@ $(document).ready(function(){
             success: function(obj){
                 if(obj.result === false){
                     showMessage('Ошибка', 'Что-то пошло не так. Доступ по URL не изменен.');
-                //alert('Что-то пошло не так. Доступ по URL не изменен.');
                 }else{
                     if(obj.result.enabled === 1)
                     {
@@ -40,7 +45,9 @@ $(document).ready(function(){
             }
         });
     });
+    //*****changes url access for any module*****
     
+    //*****module installing*****
     $('.mod_instal').live('click', function(){
         var mname = $(this).attr('data-mname');
         var $this = $(this);
@@ -63,31 +70,38 @@ $(document).ready(function(){
                         $('#nimt').remove();
                         $('#nimc').html('</br><div class="alert alert-info">Нету модулей для установки</div>');
                     }
-                    showMessage('Установка модуля', 'Модуль успешно устновлен');
+                    showMessage('Установка модуля', 'Модуль успешно установлен');
                     location.reload();
                 }
             }
         });
     });
-        
+    //*****module installing*****
+    
+    //*****saving positions in modules table*****
     $( "#mtbl" ).bind( "sortstop", function(event, ui) {
-        var rows =  $('#mtbl').children('tr');
-        var arr = new Array();
-        rows.each(function(){
-            arr[$(this).index()] = $(this).attr('data-id'); 
-        });
+        var url = $(this).attr('data-url');
+        save_positions(url);
+    });
+    //*****saving positions in modules table*****
+    
+    //*****change module visibility in menu*****
+    $('.show_in_menu').live('click', function(){
+        var id = $(this).attr('data-mid');
         $.ajax({
-            type:       'post',
-            dataType:   "json",
-            url:        '/admin/components/save_components_positions/'+arr,
-            success: function(obj){
-                if(obj.result)
-                {
-                }
+            url:    "/admin/components/change_show_in_menu",
+            data:   "id="+id,
+            type:   "post",
+            success: function(data){
+                $('.notifications').append(data);
             }
         });
     });
+    //*****change module visibility in menu*****
     
+//***************Scripts for modules table***************            
+            
+            
     $('span.selwid').bind('click', function(){
         var title = $(this).attr('data-title');
         var mname = $(this).attr('data-mname');
@@ -596,36 +610,36 @@ $(document).ready(function(){
         $.post('/admin/components/run/shop/products/ajaxChangeHit', {
             ids:ids
         }, function(data){
-                $('.notifications').append(data);
-            }
+            $('.notifications').append(data);
+        }
         );
     });
     
     $('.tonew').bind('click', function(){
-            var ids = new Array();
+        var ids = new Array();
         $('input[name=ids]:checked').each(function(){
             ids.push($(this).val());
         });
         $.post('/admin/components/run/shop/products/ajaxChangeHot', {
             ids:ids
         }, function(data){
-                $('.notifications').append(data);
-            }
+            $('.notifications').append(data);
+        }
         );
-        });
+    });
     
     $('.toaction').bind('click', function(){
-            var ids = new Array();
+        var ids = new Array();
         $('input[name=ids]:checked').each(function(){
             ids.push($(this).val());
         });
         $.post('/admin/components/run/shop/products/ajaxChangeAction', {
             ids:ids
         }, function(data){
-                $('.notifications').append(data);
-            }
+            $('.notifications').append(data);
+        }
         );
-        });
+    });
     
 });
 
