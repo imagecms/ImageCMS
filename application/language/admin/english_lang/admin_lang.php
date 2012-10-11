@@ -5,6 +5,12 @@
  * and open the template in the editor.
  */
 $lang['a_content'] = 'Content';
+$lang['a_subscri_mail'] = 'Subscribers';
+$lang['a_mailer_user_empty'] = 'Subscribers list is empty';
+$lang['a_sub_notif_later'] = 'Subscription and Notification letters';
+$lang['a_settings_mail'] = 'Message parameters';
+$lang['a_mailer_send_mail'] = 'Send a letter';
+$lang['a_data_group_mod'] = 'Group data';
 $lang['a_data_user_mod'] = 'User data';
 $lang['a_edit_user_mod'] = 'Editing';
 $lang['a_create_group_m'] = 'Creating a group';

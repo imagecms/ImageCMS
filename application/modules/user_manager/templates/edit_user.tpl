@@ -32,7 +32,7 @@
                             <div class="inside_padd">
                                 <div class="form-horizontal">
                                     <div class="row-fluid">
-                                        <form id="update" method="post" active="{$SELF_URL}/update_user/{$id}">
+                                        <form id="update" method="post" action="{$SELF_URL}/update_user/{$id}">
 
                                             <div class="control-group">
                                                 <label class="control-label" for="username">{lang('amt_user_login')}</label>
@@ -80,7 +80,7 @@
                                             <div class="control-group">
                                                 <label class="control-label" for="ban_reason">{lang('amt_ban_reason')}</label>
                                                 <div class="controls">
-                                                    <input type="text" name="ban_reason" id="ban_reason" value="{$banreason}"/>
+                                                    <input type="text" name="ban_reason" id="ban_reason" value="{$ban_reason}"/>
                                                 </div>
                                             </div>                                                
                                         </form>
