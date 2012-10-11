@@ -431,5 +431,5 @@ $lang['amt_additional_fields'] = 'Additional fields';
     $lang['amt_send'] = 'Send'; 
     $lang['amt_dep_name'] = 'Department name'; 
     $lang['amt_dep_created'] = 'Department has been created';
-    
+    $lang['amt_main_page'] = 'Main page';
     ?>
