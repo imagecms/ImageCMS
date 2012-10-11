@@ -224,6 +224,7 @@ $lang['a_count_orders'] = 'Количество заказов';
 
 //desktop.tpl
 $lang['a_controll_panel'] = 'Панель Управления';
+$lang['a_tools_panel'] = 'Панель инструментов';
 $lang['a_use_js'] = 'Для использования кабинета администрирования, крайне необходима активация JavaScript!';
 $lang['a_wellcome'] = 'Здравствуйте';
 $lang['a_cont'] = 'Содержимое';
@@ -278,7 +279,7 @@ $lang['a_exit'] = 'Выход';
 //$lang['a_published'] = 'Опубликовано';
 //$lang['a_wait_approve'] = 'Ожидает одобрения';
 //$lang['a_not_publ'] = 'Не опубликовано';
-//$lang['a_date_and_time_cr'] = 'Дата и время создания';
+$lang['a_date_and_time_cr'] = 'Дата и время создания';
 //$lang['a_date_and_time_p'] = 'Дата и время публикации';
 //$lang['a_access'] = 'Доступ';
 //$lang['a_all'] = 'Все';

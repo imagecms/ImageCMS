@@ -500,9 +500,10 @@ function initAdminArea(){
     
     //list filter
    
-    $('.listFilterForm').live('change', function(){
+    $('.listFilterForm').live('keypress', function(){
         $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
-        $('.listFilterSubmitButton').focus();
+        if (what_key(13))
+            $('.listFilterSubmitButton').click();
     })
 
     //    $('#usersDatas').autocomplete({source:usersDatas});

@@ -1,32 +1,48 @@
-<div id="pages_action_dialog" title="{lang('a_copy_move_title')}" style="display: none">
-    {lang('a_category')}:
-    <select id="CopyMoveCategorySelect" url="{$BASE_URL}admin/pages/GetPagesByCategory/">
-        <option value="0"></option>
-        {foreach $cats as $cat}
-        <option value="{$cat.id}" {if $cat.id == $cat_id}selected="selected"{/if}>{$cat.name}</option>
-        {/foreach}
-    </select>
-</div>
-<div id="pages_delete_dialog" title="{lang('a_delete_pages_title')}" style="display: none">
-    {lang('a_delete_pages_promt')}
-</div>
+    <div class="modal hide fade" id="pages_action_dialog">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 id="mvMv">{lang('a_copy_move_title')}</h3>
+        </div>
+        <div class="modal-body">
+            {lang('a_category')}:
+            <select id="CopyMoveCategorySelect" url="{$BASE_URL}admin/pages/GetPagesByCategory/">
+                <option value="0"></option>
+                { $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'] )); }
+            </select>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn" onclick="$('.modal').modal('hide');">Отмена</a>
+            <a href="#" id="confirmMove" class="btn btn-primary" onclick="pagesAdmin.confirmListAction('{$BASE_URL}admin/pages/move_pages/copy')" >Подтвердить</a>
+        </div>
+    </div>
 
-<form method="post" action="#">
-    <ul class="breadcrumb">
-        <li><a href="#">Главная</a> <span class="divider">/</span></li>
-        <li class="active">{lang('a_cont_nocat')}</li>
-    </ul>
+    <div class="modal hide fade" id="pages_delete_dialog">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>{lang('a_delete_pages_title')}</h3>
+        </div>
+        <div class="modal-body">
+            {lang('a_delete_pages_promt')}
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn" onclick="$('.modal').modal('hide');">Отмена</a>
+            <a href="#" class="btn btn-primary" onclick="pagesAdmin.confirmListAction('{$BASE_URL}admin/pages/delete_pages/')" >Удалить</a>
+        </div>
+    </div>
+
+<form method="post" action="" class="listFilterForm" id="pagesFilterForm">
     <section class="mini-layout">
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('a_cont_nocat')}</span>
+                <span class="title">{lang('a_cont')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <button type="button" class="btn btn-small disabled action_on pages_action" url="{$BASE_URL}admin/pages/move_pages/copy">{lang('a_copy')}</button>
-                    <button type="button" class="btn btn-small disabled action_on pages_action" url="{$BASE_URL}admin/pages/move_pages/move"><i class="icon-move"></i>{lang('a_repalce')}</button>
-                    <button type="button" class="btn btn-small disabled action_on pages_action pages_delete" url="{$BASE_URL}admin/pages/delete_pages/"><i class="icon-trash"></i>{lang('a_delete')}</button>
+                    <button type="button" class="btn btn-small disabled action_on listFilterSubmitButton " disabled="disabled" ><i class="icon-filter"></i>Фильтрировать</button>
+                    <button onclick="$('#pages_action_dialog').modal();" type="button" class="btn btn-small disabled action_on pages_action" >{lang('a_copy')}</button>
+                    <button onclick="$('#pages_action_dialog').modal();pagesAdmin.updDialogMove();" type="button" class="btn btn-small disabled action_on pages_action" ><i class="icon-move"></i>{lang('a_repalce')}</button>
+                    <button onclick="$('#pages_delete_dialog').modal();pagesAdmin.updDialogCopy();" type="button" class="btn btn-small disabled action_on pages_action pages_delete" ><i class="icon-trash"></i>{lang('a_delete')}</button>
                     <button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$BASE_URL}admin/pages'"><i class="icon-plus-sign icon-white"></i>{lang('a_create_page')}</button>
                 </div>
             </div>                            
@@ -45,43 +61,41 @@
                         <th class="span1">ID</th>
                         <th class="span4">{lang('a_title')}</th>
                         <th class="span3">{lang('a_url')}</th>
-                        {if $cat_id != "0"}<th class="span2">Категория</th>{/if}
+                        <th class="span2">Категория</th>
                         <th class="span1">{lang('a_status')}</th>
                     </tr>
                     <tr class="head_body">
                         <td>
                         </td>
                         <td class="number">
-                            <input type="text" data-original-title="{lang('a_numbers_only')}"/>
+                            <input type="text" name="id" data-original-title="{lang('a_numbers_only')}" value="{$_POST['id']}"/>
                         </td>
                         <td>
-                            <input type="text"/>
+                            <input type="text" name="title" value="{$_POST['title']}"/>
                         </td>
                         <td>
-                            <input type="text"/>
+                            <input type="text" name="url" value="{$_POST['url']}"/>
                         </td>
-                        {if $cat_id != "0"}
                         <td>
                             <select id="categorySelect" url="{$BASE_URL}admin/pages/GetPagesByCategory/">
-                                <option value=""></option>
-                                {foreach $cats as $cat}
-                                <option value="{$cat.id}" {if $cat.id == $cat_id}selected="selected"{/if}>{$cat.name}</option>
-                                {/foreach}
+                                <option value="">Все категории</option>
+                                <option value="0" {if $cat_id === "0"}selected="selected"{/if}>Без категории</option>
+                                { $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['cat_id'])); }
                             </select>
                         </td>
-                        {/if}
                         <td>
 
                         </td>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="sortable" data-url="">
+                    {if count($pages)}
                     {foreach $pages as $page}
                     <tr data-id="{$page.id}">
                         <td class="t-a_c">
                             <span class="frame_label">
                                 <span class="niceCheck b_n">
-                                    <input type="checkbox" data-id="{$page.id}"/>
+                                    <input type="checkbox" data-id="{$page.id}" name="ids" value="{$page.id}"/>
                                 </span>
                             </span>
                         </td>
@@ -91,7 +105,7 @@
                             <a href="{$BASE_URL}admin/pages/edit/{$page.id}" class="title pjax">{$page.title}</a>
                         </td>
                         <td><span>{truncate($page.url, 40, '...')}</span></td>
-                        {if $cat_id != "0"}<td><span>{if $page.cat_name}{$page.cat_name}{else:}{$category.name}{/if}</span></td>{/if}
+                        <td><span>{if $page.cat_name}{$page.cat_name}{else:}{$category.name}{/if}</span></td>
                         <td>
                             <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if $page['post_status'] == 'publish'}{lang('a_show')}{else:}{lang('a_dont_show')}{/if}" onclick="change_page_status('{$page.id}');">
                                 <span class="prod-on_off {if $page['post_status'] != 'publish'}disable_tovar{/if}" style="{if $page['post_status'] != 'publish'}left: -28px;{/if}"></span>
@@ -99,6 +113,13 @@
                         </td>
                     </tr>
                     {/foreach}
+                    {else:}
+                    <tr>
+                        <td colspan="6">
+                            <div class="alert alert-info" style="margin: 18px;">По Вашему запросу ничгео не найдено</div>
+                        </td>
+                    </tr>
+                    {/if}
                 </tbody>
             </table>
         </div>
