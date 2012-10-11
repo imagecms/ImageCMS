@@ -143,30 +143,46 @@ class Languages extends MY_Controller {
      */
     function delete() {
         cp_check_perm('lang_delete');
+        //$id = $this->input->post('lang_id');
+        $id = $this->input->post('ids');
+        if (is_array($id)) {
+            foreach ($id as $item) {
+                $lang = $this->cms_admin->get_lang($item);
+                ($hook = get_hook('admin_language_delete')) ? eval($hook) : NULL;
+                if ($lang['default'] == 1) {
+                    showMessage(lang('ac_cant_delete_language'), lang('ac_block'), 'r');
+                    exit;
+                }
+                $this->cms_admin->delete_lang($item);
+                // delete translated pages
+                $this->db->where('lang', $item);
+                $this->db->delete('content');
+                $this->cache->delete('main_site_langs');
+                $this->lib_admin->log(lang('ac_delete_language') . $item);
+            }
+        } else {
+            $lang = $this->cms_admin->get_lang($id);
 
-        $id = $this->input->post('lang_id');
+            ($hook = get_hook('admin_language_delete')) ? eval($hook) : NULL;
 
-        $lang = $this->cms_admin->get_lang($id);
+            if ($lang['default'] == 1) {
+                showMessage(lang('ac_cant_delete_language'), lang('ac_block'), 'r');
+                exit;
+            }
 
-        ($hook = get_hook('admin_language_delete')) ? eval($hook) : NULL;
+            $this->cms_admin->delete_lang($id);
 
-        if ($lang['default'] == 1) {
-            showMessage(lang('ac_cant_delete_language'), lang('ac_block'), 'r');
-            exit;
+            // delete translated pages
+            $this->db->where('lang', $id);
+            $this->db->delete('content');
+
+            $this->cache->delete('main_site_langs');
+
+            $this->lib_admin->log(lang('ac_delete_language') . $id);
         }
-
-        $this->cms_admin->delete_lang($id);
-
-        // delete translated pages
-        $this->db->where('lang', $id);
-        $this->db->delete('content');
-
-        $this->cache->delete('main_site_langs');
-
-        $this->lib_admin->log(lang('ac_delete_language') . $id);
-
         showMessage(lang('ac_language_deleted'));
-        updateDiv('languages_page_w_content', site_url('admin/languages/'));
+        pjax('/admin/languages');
+        //updateDiv('languages_page_w_content', site_url('admin/languages/'));
     }
 
     /**

@@ -147,7 +147,6 @@ class Admin extends MY_Controller {
                     $result = false;
                 }
         }
-
         echo json_encode(array(
             'message' => $message,
             'result' => $result,
