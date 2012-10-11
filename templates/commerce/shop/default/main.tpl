@@ -60,10 +60,12 @@
                         <span id="suggestions"style="display: none; width: 0px; right: 0px;"></span>
                     </form>
                 </div>
+                        
                 <div class="phone">
                     <address>+8 (067) <span>572-58-18</span></address>
                     <span class="js showCallback">{lang('s_coll_order')}</span>
                 </div>
+                
                 <ul class="user_menu">
                     <!--    Show callback's form    -->
                     {if count(get_currencies())>1}

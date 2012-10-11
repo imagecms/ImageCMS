@@ -5,6 +5,18 @@
  * and open the template in the editor.
  */
 $lang['a_content'] = 'Content';
+$lang['a_subscri_mail'] = 'Subscribers';
+$lang['a_mailer_user_empty'] = 'Subscribers list is empty';
+$lang['a_sub_notif_later'] = 'Subscription and Notification letters';
+$lang['a_settings_mail'] = 'Message parameters';
+$lang['a_mailer_send_mail'] = 'Send a letter';
+$lang['a_data_group_mod'] = 'Group data';
+$lang['a_data_user_mod'] = 'User data';
+$lang['a_edit_user_mod'] = 'Editing';
+$lang['a_create_group_m'] = 'Creating a group';
+$lang['a_data_n_group'] = 'Group details';
+$lang['a_data_n_user'] = 'New user';
+$lang['a_create_n_user_m'] = 'Create a new user';
 $lang['a_category'] = 'Category';
 $lang['a_no'] = 'No';
 $lang['a_create_cat'] = 'Create a category';
@@ -349,5 +361,11 @@ $lang['a_application_number'] = 'Application number';
 $lang['a_select_template'] = 'Select template folder';
 $lang['a_vk_on'] = 'Switch on integration with VKontakte?';
 $lang['a_protection_key'] = 'Protection key';
-
+$lang['a_create_language'] = 'Create language';
+$lang['a_language_delete'] = 'Delete language';
+$lang['a_warning_ld'] = 'Attention! All pages in this language will be deleted!';
+$lang['a_lang_edit'] = 'Language edit';
+$lang['a_delete_selected_languages'] = 'Delete selected languages?';
+$lang['a_cache'] = 'Cache';
+$lang['a_clear_cache'] = 'Delete cache';
 ?>

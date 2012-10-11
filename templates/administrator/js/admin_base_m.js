@@ -9,6 +9,7 @@ function change_status(hrefFn) {
         $('.notifications').append(data)
         } )
 }
+
 //var changeStatus2 =  new Object({
 //
 ////changestatus:function(id, statusId)
@@ -22,6 +23,7 @@ function change_status(hrefFn) {
 ////    });
 
 $(document).ready(function(){
+  
     
     $(".selValitadot").click(function() {
       
@@ -157,14 +159,6 @@ $(document).ready(function(){
        
     });
     
-    
-  
-        
-
-	
-     
-    
-
 });
 
 
@@ -226,6 +220,9 @@ var delete_function = new Object({
     
 });
 
+
+
+
 var delete_currency_function = new Object({
     deleteFunction:function (cid){
         $('#first').modal();
@@ -269,5 +266,7 @@ var delete_currency_function = new Object({
         $('#recount').modal('hide');
         return true;
     }
+    
+    
     
 });

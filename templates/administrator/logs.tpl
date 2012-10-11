@@ -1,8 +1,4 @@
 <div class="container">
-    <ul class="breadcrumb">
-        <li><a href="#">Главная</a> <span class="divider">/</span></li>
-        <li class="active">Список товаров</li>
-    </ul>
     <section class="mini-layout">
         <div class="frame_title clearfix">
             <div class="pull-left">
@@ -35,20 +31,7 @@
                 </div>
             </div>   
             <div class="clearfix">
-                <div class="pagination pull-left">
-                    <ul>{$paginator}
-                        <!--                                    <li class="active"><span>1</span></li>
-                                                            <li><a href="#">2</a></li>
-                                                            <li><span>...</span></li>
-                                                            <li><a href="#">4</a></li>-->
-                    </ul>
-                </div>
-                <div class="pagination pull-right">
-                    <ul>
-                        <li class="disabled"><span>Prev</span></li>
-                        <li><a href="#">Next</a></li>
-                    </ul>
-                </div>
+                    {$paginator}
             </div>
     </section>
 </div>
