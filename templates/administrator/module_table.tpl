@@ -34,7 +34,7 @@
                     </div>
                 </div>    
             </div>
-            <div class="btn-group myTab m-t_20" data-toggle="buttons-radio">
+            <div class="btn-group myTab m-t_10" data-toggle="buttons-radio">
                 <a href="#modules" class="btn btn-small">{lang('a_modules')}</a>
                 <a href="#set_modul" class="btn btn-small active">{lang('a_install_modules')}</a>
             </div>
