@@ -374,17 +374,23 @@ class Admin extends MY_Controller {
                 }
                 $form->title = $group->name;
 
+                $hiddenField = '<input type="hidden" name="cfcm_use_group" value="' . $group->id . '" />';
                 $this->template->add_array(array(
-                    'form' => $form,
+                    'form'  => $form,
+                    'hf'    => $hiddenField  
                 ));
-
+                
                 $this->display_tpl('_onpage_form');
-                echo '<input type="hidden" name="cfcm_use_group" value="' . $group->id . '" />';
+                
             } else {
-                echo lang('amt_no_field_in_group');
+                echo '<div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;">'
+                    .lang('amt_no_field_in_group').
+                    '</div>';
             }
         } else {
-            echo lang('amt_for_category') . $category->name . lang('amt_field_group_not_selected');
+            echo '<div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;">'
+                .lang('amt_for_category') . $category->name . lang('amt_field_group_not_selected').
+                '</div>';
         }
     }
 
