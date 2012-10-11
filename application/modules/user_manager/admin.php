@@ -80,13 +80,6 @@ class Admin extends MY_Controller {
             else
                 $users[$i]['banned'] = 0;
         }
-
-
-//		$this->template->assign('users',$users);
-//		$this->template->assign('cur_page',$offset);
-//
-//		echo $this->fetch_tpl('users_table');
-
         return array(
             'users' => $users,
             'cur_page' => $offset,
@@ -196,32 +189,6 @@ class Admin extends MY_Controller {
             }
         }
 
-
-//                switch ($action) {
-//                    case 1: // ban
-//                        cp_check_perm('user_edit');
-//                        ($hook = get_hook('users_ban')) ? eval($hook) : NULL;
-//                        $this->users->ban_user($value);
-//                        $this->lib_admin->log(lang('amt_banned_user') . $value);
-//                        break;
-//
-//                    case 2: //unban
-//                        cp_check_perm('user_edit');
-//                        ($hook = get_hook('users_unban')) ? eval($hook) : NULL;
-//                        $this->users->unban_user($value);
-//                        $this->lib_admin->log(lang('amt_unbanned_user') . $value);
-//                        break;
-//
-//                    case 3: //delete
-//                        cp_check_perm('user_delete');
-//                        ($hook = get_hook('users_delete')) ? eval($hook) : NULL;
-//                        $this->users->delete_user($value);
-//                        $this->lib_admin->log(lang('amt_deleted_user') . $value);
-//                        break;
-//                }
-        //  }
-        //}
-        //updateDiv('users_ajax_table', site_url('admin/components/cp/user_manager/genre_user_table/' . $return_to_page));
     }
 
     /*
@@ -305,7 +272,7 @@ class Admin extends MY_Controller {
     function update_user($user_id) {
 
 
-        //cp_check_perm('edit_user');
+        cp_check_perm('edit_user');
 
         $this->load->model('dx_auth/users', 'user2');
 
@@ -371,7 +338,7 @@ class Admin extends MY_Controller {
             }
         } else {
 
-            showMessage(validation_errors(), false, 'r');
+            showMessage(validation_errors(), '', 'r');
         }
     }
 
@@ -443,7 +410,7 @@ class Admin extends MY_Controller {
     function save($id) {
         cp_check_perm('roles_edit');
 
-        $this->form_validation->set_rules('alt_name', lang('amt_name'), 'required|trim|max_length[150]|min_length[2]');
+        $this->form_validation->set_rules('alt_name', lang('amt_tname'), 'required|trim|max_length[150]|min_length[2]');
         $this->form_validation->set_rules('name', lang('amt_identif'), 'required|trim|max_length[150]|min_length[2]|alpha');
         $this->form_validation->set_rules('desc', lang('amt_description'), 'trim|max_length[500]|min_length[2]');
 
@@ -478,7 +445,13 @@ class Admin extends MY_Controller {
 
             showMessage(lang('amt_group_saved'));
             $this->update_groups_block();
-            closeWindow('group_edit_window');
+            
+            $action = $_POST['action'];
+            if ($action == 'close') {
+                pjax('/admin/components/cp/user_manager/edit/' . $id);
+            } else {
+                pjax('/admin/components/init_window/user_manager');
+            }
         }
     }
 

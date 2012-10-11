@@ -6,7 +6,13 @@
  */
 
 $lang['a_content'] = 'Содержание';
+$lang['a_subscri_mail'] = 'Подписчики';
+$lang['a_mailer_user_empty'] = 'Список подписчиков пуст';
+$lang['a_sub_notif_later'] = 'Подписка и рассылка писем';
+$lang['a_settings_mail'] = 'Параметры письма';
+$lang['a_mailer_send_mail'] = 'Отправить письма';
 $lang['a_data_user_mod'] = 'Данные пользователя';
+$lang['a_data_group_mod'] = 'Данные группы';
 $lang['a_edit_user_mod'] = 'Редактирование';
 $lang['a_create_group_m'] = 'Создание группы';
 $lang['a_data_n_group'] = 'Данные группы';
