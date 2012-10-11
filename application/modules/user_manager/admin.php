@@ -27,6 +27,7 @@ class Admin extends MY_Controller {
 	{
 		$this->set_tpl_roles();
 		$this->display_tpl('main');
+                
 	}
 
 	/*
@@ -47,6 +48,7 @@ class Admin extends MY_Controller {
 	 */
 	function genre_user_table()
 	{
+            
             
         cp_check_perm('user_view_data');
 
