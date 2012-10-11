@@ -212,12 +212,14 @@ class Pages extends MY_Controller {
                     '<a href="#" onclick="ajax_div(\'page\',\'' . site_url('admin/pages/edit/' . $page_id) . '\'); return false;">' . $data['title'] . '</a>'
             );
 
+            $action = $this->input->post('action');
+            $path = '/admin/pages/GetPagesByCategory';
+            
+            if ($action == 'edit')
+                $path ='/admin/pages/edit/'.$page_id;
+                
             showMessage(lang('ac_page_created'));
-
-            pjax('/admin/pages/edit/');
-//             echo '<script>$.pjax({url: "/admin/pages/edit/' . $page_id . '", container:"#mainContent"});</script>';
-
-            //updateDiv('page',site_url('admin/pages/edit/'.$page_id.'/'.$data['lang']));
+            pjax($path);
         }
     }
 
@@ -381,8 +383,11 @@ class Pages extends MY_Controller {
 
                 if ($new_p_id > 0) {
                     showMessage(lang('ac_page_in_language') . '<b>' . $cur_lang['lang_name'] . '</b>' . lang('ac_creat') . '<b>' . $new_p_id . '</b>');
-                    updateDiv('page', site_url('admin/pages/edit/' . $page_id . '/' . $lang));
-                    exit;
+                    if ($this->pjaxRequest)
+                        pjax('/admin/pages/edit/'.$page_id.'/'.$lang);
+                    else
+                        redirect('/admin/pages/edit/'.$page_id.'/'.$lang);
+                    //exit;
                 } else {
                     die('Cant get page id!');
                 }
@@ -497,8 +502,17 @@ class Pages extends MY_Controller {
                         lang('ac_changed_page') .
                         '<a href="#" onclick="ajax_div(\'page\',\'' . site_url('admin/pages/edit/' . $page_id) . '\'); return false;">' . $data['title'] . '</a>'
                 );
-
+                
+                $action = $this->input->post('action');
+                $path = '/admin/pages/GetPagesByCategory';
+                
+                if ($action == 'edit')
+                    $path ='/admin/pages/edit/'.$page_id;
+                    
                 showMessage(lang('ac_page_cont_updated'));
+                pjax($path);
+                
+                
             } else {
                 showMessage('', false, 'r');
             }

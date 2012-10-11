@@ -234,15 +234,6 @@ class Categories extends MY_Controller {
         cp_check_perm('category_create');
 
         ($hook = get_hook('admin_fast_cat_add')) ? eval($hook) : NULL; 
-
-        $this->template->add_array(array(
-            'tree' => $this->lib_category->build(), 
-        ));
-
-        if ($action == '')
-        {
-            $this->template->show('fast_cat_add', FALSE);
-        }
         
         if ($action == 'create')
         {
@@ -310,11 +301,7 @@ class Categories extends MY_Controller {
                 lang('ac_cr_cat').
                 '<a href="#" onclick="edit_category('.$id.'); return false;">'.$data['name'].'</a>'
                 );
-
-                updateDiv('categories', site_url('/admin/categories/update_block'));
-                updateDiv('fast_category_list', site_url('/admin/categories/update_fast_block/'.$id));
-                closeWindow('fast_add_cat_w');
-                jsCode("$('comments_status').checked = true;");
+		echo json_encode(array( 'data' => $id));
             }
         }
     }
