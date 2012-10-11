@@ -349,5 +349,11 @@ $lang['a_application_number'] = 'Application number';
 $lang['a_select_template'] = 'Select template folder';
 $lang['a_vk_on'] = 'Switch on integration with VKontakte?';
 $lang['a_protection_key'] = 'Protection key';
-
+$lang['a_create_language'] = 'Create language';
+$lang['a_language_delete'] = 'Delete language';
+$lang['a_warning_ld'] = 'Attention! All pages in this language will be deleted!';
+$lang['a_lang_edit'] = 'Language edit';
+$lang['a_delete_selected_languages'] = 'Delete selected languages?';
+$lang['a_cache'] = 'Cache';
+$lang['a_clear_cache'] = 'Delete cache';
 ?>

@@ -1,102 +1,84 @@
 <div class="container">
-    <ul class="breadcrumb">
-        <li><a href="#">Главная</a> <span class="divider">/</span></li>
-        <li class="active">Список товаров</li>
-    </ul>
+    
+    <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->    
+    <div class="modal hide fade">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>{lang('a_language_delete')}</h3>
+        </div>
+        <div class="modal-body">
+            <p>{lang('a_delete_selected_modules')}</p>
+            <p>{lang('a_warning_ld')}</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/languages/delete')" >{lang('a_delete')}</a>
+            <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('a_cancel')}</a>
+        </div>
+    </div>
+    
+    <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->
+    
     <section class="mini-layout">
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('a_event_journal')}</span>
+                <span class="title">{lang('a_languages')}</span>
             </div>  
             <div class="pull-right">
                 <div class="d-i_b">
-
-                    <a href="#" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
-                     <button type="button" class="btn btn-small btn-success" onclick="window.location.href='/admin/languages/create_form'"><i class="icon-list-alt icon-white"></i>Создать язык</button>
-                    <button type="button" class="btn btn-small action_on"><i class="icon-ok"></i>{lang('a_save')}</button>
-                    <button type="button" class="btn btn-small action_on"><i class="icon-check"></i>Сохранить и выйти</button>
-                    
-                    <div class="dropdown d-i_b">
-                        <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
-                            Русский
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Английский</a></li>
-                        </ul>
-                    </div>
+                    <button type="button" class="btn btn-small disabled action_on" onclick="delete_function.deleteFunction()" id="module_delete"><i class="icon-trash"></i>{lang('a_delete')}</button>
+                    <button type="button" class="btn btn-small btn-success" onclick="window.location.href = '/admin/languages/create_form'"><i class="icon-list-alt icon-white"></i>{lang('a_create_language')}</button>
                 </div>
             </div>
         </div>
         <div class="content_big_td">
-            <div class="clearfix">
-               
-                <div class="pull-right m-t_20">
-                    <a href="#">Просмотр страницы <span class="f-s_14">→</span></a>
-                </div>
-            </div>
             <div class="tab-content">
                 <div class="tab-pane active" id="lang">
                     <div class="row-fluid">
                         <div class="form-horizontal">
                             <table class="table table-striped table-bordered table-hover table-condensed">
                                 <thead>
-                                    <tr>                                              
+                                    <tr>
+                                        <th class="span1"></th>
                                         <th class="span4">{lang('a_name')}</th>
                                         <th class="span4">{lang('a_folder')}</th>
                                         <th class="span4">{lang('a_identif')}</th>
                                         <th class="span4">{lang('a_tpl')}</th>
                                         <th class="span2">{lang('a_image')}</th>
+                                        <th class="span2">{lang('a_by_default')}</th>
                                     </tr>
                                 </thead>
                                 <tbody class="sortable ui-sortable">
                                     {foreach $langs as $lang}                                  
-                                    <td><p><a href="{$BASE_URL}admin/languages/edit/{$lang.id}">{$lang.lang_name}</a></p></td>
-                                    <td><p>{$lang.folder}</p></td>
-                                    <td><p>{$lang.identif}</p></td>
-                                    <td><p>{$lang.template}</p></td>
-                                    <td><p><img src="{$lang.image}" width="16" height="16" /></p></td>
+                                    <tr>
+                                        <td class="t-a_c">
+                                            <span class="frame_label">
+                                                <span class="niceCheck b_n">
+                                                    <input type="checkbox" name="ids" value="{$lang.id}"/>
+                                                </span>
+                                            </span>
+                                        </td>
+                                        <td><p><a href="{$BASE_URL}admin/languages/edit/{$lang.id}">{$lang.lang_name}</a></p></td>
+                                        <td><p>{$lang.folder}</p></td>
+                                        <td><p>{$lang.identif}</p></td>
+                                        <td><p>{$lang.template}</p></td>
+                                        <td><p><img src="{$lang.image}" width="16" height="16" /></p></td>
+                                        <td class="t-a_c"><button class="btn btn-small lan_def {if $lang.default == 1} btn-primary active {/if}" data-id="{$lang.id}"><i class="icon-star"></i></button></td>
                                     </tr>
-                                {/foreach}     
-
+                                    {/foreach}     
                                 </tbody>
                             </table>   
-                            <div class="control-group">
-                                <label class="control-label" for="inputGroupField">{lang('a_by_default')}:</label>
-                                <div class="controls">
-                                    <select name="folder" id="def_lang_folder" onchange="set_def_lang($('def_lang_folder').value);">
-                                        {foreach $langs as $lang}
-                                            <option value="{$lang.id}" {if $lang['default'] == "1"} selected="selected" {/if}>{$lang.lang_name}</option>
-                                        {/foreach}
-                                    </select>
-
-                                </div>
-
-                            </div>                           
-
                         </div><div class="clearfix">
                             <div class="pagination pull-left">
                                 <ul>{$paginator}
-                                    <!--                                    <li class="active"><span>1</span></li>
-                                                                        <li><a href="#">2</a></li>
-                                                                        <li><span>...</span></li>
-                                                                        <li><a href="#">4</a></li>-->
                                 </ul>
                             </div>
                             <div class="pagination pull-right">
-                                <ul>
-                                    <li class="disabled"><span>Prev</span></li>
-                                    <li><a href="#">Next</a></li>
-                                </ul>
                             </div>
                         </div>
                     </div>
-
                 </div> 
-                                    
             </div>
         </div>   
-
     </section>
 </div>
