@@ -5,6 +5,8 @@
  * and open the template in the editor.
  */
 $lang['a_content'] = 'Content';
+$lang['a_data_n_user'] = 'New user';
+$lang['a_create_n_user_m'] = 'Create a new user';
 $lang['a_category'] = 'Category';
 $lang['a_no'] = 'No';
 $lang['a_create_cat'] = 'Create a category';
