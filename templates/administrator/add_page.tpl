@@ -15,7 +15,7 @@
                         </div>                            
                     </div>  
 
-					<div class="clearfix">
+		    <div class="clearfix">
                             <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
                                 <a href="#content_article" class="btn btn-small active">Содержание</a>
                                 <a href="#parameters_article" class="btn btn-small ">Параметры</a>
@@ -23,7 +23,7 @@
                                 <a href="#setings_article" class="btn btn-small">Настройки</a>
                             </div>
                         </div>             
-<form method="post" action="{$BASE_URL}admin/pages/add" id="add_page_form" class="form-horizontal">
+<form method="post" action="{$BASE_URL}admin/pages/add" id="add_page_form" class="form-horizontal" >
 <div id="content_big_td" class="tab-content">                
 
 <div class="tab-pane active" id="content_article">
@@ -50,7 +50,7 @@
         </label>
         	<div class="controls">
 		<span class="span6 f_l">
-            	<select name="category" id="category_selectbox">
+            	<select name="category" id="category_selectbox" onchange="pagesAdmin.loadCFAddPage()"> 
                 <option value="0" selected="selected">{lang('a_no')}</option>
                 { $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['sel_cat'])); }
                 </select>
@@ -120,9 +120,11 @@
                     		{lang('a_url')}:
                             </label>
                         	<div class="controls">
-                			<input type="text" name="page_url" value="" id="page_url" class="textbox_long" /> 
-                			 	<img onclick="translite_title('#page_title_u', '#page_url');" align="absmiddle" style="cursor:pointer" src="{$THEME}/images/translit.png" width="16" height="16" title="{lang('a_trans_title')}." /> 
-        						<div class="lite">({lang('a_just_lat')})</div>
+				    <span class="span5 f_l">
+                			<input type="text" name="page_url" value="" id="page_url" class="textbox_long" />
+				    </span>
+				    <button onclick="translite_title('#page_title_u', '#page_url');" type="button" class="btn btn-small" id="translateCategoryTitle"><i class="icon-refresh"></i>&nbsp;&nbsp;Автоподбор</button>
+				    <div class="lite">({lang('a_just_lat')})</div>
                         	</div>
                         </div>
                         
@@ -150,7 +152,7 @@
                             </label>
                         	<div class="controls">
                         	<textarea name="page_description" class="textarea" id="page_description" rows="8" cols="28"></textarea>
-							<img onclick="create_description('#prev_text', '#page_description' );" src="{$THEME}/images/arrow-down.png" title="{lang('a_gen_desc')}" style="cursor:pointer" width="16" height="16" />
+				<button  onclick="create_description('#prev_text', '#page_description' );" type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;Автоподбор</button>
                         	</div>
                         </div>
                         
@@ -160,11 +162,9 @@
                             </label>
                         	<div class="controls">
                         	<textarea name="page_keywords" id="page_keywords" rows="8" class="textarea" cols="28"></textarea>
-							<img src="{$THEME}/images/arrow-down.png" style="cursor:pointer" title="{lang('a_gen_key_words')}" onclick="retrive_keywords('#prev_text', '#keywords_list' );" />
-				
-							<div style="max-width:600px" id="keywords_list">
-				
-							</div>
+				<button  onclick="retrive_keywords('#prev_text', '#keywords_list' );"  type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;Автоподбор слов</button>
+				<div style="max-width:600px" id="keywords_list">
+				</div>
                         	</div>
                         </div>
                         
@@ -209,7 +209,7 @@
 	</div>
 
 	<div class="tab-pane" id="addfields_article">
-		{($hook = get_hook('admin_tpl_add_page')) ? eval($hook) : NULL;}
+		<div id="cfcm_fields_block"></div>
 	</div>
 
 <div class="tab-pane" id="setings_article">
@@ -280,7 +280,6 @@
 							</select>        	
             	           	</div>
                         </div>
-                        {($hook = get_hook('admin_tpl_add_page_side_bar')) ? eval($hook) : NULL;}
                 </div>
             </div>
 
@@ -330,3 +329,7 @@
             <a href="#" class="btn btn-primary" onclick="pagesAdmin.quickAddCategory()">Создать</a>
         </div>
     </div>
+
+<script>
+	window.onload = pagesAdmin.initialize();
+</script>

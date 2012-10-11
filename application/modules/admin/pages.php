@@ -507,7 +507,7 @@ class Pages extends MY_Controller {
                 $path = '/admin/pages/GetPagesByCategory';
                 
                 if ($action == 'edit')
-                    $path ='/admin/pages/update/'.$page_id;
+                    $path ='/admin/pages/edit/'.$page_id;
                     
                 showMessage(lang('ac_page_cont_updated'));
                 pjax($path);
