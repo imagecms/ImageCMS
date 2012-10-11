@@ -1,120 +1,95 @@
-<div id="user_manager_tabs">
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a href="#">Главная</a> <span class="divider">/</span></li>
+        <li class="active">Список товаров</li>
+    </ul>
+    <section class="mini-layout">
+        <div class="frame_title clearfix">
+            <div class="pull-left">
+                <span class="help-inline"></span>
+                <span class="title">Редактировать пункт меню</span>
+            </div>
+            <div class="pull-right">
+                <div class="d-i_b">
+                    <a href="#" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
+                    <button type="button" class="btn btn-small action_on"><i class="icon-ok"></i>Сохранить</button>
+                    <button type="button" class="btn btn-small action_on"><i class="icon-check"></i>Сохранить и выйти</button>
+                </div>
+            </div>                            
+        </div>
+        <div class="btn-group myTab m-t_20" data-toggle="buttons-radio">
+            <a href="#page_cat" class="btn btn-small active">Страницы и категории</a>
+            <a href="#modules" class="btn btn-small">Модули</a>
+            <a href="#url" class="btn btn-small">URL</a>
+        </div>
+        <div class="tab-content">
+            <div class="tab-pane active" id="modules">
+                <table class="table table-striped table-bordered table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th class="t-a_c span1">
+                                <span class="frame_label">
+                                    <span class="niceCheck b_n">
+                                        <input type="checkbox"/>
+                                    </span>
+                                </span>
+                            </th>
+                            <th class="span1">{lang('amt_id')}</th>
+                            <th class="span2">{lang('a_filter')}</th>
+                            <th class="span3">{lang('a_login')}</th>
+                            <th class="span3">{lang('a_email')}</th>
+                            <th class="span2">{lang('a_group')}</th>
+                            <th class="span1">{lang('a_banned')}</th>
+                            <th class="span2">{lang('a_b_last_ip')}</th>
+                        </tr>
+                        <tr class="head_body">
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <select>
+                                    <option>Login</option>
+                                    <option>Email</option>
+                                    <option>Group</option>
+                                </select>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody class="sortable">
+                        
+                        {var_dump($users)}
+                        {foreach $users as $user}
+                        <tr>
+                            <td class="t-a_c">
+                                <span class="frame_label">
+                                    <span class="niceCheck b_n">
+                                        <input type="checkbox"/>
+                                    </span>
+                                </span>
+                            </td>
+                            <td><p></p></td>
+                            <td>
+                                <span class="label label-important">on-line</span>
+                            </td>
+                            <td><p></p></td>
+                            <td>
+                                <a href="#">{echo $user.username}</a>
+                            </td>
+                            <td><p>{$user.email}</p></td>
+                            <td><p>{echo $user.banned}</p></td>
+                            <td><p>&mdash;</p></td>
+                        </tr>
+                        {/foreach}
+                    
+                    </tbody>
+                </table>
 
-<h4 title="">{lang('amt_users')}</h4>
-<div style="padding:3px;">
-	<div id="users_ajax_table"></div>
+            </div>
+            <div class="tab-pane"></div>
+        </div>
+    </section>
 </div>
-
-<h4 title="">{lang('amt_to_create')}</h4>
-<div style="padding:3px;">
-
-	<div class="form_text"></div>
-	<div class="form_input"><h3>{lang('amt_create_new_user')}</h3></div>
-	<div class="form_overflow"></div>
-
-		<form action="{$SELF_URL}/create_user/" id="user_create" method="post" style="width:100%">
-			<div class="form_text">{lang('amt_user_login')}:</div>
-			<div class="form_input"><input type="text" name="username" value="" class="textbox_long" /></div>
-			<div class="form_overflow"></div>
-
-                        <div class="form_text">{lang('amt_new_pass')}:</div>
-                        <div class="form_input"><input type="password" name="password" value="" class="textbox_long" /></div>
-			<div class="form_overflow"></div>
-
-                        <div class="form_text">{lang('amt_new_pass_confirm')}:</div>
-                        <div class="form_input"><input type="password" name="password_conf" value="" class="textbox_long" /></div>
-                        <div class="form_overflow"></div>
-
-                        <div class="form_text">{lang('amt_email')}:</div>
-			<div class="form_input"><input type="text" name="email" value="" class="textbox_long" /></div>
-			<div class="form_overflow"></div>
-
-			<div class="form_text">{lang('amt_group')}:</div>
-			<div class="form_input">
-				<select name="role">
-				{foreach $roles as $role}
-				  <option value ="{$role.id}">{$role.alt_name}</option>
-				{/foreach}
-				</select>
-			</div>
-			<div class="form_overflow"></div>
-
-			<div class="form_text"></div>
-			<div class="form_input">
-			<input type="submit" name="button" class="button" value="{lang('amt_to_create')}" onclick="ajax_me('user_create');" />
-			</div>
-			<div class="form_overflow"></div>
-		{form_csrf()}</form>
-</div>
-
-<h4 title="">{lang('amt_search')}</h4>
-<div style="padding:3px;">
-
-	<div class="form_text"></div>
-	<div class="form_input"><h3>{lang('amt_user_search')}</h3></div>
-	<div class="form_overflow"></div>
-
-	<form action="{$SELF_URL}/search/" id="user_search" method="post" style="width:100%">
-
-	<div class="form_text">{lang('amt_login_or_mail')}</div>
-	<div class="form_input">
-	<input type="text" name="s_data" id="s_data" value="" class="textbox_long" />
-	</div>
-	<div class="form_overflow"></div>
-
-	<div class="form_text">{lang('amt_group')}:</div>
-	<div class="form_input">
-		<select name="role" id="role">
-		 <option value ="0">{lang('amt_all_groups')}</option>
-		{foreach $roles as $role}
-		  <option value ="{$role.id}">{$role.alt_name}</option>
-		{/foreach}
-		</select>
-	</div>
-	<div class="form_overflow"></div>
-
-	<div class="form_text"></div>
-	<div class="form_input">
-		<input type="submit" class="button" value="{lang('amt_search')}" onclick="ajax_form('user_search','u_search_result');" />
-	</div>
-	<div class="form_overflow"></div>
-	{form_csrf()}</form>
-
-	<hr/>
-
-	<div id="u_search_result"></div>
-
-</div> <!-- /user_manager_tabs -->
-
-<h4 title="">{lang('amt_groups')}</h4>
-    <div style="padding:3px;" id="groups_block"></div>
-
-<h4 title="">{lang('amt_perm_div')}</h4>
-    <div style="padding:3px;" id="perms_editor_block"></div>
-
-</div>
-
-{literal}
-<script type="text/javascript">
-		var users_tabs = new SimpleTabs('user_manager_tabs', {
-	    	selector: 'h4'
-		});
-
-		ajax_div('users_ajax_table', base_url + 'admin/components/cp/user_manager/genre_user_table/');
-		ajax_div('groups_block', base_url + 'admin/components/cp/user_manager/groups_index/');
-		ajax_div('perms_editor_block', base_url + 'admin/components/cp/user_manager/show_edit_prems_tpl/');
-
-		function edit_user(user_id)
-		{
-			//create user_edit window
-				new MochaUI.Window({
-					id: 'user_edit_window',
-					title: 'Пользователь ID: ' + user_id,
-					loadMethod: 'xhr',
-					contentURL: base_url + 'admin/components/cp/user_manager/edit_user/' + user_id,
-					width: 490,
-					height: 300
-				});
-		}
-</script>
-{/literal}

@@ -577,3 +577,34 @@ $lang['a_module_name'] = 'Название модуля';
 $lang['a_drug_block'] = 'перетащите блок';
 
 $lang['a_guest'] = 'Гость';
+
+$lang['a_widget_deleting'] = 'Удаление виджета';
+$lang['a_delete_selected_widgets'] = 'Удалить выбранные виджеты?';
+$lang['a_delete_widgets'] = 'Удалить виджеты?';
+
+$lang['a_images_limit'] = 'Лимит изображений';
+$lang['a_algorithm'] = 'Алгоритм';
+$lang['a_latest_images'] = 'Последние изображения';
+$lang['a_random_images'] = 'Случайные изображения';
+
+$lang['a_return'] = 'Вернуться';
+$lang['a_save_and_exit'] = 'Сохранить и выйти';
+$lang['a_widget_success_delete'] = 'Виджет(ы) успешно удален(ы)';
+
+$lang['a_positions_updated'] = 'Позиции сохранены';
+$lang['a_show_in_menu'] = 'Показывать в меню';
+$lang['a_changes_saved'] = 'Изменения сохранены';
+
+$lang['a_module_delete'] = 'Удаление модуля';
+$lang['a_delete_selected_modules'] = 'Удалить выбранные модули?';
+$lang['a_delete_module'] = 'Удалить модули?';
+
+$lang['a_facebook_on'] = 'Включить интеграцию с facebook?';
+$lang['a_sim_settings'] = 'Настройки модуля интеграции с соцсетями';
+
+$lang['a_secret_key'] = 'Секретный ключ';
+$lang['a_application_number'] = 'Номер приложения';
+$lang['a_select_template'] = 'Выбор шаблона для отображения';
+
+$lang['a_vk_on'] = 'Включить интеграцию с vkontakte?';
+$lang['a_protection_key'] = 'Защитный код';
