@@ -381,17 +381,35 @@ class Components extends MY_Controller {
         }
     }
 
-    function save_components_positions($positions) {
-        $positions = explode(',', $positions);
+    function save_components_positions() {
+        $positions = $this->input->post('positions');
         if (is_array($positions)) {
             foreach ($positions as $key => $value) {
-                if ($this->db->where('id', (int) $value)->set('position', $key)->update('components')) {
+                if ($this->db->where('name', $value)->set('position', $key)->update('components')) {
                     $result = true;
                 } else {
                     $result = false;
                 }
             }
-            echo json_encode(array('result' => $result));
+            if ($result)
+                showMessage(lang('a_positions_updated'));
+            else
+                showMessage(lang('a_fail'));
+        }
+    }
+
+    function change_show_in_menu() {
+        $id = $this->input->post('id');
+        $row = $this->db->where('id', (int) $id)->get('components')->row();
+        if (count($row) > 0) {
+            $in_menu = $row->in_menu;
+            if ($in_menu == 1)
+                $in_menu = 0;
+            else
+                $in_menu = 1;
+            if ($this->db->where('id', (int) $id)->set('in_menu', $in_menu)->update('components')) {
+                showMessage(lang('a_changes_saved'));
+            }
         }
     }
 

@@ -334,4 +334,11 @@ $lang['a_random_images'] = 'Random images';
 $lang['a_return'] = 'Go back';
 $lang['a_save_and_exit'] = 'Save and go back';
 $lang['a_widget_success_delete'] = 'Widget successfully deleted';
+
+$lang['a_positions_updated'] = 'Positions updated';
+$lang['a_show_in_menu'] = 'Show in menu';
+$lang['a_changes_saved'] = 'Changes saved';
+$lang['a_module_delete'] = 'Module deinstalling';
+$lang['a_delete_selected_modules'] = 'Delete selected module(s)?';
+$lang['a_delete_module'] = 'Delete modules?';
 ?>
