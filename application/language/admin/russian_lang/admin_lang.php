@@ -598,3 +598,13 @@ $lang['a_changes_saved'] = 'Изменения сохранены';
 $lang['a_module_delete'] = 'Удаление модуля';
 $lang['a_delete_selected_modules'] = 'Удалить выбранные модули?';
 $lang['a_delete_module'] = 'Удалить модули?';
+
+$lang['a_facebook_on'] = 'Включить интеграцию с facebook?';
+$lang['a_sim_settings'] = 'Настройки модуля интеграции с соцсетями';
+
+$lang['a_secret_key'] = 'Секретный ключ';
+$lang['a_application_number'] = 'Номер приложения';
+$lang['a_select_template'] = 'Выбор шаблона для отображения';
+
+$lang['a_vk_on'] = 'Включить интеграцию с vkontakte?';
+$lang['a_protection_key'] = 'Защитный код';
