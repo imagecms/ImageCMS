@@ -300,7 +300,7 @@
     //modules/install/views/done.php
 //    $lang['amt_install_complete']                                               = 'Установка завершена.';
 //    $lang['amt_to_controll_panel']                                              = 'Перейти в панель управления';
-//    $lang['amt_main_page']                                                      = 'Главная страница';
+    $lang['amt_main_page']                                                      = 'Главная страница';
 //    
 //    //modules/install/views/main.php
 //    $lang['amt_imagecms_install']                                               = 'ImageCMS - Установка';

@@ -16,6 +16,7 @@ class Admin  extends MY_Controller {
 
     public function index()
     {
+        return false;
         $this->load->module('tags');
         $tags = $this->tags->prepare_tags();
 
