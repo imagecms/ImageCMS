@@ -1,5 +1,4 @@
 <section class="mini-layout">
-                
                     <div class="frame_title clearfix">
                         <div class="pull-left w-s_n">
                             <span class="help-inline"></span>
@@ -9,8 +8,8 @@
                             <span class="help-inline"></span>
                             <div class="d-i_b">
                                 <a href="#" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
-                                <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form"><i class="icon-ok"></i>Сохранить</button>
-                                <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form"><i class="icon-check"></i>Сохранить и выйти</button>
+                                <button type="button" class="btn btn-small action_on formSubmit" data-action="edit" data-form="#edit_page_form"><i class="icon-ok"></i>Сохранить</button>
+                                <button type="button" class="btn btn-small action_on formSubmit" data-action="close" data-form="#edit_page_form"><i class="icon-check"></i>Сохранить и выйти</button>
                                 <div class="dropdown d-i_b">
                                     <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
                                         {foreach $langs as $l}
@@ -39,11 +38,8 @@
                                 <a href="#addfields_article" class="btn btn-small">Дополнительные поля</a>
                                 <a href="#setings_article" class="btn btn-small">Настройки</a>
                             </div>
-                            <div class="pull-right m-t_20">
-                                <a href="#">Просмотр страницы <span class="f-s_14">→</span></a>
-                            </div>
                         </div>             
-<form method="post" action="{$BASE_URL}admin/pages/update/{$update_page_id}/{$page_lang}" id="add_page_form" class="form-horizontal">
+<form method="post" action="{$BASE_URL}admin/pages/update/{$update_page_id}/{$page_lang}" id="edit_page_form" class="form-horizontal" data-pageid="{$update_page_id}">
 <div id="content_big_td" class="tab-content">                
 
 <div class="tab-pane active" id="content_article">
@@ -71,7 +67,7 @@
         </label>
         	<div class="controls">
 		<span class="span6 f_l">
-            	<select name="category"  id="category_selectbox" >
+            	<select name="category"  id="category_selectbox"  onchange="pagesAdmin.loadCFEditPage()">
                 <option value="0" >{lang('a_no')}</option>
                 { $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['parent_id'])); }
                 </select>
@@ -141,9 +137,11 @@
                     		{lang('a_url')}:
                             </label>
                         	<div class="controls">
-                			<input type="text" name="page_url" value="{$url}" id="page_url" class="textbox_long" /> 
-                			 	<img onclick="translite_title('#page_title_u', '#page_url');" align="absmiddle" style="cursor:pointer" src="{$THEME}/images/translit.png" width="16" height="16" title="{lang('a_trans_title')}." /> 
-        						<div class="lite">({lang('a_just_lat')})</div>
+				    <span class="span5 f_l">
+                			<input type="text" name="page_url" value="{$url}" id="page_url" class="textbox_long" />
+				    </span>
+                		    <button onclick="translite_title('#page_title_u', '#page_url');" type="button" class="btn btn-small" id="translateCategoryTitle"><i class="icon-refresh"></i>&nbsp;&nbsp;Автоподбор</button>
+        			    <div class="lite">({lang('a_just_lat')})</div>
                         	</div>
                         </div>
                         
@@ -171,7 +169,7 @@
                             </label>
                         	<div class="controls">
                         	<textarea name="page_description" class="textarea" id="page_description" >{$description}</textarea>
-							<img onclick="create_description('#prev_text', '#page_description' );" src="{$THEME}/images/arrow-down.png" title="{lang('a_gen_desc')}" style="cursor:pointer" width="16" height="16" />
+				<button  onclick="create_description('#prev_text', '#page_description' );" type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;Автоподбор</button>
                         	</div>
                         </div>
                         
@@ -181,11 +179,9 @@
                             </label>
                         	<div class="controls">
                         	<textarea name="page_keywords" id="page_keywords" >{$keywords}</textarea>
-							<img src="{$THEME}/images/arrow-down.png" style="cursor:pointer" title="{lang('a_gen_key_words')}" onclick="retrive_keywords('#prev_text', '#keywords_list' );" />
-				
-							<div id="keywords_list">
-				
-							</div>
+				<button  onclick="retrive_keywords('#prev_text', '#keywords_list' );"  type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;Автоподбор слов</button>
+        			<div id="keywords_list">
+				</div>
                         	</div>
                         </div>
                         
@@ -230,12 +226,7 @@
 	</div>
 
 	<div class="tab-pane" id="addfields_article">
-	    <!--
-		{($hook = get_hook('admin_tpl_add_page')) ? eval($hook) : NULL;}
-		-->
-		<!--
-		//TODO:enable this hook
-		-->
+	    <div id="cfcm_fields_block"></div>
 	</div>
 
 <div class="tab-pane" id="setings_article">
@@ -359,3 +350,6 @@
             <a href="#" class="btn btn-primary" onclick="pagesAdmin.quickAddCategory()">Создать</a>
         </div>
     </div>
+<script>
+	window.onload = pagesAdmin.initialize();
+</script>

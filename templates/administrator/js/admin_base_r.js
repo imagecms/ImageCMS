@@ -17,4 +17,28 @@ var pagesAdmin = new Object({
             });
     return false;
     },
+    loadCFAddPage:function()
+    {
+        categoryId = $("#category_selectbox").val();
+        $("#cfcm_fields_block").load(base_url + "admin/components/cp/cfcm/form_from_category_group/" + categoryId + "/0/page");
+    },
+    loadCFEditPage:function()
+    {
+        var updatePageId = $('#edit_page_form').data('pageid');
+        categoryId = $("#category_selectbox").val();
+        $("#cfcm_fields_block").load(base_url + "admin/components/cp/cfcm/form_from_category_group/" + categoryId + "/" + updatePageId + "/page");
+    },
+    
+    
+    initialize:function()
+    {
+        if ($('#edit_page_form'))
+            this.loadCFEditPage();
+            
+        if ($('#add_page_form'))
+            this.loadCFAddPage();
+    }
 });
+
+pagesAdmin.initialize();
+
