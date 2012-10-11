@@ -27,6 +27,7 @@ class Admin extends MY_Controller {
     function index() {
         $this->set_tpl_roles();
         $this->template->add_array($this->genre_user_table());
+        $this->template->add_array($this->show_edit_prems_tpl());
         $this->display_tpl('main');
     }
 
@@ -40,7 +41,6 @@ class Admin extends MY_Controller {
         $this->template->assign('roles', $query->result_array());
         // roles
     }
-    
 
     /*
      * Generate table with user with pagination
@@ -97,79 +97,70 @@ class Admin extends MY_Controller {
      * Register new user
      */
 
-//     function createUserTpl(){
-//         
-//        $this->set_tpl_roles();
-//        $this->display_tpl('create_user');
-//        
-//     }   
-     
     function create_user() {
-        
+
         $this->set_tpl_roles();
         if (!$this->ajaxRequest)
             $this->display_tpl('create_user');
-        
-        if($_POST){
-        
-        $this->load->model('dx_auth/users', 'user2');
-        $val = $this->form_validation;
 
-        $val->set_rules('username', lang('amt_user_login'), 'trim|required|xss_clean|alpha_dash');
-        $val->set_rules('password', lang('amt_password'), 'trim|min_length[' . $this->config->item('DX_login_min_length') . ']|max_length[' . $this->config->item('DX_login_max_length') . ']|required|xss_clean');
-        $val->set_rules('password_conf', lang('amt_new_pass_confirm'), 'matches[password]|required');
-        $val->set_rules('email', lang('amt_email'), 'trim|required|xss_clean|valid_email');
+        if ($_POST) {
 
-        ($hook = get_hook('users_create_set_val_rules')) ? eval($hook) : NULL;
+            $this->load->model('dx_auth/users', 'user2');
+            $val = $this->form_validation;
 
-        $user = $this->input->post('username');
-        $email = $this->input->post('email');
-        $role = $this->input->post('role');
+            $val->set_rules('username', lang('amt_user_login'), 'trim|required|xss_clean|alpha_dash');
+            $val->set_rules('password', lang('amt_password'), 'trim|min_length[' . $this->config->item('DX_login_min_length') . ']|max_length[' . $this->config->item('DX_login_max_length') . ']|required|xss_clean');
+            $val->set_rules('password_conf', lang('amt_new_pass_confirm'), 'matches[password]|required');
+            $val->set_rules('email', lang('amt_email'), 'trim|required|xss_clean|valid_email');
 
-        // check user
-        if ($this->user2->check_username($user)->num_rows() > 0) {
-            showMessage(lang('amt_login_exists'), '', 'r');
-            exit;
-        }
+            ($hook = get_hook('users_create_set_val_rules')) ? eval($hook) : NULL;
 
-        // check user mail
-        if ($this->user2->check_email($email)->num_rows() > 0) {
-            showMessage(lang('amt_email_exists'), '', 'r');
-            exit;
-        }
+            $user = $this->input->post('username');
+            $email = $this->input->post('email');
+            $role = $this->input->post('role');
 
-        if (!check_perm('user_create') AND !check_perm('user_create_all_roles')) {
-            cp_check_perm('user_create');
-        }
+            // check user
+            if ($this->user2->check_username($user)->num_rows() > 0) {
+                showMessage(lang('amt_login_exists'), '', 'r');
+                exit;
+            }
 
-        if (!check_perm('user_create_all_roles')) {
-            $role = $this->dx_auth->get_role_id();
-        }
+            // check user mail
+            if ($this->user2->check_email($email)->num_rows() > 0) {
+                showMessage(lang('amt_email_exists'), '', 'r');
+                exit;
+            }
 
-        if ($val->run() AND $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'))) {
-            ($hook = get_hook('users_user_created')) ? eval($hook) : NULL;
+            if (!check_perm('user_create') AND !check_perm('user_create_all_roles')) {
+                cp_check_perm('user_create');
+            }
 
-            //set user role
-            $user_info = $this->user2->get_user_by_username($user)->row_array();
-            $this->user2->set_role($user_info['id'], $role);
+            if (!check_perm('user_create_all_roles')) {
+                $role = $this->dx_auth->get_role_id();
+            }
 
-            $this->lib_admin->log(lang('amt_create_user') . $val->set_value('username'));
+            if ($val->run() AND $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'))) {
+                ($hook = get_hook('users_user_created')) ? eval($hook) : NULL;
 
-            showMessage(lang('amt_user_created'));
-            
-            $action = $_POST['action'];
+                //set user role
+                $user_info = $this->user2->get_user_by_username($user)->row_array();
+                $this->user2->set_role($user_info['id'], $role);
+
+                $this->lib_admin->log(lang('amt_create_user') . $val->set_value('username'));
+
+                showMessage(lang('amt_user_created'));
+
+                $action = $_POST['action'];
 
                 if ($action == 'close') {
                     pjax('/admin/components/cp/user_manager/create_user');
                 } else {
                     pjax('/admin/components/init_window/user_manager');
                 }
-        } else {
-            showMessage(validation_errors(), '', 'r');
+            } else {
+                showMessage(validation_errors(), '', 'r');
+            }
         }
-        
-        }
-        
     }
 
     /*
@@ -290,27 +281,31 @@ class Admin extends MY_Controller {
      */
 
     function edit_user($user_id) {
-        cp_check_perm('user_edit');
+        //cp_check_perm('user_edit');
 
         $this->load->model('dx_auth/users', 'users');
 
         $user = $this->users->get_user_by_id($user_id);
 
         if ($user->num_rows() == 0) {
-            exit(lang('amt_users_not_found'));
+            showMessage(lang('amt_users_not_found'),'','r');
+            exit;
         } else {
             $this->template->add_array($user->row_array());
             $this->set_tpl_roles();
-            $this->display_tpl('edit_user');
+            if (!$this->ajaxRequest)
+                $this->display_tpl('edit_user');
         }
     }
 
     /*
-     * Update used data
+     * Update user data
      */
 
     function update_user($user_id) {
-        cp_check_perm('user_edit');
+
+
+        //cp_check_perm('edit_user');
 
         $this->load->model('dx_auth/users', 'user2');
 
@@ -366,7 +361,16 @@ class Admin extends MY_Controller {
             $this->lib_admin->log(lang('amt_updated_user') . $data['username']);
 
             showMessage(lang('amt_changes_saved'));
+
+            $action = $_POST['action'];
+
+            if ($action == 'close') {
+                pjax('/admin/components/cp/user_manager/edit_user/' . $user_id);
+            } else {
+                pjax('/admin/components/init_window/user_manager');
+            }
         } else {
+
             showMessage(validation_errors(), false, 'r');
         }
     }
@@ -382,29 +386,44 @@ class Admin extends MY_Controller {
     }
 
     function create() {
+
+
+        if (!$this->ajaxRequest)
+            $this->display_tpl('create_group');
         cp_check_perm('roles_create');
 
-        $this->form_validation->set_rules('name', lang('amt_identif'), 'required|trim|max_length[150]|min_length[2]|alpha_dash');
-        $this->form_validation->set_rules('alt_name', lang('amt_tname'), 'required|trim|max_length[150]|min_length[2]');
-        $this->form_validation->set_rules('desc', lang('amt_description'), 'trim|max_length[300]|min_length[2]');
+        if ($_POST) {
 
-        if ($this->form_validation->run($this) == FALSE) {
-            showMessage(validation_errors(), false, 'r');
-        } else {
-            $data = array(
-                'name' => $this->input->post('name'),
-                'alt_name' => $this->input->post('alt_name'),
-                'desc' => $this->lib_admin->db_post('desc')
-            );
+            $this->form_validation->set_rules('name', lang('amt_identif'), 'required|trim|max_length[150]|min_length[2]|alpha_dash');
+            $this->form_validation->set_rules('alt_name', lang('amt_tname'), 'required|trim|max_length[150]|min_length[2]');
+            $this->form_validation->set_rules('desc', lang('amt_description'), 'trim|max_length[300]|min_length[2]');
 
-            ($hook = get_hook('users_create_role')) ? eval($hook) : NULL;
+            if ($this->form_validation->run($this) == FALSE) {
+                showMessage(validation_errors(), false, 'r');
+            } else {
+                $data = array(
+                    'name' => $this->input->post('name'),
+                    'alt_name' => $this->input->post('alt_name'),
+                    'desc' => $this->lib_admin->db_post('desc')
+                );
 
-            $this->db->insert('roles', $data);
+                ($hook = get_hook('users_create_role')) ? eval($hook) : NULL;
 
-            $this->lib_admin->log(lang('amt_created_group') . $data['name']);
+                $this->db->insert('roles', $data);
 
-            showMessage(lang('amt_group_created'));
-            $this->update_groups_block();
+                $this->lib_admin->log(lang('amt_created_group') . $data['name']);
+
+                showMessage(lang('amt_group_created'));
+                $this->update_groups_block();
+
+                $action = $_POST['action'];
+
+                if ($action == 'close') {
+                    pjax('/admin/components/cp/user_manager/create');
+                } else {
+                    pjax('/admin/components/init_window/user_manager');
+                }
+            }
         }
     }
 
@@ -486,10 +505,11 @@ class Admin extends MY_Controller {
     }
 
     function update_groups_block() {
-      //  updateDiv('groups_block', site_url('admin/components/cp/user_manager/groups_index'));
+        updateDiv('groups_block', site_url('admin/components/cp/user_manager/groups_index'));
     }
 
     function update_role_perms() {
+
         cp_check_perm('roles_edit');
 
         $this->load->model('dx_auth/permissions', 'permissions');
@@ -515,6 +535,7 @@ class Admin extends MY_Controller {
     }
 
     function show_edit_prems_tpl($selected_role = 1) {
+
         $this->load->model('dx_auth/permissions', 'permissions');
         $permissions = $this->permissions->get_permission_data($selected_role);
 
@@ -542,7 +563,8 @@ class Admin extends MY_Controller {
             'group_names' => $this->get_group_names(),
         ));
 
-        $this->display_tpl('edit_perms');
+
+        //$this->display_tpl('edit_perms');
     }
 
     function get_permissions_table() {

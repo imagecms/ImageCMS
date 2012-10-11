@@ -6,6 +6,10 @@
  */
 
 $lang['a_content'] = 'Содержание';
+$lang['a_data_user_mod'] = 'Данные пользователя';
+$lang['a_edit_user_mod'] = 'Редактирование';
+$lang['a_create_group_m'] = 'Создание группы';
+$lang['a_data_n_group'] = 'Данные группы';
 $lang['a_data_n_user'] = 'Данные нового пользователя';
 $lang['a_create_n_user_m'] = 'Создание нового пользователя';
 $lang['a_category'] = 'Категория';
