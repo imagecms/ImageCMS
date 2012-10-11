@@ -5,6 +5,10 @@
  * and open the template in the editor.
  */
 $lang['a_content'] = 'Content';
+$lang['a_data_user_mod'] = 'User data';
+$lang['a_edit_user_mod'] = 'Editing';
+$lang['a_create_group_m'] = 'Creating a group';
+$lang['a_data_n_group'] = 'Group details';
 $lang['a_data_n_user'] = 'New user';
 $lang['a_create_n_user_m'] = 'Create a new user';
 $lang['a_category'] = 'Category';
