@@ -590,3 +590,11 @@ $lang['a_random_images'] = 'Случайные изображения';
 $lang['a_return'] = 'Вернуться';
 $lang['a_save_and_exit'] = 'Сохранить и выйти';
 $lang['a_widget_success_delete'] = 'Виджет(ы) успешно удален(ы)';
+
+$lang['a_positions_updated'] = 'Позиции сохранены';
+$lang['a_show_in_menu'] = 'Показывать в меню';
+$lang['a_changes_saved'] = 'Изменения сохранены';
+
+$lang['a_module_delete'] = 'Удаление модуля';
+$lang['a_delete_selected_modules'] = 'Удалить выбранные модули?';
+$lang['a_delete_module'] = 'Удалить модули?';
