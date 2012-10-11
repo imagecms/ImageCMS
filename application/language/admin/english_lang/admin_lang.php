@@ -321,4 +321,17 @@ $lang['a_module_name'] = 'Module name';
 $lang['a_drug_block'] = 'drug block';
 
 $lang['a_guest'] = 'Guest';
+
+$lang['a_widget_deleting'] = 'Widget delete';
+$lang['a_delete_selected_widgets'] = 'Delete selected widget(s)?';
+$lang['a_delete_widgets'] = 'Delete widgets?';
+
+$lang['a_images_limit'] = 'Images limit';
+$lang['a_algorithm'] = 'Algorithm';
+$lang['a_latest_images'] = 'Last images';
+$lang['a_random_images'] = 'Random images';
+
+$lang['a_return'] = 'Go back';
+$lang['a_save_and_exit'] = 'Save and go back';
+$lang['a_widget_success_delete'] = 'Widget successfully deleted';
 ?>

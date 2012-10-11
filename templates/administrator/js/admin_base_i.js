@@ -596,36 +596,36 @@ $(document).ready(function(){
         $.post('/admin/components/run/shop/products/ajaxChangeHit', {
             ids:ids
         }, function(data){
-                $('.notifications').append(data);
-            }
+            $('.notifications').append(data);
+        }
         );
     });
     
     $('.tonew').bind('click', function(){
-            var ids = new Array();
+        var ids = new Array();
         $('input[name=ids]:checked').each(function(){
             ids.push($(this).val());
         });
         $.post('/admin/components/run/shop/products/ajaxChangeHot', {
             ids:ids
         }, function(data){
-                $('.notifications').append(data);
-            }
+            $('.notifications').append(data);
+        }
         );
-        });
+    });
     
     $('.toaction').bind('click', function(){
-            var ids = new Array();
+        var ids = new Array();
         $('input[name=ids]:checked').each(function(){
             ids.push($(this).val());
         });
         $.post('/admin/components/run/shop/products/ajaxChangeAction', {
             ids:ids
         }, function(data){
-                $('.notifications').append(data);
-            }
+            $('.notifications').append(data);
+        }
         );
-        });
+    });
     
 });
 
