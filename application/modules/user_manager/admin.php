@@ -107,7 +107,7 @@ class Admin extends MY_Controller {
     function create_user() {
         
         $this->set_tpl_roles();
-        if (!$this->pjaxRequest)
+        if (!$this->ajaxRequest)
             $this->display_tpl('create_user');
         
         if($_POST){
