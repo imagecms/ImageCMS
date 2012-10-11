@@ -1,10 +1,3 @@
-                <ul class="breadcrumb">
-                    <li><a href="#">Главная</a> <span class="divider">/</span></li>
-                    <li class="active"> Создание новой страницы</li>
-                </ul>
-
-
-
 <section class="mini-layout">
                 
                     <div class="frame_title clearfix">
@@ -15,38 +8,25 @@
                         <div class="pull-right">
                             <span class="help-inline"></span>
                             <div class="d-i_b">
-                                <a href="#" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
-                                <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form"><i class="icon-ok"></i>Сохранить</button>
-                                <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form"><i class="icon-check"></i>Сохранить и выйти</button>
-                                <div class="dropdown d-i_b">
-                                    <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
-                                        Русский
-                                        <span class="caret"></span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Английский</a></li>
-                                    </ul>
-                                </div>
+                                <a href="/admin/pages/GetPagesByCategory" class="pjax t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
+                                <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form" data-action="edit" ><i class="icon-ok"></i>Сохранить</button>
+                                <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form" data-action="close"><i class="icon-check"></i>Сохранить и выйти</button>
                             </div>
                         </div>                            
                     </div>  
 
-					<div class="clearfix">
+		    <div class="clearfix">
                             <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
                                 <a href="#content_article" class="btn btn-small active">Содержание</a>
                                 <a href="#parameters_article" class="btn btn-small ">Параметры</a>
                                 <a href="#addfields_article" class="btn btn-small">Дополнительные поля</a>
                                 <a href="#setings_article" class="btn btn-small">Настройки</a>
                             </div>
-                            <div class="pull-right m-t_20">
-                                <a href="#">Просмотр страницы <span class="f-s_14">→</span></a>
-                            </div>
                         </div>             
-<form method="post" action="{$BASE_URL}admin/pages/add" id="add_page_form" class="form-horizontal">
+<form method="post" action="{$BASE_URL}admin/pages/add" id="add_page_form" class="form-horizontal" >
 <div id="content_big_td" class="tab-content">                
 
 <div class="tab-pane active" id="content_article">
-
 
 <table class="table table-striped table-bordered table-hover table-condensed">
 
@@ -69,11 +49,13 @@
             {lang('a_category')}:
         </label>
         	<div class="controls">
-            	<select name="category" ONCHANGE="change_comments_status();" id="category_selectbox" style="float: left;width: 457px !important;">
+		<span class="span6 f_l">
+            	<select name="category" id="category_selectbox" onchange="pagesAdmin.loadCFAddPage()"> 
                 <option value="0" selected="selected">{lang('a_no')}</option>
                 { $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['sel_cat'])); }
-                </select> 
-                <img  src="{$THEME}/images/plus2.png" style="padding-left:5px;padding-top:2px;cursor:pointer;float:left;" title="{lang('a_create_cat')}" />
+                </select>
+		</span>
+                <a onclick="$('.modal').modal(); return false;" class="btn btn-success btn-small" href="#"><i class="icon-plus icon-white"></i> {lang('a_create_cat')}</a>
         	</div>
         </div>
 
@@ -138,9 +120,11 @@
                     		{lang('a_url')}:
                             </label>
                         	<div class="controls">
-                			<input type="text" name="page_url" value="" id="page_url" class="textbox_long" /> 
-                			 	<img onclick="translite_title('#page_title_u', '#page_url');" align="absmiddle" style="cursor:pointer" src="{$THEME}/images/translit.png" width="16" height="16" title="{lang('a_trans_title')}." /> 
-        						<div class="lite">({lang('a_just_lat')})</div>
+				    <span class="span5 f_l">
+                			<input type="text" name="page_url" value="" id="page_url" class="textbox_long" />
+				    </span>
+				    <button onclick="translite_title('#page_title_u', '#page_url');" type="button" class="btn btn-small" id="translateCategoryTitle"><i class="icon-refresh"></i>&nbsp;&nbsp;Автоподбор</button>
+				    <div class="lite">({lang('a_just_lat')})</div>
                         	</div>
                         </div>
                         
@@ -168,7 +152,7 @@
                             </label>
                         	<div class="controls">
                         	<textarea name="page_description" class="textarea" id="page_description" rows="8" cols="28"></textarea>
-							<img onclick="create_description('#prev_text', '#page_description' );" src="{$THEME}/images/arrow-down.png" title="{lang('a_gen_desc')}" style="cursor:pointer" width="16" height="16" />
+				<button  onclick="create_description('#prev_text', '#page_description' );" type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;Автоподбор</button>
                         	</div>
                         </div>
                         
@@ -178,11 +162,9 @@
                             </label>
                         	<div class="controls">
                         	<textarea name="page_keywords" id="page_keywords" rows="8" class="textarea" cols="28"></textarea>
-							<img src="{$THEME}/images/arrow-down.png" style="cursor:pointer" title="{lang('a_gen_key_words')}" onclick="retrive_keywords('#prev_text', '#keywords_list' );" />
-				
-							<div style="max-width:600px" id="keywords_list">
-				
-							</div>
+				<button  onclick="retrive_keywords('#prev_text', '#keywords_list' );"  type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;Автоподбор слов</button>
+				<div style="max-width:600px" id="keywords_list">
+				</div>
                         	</div>
                         </div>
                         
@@ -227,7 +209,7 @@
 	</div>
 
 	<div class="tab-pane" id="addfields_article">
-		{($hook = get_hook('admin_tpl_add_page')) ? eval($hook) : NULL;}
+		<div id="cfcm_fields_block"></div>
 	</div>
 
 <div class="tab-pane" id="setings_article">
@@ -298,10 +280,6 @@
 							</select>        	
             	           	</div>
                         </div>
-                        
-                        
-                        {($hook = get_hook('admin_tpl_add_page_side_bar')) ? eval($hook) : NULL;}
-                        
                 </div>
             </div>
 
@@ -309,12 +287,49 @@
 	</tr>
 	</tbody>
 </table>
-
 		</div>
 	</div>
-
 {form_csrf()}
 </form>
-
-
 </section>
+
+<div class="modal hide fade">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3>{lang('a_create_cat')}</h3>
+        </div>
+        <div class="modal-body">
+            
+<form action="/admin/categories/fast_add/create" method="post" id="fast_add_form" class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label">
+                            {lang('a_name')}
+                            </label>
+                        	<div class="controls">
+                        	<input type="text" name="name" value="" class="required">
+                        	</div>
+                        </div>
+        
+                        <div class="control-group">
+                            <label class="control-label">
+                            {lang('a_parent')}
+                            </label>
+                        	<div class="controls">
+                        	<select name="parent_id">
+				<option value="0" selected="selected">{lang('a_no')}</option>
+				    { $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['sel_cat'])); }
+				</select>
+                        	</div>
+                        </div>
+</form>
+	    
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn" onclick="$('.modal').modal('hide');">Отмена</a>
+            <a href="#" class="btn btn-primary" onclick="pagesAdmin.quickAddCategory()">Создать</a>
+        </div>
+    </div>
+
+<script>
+	window.onload = pagesAdmin.initialize();
+</script>

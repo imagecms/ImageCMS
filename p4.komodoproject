@@ -1,4 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Komodo Project File - DO NOT EDIT -->
 <project id="073b97cb-e6b1-4c13-b697-6c8c8ce04ced" kpf_version="5" name="p4.komodoproject">
+<preference-set idref="073b97cb-e6b1-4c13-b697-6c8c8ce04ced">
+  <long id="caretStyle">1</long>
+  <long id="caretWidth">1</long>
+  <boolean id="checkDiskFile">1</boolean>
+  <boolean id="checkNetworkDiskFile">1</boolean>
+  <long id="codeintel_highlight_variables_auto_delay">250</long>
+  <boolean id="codeintel_highlight_variables_auto_keyboard">1</boolean>
+  <boolean id="codeintel_highlight_variables_auto_mouse">1</boolean>
+  <boolean id="codeintel_highlight_variables_match_prefix">0</boolean>
+  <long id="codeintel_highlight_variables_min_auto_length">2</long>
+  <boolean id="codeintel_highlight_variables_use_scope">1</boolean>
+  <boolean id="dedentOnColon">0</boolean>
+  <string id="donotask_action_close_deleted_files"></string>
+  <string id="donotask_action_dragdrop_uri"></string>
+  <string id="donotask_action_reload_changed_files"></string>
+  <boolean id="donotask_buffer_conflicts_with_file_on_disk">0</boolean>
+  <boolean id="donotask_close_deleted_files">0</boolean>
+  <boolean id="donotask_dragdrop_uri">0</boolean>
+  <boolean id="donotask_reload_changed_files">0</boolean>
+  <boolean id="donotask_revert_buffer">0</boolean>
+  <boolean id="donotask_treat_large_documents_as_text">0</boolean>
+  <string id="editAutoIndentStyle">smart</string>
+  <long id="editAutoWrapColumn">80</long>
+  <boolean id="editBackspaceDedents">1</boolean>
+  <boolean id="editElectricBrace">1</boolean>
+  <boolean id="editFoldLines">1</boolean>
+  <string id="editFoldStyle">squaretree</string>
+  <boolean id="editRestoreFoldPoints">0</boolean>
+  <boolean id="editSmartCutCopyWithoutSelection">1</boolean>
+  <boolean id="editSmartSoftCharacters">1</boolean>
+  <boolean id="editTabCompletes">0</boolean>
+  <boolean id="editUseEdge">0</boolean>
+  <long id="editWordWrapIndentation">0</long>
+  <long id="editWordWrapMarker">0</long>
+  <long id="editWrapType">0</long>
+  <boolean id="enableSmartSoftCharactersInsideLine">0</boolean>
+  <boolean id="foldSeparateBlockParts">0</boolean>
+  <boolean id="hyperlinksEnableGotoDefinition">1</boolean>
+  <boolean id="hyperlinksEnabled">1</boolean>
+  <string relative="path" id="import_dirname"></string>
+  <string id="import_exclude_matches">*.*~;*.bak;*.tmp;CVS;.#*;*.pyo;*.pyc;.svn;.git;.hg;.bzr;*%25*;tmp*.html;.DS_Store;*.swp;*.kpf;*.komodoproject;.komodotools;__pycache__</string>
+  <string id="import_include_matches"></string>
+  <boolean id="indentStringsAfterParens">0</boolean>
+  <long id="indentWidth">4</long>
+  <boolean id="scrollEndAtLastLine">0</boolean>
+  <long id="scrollWidth">2000</long>
+  <boolean id="scrollWidthTracking">0</boolean>
+  <boolean id="select_most_recent_buffer_on_buffer_close">0</boolean>
+  <boolean id="showEOL">0</boolean>
+  <boolean id="showIndentationGuides">1</boolean>
+  <boolean id="showLineNumbers">1</boolean>
+  <boolean id="showWhitespace">0</boolean>
+  <long id="tabWidth">8</long>
+  <boolean id="useSmartTabs">1</boolean>
+  <boolean id="useTabs">0</boolean>
+  <long id="ySlop">5</long>
+</preference-set>
 </project>
