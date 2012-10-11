@@ -29,6 +29,7 @@
 				<th axis="none"></th>
 			</thead>
 			<tbody>
+                           
 		{foreach $users as $user}
 		<tr id="{$page.number}">
 			<td class="rightAlign">

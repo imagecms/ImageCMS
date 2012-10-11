@@ -125,6 +125,14 @@ function initTinyMCE()
 {
     tinyMCE.init({
         // General options
+        
+        setup : function(ed) {
+          ed.onChange.add(function(ed, l) {
+                  //console.debug(l);
+                  //console.debug(ed);
+                  document.getElementById(ed.editorId).value = l.content;
+                  console.log(ed.editorId);
+          });},
         mode : "specific_textareas",
         editor_selector : "mceEditor",
         theme : "advanced",

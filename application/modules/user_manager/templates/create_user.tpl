@@ -1,0 +1,85 @@
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a href="#">Главная</a> <span class="divider">/</span></li>
+        <li class="active">Список товаров</li>
+    </ul>
+    <section class="mini-layout">
+        <div class="frame_title clearfix">
+            <div class="pull-left">
+                <span class="help-inline"></span>
+                <span class="title">{lang('a_create_n_user_m')}</span>
+            </div>
+            <div class="pull-right">
+                <div class="d-i_b">
+                    <a href="#" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>                   
+                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#create" data-action="close"><i class="icon-ok"></i>Создать</button>
+                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#create" data-action="exit"><i class="icon-check"></i>Создать и выйти</button>
+                </div>
+            </div>                            
+        </div>
+
+              
+            <!----------------------------------------------------- CREATE USER-------------------------------------------------------------->
+            <div class="tab-pane">
+                <table class="table table-striped table-bordered table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th colspan="6">
+                                {lang('a_data_n_user')}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="6">
+                                <div class="inside_padd">
+                                    <div class="form-horizontal">
+                                        <div class="row-fluid">
+                                            <form id="create" method="post" active="{$SELF_URL}/create_user/">
+
+                                                <div class="control-group">
+                                                    <label class="control-label" for="username">{lang('amt_user_login')}</label>
+                                                    <div class="controls">
+                                                        <input type="text" name="username" id="username" value=""/>
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label" for="password">{lang('amt_new_pass')}</label>
+                                                    <div class="controls">
+                                                        <input type="password" name="password" id="password" value="" />
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label" for="password_conf">{lang('amt_new_pass_confirm')}</label>
+                                                    <div class="controls">
+                                                        <input type="password" name="password_conf" id="password_conf" value=""/>
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label" for="email">{lang('amt_email')}</label>
+                                                    <div class="controls">
+                                                        <input type="text" name="email" id="email" value="" />
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label" for="role">{lang('amt_group')}</label>
+                                                    <div class="controls">
+                                                        <select name="role" id="role">
+                                                            {foreach $roles as $role}
+                                                                <option value ="{$role.id}">{$role.alt_name}</option>
+                                                            {/foreach}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table> 
+            </div>
+    </section>
+</div>

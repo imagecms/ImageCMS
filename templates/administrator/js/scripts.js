@@ -7,7 +7,9 @@ $.exists_nabir = function(nabir){
 
 $(document).ajaxComplete( function(event, XHR, ajaxOptions){
     if (ajaxOptions.url != "/admin/components/run/shop/notifications/getAvailableNotification")
+    {
         initAdminArea();
+    }
     
     $('.tooltip').remove();
     $('[data-rel="tooltip"], [rel="tooltip"]').tooltip();
@@ -447,6 +449,7 @@ function initAdminArea(){
         if(
         (e.target.nodeName!="TEXTAREA") &&
             (e.target.nodeName!="SELECT") &&
+            (e.target.nodeName!="OPTION") &&
             (e.target.nodeName!="INPUT") &&
             (e.target.nodeName!="TR")&&
             (e.target.nodeName!="P")&&
@@ -492,7 +495,7 @@ function initAdminArea(){
     $('.item_menu .row-category:even').addClass('even');
     
     if (userLogined)
-	window.setInterval('updateNotificationsTotal()', 5000);
+	window.setInterval('updateNotificationsTotal()', 20000);
     
     
     //list filter
@@ -611,6 +614,6 @@ function initAdminArea(){
 $(document).ready(
     function(){
 	updateNotificationsTotal();
-	initAdminArea()
+	initAdminArea();
     }
 );

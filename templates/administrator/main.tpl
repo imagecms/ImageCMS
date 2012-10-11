@@ -215,7 +215,8 @@
         <script src="{$THEME}/js/admin_base_i.js" type="text/javascript"></script>        
         <script src="{$THEME}/js/admin_base_m.js" type="text/javascript"></script>        
         <script src="{$THEME}/js/admin_base_v.js" type="text/javascript"></script>        
-        <script src="{$THEME}/js/admin_base_y.js" type="text/javascript"></script>    
+        <script src="{$THEME}/js/admin_base_y.js" type="text/javascript"></script>
+        <script src="{$THEME}/js/admin_base_r.js" type="text/javascript"></script>    
 
         <script>
             {if $CI->uri->segment('4') == 'shop'}
