@@ -309,7 +309,7 @@ class Categories extends MY_Controller {
      *
      * @access public
      */
-    function edit($id) {
+    function edit($id, $lang) {
 
         cp_check_perm('category_edit');
 
@@ -331,7 +331,7 @@ class Categories extends MY_Controller {
             ($hook = get_hook('admin_show_category_edit')) ? eval($hook) : NULL;
 
             $this->template->show('category_edit', FALSE);
-            //pjax('');
+            
         } else {
             return FALSE;
         }

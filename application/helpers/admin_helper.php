@@ -59,7 +59,7 @@ if (!function_exists('check_admin_redirect')) {
             foreach ($languages as $language) {
                 if ($language['identif'] != $locale) {
                     $html .= "<li>";
-                    $html .= "<a href='" . $url."/". $language['identif'] . "' class='pjax'>" . $language['lang_name'] . "</a>";
+                    $html .= "<a href='" . $url."/". $language['id'] . "' class='pjax'>" . $language['lang_name'] . "</a>";
                     $html .= "</li>";
                 }
             }

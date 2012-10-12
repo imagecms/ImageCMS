@@ -6,6 +6,7 @@
  */
 $lang['a_content'] = 'Content';
 $lang['a_cre_exit_form'] = 'Create and exit';
+$lang['a_manager_user_mod'] = 'User Manager';
 $lang['a_addit_fiel_bas_a'] = 'Additional fields';
 $lang['a_send_ema_modu_group'] = 'Sending emails';
 $lang['a_subscri_mail'] = 'Subscribers';

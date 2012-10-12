@@ -3,22 +3,22 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('a_param')}</span>
+                <span class="title">{lang('a_edit_user_mod')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
                     <a href="#" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
-                    <button type="submit" class="btn btn-small action_on formSubmit" data-action="close" data-form="#save"><i class="icon-ok"></i>{lang('a_save')}</button>
+                    <button type="button" class="btn btn-small action_on formSubmit" data-action="close" data-form="#save"><i class="icon-ok"></i>{lang('a_save')}</button>
                     <button type="button" class="btn btn-small action_on formSubmit" data-action="exit" data-form="#save"><i class="icon-check"></i>Сохранить и выйти</button>
-                    <div class="dropdown d-i_b">
-                        <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
-                            Русский
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Английский</a></li>
-                        </ul>
-                    </div>
+
+                    <!--  <pre>
+                                            
+                    {var_dump($langs)}
+                </pre>-->
+                    
+                    {echo create_language_select($langs, 'ru', '/admin/categories/edit/56')}
+
+                 
                 </div>
             </div>                            
         </div>
@@ -29,10 +29,7 @@
                         <a href="#parameters" class="btn btn-small active">{lang('param')}</a>
                         <a href="#metatag" class="btn btn-small">{lang('a_meta_tags')}</a>
                         <a href="#dodPol" class="btn btn-small">{lang('a_addit_fiel_bas_a')}</a>
-                    </div>
-                    <div class="pull-right m-t_20">
-                        <a href="#">Просмотр страницы <span class="f-s_14">→</span></a>
-                    </div>
+                    </div>                    
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane active" id="parameters">
@@ -40,7 +37,7 @@
                             <thead>
                                 <tr>
                                     <th colspan="6">
-                                        Информация
+                                        {lang('a_info')}
                                     </th>
                                 </tr>
                             </thead>
@@ -305,14 +302,14 @@
                     </div>
 
                     <div class="tab-pane" id="dodPol">
-                  
+
 
                         {($hook = get_hook('admin_tpl_edit_category')) ? eval($hook) : NULL;}
-                        
 
-                   
+
+
+                    </div>
                 </div>
-            </div>
             </div>
             </div>
             </div>
