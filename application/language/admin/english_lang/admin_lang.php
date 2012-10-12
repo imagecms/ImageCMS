@@ -368,4 +368,13 @@ $lang['a_lang_edit'] = 'Language edit';
 $lang['a_delete_selected_languages'] = 'Delete selected languages?';
 $lang['a_cache'] = 'Cache';
 $lang['a_clear_cache'] = 'Delete cache';
+
+$lang['a_menu_list'] = 'Menu list';
+$lang['a_menu_deleted'] = 'Menu removed';
+
+$lang['a_menu_delete'] = 'Menu deleting';
+$lang['a_delete_selected_menu'] = 'Delete selected menu?';
+$lang['a_create_link'] = 'Create link';
+
+$lang['a_manu_item_translate'] = 'Menu item translate';
 ?>
