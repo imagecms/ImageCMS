@@ -1,44 +1,44 @@
-$(document).ready(function(){
+$(document).ready(function() {
 
 //***************Scripts for modules table***************    
-    
+
     //*****changes autoload for any module*****
-    $('.autoload_ch').live('click', function(){
+    $('.autoload_ch').live('click', function() {
         var mid = $(this).attr('data-mid');
         var $this = $(this);
         $.ajax({
-            type:       'post',
-            data:       'mid='+mid,
-            dataType:   "json",
-            url:        '/admin/components/change_autoload',
-            success: function(obj){
-                if(obj.result === false){
+            type: 'post',
+            data: 'mid=' + mid,
+            dataType: "json",
+            url: '/admin/components/change_autoload',
+            success: function(obj) {
+                if (obj.result === false) {
                     showMessage('Ошибка', 'Что-то пошло не так. Статус автозагрузки не изменен.');
                 }
             }
         });
     });
     //*****changes autoload for any module*****
-    
+
     //*****changes url access for any module*****
-    $('.urlen_ch').live('click', function(){
+    $('.urlen_ch').live('click', function() {
         var mid = $(this).attr('data-mid');
         var murl = $(this).attr('data-murl');
         var mname = $(this).attr('data-mname');
         var $this = $(this);
         $.ajax({
-            type:       'post',
-            data:       'mid='+mid,
-            dataType:   "json",
-            url:        '/admin/components/change_url_access',
-            success: function(obj){
-                if(obj.result === false){
+            type: 'post',
+            data: 'mid=' + mid,
+            dataType: "json",
+            url: '/admin/components/change_url_access',
+            success: function(obj) {
+                if (obj.result === false) {
                     showMessage('Ошибка', 'Что-то пошло не так. Доступ по URL не изменен.');
-                }else{
-                    if(obj.result.enabled === 1)
+                } else {
+                    if (obj.result.enabled === 1)
                     {
-                        $this.parents('tr:first').children('td.urlholder').html('<a target="_blank" href="'+murl+'">'+mname+'</a>');
-                    }else{
+                        $this.parents('tr:first').children('td.urlholder').html('<a target="_blank" href="' + murl + '">' + mname + '</a>');
+                    } else {
                         $this.parents('tr:first').children('td.urlholder').html(' - ');
                     }
                 }
@@ -46,17 +46,17 @@ $(document).ready(function(){
         });
     });
     //*****changes url access for any module*****
-    
+
     //*****module installing*****
-    $('.mod_instal').live('click', function(){
+    $('.mod_instal').live('click', function() {
         var mname = $(this).attr('data-mname');
         var $this = $(this);
         $.ajax({
-            type:       'post',
-            dataType:   "json",
-            url:        '/admin/components/install/'+mname,
-            success: function(obj){
-                if(obj.result === true){
+            type: 'post',
+            dataType: "json",
+            url: '/admin/components/install/' + mname,
+            success: function(obj) {
+                if (obj.result === true) {
                     var trin = $this.parents('tr:first').clone();
                     trin.children('td.fdel').remove();
                     trin.children('td.fdel2').remove();
@@ -65,7 +65,7 @@ $(document).ready(function(){
                     trin.append('<td><div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="выключить"  data-off="выключить"><span class="prod-on_off urlen_ch" data-mid="{$module.id}"></span></div></td>')
                     $('#mtbl').append(trin);
                     $this.parents('tr:first').remove();
-                    if($('tbody.nim').children('tr').contents().length === 0)
+                    if ($('tbody.nim').children('tr').contents().length === 0)
                     {
                         $('#nimt').remove();
                         $('#nimc').html('</br><div class="alert alert-info">Нету модулей для установки</div>');
@@ -77,44 +77,37 @@ $(document).ready(function(){
         });
     });
     //*****module installing*****
-    
-    //*****saving positions in modules table*****
-    $( "#mtbl" ).bind( "sortstop", function(event, ui) {
-        var url = $(this).attr('data-url');
-        save_positions(url);
-    });
-    //*****saving positions in modules table*****
-    
+
     //*****change module visibility in menu*****
-    $('.show_in_menu').live('click', function(){
+    $('.show_in_menu').live('click', function() {
         var id = $(this).attr('data-mid');
         $.ajax({
-            url:    "/admin/components/change_show_in_menu",
-            data:   "id="+id,
-            type:   "post",
-            success: function(data){
+            url: "/admin/components/change_show_in_menu",
+            data: "id=" + id,
+            type: "post",
+            success: function(data) {
                 $('.notifications').append(data);
             }
         });
     });
     //*****change module visibility in menu*****
-    
+
 //***************Scripts for modules table***************            
-            
+
 //***************Scripts for languages page***************
 
     //*****change language by default*****
-    $('.lan_def').live('click', function(){
-        if($(this).hasClass('btn-primary active')){
+    $('.lan_def').live('click', function() {
+        if ($(this).hasClass('btn-primary active')) {
             return false;
         }
         var id = $(this).attr('data-id');
         var th = $(this);
         $.ajax({
-            type:   "post",
-            url:    "/admin/languages/set_default",
-            data:   "lang="+id,
-            success: function(data){
+            type: "post",
+            url: "/admin/languages/set_default",
+            data: "lang=" + id,
+            success: function(data) {
                 $('.lan_def').removeClass('btn-primary active');
                 th.addClass('btn-primary active');
                 $('.notifications').append(data);
@@ -125,38 +118,38 @@ $(document).ready(function(){
 
 //***************Scripts for languages page***************
 
-    $('span.selwid').bind('click', function(){
+    $('span.selwid').bind('click', function() {
         var title = $(this).attr('data-title');
         var mname = $(this).attr('data-mname');
         var mmethod = $(this).attr('data-method');
-        $('.selmod').html('<b>'+title+'</b>');
+        $('.selmod').html('<b>' + title + '</b>');
         $('#sw').attr('value', mname);
         $('#swm').attr('value', mmethod);
     });
-    
-    $('#inputType').on('change', function(){
-        if($(this).attr('value') === 'html')
+
+    $('#inputType').on('change', function() {
+        if ($(this).attr('value') === 'html')
         {
-            $('#moduleholder').hide('slow', function(){
+            $('#moduleholder').hide('slow', function() {
                 $('#textareaholder').css('display', '')
             });
             $('#mod_name').hide('slow');
-            
-        }else{
-            $('#textareaholder').hide('slow', function(){
+
+        } else {
+            $('#textareaholder').hide('slow', function() {
                 $('#moduleholder').css('display', 'inline-table');
             });
         }
     });
-    
-    $('.submit_form').live('click', function(){
+
+    $('.submit_form').live('click', function() {
         var options = {
             dataType: "json",
             success: function(obj) {
-                if(obj.result === false)
+                if (obj.result === false)
                 {
-                    showMessage('Создание виджета', 'Ошибка'+obj.message);
-                }else{
+                    showMessage('Создание виджета', 'Ошибка' + obj.message);
+                } else {
                     var url = '/admin/widgets_manager';
                     showMessage('Создание виджета', 'Виджет успешно создан');
                     redirect_url(url);
@@ -165,15 +158,15 @@ $(document).ready(function(){
         };
         $('#wid_cr_form').ajaxSubmit(options);
     });
-    
-    $('.submit_an_create').live('click', function(){
+
+    $('.submit_an_create').live('click', function() {
         var options = {
             dataType: "json",
             success: function(obj) {
-                if(obj.result === false)
+                if (obj.result === false)
                 {
-                    showMessage('Создание виджета', 'Ошибка'+obj.message);
-                }else{
+                    showMessage('Создание виджета', 'Ошибка' + obj.message);
+                } else {
                     var url = '/admin/widgets_manager/create_tpl';
                     showMessage('Создание виджета', 'Виджет успешно создан');
                     redirect_url(url);
@@ -182,84 +175,84 @@ $(document).ready(function(){
         };
         $('#wid_cr_form').ajaxSubmit(options);
     });
-    
+
     function redirect_url(url)
     {
-        $(location).attr('href',url);
+        $(location).attr('href', url);
     }
-    
-    $('#cr_wid_page').live('click', function(){
+
+    $('#cr_wid_page').live('click', function() {
         var url = '/admin/widgets_manager/create_tpl';
         redirect_url(url);
     });
-    
-    $('#watermark_type').on('change', function(){
-        if($(this).attr('value') === 'overlay'){
-            $('.fortextblock').hide('slow', function(){
+
+    $('#watermark_type').on('change', function() {
+        if ($(this).attr('value') === 'overlay') {
+            $('.fortextblock').hide('slow', function() {
                 $('.forimageblock').css('display', '');
             });
         }
-        if($(this).attr('value') === 'text'){
-            $('.forimageblock').hide('slow', function(){
+        if ($(this).attr('value') === 'text') {
+            $('.forimageblock').hide('slow', function() {
                 $('.fortextblock').css('display', '');
             });
         }
     });
-    
-    $('.select_tpl').live('click', function(){
+
+    $('.select_tpl').live('click', function() {
         var path = $(this).attr('data-path');
         $('img.tpl_image').removeClass('sel_template');
         $(this).children('img').addClass('sel_template');
         $('#systemTemplatePath').attr('value', path);
     });
-    
-    $('.select_mobile_tpl').live('click', function(){
+
+    $('.select_mobile_tpl').live('click', function() {
         var path = $(this).attr('data-path');
         $('img.mobile_tpl_image').removeClass('sel_template');
         $(this).children('img').addClass('sel_template');
         $('#mobileTemplatePath').attr('value', path);
     });
-    
-    $('.currency_def').live('click', function(){
-        var currency_id = $(this).data('currid');
-        $.ajax({
-            type:   'post',
-            data:   'id='+currency_id,
-            url:    '/admin/components/run/shop/currencies/makeCurrencyDefault',
-            success: function(data){
-                if(data){
-                    $('.currency_def').removeClass('active');
-                    $('#currdef'+currency_id).addClass('active');
-                }
-            }
-        });
-    });
-    
-    $('.currency_main').live('click', function(){
+
+    $('.currency_def').live('click', function() {
         var currency_id = $(this).data('currid');
         $.ajax({
             type: 'post',
-            data:   'id='+currency_id,
-            url:    '/admin/components/run/shop/currencies/makeCurrencyMain',
-            success: function(data){
-                if(data){
-                    $('.currency_main').removeClass('active');
-                    $('#currmain'+currency_id).addClass('active');
+            data: 'id=' + currency_id,
+            url: '/admin/components/run/shop/currencies/makeCurrencyDefault',
+            success: function(data) {
+                if (data) {
+                    $('.currency_def').removeClass('active');
+                    $('#currdef' + currency_id).addClass('active');
                 }
             }
         });
     });
-    
+
+    $('.currency_main').live('click', function() {
+        var currency_id = $(this).data('currid');
+        $.ajax({
+            type: 'post',
+            data: 'id=' + currency_id,
+            url: '/admin/components/run/shop/currencies/makeCurrencyMain',
+            success: function(data) {
+                if (data) {
+                    $('.currency_main').removeClass('active');
+                    $('#currmain' + currency_id).addClass('active');
+                }
+            }
+        });
+    });
+
     //get values from niceCheck checkboxes
     function getcheckedvalues()
     {
         var arr = new Array();
         var inputs = $('.niceCheck').children('input');
-        inputs.each(function(){
+        inputs.each(function() {
             var inp = $(this);
-            if(inp.attr('checked') === 'checked')
+            if (inp.attr('checked') === 'checked')
             {
-                if(inp.attr('value') != 'On'){
+                if (inp.attr('value') != 'On') {
                     arr.push(inp.attr('value'));
                 }
             }
@@ -268,239 +261,240 @@ $(document).ready(function(){
     }
 
 
-    
-    $('.maincheck').bind('change', function(){
+
+    $('.maincheck').bind('change', function() {
         var ch = '';
-        if($(this).attr('checked')==='checked'){
+        if ($(this).attr('checked') === 'checked') {
             ch = $(this).attr('checked');
         }
         var tbl = $(this).parents('table').children('tbody').children('tr').children('td:first-child');
-        tbl.each(function(){
-            if(ch){
+        tbl.each(function() {
+            if (ch) {
                 $(this).children('input').attr('checked', ch);
-            }else{
+            } else {
                 $(this).children('input').removeAttr('checked');
             }
         })
     });
-    
-    $('.chldcheck').bind('change', function(){
+
+    $('.chldcheck').bind('change', function() {
         var tbl = $(this).parents('table').children('thead').children('tr').children('th:first-child');
-        if($(this).attr('checked')!='checked')
+        if ($(this).attr('checked') != 'checked')
         {
             tbl.children('input').removeAttr('checked');
         }
         var c = 0;
-        $(this).parents('tbody').children('tr').each(function(){
-            c++; 
+        $(this).parents('tbody').children('tr').each(function() {
+            c++;
         });
         var par = $(this).parents('tbody').children('tr').children('td:first-child').children('input');
         var i = 0;
-        par.each(function(){
-            if($(this).attr('checked')==='checked'){
+        par.each(function() {
+            if ($(this).attr('checked') === 'checked') {
                 i++;
             }
         });
-        if(c===i){
+        if (c === i) {
             tbl.children('input').attr('checked', 'checked');
         }
     });
-    
-    $('#del_sel_group').live('click', function(){
-        if($(this).hasClass('disabled')){
+
+    $('#del_sel_group').live('click', function() {
+        if ($(this).hasClass('disabled')) {
             return false;
-        }else{
-            if(confirm('Удалить группу?'))
+        } else {
+            if (confirm('Удалить группу?'))
             {
                 var arr = getcheckedvalues();
-                $.post('/admin/components/run/shop/rbac/group_delete',{
+                $.post('/admin/components/run/shop/rbac/group_delete', {
                     id: arr
                 },
-                function(data){
-                    $('.notifications').append(data);
-                }
+                        function(data) {
+                            $('.notifications').append(data);
+                        }
                 );
             }
         }
     });
-    
-    $('#del_sel_priv').live('click', function(){
-        if($(this).hasClass('disabled')){
+
+    $('#del_sel_priv').live('click', function() {
+        if ($(this).hasClass('disabled')) {
             return false;
-        }else{
-            if(confirm('Удалить группу?'))
+        } else {
+            if (confirm('Удалить группу?'))
             {
                 var arr = getcheckedvalues();
-                $.post('/admin/components/run/shop/rbac/privilege_delete',{
+                $.post('/admin/components/run/shop/rbac/privilege_delete', {
                     id: arr
                 },
-                function(data){
-                    $('.notifications').append(data);
-                }
+                        function(data) {
+                            $('.notifications').append(data);
+                        }
                 );
             }
         }
     });
-    
-    $('.catfilter').on('change', function(){
+
+    $('.catfilter').on('change', function() {
         $.pjax({
-            url:'/admin/components/run/shop/properties/index/'+$(this).attr('value'), 
+            url: '/admin/components/run/shop/properties/index/' + $(this).attr('value'),
             container: '#mainContent'
         });
     });
-    
-    $('#generateButton').live('click', function(){
+
+    $('#generateButton').live('click', function() {
         $.ajax({
             type: "post",
             dataType: "json",
             url: '/admin/components/run/shop/gifts/generateKey',
-            success: function(obj){
-                $('#keyholder').attr('value', obj.key);    
+            success: function(obj) {
+                $('#keyholder').attr('value', obj.key);
             }
         })
     });
-    
-    $('.ch_active').live('click', function(){
+
+    $('.ch_active').live('click', function() {
         var cid = $(this).attr('data-cid');
         var $this = $(this);
         $.ajax({
-            type:       'post',
-            url:        '/admin/components/run/shop/gifts/ChangeActive/'+cid,
-            success: function(data){
+            type: 'post',
+            url: '/admin/components/run/shop/gifts/ChangeActive/' + cid,
+            success: function(data) {
                 $('.notifications').append(data);
             }
         });
     });
-    
-    $('.comment_update').live('click', function(){
+
+    $('.comment_update').live('click', function() {
         var id = $(this).attr('data-cid');
-        var user_name = $('#u_ed'+id).attr('value');
-        var user_mail = $('#m_ed'+id).attr('value');
+        var user_name = $('#u_ed' + id).attr('value');
+        var user_mail = $('#m_ed' + id).attr('value');
         var status = $(this).attr('data-cstatus');
-        var text = $('#edited_com_text'+id).attr('value');
-        var text_plus = $('#edited_com_text_plus'+id).attr('value');
-        var text_minus = $('#edited_com_text_minus'+id).attr('value');
+        var text = $('#edited_com_text' + id).attr('value');
+        var text_plus = $('#edited_com_text_plus' + id).attr('value');
+        var text_minus = $('#edited_com_text_minus' + id).attr('value');
         $.ajax({
             type: 'post',
             url: '/admin/components/cp/comments/update',
-            data: 'id='+id+'&user_name='+user_name+'&user_mail='+user_mail+'&text='+text+'&status='+status+'&text_plus='+text_plus+'&text_minus='+text_minus,
-            success: function(data){
+            data: 'id=' + id + '&user_name=' + user_name + '&user_mail=' + user_mail + '&text=' + text + '&status=' + status + '&text_plus=' + text_plus + '&text_minus=' + text_minus,
+            success: function(data) {
                 $('.notifications').append(data);
             }
         });
     });
-    
-    $('.to_spam').live('click', function(){
+
+    $('.to_spam').live('click', function() {
         var id = $(this).attr('data-id');
         $.ajax({
-            type:   'post',
-            url:    '/admin/components/cp/comments/update_status',
-            data:   'id='+id+'&status='+2,
-            success: function(data){
+            type: 'post',
+            url: '/admin/components/cp/comments/update_status',
+            data: 'id=' + id + '&status=' + 2,
+            success: function(data) {
                 $('.notifications').append(data);
             }
         });
     });
-    
-    $('#comment_delete').live('click', function(){
-        if($(this).hasClass('disabled')){}else{
+
+    $('#comment_delete').live('click', function() {
+        if ($(this).hasClass('disabled')) {
+        } else {
             var arr = getcheckedvalues();
-            $.post('/admin/components/cp/comments/delete',{
+            $.post('/admin/components/cp/comments/delete', {
                 id: arr
             },
-            function(data){
-                $('.notifications').append(data);
-            }
+                    function(data) {
+                        $('.notifications').append(data);
+                    }
             );
 
         }
     });
-    
-    $('.com_del').live('click', function(){
+
+    $('.com_del').live('click', function() {
         var id = $(this).attr('data-id');
-        $.post('/admin/components/cp/comments/delete',{
+        $.post('/admin/components/cp/comments/delete', {
             id: id
         },
-        function(data){
-            $('.notifications').append(data);
-        }
+                function(data) {
+                    $('.notifications').append(data);
+                }
         );
     });
-    
-    $('.to_approved').live('click', function(){
+
+    $('.to_approved').live('click', function() {
         var id = $(this).attr('data-id');
         $.ajax({
-            type:   'post',
-            url:    '/admin/components/cp/comments/update_status',
-            data:   'id='+id+'&status='+0,
-            success: function(data){
+            type: 'post',
+            url: '/admin/components/cp/comments/update_status',
+            data: 'id=' + id + '&status=' + 0,
+            success: function(data) {
                 $('.notifications').append(data);
             }
         });
     });
-    
-    $('.to_waiting').live('click', function(){
+
+    $('.to_waiting').live('click', function() {
         var id = $(this).attr('data-id');
         $.ajax({
-            type:   'post',
-            url:    '/admin/components/cp/comments/update_status',
-            data:   'id='+id+'&status='+1,
-            success: function(data){
+            type: 'post',
+            url: '/admin/components/cp/comments/update_status',
+            data: 'id=' + id + '&status=' + 1,
+            success: function(data) {
                 $('.notifications').append(data);
             }
         });
     });
-    
-    $('.comment_update_cancel').live('click', function(){
+
+    $('.comment_update_cancel').live('click', function() {
         var id = $(this).attr('data-cid');
-        $('#nc'+id).trigger('click');
+        $('#nc' + id).trigger('click');
     });
-    
-    $('.text_comment, a.u_ed, a.m_ed').live('click', function(){
+
+    $('.text_comment, a.u_ed, a.m_ed').live('click', function() {
         var id = $(this).parents('tr').attr('data-id');
         display_edit_fields(id);
     });
-    
+
     function display_edit_fields(id)
     {
-        $('#nc'+id).trigger('click');
+        $('#nc' + id).trigger('click');
     }
-    
-    $('#translateCategoryTitle').live('click', function(){
+
+    $('#translateCategoryTitle').live('click', function() {
         var str = $('#inputName').attr('value');
         $.ajax({
-            type:   'post',
-            url:    '/admin/components/run/shop/categories/ajax_translit',
-            data:   'str='+str,
-            success: function(data){
+            type: 'post',
+            url: '/admin/components/run/shop/categories/ajax_translit',
+            data: 'str=' + str,
+            success: function(data) {
                 $('#inputUrl').attr('value', data);
             }
         });
     });
-    
-    $('.cat_change_active').live('click', function(){
+
+    $('.cat_change_active').live('click', function() {
         var id = $(this).attr('data-id');
         $.ajax({
-            type:   "post",
-            url:    '/admin/components/run/shop/categories/changeActive',
-            data:   'id='+id,
-            success: function(data){
+            type: "post",
+            url: '/admin/components/run/shop/categories/changeActive',
+            data: 'id=' + id,
+            success: function(data) {
                 $('.notifications').append(data);
             }
         });
     });
-    
-    $('#create_tpl').live('click', function(){
+
+    $('#create_tpl').live('click', function() {
         var name = prompt('Введите название шаблона', '');
-        if (name!=null && name!=""){
+        if (name != null && name != "") {
             $.ajax({
-                type:   "post",
+                type: "post",
                 dataType: "json",
-                url:    "/admin/components/run/shop/categories/create_tpl",
-                data:   "filename="+name,
-                success: function(obj){
+                url: "/admin/components/run/shop/categories/create_tpl",
+                data: "filename=" + name,
+                success: function(obj) {
                     $('.notifications').append(obj.responce);
-                    if(obj.result){
+                    if (obj.result) {
                         $('#inputTemplateCategory').attr('value', name);
                     }
                 }
@@ -510,160 +504,201 @@ $(document).ready(function(){
 
     if (window.hasOwnProperty('tpls'))
         $('#inputTemplateCategory').autocomplete({
-            source:tpls
+            source: tpls
         });
-    
-    $('.prop_active').live('click', function(){
+
+    $('.prop_active').live('click', function() {
         var id = $(this).attr('data-id');
         $.ajax({
             type: "post",
             url: "/admin/components/run/shop/properties/changeActive",
-            data: "id="+id,
-            success: function(data){
+            data: "id=" + id,
+            success: function(data) {
                 $('.notifications').append(data);
             }
         });
     });
-    
-    //  sortstop blocks start   
-    
-    $( "#positions_for_save" ).bind( "sortstop", function(event, ui) {
-        var url = $(this).attr('data-url');
-        save_positions(url);
-    });
-    
-    function save_positions(url){
+
+    function save_positions(url) {
         var arr = new Array();
-        $('input[name=ids]').each(function(){
+        $('input[name=ids]').each(function() {
             arr.push($(this).val());
         });
         $.post(
-            url, 
-            {
-                positions:arr
-            },
-            function(data){
-                $('.notifications').append(data);
-            });
+                url,
+                {
+                    positions: arr
+                },
+                function(data) {
+                    $('.notifications').append(data);
+                });
     }
-    
+
     //  sortstop blocks end    
-    
+
     //autocomplete for main product start
 
     $('#kitMainProductName').autocomplete({
         minChars: 0,
-        source: '/admin/components/run/shop/kits/get_products_list/'+$('#kitMainProductName').attr('value')+'&limit=20',
-        select: function(event, ui){
+        source: '/admin/components/run/shop/kits/get_products_list/' + $('#kitMainProductName').attr('value') + '&limit=20',
+        select: function(event, ui) {
             $('#MainProductHidden').attr('value', ui.item.identifier.id);
             $('#kitMainProductName').attr('value', ui.item.label);
         }
     });
-    
+
     $('#AttachedProducts').autocomplete({
         minChars: 0,
-        source: '/admin/components/run/shop/kits/get_products_list/'+$('#AttachedProducts').attr('value')+'&limit=20',
-        select: function(event, ui){
+        source: '/admin/components/run/shop/kits/get_products_list/' + $('#AttachedProducts').attr('value') + '&limit=20',
+        select: function(event, ui) {
             var mainDisc = $('#mainDisc').attr('value');
-            $('#forAttached').append('<div id="tpm_row'+ui.item.identifier.id+'">'+
-                '<span style="width:8%;" class="pull-left">'+
-                '<span class="help-inline">ID</span>'+
-                '<input type="text" name="AttachedProductsIds[]" value="'+ui.item.identifier.id+'"/>'+
-                '</span>'+
-                '<span style="width: 70%;margin-left: 1%;" class="pull-left">'+
-                '<span class="help-inline">Имя</span>'+
-                '<input type="text" id="AttachedProducts" value="'+ui.item.label+'"/>'+
-                '</span>'+
-                '<span style="width: 8%;margin-left: 1%;" class="pull-left">'+
-                '<span class="help-inline">Скидка %</span>'+
-                '<input type="text" id="AttachedProductsDisc" name="Discounts[]" value="'+mainDisc+'"/>'+
-                '</span>'+
-                '<span style="width: 8%;margin-left: 1%;" class="pull-left">'+
-                '<button class="btn del_tmp_row" data-kid="'+ui.item.identifier.id+'" style="margin-top: 16px;"><i class="icon-trash"></i></button>'+
-                '</span>'+
-                '</div>');
+            $('#forAttached').append('<div id="tpm_row' + ui.item.identifier.id + '">' +
+                    '<span style="width:8%;" class="pull-left">' +
+                    '<span class="help-inline">ID</span>' +
+                    '<input type="text" name="AttachedProductsIds[]" value="' + ui.item.identifier.id + '"/>' +
+                    '</span>' +
+                    '<span style="width: 70%;margin-left: 1%;" class="pull-left">' +
+                    '<span class="help-inline">Имя</span>' +
+                    '<input type="text" id="AttachedProducts" value="' + ui.item.label + '"/>' +
+                    '</span>' +
+                    '<span style="width: 8%;margin-left: 1%;" class="pull-left">' +
+                    '<span class="help-inline">Скидка %</span>' +
+                    '<input type="text" id="AttachedProductsDisc" name="Discounts[]" value="' + mainDisc + '"/>' +
+                    '</span>' +
+                    '<span style="width: 8%;margin-left: 1%;" class="pull-left">' +
+                    '<button class="btn del_tmp_row" data-kid="' + ui.item.identifier.id + '" style="margin-top: 16px;"><i class="icon-trash"></i></button>' +
+                    '</span>' +
+                    '</div>');
         },
-        close: function( event, ui ){
+        close: function(event, ui) {
             $('#AttachedProducts').attr('value', '');
         }
     });
-    
+
     $('#RelatedProducts').autocomplete({
         minChars: 0,
-        source: '/admin/components/run/shop/kits/get_products_list/'+$('#RelatedProducts').attr('value')+'&limit=20',
-        select: function(event, ui){
-            $('#relatedProductsNames').append('<div id="tpm_row'+ui.item.identifier.id+'">'+
-                '<span style="width: 70%;margin-left: 1%;" class="pull-left">'+
-                '<input type="text" id="AttachedProducts" value="'+ui.item.label+'"/>'+
-                '<input type="hidden" name="RelatedProducts[]" value="'+ui.item.identifier.id+'">'+
-                '</span>'+
-                '<span style="width: 8%;margin-left: 1%;" class="pull-left">'+
-                '<button class="btn btn-small del_tmp_row" data-kid="'+ui.item.identifier.id+'"><i class="icon-trash"></i></button>'+
-                '</span>'+
-                '</div>');
+        source: '/admin/components/run/shop/kits/get_products_list/' + $('#RelatedProducts').attr('value') + '&limit=20',
+        select: function(event, ui) {
+            $('#relatedProductsNames').append('<div id="tpm_row' + ui.item.identifier.id + '">' +
+                    '<span style="width: 70%;margin-left: 1%;" class="pull-left">' +
+                    '<input type="text" id="AttachedProducts" value="' + ui.item.label + '"/>' +
+                    '<input type="hidden" name="RelatedProducts[]" value="' + ui.item.identifier.id + '">' +
+                    '</span>' +
+                    '<span style="width: 8%;margin-left: 1%;" class="pull-left">' +
+                    '<button class="btn btn-small del_tmp_row" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash"></i></button>' +
+                    '</span>' +
+                    '</div>');
         },
-        close: function( event, ui ){
+        close: function(event, ui) {
             $('#RelatedProducts').attr('value', '');
         }
     });
 
     //autocomplete for main product end
-    
-    $('.kit_change_active').live('click', function(){
+
+    $('.kit_change_active').live('click', function() {
         var id = $(this).attr('data-kid');
         $.ajax({
-            type:   "post",
-            url:    "/admin/components/run/shop/kits/kit_change_active/"+id,
-            success: function(data){
+            type: "post",
+            url: "/admin/components/run/shop/kits/kit_change_active/" + id,
+            success: function(data) {
                 $('.notifications').append(data);
             }
         });
     });
-    
-    $('.del_tmp_row').live('click', function(){
+
+    $('.del_tmp_row').live('click', function() {
         var id = $(this).attr('data-kid');
-        $('#tpm_row'+id).remove();
+        $('#tpm_row' + id).remove();
     });
-    
-    $('.to_hit').bind('click', function(){
+
+    $('.to_hit').bind('click', function() {
         var ids = new Array();
-        $('input[name=ids]:checked').each(function(){
+        $('input[name=ids]:checked').each(function() {
             ids.push($(this).val());
         });
         $.post('/admin/components/run/shop/products/ajaxChangeHit', {
-            ids:ids
-        }, function(data){
+            ids: ids
+        }, function(data) {
             $('.notifications').append(data);
         }
         );
     });
-    
-    $('.tonew').bind('click', function(){
+
+    $('.tonew').bind('click', function() {
         var ids = new Array();
-        $('input[name=ids]:checked').each(function(){
+        $('input[name=ids]:checked').each(function() {
             ids.push($(this).val());
         });
         $.post('/admin/components/run/shop/products/ajaxChangeHot', {
-            ids:ids
-        }, function(data){
+            ids: ids
+        }, function(data) {
             $('.notifications').append(data);
         }
         );
     });
-    
-    $('.toaction').bind('click', function(){
+
+    $('.toaction').bind('click', function() {
         var ids = new Array();
-        $('input[name=ids]:checked').each(function(){
+        $('input[name=ids]:checked').each(function() {
             ids.push($(this).val());
         });
         $.post('/admin/components/run/shop/products/ajaxChangeAction', {
-            ids:ids
-        }, function(data){
+            ids: ids
+        }, function(data) {
             $('.notifications').append(data);
         }
         );
     });
+
+    $(".save_positions").bind("sortstop", function(event, ui) {
+        var url = $(this).attr('data-url');
+        save_positions(url);
+    });
+
+    $('.item_hidden').live('click', function() {
+        var id = $(this).attr('data-id');
+        $.ajax({
+            type: "post",
+            url: "/admin/components/cp/menu/change_hidden",
+            data: "id=" + id,
+            success: function(data) {
+                $('.notifications').append(data);
+            }
+        });
+    });
+
+    $('#category_sel').on('change', function() {
+        var id = $(this).attr('value');
+        var per_page = $('#per_page').attr('value');
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            data: "per_page=" + per_page,
+            url: "/admin/components/run/menu/get_pages/" + id + "/0",
+            success: function(obj) {
+                if (obj) {
+                    var st = '';
+                    $.each(obj.pages_list, function(index, value) {
+                        st += '<li><a href="#" class="page_title" data-title="'+this.title+'" data-id="'+this.id+'">' + this.title + '</a></li>';
+                    });
+                    $('#pages_list_holder').html('<ul>' + st + '</ul>');
+                } else {
+                    $('#pages_list_holder').html('В категории нет страниц');
+                }
+            }
+        });
+    });
     
+    $('#per_page').on('change', function(){
+        $('#category_sel').trigger('change');
+    });
+    
+    $('.page_title').live('click', function(){
+        $('#page_id_holder').html($(this).attr('data-id'));
+        $('#item_title').attr('value', $(this).attr('data-title'));
+    });
+
 });
 
 

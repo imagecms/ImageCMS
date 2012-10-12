@@ -39,13 +39,6 @@
                                                     <option value="0">{lang('amt_without_category')}</option>
                                                     <option disabled="disabled"> </option>
                                                     {build_cats_tree($cats, $widget.settings.categories)}
-                                                    <?php  function build_cats_tree($cats, $selected_cats = array()) { ?>        
-                                                    {foreach $cats as $cat}
-                                                        <option {foreach $selected_cats as $k} {if $k == $cat.id} selected="selected" {/if} {/foreach}
-                                                        value="{$cat['id']}">{for $i=0;$i < $cat['level'];$i++}-{/for} {$cat['name']}</option>
-                                                        {if $cat['subtree']} {build_cats_tree($cat['subtree'], $selected_cats)} {/if}
-                                                    {/foreach}
-                                                    <?php } ?>   
                                                 </select>
                                             </div>
                                         </div>

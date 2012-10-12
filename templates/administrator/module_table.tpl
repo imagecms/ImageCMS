@@ -60,7 +60,7 @@
                                         <th class="span2 t-a_c">{lang('a_show_in_menu')}</th>
                                     </tr>
                                 </thead>
-                                <tbody class="sortable" id="mtbl" data-url="/admin/components/save_components_positions">
+                                <tbody class="sortable save_positions" data-url="/admin/components/save_components_positions">
                                     {foreach $installed as $module}
                                         <tr data-id="{$module.id}">
                                             <td class="t-a_c">
