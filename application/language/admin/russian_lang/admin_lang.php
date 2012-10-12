@@ -6,6 +6,10 @@
  */
 
 $lang['a_content'] = 'Содержание';
+$lang['a_del_catego_ba'] = 'Удалить категорию';
+$lang['a_auto_fit_by_url'] = 'Автоподбор';
+$lang['a_category_upda_modu'] = 'Категория обновлена';
+$lang['a_categ_translate_upda'] = 'Перевод категории обновлен';
 $lang['a_cre_exit_form'] = 'Создать и выйти';
 $lang['a_manager_user_mod'] = 'Менеджер пользователей';
 $lang['a_addit_fiel_bas_a'] = 'Дополнительные поля';

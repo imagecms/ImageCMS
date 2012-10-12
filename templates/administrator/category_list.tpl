@@ -1,19 +1,35 @@
 <div class="container">
-    <form method="post" action="#">
-        <ul class="breadcrumb">
-            <li><a href="#">Главная</a> <span class="divider">/</span></li>
-            <li class="active">Категории</li>
-        </ul>
+        <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->    
+    <div class="modal hide fade">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>{lang('a_del_catego_ba')}</h3>
+        </div>
+        <div class="modal-body">
+            <p>Удалить выбранные катагоии?</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('{$BASE_URL}/admin/categories/delete/')" >Удалтиь</a>
+            <a href="#" class="btn" onclick="$('.modal').modal('hide');">Отмена</a>
+        </div>
+    </div>
+
+
+    <div id="delete_dialog" title="Удаление способов доставки" style="display: none">
+        Удалить катигорию?
+    </div>
+    <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->
+    <form method="post" action="#">     
         <section class="mini-layout">
             <div class="frame_title clearfix">
                 <div class="pull-left">
                     <span class="help-inline"></span>
-                    <span class="title">Категории</span>
+                    <span class="title">{lang('a_category')}</span>
                 </div>
                 <div class="pull-right">
                     <div class="d-i_b">
-                        <button type="button" class="btn btn-small disabled action_on" ><i class="icon-trash"></i>Удалить</button>
-                        <button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$BASE_URL}/admin/categories/create_form'"><i class="icon-plus-sign icon-white"></i>Создать категорию</button>
+                        <button type="button" class="btn btn-small disabled action_on" onclick="delete_function.deleteFunction()"><i class="icon-trash"></i>{lang('a_delete')}</button>
+                        <button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$BASE_URL}/admin/categories/create_form'"><i class="icon-plus-sign icon-white"></i>{lang('create_cat')}</button>
                     </div>
                 </div>                            
             </div>
@@ -23,7 +39,7 @@
                         <div class="t-a_c">
                             <span class="frame_label">
                                 <span class="niceCheck b_n">
-                                    <input type="checkbox"/>
+                                    <input type="checkbox" />
                                 </span>
                             </span>
                         </div>
@@ -43,7 +59,7 @@
                                         <div class="t-a_c">
                                             <span class="frame_label">
                                                 <span class="niceCheck b_n">
-                                                    <input type="checkbox"/>
+                                                    <input type="checkbox" name="id" value="{$item.id}"/>
                                                 </span>
                                             </span>
                                         </div>                                             	
@@ -57,7 +73,7 @@
                                                 <button type="button" class="btn btn-small my_btn_s btn-primary" data-rel="tooltip" data-placement="top" data-original-title="розвернуть категорию">
                                                     <i class="my_icon icon-plus"></i>
                                                 </button>                                  
-     <a href="{$ADMIN_URL}edit/{$item.id}" data-rel="tooltip" data-placement="top" data-original-title="редактировать категорию" >{truncate($item.name, 100)}</a>
+     <a href="{$ADMIN_URL}edit/{$item.id}" data-rel="tooltip" data-placement="top">{truncate($item.name, 100)}</a>
                                                
 
                                             </div>
@@ -75,7 +91,7 @@
                                         <div class="t-a_c">
                                             <span class="frame_label">
                                                 <span class="niceCheck b_n">
-                                                    <input type="checkbox"/>
+                                                    <input type="checkbox" name="ids" value="{$item.id}"/>
                                                 </span>
                                             </span>
                                         </div>                                             	
