@@ -13,7 +13,7 @@
                 <div class="pull-right">
                     <div class="d-i_b">
                         <button type="button" class="btn btn-small disabled action_on" ><i class="icon-trash"></i>Удалить</button>
-                        <button type="button" class="btn btn-small btn-success" ><i class="icon-plus-sign icon-white"></i>Создать категорию</button>
+                        <button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$BASE_URL}/admin/categories/create_form'"><i class="icon-plus-sign icon-white"></i>Создать категорию</button>
                     </div>
                 </div>                            
             </div>

@@ -6,6 +6,8 @@
  */
 
 $lang['a_content'] = 'Содержание';
+$lang['a_cre_exit_form'] = 'Создать и выйти';
+$lang['a_addit_fiel_bas_a'] = 'Дополнительные поля';
 $lang['a_subscri_mail'] = 'Подписчики';
 $lang['a_send_ema_modu_group'] = 'Отправка писем';
 $lang['a_mailer_user_empty'] = 'Список подписчиков пуст';
