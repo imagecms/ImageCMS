@@ -85,11 +85,11 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-align-justify"></i>{lang('a_cont')}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/admin/pages/GetPagesByCategory/">{lang('a_cont_list')}</a></li>
-                                    <li><a href="/admin/pages">{lang('a_create_page')}</a></li>
+                                    <li><a href="/admin/pages/GetPagesByCategory/" class="pjax">{lang('a_cont_list')}</a></li>
+                                    <li><a href="/admin/pages" class="pjax">{lang('a_create_page')}</a></li>
                                     
                                     <li class="divider"></li>
-                                    <li><a href="/admin/components/cp/cfcm" class="ajax_load">{lang('a_field_constructor')}</a></li>
+                                    <li><a href="/admin/components/cp/cfcm" class="pjax">{lang('a_field_constructor')}</a></li>
 
                                 </ul>
                             </li>
@@ -205,10 +205,17 @@
         </script>
         
         <script src="{$THEME}/js/jquery-1.8.0.min.js" type="text/javascript"></script>
+        <script src="{$THEME}/js/pjax/jquery.pjax.js" type="text/javascript"></script>
+        <script>
+            {literal}
+
+            {/literal}    
+        </script>
+                        
         <script src="{$THEME}/js/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script>
         <script src="{$THEME}/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="{$THEME}/js/bootstrap-notify.js" type="text/javascript"></script>
-        <script src="{$THEME}/js/pjax/jquery.pjax.js" type="text/javascript"></script>
+        
         <script src="{$THEME}/js/jquery.form.js" type="text/javascript"></script>
         <script type="text/javascript" src="/js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
         <script src="{$THEME}/js/jquery-validate/jquery.validate.min.js" type="text/javascript"></script>
@@ -245,15 +252,6 @@
                 }
                 else
                     $('#baseAdminMenu').hide();
-            		
-            	
-                //menu active sniffer
-                $('a.pjax').live('click', function(e){
-                    $('nav li').removeClass('active');
-                    $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
-                    $.pjax({url: $(this).attr('href'), container:'#mainContent'});
-                    return false;
-                })
             })
 
             base_url = '{/literal}{$BASE_URL}{literal}';
