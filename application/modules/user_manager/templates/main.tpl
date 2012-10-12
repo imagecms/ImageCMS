@@ -1,13 +1,9 @@
 <div class="container">
-    <ul class="breadcrumb">
-        <li><a href="#">Главная</a> <span class="divider">/</span></li>
-        <li class="active">Список товаров</li>
-    </ul>
     <section class="mini-layout">
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">Редактировать пункт меню</span>
+                <span class="title">{lang('a_manager_user_mod')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">

@@ -30,31 +30,38 @@ class Admin extends MY_Controller {
     }
 
     public function index() {
+        
+        //just show dashboard
+        $this->load->module('admin/dashboard');
+        $this->dashboard->index();
+        exit;
+        
         // Disable license check.
         // From version 1.3.7
         //$this->check();
-        $this->load->module('admin/components');
-        $components = $this->components->find_components(TRUE);
-
-        $this->template->assign('components', $components);
-        $this->template->assign('cats_unsorted', $this->lib_category->unsorted());
-        $this->template->assign('tree', $this->lib_category->build());
+        //$this->load->module('admin/components');
+        //$components = $this->components->find_components(TRUE);
+        
+        //load modules list
+        //$this->template->assign('components', $components);
+        //$this->template->assign('cats_unsorted', $this->lib_category->unsorted());
+        //$this->template->assign('tree', $this->lib_category->build());
 
         // load menus
-        $this->load->module('menu');
-        $this->template->assign('menus', $this->menu->get_all_menus());
+        //$this->load->module('menu');
+        //$this->template->assign('menus', $this->menu->get_all_menus());
 
         ///TinyMCE
-        $this->load->library('lib_editor');
-        $this->template->assign('editor', $this->lib_editor->init());
+        //$this->load->library('lib_editor');
+        //$this->template->assign('editor', $this->lib_editor->init());
         //////
 
-        $this->template->assign('username', $this->dx_auth->get_username());
+        //$this->template->assign('username', $this->dx_auth->get_username());
 
-        ($hook = get_hook('admin_show_desktop')) ? eval($hook) : NULL;
+        //($hook = get_hook('admin_show_desktop')) ? eval($hook) : NULL;
 
 //        $this->template->show('desktop', FALSE);
-        $this->template->show('dashboard', TRUE);
+        //$this->template->show('dashboard', TRUE);
     }
 
     public function sys_info($action = '') {
