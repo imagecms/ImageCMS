@@ -75,6 +75,7 @@ $lang['a_purch_product_c'] = 'Купленные товары';
 
 //advanced search
 $lang['a_search_pages'] = 'Поиск страниц';
+$lang['a_search_pages_contains'] = 'Поиск страниц, содержащих';
 $lang['a_advanced_search'] = 'Расширенный поиск';
 $lang['a_text'] = 'Текст';
 $lang['a_categories'] = 'Категории';
@@ -240,6 +241,7 @@ $lang['a_tools_panel'] = 'Панель инструментов';
 $lang['a_use_js'] = 'Для использования кабинета администрирования, крайне необходима активация JavaScript!';
 $lang['a_wellcome'] = 'Здравствуйте';
 $lang['a_cont'] = 'Содержимое';
+$lang['a_cont_list'] = 'Список содержимого';
 $lang['a_cont_nocat'] = 'Содержимое без категории';
 //$lang['a_create'] = 'Создать';
 $lang['a_without_cat'] = 'Без категории';
