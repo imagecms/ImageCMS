@@ -35,8 +35,7 @@ class Admin extends MY_Controller {
     function index() {
         $root_menus = $this->db->get('menus')->result_array();
 
-        $this->template->assign('menus', $root_menus);
-        $this->display_tpl('menu_list');
+        $this->render('menu_list', array('menus' => $root_menus));
     }
 
     /**
@@ -53,6 +52,7 @@ class Admin extends MY_Controller {
 
         $this->template->assign('menu_result', $this->menu_result);
         $this->template->assign('insert_id', $ins_id['id']);
+        $this->template->assign('menu_title', $ins_id['main_title']);
 
         $this->display_tpl('main');
     }
@@ -230,7 +230,12 @@ class Admin extends MY_Controller {
         $this->template->assign('menu_result', $this->menu_result);
 
         $item = $this->menu_model->get_item($item_id);
-
+        $pages = $this->get_pages();
+        $cats = $this->lib_category->build();
+        $this->template->assign('cats', $cats);
+        $sel = array();
+        $this->template->assign('selected', $sel);
+        $this->template->assign('pages', $pages);
         $this->template->add_array($item);
         $this->display_tpl('edit_item');
     }
@@ -259,7 +264,7 @@ class Admin extends MY_Controller {
      */
     function insert_menu_item() {
 
-        var_dump($_POST);
+        //var_dump($_POST);
 
         cp_check_perm('menu_edit');
 
@@ -384,10 +389,11 @@ class Admin extends MY_Controller {
     function save_positions() {
         cp_check_perm('menu_edit');
 
-        foreach ($_POST['items_pos'] as $k => $v) {
-            $item = explode('_', substr($v, 4));
-            $this->menu_model->set_item_position((int) $item[0], $item[1]);
+        foreach ($_POST['positions'] as $k => $v) {
+            $k = $k + 1;
+            $this->menu_model->set_item_position((int) $v, (int) $k);
         }
+        showMessage(lang('a_positions_updated'));
     }
 
     /**
@@ -509,40 +515,46 @@ class Admin extends MY_Controller {
         }
     }
 
-    function delete_menu($name) {
+    function delete_menu($name = null) {
         cp_check_perm('menu_delete');
-
-        $this->menu->prepare_menu_array($name);
-        $this->root_menu = & $this->menu->menu_array;
-        $this->sub_menu = & $this->menu->sub_menu_array;
-
-        $this->process_root($this->root_menu);
-
-        //root menus array
-        foreach ($this->root_menu as $menu) {
-            $this->menu_model->delete_menu_item($menu['id']);
+        if ($name == null) {
+            $name = $this->input->post('ids');
+            foreach ($name as $n) {
+                $this->menu->prepare_menu_array($n);
+                $this->root_menu = & $this->menu->menu_array;
+                $this->sub_menu = & $this->menu->sub_menu_array;
+                $this->process_root($this->root_menu);
+                //root menus array
+                foreach ($this->root_menu as $menu) {
+                    $this->menu_model->delete_menu_item($menu['id']);
+                }
+                //sub menus array
+                foreach ($this->sub_menu as $menu) {
+                    $this->menu_model->delete_menu_item($menu['id']);
+                }
+                //delete main menu
+                $this->menu_model->delete_menu($n);
+            }
+            showMessage(lang('a_menu_deleted'));
+            pjax('/admin/components/cp/menu');
+        } else {
+            $this->menu->prepare_menu_array($name);
+            $this->root_menu = & $this->menu->menu_array;
+            $this->sub_menu = & $this->menu->sub_menu_array;
+            $this->process_root($this->root_menu);
+            //root menus array
+            foreach ($this->root_menu as $menu) {
+                $this->menu_model->delete_menu_item($menu['id']);
+            }
+            //sub menus array
+            foreach ($this->sub_menu as $menu) {
+                $this->menu_model->delete_menu_item($menu['id']);
+            }
+            //delete main menu
+            $this->menu_model->delete_menu($name);
+            showMessage(lang('a_menu_deleted'));
+            pjax('/admin/components/cp/menu');
         }
-
-        //sub menus array
-        foreach ($this->sub_menu as $menu) {
-            $this->menu_model->delete_menu_item($menu['id']);
-        }
-
-        //delete main menu
-        $this->menu_model->delete_menu($name);
-
-        $title = lang('a_message');
-        $message = lang('a_menu_chech');
-        $result = true;
-
-
-
-
-        echo json_encode(array(
-            'title' => $title,
-            'message' => $message,
-            'result' => $result,
-        ));
     }
 
     function create_tpl() {
@@ -557,9 +569,10 @@ class Admin extends MY_Controller {
     function get_pages($cat_id = 0, $cur_page = 0) {
         $data['nav_count'] = array();
         $data['links'] = 0;
-
-        $per_page = (int) $_POST['per_page'];
-
+        $per_page = 10;
+        if($_POST['per_page'])
+            $per_page = (int)$_POST['per_page'];
+        //$per_page = (int) $_POST['per_page'];
         $this->db->select('id, title, url, cat_url');
         $this->db->order_by('created', 'desc');
         $this->db->where('lang_alias', 0);
@@ -579,8 +592,11 @@ class Admin extends MY_Controller {
             $data['links'] = ceil($total / $per_page);
             if ($data['links'] == 1)
                 $data['links'] = 0;
-
-            //echo json_encode($data);
+            
+            if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
+                echo json_encode($data);
+            else
+                return $data;
         }
     }
 
@@ -696,10 +712,16 @@ class Admin extends MY_Controller {
 
             $n++;
         }
-
+        
+        $menu_id = $this->db->where('id', $id)->get('menus_data')->row();
+        $menu_id = $menu_id->menu_id;
+        $menu_url = $this->db->where('id', $menu_id)->get('menus')->row();
+        $menu_url = $menu_url->name;
+        
         $this->template->assign('langs', $langs);
         $this->template->assign('id', $id);
-
+        $this->template->assign('menu_name', $menu_url);
+        
         $this->display_tpl('translate_item');
     }
 
@@ -723,8 +745,8 @@ class Admin extends MY_Controller {
                 }
             }
         }
-
-        closeWindow('translate_m_Window');
+        showMessage(lang('a_changes_saved'));
+        //closeWindow('translate_m_Window');
     }
 
     function _get_langs() {
@@ -735,6 +757,32 @@ class Admin extends MY_Controller {
         } else {
             return array();
         }
+    }
+
+    public function render($viewName, array $data = array(), $return = false) {
+        if (!empty($data))
+            $this->template->add_array($data);
+
+        $this->template->show('file:' . 'application/modules/menu/templates/' . $viewName);
+        exit;
+
+        if ($return === false)
+            $this->template->show('file:' . 'application/modules/menu/templates/' . $viewName);
+        else
+            return $this->template->fetch('file:' . 'application/modules/menu/templates/' . $viewName);
+    }
+    
+    function change_hidden(){
+        $id = $this->input->post('id');
+        $hidden = $this->db->where('id', $id)->get('menus_data')->row();
+        $hidden = $hidden->hidden;
+        if($hidden == 1)
+            $hidden = 0;
+        else
+            $hidden = 1;
+        $data = array('hidden' => $hidden);
+        $this->menu_model->update_item($id, $data);
+            
     }
 
 }

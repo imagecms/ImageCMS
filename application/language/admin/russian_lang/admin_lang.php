@@ -6,6 +6,13 @@
  */
 
 $lang['a_content'] = 'Содержание';
+$lang['a_del_catego_ba'] = 'Удалить категорию';
+$lang['a_auto_fit_by_url'] = 'Автоподбор';
+$lang['a_category_upda_modu'] = 'Категория обновлена';
+$lang['a_categ_translate_upda'] = 'Перевод категории обновлен';
+$lang['a_cre_exit_form'] = 'Создать и выйти';
+$lang['a_manager_user_mod'] = 'Менеджер пользователей';
+$lang['a_addit_fiel_bas_a'] = 'Дополнительные поля';
 $lang['a_subscri_mail'] = 'Подписчики';
 $lang['a_send_ema_modu_group'] = 'Отправка писем';
 $lang['a_mailer_user_empty'] = 'Список подписчиков пуст';
@@ -639,3 +646,12 @@ $lang['a_delete_selected_languages'] = 'Удалить выбраные язык
 $lang['a_cache'] = 'Кэш';
 $lang['a_clear_cache'] = 'Очистка кэша';
 
+$lang['a_menu_list'] = 'Список меню';
+$lang['a_menu_deleted'] = 'Меню удалено';
+
+$lang['a_menu_delete'] = 'Удаление меню';
+$lang['a_delete_selected_menu'] = 'Удалить выбраные меню?';
+
+$lang['a_create_link'] = 'Создать ссылку';
+
+$lang['a_manu_item_translate'] = 'Перевод пункта меню';
