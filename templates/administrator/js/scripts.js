@@ -18,7 +18,11 @@ $(document).ajaxComplete( function(event, XHR, ajaxOptions){
 function initAdminArea(){
 	
     if (isShop)
+    {
         $('#shopAdminMenu').show();
+        $('#topPanelNotifications').fadeIn(200);
+        
+    }
         
     console.log('initialising of administration area started');
     var startExecTime = Date.now();
