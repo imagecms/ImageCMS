@@ -5,6 +5,14 @@
  * and open the template in the editor.
  */
 $lang['a_content'] = 'Content';
+$lang['a_del_catego_ba'] = 'Delete category';
+$lang['a_auto_fit_by_url'] = 'AutoFit';
+$lang['a_category_upda_modu'] = 'Category updated';
+$lang['a_categ_translate_upda'] = 'Category translation updated';
+$lang['a_cre_exit_form'] = 'Create and exit';
+$lang['a_manager_user_mod'] = 'User Manager';
+$lang['a_addit_fiel_bas_a'] = 'Additional fields';
+$lang['a_send_ema_modu_group'] = 'Sending emails';
 $lang['a_subscri_mail'] = 'Subscribers';
 $lang['a_mailer_user_empty'] = 'Subscribers list is empty';
 $lang['a_sub_notif_later'] = 'Subscription and Notification letters';

@@ -6,7 +6,15 @@
  */
 
 $lang['a_content'] = 'Содержание';
+$lang['a_del_catego_ba'] = 'Удалить категорию';
+$lang['a_auto_fit_by_url'] = 'Автоподбор';
+$lang['a_category_upda_modu'] = 'Категория обновлена';
+$lang['a_categ_translate_upda'] = 'Перевод категории обновлен';
+$lang['a_cre_exit_form'] = 'Создать и выйти';
+$lang['a_manager_user_mod'] = 'Менеджер пользователей';
+$lang['a_addit_fiel_bas_a'] = 'Дополнительные поля';
 $lang['a_subscri_mail'] = 'Подписчики';
+$lang['a_send_ema_modu_group'] = 'Отправка писем';
 $lang['a_mailer_user_empty'] = 'Список подписчиков пуст';
 $lang['a_sub_notif_later'] = 'Подписка и рассылка писем';
 $lang['a_settings_mail'] = 'Параметры письма';
@@ -75,6 +83,7 @@ $lang['a_purch_product_c'] = 'Купленные товары';
 
 //advanced search
 $lang['a_search_pages'] = 'Поиск страниц';
+$lang['a_search_pages_contains'] = 'Поиск страниц, содержащих';
 $lang['a_advanced_search'] = 'Расширенный поиск';
 $lang['a_text'] = 'Текст';
 $lang['a_categories'] = 'Категории';
@@ -240,6 +249,7 @@ $lang['a_tools_panel'] = 'Панель инструментов';
 $lang['a_use_js'] = 'Для использования кабинета администрирования, крайне необходима активация JavaScript!';
 $lang['a_wellcome'] = 'Здравствуйте';
 $lang['a_cont'] = 'Содержимое';
+$lang['a_cont_list'] = 'Список содержимого';
 $lang['a_cont_nocat'] = 'Содержимое без категории';
 //$lang['a_create'] = 'Создать';
 $lang['a_without_cat'] = 'Без категории';
