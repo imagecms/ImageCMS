@@ -7,6 +7,7 @@
 
 $lang['a_content'] = 'Содержание';
 $lang['a_subscri_mail'] = 'Подписчики';
+$lang['a_send_ema_modu_group'] = 'Отправка писем';
 $lang['a_mailer_user_empty'] = 'Список подписчиков пуст';
 $lang['a_sub_notif_later'] = 'Подписка и рассылка писем';
 $lang['a_settings_mail'] = 'Параметры письма';
