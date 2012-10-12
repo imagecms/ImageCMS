@@ -5,6 +5,8 @@
  * and open the template in the editor.
  */
 $lang['a_content'] = 'Content';
+$lang['a_cre_exit_form'] = 'Create and exit';
+$lang['a_addit_fiel_bas_a'] = 'Additional fields';
 $lang['a_send_ema_modu_group'] = 'Sending emails';
 $lang['a_subscri_mail'] = 'Subscribers';
 $lang['a_mailer_user_empty'] = 'Subscribers list is empty';
