@@ -59,7 +59,7 @@ if (!function_exists('check_admin_redirect')) {
             foreach ($languages as $language) {
                 if ($language['identif'] != $locale) {
                     $html .= "<li>";
-                    $html .= "<a href='" . $url."/". $language['identif'] . "' class='pjax'>" . $language['lang_name'] . "</a>";
+                    $html .= "<a href='" . $url . "/" . $language['identif'] . "' class='pjax'>" . $language['lang_name'] . "</a>";
                     $html .= "</li>";
                 }
             }
@@ -69,7 +69,28 @@ if (!function_exists('check_admin_redirect')) {
         return $html;
     }
 
+    function build_cats_tree($cats, $selected_cats = array()) {
+        if (is_array($cats))
+            foreach ($cats as $cat) {
+                echo "<option";
+                if (is_array($selected_cats))
+                    foreach ($selected_cats as $k) {
+                        if ($k == $cat['id'])
+                            echo " selected = 'selected' ";
+                    }
+                echo " value='" . $cat['id'] . "'/>";
+                for ($i = 0; $i < $cat['level']; $i++) {
+                    echo '-';
+                }
+                echo $cat['name'] . "</option>";
+                if ($cat['subtree'])
+                    build_cats_tree($cat['subtree'], $selected_cats);
+            }
+    }
+
 }
-function getCMSNumber(){
+
+function getCMSNumber() {
     return IMAGECMS_NUMBER;
 }
+

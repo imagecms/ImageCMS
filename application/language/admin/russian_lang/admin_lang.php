@@ -630,3 +630,12 @@ $lang['a_delete_selected_languages'] = 'Удалить выбраные язык
 $lang['a_cache'] = 'Кэш';
 $lang['a_clear_cache'] = 'Очистка кэша';
 
+$lang['a_menu_list'] = 'Список меню';
+$lang['a_menu_deleted'] = 'Меню удалено';
+
+$lang['a_menu_delete'] = 'Удаление меню';
+$lang['a_delete_selected_menu'] = 'Удалить выбраные меню?';
+
+$lang['a_create_link'] = 'Создать ссылку';
+
+$lang['a_manu_item_translate'] = 'Перевод пункта меню';

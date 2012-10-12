@@ -45,9 +45,9 @@ $(document).ready(function(){
             success: function(obj){
                 console.log(obj.color);
                 if(obj.result == true)
-                    showMessage(null, obj.message, obj.color);
+                    showMessage(obj.message, '', obj.color);
                 else
-                    showMessage(obj.message, null, obj.color);
+                    showMessage(obj.message, '', obj.color);
                 console.log(obj.fileCount);
                 $('.filesCount').text(obj.filesCount);
             }
@@ -138,26 +138,26 @@ $(document).ready(function(){
     
     
     
-    $('.deleteMenu').live('click', function(){
-
-        var data_id = $(this).attr('product_id');
-        $.ajax({
-            type: 'post',
-            dataType: 'json',
-            data: $('#deleteMenu').serialize(),
-            url: '/admin/components/cp/menu/update_menu/',
-            success: function(obj){
-                console.log(obj.color);
-                if(obj.result == true)
-                    showMessage(obj.title, obj.message);
-                else
-                    showMessage(obj.title, obj.message, 'r');
-               
-            }
-        });   
-        alert(data_id);
-       
-    });
+//    $('.deleteMenu').live('click', function(){
+//
+//        var data_id = $(this).attr('product_id');
+//        $.ajax({
+//            type: 'post',
+//            dataType: 'json',
+//            data: $('#deleteMenu').serialize(),
+//            url: '/admin/components/cp/menu/update_menu/',
+//            success: function(obj){
+//                console.log(obj.color);
+//                if(obj.result == true)
+//                    showMessage(obj.title, obj.message);
+//                else
+//                    showMessage(obj.title, obj.message, 'r');
+//               
+//            }
+//        });   
+//        alert(data_id);
+//       
+//    });
     
 });
 

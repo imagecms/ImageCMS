@@ -1,24 +1,20 @@
 
-    <div class="container">
-        <ul class="breadcrumb">
-            <li><a href="#">Главная</a> <span class="divider">/</span></li>
-            <li class="active">Список товаров</li>
-        </ul>
-        <section class="mini-layout">
-            <div class="frame_title clearfix">
-                <div class="pull-left">
-                    <span class="help-inline"></span>
-                    <span class="title">Редактировать пункт меню</span>
-                </div>
-                <div class="pull-right">
-                    <div class="d-i_b">
-                        <a href="{$BASE_URL}admin/components/cp/menu" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
-                        <button type="submit" class="btn btn-small action_on saveButton"  idMenu="{$id}"><i class="icon-ok"></i>Сохранить</button>
-                        <button type="button" class="btn btn-small action_on"><i class="icon-check"></i>Сохранить и выйти</button>
-                    </div>
-                </div>                            
+<div class="container">
+    <section class="mini-layout">
+        <div class="frame_title clearfix">
+            <div class="pull-left">
+                <span class="help-inline"></span>
+                <span class="title">Редактировать пункт меню</span>
             </div>
-                <form   class="saveForm">
+            <div class="pull-right">
+                <div class="d-i_b">
+                    <a href="{$BASE_URL}admin/components/cp/menu" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
+                    <button type="submit" class="btn btn-small action_on saveButton"  idMenu="{$id}"><i class="icon-ok"></i>Сохранить</button>
+                    <button type="button" class="btn btn-small action_on"><i class="icon-check"></i>Сохранить и выйти</button>
+                </div>
+            </div>                            
+        </div>
+        <form   class="saveForm">
             <div class="tab-content">
                 <div class="tab-pane active" id="modules">
 
@@ -77,7 +73,6 @@
                         </tbody>
                     </table>
                 </div>
-        </section>
-    </div>{form_csrf()}
-                </form>
-    
+                </section>
+            </div>{form_csrf()}
+        </form>
