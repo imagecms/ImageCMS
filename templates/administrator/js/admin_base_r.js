@@ -28,7 +28,40 @@ var pagesAdmin = new Object({
         categoryId = $("#category_selectbox").val();
         $("#cfcm_fields_block").load(base_url + "admin/components/cp/cfcm/form_from_category_group/" + categoryId + "/" + updatePageId + "/page");
     },
+    confirmListAction:function(actionURL)
+    {
+        event.preventDefault();
+        var pagesArray = {};
+        //var actionURL = $(this).attr('url');
+        var checkedPages = $('.pages-table > tbody').children('tr').children('td.t-a_c').find('input:checked');
+        
+        checkedPages.each(function(){
+            pagesArray[$(this).attr('data-id')] = 'chkb_'+$(this).attr('data-id');
+        });
+        
+        if (checkedPages.size() < 1)
+            return false;
+        
+        var newCat = false;
+        if ($('#CopyMoveCategorySelect'))
+            newCat = $('#CopyMoveCategorySelect').val();
+            
+        $.post(actionURL, {pages:pagesArray, new_cat:newCat}, function(data){
+            $('.modal').modal('hide');
+            $('.notifications').append(data);
+            
+            });
+    },
     
+    updDialogMove:function()
+    {
+        $('#confirmMove').attr('onclick', "pagesAdmin.confirmListAction('/admin/pages/move_pages/move')");
+    },
+    
+    updDialogCopy:function()
+    {
+        $('#confirmMove').attr('onclick', "pagesAdmin.confirmListAction('/admin/pages/move_pages/copy')");
+    },
     
     initialize:function()
     {

@@ -82,8 +82,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-align-justify"></i>{lang('a_content')}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="/admin/pages">{lang('a_create')}</a></li>
-                                    <li><a href="/admin/pages/GetPagesByCategory/">Все содержимое по категориях</a></li>
-                                    <li><a href="/admin/pages/GetPagesByCategory/0">{lang('a_without_cat')}</a></li>
+                                    <li><a href="/admin/pages/GetPagesByCategory/">Редактирование</a></li>
                                     <li class="divider"></li>
                                     <li><a href="/admin/components/cp/cfcm" class="ajax_load">{lang('a_field_constructor')}</a></li>
 
