@@ -1,3 +1,41 @@
+<section class="mini-layout">
+                    <div class="frame_title clearfix">
+                        <div class="pull-left w-s_n">
+                            <span class="help-inline"></span>
+                            <span class="title w-s_n">{lang('a_field_constructor')}</span>
+                        </div>
+
+                        <div class="pull-right">
+                            <span class="help-inline"></span>
+                            <div class="d-i_b">
+                                <a href="#" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
+                                <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form"><i class="icon-ok"></i>Сохранить</button>
+                                <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form"><i class="icon-check"></i>Сохранить и выйти</button>
+                                
+				<div class="dropdown d-i_b">
+                                    <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
+                                        Русский
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Английский</a></li>
+                                    </ul>
+                                </div>
+				
+                            </div>
+                        </div>                            
+                    </div>             
+<div id="content_big_td" class="tab-content">                
+
+  dsfk jhfjdhgj fgdjhfjhg  C O N T E N T
+	
+</div>
+</section>
+
+
+
+
+{/*}
 {$top_navigation}
 
 <!--
@@ -89,3 +127,4 @@ function confirm_delete_cfcfm_group(id)
 }
 </script>
 {/literal}
+{*/}

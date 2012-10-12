@@ -48,7 +48,13 @@ $lang['a_date_and_time_cr'] = 'Дата и время создания';
 $lang['a_date_and_time_p'] = 'Дата и время публикации';
 $lang['a_access'] = 'Доступ';
 $lang['a_all'] = 'Все';
+$lang['a_fields'] = 'Поля';
 $lang['a_additional_fields'] = 'Дополнительные поля';
+$lang['a_add_field'] = 'Создать поле';
+$lang['a_field_groups'] = 'Группы полей';
+$lang['a_field_deleted_success'] = 'Поле успешно удалено';
+$lang['a_group_deleted_success'] = 'Група успешно удалена';
+
 $lang['a_url'] = 'URL';
 $lang['a_meta_title'] = 'Meta title';
 $lang['a_meta_description'] = 'Meta description';
