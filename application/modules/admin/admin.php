@@ -41,7 +41,8 @@ class Admin extends MY_Controller {
         //$this->check();
         //$this->load->module('admin/components');
         //$components = $this->components->find_components(TRUE);
-
+        
+        //load modules list
         //$this->template->assign('components', $components);
         //$this->template->assign('cats_unsorted', $this->lib_category->unsorted());
         //$this->template->assign('tree', $this->lib_category->build());

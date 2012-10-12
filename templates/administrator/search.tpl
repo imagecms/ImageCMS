@@ -1,3 +1,60 @@
+    <section class="mini-layout">
+        <div class="frame_title clearfix">
+            <div class="pull-left">
+                <span class="help-inline"></span>
+                <span class="title">{lang('a_search_pages_contains')} "{$search_title}"</span>
+            </div>                          
+        </div>
+        <div class="row-fluid">
+	    {if count($pages)}
+            <table class="table table-striped table-bordered table-hover table-condensed pages-table">
+                <thead>
+                    <tr>
+                        <th class="span1">ID</th>
+                        <th class="span4">{lang('a_title')}</th>
+                        <th class="span3">{lang('a_url')}</th>
+                        <th class="span2">Категория</th>
+                        <th class="span1">{lang('a_status')}</th>
+                    </tr>
+                </thead>
+                <tbody >
+                    
+                    {foreach $pages as $page}
+                    <tr data-id="{$page.id}">
+                        <td><span>{$page.id}</span></td>
+                        <td class="share_alt">
+                            <a href="{$BASE_URL}{$page.cat_url}{$page.url}" target="_blank" class="go_to_site pull-right btn btn-small"  data-rel="tooltip" data-placement="top" data-original-title="{lang('a_goto_site')}"><i class="icon-share-alt"></i></a>
+                            <a href="{$BASE_URL}admin/pages/edit/{$page.id}" class="title pjax">{$page.title}</a>
+                        </td>
+                        <td><span>{truncate($page.url, 40, '...')}</span></td>
+                        <td><span>
+			{$categories[$page.category]}
+			</span></td>
+                        <td>
+                            <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if $page['post_status'] == 'publish'}{lang('a_show')}{else:}{lang('a_dont_show')}{/if}" onclick="change_page_status('{$page.id}');">
+                                <span class="prod-on_off {if $page['post_status'] != 'publish'}disable_tovar{/if}" style="{if $page['post_status'] != 'publish'}left: -28px;{/if}"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    {/foreach}
+                </tbody>
+            </table>
+	    {else:}
+                            <div class="alert alert-info" style="margin: 18px;">{lang('a_not_found')}</div>
+            {/if}            
+        </div>
+        {if $paginator > ''}
+        <div class="clearfix">
+            {$paginator}
+        </div>
+        {/if}
+    </section>
+
+
+
+
+{/*}
+
 <div class="top-navigation">
     <div style="float:left;">
     <div style="padding-left:10px;">
@@ -277,3 +334,4 @@
             }
 		</script>
 {/literal}
+{*/}
