@@ -7,18 +7,27 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="#" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
-                    <button type="button" class="btn btn-small action_on formSubmit" data-action="close" data-form="#save"><i class="icon-ok"></i>{lang('a_save')}</button>
-                    <button type="button" class="btn btn-small action_on formSubmit" data-action="exit" data-form="#save"><i class="icon-check"></i>Сохранить и выйти</button>
+                    <a href="#" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
+                    <button type="submit" class="btn btn-small action_on formSubmit" data-action="close" data-form="#save"><i class="icon-ok"></i>{lang('a_save')}</button>
+                    <button type="button" class="btn btn-small action_on formSubmit" data-action="exit" data-form="#save"><i class="icon-check"></i>{lang('a_footer_save_exit')}</button>
 
-                    <!--  <pre>
-                                            
-                    {var_dump($langs)}
-                </pre>-->
-                    
-                    {echo create_language_select($langs, 'ru', '/admin/categories/edit/56')}
+                    <div class="dropdown d-i_b">
+                        {foreach $langs as $l}
+                            {if $l['default'] == 1}
+                                <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
+                                    {$l.lang_name}
+                                    <span class="caret"></span>
 
-                 
+                                </a>
+                            {/if}   
+                        {/foreach}
+                        <ul class="dropdown-menu">
+                            {foreach $langs as $l}
+                                <li><a href="{$BASE_URL}admin/categories/translate/{$id}/{$l.id}">{$l.lang_name}</a></li>
+                            {/foreach}
+                        </ul>
+
+                    </div>
                 </div>
             </div>                            
         </div>
@@ -58,7 +67,7 @@
                                                         <div class="controls">
                                                             <div class="group_icon pull-right">
                                                                 <div class="">
-                                                                    <button type="button" class="btn btn-small"><i class="icon-refresh"></i>&nbsp;&nbsp;Автоподбор</button>
+                                                                    <button onclick="translite_title('#name', '#url');" type="button" class="btn btn-small" id="translateCategoryTitle"><i class="icon-refresh"></i>&nbsp;&nbsp;{lang('a_auto_fit_by_url')}</button>
                                                                 </div>
                                                             </div>
                                                             <div class="o_h">
@@ -285,12 +294,12 @@
                                                     </div>
                                                     <div class="control-group"><label class="control-label" for="description">{lang('a_meta_description')}:</label>
                                                         <div class="controls">
-                                                            <textarea id="description" class="mceEditor" name="description"  rows="10" cols="180" >{$description}</textarea>
+                                                            <textarea id="description" name="description"  rows="10" cols="180" >{$description}</textarea>
                                                         </div>
                                                     </div>
                                                     <div class="control-group"><label class="control-label" for="keywords">{lang('a_meta_keywords')}:</label>
                                                         <div class="controls">
-                                                            <textarea id="keywords" class="mceEditor" name="keywords" rows="10" cols="180" >{$keywords}</textarea>
+                                                            <textarea id="keywords" name="keywords" rows="10" cols="180" >{$keywords}</textarea>
                                                         </div>
                                                     </div>
                                                 </div>

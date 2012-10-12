@@ -8,7 +8,7 @@
 
             <div class="pull-right">
                 <div class="d-i_b">                        
-                    <a href="/admin/categories/cat_list" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
+                    <a href="/admin/categories/cat_list" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
                     <button type="button" class="btn btn-small action_on formSubmit" data-action="close" data-form="#save"><i class="icon-ok"></i>{lang('a_create_cat')}</button>
                     <button type="button" class="btn btn-small action_on formSubmit" data-action="exit" data-form="#save"><i class="icon-check"></i>{lang('a_cre_exit_form')}</button>
                     <div class="dropdown d-i_b">
@@ -61,7 +61,7 @@
                                                     <div class="controls">
                                                         <div class="group_icon pull-right">
                                                             <div class="">                                                                           
-                                                                <button type="button" class="btn btn-small" onclick="translite_cat_name($('cat_name').value);"><i class="icon-refresh"></i>&nbsp;&nbsp;Автоподбор</button>
+                                                                <button onclick="translite_title('#name', '#url');" type="button" class="btn btn-small" id="translateCategoryTitle"><i class="icon-refresh"></i>&nbsp;&nbsp;{lang('a_auto_fit_by_url')}</button>
                                                             </div>
                                                         </div>
 

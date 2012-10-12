@@ -309,7 +309,7 @@ class Categories extends MY_Controller {
      *
      * @access public
      */
-    function edit($id, $lang) {
+    function edit($id) {
 
         cp_check_perm('category_edit');
 
@@ -330,12 +330,24 @@ class Categories extends MY_Controller {
 
             ($hook = get_hook('admin_show_category_edit')) ? eval($hook) : NULL;
 
+             if (!$this->ajaxRequest)    
             $this->template->show('category_edit', FALSE);
-            
+             if($_POST){
+             showMessage(lang('a_category_upda_modu'));
+             
+             $active = $_POST['action'];
+                
+                if($active == 'close'){
+                    pjax('/admin/categories/edit/'.$id);
+                }else{
+                    pjax('/admin/categories/cat_list');
+                }
+             }
         } else {
             return FALSE;
         }
     }
+
 
     function translate($id, $lang) {
         $cat = $this->cms_admin->get_category($id);
@@ -394,9 +406,19 @@ class Categories extends MY_Controller {
                 }
 
                 $this->lib_category->clear_cache();
-                closeWindow('translate_category_w');
+                
+                showMessage(lang('a_categ_translate_upda'));
+                
+                $active = $_POST['action'];
+                
+                if($active == 'close'){
+                    pjax('/admin/categories/translate/'.$id.'/'.$lang);
+                }else{
+                    pjax('/admin/categories/edit/'.$id);
+                }
+               // closeWindow('translate_category_w');
             }
-
+            
             exit;
         }
 
@@ -434,7 +456,8 @@ class Categories extends MY_Controller {
     function delete() {
         cp_check_perm('category_delete');
 
-        $cat_id = $this->input->post('id');
+        //$cat_id = $this->input->post('id');
+        $cat_id = $_POST['id'];
 
         if ($this->db->get('category')->num_rows() == 1) {
             showMessage(lang('ac_delete_cat_err'), lang('ac_error'), 'r');
