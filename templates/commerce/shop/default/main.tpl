@@ -60,23 +60,28 @@
                         <span id="suggestions"style="display: none; width: 0px; right: 0px;"></span>
                     </form>
                 </div>
+                        
                 <div class="phone">
                     <address>+8 (067) <span>572-58-18</span></address>
                     <span class="js showCallback">{lang('s_coll_order')}</span>
                 </div>
+                
                 <ul class="user_menu">
                     <!--    Show callback's form    -->
-                    <li class="p-l_0">
-                        <form action="" method="post" name="currencyChangeForm" id="currencyChangeForm">
-                            {lang('s_currency')}: <select class="changeCurrency" name="setCurrency" >
-                                {foreach get_currencies() as $currency}
-                                    <option {if ShopCore::app()->SCurrencyHelper->current->getId() == $currency->getId()}selected{/if} value="{echo $currency->getId()}">{echo encode($currency->getName())}</option>
-                                {/foreach}
-                            </select>
-                            {form_csrf()}
-                        </form>
-                    </li>
-
+                    {if count(get_currencies())>1}
+                        <li class="p-l_0">
+                            <form action="" method="post" name="currencyChangeForm" id="currencyChangeForm">
+                                {lang('s_currency')}: <select class="changeCurrency" name="setCurrency" >
+                                    {foreach get_currencies() as $currency}
+                                        <option {if ShopCore::app()->SCurrencyHelper->additional->getId() == $currency->getId()}selected{/if} value="{echo $currency->getId()}">{echo encode($currency->getName())}</option>
+                                    {/foreach}
+                                </select>
+                                {form_csrf()}
+                            </form>
+                        </li>
+                    {else:}
+                        <li>&nbsp;</li>
+                    {/if}
                     <!--    Show callback's form    -->
 
                     <!--    Wish list item's for Header    -->

@@ -25,6 +25,8 @@
                     <a href="/admin/dashboard" class="logo span3">
                         <img src="{$THEME}/img/logo.png"/>
                     </a>
+                    
+                    {if $CI->dx_auth->is_logged_in()}
                     <div class="pull-right span3">
                         <div class="clearfix">
                             <div class="pull-left m-r_10">{lang('a_wellcome')}, 
@@ -39,19 +41,19 @@
                                 </div>
                             <div class="pull-right m-l_10">Просмотр <a href="{$BASE_URL}" target="_blank">сайта <span class="f-s_14">→</span></a></div>
                         </div>
-                        <form method="post" action="#">
+                        <form method="get" action="/admin/admin_search">
                             <div class="input-append search">
-                                <button class="btn pull-right"><i class="icon-search"></i></button>
+                                <button type="submit" class="btn pull-right"><i class="icon-search"></i></button>
                                 <div class="o_h">
-                                    <input id="appendedInputButton" size="16" type="text" class="input-large" data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]' autocomplete="off" tabindex="1">
+                                    <input id="appendedInputButton" name="q" size="16" type="text" class="input-large" data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]' autocomplete="off" tabindex="1">
                                 </div>
                             </div>
                         </form>
                     </div>
 
 
-                    {if $CI->dx_auth->is_logged_in()}
-                    <div class="btn-group" id="topPanelNotifications">
+                    
+                    <div class="btn-group" id="topPanelNotifications" style="display: none;">
                         <div class="span4 d-i_b">
 
                             <a href="/admin/components/run/shop/orders/index" class="btn btn-large" data-title="Заказы" data-rel="tooltip" data-original-title="Заказы">
@@ -73,19 +75,21 @@
 
                 </section>
             </header>
+            
+            {if $CI->dx_auth->is_logged_in()}
             <div class="frame_nav" id="mainAdminMenu">
                 <div class="container" id="baseAdminMenu">
                     <nav class="navbar navbar-inverse">
                         <ul class="nav">
                             <li ><a href="/admin/dashboard"><i class="icon-home"></i><span>Главная</span></a></li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-align-justify"></i>{lang('a_content')}<b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-align-justify"></i>{lang('a_cont')}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/admin/pages">{lang('a_create')}</a></li>
-                                    <li><a href="/admin/pages/GetPagesByCategory/">Все содержимое по категориях</a></li>
-                                    <li><a href="/admin/pages/GetPagesByCategory/0">{lang('a_without_cat')}</a></li>
+                                    <li><a href="/admin/pages/GetPagesByCategory/" class="pjax">{lang('a_cont_list')}</a></li>
+                                    <li><a href="/admin/pages" class="pjax">{lang('a_create_page')}</a></li>
+                                    
                                     <li class="divider"></li>
-                                    <li><a href="/admin/components/cp/cfcm" class="ajax_load">{lang('a_field_constructor')}</a></li>
+                                    <li><a href="/admin/components/cp/cfcm" class="pjax">{lang('a_field_constructor')}</a></li>
 
                                 </ul>
                             </li>
@@ -100,6 +104,9 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list-alt"></i>{lang('a_menu')}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
 
+                                    {if !$menus}
+                                    {$CI->load->module('menu'); $menus=$CI->menu->get_all_menus()}
+                                    {/if}
                                     <li><a href="/admin/components/cp/menu" class="ajax_load">{lang('a_control')}</a></li>
                                     <li class="divider"></li>
                                     {foreach $menus as $menu}
@@ -112,15 +119,16 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-circle-arrow-down"></i>{lang('a_modules')}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="/admin/components/modules_table/">{lang('a_all_modules')}</a></li>
-                                    <li><a href="/admin/mod_search/">{lang('a_search')}</a></li>
+                                    <!-- <li><a href="/admin/mod_search/">{lang('a_search')}</a></li> -->
                                     <li class="divider returnFalse"></a></li>
-                                    {if $components}
+                                    {if !$components}
+                                    {$CI->load->module('admin/components'); $components = $CI->components->find_components(TRUE)}
+                                    {/if}
                                     {foreach $components as $component}
                                     {if $component['installed'] == TRUE AND $component['admin_file'] == 1}
                                     <li><a href="/admin/components/cp/{$component.com_name}">{$component.menu_name}</a></li>
                                     {/if}
                                     {/foreach}
-                                    {/if}
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -154,6 +162,7 @@
                     
                     <div style="display:none;" class="container" id="shopAdminMenu"  > {include_tpl('shop_menu.tpl')} </div>
             </div>
+            {/if}
             <div class="container" id="mainContent">
                 {$content}
             </div>
@@ -196,10 +205,17 @@
         </script>
         
         <script src="{$THEME}/js/jquery-1.8.0.min.js" type="text/javascript"></script>
+        <script src="{$THEME}/js/pjax/jquery.pjax.js" type="text/javascript"></script>
+        <script>
+            {literal}
+
+            {/literal}    
+        </script>
+                        
         <script src="{$THEME}/js/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script>
         <script src="{$THEME}/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="{$THEME}/js/bootstrap-notify.js" type="text/javascript"></script>
-        <script src="{$THEME}/js/pjax/jquery.pjax.js" type="text/javascript"></script>
+        
         <script src="{$THEME}/js/jquery.form.js" type="text/javascript"></script>
         <script type="text/javascript" src="/js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
         <script src="{$THEME}/js/jquery-validate/jquery.validate.min.js" type="text/javascript"></script>
@@ -215,7 +231,8 @@
         <script src="{$THEME}/js/admin_base_i.js" type="text/javascript"></script>        
         <script src="{$THEME}/js/admin_base_m.js" type="text/javascript"></script>        
         <script src="{$THEME}/js/admin_base_v.js" type="text/javascript"></script>        
-        <script src="{$THEME}/js/admin_base_y.js" type="text/javascript"></script>    
+        <script src="{$THEME}/js/admin_base_y.js" type="text/javascript"></script>
+        <script src="{$THEME}/js/admin_base_r.js" type="text/javascript"></script>    
 
         <script>
             {if $CI->uri->segment('4') == 'shop'}
@@ -235,15 +252,6 @@
                 }
                 else
                     $('#baseAdminMenu').hide();
-            		
-            	
-                //menu active sniffer
-                $('a.pjax').live('click', function(e){
-                    $('nav li').removeClass('active');
-                    $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
-                    $.pjax({url: $(this).attr('href'), container:'#mainContent'});
-                    return false;
-                })
             })
 
             base_url = '{/literal}{$BASE_URL}{literal}';

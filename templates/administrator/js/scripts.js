@@ -5,6 +5,8 @@ $.exists_nabir = function(nabir){
     return (nabir.length > 0);
 }
 
+var notificationsInitialized = false;
+
 $(document).ajaxComplete( function(event, XHR, ajaxOptions){
     if (ajaxOptions.url != "/admin/components/run/shop/notifications/getAvailableNotification"){
         initAdminArea();
@@ -28,12 +30,12 @@ function fixed_frame_title(){
             scrOfY = window.pageYOffset;
         } else if( document.body
             && ( document.body.scrollLeft
-                || document.body.scrollTop ) ) {
+            || document.body.scrollTop ) ) {
             //DOM compliant
             scrOfY = document.body.scrollTop;
         } else if( document.documentElement
             && ( document.documentElement.scrollLeft
-                || document.documentElement.scrollTop ) ) {
+            || document.documentElement.scrollTop ) ) {
             //IE6 Strict
             scrOfY = document.documentElement.scrollTop;
         }
@@ -67,7 +69,7 @@ function fixed_frame_title(){
 function difTooltip(){
     //  tooltip
     var tr_tooltip = $('tr[data-title]').add('.row-category[data-title]');
-    if ($.exists_nabir('tr_tooltip')){
+    if ($.exists_nabir(tr_tooltip)){
         tr_tooltip.tooltip('destroy');
         tr_tooltip.each(function(){
             var $this = $(this);
@@ -91,10 +93,19 @@ function difTooltip(){
 function initAdminArea(){
 	
     if (isShop)
+    {
         $('#shopAdminMenu').show();
+        $('#topPanelNotifications').fadeIn(200);
+        
+    }
         
     console.log('initialising of administration area started');
     var startExecTime = Date.now();
+    
+    //menu active sniffer
+
+    
+    
     //  popover "info"
     $('.buy_prod').each(function(){
         var $this = $(this);
@@ -155,14 +166,14 @@ function initAdminArea(){
                 $helper.addClass('active');
                 return $helper;
             }
-        //            stop: function(){
-        //                var chFn = $('.sortable').data('chfunction');
-        //                //console.log(typeof chFn);
-        //                if (chFn)
-        //                    return eval(chFn+'()');
-        //                else
-        //                    return false;
-        //            }
+            //            stop: function(){
+            //                var chFn = $('.sortable').data('chfunction');
+            //                //console.log(typeof chFn);
+            //                if (chFn)
+            //                    return eval(chFn+'()');
+            //                else
+            //                    return false;
+            //            }
         });
     }
     //data-picker
@@ -441,7 +452,8 @@ function initAdminArea(){
 
     show_tovar_text = 'показывать';
     hide_tovar_text = 'не показывать';
-    $('.prod-on_off').live('click', function(){
+    $('.prod-on_off').unbind('click')
+    $('.prod-on_off').on('click', function(){
         var $this = $(this);
         if ($this.hasClass('disable_tovar')){
             $this.animate({
@@ -459,7 +471,7 @@ function initAdminArea(){
             $('.tooltip-inner').text(hide_tovar_text);
             $this.parents('td').next().children().addClass('disabled');
         }
-    });
+   });
     function what_key(enter_key){
         var enter_key = enter_key; 
         var key;
@@ -519,7 +531,7 @@ function initAdminArea(){
 
     function mouseDown(e){
         if(
-            (e.target.nodeName!="TEXTAREA") &&
+        (e.target.nodeName!="TEXTAREA") &&
             (e.target.nodeName!="SELECT") &&
             (e.target.nodeName!="OPTION") &&
             (e.target.nodeName!="INPUT") &&
@@ -528,8 +540,8 @@ function initAdminArea(){
             (e.target.nodeName!="SPAN")&&
             (!e.target.nodeName!="A")&&
             (e.target.nodeName!="DD")
-            )
-            {
+    )
+        {
             e=e||event;
             cancelEvent(e);
             addHandler(document,'selectstart',returnFalse,false);
@@ -566,15 +578,19 @@ function initAdminArea(){
     });
     $('.item_menu .row-category:even').addClass('even');
     
-    if (userLogined)
-        window.setInterval('updateNotificationsTotal()', 5000);
+    if (userLogined && !notificationsInitialized)
+    {
+	window.setInterval('updateNotificationsTotal()', 20000);
+        notificationsInitialized = true;
+    }
     
     
     //list filter
    
-    $('.listFilterForm').live('change', function(){
+    $('.listFilterForm').live('keypress', function(){
         $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
-        $('.listFilterSubmitButton').focus();
+        if (what_key(13))
+            $('.listFilterSubmitButton').click();
     })
 
     //    $('#usersDatas').autocomplete({source:usersDatas});
@@ -603,12 +619,12 @@ function initAdminArea(){
                 prodName = ui.item.label;
                 //console.log(prodName);
                 $('#ordersFilterProdId').val(ui.item.value);
-            //$('#ordersFilterProduct').val(ui.originalEvent.target.innerText)
+                //$('#ordersFilterProduct').val(ui.originalEvent.target.innerText)
             },
-            close: function(){
-                $('#ordersFilterProduct').val(prodName);
-            }
-        });
+        close: function(){
+            $('#ordersFilterProduct').val(prodName);
+        }
+    });
     
     $('.listFilterForm').live('focus', function(){
         $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
@@ -648,8 +664,22 @@ function initAdminArea(){
     })
     
     $('.pjax').on('click', function(){
-        $(window).trigger('resize');
+        //$(window).trigger('resize');
     })
+    $('a.pjax, .dropdown-menu li a').click(function(event){
+        event.preventDefault();$.pjax({url:$(this).attr('href'), container:'#mainContent'});
+        return false;
+    })
+
+    
+    //                $('a.pjax, .dropdown-menu li a').live('click', function(e){
+    //$.pjax({url:$(this).attr('href'), container:'#mainContent'})
+    //               e.preventDefault();
+    //              $('nav li').removeClass('active');
+    //             $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
+    //            $.pjax({url: $(this).attr('href'), container:'#mainContent'});
+    //           return false;
+    //      });
     
     initTinyMCE();
     fixed_frame_title();
@@ -657,11 +687,10 @@ function initAdminArea(){
     console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.")
 }
 
-$(document).ready(
-    function(){
-        updateNotificationsTotal();
-        initAdminArea()
-    })
+$(document).ready(function(){
+    updateNotificationsTotal();
+    initAdminArea()
+})
     
 $(window).load(function(){
     fixed_frame_title();

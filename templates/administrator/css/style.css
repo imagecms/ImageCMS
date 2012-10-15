@@ -373,7 +373,7 @@ tr.active a.m_ed{display: none;}
 .ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next{top: 14px !important;cursor: pointer;}
 #warehouses_container{margin-top: 5px;}
 .f_n{float: none !important;}
-.modal-header .close{font-size: 24px;}
+.modal-header .close{font-size: 24px !important;}
 
 #FullDescription_tbl tbody{display: block;}
 #FullDescription_tbl{width: auto !important;}

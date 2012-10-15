@@ -6,19 +6,15 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$BASE_URL}admin/widgets_manager/index/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
-                <button type="button" class="btn btn-small btn-success formSubmit" data-form="#wid_cr_form"><i class="icon-list-alt icon-white"></i>Сохранить</button>
-                <button type="button" class="btn btn-small formSubmit" data-form="#wid_cr_form" data-action="tomain"><i class="icon-check"></i>Сохранить и выйти</button>
+                <a href="{$BASE_URL}admin/widgets_manager/index/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
+                <button type="button" class="btn btn-small btn-success formSubmit" data-form="#wid_cr_form"><i class="icon-list-alt icon-white"></i>{lang('a_save')}</button>
+                <button type="button" class="btn btn-small formSubmit" data-form="#wid_cr_form" data-action="tomain"><i class="icon-check"></i>{lang('a_save_and_exit')}</button>
             </div>
         </div>                            
     </div>
     <div class="tab-content">
         <div class="tab-pane active" id="modules">
             <div class="row-fluid">
-<!--                <div class="alert" style="display:none;">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <span><strong>Warning!</strong> Best check yo self, you're not looking too good.</span>
-                </div>-->
                 <form method="post" action="{$BASE_URL}admin/widgets_manager/create" class="form-horizontal" id="wid_cr_form">
                     <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                         <thead>
@@ -63,6 +59,12 @@
                                                     <input type="hidden" name="method" value="" id="swm">
                                                 </div>
                                             </div>
+                                            <div class="control-group" id="textareaholder" style="display:none;">
+                                                <label class="control-label">{lang('a_module_name')}:</label>
+                                                <div class="controls" style="top: 6px;">
+                                                    <textarea name="html_code" rows="15" class="mceEditor"></textarea>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </td>
@@ -79,7 +81,6 @@
                             </tr>
                         </thead>
                         <tbody class="sortable ui-sortable">
-                            
                             {foreach $blocks as $block}
                                 {$mtype = $block.module}
                                 {$type = $block.module_name}
@@ -100,9 +101,6 @@
                             {/foreach}
                         </tbody>
                     </table>
-                    <div id="textareaholder" style="display:none;">
-                        <textarea name="html_code" rows="15"></textarea>
-                    </div>
                     {form_csrf()}
                 </form>
             </div>

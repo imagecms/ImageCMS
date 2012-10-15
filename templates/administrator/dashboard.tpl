@@ -3,7 +3,7 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">Страницы</span>
+                <span class="title">{lang('a_tools_panel')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
@@ -14,13 +14,14 @@
         </div>
         <div class="row-fluid">
             <div class="span8 content_big_td">
+                <h4>{lang('a_new_pages')}</h4>
                 <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                     <thead>
-                        <th>{lang('a_new_pages')}</th>
+                        <th>{lang('a_title')}</th>
                         {if count($latest)>0}
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                        <th>{lang('a_category')}</th>
+                        <th>URL</th>
+                        <th>{lang('a_date_and_time_cr')}</th>
                         <th class="span1"></th>
                         {/if}
                     </thead>
@@ -59,13 +60,14 @@
                         {/if}
                     </tbody>
                 </table>
+                <h4>{lang('a_updated_pages')}</h4>
                 <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                     <thead>
-                        <th>{lang('a_updated_pages')}</th>
-                        {if count($updated)>0}
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                        <th>{lang('a_title')}</th>
+                        {if count($latest)>0}
+                        <th>{lang('a_category')}</th>
+                        <th>URL</th>
+                        <th>{lang('a_date_and_time_cr')}</th>
                         <th class="span1"></th>
                         {/if}
                     </thead>
@@ -169,12 +171,14 @@
                             <thead>
                                 <th>{lang('a_cms_news')}</th>
                             </thead>
-                            <tbody>
+                            <tbody> 
                                 {foreach $api_news as $a}
+                                <tr><td>
                                         <span>{date('d-m-Y H:i', $a.publish_date)}
                                             <a style="padding-left:10px;" target="_blank" href="http://www.imagecms.net/blog/news/{$a.url}">>>></a>
                                         </span>
                                         <br/> {truncate(strip_tags($a.prev_text), 100)}
+                                </td></tr>
                                 {/foreach}
                             </tbody>
                     </table>        
