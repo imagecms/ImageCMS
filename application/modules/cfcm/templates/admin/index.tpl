@@ -1,124 +1,85 @@
-{$top_navigation}
-<!--
-{foreach $fields as $f}
-    <a href="javascript:ajax_div('page', base_url + 'admin/components/cp/cfcm/edit_field/{$f.field_name}');">{$f.type} {$f.field_name}</a>
-    <br />
-{/foreach}
--->
+<section class="mini-layout">
+                    <div class="frame_title clearfix">
+                        <div class="pull-left w-s_n">
+                            <span class="help-inline"></span>
+                            <span class="title w-s_n">{lang('a_field_constructor')}</span>
+                        </div>
 
-<div style="clear:both"></div>
-
-{if $fields}
-<div id="sortable" >
-		  <table id="cfcfm_fields_table">
-		  	<thead>
-                <th axis="string">{lang('amt_label')}</th>
-                <th axis="string">{lang('amt_name')}</th>
-                <th axis="string">{lang('amt_type')}</th>
-                <th axis="string">{lang('amt_group')}</th>
-                <th>
-                    {lang('amt_weight')}
-<img src="{$THEME}/images/save.png" align="absmiddle" style="cursor:pointer;width:22px;height:22px;" onclick="save_cfcfm_fields_weight(); return false;" />
-                </th>
-                <th width="100px"></th>
-            </thead>
-			<tbody>
+                        <div class="pull-right">
+                            <span class="help-inline"></span>
+                            <div class="d-i_b">
+                                <a href="/admin/components/cp/cfcm/create_field" class="btn btn-small btn-success pjax" ><i class=" icon-plus-sign icon-white"></i>{lang('a_add_field')}</a>
+								<a href="/admin/components/cp/cfcm/create_group" class="btn btn-small btn-success pjax" ><i class=" icon-plus-sign icon-white"></i>{lang('a_create_cat')}</a>				
+                            </div>
+                        </div>                            
+                    </div>           
+<div class="row-fluid">
+	<div class="span7" >
+		<h4>{lang('a_additional_fields')}</h4>
+		 <table class="table table-striped table-bordered table-hover table-condensed pages-table">
+                <thead>
+                    <tr>
+                        <th class="span2">{lang('a_label')}</th>
+                        <th class="span2">{lang('a_name')}</th>
+						<th class="span1">{lang('a_type')}</th>
+                        <th class="span2">{lang('a_category')}</th>
+                        <th class="span2">{lang('a_change')}/{lang('a_delete')}</th>
+                    </tr>
+                </thead>
+				<tbody class="sortable">
 		    {foreach $fields as $f}
                 <tr>
                     <td>
-                        <a href="javascript:ajax_div('page', base_url + 'admin/components/cp/cfcm/edit_field/{$f.field_name}');">{$f.label}</a>
+                        <a href="/admin/components/cp/cfcm/edit_field/{$f.field_name}" class="pjax">{$f.label}</a>
                     </td>
                     <td>{$f.field_name}</td>
                     <td>{$f.type}</td>
-                    <td>{$groups[$f.group]}</td>
-                    <td>
-                        <input type="text" value="{$f.weight}" style="width:26px;" class="field_pos" id="field{$f.field_name}" />  
-                    </td>
+                    <td>{$groups[$f.group]['name']}</td>
                     <td align="right">
-<img onclick="ajax_div('page', base_url + 'admin/components/cp/cfcm/edit_field_data_type/{$f.field_name}');" style="cursor:pointer" src="{$THEME}/images/edit_page.png" width="16" height="16" title="{lang('amt_edit')}" />
-<img onclick="confirm_delete_cfcfm_field('{$f.field_name}');" src="{$THEME}/images/delete.png"  style="cursor:pointer" width="16" height="16" title="{lang('amt_delete')}" />  
+					<a href="/admin/components/cp/cfcm/edit_field_data_type/{$f.field_name}" return false;" class="pjax btn btn-small "> <i class="icon-edit"></i> </a>
+					<a href="#" onclick="CFAdmin.deleteOne('{$f.field_name}'); return false;" class="btn btn-small "> <i class="icon-trash"></i> </a>
                     </td>
                 </tr>        
     		{/foreach}
-			</tbody>
-			<tfoot>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</tfoot>
-		  </table>
+				</tbody>
+		 </table>
+		 
+	</div>
+		 <div class="span5">
+		 
+		 <h4>{lang('a_field_groups')}</h4>
+		 <table class="table table-striped table-bordered table-hover table-condensed pages-table">
+                <thead>
+                    <tr>
+                        <th class="span1">ID</th>
+                        <th class="span1">{lang('a_name')}</th>
+                        <th class="span2">{lang('a_description')}</th>
+                        <th class="span1">{lang('a_fields')}</th>
+                        <th class="span1">{lang('a_delete')}</th>
+                    </tr>
+                </thead>
+				<tbody>
+		    {foreach $groups as $g}
+                <tr>
+                    <td>{$g.id}</td>
+                    <td>
+                        <a href="/admin/components/cp/cfcm/edit_group/{$g.id}" class="pjax">{$g.name}</a>
+                    </td>
+                    <td>{truncate($g.description, 35)}</td>
+                    <td>
+                        {echo $this->CI->db->get_where('content_fields', array('group' => $g.id))->num_rows()}
+                    </td>
+                    <td align="right">
+						<a href="#" onclick="CFAdmin.deleteOneGroup({$g.id}); return false;" class="btn btn-small "> <i class="icon-trash"></i> </a>
+                    </td>
+                </tr>        
+    		{/foreach}
+				</tbody>
+		 </table>
+	</div>
+	<div class="span3" >
+		
+	</div>
+		
 </div>
-
-{literal}
-    <script type="text/javascript">
-        window.addEvent('domready', function(){
-            cfcfm_fields_table = new sortableTable('cfcfm_fields_table', {overCls: 'over', sortOn: -1 ,onClick: function(){}});
-            cfcfm_fields_table.altRow();
-        });
-    </script>
-{/literal}
-
-{else:}
-<div id="notice">
-    {lang('amt_empty_field_list')}<a href="javascript:ajax_div('page', base_url + 'admin/components/cp/cfcm/create_field');">{lang('amt_create_field')}</a>
-</div>
-{/if}
-
-
-{literal}
-<script type="text/javascript">
-function confirm_delete_cfcfm_field(name)
-{
-    alertBox.confirm('<h1> </h1><p>Удалить поле '+ name + '? </p>', {onComplete:
-	function(returnvalue) {
-	if(returnvalue)
-	{
-				var req = new Request.HTML({
-				method: 'post',
-				url: base_url + 'admin/components/cp/cfcm/delete_field/' + name,
-				onComplete: function(response) { 
-                    ajax_div('page', base_url + 'admin/components/cp/cfcm/index');    
-                }
-			}).post();
-	}
-	else
-	{
-
-	}
-	}
-});
-}
-
-function save_cfcfm_fields_weight()
-{
-    var fields_pos = new Array();     
-    var fields_names = new Array();     
-
-    var items = $('cfcfm_fields_table').getElements('input');
-    items.each(function(el,i){
-            if(el.hasClass('field_pos')) 
-            {
-                id = el.id;
-                val = el.value;    
-                fields_pos.include(val);
-                fields_names.include(id);
-            }  
-            });
-
-    var req = new Request.HTML({
-       method: 'post',
-       url: base_url + 'admin/components/cp/cfcm/save_weight',
-       onRequest: function() { },
-       onComplete: function(response) { 
-                ajax_div('page', base_url + 'admin/components/cp/cfcm/index');   
-           }
-    }).post({'fields_pos': fields_pos, 'fields_names': fields_names});
-}
-
-</script>
-{/literal}
+</section>

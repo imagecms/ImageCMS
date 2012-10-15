@@ -96,11 +96,7 @@ class Widgets_Manager extends MY_Controller {
 
             if ($this->form_validation->run($this) == FALSE)
             {
-                if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
-                    echo json_encode(array('result'=> false, 'message'=>validation_errors()));
-                }else{
                     showMessage (validation_errors(),false,'r');
-                }
             }else{
                 $data = array(
                     'description' => $this->input->post('desc'),
@@ -158,11 +154,7 @@ class Widgets_Manager extends MY_Controller {
             
             if ($this->form_validation->run($this) == FALSE)
             {
-                if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
-                    echo json_encode(array('result'=> false, 'message'=>validation_errors()));
-                }else{
                     showMessage (validation_errors(),false,'r');
-                }
             }else{
                 $data = array(
                     'description' => $this->input->post('desc'),
@@ -218,7 +210,7 @@ class Widgets_Manager extends MY_Controller {
             show_error(lang('ac_err_wid_not_found'));
         }
     }
-
+    
     public function update_widget($id, $update_info = FALSE)
     {
         cp_check_perm('widget_access_settings');
@@ -253,6 +245,7 @@ class Widgets_Manager extends MY_Controller {
                 showMessage(lang('ac_changes_saved'));
                 if($_POST['action'] == 'tomain')
                     pjax('/admin/widgets_manager/index');
+                return TRUE;
             }
 
             if($widget['type'] == 'module')
@@ -326,8 +319,8 @@ class Widgets_Manager extends MY_Controller {
             }
             $this->lib_admin->log(lang('ac_wid_del').$n);
         }
-        showMessage('Виджет(ы) успешно удален(ы)');
-        pjax('/admin/widgets_manager');
+        showMessage(lang('a_widget_success_delete'));
+        pjax('/admin/widgets_manager/index');
     }
 
     public function get($id)

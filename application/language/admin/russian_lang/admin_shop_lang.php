@@ -61,6 +61,7 @@
     $lang['a_create']           =	'Создать';
     $lang['a_created']          =	'Создан';
     $lang['a_url']              =	'URL';
+    $lang['a_b_last_ip']              =	'Последний IP';
     $lang['a_ip_addres_1c']              =	'IP Адрес сервера 1С';
     $lang['a_description']      =	'Описание';
     $lang['a_meta_title']       =	'Meta Title';
@@ -81,6 +82,7 @@
     $lang['a_save']             =	'Сохранить';
     $lang['a_edit']             =	'Редактирование';
     $lang['a_ID']               =	'ID';
+    $lang['a_banned']               =	'Забанен';
     $lang['a_empty_brand']      =	'Список брендов пустой';
     $lang['a_empty_warehouses'] =	'Список складов пустой.';
     $lang['a_empty_banners']    =	'Список баннеров пустой.';

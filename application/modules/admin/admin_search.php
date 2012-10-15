@@ -23,14 +23,15 @@ class Admin_search extends MY_Controller {
 	{
 		$this->load->module('search');
 		$this->load->helper('category');
-
-		if (mb_strlen(trim($this->input->post('search_text')), 'UTF-8') >= 3)
+		
+		$searchText = trim($this->input->get('q'));
+		if (mb_strlen($searchText, 'UTF-8') >= 3)
 		{
 			$config = array(
 				'table'        => 'content',
 				'order_by'     => array('publish_date' => 'DESC'),
 				'hash_prefix'  => 'admin',
-				'search_title' => $this->input->post('search_text'),
+				'search_title' => $searchText,
 			);
 
 			$this->search->init($config);
@@ -44,17 +45,17 @@ class Admin_search extends MY_Controller {
 							'lang_alias ' => '0',
 						),
 				   array(
-							'prev_text' => trim($this->input->post('search_text')),
+							'prev_text' => $searchText,
 							'operator'  => 'LIKE',
 							'backticks' => 'both',
 						),
 					array(
-							'full_text' => trim($this->input->post('search_text')),
+							'full_text' => $searchText,
 							'operator'  => 'OR_LIKE',
 							'backticks' => 'both',
 						),
 					array(
-							'title' => trim($this->input->post('search_text')),
+							'title' => $searchText,
 							'operator'  => 'OR_LIKE',
 							'backticks' => 'both',
 						),
@@ -93,13 +94,19 @@ class Admin_search extends MY_Controller {
 			if ($result['total_rows'] > 0)
 			{
 				$this->template->assign('pages', $result['query']->result_array());
+				$cats = Array();
+				foreach ( $this->db->get('category')->result_array() as $row)
+					$cats[$row['id']] = $row['name'];
+				$this->template->assign('categories',  $cats);
 			}
 		}
 
 		if ($result['search_title'] == NULL)
 		{
-			$result['search_title'] = $this->input->post('search_text');
+			$result['search_title'] = $searchText;
 		}
+		
+		
 
 		$this->template->assign('search_title', $result['search_title']);
 

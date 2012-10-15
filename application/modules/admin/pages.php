@@ -212,12 +212,14 @@ class Pages extends MY_Controller {
                     '<a href="#" onclick="ajax_div(\'page\',\'' . site_url('admin/pages/edit/' . $page_id) . '\'); return false;">' . $data['title'] . '</a>'
             );
 
+            $action = $this->input->post('action');
+            $path = '/admin/pages/GetPagesByCategory';
+            
+            if ($action == 'edit')
+                $path ='/admin/pages/edit/'.$page_id;
+                
             showMessage(lang('ac_page_created'));
-
-            pjax('/admin/pages/edit/');
-//             echo '<script>$.pjax({url: "/admin/pages/edit/' . $page_id . '", container:"#mainContent"});</script>';
-
-            //updateDiv('page',site_url('admin/pages/edit/'.$page_id.'/'.$data['lang']));
+            pjax($path);
         }
     }
 
@@ -381,8 +383,11 @@ class Pages extends MY_Controller {
 
                 if ($new_p_id > 0) {
                     showMessage(lang('ac_page_in_language') . '<b>' . $cur_lang['lang_name'] . '</b>' . lang('ac_creat') . '<b>' . $new_p_id . '</b>');
-                    updateDiv('page', site_url('admin/pages/edit/' . $page_id . '/' . $lang));
-                    exit;
+                    if ($this->pjaxRequest)
+                        pjax('/admin/pages/edit/'.$page_id.'/'.$lang);
+                    else
+                        redirect('/admin/pages/edit/'.$page_id.'/'.$lang);
+                    //exit;
                 } else {
                     die('Cant get page id!');
                 }
@@ -497,8 +502,17 @@ class Pages extends MY_Controller {
                         lang('ac_changed_page') .
                         '<a href="#" onclick="ajax_div(\'page\',\'' . site_url('admin/pages/edit/' . $page_id) . '\'); return false;">' . $data['title'] . '</a>'
                 );
-
+                
+                $action = $this->input->post('action');
+                $path = '/admin/pages/GetPagesByCategory';
+                
+                if ($action == 'edit')
+                    $path ='/admin/pages/edit/'.$page_id;
+                    
                 showMessage(lang('ac_page_cont_updated'));
+                pjax($path);
+                
+                
             } else {
                 showMessage('', false, 'r');
             }
@@ -570,15 +584,16 @@ class Pages extends MY_Controller {
 
         ($hook = get_hook('admin_update_page_positions')) ? eval($hook) : NULL;
 
-        foreach ($_POST['pages_pos'] as $k => $v) {
+        //var_dump($_POST);
+        foreach ($_POST['pages_pos'] as $k => $v)
+        {
             $item = explode('_', substr($v, 4));
 
             $data = array(
-                'position' => $item[1]
+                'position' => $k
             );
-
             $this->db->where('id', $item[0]);
-            $this->db->or_where('lang_alias', $item[0]);
+            $this->db->or_where('lang_alias', $item[1]);
             $this->db->update('content', $data);
         }
     }
@@ -596,6 +611,9 @@ class Pages extends MY_Controller {
                 $this->delete($page_id, FALSE);
             }
         }
+        
+        showMessage('Удаление прошло успешно');
+        pjax($_SERVER["HTTP_REFERER"]);
     }
 
     function move_pages($action) {
@@ -632,6 +650,7 @@ class Pages extends MY_Controller {
 
                         $this->db->where('lang_alias', $page_id);
                         $this->db->update('content', $data);
+                        
                         break;
 
                     case 'copy':
@@ -672,9 +691,15 @@ class Pages extends MY_Controller {
                         break;
                 }
             }
+            
+            if ($action == 'copy')
+                showMessage('Копирование прошло успешно');
+            else if ($action == 'move')
+                showMessage('Перемещение прошло успешно');
+            pjax($_SERVER["HTTP_REFERER"]);
         }
-
-        updateDiv('page', site_url('admin/pages/GetPagesByCategory/' . $page['category']));
+        else
+        showMessage('Ошибка операции');
     }
 
     /**
@@ -844,8 +869,16 @@ class Pages extends MY_Controller {
         if ($cat_id != NULL)
             $category = $this->lib_category->get_category($cat_id);
         
-        $this->db->order_by('category', 'asc');
+        //$this->db->order_by('category', 'asc');
         $this->db->order_by('position', 'asc');
+        
+        //filter
+        if ($this->input->post('id'))
+            $this->db->where('content.id', $this->input->post('id'));
+        if ($this->input->post('title'))
+            $this->db->where('content.title LIKE ', '%'.$this->input->post('title') .'%' );
+        if ($this->input->post('url'))
+            $this->db->where('content.url LIKE ', '%'.$this->input->post('url') .'%' );
         
         if ($cat_id == NULL)
             $this->db->join('category', 'category.id = content.category');
@@ -895,15 +928,17 @@ class Pages extends MY_Controller {
                 'pages' => $pages,
                 'cat_id' => $cat_id,
                 'category' => $category,
-                'cats' => $allCats
+                'cats' => $allCats,
+                'tree' => $this->lib_category->build(),
             ));
-            
             $this->template->show('pages', FALSE);
         } else {
 
-            $this->template->assign('no_pages', TRUE);
-            $this->template->assign('category', $category);
-
+            $this->template->add_array(array('no_pages' => TRUE,
+                    'category' => $category,
+                    'tree' => $this->lib_category->build(),
+                    'cat_id' => $cat_id,
+                ));
             $this->template->show('pages', FALSE);
         }
     }

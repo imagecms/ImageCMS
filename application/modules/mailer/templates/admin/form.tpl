@@ -1,35 +1,67 @@
-<div id="shopSettingsTabs">  
-
-<h4 title="Отправка писем">Отправка писем</h4>
-<div class="top-navigation">
-    <ul>
-        <li><a class="send_email">Отправка писем</a></li
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a href="#">Главная</a> <span class="divider">/</span></li>
+        <li class="active">Список товаров</li>
     </ul>
+    <section class="mini-layout">
+        <div class="frame_title clearfix">
+            <div class="pull-left">
+                <span class="help-inline"></span>
+                <span class="title">{lang('a_sub_notif_later')}</span>
+            </div>
+            <div class="pull-right">
+                <div class="d-i_b">
+                    <a href="#" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
+                    <button type="button" class="btn btn-small btn-success formSubmit" data-form="#send" ><i class="icon-list-alt icon-white"></i>{lang('a_mailer_send_mail')}</button>                   
+                </div>
+            </div>                            
+        </div>
+        <div class="btn-group myTab m-t_20" data-toggle="buttons-radio">
+            <a href="#mail" class="btn btn-small active">{lang('a_settings_mail')}</a>
+            <a href="#user" class="btn btn-small">{lang('a_subscri_mail')}</a>
+        </div>        
+        <div class="tab-content">
+            <!-----------------------------------------------------SETTINGS MAIL-------------------------------------------------------------->
+            <div class="tab-pane active" id="mail">
+                <table class="table table-striped table-bordered table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th colspan="6">
+                                {lang('a_param')}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="6">
+                                <div class="inside_padd">
+                                    <div class="form-horizontal">
+                                        <div class="row-fluid">
+                                            <form id="send" method="post" action="{$BASE_URL}admin/components/cp/mailer/send_email">
 
 
-<form action="{$BASE_URL}admin/components/cp/mailer/send_email" method="post" id="send_mail_form" style="width:100%;">
-
-<div class="form_text">{lang('amt_theme')}:</div>
-<div class="form_input">
-    <input type="text" name="subject" value="" class="textbox_long" />
-</div>
-<div class="form_overflow"></div>
-
-<div class="form_text">{lang('amt_your_name')}:</div>
-<div class="form_input">
-    <input type="text" name="name" value="" class="textbox_long" />
-</div>
-<div class="form_overflow"></div>
-
-<div class="form_text">{lang('amt_your_email')}:</div>
-<div class="form_input">
-    <input type="text" name="email" value="{$admin_mail}" class="textbox_long" />
-</div>
-<div class="form_overflow"></div>
-
-<div class="form_text">{lang('amt_message')}:</div>
-<div class="form_input">
-    <textarea name="message" rows="15" cols="180"  style="width:700px;height:350px;">{lang('amt_hello')}.
+                                                <div class="control-group">
+                                                    <label class="control-label" for="subject">{lang('amt_theme')}</label>
+                                                    <div class="controls">
+                                                        <input type="text" name="subject" id="subject" value=""/>
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label" for="name">{lang('amt_your_name')}</label>
+                                                    <div class="controls">
+                                                        <input type="text" name="name" id="name" value=""/>
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label" for="email">{lang('amt_your_email')}</label>
+                                                    <div class="controls">
+                                                        <input type="text" name="email" id="email" value="{$admin_mail}"/>
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label" for="message">{lang('amt_message')}</label>
+                                                    <div class="controls">
+                                                        <textarea name="message" id="message" rows="15" cols="180"  style="width:700px;height:350px;">{lang('amt_hello')}.
 
 
 
@@ -37,123 +69,75 @@
 
 
 --------------------------------
-{lang('amt_best_regards')} {$site_settings.site_title}
+                                                            {lang('amt_best_regards')} {$site_settings.site_title}
 
-{site_url()}
+                                                            {site_url()}
 
-</textarea> 
+                                                        </textarea> 
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label" for="mailtype">{lang('amt_format')}</label>
+                                                    <div class="controls">
+                                                        <select name="mailtype" id="mailtype">
+                                                            <option value="html" selected="selected">{lang('amt_html')}</option>
+                                                            <option value="text">{lang('amt_plain_text')}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table> 
+            </div>
+
+            <!-----------------------------------------------------USER-------------------------------------------------------------->
+            <div class="tab-pane" id="user">
+                {if count($all) > 0}
+                <table class="table table-striped table-bordered table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th class="t-a_c span1">
+                                <span class="frame_label">
+                                    <span class="niceCheck b_n">
+                                        <input type="checkbox"/>
+                                    </span>
+                                </span>
+                            </th>
+                            <th class="span1">{lang('amt_id')}</th>
+                            <th class="span3">{lang('a_email')}</th>
+                            <th class="span3">{lang('a_date')}</th>
+                        </tr>                        
+                    </thead>
+                    <tbody class="sortable">
+                        {foreach $all as $u}
+                            <tr>
+                                <td class="t-a_c">
+                                    <span class="frame_label">
+                                        <span class="niceCheck b_n">
+                                            <input type="checkbox"/>
+                                        </span>
+                                    </span>
+                                </td>
+                                <td><p>{echo $u['id']}</p></td>
+                                <td>{echo $u['email']}</td>                            
+                                <td>{echo date("d-m-Y H:i:s",$u['date'])}</td>
+                                                          
+                            </tr>
+                        {/foreach}
+
+                    </tbody>
+                </table>
+                        {else:}
+                            <div class="alert alert-info" style="margin-top: 19px;">
+                {lang('a_mailer_user_empty')}
+            </div>
+                            {/if}
+            </div>
+
+    </section>
 </div>
-<div class="form_overflow"></div>
-
-
-<div class="form_overflow"></div>
-
-<div class="form_text">{lang('amt_format')}:</div>
-<div class="form_input">
-    <select name="mailtype">
-        <option value="html" selected="selected">{lang('amt_html')}</option>
-        <option value="text">{lang('amt_plain_text')}</option>
-    </select>
-</div>
-<div class="form_overflow"></div>
-
-<div class="form_text"></div>
-<div class="form_input">
-    <input type="submit" name="button" class="button" value="Отправить" onclick="ajax_me('send_mail_form');" />
-</div>
-
-</form>
-
-</div>
-  <h4 title="Пользователи">Пользователи</h4>
-  <div class="top-navigation">
-    <ul>
-        
-        <li><p>Пользователи</p></li>
-    </ul>
-    <div >
-        <div id="sortable">
-  <table id="ShopUsersTable">
-    <thead>
-        <tr>
-            
-           
-            <th>ID</th>
-            <th class="tableHeaderOver">Email</th>
-            <th class="tableHeaderOver">Дата подписки</th>
-            <th width="16px"></th>
-        </tr>
-    </thead>
-    <tbody>
-    {foreach $all as $u}
-        <tr >
-            <td title="{lang('a_ID')}">{echo $u['id']}</td>
-            <td title="{lang('a_email')}">{echo $u['email']}</td>
-            <td title="Дата">{echo date("d-m-Y H:i:s",$u['date'])}</td>       
-            <td></td>
-        </tr>
-    {/foreach}
-    </tbody>
-
-</table>
-    <div id="gopages" class="navigation">
-  
-</div>
-    </div>
-</div>
-</div>
-{literal}
-    </div>
-    <script type="text/javascript">
-        
-		var SSettings_tabs = new SimpleTabs('shopSettingsTabs', {
-		    selector: 'h4'
-		});
-
-		function setSystemTemplate(el, path)
-		{
-		    $('systemTemplatePath').value = path;
-		    $$('.templateScreenshot img').removeClass('active');
-		    el.addClass('active');
-		}
-                       window.addEvent('domready', function(){
-    var ShopUsersTable = new sortableTable('ShopUsersTable', {overCls: 'over', sortOn: -1 ,onClick: function(){}});
-    ShopUsersTable.altRow();
-    });
-
-   window.addEvent('domready', function(){
-    var ShopUsersTable = new sortableTable('ShopUsersTable', {overCls: 'over', sortOn: -1 ,onClick: function(){}});
-    ShopUsersTable.altRow();
-    });
-
-    function confirm_shop_delete_user(id)
-    {
-        alertBox.confirm('<h1>{/literal}{lang('a_delete')} {lang('a_users')} {lang('a_ID')}: ' + id + '? </h1>'{literal}, {
-            onComplete:
-                function(returnvalue) 
-                {
-                    if(returnvalue)
-                    {
-                        $('userRow' + id).setStyle('background-color','#D95353');
-                        var req = new Request.HTML({
-                            method: 'post',
-                            url: shop_url + 'admin/delete',
-                            evalResponse: true,
-                            onComplete: 
-                                function(response) {  
-                                $('userRow' + id).dispose();
-                                if ($$('#ShopUsersTable tbody tr').length == 0)
-                                {
-                                    ajaxShop('admin/index'); 
-                                }
-                            }
-                        }).post({'userId': id});
-                    }
-                }
-        });
-    }
-        </script>
-        
-{/literal}
-
-

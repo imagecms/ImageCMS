@@ -6,6 +6,26 @@
  */
 
 $lang['a_content'] = 'Содержание';
+$lang['a_del_catego_ba'] = 'Удалить категорию';
+$lang['a_auto_fit_by_url'] = 'Автоподбор';
+$lang['a_category_upda_modu'] = 'Категория обновлена';
+$lang['a_categ_translate_upda'] = 'Перевод категории обновлен';
+$lang['a_cre_exit_form'] = 'Создать и выйти';
+$lang['a_manager_user_mod'] = 'Менеджер пользователей';
+$lang['a_addit_fiel_bas_a'] = 'Дополнительные поля';
+$lang['a_subscri_mail'] = 'Подписчики';
+$lang['a_send_ema_modu_group'] = 'Отправка писем';
+$lang['a_mailer_user_empty'] = 'Список подписчиков пуст';
+$lang['a_sub_notif_later'] = 'Подписка и рассылка писем';
+$lang['a_settings_mail'] = 'Параметры письма';
+$lang['a_mailer_send_mail'] = 'Отправить письма';
+$lang['a_data_user_mod'] = 'Данные пользователя';
+$lang['a_data_group_mod'] = 'Данные группы';
+$lang['a_edit_user_mod'] = 'Редактирование';
+$lang['a_create_group_m'] = 'Создание группы';
+$lang['a_data_n_group'] = 'Данные группы';
+$lang['a_data_n_user'] = 'Данные нового пользователя';
+$lang['a_create_n_user_m'] = 'Создание нового пользователя';
 $lang['a_category'] = 'Категория';
 $lang['a_no'] = 'Нет';
 $lang['a_create_cat'] = 'Создать категорию';
@@ -19,7 +39,7 @@ $lang['a_tags'] = 'Теги';
 $lang['a_gen_desc'] = 'Сгенерировать описание';
 $lang['a_gen_key_words'] = 'Сгенерировать ключевые слова';
 $lang['a_main_tpl'] = 'Главный шаблон';
-$lang['a_by_default'] = 'По умолчанию';
+$lang['a_by_default'] = 'По-умолчанию';
 $lang['a_page_tpl'] = 'Шаблон Страницы';
 $lang['a_comm_alow'] = 'Разрешить комментирование';
 $lang['a_show'] = 'показывать';
@@ -35,7 +55,13 @@ $lang['a_date_and_time_cr'] = 'Дата и время создания';
 $lang['a_date_and_time_p'] = 'Дата и время публикации';
 $lang['a_access'] = 'Доступ';
 $lang['a_all'] = 'Все';
+$lang['a_fields'] = 'Поля';
 $lang['a_additional_fields'] = 'Дополнительные поля';
+$lang['a_add_field'] = 'Создать поле';
+$lang['a_field_groups'] = 'Группы полей';
+$lang['a_field_deleted_success'] = 'Поле успешно удалено';
+$lang['a_group_deleted_success'] = 'Група успешно удалена';
+
 $lang['a_url'] = 'URL';
 $lang['a_meta_title'] = 'Meta title';
 $lang['a_meta_description'] = 'Meta description';
@@ -63,6 +89,7 @@ $lang['a_go_to_website'] = 'перейти на сайт';
 
 //advanced search
 $lang['a_search_pages'] = 'Поиск страниц';
+$lang['a_search_pages_contains'] = 'Поиск страниц, содержащих';
 $lang['a_advanced_search'] = 'Расширенный поиск';
 $lang['a_text'] = 'Текст';
 $lang['a_categories'] = 'Категории';
@@ -225,9 +252,11 @@ $lang['a_count_orders'] = 'Количество заказов';
 
 //desktop.tpl
 $lang['a_controll_panel'] = 'Панель Управления';
+$lang['a_tools_panel'] = 'Панель инструментов';
 $lang['a_use_js'] = 'Для использования кабинета администрирования, крайне необходима активация JavaScript!';
 $lang['a_wellcome'] = 'Здравствуйте';
 $lang['a_cont'] = 'Содержимое';
+$lang['a_cont_list'] = 'Список содержимого';
 $lang['a_cont_nocat'] = 'Содержимое без категории';
 //$lang['a_create'] = 'Создать';
 $lang['a_without_cat'] = 'Без категории';
@@ -279,7 +308,7 @@ $lang['a_exit'] = 'Выход';
 //$lang['a_published'] = 'Опубликовано';
 //$lang['a_wait_approve'] = 'Ожидает одобрения';
 //$lang['a_not_publ'] = 'Не опубликовано';
-//$lang['a_date_and_time_cr'] = 'Дата и время создания';
+$lang['a_date_and_time_cr'] = 'Дата и время создания';
 //$lang['a_date_and_time_p'] = 'Дата и время публикации';
 //$lang['a_access'] = 'Доступ';
 //$lang['a_all'] = 'Все';
@@ -578,3 +607,52 @@ $lang['a_module_name'] = 'Название модуля';
 $lang['a_drug_block'] = 'перетащите блок';
 
 $lang['a_guest'] = 'Гость';
+
+$lang['a_widget_deleting'] = 'Удаление виджета';
+$lang['a_delete_selected_widgets'] = 'Удалить выбранные виджеты?';
+$lang['a_delete_widgets'] = 'Удалить виджеты?';
+
+$lang['a_images_limit'] = 'Лимит изображений';
+$lang['a_algorithm'] = 'Алгоритм';
+$lang['a_latest_images'] = 'Последние изображения';
+$lang['a_random_images'] = 'Случайные изображения';
+
+$lang['a_return'] = 'Вернуться';
+$lang['a_save_and_exit'] = 'Сохранить и выйти';
+$lang['a_widget_success_delete'] = 'Виджет(ы) успешно удален(ы)';
+
+$lang['a_positions_updated'] = 'Позиции сохранены';
+$lang['a_show_in_menu'] = 'Показывать в меню';
+$lang['a_changes_saved'] = 'Изменения сохранены';
+
+$lang['a_module_delete'] = 'Удаление модуля';
+$lang['a_delete_selected_modules'] = 'Удалить выбранные модули?';
+$lang['a_delete_module'] = 'Удалить модули?';
+
+$lang['a_facebook_on'] = 'Включить интеграцию с facebook?';
+$lang['a_sim_settings'] = 'Настройки модуля интеграции с соцсетями';
+
+$lang['a_secret_key'] = 'Секретный ключ';
+$lang['a_application_number'] = 'Номер приложения';
+$lang['a_select_template'] = 'Выбор шаблона для отображения';
+
+$lang['a_vk_on'] = 'Включить интеграцию с vkontakte?';
+$lang['a_protection_key'] = 'Защитный код';
+
+$lang['a_create_language'] = 'Создать язык';
+$lang['a_language_delete'] = 'Удаление языка';
+$lang['a_warning_ld'] = 'Внимание! Также будут удалены все страницы на этом языке!';
+$lang['a_lang_edit'] = 'Редактирование языка';
+$lang['a_delete_selected_languages'] = 'Удалить выбраные языки?';
+$lang['a_cache'] = 'Кэш';
+$lang['a_clear_cache'] = 'Очистка кэша';
+
+$lang['a_menu_list'] = 'Список меню';
+$lang['a_menu_deleted'] = 'Меню удалено';
+
+$lang['a_menu_delete'] = 'Удаление меню';
+$lang['a_delete_selected_menu'] = 'Удалить выбраные меню?';
+
+$lang['a_create_link'] = 'Создать ссылку';
+
+$lang['a_manu_item_translate'] = 'Перевод пункта меню';

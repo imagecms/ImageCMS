@@ -2,15 +2,8 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang('a_backup_copy')}</span>
+            <span class="title">{lang('a_cache')}</span>
         </div>
-        <div class="pull-right">
-            <div class="d-i_b">
-                <a href="#" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
-                <button type="button" class="btn btn-small action_on" value="{lang('a_create')}" ><i class="icon-ok"></i>{lang('a_create')}</button>     
-
-            </div>
-        </div>                            
     </div>
     <div class="tab-content">
         <div class="tab-pane active" id="modules">
@@ -20,7 +13,7 @@
                         <thead>
                             <tr>
                                 <th colspan="6">
-                                    Папка кэш
+                                    {lang('a_clear_cache')}                                    
                                 </th>
                             </tr>
                         </thead>
@@ -47,8 +40,6 @@
                                                     <button type="button" data-target="/admin/delete_cache" data-param="all" id="delAll" class="btn btn-small clearCashe" ><i class="icon-trash" ></i> Очистить</button>
                                                 </div>
                                             </div>
-
-
                                         </div>
                                     </div>
                                 </td>

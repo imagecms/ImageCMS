@@ -1,25 +1,48 @@
-<div class="top-navigation">
-    <ul>
-        <li><p>{lang('amt_widget_settings')}<b>{$widget.name}</b></p></li>
-    </ul>
-</div>
-
-<form action="{$BASE_URL}admin/widgets_manager/update_widget/{$widget.id}" id="widget_form" method="post">
-    <div class="form_text">{lang('amt_display_comment_count')}</div>
-    <div class="form_input"> 
-        <input type="text" class="textbox_long" name="comments_count" value="{$widget.settings.comments_count}" /> 
+<section class="mini-layout">
+         <div class="frame_title clearfix">
+        <div class="pull-left">
+            <span class="help-inline"></span>
+            <span class="title">{lang('amt_widget_settings')}<b>{$widget.name}</b></span>
+        </div>
+        <div class="pull-right">
+            <div class="d-i_b">
+                <a href="{$BASE_URL}admin/widgets_manager/index" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
+                <button type="button" class="btn btn-small btn-success formSubmit" data-form="#widget_form"><i class="icon-list-alt icon-white"></i>Сохранить</button>
+            </div>
+        </div>                            
     </div>
-    <div class="form_overflow"></div>
-
-    <div class="form_text">{lang('amt_max_char_count')}</div>
-    <div class="form_input"> 
-        <input type="text" class="textbox_long" name="symbols_count" value="{$widget.settings.symbols_count}" /> 
+    <div class="tab-content">
+        <div class="row-fluid">
+            <form action="{$BASE_URL}admin/widgets_manager/update_widget/{$widget.id}" id="widget_form" method="post" class="form-horizontal">
+                <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                    <thead>
+                    <th>{lang('a_sett')}</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="inside_padd">
+                                    <div class="row-fluid">
+                                        <div class="control-group">
+                                            <label class="control-label" for="comcount">{lang('amt_display_comment_count')}:</label>
+                                            <div class="controls">
+                                                <input id="comcount" type="text" name="comments_count" value="{$widget.settings.comments_count}"/> 
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label" for="symcount">{lang('amt_max_char_count')}:</label>
+                                            <div class="controls">
+                                                <input type="text" name="symbols_count" value="{$widget.settings.symbols_count}" id="symcount" /> 
+                                            </div>
+                                        </div>    
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                {form_csrf()}
+            </form>
+        </div>
     </div>
-    <div class="form_overflow"></div>
-
-    <div class="form_text"></div>
-    <div class="form_input">
-        <input type="submit" class="button" value="{lang('amt_save')}" onclick="ajax_me('widget_form');" /> 
-        <a href="#" onclick="ajax_div('page', base_url + 'admin/widgets_manager/'); return false" >{lang('amt_to_widget_list')}</a>
-    </div>
-{form_csrf()}</form>
+</section>

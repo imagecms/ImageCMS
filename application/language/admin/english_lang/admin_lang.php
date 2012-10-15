@@ -5,6 +5,26 @@
  * and open the template in the editor.
  */
 $lang['a_content'] = 'Content';
+$lang['a_del_catego_ba'] = 'Delete category';
+$lang['a_auto_fit_by_url'] = 'AutoFit';
+$lang['a_category_upda_modu'] = 'Category updated';
+$lang['a_categ_translate_upda'] = 'Category translation updated';
+$lang['a_cre_exit_form'] = 'Create and exit';
+$lang['a_manager_user_mod'] = 'User Manager';
+$lang['a_addit_fiel_bas_a'] = 'Additional fields';
+$lang['a_send_ema_modu_group'] = 'Sending emails';
+$lang['a_subscri_mail'] = 'Subscribers';
+$lang['a_mailer_user_empty'] = 'Subscribers list is empty';
+$lang['a_sub_notif_later'] = 'Subscription and Notification letters';
+$lang['a_settings_mail'] = 'Message parameters';
+$lang['a_mailer_send_mail'] = 'Send a letter';
+$lang['a_data_group_mod'] = 'Group data';
+$lang['a_data_user_mod'] = 'User data';
+$lang['a_edit_user_mod'] = 'Editing';
+$lang['a_create_group_m'] = 'Creating a group';
+$lang['a_data_n_group'] = 'Group details';
+$lang['a_data_n_user'] = 'New user';
+$lang['a_create_n_user_m'] = 'Create a new user';
 $lang['a_category'] = 'Category';
 $lang['a_no'] = 'No';
 $lang['a_create_cat'] = 'Create a category';
@@ -324,4 +344,48 @@ $lang['a_module_name'] = 'Module name';
 $lang['a_drug_block'] = 'drug block';
 
 $lang['a_guest'] = 'Guest';
+
+$lang['a_widget_deleting'] = 'Widget delete';
+$lang['a_delete_selected_widgets'] = 'Delete selected widget(s)?';
+$lang['a_delete_widgets'] = 'Delete widgets?';
+
+$lang['a_images_limit'] = 'Images limit';
+$lang['a_algorithm'] = 'Algorithm';
+$lang['a_latest_images'] = 'Last images';
+$lang['a_random_images'] = 'Random images';
+
+$lang['a_return'] = 'Go back';
+$lang['a_save_and_exit'] = 'Save and go back';
+$lang['a_widget_success_delete'] = 'Widget successfully deleted';
+
+$lang['a_positions_updated'] = 'Positions updated';
+$lang['a_show_in_menu'] = 'Show in menu';
+$lang['a_changes_saved'] = 'Changes saved';
+$lang['a_module_delete'] = 'Module deinstalling';
+$lang['a_delete_selected_modules'] = 'Delete selected module(s)?';
+$lang['a_delete_module'] = 'Delete modules?';
+
+$lang['a_facebook_on'] = 'Switch on integration with Facebook?';
+$lang['a_sim_settings'] = 'Integration with social servises module settings';
+$lang['a_secret_key'] = 'Secret key';
+$lang['a_application_number'] = 'Application number';
+$lang['a_select_template'] = 'Select template folder';
+$lang['a_vk_on'] = 'Switch on integration with VKontakte?';
+$lang['a_protection_key'] = 'Protection key';
+$lang['a_create_language'] = 'Create language';
+$lang['a_language_delete'] = 'Delete language';
+$lang['a_warning_ld'] = 'Attention! All pages in this language will be deleted!';
+$lang['a_lang_edit'] = 'Language edit';
+$lang['a_delete_selected_languages'] = 'Delete selected languages?';
+$lang['a_cache'] = 'Cache';
+$lang['a_clear_cache'] = 'Delete cache';
+
+$lang['a_menu_list'] = 'Menu list';
+$lang['a_menu_deleted'] = 'Menu removed';
+
+$lang['a_menu_delete'] = 'Menu deleting';
+$lang['a_delete_selected_menu'] = 'Delete selected menu?';
+$lang['a_create_link'] = 'Create link';
+
+$lang['a_manu_item_translate'] = 'Menu item translate';
 ?>
