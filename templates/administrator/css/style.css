@@ -1,4 +1,8 @@
 *{margin:0px;padding: 0px;border: 0px;outline: none;line-height: 1.5;background-color: transparent;vertical-align: baseline;}
+.f-s_14{font-size: 14px;}
+.f-s_26{font-size: 26px !important;}
+.d_l_b{color: #08C;border-bottom: 1px dotted #08C;cursor: pointer;}
+.d_l_b:hover{color: #005580;border-bottom-color: 1px dotted #005580;}
 .main_body{min-height: 100%;}
 html, body{height: 100%;}
 body{padding: 0 !important;}
@@ -55,6 +59,8 @@ header form{margin-bottom: 0;}
 .navbar-inverse .nav li.dropdown > .dropdown-toggle .caret{border-top-color: #a6d0e1 !important;border-bottom-color: #a6d0e1 !important;margin-left: 3px;}
 .mini-layout {font-size: 12px;margin-bottom: 20px;padding: 20px 10px 10px;border: 1px solid #DDD;-webkit-border-radius: 6px;-moz-border-radius: 6px;border-radius: 6px;-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .075);-moz-box-shadow: 0 1px 2px rgba(0,0,0,.075);box-shadow: 0 1px 2px rgba(0, 0, 0, .075);background-color: #fff;}
 .mini-layout > .frame_title{
+    position: fixed;z-index: 4;
+    -webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;
     padding: 0 10px;
     margin: -20px -10px 0;
     border-bottom: 1px solid #dadada;
@@ -72,6 +78,7 @@ header form{margin-bottom: 0;}
     background: linear-gradient(to bottom,  rgba(249,249,249,1) 0%,rgba(236,236,236,1) 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9f9f9', endColorstr='#ececec',GradientType=0 ); /* IE6-8 */
 }
+.frame_title.no_fixed{position: static;}
 .mini-layout > .frame_title .help-inline{height: 38px;}
 .mini-layout > .frame_title .title{color: #0e81af;text-shadow: 0 1px #fff;font-size: 18px;position: relative;top: 1px;}
 .frame_title > .pull-right > .d-i_b{padding: 5px 0 6px;}
@@ -109,10 +116,10 @@ table thead td a:hover, table thead th a:hover{color: #aaa;}
 .o_h{overflow: hidden;}
 .d-i_b{display: inline-block !important;float: none !important;}
 .d_b{display: block !important;}
+.d_i{display: inline !important;}
 .p_r{position: relative;}
 .c_b{clear: both;}
 .popover{width: auto !important;}
-.f-s_14{font-size: 14px;}
 .btn-group{white-space: normal !important;}
 .time{display: block;}
 .news{margin-top: 20px;}
@@ -291,6 +298,7 @@ a:hover .icon-thumbs-up{background-position: -152px 0;}
 .ref_w:hover{color: #ddd;}
 #comments .simple_tree{color: #898989;margin-right: 5px;position: relative;top: -5px;}
 .frame_label, .icon-info-sign{cursor: pointer;}
+.icon-info-sign{top: 2px;}
 
 .m-r_15{margin-right: 15px;}
 .m-l_15{margin-left: 15px;}
@@ -298,6 +306,7 @@ a:hover .icon-thumbs-up{background-position: -152px 0;}
 .m-l_10{margin-left: 10px;}
 .inside_padd{padding: 10px 20px 0;}
 .m-b_15{margin-bottom: 15px;}
+.m-t_30{margin-top: 30px;}
 .m-t_20{margin-top: 20px;}
 .m-t_10{margin-top: 10px;}
 
@@ -320,12 +329,12 @@ form > *{font-size: 12px;}
 .ui-datepicker.dropdown-menu a{padding: 2px 10px;}
 .ui-state-disabled{color: #999;}
 
-form .input-mini {width: 60px !important;}
-form .input-small {width: 90px !important;}
-form .input-medium {width: 150px !important;}
-form .input-large {width: 210px !important;}
-form .input-xlarge {width: 270px !important;}
-form .input-xxlarge {width: 530px !important;}
+.mini-layout .input-mini {width: 60px !important;}
+.mini-layout .input-small {width: 90px !important;}
+.mini-layout .input-medium {width: 150px !important;}
+.mini-layout .input-large {width: 210px !important;}
+.mini-layout .input-xlarge {width: 270px !important;}
+.mini-layout .input-xxlarge {width: 530px !important;}
 .form-horizontal .control-label{width: 180px !important;}
 .form-horizontal .controls{margin-left: 200px !important;}
 .form-horizontal .controls.c_b{margin-left: 0 !important;}
@@ -362,3 +371,12 @@ tr.active a.m_ed{display: none;}
 .mceToolbar{width: auto !important;}
 .check_product{max-width: 200px;}
 .ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next{top: 14px !important;cursor: pointer;}
+#warehouses_container{margin-top: 5px;}
+.f_n{float: none !important;}
+.modal-header .close{font-size: 24px;}
+
+#FullDescription_tbl tbody{display: block;}
+#FullDescription_tbl{width: auto !important;}
+#FullDescription_tbl td{float: left !important;height: auto;}
+#FullDescription_tbl tr{display: block;overflow: hidden;}
+#FullDescription_parent table, .mceLayout{width: auto !important;height: auto !important;}
