@@ -17,10 +17,10 @@
 
 		    <div class="clearfix">
                             <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
-                                <a href="#content_article" class="btn btn-small active">Содержание</a>
-                                <a href="#parameters_article" class="btn btn-small ">Параметры</a>
-                                <a href="#addfields_article" class="btn btn-small">Дополнительные поля</a>
-                                <a href="#setings_article" class="btn btn-small">Настройки</a>
+                                <a href="#content_article" class="btn btn-small active">{lang('a_content')}</a>
+                                <a href="#parameters_article" class="btn btn-small ">{lang('a_param')}</a>
+                                <a href="#addfields_article" class="btn btn-small">{lang('a_additional_fields')}</a>
+                                <a href="#setings_article" class="btn btn-small">{lang('a_sett')}</a>
                             </div>
                         </div>             
 <form method="post" action="{$BASE_URL}admin/pages/add" id="add_page_form" class="form-horizontal" >

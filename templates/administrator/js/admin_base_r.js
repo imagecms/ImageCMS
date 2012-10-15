@@ -73,5 +73,20 @@ var pagesAdmin = new Object({
     }
 });
 
+
+var CFAdmin = new Object({
+        deleteOne:function(label){
+            $.post('/admin/components/cp/cfcm/delete_field/'+label, {}, function(data){
+                $('.notifications').append(data);
+            });
+        },
+        deleteOneGroup:function(id){
+            $.post('/admin/components/cp/cfcm/delete_group/'+id, {}, function(data){
+                $('.notifications').append(data);
+            });
+        }, 
+    });
+
+
 pagesAdmin.initialize();
 
