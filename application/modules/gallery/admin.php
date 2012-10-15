@@ -1101,8 +1101,8 @@ class Admin extends MY_Controller {
      */ 
 	private function display_tpl($file = '')
 	{
-        $file =  realpath(dirname(__FILE__)).'/templates/admin/'.$file.'.tpl';  
-		$this->template->display('file:'.$file);
+        $file =  realpath(dirname(__FILE__)).'/templates/admin/'.$file; 
+		$this->template->show('file:'.$file);
 	}
 
     /**

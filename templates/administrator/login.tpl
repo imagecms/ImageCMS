@@ -1,25 +1,18 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
         <title>{lang('a_controll_panel')} - Image CMS</title>
         <meta name="description" content="{lang('a_controll_panel')} - Image CMS" />
-        <link rel="stylesheet" type="text/css" href="{$THEME}/css/style.css" />
-        <!--[if IE 7]><link rel="stylesheet" type="text/css" href="css/ie_7.css" /><![endif]-->
-        <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="css/ie8_7_6.css" /><![endif]-->
-        <!--[if lt IE 9]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-        <script src="{$THEME}/js/jquery-1.7.1.min.js" type="text/javascript"></script>
-        <script src="{$THEME}/js/jcarousellite_1.0.1.min.js" type="text/javascript"></script>
-        <script src="{$THEME}/js/jquery.main.js" type="text/javascript"></script>
-        <script  type="text/javascript">
-            var theme = '{$THEME}';
-            var base_url = '{$BASE_URL}';
-        </script>
-        <script type="text/javascript" src="{$JS_URL}/mocha/mootools-1.3-core.js"></script>
-        <script type="text/javascript" src="{$JS_URL}/mocha/mootools-1.2-more.js"></script>
-        <script type="text/javascript" src="{$JS_URL}/plugins/Roar.js"></script>
-        <script type="text/javascript" src="{$JS_URL}/mocha/functions.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="{$THEME}/css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap-responsive.css"/>
+        <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap-notify.css"/>
+        <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery-ui-1.8.23.custom.css"/>
+        <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery-ui-1.8.16.custom.css"/>
+        <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery.ui.1.8.16.ie.css"/>
     </head>
     <body>
         <?php
@@ -28,40 +21,47 @@
         die('<span style="font-size:18px;"><br/><br/>'.lang('a_delete_install').'/application/modules/install/install.php</div>');
             ?>
             <div class="main_body">
-                <div class="container">
-                    <h1>{lang('a_auth')}</h1>
-                    <form method="post" action="{$BASE_URL}admin/login/" class="standart_form" id="with_out_article">
-                        {if $login_failed}
-                        {$login_failed}
-                        {/if}<br/>
-                        <label>
-                            {lang('a_login')}:
-                            <input type="text" name="login"/>{$login_error}
-                        </label>
-                        <label>
-                            {lang('a_pass')}:
-                            <input type="password" name="password"/>{$password_error}
-                        </label>
-                        {if $use_captcha == "1"}
+                <div class="container t-a_c">
+                    <a href="/admin/dashboard" class="logo f_n m-t_20 d-i_b">
+                        <img src="{$THEME}/img/logo.png"/>
+                    </a>
+                    <div class="row-fluid">
+                        <div class="span6 d-i_b">
+                            <h2 class="m-t_30 t-a_l">{lang('a_auth')}</h2>
+                            <form method="post" action="{$BASE_URL}admin/login/" class="standart_form t-a_l" id="with_out_article">
+                                {if $login_failed}
+                                {$login_failed}
+                                {/if}
+                                <label>
+                                    {lang('a_login')}:
+                                    <input type="text" name="login"/>{$login_error}
+                                </label>
+                                <label>
+                                    {lang('a_pass')}:
+                                    <input type="password" name="password"/>{$password_error}
+                                </label>
+                                {if $use_captcha == "1"}
 
-                        <label style="margin-bottom:50px">
-                            {$lang_captcha}:<br/>
-                            <div id="captcha">{$cap_image}</div>
-                            <a href="" onclick="ajax_div('captcha','{$BASE_URL}/admin/login/update_captcha');return false;">{lang('a_code_refresh')}</a>
-                            <input type="text" name="captcha" />{$captcha_error}
-                        </label>
-                        {/if}
-                        <div>
-                            <label class="d-i_b m-r_15">
-                                <input type="checkbox" name="remember" value="1"/>{lang('a_remember')}
-                            </label>
+                                <label style="margin-bottom:50px">
+                                    {$lang_captcha}:<br/>
+                                    <div id="captcha">{$cap_image}</div>
+                                    <a href="" onclick="ajax_div('captcha','{$BASE_URL}/admin/login/update_captcha');return false;">{lang('a_code_refresh')}</a>
+                                    <input type="text" name="captcha" />{$captcha_error}
+                                </label>
+                                {/if}
+                                <div>
+                                    <label class="d-i_b m-r_15">
+                                        <input type="checkbox" name="remember" value="1"/>{lang('a_remember')}
+                                    </label>
+                                </div>
+                                <input type="submit" value="{lang('a_send_f')}" class="btn d_i_b m-b_15"/>
+                                <div class="o_h">
+                                    <a href="/auth/register/">{lang('a_reg')}</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/auth/forgot_password/">{lang('a_forget_pass')}</a>
+                                </div>
+                                {form_csrf()}
+                            </form>
                         </div>
-                        <input type="submit" value="{lang('a_send_f')}" class="btn d_i_b m-b_15"/>
-                        <div class="o_h">
-                            <a href="/auth/register/">{lang('a_reg')}</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/auth/forgot_password/">{lang('a_forget_pass')}</a>
-                        </div>
-                        {form_csrf()}
-                    </form>
+                    </div>
                 </div>
                 <div class="hfooter"></div>
             </div>

@@ -173,21 +173,17 @@ img[align=left]{margin-right:18px;float: left;}
 .main_menu > ul > li > a{display: block; color: #fff; text-decoration: none; height: 38px; line-height: 38px;text-shadow: 0 -1px 0 #515151;padding: 0 23px;}
 
 /*---catalog menu lvl 2---*/
-.main_menu ul li ul{position: absolute; top: 100%;background: #fff; display: none;border: 2px solid #a30000;padding: 20px;margin-left: -1px;-moz-border-radius: 0 0 4px 4px;-webkit-border-radius: 0 0 4px 4px;border-radius: 0 0 4px 4px;-moz-box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.15);-webkit-box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.15);box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.15);}
-.main_menu > ul > li:first-child ul{margin-left: 0;}
-.main_menu ul ul li{float: left;border-left: 1px dashed #999;margin-left: 41px;padding-left: 33px;}
-.main_menu ul ul li:first-child{border-left: none;margin-left: 0;padding-left: 0;}
-.main_menu ul ul a{line-height: 20px; color: #3a88cc; font-size: 12px;float: left;clear: left;white-space: nowrap;text-decoration: none;line-height: 20px;}
+.main_menu > ul > li > ul{font-size: 20px;position: absolute; top: 100%;background: #fff; display: none;border: 2px solid #a30000;padding: 20px;margin-left: -1px;-moz-border-radius: 0 0 4px 4px;-webkit-border-radius: 0 0 4px 4px;border-radius: 0 0 4px 4px;-moz-box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.15);-webkit-box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.15);box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.15);}
+.main_menu > ul > li > ul > li:first-child{margin-left: 0;border-left: 0;padding-left: 0;}
+.main_menu > ul > li > ul li{margin-left: 25px;font-size: 90%;}
+.main_menu > ul > li > ul li a{font-size: inherit;}
+.main_menu > ul > li > ul > li{display: inline-block;vertical-align: top;border-right: 1px dashed #999;padding-right: 20px;margin: 0 40px 20px 0;}
+.main_menu > ul > li > ul > li > a{line-height: 20px; color: #3a88cc; text-decoration: none;line-height: 20px;display: block;}
 .main_menu .title{color: #666;font-size: 18px;line-height: 15px;position: relative;top: -1px;margin-bottom: 6px;}
-
-/*.main_menu ul ul a{line-height: 20px; color: #3a88cc; font-size: 12px;float: left;clear: left;white-space: nowrap;text-decoration: none;line-height: 20px;}
-.main_menu .title a, .main_menu .title{color: #666;font-size: 18px;line-height: 15px;position: relative;top: -1px;margin-bottom: 6px;}
-.main_menu .title a{text-decoration: underline;}*/
-
 
 /*---catalog menu general---*/
 .main_menu{margin-bottom: 30px;position: relative;z-index: 2;}
-.main_menu li:hover > ul{display: block;}
+.main_menu > ul > li:hover > ul{display: block;}
 
 .content{padding-bottom: 59px;position: relative;z-index: 1;}
 
