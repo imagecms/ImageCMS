@@ -577,11 +577,33 @@ function initAdminArea(){
     });
     if (location.hash != '') $("[href="+location.hash+"]").trigger('click');
     
-    $('[data-url="file"] input[type="file"]').on('change', function(){
+    $('.controls img.img-polaroid').live('click', function(){
+        $(this).closest('.control-group').find('input:file').click();
+        })
+    
+    $('[data-url="file"] input[type="file"]').change( function(e){
         $this = $(this);
         $type_file = $this.val();
         if ($this.parent().next().is(':not([data-flie="url"])')) {
-            $this.parent().after('<span data-flie="url"><input type="text" readonly="readonly" value="'+$type_file+'" class="input-xlarge"></span>')
+            
+
+    for (var i = 0; i < e.originalEvent.srcElement.files.length; i++) {
+        var file = e.originalEvent.srcElement.files[i];
+        
+        var img = document.createElement("img");
+        var reader = new FileReader();
+        reader.onloadend = function() {
+             img.src = reader.result;
+        }
+        
+        reader.readAsDataURL(file);
+        //console.log(img);
+        $(img).addClass('img-polaroid').css({width: '100px'});
+        $(this).closest('.control-group').find('.controls').html(img);
+        //$(this).after(img);
+    }
+    
+            //$this.parent().after('<span data-flie="url"><input type="text" readonly="readonly" value="'+$type_file+'" class="input-xlarge"></span>')
         }
         else $this.parent().next().val($type_file).attr('data-rel','tooltip');
     })
