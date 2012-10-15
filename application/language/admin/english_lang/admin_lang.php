@@ -5,6 +5,8 @@
  * and open the template in the editor.
  */
 $lang['a_content'] = 'Content';
+$lang['a_del_category_selec'] = 'Remove selected categories';
+$lang['a_del_categoy_ba'] = 'Delete a category';
 $lang['a_del_catego_ba'] = 'Delete category';
 $lang['a_auto_fit_by_url'] = 'AutoFit';
 $lang['a_category_upda_modu'] = 'Category updated';

@@ -39,27 +39,192 @@ class Categories extends MY_Controller {
         $this->template->show('cats_sidebar', FALSE);
     }
 
-    function cat_list() {
-        $cats = array();
+//    function cat_list()
+//    {
+//        $cats = array();
+//
+//        $tree = $this->lib_category->build();
+//
+//        $cats = $this->sub_cats($tree);
+//
+//        // Get total pages in category
+//        $cnt = count($cats);
+//        for ($i = 0; $i < $cnt; $i++) 
+//        {
+//            $this->db->where('category', $cats[$i]['id']);
+//            $this->db->where('lang_alias', 0);
+//            $this->db->from('content');
+//            $cats[$i]['pages'] = $this->db->count_all_results();
+//        }
+//
+//        $this->template->add_array(array(
+//                'tree' => $cats
+//            ));
+//
+//        $this->template->show('category_list', FALSE);
+//    }
 
-        $tree = $this->lib_category->build();
+    public function cat_list() {
 
-        $cats = $this->sub_cats($tree);
+        $sql = 'SELECT COUNT(`id`) as cnt, `category_id`  FROM `shop_products` GROUP BY `category_id`';
+        $result = $this->db->query($sql)->result_array();
 
-        // Get total pages in category
-        $cnt = count($cats);
-        for ($i = 0; $i < $cnt; $i++) {
-            $this->db->where('category', $cats[$i]['id']);
-            $this->db->where('lang_alias', 0);
-            $this->db->from('content');
-            $cats[$i]['pages'] = $this->db->count_all_results();
-        }
+//    	foreach ($result as $r)
+//    		$this->catProductsCounts[$r['category_id']] = $r['cnt'];
+//
+//        ShopCore::app()->SCategoryTree->setLoadUnactive(true);
+
+        $sql = 'SELECT * FROM `category`';
+        $result = $this->db->query($sql)->result_array();
+        $this->tree = $result;
 
         $this->template->add_array(array(
-            'tree' => $cats
+            'tree' => $this->tree,
+            'htmlTree' => $this->printCategoryTree()
         ));
 
-        $this->template->show('category_list', FALSE);
+        $this->template->show('category_list');
+
+//        $this->render('list', array(
+//            'tree' => $this->tree,
+//            'htmlTree' => $this->printCategoryTree(),
+//            'languages' => ShopCore::$ci->cms_admin->get_langs(),
+//        ));
+    }
+
+    private function printCategoryTree() {
+        //$tree = ShopCore::app()->SCategoryTree->getTree();
+        $sql = 'SELECT * FROM `category`';
+        $tree = $this->db->query($sql)->result_array();
+        $output = '';
+
+        $output .= '<div class="sortable">';
+        foreach ($tree as $c)
+            if ($c['parent_id'] == 0)
+                $output .= $this->printCategory($c);
+        $output .= '</div>';
+
+        return $output;
+    }
+
+    public function createTree($ownerId = null) {
+        
+        $result = array();
+        $sql = 'SELECT * FROM `category`';
+        $categoryes = $this->db->query($sql)->row();
+        
+        
+        /**
+         *  Loop only thru categories with parent_id NULL. eg. root categories.
+         */
+        $this->level++;
+        
+        foreach ($categoryes as $category) {
+            
+            if ($category['parent_id'] == $ownerId) {
+                $categoryes = new stdClass;
+                // Add categor url to full path.
+                $this->path[] = $category['url'];
+                $this->pathIds[] = $category['id'];
+
+                $category->level = $this->level;
+                $category->fullUriPath = $this->path; // Full uri path to category
+                $category->fullPathIdsVirtual = $this->pathIds;
+                 
+
+
+                if ($this->multi === true) {
+                    $category->setVirtualColumn('subtree', $this->createTree($category->getId()));
+                    $result[] = $category;
+                } else {
+                    $result[$category->getId()] = $category;
+                    $subtree = $this->createTree($category->getId());
+
+                    foreach ($subtree as $key)
+                        $result[$key->getId()] = $key;
+                }
+
+                // Decrease full path for one element.
+                array_pop($this->path);
+                array_pop($this->pathIds);
+            }
+        }
+        $this->level--;
+
+        return $result;
+    }
+
+    private function printCategory($category) {
+        $catToDisplay = new stdClass();
+
+        if (is_object($category)) {
+            $catToDisplay->id = $category->getId();
+            $catToDisplay->name = $category->getName();
+            $catToDisplay->url = $category->getFullPath();
+            $catToDisplay->active = $category->getActive();
+        } else {
+            $catToDisplay->id = $category['id'];
+            $catToDisplay->name = $category['name'];
+            $catToDisplay->url = $category['link'];
+            $catToDisplay->active = $category['active'];
+        }
+
+        $subCats = $this->getSubcategories($catToDisplay->id);
+        $catToDisplay->hasChilds = ( (bool) count($subCats));
+        //$catToDisplay->prodCnt = count($this->tree[$catToDisplay->id]->getProducts());
+        $catToDisplay->myProdCnt = (int) $this->catProductsCounts[$catToDisplay->id];
+
+        $output .= '<div>';
+
+        $this->template->assign('cat', $catToDisplay);
+        $output .= $this->template->fetch('file:' . $this->getViewFullPath('_listItem'));
+
+        if ($catToDisplay->hasChilds) {
+            $output .= '<div class="frame_level sortable" style="display:none;">';
+            foreach ($subCats as $key => $sc) {
+                $sc['id'] = $key;
+                if ($sc['parent_id'] == $catToDisplay->id)
+                    $output .= $this->printCategory($sc);
+            }
+            $output .= '</div>';
+        }
+        $output .= '</div>';
+
+        unset($catToDisplay);
+
+        return $output;
+    }
+
+    public function getViewFullPath($viewName) {
+        // Remove "ShopAdmin" from controller name
+        $controllerName = str_replace('ShopAdmin', '', get_class($this));
+
+        // Make first charater lowercase
+        $controllerName{0} = strtolower($controllerName{0});
+
+        switch (substr($_SERVER['SERVER_ADDR'], 0, strrpos($_SERVER['SERVER_ADDR'], '.'))) {
+            case '127.0.0':case '127.0.1':case '10.0.0':case '172.16.0':case '192.168.0':$on_local = true;
+                break;
+        }
+
+        if ($on_local !== true) {
+            $msg = base64_decode('PGRpdiBpZD0ibm90aWNlX2Vycm9yIj7QntGI0LjQsdC60LAg0L/RgNC+0LLQtdGA0LrQuCDQu9C40YbQtdC90LfQuNC4LjwvZGl2Pg==');
+            $flPath = realpath(dirname(__FILE__) . '/../' . implode('', array_map('chr', array(108, 105, 99, 101, 110, 115, 101, 46, 107, 101, 121))));
+            if (!file_exists($flPath))
+                die($msg);
+
+            $key = implode('', array_map('chr', array_map('base64_decode', array_reverse(explode('0xD', trim(file_get_contents($flPath)))))));
+
+            if ($key != str_replace('www.', '', $_SERVER['HTTP_HOST']))
+                die($msg);
+        }
+
+        // Create full path to template file
+        $ext = '';
+        if (strpos($viewName, '.tpl'))
+            $ext = '.tpl';
+
+        return SHOP_DIR . 'admin' . DS . 'templates' . DS . $controllerName . DS . $viewName . $ext;
     }
 
     function sub_cats($array = array()) {
@@ -72,6 +237,22 @@ class Categories extends MY_Controller {
         }
 
         return $this->temp_cats;
+    }
+
+    public function getSubcategories($categoryID = 0) {
+        $categories = $this->createTree($categoryID);
+        $ret = array();
+
+        if (sizeof($categories)) {
+            foreach ($categories as $category) {
+                $ret[$category->getID()]['name'] = ShopCore::encode($category->getName());
+                $ret[$category->getID()]['link'] = $this->categoryUrlPrefix . $category->getFullPath();
+                $ret[$category->getID()]['parent_id'] = $category->getParentId();
+                $ret[$category->getID()]['active'] = $category->getActive();
+            }
+        }
+
+        return $ret;
     }
 
     /*
@@ -162,13 +343,7 @@ class Categories extends MY_Controller {
 
                     showMessage(lang('ac_cat') . $data['name'] . lang('ac_created'));
 
-                    $action = $_POST['action'];
-                    if ($action == 'close') {
-
-                        pjax('/admin/categories/edit/' . $id);
-                    } else {
-                        pjax('/admin/categories/cat_list');
-                    }
+                    updateDiv('page', site_url('admin/categories/edit/' . $id));
                     break;
 
                 case 'update':
@@ -195,13 +370,6 @@ class Categories extends MY_Controller {
                     );
 
                     showMessage(lang('ac_cat_updated'));
-                    $action = $_POST['action'];
-                    if ($action == 'close') {
-
-                        pjax('/admin/categories/edit/' . $cat_id);
-                    } else {
-                        pjax('/admin/categories/cat_list');
-                    }
                     break;
             }
 
@@ -227,6 +395,14 @@ class Categories extends MY_Controller {
         cp_check_perm('category_create');
 
         ($hook = get_hook('admin_fast_cat_add')) ? eval($hook) : NULL;
+
+        $this->template->add_array(array(
+            'tree' => $this->lib_category->build(),
+        ));
+
+        if ($action == '') {
+            $this->template->show('fast_cat_add', FALSE);
+        }
 
         if ($action == 'create') {
             $this->form_validation->set_rules('name', lang('ac_val_title'), 'trim|required|min_length[1]|max_length[160]');
@@ -285,7 +461,11 @@ class Categories extends MY_Controller {
                         lang('ac_cr_cat') .
                         '<a href="#" onclick="edit_category(' . $id . '); return false;">' . $data['name'] . '</a>'
                 );
-                echo json_encode(array('data' => $id));
+
+                updateDiv('categories', site_url('/admin/categories/update_block'));
+                updateDiv('fast_category_list', site_url('/admin/categories/update_fast_block/' . $id));
+                closeWindow('fast_add_cat_w');
+                jsCode("$('comments_status').checked = true;");
             }
         }
     }
@@ -310,7 +490,6 @@ class Categories extends MY_Controller {
      * @access public
      */
     function edit($id) {
-
         cp_check_perm('category_edit');
 
         $cat = $this->cms_admin->get_category($id);
@@ -330,24 +509,11 @@ class Categories extends MY_Controller {
 
             ($hook = get_hook('admin_show_category_edit')) ? eval($hook) : NULL;
 
-             if (!$this->ajaxRequest)    
             $this->template->show('category_edit', FALSE);
-             if($_POST){
-             showMessage(lang('a_category_upda_modu'));
-             
-             $active = $_POST['action'];
-                
-                if($active == 'close'){
-                    pjax('/admin/categories/edit/'.$id);
-                }else{
-                    pjax('/admin/categories/cat_list');
-                }
-             }
         } else {
             return FALSE;
         }
     }
-
 
     function translate($id, $lang) {
         $cat = $this->cms_admin->get_category($id);
@@ -406,19 +572,9 @@ class Categories extends MY_Controller {
                 }
 
                 $this->lib_category->clear_cache();
-                
-                showMessage(lang('a_categ_translate_upda'));
-                
-                $active = $_POST['action'];
-                
-                if($active == 'close'){
-                    pjax('/admin/categories/translate/'.$id.'/'.$lang);
-                }else{
-                    pjax('/admin/categories/edit/'.$id);
-                }
-               // closeWindow('translate_category_w');
+                closeWindow('translate_category_w');
             }
-            
+
             exit;
         }
 
@@ -456,8 +612,7 @@ class Categories extends MY_Controller {
     function delete() {
         cp_check_perm('category_delete');
 
-        //$cat_id = $this->input->post('id');
-        $cat_id = $_POST['id'];
+        $cat_id = $this->input->post('id');
 
         if ($this->db->get('category')->num_rows() == 1) {
             showMessage(lang('ac_delete_cat_err'), lang('ac_error'), 'r');
