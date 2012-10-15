@@ -22,7 +22,11 @@
             <header>
                 <section class="container">
 
+                {if $ADMIN_URL}
+                    <a href="{$ADMIN_URL}dashboard" class="logo span3">
+                {else:}
                     <a href="/admin/dashboard" class="logo span3">
+                {/if}
                         <img src="{$THEME}/img/logo.png"/>
                     </a>
                     
