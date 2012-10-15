@@ -5,6 +5,8 @@ $.exists_nabir = function(nabir){
     return (nabir.length > 0);
 }
 
+var notificationsInitialized = false;
+
 $(document).ajaxComplete( function(event, XHR, ajaxOptions){
     if (ajaxOptions.url != "/admin/components/run/shop/notifications/getAvailableNotification")
     {
@@ -26,6 +28,11 @@ function initAdminArea(){
         
     console.log('initialising of administration area started');
     var startExecTime = Date.now();
+    
+                    //menu active sniffer
+
+    
+    
     //  popover "info"
     $('.buy_prod').each(function(){
         var $this = $(this);
@@ -498,8 +505,11 @@ function initAdminArea(){
     });
     $('.item_menu .row-category:even').addClass('even');
     
-    if (userLogined)
+    if (userLogined && !notificationsInitialized)
+    {
 	window.setInterval('updateNotificationsTotal()', 20000);
+        notificationsInitialized = true;
+    }
     
     
     //list filter
@@ -604,6 +614,20 @@ function initAdminArea(){
     //            }
     //        })
     //    })
+                        $('a.pjax, .dropdown-menu li a').click(function(event){
+                            event.preventDefault(); $.pjax({url:$(this).attr('href'), container:'#mainContent'});
+                            return false;
+                            })
+
+    
+    //                $('a.pjax, .dropdown-menu li a').live('click', function(e){
+                    //$.pjax({url:$(this).attr('href'), container:'#mainContent'})
+     //               e.preventDefault();
+      //              $('nav li').removeClass('active');
+       //             $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
+        //            $.pjax({url: $(this).attr('href'), container:'#mainContent'});
+         //           return false;
+          //      });
     
     initTinyMCE();
     console.log('initialising of administration area ended');

@@ -7,7 +7,7 @@
                         <div class="pull-right">
                             <span class="help-inline"></span>
                             <div class="d-i_b">
-                                <a href="#" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
+                                <a href="/admin/pages/GetPagesByCategory" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
                                 <button type="button" class="btn btn-small action_on formSubmit" data-action="edit" data-form="#edit_page_form"><i class="icon-ok"></i>Сохранить</button>
                                 <button type="button" class="btn btn-small action_on formSubmit" data-action="close" data-form="#edit_page_form"><i class="icon-check"></i>Сохранить и выйти</button>
                                 <div class="dropdown d-i_b">
