@@ -71,7 +71,8 @@
     $lang['a_select_file']      =	'Select a file';
     $lang['a_file']      =	'File';
     $lang['a_server_zadat']      =	' Set  a password for  access from 1C server ';
-  $lang['a_filter']           =	'Filter';
+    $lang['a_filter']           =	'Filter';
+    $lang['a_filtrate']           =	'Фильтровать';
     $lang['a_select']           =	'Select';
     $lang['a_move']             =	'Move';
     $lang['a_footer_save_add_product']   =	'Save and add a product';
@@ -159,12 +160,15 @@
     $lang['a_status_set']       =	'Status has been set';
     $lang['a_user_name']        =	'Name';
     $lang['a_there']            =	'exists';
-    $lang['a_products']         =	'Goods';
+    $lang['a_products']         =	'Products';
     $lang['a_product']         	=	'Product';
+    $lang['a_cr'] = 'Create';
+    $lang['a_cr_prod'] = 'Create products';
     //$lang['a_orders']           =	'Delivery';
     $lang['a_orders']           =	'Orders';
     $lang['a_order']           	=	'Orders';
     $lang['a_orders_list']		=	'Orders list';
+    $lang['a_create_order']           =	'Create order';
     $lang['a_request_notification']=	'Request a notification';
     $lang['a_product_no_icon']  =	'Products without icons';
     $lang['a_callback']         =	'Callback';
@@ -197,6 +201,7 @@
     $lang['a_summ_delivery']    =	'Delivery price';
     $lang['a_price']            =	'Price';
     $lang['a_paid']             =	'Paid';
+    $lang['a_not_paid']         =	'Not paid';
     $lang['a_delivery']         =	'Delivered';
     $lang['a_wishlist']         =	'WishList';
     $lang['a_additional']       =	'Additional';
@@ -334,6 +339,7 @@ $lang['a_set_order_status'] =	'Set another status for these orders';
     $lang['a_settings_key']                 =	' Key to view the order';
     $lang['a_settings_href']                 =	' Link to the order';
     $lang['a_settings_change_status']                 =	' Customer notification about the order status change';
+    $lang['a_order_status']                 =	'Order status';
     $lang['a_settings_new_status']                 =	'New order status';
     $lang['a_settings_time_status']                 =	'Time of the order status change';
     $lang['a_settings_nw']                 =	'Name of the  WishList author';
@@ -359,6 +365,7 @@ $lang['a_set_order_status'] =	'Set another status for these orders';
     $lang['a_settings_passr']                 =	'Customer password';
     $lang['a_settings_href_reg']                 =	'Link to confirm password  recovery';
     $lang['a_settings_']                 =	'Editing';
+    $lang['a_customer']         =	'Customer';
     $lang['a_opovech']          =	'Newsletter';
     $lang['a_wich']             =	'which';
     $lang['a_reg']              =	'Registration';
@@ -399,6 +406,8 @@ $lang['a_set_order_status'] =	'Set another status for these orders';
     $lang['a_i8']               =	'Leave out a colomn';
     $lang['a_i9']               =	'More Categories';
     $lang['a_export']           =	'Export';
+    $lang['a_orders_statuses']  =       'Order status';
+    $lang['a_pay_statuses']     =       'Payment status';
     $lang['a_js_delete']        =	'Delete ';
     $lang['a_js_id']            =	'ID : ';
     $lang['a_js_order']         =	'Orders ';
@@ -441,6 +450,7 @@ $lang['a_set_order_status'] =	'Set another status for these orders';
     $lang['a_kit_edit'] = 'Edit product kit';
     $lang['a_product_edit'] = 'Edit product';
     $lang['a_main_product'] = 'Main product';
+    $lang['a_main_product_whom'] = 'главного товара';
     $lang['a_added_products'] = 'Added products';
     $lang['a_discount'] = 'Discount';
     $lang['a_properties_review'] = 'Properties list review';
@@ -480,6 +490,7 @@ $lang['a_set_order_status'] =	'Set another status for these orders';
     $lang['a_brands_stat'] = 'Brands statistics';
     $lang['a_orders_stat'] = 'Orders statistics';
     $lang['a_orders_price'] = 'Total orders price';
+    $lang['a_goods'] = 'Products';
     $lang['a_goods_count_on_site'] = 'Products count shown on site';
     $lang['a_goods_count_in_admin'] = 'Products count in control panel';
     $lang['a_by_hit'] = 'By hit';
@@ -524,6 +535,10 @@ $lang['a_set_order_status'] =	'Set another status for these orders';
     $lang['a_os_list_is_empty'] = 'Orders statuses list is empty';
     $lang['a_os_edit'] = 'Orders status edit';
     $lang['a_os_create'] = 'Orders status create';
+    $lang['a_drag_status'] = 'drag the status';
+    $lang['a_drag_product'] = 'drag the product';
+    $lang[''] = 'drag versiant product';
+    $lang['a_mark'] = 'Mark';
     
     $lang['a_role_list'] = 'Roles list';
     $lang['a_role_create'] = 'Role create';
@@ -551,7 +566,21 @@ $lang['a_set_order_status'] =	'Set another status for these orders';
     $lang['a_user'] = 'User';
     $lang['a_helper_user'] = 'choose a date';
     $lang['a_products_del_title'] = 'Delete products';
+    $lang['a_orders_del_title'] = 'Order removal';
+    $lang['a_kit_del_title'] = 'Kit removal';
+    
+    $lang['a_not_ask_main_prod_for_kit'] = 'You did not ask for a set of main commodity ';
+    $lang['a_kit_not_found'] = 'The kit was not found';
+    $lang['a_kit_created'] = 'Kit created';
+    $lang['a_kits_del'] = 'Delete kits?';
     $lang['a_products_del_body'] = 'Really delete selected products?';
+    $lang['a_kits_removal_body'] = 'Removal a kits of product';
+    
+    $lang['a_not_asked_main_prod_kit'] = 'You did not ask for a set of main commodity';
+    $lang['a_must_attach_main_prod_kit'] = 'You must attach the goods to create a set';
+    $lang['a_kit_with_products_exists'] = 'Kit with such goods already exists';
+    $lang['a_kits_succ_deleted'] = 'Set (s) has been successfully removed (s)';
+    
     
     $lang['a_goods_kits'] = 'Item kits list';
     $lang['a_goods_list'] = 'Items list';
@@ -576,5 +605,7 @@ $lang['a_set_order_status'] =	'Set another status for these orders';
     $lang['a_data_com'] = 'Data';
     $lang['a_edit_comulat_com'] = 'Editing cumulative discount';
     $lang['a_sel_collback_shop'] = 'The request for notification';
+    $lang['a_empty_kit_list_prod'] = 'Kit List products are empty';
+    
     
 ?>
