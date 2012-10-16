@@ -1,4 +1,3 @@
-wewewewe
 <div class="container">
     <section class="mini-layout">
         <div class="frame_title clearfix">
