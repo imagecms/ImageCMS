@@ -596,6 +596,7 @@
     $lang['a_orders_del_title'] = 'Удаление заказов';
     $lang['a_kit_del_title'] = 'Удаление набора';
     $lang['a_products_del_body'] = 'Удалить выбранные товары?';
+    $lang['a_category_delete'] = 'Удалить категорию?';
     
     $lang['a_not_ask_main_prod_for_kit'] = 'Вы не задали главный товар для набора';
     $lang['a_kit_not_found'] = 'Набор не найден';
