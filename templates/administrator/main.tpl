@@ -23,9 +23,9 @@
                 <section class="container">
 
                 {if $ADMIN_URL}
-                    <a href="{$ADMIN_URL}dashboard" class="logo span3">
+                    <a href="{$ADMIN_URL}dashboard" class="logo span3 pjax">
                 {else:}
-                    <a href="/admin/dashboard" class="logo span3">
+                    <a href="/admin/dashboard" class="logo span3 pjax">
                 {/if}
                         <img src="{$THEME}/img/logo.png"/>
                     </a>
