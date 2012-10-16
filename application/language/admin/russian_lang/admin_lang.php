@@ -6,7 +6,9 @@
  */
 
 $lang['a_content'] = 'Содержание';
+$lang['a_del_category_selec'] = 'Удалить выбранные категории';
 $lang['a_del_catego_ba'] = 'Удалить категорию';
+$lang['a_del_categoy_ba'] = 'Удаление категории';
 $lang['a_auto_fit_by_url'] = 'Автоподбор';
 $lang['a_category_upda_modu'] = 'Категория обновлена';
 $lang['a_categ_translate_upda'] = 'Перевод категории обновлен';
@@ -656,3 +658,8 @@ $lang['a_delete_selected_menu'] = 'Удалить выбраные меню?';
 $lang['a_create_link'] = 'Создать ссылку';
 
 $lang['a_manu_item_translate'] = 'Перевод пункта меню';
+
+$lang['a_key_exists'] = 'Сертификат с таким ключем уже существует'; 
+$lang['a_edit_menu_item'] = 'Редактировать пункт меню';
+
+?>
