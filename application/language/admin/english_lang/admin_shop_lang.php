@@ -4,8 +4,25 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-    $lang['a_content']		=	'content'; 
-    $lang['a_tpl_product']	=	'Product template'; 
+    $lang['a_content']		=	'content';
+    $lang['a_sh_use_datacom']		=	'User data';
+    $lang['a_edit_user_sh']		=	'Editing by'; 
+    $lang['a_sh_user_delet']		=	'Members removed';
+    $lang['a_sh_user_not_found']		=	'User not found';
+    $lang['a_log_file_create_user']		=	'Created by';
+    $lang['a_sh_user_create']		=	'User created';
+    $lang['a_filter_admin']		=	'Filter';
+    $lang['a_status_notifica_change']		=	'Order status changed';
+    $lang['a_notif_dele_user']		=	'Uninstalling';
+    $lang['a_del_user_notif']		=	'No data transmitted';
+    $lang['a_users_email_not']		=	'User is notified by E-mail';
+    $lang['a_delete_notification']		=	'Delete the query?';
+    $lang['a_delete_notific_sg']		=	'Delete the selected queries?';
+    $lang['a_delete_notific_st']		=	'Removal requests';
+    $lang['a_refresh_notif']		=	'Notification updated';
+    $lang['a_tpl_product']	=	'Product template';   
+    $lang['a_not_manager_not_fou']=	'Manager does not exist or is not set';      
+    $lang['a_not_foun_notif']	=	'Notification is not found'; 
     $lang['a_product_crete_success']	=	'This product has been successfully created';  
     $lang['a_product_edit_success'] = 'Editing product successfully';   
     $lang['a_url_fail']		=	'The URL you busy';
@@ -158,7 +175,7 @@
     $lang['a_change']          	=	'Change';
     $lang['a_request']          =	'Request';
     $lang['a_about']            =	'about';
-    $lang['a_abandoned']        =	'оставлен';
+    $lang['a_abandoned']        =	'by';
     $lang['a_status_set']       =	'Status has been set';
     $lang['a_user_name']        =	'Name';
     $lang['a_there']            =	'exists';
@@ -186,7 +203,7 @@
     $lang['a_group_users']      =	'User group';
     $lang['a_group']            =	'Group';
     $lang['a_privilege']            =	'Privileges';
-    $lang['a_users']            =	'user';
+    $lang['a_users']            =	'User';
     $lang['a_login']            =	'login';
     $lang['a_trade']            =	'Product';
     $lang['a_password']         =	'Password';
