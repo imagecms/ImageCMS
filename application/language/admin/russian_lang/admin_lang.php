@@ -655,3 +655,6 @@ $lang['a_delete_selected_menu'] = 'Удалить выбраные меню?';
 $lang['a_create_link'] = 'Создать ссылку';
 
 $lang['a_manu_item_translate'] = 'Перевод пункта меню';
+
+$lang['a_key_exists'] = 'Сертификат с таким ключем уже существует'; 
+$lang['a_edit_menu_item'] = 'Редактировать пункт меню';
