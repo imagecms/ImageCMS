@@ -129,24 +129,18 @@ wewewewe
                                                             </div>
                                                         </div>
                                                     </div>
-
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="inputImg">{lang('a_image')}:</label>
-                                                        <div class="controls">
-                                                            <div>
-                                                                <span class="f_l span8">
-                                                                    <input type="text" disabled="disabled" name="image" id="cat_image" value="{$image}" />
-                                                                </span>
-                                                                <span class="btn btn-small p_r">
+                                                    
+                                                    	<div class="control-group">
+                                                            <label class="control-label" for="Img">{lang('a_image')}:
+                                                                <span class="btn btn-small p_r" data-url="file">
                                                                     <i class="icon-camera"></i>&nbsp;&nbsp;{lang('a_select_image')}
-                                                                    <input type="file" class="btn-small btn" id="inputImg" onclick="tinyBrowserPopUp('image', 'cat_image');"/>
-                                                                </span>
+                                                                    <input type="file" class="btn-small btn" id="Img" name="image">
+                                                                </span>                                              
+                                                            </label>
+                                                            <div class="controls">
+                                                                <img src="" class="img-polaroid pull-right m-l_15" style="width: 100px;">
                                                             </div>
-                                                            <p class="help-block span8">
-                                                                <img src="img/temp/50X50.png" class="img-polaroid pull-right m-l_15">                                                                
-                                                            </p>
                                                         </div>
-                                                    </div>
 
                                                     <div class="control-group">
                                                         <label class="control-label" for="position">{lang('a_position')}:</label>
