@@ -22,24 +22,24 @@
             <header>
                 <section class="container">
 
-                    {if $ADMIN_URL}
-                    <a href="{$ADMIN_URL}dashboard" class="logo span3">
-                        {else:}
-                        <a href="/admin/dashboard" class="logo span3">
-                            {/if}
-                            <img src="{$THEME}/img/logo.png"/>
-                        </a>
-
-                        {if $CI->dx_auth->is_logged_in()}
-                        <div class="pull-right span3">
-                            <div class="clearfix">
-                                <div class="pull-left m-r_10">{lang('a_wellcome')}, 
-                                    {if $CI->dx_auth->get_username()}
-                                    <a href="/admin/components/run/shop/users/edit/{echo $CI->dx_auth->get_user_id()}">
-                                        {echo $CI->dx_auth->get_username()}
-                                    </a>
-                                    <a href="/admin/logout"><i class="my_icon exit_ico"></i></a>
-                                    {else:}
+                {if $ADMIN_URL}
+                    <a href="{$ADMIN_URL}dashboard" class="logo span3 pjax">
+                {else:}
+                    <a href="/admin/dashboard" class="logo span3 pjax">
+                {/if}
+                        <img src="{$THEME}/img/logo.png"/>
+                    </a>
+                    
+                    {if $CI->dx_auth->is_logged_in()}
+                    <div class="pull-right span3">
+                        <div class="clearfix">
+                            <div class="pull-left m-r_10">{lang('a_wellcome')}, 
+                                {if $CI->dx_auth->get_username()}
+                                <a href="/admin/components/run/shop/users/edit/{echo $CI->dx_auth->get_user_id()}">
+                                    {echo $CI->dx_auth->get_username()}
+                                </a>
+                                <a href="/admin/logout"><i class="my_icon exit_ico"></i></a>
+                                {else:}
                                     {echo lang('a_guest')}
                                     {/if}
                                 </div>

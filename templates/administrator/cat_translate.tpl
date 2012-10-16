@@ -16,15 +16,9 @@
         </div>
         <form method="post" active="{$BASE_URL}admin/categories/translate/{$orig_cat.id}/{$lang}" id="save">
             <div class="content_big_td">
-                <div class="clearfix">
-                    <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
-                        <a href="#parameters" class="btn btn-small active">{lang('param')}</a>
-                        <a href="#metatag" class="btn btn-small">{lang('a_meta_tags')}</a>
-                        <a href="#dodPol" class="btn btn-small">{lang('a_addit_fiel_bas_a')}</a>
-                    </div>                    
-                </div>
+                
                 <div class="tab-content">
-                    <div class="tab-pane active" id="parameters">
+                    <div class="tab-pane active">
                         <table class="table table-striped table-bordered table-hover table-condensed">
                             <thead>
                                 <tr>
@@ -75,9 +69,6 @@
                                                         </div>
                                                     </div>
 
-
-
-
                                                 </div>
                                             </div>
                                         </div>
@@ -85,10 +76,6 @@
                                 </tr>
                             </tbody>
                         </table>
-
-
-
-
                     </div>
                 </div>
             </div>
