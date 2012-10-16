@@ -570,6 +570,7 @@ $lang['a_sender']           =	'sender';
     $lang['a_products_del_title'] = 'Delete products';
     $lang['a_orders_del_title'] = 'Order removal';
     $lang['a_kit_del_title'] = 'Kit removal';
+    $lang['a_category_delete'] = 'Delete category?';
     
     $lang['a_not_ask_main_prod_for_kit'] = 'You did not ask for a set of main commodity ';
     $lang['a_kit_not_found'] = 'The kit was not found';

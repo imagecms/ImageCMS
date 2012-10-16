@@ -438,6 +438,31 @@ var shopCategories = new Object({
     }
 });
 
+var GalleryCategories = new Object({
+    deleteCategories:function (){
+        $('.modal').modal();
+    },
+    deleteCategoriesConfirm:function ()
+    {
+        var ids = new Array();
+        $('input[name=id]:checked').each(function(){
+            ids.push($(this).val());
+        });
+        //		console.log(ids);
+        $.post('/admin/components/cp/gallery/delete_category', {
+            id:ids
+        }, function(data){
+            $('#mainContent').after(data);
+            $.pjax({
+                url:window.location.pathname, 
+                container:'#mainContent'
+            });
+        });
+        $('.modal').modal('hide');
+        return true;
+    }
+});
+
 function clone_object(){
     btn_temp = $('[data-remove="example"]');
     $('[data-frame]').each(function(){
