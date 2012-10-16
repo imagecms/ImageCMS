@@ -15,7 +15,7 @@
             {if $cat->hasChilds}
                 <button type="button" class="btn btn-small my_btn_s"
                         style="display: none; margin-top: 1px;" data-rel="tooltip"
-                        data-placement="top" data-original-title="свернуть категорию">
+                        data-placement="top" data-original-title="свернуть категориюs">
                     <i class="my_icon icon-minus"></i>
                 </button>
                 <button type="button" class="btn btn-small my_btn_s btn-primary"
