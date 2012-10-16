@@ -22,64 +22,64 @@
             <header>
                 <section class="container">
 
-                {if $ADMIN_URL}
+                    {if $ADMIN_URL}
                     <a href="{$ADMIN_URL}dashboard" class="logo span3">
-                {else:}
-                    <a href="/admin/dashboard" class="logo span3">
-                {/if}
-                        <img src="{$THEME}/img/logo.png"/>
-                    </a>
-                    
-                    {if $CI->dx_auth->is_logged_in()}
-                    <div class="pull-right span3">
-                        <div class="clearfix">
-                            <div class="pull-left m-r_10">{lang('a_wellcome')}, 
-                                {if $CI->dx_auth->get_username()}
-                                <a href="/admin/components/run/shop/users/edit/{echo $CI->dx_auth->get_user_id()}">
-                                    {echo $CI->dx_auth->get_username()}
-                                </a>
-                                <a href="/admin/logout"><i class="my_icon exit_ico"></i></a>
-                                {else:}
+                        {else:}
+                        <a href="/admin/dashboard" class="logo span3">
+                            {/if}
+                            <img src="{$THEME}/img/logo.png"/>
+                        </a>
+
+                        {if $CI->dx_auth->is_logged_in()}
+                        <div class="pull-right span3">
+                            <div class="clearfix">
+                                <div class="pull-left m-r_10">{lang('a_wellcome')}, 
+                                    {if $CI->dx_auth->get_username()}
+                                    <a href="/admin/components/run/shop/users/edit/{echo $CI->dx_auth->get_user_id()}">
+                                        {echo $CI->dx_auth->get_username()}
+                                    </a>
+                                    <a href="/admin/logout"><i class="my_icon exit_ico"></i></a>
+                                    {else:}
                                     {echo lang('a_guest')}
-                                {/if}
+                                    {/if}
                                 </div>
-                            <div class="pull-right m-l_10">Просмотр <a href="{$BASE_URL}" target="_blank">сайта <span class="f-s_14">→</span></a></div>
-                        </div>
-                        <form method="get" action="/admin/admin_search">
-                            <div class="input-append search">
-                                <button type="submit" class="btn pull-right"><i class="icon-search"></i></button>
-                                <div class="o_h">
-                                    <input id="appendedInputButton" name="q" size="16" type="text" class="input-large" data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]' autocomplete="off" tabindex="1">
-                                </div>
+                                <div class="pull-right m-l_10">Просмотр <a href="{$BASE_URL}" target="_blank">сайта <span class="f-s_14">→</span></a></div>
                             </div>
-                        </form>
-                    </div>
-
-
-                    
-                    <div class="btn-group" id="topPanelNotifications" style="display: none;">
-                        <div class="span4 d-i_b">
-
-                            <a href="/admin/components/run/shop/orders/index" class="btn btn-large" data-title="Заказы" data-rel="tooltip" data-original-title="Заказы">
-                                <i class="icon-bask "></i>
-                            </a>
-                            <a href="#" class="btn btn-large" data-title="{lang('a_product_no_icon')}" data-rel="tooltip" data-original-title="">
-                                <i class="icon-report_exists"></i>
-                            </a>
-                            <a href="#" class="btn btn-large" data-title="Callback" data-rel="tooltip" data-original-title="Callback">
-                                <i class="icon-callback "></i>
-                            </a>
-                            <a href="#" class="btn btn-large" data-title="Запросы об уведомлении" data-rel="tooltip" data-original-title="Запросы об уведомлении">
-                                <i class="icon-comment_head "></i>
-                            </a>
+                            <form method="get" action="/admin/admin_search">
+                                <div class="input-append search">
+                                    <button type="submit" class="btn pull-right"><i class="icon-search"></i></button>
+                                    <div class="o_h">
+                                        <input id="appendedInputButton" name="q" size="16" type="text" class="input-large" data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]' autocomplete="off" tabindex="1">
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                    </div>
-                    {/if}
+
+
+
+                        <div class="btn-group" id="topPanelNotifications" style="display: none;">
+                            <div class="span4 d-i_b">
+
+                                <a href="/admin/components/run/shop/orders/index" class="btn btn-large" data-title="Заказы" data-rel="tooltip" data-original-title="Заказы">
+                                    <i class="icon-bask "></i>
+                                </a>
+                                <a href="#" class="btn btn-large" data-title="{lang('a_product_no_icon')}" data-rel="tooltip" data-original-title="">
+                                    <i class="icon-report_exists"></i>
+                                </a>
+                                <a href="#" class="btn btn-large" data-title="Callback" data-rel="tooltip" data-original-title="Callback">
+                                    <i class="icon-callback "></i>
+                                </a>
+                                <a href="#" class="btn btn-large" data-title="Запросы об уведомлении" data-rel="tooltip" data-original-title="Запросы об уведомлении">
+                                    <i class="icon-comment_head "></i>
+                                </a>
+                            </div>
+                        </div>
+                        {/if}
 
 
                 </section>
             </header>
-            
+
             {if $CI->dx_auth->is_logged_in()}
             <div class="frame_nav" id="mainAdminMenu">
                 <div class="container" id="baseAdminMenu">
@@ -91,7 +91,7 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="/admin/pages/GetPagesByCategory/" class="pjax">{lang('a_cont_list')}</a></li>
                                     <li><a href="/admin/pages" class="pjax">{lang('a_create_page')}</a></li>
-                                    
+
                                     <li class="divider"></li>
                                     <li><a href="/admin/components/cp/cfcm" class="pjax">{lang('a_field_constructor')}</a></li>
 
@@ -163,8 +163,8 @@
                         <a class="btn btn-small pull-right btn-info" onclick="loadShopInterface();" href="#">Администрировать магазин <span class="f-s_14">→</span></a>
                     </nav>
                 </div>
-                    
-                    <div style="display:none;" class="container" id="shopAdminMenu"  > {include_tpl('shop_menu.tpl')} </div>
+
+                <div style="display:none;" class="container" id="shopAdminMenu"  > {include_tpl('shop_menu.tpl')} </div>
             </div>
             {/if}
             <div class="container" id="mainContent">
@@ -199,7 +199,7 @@
                 </div>
             </div>
         </footer>
-        
+
         <script>
             {if $CI->dx_auth->is_logged_in()}
             var userLogined = true;
@@ -207,7 +207,7 @@
             var userLogined = false;
             {/if}
         </script>
-        
+
         <script src="{$THEME}/js/jquery-1.8.0.min.js" type="text/javascript"></script>
         <script src="{$THEME}/js/pjax/jquery.pjax.js" type="text/javascript"></script>
         <script>
@@ -215,11 +215,11 @@
 
             {/literal}    
         </script>
-                        
+
         <script src="{$THEME}/js/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script>
         <script src="{$THEME}/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="{$THEME}/js/bootstrap-notify.js" type="text/javascript"></script>
-        
+
         <script src="{$THEME}/js/jquery.form.js" type="text/javascript"></script>
         <script type="text/javascript" src="/js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
         <script src="{$THEME}/js/jquery-validate/jquery.validate.min.js" type="text/javascript"></script>
@@ -244,7 +244,7 @@
             {else:}
             var isShop = false;
             {/if}
-            
+            var lang = "{lang('a_numbers_only')}";
             {literal}
 
             $(document).ready(function(){
@@ -257,7 +257,19 @@
                 else
                     $('#baseAdminMenu').hide();
             })
-
+            
+            function number_tooltip_live(){
+                $('.number input').each(function(){
+                    $(this).attr({
+                        'data-placement':'top', 
+                        'data-title': lang
+                    });
+                })
+                number_tooltip();
+            }
+            $(window).load(function(){
+                number_tooltip_live();
+            })
             base_url = '{/literal}{$BASE_URL}{literal}';
         </script>
         {/literal}
