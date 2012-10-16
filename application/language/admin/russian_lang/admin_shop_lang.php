@@ -5,6 +5,18 @@
  * and open the template in the editor.
  */
     $lang['a_content']		=	'Содержание';
+    $lang['a_comul_disco_user']		=	'Скидки пользователей';
+    $lang['a_product_n']		=	'Продукты';
+    $lang['a_discount_create_n_reg']		=	'Скидка создана';
+    $lang['a_discount_delete_suc']		=	'Скидки удалены';
+    $lang['a_discount_edit_n']		=	'Редактирование скидки';
+    $lang['a_disc_new_reg']		=	'Создать скидку';
+    $lang['a_reg_discount_sh']		=	'Постоянные скидки';
+    $lang['a_paym_create_new']		=	'Создать способ оплаты';
+    $lang['a_payment_met_create']		=	'Способ оплаты создан';
+    $lang['a_delivery_delete_met']		=	'Способ доставки удален';
+    $lang['a_delivery_not_found']		=	'Способ доставки не найден';
+    $lang['a_deliver_create_new']		=	'Доставка создана';
     $lang['a_rb_del_roles']		=	'Удалить роли?';
     $lang['a_rbak_del_role_gro']		=	'Удалить выбранные роли?';
     $lang['a_rbak_delete_role']		=	'Удаление роли';

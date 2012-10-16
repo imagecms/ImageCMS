@@ -5,6 +5,18 @@
  * and open the template in the editor.
  */
     $lang['a_content']		=	'content';
+    $lang['a_comul_disco_user']		=	'Deposit rates';
+    $lang['a_product_n']		=	'Products';
+    $lang['a_discount_create_n_reg']		=	'Discount created';
+    $lang['a_discount_delete_suc']		=	'Discounts are removed';
+    $lang['a_discount_edit_n']		=	'Editing discounts';
+    $lang['a_disc_new_reg']		=	'Create a discount';
+    $lang['a_reg_discount_sh']		=	'Regular discounts';
+    $lang['a_paym_create_new']		=	'Create a payment method';
+    $lang['a_payment_met_create']		=	'Payment method is created';
+    $lang['a_delivery_delete_met']		=	'Delivery method removed';
+    $lang['a_delivery_not_found']		=	'Delivery method is not found';
+    $lang['a_deliver_create_new']		=	'Delivery created';
     $lang['a_rb_del_roles']		=	'Remove roles?';
     $lang['a_rbak_del_role_gro']		=	'Remove selected roles?';
     $lang['a_rbak_delete_role']		=	'Remove a Role';
