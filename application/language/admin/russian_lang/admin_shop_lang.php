@@ -6,7 +6,7 @@
  */
     $lang['a_content']		=	'Содержание';
     $lang['a_tpl_product']	=	'Шаблон продукта';    
-    $lang['a_product_crete_success']	=	'Товар успешно создан';    
+    $lang['a_product_crete_success']	='Товар успешно создан';    
     $lang['a_url_fail']		=	'Указанный URL занят';
     $lang['category']		=	'Категория';
     $lang['']			=	'Нет';
@@ -71,6 +71,7 @@
     $lang['a_file']      =	'Файл';
     $lang['a_server_zadat']      =	'Задать пароль для доступа c сервера 1C';
     $lang['a_filter']           =	'Фильтр';
+    $lang['a_filtrate']           =	'Фильтровать';
     $lang['a_select']           =	'Выберите';
     $lang['a_move']             =	'Переместить';
     $lang['a_footer_save_add_product']   =	'Сохранить и добавить продукт';
@@ -160,9 +161,10 @@
     $lang['a_user_name']        =	'Имя';
     $lang['a_there']            =	'существует';
     $lang['a_product']          =	'Товар';
-    $lang['a_products']         =	'Продукт';
+    $lang['a_products']         =	'Товари';
     $lang['a_orders']           =	'Заказы';
-    $lang['a_orders_list']		=	'Список завазов'; 
+    $lang['a_create_order']           =	'Создать заказ';
+    $lang['a_orders_list']		='Список заказов'; 
     $lang['a_orders_']          =	'заказов';
     $lang['a_order']           	=	'Заказы';
     $lang['a_request_notification']=	'Запросы об уведомлении';
@@ -198,6 +200,7 @@
     $lang['a_summ_delivery']    =	'Цена доставки';
     $lang['a_price']            =	'Цена';
     $lang['a_paid']             =	'Оплачен';
+    $lang['a_not_paid']         =	'Не оплачен';
     $lang['a_delivery']         =	'Доставлен';
     $lang['a_wishlist']         =	'WishList';
     $lang['a_additional']       =	'Дополнительное';
@@ -214,8 +217,8 @@
     $lang['a_translite_header'] =	'Транслитерация заголовка';
     $lang['a_parent']           =	'Родитель';
     $lang['a_pattern']          =	'Шаблон';
-    $lang['a_pattern_category'] =	'Основной шаблон категории. По-умолчанию  category.tpl';
-    $lang['a_pattern_product']  =	'Основной шаблон продукта. По-умолчанию  product.tpl';
+    $lang['a_pattern_category'] =	'Главной шаблон категории. По-умолчанию  category.tpl';
+    $lang['a_pattern_product']  =	'Главной шаблон продукта. По-умолчанию  product.tpl';
     $lang['a_default_method_sort']=	'Выбор метода сортировки по-умолчанию';
     $lang['a_on']               =	'По';
     $lang['a_hit']              =	'хит';
@@ -329,6 +332,7 @@
     $lang['a_key']              =	'Ключ';
     $lang['a_uses_select_var']  =	'Вы можете использовать следующие переменные';
     $lang['a_settings_n']                 =	'Имя пользователя совершившего заказ';
+    $lang['a_customer']         =	'Заказчик';
     $lang['a_settings_e']                 =	'Email адрес заказчика';
     $lang['a_settings_num']                 =	'Номер телефона заказчика';
     $lang['a_settings_addr']                 =	'Адрес доставки кторый указал пользователь';
@@ -336,6 +340,7 @@
     $lang['a_settings_key']                 =	'Ключ для просмотра заказа';
     $lang['a_settings_href']                 =	'Ссылка по которой можно просмотреть заказ';
     $lang['a_settings_change_status']                 =	'Уведомление покупателя о смене статуса заказа';
+    $lang['a_order_status']                 =	'Статус заказа';
     $lang['a_settings_new_status']                 =	'Новый статус заказа';
     $lang['a_settings_time_status']                 =	'Время изменения статуса заказа';
     $lang['a_settings_nw']                 =	'Имя пользователя сформовавшего WishList';
@@ -423,6 +428,7 @@
     $lang['a_js_delete_product_order']              =	'Удалить товар из заказа?';
     $lang['a_goods'] = 'Товары';
     $lang['a_cr'] = 'Создать';
+    $lang['a_cr_prod'] = 'Создать товар';
     $lang['a_goods_properties'] = 'Свойства товаров';
     $lang['a_goods_kits'] = 'Наборы товаров';
     $lang['a_item_kits'] = 'Наборы';
@@ -444,6 +450,7 @@
     $lang['a_auto'] = 'Автоматизация';
     $lang['a_export'] = 'Экспорт';
     $lang['a_orders_statuses'] = 'Статусы заказов';
+    $lang['a_pay_statuses'] = 'Статус оплаты';
     $lang['a_perm_diff'] = 'Разделение прав';
     $lang['a_roles'] = 'Роли';
     $lang['a_perm_groups'] = 'Группы привилегий';
@@ -469,6 +476,7 @@
     $lang['a_product_edit'] = 'Редактирование товара';
     $lang['a_product_edit_success'] = 'Редактирование товара успешно';
     $lang['a_main_product'] = 'Главный товар';
+    $lang['a_main_product_whom'] = 'главного товара';
     $lang['a_added_products'] = 'Прикрепленные товары';
     $lang['a_discount'] = 'Скидка';
     $lang['a_properties_review'] = 'Просмотр свойств товаров';
@@ -552,7 +560,11 @@
     $lang['a_order_statuses_list'] = 'Список статусов заказов';
     $lang['a_os_list_is_empty'] = 'Список статусов заказов пустой';
     $lang['a_os_edit'] = 'Редактирование статуса заказа';
-    $lang['a_os_create'] = 'Создание статуса заказа';
+    $lang['a_os_create'] = 'Создать статус заказа';
+    $lang['a_drag_status'] = 'перетащите статус';
+    $lang['a_drag_product'] = 'перетащите товар';
+    $lang['a_drag_variant_product'] = 'перетащите вариант товара';
+    $lang['a_mark'] = 'Обозначить';
     
     $lang['a_role_list'] = 'Список ролей';
     $lang['a_role_create'] = 'Создание роли';
@@ -580,12 +592,25 @@
     $lang['a_count_rates'] = 'Пользователь';
     $lang['a_helper_user'] = 'выберите дату';
     $lang['a_products_del_title'] = 'Удаление товаров';
+    $lang['a_orders_del_title'] = 'Удаление заказов';
+    $lang['a_orders_del_title'] = 'Удаление заказов';
+    $lang['a_kit_del_title'] = 'Удаление набора';
     $lang['a_products_del_body'] = 'Удалить выбранные товары?';
+    $lang['a_category_delete'] = 'Удалить категорию?';
+    
+    $lang['a_not_ask_main_prod_for_kit'] = 'Вы не задали главный товар для набора';
+    $lang['a_kit_not_found'] = 'Набор не найден';
+    $lang['a_kit_created'] = 'Набор создан';
+    $lang['a_kits_del'] = 'Удалить наборы?';
+    $lang['a_kits_del_body'] = 'Удалить выбранные наборы товаров?';
+    $lang['a_kits_removal_body'] = 'Удаление наборов товаров';
+    
+    $lang['a_not_asked_main_prod_kit'] = 'Вы не задали главный товар для набора';
+    $lang['a_must_attach_main_prod_kit'] = 'Необходимо прикрепить товары для создания набора';
+    $lang['a_kit_with_products_exists'] = 'Набор с такими товарами уже существует';
+    $lang['a_kits_succ_deleted'] = 'Набор(ы) успешно удален(ы)';
+
     $lang['a_back'] = 'Вернуться';
-    
-    
-    
-    
     
     //new
     
@@ -601,31 +626,6 @@
     $lang['a_data_com'] = 'Данные';
     $lang['a_edit_comulat_com'] = 'Редактирование накопительной скидки';
     $lang['a_sel_collback_shop'] = 'Запрос об уведомлений';
-    $lang['a_'] = '';
-    $lang['a_'] = '';
-    $lang['a_'] = '';
-    $lang['a_'] = '';
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    $lang['a_empty_kit_list_prod'] = 'Список наборов продуктов пустой';
     
 ?>

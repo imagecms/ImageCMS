@@ -76,7 +76,7 @@ class Login extends MY_Controller {
             }
         }
 
-        $this->template->show('login', FALSE);
+        $this->template->display('login');
 //			$this->template->show('login', TRUE);
     }
 

@@ -5,6 +5,8 @@
  * and open the template in the editor.
  */
 $lang['a_content'] = 'Content';
+$lang['a_del_category_selec'] = 'Remove selected categories';
+$lang['a_del_categoy_ba'] = 'Delete a category';
 $lang['a_del_catego_ba'] = 'Delete category';
 $lang['a_auto_fit_by_url'] = 'AutoFit';
 $lang['a_category_upda_modu'] = 'Category updated';
@@ -76,6 +78,8 @@ $lang['a_menu_create'] = 'Create menu';
 $lang['a_ps'] = 'Pcs';
 $lang['a_del_o_met'] = 'Paid';
 $lang['a_purch_product_c'] = 'Purchased Product';
+$lang['a_create_set'] = 'Create a set';
+$lang['a_go_to_website'] = 'go to the website';
 
 //charts
 $lang['a_days'] = 'Days';
@@ -98,7 +102,8 @@ $lang['a_save_on_server'] = 'Save on the server';
 $lang['a_save_path'] = 'File will be saved in the directory'; 
 $lang['a_send_mail'] = 'Send to your email'; 
 $lang['a_file_format'] = 'File format'; 
-$lang['a_create'] = 'Create';  
+$lang['a_create'] = 'Create';
+$lang['attached_products'] = 'Attached products';
 
 //cat_translate.tpl
 $lang['a_cat_translate'] = 'Category translation';
