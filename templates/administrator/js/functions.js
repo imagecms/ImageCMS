@@ -4,8 +4,8 @@ var shopAdminMenuCache = false;
 var base_url = 'http://p4/';
 
 function showMessage(title, text, messageType)
-{	
-	text = '<h4>'+title+'</h4>'+text;
+{
+    text = '<h4>'+title+'</h4>'+text;
     messageType = typeof messageType !== 'undefined' ? messageType: 'success';
     if (messageType == 'r')
         messageType = 'error';
@@ -448,6 +448,7 @@ var GalleryCategories = new Object({
         $('input[name=id]:checked').each(function(){
             ids.push($(this).val());
         });
+        //		console.log(ids);
         $.post('/admin/components/cp/gallery/delete_category', {
             id:ids
         }, function(data){
@@ -458,7 +459,7 @@ var GalleryCategories = new Object({
             });
         });
         $('.modal').modal('hide');
-        return false;
+        return true;
     }
 });
 

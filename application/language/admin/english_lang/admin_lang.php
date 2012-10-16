@@ -5,6 +5,8 @@
  * and open the template in the editor.
  */
 $lang['a_content'] = 'Content';
+$lang['a_del_category_selec'] = 'Remove selected categories';
+$lang['a_del_categoy_ba'] = 'Delete a category';
 $lang['a_del_catego_ba'] = 'Delete category';
 $lang['a_auto_fit_by_url'] = 'AutoFit';
 $lang['a_category_upda_modu'] = 'Category updated';
@@ -388,4 +390,8 @@ $lang['a_delete_selected_menu'] = 'Delete selected menu?';
 $lang['a_create_link'] = 'Create link';
 
 $lang['a_manu_item_translate'] = 'Menu item translate';
+
+$lang['a_key_exists'] = 'Certificate with this key already exists';
+
+$lang['a_edit_menu_item'] = 'Edit menu item';
 ?>
