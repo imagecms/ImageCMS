@@ -2,25 +2,31 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">Редактировать ссылку</span>
+            <span class="title">{lang('a_edit_menu_item')}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="#" class="t-d_n m-r_15 pjax"><span class="f-s_14"><</span> <span class="t-d_u">Вернуться</span></a>
-                <button type="button" class="btn btn-small action_on formSubmit" data-form="#br_tr_form" data-action="tomain"><i class="icon-ok"></i>{lang('a_save')}</button>
+                <a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="t-d_n m-r_15 pjax"><span class="f-s_14"></span>←<span class="t-d_u">{lang('a_return')}</span></a>
+                <button type="button" class="btn btn-small formSubmit submit_link" data-form="#{$item.item_type}_form"><i class="icon-ok"></i>{lang('a_save')}</button>
             </div>
         </div>                            
     </div>
-    <div class="btn-group myTab m-t_20" data-toggle="buttons-radio">
-        <a href="#pages" class="btn btn-small active">{lang('a_pages')}</a>
-        <a href="#categories" class="btn btn-small">Категории</a>
-        <a href="#modules" class="btn btn-small">Модули</a>
-        <a href="#url" class="btn btn-small">URL</a>
-    </div>        
     <div class="tab-content">
-        <div class="tab-pane active" id="pages">
-            <div class="row-fluid">
-                <form method="post" action="/admin/components/cp/menu/insert_menu_item/" id="br_tr_form">
+        <div class="m-t_10">
+            <select class="link_type">
+                <option value="page" {if $item.item_type == 'page'}selected="selected"{/if}>Страница</option>
+                <option value="category" {if $item.item_type == 'category'}selected="selected"{/if}>Категория</option>
+                <option value="module" {if $item.item_type == 'module'}selected="selected"{/if}>Модуль</option>
+                <option value="url" {if $item.item_type == 'url'}selected="selected"{/if}>Ссылка</option>
+            </select>
+        </div>
+        <div {if $item.item_type != 'page'}style="display: none;"{/if} id="page" class="edit_holder">
+            <form method="post" action="/admin/components/cp/menu/edit_item/{$item.id}" id="page_form">
+                {$data = unserialize($item.add_data)}
+                <input type="hidden" name="menu_id" value="{$menu.id}"/>
+                <input type="hidden" name="item_id" value="{$item.item_id}" id="item_page_id"/>
+                <input type="hidden" name="item_type" value="page"/>
+                <div class="row-fluid">
                     <div class="span6">
                         <table class="table table-striped table-bordered table-hover table-condensed">
                             <thead>
@@ -36,25 +42,25 @@
                                         <div class="inside_padd">
                                             <div class="row-fluid">
                                                 <div class="control-group">
-                                                    <label class="control-label">Категория:</label>
+                                                    <label class="control-label">{lang('amt_categories')}:</label>
                                                     <div class="controls">
-                                                        <input type="hidden" value="{$menu_id}" name="menu_id"/>
-                                                        <input type="hidden" value="0" name="parent_id"/>
                                                         <select id="category_sel">
-                                                            <option value="0">Root</option>
+                                                            <option value="0">{lang('amt_root')}</option>
+                                                            {$sel = array()}
                                                             {build_cats_tree($cats, $sel)}
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label">Количество страниц:</label>
+                                                    <label class="control-label">На страницу:</label>
                                                     <div class="controls">
                                                         <select id="per_page">
-                                                            <option>10</option>
-                                                            <option>20</option>
-                                                            <option>30</option>
-                                                            <option>40</option>
-                                                            <option>50</option>
+                                                            <option value="10" selected="selected">10</option>
+                                                            <option value="15">15</option>
+                                                            <option value="20">20</option>
+                                                            <option value="30">30</option>
+                                                            <option value="40">40</option>
+                                                            <option value="50">50</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -63,12 +69,151 @@
                                                     <div class="controls">
                                                         <div id="pages_list_holder">
                                                             <ul>
-                                                                {foreach $pages.pages_list as $item}
-                                                                    <li><a href="#" class="page_title" data-title="{$item.title}" data-id="{$item.id}">{echo $item.title}</a></li>
+                                                                {foreach $pages.pages_list as $p}
+                                                                    <li><a class="page_title" data-url="{$p.cat_url}/{$p.url}" data-title="{$p.title}" data-id="{$p.id}">{echo $p.title}</a></li>
                                                                 {/foreach}
                                                             </ul>
                                                         </div>
                                                     </div>        
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="span6">
+                        <input type="hidden" id="owner_id" value="{$insert_id}" />
+                        <table class="table table-striped table-bordered table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th colspan="6">
+                                        Параметры:
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="6">
+                                        <div class="inside_padd">
+                                            <div class="row-fluid">
+                                                <div class="control-group">
+                                                    <label class="control-label">{lang('amt_type')}:</label>
+                                                    <div class="controls">
+                                                        {lang('amt_page')}
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label">{lang('amt_id')}:</label>
+                                                    <div class="controls">
+                                                        <span id="page_id_holder">{$item.id}</span>
+                                                    </div>
+                                                </div>    
+                                                <div class="control-group">
+                                                    <label class="control-label">{lang('amt_title')}:</label>
+                                                    <div class="controls">
+                                                        <input type="text" value="{$item.title}" name="title"  id="item_title" />
+                                                    </div>
+                                                </div>        
+                                                <div class="control-group">
+                                                    <label class="control-label">{lang('amt_parent')}:</label>
+                                                    <div class="controls">
+                                                        <select name="parent_id" id="item_parent_id">
+                                                            <option value="0">{lang('amt_no')}</option>
+                                                            {foreach $parents as $par}
+                                                                <option value="{$par.id}" {if $item.parent_id != 0 AND $item.parent_id == $par.id}selected="selected"{/if}> - {$par.title}</option>
+                                                            {/foreach}
+                                                        </select>
+                                                    </div>
+                                                </div>            
+                                                <div class="control-group">
+                                                    <label class="control-label">{lang('amt_position_after')}:</label>
+                                                    <div class="controls">
+                                                        <select name="position_after" id="position_after">
+                                                            <option value="0">{lang('amt_no')}</option>
+                                                            <option value="first">{lang('amt_first')}</option>
+                                                            {foreach $parents as $p}
+                                                                <option value="{$p.id}" {if $item.position != 0 AND $item.postion == $p.postion + 1}selected="selected"{/if}> - {$p.title}</option>
+                                                            {/foreach}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label">{lang('amt_image')}:</label>
+                                                    <div class="controls">
+                                                        <input type="text" value="" name="item_image"  id="page_image" />
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label">{lang('amt_access_level')}:</label>
+                                                    <div class="controls">
+                                                        {$r  = unserialize($item.roles)}
+                                                        {if !is_array($r)}
+                                                            {$r = array()}
+                                                        {/if}
+                                                        <select id="item_roles" name="item_roles[]" multiple="multiple">
+                                                            <option value="0">{lang('amt_all')}</option>
+                                                            {foreach $roles as $role}
+                                                                <option value ="{$role.id}" {if in_array($role.id, $r)}selected="selected"{/if}>{$role.alt_name}</option>
+                                                            {/foreach}
+                                                        </select>
+                                                    </div>
+                                                </div>    
+                                                <div class="control-group">
+                                                    <label class="control-label">{lang('amt_hide')}:</label>
+                                                    <div class="controls">
+                                                        <input type="radio" name="hidden" value="1" {if $item.hidden == 1}checked="checked"{/if}/> {lang('amt_yes')}
+                                                        <input type="radio" name="hidden" value="0" {if $item.hidden == 0}checked="checked"{/if}/> {lang('amt_no')}
+                                                    </div>
+                                                </div>            
+                                                <div class="control-group">
+                                                    <label class="control-label">{lang('amt_open_in_new_window')}:</label>
+                                                    <div class="controls">
+                                                        <input type="radio" name="newpage" value="1" {if $data.newpage == 1}checked="checked"{/if}/> {lang('amt_yes')}
+                                                        <input type="radio" name="newpage" value="0" {if $data.newpage == 0}checked="checked"{/if}/> {lang('amt_no')}
+                                                    </div>
+                                                </div>    
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div {if $item.item_type != 'category'}style="display: none;"{/if} id="category" class="edit_holder">
+            <form method="post" action="/admin/components/cp/menu/edit_item/{$item.id}" id="category_form" >
+                {$data = unserialize($item.add_data)}
+                <input type="hidden" name="menu_id" value="{$menu.id}"/>
+                <input type="hidden" name="item_id" value="{$item.item_id}" id="cat_input"/>
+                <input type="hidden" name="item_type" value="category"/>
+                <div class="row-fluid">
+                    <div class="span6">
+                        <table class="table table-striped table-bordered table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th colspan="6">
+                                        {lang('a_pages')}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="6">
+                                        <div class="inside_padd">
+                                            <div class="row-fluid">
+                                                <div class="control-group">
+                                                    <label class="control-label">{lang('amt_select_category')}:</label>
+                                                    <div class="controls">
+                                                        <ul>
+                                                            {foreach $cats as $c}
+                                                                <li><a href="#" class="category_item" data-id="{$c.id}" data-title="{$c.name}">{$c.name}</a></li>
+                                                            {/foreach}   
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -92,73 +237,116 @@
                                         <div class="inside_padd">
                                             <div class="row-fluid">
                                                 <div class="control-group">
-                                                    <label class="control-label">Тип:</label>
+                                                    <label class="control-label">{lang('amt_type')}:</label>
                                                     <div class="controls">
-                                                        <span>Страница</span>
-                                                        <input type="hidden" name="item_type" value="page"/>
+                                                        {lang('amt_category')}
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label">ID:</label>
+                                                    <label class="control-label">{lang('amt_id')}:</label>
                                                     <div class="controls">
-                                                        <span id="page_id_holder">0</span>
-                                                        <input type="hidden" name="item_id"/>
+                                                        <span id="cat_id_holder">{$item.item_id}</span>
                                                     </div>
-                                                </div>
+                                                </div>    
                                                 <div class="control-group">
-                                                    <label class="control-label">Заголовок:</label>
+                                                    <label class="control-label">{lang('amt_title')}:</label>
                                                     <div class="controls">
-                                                        <input type="text" name="title" id="item_title"/>
+                                                        <input type="text" value="{$item.title}" name="title"  id="item_cat_title" />
                                                     </div>
-                                                </div>
+                                                </div>        
                                                 <div class="control-group">
-                                                    <label class="control-label">Родитель:</label>
+                                                    <label class="control-label">{lang('amt_parent')}:</label>
                                                     <div class="controls">
-                                                        <select name="item_parent_id">
-                                                            <option>Нет</option>
+                                                        <select name="parent_id" id="item_parent_id">
+                                                            <option value="0">{lang('amt_no')}</option>
+                                                            {foreach $parents as $p}
+                                                                <option value="{$p.id}" {if $item.parent_id != 0 AND $item.parent_id == $p.id}selected="selected"{/if}> - {$p.title}</option>
+                                                            {/foreach}
+                                                        </select>
+                                                    </div>
+                                                </div>            
+                                                <div class="control-group">
+                                                    <label class="control-label">{lang('amt_position_after')}:</label>
+                                                    <div class="controls">
+                                                        <select name="position_after" id="position_after">
+                                                            <option value="0">{lang('amt_no')}</option>
+                                                            <option value="first">{lang('amt_first')}</option>
+                                                            {foreach $parents as $p}
+                                                                <option value="{$p.id}" {if $item.position != 0 AND $item.postion == $p.postion + 1}selected="selected"{/if}> - {$p.title}</option>
+                                                            {/foreach}
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label">Позиция после:</label>
+                                                    <label class="control-label">{lang('amt_image')}:</label>
                                                     <div class="controls">
-                                                        <select>
-                                                            <option>Нет</option>
+                                                        <input type="text" value="" name="item_image"  id="page_image" />
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label">{lang('amt_access_level')}:</label>
+                                                    <div class="controls">
+                                                        <select id="item_roles" name="item_roles[]" multiple="multiple">
+                                                            <option value="0">{lang('amt_all')}</option>
+                                                            {foreach $roles as $role}
+                                                                <option value ="{$role.id}" {if in_array($role.id, $r)}selected="selected"{/if}>{$role.alt_name}</option>
+                                                            {/foreach}
                                                         </select>
                                                     </div>
-                                                </div>
+                                                </div>    
                                                 <div class="control-group">
-                                                    <label class="control-label">Изображение:</label>
+                                                    <label class="control-label">{lang('amt_hide')}:</label>
                                                     <div class="controls">
-                                                        <input type="text" name="item_image" value=""/>
+                                                        <input type="radio" name="hidden" value="1" {if $item.hidden == 1}checked="checked"{/if}/> {lang('amt_yes')}
+                                                        <input type="radio" name="hidden" value="0" {if $item.hidden == 0}checked="checked"{/if}/> {lang('amt_no')}
                                                     </div>
-                                                </div>
+                                                </div>            
                                                 <div class="control-group">
-                                                    <label class="control-label">Уровень доступа:</label>
+                                                    <label class="control-label">{lang('amt_open_in_new_window')}:</label>
                                                     <div class="controls">
-                                                        <select multiple="multiple">
-                                                            <option>Нет</option>
-                                                        </select>
+                                                        <input type="radio" name="newpage" value="1" {if $data.newpage == 1}checked="checked"{/if}/> {lang('amt_yes')}
+                                                        <input type="radio" name="newpage" value="0" {if $data.newpage == 0}checked="checked"{/if}/> {lang('amt_no')}
                                                     </div>
-                                                </div>
+                                                </div>    
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div {if $item.item_type != 'module'}style="display: none;"{/if} id="module" class="edit_holder">
+            <form method="post" action="/admin/components/cp/menu/edit_item/{$item.id}" id="module_form" >
+                <input type="hidden" name="menu_id" value="{$menu.id}"/>
+                <input type="hidden" name="item_id" value="0" />
+                <input type="hidden" name="item_type" value="module"/>
+                <input type="hidden" name="mod_name" value="{$data.mod_name}"/>
+                <div class="row-fluid">
+                    <div class="span6">
+                        <table class="table table-striped table-bordered table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th colspan="6">
+                                        {lang('a_module')}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="6">
+                                        <div class="inside_padd">
+                                            <div class="row-fluid">
                                                 <div class="control-group">
-                                                    <label class="control-label">Скрыть:</label>
+                                                    <label class="control-label">{lang('amt_select_module')}:</label>
                                                     <div class="controls">
-                                                        <span class="frame_label">
-                                                            <span class="niceCheck b_n">
-                                                                <input type="checkbox" name="hidden" value="1"/>
-                                                            </span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="control-group">
-                                                    <label class="control-label">Открывать в новом окне:</label>
-                                                    <div class="controls">
-                                                        <span class="frame_label">
-                                                            <span class="niceCheck b_n">
-                                                                <input type="checkbox" name="newpage" value="1"/>
-                                                            </span>
-                                                        </span>
+                                                        <ul>
+                                                            {foreach $modules as $module}
+                                                                <li><a href="#" class="module_item" data-mname="{$module.name}" id="module_{$module.name}" title="{$module.description}">{$module.menu_name}</a></li>
+                                                            {/foreach}   
+                                                        </ul>
                                                     </div>
                                                 </div>
                                             </div>
@@ -166,102 +354,227 @@
                                     </td>
                                 </tr>
                             </tbody>
-                        </table>  
-                    </div>						
-                    <a class="btn btn-success formSubmit" data-form="#br_tr_form">Сохранить</a>
-                    {form_csrf()}
-                </form>
-            </div>
-        </div>
-        <div class="tab-pane active" id="categories">
-            <div class="row-fluid">
-                <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
-                    <thead>
-                        <tr>
-                            <th colspan="6">
-                                Категории
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="6">
-                                <div class="inside_padd">
-                                    <div class="row-fluid">
-                                        <div class="control-group">
-                                            <label class="control-label">:</label>
-                                            <div class="controls">
-                                                <input type="text" name="" value=""/>
+                        </table>
+                    </div>
+                    <div class="span6">
+                        <table class="table table-striped table-bordered table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th colspan="6">
+                                        Параметры:
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="6">
+                                        <div class="inside_padd">
+                                            <div class="row-fluid">
+                                                <div class="control-group">
+                                                    <label class="control-label">{lang('amt_type')}:</label>
+                                                    <div class="controls">
+                                                        {lang('amt_module')}
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label">{lang('amt_name')}:</label>
+                                                    <div class="controls">
+                                                        <span id="module_name_holder">{$data.mod_name}</span>
+                                                    </div>
+                                                </div>    
+                                                <div class="control-group">
+                                                    <label class="control-label">{lang('amt_title')}:</label>
+                                                    <div class="controls">
+                                                        <input type="text" value="{$item.title}" name="title"  id="module_item_title" />
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label">Функция:</label>
+                                                    <div class="controls">
+                                                        <input type="text" value="{$data.method}" name="mod_method"/>
+                                                        <span class="help-inline">Например: func_name/param1/param2</span>
+                                                    </div>
+                                                </div>    
+                                                <div class="control-group">
+                                                    <label class="control-label">{lang('amt_parent')}:</label>
+                                                    <div class="controls">
+                                                        <select name="parent_id" id="item_parent_id">
+                                                            <option value="0">{lang('amt_no')}</option>
+                                                            {foreach $parents as $p}
+                                                                <option value="{$p.id}" {if $item.position != 0 AND $item.postion == $p.postion + 1}selected="selected"{/if}> - {$p.title}</option>
+                                                            {/foreach}
+                                                        </select>
+                                                    </div>
+                                                </div>            
+                                                <div class="control-group">
+                                                    <label class="control-label">{lang('amt_position_after')}:</label>
+                                                    <div class="controls">
+                                                        <select name="position_after" id="position_after">
+                                                            <option value="0">{lang('amt_no')}</option>
+                                                            <option value="first">{lang('amt_first')}</option>
+                                                            {foreach $parents as $p}
+                                                                <option value="{$p.id}" {if $item.position != 0 AND $item.postion == $p.postion + 1}selected="selected"{/if}> - {$p.title}</option>
+                                                            {/foreach}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label">{lang('amt_image')}:</label>
+                                                    <div class="controls">
+                                                        <input type="text" value="" name="item_image"  id="page_image" />
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label">{lang('amt_access_level')}:</label>
+                                                    <div class="controls">
+                                                        <select id="item_roles" name="item_roles[]" multiple="multiple">
+                                                            <option value="0">{lang('amt_all')}</option>
+                                                            {foreach $roles as $role}
+                                                                <option value ="{$role.id}" {if in_array($role.id, $r)}selected="selected"le{/if}>{$role.alt_name}</option>
+                                                            {/foreach}
+                                                        </select>
+                                                    </div>
+                                                </div>    
+                                                <div class="control-group">
+                                                    <label class="control-label">{lang('amt_hide')}:</label>
+                                                    <div class="controls">
+                                                        <input type="radio" name="hidden" value="1" {if $item.hidden == 1}checked="checked"{/if}/> {lang('amt_yes')}
+                                                        <input type="radio" name="hidden" value="0" {if $item.hidden == 0}checked="checked"{/if}/> {lang('amt_no')}
+                                                    </div>
+                                                </div>            
+                                                <div class="control-group">
+                                                    <label class="control-label">{lang('amt_open_in_new_window')}:</label>
+                                                    <div class="controls">
+                                                        <input type="radio" name="newpage" value="1" {if $data.newpage == 1}checked="checked"{/if}/> {lang('amt_yes')}
+                                                        <input type="radio" name="newpage" value="0" {if $data.newpage == 0}checked="checked"{/if}/> {lang('amt_no')}
+                                                    </div>
+                                                </div>    
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                {form_csrf()}
-            </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="tab-pane active" id="modules">
-            <div class="row-fluid">
-                <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
-                    <thead>
-                        <tr>
-                            <th colspan="6">
-                                Модули
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="6">
-                                <div class="inside_padd">
-                                    <div class="row-fluid">
-                                        <div class="control-group">
-                                            <label class="control-label">:</label>
-                                            <div class="controls">
-                                                <input type="text" name="" value=""/>
+        <div {if $item.item_type != 'url'}style="display: none;"{/if} id="url" class="edit_holder">
+            <form method="post" action="/admin/components/cp/menu/create_item/" id="url_form" >
+                <input type="hidden" name="menu_id" value="{$menu.id}">
+                <input type="hidden" name="item_id" value="0"/>
+                <input type="hidden" name="item_type" value="url"/>
+                <div class="row-fluid">
+                    <div class="span6">
+                        <table class="table table-striped table-bordered table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th colspan="6">
+                                        {lang('amt_url')}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="6">
+                                        <div class="inside_padd">
+                                            <div class="row-fluid">
+                                                <div class="control-group">
+                                                    <label class="control-label">{lang('amt_select_page_link')}:</label>
+                                                    <div class="controls">
+                                                        <input type="text" id="url_to_page" value="" name="item_url"/>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                {form_csrf()}
-            </div>
-        </div>
-        <div class="tab-pane active" id="url">
-            <div class="row-fluid">
-                <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
-                    <thead>
-                        <tr>
-                            <th colspan="6">
-                                URL
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="6">
-                                <div class="inside_padd">
-                                    <div class="row-fluid">
-                                        <div class="control-group">
-                                            <label class="control-label">:</label>
-                                            <div class="controls">
-                                                <input type="text" name="" value=""/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="span6">
+                        <table class="table table-striped table-bordered table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th colspan="6">
+                                        {lang('a_sett')}:
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="6">
+                                        {$r = unserialize($item.roles)}
+                                        <div class="inside_padd">
+                                            <div class="row-fluid">
+                                                <div class="control-group">
+                                                    <label class="control-label">{lang('amt_title')}:</label>
+                                                    <div class="controls">
+                                                        <input type="text" value="" name="title"  id="item_title" />
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label">{lang('amt_parent')}:</label>
+                                                    <div class="controls">
+                                                        <select name="parent_id" id="item_parent_id">
+                                                            <option value="0">{lang('amt_no')}</option>
+                                                            {foreach $parents as $p}
+                                                                <option value="{$p.id}" {if $item.position != 0 AND $item.postion == $p.postion + 1}selected="selected"{/if}> - {$p.title}</option>
+                                                            {/foreach}
+                                                        </select>
+                                                    </div>
+                                                </div>            
+                                                <div class="control-group">
+                                                    <label class="control-label">{lang('amt_position_after')}:</label>
+                                                    <div class="controls">
+                                                        <select name="position_after" id="position_after">
+                                                            <option value="0">{lang('amt_no')}</option>
+                                                            <option value="first">{lang('amt_first')}</option>
+                                                            {foreach $parents as $p}
+                                                                <option value="{$p.id}" {if $item.position != 0 AND $item.postion == $p.postion + 1}selected="selected"{/if}> - {$p.title}</option>
+                                                            {/foreach}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label">{lang('amt_image')}:</label>
+                                                    <div class="controls">
+                                                        <input type="text" value="" name="item_image"  id="page_image" />
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label">{lang('amt_access_level')}:</label>
+                                                    <div class="controls">
+                                                        <select id="item_roles" name="item_roles[]" multiple="multiple">
+                                                            <option value="0">{lang('amt_all')}</option>
+                                                            {foreach $roles as $role}
+                                                                <option value ="{$role.id}" {if in_array($role.id, $r)}selected="selected"{/if}>{$role.alt_name}</option>
+                                                            {/foreach}
+                                                        </select>
+                                                    </div>
+                                                </div>    
+                                                <div class="control-group">
+                                                    <label class="control-label">{lang('amt_hide')}:</label>
+                                                    <div class="controls">
+                                                        <input type="radio" name="hidden" value="1" {if $item.hidden == 1}checked="checked"{/if}/> {lang('amt_yes')}
+                                                        <input type="radio" name="hidden" value="0" {if $item.hidden == 0}checked="checked"{/if}/> {lang('amt_no')}
+                                                    </div>
+                                                </div>            
+                                                <div class="control-group">
+                                                    <label class="control-label">{lang('amt_open_in_new_window')}:</label>
+                                                    <div class="controls">
+                                                        <input type="radio" name="newpage" value="1" {if $data.newpage == 1}checked="checked"{/if}/> {lang('amt_yes')}
+                                                        <input type="radio" name="newpage" value="0" {if $data.newpage == 0}checked="checked"{/if}/> {lang('amt_no')}
+                                                    </div>
+                                                </div>    
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>    
-        <div class="tab-pane"></div>
-    </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </div>                                            
 </section>
