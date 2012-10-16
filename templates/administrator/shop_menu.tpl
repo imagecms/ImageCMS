@@ -60,7 +60,7 @@
 
                                     <li><a href="#" class="pjax">Автоматизация</a></li>
                                     <li><a href="/admin/components/run/shop/banners/index" class="pjax">Баннеры</a></li>
-                                    <li><a href="/admin/components/run/shop/discounts/index" class="pjax">Скидки</a></li>
+                                    <li><a href="/admin/components/run/shop/discounts/index" class="pjax">{lang('a_reg_discount_sh')}</a></li>
                                     <li><a href="/admin/components/run/shop/comulativ/index" class="pjax">Накопительние скидки</a></li>
                                     <li><a href="/admin/components/run/shop/gifts" class="pjax">Подарочные сертификаты</a></li>
                                     <li><a href="/admin/components/run/shop/customfields" class="pjax">Дополнительные поля</a></li>

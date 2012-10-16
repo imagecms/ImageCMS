@@ -71,16 +71,16 @@ $('.formSubmit').live('click',function(){
 	$(selector).validate()
 	if ($(selector).valid())
 	{
-		var options = {
-				target: '.notifications',
-				beforeSubmit: function (formData){
-					formData.push( {name: "action", value: action} );
-					console.log(formData);
-				},
-				success: function () {return true;}
-		};
-		console.log($(selector));
-		$(selector).ajaxSubmit(options);
+            var options = {
+                target: '.notifications',
+                beforeSubmit: function (formData){
+                        formData.push( {name: "action", value: action} );
+                        console.log(formData);
+                },
+                success: function () {return true;}
+            };
+            console.log($(selector));
+            $(selector).ajaxSubmit(options);
 	}
 	return false;
 });
@@ -448,7 +448,6 @@ var GalleryCategories = new Object({
         $('input[name=id]:checked').each(function(){
             ids.push($(this).val());
         });
-        //		console.log(ids);
         $.post('/admin/components/cp/gallery/delete_category', {
             id:ids
         }, function(data){
@@ -459,7 +458,7 @@ var GalleryCategories = new Object({
             });
         });
         $('.modal').modal('hide');
-        return true;
+        return false;
     }
 });
 
