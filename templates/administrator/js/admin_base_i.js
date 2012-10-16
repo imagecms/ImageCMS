@@ -336,6 +336,7 @@ $(document).ready(function() {
     });
 
     $('.catfilter').on('change', function() {
+        console.log($(this).val());
         $.pjax({
             url: '/admin/components/run/shop/properties/index/' + $(this).attr('value'),
             container: '#mainContent'
@@ -697,8 +698,33 @@ $(document).ready(function() {
     $('.page_title').live('click', function(){
         $('#page_id_holder').html($(this).attr('data-id'));
         $('#item_title').attr('value', $(this).attr('data-title'));
+        $('#item_page_id').attr('value', $(this).attr('data-id'));
     });
-
+    
+    $('.link_type').on('change', function(){
+        var identif = $(this).val();
+        $('.edit_holder').hide();
+        $('#'+identif).show();
+        $('.submit_link').attr('data-form', '#'+identif+'_form');
+        $('input[name=item_type]').attr('value', identif);
+    });
+    
+    $('.category_item').live('click', function(){
+       var id = $(this).attr('data-id');
+       var title = $(this).attr('data-title');
+       $('#cat_input').attr('value', id);
+       $('#cat_id_holder').html(id);
+       $('#item_cat_title').attr('value', title)
+    });
+    
+    $('.module_item').live('click', function(){
+        var mname = $(this).attr('data-mname');
+        var title = $(this).html();
+        $('input[name=mod_name]').attr('value', mname);
+        $('#module_item_title').attr('value', title);
+        $('#module_name_holder').html(mname);
+        
+    });
 });
 
 

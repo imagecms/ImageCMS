@@ -27,7 +27,7 @@
                 <div class="pull-right">
                     <div class="d-i_b">
                         <a href="/admin/components/cp/menu" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
-                        <a type="button" class="btn btn-small btn-success createLink pjax" href="admin/components/cp/menu/create_item/{$insert_id}"><i class="icon-list-alt icon-white"></i>{lang('a_create_link')}</a>
+                        <a type="button" class="btn btn-small btn-success createLink pjax" href="/admin/components/cp/menu/create_item/{$insert_id}"><i class="icon-list-alt icon-white"></i>{lang('a_create_link')}</a>
                         <button type="button" class="btn btn-small disabled action_on" onclick="delete_function.deleteFunction()"><i class="icon-trash"></i>{lang('a_delete')}</button>
                     </div>
                 </div>                            
@@ -64,10 +64,10 @@
                                     </td>
                                     <td><p>{$item.id}</p></td>
                                     <td>
-                                        <a href="/admin/components/cp/menu/edit_item/{$item.id}/{$menu_title}" class="pjax">{$item.title}</a>
+                                        <a href="/admin/components/cp/menu/edit_item/{$item.id}/{$item.name}" class="pjax">{$item.title}</a>
                                     </td>
                                     <td class="share_alt">
-                                        <a href="{echo $item.url}" target="_blank" class="go_to_site pull-right btn btn-small"  data-rel="tooltip" data-placement="top" data-original-title="перейти на сайт"><i class="icon-share-alt"></i></a>
+                                        <a href="{site_url($item.url)}" target="_blank" class="go_to_site pull-right btn btn-small"  data-rel="tooltip" data-placement="top" data-original-title="перейти на сайт"><i class="icon-share-alt"></i></a>
                                         <a href="#">{$item.url}</a>
                                     </td>
                                     <td><p>{ switch $item['item_type'] }
