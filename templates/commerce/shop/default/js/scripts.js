@@ -282,6 +282,17 @@ $(document).ready(function(){
             'overlayColor' : '#000'
         });
     }
+    var main_menu_w = $('.main_menu').width();
+    var main_menu_l = $('.main_menu > ul > li').length;
+    main_menu_l = Math.floor(main_menu_l/2);
+    $('.main_menu > ul > li:gt('+(main_menu_l-1)+')').each(function(){
+        var $this = $(this);
+        $this_ul = $this.children('ul');
+        var $this_w = $this.width();
+        var $this_p_l = $this.position().left;
+        $this_ul.css('right', main_menu_w - $this_p_l - $this_w - 2)
+    })
+    
 });
    
 $(window).load(function(){

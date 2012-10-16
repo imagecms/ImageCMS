@@ -6,7 +6,9 @@
  */
 
 $lang['a_content'] = 'Содержание';
+$lang['a_del_category_selec'] = 'Удалить выбранные категории';
 $lang['a_del_catego_ba'] = 'Удалить категорию';
+$lang['a_del_categoy_ba'] = 'Удаление категории';
 $lang['a_auto_fit_by_url'] = 'Автоподбор';
 $lang['a_category_upda_modu'] = 'Категория обновлена';
 $lang['a_categ_translate_upda'] = 'Перевод категории обновлен';
@@ -84,8 +86,8 @@ $lang['a_menu_create'] = 'Меню создано';
 $lang['a_ps'] = 'шт';
 $lang['a_del_o_met'] = 'Оплачен';
 $lang['a_purch_product_c'] = 'Купленные товары';
-
-
+$lang['a_create_set'] = 'Создать набор';
+$lang['a_go_to_website'] = 'перейти на сайт';
 
 //advanced search
 $lang['a_search_pages'] = 'Поиск страниц';
@@ -106,6 +108,7 @@ $lang['a_save_path'] = 'Файл будет сохранен в директор
 $lang['a_send_mail'] = 'Выслать на почту';
 $lang['a_file_format'] = 'Формат файла';
 $lang['a_create'] = 'Создать';
+$lang['attached_products'] = 'Прикрепленные товары';
 
 //cat_translate.tpl
 $lang['a_cat_translate'] = 'Перевод категории';
@@ -658,3 +661,5 @@ $lang['a_manu_item_translate'] = 'Перевод пункта меню';
 
 $lang['a_key_exists'] = 'Сертификат с таким ключем уже существует'; 
 $lang['a_edit_menu_item'] = 'Редактировать пункт меню';
+
+?>

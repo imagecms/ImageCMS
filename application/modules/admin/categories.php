@@ -6,6 +6,10 @@ if (!defined('BASEPATH'))
 class Categories extends MY_Controller {
 
     private $temp_cats = array();
+    protected $multi = false;
+    protected $level = -1;
+    protected $path = array();
+    protected $pathIds = array();
 
     function __construct() {
         parent::__construct();
@@ -39,7 +43,8 @@ class Categories extends MY_Controller {
         $this->template->show('cats_sidebar', FALSE);
     }
 
-    function cat_list() {
+    function cat_list()
+    {
         $cats = array();
 
         $tree = $this->lib_category->build();
@@ -48,7 +53,8 @@ class Categories extends MY_Controller {
 
         // Get total pages in category
         $cnt = count($cats);
-        for ($i = 0; $i < $cnt; $i++) {
+        for ($i = 0; $i < $cnt; $i++) 
+        {
             $this->db->where('category', $cats[$i]['id']);
             $this->db->where('lang_alias', 0);
             $this->db->from('content');
@@ -56,11 +62,17 @@ class Categories extends MY_Controller {
         }
 
         $this->template->add_array(array(
-            'tree' => $cats
-        ));
+                'tree' => $cats
+            ));
 
         $this->template->show('category_list', FALSE);
     }
+
+   
+
+    
+
+    
 
     function sub_cats($array = array()) {
         foreach ($array as $item) {
@@ -73,6 +85,7 @@ class Categories extends MY_Controller {
 
         return $this->temp_cats;
     }
+
 
     /*
      * Create or update new category
@@ -101,7 +114,9 @@ class Categories extends MY_Controller {
 
         if ($this->form_validation->run($this) == FALSE) {
             ($hook = get_hook('admin_create_cat_val_failed')) ? eval($hook) : NULL;
+            
             showMessage(validation_errors(), false, 'r');
+            
         } else {
             // Create category URL
             if ($this->input->post('url') == FALSE) {
@@ -161,14 +176,16 @@ class Categories extends MY_Controller {
                     );
 
                     showMessage(lang('ac_cat') . $data['name'] . lang('ac_created'));
-
-                    $action = $_POST['action'];
-                    if ($action == 'close') {
-
-                        pjax('/admin/categories/edit/' . $id);
-                    } else {
-                        pjax('/admin/categories/cat_list');
-                    }
+                    
+                    //showMessage(lang('a_categ_translate_upda'));
+                $active = $_POST['action'];
+                
+                if($active == 'close'){
+                    pjax('/admin/categories/create_form');
+                }else{
+                    pjax('/admin/categories/cat_list');
+                }                
+                    //updateDiv('page', site_url('admin/categories/edit/' . $id));
                     break;
 
                 case 'update':
@@ -195,18 +212,20 @@ class Categories extends MY_Controller {
                     );
 
                     showMessage(lang('ac_cat_updated'));
-                    $action = $_POST['action'];
-                    if ($action == 'close') {
-
-                        pjax('/admin/categories/edit/' . $cat_id);
-                    } else {
-                        pjax('/admin/categories/cat_list');
-                    }
+                    
+                    $active = $_POST['action'];
+                if($active == 'close'){
+                    pjax('/admin/categories/edit/'.$cat_id);
+                }else{
+                    pjax('/admin/categories/cat_list');
+                }
+                
                     break;
             }
 
             $this->lib_category->clear_cache();
-            updateDiv('categories', site_url('/admin/categories/update_block')); // Update categories on workspace
+            
+            //updateDiv('categories', site_url('/admin/categories/update_block')); // Update categories on workspace
         }
     }
 
@@ -227,6 +246,14 @@ class Categories extends MY_Controller {
         cp_check_perm('category_create');
 
         ($hook = get_hook('admin_fast_cat_add')) ? eval($hook) : NULL;
+
+        $this->template->add_array(array(
+            'tree' => $this->lib_category->build(),
+        ));
+
+        if ($action == '') {
+            $this->template->show('fast_cat_add', FALSE);
+        }
 
         if ($action == 'create') {
             $this->form_validation->set_rules('name', lang('ac_val_title'), 'trim|required|min_length[1]|max_length[160]');
@@ -285,7 +312,11 @@ class Categories extends MY_Controller {
                         lang('ac_cr_cat') .
                         '<a href="#" onclick="edit_category(' . $id . '); return false;">' . $data['name'] . '</a>'
                 );
-                echo json_encode(array('data' => $id));
+
+                updateDiv('categories', site_url('/admin/categories/update_block'));
+                updateDiv('fast_category_list', site_url('/admin/categories/update_fast_block/' . $id));
+                closeWindow('fast_add_cat_w');
+                jsCode("$('comments_status').checked = true;");
             }
         }
     }
@@ -310,7 +341,6 @@ class Categories extends MY_Controller {
      * @access public
      */
     function edit($id) {
-
         cp_check_perm('category_edit');
 
         $cat = $this->cms_admin->get_category($id);
@@ -330,24 +360,11 @@ class Categories extends MY_Controller {
 
             ($hook = get_hook('admin_show_category_edit')) ? eval($hook) : NULL;
 
-             if (!$this->ajaxRequest)    
             $this->template->show('category_edit', FALSE);
-             if($_POST){
-             showMessage(lang('a_category_upda_modu'));
-             
-             $active = $_POST['action'];
-                
-                if($active == 'close'){
-                    pjax('/admin/categories/edit/'.$id);
-                }else{
-                    pjax('/admin/categories/cat_list');
-                }
-             }
         } else {
             return FALSE;
         }
     }
-
 
     function translate($id, $lang) {
         $cat = $this->cms_admin->get_category($id);
@@ -367,7 +384,7 @@ class Categories extends MY_Controller {
             ($hook = get_hook('admin_set_cat_translate_rules')) ? eval($hook) : NULL;
 
             if ($this->form_validation->run($this) == FALSE) {
-                showMessage(validation_errors());
+                showMessage(validation_errors(),''.'r');
             } else {
                 $data = array();
                 $data['alias'] = $id;
@@ -406,19 +423,17 @@ class Categories extends MY_Controller {
                 }
 
                 $this->lib_category->clear_cache();
-                
                 showMessage(lang('a_categ_translate_upda'));
-                
                 $active = $_POST['action'];
                 
                 if($active == 'close'){
                     pjax('/admin/categories/translate/'.$id.'/'.$lang);
                 }else{
                     pjax('/admin/categories/edit/'.$id);
-                }
-               // closeWindow('translate_category_w');
+                }                
+               
             }
-            
+
             exit;
         }
 
@@ -455,9 +470,11 @@ class Categories extends MY_Controller {
      */
     function delete() {
         cp_check_perm('category_delete');
-
-        //$cat_id = $this->input->post('id');
-        $cat_id = $_POST['id'];
+        
+        
+        foreach($_POST['ids'] as $p){
+            
+        $cat_id = $p;
 
         if ($this->db->get('category')->num_rows() == 1) {
             showMessage(lang('ac_delete_cat_err'), lang('ac_error'), 'r');
@@ -522,6 +539,7 @@ class Categories extends MY_Controller {
             }
         }
 
+        }
         $this->lib_category->clear_cache();
         showMessage(lang('ac_cat_deleted'));
 
