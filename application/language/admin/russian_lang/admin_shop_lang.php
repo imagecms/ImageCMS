@@ -5,7 +5,24 @@
  * and open the template in the editor.
  */
     $lang['a_content']		=	'Содержание';
+    $lang['a_sh_use_datacom']		=	'Данные пользователя';
+    $lang['a_edit_user_sh']		=	'Редактирование пользователя';
+    $lang['a_sh_user_delet']		=	'Пользователи удалены';
+    $lang['a_sh_user_not_found']		=	'Пользователь не найден';
+    $lang['a_log_file_create_user']		=	'Создал пользователя';
+    $lang['a_sh_user_create']		=	'Пользователь создан';
+    $lang['a_filter_admin']		=	'Фильтровать';
+    $lang['a_status_notifica_change']		=	'Статус заказов изменен';
+    $lang['a_notif_dele_user']		=	'Уведомление удаленно';
+    $lang['a_del_user_notif']		=	'Нет переданных данных';
+    $lang['a_users_email_not']		=	'Пользователь уведомлен по E-mail';
+    $lang['a_delete_notification']		=	'Удалить запрос?';
+    $lang['a_delete_notific_st']		=	'Удаление запросов';
+    $lang['a_delete_notific_sg']		=	'Удалить выбранные запросы?';
+    $lang['a_refresh_notif']		=	'Уведомление обновлено';
     $lang['a_tpl_product']	=	'Шаблон продукта';    
+    $lang['a_not_manager_not_fou']	=	'Менеджера не существует или не задан';    
+    $lang['a_not_foun_notif']	=	'Уведомление не найдено';    
     $lang['a_product_crete_success']	='Товар успешно создан';    
     $lang['a_url_fail']		=	'Указанный URL занят';
     $lang['category']		=	'Категория';
