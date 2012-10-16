@@ -649,18 +649,16 @@ function initAdminArea(){
     });
     if (location.hash != '') $("[href="+location.hash+"]").trigger('click');
     
-    $('.controls img.img-polaroid').live('click', function(){
+    $('.controls img.img-polaroid').on('click', function(){
         $(this).closest('.control-group').find('input:file').click();
-    })
+        });
     
     $('[data-url="file"] input[type="file"]').change( function(e){
         $this = $(this);
         $type_file = $this.val();
-        if ($this.parent().next().is(':not([data-flie="url"])')) {
+        //if ($this.parent().next().is(':not([data-flie="url"])')) {
             
-
-    for (var i = 0; i < e.originalEvent.srcElement.files.length; i++) {
-        var file = e.originalEvent.srcElement.files[i];
+        var file = this.files[0];
         
         var img = document.createElement("img");
         var reader = new FileReader();
@@ -673,12 +671,14 @@ function initAdminArea(){
         $(img).addClass('img-polaroid').css({width: '100px'});
         $(this).closest('.control-group').find('.controls').html(img);
         //$(this).after(img);
-    }
     
             //$this.parent().after('<span data-flie="url"><input type="text" readonly="readonly" value="'+$type_file+'" class="input-xlarge"></span>')
-        }
-        else $this.parent().next().val($type_file).attr('data-rel','tooltip');
-    })
+//        }
+//        else
+        $this.parent().next().val($type_file).attr('data-rel','tooltip');
+    //}
+    
+})
         
     //    $('[data-provide="typeahead"]').on('focus', function(){
     //        $(this).on('keyup', function(event){
@@ -708,15 +708,17 @@ function initAdminArea(){
     //            }
     //        })
     //    })
-    $('a.pjax, .dropdown-menu li a').click(function(event){
-        event.preventDefault();
-        $.pjax({
-            url:$(this).attr('href'), 
-            container:'#mainContent'
-        });
-        return false;
-    })
+    
+	$('#mainContent a.pjax').click(function(event){
+	        event.preventDefault();
+	        $.pjax({
+	            url:$(this).attr('href'), 
+	            container:'#mainContent'
+	        });
+	        return false;
+    	});
 
+    fixed_frame_title();
     
     //                $('a.pjax, .dropdown-menu li a').live('click', function(e){
     //$.pjax({url:$(this).attr('href'), container:'#mainContent'})
@@ -748,8 +750,20 @@ $(document).ready(
                 fixed_frame_title();
             }
         });
+        
+        $('a.pjax, .dropdown-menu li a').click(function(event){
+	        event.preventDefault();
+	        $.pjax({
+	            url:$(this).attr('href'), 
+	            container:'#mainContent'
+	        });
+	        $('nav li').removeClass('active');
+            $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
+	        return false;
+    	});
     }
     );
+    
 $(window).load(function(){
     fixed_frame_title();
     $(window).on('resize', function(event){

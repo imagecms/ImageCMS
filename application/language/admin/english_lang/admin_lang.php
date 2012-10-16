@@ -390,4 +390,8 @@ $lang['a_delete_selected_menu'] = 'Delete selected menu?';
 $lang['a_create_link'] = 'Create link';
 
 $lang['a_manu_item_translate'] = 'Menu item translate';
+
+$lang['a_key_exists'] = 'Certificate with this key already exists';
+
+$lang['a_edit_menu_item'] = 'Edit menu item';
 ?>
