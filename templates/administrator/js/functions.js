@@ -4,8 +4,8 @@ var shopAdminMenuCache = false;
 var base_url = 'http://p4/';
 
 function showMessage(title, text, messageType)
-{
-    text = '<h4>'+title+'</h4>'+text;
+{	
+	text = '<h4>'+title+'</h4>'+text;
     messageType = typeof messageType !== 'undefined' ? messageType: 'success';
     if (messageType == 'r')
         messageType = 'error';
@@ -435,6 +435,30 @@ var shopCategories = new Object({
         });
         $('.modal').modal('hide');
         return true;
+    }
+});
+
+var GalleryCategories = new Object({
+    deleteCategories:function (){
+        $('.modal').modal();
+    },
+    deleteCategoriesConfirm:function ()
+    {
+        var ids = new Array();
+        $('input[name=id]:checked').each(function(){
+            ids.push($(this).val());
+        });
+        $.post('/admin/components/cp/gallery/delete_category', {
+            id:ids
+        }, function(data){
+            $('#mainContent').after(data);
+            $.pjax({
+                url:window.location.pathname, 
+                container:'#mainContent'
+            });
+        });
+        $('.modal').modal('hide');
+        return false;
     }
 });
 
