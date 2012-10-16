@@ -5,6 +5,20 @@
  * and open the template in the editor.
  */
     $lang['a_content']		=	'Содержание';
+    $lang['a_rb_del_roles']		=	'Удалить роли?';
+    $lang['a_rbak_del_role_gro']		=	'Удалить выбранные роли?';
+    $lang['a_rbak_delete_role']		=	'Удаление роли';
+    $lang['a_rbak_new_role']		=	'Создать роль';
+    $lang['a_privilege_found_db_name']		=	'Привилегия с таким названием уже существует';
+    $lang['a_rbak_privi_not']		=	'Привилегия не найдена';
+    $lang['a_rbak_privile_create']		=	'Привилегия создана';
+    $lang['a_rbak_franch_same_name']		=	'Привилегия с таким названием уже существует';
+    $lang['a_rbak_delet_succes']		=	'Роль(и) успешно удалены';
+    $lang['a_rback_blocking']		=	'Блокировка';
+    $lang['a_rbak_you_del']		=	'Вы не можете удалить эту роль, поскольку она назначена вам';
+    $lang['a_rbak_posirion_seve']		=	'Позиции успешно сохранены';
+    $lang['a_rbak_found_in_db']		=	'Роль с таким названием уже существует';
+    $lang['a_rback_not_found']		=	'Роль не найдена';
     $lang['a_sh_use_datacom']		=	'Данные пользователя';
     $lang['a_edit_user_sh']		=	'Редактирование пользователя';
     $lang['a_sh_user_delet']		=	'Пользователи удалены';
