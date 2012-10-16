@@ -226,6 +226,7 @@ class Categories extends MY_Controller {
 
         return SHOP_DIR . 'admin' . DS . 'templates' . DS . $controllerName . DS . $viewName . $ext;
     }
+    
 
     function sub_cats($array = array()) {
         foreach ($array as $item) {
