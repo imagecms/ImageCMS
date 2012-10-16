@@ -5,6 +5,20 @@
  * and open the template in the editor.
  */
     $lang['a_content']		=	'content';
+    $lang['a_rb_del_roles']		=	'Remove roles?';
+    $lang['a_rbak_del_role_gro']		=	'Remove selected roles?';
+    $lang['a_rbak_delete_role']		=	'Remove a Role';
+    $lang['a_rbak_new_role']		=	'New Role';
+    $lang['a_privilege_found_db_name']		=	'Franchise with the same name already exists';
+    $lang['a_rbak_privi_not']		=	'The privilege is not found';
+    $lang['a_rbak_privile_create']		=	'Privilege created';
+    $lang['a_rbak_franch_same_name']		=	'Franchise with the same name already exists';
+    $lang['a_rbak_delet_succes']		=	'The role (s) has been successfully removed';
+    $lang['a_rback_blocking']		=	'Blocking';
+    $lang['a_rbak_you_del']     =	'You can not remove this role because it was assigned to you';    
+    $lang['a_rbak_posirion_seve']		=	'Items saved successfully';
+    $lang['a_rbak_found_in_db']		=	'Role with the same name already exists';
+    $lang['a_rback_not_found']		=	'Role not found';
     $lang['a_sh_use_datacom']		=	'User data';
     $lang['a_edit_user_sh']		=	'Editing by'; 
     $lang['a_sh_user_delet']		=	'Members removed';
