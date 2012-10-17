@@ -634,6 +634,7 @@ function initAdminArea(){
         $this_href = $(this).attr('href');
         $(this).siblings().removeClass('active').end().addClass('active');
     });
+
     if (location.hash != '') $("[href="+location.hash+"]").click();
     else $('.myTab li.active a').click();
     
@@ -718,6 +719,13 @@ function initAdminArea(){
     //            $.pjax({url: $(this).attr('href'), container:'#mainContent'});
     //           return false;
     //      });
+    
+    $('.myTab a').click(function (e) {
+	  e.preventDefault();
+	  $(this).tab('show');
+	})
+    
+    
     
     initTinyMCE();
     console.log('initialising of administration area ended');
