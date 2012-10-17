@@ -336,11 +336,11 @@ $(document).ready(function() {
     });
 
     $('.catfilter').on('change', function() {
-        console.log($(this).val());
-        $.pjax({
-            url: '/admin/components/run/shop/properties/index/' + $(this).attr('value'),
-            container: '#mainContent'
-        });
+        redirect_url('/admin/components/run/shop/properties/index/' + $(this).attr('value'));
+//        $.pjax({
+//            url: '/admin/components/run/shop/properties/index/' + $(this).attr('value'),
+//            container: '#mainContent'
+//        });
     });
 
     $('#generateButton').live('click', function() {
@@ -395,6 +395,22 @@ $(document).ready(function() {
             }
         });
     });
+    
+//    $('span.to_pspam').live('click', function() {
+//        var arr = new Array();
+//        $('input[name=ids]:checked').each(function() {
+//                arr.push($(this).val());
+//        });
+//        console.log(arr);
+//        $.ajax({
+//            type: 'post',
+//            url: '/admin/components/cp/comments/update_status',
+//            data: 'id=' + id + '&status=' + 2,
+//            success: function(data) {
+//                $('.notifications').append(data);
+//            }
+//        });
+//    });
 
     $('#comment_delete').live('click', function() {
         if ($(this).hasClass('disabled')) {

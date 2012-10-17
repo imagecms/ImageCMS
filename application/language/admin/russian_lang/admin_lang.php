@@ -661,5 +661,6 @@ $lang['a_manu_item_translate'] = 'Перевод пункта меню';
 
 $lang['a_key_exists'] = 'Сертификат с таким ключем уже существует'; 
 $lang['a_edit_menu_item'] = 'Редактировать пункт меню';
-
+$lang['a_products_without_images'] = 'Товары без картинок';
+$lang['a_comments'] = 'Комментарии';
 ?>
