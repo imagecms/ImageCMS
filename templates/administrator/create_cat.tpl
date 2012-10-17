@@ -35,7 +35,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd">
+                                        <div class="inside_padd span12">
                                             <div class="form-horizontal">
 
                                                 <div class="row-fluid">
@@ -158,7 +158,7 @@
                                                     <div class="control-group">
                                                         <label class="control-label" for="short_desc">{lang('a_desc')}:</label>
                                                         <div class="controls">
-                                                            <textarea name="short_desc" id="short_desc" class="mceEditor"></textarea>
+                                                            <textarea name="short_desc" id="short_desc" class="elRTE"></textarea>
                                                         </div>
                                                     </div>                                                        
                                                 </div>
@@ -179,7 +179,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd">
+                                        <div class="inside_padd span12">
                                             <div class="form-horizontal">
                                                 <div class="row-fluid">
                                                     <div class="control-group">
@@ -282,7 +282,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd">
+                                        <div class="inside_padd span12">
                                             <div class="form-horizontal">
                                                 <div class="row-fluid">
                                                     <div class="control-group">
@@ -293,12 +293,12 @@
                                                     </div>
                                                     <div class="control-group"><label class="control-label" for="descriptions">{lang('a_meta_description')}:</label>
                                                         <div class="controls">
-                                                            <textarea id="descriptions" class="mceEditor" name="description" rows="10" cols="180" ></textarea>
+                                                            <textarea id="descriptions"  name="description" rows="10" cols="180" ></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="control-group"><label class="control-label" for="keywordss">{lang('a_meta_keywords')}:</label>
                                                         <div class="controls">
-                                                            <textarea id="keywordss" class="mceEditor" name="keywords" rows="10" cols="180" ></textarea>
+                                                            <textarea id="keywordss" name="keywords" rows="10" cols="180" ></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
