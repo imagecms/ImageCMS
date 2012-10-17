@@ -27,7 +27,7 @@
                         <tbody>
                             <tr>
                                 <td colspan="6">
-                                    <div class="inside_padd">
+                                    <div class="inside_padd ">
                                         <div class="row-fluid">
                                             <div class="control-group m-t_10">
                                                 <label class="control-label" for="inputName">{lang('a_n')}:</label>
@@ -62,7 +62,7 @@
                                             <div class="control-group" id="textareaholder" style="display:none;">
                                                 <label class="control-label">{lang('a_module_name')}:</label>
                                                 <div class="controls" style="top: 6px;">
-                                                    <textarea name="html_code" rows="15" class="mceEditor"></textarea>
+                                                    <textarea name="html_code" rows="15" class="elRTE"></textarea>
                                                 </div>
                                             </div>
                                         </div>
