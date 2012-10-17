@@ -36,7 +36,7 @@
                 <td class="t-a_c">
                     <span class="frame_label">
                         <span class="niceCheck">
-                            <input type="checkbox">
+                            <input type="checkbox" name="id" value="{$category.id}" data-id="{$category.id}">
                         </span>
                     </span>
                 </td>
@@ -53,36 +53,10 @@
             {/foreach}
         </tbody>
     </table>
-
-    {literal}
-    <!--    <script type="text/javascript">
-            window.addEvent('domready', function(){
-                cats_table = new sortableTable('cats_table', {overCls: 'over', sortOn: -1 ,onClick: function(){}});
-                cats_table.altRow();
-            });
-    
-            function confirm_delete_gcategory(id)
-            {
-                alertBox.confirm('<h1> </h1><p>Удалить категорию ' + id + '? </p>', {onComplete:
-                        function(returnvalue){
-                        if(returnvalue)
-                        {
-                            var req = new Request.HTML({
-                                method: 'post',
-                                url: base_url + 'admin/components/cp/gallery/delete_category',
-                                onRequest: function() { },
-                                onComplete: function(response) {  
-                                    ajax_div('page', base_url + 'admin/components/cp/gallery/');   
-                                }
-                            }).post({'category': id });
-                        }
-                    }
-                });
-            }
-    
-        </script>-->
-    {/literal}
-
+    {else:}
+    <div class="alert alert-info m-t_20">
+        {lang('a_empty_category_list')}
+    </div>
     {/if}
 </section>
 <div class="modal hide fade products_delete_dialog">
@@ -92,6 +66,6 @@
     </div>
     <div class="modal-footer">
         <a href="" class="btn" onclick="$('.modal').modal('hide');">{lang('a_footer_cancel')}</a>
-        <a href="" class="btn btn-primary" onclick="GalleryCategories.deleteCategories();$('.modal').modal('hide');">{lang('a_delete')}</a>
+        <a href="" class="btn btn-primary" onclick="GalleryCategories.deleteCategoriesConfirm();$('.modal').modal('hide');">{lang('a_delete')}</a>
     </div>
 </div>
