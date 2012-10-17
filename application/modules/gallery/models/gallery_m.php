@@ -260,6 +260,7 @@ class Gallery_m extends CI_Model {
     function create_category($data = array())
     {
         $this->db->insert('gallery_category', $data);
+        return $this->db->insert_id();
     }
 
     function get_category($id)
