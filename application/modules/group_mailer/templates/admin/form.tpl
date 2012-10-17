@@ -26,7 +26,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd">
+                                <div class="inside_padd span12">
                                     <div class="form-horizontal">
                                         <div class="row-fluid">
                                             <form id="send" method="post" action="{$BASE_URL}admin/components/cp/group_mailer/send_email">
@@ -53,7 +53,7 @@
                                                 <div class="control-group">
                                                     <label class="control-label" for="message">{lang('amt_message')}</label>
                                                     <div class="controls">
-                                                        <textarea name="message" id="message" rows="15" cols="180"  style="width:700px;height:350px;">{lang('amt_hello')}, %username%.
+                                                        <textarea name="message" id="message" class="elRTE" >{lang('amt_hello')}, %username%.
 
 
 

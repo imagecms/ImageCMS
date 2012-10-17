@@ -42,7 +42,7 @@
                                     <td colspan="6">
 
 <div class="inside_padd">
-<div class="span9">
+<div class="span12">
 
         <div class="control-group">
         <label class="control-label">
@@ -74,7 +74,7 @@
 		{lang('a_prev_cont')}:
         </label>
         	<div class="controls">
-			<textarea id="prev_text" class="mceEditor required" name="prev_text" rows="10" cols="180" ></textarea>
+			<textarea id="prev_text" class="elRTE required" name="prev_text" rows="10" cols="180" ></textarea>
         	</div>
         </div>
  
@@ -83,7 +83,7 @@
 		{lang('a_full_cont')}:
         </label>
         	<div class="controls">
-			<textarea id="full_text" class="mceEditor" name="full_text" rows="10" cols="180" ></textarea>
+			<textarea id="full_text" class="elRTE" name="full_text" rows="10" cols="180" ></textarea>
         	</div>
         </div>
 

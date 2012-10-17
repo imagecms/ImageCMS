@@ -186,7 +186,7 @@
                                                         <label class="control-label" for="inputLocal">{lang('a_category')}:</label>
                                                         <div class="controls">
 
-                                                            <input type="radio" class="input-small" name="main_type" value="category" {if $main_type == "category"} checked="checked" {/if} />
+                                                            <input type="radio" name="main_type" value="category" {if $main_type == "category"} checked="checked" {/if} />
 
                                                             <select name="main_page_cat" class="input-small">
                     { $this->view("cats_select.tpl", $this->template_vars); }
@@ -233,7 +233,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="tab-pane" id="homePage">                                    
+                    <div class="tab-pane" id="metatag">                                    
                         <table class="table table-striped table-bordered table-hover table-condensed">
                             <thead>
                                 <tr>

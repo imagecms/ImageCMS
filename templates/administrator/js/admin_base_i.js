@@ -130,13 +130,13 @@ $(document).ready(function() {
     $('#inputType').on('change', function() {
         if ($(this).attr('value') === 'html')
         {
-            $('#moduleholder').hide('slow', function() {
+            $('#moduleholder').fadeOut(200, function() {
                 $('#textareaholder').css('display', '')
             });
-            $('#mod_name').hide('slow');
+            $('#mod_name').fadeOut(200);
 
         } else {
-            $('#textareaholder').hide('slow', function() {
+            $('#textareaholder').fadeOut(200, function() {
                 $('#moduleholder').css('display', 'inline-table');
             });
         }
