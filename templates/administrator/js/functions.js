@@ -129,9 +129,28 @@ function initElRTE()
             styleWithCSS : true,
            	height       : 300,
            	fmAllow		: true,
+           	
+           	fmOpen: function(callback) {
+			    if (typeof dialog === 'undefined') {
+			      // create new elFinder
+			      dialog = $('<div />').dialogelfinder({
+			        url: '/admin/elfinder_init',
+			        commandsOptions: {
+			          getfile: {
+			            oncomplete : 'close' // close/hide elFinder
+			          }
+			        },
+			        getFileCallback: function(file) { callback(file.path); }
+//			        getFileCallback: callback // pass callback to file manager
+			      });
+			    } else {
+			      // reopen elFinder
+			      dialog.dialogelfinder('open')
+			    }
+			  },
+           	
             toolbar      : 'maxi'
             };
-            
             $('textarea.elRTE').elrte(opts);
 }
 
