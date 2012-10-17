@@ -394,4 +394,6 @@ $lang['a_manu_item_translate'] = 'Menu item translate';
 $lang['a_key_exists'] = 'Certificate with this key already exists';
 
 $lang['a_edit_menu_item'] = 'Edit menu item';
+$lang['a_products_without_images'] = 'Products without images';
+$lang['a_comments'] = 'Comments';
 ?>
