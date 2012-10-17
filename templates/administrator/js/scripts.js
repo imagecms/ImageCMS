@@ -12,9 +12,28 @@ $(document).ajaxComplete( function(event, XHR, ajaxOptions){
     {
         initAdminArea();
     }
-    
+    number_tooltip_live();
+    fixed_frame_title();
     $('.tooltip').remove();
 });
+function number_tooltip(){
+    $('.number input').tooltip().on('keypress', function(event){
+        var key, keyChar;
+        if(!event) var event = window.event;
+
+        if (event.keyCode) key = event.keyCode;
+        else if(event.which) key = event.which;
+
+        if(key==null || key==0 || key==8 || key==13 || key==9 || key==46 || key==37 || key==39 ) return true;
+        keyChar=String.fromCharCode(key);
+
+        if(!/\d/.test(keyChar)) {
+            $(this).tooltip('show');
+            return false
+        }
+        else $(this).tooltip('hide');
+    });
+}
 function fixed_frame_title(){
     fixed_block = $(".frame_title:not(.no_fixed)");
     mini_layout = $('.mini-layout');
@@ -42,21 +61,13 @@ function fixed_frame_title(){
         return scrOfY;
     }
 	
-    function fixPaneRefresh(){
-        var top = getScrollTop();
+    var top = getScrollTop();
         
-        if (top < fixed_block_top) fixed_block.css("top",fixed_block_top-top+20);
-        else fixed_block.css("top",20);
+    if (top < fixed_block_top) fixed_block.css("top",fixed_block_top-top+20);
+    else fixed_block.css("top",20);
         
-        fixed_block.css('width', container.width()-2);
-        mini_layout.css('padding-top', 20+fixed_block_h)
-    }
-   
-    if ($.exists_nabir(fixed_block)) {
-        $(window).scroll(function() {
-            fixPaneRefresh();
-        })
-    }
+    fixed_block.css('width', container.width()-2);
+    mini_layout.css('padding-top', 20+fixed_block_h)
 }
 function difTooltip(){
     //  tooltip
@@ -113,20 +124,18 @@ function initAdminArea(){
     })
     
     //  tabs
-    $('.myTab a').live('click', function (e) {
-        var hst = $(window).scrollTop()
-        $this_href = $(this).attr('href');
-        if (!$.exists_nabir($($this_href))){
-            $('.tab-pane:last').load('set/'+$this_href.substring(1)+'.html').siblings().removeClass('active').end().addClass('active').attr('id', $this_href.substring(1));
-            $('.tab-content').append('<div class="tab-pane"></div>')
-        }
-        $(this).tab('show');
-        e.preventDefault();
-        location.hash = $this_href;
-        $(window).scrollTop(hst)
-    });
-    if (location.hash != '') $("[href="+location.hash+"]").click();
-    else $('.myTab li.active a').click();
+    //    $('.myTab a').live('click', function (e) {
+    //        var hst = $(window).scrollTop()
+    //        $this_href = $(this).attr('href');
+    //        if (!$.exists_nabir($($this_href))){
+    //            $('.tab-pane:last').load('set/'+$this_href.substring(1)+'.html').siblings().removeClass('active').end().addClass('active').attr('id', $this_href.substring(1));
+    //            $('.tab-content').append('<div class="tab-pane"></div>')
+    //        }
+    //        $(this).tab('show');
+    //        e.preventDefault();
+    //        location.hash = $this_href;
+    //        $(window).scrollTop(hst)
+    //    });
     
     //  drop search
     $('.typeahead').typeahead();
@@ -190,28 +199,6 @@ function initAdminArea(){
         event.stopPropagation();
     });
     
-    $('.number input').each(function(){
-        $(this).attr({
-            'data-placement':'top', 
-            'data-original-title': 'только цифры'
-        });
-    }).tooltip().on('keypress', function(event){
-        var key, keyChar;
-        if(!event) var event = window.event;
-
-        if (event.keyCode) key = event.keyCode;
-        else if(event.which) key = event.which;
-
-        if(key==null || key==0 || key==8 || key==13 || key==9 || key==46 || key==37 || key==39 ) return true;
-        keyChar=String.fromCharCode(key);
-
-        if(!/\d/.test(keyChar)) {
-            $(this).tooltip('show');
-            return false
-        }
-        else $(this).tooltip('hide');
-        
-    });
     //not_standart_checks----------------------
     function dis_un_dis(){
         var label_act = $('.frame_label.active');
@@ -647,11 +634,12 @@ function initAdminArea(){
         $this_href = $(this).attr('href');
         $(this).siblings().removeClass('active').end().addClass('active');
     });
-    if (location.hash != '') $("[href="+location.hash+"]").trigger('click');
+    if (location.hash != '') $("[href="+location.hash+"]").click();
+    else $('.myTab li.active a').click();
     
     $('.controls img.img-polaroid').on('click', function(){
         $(this).closest('.control-group').find('input:file').click();
-        });
+    });
     
     $('[data-url="file"] input[type="file"]').change( function(e){
         $this = $(this);
@@ -659,26 +647,28 @@ function initAdminArea(){
         //if ($this.parent().next().is(':not([data-flie="url"])')) {
             
         var file = this.files[0];
-        
+       
         var img = document.createElement("img");
         var reader = new FileReader();
         reader.onloadend = function() {
-             img.src = reader.result;
+            img.src = reader.result;
         }
         
         reader.readAsDataURL(file);
         //console.log(img);
-        $(img).addClass('img-polaroid').css({width: '100px'});
+        $(img).addClass('img-polaroid').css({
+            width: '100px'
+        });
         $(this).closest('.control-group').find('.controls').html(img);
         //$(this).after(img);
     
-            //$this.parent().after('<span data-flie="url"><input type="text" readonly="readonly" value="'+$type_file+'" class="input-xlarge"></span>')
-//        }
-//        else
+        //$this.parent().after('<span data-flie="url"><input type="text" readonly="readonly" value="'+$type_file+'" class="input-xlarge"></span>')
+        //        }
+        //        else
         $this.parent().next().val($type_file).attr('data-rel','tooltip');
     //}
     
-})
+    })
         
     //    $('[data-provide="typeahead"]').on('focus', function(){
     //        $(this).on('keyup', function(event){
@@ -709,14 +699,14 @@ function initAdminArea(){
     //        })
     //    })
     
-	$('#mainContent a.pjax').click(function(event){
-	        event.preventDefault();
-	        $.pjax({
-	            url:$(this).attr('href'), 
-	            container:'#mainContent'
-	        });
-	        return false;
-    	});
+    $('#mainContent a.pjax').click(function(event){
+        event.preventDefault();
+        $.pjax({
+            url:$(this).attr('href'), 
+            container:'#mainContent'
+        });
+        return false;
+    });
 
     fixed_frame_title();
     
@@ -745,6 +735,7 @@ $(document).ready(
         updateNotificationsTotal();
         initAdminArea();
         $('.nav .dropdown-menu a').unbind('click');
+
         $.ajaxSetup({
             success: function(){
                 fixed_frame_title();
@@ -752,25 +743,28 @@ $(document).ready(
         });
         
         $('a.pjax, .dropdown-menu li a').click(function(event){
-	        event.preventDefault();
-	        $.pjax({
-	            url:$(this).attr('href'), 
-	            container:'#mainContent'
-	        });
-	        $('nav li').removeClass('active');
+            event.preventDefault();
+            $.pjax({
+                url:$(this).attr('href'), 
+                container:'#mainContent'
+            });
+            $('nav li').removeClass('active');
             $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
-	        return false;
-    	});
+            return false;
+        });
     }
     );
     
 $(window).load(function(){
-    fixed_frame_title();
     $(window).on('resize', function(event){
+        fixed_frame_title();
         fixed_block_h = fixed_block.outerHeight(true);
         fixed_block_top = mini_layout.offset().top;
         $(this).trigger('scroll');
         $('.fade.in').remove();
         difTooltip();
     }).resize();
+    $(window).scroll(function(){
+        fixed_frame_title();
+    })
 })
