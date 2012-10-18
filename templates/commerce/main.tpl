@@ -3,6 +3,9 @@
     <head>
         <meta charset="utf-8" />
         <title>{$site_title}</title>
+        <meta name="description" content="{$site_description}" />
+        <meta name="keywords" content="{$site_keywords}" />
+        <meta name="generator" content="ImageCMS" />        
         <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/style.css" media="all" />
         <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/jquery.fancybox-1.3.4.css" media="all" />
         <link rel="icon" type="image/x-icon" href="{$SHOP_THEME}images/favicon.png"/>
@@ -36,8 +39,8 @@
                 <a href="{shop_url('')}" class="logo"></a>
                 <div class="frame_form_search">
                     <form action="{shop_url('search')}" method="get" class="clearfix">
-<!--                        <input type="text" value="Поиск по сайту" name="text" />-->
-                                 <input type="text" size="30" name="text" value="{lang('s_search')} {lang('s_po')} {lang('s_site')}" onfocus="if(this.value=='{lang('s_search')} {lang('s_po')} {lang('s_site')}') this.value='';" onblur="if(this.value=='') this.value='{lang('s_search')} {lang('s_po')} {lang('s_site')}';" />
+                        <!--                        <input type="text" value="Поиск по сайту" name="text" />-->
+                        <input type="text" size="30" name="text" value="{lang('s_search')} {lang('s_po')} {lang('s_site')}" onfocus="if(this.value=='{lang('s_search')} {lang('s_po')} {lang('s_site')}') this.value='';" onblur="if(this.value=='') this.value='{lang('s_search')} {lang('s_po')} {lang('s_site')}';" />
                         <input type="submit" class="submit"  value="{lang('s_search')}" />
                         <div class="search_drop d_n">
                             <ul>
@@ -105,9 +108,9 @@
             <div class="main_menu center">
                 <ul class="clearfix">{echo ShopCore::app()->SCategoryTree->ulWithTitle()}</ul>
             </div><!-- main_menu -->
-            
+
             {$content}
-            
+
             <div class="hfooter"></div>
         </div>
         <div class="footer">
