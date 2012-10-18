@@ -1,6 +1,6 @@
 <div class="container">
     <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->    
-    <div class="modal hide fade">
+    <div class="modal hide fade modal_del">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h3>{lang('a_del_catego_ba')}</h3>
