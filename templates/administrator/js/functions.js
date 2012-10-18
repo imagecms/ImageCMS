@@ -140,8 +140,8 @@ function initElRTE()
 			            oncomplete : 'close' // close/hide elFinder
 			          }
 			        },
-			        getFileCallback: function(file) { callback(file.path); }
-//			        getFileCallback: callback // pass callback to file manager
+//			        getFileCallback: function(file) { callback(file.path); }
+			        getFileCallback: callback // pass callback to file manager
 			      });
 			    } else {
 			      // reopen elFinder
