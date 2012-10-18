@@ -5,6 +5,21 @@
  * and open the template in the editor.
  */
     $lang['a_content']		=	'Content';
+    $lang['a_status_succes_delete']                  =	'Status removed';
+    $lang['a_status_new_succes_pend_go']                  =	'Status pending created';
+    $lang['a_ff_not_fount_stat_prod']                  =	'Status pending no nayden';
+    $lang['a_coll_status_new_create_succes']                  =	'Position created';
+    $lang['a_col_new_status_cp_a']                  =	'Creating a status callback';
+    $lang['a_edit_status_theme_col']                  =	'These status callback';
+    $lang['a_editing_theme_coll_one']                  =	'Editing Tools colback';
+    $lang['a_status_delete_3']                  =	'Remove status?';
+    $lang['a_status_delete_2']                  =	'Remove your status?';
+    $lang['a_status_delete_1']                  =	'Removing status';
+    $lang['a_create_status_coll_new']                  =	'Create status';
+    $lang['a_view_list_coll_stat']                  =	'Browse topics collback\'ov';
+    $lang['a_comul_refresh_succes']                  =	'refreshed successfully';
+    $lang['a_comul_disc_user_data']                  =	'Deposit rates';
+    $lang['a_comulativ_editing_user_discount']                  =	'Editing by discounts';
     $lang['a_add_data_field']                  =	'Additional data';
     $lang['a_atten_category_del_product']                  =	'Attention! will also remove all the products from this category';
     $lang['a_comulativ_discount_del_and_fg']                  =	'Cumulative discount removed';
