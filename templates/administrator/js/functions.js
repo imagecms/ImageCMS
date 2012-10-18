@@ -131,22 +131,22 @@ function initElRTE()
            	fmAllow		: true,
            	
            	fmOpen: function(callback) {
-			    if (typeof dialog === 'undefined') {
+//			    if (typeof dialog === 'undefined') {
 			      // create new elFinder
 			      dialog = $('<div />').dialogelfinder({
 			        url: '/admin/elfinder_init',
 			        commandsOptions: {
 			          getfile: {
-			            oncomplete : 'close' // close/hide elFinder
+			            oncomplete : 'destroy' // close/hide elFinder
 			          }
 			        },
-			        getFileCallback: function(file) { callback(file.path); }
+			        getFileCallback: function(file) { callback('/'+file.path); }
 //			        getFileCallback: callback // pass callback to file manager
 			      });
-			    } else {
-			      // reopen elFinder
-			      dialog.dialogelfinder('open')
-			    }
+//			    } else {
+//			      // reopen elFinder
+//			      dialog.dialogelfinder('open')
+//			    }
 			  },
            	
             toolbar      : 'maxi'
@@ -154,6 +154,23 @@ function initElRTE()
             $('textarea.elRTE').elrte(opts);
 }
 
+function elFinderPopup(type, id)
+{
+	
+				    dlg = $('#elFinder').dialogelfinder({
+			        url: '/admin/elfinder_init',
+			        commandsOptions: {
+			          getfile: {
+			            oncomplete : 'destroy' // close/hide elFinder
+			          }
+			        },
+			        getFileCallback: function(file) { $('#'+id).val( '/'+file.path); }
+			        
+//			        getFileCallback: callback // pass callback to file manager
+			      });
+			      
+			      return false;
+}
 //tinymce
 
 //function initTinyMCE()

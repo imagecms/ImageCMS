@@ -187,6 +187,7 @@ function initAdminArea(){
     }
     $('.ui-datepicker').addClass('dropdown-menu'); 
 
+//    $('.ui-dialog button').ready(function(){ $('.ui-dialog button').addClass('btn')});
     
     //my
     $('html').live('click', function(event) {
@@ -745,7 +746,7 @@ $(document).ready(
             }
         });
         
-        $('a.pjax, .dropdown-menu li a pjax').click(function(event){
+        $('a.pjax, .dropdown-menu li a.pjax').click(function(event){
             event.preventDefault();
             $.pjax({
                 url:$(this).attr('href'), 
@@ -755,6 +756,26 @@ $(document).ready(
             $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
             return false;
         });
+        
+        
+        
+                
+        $('a.pjax, .dropdown-menu li a.pjax').each(function(){
+        	if (! $(this).hasClass('pjaxed'))
+        	$(this).click(function(event){
+            event.preventDefault();
+            $.pjax({
+                url:$(this).attr('href'), 
+                container:'#mainContent'
+            });
+            $('nav li').removeClass('active');
+            $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
+            return false;
+        	}).addClass('pjaxed');
+        
+        });
+        
+        
     }
     );
     
