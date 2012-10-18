@@ -160,6 +160,25 @@ class Admin extends MY_Controller {
             'color' => 'r',
             'filesCount' => $this->cache->cache_file()));
     }
+    
+    //initialyze elFinder
+    public function elfinder_init()
+    {
+    	$this->load->helper('path');
+    	$opts = array(
+    			// 'debug' => true,
+    			'roots' => array(
+    					array(
+    							'driver' => 'LocalFileSystem',
+    							'path'   => set_realpath('uploads'),
+    							'URL'    => site_url() . 'uploads'
+    							// more elFinder options here
+    					)
+    			)
+    	);
+    	$this->load->library('elfinder_lib', $opts);
+    }
+    
 
     public function sidebar_cats() {
         echo '<div id="categories">';
