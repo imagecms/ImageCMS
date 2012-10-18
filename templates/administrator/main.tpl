@@ -11,14 +11,17 @@
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/style.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap-responsive.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap-notify.css">
-        <!--  
+         
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery-ui-1.8.23.custom.css">
-         -->
+         <!--
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery-ui-1.8.16.custom.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery.ui.1.8.16.ie.css">
+        -->
         <link rel="stylesheet" type="text/css" href="/js/elrte-1.3/css/elrte.min.css" media="screen" charset="utf-8">
-        
-        
+        <link rel="stylesheet" type="text/css" href="/js/elfinder-2.0/css/elfinder.min.css" media="screen" charset="utf-8">
+        <!-- 
+        <link rel="stylesheet" type="text/css" href="/js/elfinder-2.0/css/theme.css" media="screen" charset="utf-8">
+         -->
         
     </head>
     <body>
@@ -207,7 +210,7 @@
                 </div>
             </div>
         </footer>
-
+<div id="elfinder"></div>
         <script>
             {if $CI->dx_auth->is_logged_in()}
             var userLogined = true;
@@ -216,7 +219,7 @@
             {/if}
         </script>
 
-        <script src="{$THEME}/js/jquery-1.8.0.min.js" type="text/javascript"></script>
+        <script src="{$THEME}/js/jquery-1.8.2.min.js" type="text/javascript"></script>
         <script src="{$THEME}/js/pjax/jquery.pjax.js" type="text/javascript"></script>
         <script src="{$THEME}/js/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script>
         <script src="{$THEME}/js/bootstrap.min.js" type="text/javascript"></script>
@@ -237,6 +240,7 @@
         <script src="{$THEME}/js/scripts.js" type="text/javascript"></script>
         
         <script type="text/javascript" src="/js/elrte-1.3/js/elrte.min.js"></script>
+        <script type="text/javascript" src="/js/elfinder-2.0/js/elfinder.min.js"></script>
 
         <script src="{$THEME}/js/admin_base_i.js" type="text/javascript"></script>        
         <script src="{$THEME}/js/admin_base_m.js" type="text/javascript"></script>        
