@@ -666,4 +666,9 @@ $lang['a_key_exists'] = 'Сертификат с таким ключем уже 
 $lang['a_edit_menu_item'] = 'Редактировать пункт меню';
 $lang['a_products_without_images'] = 'Товары без картинок';
 $lang['a_comments'] = 'Комментарии';
+
+$lang['a_cancel_filter'] = 'Сбросить фильтр';
+
+$lang['a_copy_product'] = 'Создать копию';
+$lang['a_move_to_category'] = 'Переместить в категорию';
 ?>
