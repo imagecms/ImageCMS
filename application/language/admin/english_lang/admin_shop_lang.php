@@ -5,6 +5,22 @@
  * and open the template in the editor.
  */
     $lang['a_content']		=	'Content';
+    $lang['a_comulativ_discount_del_and_fg']                  =	'Cumulative discount removed';
+    $lang['a_comulativ_disc_update']                  =	'Discount updated';
+    $lang['a_comulativ_discount_user']                  =	'Member Discount';
+    $lang['a_comul_param_discount']                  =	'Discount options';
+    $lang['a_dicsount_from_dob_2']                  =	'Discount Amount to';
+    $lang['a_dicsount_from_dob_1']                  =	'Discount Amount of';
+    $lang['a_list_al_discount']                  =	'Offers list';
+    $lang['a_comulative_delete_2']                  =	'Remove selected discount?';
+    $lang['a_comulative_delete_1']                  =	'Removing discounts';
+    $lang['a_comulat_delete_disc']		=	'Remove the discount?';
+    $lang['a_comulativ_thes_discount']		=	'These discounts';
+    $lang['a_pr_discount_com'] = 'Discount';
+    $lang['a_comulativ_the_before']		=	'Amount before';
+    $lang['a_comulativ_the_amout']		=	'The amount of';
+    $lang['a_role_is_a_create']		=	'Role is created';
+    $lang['a_imp_rbak']		=	'Importance';
     $lang['a_custom_field_edi_add_th']		=	'These additional field';
     $lang['a_custom_f_edit_n']		=	'Editing a custom field';
     $lang['a_custom_field_not_found']		=	'Field not found';

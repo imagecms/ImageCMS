@@ -98,20 +98,7 @@ $(document).ready(function(){
         });
 
     });
-  
-    
- $('.bbb').live('click', function(){ 
-      
-            
-           
-  $(".bbb").clone().prependTo(".pppp");
-//  $(".bbb").click(function(){
-//      $(this).clone(true).insertAfter(this);
-//    });
 
-            
-        
-    });
         
  
     
