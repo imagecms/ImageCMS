@@ -613,7 +613,7 @@
     $lang['a_properties_review'] = 'Просмотр свойств товаров';
     $lang['a_empty_propery_list'] = 'Список свойств пустой';
     $lang['a_create_product_property'] = 'Создание свойства товара';
-    $lang['a_product_kits_review'] = 'Просмотр наборов продуктов';
+    $lang['a_product_kits_review'] = 'Просмотр наборов товаров';
     $lang['a_active_category'] = 'Активная';
     $lang['a_empty_category_list'] = 'Список категорий пустой';
     $lang['a_user_create'] = 'Создать пользователя';

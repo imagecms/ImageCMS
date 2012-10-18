@@ -774,6 +774,24 @@ $(document).ready(function() {
             container: '#mainContent'
         });
     });
+
+    $('.tocategory').bind('click', function() {
+        $('.modal_move_to_cat').modal();
+    });
+
+    $('.move_to_cat').live('click', function() {
+        var catId = $('#moveCategoryId').attr('value');
+        var ids = new Array();
+        $('input[name=ids]:checked').each(function() {
+            ids.push($(this).val());
+        });
+        $.post('/admin/components/run/shop/products/ajaxMoveProducts', {
+            ids: ids, categoryId: catId
+        }, function(data) {
+            $('.notifications').append(data);
+        }
+        );
+    });
 });
 
 

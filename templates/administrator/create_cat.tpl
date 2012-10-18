@@ -144,7 +144,7 @@
                                                                 </span>                                              
                                                             </label>
                                                             <div class="controls">
-                                                                <img src="" class="img-polaroid pull-right m-l_15" style="width: 100px; ">
+                                                                <img src="{$THEME}/images/select-picture.png" class="img-polaroid " style="width: 100px; ">
                                                             </div>
                                                         </div>
 
