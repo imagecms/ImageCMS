@@ -53,7 +53,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd">
+                                        <div class="inside_padd span12">
                                             <div class="form-horizontal">
                                                 <div class="row-fluid">
                                                     <div class="control-group">
@@ -151,7 +151,7 @@
                                                     <div class="control-group">
                                                         <label class="control-label" for="short_desc">{lang('a_desc')}:</label>
                                                         <div class="controls">
-                                                            <textarea name="short_desc" id="short_desc" class="mceEditor">{htmlspecialchars($short_desc)}</textarea>
+                                                            <textarea name="short_desc" id="short_desc" class="elRTE">{htmlspecialchars($short_desc)}</textarea>
                                                         </div>
                                                     </div>
 
@@ -173,7 +173,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd">
+                                        <div class="inside_padd span12">
                                             <div class="form-horizontal">
                                                 <div class="row-fluid">
                                                     <div class="control-group">
@@ -277,7 +277,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd">
+                                        <div class="inside_padd span12">
                                             <div class="form-horizontal">
                                                 <div class="row-fluid">
 

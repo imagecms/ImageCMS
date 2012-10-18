@@ -624,9 +624,9 @@ function initAdminArea(){
             });
         }
     });
-    if ($.exists('#usersDatas')) $('#usersDatas').typeahead({
-        source:usersDatas
-    });
+//    if ($.exists('#usersDatas')) $('#usersDatas').typeahead({
+//        source:usersDatas
+//    });
 
     if ($.exists('#wrapper_gistogram')) gistogram(); 
     
@@ -725,9 +725,12 @@ function initAdminArea(){
 	  $(this).tab('show');
 	})
     
-    
-    
-    initTinyMCE();
+//	if ($('.mceEditor').length > 0)
+//		initTinyMCE();
+	
+	if ($('textarea.elRTE').length > 0)
+		initElRTE();
+		
     console.log('initialising of administration area ended');
     console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.")
 };

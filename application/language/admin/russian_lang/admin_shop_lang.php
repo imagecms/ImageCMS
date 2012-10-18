@@ -5,6 +5,8 @@
  * and open the template in the editor.
  */
     $lang['a_content']                  =	'Содержание';
+    $lang['a_add_data_field']                  =	'Дополнительные данные';
+    $lang['a_atten_category_del_product']                  =	'Внимание! также будут удалены все товары из этой категории';
     $lang['a_comulativ_discount_del_and_fg']                  =	'Накопительная скидка удалена';
     $lang['a_comulativ_disc_update']                  =	'Скидка обновлена';
     $lang['a_comulativ_discount_user']                  =	'Пользователи со скидкой';
