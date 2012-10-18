@@ -753,7 +753,7 @@ $(document).ready(
             }
         });
         
-        $('a.pjax, .dropdown-menu li a').click(function(event){
+        $('a.pjax, .dropdown-menu li a pjax').click(function(event){
             event.preventDefault();
             $.pjax({
                 url:$(this).attr('href'), 
