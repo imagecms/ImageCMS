@@ -396,4 +396,8 @@ $lang['a_key_exists'] = 'Certificate with this key already exists';
 $lang['a_edit_menu_item'] = 'Edit menu item';
 $lang['a_products_without_images'] = 'Products without images';
 $lang['a_comments'] = 'Comments';
+
+$lang['a_cancel_filter'] = 'Cancel filter';
+$lang['a_copy_product'] = 'Create copy';
+$lang['a_move_to_category'] = 'Move to category';
 ?>
