@@ -104,7 +104,7 @@ class Admin extends MY_Controller {
      * Display categories list
      */
     public function index() {
-        $categories = $this->gallery_m->get_categories();
+        $categories = $this->gallery_m->get_categories('position', 'asc');
         $albums = $this->gallery_m->get_albums($this->conf['order_by'], $this->conf['sort_order']);
 
         if ($categories !== FALSE) {
@@ -491,7 +491,12 @@ class Admin extends MY_Controller {
             showMessage(lang('amt_cant_load_image_info'), false, 'r');
         }
     }
-
+    public function update_positions() {
+        $positions = $this->input->post('positions');
+        foreach ($positions as $key => $value) {
+            $this->db->where('id', (int)$value)->set('position', $key)->update('gallery_category');
+        }
+    }
     /**
      * Add uploaded image to album
      */
@@ -601,13 +606,14 @@ class Admin extends MY_Controller {
             $this->gallery_m->update_category($data, $id);
 
             showMessage(lang('amt_changes_saved'));
+            
             //updateDiv('page', site_url('admin/components/cp/gallery'));
             $_POST['action'] ? $action = $_POST['action'] : $action = 'edit';
 
             if ($action == 'close')
                 pjax('/admin/components/cp/gallery/index');
             if ($action == 'edit')
-                pjax('/admin/components/cp/gallery/edit_category/' . $last_id);
+                pjax('/admin/components/cp/gallery/edit_category/' . $id);
         }
     }
 

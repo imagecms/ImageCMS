@@ -124,18 +124,18 @@ function initAdminArea(){
     })
     
     //  tabs
-    //    $('.myTab a').live('click', function (e) {
-    //        var hst = $(window).scrollTop()
-    //        $this_href = $(this).attr('href');
-    //        if (!$.exists_nabir($($this_href))){
-    //            $('.tab-pane:last').load('set/'+$this_href.substring(1)+'.html').siblings().removeClass('active').end().addClass('active').attr('id', $this_href.substring(1));
-    //            $('.tab-content').append('<div class="tab-pane"></div>')
-    //        }
-    //        $(this).tab('show');
-    //        e.preventDefault();
-    //        location.hash = $this_href;
-    //        $(window).scrollTop(hst)
-    //    });
+    $('.myTab a').live('click', function (e) {
+        $this_href = $(this).attr('href');
+        if (!$.exists_nabir($($this_href))){
+            $('.tab-pane:last').load('set/'+$this_href.substring(1)+'.html').siblings().removeClass('active').end().addClass('active').attr('id', $this_href.substring(1));
+            $('.tab-content').append('<div class="tab-pane"></div>')
+        }
+        $(this).tab('show');
+        e.preventDefault();
+        location.hash = $this_href;
+    });
+    if (location.hash != '') $("[href="+location.hash+"]").click();
+    else $('.myTab li.active a').click();
     
     //  drop search
     $('.typeahead').typeahead();
@@ -629,13 +629,6 @@ function initAdminArea(){
     });
 
     if ($.exists('#wrapper_gistogram')) gistogram(); 
-    
-    $('.myTab a').on('click', function (e) {
-        $this_href = $(this).attr('href');
-        $(this).siblings().removeClass('active').end().addClass('active');
-    });
-    if (location.hash != '') $("[href="+location.hash+"]").click();
-    else $('.myTab li.active a').click();
     
     $('.controls img.img-polaroid').on('click', function(){
         $(this).closest('.control-group').find('input:file').click();
