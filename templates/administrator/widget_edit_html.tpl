@@ -44,7 +44,7 @@
                                             <div class="control-group">
                                                 <label class="control-label" for="inputType">HTML код:</label>
                                                 <div class="controls">
-                                                    <textarea class="mceEditor" name="html_code" rows="15">{htmlspecialchars($widget.data)}</textarea>
+                                                    <textarea class="elRTE" name="html_code" rows="15">{htmlspecialchars($widget.data)}</textarea>
                                                 </div>
                                             </div>
                                         </div>

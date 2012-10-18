@@ -5,6 +5,8 @@
  * and open the template in the editor.
  */
     $lang['a_content']		=	'Content';
+    $lang['a_add_data_field']                  =	'Additional data';
+    $lang['a_atten_category_del_product']                  =	'Attention! will also remove all the products from this category';
     $lang['a_comulativ_discount_del_and_fg']                  =	'Cumulative discount removed';
     $lang['a_comulativ_disc_update']                  =	'Discount updated';
     $lang['a_comulativ_discount_user']                  =	'Member Discount';
