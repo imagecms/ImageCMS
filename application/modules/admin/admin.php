@@ -170,7 +170,7 @@ class Admin extends MY_Controller {
     			'roots' => array(
     					array(
     							'driver' => 'LocalFileSystem',
-    							'path'   => set_realpath('uploads'),
+    							'path'   => set_realpath('./uploads'),
     							'URL'    => site_url() . 'uploads'
     							// more elFinder options here
     					)
