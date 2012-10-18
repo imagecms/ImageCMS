@@ -480,7 +480,7 @@ var GalleryCategories = new Object({
     deleteCategoriesConfirm:function ()
     {
         var ids = new Array();
-        $('input[name=id]:checked').each(function(){
+        $('input[name=ids]:checked').each(function(){
             ids.push($(this).val());
         });
         $.post('/admin/components/cp/gallery/delete_category', {

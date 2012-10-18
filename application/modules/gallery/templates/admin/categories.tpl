@@ -1,15 +1,15 @@
-<section class="mini-layout" style="padding-top: 39px; ">
-    <div class="frame_title clearfix" style="top: 179px; width: 1168px; ">
+<section class="mini-layout">
+    <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
             <span class="title">{lang('amt_categories')}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a htef="#" class="btn btn-small disabled action_on" id="del_in_search" onclick="$('.modal').modal();" disabled="disabled"><i class="icon-trash"></i>Удалить</a>
+                <button class="btn btn-small disabled action_on" id="del_in_search" onclick="$('.modal').modal();" disabled="disabled"><i class="icon-trash"></i>{lang('a_delete')}</button>
                 <a href="/admin/components/init_window/gallery/show_create_category" class="btn btn-small pjax btn-success"><i class="icon-plus-sign icon-white"></i>{lang('amt_create_cat')}</a>
                 <a href="/admin/components/init_window/gallery/show_crate_album" class="btn btn-small pjax btn-success pjax"><i class="icon-plus-sign icon-white"></i>{lang('amt_create_album')}</a>
-                <a href="#" class="btn btn-small pjax" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/settings'); return false;">{lang('amt_settings')}</a>
+                <a href="/admin/components/cp/gallery/settings" class="btn btn-small pjax">{lang('amt_settings')}</a>
             </div>
         </div>
     </div>
@@ -28,15 +28,14 @@
         <th>{lang('amt_albums')}</th>
         <th>{lang('amt_description')}</th>
         <th>{lang('amt_crea')}</th>
-        <th></th>
         </thead>
-        <tbody data-tree>
+        <tbody class="sortable save_positions" data-url="/admin/components/cp/gallery/update_positions">
             {foreach $categories as $category}
             <tr>
                 <td class="t-a_c">
                     <span class="frame_label">
                         <span class="niceCheck">
-                            <input type="checkbox" name="id" value="{$category.id}" data-id="{$category.id}">
+                            <input type="checkbox" name="ids" value="{$category.id}">
                         </span>
                     </span>
                 </td>
@@ -45,10 +44,6 @@
                 <td>{$category.albums_count}</td>
                 <td>{truncate(htmlspecialchars($category.description), 75)}</td>
                 <td>{date('Y-d-m H:i', $category.created)}</td>
-                <td align="right">
-                    <img src="{$THEME}/images/edit.png"  onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/edit_category/{$category.id}');" style="cursor:pointer;" />
-                    <img src="{$THEME}/images/delete.png"  onclick="confirm_delete_gcategory({$category.id});" style="cursor:pointer;" />
-                </td>
             </tr>
             {/foreach}
         </tbody>
