@@ -624,13 +624,13 @@ function initAdminArea(){
             });
         }
     });
-    if ($.exists('#usersDatas')) $('#usersDatas').typeahead({
-        source:usersDatas
-    });
+//    if ($.exists('#usersDatas')) $('#usersDatas').typeahead({
+//        source:usersDatas
+//    });
 
     if ($.exists('#wrapper_gistogram')) gistogram(); 
     
-    $('.controls img.img-polaroid').on('click', function(){
+   $('.controls img.img-polaroid').on('click', function(){
         $(this).closest('.control-group').find('input:file').click();
     });
     
@@ -712,7 +712,17 @@ function initAdminArea(){
     //           return false;
     //      });
     
-    initTinyMCE();
+//    $('.myTab a').click(function (e) {
+//	  e.preventDefault();
+//	  $(this).tab('show');
+//	})
+    
+//	if ($('.mceEditor').length > 0)
+//		initTinyMCE();
+	
+	if ($('textarea.elRTE').length > 0)
+		initElRTE();
+		
     console.log('initialising of administration area ended');
     console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.")
 };

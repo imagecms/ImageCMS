@@ -49,7 +49,7 @@
                                                 <label class="control-label" for="inputLocal">{lang('a_send_mail')}:</label>
                                                 <div class="controls">
 
-                                                    <input type="radio" class="input-small" name="save_type" value="email" />                                                                                <input type="text" name="email" class="input-small" value="{$user.email}" />
+                                                    <input type="radio" name="save_type" value="email" />                                                                                <input type="text" name="email" class="input-small" value="{$user.email}" />
 
                                                 </div>
                                             </div>
