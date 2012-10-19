@@ -622,6 +622,11 @@ $(document).ready(function() {
                 $('.notifications').append(data);
             }
         });
+        if($(this).hasClass('active')){
+            $(this).removeClass('active');
+        }else{
+            $(this).addClass('active');
+        }
     });
 
     $('.del_tmp_row').live('click', function() {
@@ -791,6 +796,24 @@ $(document).ready(function() {
             $('.notifications').append(data);
         }
         );
+    });
+    
+    $('.kit_del').live('click', function(){
+        $('.modal_del_kit').modal();
+    });
+    
+    $('.kit_del_ok').live('click', function(){
+        var id = $('.kit_del').attr('data-kid');
+        $.ajax({
+            url:        '/admin/components/run/shop/kits/kit_delete',
+            data:       'ids='+id,
+            type:       'post',
+            success:    function(data){
+                $('.modal_del_kit').modal('hide');
+                $('.notifications').append(data);
+                location.reload();
+            }
+        });
     });
 });
 
