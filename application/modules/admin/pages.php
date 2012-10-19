@@ -844,14 +844,14 @@ class Pages extends MY_Controller {
      * @cat_id int
      * @cur_page int
      */
-    function GetPagesByCategory($cat_id = NULL, $cur_page = 0) {
-        if ($cat_id != NULL)
+    function GetPagesByCategory($cat_id = 'all', $cur_page = 0) {
+        if ($cat_id != 'all')
             $db_where = array(
                 'category' => $cat_id,
                 'lang_alias' => 0
             );
         else{
-            $this->db->select('content.*, category.name as cat_name');
+//             /$this->db->select('content.*, category.name as cat_name');
             
             $db_where = array(
                 'category !=' => 0,

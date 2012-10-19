@@ -5,6 +5,18 @@
  * and open the template in the editor.
  */
     $lang['a_content']		=	'Content';
+    $lang['a_status_collback_ne_all_inform']                  =	'General information';
+    $lang['a_collback_edit_sta_new']                  =	'Topic started';
+    $lang['a_collback_new_theme_top']                  =	'Add a new topic';
+    $lang['a_delivery_delete_3']	=	'Delete method of delivery?';
+    $lang['a_delivery_delete_2']	=	'Delete Selected methods of delivery?';
+    $lang['a_delivery_delete_1']	=	'Removing the shipping methods';
+    $lang['a_sett_wis_list_se']                  =	'Wish List';
+    $lang['a_sett_int_one_c']                  =	'Integration with 1C';
+    $lang['a_settings_top_block']                  =	'Top selling block';
+    $lang['a_settings_after_registr']                  =	'Registration after order';
+    $lang['a_settings_notic_app']                  =	'Notice of appearance';
+    $lang['a_settings_w_l_a_new']                  =	'Wish List';
     $lang['a_status_succes_delete']                  =	'Status removed';
     $lang['a_status_new_succes_pend_go']                  =	'Status pending created';
     $lang['a_ff_not_fount_stat_prod']                  =	'Status pending no nayden';

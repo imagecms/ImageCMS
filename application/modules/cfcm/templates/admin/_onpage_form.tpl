@@ -3,6 +3,7 @@
         <tr>
             <th colspan="6">
 		{echo encode($form->title)}
+		{lang('a_additional_fields')}
             </th>
         </tr>
     </thead>

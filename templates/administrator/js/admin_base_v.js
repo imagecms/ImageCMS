@@ -158,6 +158,8 @@ $(document).ready(function() {
 
         variantId['price'] = price;
 
+        console.log(variant);
+        
         if (typeof variant !== 'undefined' && variant !== false)
             variantId['variant'] = variant;
 
