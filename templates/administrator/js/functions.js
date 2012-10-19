@@ -35,6 +35,7 @@ function translite_title(from, to)
 
 function create_description(from, to)
 {
+	$('textarea.elRTE').elrte('updateSource');
     $.post(
         base_url + 'admin/pages/ajax_create_description/',{
             'text' :$(from).val()
@@ -47,6 +48,8 @@ function create_description(from, to)
 
 function retrive_keywords(from, to)
 {
+	$('textarea.elRTE').elrte('updateSource');
+
     $.post(base_url + 'admin/pages/ajax_create_keywords/', {
         'keys': $(from).val()
     },		
@@ -131,22 +134,22 @@ function initElRTE()
            	fmAllow		: true,
            	
            	fmOpen: function(callback) {
-			    if (typeof dialog === 'undefined') {
+//			    if (typeof dialog === 'undefined') {
 			      // create new elFinder
 			      dialog = $('<div />').dialogelfinder({
 			        url: '/admin/elfinder_init',
 			        commandsOptions: {
 			          getfile: {
-			            oncomplete : 'close' // close/hide elFinder
+			            oncomplete : 'destroy' // close/hide elFinder
 			          }
 			        },
-			        getFileCallback: function(file) { callback(file.path); }
+			        getFileCallback: function(file) { callback('/'+file.path); }
 //			        getFileCallback: callback // pass callback to file manager
 			      });
-			    } else {
-			      // reopen elFinder
-			      dialog.dialogelfinder('open')
-			    }
+//			    } else {
+//			      // reopen elFinder
+//			      dialog.dialogelfinder('open')
+//			    }
 			  },
            	
             toolbar      : 'maxi'
@@ -154,6 +157,23 @@ function initElRTE()
             $('textarea.elRTE').elrte(opts);
 }
 
+function elFinderPopup(type, id)
+{
+	
+				    dlg = $('#elFinder').dialogelfinder({
+			        url: '/admin/elfinder_init',
+			        commandsOptions: {
+			          getfile: {
+			            oncomplete : 'destroy' // close/hide elFinder
+			          }
+			        },
+			        getFileCallback: function(file) { $('#'+id).val( '/'+file.path); }
+			        
+//			        getFileCallback: callback // pass callback to file manager
+			      });
+			      
+			      return false;
+}
 //tinymce
 
 //function initTinyMCE()
@@ -236,6 +256,11 @@ var orders = new Object({
         return true;
     },
 
+    fixAddressA:function()
+    {
+    	$('#postAddressBtn').attr('href', "http://maps.google.com/?q="+$('#postAddress').val());
+    	return true;
+    },
 
     chOrderPaid:function (paid){
         var ids = new Array();
@@ -317,6 +342,29 @@ var orders = new Object({
 	
     deleteProduct:function(id){
         $('.notifications').load('/admin/components/run/shop/orders/ajaxDeleteProduct/'+id);
+    },
+    
+    refreshTotalPrice:function(dmId)
+    {
+    	deliveryPrice = deliveryPrices[dmId];
+    	if (deliveryPrice === undefined)
+    		deliveryPrice = 0;
+    	var totalPrice = deliveryPrice + productsAmount - giftPrice;
+    	
+    	$('.totalOrderPrice').html(totalPrice);
+    	//console.log(totalPrice);
+    },
+    
+    updateOrderItem:function(id, btn)
+    {
+    	var data = {};
+    	if ($(btn).data('update') == 'price')
+//    		alert($(btn).closest('td').find('input').val());
+    		data.newPrice = $(btn).closest('td').find('input').val();
+    	if ($(btn).data('update') == 'count')
+    		data.newQuantity = $(btn).closest('td').find('input').val();
+    		
+    	$.post('/admin/components/run/shop/orders/ajaxEditOrderCart/'+id, data, function(data){$('.notifications').append(data);});
     }
 	
 });

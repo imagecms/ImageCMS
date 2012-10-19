@@ -211,14 +211,14 @@ class Admin extends MY_Controller {
 
         /* pack message */
         $message .= 'Адреса сайту: ' . trim(strip_tags($_GET['hostname'])) . '; сторінка адмінки: ' . trim(strip_tags($_GET['pathname'])) . '; ip-address: ' . trim(strip_tags($_GET['ip_address'])) . '; ім\'я користувача: ' . trim(strip_tags($_GET['user_name'])) . '; текст повідомлення: ' . trim(strip_tags($_GET['text']));
-        
+
         /* send message */
         $this->email->from('bugs@imagecms.net', 'Admin Robot');
         $this->email->to('domovoj1@gmail.com');
         $this->email->subject('Admin Report');
         $this->email->message(stripslashes($message));
         $this->email->send();
-        
+
         echo $message;
     }
 
