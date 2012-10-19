@@ -496,6 +496,26 @@ var GalleryCategories = new Object({
         return false;
     }
 });
+var GalleryAlbums = new Object({
+    whatDelete:function (el){
+        var el = el;
+        this.id = $(el).closest('tr').find("[type = hidden]").val();
+    },
+    deleteCategoriesConfirm:function ()
+    {
+        $.post('/admin/components/cp/gallery/delete_album', {
+            album_id:this.id
+        }, function(data){
+            alert(data)
+            $.pjax({
+                url:window.location.pathname, 
+                container:'#mainContent'
+            });
+        });
+        $('.modal').modal('hide');
+        return false;
+    }
+});
 
 function clone_object(){
     btn_temp = $('[data-remove="example"]');
