@@ -35,6 +35,7 @@ function translite_title(from, to)
 
 function create_description(from, to)
 {
+	$('textarea.elRTE').elrte('updateSource');
     $.post(
         base_url + 'admin/pages/ajax_create_description/',{
             'text' :$(from).val()
@@ -47,6 +48,8 @@ function create_description(from, to)
 
 function retrive_keywords(from, to)
 {
+	$('textarea.elRTE').elrte('updateSource');
+
     $.post(base_url + 'admin/pages/ajax_create_keywords/', {
         'keys': $(from).val()
     },		
@@ -339,6 +342,29 @@ var orders = new Object({
 	
     deleteProduct:function(id){
         $('.notifications').load('/admin/components/run/shop/orders/ajaxDeleteProduct/'+id);
+    },
+    
+    refreshTotalPrice:function(dmId)
+    {
+    	deliveryPrice = deliveryPrices[dmId];
+    	if (deliveryPrice === undefined)
+    		deliveryPrice = 0;
+    	var totalPrice = deliveryPrice + productsAmount - giftPrice;
+    	
+    	$('.totalOrderPrice').html(totalPrice);
+    	//console.log(totalPrice);
+    },
+    
+    updateOrderItem:function(id, btn)
+    {
+    	var data = {};
+    	if ($(btn).data('update') == 'price')
+//    		alert($(btn).closest('td').find('input').val());
+    		data.newPrice = $(btn).closest('td').find('input').val();
+    	if ($(btn).data('update') == 'count')
+    		data.newQuantity = $(btn).closest('td').find('input').val();
+    		
+    	$.post('/admin/components/run/shop/orders/ajaxEditOrderCart/'+id, data, function(data){$('.notifications').append(data);});
     }
 	
 });

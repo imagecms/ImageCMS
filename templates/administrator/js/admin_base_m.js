@@ -22,8 +22,28 @@ function change_status(hrefFn) {
 ////	}
 ////    });
 
+
 $(document).ready(function() {
 
+    $('.export').live('click', function(){ 
+
+        //        console.log($('input[name=export]:checked').val());
+        //        return false;
+
+        if ($('input[name=export]:checked').val() == 'csv') {
+
+            $('#exportUsers').submit();
+
+        }//else{
+        //            $.ajax({
+        //            type: 'post',
+        //            dataType: 'json',
+        //            data: $('#exportUsers').serialize(),
+        //            url: '/admin/components/run/shop/system/exportUsers'
+        //
+        //        });
+        //        } 
+    });
 
     $(".selValitadot").click(function() {
 
@@ -103,25 +123,7 @@ $(document).ready(function() {
         
  
     
-    $('.export').live('click', function(){ 
 
-        //        console.log($('input[name=export]:checked').val());
-        //        return false;
-
-        if ($('input[name=export]:checked').val() == 'csv') {
-
-            $('#exportUsers').submit();
-
-        }//else{
-        //            $.ajax({
-        //            type: 'post',
-        //            dataType: 'json',
-        //            data: $('#exportUsers').serialize(),
-        //            url: '/admin/components/run/shop/system/exportUsers'
-        //
-        //        });
-        //        } 
-    });
 
 
 

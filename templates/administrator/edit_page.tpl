@@ -32,6 +32,9 @@
                     </div>  
 
 					<div class="clearfix">
+							<div class="m-t_20 pull-right">
+								<a href="/{$cat_url}{$url}" class="t-d_n m-r_15" target="blank">{lang('a_show_page')} <span class="f-s_14">&rarr;</span></a>
+							</div>
                             <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
                                 <a href="#content_article" class="btn btn-small active">Содержание</a>
                                 <a href="#parameters_article" class="btn btn-small ">Параметры</a>
