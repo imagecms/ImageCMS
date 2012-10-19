@@ -253,6 +253,11 @@ var orders = new Object({
         return true;
     },
 
+    fixAddressA:function()
+    {
+    	$('#postAddressBtn').attr('href', "http://maps.google.com/?q="+$('#postAddress').val());
+    	return true;
+    },
 
     chOrderPaid:function (paid){
         var ids = new Array();

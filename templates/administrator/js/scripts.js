@@ -582,17 +582,19 @@ function initAdminArea(){
 
     //    $('#usersDatas').autocomplete({source:usersDatas});
     
-    //    $('#ordersFilterProduct').autocomplete({
-    //    	source: productsDatas,
-    //    	select: function (event, ui)
-    //    	{
-    //    		prodName = ui.item.label;
-    //    		//console.log(prodName);
-    //    		$('#ordersFilterProdId').val(ui.item.value);
-    //    		//$('#ordersFilterProduct').val(ui.originalEvent.target.innerText)
-    //    	},
-    //    	close: function(){ $('#ordersFilterProduct').val(prodName); }
-    //    });
+    if (window.hasOwnProperty('productsDatas'))
+        $('#ordersFilterProduct').autocomplete({
+        	source: productsDatas,
+        	select: function (event, ui)
+        	{
+        		prodName = ui.item.label;
+        		//console.log(prodName);
+        		$('#ordersFilterProdId').val(ui.item.v);
+        		//$('#ordersFilterProduct').val(ui.originalEvent.target.innerText)
+        	},
+        	close: function(){ $('#ordersFilterProduct').val(prodName); }
+        });
+        
     if (window.hasOwnProperty('usersDatas'))
         $('#usersDatas').autocomplete({
             source:usersDatas
@@ -720,9 +722,18 @@ function initAdminArea(){
     
 //	if ($('.mceEditor').length > 0)
 //		initTinyMCE();
-	
-	if ($('textarea.elRTE').length > 0)
-		initElRTE();
+
+
+//add arrows to orders list
+if (window.hasOwnProperty('orderField'))
+	if (orderField != "")
+		if (noc == 'DESC')
+			$('#order'+orderField).find('a').after('&uarr;');
+		else
+			$('#order'+orderField).find('a').after('&darr;');
+		
+		if ($('textarea.elRTE').length > 0)
+			initElRTE();
 		
     console.log('initialising of administration area ended');
     console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.")
