@@ -5,6 +5,15 @@
  * and open the template in the editor.
  */
     $lang['a_content']                  =	'Содержание';
+    $lang['a_status_collback_ne_all_inform']                  =	'Общая информация';
+    $lang['a_collback_edit_sta_new']                  =	'Тема создана';
+    $lang['a_collback_new_theme_top']                  =	'Создать тему';
+    $lang['a_sett_wis_list_se']                  =	'Список желаний';
+    $lang['a_sett_int_one_c']                  =	'Интеграция с 1С';
+    $lang['a_settings_top_block']                  =	'Блок ТОП продаж';
+    $lang['a_settings_after_registr']                  =	'Регистрация после заказа';
+    $lang['a_settings_notic_app']                  =	'Уведомление о появлении';
+    $lang['a_settings_w_l_a_new']                  =	'Списки желаний';
     $lang['a_status_succes_delete']                  =	'Статусы удалены';
     $lang['a_status_new_succes_pend_go']                  =	'Статус товара в ожидании создан';
     $lang['a_ff_not_fount_stat_prod']                  =	'Статус товара в ожидании не нaйден';
