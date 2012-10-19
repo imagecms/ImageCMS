@@ -282,6 +282,7 @@ $lang['a_clean_old'] = 'Очистить устаревшие';
 $lang['a_event_journal'] = 'Журнал событий';
 $lang['a_backup_copy'] = 'Резервное копирование';
 $lang['a_show_site'] = 'Просмотреть сайт';
+$lang['a_show_page'] = 'Просмотр страницы';
 $lang['a_goto_site'] = 'перейти на сайт';
 $lang['a_exit'] = 'Выход';
 
