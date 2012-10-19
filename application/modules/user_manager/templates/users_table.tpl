@@ -1,89 +1,220 @@
-<div class="top-navigation">
-<ul><li>
-    <form id="tableFilter1" style="width:100%;" onsubmit="users_table1.filter(this.id); return false;">{lang('amt_filter')}:
-        <select id="column">
-            <option value="1">{lang('amt_user_login')}</option>
-            <option value="2">{lang('amt_email')}</option>
-            <option value="3">{lang('amt_group')}</option>
-        </select>
-        <input type="text" id="keyword" />
-        <input type="submit" value="{lang('amt_search')}" />
-        <input type="reset" value="{lang('amt_clean')}" />
-    {form_csrf()}</form>
-</li></ul>
+<div class="container">
+    <section class="mini-layout">
+        <div class="frame_title clearfix">
+            <div class="pull-left">
+                <span class="help-inline"></span>
+                <span class="title">{lang('a_manager_user_mod')}</span>
+            </div>
+            <div class="pull-right">
+                <div class="d-i_b">
+                    <a href="#" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
+                    <button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$SELF_URL}/create_user/'"><i class="icon-list-alt icon-white"></i>Создать пользователя</button>
+                    <button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$BASE_URL}admin/components/cp/user_manager/create'"><i class="icon-list-alt icon-white"></i>Создать группу</button>
+                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#save" ><i class="icon-ok"></i>Сохранить</button>
+                    <button type="button" class="btn btn-small action_on"><i class="icon-check"></i>Сохранить и выйти</button>
+                </div>
+            </div>                            
+        </div>
+        <div class="btn-group myTab m-t_20" data-toggle="buttons-radio">
+            <a href="#users" class="btn btn-small active">{lang('amt_users')}</a>
+            <a href="#group" class="btn btn-small">{lang('amt_groups')}</a>
+            <a href="#privilege" class="btn btn-small">{lang('amt_perm_div')}</a>
+        </div>        
+        <div class="tab-content">
+            <!----------------------------------------------------- USERS-------------------------------------------------------------->
+            <div class="tab-pane active" id="users">
+                <table class="table table-striped table-bordered table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th class="t-a_c span1">
+                                <span class="frame_label">
+                                    <span class="niceCheck b_n">
+                                        <input type="checkbox"/>
+                                    </span>
+                                </span>
+                            </th>
+                            <th class="span1">{lang('amt_id')}</th>
+                            <th class="span3">{lang('a_login')}</th>
+                            <th class="span3">{lang('a_email')}</th>
+                            <th class="span2">{lang('a_group')}</th>
+                            <th class="span1">{lang('a_banned')}</th>
+                            <th class="span2">{lang('a_b_last_ip')}</th>
+                        </tr>
+                        <tr class="head_body">
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <select>
+                                    <option>Login</option>
+                                    <option>Email</option>
+                                    <option>Group</option>
+                                </select>
+                            </td>                            
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody class="sortable">
+                        {foreach $users as $user}
+                            <tr>
+                                <td class="t-a_c">
+                                    <span class="frame_label">
+                                        <span class="niceCheck b_n">
+                                            <input type="checkbox"/>
+                                        </span>
+                                    </span>
+                                </td>
+                                <td><p>{echo $user.id}</p></td>
+                                <td><a href="{$SELF_URL}/edit_user/{echo $user.id}">{echo $user.username}</a></td>                            
+                                <td>{$user.email}</td>
+                                <td><p>{$user.role_alt_name}</p></td>
+                                <td>
+                                    <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" onclick="change_status('{$BASE_URL}admin/components/cp/user_manager/actions/{echo $user.id}');" >
+                                        <span class="prod-on_off {if $user.banned == 1}disable_tovar{/if}" ></span>
+                                    </div>
+                                    </div>
+                                </td>
+                                <td><p>{$user.last_ip}</p></td>
+                            </tr>
+                        {/foreach}
+
+                    </tbody>
+                </table>
+                <div align="center" style="padding:5px;">
+
+                    {$paginator}
+
+                </div>
+            </div>
+
+            <!----------------------------------------------------- GROUP-------------------------------------------------------------->
+            <div class="tab-pane" id="group">
+                <table class="table table-striped table-bordered table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th class="t-a_c span1">
+                                <span class="frame_label">
+                                    <span class="niceCheck b_n">
+                                        <input type="checkbox"/>
+                                    </span>
+                                </span>
+                            </th>
+                            <th class="span1">{lang('amt_id')}</th>
+                            <th class="span3">{lang('amt_tname')}</th>
+                            <th class="span3">{lang('amt_identif')}</th>
+                            <th class="span2">{lang('amt_description')}</th>
+                        </tr>
+                        <tr class="head_body">
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <select>
+                                    <option>Login</option>
+                                    <option>Email</option>
+                                    <option>Group</option>
+                                </select>
+                            </td>                          
+
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody class="sortable">
+                        {foreach $roles as $group}
+                            <tr>
+                                <td class="t-a_c">
+                                    <span class="frame_label">
+                                        <span class="niceCheck b_n">
+                                            <input type="checkbox"/>
+                                        </span>
+                                    </span>
+                                </td>
+                                <td><p>{$group.id}</p></td>
+                                <td><a href="{$SELF_URL}/edit/{$group.id}">{$group.alt_name}</a></td>                            
+                                <td>{$group.name}</td>
+                                <td><p>{$group.desc}</p></td>                               
+                            </tr>
+                        {/foreach}
+
+                    </tbody>
+                </table>
+            </div>
+            <!----------------------------------------------------- PRIVILEGE-------------------------------------------------------------->
+
+            <div class="tab-pane" id="privilege">    
+                <form action="{$SELF_URL}/update_role_perms" method="post" id="save">
+                    <table class="table table-striped table-bordered table-hover table-condensed">
+                        <thead>
+                            <tr>
+                                <th colspan="6">
+                                    {lang('a_param')}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="6">
+                                    <div class="inside_padd">
+                                        <div class="form-horizontal">
+                                            <div class="row-fluid">
+                                                <form id="create" method="post" active="{$BASE_URL}admin/components/cp/user_manager/create">
+
+
+                                                    <div class="control-group">
+                                                        <label class="control-label" for="role_id">{lang('amt_group')}</label>
+                                                        <div class="controls">
+                                                            <select name="role_id" id="role_id">
+                                                                {foreach $roles as $role}
+                                                                    <option onclick="change_status('{$BASE_URL}admin/components/cp/user_manager/show_edit_prems_tpl/{$role.id}');" value ="{$role.id}" {if $role.id == $selected_role} selected="selected" {/if} >{$role.alt_name}</option>
+                                                                {/foreach}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table> 
+                    {foreach $groups as $group_k => $group_v}
+                        <div class="span3">
+                            <table class="table table-striped table-bordered table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th class="t-a_c span1">
+                                            <span class="frame_label">
+                                                <span class="niceCheck b_n">
+                                                    <input type="checkbox" />
+                                                </span>
+                                            </span>
+                                        </th>                           
+                                        <th>{$group_names[$group_k]}</th>
+                                    </tr>                        
+                                </thead>
+                                <tbody class="sortable">
+                                    {foreach $group_v as $k => $v}
+                                        <tr>       
+                                            <td class="t-a_c">
+                                                <span class="frame_label">
+                                                    <span class="niceCheck b_n">
+                                                        <input type="checkbox"  name="{$k}" value="1" {if array_key_exists($k, $permissions)} checked="checked" {/if}/>
+                                                    </span>
+                                                </span>
+                                            </td>
+                                            <td><p>{$v}</p></td>                               
+                                        </tr>
+                                    {/foreach}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    {/foreach}
+            </div>
+            </form>
+        </div>
+    </section>
 </div>
-<div class="form_overflow"></div>
-
-<form action="{$SELF_URL}/actions/" id="users_f" method="post" style="width:100%">
-<div id="sortable">
-		  <table id="users_table1" >
-		  	<thead>
-				<th axis="string" width="">{lang('amt_login')}</th>
-				<th axis="string">{lang('amt_user_login')}</th>
-				<th axis="string">{lang('amt_email')}</th>
-				<th axis="string">{lang('amt_group')}</th>
-				<th axis="string">{lang('amt_ban')}</th>
-				<th axis="string">{lang('amt_last_ip')}</th>
-				<th axis="date">{lang('amt_last_entry')}</th>
-				<th axis="date">{lang('amt_cr')}</th>
-				<th axis="none"></th>
-			</thead>
-			<tbody>
-                           
-		{foreach $users as $user}
-		<tr id="{$page.number}">
-			<td class="rightAlign">
-			<div align="left">
-			<input type="checkbox" value="{$user.id}" name="checkbox_{$user.id}" /> {$user.id}
-			</div>
-			</td>
-			<td onclick="edit_user({$user.id}); return false;">{$user.username}</td>
-			<td>{$user.email}</td>
-			<td>{$user.role_alt_name}</td>
-			<td>{$user.banned}</td>
-			<td>{$user.last_ip}</td>
-			<td>{$user.last_login}</td>
-			<td>{$user.created}</td>
-			<td  class="rightAlign">
-			<img onclick="edit_user({$user.id});" style="cursor:pointer" src="{$THEME}/images/edit_page.png" width="16" height="16" title="{lang('amt_edit')}" />
-			</td>
-		</tr>
-		{/foreach}
-			</tbody>
-			<tfoot>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</tfoot>
-		  </table>
-</div>
-
-<p align="right">
-<br/>
-{lang('amt_with_selected')}:
-<input type="submit" name="ban"  class="button" value="{lang('amt_to_ban')}" onclick="$('users_f').action='{$SELF_URL}/actions/1/{$cur_page}/'; ajax_form('users_f','users_ajax_table');" />
-<input type="submit" name="unban"  class="button" value="{lang('amt_to_unban')}" onclick="$('users_f').action='{$SELF_URL}/actions/2/{$cur_page}/'; ajax_form('users_f','users_ajax_table');" />
-<input type="submit" name="delete"  class="button" style="font-weight:bold;" value="{lang('amt_delete')}" onclick="$('users_f').action='{$SELF_URL}/actions/3/{$cur_page}/'; ajax_form('users_f','users_ajax_table');" />
-</p>
-
-{form_csrf()}</form>
-
-<div align="center" style="padding:5px;">
-{$paginator}
-</div>
-
-{literal}
-		<script type="text/javascript">
-			window.addEvent('domready', function(){
-				users_table1 = new sortableTable('users_table1', {overCls: 'over', onClick: function(){}});
-			});
-		</script>
-{/literal}

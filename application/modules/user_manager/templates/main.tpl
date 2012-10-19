@@ -24,38 +24,32 @@
             <!----------------------------------------------------- USERS-------------------------------------------------------------->
             <div class="tab-pane active" id="users">
                 <table class="table table-striped table-bordered table-hover table-condensed">
-                    <thead>
-                        <tr>
-                            <th class="t-a_c span1">
-                                <span class="frame_label">
-                                    <span class="niceCheck b_n">
-                                        <input type="checkbox"/>
-                                    </span>
-                                </span>
-                            </th>
-                            <th class="span1">{lang('amt_id')}</th>
-                            <th class="span3">{lang('a_login')}</th>
-                            <th class="span3">{lang('a_email')}</th>
-                            <th class="span2">{lang('a_group')}</th>
-                            <th class="span1">{lang('a_banned')}</th>
-                            <th class="span2">{lang('a_b_last_ip')}</th>
-                        </tr>
-                        <tr class="head_body">
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <select>
-                                    <option>Login</option>
-                                    <option>Email</option>
-                                    <option>Group</option>
-                                </select>
-                            </td>                            
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </thead>
+                <thead>
+                                <tr>
+                                    <th class="t-a_c span1">
+                                        <span class="frame_label">
+                                            <span class="niceCheck b_n">
+                                                <input type="checkbox"/>
+                                            </span>
+                                        </span>
+                                    </th>
+                                    <th class="span1">{lang('a_ID')}</th>
+                                    <th class="span2">{lang('a_email')}</th>
+                                    <th class="span2">{lang('a_user')}</th>
+                                    <th class="span2">{lang('a_time_register')}</th>
+                                    <th class="span2">{lang('a_summ_purchases')}</th>
+                                    <th class="span2">{lang('a_summ_purchases')}</th>
+                                </tr>
+                                <tr class="head_body">
+                                    <td></td>
+                                    <td></td>                                    
+                                    <td><input type="text" data-provide="typeahead" data-items="5" id="usersEmail" name="email"/></td>
+                                    <td><input type="text" data-provide="typeahead" data-items="5" id="usersName" name="name"/></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </thead>
                     <tbody class="sortable">
                         {foreach $users as $user}
                             <tr>
@@ -82,6 +76,11 @@
 
                     </tbody>
                 </table>
+                <div align="center" style="padding:5px;">
+
+                    {$paginator}
+
+                </div>
             </div>
 
             <!----------------------------------------------------- GROUP-------------------------------------------------------------->
@@ -137,77 +136,77 @@
                 </table>
             </div>
             <!----------------------------------------------------- PRIVILEGE-------------------------------------------------------------->
-          
+
             <div class="tab-pane" id="privilege">    
                 <form action="{$SELF_URL}/update_role_perms" method="post" id="save">
-                <table class="table table-striped table-bordered table-hover table-condensed">
-                    <thead>
-                        <tr>
-                            <th colspan="6">
-                                {lang('a_param')}
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="6">
-                                <div class="inside_padd">
-                                    <div class="form-horizontal">
-                                        <div class="row-fluid">
-                                            <form id="create" method="post" active="{$BASE_URL}admin/components/cp/user_manager/create">
+                    <table class="table table-striped table-bordered table-hover table-condensed">
+                        <thead>
+                            <tr>
+                                <th colspan="6">
+                                    {lang('a_param')}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="6">
+                                    <div class="inside_padd">
+                                        <div class="form-horizontal">
+                                            <div class="row-fluid">
+                                                <form id="create" method="post" active="{$BASE_URL}admin/components/cp/user_manager/create">
 
-                                                
-                                                <div class="control-group">
-                                                    <label class="control-label" for="role_id">{lang('amt_group')}</label>
-                                                    <div class="controls">
-                                                     <select name="role_id" id="role_id">
-	    {foreach $roles as $role}
-		    <option onclick="change_status('{$BASE_URL}admin/components/cp/user_manager/show_edit_prems_tpl/{$role.id}');" value ="{$role.id}" {if $role.id == $selected_role} selected="selected" {/if} >{$role.alt_name}</option>
-		{/foreach}
-		</select>
+
+                                                    <div class="control-group">
+                                                        <label class="control-label" for="role_id">{lang('amt_group')}</label>
+                                                        <div class="controls">
+                                                            <select name="role_id" id="role_id">
+                                                                {foreach $roles as $role}
+                                                                    <option onclick="change_status('{$BASE_URL}admin/components/cp/user_manager/show_edit_prems_tpl/{$role.id}');" value ="{$role.id}" {if $role.id == $selected_role} selected="selected" {/if} >{$role.alt_name}</option>
+                                                                {/foreach}
+                                                            </select>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </form>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table> 
-                {foreach $groups as $group_k => $group_v}
-                <div class="span3">
-                <table class="table table-striped table-bordered table-hover table-condensed">
-                    <thead>
-                        <tr>
-                            <th class="t-a_c span1">
-                                <span class="frame_label">
-                                    <span class="niceCheck b_n">
-                                        <input type="checkbox" />
-                                    </span>
-                                </span>
-                            </th>                           
-                            <th>{$group_names[$group_k]}</th>
-                        </tr>                        
-                    </thead>
-                    <tbody class="sortable">
-                        {foreach $group_v as $k => $v}
-                            <tr>       
-                                <td class="t-a_c">
-                                    <span class="frame_label">
-                                        <span class="niceCheck b_n">
-                                            <input type="checkbox"  name="{$k}" value="1" {if array_key_exists($k, $permissions)} checked="checked" {/if}/>
-                                        </span>
-                                    </span>
                                 </td>
-                                <td><p>{$v}</p></td>                               
                             </tr>
-                        {/foreach}
+                        </tbody>
+                    </table> 
+                    {foreach $groups as $group_k => $group_v}
+                        <div class="span3">
+                            <table class="table table-striped table-bordered table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th class="t-a_c span1">
+                                            <span class="frame_label">
+                                                <span class="niceCheck b_n">
+                                                    <input type="checkbox" />
+                                                </span>
+                                            </span>
+                                        </th>                           
+                                        <th>{$group_names[$group_k]}</th>
+                                    </tr>                        
+                                </thead>
+                                <tbody class="sortable">
+                                    {foreach $group_v as $k => $v}
+                                        <tr>       
+                                            <td class="t-a_c">
+                                                <span class="frame_label">
+                                                    <span class="niceCheck b_n">
+                                                        <input type="checkbox"  name="{$k}" value="1" {if array_key_exists($k, $permissions)} checked="checked" {/if}/>
+                                                    </span>
+                                                </span>
+                                            </td>
+                                            <td><p>{$v}</p></td>                               
+                                        </tr>
+                                    {/foreach}
 
-                    </tbody>
-                </table>
-            </div>
-                        {/foreach}
+                                </tbody>
+                            </table>
+                        </div>
+                    {/foreach}
             </div>
             </form>
         </div>

@@ -3,6 +3,7 @@
         <tr>
             <th colspan="6">
 		{echo encode($form->title)}
+		{lang('a_additional_fields')}
             </th>
         </tr>
     </thead>
@@ -23,11 +24,11 @@
                 		    {$f.field}
 				    
 				    {if $f.info.enable_image_browser == 1}            
-					<button class="btn" onclick="tinyBrowserPopUp('image', '{$f.name}');">{lang('amt_select_image')}</button>
+					<button class="btn btn-small" onclick="elFinderPopup('image', '{$f.name}');return false;"><i class="icon-picture"></i>  {lang('amt_select_image')}</button>
 				   {/if}
 
             {if $f.info.enable_file_browser == 1}
-                 <button class="btn" onclick="tinyBrowserPopUp('file', '{$f.name}');">{lang('amt_select_image')}</button>
+                 <button class="btn btn-small" onclick="elFinderPopup('file', '{$f.name}');return false;"> <i class="icon-folder-open"></i> {lang('amt_select_image')}</button>
             {/if}				   
 				    </span>
 				    {$f.help_text}
@@ -40,6 +41,8 @@
 
 		</div>
 	    </div>
+	    
+	    <div id="elFinder"></div>
 	</td>
     </tr>
     </tbody>

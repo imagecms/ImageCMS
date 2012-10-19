@@ -331,5 +331,5 @@
     </div>
 
 <script>
-	window.onload = pagesAdmin.initialize();
+	//window.onload = pagesAdmin.initialize();
 </script>

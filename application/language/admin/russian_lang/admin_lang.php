@@ -86,6 +86,8 @@ $lang['a_fail'] = 'Ошибка';
 $lang['a_menu_create'] = 'Меню создано';
 $lang['a_ps'] = 'шт';
 $lang['a_del_o_met'] = 'Оплачен';
+$lang['a_paid'] = 'Оплачен';
+$lang['a_not_paid'] = 'Не оплачен';
 $lang['a_purch_product_c'] = 'Купленные товары';
 $lang['a_create_set'] = 'Создать набор';
 $lang['a_go_to_website'] = 'перейти на сайт';
@@ -281,6 +283,7 @@ $lang['a_clean_old'] = 'Очистить устаревшие';
 $lang['a_event_journal'] = 'Журнал событий';
 $lang['a_backup_copy'] = 'Резервное копирование';
 $lang['a_show_site'] = 'Просмотреть сайт';
+$lang['a_show_page'] = 'Просмотр страницы';
 $lang['a_goto_site'] = 'перейти на сайт';
 $lang['a_exit'] = 'Выход';
 
@@ -649,6 +652,7 @@ $lang['a_lang_edit'] = 'Редактирование языка';
 $lang['a_delete_selected_languages'] = 'Удалить выбраные языки?';
 $lang['a_cache'] = 'Кэш';
 $lang['a_clear_cache'] = 'Очистка кэша';
+$lang['a_go_back'] = 'Вернуться';
 
 $lang['a_menu_list'] = 'Список меню';
 $lang['a_menu_deleted'] = 'Меню удалено';
@@ -659,9 +663,14 @@ $lang['a_delete_selected_menu'] = 'Удалить выбраные меню?';
 $lang['a_create_link'] = 'Создать ссылку';
 
 $lang['a_manu_item_translate'] = 'Перевод пункта меню';
-
+$lang['a_show_on_map'] = 'Показать на карте';
 $lang['a_key_exists'] = 'Сертификат с таким ключем уже существует'; 
 $lang['a_edit_menu_item'] = 'Редактировать пункт меню';
 $lang['a_products_without_images'] = 'Товары без картинок';
 $lang['a_comments'] = 'Комментарии';
+
+$lang['a_cancel_filter'] = 'Сбросить фильтр';
+
+$lang['a_copy_product'] = 'Создать копию';
+$lang['a_move_to_category'] = 'Переместить в категорию';
 ?>

@@ -209,6 +209,7 @@ function initAdminArea(){
     }
     $('.ui-datepicker').addClass('dropdown-menu'); 
 
+    //    $('.ui-dialog button').ready(function(){ $('.ui-dialog button').addClass('btn')});
     
     //my
     $('html').live('click', function(event) {
@@ -603,17 +604,21 @@ function initAdminArea(){
 
     //    $('#usersDatas').autocomplete({source:usersDatas});
     
-    //    $('#ordersFilterProduct').autocomplete({
-    //    	source: productsDatas,
-    //    	select: function (event, ui)
-    //    	{
-    //    		prodName = ui.item.label;
-    //    		//console.log(prodName);
-    //    		$('#ordersFilterProdId').val(ui.item.value);
-    //    		//$('#ordersFilterProduct').val(ui.originalEvent.target.innerText)
-    //    	},
-    //    	close: function(){ $('#ordersFilterProduct').val(prodName); }
-    //    });
+    if (window.hasOwnProperty('productsDatas'))
+        $('#ordersFilterProduct').autocomplete({
+            source: productsDatas,
+            select: function (event, ui)
+            {
+                prodName = ui.item.label;
+                //console.log(prodName);
+                $('#ordersFilterProdId').val(ui.item.v);
+            //$('#ordersFilterProduct').val(ui.originalEvent.target.innerText)
+            },
+            close: function(){
+                $('#ordersFilterProduct').val(prodName);
+            }
+        });
+        
     if (window.hasOwnProperty('usersDatas'))
         $('#usersDatas').autocomplete({
             source:usersDatas
@@ -714,6 +719,23 @@ function initAdminArea(){
     //        })
     //    })
     
+    
+                    
+    //        $('a.pjax, .dropdown-menu li a.pjax, .pagination a').each(function(){
+    //        	if (! $(this).hasClass('pjaxed'))
+    //        	$(this).on('click', function(event){
+    //            event.preventDefault();
+    //            $.pjax({
+    //                url:$(this).attr('href'), 
+    //                container:'#mainContent'
+    //            });
+    //            $('nav li').removeClass('active');
+    //            $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
+    //            return false;
+    //        	}).addClass('pjaxed');
+    //        
+    //        });
+    
     $('#mainContent a.pjax').click(function(event){
         event.preventDefault();
         $.pjax({
@@ -739,9 +761,15 @@ function initAdminArea(){
     //	  $(this).tab('show');
     //	})
     
-    //	if ($('.mceEditor').length > 0)
-    //		initTinyMCE();
-	
+
+    //add arrows to orders list
+    if (window.hasOwnProperty('orderField'))
+        if (orderField != "")
+            if (noc == 'DESC')
+                $('#order'+orderField).find('a').after('&uarr;');
+            else
+                $('#order'+orderField).find('a').after('&darr;');
+		
     if ($('textarea.elRTE').length > 0)
         initElRTE();
 		
@@ -767,7 +795,7 @@ $(document).ready(
             }
         });
         
-        $('a.pjax, .dropdown-menu li a').click(function(event){
+        $('a.pjax').click(function(event){
             event.preventDefault();
             $.pjax({
                 url:$(this).attr('href'), 
@@ -776,6 +804,21 @@ $(document).ready(
             $('nav li').removeClass('active');
             $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
             return false;
+        });
+                
+        $(' .dropdown-menu li a.pjax, .pagination a').each(function(){
+            if (! $(this).hasClass('pjaxed'))
+                $(this).on('click', function(event){
+                    event.preventDefault();
+                    $.pjax({
+                        url:$(this).attr('href'), 
+                        container:'#mainContent'
+                    });
+                    $('nav li').removeClass('active');
+                    $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
+                    return false;
+                }).addClass('pjaxed');
+        
         });
         
         $(this).keydown(function (e) {
@@ -808,7 +851,9 @@ $(document).ready(
                 data: url,
                 success: function(data){
                     $('.frame_rep_bug').prepend('<div class="alert alert-success">Ваше повідомлення відправлено</div>');
-                    setTimeout(function(){$('.overlay').trigger('click')}, 2000)
+                    setTimeout(function(){
+                        $('.overlay').trigger('click')
+                        }, 2000)
                 }
             })
             return false;
