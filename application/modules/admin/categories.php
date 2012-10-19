@@ -313,10 +313,11 @@ class Categories extends MY_Controller {
                         '<a href="#" onclick="edit_category(' . $id . '); return false;">' . $data['name'] . '</a>'
                 );
 
-                updateDiv('categories', site_url('/admin/categories/update_block'));
-                updateDiv('fast_category_list', site_url('/admin/categories/update_fast_block/' . $id));
-                closeWindow('fast_add_cat_w');
-                jsCode("$('comments_status').checked = true;");
+                echo json_encode(array('data'=>$id));
+                //updateDiv('categories', site_url('/admin/categories/update_block'));
+                //updateDiv('fast_category_list', site_url('/admin/categories/update_fast_block/' . $id));
+                //closeWindow('fast_add_cat_w');
+                //jsCode("$('comments_status').checked = true;");
             }
         }
     }

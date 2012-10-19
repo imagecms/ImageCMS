@@ -4,7 +4,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
+$lang['a_your_remark'] = 'Ваше замечание';
 $lang['a_content'] = 'Содержание';
 $lang['a_del_category_selec'] = 'Удалить выбранные категории';
 $lang['a_del_catego_ba'] = 'Удалить категорию';
@@ -29,6 +29,7 @@ $lang['a_data_n_group'] = 'Данные группы';
 $lang['a_data_n_user'] = 'Данные нового пользователя';
 $lang['a_create_n_user_m'] = 'Создание нового пользователя';
 $lang['a_category'] = 'Категория';
+$lang['a_album'] = 'Альбом';
 $lang['a_no'] = 'Нет';
 $lang['a_create_cat'] = 'Создать категорию';
 $lang['a_title'] = 'Заголовок';

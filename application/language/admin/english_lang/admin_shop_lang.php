@@ -4,6 +4,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+    $lang['a_enter_sys']		=	'Log in';
     $lang['a_content']		=	'Content';
     $lang['a_status_collback_ne_all_inform']                  =	'General information';
     $lang['a_collback_edit_sta_new']                  =	'Topic started';
@@ -174,6 +175,7 @@
     $lang['by_default']		=	'By default';
     $lang['page_tpl']		=	'Page template';
     $lang['page_view']		=	'View page';
+    $lang['imgs_view']		=	'View images';
     $lang['comm_alow']		=	'Comment permission';
     $lang['show_sett']		=	'Show settings';
     $lang['sett']		=	'Settings'; 
@@ -327,6 +329,7 @@
     $lang['a_max_price']        =	'The highest price';
     $lang['a_yvedomlenie']      =	'Notification ';
     $lang['a_category']         =	'Categories';
+    $lang['a_album']            =       'Album';
     $lang['a_type_product']     =	'Follow product ID by a comma.';
     $lang['a_group_users']      =	'User group';
     $lang['a_group']            =	'Group';
@@ -716,6 +719,7 @@ $lang['a_sender']           =	'sender';
     $lang['a_orders_del_title'] = 'Order removal';
     $lang['a_kit_del_title'] = 'Kit removal';
     $lang['a_category_delete'] = 'Delete category?';
+    $lang['a_album_delete'] = 'Delete album?';
     
     $lang['a_not_ask_main_prod_for_kit'] = 'You did not ask for a set of main commodity ';
     $lang['a_kit_not_found'] = 'The kit was not found';

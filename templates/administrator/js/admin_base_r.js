@@ -8,7 +8,7 @@ var pagesAdmin = new Object({
                 $('.modal').modal('hide');
                 if (responseObj.data)
                 {
-                    showMessage('Категория добавлена успешно');
+                    showMessage('','Категория добавлена успешно');
                     $('#category_selectbox').load('/admin/categories/update_fast_block/'+responseObj.data);
                 }
                 else

@@ -228,7 +228,7 @@
     $lang['amt_image_preview']                                                  = 'Предварительный просмотр изображений';
     $lang['amt_width']                                                          = 'Ширина';
     $lang['amt_px']                                                             = 'px';
-    $lang['amt_width']                                                          = 'Высота';
+    $lang['amt_height']                                                          = 'Высота';
     $lang['amt_image_icons']                                                    = 'Иконки изображений';
     $lang['amt_water_mark']                                                     = 'Водяной знак';
     $lang['amt_hor_align']                                                      = 'Горизонтальное выравнивание';

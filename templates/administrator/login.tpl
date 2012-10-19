@@ -21,57 +21,48 @@
         die('<span style="font-size:18px;"><br/><br/>'.lang('a_delete_install').'/application/modules/install/install.php</div>');
             ?>
             <div class="main_body">
-                <div class="container t-a_c">
-                    <a href="/admin/dashboard" class="logo f_n m-t_20 d-i_b">
+                <div class="form_login t-a_c">
+                    <a href="/admin/dashboard" class="d-i_b">
                         <img src="{$THEME}/img/logo.png"/>
-                    </a>
-                    <div class="row-fluid">
-                        <div class="span6 d-i_b">
-                            <h2 class="m-t_30 t-a_l">{lang('a_auth')}</h2>
-                            <form method="post" action="{$BASE_URL}admin/login/" class="standart_form t-a_l" id="with_out_article">
-                                {if $login_failed}
-                                {$login_failed}
-                                {/if}
-                                <label>
-                                    {lang('a_login')}:
-                                    <input type="text" name="login"/>{$login_error}
-                                </label>
-                                <label>
-                                    {lang('a_pass')}:
-                                    <input type="password" name="password"/>{$password_error}
-                                </label>
-                                {if $use_captcha == "1"}
+                    </a><br/>
+                    <form method="post" action="{$BASE_URL}admin/login/" class="standart_form t-a_l" id="with_out_article">
+                        {if $login_failed}
+                        {$login_failed}
+                        {/if}
+                        <label>
+                            <input type="text" name="login" placeholder="{lang('a_login')}"/>{$login_error}
+                            <span class="icon-user"></span>
+                        </label>
+                        <label>
+                            <input type="password" name="password" placeholder="{lang('a_pass')}"/>{$password_error}
+                            <span class="icon-lock"></span>
+                        </label>
+                        {if $use_captcha == "1"}
 
-                                <label style="margin-bottom:50px">
-                                    {$lang_captcha}:<br/>
-                                    <div id="captcha">{$cap_image}</div>
-                                    <a href="" onclick="ajax_div('captcha','{$BASE_URL}/admin/login/update_captcha');return false;">{lang('a_code_refresh')}</a>
-                                    <input type="text" name="captcha" />{$captcha_error}
-                                </label>
-                                {/if}
-                                <div>
-                                    <label class="d-i_b m-r_15">
-                                        <input type="checkbox" name="remember" value="1"/>{lang('a_remember')}
-                                    </label>
-                                </div>
-                                <input type="submit" value="{lang('a_send_f')}" class="btn d_i_b m-b_15"/>
-                                <div class="o_h">
-                                    <a href="/auth/register/">{lang('a_reg')}</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/auth/forgot_password/">{lang('a_forget_pass')}</a>
-                                </div>
-                                {form_csrf()}
-                            </form>
+                        <label style="margin-bottom:50px">
+                            {$lang_captcha}:<br/>
+                            <div id="captcha">{$cap_image}</div>
+                            <a href="" onclick="ajax_div('captcha','{$BASE_URL}/admin/login/update_captcha');return false;">{lang('a_code_refresh')}</a>
+                            <input type="text" name="captcha" />{$captcha_error}
+                        </label>
+                        {/if}
+                        <div class="o_h">
+                            <div class="pull-left frame_label">
+                                <span class="frame_label">
+                                    <span class="niceCheck">
+                                        <input type="checkbox" name="remember" value="1"/>
+                                    </span>
+                                    {lang('a_remember')}
+                                </span>
+                            </div>
+                            <a href="/auth/forgot_password/" class="pull-right">{lang('a_forget_pass')}</a>
                         </div>
-                    </div>
+                        <input type="submit" value="{lang('a_enter_sys')}" class="btn btn-info" style="margin-top: 26px;"/>
+                        {form_csrf()}
+                    </form>
                 </div>
-                <div class="hfooter"></div>
             </div>
-            <footer class="b_c_n">
-                <div class="container w_260">
-                    <div class="d_t_c l_h_17">
-                        <span class="l_h_27">{lang('a_site_image_ooo')}</span>
-                        {lang('a_site_image_text')}
-                    </div>            
-                </div>
-            </footer>
+            <script src="{$THEME}/js/jquery-1.8.2.min.js" type="text/javascript"></script>
+            <script src="{$THEME}/js/scripts.js" type="text/javascript"></script>
     </body>
 </html>

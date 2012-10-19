@@ -56,7 +56,7 @@
                         <div class="clearfix">
                             <div class="pull-left m-r_10">{lang('a_wellcome')}, 
                                 {if $CI->dx_auth->get_username()}
-                                <a href="/admin/components/run/shop/users/edit/{echo $CI->dx_auth->get_user_id()}">
+                                <a href="/admin/components/run/shop/users/edit/{echo $CI->dx_auth->get_user_id()}" id="user_name">
                                     {echo $CI->dx_auth->get_username()}
                                 </a>
                                 <a href="/admin/logout"><i class="my_icon exit_ico"></i></a>
@@ -211,7 +211,7 @@
                     </div>
                     <div class="span4 t-a_c">
                         {lang('a_version')}: <b>{echo getCMSNumber()}</b>
-                        <div class="muted">Помогите нам стать еще лучше - <a href="#">сообщите об ошибке</a></div>
+                        <div class="muted">Помогите нам стать еще лучше - <a href="#" id="rep_bug">сообщите об ошибке</a></div>
                     </div>
                     <div class="span4 t-a_r">
                         <div class="muted">Copyright © ImageCMS 2012</div>
@@ -221,6 +221,17 @@
             </div>
         </footer>
 <div id="elfinder"></div>
+<div class="standart_form frame_rep_bug">
+    <form method="post" action="">
+        <label>
+            {lang('a_your_remark')}:
+            <textarea></textarea>
+        </label>
+        <input type="submit" value="{lang('a_send')}" class="btn btn-info"/>
+        <input type="hidden" value="{$_SERVER['REMOTE_ADDR']}" id="ip_address"/>
+        
+    </form>
+</div>
         <script>
             {if $CI->dx_auth->is_logged_in()}
             var userLogined = true;

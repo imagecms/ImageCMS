@@ -133,7 +133,7 @@ class Admin extends MY_Controller {
      * Display category albums
      */
     public function category($id) {
-        $albums = $this->gallery_m->get_albums($this->conf['order_by'], $this->conf['sort_order'], $id);
+        $albums = $this->gallery_m->get_albums('position', 'asc');
 
         if ($albums != FALSE) {
             $cnt = count($albums);
@@ -339,10 +339,11 @@ class Admin extends MY_Controller {
                 // delete album dir.
                 rmdir($this->conf['upload_path'] . $album['id']);
             }
-
             $this->gallery_m->delete_album($album['id']);
+            echo 'deleted';
+            exit;
         } else {
-            show_error(lang('amt_cant_load_album_info'));
+            showMessage(lang('amt_cant_load_album_info'));
         }
     }
 
@@ -495,6 +496,12 @@ class Admin extends MY_Controller {
         $positions = $this->input->post('positions');
         foreach ($positions as $key => $value) {
             $this->db->where('id', (int)$value)->set('position', $key)->update('gallery_category');
+        }
+    }
+    public function update_album_positions() {
+        $positions = $this->input->post('positions');
+        foreach ($positions as $key => $value) {
+            $this->db->where('id', (int)$value)->set('position', $key)->update('gallery_albums');
         }
     }
     /**
