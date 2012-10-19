@@ -4,6 +4,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+    $lang['a_enter_sys']		=	'Войти в систему';
+    $lang['a_content']		=	'Содержание';
+    $lang['a_custom_field_edi_add_th']		=	'Данные дополнительного поля';
     $lang['a_content']                  =	'Содержание';
     $lang['a_status_collback_ne_all_inform']                  =	'Общая информация';
     $lang['a_collback_edit_sta_new']                  =	'Тема создана';
@@ -165,6 +168,7 @@
     $lang['by_default']		=	'По умолчанию';
     $lang['page_tpl']		=	'Шаблон Страницы';
     $lang['page_view']		=	'Просмотр страницы';
+    $lang['imgs_view']		=	'Просмотр изображений';
     $lang['comm_alow']		=	'Разрешить комментирование';
     $lang['show_sett']		=	'показать настройки';
     $lang['sett']		=	'Настройки'; 
@@ -738,6 +742,7 @@
     $lang['a_kit_del_title'] = 'Удаление набора';
     $lang['a_products_del_body'] = 'Удалить выбранные товары?';
     $lang['a_category_delete'] = 'Удалить категорию?';
+    $lang['a_album_delete'] = 'Удалить альбом?';
     
     $lang['a_not_ask_main_prod_for_kit'] = 'Вы не задали главный товар для набора';
     $lang['a_kit_not_found'] = 'Набор не найден';

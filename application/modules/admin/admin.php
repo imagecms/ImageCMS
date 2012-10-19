@@ -30,36 +30,30 @@ class Admin extends MY_Controller {
     }
 
     public function index() {
-        
+
         //just show dashboard
         $this->load->module('admin/dashboard');
         $this->dashboard->index();
         exit;
-        
+
         // Disable license check.
         // From version 1.3.7
         //$this->check();
         //$this->load->module('admin/components');
         //$components = $this->components->find_components(TRUE);
-        
         //load modules list
         //$this->template->assign('components', $components);
         //$this->template->assign('cats_unsorted', $this->lib_category->unsorted());
         //$this->template->assign('tree', $this->lib_category->build());
-
         // load menus
         //$this->load->module('menu');
         //$this->template->assign('menus', $this->menu->get_all_menus());
-
         ///TinyMCE
         //$this->load->library('lib_editor');
         //$this->template->assign('editor', $this->lib_editor->init());
         //////
-
         //$this->template->assign('username', $this->dx_auth->get_username());
-
         //($hook = get_hook('admin_show_desktop')) ? eval($hook) : NULL;
-
 //        $this->template->show('desktop', FALSE);
         //$this->template->show('dashboard', TRUE);
     }
@@ -160,25 +154,23 @@ class Admin extends MY_Controller {
             'color' => 'r',
             'filesCount' => $this->cache->cache_file()));
     }
-    
+
     //initialyze elFinder
-    public function elfinder_init()
-    {
-    	$this->load->helper('path');
-    	$opts = array(
-    			// 'debug' => true,
-    			'roots' => array(
-    					array(
-    							'driver' => 'LocalFileSystem',
-    							'path'   => set_realpath('./uploads'),
-    							'URL'    => site_url() . 'uploads'
-    							// more elFinder options here
-    					)
-    			)
-    	);
-    	$this->load->library('elfinder_lib', $opts);
+    public function elfinder_init() {
+        $this->load->helper('path');
+        $opts = array(
+            // 'debug' => true,
+            'roots' => array(
+                array(
+                    'driver' => 'LocalFileSystem',
+                    'path' => set_realpath('uploads'),
+                    'URL' => site_url() . 'uploads'
+                // more elFinder options here
+                )
+            )
+        );
+        $this->load->library('elfinder_lib', $opts);
     }
-    
 
     public function sidebar_cats() {
         echo '<div id="categories">';
@@ -206,6 +198,28 @@ class Admin extends MY_Controller {
         $this->lib_admin->log(lang('ac_admin_panel_exit'));
         $this->dx_auth->logout();
         redirect('/admin/login', 'refresh');
+    }
+
+    public function report_bug() {
+        $message = '';
+        $this->load->library('email');
+
+        $config['charset'] = 'utf-8';
+        $config['mailtype'] = 'html';
+        $config['wordwrap'] = TRUE;
+        $this->email->initialize($config);
+
+        /* pack message */
+        $message .= 'Адреса сайту: ' . trim(strip_tags($_GET['hostname'])) . '; сторінка адмінки: ' . trim(strip_tags($_GET['pathname'])) . '; ip-address: ' . trim(strip_tags($_GET['ip_address'])) . '; ім\'я користувача: ' . trim(strip_tags($_GET['user_name'])) . '; текст повідомлення: ' . trim(strip_tags($_GET['text']));
+
+        /* send message */
+        $this->email->from('bugs@imagecms.net', 'Admin Robot');
+        $this->email->to('domovoj1@gmail.com');
+        $this->email->subject('Admin Report');
+        $this->email->message(stripslashes($message));
+        $this->email->send();
+
+        echo $message;
     }
 
 }
