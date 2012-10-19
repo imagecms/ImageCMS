@@ -540,6 +540,7 @@ $(document).ready(function() {
         var arr = new Array();
         $('input[name=ids]').each(function() {
             arr.push($(this).val());
+            console.log(arr)
         });
         $.post(
                 url,

@@ -4,6 +4,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+$lang['a_your_remark'] = 'Your remark';
 $lang['a_content'] = 'Content';
 $lang['a_del_category_selec'] = 'Remove selected categories';
 $lang['a_del_categoy_ba'] = 'Delete a category';

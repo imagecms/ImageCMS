@@ -34,40 +34,47 @@ function number_tooltip(){
         else $(this).tooltip('hide');
     });
 }
-function fixed_frame_title(){
-    fixed_block = $(".frame_title:not(.no_fixed)");
-    mini_layout = $('.mini-layout');
-    var container = $('.container');
-    
-    var fixed_block_top = mini_layout.offset().top;
-    var fixed_block_h = fixed_block.outerHeight(true);
- 
-    function getScrollTop() {
-        var scrOfY = 0;
-        if( typeof( window.pageYOffset ) == "number" ) {
-            //Netscape compliant
-            scrOfY = window.pageYOffset;
-        } else if( document.body
-            && ( document.body.scrollLeft
-                || document.body.scrollTop ) ) {
-            //DOM compliant
-            scrOfY = document.body.scrollTop;
-        } else if( document.documentElement
-            && ( document.documentElement.scrollLeft
-                || document.documentElement.scrollTop ) ) {
-            //IE6 Strict
-            scrOfY = document.documentElement.scrollTop;
-        }
-        return scrOfY;
+$('[data-max]').on('keyup', function(event){
+    $this = $(this);
+    if($this.val() > $this.data('max')) {
+        $this.val(100);
     }
+});
+fixed_block = $(".frame_title:not(.no_fixed)");
+mini_layout = $('.mini-layout');
+container = $('.container');
+function fixed_frame_title(){
+    if ($.exists_nabir(fixed_block)){
+        var fixed_block_top = mini_layout.offset().top;
+        var fixed_block_h = fixed_block.outerHeight(true);
+ 
+        function getScrollTop() {
+            var scrOfY = 0;
+            if( typeof( window.pageYOffset ) == "number" ) {
+                //Netscape compliant
+                scrOfY = window.pageYOffset;
+            } else if( document.body
+                && ( document.body.scrollLeft
+                    || document.body.scrollTop ) ) {
+                //DOM compliant
+                scrOfY = document.body.scrollTop;
+            } else if( document.documentElement
+                && ( document.documentElement.scrollLeft
+                    || document.documentElement.scrollTop ) ) {
+                //IE6 Strict
+                scrOfY = document.documentElement.scrollTop;
+            }
+            return scrOfY;
+        }
 	
-    var top = getScrollTop();
+        var top = getScrollTop();
         
-    if (top < fixed_block_top) fixed_block.css("top",fixed_block_top-top+20);
-    else fixed_block.css("top",20);
+        if (top < fixed_block_top) fixed_block.css("top",fixed_block_top-top+20);
+        else fixed_block.css("top",20);
         
-    fixed_block.css('width', container.width()-2);
-    mini_layout.css('padding-top', 20+fixed_block_h)
+        fixed_block.css('width', container.width()-2);
+        mini_layout.css('padding-top', 20+fixed_block_h)
+    }
 }
 function difTooltip(){
     //  tooltip
@@ -93,11 +100,13 @@ function difTooltip(){
     else place_tr_ttp = 'top'
 }
 function initAdminArea(){
-    if (isShop)
-    {
-        $('#shopAdminMenu').show();
-        $('#topPanelNotifications').fadeIn(200);
+    if ($.exists('#shopAdminMenu')){
+        if (isShop)
+        {
+            $('#shopAdminMenu').show();
+            $('#topPanelNotifications').fadeIn(200);
         
+        }
     }
         
     console.log('initialising of administration area started');
@@ -138,10 +147,12 @@ function initAdminArea(){
     else $('.myTab li.active a').click();
     
     //  drop search
-    $('.typeahead').typeahead();
+    if ($.exists('.typeahead')) $('.typeahead').typeahead();
     
     //init tooltip
     difTooltip();
+    
+    if ($.exists('[data-rel="tooltip"], [rel="tooltip"]')) $('[data-rel="tooltip"], [rel="tooltip"]').not('tr').not('.row-category').tooltip();
     
     //sortable
     if ($.exists('.sortable')) {
@@ -174,6 +185,17 @@ function initAdminArea(){
         //                    return false;
         //            }
         });
+    }
+    if ($.exists('.sortable2')) {
+        $( ".sortable2").sortable({
+            helper: function(e, tr)
+            {
+                var $helper = tr.clone();
+                $helper.addClass('active');
+                return $helper;
+            }
+        });
+        $( ".sortable2").disableSelection();
     }
     //data-picker
     if ($.exists('.datepicker')) {
@@ -624,13 +646,13 @@ function initAdminArea(){
             });
         }
     });
-//    if ($.exists('#usersDatas')) $('#usersDatas').typeahead({
-//        source:usersDatas
-//    });
+    //    if ($.exists('#usersDatas')) $('#usersDatas').typeahead({
+    //        source:usersDatas
+    //    });
 
     if ($.exists('#wrapper_gistogram')) gistogram(); 
     
-   $('.controls img.img-polaroid').on('click', function(){
+    $('.controls img.img-polaroid').on('click', function(){
         $(this).closest('.control-group').find('input:file').click();
     });
     
@@ -712,16 +734,16 @@ function initAdminArea(){
     //           return false;
     //      });
     
-//    $('.myTab a').click(function (e) {
-//	  e.preventDefault();
-//	  $(this).tab('show');
-//	})
+    //    $('.myTab a').click(function (e) {
+    //	  e.preventDefault();
+    //	  $(this).tab('show');
+    //	})
     
-//	if ($('.mceEditor').length > 0)
-//		initTinyMCE();
+    //	if ($('.mceEditor').length > 0)
+    //		initTinyMCE();
 	
-	if ($('textarea.elRTE').length > 0)
-		initElRTE();
+    if ($('textarea.elRTE').length > 0)
+        initElRTE();
 		
     console.log('initialising of administration area ended');
     console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.")
@@ -735,7 +757,7 @@ function initAdminArea(){
 
 $(document).ready(
     function(){
-        updateNotificationsTotal();
+        if ($.exists('#topPanelNotifications')) updateNotificationsTotal();
         initAdminArea();
         $('.nav .dropdown-menu a').unbind('click');
 
@@ -755,15 +777,52 @@ $(document).ready(
             $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
             return false;
         });
-    }
-    );
+        
+        $(this).keydown(function (e) {
+            e = e || window.event;
+            if (e.keyCode === 13 || (e.keyCode === 83 && event.ctrlKey)) {
+                $("[data-submit]").trigger('click');
+                return false;
+            }
+        });
+        var overlay = $('.main_body').append('<div class="overlay"></div>')
+        $('#rep_bug').on('click', function(){
+            $('.overlay').fadeIn(function(){
+                $(this).css({
+                    'height': $(document).height(), 
+                    'opacity':0.5
+                });
+                $('.frame_rep_bug').find('.alert').remove().end().fadeIn();
+            });
+            $('.overlay').on('click', function(){
+                $('.frame_rep_bug').fadeOut(function(){
+                    $('.overlay').fadeOut();
+                })
+            });
+        });
+        $('.frame_rep_bug [type="submit"]').on('click', function(){
+            var url = 'hostname='+location.hostname+'&pathname='+location.pathname+'&user_name='+$('#user_name').text()+'&text='+$('.frame_rep_bug textarea').val()+'&ip_address='+$('.frame_rep_bug #ip_address').val();
+            $.ajax({
+                type: 'GET',
+                url: 'admin/report_bug',
+                data: url,
+                success: function(data){
+                    $('.frame_rep_bug').prepend('<div class="alert alert-success">Ваше повідомлення відправлено</div>');
+                    setTimeout(function(){$('.overlay').trigger('click')}, 2000)
+                }
+            })
+            return false;
+        });
+    });
     
 $(window).load(function(){
     $(window).on('resize', function(event){
         fixed_frame_title();
-        fixed_block_h = fixed_block.outerHeight(true);
-        fixed_block_top = mini_layout.offset().top;
-        $(this).trigger('scroll');
+        if ($.exists_nabir(fixed_block)){
+            fixed_block_h = fixed_block.outerHeight(true);
+            fixed_block_top = mini_layout.offset().top;
+            $(this).trigger('scroll');
+        }
         $('.fade.in').remove();
         difTooltip();
     }).resize();

@@ -108,7 +108,7 @@
                 </table>
             </div>
             <div class="span4">
-                <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                <table class="table table-striped table-bordered table-hover table-condensed content_big_td" style="margin-top: 40px;">
                         <thead>
                             <th>{lang('a_system')}</th>
                         </thead>
