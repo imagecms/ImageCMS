@@ -54,23 +54,43 @@ class Admin extends MY_Controller {
         cp_check_perm('user_view_data');
 
         $this->load->model('dx_auth/users', 'users');
-        $this->load->library('pagination');
+        //$this->load->library('pagination');
 
         $offset = (int) $this->uri->segment(6);
-        $row_count = 50;
+        $row_count = 20;
 
         // Get all users
         $users = $this->users->get_all($offset, $row_count);
+        if(count($users)){
+        $this->load->library('Pagination');
 
-        // Begin pagination
-        $config['base_url'] = site_url('admin/components/cp/user_manager/genre_user_table');
-        $config['container'] = 'users_ajax_table';
-        $config['uri_segment'] = 6;
+        $config['base_url'] = site_url('admin/components/cp/user_manager/index');
         $config['total_rows'] = $this->users->get_all()->num_rows();
         $config['per_page'] = $row_count;
+        $config['uri_segment'] = $this->uri->total_segments();
+
+        $config['separate_controls'] = true;
+        $config['full_tag_open'] = '<div class="pagination pull-left"><ul>';
+        $config['full_tag_close'] = '</ul></div>';
+        $config['controls_tag_open'] = '<div class="pagination pull-right"><ul>';
+        $config['controls_tag_close'] = '</ul></div>';
+        $config['next_link'] = 'Next&nbsp;&gt;';
+        $config['prev_link'] = '&lt;&nbsp;Prev';
+        $config['cur_tag_open'] = '<li class="btn-primary active"><span>';
+        $config['cur_tag_close'] = '</span></li>';
+        $config['prev_tag_open'] = '<li>';
+        $config['prev_tag_close'] = '</li>';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+        $config['num_tag_close'] = '</li>';
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+
+        $this->pagination->num_links = 5;
         $this->pagination->initialize($config);
         $this->template->assign('paginator', $this->pagination->create_links_ajax());
         // End pagination
+        }
 
         $users = $users->result_array();
 
@@ -188,7 +208,6 @@ class Admin extends MY_Controller {
                 $this->lib_admin->log(lang('amt_unbanned_user') . $value);
             }
         }
-
     }
 
     /*
@@ -255,7 +274,7 @@ class Admin extends MY_Controller {
         $user = $this->users->get_user_by_id($user_id);
 
         if ($user->num_rows() == 0) {
-            showMessage(lang('amt_users_not_found'),'','r');
+            showMessage(lang('amt_users_not_found'), '', 'r');
             exit;
         } else {
             $this->template->add_array($user->row_array());
@@ -445,7 +464,7 @@ class Admin extends MY_Controller {
 
             showMessage(lang('amt_group_saved'));
             $this->update_groups_block();
-            
+
             $action = $_POST['action'];
             if ($action == 'close') {
                 pjax('/admin/components/cp/user_manager/edit/' . $id);
