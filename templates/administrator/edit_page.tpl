@@ -8,7 +8,7 @@
                             <span class="help-inline"></span>
                             <div class="d-i_b">
                                 <a href="/admin/pages/GetPagesByCategory" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
-                                <button type="button" class="btn btn-small action_on formSubmit" data-action="edit" data-form="#edit_page_form"><i class="icon-ok"></i>Сохранить</button>
+                                <button type="button" class="btn btn-small btn-success action_on formSubmit" data-action="edit" data-form="#edit_page_form"><i class="icon-ok icon-white"></i>Сохранить</button>
                                 <button type="button" class="btn btn-small action_on formSubmit" data-action="close" data-form="#edit_page_form"><i class="icon-check"></i>Сохранить и выйти</button>
                                 <div class="dropdown d-i_b">
                                     <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
@@ -140,10 +140,15 @@
                     		{lang('a_url')}:
                             </label>
                         	<div class="controls">
-				    <span class="span5 f_l">
-                			<input type="text" name="page_url" value="{$url}" id="page_url" class="textbox_long" />
-				    </span>
+                        	{if $defLang.id == $page_lang}
+				    		<span class="span5 f_l">
+                				<input type="text" name="page_url" value="{$url}" id="page_url" class="textbox_long" />
+				    		</span>
                 		    <button onclick="translite_title('#page_title_u', '#page_url');" type="button" class="btn btn-small" id="translateCategoryTitle"><i class="icon-refresh"></i>&nbsp;&nbsp;Автоподбор</button>
+                		    {else:}
+                		    <input type="text" name="page_url" value="{$url}" id="page_url" class="textbox_long" disabled="disabled" />
+                		    {/if}
+                		    
         			    <div class="lite">({lang('a_just_lat')})</div>
                         	</div>
                         </div>
@@ -354,5 +359,6 @@
         </div>
     </div>
 <script>
-	window.onload = pagesAdmin.initialize();
+if (window.hasOwnProperty('pagesAdmin'))
+	pagesAdmin.initialize();
 </script>

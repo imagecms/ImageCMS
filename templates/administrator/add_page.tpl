@@ -9,7 +9,7 @@
                             <span class="help-inline"></span>
                             <div class="d-i_b">
                                 <a href="/admin/pages/GetPagesByCategory" class="pjax t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
-                                <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form" data-action="edit" ><i class="icon-ok"></i>Сохранить</button>
+                                <button type="button" class="btn btn-small btn-success action_on formSubmit" data-form="#add_page_form" data-action="edit" ><i class="icon-ok icon-white"></i>Сохранить</button>
                                 <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form" data-action="close"><i class="icon-check"></i>Сохранить и выйти</button>
                             </div>
                         </div>                            
@@ -331,5 +331,6 @@
     </div>
 
 <script>
-	//window.onload = pagesAdmin.initialize();
+if (window.hasOwnProperty('pagesAdmin'))
+	pagesAdmin.initialize();
 </script>

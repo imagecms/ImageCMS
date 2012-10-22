@@ -276,6 +276,11 @@ class Pages extends MY_Controller {
 
         // Get page data
         $data = $this->db->get_where('content', array('id' => $page_id))->row_array();
+        
+        
+        if ($data['lang_alias'] != 0)
+//         	echo 'aaaaaa'; exit;
+        	redirect('/admin/pages/edit/'.$data['lang_alias'].'/'.$data['lang']);
 
         if ($lang != 0 AND $lang != $data['lang']) {
             $data = $this->db->get_where('content', array('lang_alias' => $page_id, 'lang' => $lang));
@@ -342,6 +347,7 @@ class Pages extends MY_Controller {
                 'tree' => $this->lib_category->build(),
                 'parent_id' => $data['category'],
                 'langs' => $langs,
+            	'defLang' => $def_lang,
                 'category' => $category
             ));
 

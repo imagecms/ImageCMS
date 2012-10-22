@@ -19,13 +19,13 @@ var pagesAdmin = new Object({
     },
     loadCFAddPage:function()
     {
-        categoryId = $("#category_selectbox").val();
+        var categoryId = $("#category_selectbox").val();
         $("#cfcm_fields_block").load(base_url + "admin/components/cp/cfcm/form_from_category_group/" + categoryId + "/0/page");
     },
     loadCFEditPage:function()
     {
         var updatePageId = $('#edit_page_form').data('pageid');
-        categoryId = $("#category_selectbox").val();
+        var categoryId = $("#category_selectbox").val();
         $("#cfcm_fields_block").load(base_url + "admin/components/cp/cfcm/form_from_category_group/" + categoryId + "/" + updatePageId + "/page");
     },
     confirmListAction:function(actionURL)
@@ -65,10 +65,10 @@ var pagesAdmin = new Object({
     
     initialize:function()
     {
-        if ($('#edit_page_form'))
+        if ($('#edit_page_form').length)
             this.loadCFEditPage();
             
-        if ($('#add_page_form'))
+        if ($('#add_page_form').length)
             this.loadCFAddPage();
     }
 });
