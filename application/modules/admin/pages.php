@@ -209,7 +209,7 @@ class Pages extends MY_Controller {
 
             $this->lib_admin->log(
                     lang('ac_created_page') .
-                    '<a href="#" onclick="ajax_div(\'page\',\'' . site_url('admin/pages/edit/' . $page_id) . '\'); return false;">' . $data['title'] . '</a>'
+                    '<a href="' . site_url('admin/pages/edit/' . $page_id).'">' . $data['title'] . '</a>'
             );
 
             $action = $this->input->post('action');
@@ -500,7 +500,7 @@ class Pages extends MY_Controller {
             if ($this->cms_admin->update_page($page_id, $data) >= 1) {
                 $this->lib_admin->log(
                         lang('ac_changed_page') .
-                        '<a href="#" onclick="ajax_div(\'page\',\'' . site_url('admin/pages/edit/' . $page_id) . '\'); return false;">' . $data['title'] . '</a>'
+                        '<a href="' . site_url('admin/pages/edit/' . $page_id).'">' . $data['title'] . '</a>'
                 );
                 
                 $action = $this->input->post('action');

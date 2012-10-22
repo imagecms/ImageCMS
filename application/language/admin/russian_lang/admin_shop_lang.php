@@ -5,6 +5,7 @@
  * and open the template in the editor.
  */
     $lang['a_enter_sys']		=	'Войти в систему';
+    $lang['a_u_manager_create_group']		=	'Создать группу';
     $lang['a_content']		=	'Содержание';
     $lang['a_custom_field_edi_add_th']		=	'Данные дополнительного поля';
     $lang['a_content']                  =	'Содержание';

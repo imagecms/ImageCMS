@@ -4,13 +4,12 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('a_param')}</span>
+                <span class="title">{lang('a_sett_base_create_new_language')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">                        
                     <a href="/admin/languages" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
-                    <button type="submit"   class="btn btn-small btn-success formSubmit" data-form="#createLang" data-action="edit"><i class="icon-list-alt icon-white"></i>{lang('a_save')}</button>
-                    <button type="submit"   class="btn btn-small formSubmit" data-form="#createLang" data-action="close"><i class="icon-ok"></i>{lang('a_save_and_exit')}</button>
+                    <button type="submit"   class="btn btn-small btn-success formSubmit" data-form="#createLang" data-action="edit"><i class="icon-list-alt icon-white"></i>{lang('a_create')}</button>                   
                 </div>
             </div>                            
         </div>
@@ -21,7 +20,7 @@
                         <thead>
                             <tr>
                                 <th colspan="6">
-                                    {lang('a_sett')}
+                                    {lang('a_param')}
                                 </th>
                             </tr>
                         </thead>
