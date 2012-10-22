@@ -8,8 +8,8 @@
             <div class="pull-right">
                 <div class="d-i_b">
                     <a href="/admin/categories/cat_list" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
-                    <button type="submit" class="btn btn-small action_on formSubmit" data-action="close" data-form="#save"><i class="icon-ok"></i>{lang('a_save')}</button>
-                    <button type="button" class="btn btn-small action_on formSubmit" data-action="exit" data-form="#save"><i class="icon-check"></i>{lang('a_footer_save_exit')}</button>
+                    <button type="submit" class="btn btn-small btn-success action_on formSubmit" data-action="edit" data-form="#save"><i class="icon-ok icon-white"></i>{lang('a_save')}</button>
+                    <button type="button" class="btn btn-small action_on formSubmit" data-action="close" data-form="#save"><i class="icon-check"></i>{lang('a_footer_save_exit')}</button>
 
                     <div class="dropdown d-i_b">
                         {foreach $langs as $l}
@@ -23,7 +23,9 @@
                         {/foreach}
                         <ul class="dropdown-menu">
                             {foreach $langs as $l}
+                            {if !$l.default}
                                 <li><a href="{$BASE_URL}admin/categories/translate/{$id}/{$l.id}">{$l.lang_name}</a></li>
+                            {/if}
                             {/foreach}
                         </ul>
 
@@ -31,7 +33,7 @@
                 </div>
             </div>                            
         </div>
-        <form method="post" action="{$BASE_URL}admin/categories/create/update/{$id}" id="save">
+        <form method="post" action="{$BASE_URL}admin/categories/create/update/{$id}" id="save" class="form-horizontal">
             <div class="content_big_td">
                 <div class="clearfix">
                     <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
@@ -129,21 +131,21 @@
                                                         </div>
                                                     </div>
                                                     
-                                                    	<div class="control-group">
-                                                            <label class="control-label" for="Img">{lang('a_image')}:
-                                                                <span class="btn btn-small p_r" data-url="file">
-                                                                    <i class="icon-camera"></i>&nbsp;&nbsp;{lang('a_select_image')}
-                                                                    <input type="file" class="btn-small btn" id="Img" name="image">
-                                                                </span>                                              
-                                                            </label>
-                                                            <div class="controls">
-                                                            {if $image}
-                                                            	<img src="$image" class="img-polaroid " style="width: 100px; ">
-                                                            {else:}
-                                                            	<img src="{$THEME}/images/select-picture.png" class="img-polaroid " style="width: 100px; ">
-                                                            {/if}
+                                                    
+                                                    <div class="control-group">
+							                            <label class="control-label" for="Img">
+							                            {lang('a_image')}:                            
+							                            </label>
+							                        	<div class="controls">
+											    		<div class="group_icon pull-right">
+														<button class="btn btn-small" onclick="elFinderPopup('image', 'Img');return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
                                                             </div>
-                                                        </div>
+                                                            <div class="o_h">
+									                		    <input type="text" name="image" id="Img" value="{$image}">				    
+																</div>
+											    		</div>
+							                        </div>
+                                                    
 
                                                     <div class="control-group">
                                                         <label class="control-label" for="position">{lang('a_position')}:</label>
@@ -218,8 +220,11 @@
 
                                                             <div class="o_h">
                                                                 <select name="fetch_pages[]"  multiple="multiple" size="5" id="fetch_pages">
+                                                                	{if !$fetch_pages}
+                                                                	{$fetch_pages = Array()}
+                                                                	{/if}
                                                                     {foreach $include_cats as $c}
-                                                                        <option value="{$c.id}"> {for $i=0; $i < $c.level;$i++}-{/for} {$c.name}</option>
+                                                                        <option value="{$c.id}" {if in_array($c.id, $fetch_pages)}  selected="selected" {/if}> {for $i=0; $i < $c.level;$i++}-{/for} {$c.name}</option>
                                                                     {/foreach}
                                                                 </select>
 
@@ -309,12 +314,7 @@
                     </div>
 
                     <div class="tab-pane" id="dodPol">
-
-
-                        {($hook = get_hook('admin_tpl_edit_category')) ? eval($hook) : NULL;}
-
-
-
+                        {echo $this->CI->load->module('cfcm/admin')->form_from_category_group($id, $id, 'category')}
                     </div>
                 </div>
             </div>
@@ -324,3 +324,4 @@
 </div>
 {form_csrf()}
 </form>
+<div id="elFinder"></div>

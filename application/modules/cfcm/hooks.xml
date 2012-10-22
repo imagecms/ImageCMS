@@ -199,13 +199,6 @@ if (count($pages) > 0 AND is_array($pages))
 
 <hook id="admin_tpl_edit_category">
 <![CDATA[
-   
-	echo '<div class="control-group" id="cfcm_fields_block"><label class="control-label" for="title">';
-
     echo $this->CI->load->module('cfcm/admin')->form_from_category_group($id, $id, 'category');
-
-    echo '                </label></div>
-                                                </div>                                                
-                                       ';
 ]]>
 </hook>
