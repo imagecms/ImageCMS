@@ -11,7 +11,7 @@
     <tr>
         <td colspan="6">
             <div class="inside_padd">
-                <div class="span9">
+                <div class="span12">
     {foreach $form->asArray() as $f}
     
 
@@ -20,17 +20,23 @@
                     		{$f.label}
                             </label>
                         	<div class="controls">
-				    <span class="span6">
-                		    {$f.field}
-				    
-				    {if $f.info.enable_image_browser == 1}            
+                		    
+				    {if $f.info.enable_image_browser == 1}
+				    <div class="group_icon pull-right">            
 					<button class="btn btn-small" onclick="elFinderPopup('image', '{$f.name}');return false;"><i class="icon-picture"></i>  {lang('amt_select_image')}</button>
-				   {/if}
+					</div>
+				   	{/if}
 
-            {if $f.info.enable_file_browser == 1}
-                 <button class="btn btn-small" onclick="elFinderPopup('file', '{$f.name}');return false;"> <i class="icon-folder-open"></i> {lang('amt_select_image')}</button>
-            {/if}				   
-				    </span>
+		            {if $f.info.enable_file_browser == 1}
+		            	<div class="group_icon pull-right">
+		                <button class="btn btn-small" onclick="elFinderPopup('file', '{$f.name}');return false;"> <i class="icon-folder-open"></i> {lang('amt_select_file')}</button>
+		                </div>
+		            {/if}
+					
+					<div class="o_h">		            
+		            {$f.field}
+					</div>
+							            				   
 				    {$f.help_text}
                         	</div>
                         </div>

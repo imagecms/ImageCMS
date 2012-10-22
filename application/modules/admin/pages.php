@@ -581,7 +581,7 @@ class Pages extends MY_Controller {
      */
     function ajax_translit() {
         $this->load->helper('translit');
-        $str = $this->input->post('str');
+        $str = trim($this->input->post('str'));
         echo translit_url($str);
     }
 
