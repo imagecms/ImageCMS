@@ -236,7 +236,7 @@ class Admin extends MY_Controller {
     public function create_group() {
         $form = $this->get_form('create_group_form');
         $form->action = $this->get_url('create_group');
-        $form->title = lang('amt_group_creating');
+        $form->title = lang('a_create_cat');
 
         if ($_POST) {
             if (empty($_POST['name'])) {
