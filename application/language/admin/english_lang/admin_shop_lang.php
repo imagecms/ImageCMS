@@ -5,6 +5,7 @@
  * and open the template in the editor.
  */
     $lang['a_enter_sys']		=	'Log in';
+    $lang['a_u_manager_create_group']		=	'Create a Group';
     $lang['a_content']		=	'Content';
     $lang['a_status_collback_ne_all_inform']                  =	'General information';
     $lang['a_collback_edit_sta_new']                  =	'Topic started';
