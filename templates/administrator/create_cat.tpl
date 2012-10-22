@@ -3,14 +3,14 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('a_param')}</span>
+                <span class="title">{lang('a_create_cat')}</span>
             </div>
 
             <div class="pull-right">
                 <div class="d-i_b">                        
                     <a href="/admin/categories/cat_list" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
-                    <button type="button" class="btn btn-small action_on formSubmit" data-action="close" data-form="#save"><i class="icon-ok"></i>{lang('a_create_cat')}</button>
-                    <button type="button" class="btn btn-small action_on formSubmit" data-action="exit" data-form="#save"><i class="icon-check"></i>{lang('a_cre_exit_form')}</button>                   
+                    <button type="button" class="btn btn-small action_on btn-success  formSubmit" data-action="edit" data-form="#save"><i class="icon-ok icon-white"></i>{lang('a_create_cat')}</button>
+                    <button type="button" class="btn btn-small action_on formSubmit" data-action="close" data-form="#save"><i class="icon-check"></i>{lang('a_cre_exit_form')}</button>                   
                 </div>
             </div>                            
         </div>
@@ -136,17 +136,19 @@
                                                         </div>
                                                     </div>
                            -->                          
-                                                       <div class="control-group">
-                                                            <label class="control-label" for="Img">{lang('a_image')}:
-                                                                <span class="btn btn-small p_r" data-url="file">
-                                                                    <i class="icon-camera"></i>&nbsp;&nbsp;{lang('a_select_image')}
-                                                                    <input type="file" class="btn-small btn" id="Img" name="image">
-                                                                </span>                                              
-                                                            </label>
-                                                            <div class="controls">
-                                                                <img src="{$THEME}/images/select-picture.png" class="img-polaroid " style="width: 100px; ">
+                                                    <div class="control-group">
+							                            <label class="control-label" for="field_fdggggg">
+							                            {lang('a_image')}:                            
+							                            </label>
+							                        	<div class="controls">
+											    		<div class="group_icon pull-right">
+														<button class="btn btn-small" onclick="elFinderPopup('image', 'Img');return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
                                                             </div>
-                                                        </div>
+                                                            <div class="o_h">
+									                		    <input type="text" name="image" id="Img">				    
+																</div>
+											    		</div>
+							                        </div>
 
                                                     <div class="control-group">
                                                         <label class="control-label" for="position">{lang('a_position')}:</label>
@@ -318,3 +320,4 @@
 </div>
 </section>
 </div>
+<div id="elFinder"></div>
