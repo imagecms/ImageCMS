@@ -80,7 +80,8 @@ class Admin extends MY_Controller {
             $this->template->assign('groups', $groups->result_array());
         }
 
-        $this->display_tpl('index');
+        $this->render('index');
+//         echo $this->display_tpl('index');
     }
 
     public function create_field() {
@@ -131,7 +132,8 @@ class Admin extends MY_Controller {
         ));
 
         //$this->display_tpl('top_navigation');
-        $this->display_tpl('_form');
+//         $this->display_tpl('_form');
+        $this->render('_form');
     }
 
     public function edit_field_data_type($field_name) {
@@ -173,7 +175,8 @@ class Admin extends MY_Controller {
             'form' => $form,
         ));
 
-        $this->display_tpl('_form');
+//         $this->display_tpl('_form');
+        $this->render('_form');
     }
 
     public function delete_field($field_name) {
@@ -227,7 +230,8 @@ class Admin extends MY_Controller {
                 'form' => $form,
             ));
             
-            $this->display_tpl('_form');
+//             $this->display_tpl('_form');
+            $this->render('_form');
         }
         else
             echo lang('amt_field_not_found');
@@ -259,7 +263,8 @@ class Admin extends MY_Controller {
             'form' => $form,
         ));
 
-        $this->display_tpl('_form');
+//         $this->display_tpl('_form');
+        $this->render('_form');
     }
 
     public function edit_group($id) {
@@ -300,7 +305,8 @@ class Admin extends MY_Controller {
             'form' => $form,
         ));
 
-        $this->display_tpl('_form');
+//         $this->display_tpl('_form');
+        $this->render('_form');
     }
 
     public function delete_group($id) {
@@ -443,6 +449,20 @@ class Admin extends MY_Controller {
                 $this->db->update('content_fields', array('weight' => $weight));
             }
         }
+    }
+    
+//     render template
+    public function render($viewName, array $data = array(), $return = false) {
+    	if (!empty($data))
+    		$this->template->add_array($data);
+    
+
+		if ($this->ajaxRequest)    	
+    		echo $this->template->fetch('file:' . 'application/modules/cfcm/templates/admin/' . $viewName);
+		else
+			$this->template->show('file:' . 'application/modules/cfcm/templates/admin/' . $viewName);
+//     	$this->template->fetch('file:' . 'application/modules/cfcm/templates/admin/' . $viewName);
+    	exit;
     }
 
     /**
