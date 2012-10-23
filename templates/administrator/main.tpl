@@ -188,7 +188,9 @@
                 <div style="display:none;" class="container" id="shopAdminMenu"  > {include_tpl('shop_menu.tpl')} </div>
             </div>
             {/if}
+            <div id="loading" style=" display: none; background: url(http://p4/templates/administrator/images/ajax-loader.gif) no-repeat 50% 20px; z-index: 10000; position: absolute; height: 600px; width: 100%; background-color: rgba(255, 255, 255, 0.7);"></div>
             <div class="container" id="mainContent">
+            
                 {$content}
             </div>
             <div class="hfooter"></div>
