@@ -133,7 +133,7 @@ class Admin extends MY_Controller {
      * Display category albums
      */
     public function category($id) {
-        $albums = $this->gallery_m->get_albums('position', 'asc');
+        $albums = $this->gallery_m->get_albums('position', 'asc', $id);
 
         if ($albums != FALSE) {
             $cnt = count($albums);
@@ -281,7 +281,7 @@ class Admin extends MY_Controller {
 
             showMessage('Альбом создан');
 
-            ajax_div('page', site_url('admin/components/cp/gallery/edit_album/' . $album_id));
+            pjax(site_url('admin/components/cp/gallery/edit_album_params/' . $album_id));
         }
     }
 
@@ -289,6 +289,14 @@ class Admin extends MY_Controller {
      * Update album info
      */
     public function update_album($id) {
+        $this->form_validation->set_rules('name', lang('a_name'), 'required');
+        if ($this->form_validation->run() == false){
+            showMessage(validation_errors(), '', 'r');
+            exit();
+        }
+        else {
+            showMessage(lang('amt_changes_saved'));
+        }
         $data = array(
             'category_id' => (int) $this->input->post('category_id'),
             'name' => $this->input->post('name'),
@@ -301,7 +309,14 @@ class Admin extends MY_Controller {
 
         $album = $this->gallery_m->get_album($id);
 
-        updateDiv('page', site_url('admin/components/cp/gallery/category/' . $album['category_id']));
+        $_POST['action'] ? $action = $_POST['action'] : $action = 'edit';
+        
+        if ($action == 'edit')
+            pjax('/admin/components/cp/gallery/edit_album_params/' . $category.$id);
+        
+        if ($action == 'close')
+            pjax('/admin/components/cp/gallery/category/' . $album['category_id']);
+
     }
 
     public function edit_album_params($id) {
@@ -492,18 +507,23 @@ class Admin extends MY_Controller {
             showMessage(lang('amt_cant_load_image_info'), false, 'r');
         }
     }
+
     public function update_positions() {
         $positions = $this->input->post('positions');
         foreach ($positions as $key => $value) {
-            $this->db->where('id', (int)$value)->set('position', $key)->update('gallery_category');
+            $this->db->where('id', (int) $value)->set('position', $key)->update('gallery_category');
         }
+        showMessage(lang('a_positions_updated'));
     }
+
     public function update_album_positions() {
         $positions = $this->input->post('positions');
         foreach ($positions as $key => $value) {
-            $this->db->where('id', (int)$value)->set('position', $key)->update('gallery_albums');
+            $this->db->where('id', (int) $value)->set('position', $key)->update('gallery_albums');
         }
+        showMessage(lang('a_positions_updated'));
     }
+
     /**
      * Add uploaded image to album
      */
@@ -573,7 +593,7 @@ class Admin extends MY_Controller {
             $last_id = $this->gallery_m->create_category($data);
 
             //updateDiv('page', site_url('admin/components/cp/gallery'));
-        
+
             $_POST['action'] ? $action = $_POST['action'] : $action = 'edit';
 
             if ($action == 'close')
@@ -613,7 +633,7 @@ class Admin extends MY_Controller {
             $this->gallery_m->update_category($data, $id);
 
             showMessage(lang('amt_changes_saved'));
-            
+
             //updateDiv('page', site_url('admin/components/cp/gallery'));
             $_POST['action'] ? $action = $_POST['action'] : $action = 'edit';
 

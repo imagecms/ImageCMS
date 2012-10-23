@@ -6,7 +6,10 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="/admin/components/cp/gallery" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
+                <a href="/admin/components/cp/gallery/category/{$album['category_id']}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
+                <button type="button" class="btn btn-small formSubmit btn-primary" data-form="#create_album_form" data-action="edit" data-submit><i class="icon-ok"></i>{lang('amt_save')}</button> 
+                <button type="button" class="btn btn-small formSubmit" data-form="#create_album_form" data-action="close"><i class="icon-check"></i>Сохранить и выйти</button>
+                <button type="button" class="btn btn-small" onclick="$('.modal').modal('show');GalleryAlbums.whatDelete(this);" ><i class="icon-trash"></i>{lang('amt_delete')}</button> 
             </div>
         </div>
     </div>
@@ -27,7 +30,7 @@
                     <div class="control-group">
                         <label class="control-label" for="name">{lang('amt_name')}:</label>
                         <div class="controls">
-                            <input type="text" name="name" id="name" value="{htmlspecialchars($album.name)}"/>
+                            <input type="text" name="name" id="name" value="{htmlspecialchars($album.name)}" />
                         </div>
                     </div>
                     <div class="control-group">
@@ -52,55 +55,21 @@
                             </div>
                         </div>
                     </div>
-                    <div class="control-group">
-                        <label class="control-label" for=""></label>
-                        <div class="controls">
-
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for=""></label>
-                        <div class="controls">
-
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for=""></label>
-                        <div class="controls">
-
-                        </div>
-                    </div>
-                   
-                    <div class="form_input">
-                        <input type="submit" name="button"  class="button_130" value="{lang('amt_save')}" onclick="ajax_me('create_album_form');" /> 
-                        <a href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/category/{$album.category_id}'); return false;" style="padding:5px;">{lang('amt_cancel')}</a> 
-                    </div>
-                    <div class="form_overflow"></div> 
-
-
-                    {form_csrf()}</form>
-
-                <form method="post" action="" style="width:100%;margin-top:50px;">
-
-                    <div class="form_text"></div>
-                    <div class="form_input"><b>{lang('amt_album_delete')}</b></div>
-                    <div class="form_overflow"></div> 
-
-                    <div class="form_text"></div>
-                    <div class="form_input">
-                        <label><input type="checkbox" value="1" name="delete_folder" id="delete_folder" /> {lang('amt_delete_all_images')}</label>
-                    </div>
-                    <div class="form_overflow"></div> 
-
-                    <div class="form_text"></div>
-                    <div class="form_input">
-                        <input type="button" name="button"  class="button_130" value="{lang('amt_delete')}" onclick="confirm_delete_album({$album.id}, '{str_replace(array("'",'"'), '', $album.name)}');" /> 
-                    </div>
-                    <div class="form_overflow"></div> 
-
+                    <input type="hidden" value="{$album.id}" name="album_id"/>
+                    <input type="hidden" value="{$album['category_id']}" name="category_id"/>
                     {form_csrf()}
                 </form>
             </div>
         </div>
     </div>
 </section>
+<div class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>{lang('amt_album_delete')}:</h3>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('a_cancel')}</a>
+        <a href="#" class="btn btn-primary" onclick="GalleryAlbums.deleteCategoriesConfirm()" >{lang('a_delete')}</a>
+    </div>
+</div>

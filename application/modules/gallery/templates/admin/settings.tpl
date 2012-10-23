@@ -7,7 +7,7 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="/admin/components/cp/gallery" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
-                <button name="button" class="btn formSubmit" data-submit data-form="#gallery_settings_form">{lang('amt_save')}</button> 
+                <button name="button" class="btn formSubmit btn-primary" data-submit data-form="#gallery_settings_form">{lang('amt_save')}</button> 
             </div>
         </div>
     </div>
