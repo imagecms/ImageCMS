@@ -30,9 +30,8 @@
                     <a href="/admin/components/modules_table/" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
                     <button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$SELF_URL}/create_user/'"><i class="icon-list-alt icon-white"></i>{lang('a_user_create')}</button>
                     <button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$BASE_URL}admin/components/cp/user_manager/create'"><i class="icon-list-alt icon-white"></i>{lang('a_u_manager_create_group')}</button>
-                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#save" ><i class="icon-ok"></i>{lang('a_save')}</button>
-                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#save"><i class="icon-check"></i>{lang('a_save_and_exit')}</button>
-                     <button type="button" class="btn btn-small disabled action_on" onclick="delete_function.deleteFunction()"><i class="icon-trash"></i>{lang('a_delete')}</button>
+
+                    <button type="button" class="btn btn-small disabled action_on" onclick="delete_function.deleteFunction()"><i class="icon-trash"></i>{lang('a_delete')}</button>
                 </div>
             </div>                            
         </div>
@@ -41,19 +40,18 @@
                 <a href="#users" class="btn btn-small active">{lang('amt_users')}</a>
                 <a href="#group" class="btn btn-small">{lang('amt_groups')}</a>
                 <a href="#privilege" class="btn btn-small">{lang('amt_perm_div')}</a>
-            </div>   
-<div class="m-t_20 pull-right">
 
-                    <button type="button" class="btn btn-small action_on disabled listFilterSubmitButton"><i class="icon-filter"></i>{lang('a_filter_admin')}</button>
-                    <a href="/admin/components/init_window/user_manager"  title="{lang('a_cancel_filter')}" type="button" class="btn btn-small pjax action_on disabled"><i class="icon-refresh"></i>{lang('a_cancel_filter')}</a>
-                </div>
+            </div>   
         </div>
-        <div class="tab-content">
+        <div class="tab-content clearfix">
             <!----------------------------------------------------- USERS-------------------------------------------------------------->
             <div class="tab-pane active" id="users">
+                <button type="button" class="btn btn-small disabled action_on pull-right" style="margin-top:-26px;  margin-bottom: 10px;" onclick="delete_function.deleteFunction()"><i class="icon-trash"></i>{lang('a_delete')}</button>
+                <a href="/admin/components/init_window/user_manager"  title="{lang('a_cancel_filter')}" type="button" class="btn btn-small pjax action_on disabled pull-right" style="margin-top:-26px; margin-bottom: 10px; margin-right: 3px;"><i class="icon-refresh"></i>{lang('a_cancel_filter')}</a>
+                <button type="button" class="btn btn-small action_on disabled listFilterSubmitButton pull-right" style="margin-top:-26px; margin-bottom: 10px; margin-right: 3px;"><i class="icon-filter"></i>{lang('a_filter_admin')}</button>
                 
 
-                <table class="table table-striped table-bordered table-hover table-condensed">
+                <table class="table table-striped table-bordered table-hover table-condensed" style="clear: both;">
                     <thead>
                         <tr>
                             <th class="t-a_c span1">
@@ -123,7 +121,9 @@
 
             <!----------------------------------------------------- GROUP-------------------------------------------------------------->
             <div class="tab-pane" id="group">
-                <table class="table table-striped table-bordered table-hover table-condensed">
+                <button type="button" class="btn btn-small disabled action_on pull-right" style="margin-top:-26px; margin-bottom: 10px;" onclick="delete_function.deleteFunction()"><i class="icon-trash"></i>{lang('a_delete')}</button>
+
+                <table class="table table-striped table-bordered table-hover table-condensed pull-right">
                     <thead>
                         <tr>
                             <th class="t-a_c span1">
@@ -137,21 +137,7 @@
                             <th class="span3">{lang('amt_tname')}</th>
                             <th class="span3">{lang('amt_identif')}</th>
                             <th class="span2">{lang('amt_description')}</th>
-                        </tr>
-                        <tr class="head_body">
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <select>
-                                    <option>Login</option>
-                                    <option>Email</option>
-                                    <option>Group</option>
-                                </select>
-                            </td>                          
-
-                            <td></td>
-                            <td></td>
-                        </tr>
+                        </tr>                       
                     </thead>
                     <tbody class="sortable">
                         {foreach $roles as $group}
@@ -175,8 +161,9 @@
             </div>
             <!----------------------------------------------------- PRIVILEGE-------------------------------------------------------------->
 
-            <div class="tab-pane" id="privilege">    
-                <form action="{$SELF_URL}/update_role_perms" method="post" id="save">
+            <div class="tab-pane" id="privilege"> 
+                <button type="button" class="btn btn-small action_on formSubmit pull-right" style="margin-top:-26px; margin-bottom: 10px;" data-form="#save"><i class="icon-ok"></i>{lang('a_save')}</button>
+                <form action="{$SELF_URL}/update_role_perms" method="post" id="save" style="clear:both;">
                     <table class="table table-striped table-bordered table-hover table-condensed">
                         <thead>
                             <tr>
@@ -197,7 +184,7 @@
                                                         <div class="controls">
                                                             <select name="role_id" id="role_id">
                                                                 {foreach $roles as $role}
-                                                                    <option class="pjax" onclick="window.location.href='{$BASE_URL}admin/components/cp/user_manager/{$role.id}';" value ="{$role.id}" {if $role.id == $selected_role} selected="selected" {/if} >{$role.alt_name}</option>
+                                                                    <option class="pjax" value="{$role.id}" {if $role.id == $selected_role} selected="selected" {/if} >{$role.alt_name}</option>
                                                                 {/foreach}
                                                             </select>
                                                         </div>

@@ -24,6 +24,18 @@ function change_status(hrefFn) {
 
 
 $(document).ready(function() {
+    
+    $('#role_id').live('change', function(){
+        var $roleId = $(this).find('option:selected').val();
+        
+        $.ajax({            
+            dataType: "html",
+            url: '/admin/components/cp/user_manager/getRolesTable/'+$roleId,
+            success: function(msg) {
+                $('#privilege').html(msg);                
+            }
+        });
+    })
 
     $('.export').live('click', function(){ 
 
@@ -35,14 +47,14 @@ $(document).ready(function() {
             $('#exportUsers').submit();
 
         }//else{
-        //            $.ajax({
-        //            type: 'post',
-        //            dataType: 'json',
-        //            data: $('#exportUsers').serialize(),
-        //            url: '/admin/components/run/shop/system/exportUsers'
-        //
-        //        });
-        //        } 
+    //            $.ajax({
+    //            type: 'post',
+    //            dataType: 'json',
+    //            data: $('#exportUsers').serialize(),
+    //            url: '/admin/components/run/shop/system/exportUsers'
+    //
+    //        });
+    //        } 
     });
 
     $(".selValitadot").click(function() {

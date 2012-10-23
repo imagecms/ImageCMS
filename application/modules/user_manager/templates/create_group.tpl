@@ -1,8 +1,4 @@
 <div class="container">
-    <ul class="breadcrumb">
-        <li><a href="#">Главная</a> <span class="divider">/</span></li>
-        <li class="active">Список товаров</li>
-    </ul>
     <section class="mini-layout">
         <div class="frame_title clearfix">
             <div class="pull-left">
@@ -11,9 +7,9 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="#" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>                   
-                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#create" data-action="close"><i class="icon-ok"></i>Создать</button>
-                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#create" data-action="exit"><i class="icon-check"></i>Создать и выйти</button>
+                    <a href="/admin/components/cp/user_manager" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>                   
+                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#create" data-action="close"><i class="icon-ok"></i>{lang('a_create')}</button>
+                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#create" data-action="exit"><i class="icon-check"></i>{lang('a_cre_exit_form')}</button>
                 </div>
             </div>                            
         </div>
