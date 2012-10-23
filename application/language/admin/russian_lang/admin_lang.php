@@ -655,6 +655,7 @@ $lang['a_delete_pages_title'] = 'Удалить страницы';
 $lang['a_delete_pages_promt'] = 'Удалить отмеченые страницы?';
 
 $lang['a_drug_module'] = 'Перетащите модуль';
+$lang['a_drug_category'] = 'Перетащите категорию';
 $lang['a_turn_off'] = 'выключить';
 $lang['a_turn_on'] = 'включить';
 $lang['a_widgets_list'] = 'Список виджетов';
