@@ -24,10 +24,10 @@ class Admin extends MY_Controller {
      * Select roles and displau main template
      */
 
-    function index() {
+    function index($id = Null) {
         $this->set_tpl_roles();
         $this->template->add_array($this->genre_user_table());
-        $this->template->add_array($this->show_edit_prems_tpl());
+        $this->template->add_array($this->show_edit_prems_tpl($id = 2));
         $this->display_tpl('main');
     }
 
@@ -40,6 +40,11 @@ class Admin extends MY_Controller {
         $query = $this->db->get('roles');
         $this->template->assign('roles', $query->result_array());
         // roles
+    }
+
+    function getRolesTable($roleId) {
+        $this->template->add_array($this->show_edit_prems_tpl($roleId));
+        $this->display_tpl('genreroletable');
     }
 
     /*
@@ -61,35 +66,35 @@ class Admin extends MY_Controller {
 
         // Get all users
         $users = $this->users->get_all($offset, $row_count);
-        if(count($users)){
-        $this->load->library('Pagination');
+        if (count($users)) {
+            $this->load->library('Pagination');
 
-        $config['base_url'] = site_url('admin/components/cp/user_manager/index');
-        $config['total_rows'] = $this->users->get_all()->num_rows();
-        $config['per_page'] = $row_count;
-        $config['uri_segment'] = $this->uri->total_segments();
+            $config['base_url'] = site_url('admin/components/cp/user_manager/index');
+            $config['total_rows'] = $this->users->get_all()->num_rows();
+            $config['per_page'] = $row_count;
+            $config['uri_segment'] = $this->uri->total_segments();
 
-        $config['separate_controls'] = true;
-        $config['full_tag_open'] = '<div class="pagination pull-left"><ul>';
-        $config['full_tag_close'] = '</ul></div>';
-        $config['controls_tag_open'] = '<div class="pagination pull-right"><ul>';
-        $config['controls_tag_close'] = '</ul></div>';
-        $config['next_link'] = 'Next&nbsp;&gt;';
-        $config['prev_link'] = '&lt;&nbsp;Prev';
-        $config['cur_tag_open'] = '<li class="btn-primary active"><span>';
-        $config['cur_tag_close'] = '</span></li>';
-        $config['prev_tag_open'] = '<li>';
-        $config['prev_tag_close'] = '</li>';
-        $config['next_tag_open'] = '<li>';
-        $config['next_tag_close'] = '</li>';
-        $config['num_tag_close'] = '</li>';
-        $config['num_tag_open'] = '<li>';
-        $config['num_tag_close'] = '</li>';
+            $config['separate_controls'] = true;
+            $config['full_tag_open'] = '<div class="pagination pull-left"><ul>';
+            $config['full_tag_close'] = '</ul></div>';
+            $config['controls_tag_open'] = '<div class="pagination pull-right"><ul>';
+            $config['controls_tag_close'] = '</ul></div>';
+            $config['next_link'] = 'Next&nbsp;&gt;';
+            $config['prev_link'] = '&lt;&nbsp;Prev';
+            $config['cur_tag_open'] = '<li class="btn-primary active"><span>';
+            $config['cur_tag_close'] = '</span></li>';
+            $config['prev_tag_open'] = '<li>';
+            $config['prev_tag_close'] = '</li>';
+            $config['next_tag_open'] = '<li>';
+            $config['next_tag_close'] = '</li>';
+            $config['num_tag_close'] = '</li>';
+            $config['num_tag_open'] = '<li>';
+            $config['num_tag_close'] = '</li>';
 
-        $this->pagination->num_links = 5;
-        $this->pagination->initialize($config);
-        $this->template->assign('paginator', $this->pagination->create_links_ajax());
-        // End pagination
+            $this->pagination->num_links = 5;
+            $this->pagination->initialize($config);
+            $this->template->assign('paginator', $this->pagination->create_links_ajax());
+            // End pagination
         }
 
         $users = $users->result_array();
@@ -159,7 +164,12 @@ class Admin extends MY_Controller {
                 $user_info = $this->user2->get_user_by_username($user)->row_array();
                 $this->user2->set_role($user_info['id'], $role);
 
-                $this->lib_admin->log(lang('amt_create_user') . $val->set_value('username'));
+                //$this->lib_admin->log(lang('amt_create_user') . $val->set_value('username'));
+
+                $this->lib_admin->log(
+                        lang('amt_create_user') .
+                        '<a href="' . site_url('/admin/components/cp/user_manager/edit_user/' . $user_info['id']) . '">' . $val->set_value('username') . '</a>'
+                );
 
                 showMessage(lang('amt_user_created'));
 
@@ -187,7 +197,7 @@ class Admin extends MY_Controller {
         // If checkbox found
         //if (substr($k, 0, 9) == 'checkbox_') {
 
-        $query = $this->db->query("SELECT banned FROM users WHERE id =" . $value);
+        $query = $this->db->query("SELECT username, banned FROM users WHERE id =" . $value);
 
         foreach ($query->result() as $row) {
 
@@ -199,13 +209,19 @@ class Admin extends MY_Controller {
                 cp_check_perm('user_edit');
                 ($hook = get_hook('users_ban')) ? eval($hook) : NULL;
                 $this->users->ban_user($value);
-                $this->lib_admin->log(lang('amt_banned_user') . $value);
+                $this->lib_admin->log(
+                        lang('amt_banned_user') .
+                        '<a href="' . site_url('/admin/components/cp/user_manager/edit_user/' . $value) . '">' . $row->username . '</a>'
+                );
             } else {
 
                 cp_check_perm('user_edit');
                 ($hook = get_hook('users_unban')) ? eval($hook) : NULL;
                 $this->users->unban_user($value);
-                $this->lib_admin->log(lang('amt_unbanned_user') . $value);
+                $this->lib_admin->log(
+                        lang('amt_unbanned_user') .
+                        '<a href="' . site_url('/admin/components/cp/user_manager/edit_user/' . $value) . '">' . $row->username . '</a>'
+                );
             }
         }
     }
@@ -215,50 +231,57 @@ class Admin extends MY_Controller {
      */
 
     function search() {
-        cp_check_perm('user_view_data');
+        if (!empty($_GET)) {
+            cp_check_perm('user_view_data');
 
-        $s_data = $this->input->post('s_data');
-        $role = $this->input->post('role');
-        $page = (int) $this->uri->segment(8);
+            $s_data = $this->input->get('s_data');
+            $role = $this->input->get('role');
+            $page = (int) $this->uri->segment(8);
 
-        $this->db->select("users.*", FALSE);
-        $this->db->select("roles.name AS role_name", FALSE);
-        $this->db->select("roles.alt_name AS role_alt_name", FALSE);
-        $this->db->join("roles", "roles.id = users.role_id");
-        $this->db->like('username', $s_data);
-        $this->db->or_like('email', $s_data);
-        $this->db->order_by('created', 'desc');
+            $this->db->select("users.*", FALSE);
+            $this->db->select("roles.name AS role_name", FALSE);
+            $this->db->select("roles.alt_name AS role_alt_name", FALSE);
+            $this->db->join("roles", "roles.id = users.role_id");
+            $this->db->like('username', $s_data);
+            $this->db->or_like('email', $s_data);
+            $this->db->order_by('created', 'desc');
 
-        $query = $this->db->get('users');
+            $query = $this->db->get('users');
 
-        if ($query->num_rows() == 0) {
-            showMessage(lang('amt_users_not_found'), false, 'r');
-        } else {
-            $users = $query->result_array();
+            if ($query->num_rows() == 0) {
+                showMessage(lang('amt_users_not_found'), false, 'r');
+                pjax('/admin/components/init_window/user_manager');
+            } else {
+                $users = $query->result_array();
 
-            for ($i = 0, $users_c = count($users); $i < $users_c; $i++) {
-                if ($users[$i]['banned'] == 1)
-                    $users[$i]['banned'] = 'Да';
-                else
-                    $users[$i]['banned'] = 'Нет';
+                for ($i = 0, $users_c = count($users); $i < $users_c; $i++) {
+                    if ($users[$i]['banned'] == 1)
+                        $users[$i]['banned'] = 'Да';
+                    else
+                        $users[$i]['banned'] = 'Нет';
 
-                if ($role != 0) {
-                    if ($users[$i]['role_id'] != $role) {
-                        unset($users[$i]);
+                    if ($role != 0) {
+                        if ($users[$i]['role_id'] != $role) {
+                            unset($users[$i]);
+                        }
                     }
                 }
+
+                // recount users
+                if (count($users) == 0) {
+                    showMessage(lang('amt_users_not_found'), '', 'r');
+                    pjax('/admin/components/init_window/user_manager');
+                    exit;
+                }
+
+                $this->template->assign('users', $users);
+                $rezult_table = $this->fetch_tpl('main');
+
+                echo $rezult_table;
             }
-
-            // recount users
-            if (count($users) == 0) {
-                showMessage(lang('amt_users_not_found'), false, 'r');
-                exit;
-            }
-
-            $this->template->assign('users', $users);
-            $rezult_table = $this->fetch_tpl('users_table_search');
-
-            echo $rezult_table;
+        } else {
+            showMessage(lang('a_bas_filt_pass_not_post'), '', 'r');
+            pjax('/admin/components/init_window/user_manager');
         }
     }
 
@@ -344,7 +367,12 @@ class Admin extends MY_Controller {
             $this->db->where('id', $user_id);
             $this->db->update('users', $data);
 
-            $this->lib_admin->log(lang('amt_updated_user') . $data['username']);
+
+            $this->lib_admin->log(
+                    lang('amt_updated_user') .
+                    '<a href="' . site_url('/admin/components/cp/user_manager/edit_user/' . $user_id) . '">' . $data['username'] . '</a>'
+            );
+
 
             showMessage(lang('amt_changes_saved'));
 
@@ -398,6 +426,11 @@ class Admin extends MY_Controller {
                 $this->db->insert('roles', $data);
 
                 $this->lib_admin->log(lang('amt_created_group') . $data['name']);
+
+//                $this->lib_admin->log(
+//                       lang('amt_created_group') .
+//                        '<a href="' . site_url('/admin/components/cp/user_manager/edit/' . $data['name']) . '">' . $data['name'] . '</a>'
+//                );
 
                 showMessage(lang('amt_group_created'));
                 $this->update_groups_block();
@@ -460,7 +493,12 @@ class Admin extends MY_Controller {
             $this->db->where('id', intval($id));
             $this->db->update('roles', $data);
 
-            $this->lib_admin->log(lang('amt_changed_group') . $id);
+            //$this->lib_admin->log(lang('amt_changed_group') . $id);
+            $this->lib_admin->log(
+                    lang('amt_changed_group') .
+                    '<a href="' . site_url('/admin/components/cp/user_manager/edit/' . $id) . '">' . $data['alt_name'] . '</a>'
+            );
+
 
             showMessage(lang('amt_group_saved'));
             $this->update_groups_block();
@@ -490,10 +528,28 @@ class Admin extends MY_Controller {
         $this->db->limit(1);
         $this->db->where('id', intval($id));
         $this->db->delete('roles');
-
-        $this->lib_admin->log(lang('amt_deleted_group') . $id);
+        $this->lib_admin->log(
+                lang('amt_deleted_group') . ' ' . $id
+        );
 
         $this->update_groups_block();
+    }
+
+    public function deleteAll() {
+        if (empty($_POST['ids'])) {
+            showMessage(lang('a_del_user_notif'), '', 'r');
+            exit;
+        }
+        if ($_POST['data-id'])
+            $this->load->model('dx_auth/users', 'users');
+        $ids = $_POST['ids'];
+        foreach ($ids as $id) {
+
+            cp_check_perm('user_delete');
+            ($hook = get_hook('users_delete')) ? eval($hook) : NULL;
+            $this->users->delete_user($id);
+            $this->lib_admin->log(lang('amt_deleted_user') . $id);
+        }
     }
 
     function update_groups_block() {
@@ -523,10 +579,13 @@ class Admin extends MY_Controller {
             $this->db->delete('permissions');
         }
 
-        showMessage(lang('amt_changes_saved'));
+        showMessage(lang('amt_changes_saved'));        
+        pjax('/admin/components/init_window/user_manager#privilege');
+            
+        
     }
 
-    function show_edit_prems_tpl($selected_role = 1) {
+    function show_edit_prems_tpl($selected_role = 2) {
 
         $this->load->model('dx_auth/permissions', 'permissions');
         $permissions = $this->permissions->get_permission_data($selected_role);
@@ -556,7 +615,7 @@ class Admin extends MY_Controller {
         ));
 
 
-        //$this->display_tpl('edit_perms');
+//        $this->display_tpl('main');
     }
 
     function get_permissions_table() {

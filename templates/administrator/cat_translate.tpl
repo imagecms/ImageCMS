@@ -8,9 +8,32 @@
             <div class="pull-right">
                 <div class="d-i_b">
                     <a href="/admin/categories/edit/{$orig_cat.id}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
-                    <button type="button" class="btn btn-small action_on formSubmit" data-action="close" data-form="#save"><i class="icon-ok"></i>{lang('a_save')}</button>
+                    <button type="button" class="btn btn-small btn-success  action_on formSubmit" data-action="close" data-form="#save"><i class="icon-ok icon-white"></i>{lang('a_save')}</button>
                     <button type="button" class="btn btn-small action_on formSubmit" data-action="exit" data-form="#save"><i class="icon-check"></i>{lang('a_footer_save_exit')}</button>
 
+					
+                                <div class="dropdown d-i_b">
+                                   {foreach $langs as $l}
+									{if $lang == $l.id}
+									<a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
+                                        {$l.lang_name}
+                                     <span class="caret"></span>
+                                    </a>
+									{/if}
+									{/foreach}
+
+                                    <ul class="dropdown-menu">
+									{foreach $langs as $l}
+									{if $l.id != $lang}
+										{if $l.default}
+										<li><a href="/admin/categories/edit/{$orig_cat.id}" class="pjax">{$l.lang_name}</a></li>
+										{else:}
+                                        <li><a href="/admin/categories/translate/{$orig_cat.id}/{$l.id}" class="pjax">{$l.lang_name}</a></li>
+                                        {/if}
+									{/if}
+									{/foreach}
+                                    </ul>
+                                </div>
                 </div>
             </div>                            
         </div>
@@ -30,7 +53,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd">
+                                        <div class="inside_padd span12">
                                             <div class="form-horizontal">
                                                 <div class="row-fluid">
                                                     <div class="control-group">
@@ -41,15 +64,23 @@
                                                     </div>
 
                                                     <div class="control-group">
-                                                        <label class="control-label" for="image">{lang('a_image')}:</label>
-                                                        <div class="controls">
-                                                            <input type="text" name="image" id="image" value="{$cat.image}"/>
-                                                        </div>
-                                                    </div>
+							                            <label class="control-label" for="Img">
+							                            {lang('a_image')}:                            
+							                            </label>
+							                        	<div class="controls">
+											    		<div class="group_icon pull-right">
+														<button class="btn btn-small" onclick="elFinderPopup('image', 'Img');return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
+                                                            </div>
+                                                            <div class="o_h">
+									                		    <input type="text" name="image" id="Img" value="{$cat.image}">				    
+																</div>
+											    		</div>
+							                        </div>
+                                                    
                                                     <div class="control-group">
                                                         <label class="control-label" for="short_desc">{lang('a_desc')}:</label>
                                                         <div class="controls">
-                                                            <textarea name="short_desc" id="short_desc" >{htmlspecialchars($cat.short_desc)}</textarea>
+                                                            <textarea class="elRTE" name="short_desc" id="short_desc" >{htmlspecialchars($cat.short_desc)}</textarea>
                                                         </div>
                                                     </div>
 
@@ -84,3 +115,4 @@
 </div>
 {form_csrf()}
 </form>
+<div id="elFinder"></div>
