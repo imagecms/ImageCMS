@@ -473,6 +473,7 @@ $lang['a_set_order_status'] =	'Set another status for these orders';
     $lang['a_email_administrato_order']=  ' Administrator notification about the order placement by e-mail';
     $lang['a_send']             =	'Send';
     $lang['a_send_f']             =	'Send';
+    $lang['s_log_out']          =       'Log in';
     $lang['a_end']             =	'Completed';
     $lang['a_administrator']    =	'Administrator';
     $lang['a_email_users_order']=	'Customer notification about the order placement';
