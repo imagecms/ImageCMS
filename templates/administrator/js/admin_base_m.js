@@ -1,30 +1,27 @@
 function change_status(hrefFn) {
-    //    $.ajax({
-    //        type: 'POST',
-    //        url: hrefFn,
-    //        onComplete: function(response) {alert(response); $('.notifications').append(response) }
-    //    });
-
     $.post(hrefFn, {}, function(data) {
         $('.notifications').append(data)
     })
 }
+function export_csv(){
+    $('.export').unbind('click').live('click', function(){ 
 
-//var changeStatus2 =  new Object({
-//
-////changestatus:function(id, statusId)
-////	{
-////		$.post('/admin/components/run/shop/notifications/changeStatus/', {CallbackId:id, StatusId:statusId}, function(data){
-////			$('.notifications').append(data);
-////		});
-////		$('#notification_1').closest('tr').data('status', statusId);
-////		this.reorderList(id);
-////	}
-////    });
+        if ($('input[name=export]:checked').val() == 'csv') {
+            
+            $('#exportUsers').submit();
 
+            return false;
+        }
+    });
+}
 
-$(document).ready(function() {
-    
+$(document).ajaxComplete( function(event, XHR, ajaxOptions){
+    export_csv();
+});
+
+$(document).ready(function(){
+    export_csv();
+
     $('#role_id').live('change', function(){
         var $roleId = $(this).find('option:selected').val();
         
@@ -36,28 +33,8 @@ $(document).ready(function() {
             }
         });
     })
-
-    $('.export').live('click', function(){ 
-
-        //        console.log($('input[name=export]:checked').val());
-        //        return false;
-
-        if ($('input[name=export]:checked').val() == 'csv') {
-
-            $('#exportUsers').submit();
-
-        }//else{
-    //            $.ajax({
-    //            type: 'post',
-    //            dataType: 'json',
-    //            data: $('#exportUsers').serialize(),
-    //            url: '/admin/components/run/shop/system/exportUsers'
-    //
-    //        });
-    //        } 
-    });
-
     $(".selValitadot").click(function() {
+        
 
         $("#validatorSelect").show();
     });
@@ -66,6 +43,17 @@ $(document).ready(function() {
         $("#validatorSelect").hide();
     });
 
+    
+    $('#emailAutoC').autocomplete({
+        minChars: 0,
+        source: '/admin/components/cp/user_manager/auto_complit/email' + $('#emailAutoC').attr('value') + '?limit=15'
+    });
+    
+    $('#nameAutoC').autocomplete({
+        minChars: 0,
+        source: '/admin/components/cp/user_manager/auto_complit/name' + $('#nameAutoC').attr('value') + '?limit=15'
+        
+    });
 
     $('.clearCashe').on('click', function() {
         $this = $(this);
@@ -131,36 +119,6 @@ $(document).ready(function() {
 
     });
 
-
-        
- 
-    
-
-
-
-
-
-//    $('.deleteMenu').live('click', function(){
-//
-//        var data_id = $(this).attr('product_id');
-//        $.ajax({
-//            type: 'post',
-//            dataType: 'json',
-//            data: $('#deleteMenu').serialize(),
-//            url: '/admin/components/cp/menu/update_menu/',
-//            success: function(obj){
-//                console.log(obj.color);
-//                if(obj.result == true)
-//                    showMessage(obj.title, obj.message);
-//                else
-//                    showMessage(obj.title, obj.message, 'r');
-//               
-//            }
-//        });   
-//        alert(data_id);
-//       
-//    });
-
 });
 
 
@@ -194,6 +152,9 @@ var delete_function = new Object({
         if ($('#del_sel_role').hasClass('disabled')) {
             return false;
         }
+        if ($('#user_del').hasClass('disabled')) {
+            return false;
+        }
         if ($('#del_in_search').hasClass('disabled')) {
             return false;
         }
@@ -221,7 +182,35 @@ var delete_function = new Object({
 
 });
 
+var delete_functionS = new Object({
 
+    deleteFunctionS: function() {
+        if ($('#group_del').hasClass('disabled')) {
+            return false;
+        }
+        $('.modal_dels').modal();
+    },
+    
+    deleteFunctionConfirmS: function(href)
+    {
+        var ids = new Array();
+        $('input[name=ids]:checked').each(function() {
+            ids.push($(this).val());
+        });
+        $.post(href, {
+            ids: ids
+        }, function(data) {
+            $('#mainContent').after(data);
+            $.pjax({
+                url: window.location.pathname,
+                container: '#mainContent'
+            });
+        });
+        $('.modal_dels').modal('hide');
+        return true;
+    }
+
+});
 
 
 var delete_currency_function = new Object({
