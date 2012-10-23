@@ -341,6 +341,7 @@ $lang['a_clean_old'] = 'Очистить устаревшие';
 $lang['a_event_journal'] = 'Журнал событий';
 $lang['a_backup_copy'] = 'Резервное копирование';
 $lang['a_show_site'] = 'Просмотреть сайт';
+$lang['a_show_album'] = 'Просмотреть альбомы';
 $lang['a_show_page'] = 'Просмотр страницы';
 $lang['a_goto_site'] = 'перейти на сайт';
 $lang['a_exit'] = 'Выход';
@@ -661,6 +662,7 @@ $lang['a_delete_pages_title'] = 'Удалить страницы';
 $lang['a_delete_pages_promt'] = 'Удалить отмеченые страницы?';
 
 $lang['a_drug_module'] = 'Перетащите модуль';
+$lang['a_drug_category'] = 'Перетащите категорию';
 $lang['a_turn_off'] = 'выключить';
 $lang['a_turn_on'] = 'включить';
 $lang['a_widgets_list'] = 'Список виджетов';

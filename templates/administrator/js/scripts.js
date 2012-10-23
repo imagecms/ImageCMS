@@ -13,11 +13,11 @@ $(document).ajaxComplete( function(event, XHR, ajaxOptions){
         initAdminArea();
     }
     number_tooltip_live();
-    fixed_frame_title();
+    fixed_frame_title()
     $('.tooltip').remove();
 });
 function number_tooltip(){
-    $('.number input').tooltip().on('keypress', function(event){
+    $('.number input').tooltip({'delay': { show: 500, hide: 100 }}).on('keypress', function(event){
         var key, keyChar;
         if(!event) var event = window.event;
 
@@ -40,10 +40,11 @@ $('[data-max]').on('keyup', function(event){
         $this.val(100);
     }
 });
-fixed_block = $(".frame_title:not(.no_fixed)");
-mini_layout = $('.mini-layout');
-container = $('.container');
 function fixed_frame_title(){
+    fixed_block = $(".frame_title:not(.no_fixed)");
+    mini_layout = $('.mini-layout');
+    container = $('.container');
+    
     if ($.exists_nabir(fixed_block)){
         var fixed_block_top = mini_layout.offset().top;
         var fixed_block_h = fixed_block.outerHeight(true);
@@ -85,13 +86,15 @@ function difTooltip(){
             var $this = $(this);
             if ($this.data('title').length*9 > $this.offset().left) {
                 $this.tooltip({
-                    'placement': 'top'
+                    'placement': 'top',
+                    'delay': { show: 500, hide: 100 }
                 })
                 place_tr_ttp = 'top'
             }
             else  {
                 $this.tooltip({
-                    'placement': 'left'
+                    'placement': 'left',
+                    'delay': { show: 500, hide: 100 }
                 })
                 place_tr_ttp = 'left'
             }
@@ -152,13 +155,14 @@ function initAdminArea(){
     //init tooltip
     difTooltip();
     
-    if ($.exists('[data-rel="tooltip"], [rel="tooltip"]')) $('[data-rel="tooltip"], [rel="tooltip"]').not('tr').not('.row-category').tooltip();
+    if ($.exists('[data-rel="tooltip"], [rel="tooltip"]')) $('[data-rel="tooltip"], [rel="tooltip"]').not('tr').not('.row-category').tooltip({'delay': { show: 500, hide: 100 }});
     
     //sortable
     if ($.exists('.sortable')) {
         $('.sortable tr').not(':has(tr)').tooltip({
-            'placement':place_tr_ttp
-        });
+            'placement':place_tr_ttp,
+            'delay': { show: 500, hide: 100 }
+        }).css('cursor', 'move');
         $( ".sortable").sortable({
             axis: 'y',
             cursor: 'move',
@@ -185,6 +189,12 @@ function initAdminArea(){
         //                    return false;
         //            }
         });
+    }
+    if ($.exists('.sortable2')) {
+        $('.sortable2 tr').not(':has(tr)').tooltip({
+            'placement':place_tr_ttp,
+            'delay': { show: 500, hide: 100 }
+        }).css('cursor', 'move');
     }
     if ($.exists('.sortable2')) {
         $( ".sortable2").sortable({
@@ -656,6 +666,7 @@ function initAdminArea(){
     //    });
 
     if ($.exists('#wrapper_gistogram')) gistogram(); 
+    if ($.exists('#chart')) brands();
     
     $('.controls img.img-polaroid').on('click', function(){
         $(this).closest('.control-group').find('input:file').click();
@@ -688,7 +699,67 @@ function initAdminArea(){
         $this.parent().next().val($type_file).attr('data-rel','tooltip');
     //}
     
-    })
+    });
+    
+//    $('input:file.multiPic').change( function(e){
+//        $this = $(this);
+//        $type_file = $this.val();
+//
+//        for (file in this.files)
+//        {
+//        	if (!isNaN(parseInt(file)))
+//        	{
+//		        var img = document.createElement("img");
+//		        var reader = new FileReader();
+//		        reader.onloadend = function() {
+//		        	//alert(file);
+//		            img.src = reader.result;
+//		            console.log(reader.result);
+//		        }
+////		        console.log(file);
+//		        reader.readAsDataURL(this.files[file]);
+//		        delete reader;
+//		        //console.log(img);
+//		        $(img).addClass('img-polaroid').css({
+//		            width: '100px'
+//		        });
+//		        $( $(this).data('previewdiv')).append(img);
+//		        //console.log($( $(this).data('previewdiv')));
+//        	}
+//        }    
+//    })
+    
+    function handleFileSelect(evt) {
+    var files = evt.target.files; // FileList object
+
+    document.getElementById('picsToUpload').innerHTML = '';
+    // Loop through the FileList and render image files as thumbnails.
+    for (var i = 0, f; f = files[i]; i++) {
+
+      // Only process image files.
+      if (!f.type.match('image.*')) {
+        continue;
+      }
+
+      var reader = new FileReader();
+
+      // Closure to capture the file information.
+      reader.onload = (function(theFile) {
+        return function(e) {
+          // Render thumbnail.
+          var span = document.createElement('div');
+          span.innerHTML = ['<img class="thumbnail img-polaroid" style="max-width:100px;" src="', e.target.result,
+                            '" title="', escape(theFile.name), '"/>'].join('');
+          document.getElementById('picsToUpload').insertBefore(span, null);
+        };
+      })(f);
+
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(f);
+    }
+  }
+
+  document.getElementById('addPictures').addEventListener('change', handleFileSelect, false);
         
     //    $('[data-provide="typeahead"]').on('focus', function(){
     //        $(this).on('keyup', function(event){
@@ -745,8 +816,6 @@ function initAdminArea(){
         return false;
     });
 
-    fixed_frame_title();
-    
     //                $('a.pjax, .dropdown-menu li a').live('click', function(e){
     //$.pjax({url:$(this).attr('href'), container:'#mainContent'})
     //               e.preventDefault();
@@ -772,7 +841,7 @@ function initAdminArea(){
 		
     if ($('textarea.elRTE').length > 0)
         initElRTE();
-		
+    
     console.log('initialising of administration area ended');
     console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.")
 };
@@ -789,12 +858,6 @@ $(document).ready(
         initAdminArea();
         $('.nav .dropdown-menu a').unbind('click');
 
-        $.ajaxSetup({
-            success: function(){
-                fixed_frame_title();
-            }
-        });
-        
         $('a.pjax').click(function(event){
             event.preventDefault();
             $.pjax({
@@ -828,20 +891,22 @@ $(document).ready(
                 return false;
             }
         });
-        var overlay = $('.main_body').append('<div class="overlay"></div>')
+        $('.main_body').append('<div class="overlay"></div>');
         $('#rep_bug').on('click', function(){
-            $('.overlay').fadeIn(function(){
-                $(this).css({
-                    'height': $(document).height(), 
-                    'opacity':0.5
-                });
+            var overlay = $('.overlay');
+            overlay.css({
+                'height': $(document).height(),
+                'opacity': 0.5
+            });
+            overlay.fadeIn(function(){
                 $('.frame_rep_bug').find('.alert').remove().end().fadeIn();
             });
-            $('.overlay').on('click', function(){
+            overlay.on('click', function(){
                 $('.frame_rep_bug').fadeOut(function(){
-                    $('.overlay').fadeOut();
+                    overlay.fadeOut();
                 })
             });
+            return false;
         });
         $('.frame_rep_bug [type="submit"]').on('click', function(){
             var url = 'hostname='+location.hostname+'&pathname='+location.pathname+'&user_name='+$('#user_name').text()+'&text='+$('.frame_rep_bug textarea').val()+'&ip_address='+$('.frame_rep_bug #ip_address').val();
@@ -852,8 +917,8 @@ $(document).ready(
                 success: function(data){
                     $('.frame_rep_bug').prepend('<div class="alert alert-success">Ваше повідомлення відправлено</div>');
                     setTimeout(function(){
-                        $('.overlay').trigger('click')
-                        }, 2000)
+                        overlay.trigger('click')
+                    }, 2000)
                 }
             })
             return false;
