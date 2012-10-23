@@ -50,7 +50,14 @@ $lang['a_acc_per_4'] = 'Логи';
 $lang['a_acc_per_2'] = 'Пользователи';
 $lang['a_acc_per_1'] = 'Доступ к панели управления';
 // RULLES HELPER-------------------------------------------END
+$lang['a_use_man_del_u_1'] = 'Удалить выбранных пользователей?';
+$lang['a_use_man_group_del_1'] = 'Группы удалени';
+$lang['a_use_man_group_del_3'] = 'Удаление групп';
+$lang['a_gener_all_users_count'] = 'Всего пользователей';
+$lang['a_use_man_group_del_2'] = 'Удалить выбранные группы?';
 $lang['a_your_remark'] = 'Ваше замечание';
+$lang['a_sue_man_del_u_3'] = 'Удалить пользователя?';
+$lang['a_sue_man_del_u_2'] = 'Удаление пользователя';
 $lang['a_sett_base_create_new_language'] = 'Создание нового языка';
 $lang['a_sett_global_sett_menu'] = 'Конфигурация сайта';
 $lang['a_bas_filt_pass_not_post'] = 'Вы ничего не передали для поиска';
