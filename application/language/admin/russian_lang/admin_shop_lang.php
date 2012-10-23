@@ -4,6 +4,23 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
+    $lang['a_s_brand_del_1']		=	'Удаление бренда';
+    $lang['a_s_banner_new_r']		=	'Создать баннер';
+    $lang['a_s_banner_list_r']		=	'Список баннеров';
+    $lang['a_s_banner_text_edit_b']		=	'Редактирование баннера';
+    $lang['a_s_banner_text_create_b']		=	'Текст баннера';
+    $lang['a_s_banner_create_succ']		=	'Создание баннера';
+    $lang['a_s_brand_editing_f']		=	'Редактирование бренда';
+    $lang['a_s_brand_co_404_not_foun']		=	'Бренд не найден';
+    $lang['a_s_brand_co_created']		=	'Бренд создан';
+    $lang['a_s_brand_image_download']		=	'Загрузить';
+    $lang['a_s_list_brands_sh']		=	'Список брендов';
+    $lang['a_s_create_n_brand']		=	'Создание бренда';
+    $lang['a_s_not_list_brands_sh']		=	'На сайте не создано ни одного бренда';
+    $lang['a_s_create_brands_sh']		=	'Создать бренд';
+    $lang['a_s_brand_del_2']		=	'Удалить выбранные бренды?';
+    $lang['a_s_brand_del_3']		=	'Удалить бренды?';
     $lang['a_enter_sys']		=	'Войти в систему';
     $lang['a_u_manager_create_group']		=	'Создать группу';
     $lang['a_content']		=	'Содержание';

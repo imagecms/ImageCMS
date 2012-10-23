@@ -5,6 +5,22 @@
  * and open the template in the editor.
  */
     $lang['a_enter_sys']		=	'Log in';
+    $lang['a_s_brand_del_1']		=	'Removing brand';
+    $lang['a_s_banner_new_r']		=	'Create a banner';
+    $lang['a_s_banner_list_r']		=	'Banner list';
+    $lang['a_s_banner_text_edit_b']		=	'Editing banner';
+    $lang['a_s_banner_text_create_b']		=	'Text banner';
+    $lang['a_s_banner_create_succ']		=	'Banner creation';
+    $lang['a_s_brand_editing_f']		=	'Editing brand';
+    $lang['a_s_brand_co_404_not_foun']		=	'Brand not found';
+    $lang['a_s_brand_co_created']		=	'Brand created';
+    $lang['a_s_list_brands_sh']		=	'List of brands';
+    $lang['a_s_brand_image_download']		=	'Download';
+    $lang['a_s_create_n_brand']		=	'Branding';
+    $lang['a_s_not_list_brands_sh']		=	'The site is not created any brand';
+    $lang['a_s_create_brands_sh']		=	'Create a brand';
+    $lang['a_s_brand_del_2']		=	'Remove selected brands?';
+    $lang['a_s_brand_del_3']		=	'Remove brands?';
     $lang['a_u_manager_create_group']		=	'Create a Group';
     $lang['a_content']		=	'Content';
     $lang['a_status_collback_ne_all_inform']                  =	'General information';
