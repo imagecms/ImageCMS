@@ -48,7 +48,7 @@ class Categories extends MY_Controller {
         $cats = array();
 
         $tree = $this->lib_category->build();
-
+        
         $cats = $this->sub_cats($tree);
 
         // Get total pages in category
@@ -60,17 +60,35 @@ class Categories extends MY_Controller {
             $this->db->from('content');
             $cats[$i]['pages'] = $this->db->count_all_results();
         }
-
+        
         $this->template->add_array(array(
-                'tree' => $cats
+                'tree' => $cats,
+        		'catTreeHTML'=> $this->renderCatList($tree)
             ));
 
         $this->template->show('category_list', FALSE);
     }
 
-   
+   	
+    private function renderCatList($tree)
+    {
+    	$html  = '';
+    	
+    	foreach ($tree as $item)
+    	{
+    		$html .= '<div>';
+    		$html .= $this->template->fetch('_catlistitem', array('item' => $item));
+    		if (count($item['subtree']))
+    		{
+    			$html .= '<div class="frame_level sortable" style="display:none;">';
+    			$html .= $this->renderCatList($item['subtree']);
+    			$html .= '</div>';
+    		}
+    		$html .= '</div>';
+    	}
+    	return $html;
+    }
 
-    
 
     
 
