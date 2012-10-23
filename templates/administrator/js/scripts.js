@@ -17,7 +17,7 @@ $(document).ajaxComplete( function(event, XHR, ajaxOptions){
     $('.tooltip').remove();
 });
 function number_tooltip(){
-    $('.number input').tooltip().on('keypress', function(event){
+    $('.number input').tooltip({'delay': { show: 500, hide: 100 }}).on('keypress', function(event){
         var key, keyChar;
         if(!event) var event = window.event;
 
@@ -86,13 +86,15 @@ function difTooltip(){
             var $this = $(this);
             if ($this.data('title').length*9 > $this.offset().left) {
                 $this.tooltip({
-                    'placement': 'top'
+                    'placement': 'top',
+                    'delay': { show: 500, hide: 100 }
                 })
                 place_tr_ttp = 'top'
             }
             else  {
                 $this.tooltip({
-                    'placement': 'left'
+                    'placement': 'left',
+                    'delay': { show: 500, hide: 100 }
                 })
                 place_tr_ttp = 'left'
             }
@@ -153,12 +155,13 @@ function initAdminArea(){
     //init tooltip
     difTooltip();
     
-    if ($.exists('[data-rel="tooltip"], [rel="tooltip"]')) $('[data-rel="tooltip"], [rel="tooltip"]').not('tr').not('.row-category').tooltip();
+    if ($.exists('[data-rel="tooltip"], [rel="tooltip"]')) $('[data-rel="tooltip"], [rel="tooltip"]').not('tr').not('.row-category').tooltip({'delay': { show: 500, hide: 100 }});
     
     //sortable
     if ($.exists('.sortable')) {
         $('.sortable tr').not(':has(tr)').tooltip({
-            'placement':place_tr_ttp
+            'placement':place_tr_ttp,
+            'delay': { show: 500, hide: 100 }
         }).css('cursor', 'move');
         $( ".sortable").sortable({
             axis: 'y',
@@ -189,7 +192,8 @@ function initAdminArea(){
     }
     if ($.exists('.sortable2')) {
         $('.sortable2 tr').not(':has(tr)').tooltip({
-            'placement':place_tr_ttp
+            'placement':place_tr_ttp,
+            'delay': { show: 500, hide: 100 }
         }).css('cursor', 'move');
     }
     if ($.exists('.sortable2')) {
