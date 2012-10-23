@@ -759,7 +759,8 @@ function initAdminArea(){
     }
   }
 
-  document.getElementById('addPictures').addEventListener('change', handleFileSelect, false);
+  if (document.getElementById('addPictures'))
+  	document.getElementById('addPictures').addEventListener('change', handleFileSelect, false);
         
     //    $('[data-provide="typeahead"]').on('focus', function(){
     //        $(this).on('keyup', function(event){
@@ -812,9 +813,12 @@ function initAdminArea(){
         $.pjax({
             url:$(this).attr('href'), 
             container:'#mainContent'
-        });
+        })
         return false;
     });
+    
+            $(document).on('pjax:start', function() {  $('#loading').fadeIn(100) })
+  .on('pjax:end',   function() { $('#loading').fadeOut(100) });
 
     //                $('a.pjax, .dropdown-menu li a').live('click', function(e){
     //$.pjax({url:$(this).attr('href'), container:'#mainContent'})

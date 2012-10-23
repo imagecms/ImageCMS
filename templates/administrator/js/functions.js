@@ -77,6 +77,7 @@ $('.formSubmit').live('click',function(){
 	$(selector).validate()
 	if ($(selector).valid())
 	{
+		 $('#loading').fadeIn(100);
             var options = {
 //                target: '.notifications',
                 beforeSubmit: function (formData){
@@ -84,6 +85,7 @@ $('.formSubmit').live('click',function(){
                         console.log(formData);
                 },
                 success: function (data) {
+                	$('#loading').fadeOut(100);
                 	var resp = document.createElement('div');
                 	resp.innerHTML = data;
                 	$(resp).find('p').remove();
