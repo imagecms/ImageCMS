@@ -4,7 +4,58 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+// RULES HELPER-------------------------------------------START
+
+$lang['a_acc_per_3'] = 'Group';
+$lang['a_acc_per_42'] = 'Shop';
+$lang['a_acc_per_41'] = 'Error checking permissions';
+$lang['a_acc_per_40'] = 'No rights for';
+$lang['a_acc_per_39'] = 'Edit Folders';
+$lang['a_acc_per_38'] = 'Editing Files';
+$lang['a_acc_per_37'] = 'Download files';
+$lang['a_acc_per_36'] = 'Access to the file editor';
+$lang['a_acc_per_35'] = 'Backing up';
+$lang['a_acc_per_34'] = 'View Log';
+$lang['a_acc_per_33'] = 'Deleting Groups';
+$lang['a_acc_per_32'] = 'Editing Groups';
+$lang['a_acc_per_31'] = 'Creating Groups';
+$lang['a_acc_per_30'] = 'Viewing member';
+$lang['a_acc_per_29'] = 'Remove Users';
+$lang['a_acc_per_28'] = 'Edit Users';
+$lang['a_acc_per_27'] = 'Create users of all groups';
+$lang['a_acc_per_26'] = 'Create users of their group';
+$lang['a_acc_per_25'] = 'Edit menu';
+$lang['a_acc_per_24'] = 'Create a menu';
+$lang['a_acc_per_23'] = 'Access to the widget settings';
+$lang['a_acc_per_22'] = 'Removing widgets';
+$lang['a_acc_per_21'] = 'Creating widgets';
+$lang['a_acc_per_20'] = 'Administration module';
+$lang['a_acc_per_19'] = 'Removing Modules';
+$lang['a_acc_per_18'] = 'Install Modules';
+$lang['a_acc_per_17'] = 'Category delete';
+$lang['a_acc_per_16'] = 'Edit Categories';
+$lang['a_acc_per_15'] = 'Creating categories';
+$lang['a_acc_per_14'] = 'Delete pages';
+$lang['a_acc_per_13'] = 'Editing pages';
+$lang['a_acc_per_12'] = 'Creating pages';
+$lang['a_acc_per_11'] = 'Clearing the cache';
+$lang['a_acc_per_10'] = 'Changing site settings';
+$lang['a_acc_per_9'] = 'Remove languages';
+$lang['a_acc_per_8'] = 'Changing the language';
+$lang['a_acc_per_7'] = 'Creating a language';
+$lang['a_acc_per_6'] = 'Find pages in the control panel';
+$lang['a_acc_per_5'] = 'File Editor';
+$lang['a_acc_per_4'] = 'Logs';
+$lang['a_acc_per_2'] = 'Members';
+$lang['a_acc_per_1'] = 'Access Control Panel';
+// RULLES HELPER-------------------------------------------END
+
 $lang['a_your_remark'] = 'Your remark';
+$lang['a_sett_base_create_new_language'] = 'The creation of a new language';
+$lang['a_sett_global_sett_menu'] = 'Site configuration';
+$lang['a_bas_filt_pass_not_post'] = 'You do not pass search';
+$lang['a_u_man_group_sa_yser'] = 'Group';
+    $lang['a_u_manager_create_group']		=	'Create a Group';
 $lang['a_content'] = 'Content';
 $lang['a_del_category_selec'] = 'Remove selected categories';
 $lang['a_del_categoy_ba'] = 'Delete a category';
