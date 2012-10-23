@@ -69,6 +69,7 @@ $('.formSubmit').live('click',function(){
 
 //        collectMCEData();
 	//update content in textareas with elRTE 
+	$(this).addClass('disabled').attr('disabled');
 	$('textarea.elRTE').elrte('updateSource');
     
 	var selector = $(this).data('form');
@@ -77,12 +78,18 @@ $('.formSubmit').live('click',function(){
 	if ($(selector).valid())
 	{
             var options = {
-                target: '.notifications',
+//                target: '.notifications',
                 beforeSubmit: function (formData){
                         formData.push( {name: "action", value: action} );
                         console.log(formData);
                 },
-                success: function () {return true;}
+                success: function (data) {
+                	var resp = document.createElement('div');
+                	resp.innerHTML = data;
+                	$(resp).find('p').remove();
+                	$('.notifications').append(resp);
+                	$(this).removeClass('disabled').attr('disabled', false); return true;
+                	}
             };
             console.log($(selector));
             $(selector).ajaxSubmit(options);

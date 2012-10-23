@@ -688,7 +688,67 @@ function initAdminArea(){
         $this.parent().next().val($type_file).attr('data-rel','tooltip');
     //}
     
-    })
+    });
+    
+//    $('input:file.multiPic').change( function(e){
+//        $this = $(this);
+//        $type_file = $this.val();
+//
+//        for (file in this.files)
+//        {
+//        	if (!isNaN(parseInt(file)))
+//        	{
+//		        var img = document.createElement("img");
+//		        var reader = new FileReader();
+//		        reader.onloadend = function() {
+//		        	//alert(file);
+//		            img.src = reader.result;
+//		            console.log(reader.result);
+//		        }
+////		        console.log(file);
+//		        reader.readAsDataURL(this.files[file]);
+//		        delete reader;
+//		        //console.log(img);
+//		        $(img).addClass('img-polaroid').css({
+//		            width: '100px'
+//		        });
+//		        $( $(this).data('previewdiv')).append(img);
+//		        //console.log($( $(this).data('previewdiv')));
+//        	}
+//        }    
+//    })
+    
+    function handleFileSelect(evt) {
+    var files = evt.target.files; // FileList object
+
+    document.getElementById('picsToUpload').innerHTML = '';
+    // Loop through the FileList and render image files as thumbnails.
+    for (var i = 0, f; f = files[i]; i++) {
+
+      // Only process image files.
+      if (!f.type.match('image.*')) {
+        continue;
+      }
+
+      var reader = new FileReader();
+
+      // Closure to capture the file information.
+      reader.onload = (function(theFile) {
+        return function(e) {
+          // Render thumbnail.
+          var span = document.createElement('div');
+          span.innerHTML = ['<img class="thumbnail img-polaroid" style="max-width:100px;" src="', e.target.result,
+                            '" title="', escape(theFile.name), '"/>'].join('');
+          document.getElementById('picsToUpload').insertBefore(span, null);
+        };
+      })(f);
+
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(f);
+    }
+  }
+
+  document.getElementById('addPictures').addEventListener('change', handleFileSelect, false);
         
     //    $('[data-provide="typeahead"]').on('focus', function(){
     //        $(this).on('keyup', function(event){
