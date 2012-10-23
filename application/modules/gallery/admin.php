@@ -667,37 +667,58 @@ class Admin extends MY_Controller {
      */
     public function upload_image($album_id = 0) {
         $temp_conf = $this->conf;
-        for ($i = 0; $i <= count($_FILES['file']['type']) - 1; $i++) {
-            if (in_array($_FILES['file']['type'][$i], array('application/x-zip', 'application/zip', 'application/x-zip-compressed', 'application/octet-stream'))) {
-                if ((count($_FILES['file']['type']) - 1) == 0) {
-                    $this->upload_archive($album_id);
-                    exit;
-                } else
-                    continue;
-            }
-
-            $this->conf['upload_path'] = $this->conf['upload_path'] . $album_id;
-
-            $config['upload_path'] = $this->conf['upload_path'];
-            $config['allowed_types'] = $this->conf['allowed_types'];
-            $config['max_size'] = 1024 * 1024 * $this->max_file_size;
-
-            $this->load->library('upload', $config);
-
-            if (!$this->upload->do_upload('file', $i)) {
-                $data = array('error' => $this->upload->display_errors('', ''));
-            } else {
-                $data[$i] = array('upload_data' => $this->upload->data());
-
-                // Resize Image and create thumb
-
-                $this->resize_and_thumb($data[$i]['upload_data']);
-
-                $this->add_image($album_id, $data[$i]['upload_data']);
-            }
-            $this->conf = $temp_conf;
-        }
-        echo json_encode($data);
+        
+//         check if it's an atchive
+// var_dump($_FILES);
+// exit;
+//         for ($i = 0; $i <= count($_FILES['file']['type']) - 1; $i++) {
+// 			for ($i = 0; $i <= count($_FILES['file[]'])-1; $i++) {
+		if (is_array($_FILES['newPic']))
+		{
+			$i=0;
+			foreach ($_FILES['newPic']['name'] as $n){
+	//             if (in_array($_FILES['file']['type'][$i], array('application/x-zip', 'application/zip', 'application/x-zip-compressed', 'application/octet-stream'))) {
+	//                 if ((count($_FILES['file']['type']) - 1) == 0) {
+	//                     $this->upload_archive($album_id);
+	//                     exit;
+	//                 } else
+	//                     continue;
+	//             }
+	
+	            $this->conf['upload_path'] = $this->conf['upload_path'] . $album_id;
+	
+	            if (!is_dir($this->conf['upload_path']))
+	            	mkdir($this->conf['upload_path']);
+	            
+	            $config['upload_path'] = $this->conf['upload_path'];
+	            
+	            $config['allowed_types'] = $this->conf['allowed_types'];
+	            $config['max_size'] = 1024 * 1024 * $this->max_file_size;
+	
+	            $this->load->library('upload', $config);
+	
+	            if (!$this->upload->do_upload('newPic', $i)) {
+	                $data = array('error' => $this->upload->display_errors('', ''));
+	            } else {
+	                $data[$i] = array('upload_data' => $this->upload->data());
+	
+	                // Resize Image and create thumb
+	
+	                $this->resize_and_thumb($data[$i]['upload_data']);
+	
+	                $this->add_image($album_id, $data[$i]['upload_data']);
+	            }
+	            $this->conf = $temp_conf;
+	            $i++;
+	        }
+	        if (isset($data['error']))
+	        	showMessage($data['error']);
+	        else 
+	        {
+	        	showMessage('Upload success');
+	        	pjax('');
+	        }
+		}
     }
 
     public function upload_archive($album_id = 0) {
