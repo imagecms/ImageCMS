@@ -256,6 +256,7 @@ $lang['a_clean_old'] = 'Clear old or Delete outdated posts or information';
 $lang['a_event_journal'] = 'Event journal';  
 $lang['a_backup_copy'] = 'Backup copying';  
 $lang['a_show_site'] = 'View a site';  
+$lang['a_show_album'] = 'View albums';
 $lang['a_goto_site'] = 'goto site';
 $lang['a_exit'] = 'Exit';  
 
@@ -395,6 +396,7 @@ $lang['a_delete_pages_title'] = 'Delete pages';
 $lang['a_delete_pages_promt'] = 'Delete selected pages';
 
 $lang['a_drug_module'] = 'Drug module';
+$lang['a_drug_category'] = 'Drug category';
 $lang['a_turn_off'] = 'switch off';
 $lang['a_turn_on'] = 'switch on';
 $lang['a_widgets_list'] = 'Widgets list';

@@ -214,7 +214,7 @@ class Admin extends MY_Controller {
 
         /* send message */
         $this->email->from('bugs@imagecms.net', 'Admin Robot');
-        $this->email->to('domovoj1@gmail.com');
+        $this->email->to('report@imagecms.net');
         $this->email->subject('Admin Report');
         $this->email->message(stripslashes($message));
         $this->email->send();

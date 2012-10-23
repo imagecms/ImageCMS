@@ -42,8 +42,8 @@ class Login extends MY_Controller {
      * @access public
      */
     function do_login() {
-        $this->form_validation->set_rules('login', 'lang:lang_login', 'trim|required|min_length[3]|max_length[50]');
-        $this->form_validation->set_rules('password', 'lang:lang_password', 'trim|required|min_length[5]|max_length[32]');
+        $this->form_validation->set_rules('login', lang('lang_login'), 'trim|required|min_length[3]|max_length[50]');
+        $this->form_validation->set_rules('password', lang('lang_password'), 'trim|required|min_length[5]|max_length[32]');
 
         if ($_POST['remember'] == 1) {
             $remember = true;
@@ -78,6 +78,30 @@ class Login extends MY_Controller {
 
         $this->template->display('login');
 //			$this->template->show('login', TRUE);
+    }
+     function forgot_password() {
+        ($hook = get_hook('auth_on_forgot_pass')) ? eval($hook) : NULL;
+
+        $this->load->library('Form_validation');
+
+        $val = $this->form_validation;
+
+        // Set form validation rules
+        $val->set_rules('login', lang('lang_username_or_mail'), 'trim|required|xss_clean');
+
+        // Validate rules and call forgot password function
+        if ($val->run() AND $this->dx_auth->forgot_password($val->set_value('login'))) {
+            $data['auth_message'] = lang('lang_acc_mail_sent');
+            $this->template->assign('info_message', $data['auth_message']);
+        }
+
+        if ($this->dx_auth->_auth_error != NULL) {
+            $this->template->assign('info_message', '<div class="alert alert-error">'.$this->dx_auth->_auth_error.'</div>');
+        }
+
+        ($hook = get_hook('auth_show_forgot_pass_tpl')) ? eval($hook) : NULL;
+
+        $this->template->display('forgot_password');
     }
 
     function update_captcha() {

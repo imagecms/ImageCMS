@@ -35,7 +35,7 @@ function translite_title(from, to)
 
 function create_description(from, to)
 {
-	$('textarea.elRTE').elrte('updateSource');
+    $('textarea.elRTE').elrte('updateSource');
     $.post(
         base_url + 'admin/pages/ajax_create_description/',{
             'text' :$(from).val()
@@ -48,7 +48,7 @@ function create_description(from, to)
 
 function retrive_keywords(from, to)
 {
-	$('textarea.elRTE').elrte('updateSource');
+    $('textarea.elRTE').elrte('updateSource');
 
     $.post(base_url + 'admin/pages/ajax_create_keywords/', {
         'keys': $(from).val()
@@ -69,6 +69,7 @@ $('.formSubmit').live('click',function(){
 
 //        collectMCEData();
 	//update content in textareas with elRTE 
+	$(this).addClass('disabled').attr('disabled');
 	$('textarea.elRTE').elrte('updateSource');
     
 	var selector = $(this).data('form');
@@ -77,12 +78,18 @@ $('.formSubmit').live('click',function(){
 	if ($(selector).valid())
 	{
             var options = {
-                target: '.notifications',
+//                target: '.notifications',
                 beforeSubmit: function (formData){
                         formData.push( {name: "action", value: action} );
                         console.log(formData);
                 },
-                success: function () {return true;}
+                success: function (data) {
+                	var resp = document.createElement('div');
+                	resp.innerHTML = data;
+                	$(resp).find('p').remove();
+                	$('.notifications').append(resp);
+                	$(this).removeClass('disabled').attr('disabled', false); return true;
+                	}
             };
             console.log($(selector));
             $(selector).ajaxSubmit(options);
@@ -93,7 +100,7 @@ $('.formSubmit').live('click',function(){
 function updateNotificationsTotal()
 {
     //if (isShop)
-	$('#topPanelNotifications>div').load('/admin/components/run/shop/notifications/getAvailableNotification');
+    $('#topPanelNotifications>div').load('/admin/components/run/shop/notifications/getAvailableNotification');
 }
 
 
@@ -103,76 +110,86 @@ function loadShopInterface()
     $('#baseAdminMenu').hide();
     $('#shopAdminMenu').show();
 	 
-	updateNotificationsTotal();
-	$('#topPanelNotifications').fadeIn(300);
-	$.pjax({url:'/admin/components/run/shop/dashboard', container:'#mainContent'});
-        isShop = true;
-	$('a.logo').attr('href', '/admin/components/run/shop/dashboard');
-	return false;
+    updateNotificationsTotal();
+    $('#topPanelNotifications').fadeIn(300);
+    $.pjax({
+        url:'/admin/components/run/shop/dashboard', 
+        container:'#mainContent'
+    });
+    isShop = true;
+    $('a.logo').attr('href', '/admin/components/run/shop/dashboard');
+    return false;
 }
 
 function loadBaseInterface()
 {
-   // Switch menu
+    // Switch menu
     $('#shopAdminMenu').hide();
     $('#baseAdminMenu').show();
 	 
-	$('#topPanelNotifications').fadeOut(300);
-	$.pjax({url:'/admin/dashboard', container:'#mainContent'});
-        isShop = false;
-	$('a.logo').attr('href', '/admin/dashboard');	
-	return false;
+    $('#topPanelNotifications').fadeOut(300);
+    $.pjax({
+        url:'/admin/dashboard', 
+        container:'#mainContent'
+    });
+    isShop = false;
+    $('a.logo').attr('href', '/admin/dashboard');	
+    return false;
 }
 
 function initElRTE()
 {
 	
-	 var opts = {
-             //lang         : 'ru',   // set your language
-            styleWithCSS : true,
-           	height       : 300,
-           	fmAllow		: true,
+    var opts = {
+        //lang         : 'ru',   // set your language
+        styleWithCSS : true,
+        height       : 300,
+        fmAllow		: true,
            	
-           	fmOpen: function(callback) {
-//			    if (typeof dialog === 'undefined') {
-			      // create new elFinder
-			      dialog = $('<div />').dialogelfinder({
-			        url: '/admin/elfinder_init',
-			        commandsOptions: {
-			          getfile: {
-			            oncomplete : 'destroy' // close/hide elFinder
-			          }
-			        },
-			        getFileCallback: function(file) { callback('/'+file.path); }
-//			        getFileCallback: callback // pass callback to file manager
-			      });
-//			    } else {
-//			      // reopen elFinder
-//			      dialog.dialogelfinder('open')
-//			    }
-			  },
+        fmOpen: function(callback) {
+            //			    if (typeof dialog === 'undefined') {
+            // create new elFinder
+            dialog = $('<div />').dialogelfinder({
+                url: '/admin/elfinder_init',
+                commandsOptions: {
+                    getfile: {
+                        oncomplete : 'destroy' // close/hide elFinder
+                    }
+                },
+                getFileCallback: function(file) {
+                    callback('/'+file.path);
+                }
+            //			        getFileCallback: callback // pass callback to file manager
+            });
+        //			    } else {
+        //			      // reopen elFinder
+        //			      dialog.dialogelfinder('open')
+        //			    }
+        },
            	
-            toolbar      : 'maxi'
-            };
-            $('textarea.elRTE').elrte(opts);
+        toolbar      : 'maxi'
+    };
+    $('textarea.elRTE').elrte(opts);
 }
 
 function elFinderPopup(type, id)
 {
 	
-				    dlg = $('#elFinder').dialogelfinder({
-			        url: '/admin/elfinder_init',
-			        commandsOptions: {
-			          getfile: {
-			            oncomplete : 'destroy' // close/hide elFinder
-			          }
-			        },
-			        getFileCallback: function(file) { $('#'+id).val( '/'+file.path); }
+    dlg = $('#elFinder').dialogelfinder({
+        url: '/admin/elfinder_init',
+        commandsOptions: {
+            getfile: {
+                oncomplete : 'destroy' // close/hide elFinder
+            }
+        },
+        getFileCallback: function(file) {
+            $('#'+id).val( '/'+file.path);
+        }
 			        
-//			        getFileCallback: callback // pass callback to file manager
-			      });
+    //			        getFileCallback: callback // pass callback to file manager
+    });
 			      
-			      return false;
+    return false;
 }
 //tinymce
 
@@ -258,8 +275,8 @@ var orders = new Object({
 
     fixAddressA:function()
     {
-    	$('#postAddressBtn').attr('href', "http://maps.google.com/?q="+$('#postAddress').val());
-    	return true;
+        $('#postAddressBtn').attr('href', "http://maps.google.com/?q="+$('#postAddress').val());
+        return true;
     },
 
     chOrderPaid:function (paid){
@@ -346,25 +363,27 @@ var orders = new Object({
     
     refreshTotalPrice:function(dmId)
     {
-    	deliveryPrice = deliveryPrices[dmId];
-    	if (deliveryPrice === undefined)
-    		deliveryPrice = 0;
-    	var totalPrice = deliveryPrice + productsAmount - giftPrice;
+        deliveryPrice = deliveryPrices[dmId];
+        if (deliveryPrice === undefined)
+            deliveryPrice = 0;
+        var totalPrice = deliveryPrice + productsAmount - giftPrice;
     	
-    	$('.totalOrderPrice').html(totalPrice);
-    	//console.log(totalPrice);
+        $('.totalOrderPrice').html(totalPrice);
+    //console.log(totalPrice);
     },
     
     updateOrderItem:function(id, btn)
     {
-    	var data = {};
-    	if ($(btn).data('update') == 'price')
-//    		alert($(btn).closest('td').find('input').val());
-    		data.newPrice = $(btn).closest('td').find('input').val();
-    	if ($(btn).data('update') == 'count')
-    		data.newQuantity = $(btn).closest('td').find('input').val();
+        var data = {};
+        if ($(btn).data('update') == 'price')
+            //    		alert($(btn).closest('td').find('input').val());
+            data.newPrice = $(btn).closest('td').find('input').val();
+        if ($(btn).data('update') == 'count')
+            data.newQuantity = $(btn).closest('td').find('input').val();
     		
-    	$.post('/admin/components/run/shop/orders/ajaxEditOrderCart/'+id, data, function(data){$('.notifications').append(data);});
+        $.post('/admin/components/run/shop/orders/ajaxEditOrderCart/'+id, data, function(data){
+            $('.notifications').append(data);
+        });
     }
 	
 });
@@ -547,16 +566,29 @@ var GalleryCategories = new Object({
 var GalleryAlbums = new Object({
     whatDelete:function (el){
         var el = el;
-        this.id = $(el).closest('tr').find("[type = hidden]").val();
+        
+        var closest_tr = $(el).closest('tr');
+        var mini_layout = $(el).closest('.mini-layout')
+        
+        if (closest_tr[0] != undefined){
+            this.id = $(el).closest('tr').find("[type = hidden]").val();
+        }
+        else if (mini_layout[0] != undefined){
+            this.id = mini_layout.find('[name = album_id]').val();
+        }
     },
     deleteCategoriesConfirm:function ()
     {
+        if (mini_layout[0] != undefined) {
+            url = '/admin/components/cp/gallery/category/'+mini_layout.find('[name = category_id]').val();
+        }
+        else url = window.location.pathname;
+        
         $.post('/admin/components/cp/gallery/delete_album', {
             album_id:this.id
         }, function(data){
-            alert(data)
             $.pjax({
-                url:window.location.pathname, 
+                url:url, 
                 container:'#mainContent'
             });
         });
