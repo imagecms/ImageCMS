@@ -13,7 +13,7 @@ $(document).ajaxComplete( function(event, XHR, ajaxOptions){
         initAdminArea();
     }
     number_tooltip_live();
-    fixed_frame_title();
+    fixed_frame_title()
     $('.tooltip').remove();
 });
 function number_tooltip(){
@@ -40,10 +40,11 @@ $('[data-max]').on('keyup', function(event){
         $this.val(100);
     }
 });
-fixed_block = $(".frame_title:not(.no_fixed)");
-mini_layout = $('.mini-layout');
-container = $('.container');
 function fixed_frame_title(){
+    fixed_block = $(".frame_title:not(.no_fixed)");
+    mini_layout = $('.mini-layout');
+    container = $('.container');
+    
     if ($.exists_nabir(fixed_block)){
         var fixed_block_top = mini_layout.offset().top;
         var fixed_block_h = fixed_block.outerHeight(true);
@@ -158,7 +159,7 @@ function initAdminArea(){
     if ($.exists('.sortable')) {
         $('.sortable tr').not(':has(tr)').tooltip({
             'placement':place_tr_ttp
-        });
+        }).css('cursor', 'move');
         $( ".sortable").sortable({
             axis: 'y',
             cursor: 'move',
@@ -185,6 +186,11 @@ function initAdminArea(){
         //                    return false;
         //            }
         });
+    }
+    if ($.exists('.sortable2')) {
+        $('.sortable2 tr').not(':has(tr)').tooltip({
+            'placement':place_tr_ttp
+        }).css('cursor', 'move');
     }
     if ($.exists('.sortable2')) {
         $( ".sortable2").sortable({
@@ -656,6 +662,7 @@ function initAdminArea(){
     //    });
 
     if ($.exists('#wrapper_gistogram')) gistogram(); 
+    if ($.exists('#chart')) brands();
     
     $('.controls img.img-polaroid').on('click', function(){
         $(this).closest('.control-group').find('input:file').click();
@@ -745,8 +752,6 @@ function initAdminArea(){
         return false;
     });
 
-    fixed_frame_title();
-    
     //                $('a.pjax, .dropdown-menu li a').live('click', function(e){
     //$.pjax({url:$(this).attr('href'), container:'#mainContent'})
     //               e.preventDefault();
@@ -772,7 +777,7 @@ function initAdminArea(){
 		
     if ($('textarea.elRTE').length > 0)
         initElRTE();
-		
+    
     console.log('initialising of administration area ended');
     console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.")
 };
@@ -789,12 +794,6 @@ $(document).ready(
         initAdminArea();
         $('.nav .dropdown-menu a').unbind('click');
 
-        $.ajaxSetup({
-            success: function(){
-                fixed_frame_title();
-            }
-        });
-        
         $('a.pjax').click(function(event){
             event.preventDefault();
             $.pjax({
@@ -828,20 +827,22 @@ $(document).ready(
                 return false;
             }
         });
-        var overlay = $('.main_body').append('<div class="overlay"></div>')
+        $('.main_body').append('<div class="overlay"></div>');
         $('#rep_bug').on('click', function(){
-            $('.overlay').fadeIn(function(){
-                $(this).css({
-                    'height': $(document).height(), 
-                    'opacity':0.5
-                });
+            var overlay = $('.overlay');
+            overlay.css({
+                'height': $(document).height(),
+                'opacity': 0.5
+            });
+            overlay.fadeIn(function(){
                 $('.frame_rep_bug').find('.alert').remove().end().fadeIn();
             });
-            $('.overlay').on('click', function(){
+            overlay.on('click', function(){
                 $('.frame_rep_bug').fadeOut(function(){
-                    $('.overlay').fadeOut();
+                    overlay.fadeOut();
                 })
             });
+            return false;
         });
         $('.frame_rep_bug [type="submit"]').on('click', function(){
             var url = 'hostname='+location.hostname+'&pathname='+location.pathname+'&user_name='+$('#user_name').text()+'&text='+$('.frame_rep_bug textarea').val()+'&ip_address='+$('.frame_rep_bug #ip_address').val();
@@ -852,8 +853,8 @@ $(document).ready(
                 success: function(data){
                     $('.frame_rep_bug').prepend('<div class="alert alert-success">Ваше повідомлення відправлено</div>');
                     setTimeout(function(){
-                        $('.overlay').trigger('click')
-                        }, 2000)
+                        overlay.trigger('click')
+                    }, 2000)
                 }
             })
             return false;

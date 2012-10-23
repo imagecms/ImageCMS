@@ -465,8 +465,9 @@
     $lang['a_patch_font']       =	'Путь к шрифту';
     $lang['a_email_administrato_order'] = 'Уведомление администратора о совершении заказа на почту';
     $lang['a_send']             =	'Отправлять';
-    $lang['a_send_f']             =	'Отправить';
-    $lang['a_end']             =	'завершен';
+    $lang['a_send_f']           =	'Отправить';
+    $lang['s_log_out']          =       'Вход';
+    $lang['a_end']              =       'завершен';
     $lang['a_administrator']    =	'Администратора';
     $lang['a_email_users_order']=	'Уведомление покупателя о совершении заказа';
     $lang['a_send_email_users'] =	'Отправлять пользователю письмо о совершении заказа.';

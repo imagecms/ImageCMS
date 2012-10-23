@@ -198,6 +198,7 @@ $lang['a_clean_old'] = 'Clear old or Delete outdated posts or information';
 $lang['a_event_journal'] = 'Event journal';  
 $lang['a_backup_copy'] = 'Backup copying';  
 $lang['a_show_site'] = 'View a site';  
+$lang['a_show_album'] = 'View albums';
 $lang['a_goto_site'] = 'goto site';
 $lang['a_exit'] = 'Exit';  
 
