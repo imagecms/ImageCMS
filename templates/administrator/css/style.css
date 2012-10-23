@@ -168,7 +168,8 @@ a.btn{text-decoration: none;}
 .btn{font-size: 12px !important;}
 .breadcrumb{margin: 0 0 3px 0 !important;padding: 0 !important;background: none !important;}
 .breadcrumb li{text-shadow: none !important;}
-.tab-content{position: relative;overflow-y: visible !important;}
+
+.tab-content{position: relative;overflow: visible !important;}
 
 .pull-left + .o_h{min-width: 15px;}
 .label, .badge{display: inline-block;white-space: normal;}

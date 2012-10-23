@@ -171,20 +171,20 @@ class Categories extends MY_Controller {
                     $id = $this->cms_admin->create_category($data);
 
                     $this->lib_admin->log(
-                            lang('ac_cr_cat') .
-                            '<a href="#" onclick="edit_category(' . $id . '); return false;">' . $data['name'] . '</a>'
+                            lang('ac_cr_cat') .                            
+                            '<a href="'.$BASE_URL.'/admin/categories/edit/'.$id.'"> ' . $data['name'] . '</a>'
                     );
 
-                    showMessage(lang('ac_cat') . $data['name'] . lang('ac_created'));
+                    showMessage(lang('ac_cat') .' '. $data['name'] .' '. lang('ac_created'));
                     
                     //showMessage(lang('a_categ_translate_upda'));
-                $active = $_POST['action'];
-                
-                if($active == 'close'){
-                    pjax('/admin/categories/create_form');
-                }else{
-                    pjax('/admin/categories/cat_list');
-                }                
+	                $act = $_POST['action'];
+	                
+	                if($act == 'close'){
+	                	pjax('/admin/categories/cat_list');
+	                }else{
+	                    pjax('/admin/categories/edit/'.$id);
+	                }                
                     //updateDiv('page', site_url('admin/categories/edit/' . $id));
                     break;
 
@@ -208,17 +208,16 @@ class Categories extends MY_Controller {
 
                     $this->lib_admin->log(
                             lang('ac_changed_cat') .
-                            '<a href="#" onclick="edit_category(' . $cat_id . '); return false;">' . $data['name'] . '</a>'
+                            '<a href="'.$BASE_URL.'/admin/categories/edit/'.$cat_id.'"> ' . $data['name'] . '</a>'
                     );
 
                     showMessage(lang('ac_cat_updated'));
                     
-                    $active = $_POST['action'];
-                if($active == 'close'){
-                    pjax('/admin/categories/edit/'.$cat_id);
-                }else{
-                    pjax('/admin/categories/cat_list');
-                }
+                    $act = $_POST['action'];
+	                if($act == 'close')
+	                    pjax('/admin/categories/cat_list');
+	                else
+	                	pjax('/admin/categories/edit/'.$cat_id);
                 
                     break;
             }
@@ -310,7 +309,7 @@ class Categories extends MY_Controller {
 
                 $this->lib_admin->log(
                         lang('ac_cr_cat') .
-                        '<a href="#" onclick="edit_category(' . $id . '); return false;">' . $data['name'] . '</a>'
+                        '<a href="'.$BASE_URL.'/admin/categories/edit/'.id.'"> ' . $data['name'] . '</a>'
                 );
 
                 echo json_encode(array('data'=>$id));
@@ -351,14 +350,12 @@ class Categories extends MY_Controller {
         if ($cat !== FALSE) {
             // Get langs
             $langs = $this->cms_base->get_langs();
-
             $this->template->assign('langs', $langs);
 
             $cat['fetch_pages'] = unserialize($cat['fetch_pages']);
             $this->template->add_array($cat);
             $this->template->assign('tree', $this->lib_category->build());
             $this->template->assign('include_cats', $this->sub_cats($this->lib_category->build()));
-
             ($hook = get_hook('admin_show_category_edit')) ? eval($hook) : NULL;
 
             $this->template->show('category_edit', FALSE);
@@ -404,7 +401,8 @@ class Categories extends MY_Controller {
                 if ($query->num_rows() == 0) {
                     $this->lib_admin->log(
                             lang('ac_create_cat_trans') .
-                            '<a href="#" onclick="edit_category(' . $cat['id'] . '); return false;">' . $cat['name'] . '</a>'
+                            
+                            '<a href="'.$BASE_URL.'/admin/categories/edit/'.$cat['id'].'"> ' . $cat['name'] . '</a>'
                     );
 
                     ($hook = get_hook('admin_insert_cat_translation')) ? eval($hook) : NULL;
@@ -412,8 +410,8 @@ class Categories extends MY_Controller {
                     $this->db->insert('category_translate', $data);
                 } else {
                     $this->lib_admin->log(
-                            lang('ac_changed_cat_trans') .
-                            '<a href="#" onclick="edit_category(' . $cat['id'] . '); return false;">' . $cat['name'] . '</a>'
+                            lang('ac_changed_cat_trans') .                            
+                            '<a href="'.$BASE_URL.'/admin/categories/edit/'.$cat['id'].'"> ' . $cat['name'] . '</a>'
                     );
 
                     ($hook = get_hook('admin_update_cat_translation')) ? eval($hook) : NULL;
@@ -444,6 +442,10 @@ class Categories extends MY_Controller {
             $this->db->where('lang', $lang);
             $query = $this->db->get('category_translate');
 
+            // Get langs
+            $langs = $this->cms_base->get_langs();
+            $this->template->assign('langs', $langs);
+            
             if ($query->num_rows() > 0) {
                 $this->template->add_array(array(
                     'cat' => $query->row_array(),
