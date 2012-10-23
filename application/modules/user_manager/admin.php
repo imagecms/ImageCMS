@@ -27,7 +27,7 @@ class Admin extends MY_Controller {
     function index($id = Null) {
         $this->set_tpl_roles();
         $this->template->add_array($this->genre_user_table());
-        $this->template->add_array($this->show_edit_prems_tpl($id = Null));
+        $this->template->add_array($this->show_edit_prems_tpl($id = 2));
         $this->display_tpl('main');
     }
 
@@ -40,6 +40,11 @@ class Admin extends MY_Controller {
         $query = $this->db->get('roles');
         $this->template->assign('roles', $query->result_array());
         // roles
+    }
+
+    function getRolesTable($roleId) {
+        $this->template->add_array($this->show_edit_prems_tpl($roleId));
+        $this->display_tpl('genreroletable');
     }
 
     /*
@@ -490,10 +495,10 @@ class Admin extends MY_Controller {
 
             //$this->lib_admin->log(lang('amt_changed_group') . $id);
             $this->lib_admin->log(
-                       lang('amt_changed_group') .
-                        '<a href="' . site_url('/admin/components/cp/user_manager/edit/' . $id) . '">' . $data['alt_name'] . '</a>'
-                );
-            
+                    lang('amt_changed_group') .
+                    '<a href="' . site_url('/admin/components/cp/user_manager/edit/' . $id) . '">' . $data['alt_name'] . '</a>'
+            );
+
 
             showMessage(lang('amt_group_saved'));
             $this->update_groups_block();
@@ -522,10 +527,10 @@ class Admin extends MY_Controller {
 
         $this->db->limit(1);
         $this->db->where('id', intval($id));
-        $this->db->delete('roles');        
+        $this->db->delete('roles');
         $this->lib_admin->log(
-                       lang('amt_deleted_group') .' '.$id
-                );
+                lang('amt_deleted_group') . ' ' . $id
+        );
 
         $this->update_groups_block();
     }
@@ -574,10 +579,13 @@ class Admin extends MY_Controller {
             $this->db->delete('permissions');
         }
 
-        showMessage(lang('amt_changes_saved'));
+        showMessage(lang('amt_changes_saved'));        
+        pjax('/admin/components/init_window/user_manager#privilege');
+            
+        
     }
 
-    function show_edit_prems_tpl($selected_role = Null) {
+    function show_edit_prems_tpl($selected_role = 2) {
 
         $this->load->model('dx_auth/permissions', 'permissions');
         $permissions = $this->permissions->get_permission_data($selected_role);
