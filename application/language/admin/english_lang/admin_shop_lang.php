@@ -5,6 +5,7 @@
  * and open the template in the editor.
  */
     $lang['a_enter_sys']		=	'Log in';
+    $lang['a_s_banner_new_succes']		=	'Banner created';
     $lang['a_s_brand_del_1']		=	'Removing brand';
     $lang['a_s_banner_new_r']		=	'Create a banner';
     $lang['a_s_banner_list_r']		=	'Banner list';
