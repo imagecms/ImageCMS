@@ -462,7 +462,7 @@ function initAdminArea() {
         if (el.closest('[data-tree]').length > 0)
             el.closest('tr').removeClass('active');
 
-        textcomment_s_h('h', el);
+        //textcomment_s_h('h', el);
     }
     function changeCheckStart(el)
     {
