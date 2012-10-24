@@ -55,7 +55,7 @@
                                     {lang('a_remember')}
                                 </span>
                             </div>
-                            <a href="/auth/forgot_password/" class="pull-right">{lang('a_forget_pass')}</a>
+                            <a href="{$BASE_URL}admin/login/forgot_password/" class="pull-right">{lang('a_forget_pass')}</a>
                         </div>
                         <input type="submit" value="{lang('a_enter_sys')}" class="btn btn-info" style="margin-top: 26px;"/>
                         {form_csrf()}

@@ -1,8 +1,4 @@
 <div class="container">
-    <ul class="breadcrumb">
-        <li><a href="#">Главная</a> <span class="divider">/</span></li>
-        <li class="active">Список товаров</li>
-    </ul>
     <section class="mini-layout">
         <div class="frame_title clearfix">
             <div class="pull-left">
@@ -11,7 +7,7 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="#" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
+                    <a href="/admin/components/modules_table" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
                     <button type="button" class="btn btn-small btn-success formSubmit" data-form="#send" ><i class="icon-list-alt icon-white"></i>{lang('a_mailer_send_mail')}</button>                   
                 </div>
             </div>                            
