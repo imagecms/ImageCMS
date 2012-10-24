@@ -5,6 +5,7 @@
  * and open the template in the editor.
  */
 
+    $lang['a_s_banner_new_succes']		=	'Баннер создан';
     $lang['a_s_brand_del_1']		=	'Удаление бренда';
     $lang['a_s_banner_new_r']		=	'Создать баннер';
     $lang['a_s_banner_list_r']		=	'Список баннеров';
