@@ -5,8 +5,23 @@
  * and open the template in the editor.
  */
     $lang['a_enter_sys']		=	'Log in';
+    $lang['a_s_banner_new_succes']		=	'Banner created';
     $lang['a_s_brand_del_1']		=	'Removing brand';
+    $lang['a_s_cer_settings_change_save']		=	'The settings are saved';
+    $lang['a_s_cer_change_status_cer']		=	'You have changed the status of the certificate';
+    $lang['a_s_certif_delete_succes']		=	'Certificate (s) removed (s)';
+    $lang['a_s_cer_new_succes']		=	'Certificate is created';
+    $lang['a_s_certificate_cost']		=	'Cost of the certificate';
+    $lang['a_s_gifts_del_2']		=	'Remove selected gift certificates?';
+    $lang['a_s_gifts_del_1']		=	'Removing Gift Certificate';
+    $lang['a_s_gifts_del_3']		=	'Remove a gift certificate?';
+    $lang['a_s_banner_delete_1']		=	'Removing banner';
+    $lang['a_s_banner_delete_2']		=	'Remove selected banners?';
+    $lang['a_s_banner_delete_3']		=	'Remove banners?';
+    $lang['a_s_banner_delete_suc']		=	'Banner removed';
+    $lang['a_s_banner_404_not']		=	'Banner could not be found';
     $lang['a_s_banner_new_r']		=	'Create a banner';
+    $lang['a_s_banner_update_succces']		=	'Banner updated';
     $lang['a_s_banner_list_r']		=	'Banner list';
     $lang['a_s_banner_text_edit_b']		=	'Editing banner';
     $lang['a_s_banner_text_create_b']		=	'Text banner';

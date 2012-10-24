@@ -72,6 +72,8 @@ $('.formSubmit').live('click',function(){
 	$(this).addClass('disabled').attr('disabled');
 	$('textarea.elRTE').elrte('updateSource');
     
+	var btn = this;
+	
 	var selector = $(this).data('form');
 	var action = $(this).data('action');
 	$(selector).validate()
@@ -90,12 +92,14 @@ $('.formSubmit').live('click',function(){
                 	resp.innerHTML = data;
                 	$(resp).find('p').remove();
                 	$('.notifications').append(resp);
-                	$(this).removeClass('disabled').attr('disabled', false); return true;
+                	$(btn).removeClass('disabled').attr('disabled', false); return true;
                 	}
             };
             console.log($(selector));
             $(selector).ajaxSubmit(options);
 	}
+	else
+		$(this).removeClass('disabled').attr('disabled', false);
 	return false;
 });
 
@@ -176,7 +180,7 @@ function initElRTE()
 
 function elFinderPopup(type, id)
 {
-	
+	//todo: create diferent browsers (check 'type' variable)
     dlg = $('#elFinder').dialogelfinder({
         url: '/admin/elfinder_init',
         commandsOptions: {
@@ -186,6 +190,14 @@ function elFinderPopup(type, id)
         },
         getFileCallback: function(file) {
             $('#'+id).val( '/'+file.path);
+            if ( type == 'image' && $('#'+id+'-preview').length)
+            {
+            	var img = document.createElement('img');
+            	img.src = $('#'+id).val(); 
+            	img.className = "img-polaroid";
+            	console.log(img);
+            	$('#'+id+'-preview').html(img);
+            }
         }
 			        
     //			        getFileCallback: callback // pass callback to file manager

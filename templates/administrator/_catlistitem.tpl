@@ -25,15 +25,7 @@
             {else:}
                 <span class="simple_tree">↳</span>
             {/if}
-            
-            <!-- 
-                                                <button type="button" class="btn btn-small my_btn_s" style="display: none; margin-top: 1px;" data-rel="tooltip" data-placement="top" data-original-title="свернуть категорию">
-                                                    <i class="my_icon icon-minus"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-small my_btn_s btn-primary" data-rel="tooltip" data-placement="top" data-original-title="розвернуть категорию">
-                                                    <i class="my_icon icon-plus"></i>
-                                                </button>
-                                                 -->                                  
+                                          
      <a href="{$ADMIN_URL}edit/{$item.id}" data-rel="tooltip" data-placement="top" data-original-title="редактировать категорию" >{truncate($item.name, 100)}</a>
                                                
 
