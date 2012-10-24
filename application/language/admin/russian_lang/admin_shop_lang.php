@@ -6,6 +6,20 @@
  */
 
     $lang['a_s_banner_new_succes']		=	'Баннер создан';
+    $lang['a_s_cer_new_succes']		=	'Сертификат создан';
+    $lang['a_s_cer_settings_change_save']		=	'Настройки сохранены';
+    $lang['a_s_cer_change_status_cer']		=	'Вы изменили статус сертификата';
+    $lang['a_s_certif_delete_succes']		=	'Сертификат(ы) удален(ы)';
+    $lang['a_s_certificate_cost']		=	'Стоимость сертификата';
+    $lang['a_s_gifts_del_1']		=	'Удаление подарочного сертификата';
+    $lang['a_s_gifts_del_2']		=	'Удалить выбранные подарочные сертификаты?';
+    $lang['a_s_gifts_del_3']		=	'Удалить подарочный сертификат?';
+    $lang['a_s_banner_delete_suc']		=	'Баннер удален';
+    $lang['a_s_banner_delete_1']		=	'Удаление баннера';
+    $lang['a_s_banner_delete_2']		=	'Удалить выбранные баннеры?';
+    $lang['a_s_banner_delete_3']		=	'Удалить баннеры?';
+    $lang['a_s_banner_404_not']		=	'Баннер не найден';
+    $lang['a_s_banner_update_succces']		=	'Баннер обновлен';
     $lang['a_s_brand_del_1']		=	'Удаление бренда';
     $lang['a_s_banner_new_r']		=	'Создать баннер';
     $lang['a_s_banner_list_r']		=	'Список баннеров';
