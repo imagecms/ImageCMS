@@ -10,7 +10,6 @@
 							<td></td>
 						</tr>
 						<tbody>
-
 					{foreach $roles as $group}
 					<tr>
 						<td>{$group.id}</td>

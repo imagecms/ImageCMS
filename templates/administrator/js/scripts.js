@@ -847,6 +847,9 @@ function initAdminArea(){
     if ($('textarea.elRTE').length > 0)
         initElRTE();
     
+    if ($('#elFinderTPLEd').length > 0)
+	elFinderTPLEd();
+    
     console.log('initialising of administration area ended');
     console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.")
 };
@@ -889,9 +892,10 @@ $(document).ready(
         
         });
         
+	
         $(this).keydown(function (e) {
             e = e || window.event;
-            if (e.keyCode === 13 || (e.keyCode === 83 && event.ctrlKey)) {
+            if ( (e.keyCode === 13 || (e.keyCode === 83 && event.ctrlKey) ) && event.target.localName != 'textarea' ) {
                 $("[data-submit]").trigger('click');
                 return false;
             }
