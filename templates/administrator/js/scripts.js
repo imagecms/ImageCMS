@@ -657,11 +657,12 @@ function initAdminArea(){
 
     if ($.exists('#wrapper_gistogram')) gistogram(); 
     
-    $('.controls img.img-polaroid').on('click', function(){
+    //$('.controls img.img-polaroid').on('click', function(){
+    $('.controls img.img-polaroid').live('click', function(){
         $(this).closest('.control-group').find('input:file').click();
     });
     
-    $('[data-url="file"] input[type="file"]').change( function(e){
+    $('[data-url="file"] input[type="file"]').live('change', function(e){
         $this = $(this);
         $type_file = $this.val();
         //if ($this.parent().next().is(':not([data-flie="url"])')) {
