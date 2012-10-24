@@ -623,9 +623,9 @@ $(document).ready(function() {
                 $('.notifications').append(data);
             }
         });
-        if($(this).hasClass('active')){
+        if ($(this).hasClass('active')) {
             $(this).removeClass('active');
-        }else{
+        } else {
             $(this).addClass('active');
         }
     });
@@ -798,24 +798,59 @@ $(document).ready(function() {
         }
         );
     });
-    
-    $('.kit_del').live('click', function(){
+
+    $('.kit_del').live('click', function() {
         $('.modal_del_kit').modal();
     });
-    
-    $('.kit_del_ok').live('click', function(){
+
+    $('.kit_del_ok').live('click', function() {
         var id = $('.kit_del').attr('data-kid');
         $.ajax({
-            url:        '/admin/components/run/shop/kits/kit_delete',
-            data:       'ids='+id,
-            type:       'post',
-            success:    function(data){
+            url: '/admin/components/run/shop/kits/kit_delete',
+            data: 'ids=' + id,
+            type: 'post',
+            success: function(data) {
                 $('.modal_del_kit').modal('hide');
                 $('.notifications').append(data);
                 location.reload();
             }
         });
     });
+
+
+    $('#addVariant').live('click', function() {
+        var clonedVarTr = $('.variantRowSample').find('tr').clone();
+        var randId = Math.random();
+        var countVarRows = $('#variantHolder').children('tr').length;
+        clonedVarTr.find('.random_id').attr('value', randId);
+        clonedVarTr.find('[name="variants[mainPhoto][]"]').attr('name', 'variants[mainPhoto][' + randId + ']');
+        clonedVarTr.find('[name="variants[smallPhoto][]"]').attr('name', 'variants[smallPhoto][' + randId + ']');
+        clonedVarTr.attr('id', 'ProductVariantRow_' + countVarRows);
+        $('#variantHolder').append(clonedVarTr);
+    });
+
+    $('.delete_image').live('click', function() {
+        var container = $(this).parent('td');
+        //container.find('[name="variants[MainImageForDel][]"]');
+        if (container.find('[name="variants[MainImageForDel][]"]').length) {
+            container.find('[name="variants[MainImageForDel][]"]').attr('value', 1);
+            container.find('[name="variants[mainPhoto][]"]').attr('value', '');
+        }
+        if (container.find('[name="variants[SmallImageForDel][]"]').length) {
+            container.find('[name="variants[SmallImageForDel][]"]').attr('value', 1);
+            container.find('[name="variants[smallPhoto][]"]').attr('value', '');
+        }
+        container.find('img').attr('src', "/templates/administrator/images/select-picture.png");
+    });
+    
+    $('.deleteMainImages').live('click', function(){
+       var container = $(this).parents('div.control-group');
+       container.find('img').attr('src', "/templates/administrator/images/select-picture.png");
+       container.find('input:hidden').attr('value', 1);
+       container.find('input:file').attr('value', '')
+       
+    });
+
 });
 
 
