@@ -41,7 +41,7 @@
                                                 <select name="categories[]" multiple="multiple" id="selectcat">
                                                     <option value="0" {if $settings.categories.0 == 0} selected="selected" {/if}>{lang('amt_without_category')}</option>
                                                     <option disabled="disabled"> </option>
-                                                    {build_cats_tree($cats, $settings.categories)}
+                                                    {echo build_cats_tree($cats, $settings.categories)}
                                                 </select>
                                                 <span class="help-inline">{lang('amt_sel_cat_f_trans')}</span>
                                             </div>

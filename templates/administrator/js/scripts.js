@@ -16,22 +16,46 @@ $(document).ajaxComplete( function(event, XHR, ajaxOptions){
     fixed_frame_title()
     $('.tooltip').remove();
 });
-function number_tooltip(){
-    $('.number input').tooltip({'delay': { show: 500, hide: 100 }}).on('keypress', function(event){
+
+function textcomment_s_h(status, el) {
+    var status = status;
+    var el = el;
+    var textcomment = el.closest('tr').find('.text_comment');
+    if ($.exists_nabir(textcomment)) {
+        if (status == 's' && textcomment.css('display') != 'none')
+        {
+            var textcomment_h = textcomment.outerHeight();
+            textcomment.hide().next().show().find('textarea').css('height', textcomment_h + 13);
+        }
+        if (status == 's' && textcomment.css('display') == 'none')
+            return true;
+        else {
+            textcomment.show().next().hide();
+        }
+    }
+}
+
+function number_tooltip() {
+    $('.number input').tooltip({'delay': { show: 500, hide: 100}}).on('keypress', function(event) {
         var key, keyChar;
-        if(!event) var event = window.event;
+        if (!event)
+            var event = window.event;
 
-        if (event.keyCode) key = event.keyCode;
-        else if(event.which) key = event.which;
+        if (event.keyCode)
+            key = event.keyCode;
+        else if (event.which)
+            key = event.which;
 
-        if(key==null || key==0 || key==8 || key==13 || key==9 || key==46 || key==37 || key==39 ) return true;
-        keyChar=String.fromCharCode(key);
+        if (key == null || key == 0 || key == 8 || key == 13 || key == 9 || key == 46 || key == 37 || key == 39)
+            return true;
+        keyChar = String.fromCharCode(key);
 
-        if(!/\d/.test(keyChar)) {
+        if (!/\d/.test(keyChar)) {
             $(this).tooltip('show');
             return false
         }
-        else $(this).tooltip('hide');
+        else
+            $(this).tooltip('hide');
     });
 }
 $('[data-max]').on('keyup', function(event){
