@@ -14,11 +14,6 @@
             <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('a_cancel')}</a>
         </div>
     </div>
-
-
-    <div id="delete_dialog" title="Удаление виджета" style="display: none">
-        {lang('a_delete_widgets')}
-    </div>
     <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->
 
     <section class="mini-layout">
@@ -52,7 +47,7 @@
                                     <th>{lang('a_n')}</th>
                                     <th>{lang('a_type')}</th>
                                     <th>{lang('a_desc')}</th>
-                                    <th class="span1 t-a_c">{lang('a_sett')}</th>
+                                    <th class="span2 t-a_c">{lang('a_sett')}</th>
                                 </tr>    
                             </thead>
                             <tbody>
@@ -87,7 +82,7 @@
                                             {/switch}
                                         </td>
                                         <td>{$widget.description}</td>
-                                        <td class="span1 t-a_c">
+                                        <td class="span2 t-a_c">
                                             {if $widget.config == TRUE}
                                                 <a class="btn-small btn pjax" href="/admin/widgets_manager/edit/{$widget.id}"><i class="icon-wrench"></i></a>
                                             {/if}
