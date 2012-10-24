@@ -49,7 +49,7 @@
                         <div>{lang('a_pages')}</div>
                     </div>
                     <div class="body_category frame_level">
-						<div class="sortable">
+						<div class="sortable save_positions" data-url="/admin/categories/save_positions/">
 							{$catTreeHTML}                                              
 						</div>
                     </div>

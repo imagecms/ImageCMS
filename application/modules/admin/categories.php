@@ -42,6 +42,18 @@ class Categories extends MY_Controller {
         $this->template->assign('tree', $this->lib_category->build());
         $this->template->show('cats_sidebar', FALSE);
     }
+    
+    public function save_positions()
+    {
+    	if ($_POST['positions'])
+    	{
+    		foreach ($_POST['positions'] as $pos=>$id)
+    			$this->db->where('id', $id)
+    				->set('position', $pos)
+    				->update('category');
+    		showMessage('Position saved success');
+    	}
+    }
 
     function cat_list()
     {
