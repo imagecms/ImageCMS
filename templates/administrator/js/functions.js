@@ -582,6 +582,8 @@ function clone_object(){
             cloneObjectVariant: data.find('[data-rel="add_new_clone"]'),
             frameSetClone: data.find('tbody'),
             frameСlone: function(){
+                var variant_row = this.frameSetClone.find('tr:first').clone();
+                console.log(variant_row);
                 return this.frameSetClone.find('tr:first').clone().find('input').val('').parents('tr')
             },
             addNewVariant: function(){
