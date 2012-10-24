@@ -15,8 +15,7 @@
                                     <li><a href="{$ADMIN_URL}notifications">Сообщения о появлении</a></li>
                                     <li><a href="{$ADMIN_URL}notificationstatuses/index">Статусы о появлении</a></li>
                                     <li class="nav-header">Прочее</li>                                  
-                                    <li><a href="/admin/components/cp/comments">Комментарии</a></li>
-
+                                    <li><a class="pjax" href="/admin/components/cp/comments">Комментарии</a></li>
 
                                 </ul>
                             </li>

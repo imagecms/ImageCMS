@@ -156,15 +156,21 @@ class Admin extends MY_Controller {
     }
 
     //initialyze elFinder
-    public function elfinder_init() {
+    public function elfinder_init($edMode = false) {
         $this->load->helper('path');
+        
+        if (!$edMode)
+        	$path = 'uploads';
+        else
+        	$path = 'templates';
+        
         $opts = array(
             // 'debug' => true,
             'roots' => array(
                 array(
                     'driver' => 'LocalFileSystem',
-                    'path' => set_realpath('uploads'),
-                    'URL' => site_url() . 'uploads'
+                    'path' => set_realpath($path),
+                    'URL' => site_url() . $path
                 // more elFinder options here
                 )
             )

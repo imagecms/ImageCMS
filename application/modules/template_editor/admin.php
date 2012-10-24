@@ -20,7 +20,8 @@ class Admin extends MY_Controller {
     // Find templates and redner list of first template folder
 	public function index()
 	{
-        $this->renderDir();
+		$this->render('index');
+//         $this->renderDir();
 	}
 
     public function renderDir($path=null)
@@ -183,13 +184,21 @@ class Admin extends MY_Controller {
         return directory_map($dir,$top);
     }
 
+    public function render($tpl)
+    {
+    	if ($this->ajaxRequest)
+    		echo $this->fetch_tpl($tpl);
+    	else
+    		$this->display_tpl($tpl);
+    }
+    
     /**
      * Display template file
      */ 
 	private function display_tpl($file = '')
 	{
-        $file = realpath(dirname(__FILE__)).'/templates/admin/'.$file.'.tpl';  
-		$this->template->display('file:'.$file);
+        $file = realpath(dirname(__FILE__)).'/templates/admin/'.$file;  
+		$this->template->show('file:'.$file);
 	}
 
     /**
