@@ -140,11 +140,10 @@ class Widgets_Manager extends MY_Controller {
 
                 $this->lib_admin->log(lang('ac_created_widget').$data['name']);
 
-
                 showMessage('Виджет создан.');
                 if($_POST['action'] == 'tomain')
                     pjax('/admin/widgets_manager/index');
-
+                //pjax('/admin/widgets_manager/edit_module_widget/'.$data['id']);
             }
         }elseif ($type == 'html') {
 
@@ -164,13 +163,17 @@ class Widgets_Manager extends MY_Controller {
                     'created' => time()
                 );
 
+                
                 $this->lib_admin->log(lang('ac_created_widget').$data['name']);
 
                 $this->db->insert('widgets', $data);
+                
+                $findId = $this->db->insert_id();
 
                 showMessage('Виджет создан.');
                 if($_POST['action'] == 'tomain')
                     pjax('/admin/widgets_manager/index');
+                //pjax('/admin/widgets_manager/edit_html_widget/'.$findId);
             }
         }
     }

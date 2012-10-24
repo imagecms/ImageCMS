@@ -62,6 +62,9 @@
                                 </thead>
                                 <tbody class="sortable save_positions" data-url="/admin/components/save_components_positions">
                                     {foreach $installed as $module}
+                                        {if $module.name == 'share'}
+                                            {continue}
+                                        {/if}
                                         <tr data-id="{$module.id}">
                                             <td class="t-a_c">
                                                 <span class="frame_label">
@@ -95,7 +98,7 @@
                                             </td>
                                             <td class="t-a_c">
                                                 <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{lang('a_turn_on')}"  data-off="{lang('a_turn_off')}">
-                                                    <span class="prod-on_off urlen_ch {if !$module.enabled}disable_tovar{/if}" data-mid="{$module.id}" data-murl="{$BASE_URL}{$module.identif}" data-mname="{$module.identif}"></span>
+                                                    <span class="prod-on_off urlen_ch {if !$module.enabled}disable_tovar{/if} {if $module.name == 'filter'}disabled{/if}" data-mid="{$module.id}" data-murl="{$BASE_URL}{$module.identif}" data-mname="{$module.identif}"></span>
                                                 </div>
                                             </td>
                                             <td class="t-a_c">

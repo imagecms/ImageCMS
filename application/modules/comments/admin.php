@@ -208,19 +208,19 @@ class Admin extends MY_Controller {
     }
 
     public function update_status() {
-        $this->db->where('id', $this->input->post('id'));
+        $this->db->where_in('id', $this->input->post('id'));
         $this->db->update('comments', array('status' => $this->input->post('status')));
         
         //for children comments
-        $this->db->where('parent', $this->input->post('id'));
+        $this->db->where_in('parent', $this->input->post('id'));
         $this->db->update('comments', array('status' => $this->input->post('status')));
-        
+        /*
         $comment = $this->comments->get_one($this->input->post('id'));
 
         $this->drop_cache($this->input->post('id'), $comment['module']);
 
         $this->_recount_comments($comment['item_id'], $comment['module']);
-        
+        */
         showMessage("Успех", "Статус обновлен");
         $this->load->helper('url');
         $url = '/'.str_replace(base_url(), '',$_SERVER['HTTP_REFERER']);

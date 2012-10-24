@@ -78,7 +78,7 @@ if (!function_exists('check_admin_redirect')) {
                         if ($k == $cat['id'])
                             echo " selected = 'selected' ";
                     }
-                echo " value='" . $cat['id'] . "'/>";
+                echo " value='" . $cat['id'] . "'>";
                 for ($i = 0; $i < $cat['level']; $i++) {
                     echo '-';
                 }
