@@ -42,6 +42,7 @@
                     </div>
                 </div>
                 <ul>
+                    
                     <!--  Render produts list   -->
                     {echo $order_method}
                     {foreach $products as $product}
@@ -49,6 +50,7 @@
                         {$prices = currency_convert($product->firstvariant->getPrice(), $product->firstvariant->getCurrency())}
                         <li {if $product->firstvariant->getstock()== 0}class="not_avail"{/if}>
                             <div class="photo_block">
+                                
                                 <a href="{shop_url('product/' . $product->getUrl())}">
                                     <img id="mim{echo $product->getId()}" src="{productImageUrl($product->getMainModimage())}" alt="{echo ShopCore::encode($product->name)}" />
                                     <img id="vim{echo $product->getId()}" class="smallpimagev" src="" alt="" />

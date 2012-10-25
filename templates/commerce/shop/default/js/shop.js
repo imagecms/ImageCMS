@@ -719,18 +719,21 @@ $(document).ready(function(){
             });
         }
     }
-    $('option.selectVar').on('click', function(){
+    $('[name=selectVar]').on('change', function(){
         $.fancybox.showActivity();
-        var vid = $(this).attr('value');
-        var pid = $(this).attr('data-pid');
-        var img = $(this).attr('data-img');
-        var pr = $(this).attr('data-pr');
-        var spr = $(this).attr('data-spr');
-        var vnumber = $(this).attr('data-vnumber');
-        var vname = $(this).attr('data-vname');
-        var cs = $(this).attr('data-cs');
-        var st = $(this).attr('data-st');
-        var pp = $(this).attr('data-pp');
+        var vid = $(this).val();
+        $this = $(this).find('[value='+vid+']');
+        
+        var pid = $this.attr('data-pid');
+        
+        var img = $this.attr('data-img');
+        var pr = $this.attr('data-pr');
+        var spr = $this.attr('data-spr');
+        var vnumber = $this.attr('data-vnumber');
+        var vname = $this.attr('data-vname');
+        var cs = $this.attr('data-cs');
+        var st = $this.attr('data-st');
+        var pp = $this.attr('data-pp');
         $('#mim'+pid).addClass('smallpimagev');
         $('#vim'+pid).removeClass().attr('src', '/uploads/shop/'+img).attr('alt', vname);
         $('#code'+pid).html('Код '+vnumber);
@@ -738,7 +741,6 @@ $(document).ready(function(){
         $('#prices'+pid).html(spr+' '+cs);
         $('#buy'+pid).attr('data-varid', vid);
         $('#buy'+pid).attr('data-prodid', pid);
-        //$('.addtoSpy').attr('data-varid', vid);
         $.ajax({
             type: "post",
             data: "pid="+pid+"&vid="+vid+"&stock="+st+"&pp="+pp,
