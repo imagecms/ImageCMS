@@ -6,6 +6,7 @@
  */
 
     $lang['a_s_banner_new_succes']		=	'Баннер создан';
+    $lang['a_s_cer_new_use_db_succ']		=	'Логин есть уже в базе данных';
     $lang['a_s_cer_new_succes']		=	'Сертификат создан';
     $lang['a_s_cer_settings_change_save']		=	'Настройки сохранены';
     $lang['a_s_cer_change_status_cer']		=	'Вы изменили статус сертификата';
