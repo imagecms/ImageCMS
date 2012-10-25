@@ -17,6 +17,8 @@ class Settings extends MY_Controller {
     }
 
     function index() {
+        
+        var_dump($this->cms_admin->get_langs());
         cp_check_perm('cp_site_settings');
 
         $settings = $this->cms_admin->get_settings();
@@ -171,6 +173,22 @@ class Settings extends MY_Controller {
             pjax('/admin');
         }
         
+    }
+    
+    public function switch_admin_lang($lang)
+    {
+        $langs = Array(
+            'english',
+            'russian'
+        );
+        
+        if (in_array($lang, $langs) && $this->config->item('language') != $lang)
+        {
+            $this->db->set('lang_sel', $lang.'_lang')
+                ->update('settings');
+        }
+        
+        redirect($_SERVER['HTTP_REFERER']?$_SERVER['HTTP_REFERER']:'/admin/dashboard');
     }
 
     /**

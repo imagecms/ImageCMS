@@ -4,8 +4,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-// RULES HELPER-------------------------------------------START
+$lang['a_russian'] = 'Русский';
+$lang['a_english'] = 'Английский';
 
+// RULES HELPER-------------------------------------------STAR
 $lang['a_acc_per_42'] = 'Магазин';
 $lang['a_acc_per_41'] = 'Ошибка проверки прав доступа';
 $lang['a_acc_per_40'] = 'Недостаточно прав для';
@@ -127,7 +129,7 @@ $lang['a_url'] = 'URL';
 $lang['a_meta_title'] = 'Meta title';
 $lang['a_meta_description'] = 'Meta description';
 $lang['a_meta_keywords'] = 'Meta keywords';
-$lang['a_create_page'] = 'Создать Страницу';
+$lang['a_create_page'] = 'Создать страницу';
 $lang['a_code_in_google'] = 'Код должен быть в формате "ua-54545845"';
 $lang['a_W_G'] = 'G.Вэбмастер';
 $lang['a_Y_W'] = 'Я.Вэбмастер';
