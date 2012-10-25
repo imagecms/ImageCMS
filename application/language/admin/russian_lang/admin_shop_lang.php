@@ -10,6 +10,7 @@
     $lang['a_s_cer_settings_change_save']		=	'Настройки сохранены';
     $lang['a_s_cer_change_status_cer']		=	'Вы изменили статус сертификата';
     $lang['a_s_certif_delete_succes']		=	'Сертификат(ы) удален(ы)';
+    $lang['a_user'] = 'ФИО';
     $lang['a_s_certificate_cost']		=	'Стоимость сертификата';
     $lang['a_s_gifts_del_1']		=	'Удаление подарочного сертификата';
     $lang['a_s_gifts_del_2']		=	'Удалить выбранные подарочные сертификаты?';
