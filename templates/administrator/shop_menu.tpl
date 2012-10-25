@@ -1,6 +1,6 @@
                     <nav class="navbar navbar-inverse">
                         <ul class="nav">
-                            <li class="active" ><a href="{$ADMIN_URL}orders/index" class="pjax"><i class="icon-home"></i><span>Главная</span></a></li>
+                            <li class="active" ><a href="{$ADMIN_URL}dashboard" class="pjax"><i class="icon-home"></i><span>Главная</span></a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-shopping-cart"></i>Заказы<b class="caret"></b></a>
                                 <ul class="dropdown-menu">

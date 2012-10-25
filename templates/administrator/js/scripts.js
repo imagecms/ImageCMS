@@ -8,9 +8,10 @@ $.exists_nabir = function(nabir){
 var notificationsInitialized = false;
 
 $(document).ajaxComplete( function(event, XHR, ajaxOptions){
+    console.log(event);
     if (ajaxOptions.url != "/admin/components/run/shop/notifications/getAvailableNotification")
     {
-        initAdminArea();
+            initAdminArea();
     }
     number_tooltip_live();
     fixed_frame_title()

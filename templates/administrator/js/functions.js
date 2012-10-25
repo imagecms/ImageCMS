@@ -211,6 +211,7 @@ function elFinderTPLEd()
 	//todo: create diferent browsers (check 'type' variable)
     eD = $('#elFinderTPLEd').elfinder({
         url: '/admin/elfinder_init/1',
+        height: $(window).height()*0.6,
         commandsOptions: {
 
         },
@@ -262,7 +263,6 @@ function elFinderTPLEd()
 		
 		//self.ui.exec(self.ui.isCmdAllowed('open') ? 'open' : 'select');
 	},
-        		dialogWidth: 800,
         contextmenu : {
         	// navbarfolder menu
 //        	navbar : ['open', '|', 'copy', 'cut', 'paste', 'duplicate', '|', 'rm', '|', 'info'],

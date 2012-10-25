@@ -4,6 +4,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
+$lang['a_russian'] = 'Russian';
+$lang['a_english'] = 'English';
+
 // RULES HELPER-------------------------------------------START
 
 $lang['a_acc_per_3'] = 'Group';
