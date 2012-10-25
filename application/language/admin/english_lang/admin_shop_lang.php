@@ -7,6 +7,7 @@
     $lang['a_enter_sys']		=	'Log in';
     $lang['a_s_banner_new_succes']		=	'Banner created';
     $lang['a_s_brand_del_1']		=	'Removing brand';
+    $lang['a_s_cer_new_use_db_succ']		=	'Username is already in the database';
     $lang['a_s_cer_settings_change_save']		=	'The settings are saved';
     $lang['a_s_cer_change_status_cer']		=	'You have changed the status of the certificate';
     $lang['a_s_certif_delete_succes']		=	'Certificate (s) removed (s)';
