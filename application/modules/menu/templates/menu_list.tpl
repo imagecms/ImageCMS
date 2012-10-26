@@ -64,7 +64,7 @@
                                         </td>
                                         <td ><p>{$item.id}</p></td>
                                         <td>
-                                            <a href="{$SELF_URL}/menu_item/{$item.name}" id="del" >{$item.main_title}</a>
+                                            <a class="pjax" href="{$SELF_URL}/menu_item/{$item.name}" id="del" >{$item.main_title}</a>
                                         </td>
                                         <td><p>{$item.name}</p></td>
                                         <td>{$item.description}
