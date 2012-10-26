@@ -5,6 +5,16 @@
  * and open the template in the editor.
  */
     $lang['a_enter_sys']		=	'Log in';
+    $lang['a_imageCMS_news']		=	'News of ImageCMS';
+    $lang['a_shop_sett_int_sco_net']		=	'Integration with social networks';
+    $lang['a_shop_sett_yandex_market']		=	'Yandex.Market';
+    $lang['a_mh_error_sys_m']		=	'No configuration key or<br /> key account list on Mailchimp';
+    $lang['a_shop_sett_xml_set_map']		=	'XML Site Map';
+    $lang['a_shop_sett_yandex_market_s']		=	'Settings Yandex.Market';
+    $lang['a_s_settings_m_c_for_c']		=	'The key to your list of <br />news for MailChimp';
+    $lang['a_s_settings_m_c_for_p']		=	'The key to your account <br />on the mail Mailchimp';
+    $lang['a_s_csv_export_view_date']		=	'Export CSV gives <br />jumps file with <br />a list of all<br /> users.';
+    $lang['a_s_mailchimp_export_mir_nas']		=	'Export Mailchimp sent <br />to all users on their<br /> email subscription<br /> form on your<br /> news rassilku.';
     $lang['a_s_banner_new_succes']		=	'Banner created';
     $lang['a_s_brand_del_1']		=	'Removing brand';
     $lang['a_s_cer_new_use_db_succ']		=	'Username is already in the database';
@@ -169,6 +179,9 @@
     $lang['a_rback_not_found']		=	'Role not found';
     $lang['a_sh_use_datacom']		=	'User data';
     $lang['a_edit_user_sh']		=	'Editing by'; 
+    $lang['a_edit_order_sh']		=	'Edit order';
+    $lang['a_basic_data']		=	'Basic data';
+    $lang['a_prod_and_hst_order']	=	'Products and order history';
     $lang['a_sh_user_delet']		=	'Members removed';
     $lang['a_sh_user_not_found']		=	'User not found';
     $lang['a_log_file_create_user']		=	'Created by';

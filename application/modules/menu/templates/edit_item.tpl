@@ -8,16 +8,17 @@
             <div class="d-i_b">
                 <a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="t-d_n m-r_15 pjax"><span class="f-s_14"></span>←<span class="t-d_u">{lang('a_return')}</span></a>
                 <button type="button" class="btn btn-small formSubmit submit_link" data-form="#{$item.item_type}_form"><i class="icon-ok"></i>{lang('a_save')}</button>
+                <button type="button" class="btn btn-small formSubmit submit_link" data-form="#{$item.item_type}_form" data-action="tomain"><i class="icon-ok"></i>{lang('a_save_and_exit')}</button>
             </div>
         </div>                            
     </div>
     <div class="tab-content">
         <div class="m-t_10">
             <select class="link_type">
-                <option value="page" {if $item.item_type == 'page'}selected="selected"{/if}>Страница</option>
-                <option value="category" {if $item.item_type == 'category'}selected="selected"{/if}>Категория</option>
-                <option value="module" {if $item.item_type == 'module'}selected="selected"{/if}>Модуль</option>
-                <option value="url" {if $item.item_type == 'url'}selected="selected"{/if}>Ссылка</option>
+                <option value="page" {if $item.item_type == 'page'}selected="selected"{/if}>{lang('a_page')}</option>
+                <option value="category" {if $item.item_type == 'category'}selected="selected"{/if}>{lang('a_category')}</option>
+                <option value="module" {if $item.item_type == 'module'}selected="selected"{/if}>{lang('a_module')}</option>
+                <option value="url" {if $item.item_type == 'url'}selected="selected"{/if}>{lang('amt_link')}</option>
             </select>
         </div>
         <div {if $item.item_type != 'page'}style="display: none;"{/if} id="page" class="edit_holder">
@@ -47,7 +48,7 @@
                                                         <select id="category_sel">
                                                             <option value="0">{lang('amt_root')}</option>
                                                             {$sel = array()}
-                                                            {build_cats_tree($cats, $sel)}
+                                                            {echo build_cats_tree($cats, $sel)}
                                                         </select>
                                                     </div>
                                                 </div>
@@ -140,11 +141,18 @@
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label">{lang('amt_image')}:</label>
+                                                    <label class="control-label" for="Img">
+                                                        {lang('amt_image')}:
+                                                    </label>
                                                     <div class="controls">
-                                                        <input type="text" value="" name="item_image"  id="page_image" />
+                                                        <div class="group_icon pull-right">            
+                                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
+                                                        </div>
+                                                        <div class="o_h">		            
+                                                            <input type="text" name="item_image" id="Img" value="{$item.item_image}">					
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </div>  
                                                 <div class="control-group">
                                                     <label class="control-label">{lang('amt_access_level')}:</label>
                                                     <div class="controls">
@@ -278,11 +286,18 @@
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label">{lang('amt_image')}:</label>
+                                                    <label class="control-label" for="Img">
+                                                        {lang('amt_image')}:
+                                                    </label>
                                                     <div class="controls">
-                                                        <input type="text" value="" name="item_image"  id="page_image" />
+                                                        <div class="group_icon pull-right">            
+                                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
+                                                        </div>
+                                                        <div class="o_h">		            
+                                                            <input type="text" name="item_image" id="Img" value="{$item.item_image}">					
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </div>  
                                                 <div class="control-group">
                                                     <label class="control-label">{lang('amt_access_level')}:</label>
                                                     <div class="controls">
@@ -419,11 +434,18 @@
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label">{lang('amt_image')}:</label>
+                                                    <label class="control-label" for="Img">
+                                                        {lang('amt_image')}:
+                                                    </label>
                                                     <div class="controls">
-                                                        <input type="text" value="" name="item_image"  id="page_image" />
+                                                        <div class="group_icon pull-right">            
+                                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
+                                                        </div>
+                                                        <div class="o_h">		            
+                                                            <input type="text" name="item_image" id="Img" value="{$item.item_image}">					
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </div>  
                                                 <div class="control-group">
                                                     <label class="control-label">{lang('amt_access_level')}:</label>
                                                     <div class="controls">
@@ -460,7 +482,7 @@
             </form>
         </div>
         <div {if $item.item_type != 'url'}style="display: none;"{/if} id="url" class="edit_holder">
-            <form method="post" action="/admin/components/cp/menu/create_item/" id="url_form" >
+            <form method="post" action="/admin/components/cp/menu/edit_item/{$item.id}" id="url_form" >
                 <input type="hidden" name="menu_id" value="{$menu.id}">
                 <input type="hidden" name="item_id" value="0"/>
                 <input type="hidden" name="item_type" value="url"/>
@@ -482,7 +504,7 @@
                                                 <div class="control-group">
                                                     <label class="control-label">{lang('amt_select_page_link')}:</label>
                                                     <div class="controls">
-                                                        <input type="text" id="url_to_page" value="" name="item_url"/>
+                                                        <input type="text" id="url_to_page" value="{echo $data.url}" name="item_url"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -510,7 +532,7 @@
                                                 <div class="control-group">
                                                     <label class="control-label">{lang('amt_title')}:</label>
                                                     <div class="controls">
-                                                        <input type="text" value="" name="title"  id="item_title" />
+                                                        <input type="text" value="{$item.title}" name="title"  id="item_title" />
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
@@ -537,18 +559,25 @@
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label">{lang('amt_image')}:</label>
+                                                    <label class="control-label" for="Img">
+                                                        {lang('amt_image')}:
+                                                    </label>
                                                     <div class="controls">
-                                                        <input type="text" value="" name="item_image"  id="page_image" />
+                                                        <div class="group_icon pull-right">            
+                                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
+                                                        </div>
+                                                        <div class="o_h">		            
+                                                            <input type="text" name="item_image" id="Img" value="{$item.item_image}">					
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </div>  
                                                 <div class="control-group">
                                                     <label class="control-label">{lang('amt_access_level')}:</label>
                                                     <div class="controls">
                                                         <select id="item_roles" name="item_roles[]" multiple="multiple">
                                                             <option value="0">{lang('amt_all')}</option>
                                                             {foreach $roles as $role}
-                                                                <option value ="{$role.id}" {if in_array($role.id, $r)}selected="selected"{/if}>{$role.alt_name}</option>
+                                                                <option value ="{$role.id}" {if @in_array($role.id, $r)}selected="selected"{/if}>{$role.alt_name}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -578,3 +607,4 @@
             </form>
         </div>                                            
 </section>
+<div id="elFinder"></div>

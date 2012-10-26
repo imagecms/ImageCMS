@@ -7,8 +7,11 @@
 $lang['a_russian'] = 'Русский';
 $lang['a_english'] = 'Английский';
 
+$lang['a_acc_per_43'] = 'Удаление фотографий';
+
 // RULES HELPER-------------------------------------------STAR
 $lang['a_acc_per_42'] = 'Магазин';
+$lang['a_dasboard_no_category']		=	'Без категории';
 $lang['a_acc_per_41'] = 'Ошибка проверки прав доступа';
 $lang['a_acc_per_40'] = 'Недостаточно прав для';
 $lang['a_acc_per_39'] = 'Редактирование папок';
@@ -160,10 +163,13 @@ $lang['a_text'] = 'Текст';
 $lang['a_categories'] = 'Категории';
 $lang['a_search_group'] = 'Группа для поиска';
 $lang['a_choose_group'] = 'Выберите группу';
+$lang['a_choose_all_photos'] = 'Выбрать все фотографии';
+$lang['a_photos_deleted'] = 'Фотографии удалены';
 $lang['a_search'] = 'Поиск';
 
 //backup.tpl
 $lang['a_backup_copy'] = 'Резервное копирование базы данных';
+$lang['a_com_change_status'] = 'Комментарий к изменению статуса';
 //$lang['a_param']		=	'Параметры';
 $lang['a_local_copy'] = 'Скопировать на локальный компьютер';
 $lang['a_save_on_server'] = 'Сохранить на сервере';
@@ -293,7 +299,7 @@ $lang['a_add_to_menu'] = 'Добавить в меню';
 //$lang['a_advanced_search'] = 'Расширенный поиск';
 //$lang['a_create_page'] = 'Создать Страницу';
 //$lang['a_create_cat'] = 'Создать категорию';
-//$lang['a_comm_edit'] = 'Редактирование комментария'; script
+$lang['a_comm_edit'] = 'Редактирование комментария';
 $lang['a_pages'] = 'Страницы';
 $lang['a_new_pages'] = 'Новые страницы';
 $lang['a_edit'] = 'Редактировать';
@@ -327,7 +333,6 @@ $lang['a_cont_nocat'] = 'Содержимое без категории';
 $lang['a_without_cat'] = 'Без категории';
 $lang['a_field_constructor'] = 'Конструктор полей';
 //$lang['a_categories'] = 'Категории';
-//$lang['a_edit'] = 'Редактировать';
 $lang['a_menu'] = 'Меню';
 $lang['a_control'] = 'Управление';
 $lang['a_modules'] = 'Модули';
@@ -344,6 +349,7 @@ $lang['a_event_journal'] = 'Журнал событий';
 $lang['a_backup_copy'] = 'Резервное копирование';
 $lang['a_show_site'] = 'Просмотреть сайт';
 $lang['a_show_album'] = 'Просмотреть альбомы';
+$lang['a_album_empty'] = 'Альбом пустой';
 $lang['a_show_page'] = 'Просмотр страницы';
 $lang['a_goto_site'] = 'перейти на сайт';
 $lang['a_exit'] = 'Выход';
@@ -516,7 +522,6 @@ $lang['a_view_count'] = 'Просмотров';
 //$lang['a_published'] = 'Опубликовано';
 //$lang['a_wait_approve'] = 'Ожидает одобрения';
 //$lang['a_not_publ'] = 'Не опубликовано';
-//$lang['a_edit'] = 'Редактировать';
 //$lang['a_delete'] = 'Удалить';
 $lang['a_with_selected'] = 'С отмечеными';
 $lang['a_repalce'] = 'Переместить';
@@ -547,7 +552,6 @@ $lang['a_not_found'] = 'По вашему запросу совпадений н
 //$lang['a_published'] = 'Опубликовано';
 //$lang['a_wait_approve'] = 'Ожидает одобрения';
 //$lang['a_not_publ'] = 'Не опубликовано';
-//$lang['a_edit'] = 'Редактировать';
 $lang['a_cancel_all'] = 'Отметить все';
 $lang['a_unselect_all'] = 'Снять выделение';
 //$lang['a_with_selected'] = 'С отмечеными';
@@ -587,6 +591,7 @@ $lang['a_if_not_pointed1'] = 'Если не указано';
 
 //sys_info.tpl
 $lang['a_sys_info'] = 'Информация о системе';
+$lang['a_order_info'] = 'Информация о заказе';
 $lang['a_server_load'] = 'Загруженность сервера';
 $lang['a_server'] = 'Сервер';
 $lang['a_os'] = 'Операционная система';

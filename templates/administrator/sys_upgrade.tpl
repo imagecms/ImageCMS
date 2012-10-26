@@ -37,7 +37,7 @@
 		<div class="form_input">
             <input type="text" name="root_folder" value=""  class="textbox_long" />
             <br />
-            <span class="lite">{lang('a_example_path')}</span>
+            <span class="help-block">{lang('a_example_path')}</span>
         </div>
 		<div class="form_overflow"></div>
 
