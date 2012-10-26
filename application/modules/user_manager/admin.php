@@ -657,8 +657,8 @@ class Admin extends MY_Controller {
     }
 
     private function fetch_tpl($file) {
-        $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
-        return $this->template->fetch('file:' . $file);
+        $file = realpath(dirname(__FILE__)) . '/templates/' . $file;
+        return $this->template->show('file:' . $file);
     }
 
 }

@@ -290,11 +290,10 @@ class Admin extends MY_Controller {
      */
     public function update_album($id) {
         $this->form_validation->set_rules('name', lang('a_name'), 'required');
-        if ($this->form_validation->run() == false){
+        if ($this->form_validation->run() == false) {
             showMessage(validation_errors(), '', 'r');
             exit();
-        }
-        else {
+        } else {
             showMessage(lang('amt_changes_saved'));
         }
         $data = array(
@@ -310,13 +309,12 @@ class Admin extends MY_Controller {
         $album = $this->gallery_m->get_album($id);
 
         $_POST['action'] ? $action = $_POST['action'] : $action = 'edit';
-        
+
         if ($action == 'edit')
-            pjax('/admin/components/cp/gallery/edit_album_params/' . $category.$id);
-        
+            pjax('/admin/components/cp/gallery/edit_album_params/' . $category . $id);
+
         if ($action == 'close')
             pjax('/admin/components/cp/gallery/category/' . $album['category_id']);
-
     }
 
     public function edit_album_params($id) {
@@ -447,7 +445,8 @@ class Admin extends MY_Controller {
                 // Update file name in db
                 $this->gallery_m->rename_image($id, $new_name);
 
-                updateDiv('page', site_url('admin/components/cp/gallery/edit_image/' . $image['id']));
+                pjax('/admin/components/cp/gallery/edit_image/' . $image['id']);
+                showMessage(lang('amt_changes_saved'));
             }
         } else {
             showMessage(lang('amt_cant_load_image_info'), false, 'r');
@@ -457,27 +456,30 @@ class Admin extends MY_Controller {
     /**
      * Delete image files
      */
-    public function delete_image($id) {
-        $image = $this->gallery_m->get_image_info($id);
+    public function delete_image($ids = 0) {
+        if ($this->input->post('id')) $ids = $this->input->post('id');
+        foreach ($ids as $key => $id) {
+            $image = $this->gallery_m->get_image_info($id);
+            if ($image != FALSE) {
+                $album = $this->gallery_m->get_album($image['album_id'], FALSE);
+                $path = $this->conf['upload_path'] . $album['id'] . '/';
 
-        if ($image != FALSE) {
-            $album = $this->gallery_m->get_album($image['album_id'], FALSE);
-            $path = $this->conf['upload_path'] . $album['id'] . '/';
+                // Delete image.
+                unlink($path . $image['file_name'] . $image['file_ext']);
 
-            // Delete image.
-            unlink($path . $image['file_name'] . $image['file_ext']);
+                // Delete thumb.
+                unlink($path . $this->conf['thumbs_folder'] . '/' . $image['file_name'] . $image['file_ext']);
 
-            // Delete thumb.
-            unlink($path . $this->conf['thumbs_folder'] . '/' . $image['file_name'] . $image['file_ext']);
+                // Delete preview file.
+                unlink($path . $image['file_name'] . $this->conf['prev_img_marker'] . $image['file_ext']);
 
-            // Delete preview file.
-            unlink($path . $image['file_name'] . $this->conf['prev_img_marker'] . $image['file_ext']);
+                // Delete admin thumb.
+                unlink($path . '_admin_thumbs/' . $image['file_name'] . $image['file_ext']);
 
-            // Delete admin thumb.
-            unlink($path . '_admin_thumbs/' . $image['file_name'] . $image['file_ext']);
-
-            // Delete image info.
-            $this->gallery_m->delete_image($image['id']);
+                // Delete image info.
+                $this->gallery_m->delete_image($image['id']);
+                showMessage(lang('a_photos_deleted'));
+            }
         }
     }
 
@@ -502,7 +504,7 @@ class Admin extends MY_Controller {
 
             //showMessage('Изменения сохранены');
 
-            updateDiv('page', site_url('admin/components/cp/gallery/edit_album/' . $image['album_id']));
+            pjax('/admin/components/cp/gallery/edit_album/' . $image['album_id']);
         } else {
             showMessage(lang('amt_cant_load_image_info'), false, 'r');
         }
@@ -520,6 +522,14 @@ class Admin extends MY_Controller {
         $positions = $this->input->post('positions');
         foreach ($positions as $key => $value) {
             $this->db->where('id', (int) $value)->set('position', $key)->update('gallery_albums');
+        }
+        showMessage(lang('a_positions_updated'));
+    }
+
+    public function update_img_positions() {
+        $positions = $this->input->post('positions');
+        foreach ($positions as $key => $value) {
+            $this->db->where('id', (int) $value)->set('position', $key)->update('gallery_images');
         }
         showMessage(lang('a_positions_updated'));
     }
@@ -667,58 +677,56 @@ class Admin extends MY_Controller {
      */
     public function upload_image($album_id = 0) {
         $temp_conf = $this->conf;
-        
+
 //         check if it's an atchive
 // var_dump($_FILES);
 // exit;
 //         for ($i = 0; $i <= count($_FILES['file']['type']) - 1; $i++) {
 // 			for ($i = 0; $i <= count($_FILES['file[]'])-1; $i++) {
-		if (is_array($_FILES['newPic']))
-		{
-			$i=0;
-			foreach ($_FILES['newPic']['name'] as $n){
-	//             if (in_array($_FILES['file']['type'][$i], array('application/x-zip', 'application/zip', 'application/x-zip-compressed', 'application/octet-stream'))) {
-	//                 if ((count($_FILES['file']['type']) - 1) == 0) {
-	//                     $this->upload_archive($album_id);
-	//                     exit;
-	//                 } else
-	//                     continue;
-	//             }
-	
-	            $this->conf['upload_path'] = $this->conf['upload_path'] . $album_id;
-	
-	            if (!is_dir($this->conf['upload_path']))
-	            	mkdir($this->conf['upload_path']);
-	            
-	            $config['upload_path'] = $this->conf['upload_path'];
-	            
-	            $config['allowed_types'] = $this->conf['allowed_types'];
-	            $config['max_size'] = 1024 * 1024 * $this->max_file_size;
-	
-	            $this->load->library('upload', $config);
-	
-	            if (!$this->upload->do_upload('newPic', $i)) {
-	                $data = array('error' => $this->upload->display_errors('', ''));
-	            } else {
-	                $data[$i] = array('upload_data' => $this->upload->data());
-	
-	                // Resize Image and create thumb
-	
-	                $this->resize_and_thumb($data[$i]['upload_data']);
-	
-	                $this->add_image($album_id, $data[$i]['upload_data']);
-	            }
-	            $this->conf = $temp_conf;
-	            $i++;
-	        }
-	        if (isset($data['error']))
-	        	showMessage($data['error']);
-	        else 
-	        {
-	        	showMessage('Upload success');
-	        	pjax('');
-	        }
-		}
+        if (is_array($_FILES['newPic'])) {
+            $i = 0;
+            foreach ($_FILES['newPic']['name'] as $n) {
+                //             if (in_array($_FILES['file']['type'][$i], array('application/x-zip', 'application/zip', 'application/x-zip-compressed', 'application/octet-stream'))) {
+                //                 if ((count($_FILES['file']['type']) - 1) == 0) {
+                //                     $this->upload_archive($album_id);
+                //                     exit;
+                //                 } else
+                //                     continue;
+                //             }
+
+                $this->conf['upload_path'] = $this->conf['upload_path'] . $album_id;
+
+                if (!is_dir($this->conf['upload_path']))
+                    mkdir($this->conf['upload_path']);
+
+                $config['upload_path'] = $this->conf['upload_path'];
+
+                $config['allowed_types'] = $this->conf['allowed_types'];
+                $config['max_size'] = 1024 * 1024 * $this->max_file_size;
+
+                $this->load->library('upload', $config);
+
+                if (!$this->upload->do_upload('newPic', $i)) {
+                    $data = array('error' => $this->upload->display_errors('', ''));
+                } else {
+                    $data[$i] = array('upload_data' => $this->upload->data());
+
+                    // Resize Image and create thumb
+
+                    $this->resize_and_thumb($data[$i]['upload_data']);
+
+                    $this->add_image($album_id, $data[$i]['upload_data']);
+                }
+                $this->conf = $temp_conf;
+                $i++;
+            }
+            if (isset($data['error']))
+                showMessage($data['error']);
+            else {
+                showMessage('Upload success');
+                pjax('');
+            }
+        }
     }
 
     public function upload_archive($album_id = 0) {

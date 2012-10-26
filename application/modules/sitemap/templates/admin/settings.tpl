@@ -59,13 +59,13 @@
                                         <div class="control-group">
                                             <label class="control-label">{lang('amt_main_page')}:</label>
                                             <div class="controls">
-                                                {form_dropdown('', 'main_page_changefreq', $changefreq_options, $settings.main_page_changefreq)}
+                                                {form_dropdown('main_page_changefreq', $changefreq_options, $settings.main_page_changefreq)}
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label">{lang('amt_other_pages')}:</label>
                                             <div class="controls">
-                                                {form_dropdown('', 'pages_changefreq', $changefreq_options, $settings.pages_changefreq)}
+                                                {form_dropdown('pages_changefreq', $changefreq_options, $settings.pages_changefreq)}
                                             </div>
                                         </div>
                                         <div class="control-group">

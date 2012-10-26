@@ -34,7 +34,6 @@ class Admin extends MY_Controller {
 
     function index() {
         $root_menus = $this->db->get('menus')->result_array();
-
         $this->render('menu_list', array('menus' => $root_menus));
     }
 
@@ -53,7 +52,10 @@ class Admin extends MY_Controller {
         $this->template->assign('menu_result', $this->menu_result);
         $this->template->assign('insert_id', $ins_id['id']);
         $this->template->assign('menu_title', $ins_id['main_title']);
-        $this->display_tpl('main');
+        if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
+            $this->fetch_tpl('main');
+        else
+            $this->display_tpl('main');
     }
 
     function list_menu_items($menu_id = 0) {
@@ -81,47 +83,95 @@ class Admin extends MY_Controller {
             $this->template->assign('insert_id', $id);
             $this->display_tpl('create_item');
         } else {
-            $roles = $_POST['item_roles'];
-            if ($roles == NULL) {
-                $roles = '';
+            $this->form_validation->set_rules('menu_id', 'Menu Id', 'required');
+            $this->form_validation->set_rules('item_type', 'Item Type', 'required');
+            $this->form_validation->set_rules('title', 'Заголовок', 'required');
+            if ($_POST['item_type'] == 'page') {
+                $this->form_validation->set_rules('title', 'Заголовок', 'required');
+                $this->form_validation->set_rules('item_id', 'ID страницы', 'required');
+            }
+            if ($_POST['item_type'] == 'category') {
+                $this->form_validation->set_rules('item_id', 'ID категории', 'required');
+            }
+            if ($_POST['item_type'] == 'module') {
+                $this->form_validation->set_rules('mod_name', 'Название модуля', 'required');
+                $this->form_validation->set_rules('mod_method', 'Метод модуля', 'required');
+                $this->form_validation->set_rules('item_id', 'ID страницы', 'required');
+            }
+            if ($_POST['item_type'] == 'url') {
+                $this->form_validation->set_rules('item_url', 'URL', 'required');
+            }
+
+            if ($this->form_validation->run($this) == FALSE) {
+                showMessage(validation_errors(), '', 'r');
             } else {
-                $roles = serialize($_POST['item_roles']);
-            }
-
-            $item_data = array(
-                'menu_id' => $_POST['menu_id'],
-                'item_id' => $_POST['item_id'],
-                'item_type' => $_POST['item_type'],
-                'title' => htmlentities($_POST['title'], ENT_QUOTES, 'UTF-8'),
-                'hidden' => $_POST['hidden'],
-                'item_image' => $_POST['item_image'],
-                'roles' => $roles,
-                'parent_id' => $_POST['parent_id'],
-                    //'position' => $position,
-            );
-
-            if (!isset($item_data['add_data'])) {
-                if ($_POST['item_type'] == 'module') {
-                    $data['mod_name'] = $_POST['mod_name'];
-                    $data['method'] = $_POST['mod_method'];
+                //preparing roles
+                $roles = $_POST['item_roles'];
+                if ($roles == NULL) {
+                    $roles = '';
+                } else {
+                    $roles = serialize($_POST['item_roles']);
                 }
-                if ($_POST['item_type'] == 'url') {
-                    $data['url'] = $_POST['item_url'];
-                }
-                $data['newpage'] = $_POST['newpage'];
-                $item_data['add_data'] = serialize($data);
-            }
-            // Error: wrong parent id
-            if ($_POST['item_id'] == $_POST['parent_id']) {
-                $error = TRUE;
-            }
+                //preparing main data
+                $item_data = array(
+                    'menu_id' => $_POST['menu_id'],
+                    'item_id' => $_POST['item_id'],
+                    'item_type' => $_POST['item_type'],
+                    'title' => htmlentities($_POST['title'], ENT_QUOTES, 'UTF-8'),
+                    'hidden' => $_POST['hidden'],
+                    'item_image' => $_POST['item_image'],
+                    'roles' => $roles,
+                    'parent_id' => $_POST['parent_id'],
+                );
 
-            if ($error == TRUE) {
-                showMessage('Ошибка');
-                return FALSE;
-            } else {
-                $this->db->insert('menus_data', $item_data);
-                showMessage('Изменения успешно сохранены');
+                //For position after
+                switch ($_POST['position_after']) {
+                    case 'first':
+                        $item_data['position'] = 1;
+                        $this->db->query('UPDATE `menus_data` SET `position`=`position`+1 WHERE `menu_id` = ' . $this->input->post('menu_id') . ' AND `parent_id`=' . $this->input->post('parent_id'));
+                        break;
+                    case '0':
+                        $all_menu_items_count = count($this->db->where('menu_id', $_POST['menu_id'])->where('parent_id', $this->input->post('parent_id'))->get('menus_data')->result());
+                        $item_data['position'] = $all_menu_items_count + 1;
+                        break;
+                    default :
+                        $pos = $this->db->where('id', $_POST['position_after'])->get('menus_data')->row_array();
+                        $pos = $pos['position'];
+                        $item_data['position'] = $pos + 1;
+                        $this->db->query('UPDATE `menus_data` SET `position`=`position`+1 WHERE `menu_id` = ' . $this->input->post('menu_id') . ' AND `position` > ' . $pos . ' AND `parent_id`=' . $this->input->post('parent_id'));
+                }
+
+                if (!isset($item_data['add_data'])) {
+                    if ($_POST['item_type'] == 'module') {
+                        $data['mod_name'] = $_POST['mod_name'];
+                        $data['method'] = $_POST['mod_method'];
+                    }
+                    if ($_POST['item_type'] == 'url') {
+                        $data['url'] = $_POST['item_url'];
+                    }
+                    $data['newpage'] = $_POST['newpage'];
+                    $item_data['add_data'] = serialize($data);
+                }
+                // Error: wrong parent id
+                if ($_POST['item_type'] != 'module' || $_POST['item_type'] != 'url')
+                    if ($_POST['item_id'] == $_POST['parent_id']) {
+                        $error = TRUE;
+                    }
+
+                if ($error == TRUE) {
+                    showMessage('Ошибка');
+                    return FALSE;
+                } else {
+                    $this->db->insert('menus_data', $item_data);
+                    $lastId = $this->db->insert_id();
+                    showMessage('Пункт меню успешно создан');
+                    $row = $this->db->where('id', $_POST['menu_id'])->get('menus')->row_array();
+                    if ($_POST['action'] == 'tomain') {
+                        pjax('/admin/components/cp/menu/menu_item/' . $row['name']);
+                    } else {
+                        pjax('/admin/components/cp/menu/edit_item/' . $lastId . '/' . $row['name']);
+                    }
+                }
             }
         }
     }
@@ -312,114 +362,128 @@ class Admin extends MY_Controller {
             $this->template->assign('pages', $pages);
             $this->display_tpl('edit_item');
         } else {
-            $roles = $_POST['item_roles'];
-            if ($roles == NULL) {
-                $roles = '';
+            $this->form_validation->set_rules('menu_id', 'Menu Id', 'required');
+            $this->form_validation->set_rules('item_type', 'Item Type', 'required');
+            $this->form_validation->set_rules('title', 'Заголовок', 'required');
+            if ($_POST['item_type'] == 'page') {
+                $this->form_validation->set_rules('title', 'Заголовок', 'required');
+                $this->form_validation->set_rules('item_id', 'ID страницы', 'required');
+            }
+            if ($_POST['item_type'] == 'category') {
+                $this->form_validation->set_rules('item_id', 'ID категории', 'required');
+            }
+            if ($_POST['item_type'] == 'module') {
+                $this->form_validation->set_rules('mod_name', 'Название модуля', 'required');
+                $this->form_validation->set_rules('mod_method', 'Метод модуля', 'required');
+                $this->form_validation->set_rules('item_id', 'ID страницы', 'required');
+            }
+            if ($_POST['item_type'] == 'url') {
+                $this->form_validation->set_rules('item_url', 'URL', 'required');
+            }
+
+            if ($this->form_validation->run($this) == FALSE) {
+                showMessage(validation_errors(), '', 'r');
             } else {
-                $roles = serialize($_POST['item_roles']);
-            }
-            // Item position
-//            if ($_POST['position_after'] > 0) {
-//                $after_pos = $this->menu_model->get_item_position($_POST['position_after']);
-//                $after_pos = $after_pos['position'];
-//
-//                if ($after_pos != FALSE) {
-//                    $position = $after_pos + 1;
-//
-//                    $sql = "UPDATE `menus_data` 
-//                            SET `position`=`position` + 1 
-//                            WHERE `position` > '$after_pos' 
-//                            AND `menu_id`='" . $this->input->post('menu_id') . "' 
-//                            AND `parent_id`='" . $this->input->post('parent_id') . "' 
-//                            ";
-//                    $this->db->query($sql);
-//                }
-//            }
-//            if ($_POST['position_after'] == 0) {
-//                $this->db->select_max('position');
-//                $this->db->where('menu_id', $_POST['menu_id']);
-//                $this->db->where('parent_id', $_POST['parent_id']);
-//                $query = $this->db->get('menus_data')->row_array();
-//
-//                if ($query['position'] == NULL) {
-//                    $position = 1;
-//                } else {
-//                    $position = $query['position'] + 1;
-//                }
-//            }
-//            if ($_POST['position_after'] == 'first') {
-//                $this->db->select_min('position');
-//                $this->db->where('menu_id', $_POST['menu_id']);
-//                $this->db->where('parent_id', $_POST['parent_id']);
-//                $query = $this->db->get('menus_data')->row_array();
-//
-//                if ($query['position'] == NULL) {
-//                    $position = 1;
-//                } else {
-//                    $position = $query['position'] - 1;
-//                }
-//            }
-            $position = 0;
-            $item_data = array(
-                'menu_id' => $_POST['menu_id'],
-                'item_id' => $_POST['item_id'],
-                'item_type' => $_POST['item_type'],
-                'title' => htmlentities($_POST['title'], ENT_QUOTES, 'UTF-8'),
-                'hidden' => $_POST['hidden'],
-                'item_image' => $_POST['item_image'],
-                'roles' => $roles,
-                'parent_id' => $_POST['parent_id'],
-                'position' => $position
-            );
-
-            if ($item_data['item_type'] == 'module') {
-                $data['mod_name'] = $_POST['mod_name'];
-                $data['method'] = $_POST['mod_method'];
-                $data['newpage'] = $_POST['newpage'];
-            }
-
-            if ($item_data['item_type'] == 'url') {
-                $item_data['item_id'] = 0;
-                $item_data['add_data'] = serialize(array('url' => $_POST['item_url'], 'newpage' => $_POST['newpage']));
-            }
-
-            if (!isset($item_data['add_data']))
-                $item_data['add_data'] = serialize($data);
-
-//            if ($_POST['update_id'] == 0) {
-//                // Insert new item  
-//                $this->menu_model->insert_item($item_data);
-//            } else {
-//                // Update item
-//                $error = FALSE;
-            // Error: wrong parent id
-            if ($_POST['item_id'] != 0 && $_POST['parent_id'] != 0)
-                if ($_POST['item_id'] == $_POST['parent_id']) {
-                    $error = TRUE;
+                $roles = $_POST['item_roles'];
+                if ($roles == NULL) {
+                    $roles = '';
+                } else {
+                    $roles = serialize($_POST['item_roles']);
                 }
-
-            // Error: don't place root menu in sub
-            $item = $this->menu_model->get_item($_POST['item_id']);
-            if ($item['parent_id'] == 0) {
-                $this->_get_sub_items($_POST['item_id']);
-
-                foreach ($this->sub_menus as $k => $v) {
-                    if ($v == $_POST['parent_id']) {
-                        $error = TRUE;
+                // Item position
+                if ($_POST['position_after'] > 0) {
+                    $after_pos = $this->menu_model->get_item_position($_POST['position_after']);
+                    $after_pos = $after_pos['position'];
+                    if ($after_pos != FALSE) {
+                        $position = $after_pos + 1;
+                        $sql = "UPDATE `menus_data` 
+                            SET `position`=`position` + 1 
+                            WHERE `position` > '$after_pos' 
+                            AND `menu_id`='" . $this->input->post('menu_id') . "' 
+                            AND `parent_id`='" . $this->input->post('parent_id') . "' 
+                            ";
+                        $this->db->query($sql);
                     }
                 }
-            }
+                if ($_POST['position_after'] == 0) {
+                    $this->db->select_max('position');
+                    $this->db->where('menu_id', $_POST['menu_id']);
+                    $this->db->where('parent_id', $_POST['parent_id']);
+                    $query = $this->db->get('menus_data')->row_array();
 
-//            if ($_POST['position_after'] == 0)
-//                unset($item_data['position']);
+                    if ($query['position'] == NULL) {
+                        $position = 1;
+                    } else {
+                        $position = $query['position'] + 1;
+                    }
+                }
+                if ($_POST['position_after'] == 'first') {
+                    $this->db->select_min('position');
+                    $this->db->where('menu_id', $_POST['menu_id']);
+                    $this->db->where('parent_id', $_POST['parent_id']);
+                    $query = $this->db->get('menus_data')->row_array();
+                    if ($query['position'] == NULL) {
+                        $position = 1;
+                    } else {
+                        $position = $query['position'] - 1;
+                    }
+                }
+                $item_data = array(
+                    'menu_id' => $_POST['menu_id'],
+                    'item_id' => $_POST['item_id'],
+                    'item_type' => $_POST['item_type'],
+                    'title' => htmlentities($_POST['title'], ENT_QUOTES, 'UTF-8'),
+                    'hidden' => $_POST['hidden'],
+                    'item_image' => $_POST['item_image'],
+                    'roles' => $roles,
+                    'parent_id' => $_POST['parent_id'],
+                    'position' => $position
+                );
 
-            if ($error == TRUE) {
-                showMessage('Ошибка');
-                return FALSE;
-            } else {
-                $this->db->where('id', $item_id);
-                $this->db->update('menus_data', $item_data);
-                showMessage('Изменения успешно сохранены');
+                if ($item_data['item_type'] == 'module') {
+                    $data['mod_name'] = $_POST['mod_name'];
+                    $data['method'] = $_POST['mod_method'];
+                    $data['newpage'] = $_POST['newpage'];
+                }
+
+                if ($item_data['item_type'] == 'url') {
+                    $item_data['item_id'] = 0;
+                    $item_data['add_data'] = serialize(array('url' => $_POST['item_url'], 'newpage' => $_POST['newpage']));
+                }
+
+                if (!isset($item_data['add_data']))
+                    $item_data['add_data'] = serialize($data);
+
+                // Error: wrong parent id
+                if ($_POST['item_id'] != 0 && $_POST['parent_id'] != 0)
+                    if ($_POST['item_id'] == $_POST['parent_id']) {
+                        $error = TRUE;
+                    }
+
+                // Error: don't place root menu in sub
+                $item = $this->menu_model->get_item($_POST['item_id']);
+                if ($item['parent_id'] == 0) {
+                    $this->_get_sub_items($_POST['item_id']);
+
+                    foreach ($this->sub_menus as $k => $v) {
+                        if ($v == $_POST['parent_id']) {
+                            $error = TRUE;
+                        }
+                    }
+                }
+
+                if ($error == TRUE) {
+                    showMessage('Ошибка');
+                    return FALSE;
+                } else {
+                    $this->db->where('id', $item_id);
+                    $this->db->update('menus_data', $item_data);
+                    showMessage('Изменения успешно сохранены');
+                    $row = $this->db->where('id', $_POST['menu_id'])->get('menus')->row_array();
+                    if ($_POST['action'] == 'tomain') {
+                        pjax('/admin/components/cp/menu/menu_item/' . $row['name']);
+                    }
+                }
             }
         }
     }
@@ -619,7 +683,10 @@ class Admin extends MY_Controller {
             $this->menu_model->insert_menu($data);
 
             showMessage(lang('a_menu_create'));
-            pjax('/admin/components/cp/menu');
+            if ($this->input->post('action') == 'tomain')
+                pjax('/admin/components/cp/menu');
+            else
+                pjax('/admin/components/cp/menu/edit_menu/' . $this->db->insert_id());
         }
     }
 
@@ -656,9 +723,10 @@ class Admin extends MY_Controller {
 
 
         if ($this->form_validation->run($this) == FALSE) {
-            $title = lang('a_fail');
-            $message = validation_errors();
-            $result = false;
+            showMessage(validation_errors());
+//            $title = lang('a_fail');
+//            $message = validation_errors();
+//            $result = false;
         } else {
 
 
@@ -674,17 +742,20 @@ class Admin extends MY_Controller {
 
             $this->db->where('id', $id);
             $this->db->update('menus', $data);
-            $title = lang('a_message');
-            $message = lang('a_menu_chech');
-            $result = true;
+//            $title = lang('a_message');
+//            $message = lang('a_menu_chech');
+//            $result = true;
+            showMessage('Изменения сохранены');
+            if ($_POST['action'] == 'tomain')
+                pjax('/admin/components/cp/menu');
         }
 
 
-        echo json_encode(array(
-            'title' => $title,
-            'message' => $message,
-            'result' => $result,
-        ));
+//        echo json_encode(array(
+//            'title' => $title,
+//            'message' => $message,
+//            'result' => $result,
+//        ));
     }
 
     function check_menu_data() {
@@ -949,8 +1020,10 @@ class Admin extends MY_Controller {
     public function render($viewName, array $data = array(), $return = false) {
         if (!empty($data))
             $this->template->add_array($data);
-
-        $this->template->show('file:' . 'application/modules/menu/templates/' . $viewName);
+        if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
+            $this->template->fetch('file:' . 'application/modules/menu/templates/' . $viewName);
+        else
+            $this->template->show('file:' . 'application/modules/menu/templates/' . $viewName);
         exit;
 
         if ($return === false)
@@ -969,6 +1042,18 @@ class Admin extends MY_Controller {
             $hidden = 1;
         $data = array('hidden' => $hidden);
         $this->menu_model->update_item($id, $data);
+    }
+
+    function get_children_items($parent_id, $menu_id) {
+        $result = $this->db->select('id, title')->where('parent_id', $parent_id)->where('menu_id', $menu_id)->get('menus_data')->result_array();
+        $html .= "<option value='0'> Нет </option>";
+        $html .= "<option value='first'> Первый </option>";
+        if (count($result) > 0) {
+            foreach ($result as $item) {
+                $html .= "<option value='" . $item['id'] . "'> - " . $item['title'] . "</option>";
+            }
+        }
+        echo $html;
     }
 
 }

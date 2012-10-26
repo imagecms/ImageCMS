@@ -4,8 +4,20 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+    $lang['a_info_buyer_ch_stat'] = 'Notify the buyer of the status change';
+    $lang['a_info_buyer_ch_stat'] = 'Уведомлять покупателя о смене статуса';
 
     $lang['a_s_banner_new_succes']		=	'Баннер создан';
+    $lang['a_mh_error_sys_m']		=	'Нет настроек ключа аккаунта или<br /> ключа списка на Mailchimp';
+    $lang['a_shop_sett_xml_set_map']		=	'XML карта сайту';
+    $lang['a_shop_sett_int_sco_net']		=	'Интеграция с соцсетями';
+    $lang['a_shop_sett_yandex_market_s']		=	'Настройки Яндекс.Маркета';
+    $lang['a_shop_sett_yandex_market']		=	'Яндекс.Маркет';
+    $lang['a_imageCMS_news']		=	'Новости системы ImageCMS';
+    $lang['a_s_settings_m_c_for_c']		=	'Ключ от вашего списку <br />новостей на Mailchimp';
+    $lang['a_s_settings_m_c_for_p']		=	'Ключ от вашего аккаунта <br /> на Mailchimp';
+    $lang['a_s_csv_export_view_date']		=	'Экспорт CSV дает<br /> на скачку файл <br />со списком всех <br />пользователей.';
+    $lang['a_s_mailchimp_export_mir_nas']		=	'Экспорт Mailchimp отправляет <br /> всем пользователям на <br />их емейл, форму подписки <br />на рассилку ваших <br />новостей.';
     $lang['a_s_cer_new_use_db_succ']		=	'Логин есть уже в базе данных';
     $lang['a_s_cer_new_succes']		=	'Сертификат создан';
     $lang['a_s_cer_settings_change_save']		=	'Настройки сохранены';
@@ -168,6 +180,10 @@
     $lang['a_rback_not_found']		=	'Роль не найдена';
     $lang['a_sh_use_datacom']		=	'Данные пользователя';
     $lang['a_edit_user_sh']		=	'Редактирование пользователя';
+    $lang['a_edit_order_sh']		=	'Редактирование заказа';
+    $lang['a_edit_order_sh']		=	'Редактирование заказа';
+    $lang['a_basic_data']		=	'Основные сведения';
+    $lang['a_prod_and_hst_order']	=	'Товары и история заказа';
     $lang['a_sh_user_delet']		=	'Пользователи удалены';
     $lang['a_sh_user_not_found']	=	'Пользователь не найден';
     $lang['a_log_file_create_user']	=	'Создал пользователя';
@@ -259,7 +275,6 @@
     $lang['a_footer_save_exit'] =	'Сохранить и выйти';
     $lang['a_footer_save']      =	'Сохранить';
     $lang['a_save']             =	'Сохранить';
-    $lang['a_edit']             =	'Редактирование';
     $lang['a_ID']               =	'ID';
     $lang['a_banned']               =	'Забанен';
     $lang['a_empty_brand']      =	'Список брендов пустой';
@@ -625,8 +640,8 @@
     $lang['a_users'] = 'Пользователи';
     $lang['a_delivery_methods'] = 'Способы доставки';
     $lang['a_payment_methods'] = 'Способы Оплаты';
-    $lang['a_payment_method'] = 'Способ Оплаты';
-    $lang['a_delivery_method'] = 'Способ Доставки';
+    $lang['a_payment_method'] = 'Способ оплаты';
+    $lang['a_delivery_method'] = 'Способ доставки';
     $lang['a_auto'] = 'Автоматизация';
     $lang['a_export'] = 'Экспорт';
     $lang['a_orders_statuses'] = 'Статусы заказов';

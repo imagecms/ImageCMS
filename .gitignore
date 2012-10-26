@@ -19,3 +19,5 @@ Thumbs.db
 /.project
 /p4.komodoproject
 
+/templates/.quarantine/
+/templates/.tmb/

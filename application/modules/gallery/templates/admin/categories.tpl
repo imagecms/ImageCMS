@@ -42,7 +42,7 @@
                 <td>{$category.id}</td>
                 <td class="share_alt">
                     <a href="/admin/components/init_window/gallery/category/{$category.id}" class="go_to_site pull-right btn btn-small" data-rel="tooltip" data-placement="top" data-original-title="{lang('a_show_album')}" style="visibility: hidden; "><i class="icon-share-alt"></i></a>
-                    <a class="pjax" href="/admin/components/init_window/gallery/edit_category/{$category.id}">{$category.name}</a>
+                    <a class="pjax" href="/admin/components/init_window/gallery/edit_category/{$category.id}" data-rel="tooltip" data-placement="top" data-original-title="{lang('amt_category_edit')}">{$category.name}</a>
                 </td>
                 <td>{$category.albums_count}</td>
                 <td>{truncate(htmlspecialchars($category.description), 75)}</td>

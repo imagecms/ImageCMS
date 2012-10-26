@@ -18,7 +18,7 @@ class Settings extends MY_Controller {
 
     function index() {
         
-        var_dump($this->cms_admin->get_langs());
+        $this->cms_admin->get_langs();
         cp_check_perm('cp_site_settings');
 
         $settings = $this->cms_admin->get_settings();
