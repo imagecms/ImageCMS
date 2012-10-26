@@ -3,7 +3,7 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('a_edit_user_mod')}</span>
+                <span class="title">{lang('a_comm_edit')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
@@ -18,7 +18,7 @@
                 <thead>
                     <tr>
                         <th colspan="6">
-                            {lang('a_data_group_mod')}
+                            {lang('param')}
                         </th>
                     </tr>
                 </thead>
