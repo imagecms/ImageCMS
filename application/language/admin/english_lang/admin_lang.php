@@ -4,6 +4,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
+$lang['a_russian'] = 'Russian';
+$lang['a_english'] = 'English';
+
 // RULES HELPER-------------------------------------------START
 
 $lang['a_acc_per_43'] = 'Deleting photos';
@@ -52,6 +56,13 @@ $lang['a_acc_per_1'] = 'Access Control Panel';
 // RULLES HELPER-------------------------------------------END
 
 $lang['a_your_remark'] = 'Your remark';
+$lang['a_sue_man_del_u_2'] = 'Deleting a user';
+$lang['a_sue_man_del_u_3'] = 'Delete a user?';
+$lang['a_use_man_group_del_1'] = 'Of remote';
+$lang['a_gener_all_users_count'] = 'Total Users';
+$lang['a_use_man_group_del_3'] = 'Deleting Groups';
+$lang['a_use_man_group_del_2'] = 'Delete the selected group?';
+$lang['a_use_man_del_u_1'] = 'Remove selected users?';
 $lang['a_sett_base_create_new_language'] = 'The creation of a new language';
 $lang['a_sett_global_sett_menu'] = 'Site configuration';
 $lang['a_bas_filt_pass_not_post'] = 'You do not pass search';

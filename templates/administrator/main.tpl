@@ -18,10 +18,8 @@
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery-ui-1.8.16.custom.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery.ui.1.8.16.ie.css">
 
-
-        <!-- 
         <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/smoothness/jquery-ui.css" />
-         
+        <!-- 
         <link rel="stylesheet" type="text/css" href="/js/elfinder-2.0/css/Aristo/css/Aristo/Aristo.css" media="screen" charset="utf-8">
         -->
         <link rel="stylesheet" type="text/css" href="/js/elrte-1.3/css/elrte.min.css" media="screen" charset="utf-8">
@@ -41,15 +39,14 @@
             <div class="notifications top-right"></div>
 
             <header>
-                <section class="container">
-
-                    {if $ADMIN_URL}
-                    <a href="{$ADMIN_URL}dashboard" class="logo span3 pjax">
-                        {else:}
-                        <a href="/admin/dashboard" class="logo span3 pjax">
-                            {/if}
-                            <img src="{$THEME}/img/logo.png"/>
-                        </a>
+                {if $ADMIN_URL}
+                <a href="{$ADMIN_URL}dashboard" class="logo span3 pjax">
+                    {else:}
+                    <a href="/admin/dashboard" class="logo span3 pjax">
+                        {/if}
+                        <img src="{$THEME}/img/logo.png" style="margin-top: 19px;" />
+                    </a>
+                    <section class="container">
 
                         {if $CI->dx_auth->is_logged_in()}
                         <div class="pull-right span3">
@@ -80,17 +77,16 @@
 
                         <div class="btn-group" id="topPanelNotifications" style="display: none;">
                             <div class="span4 d-i_b">
-
-                                <a href="/admin/components/run/shop/orders/index" class="btn btn-large" data-title="Заказы" data-rel="tooltip" data-original-title="Заказы">
+                                <a href="/admin/components/run/shop/orders/index" class=" pjax btn btn-large" data-title="Заказы" data-rel="tooltip" data-original-title="Заказы">
                                     <i class="icon-bask "></i>
                                 </a>
-                                <a href="#" class="btn btn-large" data-title="{lang('a_product_no_icon')}" data-rel="tooltip" data-original-title="">
+                                <a href="#" class="btn btn-large pjax" data-title="{lang('a_product_no_icon')}" data-rel="tooltip" data-original-title="">
                                     <i class="icon-report_exists"></i>
                                 </a>
-                                <a href="#" class="btn btn-large" data-title="Callback" data-rel="tooltip" data-original-title="Callback">
+                                <a href="#" class="btn btn-large pjax" data-title="Callback" data-rel="tooltip" data-original-title="Callback">
                                     <i class="icon-callback "></i>
                                 </a>
-                                <a href="#" class="btn btn-large" data-title="Запросы об уведомлении" data-rel="tooltip" data-original-title="Запросы об уведомлении">
+                                <a href="/admin/components/cp/comments" class="btn btn-large pjax" data-title="{lang('a_last_comm')}" data-rel="tooltip" data-original-title="{lang('a_last_comm')}">
                                     <i class="icon-comment_head "></i>
                                 </a>
                             </div>
@@ -98,7 +94,7 @@
                         {/if}
 
 
-                </section>
+                    </section>
             </header>
 
             {if $CI->dx_auth->is_logged_in()}
@@ -167,6 +163,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-hdd"></i>{lang('a_system')}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="/admin/settings">{lang('a_sett_global_sett_menu')}</a></li>
+                                    <li><a href="/admin/components/cp/template_editor">Редактор шаблонов</a></li>
                                     <li><a href="/admin/languages">{lang('a_languages')}</a></li>
                                     <li><a href="/admin/cache_all">{lang('a_cache')}</a></li>
                                     <!--                                    <li class="dropdown"><a class="returnFalse arrow-right" href="">{lang('a_cache')}</a>
@@ -188,7 +185,9 @@
                 <div style="display:none;" class="container" id="shopAdminMenu"  > {include_tpl('shop_menu.tpl')} </div>
             </div>
             {/if}
+            <div id="loading" style=" display: none; background: url(/templates/administrator/images/ajax-loader.gif) no-repeat 50% 20px; z-index: 10000; position: absolute; height: 600px; width: 100%; background-color: rgba(255, 255, 255, 0.7);"></div>
             <div class="container" id="mainContent">
+
                 {$content}
             </div>
             <div class="hfooter"></div>
@@ -200,12 +199,12 @@
                         Интерфейс:
                         <div class="dropup d-i_b">
                             <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                                Русский
+                                {lang('a_'.$this->CI->config->item('language'))}
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Английский</a></li>
-                                <li><a href="#">Русский</a></li>
+                                <li><a href="/admin/settings/switch_admin_lang/english">{lang('a_english')} (beta)</a></li>
+                                <li><a href="/admin/settings/switch_admin_lang/russian">{lang('a_russian')}</a></li>
                             </ul>
                         </div>
                     </div>

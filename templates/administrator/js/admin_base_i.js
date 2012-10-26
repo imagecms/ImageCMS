@@ -26,24 +26,26 @@ $(document).ready(function() {
         var murl = $(this).attr('data-murl');
         var mname = $(this).attr('data-mname');
         var $this = $(this);
-        $.ajax({
-            type: 'post',
-            data: 'mid=' + mid,
-            dataType: "json",
-            url: '/admin/components/change_url_access',
-            success: function(obj) {
-                if (obj.result === false) {
-                    showMessage('Ошибка', 'Что-то пошло не так. Доступ по URL не изменен.');
-                } else {
-                    if (obj.result.enabled === 1)
-                    {
-                        $this.parents('tr:first').children('td.urlholder').html('<a target="_blank" href="' + murl + '">' + mname + '</a>');
+        if (!$(this).hasClass('disabled')) {
+            $.ajax({
+                type: 'post',
+                data: 'mid=' + mid,
+                dataType: "json",
+                url: '/admin/components/change_url_access',
+                success: function(obj) {
+                    if (obj.result === false) {
+                        showMessage('Ошибка', 'Что-то пошло не так. Доступ по URL не изменен.');
                     } else {
-                        $this.parents('tr:first').children('td.urlholder').html(' - ');
+                        if (obj.result.enabled === 1)
+                        {
+                            $this.parents('tr:first').children('td.urlholder').html('<a target="_blank" href="' + murl + '">' + mname + '</a>');
+                        } else {
+                            $this.parents('tr:first').children('td.urlholder').html(' - ');
+                        }
                     }
                 }
-            }
-        });
+            });
+        }
     });
     //*****changes url access for any module*****
 
@@ -366,6 +368,8 @@ $(document).ready(function() {
         });
     });
 
+//***************Scripts for comments***************
+
     $('.comment_update').live('click', function() {
         var id = $(this).attr('data-cid');
         var user_name = $('#u_ed' + id).attr('value');
@@ -396,21 +400,44 @@ $(document).ready(function() {
         });
     });
 
-//    $('span.to_pspam').live('click', function() {
-//        var arr = new Array();
-//        $('input[name=ids]:checked').each(function() {
-//                arr.push($(this).val());
-//        });
-//        console.log(arr);
-//        $.ajax({
-//            type: 'post',
-//            url: '/admin/components/cp/comments/update_status',
-//            data: 'id=' + id + '&status=' + 2,
-//            success: function(data) {
-//                $('.notifications').append(data);
-//            }
-//        });
-//    });
+    $('.to_pspam').bind('click', function() {
+        var arr = new Array();
+        $('input[name=ids]:checked').each(function() {
+            arr.push(parseInt($(this).val()));
+        });
+        $.post('/admin/components/cp/comments/update_status',
+                {id: arr, status: 2},
+                function(data) {
+                    $('.notifications').append(data);
+                }
+        );
+    });
+
+    $('.to_wait').bind('click', function() {
+        var arr = new Array();
+        $('input[name=ids]:checked').each(function() {
+            arr.push(parseInt($(this).val()));
+        });
+        $.post('/admin/components/cp/comments/update_status',
+                {id: arr, status: 1},
+                function(data) {
+                    $('.notifications').append(data);
+                }
+        );
+    });
+
+    $('.to_approved').bind('click', function() {
+        var arr = new Array();
+        $('input[name=ids]:checked').each(function() {
+            arr.push(parseInt($(this).val()));
+        });
+        $.post('/admin/components/cp/comments/update_status',
+                {id: arr, status: 0},
+                function(data) {
+                    $('.notifications').append(data);
+                }
+        );
+    });
 
     $('#comment_delete').live('click', function() {
         if ($(this).hasClass('disabled')) {
@@ -423,7 +450,6 @@ $(document).ready(function() {
                         $('.notifications').append(data);
                     }
             );
-
         }
     });
 
@@ -464,18 +490,22 @@ $(document).ready(function() {
 
     $('.comment_update_cancel').live('click', function() {
         var id = $(this).attr('data-cid');
-        $('#nc' + id).trigger('click');
+        textcomment_s_h('h', $(this));
+        //$('#nc' + id).trigger('click');
     });
 
-    $('.text_comment, a.u_ed, a.m_ed').live('click', function() {
+    $('.text_comment').live('click', function() {
         var id = $(this).parents('tr').attr('data-id');
-        display_edit_fields(id);
+        textcomment_s_h('s', $(this));
+        //display_edit_fields(id);
     });
 
     function display_edit_fields(id)
     {
         $('#nc' + id).trigger('click');
     }
+    
+//***************Scripts for modules table***************
 
     $('#translateCategoryTitle').live('click', function() {
         var str = $('#inputName').attr('value');
@@ -557,7 +587,7 @@ $(document).ready(function() {
     //autocomplete for main product start
 
     $('#kitMainProductName').autocomplete({
-        minChars: 0,
+        minChars: 1,
         source: '/admin/components/run/shop/kits/get_products_list/' + $('#kitMainProductName').attr('value') + '&limit=20',
         select: function(event, ui) {
             $('#MainProductHidden').attr('value', ui.item.identifier.id);
@@ -623,9 +653,9 @@ $(document).ready(function() {
                 $('.notifications').append(data);
             }
         });
-        if($(this).hasClass('active')){
+        if ($(this).hasClass('active')) {
             $(this).removeClass('active');
-        }else{
+        } else {
             $(this).addClass('active');
         }
     });
@@ -798,24 +828,58 @@ $(document).ready(function() {
         }
         );
     });
-    
-    $('.kit_del').live('click', function(){
+
+    $('.kit_del').live('click', function() {
         $('.modal_del_kit').modal();
     });
-    
-    $('.kit_del_ok').live('click', function(){
+
+    $('.kit_del_ok').live('click', function() {
         var id = $('.kit_del').attr('data-kid');
         $.ajax({
-            url:        '/admin/components/run/shop/kits/kit_delete',
-            data:       'ids='+id,
-            type:       'post',
-            success:    function(data){
+            url: '/admin/components/run/shop/kits/kit_delete',
+            data: 'ids=' + id,
+            type: 'post',
+            success: function(data) {
                 $('.modal_del_kit').modal('hide');
                 $('.notifications').append(data);
                 location.reload();
             }
         });
     });
+
+
+    $('#addVariant').live('click', function() {
+        var clonedVarTr = $('.variantRowSample').find('tr').clone();
+        var randId = Math.random();
+        var countVarRows = $('#variantHolder').children('tr').length;
+        clonedVarTr.find('.random_id').attr('value', randId);
+        clonedVarTr.find('[name="variants[mainPhoto][]"]').attr('name', 'variants[mainPhoto][' + randId + ']');
+        clonedVarTr.find('[name="variants[smallPhoto][]"]').attr('name', 'variants[smallPhoto][' + randId + ']');
+        clonedVarTr.attr('id', 'ProductVariantRow_' + countVarRows);
+        $('#variantHolder').append(clonedVarTr);
+    });
+
+    $('.delete_image').live('click', function() {
+        var container = $(this).parent('td');
+        //container.find('[name="variants[MainImageForDel][]"]');
+        if (container.find('[name="variants[MainImageForDel][]"]').length) {
+            container.find('[name="variants[MainImageForDel][]"]').attr('value', 1);
+            container.find('[name="variants[mainPhoto][]"]').attr('value', '');
+        }
+        if (container.find('[name="variants[SmallImageForDel][]"]').length) {
+            container.find('[name="variants[SmallImageForDel][]"]').attr('value', 1);
+            container.find('[name="variants[smallPhoto][]"]').attr('value', '');
+        }
+        container.find('img').attr('src', "/templates/administrator/images/select-picture.png");
+    });
+
+    $('.deleteMainImages').live('click', function() {
+        var container = $(this).parents('div.control-group');
+        container.find('img').attr('src', "/templates/administrator/images/select-picture.png");
+        container.find('input:hidden').attr('value', 1);
+        container.find('input:file').attr('value', '');
+    });
+
 });
 
 

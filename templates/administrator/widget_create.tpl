@@ -7,8 +7,8 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="{$BASE_URL}admin/widgets_manager/index/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
-                <button type="button" class="btn btn-small btn-success formSubmit" data-form="#wid_cr_form"><i class="icon-list-alt icon-white"></i>{lang('a_save')}</button>
-                <button type="button" class="btn btn-small formSubmit" data-form="#wid_cr_form" data-action="tomain"><i class="icon-check"></i>{lang('a_save_and_exit')}</button>
+                <button type="button" class="btn btn-small btn-success formSubmit" data-form="#wid_cr_form" data-action="tomain"><i class="icon-list-alt icon-white"></i>{lang('a_create')}</button>
+                <!--<button type="button" class="btn btn-small formSubmit" data-form="#wid_cr_form" data-action="tomain"><i class="icon-check"></i>{lang('a_save_and_exit')}</button>-->
             </div>
         </div>                            
     </div>
@@ -62,7 +62,7 @@
                                             <div class="control-group" id="textareaholder" style="display:none;">
                                                 <label class="control-label">{lang('a_module_name')}:</label>
                                                 <div class="controls" style="top: 6px;">
-                                                    <textarea name="html_code" rows="15" class="elRTE"></textarea>
+                                                    <textarea name="html_code" rows="15"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -75,7 +75,7 @@
                         <thead>
                             <tr>
                                 <th class="t-a_c span1"></th>
-                                <th class="span3">{lang('a_module')}</th>
+                                <th class="span3">{lang('a_name')}</th>
                                 <th class="span5">{lang('a_desc')}</th>
                                 <th class="span2">{lang('a_type')}</th>
                             </tr>
@@ -85,7 +85,7 @@
                                 {$mtype = $block.module}
                                 {$type = $block.module_name}
                                 {foreach $block.widgets as $item}
-                                    <tr data-title="{lang('a_drug_block')}" data-original-title="">
+                                    <tr data-original-title="">
                                         <td class="t-a_c">
                                             <span class="frame_label">
                                                 <span class="niceRadio b_n selwid" data-title="{$item.title}" data-mname="{$mtype}" data-method="{$item.method}">

@@ -96,6 +96,8 @@ class Core_Widgets extends MY_Controller {
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
                     showMessage(lang('amt_settings_saved'));
+                    if($_POST['action'] == 'tomain')
+                        pjax('/admin/widgets_manager/index');
                 }
                 break;
 

@@ -8,6 +8,7 @@ $.exists_nabir = function(nabir){
 var notificationsInitialized = false;
 
 $(document).ajaxComplete( function(event, XHR, ajaxOptions){
+    console.log(event);
     if (ajaxOptions.url != "/admin/components/run/shop/notifications/getAvailableNotification")
     {
         if (event.target.activeElement)
@@ -19,6 +20,7 @@ $(document).ajaxComplete( function(event, XHR, ajaxOptions){
     fixed_frame_title();
     $('.tooltip').remove();
 });
+
 function init_2(){
     $('.buy_prod').popover('destroy').each(function(){
         var $this = $(this);
@@ -332,12 +334,12 @@ function getScrollTop() {
         scrOfY = window.pageYOffset;
     } else if( document.body
         && ( document.body.scrollLeft
-            || document.body.scrollTop ) ) {
+        || document.body.scrollTop ) ) {
         //DOM compliant
         scrOfY = document.body.scrollTop;
     } else if( document.documentElement
         && ( document.documentElement.scrollLeft
-            || document.documentElement.scrollTop ) ) {
+        || document.documentElement.scrollTop ) ) {
         //IE6 Strict
         scrOfY = document.documentElement.scrollTop;
     }
@@ -460,15 +462,15 @@ function initAdminArea(){
                 $helper.addClass('active');
                 return $helper;
             }
-        //            ,
-        //            stop: function(){
-        //                var chFn = $('.sortable').data('chfunction');
-        //                //console.log(typeof chFn);
-        //                if (chFn)
-        //                    return eval(chFn+'()');
-        //                else
-        //                    return false;
-        //            }
+            //            ,
+            //            stop: function(){
+            //                var chFn = $('.sortable').data('chfunction');
+            //                //console.log(typeof chFn);
+            //                if (chFn)
+            //                    return eval(chFn+'()');
+            //                else
+            //                    return false;
+            //            }
         });
     }
     if ($.exists('.sortable2')) {
@@ -531,7 +533,7 @@ function initAdminArea(){
         }
     }).live('keypress', function(){
         if (what_key('13')){
-        //alert(what_key('13'))
+            //alert(what_key('13'))
         }
     });
     $('.share_alt').hover(function(){
@@ -572,7 +574,7 @@ function initAdminArea(){
 
     function mouseDown(e){
         if(
-            (e.target.nodeName!="TEXTAREA") &&
+        (e.target.nodeName!="TEXTAREA") &&
             (e.target.nodeName!="SELECT") &&
             (e.target.nodeName!="OPTION") &&
             (e.target.nodeName!="INPUT") &&
@@ -581,8 +583,8 @@ function initAdminArea(){
             (e.target.nodeName!="SPAN")&&
             (!e.target.nodeName!="A")&&
             (e.target.nodeName!="DD")
-            )
-            {
+    )
+        {
             e=e||event;
             cancelEvent(e);
             addHandler(document,'selectstart',returnFalse,false);
@@ -644,12 +646,12 @@ function initAdminArea(){
                 prodName = ui.item.label;
                 //console.log(prodName);
                 $('#ordersFilterProdId').val(ui.item.v);
-            //$('#ordersFilterProduct').val(ui.originalEvent.target.innerText)
+                //$('#ordersFilterProduct').val(ui.originalEvent.target.innerText)
             },
-            close: function(){
-                $('#ordersFilterProduct').val(prodName);
-            }
-        });
+        close: function(){
+            $('#ordersFilterProduct').val(prodName);
+        }
+    });
         
     if (window.hasOwnProperty('usersDatas'))
         $('#usersDatas').autocomplete({
@@ -664,12 +666,12 @@ function initAdminArea(){
                 prodName = ui.item.label;
                 //console.log(prodName);
                 $('#ordersFilterProdId').val(ui.item.value);
-            //$('#ordersFilterProduct').val(ui.originalEvent.target.innerText)
+                //$('#ordersFilterProduct').val(ui.originalEvent.target.innerText)
             },
-            close: function(){
-                $('#ordersFilterProduct').val(prodName);
-            }
-        });
+        close: function(){
+            $('#ordersFilterProduct').val(prodName);
+        }
+    });
     
     $('.listFilterForm').live('focus', function(){
         $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
@@ -694,7 +696,7 @@ function initAdminArea(){
         $(this).closest('.control-group').find('input:file').click();
     });
     
-    $('[data-url="file"] input[type="file"]').change( function(e){
+    $('[data-url="file"] input[type="file"]').live('change', function(e){
         $this = $(this);
         $type_file = $this.val();
         //if ($this.parent().next().is(':not([data-flie="url"])')) {
@@ -719,7 +721,7 @@ function initAdminArea(){
         //        }
         //        else
         $this.parent().next().val($type_file).attr('data-rel','tooltip');
-    //}
+        //}
     
     });
     
@@ -771,7 +773,7 @@ function initAdminArea(){
                     // Render thumbnail.
                     var span = document.createElement('div');
                     span.innerHTML = ['<img style="max-width:100px;" src="', e.target.result,
-                    '" title="', escape(theFile.name), '"/>'].join('');
+                        '" title="', escape(theFile.name), '"/>'].join('');
                     document.getElementById('picsToUpload').insertBefore(span, null);
                     document.getElementById('picsToUpload').className = 'is_content';
                     $('#picsToUpload img').fadeIn(500);
@@ -781,91 +783,99 @@ function initAdminArea(){
             reader.readAsDataURL(f);
         }
     }
-    if (document.getElementById('addPictures')) document.getElementById('addPictures').addEventListener('change', handleFileSelect, false);
+
+if (document.getElementById('addPictures'))
+    document.getElementById('addPictures').addEventListener('change', handleFileSelect, false);
         
-    //    $('[data-provide="typeahead"]').live('focus', function(){
-    //        $(this).live('keyup', function(event){
-    //            var key, keyChar;
-    //            if(!event) var event = window.event;
-    //
-    //            if (event.keyCode) key = event.keyCode;
-    //            else if(event.which) key = event.which;
-    //            
-    //            var active_drop = $('.typeahead .active');
-    //            var first_drop = $('.typeahead li:first');
-    //            var last_drop = $('.typeahead li:last');
-    //            
-    //            if (key == 40) {
-    //                if (!last_drop.hasClass('active')) active_drop.removeClass('active').next().addClass('active');
-    //                else {
-    //                    first_drop.addClass('active');
-    //                    last_drop.removeClass('active');
-    //                }
-    //            }
-    //            if (key == 38) {
-    //                if (!first_drop.hasClass('active')) active_drop.removeClass('active').prev().addClass('active');
-    //                else {
-    //                    first_drop.removeClass('active');
-    //                    last_drop.addClass('active');
-    //                }
-    //            }
-    //        })
-    //    })
+//    $('[data-provide="typeahead"]').live('focus', function(){
+//        $(this).live('keyup', function(event){
+//            var key, keyChar;
+//            if(!event) var event = window.event;
+//
+//            if (event.keyCode) key = event.keyCode;
+//            else if(event.which) key = event.which;
+//            
+//            var active_drop = $('.typeahead .active');
+//            var first_drop = $('.typeahead li:first');
+//            var last_drop = $('.typeahead li:last');
+//            
+//            if (key == 40) {
+//                if (!last_drop.hasClass('active')) active_drop.removeClass('active').next().addClass('active');
+//                else {
+//                    first_drop.addClass('active');
+//                    last_drop.removeClass('active');
+//                }
+//            }
+//            if (key == 38) {
+//                if (!first_drop.hasClass('active')) active_drop.removeClass('active').prev().addClass('active');
+//                else {
+//                    first_drop.removeClass('active');
+//                    last_drop.addClass('active');
+//                }
+//            }
+//        })
+//    })
     
     
                     
-    //        $('a.pjax, .dropdown-menu li a.pjax, .pagination a').each(function(){
-    //        	if (! $(this).hasClass('pjaxed'))
-    //        	$(this).live('click', function(event){
-    //            event.preventDefault();
-    //            $.pjax({
-    //                url:$(this).attr('href'), 
-    //                container:'#mainContent'
-    //            });
-    //            $('nav li').removeClass('active');
-    //            $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
-    //            return false;
-    //        	}).addClass('pjaxed');
-    //        
-    //        });
+//        $('a.pjax, .dropdown-menu li a.pjax, .pagination a').each(function(){
+//        	if (! $(this).hasClass('pjaxed'))
+//        	$(this).live('click', function(event){
+//            event.preventDefault();
+//            $.pjax({
+//                url:$(this).attr('href'), 
+//                container:'#mainContent'
+//            });
+//            $('nav li').removeClass('active');
+//            $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
+//            return false;
+//        	}).addClass('pjaxed');
+//        
+//        });
     
-    $('#mainContent a.pjax').die('click').click(function(event){
-        event.preventDefault();
-        $.pjax({
-            url:$(this).attr('href'), 
-            container:'#mainContent'
-        });
-        return false;
-    });
+$('#mainContent a.pjax').die('click').click(function(event){
+    event.preventDefault();
+    $.pjax({
+        url:$(this).attr('href'), 
+        container:'#mainContent'
+    })
+    return false;
+});
+    
+$(document).on('pjax:start', function() {  $('#loading').fadeIn(100) })
+.on('pjax:end',   function() { $('#loading').fadeOut(100) });
 
-    //                $('a.pjax, .dropdown-menu li a').live('click', function(e){
-    //$.pjax({url:$(this).attr('href'), container:'#mainContent'})
-    //               e.preventDefault();
-    //              $('nav li').removeClass('active');
-    //             $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
-    //            $.pjax({url: $(this).attr('href'), container:'#mainContent'});
-    //           return false;
-    //      });
+//                $('a.pjax, .dropdown-menu li a').live('click', function(e){
+//$.pjax({url:$(this).attr('href'), container:'#mainContent'})
+//               e.preventDefault();
+//              $('nav li').removeClass('active');
+//             $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
+//            $.pjax({url: $(this).attr('href'), container:'#mainContent'});
+//           return false;
+//      });
     
-    //    $('.myTab a').click(function (e) {
-    //	  e.preventDefault();
-    //	  $(this).tab('show');
-    //	})
+//    $('.myTab a').click(function (e) {
+//	  e.preventDefault();
+//	  $(this).tab('show');
+//	})
     
 
-    //add arrows to orders list
-    if (window.hasOwnProperty('orderField'))
-        if (orderField != "")
-            if (noc == 'DESC')
-                $('#order'+orderField).find('a').after('&uarr;');
-            else
-                $('#order'+orderField).find('a').after('&darr;');
+//add arrows to orders list
+if (window.hasOwnProperty('orderField'))
+    if (orderField != "")
+        if (noc == 'DESC')
+            $('#order'+orderField).find('a').after('&uarr;');
+else
+    $('#order'+orderField).find('a').after('&darr;');
 		
-    if ($('textarea.elRTE').length > 0)
-        initElRTE();
-        
-    console.log('initialising of administration area ended');
-    console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.")
+if ($('textarea.elRTE').length > 0)
+    initElRTE();
+    
+if ($('#elFinderTPLEd').length > 0)
+    elFinderTPLEd();
+    
+console.log('initialising of administration area ended');
+console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.")
 };
 //    console.log('initialising of administration area ended');
 //    
@@ -875,83 +885,83 @@ function initAdminArea(){
 //console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.");
 
 $(document).ready(
-    function(){
-        if ($.exists('#topPanelNotifications')) updateNotificationsTotal();
-        initAdminArea();
-        $('.nav .dropdown-menu a').die('click');
+function(){
+if ($.exists('#topPanelNotifications')) updateNotificationsTotal();
+initAdminArea();
+$('.nav .dropdown-menu a').die('click');
 
-        $('a.pjax').die('click').click(function(event){
+$('a.pjax').die('click').click(function(event){
+    event.preventDefault();
+    $.pjax({
+        url:$(this).attr('href'), 
+        container:'#mainContent'
+    });
+    $('nav li').removeClass('active');
+    $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
+    return false;
+});
+                
+$(' .dropdown-menu li a.pjax, .pagination a').each(function(){
+    if (! $(this).hasClass('pjaxed'))
+        $(this).die('click').live('click', function(event){
             event.preventDefault();
             $.pjax({
                 url:$(this).attr('href'), 
                 container:'#mainContent'
             });
-            $('nav li').removeClass('active');
-            $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
-            return false;
-        });
-                
-        $(' .dropdown-menu li a.pjax, .pagination a').each(function(){
-            if (! $(this).hasClass('pjaxed'))
-                $(this).die('click').live('click', function(event){
-                    event.preventDefault();
-                    $.pjax({
-                        url:$(this).attr('href'), 
-                        container:'#mainContent'
-                    });
-                    $('nav li').removeClass('active');
-                    $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
-                    return false;
-                }).addClass('pjaxed');
+        $('nav li').removeClass('active');
+        $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
+        return false;
+    }).addClass('pjaxed');
         
-        });
+});
         
-        $('.main_body').append('<div class="overlay"></div>');
-        $('#rep_bug').die('click').live('click', function(){
-            var overlay = $('.overlay');
-            overlay.css({
-                'height': $(document).height(),
-                'opacity': 0.5
-            });
-            overlay.fadeIn(function(){
-                $('.frame_rep_bug').find('.alert').remove().end().fadeIn();
-            });
-            overlay.die('click').live('click', function(){
-                $('.frame_rep_bug').fadeOut(function(){
-                    overlay.fadeOut();
-                })
-            });
-            return false;
-        });
-        $('.frame_rep_bug [type="submit"]').die('click').live('click', function(){
-            var url = 'hostname='+location.hostname+'&pathname='+location.pathname+'&user_name='+$('#user_name').text()+'&text='+$('.frame_rep_bug textarea').val()+'&ip_address='+$('.frame_rep_bug #ip_address').val();
-            $.ajax({
-                type: 'GET',
-                url: 'admin/report_bug',
-                data: url,
-                success: function(data){
-                    $('.frame_rep_bug').prepend('<div class="alert alert-success">Ваше повідомлення відправлено</div>');
-                    setTimeout(function(){
-                        overlay.trigger('click')
-                    }, 2000)
-                }
-            })
-            return false;
-        });
+$('.main_body').append('<div class="overlay"></div>');
+$('#rep_bug').die('click').live('click', function(){
+    var overlay = $('.overlay');
+    overlay.css({
+        'height': $(document).height(),
+        'opacity': 0.5
     });
+    overlay.fadeIn(function(){
+        $('.frame_rep_bug').find('.alert').remove().end().fadeIn();
+    });
+    overlay.die('click').live('click', function(){
+        $('.frame_rep_bug').fadeOut(function(){
+            overlay.fadeOut();
+        })
+    });
+    return false;
+});
+$('.frame_rep_bug [type="submit"]').die('click').live('click', function(){
+    var url = 'hostname='+location.hostname+'&pathname='+location.pathname+'&user_name='+$('#user_name').text()+'&text='+$('.frame_rep_bug textarea').val()+'&ip_address='+$('.frame_rep_bug #ip_address').val();
+    $.ajax({
+        type: 'GET',
+        url: 'admin/report_bug',
+        data: url,
+        success: function(data){
+            $('.frame_rep_bug').prepend('<div class="alert alert-success">Ваше повідомлення відправлено</div>');
+            setTimeout(function(){
+                overlay.trigger('click')
+            }, 2000)
+        }
+    })
+    return false;
+});
+});
     
 $(window).load(function(){
-    $(window).resize(function(event){
-        fixed_frame_title();
-        if ($.exists_nabir(fixed_block)){
-            fixed_block_h = fixed_block.outerHeight(true);
-            fixed_block_top = mini_layout.offset().top;
-            $(this).trigger('scroll');
-        }
-        $('.fade.in').remove();
-        difTooltip();
-    }).resize();
-    $(window).scroll(function(){
-        fixed_frame_title();
-    })
+$(window).resize(function(event){
+    fixed_frame_title();
+    if ($.exists_nabir(fixed_block)){
+        fixed_block_h = fixed_block.outerHeight(true);
+        fixed_block_top = mini_layout.offset().top;
+        $(this).trigger('scroll');
+    }
+    $('.fade.in').remove();
+    difTooltip();
+}).resize();
+$(window).scroll(function(){
+    fixed_frame_title();
+})
 })
