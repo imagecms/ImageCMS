@@ -668,7 +668,10 @@ class Admin extends MY_Controller {
             $this->menu_model->insert_menu($data);
 
             showMessage(lang('a_menu_create'));
-            pjax('/admin/components/cp/menu');
+            if($this->input->post('action') == 'tomain')
+                pjax('/admin/components/cp/menu');
+            else
+                pjax('/admin/components/cp/menu/edit_menu/'.$this->db->insert_id());
         }
     }
 
