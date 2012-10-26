@@ -8,7 +8,6 @@ $.exists_nabir = function(nabir){
 var notificationsInitialized = false;
 
 $(document).ajaxComplete( function(event, XHR, ajaxOptions){
-    console.log(event);
     if (ajaxOptions.url != "/admin/components/run/shop/notifications/getAvailableNotification")
     {
         if (event.target.activeElement)
@@ -24,7 +23,6 @@ $(document).ajaxComplete( function(event, XHR, ajaxOptions){
 function init_2(){
     $('.buy_prod').popover('destroy').each(function(){
         var $this = $(this);
-        console.log($this)
         if ($this.find('span').text() != 0){
             $this.popover({
                 'placement':'left',
@@ -69,7 +67,6 @@ function init_2(){
         });
     }
     $(".frame_label:has(.niceCheck)").die('click').live('click', function() {
-        console.log($(this))
         var $this = $(this);
         if ($this.closest('thead')[0] != undefined){
             changeCheck($this.find('> span:eq(0)'))
