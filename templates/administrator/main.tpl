@@ -67,9 +67,9 @@
                             </div>
                             <form method="get" action="/admin/admin_search">
                                 <div class="input-append search">
-                                    <button type="submit" class="btn pull-right"><i class="icon-search"></i></button>
+                                    <button id="adminSearchSubmit" type="submit" class="btn pull-right"><i class="icon-search"></i></button>
                                     <div class="o_h">
-                                        <input id="appendedInputButton" name="q" size="16" type="text" class="input-large" data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]' autocomplete="off" tabindex="1">
+                                        <input id="{if $ADMIN_URL}shopSearch{else:}baseSearch{/if}" name="q" size="16" type="text"  autocomplete="off" tabindex="1" value="{$_GET['q']}">
                                     </div>
                                 </div>
                             </form>
