@@ -36,7 +36,14 @@ class Lib_admin {
         # Load language
         $sett = $this->CI->db->where('s_name', 'main')->get('settings')->row();
         $folder = '/' . $sett->lang_sel;
-        $this->CI->config->set_item('language', 'russian');
+        
+        if ($sett->lang_sel == 'english_lang')
+            $this->CI->config->set_item('language', 'english');
+        else
+            $this->CI->config->set_item('language', 'russian');
+        
+        $this->CI->config->set_item('langs', array('russian', 'english'));
+        
         $this->CI->template->add_array($this->CI->lang->load('admin', 'admin' . $folder, TRUE));
         $this->CI->lang->load('admin', 'admin' . $folder);
         $this->CI->lang->load('controller', 'admin' . $folder);

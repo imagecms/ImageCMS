@@ -7,6 +7,7 @@
     $lang['a_enter_sys']		=	'Log in';
     $lang['a_s_banner_new_succes']		=	'Banner created';
     $lang['a_s_brand_del_1']		=	'Removing brand';
+    $lang['a_s_cer_new_use_db_succ']		=	'Username is already in the database';
     $lang['a_s_cer_settings_change_save']		=	'The settings are saved';
     $lang['a_s_cer_change_status_cer']		=	'You have changed the status of the certificate';
     $lang['a_s_certif_delete_succes']		=	'Certificate (s) removed (s)';
@@ -168,6 +169,9 @@
     $lang['a_rback_not_found']		=	'Role not found';
     $lang['a_sh_use_datacom']		=	'User data';
     $lang['a_edit_user_sh']		=	'Editing by'; 
+    $lang['a_edit_order_sh']		=	'Edit order';
+    $lang['a_basic_data']		=	'Basic data';
+    $lang['a_prod_and_hst_order']	=	'Products and order history';
     $lang['a_sh_user_delet']		=	'Members removed';
     $lang['a_sh_user_not_found']		=	'User not found';
     $lang['a_log_file_create_user']		=	'Created by';

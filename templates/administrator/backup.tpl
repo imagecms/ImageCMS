@@ -8,7 +8,6 @@
             <div class="d-i_b">
                 <a href="#" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
                 <button type="button" class="btn btn-small action_on formSubmit" data-form="#createBackup"><i class="icon-ok"></i>{lang('a_create')}</button>     
-
             </div>
         </div>                            
     </div>
