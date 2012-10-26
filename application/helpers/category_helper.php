@@ -94,7 +94,7 @@ if (!function_exists('get_category_name'))
 
         if ($c['name'] == '')
         {
-            $c['name'] = 'root';
+            $c['name'] = lang('a_dasboard_no_category');
         }
 
         return $c['name'];

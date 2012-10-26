@@ -20,8 +20,9 @@ class Admin extends MY_Controller {
         $this->render('settings', array(
             'settings' => $this->get_fsettings(),
             'templates' => $this->_get_templates(),
-            'vsettings' => $this->get_vsettings())
-        );
+            'vsettings' => $this->get_vsettings()
+                
+                ));
     }
 
     public function update_settings() {

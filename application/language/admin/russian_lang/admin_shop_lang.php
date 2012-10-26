@@ -8,6 +8,12 @@
     $lang['a_info_buyer_ch_stat'] = 'Уведомлять покупателя о смене статуса';
 
     $lang['a_s_banner_new_succes']		=	'Баннер создан';
+    $lang['a_mh_error_sys_m']		=	'Нет настроек ключа аккаунта или<br /> ключа списка на Mailchimp';
+    $lang['a_shop_sett_xml_set_map']		=	'XML карта сайту';
+    $lang['a_shop_sett_int_sco_net']		=	'Интеграция с соцсетями';
+    $lang['a_shop_sett_yandex_market_s']		=	'Настройки Яндекс.Маркета';
+    $lang['a_shop_sett_yandex_market']		=	'Яндекс.Маркет';
+    $lang['a_imageCMS_news']		=	'Новости системы ImageCMS';
     $lang['a_s_settings_m_c_for_c']		=	'Ключ от вашего списку <br />новостей на Mailchimp';
     $lang['a_s_settings_m_c_for_p']		=	'Ключ от вашего аккаунта <br /> на Mailchimp';
     $lang['a_s_csv_export_view_date']		=	'Экспорт CSV дает<br /> на скачку файл <br />со списком всех <br />пользователей.';
