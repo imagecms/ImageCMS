@@ -8,7 +8,7 @@ $.exists_nabir = function(nabir){
 var notificationsInitialized = false;
 
 $(document).ajaxComplete( function(event, XHR, ajaxOptions){
-    console.log(event);
+    console.log(XHR);
     if (ajaxOptions.url != "/admin/components/run/shop/notifications/getAvailableNotification")
     {
             initAdminArea();
@@ -921,6 +921,12 @@ $(document).ready(
         $(this).keydown(function (e) {
             e = e || window.event;
             if ( (e.keyCode === 13 || (e.keyCode === 83 && event.ctrlKey) ) && event.target.localName != 'textarea' ) {
+                if (event.target.id == "baseSearch" || event.target.id == "shopSearch")
+                {
+                    $('#adminSearchSubmit').click();
+                    return false;
+                }
+                
                 $("[data-submit]").trigger('click');
                 return false;
             }
@@ -957,6 +963,18 @@ $(document).ready(
             })
             return false;
         });
+        
+        if ($('#baseSearch'))    
+        {
+            $.get('/admin/admin_search/autocomplete', function(data){
+                baseAutocompleteData = JSON.parse(data);
+//                console.log(baseAutocompleteData);
+                $('#baseSearch').autocomplete({
+                    source: baseAutocompleteData
+                });
+            });
+        }
+        
     });
     
 $(window).load(function(){

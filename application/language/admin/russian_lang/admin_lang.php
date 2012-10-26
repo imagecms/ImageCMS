@@ -522,7 +522,7 @@ $lang['a_with_selected'] = 'С отмечеными';
 $lang['a_repalce'] = 'Переместить';
 $lang['a_copy'] = 'Копировать';
 //$lang['a_delete'] = 'Удалить';
-
+$lang['a_search_results'] = 'Результаты поиска';
 //search.php
 //$lang['a_search_pages'] = 'Поиск страниц';
 //$lang['a_advanced_search'] = 'Расширенный поиск';
