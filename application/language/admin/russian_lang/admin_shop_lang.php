@@ -8,6 +8,10 @@
     $lang['a_info_buyer_ch_stat'] = 'Уведомлять покупателя о смене статуса';
 
     $lang['a_s_banner_new_succes']		=	'Баннер создан';
+    $lang['a_s_settings_m_c_for_c']		=	'Ключ от вашего списку <br />новостей на Mailchimp';
+    $lang['a_s_settings_m_c_for_p']		=	'Ключ от вашего аккаунта <br /> на Mailchimp';
+    $lang['a_s_csv_export_view_date']		=	'Экспорт CSV дает<br /> на скачку файл <br />со списком всех <br />пользователей.';
+    $lang['a_s_mailchimp_export_mir_nas']		=	'Экспорт Mailchimp отправляет <br /> всем пользователям на <br />их емейл, форму подписки <br />на рассилку ваших <br />новостей.';
     $lang['a_s_cer_new_use_db_succ']		=	'Логин есть уже в базе данных';
     $lang['a_s_cer_new_succes']		=	'Сертификат создан';
     $lang['a_s_cer_settings_change_save']		=	'Настройки сохранены';
