@@ -8,8 +8,8 @@
             <div class="d-i_b">
                 <a href="/admin/components/cp/gallery/category/{$album['category_id']}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
                 <button type="button" class="btn btn-small formSubmit btn-primary" data-form="#create_album_form" data-action="edit" data-submit><i class="icon-ok"></i>{lang('amt_save')}</button> 
-                <button type="button" class="btn btn-small formSubmit" data-form="#create_album_form" data-action="close"><i class="icon-check"></i>Сохранить и выйти</button>
-                <button type="button" class="btn btn-small" onclick="$('.modal').modal('show');GalleryAlbums.whatDelete(this);" ><i class="icon-trash"></i>{lang('amt_delete')}</button> 
+                <button type="button" class="btn btn-small formSubmit" data-form="#create_album_form" data-action="close"><i class="icon-check"></i>{lang('a_save_and_exit')}</button>
+                <button type="button" class="btn btn-small btn-danger" onclick="$('.modal').modal('show');GalleryAlbums.whatDelete(this);" ><i class="icon-trash icon-white"></i>{lang('amt_delete')}</button> 
             </div>
         </div>
     </div>
@@ -30,7 +30,7 @@
                     <div class="control-group">
                         <label class="control-label" for="name">{lang('amt_name')}:</label>
                         <div class="controls">
-                            <input type="text" name="name" id="name" value="{htmlspecialchars($album.name)}" />
+                            <input type="text" name="name" id="name" value="{htmlspecialchars($album.name)}" required=""/>
                         </div>
                     </div>
                     <div class="control-group">

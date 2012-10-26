@@ -54,6 +54,7 @@ $lang['a_search'] = 'Поиск';
 
 //backup.tpl
 $lang['a_backup_copy'] = 'Резервное копирование базы данных';
+$lang['a_com_change_status'] = 'Комментарий к изменению статуса';
 //$lang['a_param']		=	'Параметры';
 $lang['a_local_copy'] = 'Скопировать на локальный компьютер';
 $lang['a_save_on_server'] = 'Сохранить на сервере';

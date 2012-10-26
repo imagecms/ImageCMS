@@ -6,19 +6,19 @@
         <meta name="description" content="{lang('a_controll_panel')} - Image CMS" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="generator" content="ImageCMS">
-        
+
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/style.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap-responsive.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap-notify.css">
-         <!--
-        <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery-ui-1.8.23.custom.css">
+        <!--
+       <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery-ui-1.8.23.custom.css">
         -->
-         
+
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery-ui-1.8.16.custom.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery.ui.1.8.16.ie.css">
-        
-        
+
+
         <!-- 
         <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/smoothness/jquery-ui.css" />
          
@@ -26,13 +26,13 @@
         -->
         <link rel="stylesheet" type="text/css" href="/js/elrte-1.3/css/elrte.min.css" media="screen" charset="utf-8">
         <link rel="stylesheet" type="text/css" href="/js/elfinder-2.0/css/elfinder.min.css" media="screen" charset="utf-8">
-        
-        
-         
-        
+
+
+
+
         <link rel="stylesheet" type="text/css" href="/js/elfinder-2.0/css/theme.css" media="screen" charset="utf-8">
-        
-        
+
+
     </head>
     <body>
         <div class="main_body">
@@ -43,24 +43,24 @@
             <header>
                 <section class="container">
 
-                {if $ADMIN_URL}
+                    {if $ADMIN_URL}
                     <a href="{$ADMIN_URL}dashboard" class="logo span3 pjax">
-                {else:}
-                    <a href="/admin/dashboard" class="logo span3 pjax">
-                {/if}
-                        <img src="{$THEME}/img/logo.png"/>
-                    </a>
-                    
-                    {if $CI->dx_auth->is_logged_in()}
-                    <div class="pull-right span3">
-                        <div class="clearfix">
-                            <div class="pull-left m-r_10">{lang('a_wellcome')}, 
-                                {if $CI->dx_auth->get_username()}
-                                <a href="/admin/components/run/shop/users/edit/{echo $CI->dx_auth->get_user_id()}" id="user_name">
-                                    {echo $CI->dx_auth->get_username()}
-                                </a>
-                                <a href="/admin/logout"><i class="my_icon exit_ico"></i></a>
-                                {else:}
+                        {else:}
+                        <a href="/admin/dashboard" class="logo span3 pjax">
+                            {/if}
+                            <img src="{$THEME}/img/logo.png"/>
+                        </a>
+
+                        {if $CI->dx_auth->is_logged_in()}
+                        <div class="pull-right span3">
+                            <div class="clearfix">
+                                <div class="pull-left m-r_10">{lang('a_wellcome')}, 
+                                    {if $CI->dx_auth->get_username()}
+                                    <a href="/admin/components/run/shop/users/edit/{echo $CI->dx_auth->get_user_id()}" id="user_name">
+                                        {echo $CI->dx_auth->get_username()}
+                                    </a>
+                                    <a href="/admin/logout"><i class="my_icon exit_ico"></i></a>
+                                    {else:}
                                     {echo lang('a_guest')}
                                     {/if}
                                 </div>
@@ -220,18 +220,18 @@
                 </div>
             </div>
         </footer>
-<div id="elfinder"></div>
-<div class="standart_form frame_rep_bug">
-    <form method="post" action="">
-        <label>
-            {lang('a_your_remark')}:
-            <textarea></textarea>
-        </label>
-        <input type="submit" value="{lang('a_send')}" class="btn btn-info"/>
-        <input type="hidden" value="{$_SERVER['REMOTE_ADDR']}" id="ip_address"/>
-        
-    </form>
-</div>
+        <div id="elfinder"></div>
+        <div class="standart_form frame_rep_bug">
+            <form method="post" action="">
+                <label>
+                    {lang('a_your_remark')}:
+                    <textarea></textarea>
+                </label>
+                <input type="submit" value="{lang('a_send')}" class="btn btn-info"/>
+                <input type="hidden" value="{$_SERVER['REMOTE_ADDR']}" id="ip_address"/>
+
+            </form>
+        </div>
         <script>
             {if $CI->dx_auth->is_logged_in()}
             var userLogined = true;
@@ -248,18 +248,18 @@
         <script src="{$THEME}/js/jquery.form.js" type="text/javascript"></script>        
         <!-- 
         <script type="text/javascript" src="/js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
-         -->
+        -->
 
         <script src="{$THEME}/js/jquery-validate/jquery.validate.min.js" type="text/javascript"></script>
-<!-- 
-        <script src="/js/jqupload/js/jquery.fileupload.js" type="text/javascript"></script>
-        <script src="/js/jqupload/js/jquery.iframe-transport.js" type="text/javascript"></script>
-        <script src="/js/jqupload/js/main.js" type="text/javascript"></script>
-        <script src="/js/jqupload/js/jquery.fileupload-ui.js" type="text/javascript"></script>
- -->
+        <!-- 
+                <script src="/js/jqupload/js/jquery.fileupload.js" type="text/javascript"></script>
+                <script src="/js/jqupload/js/jquery.iframe-transport.js" type="text/javascript"></script>
+                <script src="/js/jqupload/js/main.js" type="text/javascript"></script>
+                <script src="/js/jqupload/js/jquery.fileupload-ui.js" type="text/javascript"></script>
+        -->
         <script src="{$THEME}/js/functions.js" type="text/javascript"></script>
         <script src="{$THEME}/js/scripts.js" type="text/javascript"></script>
-        
+
         <script type="text/javascript" src="/js/elrte-1.3/js/elrte.min.js"></script>
         <script type="text/javascript" src="/js/elfinder-2.0/js/elfinder.min.js"></script>
 
@@ -275,7 +275,9 @@
             {else:}
             var isShop = false;
             {/if}
-            var lang = "{lang('a_numbers_only')}";
+            var lang_only_number = "{lang('a_numbers_only')}";
+            var show_tovar_text = "{lang('a_show')}";
+            var hide_tovar_text = "{lang('a_dont_show')}";
             {literal}
 
             $(document).ready(function(){
@@ -293,13 +295,37 @@
                 $('.number input').each(function(){
                     $(this).attr({
                         'data-placement':'top', 
-                        'data-title': lang
+                        'data-title': lang_only_number
                     });
                 })
                 number_tooltip();
             }
+            function prod_on_off(){
+                $('.prod-on_off').unbind('click').on('click', function(){
+                    var $this = $(this);
+                    if (!$this.hasClass('disabled')){
+                        if ($this.hasClass('disable_tovar')){
+                            $this.animate({
+                                'left': '0'
+                            }, 200).removeClass('disable_tovar');
+                            $this.parent().attr('data-original-title', show_tovar_text)
+                            $('.tooltip-inner').text(show_tovar_text);
+                            $this.parents('td').next().children().removeClass('disabled');
+                        }
+                        else{
+                            $this.animate({
+                                'left': '-28px'
+                            }, 200).addClass('disable_tovar');
+                            $this.parent().attr('data-original-title', hide_tovar_text)
+                            $('.tooltip-inner').text(hide_tovar_text);
+                            $this.parents('td').next().children().addClass('disabled');
+                        }
+                    }
+                });
+            }
             $(window).load(function(){
                 number_tooltip_live();
+                prod_on_off();
             })
             base_url = '{/literal}{$BASE_URL}{literal}';
         </script>
