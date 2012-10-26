@@ -120,7 +120,7 @@
                                                 <div class="control-group">
                                                     <label class="control-label">{lang('amt_parent')}:</label>
                                                     <div class="controls">
-                                                        <select name="parent_id" id="item_parent_id">
+                                                        <select name="parent_id" class="item_parent_id">
                                                             <option value="0">{lang('amt_no')}</option>
                                                             {foreach $parents as $par}
                                                                 <option value="{$par.id}"> - {$par.title}</option>
@@ -131,7 +131,7 @@
                                                 <div class="control-group">
                                                     <label class="control-label">{lang('amt_position_after')}:</label>
                                                     <div class="controls">
-                                                        <select name="position_after" id="position_after">
+                                                        <select name="position_after" class="position_after">
                                                             <option value="0">{lang('amt_no')}</option>
                                                             <option value="first">{lang('amt_first')}</option>
                                                             {foreach $parents as $p}
@@ -253,7 +253,7 @@
                                                 <div class="control-group">
                                                     <label class="control-label">{lang('amt_parent')}:</label>
                                                     <div class="controls">
-                                                        <select name="parent_id" id="item_parent_id">
+                                                        <select name="parent_id" class="item_parent_id">
                                                             <option value="0">{lang('amt_no')}</option>
                                                             {foreach $parents as $p}
                                                                 <option value="{$p.id}" {if $parent != 0 AND $parent == $p.parent}selected="selected"{/if}> - {$p.title}</option>
@@ -264,7 +264,7 @@
                                                 <div class="control-group">
                                                     <label class="control-label">{lang('amt_position_after')}:</label>
                                                     <div class="controls">
-                                                        <select name="position_after" id="position_after">
+                                                        <select name="position_after" class="position_after">
                                                             <option value="0">{lang('amt_no')}</option>
                                                             <option value="first">{lang('amt_first')}</option>
                                                             {foreach $parents as $p}
@@ -394,7 +394,7 @@
                                                 <div class="control-group">
                                                     <label class="control-label">{lang('amt_parent')}:</label>
                                                     <div class="controls">
-                                                        <select name="parent_id" id="item_parent_id">
+                                                        <select name="parent_id" class="item_parent_id">
                                                             <option value="0">{lang('amt_no')}</option>
                                                             {foreach $parents as $p}
                                                                 <option value="{$p.id}"> - {$p.title}</option>
@@ -405,7 +405,7 @@
                                                 <div class="control-group">
                                                     <label class="control-label">{lang('amt_position_after')}:</label>
                                                     <div class="controls">
-                                                        <select name="position_after" id="position_after">
+                                                        <select name="position_after" class="position_after">
                                                             <option value="0">{lang('amt_no')}</option>
                                                             <option value="first">{lang('amt_first')}</option>
                                                             {foreach $parents as $p}
@@ -512,7 +512,7 @@
                                                 <div class="control-group">
                                                     <label class="control-label">{lang('amt_parent')}:</label>
                                                     <div class="controls">
-                                                        <select name="parent_id" id="item_parent_id">
+                                                        <select name="parent_id" class="item_parent_id">
                                                             <option value="0">{lang('amt_no')}</option>
                                                             {foreach $parents as $p}
                                                                 <option value="{$p.id}"> - {$p.title}</option>
@@ -523,7 +523,7 @@
                                                 <div class="control-group">
                                                     <label class="control-label">{lang('amt_position_after')}:</label>
                                                     <div class="controls">
-                                                        <select name="position_after" id="position_after">
+                                                        <select name="position_after" class="position_after">
                                                             <option value="0">{lang('amt_no')}</option>
                                                             <option value="first">{lang('amt_first')}</option>
                                                             {foreach $parents as $p}
