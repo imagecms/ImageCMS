@@ -4,6 +4,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+    $lang['a_info_buyer_ch_stat'] = 'Notify the buyer of the status change';
+    $lang['a_info_buyer_ch_stat'] = 'Уведомлять покупателя о смене статуса';
     $lang['a_enter_sys']		=	'Войти в систему';
     $lang['a_u_manager_create_group']		=	'Создать группу';
     $lang['a_content']		=	'Содержание';
@@ -134,6 +136,10 @@
     $lang['a_rback_not_found']		=	'Роль не найдена';
     $lang['a_sh_use_datacom']		=	'Данные пользователя';
     $lang['a_edit_user_sh']		=	'Редактирование пользователя';
+    $lang['a_edit_order_sh']		=	'Редактирование заказа';
+    $lang['a_edit_order_sh']		=	'Редактирование заказа';
+    $lang['a_basic_data']		=	'Основные сведения';
+    $lang['a_prod_and_hst_order']	=	'Товары и история заказа';
     $lang['a_sh_user_delet']		=	'Пользователи удалены';
     $lang['a_sh_user_not_found']	=	'Пользователь не найден';
     $lang['a_log_file_create_user']	=	'Создал пользователя';
@@ -225,7 +231,6 @@
     $lang['a_footer_save_exit'] =	'Сохранить и выйти';
     $lang['a_footer_save']      =	'Сохранить';
     $lang['a_save']             =	'Сохранить';
-    $lang['a_edit']             =	'Редактирование';
     $lang['a_ID']               =	'ID';
     $lang['a_banned']               =	'Забанен';
     $lang['a_empty_brand']      =	'Список брендов пустой';
@@ -591,8 +596,8 @@
     $lang['a_users'] = 'Пользователи';
     $lang['a_delivery_methods'] = 'Способы доставки';
     $lang['a_payment_methods'] = 'Способы Оплаты';
-    $lang['a_payment_method'] = 'Способ Оплаты';
-    $lang['a_delivery_method'] = 'Способ Доставки';
+    $lang['a_payment_method'] = 'Способ оплаты';
+    $lang['a_delivery_method'] = 'Способ доставки';
     $lang['a_auto'] = 'Автоматизация';
     $lang['a_export'] = 'Экспорт';
     $lang['a_orders_statuses'] = 'Статусы заказов';

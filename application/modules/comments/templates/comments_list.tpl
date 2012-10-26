@@ -86,7 +86,7 @@
                                                     <textarea id="edited_com_text_minus{$item.id}">{$item.text_minus}</textarea>
                                                 
                                             {/if}
-                                            <span class="js ref comment_update" data-cid="{$item.id}" data-uname="{$item.user_name}" data-uemail="{$item.user_mail}" data-cstatus="{$item.status}">Сохранить</span>
+                                            <span class="js ref comment_update" data-cid="{$item.id}" data-uname="{$item.user_name}" data-uemail="{$item.user_mail}" data-cstatus="{$item.status}">{lang('a_save')}</span>
                                             <span class="js ref comment_update_cancel" data-cid="{$item.id}">Отменить</span>
                                             {if $item.status == 1}<a href="#" class="to_approved" data-id="{$item.id}">В одобренные</a>{/if}
                                             {if $item.status != 2}
@@ -179,7 +179,7 @@
                                                                 <textarea id="edited_com_text_minus{$item.id}">{$item.text_minus}</textarea>
                                                             
                                                         {/if}
-                                                        <span class="js ref comment_update" data-cid="{$item.id}" data-uname="{$item.user_name}" data-uemail="{$item.user_mail}" data-cstatus="{$item.status}">Сохранить</span>
+                                                        <span class="js ref comment_update" data-cid="{$item.id}" data-uname="{$item.user_name}" data-uemail="{$item.user_mail}" data-cstatus="{$item.status}">{lang('a_save')}</span>
                                                         <span class="js ref comment_update_cancel" data-cid="{$item.id}">Отменить</span>
                                                     {if $item.status == 1}<a href="#" class="to_approved" data-id="{$item.id}">В одобренные</a>{/if}
                                                     {if $item.status != 2}
@@ -265,7 +265,7 @@
                                                                         <span class="text_comment" id="comment_text_holder{$ic.id}">{truncate(htmlspecialchars($ic.text), 80, '...')}</span>
                                                                         <span class="frame_edit_comment ref_group" id="comment_text_editor{$ic.id}">
                                                                             <textarea id="edited_com_text{$ic.id}">{$ic.text}</textarea>
-                                                                            <span class="js ref comment_update" data-cid="{$ic.id}" data-uname="{$ic.user_name}" data-uemail="{$ic.user_mail}" data-cstatus="{$ic.status}">Сохранить</span>
+                                                                            <span class="js ref comment_update" data-cid="{$ic.id}" data-uname="{$ic.user_name}" data-uemail="{$ic.user_mail}" data-cstatus="{$ic.status}">{lang('a_save')}</span>
                                                                             <span class="js ref comment_update_cancel" data-cid="{$ic.id}">Отменить</span>
                                                                         {if $ic.status == 1}<a href="#" class="to_approved" data-id="{$ic.id}">В одобренные</a>{/if}
                                                                         {if $ic.status != 2}

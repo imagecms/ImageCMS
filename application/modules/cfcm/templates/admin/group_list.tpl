@@ -1,6 +1,6 @@
 <section class="mini-layout">
                     <div class="frame_title clearfix">
-                        <div class="pull-left w-s_n">
+                        <div class="pull-left">
                             <span class="help-inline"></span>
                             <span class="title w-s_n">{lang('a_field_constructor')}</span>
                         </div>
