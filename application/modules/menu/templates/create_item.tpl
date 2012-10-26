@@ -8,6 +8,7 @@
             <div class="d-i_b">
                 <a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="t-d_n m-r_15 pjax"><span class="f-s_14"></span>←<span class="t-d_u">Вернуться</span></a>
                 <button type="button" class="btn btn-small formSubmit submit_link" data-form="#page_form"><i class="icon-ok"></i>{lang('a_save')}</button>
+                <button type="button" class="btn btn-small formSubmit submit_link" data-form="#page_form" data-action="tomain"><i class="icon-ok"></i>{lang('a_save_and_exit')}</button>
             </div>
         </div>                            
     </div>
