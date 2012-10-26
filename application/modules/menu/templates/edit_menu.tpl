@@ -8,13 +8,14 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="{$BASE_URL}admin/components/cp/menu" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
-                    <button type="submit" class="btn btn-small action_on saveButton"  idMenu="{$id}"><i class="icon-ok"></i>Сохранить</button>
-                    <button type="button" class="btn btn-small action_on"><i class="icon-check"></i>Сохранить и выйти</button>
+                    <a href="{$BASE_URL}admin/components/cp/menu" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
+                    <!--<button type="submit" class="btn btn-small action_on saveButton"  idMenu="{$id}"><i class="icon-ok"></i>Сохранить</button>-->
+                    <button type="submit" class="btn btn-small action_on formSubmit"  data-form="#saveForm"><i class="icon-ok"></i>{lang('a_save')}</button>
+                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#saveForm" data-action="tomain"><i class="icon-check"></i>Сохранить и выйти</button>
                 </div>
             </div>                            
         </div>
-        <form   class="saveForm">
+        <form action="/admin/components/cp/menu/update_menu/{$id}" method="POST"  id="saveForm">
             <div class="tab-content">
                 <div class="tab-pane active" id="modules">
 
