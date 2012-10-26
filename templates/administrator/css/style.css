@@ -17,6 +17,7 @@ footer .container{padding-top: 20px;}
 .text > ol{list-style-type: decimal;}
 .text li{margin-top: 9px;padding-left: 15px;}
 .logo{float: left;margin: 4px 0 0 5px;}
+header{position: relative;z-index: 2;}
 header .pull-right, .logo{position: relative;z-index: 1;}
 header .btn-group{text-align: center;margin-top: 9px;}
 header .btn-group .btn{margin-bottom: 15px;}

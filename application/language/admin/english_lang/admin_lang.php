@@ -10,6 +10,8 @@ $lang['a_english'] = 'English';
 
 // RULES HELPER-------------------------------------------START
 
+$lang['a_delete_group'] = 'Remove group';
+$lang['a_create_group'] = 'Create privilege';
 $lang['a_acc_per_43'] = 'Deleting photos';
 $lang['a_acc_per_3'] = 'Group';
 $lang['a_acc_per_42'] = 'Shop';
@@ -452,6 +454,7 @@ $lang['a_lang_edit'] = 'Language edit';
 $lang['a_delete_selected_languages'] = 'Delete selected languages?';
 $lang['a_cache'] = 'Cache';
 $lang['a_clear_cache'] = 'Delete cache';
+$lang['a_go_back'] = 'Back';
 
 $lang['a_menu_list'] = 'Menu list';
 $lang['a_menu_deleted'] = 'Menu removed';
@@ -465,6 +468,9 @@ $lang['a_manu_item_translate'] = 'Menu item translate';
 $lang['a_key_exists'] = 'Certificate with this key already exists';
 
 $lang['a_edit_menu_item'] = 'Edit menu item';
+$lang['a_edit_status'] = 'Edit status';
+$lang['a_edit_callback'] = 'Edit callback';
+$lang['a_edit_topic_callback'] = 'Edit topic callback';
 $lang['a_products_without_images'] = 'Products without images';
 $lang['a_comments'] = 'Comments';
 
