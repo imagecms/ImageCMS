@@ -262,80 +262,41 @@ $(document).ready(function() {
         return arr;
     }
 
-
-
-    $('.maincheck').bind('change', function() {
-        var ch = '';
-        if ($(this).attr('checked') === 'checked') {
-            ch = $(this).attr('checked');
-        }
-        var tbl = $(this).parents('table').children('tbody').children('tr').children('td:first-child');
-        tbl.each(function() {
-            if (ch) {
-                $(this).children('input').attr('checked', ch);
-            } else {
-                $(this).children('input').removeAttr('checked');
-            }
-        })
-    });
-
-    $('.chldcheck').bind('change', function() {
-        var tbl = $(this).parents('table').children('thead').children('tr').children('th:first-child');
-        if ($(this).attr('checked') != 'checked')
-        {
-            tbl.children('input').removeAttr('checked');
-        }
-        var c = 0;
-        $(this).parents('tbody').children('tr').each(function() {
-            c++;
-        });
-        var par = $(this).parents('tbody').children('tr').children('td:first-child').children('input');
-        var i = 0;
-        par.each(function() {
-            if ($(this).attr('checked') === 'checked') {
-                i++;
-            }
-        });
-        if (c === i) {
-            tbl.children('input').attr('checked', 'checked');
-        }
-    });
-
-    $('#del_sel_group').live('click', function() {
-        if ($(this).hasClass('disabled')) {
-            return false;
-        } else {
-            if (confirm('Удалить группу?'))
-            {
-                var arr = getcheckedvalues();
-                $.post('/admin/components/run/shop/rbac/group_delete', {
-                    id: arr
-                },
-                        function(data) {
-                            $('.notifications').append(data);
-                        }
-                );
-            }
-        }
-    });
-
-    $('#del_sel_priv').live('click', function() {
-        if ($(this).hasClass('disabled')) {
-            return false;
-        } else {
-            if (confirm('Удалить группу?'))
-            {
-                var arr = getcheckedvalues();
-                $.post('/admin/components/run/shop/rbac/privilege_delete', {
-                    id: arr
-                },
-                        function(data) {
-                            $('.notifications').append(data);
-                        }
-                );
-            }
-        }
-    });
+//    $('#del_sel_group').live('click', function() {
+//        if ($(this).hasClass('disabled')) {
+//            return false;
+//        } else {
+//            if (confirm('Удалить группу?'))
+//            {
+//                var arr = getcheckedvalues();
+//                $.post('/admin/components/run/shop/rbac/group_delete', {
+//                    id: arr
+//                },
+//                        function(data) {
+//                            $('.notifications').append(data);
+//                        }
+//                );
+//            }
+//        }
+//    });
+//
+//    $('#del_sel_priv').live('click', function() {
+//        if ($(this).hasClass('disabled')) {
+//            return false;
+//        } else {
+//            if (confirm('Удалить группу?'))
+//            {
+//                var arr = getcheckedvalues();
+//                $.post('/admin/components/run/shop/rbac/privilege_delete', {
+//                    id: arr
+//                },
+//                        function(data) {
+//                            $('.notifications').append(data);
+//                        }
+//                );
+//            }
+//        }
+//    });
 
     $('.catfilter').on('change', function() {
         redirect_url('/admin/components/run/shop/properties/index/' + $(this).attr('value'));

@@ -6,7 +6,7 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <button class="btn btn-small disabled action_on" id="del_in_search" onclick="$('.modal').modal();" disabled="disabled"><i class="icon-trash"></i>{lang('a_delete')}</button>
+                <button class="btn btn-small btn-danger disabled action_on" id="del_in_search" onclick="$('.modal').modal();" disabled="disabled"><i class="icon-trash icon-white"></i>{lang('a_delete')}</button>
                 <a href="/admin/components/init_window/gallery/show_create_category" class="btn btn-small pjax btn-success"><i class="icon-plus-sign icon-white"></i>{lang('amt_create_cat')}</a>
                 <a href="/admin/components/init_window/gallery/show_crate_album" class="btn btn-small pjax btn-success pjax"><i class="icon-plus-sign icon-white"></i>{lang('amt_create_album')}</a>
                 <a href="/admin/components/cp/gallery/settings" class="btn btn-small pjax">{lang('amt_settings')}</a>
