@@ -73,13 +73,14 @@ $('.formSubmit').live('click',function(){
 
     $('textarea.elRTE').elrte('updateSource');
     
-<<<<<<< HEAD
+    var btn = this;
+	
     var selector = $(this).data('form');
     var action = $(this).data('action');
     $(selector).validate()
     if ($(selector).valid())
     {
-        $this.addClass('disabled').attr('disabled');
+        $('#loading').fadeIn(100);
         var options = {
             //                target: '.notifications',
             beforeSubmit: function (formData){
@@ -90,49 +91,21 @@ $('.formSubmit').live('click',function(){
                 console.log(formData);
             },
             success: function (data) {
+                $('#loading').fadeOut(100);
                 var resp = document.createElement('div');
                 resp.innerHTML = data;
                 $(resp).find('p').remove();
                 $('.notifications').append(resp);
-                $this.removeClass('disabled').attr('disabled', false);
+                $(btn).removeClass('disabled').attr('disabled', false);
                 return true;
             }
         };
         console.log($(selector));
         $(selector).ajaxSubmit(options);
     }
+    else
+        $(this).removeClass('disabled').attr('disabled', false);
     return false;
-=======
-	var btn = this;
-	
-	var selector = $(this).data('form');
-	var action = $(this).data('action');
-	$(selector).validate()
-	if ($(selector).valid())
-	{
-		 $('#loading').fadeIn(100);
-            var options = {
-//                target: '.notifications',
-                beforeSubmit: function (formData){
-                        formData.push( {name: "action", value: action} );
-                        console.log(formData);
-                },
-                success: function (data) {
-                	$('#loading').fadeOut(100);
-                	var resp = document.createElement('div');
-                	resp.innerHTML = data;
-                	$(resp).find('p').remove();
-                	$('.notifications').append(resp);
-                	$(btn).removeClass('disabled').attr('disabled', false); return true;
-                	}
-            };
-            console.log($(selector));
-            $(selector).ajaxSubmit(options);
-	}
-	else
-		$(this).removeClass('disabled').attr('disabled', false);
-	return false;
->>>>>>> 3e255155ead34739e75c061a889c83c911031651
 });
 
 function updateNotificationsTotal()
@@ -212,7 +185,7 @@ function initElRTE()
 
 function elFinderPopup(type, id)
 {
-	//todo: create diferent browsers (check 'type' variable)
+    //todo: create diferent browsers (check 'type' variable)
     dlg = $('#elFinder').dialogelfinder({
         url: '/admin/elfinder_init',
         commandsOptions: {
@@ -224,11 +197,11 @@ function elFinderPopup(type, id)
             $('#'+id).val( '/'+file.path);
             if ( type == 'image' && $('#'+id+'-preview').length)
             {
-            	var img = document.createElement('img');
-            	img.src = $('#'+id).val(); 
-            	img.className = "img-polaroid";
-            	console.log(img);
-            	$('#'+id+'-preview').html(img);
+                var img = document.createElement('img');
+                img.src = $('#'+id).val(); 
+                img.className = "img-polaroid";
+                console.log(img);
+                $('#'+id+'-preview').html(img);
             }
         }
 			        
@@ -240,7 +213,7 @@ function elFinderPopup(type, id)
 
 function elFinderTPLEd()
 {
-	//todo: create diferent browsers (check 'type' variable)
+    //todo: create diferent browsers (check 'type' variable)
     eD = $('#elFinderTPLEd').elfinder({
         url: '/admin/elfinder_init/1',
         height: $(window).height()*0.6,
@@ -248,71 +221,74 @@ function elFinderTPLEd()
 
         },
         uiOptions : {
-        	// toolbar configuration
-        	toolbar : [
-        	    ['back', 'forward'],
-        		['reload'],
-        		['home', 'up'],
-        		['mkdir', 'mkfile', 'upload'],
-//        		['mkfile', 'upload'],
-//        		['open', 'download', 'getfile'],
-        		['download'],
-        		['info'],
-//        		['quicklook'],
-        		['copy', 'cut', 'paste'],
-        		['rm'],
-//        		['duplicate', 'rename', 'edit', 'resize'],
-        		['duplicate', 'rename', 'edit'],
-        		['extract', 'archive'],
-        		['view', 'sort'],
-        		['help'],
-        		['search']
-        	],
+            // toolbar configuration
+            toolbar : [
+            ['back', 'forward'],
+            ['reload'],
+            ['home', 'up'],
+            ['mkdir', 'mkfile', 'upload'],
+            //        		['mkfile', 'upload'],
+            //        		['open', 'download', 'getfile'],
+            ['download'],
+            ['info'],
+            //        		['quicklook'],
+            ['copy', 'cut', 'paste'],
+            ['rm'],
+            //        		['duplicate', 'rename', 'edit', 'resize'],
+            ['duplicate', 'rename', 'edit'],
+            ['extract', 'archive'],
+            ['view', 'sort'],
+            ['help'],
+            ['search']
+            ],
 
-        	// directories tree options
-        	tree : {
-        		// expand current root on init
-        		openRootOnLoad : true,
-        		// auto load current dir parents
-        		syncTree : true
-        	},
+            // directories tree options
+            tree : {
+                // expand current root on init
+                openRootOnLoad : true,
+                // auto load current dir parents
+                syncTree : true
+            },
         },
         editors: {
-        	editor:{
-        		load: function(){
-        			alert(111);
-        		},
-        		save: function(){
-        			alert(111);
-        		},
-        		mimes: []
-        	}
+            editor:{
+                load: function(){
+                    alert(111);
+                },
+                save: function(){
+                    alert(111);
+                },
+                mimes: []
+            }
         },
-	getFileCallback : function(e, ev, c){
-	        //self.fm.select($(this), true);
-		eD.exec('edit');
-		return  false;
+        getFileCallback : function(e, ev, c){
+            //self.fm.select($(this), true);
+            eD.exec('edit');
+            return  false;
 		
-		//self.ui.exec(self.ui.isCmdAllowed('open') ? 'open' : 'select');
-	},
+        //self.ui.exec(self.ui.isCmdAllowed('open') ? 'open' : 'select');
+        },
         contextmenu : {
-        	// navbarfolder menu
-//        	navbar : ['open', '|', 'copy', 'cut', 'paste', 'duplicate', '|', 'rm', '|', 'info'],
+            // navbarfolder menu
+            //        	navbar : ['open', '|', 'copy', 'cut', 'paste', 'duplicate', '|', 'rm', '|', 'info'],
 
-        	// current directory menu
-//        	cwd    : ['reload', 'back', '|', 'upload', 'mkdir', 'mkfile', 'paste', '|', 'info'],
+            // current directory menu
+            //        	cwd    : ['reload', 'back', '|', 'upload', 'mkdir', 'mkfile', 'paste', '|', 'info'],
 
-        	// current directory file menu
-        	files  : [
-        		'edit', 'rename', 'getfile', '|', 'quicklook', '|', 'download', '|', 'copy', 'cut', 'paste', 'duplicate', '|',
-        		'rm', '|', 'resize', '|', 'archive', 'extract', '|', 'info'
-        	]
+            // current directory file menu
+            files  : [
+            'edit', 'rename', 'getfile', '|', 'quicklook', '|', 'download', '|', 'copy', 'cut', 'paste', 'duplicate', '|',
+            'rm', '|', 'resize', '|', 'archive', 'extract', '|', 'info'
+            ]
         },
         onlyMimes: ['text'],
     }).elfinder('instance');
     
     eD.bind('get', function(v){
-    	$('textarea.elfinder-file-edit').closest('div.ui-dialog').css({'width':'90%', 'left':'5%'});
+        $('textarea.elfinder-file-edit').closest('div.ui-dialog').css({
+            'width':'90%', 
+            'left':'5%'
+        });
     });
 }
 //tinymce

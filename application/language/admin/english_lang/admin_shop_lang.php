@@ -5,6 +5,10 @@
  * and open the template in the editor.
  */
     $lang['a_enter_sys']		=	'Log in';
+    $lang['a_s_settings_m_c_for_c']		=	'The key to your list of <br />news for MailChimp';
+    $lang['a_s_settings_m_c_for_p']		=	'The key to your account <br />on the mail Mailchimp';
+    $lang['a_s_csv_export_view_date']		=	'Export CSV gives <br />jumps file with <br />a list of all<br /> users.';
+    $lang['a_s_mailchimp_export_mir_nas']		=	'Export Mailchimp sent <br />to all users on their<br /> email subscription<br /> form on your<br /> news rassilku.';
     $lang['a_s_banner_new_succes']		=	'Banner created';
     $lang['a_s_brand_del_1']		=	'Removing brand';
     $lang['a_s_cer_new_use_db_succ']		=	'Username is already in the database';
