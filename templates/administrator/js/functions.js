@@ -66,12 +66,43 @@ function ajax_div(target, url)
 
 //submit form
 $('.formSubmit').live('click',function(){
+        
+    //        collectMCEData();
+    //update content in textareas with elRTE 
+    $this = $(this);
 
-//        collectMCEData();
-	//update content in textareas with elRTE 
-	$(this).addClass('disabled').attr('disabled');
-	$('textarea.elRTE').elrte('updateSource');
+    $('textarea.elRTE').elrte('updateSource');
     
+<<<<<<< HEAD
+    var selector = $(this).data('form');
+    var action = $(this).data('action');
+    $(selector).validate()
+    if ($(selector).valid())
+    {
+        $this.addClass('disabled').attr('disabled');
+        var options = {
+            //                target: '.notifications',
+            beforeSubmit: function (formData){
+                formData.push( {
+                    name: "action", 
+                    value: action
+                } );
+                console.log(formData);
+            },
+            success: function (data) {
+                var resp = document.createElement('div');
+                resp.innerHTML = data;
+                $(resp).find('p').remove();
+                $('.notifications').append(resp);
+                $this.removeClass('disabled').attr('disabled', false);
+                return true;
+            }
+        };
+        console.log($(selector));
+        $(selector).ajaxSubmit(options);
+    }
+    return false;
+=======
 	var btn = this;
 	
 	var selector = $(this).data('form');
@@ -101,6 +132,7 @@ $('.formSubmit').live('click',function(){
 	else
 		$(this).removeClass('disabled').attr('disabled', false);
 	return false;
+>>>>>>> 3e255155ead34739e75c061a889c83c911031651
 });
 
 function updateNotificationsTotal()
@@ -211,6 +243,7 @@ function elFinderTPLEd()
 	//todo: create diferent browsers (check 'type' variable)
     eD = $('#elFinderTPLEd').elfinder({
         url: '/admin/elfinder_init/1',
+        height: $(window).height()*0.6,
         commandsOptions: {
 
         },
@@ -262,7 +295,6 @@ function elFinderTPLEd()
 		
 		//self.ui.exec(self.ui.isCmdAllowed('open') ? 'open' : 'select');
 	},
-        		dialogWidth: 800,
         contextmenu : {
         	// navbarfolder menu
 //        	navbar : ['open', '|', 'copy', 'cut', 'paste', 'duplicate', '|', 'rm', '|', 'info'],
@@ -611,14 +643,19 @@ var shopCategories = new Object({
     deleteCategories:function (){
         $('.modal').modal();
     },
-    deleteCategoriesConfirm:function ()
+    deleteCategoriesConfirm:function (simple)
     {
         var ids = new Array();
-        $('input[name=id]:checked').each(function(){
-            ids.push($(this).val());
-        });
-        //		console.log(ids);
-        $.post('/admin/components/run/shop/categories/delete', {
+        if (simple == undefined){
+            $('input[name=id]:checked').each(function(){
+                ids.push($(this).val());
+            });
+        }
+        else ids.push(simple);
+        
+        var url = '/admin/components/run/shop/categories/delete';
+        if ($('[data-url-delete]').length > 0) url = $('[data-url-delete]').data('url-delete');
+        $.post(url, {
             id:ids
         }, function(data){
             $('#mainContent').after(data);
@@ -660,7 +697,7 @@ var GalleryAlbums = new Object({
         var el = el;
         
         var closest_tr = $(el).closest('tr');
-        var mini_layout = $(el).closest('.mini-layout')
+        var mini_layout = $(el).closest('.mini-layout');
         
         if (closest_tr[0] != undefined){
             this.id = $(el).closest('tr').find("[type = hidden]").val();
