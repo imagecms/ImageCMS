@@ -11,6 +11,7 @@ $lang['a_acc_per_43'] = 'Удаление фотографий';
 
 // RULES HELPER-------------------------------------------STAR
 $lang['a_acc_per_42'] = 'Магазин';
+$lang['a_dasboard_no_category']		=	'Без категории';
 $lang['a_acc_per_41'] = 'Ошибка проверки прав доступа';
 $lang['a_acc_per_40'] = 'Недостаточно прав для';
 $lang['a_acc_per_39'] = 'Редактирование папок';
@@ -529,7 +530,7 @@ $lang['a_with_selected'] = 'С отмечеными';
 $lang['a_repalce'] = 'Переместить';
 $lang['a_copy'] = 'Копировать';
 //$lang['a_delete'] = 'Удалить';
-
+$lang['a_search_results'] = 'Результаты поиска';
 //search.php
 //$lang['a_search_pages'] = 'Поиск страниц';
 //$lang['a_advanced_search'] = 'Расширенный поиск';

@@ -41,9 +41,9 @@ class Admin_search extends MY_Controller {
 							'publish_date <=' => 'UNIX_TIMESTAMP()',
 							'backticks'       => FALSE,
 						),
-					array(
-							'lang_alias ' => '0',
-						),
+//					array(
+//							'lang_alias ' => '0',
+//						),
 				   array(
 							'prev_text' => $searchText,
 							'operator'  => 'LIKE',
@@ -99,6 +99,42 @@ class Admin_search extends MY_Controller {
 					$cats[$row['id']] = $row['name'];
 				$this->template->assign('categories',  $cats);
 			}
+                        
+                        //search for users
+                        
+//                        $config = array(
+//				'table'        => 'users',
+//				'order_by'     => array('username' => 'ASC'),
+//				'hash_prefix'  => 'admin',
+//				'search_title' => $searchText,
+//			);
+//
+//			$this->search->init($config);
+//
+//			$where = array(
+//                                        array(
+//							'username'  =>  $searchText,
+//							'operator'  => 'LIKE',
+//							'backticks' => 'both',
+//						),
+//					array(
+//							'email'     => $searchText,
+//							'operator'  => 'OR_LIKE',
+//							'backticks' => 'both',
+//						),
+//			);
+//                        
+//                        $usersResult = $this->search->execute($where, 0);
+//                        
+//                        var_dump($usersResult['query']);
+                        
+                    $usersResult = $this->db->where("username LIKE '%$searchText%'" )
+                            ->get('users')
+                            ->result_array();
+                    
+                    if (count($usersResult) > 0)
+                        $this->template->assign('users', $usersResult);
+                        
 		}
 
 		if ($result['search_title'] == NULL)
@@ -283,6 +319,32 @@ class Admin_search extends MY_Controller {
 		}
 	}
 
+        public function autocomplete()
+        {
+            if ($this->ajaxRequest)
+            {
+                $tokens = array();
+                $pages = $this->db->select('title')
+                        ->get('content')
+                        ->result_array();
+                foreach ($pages as $p)
+                    $tokens[] = $p['title'];
+
+                $users = $this->db->select('username, email')
+                        ->get('users')
+                        ->result_array();
+
+                foreach ($users as $u)
+                {
+                    $tokens[] = $u['username'];
+                    $tokens[] = $u['email'];
+                }
+
+                echo json_encode($tokens);
+            }
+            else
+                redirect ('/admin');
+        }
 }
 
 /* End of search.php */

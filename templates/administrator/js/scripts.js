@@ -193,11 +193,11 @@ function init_2(){
         var input = el.find("input");
         if(!input.attr("checked")) {
             check1(el, input);
-            //textcomment_s_h('s', el);
+        //textcomment_s_h('s', el);
         }
         else{
             check2(el, input);
-            //textcomment_s_h('h', el);
+        //textcomment_s_h('h', el);
         }
     }
     function changeRadio(el)
@@ -289,21 +289,21 @@ function init_2(){
     });
 }
 function textcomment_s_h(status, el){
-        var status = status;
-        var el = el;
-        var textcomment = el.closest('tr').find('.text_comment');
-        if ($.exists_nabir(textcomment)) {
-            if (status == 's' && textcomment.css('display') != 'none')
-            {
-                var textcomment_h = textcomment.outerHeight();
-                textcomment.hide().next().show().find('textarea').css('height', textcomment_h+13);
-            }
-            if (status == 's' && textcomment.css('display') == 'none') return true;
-            else{
-                textcomment.show().next().hide();
-            }
+    var status = status;
+    var el = el;
+    var textcomment = el.closest('tr').find('.text_comment');
+    if ($.exists_nabir(textcomment)) {
+        if (status == 's' && textcomment.css('display') != 'none')
+        {
+            var textcomment_h = textcomment.outerHeight();
+            textcomment.hide().next().show().find('textarea').css('height', textcomment_h+13);
+        }
+        if (status == 's' && textcomment.css('display') == 'none') return true;
+        else{
+            textcomment.show().next().hide();
         }
     }
+}
 function number_tooltip(){
     $('.number input').tooltip({
         'delay': {
@@ -925,6 +925,31 @@ $(document).ready(
         });
         
         $('.main_body').append('<div class="overlay"></div>');
+    
+        $(this).keydown(function (e) {
+            e = e || window.event;
+            if ( (e.keyCode === 13 || (e.keyCode === 83 && event.ctrlKey) ) && event.target.localName != 'textarea' ) {
+                if (event.target.id == "baseSearch" || event.target.id == "shopSearch")
+                {
+                    $('#adminSearchSubmit').click();
+                    return false;
+                }
+
+                return false;
+            }
+        });
+
+        if ($('#baseSearch'))    
+        {
+            $.get('/admin/admin_search/autocomplete', function(data){
+                baseAutocompleteData = JSON.parse(data);
+                //                console.log(baseAutocompleteData);
+                $('#baseSearch').autocomplete({
+                    source: baseAutocompleteData
+                });
+            });
+        }
+    
         $('#rep_bug').die('click').live('click', function(){
             var overlay = $('.overlay');
             overlay.css({
