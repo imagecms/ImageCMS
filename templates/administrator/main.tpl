@@ -39,7 +39,7 @@
             <div class="notifications top-right"></div>
 
             <header>
-                <section class="container">
+                <section class="container"> 
                     {if $ADMIN_URL}
                     <a href="{$ADMIN_URL}dashboard" class="logo span3 pjax">
                         {else:}
