@@ -4,9 +4,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-// RULES HELPER-------------------------------------------START
+$lang['a_russian'] = 'Русский';
+$lang['a_english'] = 'Английский';
 
 $lang['a_acc_per_43'] = 'Удаление фотографий';
+
+// RULES HELPER-------------------------------------------STAR
 $lang['a_acc_per_42'] = 'Магазин';
 $lang['a_acc_per_41'] = 'Ошибка проверки прав доступа';
 $lang['a_acc_per_40'] = 'Недостаточно прав для';
@@ -51,7 +54,14 @@ $lang['a_acc_per_4'] = 'Логи';
 $lang['a_acc_per_2'] = 'Пользователи';
 $lang['a_acc_per_1'] = 'Доступ к панели управления';
 // RULLES HELPER-------------------------------------------END
+$lang['a_use_man_del_u_1'] = 'Удалить выбранных пользователей?';
+$lang['a_use_man_group_del_1'] = 'Группы удалени';
+$lang['a_use_man_group_del_3'] = 'Удаление групп';
+$lang['a_gener_all_users_count'] = 'Всего пользователей';
+$lang['a_use_man_group_del_2'] = 'Удалить выбранные группы?';
 $lang['a_your_remark'] = 'Ваше замечание';
+$lang['a_sue_man_del_u_3'] = 'Удалить пользователя?';
+$lang['a_sue_man_del_u_2'] = 'Удаление пользователя';
 $lang['a_sett_base_create_new_language'] = 'Создание нового языка';
 $lang['a_sett_global_sett_menu'] = 'Конфигурация сайта';
 $lang['a_bas_filt_pass_not_post'] = 'Вы ничего не передали для поиска';
@@ -121,7 +131,7 @@ $lang['a_url'] = 'URL';
 $lang['a_meta_title'] = 'Meta title';
 $lang['a_meta_description'] = 'Meta description';
 $lang['a_meta_keywords'] = 'Meta keywords';
-$lang['a_create_page'] = 'Создать Страницу';
+$lang['a_create_page'] = 'Создать страницу';
 $lang['a_code_in_google'] = 'Код должен быть в формате "ua-54545845"';
 $lang['a_W_G'] = 'G.Вэбмастер';
 $lang['a_Y_W'] = 'Я.Вэбмастер';
