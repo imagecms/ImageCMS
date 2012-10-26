@@ -7,8 +7,8 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a class="btn btn-small pjax" href="/admin/pages/index"><i class="icon-plus-sign"></i>Создать страницу</a>
-                    <a class="btn btn-small pjax" href="/admin/categories/create_form"><i class="icon-plus-sign"></i>Создать категорию</a>
+                    <a class="btn btn-small pjax btn-success" href="/admin/pages/index"><i class="icon-plus-sign icon-white"></i>Создать страницу</a>
+                    <a class="btn btn-small pjax btn-success" href="/admin/categories/create_form"><i class="icon-plus-sign icon-white"></i>Создать категорию</a>
                 </div>
             </div>
         </div>

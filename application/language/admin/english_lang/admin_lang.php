@@ -4,8 +4,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
+$lang['a_russian'] = 'Russian';
+$lang['a_english'] = 'English';
+
 // RULES HELPER-------------------------------------------START
 
+$lang['a_acc_per_43'] = 'Deleting photos';
 $lang['a_acc_per_3'] = 'Group';
 $lang['a_acc_per_42'] = 'Shop';
 $lang['a_acc_per_41'] = 'Error checking permissions';
@@ -152,10 +157,13 @@ $lang['a_text'] = 'Text';
 $lang['a_categories'] = 'Categories'; 
 $lang['a_search_group'] = 'Search group';
 $lang['a_choose_group'] = 'Choose a group or Select a group '; 
+$lang['a_choose_all_photos'] = 'Chose all photos';
+$lang['a_photos_deleted'] = 'Photos removed';
 $lang['a_search'] = 'Search'; 
 
 //backup.tpl
 $lang['a_backup_copy'] = 'Database backup copy'; 
+$lang['a_com_change_status'] = 'Commentary to change the status';
 $lang['a_local_copy'] = 'Copy to the local computer'; 
 $lang['a_save_on_server'] = 'Save on the server';
 $lang['a_save_path'] = 'File will be saved in the directory'; 
@@ -257,6 +265,7 @@ $lang['a_event_journal'] = 'Event journal';
 $lang['a_backup_copy'] = 'Backup copying';  
 $lang['a_show_site'] = 'View a site';  
 $lang['a_show_album'] = 'View albums';
+$lang['a_album_empty'] = 'Album is empty';
 $lang['a_goto_site'] = 'goto site';
 $lang['a_exit'] = 'Exit';  
 
@@ -354,7 +363,8 @@ $lang['a_leave_empty'] = 'Leave empty';
 $lang['a_if_not_pointed1'] = 'If not given or specified'; 
 
 //sys_info.tpl
-$lang['a_sys_info'] = 'System information'; 
+$lang['a_sys_info'] = 'System information';
+$lang['a_order_info'] = 'Ordering information';
 $lang['a_server_load'] = 'Level of server utilisation'; 
 $lang['a_server'] = 'Server'; 
 $lang['a_os'] = 'Operating system';

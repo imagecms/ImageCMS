@@ -7,12 +7,13 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="/admin/components/cp/gallery" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
+                <a href="/admin/components/init_window/gallery/show_crate_album" class="btn btn-small pjax btn-success pjax"><i class="icon-plus-sign icon-white"></i>{lang('amt_create_album')}</a>
             </div>
         </div>
     </div>
     <div id="gallery_main_block">
         {if $albums}
-        <ul id="albums_list" class="sortable2 f-s_0 save_positions" data-url="/admin/components/cp/gallery/update_album_positions">
+        <ul class="sortable2 f-s_0 save_positions albums_list" data-url="/admin/components/cp/gallery/update_album_positions">
             {foreach $albums as $item}
             <li>
                 <table  class="table table-striped table-bordered">
@@ -20,13 +21,13 @@
                         <td>
                             <div class="t-a_c photo_album">
                                 {if $item.cover_url != 'empty'}
-                                <a href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/edit_album/{$item.id}'); return false;">
+                                <a href="/admin/components/cp/gallery/edit_album/{$item.id}" class="pjax">
                                     <img src="{$item.cover_url}"/>
                                 </a>
                                 {else:}
                                 <img src="{$THEME}/img/no_image.png"/>
                                 {/if}
-                                <div class="btn-group f-s_0" data-toggle="buttons-radio">
+                                <div class="btn-group f-s_0">
                                     <button type="button" class="btn" data-rel="tooltip" onclick="$('.modal').modal();GalleryAlbums.whatDelete(this);" data-title="{lang('a_delete')}" data-remove=""><i class="icon-remove"></i></button>
                                     <a href="/admin/components/init_window/gallery/edit_album_params/{$item.id}" class="btn" data-rel="tooltip" data-title="{lang('a_to_edit')}"><i class="icon-edit"></i></a>
                                     <a href="/admin/components/init_window/gallery/edit_album/{$item.id}" class="btn" data-rel="tooltip" data-title="{lang('imgs_view')}"><i class="icon-fullscreen"></i></a>

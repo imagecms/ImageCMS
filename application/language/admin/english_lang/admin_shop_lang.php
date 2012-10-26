@@ -173,6 +173,9 @@
     $lang['a_rback_not_found']		=	'Role not found';
     $lang['a_sh_use_datacom']		=	'User data';
     $lang['a_edit_user_sh']		=	'Editing by'; 
+    $lang['a_edit_order_sh']		=	'Edit order';
+    $lang['a_basic_data']		=	'Basic data';
+    $lang['a_prod_and_hst_order']	=	'Products and order history';
     $lang['a_sh_user_delet']		=	'Members removed';
     $lang['a_sh_user_not_found']		=	'User not found';
     $lang['a_log_file_create_user']		=	'Created by';
