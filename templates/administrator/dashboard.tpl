@@ -34,7 +34,7 @@
                                     </td>
                                     <td>
                                         <a href="{$BASE_URL}admin/pages/GetPagesByCategory/{$l.category}" class="pjax">
-                                            {truncate(get_category_name($l.category), 20, '...')}
+                                            {truncate(get_category_name($l.category), 20, '...Без категории')}
                                         </a>
                                     </td>
                                     <td>

@@ -18,7 +18,7 @@ class Admin extends MY_Controller {
     }
 
     function index() {
-        $this->load->helper('form');
+        //$this->load->helper('form');
 
 //        $this->template->add_array(array(
 //            'settings' => $this->_load_settings(),
@@ -52,7 +52,7 @@ class Admin extends MY_Controller {
     }
 
     public function update_settings() {
-        $data = array(
+        $XMLDataMap = array(
             'main_page_priority' => $this->input->post('main_page_priority'),
             'cats_priority' => $this->input->post('cats_priority'),
             'pages_priority' => $this->input->post('pages_priority'),
@@ -62,7 +62,7 @@ class Admin extends MY_Controller {
 
         $this->db->limit(1);
         $this->db->where('name', 'sitemap');
-        $this->db->update('components', array('settings' => serialize($data)));
+        $this->db->update('components', array('settings' => serialize($XMLDataMap)));
 
         showMessage(lang('amt_changes_saved'));
     }

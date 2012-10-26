@@ -64,7 +64,12 @@
                                     </td>
                                     <td><p>{$item.id}</p></td>
                                     <td>
-                                        <a href="/admin/components/cp/menu/edit_item/{$item.id}/{$item.name}" class="pjax">{$item.title}</a>
+                                        {if $item.padding == "0"}
+                                            <a class="pjax" href="/admin/components/cp/menu/edit_item/{$item.id}/{$item.name}" style="padding-left:{$item.padding}px;">{$item.title}</a>
+                                        {else:}
+                                            {for $i=0; $i < $item['padding'];$i++}-&nbsp;{/for}<a href="/admin/components/cp/menu/edit_item/{$item.id}/{$item.name}" class="pjax" style="padding-left:{$item.padding}px;">{$item.title}</a>
+                                        {/if}
+                                        
                                     </td>
                                     <td class="share_alt">
                                         <a href="{site_url($item.url)}" target="_blank" class="go_to_site pull-right btn btn-small"  data-rel="tooltip" data-placement="top" data-original-title="перейти на сайт"><i class="icon-share-alt"></i></a>

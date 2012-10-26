@@ -465,7 +465,7 @@ $(document).ready(function() {
     {
         $('#nc' + id).trigger('click');
     }
-    
+
 //***************Scripts for modules table***************
 
     $('#translateCategoryTitle').live('click', function() {
@@ -840,6 +840,17 @@ $(document).ready(function() {
         container.find('input:file').attr('value', '');
     });
 
+    $('.item_parent_id').live('change', function() {
+        var id = $(this).attr('value');
+        var menu_id = $('[name="menu_id"]').attr('value');
+        $.ajax({
+            type: "post",
+            url: "/admin/components/cp/menu/get_children_items/" + id + "/" + menu_id,
+            success: function(data) {
+                $('.position_after').html(data);
+            }
+        });
+    });
 });
 
 
