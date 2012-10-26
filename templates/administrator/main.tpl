@@ -39,14 +39,14 @@
             <div class="notifications top-right"></div>
 
             <header>
-                {if $ADMIN_URL}
-                <a href="{$ADMIN_URL}dashboard" class="logo span3 pjax">
-                    {else:}
-                    <a href="/admin/dashboard" class="logo span3 pjax">
-                        {/if}
-                        <img src="{$THEME}/img/logo.png" style="margin-top: 19px;" />
-                    </a>
-                    <section class="container">
+                <section class="container">
+                    {if $ADMIN_URL}
+                    <a href="{$ADMIN_URL}dashboard" class="logo span3 pjax">
+                        {else:}
+                        <a href="/admin/dashboard" class="logo span3 pjax">
+                            {/if}
+                            <img src="{$THEME}/img/logo.png" style="margin-top: 19px;" />
+                        </a>
 
                         {if $CI->dx_auth->is_logged_in()}
                         <div class="pull-right span3">
@@ -94,7 +94,7 @@
                         {/if}
 
 
-                    </section>
+                </section>
             </header>
 
             {if $CI->dx_auth->is_logged_in()}
