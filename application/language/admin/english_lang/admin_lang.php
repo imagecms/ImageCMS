@@ -12,6 +12,7 @@ $lang['a_english'] = 'English';
 
 $lang['a_acc_per_43'] = 'Deleting photos';
 $lang['a_acc_per_3'] = 'Group';
+$lang['a_dasboard_no_category']		=	'No category';
 $lang['a_acc_per_42'] = 'Shop';
 $lang['a_acc_per_41'] = 'Error checking permissions';
 $lang['a_acc_per_40'] = 'No rights for';

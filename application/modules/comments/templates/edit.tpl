@@ -1,63 +1,73 @@
-<div>
-	<div class="form_text">{lang('amt_author')}:</div>
-	<div class="form_input"><input type="text" class="textbox_long" value="{$comment.user_name}" id="comment_author" /></div>
-	<div class="form_overflow"></div>
+<div class="container">
+    <section class="mini-layout">
+        <div class="frame_title clearfix">
+            <div class="pull-left">
+                <span class="help-inline"></span>
+                <span class="title">{lang('a_edit_user_mod')}</span>
+            </div>
+            <div class="pull-right">
+                <div class="d-i_b">
+                    <a href="/admin/components/run/shop/dashboard#last_comments" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>                   
+                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#update" data-action="close"><i class="icon-ok"></i>{lang('amt_save')}</button>
+                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#update" data-action="exit"><i class="icon-check"></i>Создать и выйти</button>
+                </div>
+            </div>                            
+        </div>
+        <div class="tab-pane">
+            <table class="table table-striped table-bordered table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th colspan="6">
+                            {lang('a_data_group_mod')}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="6">
+                            <div class="inside_padd">
+                                <div class="form-horizontal">
+                                    <div class="row-fluid">
+                                        <form id="update" method="post" action="/admin/components/cp/comments/update">
 
-	<div class="form_text">{lang('amt_email')}:</div>
-	<div class="form_input"><input type="text" class="textbox_long" value="{$comment.user_mail}" id="comment_email" /></div>
-	<div class="form_overflow"></div>
+                                            <div class="control-group">
+                                                <label class="control-label" for="username">{lang('amt_author')}:</label>
+                                                <div class="controls">
+                                                    <input type="text" name="user_name" value="{$comment.user_name}" />
+                                                    <input type="hidden" name="id" value="{$comment.id}" />
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label" for="email">{lang('amt_email')}:</label>
+                                                <div class="controls">
+                                                    <input type="text" name="user_mail" value="{$comment.user_mail}"/>
+                                                </div>
+                                            </div>
 
-	<div class="form_text">{lang('amt_status')}:</div>
-	<div class="form_input">
-        <select id="comment_status">
-            <option value="0" {if $comment.status == 0} selected="selected" {/if}>{lang('amt_app')}</option>
-            <option value="1" {if $comment.status == 1} selected="selected" {/if}>{lang('amt_waiting_for_app')}</option>
-            <option value="2" {if $comment.status == 2} selected="selected" {/if}>{lang('amt_spam')}</option>
-        </select>
-    </div>
-	<div class="form_overflow"></div>
-
-	<div class="form_text">{lang('amt_content')}:</div>
-	<div class="form_input">
-        <textarea id="comment_text" style="width:300px;height:180px;">{$comment.text}</textarea>
-    </div>
-	<div class="form_overflow"></div>
-
-	<div class="form_text"></div>
-	<div class="form_input">
-        <input type="submit" name="button" class="button" value="{lang('amt_save')}" onclick="update_comment_data({$comment.id});" />
-        <input type="button" name="button" class="button" value="{lang('amt_cancel')}" onclick="MochaUI.closeWindow($('edit_comment_window')); return false;" />
-	</div>
+                                            <div class="control-group">
+                                                <label class="control-label" for="role_id">{lang('amt_status')}:</label>
+                                                <div class="controls">
+                                                    <select id="comment_status" name="status">
+                                                        <option value="0" {if $comment.status == 0} selected="selected" {/if}>{lang('amt_app')}</option>
+                                                        <option value="1" {if $comment.status == 1} selected="selected" {/if}>{lang('amt_waiting_for_app')}</option>
+                                                        <option value="2" {if $comment.status == 2} selected="selected" {/if}>{lang('amt_spam')}</option>
+                                                    </select>
+                                                </div>
+                                            </div>  
+                                            <div class="control-group">
+                                                <label class="control-label" for="email">{lang('amt_content')}:</label>
+                                                <div class="controls">
+                                                    <textarea id="comment_text" name="text" style="width:300px;height:180px;">{$comment.text}</textarea>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table> 
+        </div>
+    </section>
 </div>
-
-{literal}
-<script type="text/javascript">
-
-    function update_comment_data(c_id)
-    {
-        var c_author = $('comment_author').value;
-        var c_email  = $('comment_email').value;
-        var c_text  = $('comment_text').value;
-        var c_status  = $('comment_status').value;
-
-		var req = new Request.HTML({
-			method: 'post',
-			url: base_url + 'admin/components/cp/comments/update/',
-			onComplete: function(response) {
-{/literal}
-                {if $update_list == 1} 
-                        ajax_div('page', comments_cur_url);
-                {/if}
-
-                {if $update_list == 'dashboard'} 
-                        ajax_div('page', base_url + 'admin/dashboard/index');
-                {/if}
-{literal}
-                }
-		}).post({'id': c_id, 'text': c_text, 'user_mail': c_email, 'user_name': c_author, 'status': c_status});
-
-        MochaUI.closeWindow($('edit_comment_window'));
-    }
-
-</script>
-{/literal}
