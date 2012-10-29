@@ -47,7 +47,7 @@ class Admin extends MY_Controller {
         $config['field_error_class'] = 'field_error';
         $config['element_prefix'] = '<p class="clear">';
         $config['element_suffix'] = '</p>';
-        $config['label_class'] = 'left';
+        $config['label_class'] = '';
         $config['required_flag'] = ' *';
         $config['required_label_class'] = 'required';
         $config['checkgroup_delimiter'] = '';
@@ -73,8 +73,15 @@ class Admin extends MY_Controller {
             'fields' => $this->db->order_by('weight', 'ASC')->get('content_fields')->result_array(),
             'groups' => $this->load->module('cfcm/cfcm_forms')->prepare_groups_select(),
         ));
+        
+        $groups = $this->db->get('content_field_groups');
 
-        $this->display_tpl('index');
+        if ($groups->num_rows() > 0) {
+            $this->template->assign('groups', $groups->result_array());
+        }
+
+        $this->render('index');
+//         echo $this->display_tpl('index');
     }
 
     public function create_field() {
@@ -111,8 +118,9 @@ class Admin extends MY_Controller {
 
                     $this->db->insert('content_fields', $data);
                     showMessage(lang('amt_field_created'));
-
-                    updateDiv('page', $this->get_url('edit_field/' . $data['field_name']));
+                    
+                    pjax( $this->get_url('edit_field/' . $data['field_name']));
+                    exit;
                 }
             } else {
                 showMessage($form->_validation_errors(), false, 'r');
@@ -123,8 +131,9 @@ class Admin extends MY_Controller {
             'form' => $form,
         ));
 
-        $this->display_tpl('top_navigation');
-        $this->display_tpl('_form');
+        //$this->display_tpl('top_navigation');
+//         $this->display_tpl('_form');
+        $this->render('_form');
     }
 
     public function edit_field_data_type($field_name) {
@@ -149,12 +158,14 @@ class Admin extends MY_Controller {
                 $this->db->update('content_fields', $data);
 
                 showMessage(lang('amt_field_updated'));
-                updateDiv('page', $this->get_url('index'));
+                pjax($this->get_url('index'));
+                exit;
             }
             else {
                 showMessage($form->_validation_errors(), false, 'r');
                 exit;
             }
+            exit;
         }
 
         $form->setAttributes($field);
@@ -164,8 +175,8 @@ class Admin extends MY_Controller {
             'form' => $form,
         ));
 
-        $this->display_tpl('top_navigation');
-        $this->display_tpl('_form');
+//         $this->display_tpl('_form');
+        $this->render('_form');
     }
 
     public function delete_field($field_name) {
@@ -175,6 +186,9 @@ class Admin extends MY_Controller {
 
         $this->db->where('field_name', $field_name);
         $this->db->delete('content_fields_data');
+        
+        showMessage(lang('a_field_deleted_success'));
+        pjax($this->get_url('index'));
     }
 
     public function edit_field($name = '') {
@@ -205,26 +219,28 @@ class Admin extends MY_Controller {
                 $this->db->where('field_name', $field->field_name);
                 $this->db->update('content_fields', array('data' => serialize($data)));
                 showMessage(lang('amt_field_updated'));
-                updateDiv('page', $this->get_url('index'));
+                if ($this->input->post('action') == 'close')
+                    pjax( $this->get_url('index'));
+                else
+                    pjax( $_SERVER['HTTP_REFERER']);
                 exit;
             }
 
             $this->template->add_array(array(
                 'form' => $form,
             ));
-
-            $this->display_tpl('top_navigation');
-            $this->display_tpl('_form');
+            
+//             $this->display_tpl('_form');
+            $this->render('_form');
         }
-        else {
+        else
             echo lang('amt_field_not_found');
-        }
     }
 
     public function create_group() {
         $form = $this->get_form('create_group_form');
         $form->action = $this->get_url('create_group');
-        $form->title = lang('amt_group_creating');
+        $form->title = lang('a_create_cat');
 
         if ($_POST) {
             if (empty($_POST['name'])) {
@@ -236,18 +252,19 @@ class Admin extends MY_Controller {
                 $this->db->insert('content_field_groups', $form->getData());
                 showMessage(lang('amt_group_created'));
 
-                updateDiv('page', $this->get_url('edit_group/' . $this->db->insert_id()));
+                pjax($this->get_url('edit_group/' . $this->db->insert_id()));
             } else {
                 showMessage($form->_validation_errors(), false, 'r');
             }
+            exit;
         }
 
         $this->template->add_array(array(
             'form' => $form,
         ));
 
-        $this->display_tpl('top_navigation');
-        $this->display_tpl('_form');
+//         $this->display_tpl('_form');
+        $this->render('_form');
     }
 
     public function edit_group($id) {
@@ -275,9 +292,11 @@ class Admin extends MY_Controller {
                 $this->db->update('content_field_groups', $data);
                 showMessage(lang('amt_group_updated'));
 
-                updateDiv('page', $this->get_url('list_groups'));
+                pjax( $this->get_url('index'));
+                exit;
             } else {
                 showMessage($form->_validation_errors(), false, 'r');
+                exit;
             }
 
         $form->setAttributes($group);
@@ -286,8 +305,8 @@ class Admin extends MY_Controller {
             'form' => $form,
         ));
 
-        $this->display_tpl('top_navigation');
-        $this->display_tpl('_form');
+//         $this->display_tpl('_form');
+        $this->render('_form');
     }
 
     public function delete_group($id) {
@@ -299,17 +318,20 @@ class Admin extends MY_Controller {
 
         $this->db->where('field_group', $id);
         $this->db->update('category', array('field_group' => '-1'));
+        
+        showMessage(lang('a_group_deleted_success'));
+        pjax($this->get_url('index'));
     }
 
     public function list_groups() {
-        $groups = $this->db->get('content_field_groups');
+        //$groups = $this->db->get('content_field_groups');
 
-        if ($groups->num_rows() > 0) {
-            $this->template->assign('groups', $groups->result_array());
-        }
+        //if ($groups->num_rows() > 0) {
+        //    $this->template->assign('groups', $groups->result_array());
+        //}
 
-        $this->display_tpl('top_navigation');
-        $this->display_tpl('group_list');
+        //$this->display_tpl('top_navigation');
+        //$this->display_tpl('group_list');
     }
 
     // Create form from category field group
@@ -374,17 +396,23 @@ class Admin extends MY_Controller {
                 }
                 $form->title = $group->name;
 
+                $hiddenField = '<input type="hidden" name="cfcm_use_group" value="' . $group->id . '" />';
                 $this->template->add_array(array(
-                    'form' => $form,
+                    'form'  => $form,
+                    'hf'    => $hiddenField  
                 ));
-
+                
                 $this->display_tpl('_onpage_form');
-                echo '<input type="hidden" name="cfcm_use_group" value="' . $group->id . '" />';
+                
             } else {
-                echo lang('amt_no_field_in_group');
+                echo '<div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;">'
+                    .lang('amt_no_field_in_group').
+                    '</div>';
             }
         } else {
-            echo lang('amt_for_category') . $category->name . lang('amt_field_group_not_selected');
+            echo '<div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;">'
+                .lang('amt_for_category') . $category->name . lang('amt_field_group_not_selected').
+                '</div>';
         }
     }
 
@@ -421,6 +449,20 @@ class Admin extends MY_Controller {
                 $this->db->update('content_fields', array('weight' => $weight));
             }
         }
+    }
+    
+//     render template
+    public function render($viewName, array $data = array(), $return = false) {
+    	if (!empty($data))
+    		$this->template->add_array($data);
+    
+
+		if ($this->ajaxRequest)    	
+    		echo $this->template->fetch('file:' . 'application/modules/cfcm/templates/admin/' . $viewName);
+		else
+			$this->template->show('file:' . 'application/modules/cfcm/templates/admin/' . $viewName);
+//     	$this->template->fetch('file:' . 'application/modules/cfcm/templates/admin/' . $viewName);
+    	exit;
     }
 
     /**

@@ -18,3 +18,7 @@ Thumbs.db
 /nbproject
 .directory
 /.project
+/p4.komodoproject
+
+/templates/.quarantine/
+/templates/.tmb/

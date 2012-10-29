@@ -254,12 +254,13 @@ class Gallery_m extends CI_Model {
         $this->db->where('id', $id);
         $this->db->update('gallery_images', array('position' => $position));
     }
-
+    
     // --------------------------------------------------------------------
 
     function create_category($data = array())
     {
         $this->db->insert('gallery_category', $data);
+        return $this->db->insert_id();
     }
 
     function get_category($id)

@@ -22,11 +22,11 @@
                         <b>{echo encode($profile->getAddress())}</b>
                     </li>
                 </ul>
-<!--                <a href="#" class="f_l w-s_n-w" id="change_info">Изменить личные данные</a>-->
-                <a href="{shop_url('/cart')}" class="f_r w-s_n-w">{lang('s_profile_me_bascket')}</a>
+<!--                <a href="#" class="f_l pull-left" id="change_info">Изменить личные данные</a>-->
+                <a href="{shop_url('/cart')}" class="f_r pull-left">{lang('s_profile_me_bascket')}</a>
                 <div class="clear"></div>
-                <a href="#" class="f_l w-s_n-w" id="change_password">{lang('s_profile_me_change_password')}</a>
-                <a href="{shop_url('wish_list')}" class="f_r w-s_n-w" style="width: 136px;">{lang('s_profile_me_change_view_wishlist')}</a>
+                <a href="#" class="f_l pull-left" id="change_password">{lang('s_profile_me_change_password')}</a>
+                <a href="{shop_url('wish_list')}" class="f_r pull-left" style="width: 136px;">{lang('s_profile_me_change_view_wishlist')}</a>
                 
                 <form action="{shop_url('profile')}" method="post" name="editFormpass">
                     <div style="clear: left;width: 50%;display: none;" id="change_password_fields">

@@ -1,83 +1,101 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 
 /**
  * Image CMS
  *
  * Sample Module Admin
  */
-
 class Admin extends MY_Controller {
 
-	function __construct()
-	{
-		parent::__construct();
+    function __construct() {
+        parent::__construct();
 
         $this->load->library('DX_Auth');
-        cp_check_perm('module_admin'); 
-	}
+        cp_check_perm('module_admin');
+    }
 
+    function index() {
+        //$this->load->helper('form');
 
-	function index()
-    {  
-        $this->load->helper('form');
-
-        $this->template->add_array(array(
+//        $this->template->add_array(array(
+//            'settings' => $this->_load_settings(),
+//            'changefreq_options' => array(
+//                'always' => 'always',
+//                'hourly' => 'hourly',
+//                'daily' => 'daily',
+//                'weekly' => 'weekly',
+//                'monthly' => 'monthly',
+//                'yearly' => 'yearly',
+//                'never' => 'never'
+//            ),
+//        ));
+//
+//        $this->display_tpl('settings');
+        $this->render('settings', array(
             'settings' => $this->_load_settings(),
-            'changefreq_options'   => array(
-                'always'  => 'always',
-                'hourly'  => 'hourly',
-                'daily'   => 'daily',
-                'weekly'  => 'weekly',
+            'changefreq_options' => array(
+                'always' => 'always',
+                'hourly' => 'hourly',
+                'daily' => 'daily',
+                'weekly' => 'weekly',
                 'monthly' => 'monthly',
-                'yearly'  => 'yearly',
-                'never'   => 'never'
-                ),
-            ));
-
-        $this->display_tpl('settings'); 
+                'yearly' => 'yearly',
+                'never' => 'never')
+        ));
     }
 
-    public function _load_settings()
-    {
-        return $this->load->module('sitemap')->_load_settings(); 
+    public function _load_settings() {
+        return $this->load->module('sitemap')->_load_settings();
     }
 
-    public function update_settings()
-    {
-        $data = array(
-            'main_page_priority'   => $this->input->post('main_page_priority'),
-            'cats_priority'        => $this->input->post('cats_priority'),
-            'pages_priority'       => $this->input->post('pages_priority'),
+    public function update_settings() {
+        $XMLDataMap = array(
+            'main_page_priority' => $this->input->post('main_page_priority'),
+            'cats_priority' => $this->input->post('cats_priority'),
+            'pages_priority' => $this->input->post('pages_priority'),
             'main_page_changefreq' => $this->input->post('main_page_changefreq'),
-            'pages_changefreq'     => $this->input->post('pages_changefreq')
-            );
+            'pages_changefreq' => $this->input->post('pages_changefreq')
+        );
 
         $this->db->limit(1);
         $this->db->where('name', 'sitemap');
-        $this->db->update('components', array('settings' => serialize($data)));
+        $this->db->update('components', array('settings' => serialize($XMLDataMap)));
 
         showMessage(lang('amt_changes_saved'));
     }
 
     /**
      * Display template file
-     */ 
-	public function display_tpl($file = '')
-	{
-        $file = realpath(dirname(__FILE__)).'/templates/admin/'.$file.'.tpl';  
-		$this->template->display('file:'.$file);
-	}
+     */
+    public function display_tpl($file = '') {
+        $file = realpath(dirname(__FILE__)) . '/templates/admin/' . $file . '.tpl';
+        $this->template->display('file:' . $file);
+    }
 
     /**
      * Fetch template file
-     */ 
-	public function fetch_tpl($file = '')
-	{
-        $file = realpath(dirname(__FILE__)).'/templates/admin/'.$file.'.tpl';  
-		return $this->template->fetch('file:'.$file);
-	}
+     */
+    public function fetch_tpl($file = '') {
+        $file = realpath(dirname(__FILE__)) . '/templates/admin/' . $file . '.tpl';
+        return $this->template->fetch('file:' . $file);
+    }
+
+    public function render($viewName, array $data = array(), $return = false) {
+        if (!empty($data))
+            $this->template->add_array($data);
+
+        $this->template->show('file:' . 'application/modules/sitemap/templates/admin/' . $viewName);
+        exit;
+
+        if ($return === false)
+            $this->template->show('file:' . 'application/modules/sitemap/templates/admin/' . $viewName);
+        else
+            return $this->template->fetch('file:' . 'application/modules/sitemap/templates/admin/' . $viewName);
+    }
 
 }
-
 
 /* End of file admin.php */

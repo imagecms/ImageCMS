@@ -45,7 +45,8 @@
 			<div class="form_overflow"></div>
 
 			<div class="form_text"></div>
-			<div class="form_input"><input type="submit" name="button" class="button"  value="{lang('amt_to_create')}" onclick="ajax_me('groups_create_form');" /></div>
+			<div class="form_input">
+                            <input type="submit" name="button" class="button"  value="{lang('amt_to_create')}" onclick="ajax_me('groups_create_form');" /></div>
 			<div class="form_overflow"></div>
 		{form_csrf()}</form>
 		</div>
