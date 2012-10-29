@@ -173,7 +173,7 @@ $(document).ready(function() {
 //            }
 //        });
         
-        $.post('admin/components/run/shop/products/ajaxUpdatePrice/' + btn.attr('data-id'), {
+        $.post('/admin/components/run/shop/products/ajaxUpdatePrice/' + btn.attr('data-id'), {
                 variant: variantId
         },
                 function(data) {

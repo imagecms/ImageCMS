@@ -914,30 +914,33 @@ $(' .dropdown-menu li a.pjax, .pagination a').each(function(){
 });
         
 	
-        $(this).keydown(function (e) {
-            e = e || window.event;
-            if ( (e.keyCode === 13 || (e.keyCode === 83 && event.ctrlKey) ) && event.target.localName != 'textarea' ) {
-                if (event.target.id == "baseSearch" || event.target.id == "shopSearch")
-                {
-                    $('#adminSearchSubmit').click();
-                    return false;
-                }
-                
-                $("[data-submit]").trigger('click');
+    $(this).keydown(function (e) {
+        e = e || window.event;
+        if ( (e.keyCode === 13 || (e.keyCode === 83 && event.ctrlKey) ) && event.target.localName != 'textarea' ) {
+            if (event.target.id == "baseSearch" || event.target.id == "shopSearch")
+            {
+                $('#adminSearchSubmit').click();
                 return false;
             }
-        });
 
-        if ($('#baseSearch'))    
-        {
-            $.get('/admin/admin_search/autocomplete', function(data){
-                baseAutocompleteData = JSON.parse(data);
-//                console.log(baseAutocompleteData);
-                $('#baseSearch').autocomplete({
-                    source: baseAutocompleteData
-                });
-            });
+            $("[data-submit]").trigger('click');
+            return false;
         }
+    });
+
+//search initializators
+    if ($('#baseSearch'))    
+    {
+        initBaseSearch();
+    }
+
+    if ($('#shopSearch'))    
+    {
+        initShopSearch();
+    }
+//        ----
+
+
         
 $('.main_body').append('<div class="overlay"></div>');
 $('#rep_bug').die('click').live('click', function(){
