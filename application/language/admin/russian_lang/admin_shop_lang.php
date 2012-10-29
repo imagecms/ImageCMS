@@ -11,6 +11,9 @@
     $lang['a_s_collback_edit_th_s']		=	'Редактирование теми collback\'а';
     $lang['a_s_dusc_parem_comulativ_fis']		=	'Список накопительных скидок';
     $lang['a_s_dusc_parem_pollis_fis']		=	'Список постоянных скидок';
+    $lang['a_s_notif_status_list_eools']		=	'Просмотр статусов о появлении';
+    $lang['a_s_notif_status_create_eools']		=	'Создание статуса товара в ожидании';
+    $lang['a_s_notif_status_edit_eools']		=	'Редактирование статуса о появлении';
     $lang['a_s_customFiled_create_ent']		=	'Тип';
     $lang['a_s_banner_new_succes']		=	'Баннер создан';
     $lang['a_mh_error_sys_m']		=	'Нет настроек ключа аккаунта или<br /> ключа списка на Mailchimp';
