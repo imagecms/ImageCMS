@@ -33,16 +33,14 @@ $(document).ready(function(){
             }
         });
     })
-    $(".selValitadot").click(function() {
-        
-
-        $("#validatorSelect").show();
-    });
-    $(".selValitadot1").click(function() {
-
-        $("#validatorSelect").hide();
-    });
-
+    
+    if ($('select#type_select'))
+        $('select#type_select').live('change', function(){
+            if ($(this).val() != '2')
+                $('#possVal').slideUp(200);
+            else
+                $('#possVal').slideDown(200);
+        })
     
     $('#emailAutoC').autocomplete({
         minChars: 0,
