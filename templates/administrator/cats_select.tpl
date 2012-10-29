@@ -1,4 +1,5 @@
 {foreach $tree as $item}
+{$parent_id}
 	<option value="{$item.id}"  {if $item['id'] == $parent_id OR $item['id'] == $sel_cat} selected="selected" {/if}
 	{if $item['id'] == $id AND !$page_editing} disabled="disabled" {/if}
 	>

@@ -1,33 +1,72 @@
-<div style="padding:5px;color:#73BACD;background-color:#73BACD;color:#fff">
-    <h2>{lang('amt_create_menu')}:</h2>
+<div class="container">
+    <section class="mini-layout">
+        <div class="frame_title clearfix">
+            <div class="pull-left">
+                <span class="help-inline"></span>
+                <span class="title">{lang('amt_create_menu')}</span>
+            </div>
+            <div class="pull-right">
+                <div class="d-i_b">
+                    <a href="/admin/components/cp/menu" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
+                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#createForm"><i class="icon-ok"></i>{lang('a_save')}</button>                 
+                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#createForm" data-action="tomain"><i class="icon-ok"></i>{lang('a_save_and_exit')}</button>                 
+                </div>
+            </div>                            
+        </div>
+        <form action="{$BASE_URL}admin/components/cp/menu/create_menu" id="createForm" method="post">
+            <div class="content_big_td">
+                <table class="table table-striped table-bordered table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th colspan="6">
+                                {lang('a_sett')}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="6">
+                                <div class="inside_padd">
+                                    <div class="form-horizontal">
+                                        <div class="row-fluid">
+                                            <div class="control-group">
+                                                <label class="control-label" for="inputTemplateCategory">{lang('amt_name')}:</label>
+                                                <div class="controls">
+                                                    <input type="text" class="textbox" name="menu_name" />
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label" for="inputUrl">{lang('amt_tname')}</label>
+                                                <div class="controls">
+                                                    <input type="text" class="textbox" name="main_title" />
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label" for="inputSortdefault">{lang('amt_description')}:</label>
+                                                <div class="controls">
+                                                    <input type="text" class="textbox" name="menu_desc" />
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label" for="inputSortdefault">{lang('amt_template_folder')}:</label>
+                                                <div class="controls">
+                                                    <input type="text" class="textbox" name="menu_tpl" value="{$tpl}" />
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label" for="inputSortdefault">{lang('amt_open_menu_folder')}:</label>
+                                                <div class="controls">
+                                                    <input type="text" class="textbox" name="menu_expand_level" value="{$expand_level}" />   
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            {form_csrf()} 
+        </form>
+    </section>
 </div>
-    <form action="{$SELF_URL}/create_menu" method="post" id="form_create_root_menu">
-        <div class="form_text">{lang('amt_name')}:</div>
-        <div class="form_input"><input type="text" class="textbox" name="menu_name" /></div>
-        <div class="form_overflow"></div>
-
-        <div class="form_text">{lang('amt_tname')}:</div>
-        <div class="form_input"><input type="text" class="textbox" name="main_title" /></div>
-        <div class="form_overflow"></div>
-
-        <div class="form_text">{lang('amt_description')}:</div>
-        <div class="form_input"><input type="text" class="textbox" name="menu_desc" /></div>
-        <div class="form_overflow"></div>
-        
-        <div class="form_text">{lang('amt_template_folder')}:</div>
-        <div class="form_input"><input type="text" class="textbox" name="menu_tpl" value="{$tpl}" /></div>
-        <div class="form_overflow"></div>
-
-        <div class="form_text">{lang('amt_open_menu_folder')}:</div>
-        <div class="form_input">
-        	<input type="text" class="textbox" name="menu_expand_level" value="{$expand_level}" />        	
-        </div>
-        <div class="form_overflow"></div>        
-
-        <div class="form_text"></div>
-        <div class="form_input">
-            <input type="submit" value="{lang('amt_to_create')}" class="button" onclick="ajax_me(this.form.id);" />
-            <input type="submit" value="{lang('amt_cancel')}" class="button" onclick="MochaUI.closeWindow($('create_menu_w')); return false;" />
-        </div>
-        <div class="form_overflow"></div>
-    {form_csrf()}</form>

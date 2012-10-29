@@ -35,12 +35,15 @@ class Admin extends MY_Controller {
         $query = $this->db->get('mail');
         $row = $query->result_array();
         $this->template->assign('all', $row);
-
+        
+        
+        if (!$this->ajaxRequest)           
         $this->display_tpl('form');
     
     }
 
     public function send_email() {
+        
         // Load form validation class
         $this->load->library('form_validation');
 
@@ -88,19 +91,19 @@ class Admin extends MY_Controller {
 
                 $this->load->library('lib_admin');
                 $this->lib_admin->log(lang('amt_send') . '(' . $counter['true'] . '/' . $counter['all'] . ')' . lang("amt_users_email_topic") . ')' . $_POST['subject']);
-                $class = 'b';
+                $class = '';
                 if ($counter['true'] == $counter['all']) {
-                    $class = 'g';
+                    $class = '';
                 } else if ($counter['true'] == 0) {
                     $class = 'r';
                 }
                 if ($class !== 'r') {
-                    showMessage(lang('amt_message_send') . ': ' . $counter['true'] . lang('amt_count_from') . $counter['all'] . 'шт.', false, $class);
+                    showMessage(lang('amt_message_send') . ': ' . $counter['true'] . lang('amt_count_from') . $counter['all'] . 'шт.'. $class);
                 } else {
-                    showMessage(lang('amt_not_any_message_from') . $counter['all'] . lang('amt_count_not_send'), false, $class);
+                    showMessage(lang('amt_not_any_message_from') . $counter['all'] . lang('amt_count_not_send'),  $class);
                 }
 
-                updateDiv('page', site_url('admin/components/cp/mailer/index'));
+                //updateDiv('page', site_url('admin/components/cp/mailer/index'));
             }
         }
     }
@@ -126,8 +129,8 @@ class Admin extends MY_Controller {
      * Display template file
      */
     private function display_tpl($file = '') {
-        $file = realpath(dirname(__FILE__)) . '/templates/admin/' . $file . '.tpl';
-        $this->template->display('file:' . $file);
+        $file = realpath(dirname(__FILE__)) . '/templates/admin/' . $file;
+        $this->template->show('file:' . $file);
     }
 
     /**

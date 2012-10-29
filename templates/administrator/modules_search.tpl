@@ -47,7 +47,7 @@ function show_m_install_window(id)
         </li>
         <li>
             {if $install_type == 'ftp'}
-                <span class="lite">{lang('a_for_simple_install')} ./application/modules/</span>
+                <span class="help-block">{lang('a_for_simple_install')} ./application/modules/</span>
             {/if}
         </li>
     </ul>

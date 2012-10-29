@@ -1,0 +1,132 @@
+div.rdTreeFirebug table {
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 11px;
+}
+
+div.rdTreeFirebug  a  {
+    margin:1px;
+    border-radius:2px;
+}
+
+div.rdTreeFirebug  a.selected  {
+    background-color:#0684cc;
+    color:#fff;
+    padding:0px 4px;
+    font-weight:bold;
+    border-radius:2px;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+}
+
+div.rdTreeFirebug a:hover {
+    color:#ff3f34;
+    text-decoration:none;
+}
+
+div.rdTreeFirebug .penedit,  div.rdTreeFirebug .penedit-root{
+    display:none;
+}
+
+div.rdTreeFirebug .selected .penedit-root {
+    display:inline;
+    float:right;
+}
+
+div.rdTreeFirebug .selected .penedit {
+    display:block;
+    margin:1px;
+    border-radius:3px;
+    background-color:#2684cc;
+}
+
+div.rdTreeFirebug .penedit:hover {
+    background-color:#000066;
+}
+
+div.rdTreeFirebug a {
+    color:#2e679a;
+    text-decoration:none;
+    cursor:pointer;
+    font-size: 11px;
+}
+
+div.rdTreeFirebug ul{
+    margin:0px;
+    padding:0px;
+}
+
+div.rdTreeFirebug a:hover {
+    border-radius:3px;
+    border: 1px solid #a5d5f0;
+    margin:0px;
+}
+
+div.rdTreeFirebug a:hover {
+    border-radius:3px;
+    border: 1px solid #a5d5f0;
+    margin:0px;
+}
+
+div.rdTreeFirebug  a.selected  {
+    border: 0px solid green;
+    margin:1px;
+}
+
+div.rdTreeFirebug ul ul {
+    padding-left:0px;
+    display:none;
+}
+
+div.rdTreeFirebug ul li {
+    list-style:none;
+    background:0px 4px no-repeat url(../images/tree/item.gif);
+    padding-left:0px;
+    font-weight:bold;
+    line-height:15px;
+}
+
+div.rdTreeFirebug ul li.last,
+div.rdTreeFirebug ul li.lastNode {	background:url(../images/tree/line-last.gif) no-repeat; background-position: 0px -285px;}
+div.rdTreeFirebug ul li.center,
+div.rdTreeFirebug ul li.centerNode { background:url(../images/tree/line-center.gif) no-repeat; background-position: 0px center;}
+
+div.rdTreeFirebug ul li.centerNode { background-position: 0px -293px;}
+div.rdTreeFirebug ul li.lastNode { background-position: 0px -286px;}
+
+div.rdTreeFirebug ul ul li.last {	background-position: 15px -286px;}
+div.rdTreeFirebug ul ul li.center { background-position: 15px center;}
+
+div.rdTreeFirebug ul ul li.centerNode { background-position: 15px -293px;}
+div.rdTreeFirebug ul ul li.lastNode { background-position: 15px -286px;}
+
+div.rdTreeFirebug ul li ul li {
+    font-weight:normal;
+    padding-left:15px;
+}
+
+div.rdTreeFirebug ul.opened {
+    display:block;
+    background: url(../images/tree/line-vertical.gif) left repeat-y;
+}
+
+div.rdTreeFirebug table {
+    border-spacing:0px;
+    border-collapse:collapse;
+    display:block;
+}
+
+div.rdTreeFirebug table,div.rdTreeFirebug tr,div.rdTreeFirebug td
+{
+    margin:0px;
+    padding:0px;
+}
+
+div.rdTreeFirebug td.icon {
+    vertical-align:top;
+    width:16px;
+}
+
+    div.rdTreeFirebug td.icon img {
+    display:block;
+    padding-top:3px;
+    }

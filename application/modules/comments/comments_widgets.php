@@ -58,6 +58,19 @@ class Comments_Widgets extends MY_Controller {
             return $this->template->fetch('widgets/'.$widget['name'],  array('comments' => $comments) );
         }
     }
+    
+    public function render($viewName, array $data = array(), $return = false) {
+        if (!empty($data))
+            $this->template->add_array($data);
+
+        $this->template->show('file:' . 'application/modules/comments/templates/' . $viewName);
+        exit;
+
+        if ($return === false)
+            $this->template->show('file:' . 'application/modules/comments/templates/' . $viewName);
+        else
+            return $this->template->fetch('file:' . 'application/modules/comments/templates/' . $viewName);
+    }
 
     // Configure widget settings
     public function recent_comments_configure($action = 'show_settings', $widget_data = array())
@@ -67,7 +80,8 @@ class Comments_Widgets extends MY_Controller {
         switch ($action)
         {
             case 'show_settings':
-                $this->display_tpl('recent_comments_form', array('widget' => $widget_data));
+                //$this->display_tpl('recent_comments_form', array('widget' => $widget_data));
+                $this->render('recent_comments_form', array('widget' => $widget_data));
             break;
 
             case 'update_settings':
@@ -86,6 +100,8 @@ class Comments_Widgets extends MY_Controller {
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
                     showMessage(lang('amt_settings_saved'));
+                    if($_POST['action'] == 'tomain')
+                        pjax('/admin/widgets_manager/index');
                 }
             break;
 
@@ -143,7 +159,8 @@ class Comments_Widgets extends MY_Controller {
         switch ($action)
         {
             case 'show_settings':
-                $this->display_tpl('recent_product_comments_form', array('widget' => $widget_data));
+                //$this->display_tpl('recent_product_comments_form', array('widget' => $widget_data));
+                $this->render('recent_product_comments_form', array('widget' => $widget_data));
             break;
 
             case 'update_settings':
@@ -162,6 +179,8 @@ class Comments_Widgets extends MY_Controller {
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
                     showMessage(lang('amt_settings_saved'));
+                    if($_POST['action'] == 'tomain')
+                        pjax('/admin/widgets_manager/index');
                 }
             break;
 
