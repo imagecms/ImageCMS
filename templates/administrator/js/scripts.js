@@ -218,7 +218,7 @@ function init_2(){
         if (el.closest('[data-tree]').length > 0) el.closest('tr').addClass('active');
         else if (el.closest('.sortable2').find('tr').length > 0) el.closest('.sortable2').find('tr').has(el).addClass('active')
         
-        textcomment_s_h('s', el);
+        //textcomment_s_h('s', el);
     }
     function changeCheckallreset(el)
     {
@@ -923,12 +923,26 @@ $(document).ready(
                 }).addClass('pjaxed');
         
         });
+
+
+        //search initializators
+    if ($('#baseSearch'))    
+    {
+        initBaseSearch();
+    }
+
+    if ($('#shopSearch'))    
+    {
+        initShopSearch();
+    }
+// 
+
         
         $('.main_body').append('<div class="overlay"></div>');
     
         $(this).keydown(function (e) {
             e = e || window.event;
-            if ( (e.keyCode === 13 || (e.keyCode === 83 && event.ctrlKey) ) && event.target.localName != 'textarea' ) {
+            if ( ( (e.keyCode === 83 && event.ctrlKey) ) && event.target.localName != 'textarea' ) {
                 if (event.target.id == "baseSearch" || event.target.id == "shopSearch")
                 {
                     $('#adminSearchSubmit').click();
