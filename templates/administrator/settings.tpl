@@ -4,7 +4,7 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('a_sett')}</span>
+                <span class="title">{lang('a_sett_global_sett_menu')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
