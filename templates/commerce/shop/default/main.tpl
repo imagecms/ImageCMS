@@ -66,12 +66,14 @@
                 </div>
                 <ul class="user_menu">
                     <!--    Show callback's form    -->
-                    {if count(get_currencies())>1}
+                    {if count(get_currencies())>2}
                         <li class="p-l_0">
                             <form action="" method="post" name="currencyChangeForm" id="currencyChangeForm">
                                 {lang('s_currency')}: <select class="changeCurrency" name="setCurrency" >
                                     {foreach get_currencies() as $currency}
-                                        <option {if ShopCore::app()->SCurrencyHelper->additional->getId() == $currency->getId()}selected{/if} value="{echo $currency->getId()}">{echo encode($currency->getName())}</option>
+                                        {if $currency->getId() != ShopCore::app()->SCurrencyHelper->default->getId()}
+                                            <option {if ShopCore::app()->SCurrencyHelper->additional->getId() == $currency->getId()}selected{/if} value="{echo $currency->getId()}">{echo encode($currency->getName())}</option>
+                                        {/if}
                                     {/foreach}
                                 </select>
                                 {form_csrf()}
