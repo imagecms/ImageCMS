@@ -1,163 +1,93 @@
-<div class="top-navigation">
-        <div style="float:left;">
-            <ul>
-            <li>
-                <form id="image_upload_form" style="width:100%;" method="post" enctype="multipart/form-data" action="{site_url('admin/components/run/gallery/upload_image/' . $album['id'])}">
-
-
-               <div style="height:16px;width:130px;float:left;text-align: center; overflow: hidden;" class="button_silver_130">
-               <div style="color:#000000;">{lang('amt_select_file')}</div>
-               <input type="file" name="file[]" id="file" size="1" style="margin-top: -50px; margin-left:-410px; -moz-opacity: 0; filter: alpha(opacity=0); opacity: 0; font-size: 150px; height: 100px;" multiple="multiple"/>
-               </div>
-
-                <input type="submit" name="action" value="{lang('amt_download_file')}" class="button_silver_130" />
-                <iframe id="upload_target" name="upload_target" src="" style="width:0;height:0;border:0px solid #fff;display:none;"></iframe>
-                {form_csrf()}</form>
-            </li>
-            <li>
-                <span id="upload_result"></span>
-            </li>
-	    
-	    
-            </ul>
+<section class="mini-layout">
+    <div class="frame_title clearfix">
+        <div class="pull-left">
+            <span class="help-inline"></span>
+            <span class="title w-s_n">{lang('amt_album')}: {$album['name']}</span>
         </div>
-
-        <div align="right" style="padding:7px 13px;">
-            <a href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/'); return false;"  >{lang('amt_gallery')}</a> 
-            >
-            <a href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/category/{$category.id}'); return false;">{$category.name}</a> 
-            > 
-            <a href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/edit_album/{$album.id}'); return false;">{$album.name}</a> 
-        </div>
-</div>
-<div style="clear:both;"></div>
-
-    <div>
-        {foreach $album.images as $item}
-        <div style="float:left; width:150px; height:150px;background-color: {if $album['cover_id'] == $item.id}#E2EEBE;{else:}#EDEDED;{/if} border:1px solid #E8E8E8;margin:15px;padding:2px;" >
-            <div align="left">
-                <span title="{$item.file_name}{$item.file_ext}">{truncate($item['file_name'], 10)}{$item.file_ext}</span>
+        <div class="pull-right">
+            <div class="d-i_b">
+                <a href="/admin/components/cp/gallery/category/{$album['category_id']}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
+                <label for="addPictures" style="display:inline;">
+                    <button type="button" class="btn btn-small btn-success"><i class="icon-white icon-plus"></i>Add pictures</button>
+                </label>
+                <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#addPics" data-submit><i class="icon-white icon-ok"></i>{lang('amt_save')}</button>
+                <button type="button" class="btn btn-small btn-danger action_on disabled"  onclick="$('.modal').modal('show');"><i class="icon-trash icon-white"></i>{lang('a_delete')}</button>
             </div>
-            <div align="center" style="width:150px;height:110px;">
-                <img title="{$item.file_name}{$item.file_ext}" src="{media_url($album_url . '/_admin_thumbs/' . $item['file_name'] . $item['file_ext'])}" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/edit_image/{$item.id}'); return false;"  style="cursor:pointer;border:4px solid #FFFFFF;" />
-            </div>
+        </div>                            
+    </div>  
 
-            <div style="float:left">
-            {$item.file_size} Kb 
-            </div>
-
-            <div style="height:16px;float:right;" align="right">
-                <img src="{$THEME}/images/edit.png" onclick="ajax_div('page', base_url + 'admin/components/cp/gallery/edit_image/{$item.id}'); return false;" title="{lang('amt_edit')}" width="16" height="16" style="cursor:pointer;" />                
-                <img src="{$THEME}/images/delete.png" onclick="confirm_delete_image({$item.id}, {$album.id},'{$item.file_name}');" title="Удалить" width="16" height="16" style="cursor:pointer;" />                
-            </div>
-        </div>
-        {/foreach}
+    <div id="picsToUpload">
+        
     </div>
 
-{literal}
-	<script type="text/javascript">
+    {if $album.images}
+    <table class="table">
+        <tbody>
+            <tr>
+                <td style="border: 0;">
+                    <div class="well well-small">
+                        <div class="frame_label all_select">
+                            <span class="niceCheck">
+                                <input type="checkbox"/>
+                            </span>
+                            {lang('a_choose_all_photos')}
+                        </div>
+                    </div>
+                    <ul class="sortable2 f-s_0 save_positions photo_list albums_list" data-url="/admin/components/cp/gallery/update_img_positions" data-url-delete="/admin/components/cp/gallery/delete_image">
+                        {foreach $album.images as $item}
+                        <li>
+                            <table  class="table table-striped table-bordered">
+                                <tr>
+                                    <td>
+                                        <div class="pull-left m-r_15">
+                                            <spna class="frame_label">
+                                                <span class="niceCheck">
+                                                    <input type="checkbox" name="id" value="{$item.id}"/>
+                                                </span>
+                                            </spna>
+                                        </div>
+                                        <div class="t-a_c photo_album o_h">
+                                            <img title="{$item.file_name}{$item.file_ext}" src="{media_url($album_url . '/' . $item['file_name'] .'_prev'. $item['file_ext'])}"/>
+                                            <div class="btn-group f-s_0">
+                                                <button type="button" class="btn" data-rel="tooltip" onclick="shopCategories.deleteCategoriesConfirm($(this).closest('td').find('[name=id]').val());" data-title="{lang('a_delete')}" data-remove=""><i class="icon-remove"></i></button>
+                                                <a href="/admin/components/init_window/gallery/edit_image/{$item.id}" class="btn" data-rel="tooltip" data-title="{lang('a_to_edit')}"><i class="icon-edit"></i></a>
+                                            </div>
+                                            <div class="fon"></div>
+                                        </div>
+                                        <div class="m-t_10">
+                                            <b>{lang('a_name')}:</b> <span title="{$item.file_name}{$item.file_ext}">{truncate($item['file_name'], 10)}{$item.file_ext}</span><br/>
+                                            <b>{lang('a_size')}:</b> {$item.file_size} Kb
+                                        </div>
+                                        <input type="hidden" name="ids" value="{$item.id}">
+                                    </td>
+                                </tr>
+                            </table>
+                        </li>
+                        {/foreach}
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    {else:}
+    <div class="alert alert-info m-t_20">
+        {lang('a_album_empty')}
+    </div>
+    {/if}
 
-        /*
-        function get_coo(id)
-        {
-            $('img_info_box').setStyle('display', 'block'); 
-
-            var windowSize = $(window).getSize();
-			var windowScroll = $(window).getScroll();
-			var halfWindowY = windowSize['y'] / 2;
-			var halfWindowX = windowSize['x'] / 2;
-
-
-            var info_pos = $(id).getPosition(); 
-            var info_size = $('img_info_box').getSize();
-
-            var x_p = info_pos['x'];
-            var y_p = info_pos['y'];
-
-            if(y_p > halfWindowY)
-            {
-                $('img_info_box').setStyle('top', y_p - (info_size['y'] / 2)); 
-            }else{
-               $('img_info_box').setStyle('top', y_p - 100  ); 
-            }
-            
-            if (x_p > halfWindowX + 300)
-            {
-                $('img_info_box').setStyle('left', x_p - info_size['x'] - 150 );  
-            }else{
-                $('img_info_box').setStyle('left', x_p - info_size['x'] ); 
-            }
-         
-
-            $('img_info_box').addEvent('mouseleave', function(){
-			    closeBoxes.delay(1000);									  
-    		});
-        }
-
-        function closeBoxes()
-        {
-            $('img_info_box').setStyle('display', 'none');
-        }
-
-        */
-
-        function confirm_delete_image(id, album_id ,name)
-        {
-            alertBox.confirm('<h1> </h1><p>Удалить файл <b>' + name + '</b>? </p>', {onComplete:
-            function(returnvalue){
-            if(returnvalue)
-            {
-                    var req = new Request.HTML({
-                       method: 'post',
-                       url: base_url + 'admin/components/cp/gallery/delete_image/' + id,
-                       onRequest: function() { },
-                       onComplete: function(response) {
-                            ajax_div('page', base_url + 'admin/components/cp/gallery/edit_album/' + album_id);
-                        }
-                    }).post({'img_id': id, 'album_id': album_id });
-            }
-            }
-            });
-        } 
-
-
-		window.addEvent('domready', function() {
-            document.getElementById('image_upload_form').onsubmit = function() 
-            {
-                $('upload_result').set('html', '<img src="' + theme + '/images/spinner.gif" />'); 
-
-                document.getElementById('image_upload_form').target = 'upload_target';
-                document.getElementById("upload_target").onload = uploadCallback; 
-            }
-	    
-        });
-
-        // Callback function after upload image
-        function uploadCallback()
-        {
-            var imgIFrame = document.getElementById('upload_target');  
-            var data = imgIFrame.contentWindow.document.body.innerHTML;    
-            var result_arr = JSON.decode(data); 
-            
-            if (result_arr.error)
-            {
-                showMessage('Ошибка', result_arr.error);
-                $('upload_result').set('html', '');
-            }else{
-        
-            var req = new Request.HTML({
-    			method: 'post',
-	    		url: base_url + 'admin/components/run/gallery/edit_album/{/literal}{$album.id}{literal}',
-    			update: 'page',
-		    	evalResponse: true,
-	    		onComplete: function(response) {  }
-    		}).send();
-         
-            }
-        }
-
-
-
-    </script>
-
-{/literal}
+    <div>
+        <form action="/admin/components/cp/gallery/upload_image/{$album.id}" id="addPics" method="post"  enctype="multipart/form-data">
+            <input type="file" multiple="multiple"  name="newPic[]" id="addPictures" class="multiPic" data-previewdiv="#picsToUpload">
+        </form>
+    </div>
+</section>
+<div class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>{lang('a_acc_per_43')}:</h3>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('a_cancel')}</a>
+        <a href="#" class="btn btn-primary" onclick="shopCategories.deleteCategoriesConfirm()">{lang('a_delete')}</a>
+    </div>
+</div>

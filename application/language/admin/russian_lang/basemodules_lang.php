@@ -228,7 +228,7 @@
     $lang['amt_image_preview']                                                  = 'Предварительный просмотр изображений';
     $lang['amt_width']                                                          = 'Ширина';
     $lang['amt_px']                                                             = 'px';
-    $lang['amt_width']                                                          = 'Высота';
+    $lang['amt_height']                                                          = 'Высота';
     $lang['amt_image_icons']                                                    = 'Иконки изображений';
     $lang['amt_water_mark']                                                     = 'Водяной знак';
     $lang['amt_hor_align']                                                      = 'Горизонтальное выравнивание';
@@ -300,7 +300,7 @@
     //modules/install/views/done.php
 //    $lang['amt_install_complete']                                               = 'Установка завершена.';
 //    $lang['amt_to_controll_panel']                                              = 'Перейти в панель управления';
-//    $lang['amt_main_page']                                                      = 'Главная страница';
+    $lang['amt_main_page']                                                      = 'Главная страница';
 //    
 //    //modules/install/views/main.php
 //    $lang['amt_imagecms_install']                                               = 'ImageCMS - Установка';
