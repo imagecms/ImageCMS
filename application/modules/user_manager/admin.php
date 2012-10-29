@@ -24,7 +24,7 @@ class Admin extends MY_Controller {
      * Select roles and displau main template
      */
 
-    function index($id = Null) {
+    function index() {
         $this->set_tpl_roles();
         $this->template->add_array($this->genre_user_table());
         $this->template->add_array($this->show_edit_prems_tpl($id = 2));
@@ -608,13 +608,12 @@ class Admin extends MY_Controller {
         }
 
         showMessage(lang('amt_changes_saved'));
-        pjax('/admin/components/init_window/user_manager#privilege');
     }
 
-    function show_edit_prems_tpl($selected_role = 2) {
+    function show_edit_prems_tpl($id) {
 
         $this->load->model('dx_auth/permissions', 'permissions');
-        $permissions = $this->permissions->get_permission_data($selected_role);
+        $permissions = $this->permissions->get_permission_data($id);
 
         $all_perms = $this->get_permissions_table();
 
@@ -632,7 +631,7 @@ class Admin extends MY_Controller {
         array_multisort($count, SORT_ASC, $groups);
 
         $this->template->add_array(array(
-            'selected_role' => $selected_role,
+            'selected_role' => $id,
             'roles' => $this->db->get('roles')->result_array(),
             'all_perms' => $all_perms,
             'permissions' => $permissions,
