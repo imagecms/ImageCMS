@@ -26,7 +26,7 @@
             <div class="frame_title clearfix">
                 <div class="pull-left">
                     <span class="help-inline"></span>
-                    <span class="title">{lang('a_all_modules')}</span>
+                    <span class="title" id="allM">{lang('a_all_modules')}</span>
                 </div>
                 <div class="pull-right">
                     <div class="d-i_b">
@@ -35,8 +35,8 @@
                 </div>    
             </div>
             <div class="btn-group myTab m-t_10" data-toggle="buttons-radio">
-                <a href="#modules" class="btn btn-small active">{lang('a_modules')}</a>
-                <a href="#set_modul" class="btn btn-small">{lang('a_install_modules')}</a>
+                <a href="#modules" class="btn btn-small active" onclick="$('#allM').html('{lang('a_all_modules')}')">{lang('a_modules')}</a>
+                <a href="#set_modul" class="btn btn-small" onclick="$('#allM').html('{lang('a_install_modules')}')">{lang('a_install_modules')}</a>
             </div>
             <div class="tab-content">
                 {if count($installed) != 0}
