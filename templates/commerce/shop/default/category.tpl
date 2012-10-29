@@ -42,6 +42,7 @@
                     </form>
                 </div>
                 <ul>
+                    
                     <!--  Render produts list   -->
                     {echo $order_method}
                     {foreach $products as $product}

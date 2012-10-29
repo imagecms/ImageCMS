@@ -726,12 +726,14 @@ $(document).ready(function() {
         $('#item_page_id').attr('value', $(this).attr('data-id'));
     });
 
-    $('.link_type').on('change', function() {
+    $('.link_type').live('change', function() {
         var identif = $(this).val();
         $('.edit_holder').hide();
         $('#' + identif).show();
-        $('.submit_link').attr('data-form', '#' + identif + '_form');
-        $('input[name=item_type]').attr('value', identif);
+        $('.submit_link').each(function(){
+            $(this).attr('data-form', '#' + identif + '_form')
+            $('input[name=item_type]').attr('value', identif);
+        });
     });
 
     $('.category_item').live('click', function() {
