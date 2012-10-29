@@ -192,6 +192,9 @@ $lang['a_desc'] = 'Описание';
 $lang['a_save'] = 'Сохранить';
 $lang['a_cancel'] = 'Отмена';
 
+$lang['a_delete_group'] = 'Удалить группу';
+$lang['a_create_group'] = 'Создать привилегию';
+
 //category_edit.tpl
 //$lang['a_param']		=	'Параметры';
 $lang['a_edit_on_language'] = 'Редактировать на языке';
@@ -733,6 +736,9 @@ $lang['a_manu_item_translate'] = 'Перевод пункта меню';
 $lang['a_show_on_map'] = 'Показать на карте';
 $lang['a_key_exists'] = 'Сертификат с таким ключем уже существует'; 
 $lang['a_edit_menu_item'] = 'Редактировать пункт меню';
+$lang['a_edit_status'] = 'Редактировать статус';
+$lang['a_edit_callback'] = 'Редактировать колбек';
+$lang['a_edit_topic_callback'] = 'Редактировать тему колбека';
 $lang['a_products_without_images'] = 'Товары без картинок';
 $lang['a_comments'] = 'Комментарии';
 

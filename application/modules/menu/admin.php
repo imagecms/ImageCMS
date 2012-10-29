@@ -34,7 +34,7 @@ class Admin extends MY_Controller {
 
     function index() {
         $root_menus = $this->db->get('menus')->result_array();
-        $this->render('menu_list', array('menus' => $root_menus));
+        $this->render('menu_list', array('menus' => $root_menus), true);
     }
 
     /**
@@ -52,9 +52,9 @@ class Admin extends MY_Controller {
         $this->template->assign('menu_result', $this->menu_result);
         $this->template->assign('insert_id', $ins_id['id']);
         $this->template->assign('menu_title', $ins_id['main_title']);
-        if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
-            $this->fetch_tpl('main');
-        else
+//        if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
+//            $this->fetch_tpl('main');
+//        else
             $this->display_tpl('main');
     }
 
@@ -1020,9 +1020,9 @@ class Admin extends MY_Controller {
     public function render($viewName, array $data = array(), $return = false) {
         if (!empty($data))
             $this->template->add_array($data);
-        if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
-            $this->template->fetch('file:' . 'application/modules/menu/templates/' . $viewName);
-        else
+//        if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
+//            $this->template->fetch('file:' . 'application/modules/menu/templates/' . $viewName);
+//        else
             $this->template->show('file:' . 'application/modules/menu/templates/' . $viewName);
         exit;
 

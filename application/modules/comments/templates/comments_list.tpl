@@ -18,7 +18,7 @@
                         <li><a href="#" class="to_approved">В одобреные</a></li>
                     </ul>
                 </div>
-                <button type="button" class="btn btn-small disabled action_on" id="comment_delete"><i class="icon-trash"></i>{lang('a_delete')}</button>
+                <button type="button" class="btn btn-small btn-danger disabled action_on" id="comment_delete"><i class="icon-trash icon-white"></i>{lang('a_delete')}</button>
                 <a class="btn btn-small pjax" href="/admin/components/cp/comments/show_settings"><i class="icon-wrench"></i>Настройки</a>
             </div>
         </div>    

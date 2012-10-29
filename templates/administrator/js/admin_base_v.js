@@ -151,7 +151,7 @@ $(document).ready(function() {
     });
 
     //$('.products_table').find('button.refresh_price').live('click', function() {
-    $('button.refresh_price').live('click', function() {
+    $('button.refresh_price').die('click').live('click', function() {
         var btn = $(this);
         var variant = btn.attr('variant-id');
         var variantId = {};
@@ -159,27 +159,19 @@ $(document).ready(function() {
 
         variantId['price'] = price;
 
-        console.log(variant);
+//        console.log(variant);
         
         if (typeof variant !== 'undefined' && variant !== false)
             variantId['variant'] = variant;
 
-//        $.ajax({
-//            type: 'POST',
-//            data: variantId,
-//            url: base_url + 'admin/components/run/shop/products/ajaxUpdatePrice/' + btn.attr('data-id'),
-//            success: function(data) {
-//                $('.notifications').append(data);
-//            }
-//        });
-        
-        $.post('/admin/components/run/shop/products/ajaxUpdatePrice/' + btn.attr('data-id'), {
-                variant: variantId
-        },
-                function(data) {
-                    $('.notifications').append(data);
-                }
-        );
+        $.ajax({
+            type: 'POST',
+            data: variantId,
+            url: base_url + 'admin/components/run/shop/products/ajaxUpdatePrice/' + btn.attr('data-id'),
+            success: function(data) {
+                $('.notifications').append(data);
+            }
+        });
 
         //btn.toggleClass('btn-primary active');
     });
