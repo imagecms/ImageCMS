@@ -125,7 +125,8 @@ class Comments extends MY_Controller {
         $comments = $this->template->read($this->tpl_name, $data);
 
         ($hook = get_hook('comments_assign_tpl_data')) ? eval($hook) : NULL;        
-
+        //$this->render('comments_list', array('comments'=>$comments));
+        
         $this->template->add_array(array(
             'comments' => $comments,
         ));

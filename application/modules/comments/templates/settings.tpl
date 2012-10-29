@@ -1,66 +1,78 @@
-<div class="top-navigation">
-        <div style="float:left;">
-            <ul>
-            <li>
-                <p>{lang('amt_comment_settings')}</p>
-            </li>
-            </ul>
+<!--<ul class="breadcrumb">
+    <li><a href="#">Главная</a> <span class="divider">/</span></li>
+    <li class="active">Список товаров</li>
+</ul>-->
+<section class="mini-layout">
+    <div class="frame_title clearfix">
+        <div class="pull-left">
+            <span class="help-inline"></span>
+            <span class="title">{lang('amt_comment_settings')}</span>
         </div>
-
-        <div align="right" style="padding:5px;">
-            <input type="button" class="button_silver_130" value="{lang('amt_cancel')}" onclick="ajax_div('page', base_url + 'admin/components/cp/comments/'); return false;" />
+        <div class="pull-right">
+            <div class="d-i_b">
+                <a href="{$BASE_URL}admin/components/cp/comments" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
+                <button type="button" class="btn btn-small action_on formSubmit" data-form="#comment_settings_form" data-action="tomain"><i class="icon-ok"></i>{lang('a_saves')}</button>
+            </div>
+        </div>                            
+    </div>
+    <div class="tab-content">
+        <div class="tab-pane active" id="modules">
+            <div class="row-fluid">
+                <form method="post" action="{site_url('admin/components/cp/comments/update_settings')}" class="form-horizontal" id="comment_settings_form">
+                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                        <thead>
+                            <tr>
+                                <th colspan="6">
+                                    {lang('a_param')}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="6">
+                                    <div class="inside_padd">
+                                        <div class="row-fluid">
+                                            <div class="control-group m-t_10">
+                                                <label class="control-label">{lang('amt_max_comment_length')}:</label>
+                                                <div class="controls">
+                                                    <input type="text" value="{$settings.max_comment_length}" name="max_comment_length"/> 
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label">{lang('amt_restrictions')}:</label>
+                                                <div class="controls">
+                                                    <input type="text" value="{$settings.period}" name="period"/>
+                                                    <span class="help-inline">{lang('amt_restrictions_frequency')}</span>
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label" >{lang('amt_disallove_comments_for_unregistered')}</label>
+                                                <div class="controls">
+                                                    <input type="checkbox" name="can_comment" value="1"  {if $settings.can_comment == 1}checked="checked"{/if} />
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label">{lang('amt_admin_approve_on')}</label>
+                                                <div class="controls" >
+                                                    <input type="checkbox" name="use_moderation" value="1" {if $settings.use_moderation}checked="checked"{/if} />
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label">{lang('amt_use_captcha')}</label>
+                                                <div class="controls" >
+                                                    <input type="checkbox" name="use_captcha" value="1" {if $settings.use_captcha}checked="checked"{/if} />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    {form_csrf()}
+                </form>
+            </div>
         </div>
-</div>
-<div style="clear:both;"></div>
-
-<form method="post" action="{site_url('admin/components/cp/comments/update_settings')}" id="comments_settings_form" style="width:100%;">
-   		<div class="form_text">{lang('amt_max_comment_length')}</div>
-		<div class="form_input">
-            <input type="text" value="{$settings.max_comment_length}" name="max_comment_length" class="textbox_long"/> 
-        </div>
-		<div class="form_overflow"></div>
-
-   		<div class="form_text">{lang('amt_restrictions')}</div>
-		<div class="form_input">
-            <input type="text" value="{$settings.period}" name="period" class="textbox_long"/>
-            <br /><span class="lite">{lang('amt_restrictions_frequency')}</span>
-        </div>
-		<div class="form_overflow"></div>
-
-   		<div class="form_text"></div>
-		<div class="form_input">
-            <label><input type="checkbox" name="can_comment" value="1"  {if $settings.can_comment == 1}checked="checked"{/if} />{lang('amt_disallove_comments_for_unregistered')}</label>
-        </div>
-		<div class="form_overflow"></div> 
-
-   		<div class="form_text"></div>
-		<div class="form_input">
-            <label><input type="checkbox" name="use_moderation" value="1" {if $settings.use_moderation}checked="checked"{/if} />{lang('amt_admin_approve_on')}</label>
-        </div>
-		<div class="form_overflow"></div>
-
-   		<div class="form_text"></div>
-		<div class="form_input">
-           <label><input type="checkbox" name="use_captcha" value="1" {if $settings.use_captcha}checked="checked"{/if} />{lang('amt_use_captcha')}</label>
-        </div>
-		<div class="form_overflow"></div>
-
-   		<div class="form_text"></div>
-		<div class="form_input"></div>
-		<div class="form_overflow"></div>
-
-   		<div class="form_text"></div>
-		<div class="form_input"></div>
-		<div class="form_overflow"></div>
-
-   		<div class="form_text"></div>
-		<div class="form_input"></div>
-		<div class="form_overflow"></div> 
-
-   		<div class="form_text"></div>
-		<div class="form_input">
-            <input type="submit" name="button"  class="button_130" value="{lang('amt_save')}" onclick="ajax_me('comments_settings_form');" /> 
-            <a href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/comments'); return false;" style="padding:5px;">{lang('amt_cancel')}</a> 
-        </div>
-		<div class="form_overflow"></div> 
-{form_csrf()}</form>
+        <div class="tab-pane"></div>
+    </div>
+</section>

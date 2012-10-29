@@ -37,13 +37,13 @@
         <div class="tovar_frame clearfix{if $model->firstvariant->getstock()== 0} not_avail{/if}">
             <div class="thumb_frame f_l">
                 {if sizeof($model->getSProductImagess()) > 0}
-                    {foreach $model->getSProductImagess() as $image}
-                        <span>
-                            <a  class="grouped_elements fancybox-thumb" rel="fancybox-thumb" href="{echo $image->getThumbUrl()}" data-title-id="fancyboxAdditionalContent">                         
-                                <img src="{echo $image->getThumbUrl()}" width="90"/>
-                            </a>                                
-                        </span>
-                    {/foreach}
+                {foreach $model->getSProductImagess() as $image}
+                <span>
+                    <a  class="grouped_elements fancybox-thumb" rel="fancybox-thumb" href="{echo $image->getThumbUrl()}" data-title-id="fancyboxAdditionalContent">                         
+                        <img src="{echo $image->getThumbUrl()}" width="90"/>
+                    </a>                                
+                </span>
+                {/foreach}
                 {/if}                
             </div>
             <div class="photo_block">
@@ -131,7 +131,7 @@
                                         {echo $model->getOldPrice()}
                                         <sub> {$CS}</sub>
                                     </del>
-                                </div>
+                                    </div>
                             {/if}
                         {/if}
                         <span id="pricem{echo $model->getId()}">
@@ -451,5 +451,5 @@
                 {/foreach}
             </ul>
         </div>
-    </div>
-</div>
+            </div>
+        </div>

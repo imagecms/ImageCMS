@@ -282,6 +282,17 @@ $(document).ready(function(){
             'overlayColor' : '#000'
         });
     }
+    var main_menu_w = $('.main_menu').width();
+    var main_menu_l = $('.main_menu > ul > li').length;
+    main_menu_l = Math.floor(main_menu_l/2);
+    $('.main_menu > ul > li:gt('+(main_menu_l-1)+')').each(function(){
+        var $this = $(this);
+        $this_ul = $this.children('ul');
+        var $this_w = $this.width();
+        var $this_p_l = $this.position().left;
+        $this_ul.css('right', main_menu_w - $this_p_l - $this_w - 2)
+    })
+    
 });
    
 $(window).load(function(){
@@ -299,24 +310,48 @@ $(window).load(function(){
     }, function(){
         $('.cycle ul').cycle('resume');
     });
-    $('.featured .carusel').jCarouselLite({
-        btnNext: '.featured .next',
-        btnPrev: '.featured .prev',
-        visible: 3
-    });
-    $('.promotion .carusel').jCarouselLite({
-        btnNext: '.promotion .next',
-        btnPrev: '.promotion .prev',
-        visible: 1
-    });
-    width_brand=0;
-    $('.brand .carusel').jCarouselLite({
-        btnNext: '.brand .next',
-        btnPrev: '.brand .prev',
-        visible: 6
-    });
-    $('.brand li').each(function(){
-        width_brand+=$(this).outerWidth(true);
-    });
-    $('.brand ul').css('width',width_brand);
+    
+    var $js_carousel = $('.carousel_js'),
+
+    $item = new Array();
+    $item_l = new Array();
+    $item_w = new Array();
+    $this_carousel = new Array();
+    $this_prev = new Array();
+    $this_next = new Array();
+    
+    $js_carousel.each(function(index){
+        var index = index,
+        $this = $(this);
+
+        $item[index] = $this.find('li');
+        $item_l[index] = $item[index].length;
+        $item_w[index] = $item[index].outerWidth(true);
+        $this_carousel[index] = $this.find('.carusel');
+        $this_prev[index] = $this.find('.prev');
+        $this_next[index] = $this.find('.next');
+    })
+    function carousel(){
+        var cont_width = 940;
+        $js_carousel.each(function(index){
+            var index = index,
+            $count_visible = (cont_width /($item_w[index])).toFixed(1);
+
+            if ($item_w[index]*$item_l[index] > cont_width){
+                //$this_prev[index].add($this_next[index]).fadeIn();
+                $this_carousel[index].jcarousel({
+                    buttonNextHTML: $this_next[index],
+                    buttonPrevHTML: $this_prev[index],
+                    visible: $count_visible,
+                    scroll:1
+                })
+                $this_next[index].add($this_prev[index]).css('display', 'inline-block');
+            }
+            else {
+                $this_carousel[index].width($item_w[index]*$item_l[index])
+                $this_next[index].add($this_prev[index]).css('display', 'none');
+            }
+        });
+    }
+    carousel();
 });

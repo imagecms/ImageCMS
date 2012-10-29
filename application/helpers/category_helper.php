@@ -94,11 +94,20 @@ if (!function_exists('get_category_name'))
 
         if ($c['name'] == '')
         {
-            $c['name'] = 'root';
+            $c['name'] = lang('a_dasboard_no_category');
         }
 
         return $c['name'];
     }
 }
+
+function sub_categories_admin($mas)
+    {
+        
+        foreach($mas as $k=>$v){
+            
+        }
+        
+    }
 
 /* End of file category_helper.php */
