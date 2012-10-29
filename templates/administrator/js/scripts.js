@@ -218,7 +218,7 @@ function init_2(){
         if (el.closest('[data-tree]').length > 0) el.closest('tr').addClass('active');
         else if (el.closest('.sortable2').find('tr').length > 0) el.closest('.sortable2').find('tr').has(el).addClass('active')
         
-        textcomment_s_h('s', el);
+        //textcomment_s_h('s', el);
     }
     function changeCheckallreset(el)
     {
