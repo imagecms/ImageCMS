@@ -273,7 +273,7 @@ function init_2(){
     })
     
     var dataSubmit = $("[data-submit]");
-    $(document).live('keydown', function (e) {
+    $(document).die('keydown').live('keydown', function (e) {
         e = e || window.event;
         if (e.keyCode === 83 && event.ctrlKey) {
             if (!dataSubmit.hasClass('disabled')) dataSubmit.trigger('click');
@@ -531,16 +531,16 @@ function initAdminArea(){
     }
     $('.js_price').die('click').live('click', function(){
         $(this).next().show();
-    }).live('focus', function(){
+    }).die('focus').live('focus', function(){
         $(this).click();
-    }).live('blur', function(){
+    }).die('blur').live('blur', function(){
         if ($(this).data('value') == $(this).val()){
             $(this).next().hide();
             $(this).tooltip('hide');
         }
-    }).live('keypress', function(){
+    }).die('keydown').live('keydown', function(event){
         if (what_key('13')){
-        //alert(what_key('13'))
+            $(this).next().trigger('click');
         }
     });
     $('.share_alt').hover(function(){
@@ -680,7 +680,7 @@ function initAdminArea(){
             }
         });
     
-    $('.listFilterForm').live('focus', function(){
+    $('.listFilterForm').die('focus').live('focus', function(){
         $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
     });
     
@@ -700,7 +700,7 @@ function initAdminArea(){
         $(this).closest('.control-group').find('input:file').click();
     });
     
-    $('[data-url="file"] input[type="file"]').live('change', function(e){
+    $('[data-url="file"] input[type="file"]').die('change').live('change', function(e){
         $this = $(this);
         $type_file = $this.val();
         //if ($this.parent().next().is(':not([data-flie="url"])')) {
