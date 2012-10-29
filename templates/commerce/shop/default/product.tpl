@@ -17,17 +17,6 @@
 <script src="{$SHOP_THEME}js/rating/jquery.rating-min.js"></script>
 <script src="{$SHOP_THEME}js/rating/jquery.MetaData-min.js"></script>
 <script src="{$SHOP_THEME}js/product.js"></script>
-<script type="text/javascript" src="http://userapi.com/js/api/openapi.js?49"></script>
-<script type="text/javascript" src="https://apis.google.com/js/plusone.js">
-    {parsetags: 'explicit'}
-</script>
-<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script> 
-
-
-<!-- BEGIN LIGHTBOX -->
-<script type="text/javascript" src="{$SHOP_THEME}js/lightbox/scripts/jquery.color.min.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/lightbox/scripts/jquery.lightbox.min.js"></script>
-<!-- END LIGHTBOX -->
 
 <link rel="stylesheet" href="{$SHOP_THEME}/js/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.6" type="text/css" media="screen" />
 <script type="text/javascript" src="{$SHOP_THEME}/js/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.6"></script>
@@ -37,13 +26,13 @@
         <div class="tovar_frame clearfix{if $model->firstvariant->getstock()== 0} not_avail{/if}">
             <div class="thumb_frame f_l">
                 {if sizeof($model->getSProductImagess()) > 0}
-                {foreach $model->getSProductImagess() as $image}
-                <span>
-                    <a  class="grouped_elements fancybox-thumb" rel="fancybox-thumb" href="{echo $image->getThumbUrl()}" data-title-id="fancyboxAdditionalContent">                         
-                        <img src="{echo $image->getThumbUrl()}" width="90"/>
-                    </a>                                
-                </span>
-                {/foreach}
+                    {foreach $model->getSProductImagess() as $image}
+                        <span>
+                            <a  class="grouped_elements fancybox-thumb" rel="fancybox-thumb" href="{echo $image->getThumbUrl()}" data-title-id="fancyboxAdditionalContent">                         
+                                <img src="{echo $image->getThumbUrl()}" width="90"/>
+                            </a>                                
+                        </span>
+                    {/foreach}
                 {/if}                
             </div>
             <div class="photo_block">
@@ -103,7 +92,7 @@
                     <span class="response">{echo $model->totalComments()} {echo SStringHelper::Pluralize($model->totalComments(), array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}</span>
                     </br><span>{echo ShopCore::app()->SProductSpy->getsubscribescount($model->getId())}</span>
                 </div>
-                {echo $CI->load->module('share')->_make_share_form()}
+                
                 <div class="buy clearfix m-t_30">
                     {if count($model->getProductVariants())>1}
                         Выбор варианта:</br>
@@ -131,7 +120,7 @@
                                         {echo $model->getOldPrice()}
                                         <sub> {$CS}</sub>
                                     </del>
-                                    </div>
+                                </div>
                             {/if}
                         {/if}
                         <span id="pricem{echo $model->getId()}">
@@ -181,7 +170,7 @@
                 <p class="c_b">{echo $model->getShortDescription()}</p>
                 <p>{echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInline($model)}</p>
                 <div>
-                    {echo $CI->load->module('share')->_make_like_buttons()}
+                    
                 </div>
             </div>
         </div>
@@ -317,7 +306,6 @@
         </div>
     {/if}   
     <!------------------------------------------------------------------------------------------------------------Finish-->
-
     {if count(getSimilarProduct($model, 20)) > 1}
         <div class="featured carusel_frame">
             <div class="f-s_18 c_6 center">{lang('s_similar_product')}</div>
@@ -357,7 +345,6 @@
             <button class="next"></button>
         </div>
     {/if} 
-
     <div class="center">
         <div class="tabs f_l w_770 info_tovar">
             <ul class="nav_tabs">
@@ -412,7 +399,6 @@
                         {/foreach}    
                     </ul>
                 </div>
-
             {/if}
             <div id="four">
                 {$comments}
@@ -451,5 +437,5 @@
                 {/foreach}
             </ul>
         </div>
-            </div>
-        </div>
+    </div>
+</div>

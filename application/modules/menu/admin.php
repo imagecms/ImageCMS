@@ -55,7 +55,7 @@ class Admin extends MY_Controller {
 //        if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
 //            $this->fetch_tpl('main');
 //        else
-            $this->display_tpl('main');
+        $this->display_tpl('main');
     }
 
     function list_menu_items($menu_id = 0) {
@@ -87,7 +87,7 @@ class Admin extends MY_Controller {
             $this->form_validation->set_rules('item_type', 'Item Type', 'required');
             $this->form_validation->set_rules('title', 'Заголовок', 'required');
             if ($_POST['item_type'] == 'page') {
-                $this->form_validation->set_rules('title', 'Заголовок', 'required');
+                //$this->form_validation->set_rules('title', 'Заголовок', 'required');
                 $this->form_validation->set_rules('item_id', 'ID страницы', 'required');
             }
             if ($_POST['item_type'] == 'category') {
@@ -96,7 +96,7 @@ class Admin extends MY_Controller {
             if ($_POST['item_type'] == 'module') {
                 $this->form_validation->set_rules('mod_name', 'Название модуля', 'required');
                 $this->form_validation->set_rules('mod_method', 'Метод модуля', 'required');
-                $this->form_validation->set_rules('item_id', 'ID страницы', 'required');
+                $this->form_validation->set_rules('item_id', 'ID модуля', 'required');
             }
             if ($_POST['item_type'] == 'url') {
                 $this->form_validation->set_rules('item_url', 'URL', 'required');
@@ -153,14 +153,16 @@ class Admin extends MY_Controller {
                     $item_data['add_data'] = serialize($data);
                 }
                 // Error: wrong parent id
-                if ($_POST['item_type'] != 'module' || $_POST['item_type'] != 'url')
+                if ($_POST['item_type'] != 'module' AND $_POST['item_type'] != 'url') {
                     if ($_POST['item_id'] == $_POST['parent_id']) {
                         $error = TRUE;
+                        echo "dsfsdjfkldsjfskd";
                     }
+                }
 
                 if ($error == TRUE) {
                     showMessage('Ошибка');
-                    return FALSE;
+                    //return FALSE;
                 } else {
                     $this->db->insert('menus_data', $item_data);
                     $lastId = $this->db->insert_id();
@@ -1023,7 +1025,7 @@ class Admin extends MY_Controller {
 //        if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
 //            $this->template->fetch('file:' . 'application/modules/menu/templates/' . $viewName);
 //        else
-            $this->template->show('file:' . 'application/modules/menu/templates/' . $viewName);
+        $this->template->show('file:' . 'application/modules/menu/templates/' . $viewName);
         exit;
 
         if ($return === false)
