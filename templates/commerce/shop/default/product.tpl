@@ -208,7 +208,7 @@
     <!-----------------------------------------------------------------------Акционное предложение начало-->
     {if $model->getShopKits()->count() > 0}
         <div class="f-s_18 c_6 center">{lang('s_spec_promotion')}</div>
-        <div class="promotion carusel_frame">
+        <div class="promotion carusel_frame carousel_js">
             <div class="carusel">
                 <ul class="">
                     {foreach $model->getShopKits() as $kid}
@@ -307,7 +307,7 @@
     {/if}   
     <!------------------------------------------------------------------------------------------------------------Finish-->
     {if count(getSimilarProduct($model, 20)) > 1}
-        <div class="featured carusel_frame">
+        <div class="featured carusel_frame carousel_js">
             <div class="f-s_18 c_6 center">{lang('s_similar_product')}</div>
             <div class="carusel">
                 <ul>
@@ -316,7 +316,7 @@
                         {$sim_prod = currency_convert($sp->firstvariant->getPrice(), $sp->firstvariant->getCurrency())}
                         {$style = productInCart($cart_data, $sp->getId(), $sp->firstVariant->getId(), $sp->firstVariant->getStock())}
                         <li>
-                            <div class="f_l smallest_item {if $sp->firstvariant->getstock()==0}not_avail{/if}">
+                            <div class="smallest_item {if $sp->firstvariant->getstock()==0}not_avail{/if}">
                                 <div class="photo_block">
                                     <a href="{site_url('shop/product/'.$sp->getId())}">
                                         <img src="{productImageUrl($sp->getSmallModImage())}"/>
