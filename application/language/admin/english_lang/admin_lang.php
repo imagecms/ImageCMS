@@ -11,6 +11,8 @@ $lang['a_english'] = 'English';
 // RULES HELPER-------------------------------------------START
 
 $lang['a_delete_group'] = 'Remove group';
+$lang['a_editing_user_ba_s'] = 'Editing by';
+$lang['a_editing_group_ba_s'] = 'Editing Groups';
 $lang['a_create_group'] = 'Create privilege';
 $lang['a_acc_per_43'] = 'Deleting photos';
 $lang['a_acc_per_3'] = 'Group';

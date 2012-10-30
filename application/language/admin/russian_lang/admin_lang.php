@@ -11,6 +11,8 @@ $lang['a_acc_per_43'] = 'Удаление фотографий';
 
 // RULES HELPER-------------------------------------------STAR
 $lang['a_acc_per_42'] = 'Магазин';
+$lang['a_editing_group_ba_s'] = 'Редактирование группи';
+$lang['a_editing_user_ba_s'] = 'Редактирование пользователя';
 $lang['a_dasboard_no_category']		=	'Без категории';
 $lang['a_acc_per_41'] = 'Ошибка проверки прав доступа';
 $lang['a_acc_per_40'] = 'Недостаточно прав для';
@@ -263,6 +265,8 @@ $lang['a_autoload'] = 'Автозагрузка';
 $lang['a_add_to_menu'] = 'Добавить в меню';
 //$lang['a_save'] = 'Сохранить';
 
+
+$lang['a_possible_values'] = 'Перечинь значений';
 //create_cat.tpl
 //$lang['a_param'] = 'Параметры';
 //$lang['a_name'] = 'Название';
