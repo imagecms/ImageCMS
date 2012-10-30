@@ -25,7 +25,7 @@ class Admin_search extends MY_Controller {
 		$this->load->helper('category');
 		
 		$searchText = trim($this->input->get('q'));
-		if (mb_strlen($searchText, 'UTF-8') >= 3)
+		if (mb_strlen($searchText, 'UTF-8') >= 2)
 		{
 			$config = array(
 				'table'        => 'content',
@@ -41,6 +41,10 @@ class Admin_search extends MY_Controller {
 							'publish_date <=' => 'UNIX_TIMESTAMP()',
 							'backticks'       => FALSE,
 						),
+                                        array(
+                                                        'id =' => (int)$searchText,
+                                                        'backticks' => 'both',
+                                        ),
 //					array(
 //							'lang_alias ' => '0',
 //						),
@@ -128,7 +132,8 @@ class Admin_search extends MY_Controller {
 //                        
 //                        var_dump($usersResult['query']);
                         
-                    $usersResult = $this->db->where("username LIKE '%$searchText%'" )
+                    $usersResult = $this->db->where('id =', $searchText)
+                            ->or_where("username LIKE '%$searchText%'" )
                             ->get('users')
                             ->result_array();
                     
@@ -340,7 +345,7 @@ class Admin_search extends MY_Controller {
                     $tokens[] = $u['email'];
                 }
 
-                echo json_encode($tokens);
+                echo json_encode(array_values(array_unique($tokens)));
             }
             else
                 redirect ('/admin');

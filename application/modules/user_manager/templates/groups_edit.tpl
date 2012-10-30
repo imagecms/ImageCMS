@@ -3,7 +3,7 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('a_edit_user_mod')}</span>
+                <span class="title">{lang('a_editing_group_ba_s')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
