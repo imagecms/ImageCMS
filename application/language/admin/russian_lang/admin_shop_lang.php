@@ -7,6 +7,16 @@
     $lang['a_info_buyer_ch_stat'] = 'Notify the buyer of the status change';
     $lang['a_info_buyer_ch_stat'] = 'Уведомлять покупателя о смене статуса';
 
+    $lang['a_s_collback_list_th_s']		=	'Просмотр тем collback\'ов';
+    $lang['a_s_collback_edit_th_s']		=	'Редактирование теми collback\'а';
+    $lang['a_s_dusc_parem_comulativ_fis']		=	'Список накопительных скидок';
+    $lang['a_exp_users_systeam_failed']		=	'Вы ничего не выбрали';
+    $lang['a_exp_users_systeam_succes']		=	'Експорт успешно прошел';
+    $lang['a_s_dusc_parem_pollis_fis']		=	'Список постоянных скидок';
+    $lang['a_s_notif_status_list_eools']		=	'Просмотр статусов о появлении';
+    $lang['a_s_notif_status_create_eools']		=	'Создание статуса товара в ожидании';
+    $lang['a_s_notif_status_edit_eools']		=	'Редактирование статуса о появлении';
+    $lang['a_s_customFiled_create_ent']		=	'Тип';
     $lang['a_s_banner_new_succes']		=	'Баннер создан';
     $lang['a_mh_error_sys_m']		=	'Нет настроек ключа аккаунта или<br /> ключа списка на Mailchimp';
     $lang['a_shop_sett_xml_set_map']		=	'XML карта сайту';

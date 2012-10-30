@@ -117,6 +117,13 @@ function updateNotificationsTotal()
 
 function loadShopInterface()
 {
+    if ($('#baseSearch'))
+    {
+        $('#baseSearch').val('');
+        $('#baseSearch').attr('id', 'shopSearch');
+        $('#adminAdvancedSearch').attr('action', '/admin/components/run/shop/search/advanced');        
+        initShopSearch();
+    }
     // Switch menu
     $('#baseAdminMenu').hide();
     $('#shopAdminMenu').show();
@@ -134,6 +141,13 @@ function loadShopInterface()
 
 function loadBaseInterface()
 {
+    if ($('#shopSearch'))
+    {
+        $('#shopSearch').val('');
+        $('#shopSearch').attr('id', 'baseSearch');
+        $('#adminAdvancedSearch').attr('action', '/admin/admin_search');
+        initBaseSearch();
+    }
     // Switch menu
     $('#shopAdminMenu').hide();
     $('#baseAdminMenu').show();
@@ -146,6 +160,23 @@ function loadBaseInterface()
     isShop = false;
     $('a.logo').attr('href', '/admin/dashboard');	
     return false;
+}
+
+function initBaseSearch(){
+    $.get('/admin/admin_search/autocomplete', function(data){
+        baseAutocompleteData = JSON.parse(data);
+//                console.log(baseAutocompleteData);
+        $('#baseSearch').autocomplete({
+            source: baseAutocompleteData
+        });
+    });
+}
+
+function initShopSearch(){
+
+        $('#shopSearch').autocomplete({
+            source: '/admin/components/run/shop/search/autocomplete'
+        });
 }
 
 function initElRTE()
