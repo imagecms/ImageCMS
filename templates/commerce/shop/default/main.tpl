@@ -3,6 +3,9 @@
     <head>
         <meta charset="utf-8" />
         <title>{$site_title}</title>
+        <meta name="description" content="{$site_description}" />
+        <meta name="keywords" content="{$site_keywords}" />
+        <meta name="generator" content="ImageCMS" />
         <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/style.css" media="all" />
         <!--
         <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/jquery.fancybox-1.3.4.css" media="all" />
@@ -46,8 +49,8 @@
                     {load_menu('top_menu')}
                     <ul class="user_menu m-l_19 auth_data">{include_tpl('auth_data')}</ul>
                     <ul class="user_menu cart_data_holder">                        
-<!--                        <li><a href="/" style="color:silver;">ru</a></li>
-                        <li style="margin-left: 0; padding-left: 5px;"><a href="{$BASE_URL}en" style="color:silver;">en</a></li>-->
+                        <!--                        <li><a href="/" style="color:silver;">ru</a></li>
+                                                <li style="margin-left: 0; padding-left: 5px;"><a href="{$BASE_URL}en" style="color:silver;">en</a></li>-->
                         {include_tpl('cart_data')}</ul>
                 </div>
             </div><!-- top -->
@@ -68,12 +71,14 @@
                 
                 <ul class="user_menu">
                     <!--    Show callback's form    -->
-                    {if count(get_currencies())>1}
+                    {if count(get_currencies())>2}
                         <li class="p-l_0">
                             <form action="" method="post" name="currencyChangeForm" id="currencyChangeForm">
                                 {lang('s_currency')}: <select class="changeCurrency" name="setCurrency" >
                                     {foreach get_currencies() as $currency}
-                                        <option {if ShopCore::app()->SCurrencyHelper->additional->getId() == $currency->getId()}selected{/if} value="{echo $currency->getId()}">{echo encode($currency->getName())}</option>
+                                        {if $currency->getId() != ShopCore::app()->SCurrencyHelper->default->getId()}
+                                            <option {if ShopCore::app()->SCurrencyHelper->additional->getId() == $currency->getId()}selected{/if} value="{echo $currency->getId()}">{echo encode($currency->getName())}</option>
+                                        {/if}
                                     {/foreach}
                                 </select>
                                 {form_csrf()}

@@ -262,6 +262,8 @@ $lang['a_autoload'] = 'Автозагрузка';
 $lang['a_add_to_menu'] = 'Добавить в меню';
 //$lang['a_save'] = 'Сохранить';
 
+
+$lang['a_possible_values'] = 'Перечинь значений';
 //create_cat.tpl
 //$lang['a_param'] = 'Параметры';
 //$lang['a_name'] = 'Название';
