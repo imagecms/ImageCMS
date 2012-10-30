@@ -12,6 +12,7 @@ $lang['lang_categories'] = 'Категории';
 // Auth module
 $lang['lang_register'] = 'Регистрация';
 $lang['lang_login'] = 'Логин';
+$lang['orderind_shop_sg'] = 'Оформление заказа';
 $lang['lang_password'] = 'Пароль';
 $lang['lang_confirm_password'] = 'Повторите Пароль';
 $lang['lang_confirm_new_pass'] = 'Повторите новый пароль';
@@ -74,9 +75,12 @@ $lang['search_title']   ='Поиск';
 
 $lang['s_log_out']                      =               'Вход';
 $lang['s_shop']                         =               'магазин';
+$lang['s_user_profile_succes']          =               'Данные сохранены';
+$lang['s_user_profile_lid']             =               'Личные данные';
 $lang['s_in']                           =               'в';
-$lang['s_in_p']                           =               'В';
+$lang['s_in_p']                         =               'В';
 $lang['s_out']                          =               'Выход';
+$lang['s_profile_confirm_pass']         =               'Подтверждение пароля';
 $lang['s_private']                      =               'Личный';
 $lang['s_cabinet']                      =               'Кабинет';
 $lang['s_reviews']                      =               'Отзывы';

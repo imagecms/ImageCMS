@@ -116,7 +116,7 @@
                                     
                                     <li>
                                         <span>{lang('s_paid')}:</span>
-                                        <b>{if $model->getPaid() == true} {lang(s_yes)}{else: }{lang('s_yes')}{/if}</b>
+                                        <b>{if $model->getPaid() == true} {lang('s_yes')}{else: }{lang('s_no')}{/if}</b>
                                     </li>
                                     <li>
                                         <span>{lang('s_status')}:</span>

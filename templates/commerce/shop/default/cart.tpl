@@ -1,5 +1,5 @@
 <div class="center">    
-    <h1>{lang('s_formulation')} {lang('s_order')}</h1>
+    <h1>{lang('orderind_shop_sg')}</h1>
     {if count($items) > 0}
     <form method="post" action="{site_url(uri_string())}" id="cartForm">
         
@@ -142,6 +142,7 @@
                                         {$item.gift_cert_price = $cprice.main.price}
                                         {$total -= $item.gift_cert_price}
                                     {/if}
+                                    
                                     {echo $total}
                                     <sub>{$CS}</sub>
                                     {if $item.delivery_price > 0}<span style="font-size:16px;">{lang('s_delivery')}: {echo $item.delivery_price} руб</span>{/if}
@@ -192,7 +193,7 @@
         </div>
         <div class="addres_recip f_r">
             <div class="block_title_18">
-                {}
+                
                 {if validation_errors()}
                 <div class="foot_cleaner red" style="background-color: #FFBFBF;border: 1px solid #FF0400;padding: 0 7px">{validation_errors()}</div>
                 {/if}
