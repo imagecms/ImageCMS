@@ -6,6 +6,16 @@
  */
     $lang['a_enter_sys']		=	'Log in';
     $lang['a_imageCMS_news']		=	'News of ImageCMS';
+    $lang['a_s_collback_list_th_s']		=	'Browse topics collback';
+    $lang['a_s_collback_edit_th_s']		=	'Editing by collback';
+    $lang['a_s_customFiled_create_ent']		=	'Entity';
+    $lang['a_exp_users_systeam_failed']		=	'You do not choose';
+    $lang['a_exp_users_systeam_succes']		=	'Export successfully';
+    $lang['a_s_notif_status_create_eools']		=	'Creation of Status pending';
+    $lang['a_s_notif_status_edit_eools']		=	'Editing status of the appearance of';
+    $lang['a_s_notif_status_list_eools']		=	'View the status of the appearance of';
+    $lang['a_s_dusc_parem_comulativ_fis']		=	'List of cumulative discounts';
+    $lang['a_s_dusc_parem_pollis_fis']		=	'List of permanent discounts';
     $lang['a_shop_sett_int_sco_net']		=	'Integration with social networks';
     $lang['a_shop_sett_yandex_market']		=	'Yandex.Market';
     $lang['a_mh_error_sys_m']		=	'No configuration key or<br /> key account list on Mailchimp';
