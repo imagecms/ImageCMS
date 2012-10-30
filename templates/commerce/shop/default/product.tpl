@@ -109,7 +109,7 @@
                                    data-img="{echo $pv->getmainimage()}" 
                                    data-vname="{echo $pv->getName()}" 
                                    data-vnumber="{echo $pv->getNumber()}"/>
-                            {echo $pv->getName()} {echo $var_prices.main.price} {$var_prices.main.symbol}</br>
+                            <i>{echo $pv->getName()}</i><b> {echo $var_prices.main.price}</b> {$var_prices.main.symbol}</br>
                         {/foreach}
                     {/if}
                     <div class="price f-s_26">
