@@ -143,8 +143,9 @@
                                 
 
                             {else:}
-
+                                <div class="price f-s_26 f_l">
                                 {echo $total} {$CS}
+                                </div>
 
                             {/if}
 
