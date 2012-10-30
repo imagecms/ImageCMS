@@ -257,14 +257,14 @@ class Admin extends MY_Controller {
     // Template functions
 	private function display_tpl($file)
 	{
-        $file =  realpath(dirname(__FILE__)).'/templates/'.$file.'.tpl';  
-		$this->template->display('file:'.$file);
+        $file =  realpath(dirname(__FILE__)).'/templates/'.$file;  
+		$this->template->show('file:'.$file);
 	}
 
 	private function fetch_tpl($file)
 	{
-        $file =  realpath(dirname(__FILE__)).'/templates/'.$file.'.tpl';  
-		return $this->template->fetch('file:'.$file);
+        $file =  realpath(dirname(__FILE__)).'/templates/'.$file;  
+		return $this->template->show('file:'.$file);
 	}
 
 }
