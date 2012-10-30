@@ -13,7 +13,7 @@ $lang['lang_categories1'] = 'Categories';
 // Auth module
 $lang['lang_register'] = 'Registration';
 $lang['lang_login'] = 'Login';
-$lang['lang_password'] = 'Password';
+$lang['lang_password'] = 'Пароль';
 $lang['lang_confirm_password'] = 'Repeat Password';
 $lang['lang_confirm_new_pass'] = 'Repeat new password';
 $lang['lang_submit'] = 'Send';

@@ -1,5 +1,4 @@
-<form action="{$BASE_URL}admin/components/save_settings/{$name}" method="post" id="component_save_form" style="width:100%;">
-&nbsp;
+<form action="{$BASE_URL}admin/components/save_settings/{$name}" method="post" id="component_save_form" style="width:100%;">&nbsp;
 	<div class="form_text"></div>
 	<div class="form_input"><label><input name="status" value="1" {if $enabled == 1} checked="checked" {/if}  type="checkbox" /> {lang('a_url_access_on')}</label></div>
 	<div class="form_overflow"></div>

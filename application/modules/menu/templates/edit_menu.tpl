@@ -1,34 +1,79 @@
-<div style="padding:5px;color:#73BACD;background-color:#73BACD;color:#fff">
-    <h2>{lang('amt_edit_menu')}:</h2>
-</div>
-    <form action="{$SELF_URL}/update_menu/{$id}" method="post" id="form_edit_root_menu">
-        <div class="form_text">{lang('amt_name')}:</div>
-        <div class="form_input"><input type="text" class="textbox" name="menu_name" value="{$name}" /></div>
-        <div class="form_overflow"></div>
 
-        <div class="form_text">{lang('amt_tname')}:</div>
-        <div class="form_input"><input type="text" class="textbox" name="main_title" value="{$main_title}" /></div>
-        <div class="form_overflow"></div>
-
-        <div class="form_text">{lang('amt_description')}:</div>
-        <div class="form_input"><input type="text" class="textbox" name="menu_desc" value="{$description}" /></div>
-        <div class="form_overflow"></div>
-
-        <div class="form_text">{lang('amt_template_folder')}:</div>
-        <div class="form_input"><input type="text" class="textbox" name="menu_tpl" value="{$tpl}" /></div>
-        <div class="form_overflow"></div>
-
-        <div class="form_text">{lang('amt_open_menu_folder')}:</div>
-        <div class="form_input">
-        	<input type="text" class="textbox" name="menu_expand_level" value="{$expand_level}" />        	
+<div class="container">
+    <section class="mini-layout">
+        <div class="frame_title clearfix">
+            <div class="pull-left">
+                <span class="help-inline"></span>
+                <span class="title">Редактировать пункт меню</span>
+            </div>
+            <div class="pull-right">
+                <div class="d-i_b">
+                    <a href="{$BASE_URL}admin/components/cp/menu" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
+                    <!--<button type="submit" class="btn btn-small action_on saveButton"  idMenu="{$id}"><i class="icon-ok"></i>Сохранить</button>-->
+                    <button type="submit" class="btn btn-small action_on formSubmit"  data-form="#saveForm"><i class="icon-ok"></i>{lang('a_save')}</button>
+                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#saveForm" data-action="tomain"><i class="icon-check"></i>Сохранить и выйти</button>
+                </div>
+            </div>                            
         </div>
-        <div class="form_overflow"></div>
+        <form action="/admin/components/cp/menu/update_menu/{$id}" method="POST"  id="saveForm">
+            <div class="tab-content">
+                <div class="tab-pane active" id="modules">
+
+                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                        <thead>
+                            <tr>
+                                <th colspan="6">
+                                    {lang('amt_edit_menu')}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="6">
+                                    <div class="inside_padd">
+                                        <div class="row-fluid">
+
+                                            <div class="form-horizontal">
+                                                <div class="control-group m-t_10">
+                                                    <label class="control-label" for="inputParent">{lang('amt_name')}:</label>
+                                                    <div class="controls">
+                                                        <input type="text" name="menu_name" name1='ssss' value="{$name}" />
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label" for="inputWayImg">{lang('amt_tname')}:</label>
+                                                    <div class="controls">
+                                                        <input type="text" class="textbox" name="main_title" value="{$main_title}" />
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label" for="inputWayImg">{lang('amt_description')}:</label>
+                                                    <div class="controls">
+                                                        <input type="text" class="textbox" name="menu_desc" value="{$description}" />
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label" for="inputWayImg">{lang('amt_template_folder')}:</label>
+                                                    <div class="controls">
+                                                        <input type="text" class="textbox" name="menu_tpl" value="{$tpl}" />
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label" for="inputWayImg">{lang('amt_open_menu_folder')}:</label>
+                                                    <div class="controls">
+                                                        <input type="text" class="textbox" name="menu_expand_level" value="{$expand_level}" />  
+                                                    </div>
+                                                </div>
 
 
-        <div class="form_text"></div>
-        <div class="form_input">
-            <input type="submit" value="{lang('amt_save')}" class="button" onclick="ajax_me(this.form.id);" />
-            <input type="submit" value="{lang('amt_cancel')}" class="button" onclick="MochaUI.closeWindow($('edit_menu_w')); return false;" />
-        </div>
-        <div class="form_overflow"></div>
-    {form_csrf()}</form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                </section>
+            </div>{form_csrf()}
+        </form>

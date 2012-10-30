@@ -1,35 +1,84 @@
-<table  width="100%">
-		  	<tr style="background-color:#EDEDED">
-				<td><b>{lang('a_name')}</b></td>
-				<td><b>{lang('a_folder')}</b></td>
-				<td><b>{lang('a_identif')}</b></td>
-				<td><b>{lang('a_tpl')}</b></td>
-				<td><b>{lang('a_image')}</b></td>
-				<td></td>
-			</tr>
-			<tbody>
-
-		{foreach $langs as $lang}
-		<tr>
-			<td><a onclick="edit_lang('{$lang.id}');">{$lang.lang_name}</a></td>
-			<td>{$lang.folder}</td>
-			<td>{$lang.identif}</td>
-			<td>{$lang.template}</td>
-			<td><img src="{$lang.image}" width="16" height="16" /></td>
-			<td><img src="{$THEME}/images/delete.png" width="16" height="16" style="cursor:pointer;" alt="{lang('a_delete')} {$lang.lang_name}" title="{lang('a_delete')} {$lang.lang_name}" onclick="delete_lang('{$lang.id}');" /></td>
-		</tr>
-		{/foreach}
-
-		</tbody>
- </table>
-
-<hr/>
-{lang('a_by_default')}: <select name="folder" id="def_lang_folder" onchange="set_def_lang($('def_lang_folder').value);">
-		{foreach $langs as $lang}
-			<option value="{$lang.id}" {if $lang['default'] == "1"} selected="selected" {/if}>{$lang.lang_name}</option>
-		{/foreach}
-		</select>
-<hr/>
-<div style="clear:left;" align="center">
-<input type="submit" name="button"  class="button" value="Создать" onclick="MochaUI.languages_create_lang_w();" />
+<div class="container">
+    
+    <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->    
+    <div class="modal hide fade modal_del">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>{lang('a_language_delete')}</h3>
+        </div>
+        <div class="modal-body">
+            <p>{lang('a_delete_selected_modules')}</p>
+            <p>{lang('a_warning_ld')}</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/languages/delete')" >{lang('a_delete')}</a>
+            <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('a_cancel')}</a>
+        </div>
+    </div>
+    
+    <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->
+    
+    <section class="mini-layout">
+        <div class="frame_title clearfix">
+            <div class="pull-left">
+                <span class="help-inline"></span>
+                <span class="title">{lang('a_languages')}</span>
+            </div>  
+            <div class="pull-right">
+                <div class="d-i_b">
+                    <button type="button" class="btn btn-small disabled action_on" onclick="delete_function.deleteFunction()" id="module_delete"><i class="icon-trash"></i>{lang('a_delete')}</button>
+                    <button type="button" class="btn btn-small btn-success" onclick="window.location.href = '/admin/languages/create_form'"><i class="icon-list-alt icon-white"></i>{lang('a_create_language')}</button>
+                </div>
+            </div>
+        </div>
+        <div class="content_big_td">
+            <div class="tab-content">
+                <div class="tab-pane active" id="lang">
+                    <div class="row-fluid">
+                        <div class="form-horizontal">
+                            <table class="table table-striped table-bordered table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th class="span1"></th>
+                                        <th class="span4">{lang('a_name')}</th>
+                                        <th class="span4">{lang('a_folder')}</th>
+                                        <th class="span4">{lang('a_identif')}</th>
+                                        <th class="span4">{lang('a_tpl')}</th>
+                                        <th class="span2">{lang('a_image')}</th>
+                                        <th class="span2">{lang('a_by_default')}</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="sortable ui-sortable">
+                                    {foreach $langs as $lang}                                  
+                                    <tr>
+                                        <td class="t-a_c">
+                                            <span class="frame_label">
+                                                <span class="niceCheck b_n">
+                                                    <input type="checkbox" name="ids" value="{$lang.id}"/>
+                                                </span>
+                                            </span>
+                                        </td>
+                                        <td><p><a href="{$BASE_URL}admin/languages/edit/{$lang.id}">{$lang.lang_name}</a></p></td>
+                                        <td><p>{$lang.folder}</p></td>
+                                        <td><p>{$lang.identif}</p></td>
+                                        <td><p>{$lang.template}</p></td>
+                                        <td><p><img src="{$lang.image}" width="16" height="16" /></p></td>
+                                        <td class="t-a_c"><button class="btn btn-small lan_def {if $lang.default == 1} btn-primary active {/if}" data-id="{$lang.id}"><i class="icon-star"></i></button></td>
+                                    </tr>
+                                    {/foreach}     
+                                </tbody>
+                            </table>   
+                        </div><div class="clearfix">
+                            <div class="pagination pull-left">
+                                <ul>{$paginator}
+                                </ul>
+                            </div>
+                            <div class="pagination pull-right">
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>   
+    </section>
 </div>

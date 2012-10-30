@@ -27,8 +27,8 @@
     <!--                ЕНД-->
 
     {$cart_data = ShopCore::app()->SCart->getData()}
-    <div class="featured carusel_frame">
-        <div class="box_title center"><span class="f-s_24">{lang('s_PP')}</span></div>
+    <div class="box_title center"><span class="f-s_24">{lang('s_PP')}</span></div>
+    <div class="featured carusel_frame carousel_js">
         <div class="carusel">
             <ul>
                 {foreach getPromoBlock('popular', 10) as $hotProduct}

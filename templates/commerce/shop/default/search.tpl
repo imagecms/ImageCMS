@@ -71,8 +71,11 @@
                         {lang('s_sea_search_for')}: "<span class="highlight">{encode($_GET['text'])}</span>"{/if}
                         <span class="count_search">
                             ({$totalProducts}) {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}
-                        </span></div>
-                    <div class="clear"></div>
+                        </span>
+                    </div>
+                
+                </div>
+                <div class="c_b"></div>
                 {if $totalProducts > 0}
                 <ul class="products">
                     {$count = 1;}
@@ -82,7 +85,7 @@
                     <li {if $count == 3} class="last" {$count = 0}{/if} {if $count == 1} style="clear:left;" {/if}>
                         <div class="photo_block">
                             <a href="{shop_url('product/' . $p->getUrl())}">
-<!--                                <img src="{productImageUrl($p->getId() . '_small.jpg')}" border="0"  alt="image" />-->
+                                <!--                                <img src="{productImageUrl($p->getId() . '_small.jpg')}" border="0"  alt="image" />-->
                                 <img id="mim{echo $p->getId()}" src="{productImageUrl($p->getId() . '_small.jpg')}" alt="{echo ShopCore::encode($p->name)}" />
                                 <img id="vim{echo $p->getId()}" class="smallpimagev" src="" alt="" />
                             </a>
@@ -119,12 +122,12 @@
                                 </div>
                                 <a href="#" class="response">{echo $p->totalComments()} {echo SStringHelper::Pluralize($p->totalComments(), array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}</a>
                                 {if count($p->getProductVariants())>1}
-                                    <select class="m-l_10" name="selectVar">
-                                        {foreach $p->getProductVariants() as $pv}
-                                            {$variant_prices = currency_convert($pv->getPrice(), $pv->getCurrency())}
-                                            <option class="selectVar" value="{echo $pv->getId()}" data-st="{echo $pv->getStock()}" data-cs="{echo $variant_prices.second.symbol}" data-spr="{echo $variant_prices.second.price}" data-pr="{echo $variant_prices.main.price}" data-pid="{echo $p->getId()}" data-img="{echo $pv->getsmallimage()}" data-vname="{echo $pv->getName()}" data-vnumber="{echo $pv->getNumber()}">{echo $pv->getName()}</option>
-                                        {/foreach}
-                                    </select>
+                                <select class="m-l_10" name="selectVar">
+                                    {foreach $p->getProductVariants() as $pv}
+                                    {$variant_prices = currency_convert($pv->getPrice(), $pv->getCurrency())}
+                                    <option class="selectVar" value="{echo $pv->getId()}" data-st="{echo $pv->getStock()}" data-cs="{echo $variant_prices.second.symbol}" data-spr="{echo $variant_prices.second.price}" data-pr="{echo $variant_prices.main.price}" data-pid="{echo $p->getId()}" data-img="{echo $pv->getsmallimage()}" data-vname="{echo $pv->getName()}" data-vnumber="{echo $pv->getNumber()}">{echo $pv->getName()}</option>
+                                    {/foreach}
+                                </select>
                                 {/if}
                             </div>
                             <div class="f_l">
@@ -133,7 +136,7 @@
                                         <span id="pricem{echo $p->getId()}">{echo $prices.main.price}</span>
                                         <sub>{$prices.main.symbol}</sub>
                                         {if $NextCS != $CS}
-                                            <span id="prices{echo $p->getId()}" class="d_b">{echo $prices.second.price}{$prices.second.symbol}</span>
+                                        <span id="prices{echo $p->getId()}" class="d_b">{echo $prices.second.price}{$prices.second.symbol}</span>
                                         {/if}
                                     </div>
                                     <div id="p{echo $p->getId()}" class="{$style.class} buttons">
@@ -169,4 +172,3 @@
             </div>
         </div>
     </div>
-</div>

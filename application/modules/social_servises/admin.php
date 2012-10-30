@@ -17,21 +17,15 @@ class Admin extends MY_Controller {
     }
 
     public function index() {
-        $this->template->add_array(array(
+        $this->render('settings', array(
             'settings' => $this->get_fsettings(),
             'templates' => $this->_get_templates(),
-            'vsettings' => $this->get_vsettings(),
-        ));
-        $this->display_tpl('settings');
+            'vsettings' => $this->get_vsettings()
+                
+                ));
     }
 
-    private function display_tpl($file) {
-        $file = realpath(dirname(__FILE__)) . '/templates/admin/' . $file . '.tpl';
-        $this->template->display('file:' . $file);
-    }
-    
-    public function update_settings()
-    {
+    public function update_settings() {
         $data = $_POST['facebook'];
         $vdata = $_POST['vk'];
         $string = serialize($data);
@@ -40,21 +34,19 @@ class Admin extends MY_Controller {
         ShopCore::app()->SSettings->set('vk_int', $vstring);
         showMessage("Настройки успешно сохранены");
     }
-    
-    public function get_fsettings()
-    {
+
+    public function get_fsettings() {
         $settings = ShopCore::app()->SSettings->__get('facebook_int');
         $settings = unserialize($settings);
         return $settings;
     }
-    
-    public function get_vsettings()
-    {
+
+    public function get_vsettings() {
         $settings = ShopCore::app()->SSettings->__get('vk_int');
         $settings = unserialize($settings);
         return $settings;
     }
-    
+
     function _get_templates() {
         $new_arr = array();
         if ($handle = opendir(TEMPLATES_PATH)) {
@@ -70,6 +62,19 @@ class Admin extends MY_Controller {
             return FALSE;
         }
         return $new_arr;
+    }
+
+    public function render($viewName, array $data = array(), $return = false) {
+        if (!empty($data))
+            $this->template->add_array($data);
+
+        $this->template->show('file:' . 'application/modules/social_servises/templates/admin/' . $viewName);
+        exit;
+
+        if ($return === false)
+            $this->template->show('file:' . 'application/modules/social_servises/templates/admin/' . $viewName);
+        else
+            return $this->template->fetch('file:' . 'application/modules/social_servises/templates/admin/' . $viewName);
     }
 
 }
