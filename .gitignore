@@ -4,6 +4,7 @@
 /uploads
 /gitpush
 /db.sql
+/application/backups
 /application/config/config.php
 /application/config/database.php
 /application/modules/shop
