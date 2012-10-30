@@ -736,7 +736,6 @@ $(document).ready(function() {
             $this = $(this).find('[value=' + vid + ']');            
         };
         var pid = $this.attr('data-pid');
-
         var img = $this.attr('data-img');
         var pr = $this.attr('data-pr');
         var spr = $this.attr('data-spr');
@@ -745,12 +744,11 @@ $(document).ready(function() {
         var cs = $this.attr('data-cs');
         var st = $this.attr('data-st');
         var pp = $this.attr('data-pp');
-        console.log(img);
-        $('#mim' + pid).addClass('smallpimagev');
-        $('#vim' + pid).attr('src', '/uploads/shop/' + img).removeClass().attr('alt', vname);
-        if(img == ''){
-            $('#vim' + pid).attr('src', '/uploads/shop/' + pid +'_main.jpg')
-        }
+//        $('#mim' + pid).addClass('smallpimagev');
+//        $('#vim' + pid).attr('src', '/uploads/shop/' + img).removeClass().attr('alt', vname);
+//        if(img == ''){
+//            $('#vim' + pid).attr('src', '/uploads/shop/' + pid +'_main.jpg')
+//        }
         $('#code' + pid).html('Код ' + vnumber);
         $('#pricem' + pid).html(pr);
         $('#prices' + pid).html(spr + ' ' + cs);
