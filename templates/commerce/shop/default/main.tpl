@@ -3,6 +3,9 @@
     <head>
         <meta charset="utf-8" />
         <title>{$site_title}</title>
+        <meta name="description" content="{$site_description}" />
+        <meta name="keywords" content="{$site_keywords}" />
+        <meta name="generator" content="ImageCMS" />
         <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/style.css" media="all" />
         <!--
         <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/jquery.fancybox-1.3.4.css" media="all" />
@@ -15,7 +18,7 @@
         <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/ie_7.css" /><![endif]-->
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery-1.7.2.min.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.cycle.all.js"></script>
-        <script type="text/javascript" src="{$SHOP_THEME}/js/jcarousellite_1.0.1.min.js"></script>
+        <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.jcarousel.min.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery-ui-personalized-1.5.2.packed.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/jScrollPane.min.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/cusel-min-2.4.1.js"></script>
@@ -46,8 +49,8 @@
                     {load_menu('top_menu')}
                     <ul class="user_menu m-l_19 auth_data">{include_tpl('auth_data')}</ul>
                     <ul class="user_menu cart_data_holder">                        
-<!--                        <li><a href="/" style="color:silver;">ru</a></li>
-                        <li style="margin-left: 0; padding-left: 5px;"><a href="{$BASE_URL}en" style="color:silver;">en</a></li>-->
+                        <!--                        <li><a href="/" style="color:silver;">ru</a></li>
+                                                <li style="margin-left: 0; padding-left: 5px;"><a href="{$BASE_URL}en" style="color:silver;">en</a></li>-->
                         {include_tpl('cart_data')}</ul>
                 </div>
             </div><!-- top -->
@@ -60,18 +63,22 @@
                         <span id="suggestions"style="display: none; width: 0px; right: 0px;"></span>
                     </form>
                 </div>
+                        
                 <div class="phone">
                     <address>+8 (067) <span>572-58-18</span></address>
                     <span class="js showCallback">{lang('s_coll_order')}</span>
                 </div>
+                
                 <ul class="user_menu">
                     <!--    Show callback's form    -->
-                    {if count(get_currencies())>1}
+                    {if count(get_currencies())>2}
                         <li class="p-l_0">
                             <form action="" method="post" name="currencyChangeForm" id="currencyChangeForm">
                                 {lang('s_currency')}: <select class="changeCurrency" name="setCurrency" >
                                     {foreach get_currencies() as $currency}
-                                        <option {if ShopCore::app()->SCurrencyHelper->additional->getId() == $currency->getId()}selected{/if} value="{echo $currency->getId()}">{echo encode($currency->getName())}</option>
+                                        {if $currency->getId() != ShopCore::app()->SCurrencyHelper->default->getId()}
+                                            <option {if ShopCore::app()->SCurrencyHelper->additional->getId() == $currency->getId()}selected{/if} value="{echo $currency->getId()}">{echo encode($currency->getName())}</option>
+                                        {/if}
                                     {/foreach}
                                 </select>
                                 {form_csrf()}
@@ -80,7 +87,6 @@
                     {else:}
                         <li>&nbsp;</li>
                     {/if}
-
                     <!--    Show callback's form    -->
 
                     <!--    Wish list item's for Header    -->
@@ -96,7 +102,7 @@
             </div><!-- header -->
 
             <div class="main_menu center">
-                <ul class="clearfix">{echo ShopCore::app()->SCategoryTree->ulWithTitle()}</ul>
+                <ul class="clearfix">{echo ShopCore::app()->SCategoryTree->ul()}</ul>
             </div><!-- main_menu -->
 
             {$shop_content}
@@ -105,7 +111,7 @@
         </div>
         <div class="footer">
             <div class="center">
-                <div class="carusel_frame brand box_title">
+                <div class="carusel_frame brand box_title carousel_js">
                     <div class="carusel clearfix">
                         <ul>
                             {foreach ShopCore::app()->SBrandsHelper->mostProductBrands(15, TRUE) as $brand}

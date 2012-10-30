@@ -57,7 +57,10 @@ class CI_Pagination {
 	var $page_query_string	= FALSE;
 	var $query_string_segment = 'per_page';
 	var $display_pages		= TRUE;
+        var $separate_controls		= FALSE;
 	var $anchor_class		= '';
+        var $controls_tag_open = '';
+        var $controls_tag_close = '';
 
 	/**
 	 * Constructor

@@ -1,90 +1,83 @@
-<div id="menus_table">
-    <div id="sortable">
-	<table width="100%" border="0" align="left" class="items_table" id="mt1">
-	  <thead>
-		<th width="15px">{lang('amt_id')}</th>
-		<th>{lang('amt_tname')}</th>
-		<th>{lang('amt_name')}</th>
-		<th>{lang('amt_description')}</th>
-		<th>{lang('amt_crea')}</th>
-		<th></th>
-	  </thead>
-	  <tbody>
-      {if count($menus) > 0}
-	  {foreach $menus as $item}
-	  	<tr>
-			<td>{$item.id}</td>
-			<td><a href="#" onclick="ajax_div('menus_table','{$SELF_URL}/menu_item/{$item.name}'); return false;">{$item.main_title}</a></td>
-			<td>{$item.name}</td>
-			<td>{$item.description}</td>
-			<td>{$item.created}</td>
-			<td>
-				<img style="cursor:pointer;" onclick="edit_menu({$item.id}); return false;" src="{$THEME}/images/edit.png" width="16" height="16" />
-				<img style="cursor:pointer;" onclick="delete_menu('{$item.name}','{$item.name}'); return false;" src="{$THEME}/images/delete.png" width="16" height="16" />
-			</td>
-		</tr>
-	  {/foreach}
-      {/if}
-	  </tbody>
-	</table>
+<div class="container">
+
+    <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->    
+    <div class="modal hide fade modal_del">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>{lang('a_menu_delete')}</h3>
+        </div>
+        <div class="modal-body">
+            <p>{lang('a_delete_selected_menu')}</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/components/cp/menu/delete_menu')" >{lang('a_delete')}</a>
+            <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('a_cancel')}</a>
+        </div>
     </div>
 
-<div class="form_overflow"></div>
+    <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->
 
-    <div align="right" style="padding:5px;">
-            <input type="button" class="button" value="{lang('amt_create_menu')}" onclick="open_create_winow(); return false;" />
-    </div>
-
-    {literal}
-        <script language="text/javascript">
- 			window.addEvent('domready', function(){
-				menus_table = new sortableTable('mt1', {overCls: 'over', sortOn: -1 ,onClick: function(){}});
-                menus_table.altRow();
-			}); 
-  
-            function open_create_winow()
-            {
-                new MochaUI.Window({
-                    id: 'create_menu_w',
-                    title: '',
-                    type: 'modal',
-                    loadMethod: 'xhr',
-                    contentURL: base_url + 'admin/components/cp/menu/create_tpl/',
-                    width: 490,
-                    height: 350
-                });            
-            }
-
-            function edit_menu(id)
-            {
-                new MochaUI.Window({
-                    id: 'edit_menu_w',
-                    title: '',
-                    type: 'modal',
-                    loadMethod: 'xhr',
-                    contentURL: base_url + 'admin/components/cp/menu/edit_menu/' + id,
-                    width: 490,
-                    height: 350
-                });       
-            }
-
-            function delete_menu(name,title)
-            {
-                alertBox.confirm('<h1> </h1><p>Удалить меню <b>'+ title + '</b> ? </p>', {onComplete:
-                    function(returnvalue) {
-                    if(returnvalue)
-                    {
-                        var req = new Request.HTML({
-                        method: 'post',
-                        url: base_url + 'admin/components/cp/menu/delete_menu/' + name,
-                        onComplete: function(response) { 
-                            ajax_div('menu_module_block',base_url + 'admin/components/cp/menu/index');
-                            }
-                        }).post();
-                    }
-                    }
-                });
-            }
-        </script>
-    {/literal}
+    <form id="deleteMenu">
+        <section class="mini-layout">
+            <div class="frame_title clearfix">
+                <div class="pull-left">
+                    <span class="help-inline"></span>
+                    <span class="title">{lang('a_menu_list')}</span>
+                </div>
+                <div class="pull-right">
+                    <div class="d-i_b">
+                        <button type="button" class="btn btn-small btn-success" onclick="window.location.href = '{$BASE_URL}admin/components/cp/menu/create_tpl'"><i class="icon-list-alt icon-white"></i>{lang('amt_create_menu')}</button>
+                        <button type="button" class="btn btn-small disabled action_on" onclick="delete_function.deleteFunction()"><i class="icon-trash"></i>{lang('a_delete')}</button>
+                    </div>
+                </div>                            
+            </div>
+            <div class="tab-content">
+                <div class="row-fluid">
+                    <table class="table table-striped table-bordered table-hover table-condensed">
+                        <thead>
+                            <tr>
+                                <th class="t-a_c span1">
+                                    <span class="frame_label">
+                                        <span class="niceCheck b_n">
+                                            <input type="checkbox"/>
+                                        </span>
+                                    </span>
+                                </th>
+                                <th class="span1">{lang('amt_id')}</th>
+                                <th class="span3">{lang('amt_tname')}</th>
+                                <th class="span3">{lang('amt_name')}</th>
+                                <th class="span4">{lang('amt_description')}</th>
+                                <th class="span2">{lang('amt_crea')}</th>
+                                <th class="span2">{lang('a_edit')}</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            {if count($menus) > 0}
+                                {foreach $menus as $item}
+                                    <tr class="simple_tr">
+                                        <td class="t-a_c">
+                                            <span class="frame_label">
+                                                <span class="niceCheck b_n" >
+                                                    <input type="checkbox" name="ids" value="{$item.name}"/>
+                                                </span>
+                                            </span>
+                                        </td>
+                                        <td ><p>{$item.id}</p></td>
+                                        <td>
+                                            <a class="pjax" href="{$SELF_URL}/menu_item/{$item.name}" id="del" >{$item.main_title}</a>
+                                        </td>
+                                        <td><p>{$item.name}</p></td>
+                                        <td>{$item.description}
+                                        </td>
+                                        <td>{$item.created}</td>
+                                        <td><a href="{$BASE_URL}admin/components/cp/menu/edit_menu/{$item.id}" >{lang('a_edit')}</a></td>
+                                    </tr>
+                                {/foreach}
+                            {/if}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </form>
 </div>

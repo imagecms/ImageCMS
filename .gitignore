@@ -4,6 +4,7 @@
 /uploads
 /gitpush
 /db.sql
+/application/backups
 /application/config/config.php
 /application/config/database.php
 /application/modules/shop
@@ -17,3 +18,7 @@ Thumbs.db
 /nbproject
 .directory
 /.project
+/p4.komodoproject
+
+/templates/.quarantine/
+/templates/.tmb/

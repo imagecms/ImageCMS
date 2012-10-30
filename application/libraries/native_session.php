@@ -72,6 +72,11 @@ class Native_session {
         // end the current session and store session data.
         session_write_close();
     }
+    
+    public function all_userdata()
+    {
+    	return $_SESSION;
+    }
 
     /**
     * Destroys the session and erases session storage

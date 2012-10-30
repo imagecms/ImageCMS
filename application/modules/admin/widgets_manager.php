@@ -25,8 +25,8 @@ class Widgets_Manager extends MY_Controller {
     {
         $this->_is_wratible();
 
-        $this->db->order_by('created', 'desc');
-        $query = $this->db->get('widgets');
+        //$this->db->order_by('created', 'desc');
+        $query = $this->db->order_by('id', 'asc')->get('widgets');
 
         if ($query->num_rows() > 0)
         {
@@ -96,7 +96,7 @@ class Widgets_Manager extends MY_Controller {
 
             if ($this->form_validation->run($this) == FALSE)
             {
-                showMessage (validation_errors(),false,'r');
+                    showMessage (validation_errors(),false,'r');
             }else{
                 $data = array(
                     'description' => $this->input->post('desc'),
@@ -140,8 +140,10 @@ class Widgets_Manager extends MY_Controller {
 
                 $this->lib_admin->log(lang('ac_created_widget').$data['name']);
 
-                //showMessage('Виджет создан.');
-                updateDiv('page', site_url('admin/widgets_manager'));
+                showMessage('Виджет создан.');
+                if($_POST['action'] == 'tomain')
+                    pjax('/admin/widgets_manager/index');
+                //pjax('/admin/widgets_manager/edit_module_widget/'.$data['id']);
             }
         }elseif ($type == 'html') {
 
@@ -151,7 +153,7 @@ class Widgets_Manager extends MY_Controller {
             
             if ($this->form_validation->run($this) == FALSE)
             {
-                showMessage (validation_errors(),false,'r');
+                    showMessage (validation_errors(),false,'r');
             }else{
                 $data = array(
                     'description' => $this->input->post('desc'),
@@ -161,11 +163,17 @@ class Widgets_Manager extends MY_Controller {
                     'created' => time()
                 );
 
+                
                 $this->lib_admin->log(lang('ac_created_widget').$data['name']);
 
                 $this->db->insert('widgets', $data);
+                
+                $findId = $this->db->insert_id();
 
-                updateDiv('page', site_url('admin/widgets_manager'));
+                showMessage('Виджет создан.');
+                if($_POST['action'] == 'tomain')
+                    pjax('/admin/widgets_manager/index');
+                //pjax('/admin/widgets_manager/edit_html_widget/'.$findId);
             }
         }
     }
@@ -176,7 +184,11 @@ class Widgets_Manager extends MY_Controller {
     public function create_tpl()
     {
         cp_check_perm('widget_create');
-
+        
+        $blocks = $this->display_create_tpl('tmodule');
+                
+        $this->template->assign('blocks', $blocks);
+                
         $this->template->show('widget_create', FALSE);
     }
 
@@ -201,7 +213,7 @@ class Widgets_Manager extends MY_Controller {
             show_error(lang('ac_err_wid_not_found'));
         }
     }
-
+    
     public function update_widget($id, $update_info = FALSE)
     {
         cp_check_perm('widget_access_settings');
@@ -234,6 +246,8 @@ class Widgets_Manager extends MY_Controller {
                 $this->lib_admin->log(lang('ac_ch_widget').$data['name']);
 
                 showMessage(lang('ac_changes_saved'));
+                if($_POST['action'] == 'tomain')
+                    pjax('/admin/widgets_manager/index');
                 return TRUE;
             }
 
@@ -269,6 +283,8 @@ class Widgets_Manager extends MY_Controller {
 
                 //updateDiv('page', site_url('admin/widgets_manager'));
                 showMessage(lang('ac_changes_saved'));
+                if($_POST['action'] == 'tomain')
+                    pjax('/admin/widgets_manager/index');
             }
         }else{
             show_error(lang('ac_err_wid_not_found'));
@@ -292,22 +308,22 @@ class Widgets_Manager extends MY_Controller {
     {
         cp_check_perm('widget_delete'); 
 
-        $name = $this->input->post('widget_name');
-
-        $this->db->where('name', $name);
-        $this->db->limit(1);
+        $name = $this->input->post('ids');
+        $this->db->where_in('name', $name);
         $this->db->delete('widgets');
 
         $this->db->where('s_name', 'main');
         $this->db->select('site_template');
         $query = $this->db->get('settings')->row_array();
-
-        if ( file_exists(PUBPATH.'/templates/'.$query['site_template'].'/widgets/'.$name.'.tpl') )
-        {
-            @unlink(PUBPATH.'/templates/'.$query['site_template'].'/widgets/'.$name.'.tpl'); 
+        foreach($name as $n){
+            if ( file_exists(PUBPATH.'/templates/'.$query['site_template'].'/widgets/'.$n.'.tpl') )
+            {
+                @unlink(PUBPATH.'/templates/'.$query['site_template'].'/widgets/'.$n.'.tpl'); 
+            }
+            $this->lib_admin->log(lang('ac_wid_del').$n);
         }
-
-        $this->lib_admin->log(lang('ac_wid_del').$name);
+        showMessage(lang('a_widget_success_delete'));
+        pjax('/admin/widgets_manager/index');
     }
 
     public function get($id)
@@ -346,6 +362,11 @@ class Widgets_Manager extends MY_Controller {
      */ 
     public function display_create_tpl($type = FALSE)
     {
+        if($type == 'tmodule')
+        {
+            $case = true;
+            $type = 'module'; 
+        }
         switch($type)
         {
             case 'module':
@@ -375,7 +396,8 @@ class Widgets_Manager extends MY_Controller {
                 $this->template->add_array(array(
                     'widgets' => $widgets
                     ));
-        
+                if($case)
+                    return $widgets;
                 $this->template->show('widget_create_module', FALSE);
             break;
 

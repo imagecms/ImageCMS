@@ -25,9 +25,9 @@ class Template extends Mabilis {
         //$this->compile_dir = BASEPATH.'cache/templates_c/';
         //$this->template_dir = TEMPLATES_PATH.$this->CI->config->item('template').'/';
         $this->modules_template_dir = TEMPLATES_PATH . 'modules/';
-        
+
         $tpl = $this->CI->config->item('template');
-            
+
         $config = array(
             //'tpl_path'        => TEMPLATES_PATH.$this->CI->config->item('template').'/',
             'tpl_path' => TEMPLATES_PATH . $tpl . '/',
@@ -81,6 +81,12 @@ class Template extends Mabilis {
      * @return true
      */
     public function show($file = FALSE, $load_main = TRUE, $data = array()) {
+
+        $CI = &get_instance();
+        if ($CI->uri->segment(1) == 'admin') {
+            $load_main = (!$CI->input->is_ajax_request()) ? TRUE : FALSE;            
+        }
+
         ($hook = get_hook('lib_template_show')) ? eval($hook) : NULL;
 
         $this->assign('BASE_URL', site_url()); //Base URL
