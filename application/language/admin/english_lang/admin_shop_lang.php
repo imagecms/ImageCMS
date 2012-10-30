@@ -9,6 +9,8 @@
     $lang['a_s_collback_list_th_s']		=	'Browse topics collback';
     $lang['a_s_collback_edit_th_s']		=	'Editing by collback';
     $lang['a_s_customFiled_create_ent']		=	'Entity';
+    $lang['a_exp_users_systeam_failed']		=	'You do not choose';
+    $lang['a_exp_users_systeam_succes']		=	'Export successfully';
     $lang['a_s_notif_status_create_eools']		=	'Creation of Status pending';
     $lang['a_s_notif_status_edit_eools']		=	'Editing status of the appearance of';
     $lang['a_s_notif_status_list_eools']		=	'View the status of the appearance of';

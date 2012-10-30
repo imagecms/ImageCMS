@@ -10,6 +10,8 @@
     $lang['a_s_collback_list_th_s']		=	'Просмотр тем collback\'ов';
     $lang['a_s_collback_edit_th_s']		=	'Редактирование теми collback\'а';
     $lang['a_s_dusc_parem_comulativ_fis']		=	'Список накопительных скидок';
+    $lang['a_exp_users_systeam_failed']		=	'Вы ничего не выбрали';
+    $lang['a_exp_users_systeam_succes']		=	'Експорт успешно прошел';
     $lang['a_s_dusc_parem_pollis_fis']		=	'Список постоянных скидок';
     $lang['a_s_notif_status_list_eools']		=	'Просмотр статусов о появлении';
     $lang['a_s_notif_status_create_eools']		=	'Создание статуса товара в ожидании';

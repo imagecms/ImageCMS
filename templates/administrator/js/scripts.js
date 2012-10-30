@@ -10,8 +10,8 @@ var notificationsInitialized = false;
 $(document).ajaxComplete( function(event, XHR, ajaxOptions){
     if (ajaxOptions.url != "/admin/components/run/shop/notifications/getAvailableNotification")
     {
-        //        if (event.target.activeElement)
-        //            if (event.target.activeElement.localName != "input")
+//                if (event.target.activeElement)
+//                    if (event.target.activeElement.localName != "input")
         initAdminArea();
         if ($.exists('#chart')) brands();
         if ($.exists('#wrapper_gistogram')) gistogram(); 
@@ -20,6 +20,7 @@ $(document).ajaxComplete( function(event, XHR, ajaxOptions){
     number_tooltip_live();
     fixed_frame_title();
     $('.tooltip').remove();
+    
 });
 
 function init_2(){
@@ -523,7 +524,7 @@ function initAdminArea(){
         event.stopPropagation();
     });
     
-    function what_key(enter_key){
+    function what_key(enter_key, event){
         var enter_key = enter_key; 
         var key;
         key = event.keyCode;
@@ -637,9 +638,9 @@ function initAdminArea(){
     
     //list filter
    
-    $('.listFilterForm').die('keypress').live('keypress', function(){
+    $('.listFilterForm').die('keypress').live('keypress', function(event){
         $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
-        if (what_key(13))
+        if (what_key(13, event)) 
             $('.listFilterSubmitButton').click();
     })
 

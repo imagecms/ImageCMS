@@ -4,12 +4,13 @@ function change_status(hrefFn) {
     })
 }
 function export_csv(){
-    $('.export').unbind('click').live('click', function(){ 
+    $('.export').die('click').live('click', function(){ 
 
         if ($('input[name=export]:checked').val() == 'csv') {
             
             $('#exportUsers').submit();
-
+            
+            $('#loading').hide();
             return false;
         }
     });
@@ -43,7 +44,7 @@ $(document).ready(function(){
         $("#validatorSelect").hide();
     });
 
-//    AUTO COMPLITE BASE-----------------------------------------------------------------------------------------------------
+    //    AUTO COMPLITE BASE-----------------------------------------------------------------------------------------------------
     $('#emailAutoC').autocomplete({
         minChars: 0,
         source: '/admin/components/cp/user_manager/auto_complit/email' + $('#emailAutoC').attr('value') + '?limit=25'
@@ -56,17 +57,20 @@ $(document).ready(function(){
     });
     
     //    AUTO COMPLITE SHOP--------------------------------------------------------------------------------------------------
+    
+        
+        
     $('#shopNameAutoC').autocomplete({
         minChars: 0,
         source: '/admin/components/run/shop/users/auto_complite/name' + $('#shopNameAutoC').attr('value') + '?limit=25'
         
     });
+
     $('#shopEmailAutoC').autocomplete({
         minChars: 0,
         source: '/admin/components/run/shop/users/auto_complite/email' + $('#shopNameAutoC').attr('value') + '?limit=25'
         
     });
-  
     $('.clearCashe').on('click', function() {
         $this = $(this);
         $.ajax({
