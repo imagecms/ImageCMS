@@ -307,16 +307,20 @@
                             $this.animate({
                                 'left': '0'
                             }, 200).removeClass('disable_tovar');
-                            $this.parent().attr('data-original-title', show_tovar_text)
-                            $('.tooltip-inner').text(show_tovar_text);
+                            if ($this.parent().data('only-original-title') == undefined){
+                                $this.parent().attr('data-original-title', show_tovar_text)
+                                $('.tooltip-inner').text(show_tovar_text);
+                            }
                             $this.parents('td').next().children().removeClass('disabled');
                         }
                         else{
                             $this.animate({
                                 'left': '-28px'
                             }, 200).addClass('disable_tovar');
-                            $this.parent().attr('data-original-title', hide_tovar_text)
-                            $('.tooltip-inner').text(hide_tovar_text);
+                            if ($this.parent().data('only-original-title') == undefined){
+                                $this.parent().attr('data-original-title', hide_tovar_text)
+                                $('.tooltip-inner').text(hide_tovar_text);
+                            }
                             $this.parents('td').next().children().addClass('disabled');
                         }
                     }
