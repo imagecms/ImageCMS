@@ -18,7 +18,6 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
-ini_set('display_errors','On');
 define('ENVIRONMENT', 'development');
 /*
  * ---------------------------------------------------------------
@@ -178,7 +177,8 @@ if (is_dir($application_folder)) {
     define('APPPATH', BASEPATH . $application_folder . '/');
 }
 
-define('IMAGECMS_NUMBER', '3.3.6.72');
+
+define('IMAGECMS_NUMBER', '4.0.0b');
 define('IMAGECMS_VERSION', '20120810');
 define('IMAGECMS_PUBLIC_ID', '51035d2a96a227c54d0dea3ff415ced6d39266c3');
 

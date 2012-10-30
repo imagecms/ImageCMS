@@ -49,6 +49,7 @@ if ( ! function_exists('form_open'))
 			$attributes = 'method="post"';
 		}
 
+		// If an action is not a full URL then turn it into one
 		if ($action && strpos($action, '://') === FALSE)
 		{
 			$action = $CI->config->site_url($action);
@@ -68,7 +69,7 @@ if ( ! function_exists('form_open'))
 
 		if (is_array($hidden) AND count($hidden) > 0)
 		{
-			$form .= sprintf("\n<div class=\"hidden\">%s</div>", form_hidden($hidden));
+			$form .= sprintf("<div style=\"display:none\">%s</div>", form_hidden($hidden));
 		}
 
 		return $form;
@@ -301,7 +302,7 @@ if ( ! function_exists('form_multiselect'))
  */
 if ( ! function_exists('form_dropdown'))
 {
-	function form_dropdown($name = '', $options = array(), $selected = array(), $extra = '')
+	function form_dropdown($name = '', $options = array(), $selected = array(), $extra = '', $id_el='')
 	{
 		if ( ! is_array($selected))
 		{
@@ -317,12 +318,20 @@ if ( ! function_exists('form_dropdown'))
 				$selected = array($_POST[$name]);
 			}
 		}
+                if (count($id_el) === 0)
+		{
+			// If the form name appears in the $_POST array we have a winner!
+			if (isset($_POST[$id_el]))
+			{
+				$id_el = array($_POST[$id_el]);
+			}
+		}
 
 		if ($extra != '') $extra = ' '.$extra;
 
 		$multiple = (count($selected) > 1 && strpos($extra, 'multiple') === FALSE) ? ' multiple="multiple"' : '';
 
-		$form = '<select name="'.$name.'"'.$extra.$multiple.">\n";
+		$form = '<select name="'.$name.'"id='.$id_el.$extra.$multiple.">\n";
 
 		foreach ($options as $key => $val)
 		{

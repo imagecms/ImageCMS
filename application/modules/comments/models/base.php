@@ -89,10 +89,20 @@ class Base extends CI_Model {
 
     function delete($id)
     {
-        $this->db->limit(1);
-        $this->db->where('id', $id);
-        $this->db->delete('comments');
-
+        if(is_array($id)){
+            $this->db->where_in('id', $id);
+            $this->db->delete('comments');
+            //delete child comments
+            $this->db->where_in('parent', $id);
+            $this->db->delete('comments');
+        }else{
+            $this->db->limit(1);
+            $this->db->where('id', $id);
+            $this->db->delete('comments');
+            //delete child comments
+            $this->db->where('parent', $id);
+            $this->db->delete('comments');
+        }
         return TRUE;
     }
 
@@ -116,6 +126,12 @@ class Base extends CI_Model {
     {
         $this->db->where('name', 'comments');
         $this->db->update('components', array('settings' => serialize($data)));
+    }
+    
+    function get_many($ids)
+    {
+        if(is_array($ids))
+            return $this->db->where_in('id', $ids)->get('comments')->row_array();
     }
 
 }

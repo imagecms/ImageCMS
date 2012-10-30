@@ -1,185 +1,110 @@
-<div id="menus_table">
-<div class="top-navigation">
-    <ul>
-        <li style="padding:5px;"><input type="button" class="button_silver_130" onclick="create_link_window({$insert_id}); return false;" value="{lang('amt_create_link')}" /></li>
-        <li><input type="button" class="button_silver" onclick="ajax_div('menus_table', '{$SELF_URL}/'); return false;" value="{lang('amt_cancel')}" /></li>
-    </ul>
-</div>
-
-{if $menu_result}
-<div id="sortable">
-	<table width="100%" border="0" align="left" class="items_table" style="text-align:left;">
-	  <thead>
-		<th width="15px">{lang('amt_id')}</th>
-		<th align="left">{lang('amt_tname')}</th>
-		<th>{lang('amt_link')}</th>
-		<th align="left">
-        {lang('amt_type')}
-        </th>
-		<th>
-        <div align="center">
-        {lang('amt_position')}  <img src="{$THEME}/images/save.png" align="absmiddle" style="cursor:pointer;width:22px;height:22px;" onclick="save_position(); return false;" />
+<div class="container">
+    
+    <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->    
+    <div class="modal hide fade modal_del">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>{lang('a_menu_delete')}</h3>
         </div>
-        </th>
-		<th>{lang('amt_hidden')}</th>
-		<th></th>
-	  </thead>
-	  <tbody>
-	  {foreach $menu_result as $item}
-			<tr class="{ counter("row_even","row_odd") }">
-			<td>{$item.id}</td>
-			<td>
-				{if $item.padding == "0"}
-					<strong><a href="{$item.link}"  onclick="edit_item({$item.id},{$insert_id}); return false;"   style="padding-left:{$item.padding}px;">{$item.title}</a></strong>
-				{else:}
-					<a href="{$item.link}" onclick="edit_item({$item.id},{$insert_id}); return false;"  style="padding-left:{$item.padding}px;">{for $i=0; $i < $item['padding'];$i++}-{/for} {$item.title}</a>
-				{/if}
-			</td>
-			<td>{$item.url}</td>
-			<td>
-           	{ switch $item['item_type'] }
-		    { case "page": }
-			    {lang('amt_page')}
-                {break;}
-		    { case "category": }
-			    {lang('amt_category')}
-                {break;}
-		    { case "module" }
-			    {lang('amt_module')}
-                {break;}
-            { case "url": }
-                {lang('amt_url')}
-                {break;}
-        	{ /switch } 
-            </td>
-			<td><div align="center"> <input type="text" value="{$item.position}" style="width:23px;" class="item_pos" id="item{$item.id}" /> </div></td>
-			<td>
-               {if $item['hidden'] == "0"}
-                 <div id="item_visible"></div>
-               {else:}
-                <div id="item_nonvisible"></div> 
-               {/if}
-            </td>
-			<td>
-            {if count($langs) > 1}
-    	        <img onclick="translate_m_item({$item.id}); return false;" src="{$THEME}/images/translit.png" width="16" height="16" /> 	
-            {/if}
-				<img onclick="edit_item({$item.id},{$insert_id}); return false;" src="{$THEME}/images/edit.png" width="16" height="16" />
-				<img onclick="delete_item({$item.id},'{$item.name}'); return false;" src="{$THEME}/images/delete.png" width="16" height="16" />
-			</td>
-		  </tr>
-	  {/foreach}
-	  </tbody>
-	</table>
-	</div>
- {/if}
+        <div class="modal-body">
+            <p>{lang('a_delete_selected_menu')}</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/components/cp/menu/delete_item')" >{lang('a_delete')}</a>
+            <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('a_cancel')}</a>
+        </div>
+    </div>
 
-<div class="form_overflow"></div>
-
+    <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->
+    
+    <form method="post" action="#">
+        <section class="mini-layout">
+            <div class="frame_title clearfix">
+                <div class="pull-left">
+                    <span class="help-inline"></span>
+                    <span class="title">{lang('a_menu')}: {echo $menu_title}</span>
+                </div>
+                <div class="pull-right">
+                    <div class="d-i_b">
+                        <a href="/admin/components/cp/menu" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
+                        <a type="button" class="btn btn-small btn-success createLink pjax" href="/admin/components/cp/menu/create_item/{$insert_id}"><i class="icon-list-alt icon-white"></i>{lang('a_create_link')}</a>
+                        <button type="button" class="btn btn-small disabled action_on" onclick="delete_function.deleteFunction()"><i class="icon-trash"></i>{lang('a_delete')}</button>
+                    </div>
+                </div>                            
+            </div>
+            <div class="tab-content">
+                <div class="row-fluid">
+                    <table class="table table-striped table-bordered table-hover table-condensed">
+                        <thead>
+                            <tr>
+                                <th class="t-a_c span1">
+                                    <span class="frame_label">
+                                        <span class="niceCheck b_n">
+                                            <input type="checkbox"/>
+                                        </span>
+                                    </span>
+                                </th>
+                                <th class="span1">{lang('amt_id')}</th>
+                                <th class="span3">{lang('amt_tname')}</th>
+                                <th class="span3">{lang('amt_link')}</th>
+                                <th class="span1">{lang('amt_type')}</th>
+                                <th class="span1 t-a_c">{lang('amt_hidden')}</th>
+                                <th class="span1"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="sortable save_positions" data-url="/admin/components/cp/menu/save_positions">
+                            {foreach $menu_result as $item}
+                                <tr>
+                                    <td class="t-a_c">
+                                        <span class="frame_label">
+                                            <span class="niceCheck b_n">
+                                                <input type="checkbox" name="ids" value="{$item.id}"/>
+                                            </span>
+                                        </span>
+                                    </td>
+                                    <td><p>{$item.id}</p></td>
+                                    <td>
+                                        {if $item.padding == "0"}
+                                            <a class="pjax" href="/admin/components/cp/menu/edit_item/{$item.id}/{$item.name}" style="padding-left:{$item.padding}px;">{$item.title}</a>
+                                        {else:}
+                                            {for $i=0; $i < $item['padding'];$i++}-&nbsp;{/for}<a href="/admin/components/cp/menu/edit_item/{$item.id}/{$item.name}" class="pjax" style="padding-left:{$item.padding}px;">{$item.title}</a>
+                                        {/if}
+                                        
+                                    </td>
+                                    <td class="share_alt">
+                                        <a href="{site_url($item.url)}" target="_blank" class="go_to_site pull-right btn btn-small"  data-rel="tooltip" data-placement="top" data-original-title="перейти на сайт"><i class="icon-share-alt"></i></a>
+                                        <a href="#">{$item.url}</a>
+                                    </td>
+                                    <td><p>{ switch $item['item_type'] }
+                                            { case "page": }
+                                            {lang('amt_page')}
+                                            {break;}
+                                            { case "category": }
+                                            {lang('amt_category')}
+                                            {break;}
+                                            { case "module" }
+                                            {lang('amt_module')}
+                                            {break;}
+                                            { case "url": }
+                                            {lang('amt_url')}
+                                            {break;}
+                                            { /switch } </p></td>
+                                    <td class="t-a_c">
+                                        <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{lang('a_turn_on')}"  data-off="{lang('a_turn_off')}">
+                                            <span class="prod-on_off item_hidden {if $item['hidden'] != "0"}disable_tovar{/if}" data-id="{$item['id']}"></span>
+                                        </div>
+                                    </td>
+                                    <td class="t-a_c">
+                                        {if count($langs) > 1}
+                                            <a title="{lang('a_manu_item_translate')}" class="pjax" href="/admin/components/cp/menu/translate_window/{$item.id}"><img src="{$THEME}/images/translit.png" width="16" height="16" /></a> 	
+                                        {/if}
+                                    </td>
+                                </tr>
+                            {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </form>
 </div>
-
-<script type="text/javascript">
-var insert_id = {$insert_id};
-</script>
-
-{literal}
-        <style type="text/css">
-            #item_visible{
-            background-color:#8EAF3B;width:10px;height:10px;
-            }
-            #item_nonvisible{
-            background-color:silver;width:10px;height:10px;     
-            }
-        </style>
-
-		<script type="text/javascript">
-
-        var menu_action = 'insert';
-        var menu_update_id = 0;
-
-        function translate_m_item(iid)
-        {
-            MochaUI.translate_m_Window = function() {
-                new MochaUI.Window({
-                    id: 'translate_m_Window',
-                    title: 'Перевод меню',
-                    loadMethod: 'xhr',
-                    contentURL: base_url + 'admin/components/cp/menu/translate_window/' + iid,
-                    width: 490,
-                    height: 300
-                });
-            }
-            
-            MochaUI.translate_m_Window();
-        }
-
-        function save_position()
-        {
-            var pos = new Array();     
-
-            var items = $('menus_table').getElements('input');
-            items.each(function(el,i){
-                    if(el.hasClass('item_pos')) 
-                    {
-                        id = el.id;
-                        val = el.value;
-                        new_pos = id + '_' + val;
-                        pos.include( new_pos );
-                    }  
-                    });
-        
-            var req = new Request.HTML({
-               method: 'post',
-               url: base_url + 'admin/components/cp/menu/save_positions/',
-               onRequest: function() { },
-               onComplete: function(response) {  
-                    ajax_div('menus_table', base_url + 'admin/components/cp/menu/list_menu_items/' + insert_id);   
-                }
-            }).post({'items_pos': pos });
-        }
-
-		function edit_item(item_id,menu_id)
-		{
-            menu_action = 'update';
-            menu_update_id = item_id;
-
-    			new MochaUI.Window({
-					id: 'createnewlink',
-					title: 'Редактировать Сcылку',
-					type: 'window',
-					loadMethod: 'xhr',
-					contentURL: base_url + 'admin/components/cp/menu/create_item/' + menu_id,
-					width: 750,
-					height: 550
-				});
-		}
-
-        function create_link_window(menu_id)
-        {
-            menu_action = 'insert';
-            menu_update_id = 0;
-
-				new MochaUI.Window({
-					id: 'createnewlink',
-					title: 'Создать Сcылку',
-					type: 'window',
-					loadMethod: 'xhr',
-					contentURL: base_url + 'admin/components/cp/menu/create_item/' + menu_id,
-					width: 750,
-					height: 550
-				});
-        }
-
-        function delete_item(id,name)
-        {
-        	var req = new Request.HTML({
-			method: 'post',
-			url: base_url + 'admin/components/cp/menu/delete_item/' + id,
-			evalResponse: true,
-			onComplete: function(response) {
-                ajax_div('menus_table',base_url + 'admin/components/cp/menu/menu_item/' + name );                    
-            }
-	    	}).send(); 
-        }
-		</script>
-{/literal}

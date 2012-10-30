@@ -1,4 +1,8 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+
 /**
  * Image CMS
  * Admin Class
@@ -7,57 +11,55 @@
  * check local ip; 
  *
  */
-
 class Admin extends MY_Controller {
 
     private $request_url = 'http://requests.imagecms.net/index.php/requests/req';
 
-	public function __construct()
-	{
-		parent::__construct();
+    public function __construct() {
+        parent::__construct();
 
-		$this->load->library('DX_Auth');
-                admin_or_redirect();
+        $this->load->library('DX_Auth');
+        admin_or_redirect();
 
-		$this->load->library('lib_admin');
-		$this->load->library('lib_category');
-		$this->lib_admin->init_settings();
-	}
+        $this->load->library('lib_admin');
+        $this->load->library('lib_category');
+        $this->lib_admin->init_settings();
 
-    
-	public function index()
-	{
+
+// 		$this->output->enable_profiler(true);
+    }
+
+    public function index() {
+
+        //just show dashboard
+        $this->load->module('admin/dashboard');
+        $this->dashboard->index();
+        exit;
+
         // Disable license check.
         // From version 1.3.7
         //$this->check();
-
-		$this->load->module('admin/components');
-		$components = $this->components->find_components(TRUE);
-
-		$this->template->assign('components', $components);
-		$this->template->assign('cats_unsorted',$this->lib_category->unsorted());
-		$this->template->assign('tree',$this->lib_category->build());
-
+        //$this->load->module('admin/components');
+        //$components = $this->components->find_components(TRUE);
+        //load modules list
+        //$this->template->assign('components', $components);
+        //$this->template->assign('cats_unsorted', $this->lib_category->unsorted());
+        //$this->template->assign('tree', $this->lib_category->build());
         // load menus
-        $this->load->module('menu');
-        $this->template->assign('menus', $this->menu->get_all_menus());
+        //$this->load->module('menu');
+        //$this->template->assign('menus', $this->menu->get_all_menus());
+        ///TinyMCE
+        //$this->load->library('lib_editor');
+        //$this->template->assign('editor', $this->lib_editor->init());
+        //////
+        //$this->template->assign('username', $this->dx_auth->get_username());
+        //($hook = get_hook('admin_show_desktop')) ? eval($hook) : NULL;
+//        $this->template->show('desktop', FALSE);
+        //$this->template->show('dashboard', TRUE);
+    }
 
-		///TinyMCE
-		$this->load->library('lib_editor');
-		$this->template->assign('editor',$this->lib_editor->init());
-		//////
-
-        $this->template->assign('username', $this->dx_auth->get_username());
-
-        ($hook = get_hook('admin_show_desktop')) ? eval($hook) : NULL;
-
-		$this->template->show('desktop', FALSE);
-	}
-
-    public function sys_info($action = '')
-    {
-        if ($action == 'phpinfo')
-        {
+    public function sys_info($action = '') {
+        if ($action == 'phpinfo') {
             ob_start();
             phpinfo();
             $contents = ob_get_contents();
@@ -76,26 +78,23 @@ class Admin extends MY_Controller {
             '/captcha/' => FALSE,
         );
 
-        foreach ($folders as $k => $v)
-        {
-            $folders[$k] = is_really_writable(PUBPATH.$k);
+        foreach ($folders as $k => $v) {
+            $folders[$k] = is_really_writable(PUBPATH . $k);
         }
 
         $this->template->assign('folders', $folders);
 
-        if ($this->db->dbdriver == 'mysql')
-        {
+        if ($this->db->dbdriver == 'mysql') {
             $this->load->helper('number');
 
-            $sql = "SHOW TABLE STATUS FROM `".$this->db->database."`";
+            $sql = "SHOW TABLE STATUS FROM `" . $this->db->database . "`";
             $query = $this->db->query($sql)->result_array();
 
             // Get total DB size
             $total_size = 0;
             $total_rows = 0;
-            foreach($query as $k => $v)
-            {
-                $total_size += $v['Data_length'] +  $v['Index_length'];
+            foreach ($query as $k => $v) {
+                $total_size += $v['Data_length'] + $v['Index_length'];
                 $total_rows += $v['Rows'];
             }
 
@@ -106,80 +105,128 @@ class Admin extends MY_Controller {
 
             $this->template->add_array(array(
                 'db_version' => $version['VERSION()'],
-                'db_size'    => byte_format($total_size),
-                'db_rows'    => $total_rows,
+                'db_size' => byte_format($total_size),
+                'db_rows' => $total_rows,
             ));
         }
 
         $this->template->show('sys_info', FALSE);
     }
 
-	/**
-	 * Delete cached files
-	 *
-	 * @param string
-	 * @access public
-	 * @return bool
-	 */
-	public function delete_cache()
-	{
+    /**
+     * Delete cached files
+     *
+     * @param string
+     * @access public
+     * @return bool
+     */
+    public function delete_cache() {
         cp_check_perm('cache_clear');
 
-		$param = $this->input->post('param');
+        $param = $this->input->post('param');
 
         $this->lib_admin->log(lang('ac_cleaned_cache'));
 
-		switch ($param)
-		{
-			case 'all':
-				$files = $this->cache->delete_all();
-				if ($files)
-					showMessage (lang('ac_files_deleted').': '.$files);
-				else
-					showMessage (lang('ac_cache_cleared'));
-			break;
+        switch ($param) {
+            case 'all':
+                $files = $this->cache->delete_all();
+                if ($files)
+                    $message = lang('ac_files_deleted') . ':' . $files;
+                else
+                    $message = lang('ac_cache_cleared');
+                break;
 
-			case 'expried':
-				$files = $this->cache->Clean();
-				if ($files)
-					showMessage (lang('ac_old_files_deleted').$files);
-				else
-				   showMessage (lang('ac_cache_cleared'));  	
-			break;
-		}
-	}
+            case 'expried':
+                $files = $this->cache->Clean();
+                if ($files)
+                    $message = lang('ac_old_files_deleted') . $files;
+                else
+                    $message = lang('ac_cache_cleared');
+                break;
+            default: {
+                    $message = 'Ошибка очистки кэша';
+                    $result = false;
+                }
+        }
+        echo json_encode(array(
+            'message' => $message,
+            'result' => $result,
+            'color' => 'r',
+            'filesCount' => $this->cache->cache_file()));
+    }
 
-    public function sidebar_cats()
-    {
+    //initialyze elFinder
+    public function elfinder_init($edMode = false) {
+        $this->load->helper('path');
+        
+        if (!$edMode)
+        	$path = 'uploads';
+        else
+        	$path = 'templates';
+        
+        $opts = array(
+            // 'debug' => true,
+            'roots' => array(
+                array(
+                    'driver' => 'LocalFileSystem',
+                    'path' => set_realpath($path),
+                    'URL' => site_url() . $path
+                // more elFinder options here
+                )
+            )
+        );
+        $this->load->library('elfinder_lib', $opts);
+    }
+
+    public function sidebar_cats() {
         echo '<div id="categories">';
-        if(isset($_GET['first']))
-        {
+        if (isset($_GET['first'])) {
             $this->db->where('name', 'shop');
             $this->db->limit(1);
             $query = $this->db->get('components');
-            if($query->num_rows() > 0)
-            {
+            if ($query->num_rows() > 0) {
                 ShopCore::app()->SAdminSidebarRenderer->render();
                 exit;
             }
         }
 
-		$this->template->assign('tree', $this->lib_category->build());
+        $this->template->assign('tree', $this->lib_category->build());
         $this->template->show('cats_sidebar', FALSE);
         echo '</div>';
     }
 
-	/**
-	 *Clear session data;
-	 *
-	 *@access public
-	 */
-	public function logout()
-	{
+    /**
+     * Clear session data;
+     *
+     * @access public
+     */
+    public function logout() {
         $this->lib_admin->log(lang('ac_admin_panel_exit'));
         $this->dx_auth->logout();
-		redirect('/admin/login','refresh');
-	}
+        redirect('/admin/login', 'refresh');
+    }
+
+    public function report_bug() {
+        $message = '';
+        $this->load->library('email');
+
+        $config['charset'] = 'utf-8';
+        $config['mailtype'] = 'html';
+        $config['wordwrap'] = TRUE;
+        $this->email->initialize($config);
+
+        /* pack message */
+        $message .= 'Адреса сайту: ' . trim(strip_tags($_GET['hostname'])) . '; сторінка адмінки: ' . trim(strip_tags($_GET['pathname'])) . '; ip-address: ' . trim(strip_tags($_GET['ip_address'])) . '; ім\'я користувача: ' . trim(strip_tags($_GET['user_name'])) . '; текст повідомлення: ' . trim(strip_tags($_GET['text']));
+
+        /* send message */
+        $this->email->from('bugs@imagecms.net', 'Admin Robot');
+        $this->email->to('report@imagecms.net');
+        $this->email->subject('Admin Report');
+        $this->email->message(stripslashes($message));
+        $this->email->send();
+
+        echo $message;
+    }
 
 }
 

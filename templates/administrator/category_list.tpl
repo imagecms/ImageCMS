@@ -1,51 +1,62 @@
-<div id="sortable">
-		  <table id="pages_table" >
-		  	<thead>
-                <th width="5px">{lang('a_id')}</th>
-				<th>{lang('a_title')}</th>
-				<th>{lang('a_pages')}</th>
-				<th>{lang('a_url')}</th>
-				<th></th>
-			</thead>
-			<tbody>
-		{foreach $tree as $item}
-		<tr id="{$item.number}">
-			<td class="">{$item.id}</td>
-			<td onclick="edit_category({$item.id}); return false;">
-            {if $item.parent_id == "0"}
-            <b>{truncate($item.name, 100)}</b>
-            {else:}
-                |{for $i=0;$i<=$item.level;$i++}
-                    -
-                {/for}
-                    {truncate($item.name, 100)}
-            {/if}
-            </td>
-            <td>{$item.pages}</td>
-			<td><a href="{$BASE_URL}{$item.path_url}" target="_blank">{truncate($item.url, 75)}</a></td>
-			<td  class="rightAlign">
-        	<img onclick="confirm_delete_cat('{str_replace(array("'",'"'), '', $item.name)}', {$item.id} );" src="{$THEME}/images/delete_page.png"  style="cursor:pointer" width="16" height="16" title="{lang('a_delete')}" />
-			</td>
-		</tr>
-		{/foreach}
-			</tbody>
-			<tfoot>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-                </tr>
-			</tfoot>
-		  </table>
-</div>
+<div class="container">
+    <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->    
+    <div class="modal hide fade modal_del">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>{lang('a_del_catego_ba')}</h3>
+        </div>
+        <div class="modal-body">
+            <p>{lang('a_del_category_selec')}?</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('{$BASE_URL}/admin/categories/delete')" >{lang('a_delete')}</a>
+            <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('a_cancel')}</a>
+        </div>
+    </div>
 
-{literal}
-		<script type="text/javascript">
-			window.addEvent('domready', function(){
-				pages_table = new sortableTable('pages_table', {overCls: 'over', sortOn: -1 ,onClick: function(){}});
-                pages_table.altRow();
-			});
-        </script>
-{/literal}
+
+    <div id="delete_dialog" title="{lang('a_del_categoy_ba')}" style="display: none">
+        {lang('a_del_catego_ba')}?
+    </div>
+    <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->
+
+    <section class="mini-layout">
+        <div class="frame_title clearfix">
+            <div class="pull-left">
+                <span class="help-inline"></span>
+                <span class="title">{lang('a_category')}</span>
+            </div>
+            <div class="pull-right">
+                <div class="d-i_b">
+                    <button type="button" class="btn btn-small disabled action_on" onclick="delete_function.deleteFunction()"><i class="icon-trash"></i>{lang('a_delete')}</button>
+                    <button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$BASE_URL}/admin/categories/create_form'"><i class="icon-plus-sign icon-white"></i>{lang('create_cat')}</button>
+                </div>
+            </div>                            
+        </div>       
+        <div class="frame_table">
+                <div id="category">
+                    <div class="row-category head">
+                        <div class="t-a_c">
+                            <span class="frame_label">
+                                <span class="niceCheck b_n">
+                                    <input type="checkbox"/>
+                                </span>
+                            </span>
+                        </div>
+                        <div>{lang('a_id')}</div>
+                        <div>{lang('a_title')}</div>
+                        <div>{lang('a_url')}</div>
+                        <div>{lang('a_pages')}</div>
+                    </div>
+                    <div class="body_category frame_level">
+						<div class="sortable save_positions" data-url="/admin/categories/save_positions/">
+							{$catTreeHTML}                                              
+						</div>
+                    </div>
+                </div>
+
+
+</section>
+</div>
+<div class="hfooter"></div>
+</div>

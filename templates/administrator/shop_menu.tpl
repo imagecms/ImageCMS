@@ -1,0 +1,69 @@
+<nav class="navbar navbar-inverse">
+    <ul class="nav">
+        <li class="active" ><a href="{$ADMIN_URL}dashboard" class="pjax"><i class="icon-home"></i><span>Главная</span></a></li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-shopping-cart"></i>Заказы<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li class="nav-header">{lang('a_orders')}</li>
+                <li><a href="{$ADMIN_URL}orders/index" class="pjax">Все заказы</a></li>
+                <li><a href="{$ADMIN_URL}orderstatuses">Статусы заказов</a></li>
+                <li class="nav-header">{lang('a_callbacks')}</li>
+                <li><a href="{$ADMIN_URL}callbacks">Колбеки</a></li>
+                <li><a href="{$ADMIN_URL}callbacks/statuses">Статусы колбеков</a></li>
+                <li><a href="{$ADMIN_URL}callbacks/themes">Темы колбеков</a></li>
+                <li class="nav-header">{lang('a_notifications')}</li>
+                <li><a href="{$ADMIN_URL}notifications">Сообщения о появлении</a></li>
+                <li><a href="{$ADMIN_URL}notificationstatuses/index">Статусы о появлении</a></li>
+                <li class="nav-header">Прочее</li>                                  
+                <li><a class="pjax" href="/admin/components/cp/comments">Комментарии</a></li>
+
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list-alt"></i>Каталог товаров<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+
+                <li><a href="/admin/components/run/shop/categories/c_list" class="pjax">Категории</a></li>
+                <li><a href="/admin/components/run/shop/search/index" class="pjax">Товары</a></li>
+                <li><a href="/admin/components/run/shop/properties/index" class="pjax">Свойства товаров</a></li>
+                <li><a href="/admin/components/run/shop/kits/kit_list" class="pjax">Наборы товаров</a></li>
+                <li><a href="/admin/components/run/shop/search/index?WithoutImages=1" class="pjax">Товары без картинок</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>Пользователи<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="{$ADMIN_URL}users/index" class="pjax">Список пользователей</a></li>
+                <li class="nav-header">Разделение прав</li>
+                <li><a href="{$ADMIN_URL}rbac/role_list" class="pjax">Роли</a></li>
+                <li><a href="{$ADMIN_URL}rbac/group_list" class="pjax">Список груп привилегий</a></li>
+                <li><a href="{$ADMIN_URL}rbac/privilege_list" class="pjax">Список привилегий</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-statistic"></i>Статистика<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="{$ADMIN_URL}charts/brands" class="pjax">Бренды</a></li>
+                <li><a href="{$ADMIN_URL}charts/orders" class="pjax">Заказы</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i>Настройки<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="{$ADMIN_URL}settings" class="pjax">Глобальные настройки</a></li>
+                <li><a href="{$ADMIN_URL}currencies" class="pjax">Валюты</a></li>
+                <li><a href="{$ADMIN_URL}deliverymethods/c_list" class="pjax">Способы доставки</a></li>
+                <li><a href="{$ADMIN_URL}paymentmethods/index" class="pjax">Способы оплаты</a></li>
+                <li><a href="{$ADMIN_URL}brands/c_list" class="pjax">Бренды</a></li>
+                <li><a href="/admin/components/run/shop/warehouses/index" class="pjax">Склады</a></li>
+                <li><a href="{$ADMIN_URL}system/import" class="pjax">Автоматизация</a></li>
+                <li><a href="/admin/components/run/shop/banners/index" class="pjax">Баннеры</a></li>
+                <li><a href="/admin/components/run/shop/discounts/index" class="pjax">{lang('a_reg_discount_sh')}</a></li>
+                <li><a href="/admin/components/run/shop/comulativ/index" class="pjax">Накопительние скидки</a></li>
+                <li><a href="/admin/components/run/shop/gifts" class="pjax">Подарочные сертификаты</a></li>
+                <li><a href="/admin/components/run/shop/customfields" class="pjax">Дополнительные поля</a></li>
+            </ul>
+        </li>
+    </ul>
+    <a class="btn btn-small pull-right btn-info" onclick=" loadBaseInterface();"  href="#"><span class="f-s_14">←</span> Администрировать сайт </a>
+</nav>
