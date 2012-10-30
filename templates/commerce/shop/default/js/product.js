@@ -1,20 +1,20 @@
-$(function(){
-    // Init light box
-    $('.lightbox').lightbox();
-
-    // Init star rating
-    $('.hover-star').rating({
-        callback: function(value, link) {
-            $.ajax({
-                type: "POST",
-                data: "pid="+currentProductId+"&val=" + value,
-                url:'/shop/ajax/rate'
-            });
-
-            $('.hover-star').rating('readOnly', true);
-        }
-    });
-});
+//$(function(){
+//    // Init light box
+//    $('.lightbox').lightbox();
+//
+//    // Init star rating
+//    $('.hover-star').rating({
+//        callback: function(value, link) {
+//            $.ajax({
+//                type: "POST",
+//                data: "pid="+currentProductId+"&val=" + value,
+//                url:'/shop/ajax/rate'
+//            });
+//
+//            $('.hover-star').rating('readOnly', true);
+//        }
+//    });
+//});
 
 /**
  * Event on change product variant.

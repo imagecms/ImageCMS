@@ -709,7 +709,7 @@ function initAdminArea(){
        
         var img = document.createElement("img");
         var reader = new FileReader();
-        reader.liveloadend = function() {
+        reader.onloadend = function() {
             img.src = reader.result;
         }
         

@@ -436,7 +436,7 @@ span.code{color: #999;font-size: 11px;margin-right: 9px;}
 .small_marker{margin-left: 11px;position: relative;display: block;}
 .small_marker:before,.icon4{content: '\2013';position: absolute;left: -11px;top: -1px;}
 
-.promotion{margin: 7px auto 0;}
+.promotion{margin: 7px auto 30px;}
 .promotion li{width: 998px !important;border: 1px solid #f1aca7;padding: 18px 0 16px;}
 .promotion li .f_l{width: 220px;margin: 0 8px;}
 .promotion .button_block{float: left;margin-left: 23px;}
@@ -879,3 +879,4 @@ div.rating_nohover div.five span {
 .form_text{color: #2A2A2A;font-size: 14px;margin-top: 14px; width: 200px;}
 .cartCustomData input{width: 205px;height: 24px;line-height: 24px;}
  span.required {color: #D80600;}
+ .jcarousel-prev-disabled, .jcarousel-next-disabled{display:none !important;}
