@@ -1,164 +1,132 @@
-{if $no_pages == TRUE}
-    <div id="notice" style="width:500px;">{lang('a_in_cat')} <b>{$category['name']}</b> {lang('a_no_pages')}
-    <a href="#" onclick="ajax_div('page', base_url + 'admin/pages/index/category/{$category.id}'); return false;">{lang('a_create')}.</a> 
-    </div>    
-    {return}
-{/if}
-
-<div class="top-navigation">
-    <div style="float:left;">
-    <div style="padding-left:10px;">
-        <form style="width:100%;" onsubmit="return false;" method="post" action="{$BASE_URL}admin/admin_search" id="g_search_form">
-            <input type="text" value="{lang('a_search_pages')}..." name="search_text" class="textbox_long" onclick="if (this.value=='{lang('a_search_pages')}...') this.value='';" onblur="if (this.value=='') this.value='{lang('a_search_pages')}...';" />
-            <input type="submit" value="{lang('a_search')}" class="search_submit" onclick="ajax_form('g_search_form', 'page');"/>
-
-            <a href="javascript:ajax_div('page', base_url + 'admin/admin_search/advanced_search')">{lang('a_advanced_search')}</a>
-         </form>
+    <div class="modal hide fade" id="pages_action_dialog">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 id="mvMv">{lang('a_copy_move_title')}</h3>
+        </div>
+        <div class="modal-body">
+            {lang('a_category')}:
+            <select id="CopyMoveCategorySelect" url="{$BASE_URL}admin/pages/GetPagesByCategory/">
+                <option value="0"></option>
+                { $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'] )); }
+            </select>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn" onclick="$('.modal').modal('hide');">Отмена</a>
+            <a href="#" id="confirmMove" class="btn btn-primary" onclick="pagesAdmin.confirmListAction('{$BASE_URL}admin/pages/move_pages/copy')" >Подтвердить</a>
+        </div>
     </div>
+
+    <div class="modal hide fade" id="pages_delete_dialog">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>{lang('a_delete_pages_title')}</h3>
+        </div>
+        <div class="modal-body">
+            {lang('a_delete_pages_promt')}
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn" onclick="$('.modal').modal('hide');">Отмена</a>
+            <a href="#" class="btn btn-primary" onclick="pagesAdmin.confirmListAction('{$BASE_URL}admin/pages/delete_pages/')" >Удалить</a>
+        </div>
     </div>
 
-    <div align="right" style="padding:7px 13px;">
- <input type="button" class="button_silver_130" value="{lang('a_create_page')}" onclick="ajax_div('page', base_url + 'admin/pages/index/category/{$cat_id}'); return fa;se;" />
-    </div>
-</div>
-
-
-<div style="clear:both"></div>
-
-<div id="sortable" >
-		  <table id="pages_table">
-		  	<thead>
-                <th width="5px">
-                    <input type="checkbox" onclick="switchChecks(this);"/>
-                </th>
-				<th axis="number" width="5px;">ID</th>
-				<th axis="string">{lang('a_title')}</th>
-				<th axis="string">{lang('a_url')}</th>
-				<th axis="date">{lang('a_created')}</th>
-				<th style="width:80px;" width="80px">
-                {lang('a_position')}
-                <img src="{$THEME}/images/save.png" align="absmiddle" style="cursor:pointer;width:22px;height:22px;"
-                onclick="save_pages_position('{echo $CI->uri->uri_string()}'); return false;" /> 
-                </th>
-				<th axis="string">{lang('a_author')}</th>
-				<th>{lang('a_status')}</th>
-				<th></th>
-			</thead>
-			<tbody>
-		{foreach $pages as $page}
-		<tr id="{$page.number}">
-            <td>
-            <input type="checkbox" id="chkb_{$page.id}" class="chbx"/>  
-            </td>
-			<td class="">{$page.id}</td>
-			<td title="{$page.title}. {lang('a_view_count')}: {$page.showed}" onclick="ajax_div('page','{$BASE_URL}admin/pages/edit/{$page.id}'); return false;">{truncate($page.title, 50)}</td>
-			<td><a href="{$BASE_URL}{$page.cat_url}{$page.url}" target="_blank">{truncate($page.url, 40, '...')}</a></td>
-			<td>{ date('Y-m-d H:i:s', $page['created']) }</td>
-			<td>
-            <div align="center">
-            <input type="text" value="{$page.position}" style="width:26px;" class="page_pos" id="page{$page.id}" /> 
+<form method="post" action="" class="listFilterForm" id="pagesFilterForm">
+    <section class="mini-layout">
+        <div class="frame_title clearfix">
+            <div class="pull-left">
+                <span class="help-inline"></span>
+                <span class="title">{lang('a_cont_list')}</span>
             </div>
-            </td>
-			<td>{$page.author}</td>
-			<td>
-			{ switch $page['post_status'] }
-				{ case "publish" }
-				<div style="visibility:hidden;float:left">1</div>
-                <img id="p_status_{$page.id}" onclick="change_page_status('{$page.id}');" title="{lang('a_published')}" src="{$THEME}/images/publish.png" width="16" height="16" />
-                {break;}
-				{ case "pending" }
-				<div style="visibility:hidden;float:left">2</div>
-                <img id="p_status_{$page.id}" onclick="change_page_status('{$page.id}');" title="{lang('a_wait_approve')}" src="{$THEME}/images/pending.png" width="16" height="16" />
-                {break;}
-				{ case "draft" }
-					<div style="visibility:hidden;float:left">3</div>
-                    <img id="p_status_{$page.id}" onclick="change_page_status('{$page.id}');" title="{lang('a_not_publ')}" src="{$THEME}/images/draft.png" width="16" height="16" />
-                {break;}
-			{ /switch }
-			</td>
-			<td  class="rightAlign">
-			<img onclick="ajax_div('page','{$BASE_URL}admin/pages/edit/{$page.id}/{$page.lang}');" style="cursor:pointer" src="{$THEME}/images/edit_page.png" width="16" height="16" title="{lang('a_edit')}" />
-			<img onclick="confirm_delete_page({$page.id});" src="{$THEME}/images/delete_page.png"  style="cursor:pointer" width="16" height="16" title="{lang('a_delete')}" />
-			</td>
-		</tr>
-		{/foreach}
-			</tbody>
-			<tfoot>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</tfoot>
-		  </table>
-</div>
+            <div class="pull-right">
+                <div class="d-i_b">
+                    <button type="button" class="btn btn-small disabled action_on listFilterSubmitButton " disabled="disabled" ><i class="icon-filter"></i>Фильтрировать</button>
+                    <button onclick="$('#pages_action_dialog').modal();" type="button" class="btn btn-small disabled action_on pages_action" >{lang('a_copy_product')}</button>
+                    <button onclick="$('#pages_action_dialog').modal();pagesAdmin.updDialogMove();" type="button" class="btn btn-small disabled action_on pages_action" ><i class="icon-move"></i>{lang('a_repalce')}</button>
+                    <button onclick="$('#pages_delete_dialog').modal();pagesAdmin.updDialogCopy();" type="button" class="btn btn-small disabled action_on pages_action pages_delete" ><i class="icon-trash"></i>{lang('a_delete')}</button>
+                    <button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$BASE_URL}admin/pages'"><i class="icon-plus-sign icon-white"></i>{lang('a_create_page')}</button>
+                </div>
+            </div>                            
+        </div>
+        <div class="row-fluid">
+            <table class="table table-striped table-bordered table-hover table-condensed pages-table">
+                <thead>
+                    <tr>
+                        <th class="t-a_c span1">
+                            <span class="frame_label">
+                                <span class="niceCheck b_n">
+                                    <input type="checkbox"/>
+                                </span>
+                            </span>
+                        </th>
+                        <th class="span1">ID</th>
+                        <th class="span4">{lang('a_title')}</th>
+                        <th class="span3">{lang('a_url')}</th>
+                        <th class="span2">Категория</th>
+                        <th class="span1">{lang('a_status')}</th>
+                    </tr>
+                    <tr class="head_body">
+                        <td>
+                        </td>
+                        <td class="number">
+                            <input type="text" name="id" data-original-title="{lang('a_numbers_only')}" value="{$_POST['id']}"/>
+                        </td>
+                        <td>
+                            <input type="text" name="title" value="{$_POST['title']}"/>
+                        </td>
+                        <td>
+                            <input type="text" name="url" value="{$_POST['url']}"/>
+                        </td>
+                        <td>
+                            <select id="categorySelect" url="{$BASE_URL}admin/pages/GetPagesByCategory/">
+                                <option value="">Все категории</option>
+                                <option value="0" {if $cat_id === "0"}selected="selected"{/if}>Без категории</option>
+                                { $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['cat_id'])); }
+                            </select>
+                        </td>
+                        <td>
 
-<div align="center" style="padding:5px;" id="pagination">
-{$paginator}
-</div>
-
-<div class="footer_block" align="right">
-    {lang('a_with_selected')}:
-    <input type="submit" name="delete" class="button_silver" value="{lang('a_repalce')}" onclick="show_move_window('move');" />
-    <input type="submit" name="delete" class="button_silver" value="{lang('a_copy')}" onclick="show_move_window('copy');" />
-    <input type="submit" name="delete" class="button_red" style="font-weight:bold;" value="{lang('a_delete')}" onclick="delete_sel_pages({$cat_id}); return false;" />
-</div>
-
-{literal}
-    	<script type="text/javascript">
-			window.addEvent('domready', function(){
-				pages_table = new sortableTable('pages_table', {overCls: 'over', sortOn: -1 ,onClick: function(){}});
-                pages_table.altRow();
-			});
-
-            function switchChecks(el)
-            {
-                if (el.checked == true){
-                    check_all();
-                }else{
-                    uncheck_all();
-                }
-            }
-
-            function check_all()
-            {
-                var items = $('pages_table').getElements('input');
-                items.each(function(el,i){
-                if(el.hasClass('chbx')) 
-                {
-                    el.checked = true;
-                }  
-                });
-            }
-
-            function uncheck_all()
-            {
-                var items = $('pages_table').getElements('input');
-                items.each(function(el,i){
-                if(el.hasClass('chbx')) 
-                {
-                    el.checked = false;
-                }  
-                });
-            }
-
-            function show_move_window(action)
-            {
-                new MochaUI.Window({
-                    id: 'move_pages_window',
-                    title: 'Копировать/Переместить страницы ',
-                    type: 'modal',
-                    loadMethod: 'xhr',
-                    contentURL: base_url + 'admin/pages/show_move_window/' + action,
-                    width: 410,
-                    height: 100
-                });
-            }
-		</script>
-{/literal}
+                        </td>
+                    </tr>
+                </thead>
+                <tbody class="sortable" data-url="">
+                    {if count($pages)}
+                    {foreach $pages as $page}
+                    <tr data-id="{$page.id}">
+                        <td class="t-a_c">
+                            <span class="frame_label">
+                                <span class="niceCheck b_n">
+                                    <input type="checkbox" data-id="{$page.id}" name="ids" value="{$page.id}"/>
+                                </span>
+                            </span>
+                        </td>
+                        <td><span>{$page.id}</span></td>
+                        <td class="share_alt">
+                            <a href="{$BASE_URL}{$page.cat_url}{$page.url}" target="_blank" class="go_to_site pull-right btn btn-small" data-rel="tooltip" data-placement="top" data-original-title="{lang('a_goto_site')}"><i class="icon-share-alt"></i></a>
+                            <a href="{$BASE_URL}admin/pages/edit/{$page.id}" class="title pjax" data-rel="tooltip" data-original-title="{lang('a_edit')}">{$page.title}</a>
+                        </td>
+                        <td><span>{truncate($page.url, 40, '...')}</span></td>
+                        <td><span>{if $page.cat_name}{$page.cat_name}{else:}{$category.name}{/if}</span></td>
+                        <td>
+                            <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if $page['post_status'] == 'publish'}{lang('a_show')}{else:}{lang('a_dont_show')}{/if}" onclick="change_page_status('{$page.id}');">
+                                <span class="prod-on_off {if $page['post_status'] != 'publish'}disable_tovar{/if}" style="{if $page['post_status'] != 'publish'}left: -28px;{/if}"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    {/foreach}
+                    {else:}
+                    <tr>
+                        <td colspan="6">
+                            <div class="alert alert-info" style="margin: 18px;">По Вашему запросу ничгео не найдено</div>
+                        </td>
+                    </tr>
+                    {/if}
+                </tbody>
+            </table>
+        </div>
+        {if $paginator > ''}
+        <div class="clearfix">
+            {$paginator}
+        </div>
+        {/if}
+    </section>
+</form>

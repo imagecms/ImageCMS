@@ -28,6 +28,7 @@
                         <b>{echo encode($profile->getAddress())}</b>
                     </li>
                 </ul>
+                    
                 <a href="{shop_url('/cart')}" class="f_r w-s_n-w">{lang('s_profile_me_bascket')}</a>
                 <a href="{shop_url('wish_list')}"  style="margin-right:9px;" class="f_l w-s_n-w" >{lang('s_profile_me_change_view_wishlist')}</a><br />
                 <a href="#" class="f_r w-s_n-w" id="user_form">{lang('s_edit_personal_information')}</a>

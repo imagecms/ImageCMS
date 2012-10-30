@@ -75,7 +75,6 @@ class Menu_model extends CI_Model{
         {
             $this->db->where('id',$item_id);
             $this->db->update('menus_data', array('position' => $pos ));
-
             return TRUE;
         }else{
             return FALSE;

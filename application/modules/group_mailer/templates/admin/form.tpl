@@ -1,32 +1,59 @@
-<div class="top-navigation">
-    <ul>
-        <li><p>{lang('amt_send_mail_to_users')}</p></li>
-    </ul>
-</div>
+<div class="container">
+    <section class="mini-layout">
+        <div class="frame_title clearfix">
+            <div class="pull-left">
+                <span class="help-inline"></span>
+                <span class="title">{lang('a_send_ema_modu_group')}</span>
+            </div>
+            <div class="pull-right">
+                <div class="d-i_b">
+                    <a href="/admin/components/modules_table/" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
+                    <button type="button" class="btn btn-small btn-success formSubmit" data-form="#send" ><i class="icon-list-alt icon-white"></i>{lang('a_mailer_send_mail')}</button>                   
+                </div>
+            </div>                            
+        </div>               
+        <div class="tab-content">
+            <!-----------------------------------------------------SETTINGS MAIL-------------------------------------------------------------->
+            <div class="tab-pane active" id="mail">
+                <table class="table table-striped table-bordered table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th colspan="6">
+                                {lang('a_param')}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="6">
+                                <div class="inside_padd span12">
+                                    <div class="form-horizontal">
+                                        <div class="row-fluid">
+                                            <form id="send" method="post" action="{$BASE_URL}admin/components/cp/group_mailer/send_email">
 
-<form action="{$BASE_URL}admin/components/cp/group_mailer/send_email" method="post" id="send_mail_form" style="width:100%;">
 
-<div class="form_text">{lang('amt_theme')}:</div>
-<div class="form_input">
-    <input type="text" name="subject" value="" class="textbox_long" />
-</div>
-<div class="form_overflow"></div>
-
-<div class="form_text">{lang('amt_your_name')}:</div>
-<div class="form_input">
-    <input type="text" name="name" value="" class="textbox_long" />
-</div>
-<div class="form_overflow"></div>
-
-<div class="form_text">{lang('amt_your_email')}:</div>
-<div class="form_input">
-    <input type="text" name="email" value="{$admin_mail}" class="textbox_long" />
-</div>
-<div class="form_overflow"></div>
-
-<div class="form_text">{lang('amt_message')}:</div>
-<div class="form_input">
-    <textarea name="message" rows="15" cols="180"  style="width:700px;height:350px;">{lang('amt_hello')}, %username%.
+                                                <div class="control-group">
+                                                    <label class="control-label" for="subject">{lang('amt_theme')}</label>
+                                                    <div class="controls">
+                                                        <input type="text" name="subject" id="subject" value=""/>
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label" for="name">{lang('amt_your_name')}</label>
+                                                    <div class="controls">
+                                                        <input type="text" name="name" id="name" value=""/>
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label" for="email">{lang('amt_your_email')}</label>
+                                                    <div class="controls">
+                                                        <input type="text" id="email" name="email" value="{$admin_mail}"/>
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label" for="message">{lang('amt_message')}</label>
+                                                    <div class="controls">
+                                                        <textarea name="message" id="message" class="elRTE" >{lang('amt_hello')}, %username%.
 
 
 
@@ -34,34 +61,44 @@
 
 
 --------------------------------
-{lang('amt_best_regards')} {$site_settings.site_title}
+                                                            {lang('amt_best_regards')} {$site_settings.site_title}
 
-{site_url()}
+                                                            {site_url()}
 
-</textarea> 
+                                                        </textarea> 
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="control-group">
+                                                    <label class="control-label" for="roles">{lang('amt_send_to_group')}</label>
+                                                    <div class="controls">
+                                                        {foreach $roles as $role}
+                                                            <label> <input type="checkbox" name="roles[]" id="roles" value="{$role.id}" /> {$role.alt_name}</label>
+                                                            {/foreach}
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="control-group">
+                                                    <label class="control-label" for="mailtype">{lang('amt_format')}</label>
+                                                    <div class="controls">
+                                                        <select name="mailtype" id="mailtype">
+                                                            <option value="html" selected="selected">{lang('amt_html')}</option>
+                                                            <option value="text">{lang('amt_plain_text')}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table> 
+            </div>
+
+    </section>
 </div>
-<div class="form_overflow"></div>
-
-<div class="form_text">{lang('amt_send_to_group')}:</div>
-<div class="form_input">
-    {foreach $roles as $role}
-        <label><input type="checkbox" name="roles[]" value="{$role.id}" /> {$role.alt_name}</label>
-    {/foreach}
-</div>
-<div class="form_overflow"></div>
-
-<div class="form_text">{lang('amt_format')}:</div>
-<div class="form_input">
-    <select name="mailtype">
-        <option value="html" selected="selected">{lang('amt_html')}</option>
-        <option value="text">{lang('amt_plain_text')}</option>
-    </select>
-</div>
-<div class="form_overflow"></div>
-
-<div class="form_text"></div>
-<div class="form_input">
-    <input type="submit" name="button" class="button" value="Отправить" onclick="ajax_me('send_mail_form');" />
-</div>
-
-</form>

@@ -54,6 +54,7 @@ class Backup extends MY_Controller {
                 $this->send_to_email();
                 break;
         }
+        pjax('/admin/backup');
     }
 
     private function send_to_email() {
@@ -82,6 +83,7 @@ class Backup extends MY_Controller {
 
             $this->done();
         }
+        pjax('/admin/backup');
     }
 
     // Direct download

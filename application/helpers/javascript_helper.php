@@ -14,7 +14,7 @@
 	/**
 	 * Show Roar message
 	 */
-	function showMessage( $message, $title = FALSE, $class = '')
+	function showMessage( $message, $title = FALSE, $class = '', $ret=false)
     {
         $del = array("'",'"');  
 
@@ -35,7 +35,15 @@
 		$message = str_replace("\n",'<br/>',$message);
 		$message = str_replace("<p>",'',$message);
 		$message = str_replace("</p>",'',$message);
-		echo "<script type=\"text/javascript\"> showMessage('".$title."','".$message."','".$class."'); </script>";
+                if (!$ret)
+                    echo "<script type=\"text/javascript\"> showMessage('".$title."','".$message."','".$class."'); </script>";
+                else
+                    return "<script type=\"text/javascript\"> showMessage('".$title."','".$message."','".$class."'); </script>";
+	}
+	
+	function pjax($url, $selector='#mainContent')
+	{
+		echo '<script>$.pjax({url: "'.$url.'", container:"'.$selector.'"});</script>';
 	}
 
 	/**
