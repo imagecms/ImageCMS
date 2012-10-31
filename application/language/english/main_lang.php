@@ -321,5 +321,7 @@ $lang['s_sea_search_for'] = 'You searched for';
 $lang['s_js_fisa'] = 'Show';
 $lang['s_spec_promotion'] = 'Special promotion';
 
-
+$lang['s_shot'] = 'New';
+$lang['s_saction'] = 'Promotion';
+$lang['s_shit'] = 'Hit';
 /* End of file main_lang.php */
