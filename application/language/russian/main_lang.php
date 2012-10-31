@@ -322,4 +322,10 @@ $lang['s_sea_search_for'] = 'Вы искали';
 $lang['s_js_fisa'] = 'Показать';
 $lang['s_spec_promotion'] = 'Акционное предложение';
 
+$lang['s_shot'] = 'Новинка';
+$lang['s_saction'] = 'Акция';
+$lang['s_shit'] = 'Хит';
+
+$lang['s_found_in_categories'] = 'Найдено в категориях:';
+$lang['s_not_found_in_categories'] = 'В категориях ничего не найдено';
 /* End of file main_lang.php */

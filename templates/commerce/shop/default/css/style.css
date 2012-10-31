@@ -648,32 +648,32 @@ span.code{color: #999;font-size: 11px;margin-right: 9px;}
 .forms_edit{clear:left;width: 50%;display: none;}
 .msg_form_edit{float: center; width: 94%;margin: 20px 0 0 20px;}
 #mask {
-  position:absolute;
-  left:0;
-  top:0;
-  z-index:9000;
-  background-color:#000;
-  display:none;
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:9000;
+    background-color:#000;
+    display:none;
 }
 #boxes .window {
-  position:fixed;
-  left:0;
-  top:0;
-  width:440px;
-  height:300px;
-  display:none;
-  z-index:9999;
-  padding:20px;
+    position:fixed;
+    left:0;
+    top:0;
+    width:440px;
+    height:300px;
+    display:none;
+    z-index:9999;
+    padding:20px;
 }
 #boxes #dialog {
-  width:475px; 
-  height:303px;
-  padding:10px;
-  background-color:#ffffff;
+    width:475px; 
+    height:303px;
+    padding:10px;
+    background-color:#ffffff;
 }
 #boxes #dialog1 {
-  width:475px; 
-  height:303px;
+    width:475px; 
+    height:303px;
 }
 .enter_reg{width: 230px;}
 .enter_reg ul{background-color: #e6e6e6;overflow: hidden;}
@@ -878,5 +878,20 @@ div.rating_nohover div.five span {
 
 .form_text{color: #2A2A2A;font-size: 14px;margin-top: 14px; width: 200px;}
 .cartCustomData input{width: 205px;height: 24px;line-height: 24px;}
- span.required {color: #D80600;}
- .jcarousel-prev-disabled, .jcarousel-next-disabled{display:none !important;}
+span.required {color: #D80600;}
+.jcarousel-prev-disabled, .jcarousel-next-disabled{display:none !important;}
+
+.promoblock{position: absolute;
+            left: 0;
+            top: 0;
+            background-color: #FF0000;
+            padding: 5px 10px;
+            color: white;
+            font-size: 10px;
+            -moz-border-radius: 4px;
+            -webkit-border-radius: 4px;
+            border-radius: 4px;
+            text-shadow: 0 1px blue;}
+
+.promoblock+.promoblock{top:21px;}
+.promoblock+.promoblock+.promoblock{top:42px;}

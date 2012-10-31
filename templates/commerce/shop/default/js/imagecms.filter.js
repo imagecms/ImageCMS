@@ -12,6 +12,7 @@ $(document).ready(function(){
         var filterResponse = new String;
         $this.closest('form').ajaxSubmit({
             success: function(responseText, statusText, xhr, $form){
+                console.log(responseText);
                 filterResponse = $.parseJSON(responseText);
                 for (x in filterResponse.brands) {
                     var brand = filterResponse.brands[x];
