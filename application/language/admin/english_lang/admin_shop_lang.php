@@ -671,6 +671,7 @@ $lang['a_sender']           =	'sender';
     $lang['a_total_users'] = 'Total users';
     $lang['a_create_additional_field'] = 'Additional field create';
     $lang['a_field_activity'] = 'Active';
+    $lang['a_field_not_activity'] = 'Not active';
     $lang['a_field_type'] = 'Field type';
     $lang['a_additional_fields_list'] = 'Additional fields list';
     $lang['a_empty_additional_fields_list'] = 'List is empty.';
