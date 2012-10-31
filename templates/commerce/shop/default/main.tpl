@@ -65,8 +65,9 @@
                 </div>
                         
                 <div class="phone">
-                    <address>+8 (067) <span>572-58-18</span></address>
+                    <address>(095)<span> 555-55-55</span></address>
                     <span class="js showCallback">{lang('s_coll_order')}</span>
+                    <span class="js showReport">Report</span>
                 </div>
                 
                 <ul class="user_menu">
@@ -130,19 +131,19 @@
                 <ul class="contacts f_l">
                     <li>
                         <span class="b">{lang('s_tel')}:</span>
-                        <span>+8 (067) 572-58-18<br/>+8 (067) 572-58-18</span>
+                        <span>(095) 555-55-55</span>
                     </li>
                     <li>
                         <span class="b">{lang('s_email')}:</span>
-                        <span>SiteImageCMS@gmail.com</span>
+                        <span>Info@imagecms.net</span>
                     </li>
                     <li>
                         <span class="b">{lang('s_skype')}:</span>
-                        <span>SiteImageCMS</span>
+                        <span>ImageCMS</span>
                     </li>
                 </ul>
                 <div class="footer_info f_r">
-                    <div>© Site ImageCMS, {date('Y')}</div>
+                    <div>© ImageCMS, {date('Y')}</div>
                     <div class="social">
                         <a href="#" class="mail"></a>
                         <a href="#" class="g_plus"></a>
