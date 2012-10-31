@@ -4,12 +4,13 @@ function change_status(hrefFn) {
     })
 }
 function export_csv(){
-    $('.export').unbind('click').live('click', function(){ 
+    $('.export').die('click').live('click', function(){ 
 
         if ($('input[name=export]:checked').val() == 'csv') {
             
             $('#exportUsers').submit();
-
+            
+            $('#loading').hide();
             return false;
         }
     });
@@ -33,28 +34,43 @@ $(document).ready(function(){
             }
         });
     })
-    $(".selValitadot").click(function() {
-        
-
-        $("#validatorSelect").show();
-    });
-    $(".selValitadot1").click(function() {
-
-        $("#validatorSelect").hide();
-    });
 
     
+    if ($('select#type_select'))
+        $('select#type_select').live('change', function(){
+            if ($(this).val() != '2')
+                $('#possVal').slideUp(200);
+            else
+                $('#possVal').slideDown(200);
+        })
+    
+
     $('#emailAutoC').autocomplete({
         minChars: 0,
-        source: '/admin/components/cp/user_manager/auto_complit/email' + $('#emailAutoC').attr('value') + '?limit=15'
+        source: '/admin/components/cp/user_manager/auto_complit/email' + $('#emailAutoC').attr('value') + '?limit=25'
     });
     
     $('#nameAutoC').autocomplete({
         minChars: 0,
-        source: '/admin/components/cp/user_manager/auto_complit/name' + $('#nameAutoC').attr('value') + '?limit=15'
+        source: '/admin/components/cp/user_manager/auto_complit/name' + $('#nameAutoC').attr('value') + '?limit=25'
+        
+    });
+    
+    //    AUTO COMPLITE SHOP--------------------------------------------------------------------------------------------------
+    
+        
+        
+    $('#shopNameAutoC').autocomplete({
+        minChars: 0,
+        source: '/admin/components/run/shop/users/auto_complite/name' + $('#shopNameAutoC').attr('value') + '?limit=25'
         
     });
 
+    $('#shopEmailAutoC').autocomplete({
+        minChars: 0,
+        source: '/admin/components/run/shop/users/auto_complite/email' + $('#shopNameAutoC').attr('value') + '?limit=25'
+        
+    });
     $('.clearCashe').on('click', function() {
         $this = $(this);
         $.ajax({

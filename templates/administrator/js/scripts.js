@@ -23,22 +23,24 @@ $(document).ajaxComplete( function(event, XHR, ajaxOptions){
 });
 
 function init_2(){
-    $('.buy_prod').popover('destroy').each(function(){
-        var $this = $(this);
-        if ($this.find('span').text() != 0){
+    if ($.exists('.buy_prod, .popover_ref')){
+        $('.buy_prod').popover('destroy').each(function(){
+            var $this = $(this);
+            if ($this.find('span').text() != 0){
+                $this.popover({
+                    'placement':'left',
+                    'content':$this.next().html()
+                });
+            }
+        });
+        $('.popover_ref').popover('destroy').each(function(){
+            var $this = $(this);
             $this.popover({
-                'placement':'left',
-                'content':$this.next().html()
-            });
-        }
-    });
-    $('.popover_ref').popover('destroy').each(function(){
-        var $this = $(this);
-        $this.popover({
-            'content':$this.next().html(),
-            'placement':'right'
+                'content':$this.next().html(),
+                'placement':'right'
+            })
         })
-    })
+    }
     //not_standart_checks----------------------
     function dis_un_dis(){
         var label_act = $('.frame_label.active');
@@ -102,7 +104,7 @@ function init_2(){
             changeCheck($this.find('> span:eq(0)'));
         }
         if (!$this.hasClass('no_connection')) {
-            setTimeout(dis_un_dis, 100)
+            dis_un_dis();
         }
         return false;
     });
@@ -218,7 +220,8 @@ function init_2(){
         if (el.closest('[data-tree]').length > 0) el.closest('tr').addClass('active');
         else if (el.closest('.sortable2').find('tr').length > 0) el.closest('.sortable2').find('tr').has(el).addClass('active')
         
-        //textcomment_s_h('s', el);
+        dis_un_dis();
+        textcomment_s_h('s', el);
     }
     function changeCheckallreset(el)
     {
@@ -232,6 +235,7 @@ function init_2(){
         if (el.closest('[data-tree]').length > 0) el.closest('tr').removeClass('active');
         else if (el.closest('.sortable2').find('tr').length > 0) el.closest('.sortable2').find('tr').has(el).removeClass('active')
         
+        dis_un_dis();
         textcomment_s_h('h', el);
     }
     function changeCheckStart(el)
@@ -257,12 +261,12 @@ function init_2(){
         return false;
     }
     $('.all_select').toggle(function(){
-        $(this).parents('table').find('.frame_label').each(function(){
+        $(this).parents('table').find('tbody .frame_label').each(function(){
             changeCheckallchecks($(this).find('> span:eq(0)'));
         })
     },
     function(){
-        $(this).parents('table').find('.frame_label').each(function(){
+        $(this).parents('table').find('tbody .frame_label').each(function(){
             changeCheckallreset($(this).find('> span:eq(0)'));
         })
     });
@@ -272,19 +276,17 @@ function init_2(){
         })
     })
     
-    var dataSubmit = $("[data-submit]");
-    $(document).die('keydown').live('keydown', function (e) {
-        e = e || window.event;
-        if (e.keyCode === 83 && event.ctrlKey) {
-            if (!dataSubmit.hasClass('disabled')) dataSubmit.trigger('click');
-            return false;
-        }
-    });
-    
-    $('[data-rel="tooltip"], [rel="tooltip"]').not('tr').not('.row-category').tooltip({
-        'delay': {
-            show: 500, 
-            hide: 100
+    if ($.exists('[data-rel="tooltip"], [rel="tooltip"]'))
+        $('[data-rel="tooltip"], [rel="tooltip"]').not('tr').not('.row-category').tooltip({
+            'delay': {
+                show: 500, 
+                hide: 100
+            }
+        });
+    $('[data-max]').die('keyup').live('keyup', function(event){
+        $this = $(this);
+        if($this.val() > $this.data('max')) {
+            $this.val(100);
         }
     });
 }
@@ -302,6 +304,36 @@ function textcomment_s_h(status, el){
         else{
             textcomment.show().next().hide();
         }
+    }
+}
+handleFileSelect = function (evt) {
+    var files = evt.target.files; // FileList object
+
+    document.getElementById('picsToUpload').innerHTML = '';
+    // Loop through the FileList and render image files as thumbnails.
+    for (var i = 0, f; f = files[i]; i++) {
+
+        // Only process image files.
+        if (!f.type.match('image.*')) {
+            continue;
+        }
+
+        var reader = new FileReader();
+
+        // Closure to capture the file information.
+        reader.onloadend = (function(theFile) {
+            return function(e) {
+                // Render thumbnail.
+                var span = document.createElement('div');
+                span.innerHTML = ['<img style="max-width:100px;" src="', e.target.result,
+                '" title="', escape(theFile.name), '"/>'].join('');
+                document.getElementById('picsToUpload').insertBefore(span, null);
+                document.getElementById('picsToUpload').className = 'is_content';
+                $('#picsToUpload img').fadeIn(500);
+            };
+        })(f);
+        // Read in the image file as a data URL.
+        reader.readAsDataURL(f);
     }
 }
 function number_tooltip(){
@@ -327,12 +359,6 @@ function number_tooltip(){
         else $(this).tooltip('hide');
     });
 }
-$('[data-max]').die('keyup').live('keyup', function(event){
-    $this = $(this);
-    if($this.val() > $this.data('max')) {
-        $this.val(100);
-    }
-});
 function getScrollTop() {
     var scrOfY = 0;
     if( typeof( window.pageYOffset ) == "number" ) {
@@ -518,12 +544,16 @@ function initAdminArea(){
     //my
     $('html').die('click').live('click', function(event) {
         if($(event.target).filter('.popover')[0]==undefined && $(event.target).parents('.popover')[0]==undefined && $(event.target).filter('.buy_prod')[0]==undefined && $(event.target).parents('.buy_prod')[0]==undefined && $(event.target).filter('.popover_ref')[0]==undefined && $(event.target).parents('.popover_ref')[0]==undefined){
-            $(this).find('.popover').end().find('.buy_prod').end().find('.popover_ref').popover('hide');
+            if ($.exists('.popover, .buy_prod, .popover_ref')){
+                $(this).find('.popover').popover('hide');
+                $(this).find('.buy_prod').popover('hide');
+                $(this).find('.popover_ref').popover('hide');
+            }
         }
         event.stopPropagation();
     });
     
-    function what_key(enter_key){
+    function what_key(enter_key, event){
         var enter_key = enter_key; 
         var key;
         key = event.keyCode;
@@ -539,7 +569,7 @@ function initAdminArea(){
             $(this).tooltip('hide');
         }
     }).die('keydown').live('keydown', function(event){
-        if (what_key('13')){
+        if (what_key('13', event)){
             $(this).next().trigger('click');
         }
     });
@@ -628,7 +658,7 @@ function initAdminArea(){
     });
     $('.item_menu .row-category:even').addClass('even');
     
-    if (userLogined && !notificationsInitialized)
+    if (window.hasOwnProperty('userLogined') && !notificationsInitialized)
     {
         window.setInterval('updateNotificationsTotal()', 20000);
         notificationsInitialized = true;
@@ -739,7 +769,7 @@ function initAdminArea(){
     //        	{
     //		        var img = document.createElement("img");
     //		        var reader = new FileReader();
-    //		        reader.liveloadend = function() {
+    //		        reader.onloadend = function() {
     //		        	//alert(file);
     //		            img.src = reader.result;
     //		            console.log(reader.result);
@@ -757,40 +787,8 @@ function initAdminArea(){
     //        }    
     //    })
     
-    function handleFileSelect(evt) {
-        var files = evt.target.files; // FileList object
 
-        document.getElementById('picsToUpload').innerHTML = '';
-        // Loop through the FileList and render image files as thumbnails.
-        for (var i = 0, f; f = files[i]; i++) {
-
-            // Only process image files.
-            if (!f.type.match('image.*')) {
-                continue;
-            }
-
-            var reader = new FileReader();
-
-            // Closure to capture the file information.
-            reader.liveload = (function(theFile) {
-                return function(e) {
-                    // Render thumbnail.
-                    var span = document.createElement('div');
-                    span.innerHTML = ['<img style="max-width:100px;" src="', e.target.result,
-                    '" title="', escape(theFile.name), '"/>'].join('');
-                    document.getElementById('picsToUpload').insertBefore(span, null);
-                    document.getElementById('picsToUpload').className = 'is_content';
-                    $('#picsToUpload img').fadeIn(500);
-                };
-            })(f);
-            // Read in the image file as a data URL.
-            reader.readAsDataURL(f);
-        }
-    }
-
-    if (document.getElementById('addPictures'))
-        document.getElementById('addPictures').addEventListener('change', handleFileSelect, false);
-        
+       
     //    $('[data-provide="typeahead"]').live('focus', function(){
     //        $(this).live('keyup', function(event){
     //            var key, keyChar;
@@ -928,8 +926,8 @@ $(document).ready(
     
         $(this).keydown(function (e) {
             e = e || window.event;
-            if ( (e.keyCode === 13 || (e.keyCode === 83 && event.ctrlKey) ) && event.target.localName != 'textarea' ) {
-                if (event.target.id == "baseSearch" || event.target.id == "shopSearch")
+            if ( (e.keyCode === 13 || (e.keyCode === 83 && e.ctrlKey) ) && e.target.localName != 'textarea' ) {
+                if (e.target.id == "baseSearch" || e.target.id == "shopSearch")
                 {
                     $('#adminSearchSubmit').click();
                     return false;
@@ -983,6 +981,20 @@ $(document).ready(
         });
         if ($.exists('#chart')) brands();
         if ($.exists('#wrapper_gistogram')) gistogram();
+        
+        if ($.exists('#addPictures'))
+            $('#addPictures').live('change', handleFileSelect);
+    
+        $(document).die('keydown').live('keydown', function (e) {
+            var dataSubmit = $("[data-submit]");
+            e = e || window.event;
+            if (e.keyCode === 83 && event.ctrlKey) {
+                if (!dataSubmit.hasClass('disabled')) dataSubmit.trigger('click');
+                return false;
+            }
+        });
+        
+        init_2();
     });
     
 $(window).load(function(){

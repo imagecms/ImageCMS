@@ -11,6 +11,8 @@ $lang['a_english'] = 'English';
 // RULES HELPER-------------------------------------------START
 
 $lang['a_delete_group'] = 'Remove group';
+$lang['a_editing_user_ba_s'] = 'Editing by';
+$lang['a_editing_group_ba_s'] = 'Editing Groups';
 $lang['a_create_group'] = 'Create privilege';
 $lang['a_acc_per_43'] = 'Deleting photos';
 $lang['a_acc_per_3'] = 'Group';
@@ -70,7 +72,10 @@ $lang['a_sett_base_create_new_language'] = 'The creation of a new language';
 $lang['a_sett_global_sett_menu'] = 'Site configuration';
 $lang['a_bas_filt_pass_not_post'] = 'You do not pass search';
 $lang['a_u_man_group_sa_yser'] = 'Group';
-    $lang['a_u_manager_create_group']		=	'Create a Group';
+$lang['a_u_manager_create_group']='Create a group';
+$lang['a_create_warehouse']='Create a warehouse';
+$lang['a_remove_selected_warehouse']='Remove selected warehouse';
+$lang['a_remove_warehouse']='Removal of warehouse';
 $lang['a_content'] = 'Content';
 $lang['a_del_category_selec'] = 'Remove selected categories';
 $lang['a_del_categoy_ba'] = 'Delete a category';
