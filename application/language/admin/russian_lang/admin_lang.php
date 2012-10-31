@@ -313,6 +313,7 @@ $lang['a_comm_edit'] = 'Редактирование комментария';
 $lang['a_pages'] = 'Страницы';
 $lang['a_new_pages'] = 'Новые страницы';
 $lang['a_edit'] = 'Редактировать';
+$lang['a_edit_prod'] = 'Редактировать товар';
 $lang['a_updated_pages'] = 'Обновленные страницы';
 $lang['a_system'] = 'Система';
 $lang['a_version'] = 'Версия';
