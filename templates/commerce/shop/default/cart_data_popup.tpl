@@ -159,6 +159,5 @@
     </div>
 {else:}
     {literal}
-        {"close":"true","msg": "<div class='fancy wish_list'><h1>{/literal}{lang('s_cart')}</h1><div class='comparison_slider'><div class='f-s_18 m-t_29 t-a_c'>{lang('s_cart_empty')}{literal}</div></div></div>"}
-    {/literal}
-{/if}
+        {"close":"true","msg": "<div class='fancy wish_list'><h1 class='m-l_19'>{/literal}{lang('s_cart')}</h1><div class='comparison_slider'><div class='f-s_18  t-a_c' style='padding:53px 0;'>{lang('s_cart_empty')}{literal}</div></div></div>"}{/literal}
+        {/if}
