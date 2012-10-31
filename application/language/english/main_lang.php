@@ -15,6 +15,10 @@ $lang['lang_register'] = 'Registration';
 $lang['lang_login'] = 'Login';
 $lang['lang_password'] = 'Password';
 $lang['orderind_shop_sg'] = 'Ordering';
+$lang['s_close_form_wl']  = 'Close form';
+$lang['s_form_input_wl'] = 'Friends email';
+$lang['s_remark_fron_title']                       =               'Error message';
+$lang['s_remark_fron']                       =               'Your remark';
 $lang['lang_confirm_password'] = 'Repeat Password';
 $lang['lang_confirm_new_pass'] = 'Repeat new password';
 $lang['lang_submit'] = 'Send';
@@ -321,5 +325,10 @@ $lang['s_sea_search_for'] = 'You searched for';
 $lang['s_js_fisa'] = 'Show';
 $lang['s_spec_promotion'] = 'Special promotion';
 
+$lang['s_shot'] = 'New';
+$lang['s_saction'] = 'Promotion';
+$lang['s_shit'] = 'Hit';
 
+$lang['s_found_in_categories'] = 'Found in categories:';
+$lang['s_not_found_in_categories'] = 'Not found in categories';
 /* End of file main_lang.php */
