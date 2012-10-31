@@ -560,21 +560,21 @@ $(document).ready(function() {
         source: '/admin/components/run/shop/kits/get_products_list/' + $('#AttachedProducts').attr('value') + '&limit=20',
         select: function(event, ui) {
             var mainDisc = $('#mainDisc').attr('value');
-            $('#forAttached').append('<div id="tpm_row' + ui.item.identifier.id + '">' +
-                    '<span style="width:8%;" class="pull-left">' +
-                    '<span class="help-inline">ID</span>' +
-                    '<input type="text" name="AttachedProductsIds[]" value="' + ui.item.identifier.id + '"/>' +
-                    '</span>' +
-                    '<span style="width: 70%;margin-left: 1%;" class="pull-left">' +
-                    '<span class="help-inline">Имя</span>' +
-                    '<input type="text" id="AttachedProducts" value="' + ui.item.label + '"/>' +
-                    '</span>' +
-                    '<span style="width: 8%;margin-left: 1%;" class="pull-left">' +
-                    '<span class="help-inline">Скидка %</span>' +
-                    '<input type="text" id="AttachedProductsDisc" name="Discounts[]" value="' + mainDisc + '"/>' +
-                    '</span>' +
-                    '<span style="width: 8%;margin-left: 1%;" class="pull-left">' +
-                    '<button class="btn del_tmp_row" data-kid="' + ui.item.identifier.id + '" style="margin-top: 16px;"><i class="icon-trash"></i></button>' +
+            $('#forAttached').append('<div id="tpm_row' + ui.item.identifier.id + '" class="m-t_10">' +
+                    '<span class="d-i_b number v-a_t">' +
+                    '<span class="help-inline d_b">ID</span>' +
+                    '<input type="text" name="AttachedProductsIds[]" value="' + ui.item.identifier.id + '" class="input-mini"/>' +
+                    '</span>&nbsp;' +
+                    '<span  class="d-i_b v-a_t">' +
+                    '<span class="help-inline d_b">Имя</span>' +
+                    '<input type="text" id="AttachedProducts" value="' + ui.item.label + '" class="input-xxlarge"/>' +
+                    '</span>&nbsp;' +
+                    '<span  class="d-i_b number v-a_t">' +
+                    '<span class="help-inline d_b">Скидка %</span>' +
+                    '<input type="text" id="AttachedProductsDisc" name="Discounts[]" value="' + mainDisc + '" class="input-mini" data-max="100" data-rel="tooltip" data-title="только цифры"/>' +
+                    '</span>&nbsp;' +
+                    '<span  class="d-i_b v-a_t" style="margin-top:18px;">' +
+                    '<button class="btn btn-danger btn-small del_tmp_row" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash icon-white"></i></button>' +
                     '</span>' +
                     '</div>');
         },
