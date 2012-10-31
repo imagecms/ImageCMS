@@ -11,6 +11,8 @@ $lang['a_acc_per_43'] = 'Удаление фотографий';
 
 // RULES HELPER-------------------------------------------STAR
 $lang['a_acc_per_42'] = 'Магазин';
+$lang['a_editing_group_ba_s'] = 'Редактирование группи';
+$lang['a_editing_user_ba_s'] = 'Редактирование пользователя';
 $lang['a_dasboard_no_category']		=	'Без категории';
 $lang['a_acc_per_41'] = 'Ошибка проверки прав доступа';
 $lang['a_acc_per_40'] = 'Недостаточно прав для';
@@ -67,7 +69,10 @@ $lang['a_sett_base_create_new_language'] = 'Создание нового язы
 $lang['a_sett_global_sett_menu'] = 'Конфигурация сайта';
 $lang['a_bas_filt_pass_not_post'] = 'Вы ничего не передали для поиска';
 $lang['a_u_man_group_sa_yser'] = 'Группа';
-    $lang['a_u_manager_create_group']		=	'Создать группу';
+$lang['a_u_manager_create_group']='Создать группу';
+$lang['a_create_warehouse']='Создать склад';
+$lang['a_remove_selected_warehouse']='Удалить выбранные склады';
+$lang['a_remove_warehouse']='Удаление склада';
 $lang['a_content'] = 'Содержание';
 $lang['a_del_category_selec'] = 'Удалить выбранные категории';
 $lang['a_del_catego_ba'] = 'Удалить категорию';
@@ -260,6 +265,8 @@ $lang['a_autoload'] = 'Автозагрузка';
 $lang['a_add_to_menu'] = 'Добавить в меню';
 //$lang['a_save'] = 'Сохранить';
 
+
+$lang['a_possible_values'] = 'Перечинь значений';
 //create_cat.tpl
 //$lang['a_param'] = 'Параметры';
 //$lang['a_name'] = 'Название';

@@ -151,7 +151,7 @@ $(document).ready(function() {
     });
 
     //$('.products_table').find('button.refresh_price').live('click', function() {
-    $('button.refresh_price').die('click').live('click', function() {
+    $('button.refresh_price').live('click', function() {
         var btn = $(this);
         var variant = btn.attr('variant-id');
         var variantId = {};

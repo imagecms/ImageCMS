@@ -41,11 +41,11 @@
             <header>
                 <section class="container"> 
                     {if $ADMIN_URL}
-                    <a href="{$ADMIN_URL}dashboard" class="logo span3 pjax">
+                    <a href="{$ADMIN_URL}dashboard" class="logo pull-left pjax">
                         {else:}
-                        <a href="/admin/dashboard" class="logo span3 pjax">
+                        <a href="/admin/dashboard" class="logo pull-left pjax">
                             {/if}
-                            <img src="{$THEME}/img/logo.png" style="margin-top: 19px;" />
+                            <img src="{$THEME}/img/logo.png"/>
                         </a>
 
                         {if $CI->dx_auth->is_logged_in()}
@@ -63,7 +63,7 @@
                                 </div>
                                 <div class="pull-right m-l_10">Просмотр <a href="{$BASE_URL}" target="_blank">сайта <span class="f-s_14">→</span></a></div>
                             </div>
-                            <form method="get" action="/admin/admin_search">
+                            <form method="get" action="{if $ADMIN_URL}/admin/components/run/shop/search/advanced{else:}/admin/admin_search{/if}" id="adminAdvancedSearch">
                                 <div class="input-append search">
                                     <button id="adminSearchSubmit" type="submit" class="btn pull-right"><i class="icon-search"></i></button>
                                     <div class="o_h">
@@ -307,16 +307,20 @@
                             $this.animate({
                                 'left': '0'
                             }, 200).removeClass('disable_tovar');
-                            $this.parent().attr('data-original-title', show_tovar_text)
-                            $('.tooltip-inner').text(show_tovar_text);
+                            if ($this.parent().data('only-original-title') == undefined){
+                                $this.parent().attr('data-original-title', show_tovar_text)
+                                $('.tooltip-inner').text(show_tovar_text);
+                            }
                             $this.parents('td').next().children().removeClass('disabled');
                         }
                         else{
                             $this.animate({
                                 'left': '-28px'
                             }, 200).addClass('disable_tovar');
-                            $this.parent().attr('data-original-title', hide_tovar_text)
-                            $('.tooltip-inner').text(hide_tovar_text);
+                            if ($this.parent().data('only-original-title') == undefined){
+                                $this.parent().attr('data-original-title', hide_tovar_text)
+                                $('.tooltip-inner').text(hide_tovar_text);
+                            }
                             $this.parents('td').next().children().addClass('disabled');
                         }
                     }
