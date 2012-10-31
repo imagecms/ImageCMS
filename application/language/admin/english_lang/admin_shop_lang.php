@@ -250,6 +250,7 @@
     $lang['a_date_finish']      =	'Finishing date ';
     $lang['a_date_order']       =	'Date of order';
     $lang['a_date']             =	'Date';
+    $lang['a_mounth']             =	'Mounth';
     $lang['a_time_add']         =	'Time of addition';
     $lang['a_time_register']    =	'Time of registration';
     $lang['a_time_order']       =	'Time of the order';

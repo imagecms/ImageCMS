@@ -372,6 +372,8 @@ tr.active a.m_ed{display: none;}*/
 .f-s_0, .f-s_0 .f-s_0{font-size: 0;}
 .f-s_0 *{font-size: 12px;}
 .v-a_m{vertical-align: middle;}
+.v-a_t{vertical-align: top;}
+.v-a_b{vertical-align: bottom;}
 .required{color: #f55;}
 .t-l_a{table-layout: auto;}
 .icon-remove{height: 11px;background-position: -312px -2px;}
