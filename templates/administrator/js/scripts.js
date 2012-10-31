@@ -20,6 +20,7 @@ $(document).ajaxComplete( function(event, XHR, ajaxOptions){
     number_tooltip_live();
     fixed_frame_title();
     $('.tooltip').remove();
+    
 });
 
 function init_2(){

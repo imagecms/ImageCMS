@@ -242,6 +242,7 @@
     $lang['date_and_time_p']	=	'Дата и время публикации';
     $lang['a_date_notification_request'] =	'Дата запроса уведомления';
     $lang['a_date']             =	'Дата';
+    $lang['a_mounth']             =	'Месяц';
     $lang['a_date_create']      =	'Дата создания';
     $lang['a_job']              =	'роботы';
     $lang['a_date_start']       =	'Дата начала';

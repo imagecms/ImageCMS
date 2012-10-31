@@ -239,6 +239,7 @@ $lang['a_add_to_menu'] = 'Add to the menu';
 $lang['a_pages'] = 'Pages';
 $lang['a_new_pages'] = 'New pages';
 $lang['a_edit'] = 'Edit';
+$lang['a_edit_prod'] = 'Edit product';
 $lang['a_updated_pages'] = 'Updated pages'; 
 $lang['a_system'] = 'System'; 
 $lang['a_version'] = 'Version'; 
