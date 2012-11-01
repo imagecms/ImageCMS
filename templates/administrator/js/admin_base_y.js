@@ -10,19 +10,25 @@ $(document).ready(function() {
                         var obj = JSON.parse(data);
                         if (obj.error)
                             showMessage('Ошибка', obj.error);
-                        if (obj.success == true)
-                            alert('dasdas');
+                        if (obj.success == true) {
+                            $('#fileselect').show();
+
+                        }
                     } catch (e) {
                     }
-//                    var resp = document.createElement('div');
-//                    resp.innerHTML = data;
-//                    $(resp).find('p').remove();
-//                    $('.notifications').append(resp);
-//                    $(btn).removeClass('disabled').attr('disabled', false);
                     return true;
                 }
             };
             $(selector).ajaxSubmit(options);
         }
+    });
+
+    $('#makeImportForm').on('submit', function() {
+        console.log('dasd');
+        return false;
+    });
+    $('.dropdown-attr a').on('click', function() {
+        console.log($(this).closest('div').find('.attrnameHolder').text($(this).text()));
+        console.log($(this).attr('data-attName'));
     })
 });
