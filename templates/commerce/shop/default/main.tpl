@@ -67,7 +67,6 @@
                 <div class="phone">
                     <address>(095)<span> 555-55-55</span></address>
                     <span class="js showCallback">{lang('s_coll_order')}</span>
-                    <span class="js showReport">Report</span>
                 </div>
                 
                 <ul class="user_menu">
