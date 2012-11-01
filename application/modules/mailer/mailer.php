@@ -16,9 +16,6 @@ class Mailer extends MY_Controller {
         parent::__construct();
 
         $this->load->module('core');
-
-        // Загрузка настроек.
-        // $this->load_settings();
     }
 
     /**

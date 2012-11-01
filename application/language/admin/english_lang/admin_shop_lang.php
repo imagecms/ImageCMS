@@ -250,6 +250,7 @@
     $lang['a_date_finish']      =	'Finishing date ';
     $lang['a_date_order']       =	'Date of order';
     $lang['a_date']             =	'Date';
+    $lang['a_mounth']             =	'Mounth';
     $lang['a_time_add']         =	'Time of addition';
     $lang['a_time_register']    =	'Time of registration';
     $lang['a_time_order']       =	'Time of the order';
@@ -671,6 +672,7 @@ $lang['a_sender']           =	'sender';
     $lang['a_total_users'] = 'Total users';
     $lang['a_create_additional_field'] = 'Additional field create';
     $lang['a_field_activity'] = 'Active';
+    $lang['a_field_not_activity'] = 'Not active';
     $lang['a_field_type'] = 'Field type';
     $lang['a_additional_fields_list'] = 'Additional fields list';
     $lang['a_empty_additional_fields_list'] = 'List is empty.';

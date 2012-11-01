@@ -306,7 +306,9 @@
             <button class="next"></button>
         </div>
     {/if}   
+    
     <!------------------------------------------------------------------------------------------------------------Finish-->
+    
     {if count(getSimilarProduct($model, 20)) > 1}
         <div class="featured carusel_frame carousel_js">
             <div class="f-s_18 c_6 center">{lang('s_similar_product')}</div>
@@ -430,7 +432,7 @@
                                             <span class="d_b">{echo $hot_prices.second.price} {$hot_prices.second.symbol}</span>
                                         {/if}
                                     </div>                               
-                                    <div class="{$style.class} buttons"><a class="{$style.identif}" data-varid="{echo $hotProduct->firstVariant->getId()}" data-prodid="{echo $hotProduct->getId()}" href="{shop_url('product/' . $hotProduct->getUrl())}">{$style.message}</a></div>
+                                    <div class="{$style.class} buttons"><a class="{$style.identif}" data-varid="{echo $hotProduct->firstVariant->getId()}" data-prodid="{echo $hotProduct->getId()}" href="{shop_url('cart')}">{$style.message}</a></div>
                                 </div>   
                             </div>
                         </div>

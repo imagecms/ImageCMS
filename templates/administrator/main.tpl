@@ -300,24 +300,28 @@
                 number_tooltip();
             }
             function prod_on_off(){
-                $('.prod-on_off').unbind('click').on('click', function(){
+                $('.prod-on_off').die('click').live('click', function(){
                     var $this = $(this);
                     if (!$this.hasClass('disabled')){
                         if ($this.hasClass('disable_tovar')){
                             $this.animate({
                                 'left': '0'
                             }, 200).removeClass('disable_tovar');
-                            $this.parent().attr('data-original-title', show_tovar_text)
-                            $('.tooltip-inner').text(show_tovar_text);
-                            $this.parents('td').next().children().removeClass('disabled');
+                            if ($this.parent().data('only-original-title') == undefined){
+                                $this.parent().attr('data-original-title', show_tovar_text)
+                                $('.tooltip-inner').text(show_tovar_text);
+                            }
+                            $this.closest('td').next().children().removeClass('disabled').removeAttr('disabled');
                         }
                         else{
                             $this.animate({
                                 'left': '-28px'
                             }, 200).addClass('disable_tovar');
-                            $this.parent().attr('data-original-title', hide_tovar_text)
-                            $('.tooltip-inner').text(hide_tovar_text);
-                            $this.parents('td').next().children().addClass('disabled');
+                            if ($this.parent().data('only-original-title') == undefined){
+                                $this.parent().attr('data-original-title', hide_tovar_text)
+                                $('.tooltip-inner').text(hide_tovar_text);
+                            }
+                            $this.closest('td').next().children().addClass('disabled').attr('disabled','disabled');
                         }
                     }
                 });
