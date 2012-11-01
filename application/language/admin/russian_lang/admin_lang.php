@@ -93,6 +93,7 @@ $lang['a_data_user_mod'] = 'Данные пользователя';
 $lang['a_data_group_mod'] = 'Данные группы';
 $lang['a_edit_user_mod'] = 'Редактирование';
 $lang['a_create_group_m'] = 'Создание группы';
+$lang['a_create_group_'] = 'Создать группу';
 $lang['a_data_n_group'] = 'Данные группы';
 $lang['a_data_n_user'] = 'Данные нового пользователя';
 $lang['a_create_n_user_m'] = 'Создание нового пользователя';
@@ -648,6 +649,8 @@ $lang['a_widget_edit'] = 'Редактирование виджета ';
 //$lang['a_load_editor'] = 'Загрузить редактор ';
 //$lang['a_save'] = 'Сохранить';
 $lang['a_to_widget_list'] = 'Перейти к списку виджетов';
+
+
 
 //widget_edit_module.tpl
 //$lang['a_widget_edit'] = 'Редактирование виджета ';
