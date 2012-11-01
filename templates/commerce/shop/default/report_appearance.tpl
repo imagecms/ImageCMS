@@ -1,8 +1,8 @@
 <div class="fancy order_call">
     {if !$message}
-    <form method="post" action="" id="notifMe" class="clearfix">
-        <h1>{lang('s_message_not_found')}</h1>
-        <h2>{echo ShopCore::encode($model->getName())} {echo $model->firstVariant->getName()}</h2>
+        <form method="post" action="" id="notifMe" class="clearfix">
+            <h1>{lang('s_message_not_found')}</h1>
+            <h2>{echo ShopCore::encode($model->getName())} {echo $model->firstVariant->getName()}</h2>
         {if validation_errors()}<div class="validate_error_ml" style="margin: 5px 2px 2px;">{validation_errors()}</div>{/if}
         <div class="f_l w_191">
             <label>
@@ -34,7 +34,14 @@
         <input type="hidden" name="ProductId" value="{echo $model->getId()}" />
         <input type="hidden" name="VariantId" value="{echo $model->firstVariant->getId()}" />
     </form>
-    {else:}
-    {echo $message}
-    {/if}
+{else:}
+    <div style="margin-bottom: 44px;">
+        <div class='comparison_slider'>
+            <div class='f-s_17  t-a_c'>
+                {echo $message}
+            </div>
+        </div>
+    </div>
+
+{/if}
 </div>

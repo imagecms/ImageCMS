@@ -856,10 +856,17 @@ $(document).ready(function() {
             });
         });
     }
-    
-    $('.testclick').live('click', function(){
-       console.log('fsdfsdfdsfsdkjfhsdkj'); 
-       var id = $(this).attr('data-id');
-       $('#buy'+id).trigger('click');
+    $('.findincats').live('click', function(){
+       var id  = $(this).attr('data-id');
+       $('[name="categoryId"]').attr('value', id);
+       $('#orderForm').submit();
+       //console.log($('[name="categoryId"]'));
     });
+    
+    $('.clear_filter').live('click', function(){
+        console.log($(this).attr('data-url'));
+        var url = $(this).attr('data-url');
+        $(location).attr('href', url);
+    });
+    
 });

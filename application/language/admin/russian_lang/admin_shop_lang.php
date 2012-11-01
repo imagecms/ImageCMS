@@ -242,6 +242,7 @@
     $lang['date_and_time_p']	=	'Дата и время публикации';
     $lang['a_date_notification_request'] =	'Дата запроса уведомления';
     $lang['a_date']             =	'Дата';
+    $lang['a_mounth']             =	'Месяц';
     $lang['a_date_create']      =	'Дата создания';
     $lang['a_job']              =	'роботы';
     $lang['a_date_start']       =	'Дата начала';
@@ -695,6 +696,7 @@
     $lang['a_total_users'] = 'Всего пользователей';
     $lang['a_create_additional_field'] = 'Создание нового дополнительного поля';
     $lang['a_field_activity'] = 'Активно';
+    $lang['a_field_not_activity'] = 'Не активно';
     $lang['a_field_type'] = 'Тип поля';
     $lang['a_additional_fields_list'] = 'Список дополнительных полей';
     $lang['a_empty_additional_fields_list'] = 'Список дополнительных полей пуст.';
