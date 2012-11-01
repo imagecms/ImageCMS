@@ -23,7 +23,9 @@ $(document).ajaxComplete( function(event, XHR, ajaxOptions){
 });
 
 function init_2(){
+    
     if ($.exists('.buy_prod, .popover_ref')){
+        //alert('init2');
         $('.buy_prod').popover('destroy').each(function(){
             var $this = $(this);
             if ($this.find('span').text() != 0){

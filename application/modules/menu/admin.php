@@ -55,6 +55,9 @@ class Admin extends MY_Controller {
 //        if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
 //            $this->fetch_tpl('main');
 //        else
+        
+        $this->template->assign('tree', $this->_printRecursiveMenuItems($this->root_menu));
+        
         $this->display_tpl('main');
     }
 
@@ -490,6 +493,34 @@ class Admin extends MY_Controller {
         }
     }
 
+    private function _printRecursiveMenuItems($items)
+    {
+        $html = '';
+        foreach ($items as $item)
+        {
+            $item['hasKids'] = false;
+            if ($submenus = $this->menu->_get_sub_menus($item['id']))
+                    $item['hasKids'] = true;
+//            $html .= '<div class="item">';
+//            $html .= $item['title'];
+            $html .= '<div>';
+            
+            $this->template->assign('item', $item);
+            $html .= $this->fetch_tpl('_menulistitem');
+            
+            if ($item['hasKids'])
+            {
+                $html .= '<div class="frame_level">';
+                $html .= $this->_printRecursiveMenuItems($submenus);
+                $html .= '</div>';
+            }
+            
+            $html .= '</div>';
+        }
+        
+        return $html;
+    }
+    
     function process_root($array) {
         foreach ($array as $item) {
             $sub_menus = $this->menu->_get_sub_menus($item['id']);
