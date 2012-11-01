@@ -49,6 +49,22 @@ $(document).ready(function(){
         return false;
     }).filter(':first').click();
     
+     $('.frame_rep_bug [type="submit"]').die('click').live('click', function(){
+            var url = 'hostname='+location.hostname+'&pathname='+location.pathname+'&user_name='+$('#user_name').text()+'&text='+$('.frame_rep_bug textarea').val()+'&ip_address='+$('.frame_rep_bug #ip_address').val();
+            $.ajax({
+                type: 'GET',
+                url: 'admin/report_bug',
+                data: url,
+                success: function(data){
+                    $('.frame_rep_bug').prepend('<div class="alert alert-success">Ваше повідомлення відправлено</div>');
+                    setTimeout(function(){
+                        overlay.trigger('click')
+                    }, 2000)
+                }
+            })
+            return false;
+        });
+    
     $('.nav_tabs li a').click(function(){
         
         nav_tabs_li.removeClass('ui-tabs-selected');
