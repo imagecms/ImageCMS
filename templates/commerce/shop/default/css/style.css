@@ -299,7 +299,8 @@ a.jspArrowLeft{background-position: 0 -15px;}
 .news p{color: #707070;margin: 7px 0 22px;}
 .date{color:#fff;font-size: 11px;background-color: #999;padding: 0 1px 0 4px;margin-left: 6px;line-height: 1.6;display: inline-block;height: 17px;}
 
-.brand .carusel{width: 936px; font-size: 0;}
+
+.brand .carusel{width: 936px;font-size: 0;}
 .brand {margin: 23px 0 43px;padding-bottom: 36px;text-align:center;}
 .brand .prev,.brand .next{width: 25px;height: 24px;margin-top: -22px;padding: 0;display:none;}
 .brand .next{right: 0px;background-position: 0 -70px;}
