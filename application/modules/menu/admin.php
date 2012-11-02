@@ -55,9 +55,9 @@ class Admin extends MY_Controller {
 //        if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
 //            $this->fetch_tpl('main');
 //        else
-        
+
         $this->template->assign('tree', $this->_printRecursiveMenuItems($this->root_menu));
-        
+
         $this->display_tpl('main');
     }
 
@@ -493,34 +493,31 @@ class Admin extends MY_Controller {
         }
     }
 
-    private function _printRecursiveMenuItems($items)
-    {
+    private function _printRecursiveMenuItems($items) {
         $html = '';
-        foreach ($items as $item)
-        {
+        foreach ($items as $item) {
             $item['hasKids'] = false;
             if ($submenus = $this->menu->_get_sub_menus($item['id']))
-                    $item['hasKids'] = true;
+                $item['hasKids'] = true;
 //            $html .= '<div class="item">';
 //            $html .= $item['title'];
             $html .= '<div>';
-            
+
             $this->template->assign('item', $item);
             $html .= $this->fetch_tpl('_menulistitem');
-            
-            if ($item['hasKids'])
-            {
+
+            if ($item['hasKids']) {
                 $html .= '<div class="frame_level">';
                 $html .= $this->_printRecursiveMenuItems($submenus);
                 $html .= '</div>';
             }
-            
+
             $html .= '</div>';
         }
-        
+
         return $html;
     }
-    
+
     function process_root($array) {
         foreach ($array as $item) {
             $sub_menus = $this->menu->_get_sub_menus($item['id']);
@@ -725,10 +722,19 @@ class Admin extends MY_Controller {
 
     function edit_menu($id) {
         cp_check_perm('menu_edit');
-
         $menu_data = $this->menu_model->get_menu($id);
         $this->template->add_array($menu_data);
         $this->display_tpl('edit_menu');
+
+//        $val = $this->form_validation;
+//        $val->set_rules('menu_name', lang('amt_name'), 'required|min_length[2]|max_length[25]|alpha_dash');
+//        $val->set_rules('main_title', lang('amt_tname'), 'required|max_length[100]');
+//
+//        if ($this->form_validation->run($this) == FALSE) {
+//            showMessage(validation_errors(), '', 'r');
+//        } else {
+//            
+//        }
     }
 
     function update_menu($id) {

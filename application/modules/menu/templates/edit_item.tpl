@@ -7,12 +7,12 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="t-d_n m-r_15 pjax"><span class="f-s_14"></span>←<span class="t-d_u">{lang('a_return')}</span></a>
-                <button type="button" class="btn btn-small formSubmit submit_link" data-form="#{$item.item_type}_form"><i class="icon-ok"></i>{lang('a_save')}</button>
+                <button type="button" class="btn btn-small btn-primary formSubmit submit_link" data-form="#{$item.item_type}_form" data-submit><i class="icon-ok"></i>{lang('a_save')}</button>
                 <button type="button" class="btn btn-small formSubmit submit_link" data-form="#{$item.item_type}_form" data-action="tomain"><i class="icon-ok"></i>{lang('a_save_and_exit')}</button>
             </div>
         </div>                            
     </div>
-    <div class="tab-content">
+    <div class="tab-content content_big_td">
         <div class="m-t_10">
             <select class="link_type">
                 <option value="page" {if $item.item_type == 'page'}selected="selected"{/if}>{lang('a_page')}</option>
