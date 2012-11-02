@@ -43,20 +43,16 @@
                         </a>
                         <div class="info">
                             <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
-
-
-
                             <div class="buy">
                                 <div class="price f-s_16 f_l">
                                     {echo $prices.main.price}
-
                                     <sub>{$prices.main.symbol}</sub>
                                     {if $NextCS != $CS}
                                     <span class="d_b">{echo $prices.second.price} {$prices.second.symbol}</span>
                                     {/if}
                                 </div>
                                 <div class="{$style.class} buttons">
-                                    <a class="{$style.identif}" data-varid="{echo $hotProduct->firstVariant->getId()}" data-prodid="{echo $hotProduct->getId()}" href="{shop_url('product/' . $hotProduct->getUrl())}">{$style.message}</a>
+                                    <span class="{$style.identif}" data-varid="{echo $hotProduct->firstVariant->getId()}" data-prodid="{echo $hotProduct->getId()}" href="{shop_url('product/' . $hotProduct->getUrl())}">{$style.message}</span>
                                 </div>
                             </div>
                         </div>

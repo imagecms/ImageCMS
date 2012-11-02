@@ -25,7 +25,7 @@
             </div>
         </div>                            
     </div>             
-    <div id="content_big_td" class="tab-content">                
+    <div class="tab-content content_big_td">                
 
         dsfk jhfjdhgj fgdjhfjhg  C O N T E N T
 
