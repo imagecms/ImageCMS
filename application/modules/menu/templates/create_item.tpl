@@ -7,16 +7,16 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="t-d_n m-r_15 pjax"><span class="f-s_14"></span>←<span class="t-d_u">Вернуться</span></a>
-                <button type="button" class="btn btn-small formSubmit submit_link" data-form="#page_form"><i class="icon-ok"></i>{lang('a_save')}</button>
+                <button type="button" class="btn btn-small btn-primary formSubmit submit_link" data-form="#page_form" data-submit><i class="icon-ok"></i>{lang('a_save')}</button>
                 <button type="button" class="btn btn-small formSubmit submit_link" data-form="#page_form" data-action="tomain"><i class="icon-ok"></i>{lang('a_save_and_exit')}</button>
             </div>
         </div>                            
     </div>
-    <div class="tab-content">
+    <div class="tab-content content_big_td">
         <div class="m-t_10">
-            <select class="link_type">
+            <select class="link_type input-xxlarge">
                 <option value="page" {if $item.item_type == 'page'}selected="selected"{/if}>Страница</option>
-                <option value="category" {if $item.item_type == 'category'}selected="selected"{/if}>Категория</option>
+                <option value="category2" {if $item.item_type == 'category'}selected="selected"{/if}>Категория</option>
                 <option value="module" {if $item.item_type == 'module'}selected="selected"{/if}>Модуль</option>
                 <option value="url" {if $item.item_type == 'url'}selected="selected"{/if}>Ссылка</option>
             </select>
@@ -71,7 +71,7 @@
                                                         <div id="pages_list_holder">
                                                             <ul>
                                                                 {foreach $pages.pages_list as $p}
-                                                                    <li><a class="page_title" data-url="{$p.cat_url}/{$p.url}" data-title="{$p.title}" data-id="{$p.id}">{echo $p.title}</a></li>
+                                                                <li><a class="page_title" data-url="{$p.cat_url}/{$p.url}" data-title="{$p.title}" data-id="{$p.id}">{echo $p.title}</a></li>
                                                                 {/foreach}
                                                             </ul>
                                                         </div>
@@ -90,7 +90,7 @@
                             <thead>
                                 <tr>
                                     <th colspan="6">
-                                        Параметры:
+                                        {lang('a_param')}:
                                     </th>
                                 </tr>
                             </thead>
@@ -123,7 +123,7 @@
                                                         <select name="parent_id" class="item_parent_id">
                                                             <option value="0">{lang('amt_no')}</option>
                                                             {foreach $parents as $par}
-                                                                <option value="{$par.id}"> - {$par.title}</option>
+                                                            <option value="{$par.id}"> - {$par.title}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -135,7 +135,7 @@
                                                             <option value="0">{lang('amt_no')}</option>
                                                             <option value="first">{lang('amt_first')}</option>
                                                             {foreach $parents as $p}
-                                                                <option value="{$p.id}"> - {$p.title}</option>
+                                                            <option value="{$p.id}"> - {$p.title}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -152,7 +152,7 @@
                                                         <select id="item_roles" name="item_roles[]" multiple="multiple">
                                                             <option value="0">{lang('amt_all')}</option>
                                                             {foreach $roles as $role}
-                                                                <option value ="{$role.id}">{$role.alt_name}</option>
+                                                            <option value ="{$role.id}">{$role.alt_name}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -181,8 +181,8 @@
                 </div>
             </form>
         </div>
-        <div {if $item.item_type != 'category'}style="display: none;"{/if} id="category" class="edit_holder">
-            <form method="post" action="/admin/components/cp/menu/create_item/" id="category_form" >
+        <div {if $item.item_type != 'category'}style="display: none;"{/if} id="category2" class="edit_holder">
+            <form method="post" action="/admin/components/cp/menu/create_item/" id="category2_form" >
                 <input type="hidden" name="menu_id" value="{$menu.id}"/>
                 <input type="hidden" name="item_id" value="" id="cat_input"/>
                 <input type="hidden" name="item_type" value="category"/>
@@ -206,7 +206,7 @@
                                                     <div class="controls">
                                                         <ul>
                                                             {foreach $cats as $c}
-                                                                <li><a href="#" class="category_item" data-id="{$c.id}" data-title="{$c.name}">{$c.name}</a></li>
+                                                            <li><a href="#" class="category_item" data-id="{$c.id}" data-title="{$c.name}">{$c.name}</a></li>
                                                             {/foreach}   
                                                         </ul>
                                                     </div>
@@ -256,7 +256,7 @@
                                                         <select name="parent_id" class="item_parent_id">
                                                             <option value="0">{lang('amt_no')}</option>
                                                             {foreach $parents as $p}
-                                                                <option value="{$p.id}" {if $parent != 0 AND $parent == $p.parent}selected="selected"{/if}> - {$p.title}</option>
+                                                            <option value="{$p.id}" {if $parent != 0 AND $parent == $p.parent}selected="selected"{/if}> - {$p.title}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -268,7 +268,7 @@
                                                             <option value="0">{lang('amt_no')}</option>
                                                             <option value="first">{lang('amt_first')}</option>
                                                             {foreach $parents as $p}
-                                                                <option value="{$p.id}"> - {$p.title}</option>
+                                                            <option value="{$p.id}"> - {$p.title}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -285,7 +285,7 @@
                                                         <select id="item_roles" name="item_roles[]" multiple="multiple">
                                                             <option value="0">{lang('amt_all')}</option>
                                                             {foreach $roles as $role}
-                                                                <option value ="{$role.id}">{$role.alt_name}</option>
+                                                            <option value ="{$role.id}">{$role.alt_name}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -340,7 +340,7 @@
                                                     <div class="controls">
                                                         <ul>
                                                             {foreach $modules as $module}
-                                                                <li><a href="#" class="module_item" data-mname="{$module.name}" id="module_{$module.name}" title="{$module.description}">{$module.menu_name}</a></li>
+                                                            <li><a href="#" class="module_item" data-mname="{$module.name}" id="module_{$module.name}" title="{$module.description}">{$module.menu_name}</a></li>
                                                             {/foreach}   
                                                         </ul>
                                                     </div>
@@ -397,7 +397,7 @@
                                                         <select name="parent_id" class="item_parent_id">
                                                             <option value="0">{lang('amt_no')}</option>
                                                             {foreach $parents as $p}
-                                                                <option value="{$p.id}"> - {$p.title}</option>
+                                                            <option value="{$p.id}"> - {$p.title}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -409,7 +409,7 @@
                                                             <option value="0">{lang('amt_no')}</option>
                                                             <option value="first">{lang('amt_first')}</option>
                                                             {foreach $parents as $p}
-                                                                <option value="{$p.id}"> - {$p.title}</option>
+                                                            <option value="{$p.id}"> - {$p.title}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -426,7 +426,7 @@
                                                         <select id="item_roles" name="item_roles[]" multiple="multiple">
                                                             <option value="0">{lang('amt_all')}</option>
                                                             {foreach $roles as $role}
-                                                                <option value ="{$role.id}">{$role.alt_name}</option>
+                                                            <option value ="{$role.id}">{$role.alt_name}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -515,7 +515,7 @@
                                                         <select name="parent_id" class="item_parent_id">
                                                             <option value="0">{lang('amt_no')}</option>
                                                             {foreach $parents as $p}
-                                                                <option value="{$p.id}"> - {$p.title}</option>
+                                                            <option value="{$p.id}"> - {$p.title}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -527,7 +527,7 @@
                                                             <option value="0">{lang('amt_no')}</option>
                                                             <option value="first">{lang('amt_first')}</option>
                                                             {foreach $parents as $p}
-                                                                <option value="{$p.id}"> - {$p.title}</option>
+                                                            <option value="{$p.id}"> - {$p.title}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -544,7 +544,7 @@
                                                         <select id="item_roles" name="item_roles[]" multiple="multiple">
                                                             <option value="0">{lang('amt_all')}</option>
                                                             {foreach $roles as $role}
-                                                                <option value ="{$role.id}" {if @in_array($role.id, $r)}selected="selected"{/if}>{$role.alt_name}</option>
+                                                            <option value ="{$role.id}" {if @in_array($role.id, $r)}selected="selected"{/if}>{$role.alt_name}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>

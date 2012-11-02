@@ -575,6 +575,7 @@ $lang['a_sender']           =	'sender';
     $lang['a_settings_']                 =	'Editing';
     $lang['a_customer']         =	'Customer';
     $lang['a_opovech']          =	'Newsletter';
+    $lang['a_submit']          =	'Подтвердить';
     $lang['a_wich']             =	'which';
     $lang['a_reg']              =	'Registration';
     $lang['a_posle']            =	'after';

@@ -41,7 +41,7 @@ class Admin extends MY_Controller {
         );
         $config['error_inline_html'] = '<div class="error_field_text el_magrin">%s</div>';
         $config['error_block_html'] = '<div class="errors">%s</div>';
-        $config['help_text_html'] = '<br/><span class="help_text">%s</span>';
+        $config['help_text_html'] = '<span class="help-block">%s</span>';
         $config['validation_errors_prefix'] = '';
         $config['validation_errors_suffix'] = '<br />';
         $config['field_error_class'] = 'field_error';

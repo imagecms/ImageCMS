@@ -28,35 +28,34 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <button type="button" class="btn btn-small disabled action_on" onclick="delete_function.deleteFunction()"><i class="icon-trash"></i>{lang('a_delete')}</button>
+                    <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()"><i class="icon-trash icon-white"></i>{lang('a_delete')}</button>
                     <button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$BASE_URL}/admin/categories/create_form'"><i class="icon-plus-sign icon-white"></i>{lang('create_cat')}</button>
                 </div>
             </div>                            
         </div>       
         <div class="frame_table">
-                <div id="category">
-                    <div class="row-category head">
-                        <div class="t-a_c">
-                            <span class="frame_label">
-                                <span class="niceCheck b_n">
-                                    <input type="checkbox"/>
-                                </span>
+            <div id="category">
+                <div class="row-category head">
+                    <div class="t-a_c">
+                        <span class="frame_label">
+                            <span class="niceCheck b_n">
+                                <input type="checkbox"/>
                             </span>
-                        </div>
-                        <div>{lang('a_id')}</div>
-                        <div>{lang('a_title')}</div>
-                        <div>{lang('a_url')}</div>
-                        <div>{lang('a_pages')}</div>
+                        </span>
                     </div>
-                    <div class="body_category frame_level">
-						<div class="sortable save_positions" data-url="/admin/categories/save_positions/">
-							{$catTreeHTML}                                              
-						</div>
+                    <div>{lang('a_id')}</div>
+                    <div>{lang('a_title')}</div>
+                    <div>{lang('a_url')}</div>
+                    <div>{lang('a_pages')}</div>
+                </div>
+                <div class="body_category frame_level">
+                    <div class="sortable save_positions" data-url="/admin/categories/save_positions/">
+                        {$catTreeHTML}                                              
                     </div>
                 </div>
+            </div>
 
 
-</section>
+    </section>
 </div>
 <div class="hfooter"></div>
-</div>
