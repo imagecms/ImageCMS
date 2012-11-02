@@ -12,6 +12,7 @@
         -->
 
         <link rel="stylesheet" href="{$SHOP_THEME}/js/fancybox/source/jquery.fancybox.css?v=2.1.0" type="text/css" media="screen" />
+        <link rel="stylesheet" href="{$SHOP_THEME}/css/smoothness/jquery-ui-1.9.1.custom.min.css" type="text/css" media="screen" />
 
         <link rel="icon" type="image/x-icon" href="{$SHOP_THEME}images/favicon.png"/>
         <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/ie8_7_6.css" /><![endif]-->
@@ -19,7 +20,7 @@
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery-1.7.2.min.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.cycle.all.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.jcarousel.min.js"></script>
-        <script type="text/javascript" src="{$SHOP_THEME}/js/jquery-ui-personalized-1.5.2.packed.js"></script>
+        <script type="text/javascript" src="{$SHOP_THEME}/js/jquery-ui-1.8.15.custom.min.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/jScrollPane.min.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/cusel-min-2.4.1.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.ui-slider.js" ></script>
