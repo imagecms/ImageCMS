@@ -841,6 +841,7 @@ class Pages extends MY_Controller {
                  */
                 break;
         }
+        showMessage('Status change success');
     }
 
     /**
@@ -856,14 +857,16 @@ class Pages extends MY_Controller {
                 'category' => $cat_id,
                 'lang_alias' => 0
             );
-        else{
-//             /$this->db->select('content.*, category.name as cat_name');
-            
-            $db_where = array(
-                'category !=' => 0,
-                'lang_alias' => 0
-            );
-        }
+            else{
+    //             /$this->db->select('content.*, category.name as cat_name');
+                
+                $db_where = array(
+                    'category >=' => 0,
+                    'lang_alias' => 0
+                );
+                
+                
+            }
 
         ($hook = get_hook('admin_get_pages_by_cat')) ? eval($hook) : NULL;
 
@@ -872,11 +875,11 @@ class Pages extends MY_Controller {
 
         $row_count = $this->_Config['per_page'];
 
-        if ($cat_id != NULL)
+        if ($cat_id != 'all')
             $category = $this->lib_category->get_category($cat_id);
         
         //$this->db->order_by('category', 'asc');
-        $this->db->order_by('position', 'asc');
+        $this->db->order_by('content.position', 'asc');
         
         //filter
         if ($this->input->post('id'))

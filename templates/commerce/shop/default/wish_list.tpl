@@ -9,9 +9,10 @@
         <h1>{lang('s_WL')}</h1>
         <h2>{echo $err}</h2>
         <h2>{echo $success}</h2>
+        {if ShopCore::$ci->dx_auth->is_logged_in()===true}
         <a href="#" class="f_r w-s_n-w" id="button_email">{lang('s_s_wish_list')}</a>
         <a href="#" class="f_r w-s_n-w" style="display: none;" id="close_email">{lang('s_close_form_wl')}</a>              
-        {if ShopCore::$ci->dx_auth->is_logged_in()===true}
+        
             <div class="fancy c_b f_r" style="border: none; display: none;" id="send_email">
                 <form action="{shop_url('wish_list')}" method="post" name="editForm" style="padding-left: 0; padding-right: 0px;">
                     <div id="change_info_edit" class="f_r">
@@ -127,22 +128,6 @@
                 </tfoot>
                 <input type="hidden" name="forCart" />
             </table>
-
-
         {/if}
     </div>
 </div>
-{literal}
-    <script>
-        $("#button_email").click(function () {
-            $("#send_email").slideToggle();
-            $("#close_email").slideToggle();
-            $("#button_email").hide();
-        });
-        $("#close_email").click(function () {
-            $("#send_email").slideToggle();
-            $("#close_email").hide();
-            $("#button_email").slideToggle();
-        });
-    </script>
-{/literal}

@@ -49,7 +49,7 @@
                         <li {if $product->firstvariant->getstock()== 0}class="not_avail"{/if}>
                             <div class="photo_block">
                                 <a href="{shop_url('product/' . $product->getUrl())}">
-                                    <img id="mim{echo $product->getId()}" src="{productImageUrl($product->getMainModimage())}" alt="{echo ShopCore::encode($product->name)}" />
+                                    <img id="mim{echo $product->getId()}" src="{productImageUrl($product->getMainModimage())}" alt="{echo ShopCore::encode($product->name)} - {echo $product->getId()}" />
                                     <!--<img id="vim{echo $product->getId()}" class="smallpimagev" src="" alt="" />-->
                                 </a>
                                 {if $product->getHot() == 1}
@@ -69,19 +69,19 @@
                                     <div class="star_rating">
                                         <div id="{echo $model->getId()}_star_rating" class="rating_nohover {echo count_star($product->getRating())} star_rait" data-id="{echo $model->getId()}">
                                             <div id="1" class="rate one">
-                                                <span title="1">1</a>
+                                                <span title="1">1</span>
                                             </div>
                                             <div id="2" class="rate two">
-                                                <span title="2">2</a>
+                                                <span title="2">2</span>
                                             </div>
                                             <div id="3" class="rate three">
-                                                <span title="3">3</a>
+                                                <span title="3">3</span>
                                             </div>
                                             <div id="4" class="rate four">
-                                                <span title="4">4</a>
+                                                <span title="4">4</span>
                                             </div>
                                             <div id="5" class="rate five">
-                                                <span title="5">5</a>
+                                                <span title="5">5</span>
                                             </div>
                                         </div>
                                     </div>
@@ -128,7 +128,7 @@
                                             {/if}
                                         </div>
                                         <div id="p{echo $product->getId()}" class="{$style.class} buttons">
-                                            <a id="buy{echo $product->getId()}" class="{$style.identif}" href="{$style.link}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" >{$style.message}</a>
+                                            <span id="buy{echo $product->getId()}" class="{$style.identif}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" >{$style.message}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -173,7 +173,7 @@
                             <li class="smallest_item">
                                 <div class="photo_block">
                                     <a href="{shop_url('product/' . $hotProduct->getUrl())}">
-                                        <img src="{productImageUrl($hotProduct->getSmallModimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
+                                        <img src="{productImageUrl($hotProduct->getSmallModimage())}" alt="{echo ShopCore::encode($hotProduct->getName())} - {echo $hotProduct->getId()}" />
                                     </a>
                                 </div>
                                 <div class="func_description">
@@ -203,7 +203,7 @@
                             <li class="smallest_item">
                                 <div class="photo_block">
                                     <a href="{shop_url('product/' . $hotProduct->getUrl())}">
-                                        <img src="{productImageUrl($hotProduct->getSmallModImage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
+                                        <img src="{productImageUrl($hotProduct->getSmallModImage())}" alt="{echo ShopCore::encode($hotProduct->getName())} - {echo $hotProduct->getId()}" />
                                     </a>
                                 </div>
                                 <div class="func_description">
@@ -221,6 +221,7 @@
                         {/foreach}
                     </ul>
                 {/if}
+              {widget('latest_news')}  
                 <!--   Promo products block     -->
             </div>
             <!--   Right sidebar     -->
