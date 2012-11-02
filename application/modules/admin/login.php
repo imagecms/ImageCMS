@@ -90,9 +90,8 @@ class Login extends MY_Controller {
         $val->set_rules('login', lang('lang_username_or_mail'), 'trim|required|xss_clean');
 
         // Validate rules and call forgot password function
-        if ($val->run() AND $this->dx_auth->forgot_password($val->set_value('login'))) {
-            $data['auth_message'] = lang('lang_acc_mail_sent');
-            $this->template->assign('info_message', $data['auth_message']);
+        if ($val->run() AND $this->dx_auth->forgot_password($this->input->post('login'))) {
+            $this->template->assign('info_message',  '<div class="alert alert-info">'.lang('lang_acc_mail_sent').'</div>');
         }
 
         if ($this->dx_auth->_auth_error != NULL) {
