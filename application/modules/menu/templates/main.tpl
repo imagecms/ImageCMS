@@ -34,26 +34,31 @@
             </div>
             <div class="tab-content">
                 <div class="row-fluid">
-                    <table class="table table-striped table-bordered table-hover table-condensed">
-                        <thead>
-                            <tr>
-                                <th class="t-a_c span1">
+                    <div class="frame-table">
+                        <div>
+                            
+                            <div class="row-category head">
+                                <div class="t-a_c">
                                     <span class="frame_label">
-                                        <span class="niceCheck b_n">
-                                            <input type="checkbox"/>
+                                        <span class="niceCheck" style="background-position: -46px 0px; ">
+                                            <input type="checkbox">
                                         </span>
                                     </span>
-                                </th>
-                                <th class="span1">{lang('amt_id')}</th>
-                                <th class="span3">{lang('amt_tname')}</th>
-                                <th class="span3">{lang('amt_link')}</th>
-                                <th class="span1">{lang('amt_type')}</th>
-                                <th class="span1 t-a_c">{lang('amt_hidden')}</th>
-                                <th class="span1"></th>
-                            </tr>
-                        </thead>
-                        <tbody class="sortable save_positions" data-url="/admin/components/cp/menu/save_positions">
+                                </div>
+                                <div>{lang('amt_id')}</div>
+                                <div>{lang('amt_tname')}</div>
+                                <div>{lang('amt_link')}</div>
+                                <div>{lang('amt_type')}</div>
+                            </div>
+                        
+                            <div class=" body_category frame_level">
+                                <div class="sortable save_positions" data-url="/admin/components/cp/menu/save_positions">
+                            
+                            {$tree}
+                            
+                            {/*}
                             {foreach $menu_result as $item}
+                                
                                 <tr>
                                     <td class="t-a_c">
                                         <span class="frame_label">
@@ -101,8 +106,12 @@
                                     </td>
                                 </tr>
                             {/foreach}
-                        </tbody>
-                    </table>
+                            
+                            {*/}
+                            </div>
+                        </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

@@ -102,7 +102,7 @@
                                             {lang('a_url')}:
                                         </label>
                                         <div class="controls">
-                                            <button onclick="transhelp-block_title('#page_title_u', '#page_url');" type="button" class="btn btn-small pull-right" id="translateCategoryTitle"><i class="icon-refresh"></i>&nbsp;&nbsp;Автоподбор</button>
+                                            <button onclick="translite_title('#page_title_u', '#page_url');" type="button" class="btn btn-small pull-right" id="translateCategoryTitle"><i class="icon-refresh"></i>&nbsp;&nbsp;Автоподбор</button>
                                             <div class="o_h">
                                                 <input type="text" name="page_url" value="" id="page_url"/>
                                             </div>

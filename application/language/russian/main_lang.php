@@ -200,10 +200,14 @@ $lang['s_incre']                        =               'Больше';
 $lang['s_accessories']                  =               'Аксессуары';
 $lang['s_properties']                   =               'Характеристики';
 $lang['s_for']                          =               'Для';
+$lang['s_close_form_wl'] = 'Закрыть форму';
+$lang['s_form_input_wl'] = 'Email друга';
 $lang['s_see']                          =               'Посмотреть';
 $lang['s_wlist']                        =               'Wish List';
 $lang['s_refresh']                      =               'Обновлено';
 $lang['s_create']                       =               'Созданный';
+$lang['s_remark_fron']                       =               'Ваше замечание';
+$lang['s_remark_fron_title']                       =               'Сообщение об ошибке';
 $lang['s_brand']                        =               'Бренды';
 $lang['s_magazine']                     =               'Магазина';
 $lang['s_send']                         =               'Отправить';
@@ -322,4 +326,6 @@ $lang['s_shot'] = 'Новинка';
 $lang['s_saction'] = 'Акция';
 $lang['s_shit'] = 'Хит';
 
+$lang['s_found_in_categories'] = 'Найдено в категориях:';
+$lang['s_not_found_in_categories'] = 'В категориях ничего не найдено';
 /* End of file main_lang.php */
