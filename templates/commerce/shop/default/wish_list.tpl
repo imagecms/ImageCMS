@@ -96,7 +96,7 @@
                 </tfoot>
                 <input type="hidden" name="forCart" />
             </table>
-                                
+
             <h2>{echo $err}</h2>
             <h2>{echo $success}</h2>
             <a href="#" class="f_l w-s_n-w" id="button_email">{lang('s_s_wish_list')}</a>
@@ -126,20 +126,7 @@
             {else:}
                 {lang('s_to_sen_wish_auth')}
             {/if}
-        {/if}
+        {/if}</br></br>
+        {widget('latest_news')}
     </div>
 </div>
-{literal}
-    <script>
-        $("#button_email").click(function () {
-            $("#send_email").slideToggle();
-            $("#close_email").slideToggle();
-            $("#button_email").hide();
-        });
-        $("#close_email").click(function () {
-            $("#send_email").slideToggle();
-            $("#close_email").hide();
-            $("#button_email").slideToggle();
-        });
-    </script>
-{/literal}
