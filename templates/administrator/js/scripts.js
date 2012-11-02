@@ -558,10 +558,15 @@ function initAdminArea(){
     
     function what_key(enter_key, event){
         var enter_key = enter_key; 
-        var key;
-        key = event.keyCode;
-        if(key == enter_key) return true;
+        if (event)
+        {
+                var key = event.hasOwnProperty('keyCode')?event.keyCode:false;
+                if(key == enter_key) return true;
+        }
+        else
+                return false;
     }
+    
     $('.js_price').die('click').live('click', function(){
         $(this).next().show();
     }).die('focus').live('focus', function(){
@@ -940,7 +945,7 @@ $(document).ready(
             }
         });
 
-        if ($('#baseSearch'))    
+        if ($('#baseSearch').length)    
         {
             $.get('/admin/admin_search/autocomplete', function(data){
                 baseAutocompleteData = JSON.parse(data);

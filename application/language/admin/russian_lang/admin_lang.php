@@ -758,4 +758,7 @@ $lang['a_cancel_filter'] = 'Сбросить фильтр';
 
 $lang['a_copy_product'] = 'Создать копию';
 $lang['a_move_to_category'] = 'Переместить в категорию';
+
+
+$lang['lang_acc_mail_sent'] = 'Письмо для восстановления пароля отправлено.';
 ?>
