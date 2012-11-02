@@ -59,7 +59,7 @@
                             <th class="span2">{lang('amt_page')}</th>
                         </tr>
                     </thead>
-                    <tbody class="sortable">
+                    <tbody >
                         {foreach $comments as $item }
                         {if count($item.child) == 0}
                         <tr data-id="{$item.id}">
@@ -83,6 +83,7 @@
                                     <textarea id="edited_com_text_minus{$item.id}">{$item.text_minus}</textarea>
                                     {/if}
                                     <span class="js ref comment_update" data-cid="{$item.id}" data-uname="{$item.user_name}" data-uemail="{$item.user_mail}" data-cstatus="{$item.status}">Сохранить</span>
+                                        &nbsp;&nbsp;
                                     <span class="js ref comment_update_cancel" data-cid="{$item.id}">Отменить</span>
                                     {if $item.status == 1}<a href="#" class="to_approved" data-id="{$item.id}">В одобренные</a>{/if}
                                     {if $item.status != 2}
