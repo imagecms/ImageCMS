@@ -45,6 +45,7 @@
                             <span class="title">{echo ShopCore::encode($item.model->getName())}</span>
                             <input name="products[{$key}]" type="hidden" value="{$item.quantity}"/>
                             <span class="d_b price">{$summary = $variant->getPrice() * $item.quantity}{echo $summary} {$CS}</span>
+                            <input type="text" price="{echo $variant->getPrice()}" value="{$item.quantity}" onblur=""/><span class="count">шт.</span>
                         </span>
                     </a>
                 </li>

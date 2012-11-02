@@ -3,7 +3,7 @@
         <div class="center">
             <h1>{lang('s_compare_tovars')}</h1>
             {if count($products) > 0}
-                <a class="active" style="cursor: pointer">{lang('s_all_par')}</a><br />
+                <a class="active" style="cursor: pointer; display:none;">{lang('s_all_par')}</a>
                 <a class="prod_dif" id="all" style="cursor:pointer;">{lang('s_only_diff')}</a>
 
                 {$cnt = 1}
@@ -106,7 +106,7 @@
             <div class="f-s_18 m-t_29 t-a_c">{lang('s_compare_list_em')}</div>
         </div>
     {/if}
-        {widget('latest_news')}
+    {widget('latest_news')}
 </div>
 </div>
 </div>
@@ -126,6 +126,15 @@
                                         });
                                     });
                                 }
+        $("#all").live('click', function() {
+        $(".active").show();
+        $("#all").hide();
+    });
+        $(".active").live('click', function() {
+        $("#all").show();
+        $(".active").hide();
+    });
+                                    
 
     </script>
 {/literal}
