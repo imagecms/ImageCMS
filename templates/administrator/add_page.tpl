@@ -9,7 +9,7 @@
             <span class="help-inline"></span>
             <div class="d-i_b">
                 <a href="/admin/pages/GetPagesByCategory" class="pjax t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
-                <button type="button" class="btn btn-small btn-success action_on formSubmit" data-form="#add_page_form" data-action="edit" data-submit><i class="icon-ok icon-white"></i>{lang('a_save')}</button>
+                <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#add_page_form" data-action="edit" data-submit><i class="icon-ok icon-white"></i>{lang('a_save')}</button>
                 <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form" data-action="close"><i class="icon-check"></i>{lang('a_save_and_exit')}</button>
             </div>
         </div>                            
@@ -30,20 +30,20 @@
                     <thead>
                         <tr>
                             <th colspan="6">
-                                Содержание
+                                {lang('a_content')}
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd">
+                                <div class="inside_padd span9">
                                     <div class="control-group">
                                         <label class="control-label" for="category_selectbox">
                                             {lang('a_category')}:
                                         </label>
                                         <div class="controls">
-                                            <a onclick="$('.modal').modal(); return false;" class="btn btn-success btn-small pull-right" href="#"><i class="icon-plus icon-white"></i> {lang('a_create_cat')}</a>
+                                            <a onclick="$('.modal').modal(); return false;" class="btn btn-success btn-small pull-right" href="#"><i class="icon-plus-sign icon-white"></i> {lang('a_create_cat')}</a>
                                             <div class="o_h">
                                                 <select name="category" id="category_selectbox" onchange="pagesAdmin.loadCFAddPage()"> 
                                                     <option value="0" selected="selected">{lang('a_no')}</option>
@@ -57,7 +57,7 @@
                                             {lang('a_title')}:
                                         </label>
                                         <div class="controls">
-                                            <input type="text" name="page_title" value="" id="page_title_u" class="textbox_long required" />
+                                            <input type="text" name="page_title" value="" id="page_title_u" class="required" />
                                         </div>
                                     </div>
 

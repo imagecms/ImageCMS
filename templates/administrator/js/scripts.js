@@ -13,8 +13,9 @@ $(document).ajaxComplete( function(event, XHR, ajaxOptions){
         //        if (event.target.activeElement)
         //            if (event.target.activeElement.localName != "input")
         initAdminArea();
+        
         if ($.exists('#chart')) brands();
-        if ($.exists('#wrapper_gistogram')) gistogram(); 
+        if ($.exists('#wrapper_gistogram')) gistogram();
     }
     init_2();
     number_tooltip_live();
@@ -292,6 +293,7 @@ function init_2(){
             $this.val(100);
         }
     });
+    $(':input:first').focus();
 }
 function textcomment_s_h(status, el){
     var status = status;
