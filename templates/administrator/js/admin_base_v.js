@@ -1,10 +1,16 @@
 function change_page_status(page_id) {
-    $.ajax({
-        type: 'POST',
-        url: base_url + 'admin/pages/ajax_change_status/' + page_id,
-        onComplete: function(response) {
-        }
-    });
+//    $.ajax({
+//        type: 'POST',
+//        url: base_url + 'admin/pages/ajax_change_status/' + page_id,
+//        onComplete: function(response) {
+//            console.log(response);
+//            $('.notifications').append(response);
+//        }
+//    });
+
+$.post(base_url + 'admin/pages/ajax_change_status/' + page_id, {}, function (data) {
+            $('.notifications').append(data);    
+})
 }
 
 // SHOP function

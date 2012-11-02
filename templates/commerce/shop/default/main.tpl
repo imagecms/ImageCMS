@@ -6,12 +6,16 @@
         <meta name="description" content="{$site_description}" />
         <meta name="keywords" content="{$site_keywords}" />
         <meta name="generator" content="ImageCMS" />
+        {if $CI->uri->uri_string() == 'shop/search'}
+            <meta name="robots" content="noindex, nofollow" />
+        {/if}
         <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/style.css" media="all" />
         <!--
         <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/jquery.fancybox-1.3.4.css" media="all" />
         -->
 
         <link rel="stylesheet" href="{$SHOP_THEME}/js/fancybox/source/jquery.fancybox.css?v=2.1.0" type="text/css" media="screen" />
+        <link rel="stylesheet" href="{$SHOP_THEME}/css/smoothness/jquery-ui-1.9.1.custom.min.css" type="text/css" media="screen" />
 
         <link rel="icon" type="image/x-icon" href="{$SHOP_THEME}images/favicon.png"/>
         <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/ie8_7_6.css" /><![endif]-->
@@ -19,7 +23,7 @@
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery-1.7.2.min.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.cycle.all.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.jcarousel.min.js"></script>
-        <script type="text/javascript" src="{$SHOP_THEME}/js/jquery-ui-personalized-1.5.2.packed.js"></script>
+        <script type="text/javascript" src="{$SHOP_THEME}/js/jquery-ui-1.8.15.custom.min.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/jScrollPane.min.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/cusel-min-2.4.1.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.ui-slider.js" ></script>
@@ -60,7 +64,7 @@
                     <form name="search" class="clearfix" action="{shop_url('search')}" method="get" id="autocomlete">
                         <input type="text" name="text" value="{lang('s_se_thi_sit')}"  onfocus="if(this.value=='{lang('s_se_thi_sit')}') this.value='';" onblur="if(this.value=='') this.value='{lang('s_se_thi_sit')}';"  id="inputString" autocomplete="off" onkeyup="lookup(event);" class="place_hold"/>
                         <input type="submit" id="search_submit"  value="{lang('s_search')}" class="icon"/>
-                        <span id="suggestions"style="display: none; width: 0px; right: 0px;"></span>
+                        <span id="suggestions" style="display: none; width: 0px; right: 0px;"></span>
                     </form>
                 </div>
                         

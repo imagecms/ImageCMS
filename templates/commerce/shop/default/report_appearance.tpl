@@ -18,10 +18,14 @@
                 <input type="text" name="UserPhone" value="{echo ShopCore::encode($_POST.UserPhone)}" />
             </label>
         </div>
-        <div class="f_r">
+        <div class="f_r w_191">
             <label>
                 {lang('s_to_additional_information')}
-                <textarea name="UserComment">{echo ShopCore::encode($_POST.UserComment)}</textarea>
+                <textarea class="w_191" name="UserComment">{echo ShopCore::encode($_POST.UserComment)}</textarea>
+            </label>
+            <label>
+                {lang('s_actual_to')}<span>*</span>
+                <input id="actual" class="datepicker" type="text" name="ActiveTo" value="{echo ShopCore::encode($_POST.active_to)}" />
             </label>
         </div>
         <div class="p-t_19 c_b clearfix">
@@ -45,3 +49,16 @@
 
 {/if}
 </div>
+<script>
+    {literal}
+        var currentDate = new Date();
+        var toDate = new Date( currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 7);
+        $('.datepicker').datepicker({
+            'dateFormat' : 'yy-mm-dd',
+            'defaultDate' : toDate,
+            'minDate' : currentDate
+        });
+        
+        $('#actual').val(toDate.getFullYear() + '-' + toDate.getMonth() + '-' + toDate.getDate() );
+    {/literal}
+</script>

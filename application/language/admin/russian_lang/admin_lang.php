@@ -12,6 +12,7 @@ $lang['a_acc_per_43'] = 'Удаление фотографий';
 // RULES HELPER-------------------------------------------STAR
 $lang['a_acc_per_42'] = 'Магазин';
 $lang['a_editing_group_ba_s'] = 'Редактирование группи';
+$lang['a_editing_page'] = 'Редактирование страницы';
 $lang['a_editing_user_ba_s'] = 'Редактирование пользователя';
 $lang['a_dasboard_no_category']		=	'Без категории';
 $lang['a_acc_per_41'] = 'Ошибка проверки прав доступа';
@@ -93,6 +94,7 @@ $lang['a_data_user_mod'] = 'Данные пользователя';
 $lang['a_data_group_mod'] = 'Данные группы';
 $lang['a_edit_user_mod'] = 'Редактирование';
 $lang['a_create_group_m'] = 'Создание группы';
+$lang['a_create_group_'] = 'Создать группу';
 $lang['a_data_n_group'] = 'Данные группы';
 $lang['a_data_n_user'] = 'Данные нового пользователя';
 $lang['a_create_n_user_m'] = 'Создание нового пользователя';
@@ -650,6 +652,8 @@ $lang['a_widget_edit'] = 'Редактирование виджета ';
 //$lang['a_save'] = 'Сохранить';
 $lang['a_to_widget_list'] = 'Перейти к списку виджетов';
 
+
+
 //widget_edit_module.tpl
 //$lang['a_widget_edit'] = 'Редактирование виджета ';
 //$lang['a_n'] = 'Имя';
@@ -754,4 +758,7 @@ $lang['a_cancel_filter'] = 'Сбросить фильтр';
 
 $lang['a_copy_product'] = 'Создать копию';
 $lang['a_move_to_category'] = 'Переместить в категорию';
+
+
+$lang['lang_acc_mail_sent'] = 'Письмо для восстановления пароля отправлено.';
 ?>

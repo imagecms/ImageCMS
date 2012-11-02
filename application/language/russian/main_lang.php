@@ -291,6 +291,7 @@ $lang ['mailer_the_sub_not_found'] = 'Подписчик не найден';
 $lang ['mailer_success'] = 'Вы успешно подписались';
 $lang['s_home'] = 'На главную';
 $lang['s_zaka_phone'] = 'Заказ по телефону';
+$lang['s_actual_to'] = 'Актуально до';
 $lang['s_delivery1'] = 'Доставки';
 $lang['s_similar_product'] = 'Похожие товары';
 $lang['s_c_uoy_name_u'] = 'Ваше имя';
