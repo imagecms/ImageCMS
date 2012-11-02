@@ -8,8 +8,8 @@
             <div class="pull-right">
                 <div class="d-i_b">
                     <a href="/admin/components/cp/menu" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
-                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#createForm"><i class="icon-ok"></i>{lang('a_save')}</button>                 
-                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#createForm" data-action="tomain"><i class="icon-ok"></i>{lang('a_save_and_exit')}</button>                 
+                    <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#createForm" data-submit><i class="icon-ok"></i>{lang('a_save')}</button>
+                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#createForm" data-action="tomain"><i class="icon-ok"></i>{lang('a_save_and_exit')}</button>
                 </div>
             </div>                            
         </div>
@@ -26,41 +26,40 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd">
+                                <div class="inside_padd span12">
                                     <div class="form-horizontal">
-                                        <div class="row-fluid">
-                                            <div class="control-group">
-                                                <label class="control-label" for="inputTemplateCategory">{lang('amt_name')}:</label>
-                                                <div class="controls">
-                                                    <input type="text" class="textbox" name="menu_name" />
-                                                </div>
+                                        <div class="control-group">
+                                            <label class="control-label" for="menu_name">{lang('amt_name')}:</label>
+                                            <div class="controls">
+                                                <input type="text" class="textbox" name="menu_name" id="menu_name" required/>
                                             </div>
-                                            <div class="control-group">
-                                                <label class="control-label" for="inputUrl">{lang('amt_tname')}</label>
-                                                <div class="controls">
-                                                    <input type="text" class="textbox" name="main_title" />
-                                                </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label" for="main_title">{lang('amt_tname')}</label>
+                                            <div class="controls">
+                                                <input type="text" class="textbox" name="main_title" id="main_title" required/>
                                             </div>
-                                            <div class="control-group">
-                                                <label class="control-label" for="inputSortdefault">{lang('amt_description')}:</label>
-                                                <div class="controls">
-                                                    <input type="text" class="textbox" name="menu_desc" />
-                                                </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label" for="menu_desc">{lang('amt_description')}:</label>
+                                            <div class="controls">
+                                                <input type="text" class="textbox" name="menu_desc" id="menu_desc"/>
                                             </div>
-                                            <div class="control-group">
-                                                <label class="control-label" for="inputSortdefault">{lang('amt_template_folder')}:</label>
-                                                <div class="controls">
-                                                    <input type="text" class="textbox" name="menu_tpl" value="{$tpl}" />
-                                                </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label" for="menu_tpl">{lang('amt_template_folder')}:</label>
+                                            <div class="controls">
+                                                <input type="text" class="textbox" name="menu_tpl" id="menu_tpl" value="{$tpl}" />
                                             </div>
-                                            <div class="control-group">
-                                                <label class="control-label" for="inputSortdefault">{lang('amt_open_menu_folder')}:</label>
-                                                <div class="controls">
-                                                    <input type="text" class="textbox" name="menu_expand_level" value="{$expand_level}" />   
-                                                </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label" for="menu_expand_level">{lang('amt_open_menu_folder')}:</label>
+                                            <div class="controls">
+                                                <input type="text" class="textbox" name="menu_expand_level" id="menu_expand_level" value="{$expand_level}" />   
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                             </td>
                         </tr>
                     </tbody>

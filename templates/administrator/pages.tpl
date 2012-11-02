@@ -11,8 +11,8 @@
             </select>
         </div>
         <div class="modal-footer">
-            <a href="#" class="btn" onclick="$('.modal').modal('hide');">Отмена</a>
-            <a href="#" id="confirmMove" class="btn btn-primary" onclick="pagesAdmin.confirmListAction('{$BASE_URL}admin/pages/move_pages/copy')" >Подтвердить</a>
+            <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('a_cancel')}</a>
+            <a href="#" id="confirmMove" class="btn btn-primary" onclick="pagesAdmin.confirmListAction('{$BASE_URL}admin/pages/move_pages/copy')" >{lang('a_submit')}</a>
         </div>
     </div>
 
@@ -25,8 +25,8 @@
             {lang('a_delete_pages_promt')}
         </div>
         <div class="modal-footer">
-            <a href="#" class="btn" onclick="$('.modal').modal('hide');">Отмена</a>
-            <a href="#" class="btn btn-primary" onclick="pagesAdmin.confirmListAction('{$BASE_URL}admin/pages/delete_pages/')" >Удалить</a>
+            <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('a_cancel')}</a>
+            <a href="#" class="btn btn-primary" onclick="pagesAdmin.confirmListAction('{$BASE_URL}admin/pages/delete_pages/')" >{lang('a_delete')}</a>
         </div>
     </div>
 
@@ -39,10 +39,10 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <button type="button" class="btn btn-small disabled action_on listFilterSubmitButton " disabled="disabled" ><i class="icon-filter"></i>Фильтрировать</button>
+                    <button type="button" class="btn btn-small disabled action_on listFilterSubmitButton " disabled="disabled" ><i class="icon-filter"></i>{lang('a_filtrate')}</button>
                     <button onclick="$('#pages_action_dialog').modal();" type="button" class="btn btn-small disabled action_on pages_action" ><i class="icon-asterisk"></i> {lang('a_copy_product')}</button>
                     <button onclick="$('#pages_action_dialog').modal();pagesAdmin.updDialogMove();" type="button" class="btn btn-small disabled action_on pages_action" ><i class="icon-move"></i>{lang('a_repalce')}</button>
-                    <button onclick="$('#pages_delete_dialog').modal();pagesAdmin.updDialogCopy();" type="button" class="btn btn-small disabled action_on pages_action pages_delete" ><i class="icon-trash"></i>{lang('a_delete')}</button>
+                    <button onclick="$('#pages_delete_dialog').modal();pagesAdmin.updDialogCopy();" type="button" class="btn btn-small btn-danger disabled action_on pages_action pages_delete" ><i class="icon-trash icon-white"></i>{lang('a_delete')}</button>
                     <button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$BASE_URL}admin/pages'"><i class="icon-plus-sign icon-white"></i>{lang('a_create_page')}</button>
                 </div>
             </div>                            

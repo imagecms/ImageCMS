@@ -37,7 +37,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span9">
+                                <div class="inside_padd span12">
                                     <div class="control-group">
                                         <label class="control-label" for="category_selectbox">
                                             {lang('a_category')}:
@@ -57,7 +57,7 @@
                                             {lang('a_title')}:
                                         </label>
                                         <div class="controls">
-                                            <input type="text" name="page_title" value="" id="page_title_u" class="required" />
+                                            <input type="text" name="page_title" value="" id="page_title_u" required/>
                                         </div>
                                     </div>
 
@@ -96,7 +96,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd">
+                                <div class="inside_padd span12">
                                     <div class="control-group">
                                         <label class="control-label" for="page_url">
                                             {lang('a_url')}:
@@ -177,11 +177,15 @@
                                     </div>
 
                                     <div class="control-group">
-                                        <label class="control-label" for="comments_status">
-                                            {lang('a_comm_alow')}
-                                        </label>
+                                        <div class="control-label">
+                                        </div>
                                         <div class="controls">
-                                            <input name="comments_status"  value="1" checked="checked" type="checkbox" id="comments_status" />                        	
+                                            <span class="frame_label no_connection">
+                                                <span class="niceCheck b_n">
+                                                    <input name="comments_status"  value="1" checked="checked" type="checkbox" id="comments_status" />                        	
+                                                </span>
+                                                {lang('a_comm_alow')}
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -207,7 +211,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd">
+                                <div class="inside_padd span12">
                                     <div class="control-group">
                                         <label class="control-label" for="post_status">
                                             {lang('a_pub_stat')}:
@@ -229,14 +233,14 @@
                                         </label>
                                         <div class="controls">
                                             <span class="pull-left p_r">
-                                                <input id="create_date" name="create_date" id="create_date" value="{$cur_date}" type="text" data-placement="top" data-original-title="выберите дату" data-rel="tooltip" class="datepicker input-small"/>
+                                                <input id="create_date" name="create_date" value="{$cur_date}" type="text" data-placement="top" data-original-title="выберите дату" data-rel="tooltip" class="datepicker input-small"/>
                                                 <i class="icon-calendar"></i>
                                             </span>
                                             <input id="create_time" name="create_time" tabindex="8" type="text" value="{$cur_time}" class="input-small" />			             	
                                         </div>
                                     </div>
                                     <div class="control-group">
-                                        <label class="control-label">
+                                        <label class="control-label" for="publish_date">
                                             {lang('a_date_and_time_p')}:                 
                                         </label>
                                         <div class="controls">
@@ -244,7 +248,7 @@
                                                 <input id="publish_date" name="publish_date" tabindex="7" value="{$cur_date}" type="text" data-placement="top" data-original-title="выберите дату" data-rel="tooltip" class="datepicker input-small" />
                                                 <i class="icon-calendar"></i>
                                             </span>
-                                            <input id="publish_time" name="publish_time" tabindex="8" type="text" value="{$cur_time}" class="input-small" />            	
+                                            <input name="publish_time" tabindex="8" type="text" value="{$cur_time}" class="input-small" />            	
                                         </div>
                                     </div>
 

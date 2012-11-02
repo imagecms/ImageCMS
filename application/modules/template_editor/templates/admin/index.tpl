@@ -16,7 +16,7 @@
                             </div>
                         </div>                            
                     </div>               
-<div id="content_big_td" class="tab-content" style="font-size: 20px;">                
+<div class="tab-content content_big_td" style="font-size: 20px;">                
 <style type="text/css">
 {literal}
 	.elfinder-contextmenu .elfinder-contextmenu-item span
