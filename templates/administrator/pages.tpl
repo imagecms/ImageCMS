@@ -6,7 +6,7 @@
         <div class="modal-body">
             {lang('a_category')}:
             <select id="CopyMoveCategorySelect" url="{$BASE_URL}admin/pages/GetPagesByCategory/">
-                <option value="0"></option>
+                <option value="0">{lang('a_without_cat')}</option>
                 { $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'] )); }
             </select>
         </div>
@@ -40,7 +40,7 @@
             <div class="pull-right">
                 <div class="d-i_b">
                     <button type="button" class="btn btn-small disabled action_on listFilterSubmitButton " disabled="disabled" ><i class="icon-filter"></i>Фильтрировать</button>
-                    <button onclick="$('#pages_action_dialog').modal();" type="button" class="btn btn-small disabled action_on pages_action" >{lang('a_copy_product')}</button>
+                    <button onclick="$('#pages_action_dialog').modal();" type="button" class="btn btn-small disabled action_on pages_action" ><i class="icon-asterisk"></i> {lang('a_copy_product')}</button>
                     <button onclick="$('#pages_action_dialog').modal();pagesAdmin.updDialogMove();" type="button" class="btn btn-small disabled action_on pages_action" ><i class="icon-move"></i>{lang('a_repalce')}</button>
                     <button onclick="$('#pages_delete_dialog').modal();pagesAdmin.updDialogCopy();" type="button" class="btn btn-small disabled action_on pages_action pages_delete" ><i class="icon-trash"></i>{lang('a_delete')}</button>
                     <button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$BASE_URL}admin/pages'"><i class="icon-plus-sign icon-white"></i>{lang('a_create_page')}</button>
@@ -105,7 +105,21 @@
                             <a href="{$BASE_URL}admin/pages/edit/{$page.id}" class="title pjax" data-rel="tooltip" data-original-title="{lang('a_edit')}">{$page.title}</a>
                         </td>
                         <td><span>{truncate($page.url, 40, '...')}</span></td>
-                        <td><span>{if $page.cat_name}{$page.cat_name}{else:}{$category.name}{/if}</span></td>
+                        <td><span>{if $category }{$category.name}{else:}
+                                
+                                {if 0 == $page.category}
+                                    {lang('a_without_cat')}
+                                {else:}
+                                
+                                    {foreach $cats  as $c} 
+                                        {if $c.id == $page.category}
+                                            {$c.name}
+                                        {/if}
+                                    {/foreach}
+                                    
+                                {/if}
+                                
+                                {/if}</span></td>
                         <td>
                             <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if $page['post_status'] == 'publish'}{lang('a_show')}{else:}{lang('a_dont_show')}{/if}" onclick="change_page_status('{$page.id}');">
                                 <span class="prod-on_off {if $page['post_status'] != 'publish'}disable_tovar{/if}" style="{if $page['post_status'] != 'publish'}left: -28px;{/if}"></span>

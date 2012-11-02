@@ -27,19 +27,21 @@
         <div class="tovar_frame clearfix{if $model->firstvariant->getstock()== 0} not_avail{/if}">
             <div class="thumb_frame f_l">
                 {if sizeof($model->getSProductImagess()) > 0}
+                        {$i = 1}
                     {foreach $model->getSProductImagess() as $image}
                         <span>
                             <a  class="grouped_elements fancybox-thumb" rel="fancybox-thumb" href="{echo $image->getThumbUrl()}" data-title-id="fancyboxAdditionalContent">                         
-                                <img src="{echo $image->getThumbUrl()}" width="90"/>
+                                <img src="{echo $image->getThumbUrl()}" width="90" alt="{echo ShopCore::encode($model->getName())} - {echo $i}"/>
                             </a>                                
                         </span>
+                        {$i++}
                     {/foreach}
                 {/if}                
             </div>
             <div class="photo_block">
                 <a class="grouped_elements fancybox-thumb" rel="fancybox-thumb" href="{productImageUrl($model->getMainImage())}" data-title-id="fancyboxAdditionalContent" >
-                    <img id="mim{echo $model->getId()}" src="{productImageUrl($model->getMainimage())}" alt="{echo ShopCore::encode($model->name)}" />
-                    <img id="vim{echo $model->getId()}" class="smallpimagev" src="{productImageUrl($model->getMainimage())}" alt="{echo ShopCore::encode($model->name)}" />
+                    <img id="mim{echo $model->getId()}" src="{productImageUrl($model->getMainimage())}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
+                    <img id="vim{echo $model->getId()}" class="smallpimagev" src="{productImageUrl($model->getMainimage())}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
                 </a>
             </div>
             {$prices = currency_convert($model->firstVariant->getPrice(), $model->firstVariant->getCurrency())}
@@ -62,8 +64,6 @@
                 {/if}
             </div>
 
-            <!-- Fancybox additional blocks -->
-
             <div class="func_description">
                 <div class="crumbs">
                     {renderCategoryPath($model->getMainCategory())}
@@ -74,32 +74,32 @@
                     <div class="star_rating">
                         <div id="{echo $model->getId()}_star_rating" class="rating {echo count_star($model->getRating())} star_rait" data-id="{echo $model->getId()}">
                             <div id="1" class="rate one">
-                                <span title="1" class="clickrate">1</a>
+                                <span title="1" class="clickrate">1</span>
                             </div>
                             <div id="2" class="rate two">
-                                <span title="2" class="clickrate">2</a>
+                                <span title="2" class="clickrate">2</span>
                             </div>
                             <div id="3" class="rate three">
-                                <span title="3" class="clickrate">3</a>
+                                <span title="3" class="clickrate">3</span>
                             </div>
                             <div id="4" class="rate four">
-                                <span title="4" class="clickrate">4</a>
+                                <span title="4" class="clickrate">4</span>
                             </div>
                             <div id="5" class="rate five">
-                                <span title="5" class="clickrate">5</a>
+                                <span title="5" class="clickrate">5</span>
                             </div>
                         </div>
                     </div>
                     <span class="response">{echo $model->totalComments()} {echo SStringHelper::Pluralize($model->totalComments(), array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}</span>
                     </br><span>{echo ShopCore::app()->SProductSpy->getsubscribescount($model->getId())}</span>
                 </div>
-                
+
                 <div class="buy clearfix m-t_30">
                     {if count($model->getProductVariants())>1}
                         Выбор варианта:</br>
                         {foreach $model->getProductVariants() as $pv}
                             {$var_prices = currency_convert($pv->getPrice(), $pv->getCurrency())}
-                            <input type="radio" class="selectVar" name="selectVar" {if $model->firstVariant->getId() == $pv->getId()}checked="checked"{/if}
+                            <input type="radio" class="selectVar" id="sVar{echo $pv->getId()}" name="selectVar" {if $model->firstVariant->getId() == $pv->getId()}checked="checked"{/if}
                                    value="{echo $pv->getId()}" 
                                    data-pp="1" 
                                    data-st="{echo $pv->getStock()}" 
@@ -110,7 +110,9 @@
                                    data-img="{echo $pv->getmainimage()}" 
                                    data-vname="{echo $pv->getName()}" 
                                    data-vnumber="{echo $pv->getNumber()}"/>
-                            <i>{echo $pv->getName()}</i><b> {echo $var_prices.main.price}</b> {$var_prices.main.symbol}</br>
+                            <label for="sVar{echo $pv->getId()}">
+                                <i>{echo $pv->getName()}</i><b> {echo $var_prices.main.price}</b> {$var_prices.main.symbol}
+                            </label></br>
                         {/foreach}
                     {/if}
                     <div class="price f-s_26">
@@ -171,7 +173,7 @@
                 <p class="c_b">{echo $model->getShortDescription()}</p>
                 <p>{echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInline($model)}</p>
                 <div>
-                    
+
                 </div>
             </div>
         </div>
@@ -206,7 +208,6 @@
         </ul>
     </div>
 
-    <!-----------------------------------------------------------------------Акционное предложение начало-->
     {if $model->getShopKits()->count() > 0}
         <div class="f-s_18 c_6 center">{lang('s_spec_promotion')}</div>
         <div class="promotion carusel_frame carousel_js">
@@ -306,9 +307,7 @@
             <button class="next"></button>
         </div>
     {/if}   
-    
-    <!------------------------------------------------------------------------------------------------------------Finish-->
-    
+
     {if count(getSimilarProduct($model, 20)) > 1}
         <div class="featured carusel_frame carousel_js">
             <div class="f-s_18 c_6 center">{lang('s_similar_product')}</div>
@@ -439,6 +438,7 @@
                     </li>  
                 {/foreach}
             </ul>
+                {widget('latest_news')}
         </div>
     </div>
 </div>
