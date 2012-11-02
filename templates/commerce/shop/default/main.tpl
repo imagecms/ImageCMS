@@ -6,6 +6,9 @@
         <meta name="description" content="{$site_description}" />
         <meta name="keywords" content="{$site_keywords}" />
         <meta name="generator" content="ImageCMS" />
+        {if $CI->uri->uri_string() == 'shop/search'}
+            <meta name="robots" content="noindex, nofollow" />
+        {/if}
         <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/style.css" media="all" />
         <!--
         <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/jquery.fancybox-1.3.4.css" media="all" />
@@ -60,7 +63,7 @@
                     <form name="search" class="clearfix" action="{shop_url('search')}" method="get" id="autocomlete">
                         <input type="text" name="text" value="{lang('s_se_thi_sit')}"  onfocus="if(this.value=='{lang('s_se_thi_sit')}') this.value='';" onblur="if(this.value=='') this.value='{lang('s_se_thi_sit')}';"  id="inputString" autocomplete="off" onkeyup="lookup(event);" class="place_hold"/>
                         <input type="submit" id="search_submit"  value="{lang('s_search')}" class="icon"/>
-                        <span id="suggestions"style="display: none; width: 0px; right: 0px;"></span>
+                        <span id="suggestions" style="display: none; width: 0px; right: 0px;"></span>
                     </form>
                 </div>
                         

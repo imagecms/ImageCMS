@@ -193,7 +193,7 @@ class Auth extends MY_Controller {
         redirect('', 'location');
     }
 
-    function register() {
+    public function register() {
         ($hook = get_hook('auth_on_register')) ? eval($hook) : NULL;
 
         $this->load->library('Form_validation');
