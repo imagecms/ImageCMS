@@ -218,8 +218,8 @@ $(document).ready(function(){
                 }
             })
             if(res){
-                $('.todiff'+i).parent().hide("slow");
-                $('.todifff'+i).parent().hide("slow");
+                $('.todiff'+i).parent().hide();
+                $('.todifff'+i).parent().hide();
             }
                 console.log(res);
                     }

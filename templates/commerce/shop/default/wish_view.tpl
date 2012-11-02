@@ -12,8 +12,7 @@
                 <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t(lang('s_list_wish_empty'))}</div>
             </div>
         {else:}
-            <table class="cleaner_table forCartProducts" cellspacing="0">
-                
+            <table class="cleaner_table forCartProducts" cellspacing="0">                
                 <colgroup>
                     <col width="140" span="1">
                     <col width="371" span="1">
