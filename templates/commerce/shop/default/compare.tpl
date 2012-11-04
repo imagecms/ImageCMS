@@ -3,7 +3,7 @@
         <div class="center">
             <h1>{lang('s_compare_tovars')}</h1>
             {if count($products) > 0}
-                <a class="active" style="cursor: pointer">{lang('s_all_par')}</a><br />
+                <a class="active" style="cursor: pointer; display:none;">{lang('s_all_par')}</a>
                 <a class="prod_dif" id="all" style="cursor:pointer;">{lang('s_only_diff')}</a>
                 {$cnt = 1}
                 {$cnc = 1}
@@ -84,6 +84,7 @@
 </div>
 {literal}
     <script>
+
                                         for (var i = 1; i <= bar; i++) {
                                             width = 0;
                                             $('.comparison_slider_right' + i + ' li').each(function() {
@@ -98,6 +99,16 @@
                                                 });
                                             });
                                         }
+                                        $("#all").live('click', function() {
+                                            $(".active").show();
+                                            $("#all").hide();
+                                        });
+                                        $(".active").live('click', function() {
+                                            $("#all").show();
+                                            $(".active").hide();
+                                        });
+
+
 
     </script>
 {/literal}

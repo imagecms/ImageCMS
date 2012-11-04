@@ -13,18 +13,17 @@ $(document).ajaxComplete( function(event, XHR, ajaxOptions){
         //        if (event.target.activeElement)
         //            if (event.target.activeElement.localName != "input")
         initAdminArea();
+        
         if ($.exists('#chart')) brands();
-        if ($.exists('#wrapper_gistogram')) gistogram(); 
+        if ($.exists('#wrapper_gistogram')) gistogram();
     }
     init_2();
     number_tooltip_live();
     fixed_frame_title();
     $('.tooltip').remove();
-    
 });
 
 function init_2(){
-    
     if ($.exists('.buy_prod, .popover_ref')){
         //alert('init2');
         $('.buy_prod').popover('destroy').each(function(){
@@ -292,6 +291,7 @@ function init_2(){
             $this.val(100);
         }
     });
+    $('input:first').focus();
 }
 function textcomment_s_h(status, el){
     var status = status;
@@ -558,10 +558,15 @@ function initAdminArea(){
     
     function what_key(enter_key, event){
         var enter_key = enter_key; 
-        var key;
-        key = event.keyCode;
-        if(key == enter_key) return true;
+        if (event)
+        {
+                var key = event.hasOwnProperty('keyCode')?event.keyCode:false;
+                if(key == enter_key) return true;
+        }
+        else
+                return false;
     }
+    
     $('.js_price').die('click').live('click', function(){
         $(this).next().show();
     }).die('focus').live('focus', function(){
@@ -940,7 +945,7 @@ $(document).ready(
             }
         });
 
-        if ($('#baseSearch'))    
+        if ($('#baseSearch').length)    
         {
             $.get('/admin/admin_search/autocomplete', function(data){
                 baseAutocompleteData = JSON.parse(data);
@@ -991,6 +996,7 @@ $(document).ready(
         $(document).die('keydown').live('keydown', function (e) {
             var dataSubmit = $("[data-submit]");
             e = e || window.event;
+            if (event.ctrlKey) $('input:first').blur();
             if (e.keyCode === 83 && event.ctrlKey) {
                 if (!dataSubmit.hasClass('disabled')) dataSubmit.trigger('click');
                 return false;

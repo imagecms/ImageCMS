@@ -22,7 +22,7 @@ $(document).ready(function() {
     else {
         var variable = $('[href=' + location.hash + ']').parent().index();
     }
-    
+
     $('.nav_tabs li a').one('click', function(event) {
         event.stopPropagation();
 
@@ -57,7 +57,7 @@ $(document).ready(function() {
             });
         }
         return false;
-    }).filter(':eq('+variable+')').click();
+    }).filter(':eq(' + variable + ')').click();
 
     $('.frame_rep_bug [type="submit"]').die('click').live('click', function() {
         var url = 'hostname=' + location.hostname + '&pathname=' + location.pathname + '&user_name=' + $('#user_name').text() + '&text=' + $('.frame_rep_bug textarea').val() + '&ip_address=' + $('.frame_rep_bug #ip_address').val();

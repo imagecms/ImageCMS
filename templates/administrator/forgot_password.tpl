@@ -9,10 +9,7 @@
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap.css"/>
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/style.css"/>
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap-responsive.css"/>
-        <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap-notify.css"/>
-        <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery-ui-1.8.23.custom.css"/>
-        <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery-ui-1.8.16.custom.css"/>
-        <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery.ui.1.8.16.ie.css"/>
+        
     </head>
     <body>
         <?php
@@ -27,19 +24,19 @@
                     </a><br/>
                     <div id="titleExt">{widget('path')}<span class="ext">{lang('lang_forgot_password')}</span></div>
 
-                    {if validation_errors() OR $info_message}
-                        {validation_errors()}
-                        {$info_message}
-                    {/if}
-
                     <form action="" class="t-a_l" method="post">
                         <label>
                             {lang('lang_username_or_mail')}
-                            <input type="text" name="login" id="login" style="padding-left: 5px;"/>
+                            <input type="text" name="login" id="login" style="padding-left: 5px;" placeholder="E-mail"/>
+                            {if validation_errors() OR $info_message}
+                                {validation_errors()}
+                                {$info_message}
+                            {/if}
                         </label>
+                            
 
                         <input type="submit" id="submit" class="btn btn-info pull-left" value="{lang('a_send_f')}" />
-                        <a href="{site_url('auth/')}" class="pull-right m-t_10">{lang('s_log_out')}</a>
+                        <a href="{site_url('/admin/login')}" class="pull-right m-t_10">{lang('s_log_out')}</a>
                         {form_csrf()}
                     </form>
                 </div>
