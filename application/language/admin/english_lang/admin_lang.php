@@ -9,7 +9,7 @@ $lang['a_russian'] = 'Russian';
 $lang['a_english'] = 'English';
 
 // RULES HELPER-------------------------------------------START
-
+$lang['a_editing_page'] = 'Редактирование страницы';
 $lang['a_delete_group'] = 'Remove group';
 $lang['a_editing_user_ba_s'] = 'Editing by';
 $lang['a_editing_group_ba_s'] = 'Editing Groups';

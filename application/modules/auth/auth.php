@@ -193,7 +193,7 @@ class Auth extends MY_Controller {
         redirect('', 'location');
     }
 
-    function register() {
+    public function register() {
         ($hook = get_hook('auth_on_register')) ? eval($hook) : NULL;
         $this->core->set_meta_tags(lang('lang_register'));
 
@@ -215,7 +215,7 @@ class Auth extends MY_Controller {
                 else
                     $val->set_rules('captcha', lang('lang_captcha'), 'trim|xss_clean|required|callback_captcha_check');
             }
-
+            
             // Run form validation and register user if it's pass the validation
             if ($val->run() AND $this->dx_auth->register($this->input->post('username'), $val->set_value('password'), $val->set_value('email'))) {
                 ($hook = get_hook('auth_register_success')) ? eval($hook) : NULL;
