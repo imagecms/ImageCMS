@@ -42,6 +42,13 @@
                     </div>
                 </div>
                 <ul>
+                    {if $page_number == 1}
+                        {if $model->getDescription() != ''}
+                            <li>
+                                {echo $model->getDescription()}
+                            </li>
+                        {/if}
+                    {/if}
                     <!--  Render produts list   -->
                     {foreach $products as $product}
                         {$style = productInCart($cart_data, $product->getId(), $product->firstVariant->getId(), $product->firstVariant->getStock())}
@@ -51,16 +58,16 @@
                                 <a href="{shop_url('product/' . $product->getUrl())}">
                                     <img id="mim{echo $product->getId()}" src="{productImageUrl($product->getMainModimage())}" alt="{echo ShopCore::encode($product->name)} - {echo $product->getId()}" />
                                     <!--<img id="vim{echo $product->getId()}" class="smallpimagev" src="" alt="" />-->
+                                    {if $product->getHot() == 1}
+                                        <div class="promoblock">{lang('s_shot')}</div>
+                                    {/if}
+                                    {if $product->getAction() == 1}
+                                        <div class="promoblock">{lang('s_saction')}</div>
+                                    {/if}
+                                    {if $product->getHit() == 1}
+                                        <div class="promoblock">{lang('s_shit')}</div>
+                                    {/if}
                                 </a>
-                                {if $product->getHot() == 1}
-                                    <div class="promoblock">{lang('s_shot')}</div>
-                                {/if}
-                                {if $product->getAction() == 1}
-                                    <div class="promoblock">{lang('s_saction')}</div>
-                                {/if}
-                                {if $product->getHit() == 1}
-                                    <div class="promoblock">{lang('s_shit')}</div>
-                                {/if}
                             </div>
                             <div class="func_description">
                                 <a href="{shop_url('product/' . $product->getUrl())}" class="title">{echo ShopCore::encode($product->name)}</a>
@@ -85,7 +92,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="{shop_url('product/'.$product->getId().'?cmn=on')}"  class="response">
+                                    <a href="{shop_url('product/'.$product->getId().'#four')}" rel="nofollow"  class="response">
                                         {echo $product->totalComments()} {echo SStringHelper::Pluralize($product->totalComments(), array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}
                                     </a>
                                     {if count($product->getProductVariants())>1}
