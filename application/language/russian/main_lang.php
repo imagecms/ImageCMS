@@ -41,6 +41,7 @@ $lang['lang_access_deny'] = 'У вас недостаточно прав для 
 $lang['lang_user_banned'] = 'Ваш аккаунт заблокирован.';
 
 $lang['lang_forgot_password'] = 'Забыли Пароль?';
+$lang['lang_forgot_pass'] = 'Забыли Пароль';
 $lang['lang_remember_me'] = 'Запомнить меня';
 $lang['lang_error'] = 'Ошибка';
 $lang['main_page_error'] = 'Главная страница не найдена.';
