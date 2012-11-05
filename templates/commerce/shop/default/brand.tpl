@@ -174,7 +174,7 @@
                     {if $forCompareProducts && in_array($product->getId(), $forCompareProducts)}
                         <a href="{shop_url('compare')}" class="">{lang('s_compare')}</a>
                     {else:}
-                        <a href="{shop_url('compare/add/'. $product->getId())}" data-prodid="{echo $product->getId()}" class="js gray toCompare">{lang('s_compare_add')}</a>
+                        <span data-prodid="{echo $product->getId()}" class="js gray toCompare">{lang('s_compare_add')}</span>
                     {/if}
                 </span>
                 {if !is_in_wish($product->getId())}

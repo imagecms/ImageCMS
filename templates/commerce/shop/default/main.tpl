@@ -43,6 +43,8 @@
 
         {$yameta}
         {$renderGA}
+            
+        {$ymetric}
     </head>
     <body>
         <div class="main_body">

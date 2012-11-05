@@ -250,14 +250,21 @@ $(document).ready(function() {
                 $.fancybox.hideActivity();
                 $this
                         .html('Сравнить')
-                        //   .text('Сравнить')
                         .removeClass('js')
+                        .removeClass('toCompare')
                         .removeClass('gray')
+                        .addClass('gotoComp')
+                        .css('color', '#3A88CC')
+                        .css('cursor', 'pointer')
                         .unbind('click');
             }
         });
         return false;
         //setTimeout(function() { $("#wishListNotify").css('display', 'none') }, 2000);
+    });
+    
+    $('.gotoComp').live('click', function(){
+        $(location).attr('href', '/shop/compare');
     });
 
     $('.goNotifMe').on('click', function() {
