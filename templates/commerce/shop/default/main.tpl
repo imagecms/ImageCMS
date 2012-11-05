@@ -3,13 +3,11 @@
     <head>
         <meta charset="utf-8" />
         <title>{$site_title}</title>
-        <meta name="description" content="{$site_description}" />
-        <meta name="keywords" content="{$site_keywords}" />
+        <meta name="description" content="{if (int)$page_number>1}{echo $page_number} - {/if}{$site_description}" />
+        <meta name="keywords" content="{$site_keywords}" /> 
         <meta name="generator" content="ImageCMS" />
-        {if $CI->uri->uri_string() == 'shop/search'}
-            <meta name="robots" content="noindex, nofollow" />
-        {/if}
-        <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/style.css" media="all" />
+        {$meta_noindex}
+        <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}css/style.css" media="all" />
         <!--
         <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/jquery.fancybox-1.3.4.css" media="all" />
         -->
