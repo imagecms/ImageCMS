@@ -75,17 +75,14 @@
                                     {/if}
                                 </div>
                             </td>
-                            <td>                        
-                                <form action="{$style.link}" method="post">
-                                    <div class="buttons middle_fix {$style.class} buy">
-                                        <input type="hidden" value="wishes" id="buytype" name="buytype">
-                                        <input type="hidden" value="{echo $item.model->firstVariant->getId()}" name="variantId">
-                                        <input type="hidden" value="{echo $item.model->getId()}" name="productId">
-                                        <input type="hidden" value="1" name="quantity">
-                                        <input class="{$style.identif}" data-varid="{echo $item.model->firstVariant->getId()}" data-prodid="{echo $item.model->getId()}" type="submit" value="{strip_tags($style.message)}">
-                                        {form_csrf()}
-                                    </div>                        
-                                </form>
+                            <td>    
+                                <div class="buy">
+                                    <div id="p{echo $item.model->getId()}" class="{$style.class} buttons">
+                                        <span id="buy{echo $item.model->getId()}" class="{$style.identif}" data-varid="{echo $item.model->firstVariant->getId()}" data-prodid="{echo $item.model->getId()}" >
+                                            {$style.message}
+                                        </span>
+                                    </div>
+                                </div>
                             </td>
                             <td>
                                 <div class="price f-s_18 f_l">{echo $summary = $prices.main.price * 1} 

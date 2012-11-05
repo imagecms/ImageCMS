@@ -195,9 +195,9 @@ class Auth extends MY_Controller {
 
     public function register() {
         ($hook = get_hook('auth_on_register')) ? eval($hook) : NULL;
+        $this->core->set_meta_tags(lang('lang_register'));
 
         $this->load->library('Form_validation');
-
         if (!$this->dx_auth->is_logged_in() AND $this->dx_auth->allow_registration) {
             $val = $this->form_validation;
 
@@ -294,7 +294,7 @@ class Auth extends MY_Controller {
 
     function forgot_password() {
         ($hook = get_hook('auth_on_forgot_pass')) ? eval($hook) : NULL;
-
+        $this->core->set_meta_tags(lang('lang_forgot_pass'));
         $this->load->library('Form_validation');
 
         $val = $this->form_validation;

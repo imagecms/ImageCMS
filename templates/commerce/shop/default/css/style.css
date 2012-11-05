@@ -897,3 +897,5 @@ span.required {color: #D80600;}
 
 .promoblock+.promoblock{top:21px;}
 .promoblock+.promoblock+.promoblock{top:42px;}
+
+.d_i{display: inline;}

@@ -59,7 +59,7 @@
                 {if count($model->getProductVariants())==1}
                     <div class="in_cart"></div>
                     <div class="{echo str_replace('f_l', '', $style.class)} pfancy">
-                        <a class="testclick {echo $style.identif} bfancy" data-id="{echo $model->getId()}" href="{echo $style.link}">{echo $style.message}</a>
+                        <span class="fancybuy {echo $style.identif} bfancy" data-id="{echo $model->getId()}">{echo $style.message}</span>
                     </div>
                 {/if}
             </div>
@@ -70,9 +70,9 @@
                 </div>
                 <h1>{echo ShopCore::encode($model->getName())}</h1>
                 <div class="f-s_0">
-                    <span class="code">{lang('s_kod')}: {echo $model->firstvariant->getNumber()}</span>
+                    <!--<span class="code">{lang('s_kod')}: {echo $model->firstvariant->getNumber()}</span>-->
                     <div class="star_rating">
-                        <div id="{echo $model->getId()}_star_rating" class="rating {echo count_star($model->getRating())} star_rait" data-id="{echo $model->getId()}">
+                        <div id="star_rating_{echo $model->getId()}" class="rating {echo count_star($model->getRating())} star_rait" data-id="{echo $model->getId()}">
                             <div id="1" class="rate one">
                                 <span title="1" class="clickrate">1</span>
                             </div>
@@ -90,10 +90,13 @@
                             </div>
                         </div>
                     </div>
-                    <span class="response">{echo $model->totalComments()} {echo SStringHelper::Pluralize($model->totalComments(), array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}</span>
+                    <div itemscope="" itemtype="http://data-vocabulary.org/Review-aggregate" style="float:left" id="pageRatingData"> 
+                        &nbsp;Рейтинг товара: {if $model->firstVariant->getNumber() != ''}«<span itemprop="itemreviewed">{echo $model->firstvariant->getNumber()}</span>»{/if} 
+                        <meta itemprop="rating" content="4"> оставило <span itemprop="count">{echo $model->getVotes()}</span> человек(а).
+                    </div>
+                    <!--<span class="response">{echo $model->totalComments()} {echo SStringHelper::Pluralize($model->totalComments(), array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}</span>-->
                     </br><span>{echo ShopCore::app()->SProductSpy->getsubscribescount($model->getId())}</span>
                 </div>
-
                 <div class="buy clearfix m-t_30">
                     {if count($model->getProductVariants())>1}
                         Выбор варианта:</br>
@@ -403,6 +406,7 @@
                 </div>
             {/if}
             <div id="four">
+                <a name="four"></a>
                 {$comments}
             </div>
         </div>
