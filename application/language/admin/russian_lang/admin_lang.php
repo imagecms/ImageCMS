@@ -761,4 +761,5 @@ $lang['a_move_to_category'] = 'Переместить в категорию';
 
 
 $lang['lang_acc_mail_sent'] = 'Письмо для восстановления пароля отправлено.';
+$lang['a_yandex_metric'] = 'Id для Yandex метрики';
 ?>

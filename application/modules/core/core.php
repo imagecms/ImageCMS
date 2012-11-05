@@ -85,6 +85,9 @@ class Core extends MY_Controller {
 
         if ($this->settings['yandex_webmaster'])
             ($hook = get_hook('render_yandex_webmaster')) ? eval($hook) : NULL;
+        
+        if (true)
+            ($hook = get_hook('render_yandex_metrik')) ? eval($hook) : NULL;
 
         // DETECT LANGUAGE
         if ($this->uri->total_segments() >= 1) {
