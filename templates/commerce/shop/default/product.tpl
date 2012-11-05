@@ -146,7 +146,7 @@
                             {if $forCompareProducts && in_array($model->getId(), $forCompareProducts)}
                                 <a href="{shop_url('compare')}">{lang('s_compare')}</a>
                             {else:}
-                                <a href="{shop_url('compare/add/'. $model->getId())}" data-prodid="{echo $model->getId()}" class="js gray toCompare">{lang('s_compare_add')}</a>
+                                <span data-prodid="{echo $model->getId()}" class="js gray toCompare">{lang('s_compare_add')}</span>
                             {/if}
                         </span>
                         <span class="ajax_refer_marg" style="margin-top: -2px">
