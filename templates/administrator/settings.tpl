@@ -89,6 +89,13 @@
                                                                 <input type="text" id="yandex_webmaster" name="yandex_webmaster" value="{$yandex_webmaster}" />
                                                             </div>
                                                         </div>
+                                                            
+                                                        <div class="control-group m-t_10">
+                                                            <label class="control-label" for="yandex_metric">{lang('a_yandex_metric')}:</label>
+                                                            <div class="controls">
+                                                                <input type="text" id="yandex_webmaster" name="yandex_metric" value="{$yandex_metric}" />
+                                                            </div>
+                                                        </div>
                                                         <div class="control-group">
                                                             <label class="control-label" for="site_offline">{lang('a_site_shutdown')}:</label>
                                                             <div class="controls">
