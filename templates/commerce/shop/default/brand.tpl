@@ -22,25 +22,25 @@
                     <div class="padding_filter check_frame">
                         <div>
                             {foreach $categories_names as $item}
-                            {if ShopCore::$_GET['categoryId'] == $item.id}<b>{$cat_name = $item.name}{/if}
-                                <span style="cursor: pointer;" class="findincats" data-id="{echo $item.id}">{$item.name} ({echo $incats[$item.id]})</span></br>
-                            {if ShopCore::$_GET['categoryId'] == $item.id}</b>{/if}
-                        {/foreach}    
+                                {if ShopCore::$_GET['categoryId'] == $item.id}<b>{$cat_name = $item.name}{/if}
+                                    <span style="cursor: pointer;" class="findincats" data-id="{echo $item.id}">{$item.name} ({echo $incats[$item.id]})</span></br>
+                                {if ShopCore::$_GET['categoryId'] == $item.id}</b>{/if}
+                            {/foreach}    
+                        </div>
+                    </div>
                 </div>
-            </div>
+            {else:}
+                <div class="title padding_filter">В категориях ничего не найдено</div>
+            {/if}
         </div>
-    {else:}
-        <div class="title padding_filter">В категориях ничего не найдено</div>
-    {/if}
-</div>
 <div class="catalog_content">
     <div class="catalog_frame">
         <div class="box_title clearfix">
             <div class="f-s_24 f_l">
-                {echo ShopCore::encode($model->getName())} 
+                <h1 class="d_i">{echo ShopCore::encode($model->getName())} 
                 {if ShopCore::$_GET['categoryId'] != ''}
                     - {echo $cat_name}
-                {/if}
+                {/if}</h1>
                 <span class="count_search">({$totalProducts})</span>
             </div>
             <div class="f_r">
@@ -69,9 +69,11 @@
     </div>
 </div>
 <ul>
-    <li>
-        <p>{echo $model->getDescription()}</p>
-    </li>
+    {if $page_number == 1}
+        <li>
+            <p>{echo $model->getDescription()}</p>
+        </li>
+    {/if}
     <!--  Render produts list   -->
     {foreach $products as $product}
         {$style = productInCart($cart_data, $product->getId(), $product->firstVariant->getId(), $product->firstVariant->getStock())}
@@ -79,16 +81,16 @@
             <div class="photo_block">
                 <a href="{shop_url('product/' . $product->getUrl())}">
                     <img src="{productImageUrl($product->getMainModimage())}" alt="{echo ShopCore::encode($product->name)}" />
+                    {if $product->getHot() == 1}
+                        <div class="promoblock">{lang('s_shot')}</div>
+                    {/if}
+                    {if $product->getAction() == 1}
+                        <div class="promoblock">{lang('s_saction')}</div>
+                    {/if}
+                    {if $product->getHit() == 1}
+                        <div class="promoblock">{lang('s_shit')}</div>
+                    {/if}
                 </a>
-                {if $product->getHot() == 1}
-                    <div class="promoblock">{lang('s_shot')}</div>
-                {/if}
-                {if $product->getAction() == 1}
-                    <div class="promoblock">{lang('s_saction')}</div>
-                {/if}
-                {if $product->getHit() == 1}
-                    <div class="promoblock">{lang('s_shit')}</div>
-                {/if}
             </div>
             <div class="func_description">
                 <a href="{shop_url('product/' . $product->getUrl())}" class="title">{echo ShopCore::encode($product->name)}</a>
@@ -172,7 +174,7 @@
                     {if $forCompareProducts && in_array($product->getId(), $forCompareProducts)}
                         <a href="{shop_url('compare')}" class="">{lang('s_compare')}</a>
                     {else:}
-                        <a href="{shop_url('compare/add/'. $product->getId())}" data-prodid="{echo $product->getId()}" class="js gray toCompare">{lang('s_compare_add')}</a>
+                        <span data-prodid="{echo $product->getId()}" class="js gray toCompare">{lang('s_compare_add')}</span>
                     {/if}
                 </span>
                 {if !is_in_wish($product->getId())}

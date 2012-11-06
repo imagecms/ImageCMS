@@ -18,7 +18,6 @@
 <script src="{$SHOP_THEME}js/rating/jquery.MetaData-min.js" type="text/javascript"></script>
 <script src="{$SHOP_THEME}js/search.js" type="text/javascript"></script>
 <!-- END STAR RATING -->
-<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW" />
 <!--
 {include_tpl('sidebar')}
 -->
@@ -144,9 +143,9 @@
                                     <div class="f_r t-a_r">
                                         <span class="ajax_refer_marg">
                                             {if $forCompareProducts && in_array($p->getId(), $forCompareProducts)}
-                                                <a href="{shop_url('compare')}" class="js gray">{lang('s_compare')}</a>
+                                                <a href="{shop_url('compare')}" class="">{lang('s_compare')}</a>
                                             {else:}
-                                                <a href="{shop_url('compare/add/'. $p->getId())}" data-prodid="{echo $p->getId()}" class="js gray toCompare">{lang('s_compare_add')}</a>
+                                                <span data-prodid="{echo $p->getId()}" class="js gray toCompare">{lang('s_compare_add')}</span>
                                             {/if}
                                         </span>
                                         <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" data-varid="{echo $p->firstVariant->getId()}" data-prodid="{echo $p->getId()}" href="#" class="js gray addToWList">
