@@ -1,7 +1,3 @@
-<!--<ul class="breadcrumb">
-    <li><a href="#">Главная</a> <span class="divider">/</span></li>
-    <li class="active">Список товаров</li>
-</ul>-->
 <section class="mini-layout">
     <div class="frame_title clearfix">
         <div class="pull-left">
@@ -10,8 +6,8 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$BASE_URL}admin/components/cp/comments" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
-                <button type="button" class="btn btn-small action_on formSubmit" data-form="#comment_settings_form" data-action="tomain"><i class="icon-ok"></i>{lang('a_saves')}</button>
+                <a href="{$BASE_URL}admin/components/cp/comments" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
+                <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#comment_settings_form" data-action="tomain" data-submit><i class="icon-ok"></i>{lang('a_save')}</button>
             </div>
         </div>                            
     </div>
@@ -42,25 +38,40 @@
                                                 <label class="control-label">{lang('amt_restrictions')}:</label>
                                                 <div class="controls">
                                                     <input type="text" value="{$settings.period}" name="period"/>
-                                                    <span class="help-inline">{lang('amt_restrictions_frequency')}</span>
+                                                    <span class="help-block">{lang('amt_restrictions_frequency')}</span>
                                                 </div>
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label" >{lang('amt_disallove_comments_for_unregistered')}</label>
+                                                <div class="control-label" ></div>
                                                 <div class="controls">
-                                                    <input type="checkbox" name="can_comment" value="1"  {if $settings.can_comment == 1}checked="checked"{/if} />
+                                                    <span class="frame_label no_connection">
+                                                        <span class="niceCheck">
+                                                            <input type="checkbox" name="can_comment" value="1"  {if $settings.can_comment == 1}checked="checked"{/if} />
+                                                        </span>
+                                                        {lang('amt_disallove_comments_for_unregistered')}
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label">{lang('amt_admin_approve_on')}</label>
+                                                <div class="control-label"></div>
                                                 <div class="controls" >
-                                                    <input type="checkbox" name="use_moderation" value="1" {if $settings.use_moderation}checked="checked"{/if} />
+                                                    <span class="frame_label no_connection">
+                                                        <span class="niceCheck">
+                                                            <input type="checkbox" name="use_moderation" value="1" {if $settings.use_moderation}checked="checked"{/if} />
+                                                        </span>
+                                                        {lang('amt_admin_approve_on')}
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label">{lang('amt_use_captcha')}</label>
+                                                <div class="control-label"></div>
                                                 <div class="controls" >
-                                                    <input type="checkbox" name="use_captcha" value="1" {if $settings.use_captcha}checked="checked"{/if} />
+                                                    <span class="frame_label no_connection">
+                                                        <span class="niceCheck">
+                                                            <input type="checkbox" name="use_captcha" value="1" {if $settings.use_captcha}checked="checked"{/if} />
+                                                        </span>
+                                                        {lang('amt_use_captcha')}
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>

@@ -3,7 +3,7 @@ $(document).ready(function() {
 //***************Scripts for modules table***************    
 
     //*****changes autoload for any module*****
-    $('.autoload_ch').live('click', function() {
+    $('.autoload_ch').on('click', function() {
         var mid = $(this).attr('data-mid');
         var $this = $(this);
         $.ajax({
@@ -21,7 +21,7 @@ $(document).ready(function() {
     //*****changes autoload for any module*****
 
     //*****changes url access for any module*****
-    $('.urlen_ch').live('click', function() {
+    $('.urlen_ch').on('click', function() {
         var mid = $(this).attr('data-mid');
         var murl = $(this).attr('data-murl');
         var mname = $(this).attr('data-mname');
@@ -50,7 +50,7 @@ $(document).ready(function() {
     //*****changes url access for any module*****
 
     //*****module installing*****
-    $('.mod_instal').live('click', function() {
+    $('.mod_instal').on('click', function() {
         var mname = $(this).attr('data-mname');
         var $this = $(this);
         $.ajax({
@@ -81,7 +81,7 @@ $(document).ready(function() {
     //*****module installing*****
 
     //*****change module visibility in menu*****
-    $('.show_in_menu').live('click', function() {
+    $('.show_in_menu').on('click', function() {
         var id = $(this).attr('data-mid');
         $.ajax({
             url: "/admin/components/change_show_in_menu",
@@ -99,7 +99,7 @@ $(document).ready(function() {
 //***************Scripts for languages page***************
 
     //*****change language by default*****
-    $('.lan_def').live('click', function() {
+    $('.lan_def').on('click', function() {
         if ($(this).hasClass('btn-primary active')) {
             return false;
         }
@@ -120,7 +120,7 @@ $(document).ready(function() {
 
 //***************Scripts for languages page***************
 
-    $('span.selwid').live('click', function() {
+    $('span.selwid').on('click', function() {
         var title = $(this).attr('data-title');
         var mname = $(this).attr('data-mname');
         var mmethod = $(this).attr('data-method');
@@ -129,7 +129,7 @@ $(document).ready(function() {
         $('#swm').attr('value', mmethod);
     });
 
-    $('#inputType').live('change', function() {
+    $('#inputType').on('change', function() {
         if ($(this).attr('value') === 'html')
         {
             $('#moduleholder').fadeOut(200, function() {
@@ -144,7 +144,7 @@ $(document).ready(function() {
         }
     });
 
-    $('.submit_form').live('click', function() {
+    $('.submit_form').on('click', function() {
         var options = {
             dataType: "json",
             success: function(obj) {
@@ -161,7 +161,7 @@ $(document).ready(function() {
         $('#wid_cr_form').ajaxSubmit(options);
     });
 
-    $('.submit_an_create').live('click', function() {
+    $('.submit_an_create').on('click', function() {
         var options = {
             dataType: "json",
             success: function(obj) {
@@ -183,12 +183,12 @@ $(document).ready(function() {
         $(location).attr('href', url);
     }
 
-    $('#cr_wid_page').live('click', function() {
+    $('#cr_wid_page').on('click', function() {
         var url = '/admin/widgets_manager/create_tpl';
         redirect_url(url);
     });
 
-    $('#watermark_type').live('change', function() {
+    $('#watermark_type').on('change', function() {
         if ($(this).attr('value') === 'overlay') {
             $('.fortextblock').hide('slow', function() {
                 $('.forimageblock').css('display', '');
@@ -201,21 +201,21 @@ $(document).ready(function() {
         }
     });
 
-    $('.select_tpl').live('click', function() {
+    $('.select_tpl').on('click', function() {
         var path = $(this).attr('data-path');
         $('img.tpl_image').removeClass('sel_template');
         $(this).children('img').addClass('sel_template');
         $('#systemTemplatePath').attr('value', path);
     });
 
-    $('.select_mobile_tpl').live('click', function() {
+    $('.select_mobile_tpl').on('click', function() {
         var path = $(this).attr('data-path');
         $('img.mobile_tpl_image').removeClass('sel_template');
         $(this).children('img').addClass('sel_template');
         $('#mobileTemplatePath').attr('value', path);
     });
 
-    $('.currency_def').live('click', function() {
+    $('.currency_def').on('click', function() {
         var currency_id = $(this).data('currid');
         $.ajax({
             type: 'post',
@@ -230,7 +230,7 @@ $(document).ready(function() {
         });
     });
 
-    $('.currency_main').live('click', function() {
+    $('.currency_main').on('click', function() {
         var currency_id = $(this).data('currid');
         $.ajax({
             type: 'post',
@@ -262,7 +262,7 @@ $(document).ready(function() {
         return arr;
     }
 
-//    $('#del_sel_group').live('click', function() {
+//    $('#del_sel_group').on('click', function() {
 //        if ($(this).hasClass('disabled')) {
 //            return false;
 //        } else {
@@ -280,7 +280,7 @@ $(document).ready(function() {
 //        }
 //    });
 //
-//    $('#del_sel_priv').live('click', function() {
+//    $('#del_sel_priv').on('click', function() {
 //        if ($(this).hasClass('disabled')) {
 //            return false;
 //        } else {
@@ -298,7 +298,7 @@ $(document).ready(function() {
 //        }
 //    });
 
-    $('.catfilter').live('change', function() {
+    $('.catfilter').on('change', function() {
         redirect_url('/admin/components/run/shop/properties/index/' + $(this).attr('value'));
 //        $.pjax({
 //            url: '/admin/components/run/shop/properties/index/' + $(this).attr('value'),
@@ -306,7 +306,7 @@ $(document).ready(function() {
 //        });
     });
 
-    $('#generateButton').live('click', function() {
+    $('#generateButton').on('click', function() {
         $.ajax({
             type: "post",
             dataType: "json",
@@ -317,7 +317,7 @@ $(document).ready(function() {
         })
     });
 
-    $('.ch_active').live('click', function() {
+    $('.ch_active').on('click', function() {
         var cid = $(this).attr('data-cid');
         var $this = $(this);
         $.ajax({
@@ -331,7 +331,7 @@ $(document).ready(function() {
 
 //***************Scripts for comments***************
 
-    $('.comment_update').live('click', function() {
+    $('.comment_update').on('click', function() {
         var id = $(this).attr('data-cid');
         var user_name = $('#u_ed' + id).attr('value');
         var user_mail = $('#m_ed' + id).attr('value');
@@ -360,47 +360,9 @@ $(document).ready(function() {
             }
         });
     });
+    dropDownMenu();
 
-    $('.to_pspam').live('click', function() {
-        var arr = new Array();
-        $('input[name=ids]:checked').each(function() {
-            arr.push(parseInt($(this).val()));
-        });
-        $.post('/admin/components/cp/comments/update_status',
-                {id: arr, status: 2},
-                function(data) {
-                    $('.notifications').append(data);
-                }
-        );
-    });
-
-    $('.to_wait').live('click', function() {
-        var arr = new Array();
-        $('input[name=ids]:checked').each(function() {
-            arr.push(parseInt($(this).val()));
-        });
-        $.post('/admin/components/cp/comments/update_status',
-                {id: arr, status: 1},
-                function(data) {
-                    $('.notifications').append(data);
-                }
-        );
-    });
-
-    $('.to_approved').live('click', function() {
-        var arr = new Array();
-        $('input[name=ids]:checked').each(function() {
-            arr.push(parseInt($(this).val()));
-        });
-        $.post('/admin/components/cp/comments/update_status',
-                {id: arr, status: 0},
-                function(data) {
-                    $('.notifications').append(data);
-                }
-        );
-    });
-
-    $('#comment_delete').live('click', function() {
+    $('#comment_delete').on('click', function() {
         if ($(this).hasClass('disabled')) {
         } else {
             var arr = getcheckedvalues();
@@ -414,7 +376,7 @@ $(document).ready(function() {
         }
     });
 
-    $('.com_del').live('click', function() {
+    $('.com_del').on('click', function() {
         var id = $(this).attr('data-id');
         $.post('/admin/components/cp/comments/delete', {
             id: id
@@ -425,7 +387,7 @@ $(document).ready(function() {
         );
     });
 
-    $('.to_approved').live('click', function() {
+    $('.to_approved').on('click', function() {
         var id = $(this).attr('data-id');
         $.ajax({
             type: 'post',
@@ -437,7 +399,7 @@ $(document).ready(function() {
         });
     });
 
-    $('.to_waiting').live('click', function() {
+    $('.to_waiting').on('click', function() {
         var id = $(this).attr('data-id');
         $.ajax({
             type: 'post',
@@ -468,7 +430,7 @@ $(document).ready(function() {
 
 //***************Scripts for modules table***************
 
-    $('#translateCategoryTitle').live('click', function() {
+    $('#translateCategoryTitle').on('click', function() {
         var str = $('#inputName').attr('value');
         $.ajax({
             type: 'post',
@@ -480,7 +442,7 @@ $(document).ready(function() {
         });
     });
 
-    $('.cat_change_active').live('click', function() {
+    $('.cat_change_active').on('click', function() {
         var id = $(this).attr('data-id');
         $.ajax({
             type: "post",
@@ -492,7 +454,7 @@ $(document).ready(function() {
         });
     });
 
-    $('#create_tpl').live('click', function() {
+    $('#create_tpl').on('click', function() {
         var name = prompt('Введите название шаблона', '');
         if (name != null && name != "") {
             $.ajax({
@@ -515,7 +477,7 @@ $(document).ready(function() {
             source: tpls
         });
 
-    $('.prop_active').live('click', function() {
+    $('.prop_active').on('click', function() {
         var id = $(this).attr('data-id');
         $.ajax({
             type: "post",
@@ -544,67 +506,7 @@ $(document).ready(function() {
 
     //  sortstop blocks end    
 
-    //autocomplete for main product start
-
-    $('#kitMainProductName').autocomplete({
-        minChars: 1,
-        source: '/admin/components/run/shop/kits/get_products_list/' + $('#kitMainProductName').val() + '&limit=20',
-        select: function(event, ui) {
-            $('#MainProductHidden').attr('value', ui.item.identifier.id);
-            $('#kitMainProductName').attr('value', ui.item.label);
-        }
-    });
-
-    $('#AttachedProducts').autocomplete({
-        minChars: 0,
-        source: '/admin/components/run/shop/kits/get_products_list/' + $('#AttachedProducts').attr('value') + '&limit=20',
-        select: function(event, ui) {
-            var mainDisc = $('#mainDisc').attr('value');
-            $('#forAttached').append('<div id="tpm_row' + ui.item.identifier.id + '" class="m-t_10">' +
-                    '<span class="d-i_b number v-a_t">' +
-                    '<span class="help-inline d_b">ID</span>' +
-                    '<input type="text" name="AttachedProductsIds[]" value="' + ui.item.identifier.id + '" class="input-mini"/>' +
-                    '</span>&nbsp;' +
-                    '<span  class="d-i_b v-a_t">' +
-                    '<span class="help-inline d_b">Имя</span>' +
-                    '<input type="text" id="AttachedProducts" value="' + ui.item.label + '" class="input-xxlarge"/>' +
-                    '</span>&nbsp;' +
-                    '<span  class="d-i_b number v-a_t">' +
-                    '<span class="help-inline d_b">Скидка %</span>' +
-                    '<input type="text" id="AttachedProductsDisc" name="Discounts[]" value="' + mainDisc + '" class="input-mini" data-max="100" data-rel="tooltip" data-title="только цифры"/>' +
-                    '</span>&nbsp;' +
-                    '<span  class="d-i_b v-a_t" style="margin-top:18px;">' +
-                    '<button class="btn btn-danger btn-small del_tmp_row" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash icon-white"></i></button>' +
-                    '</span>' +
-                    '</div>');
-        },
-        close: function(event, ui) {
-            $('#AttachedProducts').attr('value', '');
-        }
-    });
-
-    $('#RelatedProducts').autocomplete({
-        minChars: 0,
-        source: '/admin/components/run/shop/kits/get_products_list/' + $('#RelatedProducts').attr('value') + '&limit=20',
-        select: function(event, ui) {
-            $('#relatedProductsNames').append('<div id="tpm_row' + ui.item.identifier.id + '">' +
-                    '<span style="width: 70%;margin-left: 1%;" class="pull-left">' +
-                    '<input type="text" id="AttachedProducts" value="' + ui.item.label + '"/>' +
-                    '<input type="hidden" name="RelatedProducts[]" value="' + ui.item.identifier.id + '">' +
-                    '</span>' +
-                    '<span style="width: 8%;margin-left: 1%;" class="pull-left">' +
-                    '<button class="btn btn-small del_tmp_row" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash"></i></button>' +
-                    '</span>' +
-                    '</div>');
-        },
-        close: function(event, ui) {
-            $('#RelatedProducts').attr('value', '');
-        }
-    });
-
-    //autocomplete for main product end
-
-    $('.kit_change_active').live('click', function() {
+    $('.kit_change_active').on('click', function() {
         var id = $(this).attr('data-kid');
         $.ajax({
             type: "post",
@@ -620,12 +522,12 @@ $(document).ready(function() {
         }
     });
 
-    $('.del_tmp_row').live('click', function() {
+    $('.del_tmp_row').on('click', function() {
         var id = $(this).attr('data-kid');
         $('#tpm_row' + id).remove();
     });
 
-    $('.to_hit').live('click', function() {
+    $('.to_hit').on('click', function() {
         var ids = new Array();
         $('input[name=ids]:checked').each(function() {
             ids.push($(this).val());
@@ -638,7 +540,7 @@ $(document).ready(function() {
         );
     });
 
-    $('.tonew').live('click', function() {
+    $('.tonew').on('click', function() {
         var ids = new Array();
         $('input[name=ids]:checked').each(function() {
             ids.push($(this).val());
@@ -651,7 +553,7 @@ $(document).ready(function() {
         );
     });
 
-    $('.clone').live('click', function() {
+    $('.clone').on('click', function() {
         var ids = new Array();
         $('input[name=ids]:checked').each(function() {
             ids.push($(this).val());
@@ -664,7 +566,7 @@ $(document).ready(function() {
         );
     });
 
-    $('.toaction').live('click', function() {
+    $('.toaction').on('click', function() {
         var ids = new Array();
         $('input[name=ids]:checked').each(function() {
             ids.push($(this).val());
@@ -677,12 +579,12 @@ $(document).ready(function() {
         );
     });
 
-    $(".save_positions").live("sortstop", function(event, ui) {
+    $(".save_positions").on("sortstop", function(event, ui) {
         var url = $(this).attr('data-url');
         save_positions(url);
     });
 
-    $('.item_hidden').live('click', function() {
+    $('.item_hidden').on('click', function() {
         var id = $(this).attr('data-id');
         $.ajax({
             type: "post",
@@ -694,7 +596,7 @@ $(document).ready(function() {
         });
     });
 
-    $('#category_sel').live('change', function() {
+    $('#category_sel').on('change', function() {
         alert(1)
         var id = $(this).attr('value');
         var per_page = $('#per_page').attr('value');
@@ -717,18 +619,18 @@ $(document).ready(function() {
         });
     });
 
-    $('#per_page').live('change', function() {
+    $('#per_page').on('change', function() {
         alert(1)
         $('#category_sel').trigger('change');
     });
 
-    $('.page_title').live('click', function() {
+    $('.page_title').on('click', function() {
         $('#page_id_holder').html($(this).attr('data-id'));
         $('#item_title').attr('value', $(this).attr('data-title'));
         $('#item_page_id').attr('value', $(this).attr('data-id'));
     });
 
-    $('.link_type').live('change', function() {
+    $('.link_type').on('change', function() {
         var identif = $(this).val();
         $('.edit_holder').hide();
         $('#' + identif).show();
@@ -738,7 +640,7 @@ $(document).ready(function() {
         });
     });
 
-    $('.category_item').live('click', function() {
+    $('.category_item').on('click', function() {
         var id = $(this).attr('data-id');
         var title = $(this).attr('data-title');
         $('#cat_input').attr('value', id);
@@ -746,7 +648,7 @@ $(document).ready(function() {
         $('#item_cat_title').attr('value', title)
     });
 
-    $('.module_item').live('click', function() {
+    $('.module_item').on('click', function() {
         var mname = $(this).attr('data-mname');
         var title = $(this).html();
         $('input[name=mod_name]').attr('value', mname);
@@ -755,7 +657,7 @@ $(document).ready(function() {
 
     });
 
-    $('.product_list_order').live('click', function() {
+    $('.product_list_order').on('click', function() {
         var column = $(this).attr('data-column');
         $('input[name=orderMethod]').attr('value', column);
         if ($('input[name=order]').attr('value') === '') {
@@ -775,11 +677,11 @@ $(document).ready(function() {
         });
     });
 
-    $('.tocategory').live('click', function() {
+    $('.tocategory').on('click', function() {
         $('.modal_move_to_cat').modal();
     });
 
-    $('.move_to_cat').live('click', function() {
+    $('.move_to_cat').on('click', function() {
         var catId = $('#moveCategoryId').attr('value');
         var ids = new Array();
         $('input[name=ids]:checked').each(function() {
@@ -793,11 +695,11 @@ $(document).ready(function() {
         );
     });
 
-    $('.kit_del').live('click', function() {
+    $('.kit_del').on('click', function() {
         $('.modal_del_kit').modal();
     });
 
-    $('.kit_del_ok').live('click', function() {
+    $('.kit_del_ok').on('click', function() {
         var id = $('.kit_del').attr('data-kid');
         $.ajax({
             url: '/admin/components/run/shop/kits/kit_delete',
@@ -812,7 +714,7 @@ $(document).ready(function() {
     });
 
 
-    $('#addVariant').live('click', function() {
+    $('#addVariant').on('click', function() {
         var clonedVarTr = $('.variantRowSample').find('tr').clone();
         var randId = Math.random();
         var countVarRows = $('#variantHolder').children('tr').length;
@@ -823,7 +725,7 @@ $(document).ready(function() {
         $('#variantHolder').append(clonedVarTr);
     });
 
-    $('.delete_image').live('click', function() {
+    $('.delete_image').on('click', function() {
         var container = $(this).parent('td');
         //container.find('[name="variants[MainImageForDel][]"]');
         if (container.find('[name="variants[MainImageForDel][]"]').length) {
@@ -837,14 +739,14 @@ $(document).ready(function() {
         container.find('img').attr('src', "/templates/administrator/images/select-picture.png");
     });
 
-    $('.deleteMainImages').live('click', function() {
+    $('.deleteMainImages').on('click', function() {
         var container = $(this).parents('div.control-group');
         container.find('img').attr('src', "/templates/administrator/images/select-picture.png");
         container.find('input:hidden').attr('value', 1);
         container.find('input:file').attr('value', '');
     });
 
-    $('.item_parent_id').live('change', function() {
+    $('.item_parent_id').on('change', function() {
         var id = $(this).attr('value');
         var menu_id = $('[name="menu_id"]').attr('value');
         $.ajax({

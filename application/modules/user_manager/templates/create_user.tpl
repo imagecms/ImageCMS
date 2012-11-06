@@ -7,8 +7,8 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="/admin/components/cp/user_manager" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>                   
-                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#create" data-action="close"><i class="icon-ok"></i>{lang('a_create')}</button>
+                    <a href="/admin/components/cp/user_manager" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>                   
+                    <button type="button" class="btn btn-small btn-success action_on formSubmit" data-form="#create" data-action="close" data-submit><i class="icon-plus-sign icon-white"></i>{lang('a_create')}</button>
                     <button type="button" class="btn btn-small action_on formSubmit" data-form="#create" data-action="exit"><i class="icon-check"></i>{lang('a_cre_exit_form')}</button>
                 </div>
             </div>                            
@@ -36,25 +36,25 @@
                                             <div class="control-group">
                                                 <label class="control-label" for="username">{lang('amt_user_login')}</label>
                                                 <div class="controls">
-                                                    <input type="text" name="username" id="username" value=""/>
+                                                    <input type="text" name="username" id="username" value="" required/>
                                                 </div>
                                             </div>
                                             <div class="control-group">
                                                 <label class="control-label" for="password">{lang('amt_new_pass')}</label>
                                                 <div class="controls">
-                                                    <input type="password" name="password" id="password" value="" />
+                                                    <input type="password" name="password" id="password" value="" required/>
                                                 </div>
                                             </div>
                                             <div class="control-group">
                                                 <label class="control-label" for="password_conf">{lang('amt_new_pass_confirm')}</label>
                                                 <div class="controls">
-                                                    <input type="password" name="password_conf" id="password_conf" value=""/>
+                                                    <input type="password" name="password_conf" id="password_conf" value="" required/>
                                                 </div>
                                             </div>
                                             <div class="control-group">
                                                 <label class="control-label" for="email">{lang('amt_email')}</label>
                                                 <div class="controls">
-                                                    <input type="text" name="email" id="email" value="" />
+                                                    <input type="text" name="email" id="email" value="" class="required email"/>
                                                 </div>
                                             </div>
                                             <div class="control-group">
