@@ -10,9 +10,9 @@
         <h2>{echo $err}</h2>
         <h2>{echo $success}</h2>
         {if ShopCore::$ci->dx_auth->is_logged_in()===true}
-        <a href="#" class="f_r w-s_n-w" id="button_email">{lang('s_s_wish_list')}</a>
-        <a href="#" class="f_r w-s_n-w" style="display: none;" id="close_email">{lang('s_close_form_wl')}</a>              
-        
+            <a href="#" class="f_r w-s_n-w" id="button_email">{lang('s_s_wish_list')}</a>
+            <a href="#" class="f_r w-s_n-w" style="display: none;" id="close_email">{lang('s_close_form_wl')}</a>              
+
             <div class="fancy c_b f_r" style="border: none; display: none;" id="send_email">
                 <form action="{shop_url('wish_list')}" method="post" name="editForm" style="padding-left: 0; padding-right: 0px;">
                     <div id="change_info_edit" class="f_r">
@@ -45,7 +45,7 @@
         {else:}
 
             <table class="cleaner_table forCartProducts" cellspacing="0">
-                              
+
                 <colgroup>
                     <col width="140" span="1">
                     <col width="371" span="1">
@@ -75,17 +75,14 @@
                                     {/if}
                                 </div>
                             </td>
-                            <td>                        
-                                <form action="{$style.link}" method="post">
-                                    <div class="buttons middle_fix {$style.class} buy">
-                                        <input type="hidden" value="wishes" id="buytype" name="buytype">
-                                        <input type="hidden" value="{echo $item.model->firstVariant->getId()}" name="variantId">
-                                        <input type="hidden" value="{echo $item.model->getId()}" name="productId">
-                                        <input type="hidden" value="1" name="quantity">
-                                        <input class="{$style.identif}" data-varid="{echo $item.model->firstVariant->getId()}" data-prodid="{echo $item.model->getId()}" type="submit" value="{strip_tags($style.message)}">
-                                        {form_csrf()}
-                                    </div>                        
-                                </form>
+                            <td>    
+                                <div class="buy">
+                                    <div id="p{echo $item.model->getId()}" class="{$style.class} buttons">
+                                        <span id="buy{echo $item.model->getId()}" class="{$style.identif}" data-varid="{echo $item.model->firstVariant->getId()}" data-prodid="{echo $item.model->getId()}" >
+                                            {$style.message}
+                                        </span>
+                                    </div>
+                                </div>
                             </td>
                             <td>
                                 <div class="price f-s_18 f_l">{echo $summary = $prices.main.price * 1} 
@@ -129,5 +126,6 @@
                 <input type="hidden" name="forCart" />
             </table>
         {/if}
+        {widget('latest_news')}
     </div>
 </div>

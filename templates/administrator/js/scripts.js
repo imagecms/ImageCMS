@@ -21,11 +21,9 @@ $(document).ajaxComplete( function(event, XHR, ajaxOptions){
     number_tooltip_live();
     fixed_frame_title();
     $('.tooltip').remove();
-    
 });
 
 function init_2(){
-    
     if ($.exists('.buy_prod, .popover_ref')){
         //alert('init2');
         $('.buy_prod').popover('destroy').each(function(){
@@ -293,7 +291,7 @@ function init_2(){
             $this.val(100);
         }
     });
-    $(':input:first').focus();
+    $('input:first').focus();
 }
 function textcomment_s_h(status, el){
     var status = status;
@@ -998,6 +996,7 @@ $(document).ready(
         $(document).die('keydown').live('keydown', function (e) {
             var dataSubmit = $("[data-submit]");
             e = e || window.event;
+            if (event.ctrlKey) $('input:first').blur();
             if (e.keyCode === 83 && event.ctrlKey) {
                 if (!dataSubmit.hasClass('disabled')) dataSubmit.trigger('click');
                 return false;

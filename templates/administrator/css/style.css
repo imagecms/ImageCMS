@@ -1,4 +1,5 @@
 *{margin:0px;padding: 0px;border: 0px;outline: none;line-height: 1.5;background-color: transparent;vertical-align: baseline;}
+a{cursor: pointer;}
 .f-s_14{font-size: 14px;}
 .f-s_26{font-size: 26px !important;}
 .p_r{position: relative;}
@@ -166,7 +167,8 @@ a.go_to_site{visibility: hidden;}
 .js:hover{border-bottom-color: #005580;text-decoration: none;}
 .simple_tree{color: #86c8e2;font-size: 18px;}
 a.btn{text-decoration: none;}
-.btn{font-size: 12px !important;}
+.btn{font-size: 12px !important;white-space: normal;}
+.controls .pull-right .btn{max-width: 120px;}
 .breadcrumb{margin: 0 0 3px 0 !important;padding: 0 !important;background: none !important;}
 .breadcrumb li{text-shadow: none !important;}
 
@@ -333,12 +335,12 @@ form > *{font-size: 12px;}
 .ui-datepicker.dropdown-menu a{padding: 2px 10px;}
 .ui-state-disabled{color: #999;}
 
-.mini-layout .input-mini {width: 60px !important;}
-.mini-layout .input-small {width: 90px !important;}
-.mini-layout .input-medium {width: 150px !important;}
-.mini-layout .input-large {width: 210px !important;}
-.mini-layout .input-xlarge {width: 270px !important;}
-.mini-layout .input-xxlarge {width: 530px !important;}
+.input-mini {width: 60px !important;}
+.input-small {width: 90px !important;}
+.input-medium {width: 150px !important;}
+.input-large {width: 210px !important;}
+.input-xlarge {width: 270px !important;}
+.input-xxlarge {width: 530px !important;}
 .form-horizontal .control-label{width: 180px !important;}
 .form-horizontal .controls{margin-left: 200px !important;}
 .form-horizontal .controls.c_b{margin-left: 0 !important;}

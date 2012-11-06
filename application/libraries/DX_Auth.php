@@ -956,7 +956,7 @@ class DX_Auth
 		// Load Models
 		$this->ci->load->model('dx_auth/users', 'users');
 		$this->ci->load->model('dx_auth/user_temp', 'user_temp');
-
+                $key = random_string('alnum', 5);
 		$this->ci->load->helper('url');
 
 		// Default return value
@@ -967,6 +967,7 @@ class DX_Auth
 			'username'				=> $username,
 			'password'				=> crypt($this->_encode($password)),
 			'email'						=> $email,
+			'key'						=> $key,
 			'last_ip'					=> $this->ci->input->ip_address()
 		);
 
