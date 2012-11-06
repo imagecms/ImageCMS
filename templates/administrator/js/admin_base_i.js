@@ -510,7 +510,7 @@ $(document).ready(function() {
 
     $('#kitMainProductName').autocomplete({
         minChars: 1,
-        source: '/admin/components/run/shop/kits/get_products_list/' + $('#kitMainProductName').attr('value') + '&limit=20',
+        source: '/admin/components/run/shop/kits/get_products_list/' + $('#kitMainProductName').val() + '&limit=20',
         select: function(event, ui) {
             $('#MainProductHidden').attr('value', ui.item.identifier.id);
             $('#kitMainProductName').attr('value', ui.item.label);
