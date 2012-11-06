@@ -506,66 +506,6 @@ $(document).ready(function() {
 
     //  sortstop blocks end    
 
-    //autocomplete for main product start
-
-    $('#kitMainProductName').autocomplete({
-        minChars: 1,
-        source: '/admin/components/run/shop/kits/get_products_list/' + $('#kitMainProductName').val() + '&limit=20',
-        select: function(event, ui) {
-            $('#MainProductHidden').attr('value', ui.item.identifier.id);
-            $('#kitMainProductName').attr('value', ui.item.label);
-        }
-    });
-
-    $('#AttachedProducts').autocomplete({
-        minChars: 0,
-        source: '/admin/components/run/shop/kits/get_products_list/' + $('#AttachedProducts').attr('value') + '&limit=20',
-        select: function(event, ui) {
-            var mainDisc = $('#mainDisc').attr('value');
-            $('#forAttached').append('<div id="tpm_row' + ui.item.identifier.id + '" class="m-t_10">' +
-                    '<span class="d-i_b number v-a_t">' +
-                    '<span class="help-inline d_b">ID</span>' +
-                    '<input type="text" name="AttachedProductsIds[]" value="' + ui.item.identifier.id + '" class="input-mini"/>' +
-                    '</span>&nbsp;' +
-                    '<span  class="d-i_b v-a_t">' +
-                    '<span class="help-inline d_b">Имя</span>' +
-                    '<input type="text" id="AttachedProducts" value="' + ui.item.label + '" class="input-xxlarge"/>' +
-                    '</span>&nbsp;' +
-                    '<span  class="d-i_b number v-a_t">' +
-                    '<span class="help-inline d_b">Скидка %</span>' +
-                    '<input type="text" id="AttachedProductsDisc" name="Discounts[]" value="' + mainDisc + '" class="input-mini" data-max="100" data-rel="tooltip" data-title="только цифры"/>' +
-                    '</span>&nbsp;' +
-                    '<span  class="d-i_b v-a_t" style="margin-top:18px;">' +
-                    '<button class="btn btn-danger btn-small del_tmp_row" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash icon-white"></i></button>' +
-                    '</span>' +
-                    '</div>');
-        },
-        close: function(event, ui) {
-            $('#AttachedProducts').attr('value', '');
-        }
-    });
-
-    $('#RelatedProducts').autocomplete({
-        minChars: 0,
-        source: '/admin/components/run/shop/kits/get_products_list/' + $('#RelatedProducts').attr('value') + '&limit=20',
-        select: function(event, ui) {
-            $('#relatedProductsNames').append('<div id="tpm_row' + ui.item.identifier.id + '">' +
-                    '<span style="width: 70%;margin-left: 1%;" class="pull-left">' +
-                    '<input type="text" id="AttachedProducts" value="' + ui.item.label + '"/>' +
-                    '<input type="hidden" name="RelatedProducts[]" value="' + ui.item.identifier.id + '">' +
-                    '</span>' +
-                    '<span style="width: 8%;margin-left: 1%;" class="pull-left">' +
-                    '<button class="btn btn-small del_tmp_row" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash"></i></button>' +
-                    '</span>' +
-                    '</div>');
-        },
-        close: function(event, ui) {
-            $('#RelatedProducts').attr('value', '');
-        }
-    });
-
-    //autocomplete for main product end
-
     $('.kit_change_active').on('click', function() {
         var id = $(this).attr('data-kid');
         $.ajax({

@@ -7,7 +7,7 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="{$SELF_URL}" class="t-d_n m-r_15" class="pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>                   
+                    <a href="{$SELF_URL}" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>                   
                     <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#update" data-action="close" data-submit><i class="icon-ok icon-white"></i>{lang('amt_save')}</button>
                     <button type="button" class="btn btn-small action_on formSubmit" data-form="#update" data-action="exit"><i class="icon-check"></i>{lang('a_save_and_exit')}</button>
                 </div>

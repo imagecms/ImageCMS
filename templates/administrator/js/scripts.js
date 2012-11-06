@@ -22,6 +22,7 @@ $(document).ajaxComplete( function(event, XHR, ajaxOptions){
     fixed_frame_title();
     $('.tooltip').remove();
     dropDownMenu();
+    autocomplete();
 });
 
 function init_2(){
@@ -308,7 +309,6 @@ function init_2(){
             $this.val(100);
         }
     });
-    $('input:first').focus();
 }
 function dropDownMenu(){
     $('.to_pspam').unbind('click').on('click', function() {
@@ -356,6 +356,89 @@ function dropDownMenu(){
             $('.notifications').append(data);
         }
         );
+    });
+}
+function autocomplete(){
+    $('#kitMainProductName').autocomplete({
+        minChars: 1,
+        source: '/admin/components/run/shop/kits/get_products_list/' + $('#kitMainProductName').val() + '&limit=20',
+        select: function(event, ui) {
+            $('#MainProductHidden').attr('value', ui.item.identifier.id);
+            $('#kitMainProductName').attr('value', ui.item.label);
+        }
+    });
+
+    $('#AttachedProducts').autocomplete({
+        minChars: 0,
+        source: '/admin/components/run/shop/kits/get_products_list/' + $('#AttachedProducts').attr('value') + '&limit=20',
+        select: function(event, ui) {
+            var mainDisc = $('#mainDisc').attr('value');
+            $('#forAttached').append('<div id="tpm_row' + ui.item.identifier.id + '" class="m-t_10">' +
+                '<span class="d-i_b number v-a_t">' +
+                '<span class="help-inline d_b">ID</span>' +
+                '<input type="text" name="AttachedProductsIds[]" value="' + ui.item.identifier.id + '" class="input-mini"/>' +
+                '</span>&nbsp;' +
+                '<span  class="d-i_b v-a_t">' +
+                '<span class="help-inline d_b">Имя</span>' +
+                '<input type="text" id="AttachedProducts" value="' + ui.item.label + '" class="input-xxlarge"/>' +
+                '</span>&nbsp;' +
+                '<span  class="d-i_b number v-a_t">' +
+                '<span class="help-inline d_b">Скидка %</span>' +
+                '<input type="text" id="AttachedProductsDisc" name="Discounts[]" value="' + mainDisc + '" class="input-mini" data-max="100" data-rel="tooltip" data-title="только цифры"/>' +
+                '</span>&nbsp;' +
+                '<span  class="d-i_b v-a_t" style="margin-top:18px;">' +
+                '<button class="btn btn-danger btn-small del_tmp_row" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash icon-white"></i></button>' +
+                '</span>' +
+                '</div>');
+        },
+        close: function(event, ui) {
+            $('#AttachedProducts').attr('value', '');
+        }
+    });
+
+    $('#RelatedProducts').autocomplete({
+        minChars: 0,
+        source: '/admin/components/run/shop/kits/get_products_list/' + $('#RelatedProducts').attr('value') + '&limit=20',
+        select: function(event, ui) {
+            $('#relatedProductsNames').append('<div id="tpm_row' + ui.item.identifier.id + '">' +
+                '<span style="width: 70%;margin-left: 1%;" class="pull-left">' +
+                '<input type="text" id="AttachedProducts" value="' + ui.item.label + '"/>' +
+                '<input type="hidden" name="RelatedProducts[]" value="' + ui.item.identifier.id + '">' +
+                '</span>' +
+                '<span style="width: 8%;margin-left: 1%;" class="pull-left">' +
+                '<button class="btn btn-small del_tmp_row" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash"></i></button>' +
+                '</span>' +
+                '</div>');
+        },
+        close: function(event, ui) {
+            $('#RelatedProducts').attr('value', '');
+        }
+    });
+    $('#emailAutoC').autocomplete({
+        minChars: 0,
+        source: '/admin/components/cp/user_manager/auto_complit/email' + $('#emailAutoC').attr('value') + '?limit=25'
+    });
+    
+    $('#nameAutoC').autocomplete({
+        minChars: 0,
+        source: '/admin/components/cp/user_manager/auto_complit/name' + $('#nameAutoC').attr('value') + '?limit=25'
+        
+    });
+    
+    //    AUTO COMPLITE SHOP--------------------------------------------------------------------------------------------------
+    
+        
+        
+    $('#shopNameAutoC').autocomplete({
+        minChars: 0,
+        source: '/admin/components/run/shop/users/auto_complite/name' + $('#shopNameAutoC').attr('value') + '?limit=25'
+        
+    });
+
+    $('#shopEmailAutoC').autocomplete({
+        minChars: 0,
+        source: '/admin/components/run/shop/users/auto_complite/email' + $('#shopNameAutoC').attr('value') + '?limit=25'
+        
     });
 }
 function textcomment_s_h(status, el){
@@ -495,6 +578,16 @@ function difTooltip(){
     }
     else place_tr_ttp = 'top'
 }
+function what_key(enter_key, event){
+    var enter_key = enter_key; 
+    if (event)
+    {
+        var key = event.hasOwnProperty('keyCode')?event.keyCode:false;
+        if(key == enter_key) return true;
+    }
+    else
+        return false;
+}
 function initAdminArea(){
     if ($.exists('#shopAdminMenu')){
         if (isShop)
@@ -622,17 +715,6 @@ function initAdminArea(){
         event.stopPropagation();
     });
     
-    function what_key(enter_key, event){
-        var enter_key = enter_key; 
-        if (event)
-        {
-            var key = event.hasOwnProperty('keyCode')?event.keyCode:false;
-            if(key == enter_key) return true;
-        }
-        else
-            return false;
-    }
-    
     $('.js_price').die('click').live('click', function(){
         $(this).next().show();
     }).die('focus').live('focus', function(){
@@ -739,14 +821,6 @@ function initAdminArea(){
     }
     
     
-    //list filter
-   
-    $('.listFilterForm').die('keypress').live('keypress', function(){
-        $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
-        if (what_key(13))
-            $('.listFilterSubmitButton').click();
-    })
-
     //    $('#usersDatas').autocomplete({source:usersDatas});
     
     if (window.hasOwnProperty('productsDatas'))
@@ -1071,20 +1145,21 @@ $(document).ready(
         });
         
         init_2();
-        
-        
-        
-        
-        
-        
-        
+        autocomplete();
+        //list filter
+   
+        $('.listFilterForm').die('keydown').live('keydown', function(event){
+            $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
+            if (what_key(13, event))
+                $('.listFilterSubmitButton').trigger('click');
+        })
         
         /*      menu        */
         var found = false;
         $('#mainAdminMenu a').each(function(){
             if( $(this).attr('href').match(window.location.pathname) && !found)
             {
-//                console.log($(this));
+                //                console.log($(this));
                 $(this).closest('li').addClass('active');
                 $('li.active').closest('ul').closest('li').addClass('active');
                 found = true;
@@ -1092,6 +1167,7 @@ $(document).ready(
         })
         
         /**/
+        $('input:first').focus();
     });
     
 $(window).load(function(){
