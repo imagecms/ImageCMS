@@ -1005,6 +1005,27 @@ $(document).ready(
         });
         
         init_2();
+        
+        
+        
+        
+        
+        
+        
+        
+        /*      menu        */
+        var found = false;
+        $('#mainAdminMenu a').each(function(){
+            if( $(this).attr('href').match(window.location.pathname) && !found)
+            {
+//                console.log($(this));
+                $(this).closest('li').addClass('active');
+                $('li.active').closest('ul').closest('li').addClass('active');
+                found = true;
+            }
+        })
+        
+        /**/
     });
     
 $(window).load(function(){
