@@ -725,33 +725,22 @@ class Admin extends MY_Controller {
         $menu_data = $this->menu_model->get_menu($id);
         $this->template->add_array($menu_data);
         $this->display_tpl('edit_menu');
-
-//        $val = $this->form_validation;
-//        $val->set_rules('menu_name', lang('amt_name'), 'required|min_length[2]|max_length[25]|alpha_dash');
-//        $val->set_rules('main_title', lang('amt_tname'), 'required|max_length[100]');
-//
-//        if ($this->form_validation->run($this) == FALSE) {
-//            showMessage(validation_errors(), '', 'r');
-//        } else {
-//            
-//        }
     }
 
     function update_menu($id) {
         cp_check_perm('menu_edit');
 
-
-        if ($_POST['menu_name'] == NULL) {
-            $title = lang('a_fail');
-            $message = lang('a_menu_field_emp');
-            $result = false;
-            echo json_encode(array(
-                'title' => $title,
-                'message' => $message,
-                'result' => $result,
-            ));
-            exit;
-        }
+//        if ($_POST['menu_name'] == NULL) {
+//            $title = lang('a_fail');
+//            $message = lang('a_menu_field_emp');
+//            $result = false;
+//            echo json_encode(array(
+//                'title' => $title,
+//                'message' => $message,
+//                'result' => $result,
+//            ));
+//            exit;
+//        }
 
         $val = $this->form_validation;
         $val->set_rules('menu_name', lang('amt_name'), 'required|min_length[2]|max_length[25]|alpha_dash');
@@ -762,7 +751,7 @@ class Admin extends MY_Controller {
 
 
         if ($this->form_validation->run($this) == FALSE) {
-            showMessage(validation_errors());
+            showMessage(validation_errors(), '', 'r');
 //            $title = lang('a_fail');
 //            $message = validation_errors();
 //            $result = false;
