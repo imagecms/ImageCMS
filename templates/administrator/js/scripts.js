@@ -21,6 +21,7 @@ $(document).ajaxComplete( function(event, XHR, ajaxOptions){
     number_tooltip_live();
     fixed_frame_title();
     $('.tooltip').remove();
+    dropDownMenu();
 });
 
 function init_2(){
@@ -131,6 +132,8 @@ function init_2(){
         
         else if (el.closest('[data-tree]').length > 0) el.closest('tr').addClass('active');
         
+        else if (el.closest('.comments').length > 0) el.closest('tr').addClass('active');
+        
         else{
             if (el.closest('.frame_level_3').length > 0) el.closest('.row-category').addClass('active');
         
@@ -142,6 +145,11 @@ function init_2(){
                     changeCheckallchecks($(this).find('> span:eq(0)'));
                 })
             }
+        }
+        if (el.closest('.comments').next('tr').length > 0) {
+            temp_nabir = el.closest('.comments').next('tr:not(.comments)').find('.frame_label').each(function(){
+                changeCheckallchecks($(this).find('> span:eq(0)'));
+            })
         }
     }
     function check2(el, input){
@@ -159,6 +167,8 @@ function init_2(){
         
         else if (el.closest('[data-tree]').length > 0) el.closest('tr').removeClass('active');
         
+        else if (el.closest('.comments').length > 0) el.closest('tr').removeClass('active');
+        
         else{
             if (el.closest('.frame_level_3').length > 0) el.closest('.row-category').removeClass('active');
         
@@ -170,6 +180,11 @@ function init_2(){
                     changeCheckallreset($(this).find('> span:eq(0)'));
                 })
             }
+        }
+        if (el.closest('.comments').next('tr').length > 0) {
+            temp_nabir = el.closest('.comments').next('tr:not(.comments)').find('.frame_label').each(function(){
+                changeCheckallreset($(this).find('> span:eq(0)'));
+            })
         }
     }
     function check3(el, input){
@@ -221,9 +236,10 @@ function init_2(){
         el.closest('.simple_tr').addClass('active');
         if (el.closest('[data-tree]').length > 0) el.closest('tr').addClass('active');
         else if (el.closest('.sortable2').find('tr').length > 0) el.closest('.sortable2').find('tr').has(el).addClass('active')
+        else if (el.closest('.comments').length > 0) el.closest('tbody').find('.comments').has(el).addClass('active');
         
         dis_un_dis();
-        textcomment_s_h('s', el);
+    //textcomment_s_h('s', el);
     }
     function changeCheckallreset(el)
     {
@@ -236,9 +252,10 @@ function init_2(){
         el.closest('.simple_tr').removeClass('active');
         if (el.closest('[data-tree]').length > 0) el.closest('tr').removeClass('active');
         else if (el.closest('.sortable2').find('tr').length > 0) el.closest('.sortable2').find('tr').has(el).removeClass('active')
+        else if (el.closest('.comments').length > 0) el.closest('tbody').find('.comments').has(el).removeClass('active');
         
         dis_un_dis();
-        textcomment_s_h('h', el);
+    //textcomment_s_h('h', el);
     }
     function changeCheckStart(el)
     {
@@ -293,6 +310,54 @@ function init_2(){
     });
     $('input:first').focus();
 }
+function dropDownMenu(){
+    $('.to_pspam').unbind('click').on('click', function() {
+        var arr = new Array();
+        $('input[name=ids]:checked').each(function() {
+            arr.push(parseInt($(this).val()));
+        });
+        $.post('/admin/components/cp/comments/update_status',
+        {
+            id: arr, 
+            status: 2
+        },
+        function(data) {
+            $('.notifications').append(data);
+        }
+        );
+    });
+    $('.to_wait').unbind('click').on('click', function() {
+        var arr = new Array();
+        $('input[name=ids]:checked').each(function() {
+            arr.push(parseInt($(this).val()));
+        });
+        $.post('/admin/components/cp/comments/update_status',
+        {
+            id: arr, 
+            status: 1
+        },
+        function(data) {
+            $('.notifications').append(data);
+        }
+        );
+    });
+
+    $('.to_approved').unbind('click').on('click', function() {
+        var arr = new Array();
+        $('input[name=ids]:checked').each(function() {
+            arr.push(parseInt($(this).val()));
+        });
+        $.post('/admin/components/cp/comments/update_status',
+        {
+            id: arr, 
+            status: 0
+        },
+        function(data) {
+            $('.notifications').append(data);
+        }
+        );
+    });
+}
 function textcomment_s_h(status, el){
     var status = status;
     var el = el;
@@ -301,6 +366,7 @@ function textcomment_s_h(status, el){
         if (status == 's' && textcomment.css('display') != 'none')
         {
             var textcomment_h = textcomment.outerHeight();
+            console.log(textcomment)
             textcomment.hide().next().show().find('textarea').css('height', textcomment_h+13);
         }
         if (status == 's' && textcomment.css('display') == 'none') return true;
@@ -560,11 +626,11 @@ function initAdminArea(){
         var enter_key = enter_key; 
         if (event)
         {
-                var key = event.hasOwnProperty('keyCode')?event.keyCode:false;
-                if(key == enter_key) return true;
+            var key = event.hasOwnProperty('keyCode')?event.keyCode:false;
+            if(key == enter_key) return true;
         }
         else
-                return false;
+            return false;
     }
     
     $('.js_price').die('click').live('click', function(){
@@ -853,10 +919,10 @@ function initAdminArea(){
     });
     
     $(document).on('pjax:start', function() {
-        $('#loading').fadeIn(100)
+        $('#loading').stop().fadeIn(100)
     })
     .on('pjax:end',   function() {
-        $('#loading').fadeOut(100)
+        $('#loading').stop().fadeOut(100)
     });
 
     //                $('a.pjax, .dropdown-menu li a').live('click', function(e){
@@ -997,8 +1063,9 @@ $(document).ready(
             var dataSubmit = $("[data-submit]");
             e = e || window.event;
             if (event.ctrlKey) $('input:first').blur();
+            if ((event.ctrlKey && event.shiftKey) || (event.shiftKey && event.altKey)) $('input:first').focus();
             if (e.keyCode === 83 && event.ctrlKey) {
-                if (!dataSubmit.hasClass('disabled')) dataSubmit.trigger('click');
+                if (!dataSubmit.hasClass('disabled') && dataSubmit.closest('.tab-pane').css('display')!='none') dataSubmit.trigger('click');
                 return false;
             }
         });
