@@ -154,6 +154,7 @@ class Settings extends MY_Controller {
             'google_analytics_id' => $this->input->post('google_analytics_id'),
             'google_webmaster' => $this->input->post('google_webmaster'),
             'yandex_webmaster' => $this->input->post('yandex_webmaster'),
+            'yandex_metric' => $this->input->post('yandex_metric'),
             'lang_sel' => $this->input->post('lang_sel'),
         );
 

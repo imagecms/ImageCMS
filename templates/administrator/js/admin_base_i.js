@@ -120,7 +120,7 @@ $(document).ready(function() {
 
 //***************Scripts for languages page***************
 
-    $('span.selwid').bind('click', function() {
+    $('span.selwid').live('click', function() {
         var title = $(this).attr('data-title');
         var mname = $(this).attr('data-mname');
         var mmethod = $(this).attr('data-method');
@@ -129,7 +129,7 @@ $(document).ready(function() {
         $('#swm').attr('value', mmethod);
     });
 
-    $('#inputType').on('change', function() {
+    $('#inputType').live('change', function() {
         if ($(this).attr('value') === 'html')
         {
             $('#moduleholder').fadeOut(200, function() {
@@ -188,7 +188,7 @@ $(document).ready(function() {
         redirect_url(url);
     });
 
-    $('#watermark_type').on('change', function() {
+    $('#watermark_type').live('change', function() {
         if ($(this).attr('value') === 'overlay') {
             $('.fortextblock').hide('slow', function() {
                 $('.forimageblock').css('display', '');
@@ -298,7 +298,7 @@ $(document).ready(function() {
 //        }
 //    });
 
-    $('.catfilter').on('change', function() {
+    $('.catfilter').live('change', function() {
         redirect_url('/admin/components/run/shop/properties/index/' + $(this).attr('value'));
 //        $.pjax({
 //            url: '/admin/components/run/shop/properties/index/' + $(this).attr('value'),
@@ -361,7 +361,7 @@ $(document).ready(function() {
         });
     });
 
-    $('.to_pspam').bind('click', function() {
+    $('.to_pspam').live('click', function() {
         var arr = new Array();
         $('input[name=ids]:checked').each(function() {
             arr.push(parseInt($(this).val()));
@@ -374,7 +374,7 @@ $(document).ready(function() {
         );
     });
 
-    $('.to_wait').bind('click', function() {
+    $('.to_wait').live('click', function() {
         var arr = new Array();
         $('input[name=ids]:checked').each(function() {
             arr.push(parseInt($(this).val()));
@@ -387,7 +387,7 @@ $(document).ready(function() {
         );
     });
 
-    $('.to_approved').bind('click', function() {
+    $('.to_approved').live('click', function() {
         var arr = new Array();
         $('input[name=ids]:checked').each(function() {
             arr.push(parseInt($(this).val()));
@@ -625,7 +625,7 @@ $(document).ready(function() {
         $('#tpm_row' + id).remove();
     });
 
-    $('.to_hit').bind('click', function() {
+    $('.to_hit').live('click', function() {
         var ids = new Array();
         $('input[name=ids]:checked').each(function() {
             ids.push($(this).val());
@@ -638,7 +638,7 @@ $(document).ready(function() {
         );
     });
 
-    $('.tonew').bind('click', function() {
+    $('.tonew').live('click', function() {
         var ids = new Array();
         $('input[name=ids]:checked').each(function() {
             ids.push($(this).val());
@@ -651,7 +651,7 @@ $(document).ready(function() {
         );
     });
 
-    $('.clone').bind('click', function() {
+    $('.clone').live('click', function() {
         var ids = new Array();
         $('input[name=ids]:checked').each(function() {
             ids.push($(this).val());
@@ -664,7 +664,7 @@ $(document).ready(function() {
         );
     });
 
-    $('.toaction').bind('click', function() {
+    $('.toaction').live('click', function() {
         var ids = new Array();
         $('input[name=ids]:checked').each(function() {
             ids.push($(this).val());
@@ -677,7 +677,7 @@ $(document).ready(function() {
         );
     });
 
-    $(".save_positions").bind("sortstop", function(event, ui) {
+    $(".save_positions").live("sortstop", function(event, ui) {
         var url = $(this).attr('data-url');
         save_positions(url);
     });
@@ -694,7 +694,8 @@ $(document).ready(function() {
         });
     });
 
-    $('#category_sel').on('change', function() {
+    $('#category_sel').live('change', function() {
+        alert(1)
         var id = $(this).attr('value');
         var per_page = $('#per_page').attr('value');
         $.ajax({
@@ -716,7 +717,8 @@ $(document).ready(function() {
         });
     });
 
-    $('#per_page').on('change', function() {
+    $('#per_page').live('change', function() {
+        alert(1)
         $('#category_sel').trigger('change');
     });
 
@@ -773,7 +775,7 @@ $(document).ready(function() {
         });
     });
 
-    $('.tocategory').bind('click', function() {
+    $('.tocategory').live('click', function() {
         $('.modal_move_to_cat').modal();
     });
 

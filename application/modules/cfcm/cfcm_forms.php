@@ -25,13 +25,13 @@ class Cfcm_forms extends MY_Controller {
             'field_name' => array(
                 'type'       => 'text',
                 'label'      => 'Имя',
-                'validation' => 'required|alpha_dash|max_length[255]',
+                'validation' => 'alpha_dash|max_length[255]',
                 'help_text'  => 'К имени будет добавлен префикс field_',
             ),
             'label' => array(
                 'type'       => 'text',
                 'label'      => 'Label',
-                'validation' => 'required|max_length[255]',
+                'validation' => 'max_length[255]',
             ),
             'in_search' => array(
                 'type'       => 'checkbox',
@@ -140,7 +140,7 @@ class Cfcm_forms extends MY_Controller {
             'name' => array(
                 'type'  => 'text',
                 'label' => 'Имя',
-                'validation' => 'required|max_length[255]',
+                'validation' => 'max_length[255]',
             ),
             'description' => array(
                 'type'  => 'textarea',

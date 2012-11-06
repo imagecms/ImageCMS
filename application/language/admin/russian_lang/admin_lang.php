@@ -12,6 +12,7 @@ $lang['a_acc_per_43'] = 'Удаление фотографий';
 // RULES HELPER-------------------------------------------STAR
 $lang['a_acc_per_42'] = 'Магазин';
 $lang['a_editing_group_ba_s'] = 'Редактирование группи';
+$lang['a_editing_page'] = 'Редактирование страницы';
 $lang['a_editing_user_ba_s'] = 'Редактирование пользователя';
 $lang['a_dasboard_no_category']		=	'Без категории';
 $lang['a_acc_per_41'] = 'Ошибка проверки прав доступа';
@@ -760,4 +761,5 @@ $lang['a_move_to_category'] = 'Переместить в категорию';
 
 
 $lang['lang_acc_mail_sent'] = 'Письмо для восстановления пароля отправлено.';
+$lang['a_yandex_metric'] = 'Id для Yandex метрики';
 ?>

@@ -331,4 +331,5 @@ $lang['s_shit'] = 'Hit';
 
 $lang['s_found_in_categories'] = 'Found in categories:';
 $lang['s_not_found_in_categories'] = 'Not found in categories';
+$lang['lang_forgot_pass'] = 'Forgot password';
 /* End of file main_lang.php */

@@ -5,7 +5,8 @@
         <title>{$site_title}</title>
         <meta name="description" content="{$site_description}" />
         <meta name="keywords" content="{$site_keywords}" />
-        <meta name="generator" content="ImageCMS" />        
+        <meta name="generator" content="ImageCMS" />
+        {$meta_noindex}
         <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/style.css" media="all" />
         <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/jquery.fancybox-1.3.4.css" media="all" />
         <link rel="icon" type="image/x-icon" href="{$SHOP_THEME}images/favicon.png"/>

@@ -58,7 +58,7 @@ $(document).ready(function() {
             url: '/shop/ajax/rate',
             success: function(obj) {
                 if (obj.classrate != null)
-                    $('#' + 'star_rating' + currentProductId).removeClass().addClass('rating ' + obj.classrate + ' star_rait');
+                    $('#' + 'star_rating_' + currentProductId).removeClass().addClass('rating ' + obj.classrate + ' star_rait');
             }
         });
     });
@@ -131,8 +131,7 @@ $(document).ready(function() {
         })
         return false;
     });
-
-    $('.buy .goBuy').on('click', function() {
+    $('.buy .goBuy').live('click', function() {
         $.fancybox.showActivity();
         var id_var = $(this).attr('data-varid');
         var id = $(this).attr('data-prodid');
@@ -149,7 +148,7 @@ $(document).ready(function() {
                     $this.parent().removeClass('button_big_green').addClass('button_big_blue')
                     $this.html('Оформить заказ');
                     $('.pfancy').removeClass().addClass('buttons button_big_blue pfancy');
-                    $('.bfancy').removeClass().addClass('testclick goToCart bfancy').html('Оформить заказ').attr('href', '/shop/cart');
+                    $('.bfancy').removeClass().addClass('fancybuy goToCart bfancy').html('Оформить заказ');
                 }
                 else
                 {
@@ -251,14 +250,21 @@ $(document).ready(function() {
                 $.fancybox.hideActivity();
                 $this
                         .html('Сравнить')
-                        //   .text('Сравнить')
                         .removeClass('js')
+                        .removeClass('toCompare')
                         .removeClass('gray')
+                        .addClass('gotoComp')
+                        .css('color', '#3A88CC')
+                        .css('cursor', 'pointer')
                         .unbind('click');
             }
         });
         return false;
         //setTimeout(function() { $("#wishListNotify").css('display', 'none') }, 2000);
+    });
+    
+    $('.gotoComp').live('click', function(){
+        $(location).attr('href', '/shop/compare');
     });
 
     $('.goNotifMe').on('click', function() {
@@ -882,5 +888,22 @@ $(document).ready(function() {
         $("#close_email").hide();
         $("#button_email").slideToggle();
     });
-
+    $('.fancybuy').live('click', function(){
+       var id = $(this).attr('data-id');
+       $('#buy'+id).trigger('click');
+    });
+//    console.log(location.hash);
+//    if (location.hash == '')
+//    {
+//        var variable = 0;
+//    }
+//    else {
+//        var forfind = $(this).find('a[href="'+location.hash+'"]').parent('li')
+//                //.trigger('click');
+//                .removeClass().addClass('ui-tabs-selected');
+//        console.log(forfind);
+//        //ui-tabs-selected
+//        //var variable = $('[href=' + location.hash + ']').parent().index();
+//    }
+    
 });
