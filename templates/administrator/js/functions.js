@@ -135,7 +135,8 @@ function loadShopInterface()
     $('#topPanelNotifications').fadeIn(300);
     $.pjax({
         url:'/admin/components/run/shop/dashboard', 
-        container:'#mainContent'
+        container:'#mainContent',
+        timeout: 3000
     });
     isShop = true;
     $('a.logo').attr('href', '/admin/components/run/shop/dashboard');
@@ -161,7 +162,8 @@ function loadBaseInterface()
     $('#topPanelNotifications').fadeOut(300);
     $.pjax({
         url:'/admin/dashboard', 
-        container:'#mainContent'
+        container:'#mainContent',
+        timeout: 3000
     });
     isShop = false;
     $('a.logo').attr('href', '/admin/dashboard');	
@@ -410,7 +412,8 @@ var orders = new Object({
             $('#mainContent').after(data);
             $.pjax({
                 url:window.location.pathname, 
-                container:'#mainContent'
+                container:'#mainContent',
+                timeout: 3000
             });
         });
         return true;
@@ -433,7 +436,8 @@ var orders = new Object({
             $('#mainContent').after(data);
             $.pjax({
                 url:window.location.pathname, 
-                container:'#mainContent'
+                container:'#mainContent',
+                timeout: 3000
             });
         });
         return true;
@@ -455,7 +459,8 @@ var orders = new Object({
             $('#mainContent').after(data);
             $.pjax({
                 url:window.location.pathname, 
-                container:'#mainContent'
+                container:'#mainContent',
+                timeout: 3000
             });
         });
         $('.modal').modal('hide');
@@ -680,7 +685,8 @@ var shopCategories = new Object({
             $('#mainContent').after(data);
             $.pjax({
                 url:window.location.pathname, 
-                container:'#mainContent'
+                container:'#mainContent',
+                timeout: 3000
             });
         });
         $('.modal').modal('hide');
@@ -704,7 +710,8 @@ var GalleryCategories = new Object({
             $('#mainContent').after(data);
             $.pjax({
                 url:window.location.pathname, 
-                container:'#mainContent'
+                container:'#mainContent',
+                timeout: 3000
             });
         });
         $('.modal').modal('hide');
@@ -737,7 +744,8 @@ var GalleryAlbums = new Object({
         }, function(data){
             $.pjax({
                 url:url, 
-                container:'#mainContent'
+                container:'#mainContent',
+                timeout: 3000
             });
         });
         $('.modal').modal('hide');
