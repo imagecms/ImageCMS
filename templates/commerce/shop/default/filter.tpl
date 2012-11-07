@@ -63,7 +63,7 @@
                                 {/foreach}
                             {/foreach}
                         {else:}
-                            <li><a href="#"><i class="times"></i>{echo ShopCore::$_GET['f'][$prop->getId()]['single']}</a></li>
+                            <li><a href="{echo str_replace('&f[' . $prop->getId() . '][single]=' . ShopCore::$_GET['f'][$prop->getId()]['single'], '' ,$aurl)}"><i class="times"></i>{echo ShopCore::$_GET['f'][$prop->getId()]['single']}</a></li>
                         {/if}
                     {/foreach}
                 {/if}
