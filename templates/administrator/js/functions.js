@@ -217,7 +217,13 @@ function initElRTE()
            	
         toolbar      : 'maxi'
     };
-    $('textarea.elRTE').elrte(opts);
+    $('textarea.elRTE').each(
+            function(){
+                    if ($(this).is(':visible'))
+                        if (!$(this).closest('div.workzone').length)
+                            $(this).elrte(opts);
+            }
+        );
 }
 
 function elFinderPopup(type, id)

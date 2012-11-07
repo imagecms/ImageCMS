@@ -1032,6 +1032,13 @@ function initAdminArea(){
     if ($('#elFinderTPLEd').length > 0)
         elFinderTPLEd();
     
+    //elRTE bugFix for Firefox
+    
+    $('.myTab a').live('click', function(){
+        initElRTE();
+        return true;
+    });
+    
     console.log('initialising of administration area ended');
     console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.")
 };
