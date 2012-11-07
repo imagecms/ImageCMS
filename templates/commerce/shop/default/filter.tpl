@@ -54,13 +54,17 @@
                 {/if}
                 {if count($model->getProperties()) > 0}
                     {foreach $model->getProperties() as $prop}
-                        {foreach $prop->asArray() as $key=>$val}
-                            {foreach $_GET['f'][$prop->getId()] as $id}
-                                {if $id == $key}
-                                    <li><a href="{echo str_replace('&f[' . $prop->getId() . '][]=' . $key,'',$aurl)}"><i class="times"></i>{echo $val}</a></li>
-                                {/if}
+                        {if count($prop->asArray())>0}
+                            {foreach $prop->asArray() as $key=>$val}
+                                {foreach $_GET['f'][$prop->getId()] as $id}
+                                    {if $id == $key}
+                                        <li><a href="{echo str_replace('&f[' . $prop->getId() . '][]=' . $key,'',$aurl)}"><i class="times"></i>{echo $val}</a></li>
+                                    {/if}
+                                {/foreach}
                             {/foreach}
-                        {/foreach}
+                        {else:}
+                            <li><a href="#"><i class="times"></i>{echo ShopCore::$_GET['f'][$prop->getId()]['single']}</a></li>
+                        {/if}
                     {/foreach}
                 {/if}
                 {if $_GET['lp'] or $_GET['rp']}
@@ -117,33 +121,47 @@
     </div>
 </div>
 {/if}
-<div class="padding_filter check_frame">            
+<div class="padding_filter check_frame"> 
     {foreach $model->getProperties() as $prop}
-    {if !$prop->getShowInFilter()} { continue; } {/if}
-    <div class="title">{echo $prop->getName()}</div>
-    <div class="clearfix check_form">
-        {if $propertiesInCategory[$prop->getId()]}
-            {$count_properties = array_count_values($propertiesInCategory[$prop->getId()])}                
-        {else:}
-            {$count_properties = array('0')}
-        {/if}
-        {foreach $prop->asArray() as $key=>$val}                
-            {$count_property = $count_properties[$val];}
-    {if is_property_in_get($prop->getId(), $key)}{$check = 'checked="checked"'} {else:} {$check = ''}{/if}
-    {if $count_property}
-        {$activeness = ''}
-    {else:}
-        {$activeness = 'class="not_disabled"'}
-        {$count_property = 0}
-    {/if}                
-    <label {if !$count_property}class="disabled"{/if}>
-        <input  {if !$count_property}disabled="disabled"{/if} id="prop_{echo $prop->getId() . '_' . $key}" type="checkbox" name="f[{echo $prop->getId()}][]" value="{echo $key}" {echo $check} {echo $activeness} />
-        <span class="name_model">{echo $val}</span>
-        <span>({$count_property})</span>
-    </label>
-{/foreach}
-</div>
-{/foreach}
+        {if !$prop->getShowInFilter()} { continue; } {/if}
+        <div class="title">{echo $prop->getName()}</div>
+        <div class="clearfix check_form">
+            {if $propertiesInCategory[$prop->getId()]}
+                {$count_properties = array_count_values($propertiesInCategory[$prop->getId()])}                
+            {else:}
+                {$count_properties = array('0')}
+            {/if}
+            {if count($prop->asArray())>0}
+                {foreach $prop->asArray() as $key=>$val}   
+                    {$count_property = $count_properties[$val];}
+                    {if is_property_in_get($prop->getId(), $key)}{$check = 'checked="checked"'} {else:} {$check = ''}{/if}
+                    {if $count_property}
+                        {$activeness = ''}
+                    {else:}
+                        {$activeness = 'class="not_disabled"'}
+                        {$count_property = 0}
+                    {/if}                
+                    <label {if !$count_property}class="disabled"{/if}>
+                        <input  {if !$count_property}disabled="disabled"{/if} id="prop_{echo $prop->getId() . '_' . $key}" type="checkbox" name="f[{echo $prop->getId()}][]" value="{echo $key}" {echo $check} {echo $activeness} />
+                        <span class="name_model">{echo $val}</span>
+                        <span>({$count_property})</span>
+                    </label>
+                {/foreach}
+            {else:}    
+                {$temp = array_count_values($propertiesInCategory[$prop->getId()])}
+                {$counter = 0}
+                {foreach $temp as $key=>$val}
+                    {if is_property_in_get($prop->getId(), $key)}{$check = 'checked="checked"'} {else:} {$check = ''}{/if}
+                    <label {if !$count_properties[$key]}class="disabled"{/if}>
+                        <input  {if !$count_properties[$key]}disabled="disabled"{/if} id="prop_{echo $prop->getId()."_".$counter}" type="checkbox" name="f[{echo $prop->getId()}][single]" value="{echo $key}" {echo $check} {echo $activeness} />
+                        <span class="name_model">{echo $key}</span>
+                        <span>({$val})</span>
+                    </label>
+                    {$counter++}
+                {/foreach}
+            {/if}
+        </div>
+    {/foreach}
 <div class="button_middle_blue buttons t-a_c"><input type="submit" value="{lang('s_podobrat')}"/></div>
 </div>
 </form>
