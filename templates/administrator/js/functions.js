@@ -127,6 +127,9 @@ function loadShopInterface()
     // Switch menu
     $('#baseAdminMenu').hide();
     $('#shopAdminMenu').show();
+    
+    $('li').removeClass('active');
+    $('#shopAdminMenu li.homeAnchor').addClass('active');
 	 
     updateNotificationsTotal();
     $('#topPanelNotifications').fadeIn(300);
@@ -151,6 +154,9 @@ function loadBaseInterface()
     // Switch menu
     $('#shopAdminMenu').hide();
     $('#baseAdminMenu').show();
+    
+    $('li').removeClass('active');
+    $('#baseAdminMenu li.homeAnchor').addClass('active');
 	 
     $('#topPanelNotifications').fadeOut(300);
     $.pjax({
@@ -211,7 +217,13 @@ function initElRTE()
            	
         toolbar      : 'maxi'
     };
-    $('textarea.elRTE').elrte(opts);
+    $('textarea.elRTE').each(
+            function(){
+                    if ($(this).is(':visible'))
+                        if (!$(this).closest('div.workzone').length)
+                            $(this).elrte(opts);
+            }
+        );
 }
 
 function elFinderPopup(type, id)

@@ -530,7 +530,7 @@ class Admin extends MY_Controller {
 
 
             showMessage(lang('amt_group_saved'));
-            $this->update_groups_block();
+            //$this->update_groups_block();
 
             $action = $_POST['action'];
 

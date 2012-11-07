@@ -24,8 +24,8 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <button type="button" class="btn btn-small disabled action_on" onclick="delete_function.deleteFunction()" id="del_sel_wid"><i class="icon-trash"></i>{lang('a_delete')}</button>
-                    <button type="button" class="btn btn-small btn-success" id="cr_wid_page"><i class="icon-list-alt icon-white"></i>{lang('a_create_widget')}</button>
+                    <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="del_sel_wid"><i class="icon-trash icon-white"></i>{lang('a_delete')}</button>
+                    <a href="/admin/widgets_manager/create_tpl" type="button" class="btn btn-small btn-success pjax"><i class="icon-plus-sign icon-white"></i>{lang('a_create_widget')}</a>
                 </div>
             </div>  
         </div>
