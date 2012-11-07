@@ -102,7 +102,7 @@
                 <div class="container" id="baseAdminMenu">
                     <nav class="navbar navbar-inverse">
                         <ul class="nav">
-                            <li ><a href="/admin/dashboard"><i class="icon-home"></i><span>Главная</span></a></li>
+                            <li class="homeAnchor"><a href="/admin/dashboard" class="pjax"><i class="icon-home"></i><span>Главная</span></a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-align-justify"></i>{lang('a_cont')}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
@@ -117,8 +117,8 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list"></i>{lang('a_categories')}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/admin/categories/create_form">{lang('a_create')}</a></li>
-                                    <li><a href="/admin/categories/cat_list">{lang('a_edit')}</a></li>
+                                    <li><a href="/admin/categories/create_form" class="pjax">{lang('a_create')}</a></li>
+                                    <li><a href="/admin/categories/cat_list" class="pjax">{lang('a_edit')}</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -128,10 +128,10 @@
                                     {if !$menus}
                                     {$CI->load->module('menu'); $menus=$CI->menu->get_all_menus()}
                                     {/if}
-                                    <li><a href="/admin/components/cp/menu" class="ajax_load">{lang('a_control')}</a></li>
+                                    <li><a href="/admin/components/cp/menu" class="pjax">{lang('a_control')}</a></li>
                                     <li class="divider"></li>
                                     {foreach $menus as $menu}
-                                    <li><a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="ajax_load">{$menu.main_title}</a></li>
+                                    <li><a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="pjax">{$menu.main_title}</a></li>
                                     {/foreach}
 
                                 </ul>
@@ -139,7 +139,7 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-circle-arrow-down"></i>{lang('a_modules')}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/admin/components/modules_table/">{lang('a_all_modules')}</a></li>
+                                    <li><a href="/admin/components/modules_table/" class="pjax">{lang('a_all_modules')}</a></li>
                                     <!-- <li><a href="/admin/mod_search/">{lang('a_search')}</a></li> -->
                                     <li class="divider returnFalse"></a></li>
                                     {if !$components}
@@ -147,7 +147,7 @@
                                     {/if}
                                     {foreach $components as $component}
                                     {if $component['installed'] == TRUE AND $component['admin_file'] == 1}
-                                    <li><a href="/admin/components/cp/{$component.com_name}">{$component.menu_name}</a></li>
+                                    <li><a href="/admin/components/cp/{$component.com_name}" class="pjax">{$component.menu_name}</a></li>
                                     {/if}
                                     {/foreach}
                                 </ul>
@@ -155,26 +155,21 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-th"></i>{lang('a_widgets')}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/admin/widgets_manager/create_tpl">{lang('a_create')}</a></li>
-                                    <li><a href="/admin/widgets_manager">{lang('a_edit')}</a></li>
+                                    <li><a href="/admin/widgets_manager/create_tpl" class="pjax">{lang('a_create')}</a></li>
+                                    <li><a href="/admin/widgets_manager" class="pjax">{lang('a_edit')}</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-hdd"></i>{lang('a_system')}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/admin/settings">{lang('a_sett_global_sett_menu')}</a></li>
-                                    <li><a href="/admin/components/cp/template_editor">Редактор шаблонов</a></li>
-                                    <li><a href="/admin/languages">{lang('a_languages')}</a></li>
-                                    <li><a href="/admin/cache_all">{lang('a_cache')}</a></li>
-                                    <!--                                    <li class="dropdown"><a class="returnFalse arrow-right" href="">{lang('a_cache')}</a>
-                                                                            <ul class="dropdown-menu">
-                                                                                <li><a href="javascript:delete_cache('all')">{lang('a_clean_all')}</a></li>
-                                                                                <li><a href="javascript:delete_cache('expried')">{lang('a_clean_old')}</a></li>
-                                                                            </ul>
-                                                                        </li>-->
+                                    <li><a href="/admin/settings" class="pjax">{lang('a_sett_global_sett_menu')}</a></li>
+                                    <li><a href="/admin/components/cp/template_editor" class="pjax">Редактор шаблонов</a></li>
+                                    <li><a href="/admin/languages" class="pjax">{lang('a_languages')}</a></li>
+                                    <li><a href="/admin/cache_all" class="pjax">{lang('a_cache')}</a></li>
+
                                     <li class="divider"></li>
-                                    <li><a href="/admin/admin_logs">{lang('a_event_journal')}</a></li>
-                                    <li><a href="/admin/backup">{lang('a_backup_copy')}</a></li>
+                                    <li><a href="/admin/admin_logs" class="pjax">{lang('a_event_journal')}</a></li>
+                                    <li><a href="/admin/backup" class="pjax">{lang('a_backup_copy')}</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -185,7 +180,7 @@
                 <div style="display:none;" class="container" id="shopAdminMenu"  > {include_tpl('shop_menu.tpl')} </div>
             </div>
             {/if}
-            <div id="loading" style=" display: none; background: url(/templates/administrator/images/ajax-loader.gif) no-repeat 50% 20px; z-index: 10000; position: absolute; height: 600px; width: 100%; background-color: rgba(255, 255, 255, 0.7);"></div>
+            <div id="loading" style=" display: none; background: url(/templates/administrator/images/ajax-loader.gif) no-repeat 50% 0; z-index: 10000; position: fixed;width: 100%; background-color: rgba(255, 255, 255, 0.7);"></div>
             <div class="container" id="mainContent">
 
                 {$content}
@@ -245,17 +240,9 @@
         <script src="{$THEME}/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="{$THEME}/js/bootstrap-notify.js" type="text/javascript"></script>
         <script src="{$THEME}/js/jquery.form.js" type="text/javascript"></script>        
-        <!-- 
-        <script type="text/javascript" src="/js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
-        -->
 
         <script src="{$THEME}/js/jquery-validate/jquery.validate.min.js" type="text/javascript"></script>
-        <!-- 
-                <script src="/js/jqupload/js/jquery.fileupload.js" type="text/javascript"></script>
-                <script src="/js/jqupload/js/jquery.iframe-transport.js" type="text/javascript"></script>
-                <script src="/js/jqupload/js/main.js" type="text/javascript"></script>
-                <script src="/js/jqupload/js/jquery.fileupload-ui.js" type="text/javascript"></script>
-        -->
+
         <script src="{$THEME}/js/functions.js" type="text/javascript"></script>
         <script src="{$THEME}/js/scripts.js" type="text/javascript"></script>
 

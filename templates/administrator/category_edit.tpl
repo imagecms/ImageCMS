@@ -67,8 +67,8 @@
                                                     <label class="control-label" for="url">{lang('a_url')}:</label>
                                                     <div class="controls">
                                                         <div class="group_icon pull-right">
-                                                            <div class="">
-                                                                <button onclick="transhelp-block_title('#name', '#url');" type="button" class="btn btn-small" id="translateCategoryTitle"><i class="icon-refresh"></i>&nbsp;&nbsp;{lang('a_auto_fit_by_url')}</button>
+                                                            <div>
+                                                                <button onclick="translite_title('#name', '#url');" type="button" class="btn btn-small" id="translateCategoryTitle"><i class="icon-refresh"></i>&nbsp;&nbsp;{lang('a_auto_fit_by_url')}</button>
                                                             </div>
                                                         </div>
                                                         <div class="o_h">

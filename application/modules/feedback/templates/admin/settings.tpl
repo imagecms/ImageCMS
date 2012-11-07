@@ -7,9 +7,8 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="/admin/components/modules_table/" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
-
-                    <button type="button" class="btn btn-small btn-success formSubmit" data-form="#save" ><i class="icon-list-alt icon-white"></i>{lang('a_save')}</button>
+                    <a href="/admin/components/modules_table/" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
+                    <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#save" data-submit><i class="icon-ok icon-white"></i>{lang('a_save')}</button>
                 </div>
             </div>                            
         </div>               
@@ -27,35 +26,30 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd">
+                                <div class="inside_padd span12">
                                     <div class="form-horizontal">
-                                        <div class="row-fluid">
-                                            <form id="save" method="post" action="{site_url('admin/components/cp/feedback/settings/update')}">
-
-
-                                                <div class="control-group">
-                                                    <label class="control-label" for="subject">{lang('amt_email')}</label>
-                                                    <div class="controls">
-                                                        <input type="text" class="textbox_long" name="email" value="{$settings.email}" />
-                                                        <span class="help-block">{lang('amt_select_email')}</span>
-                                                    </div>
+                                        <form id="save" method="post" action="{site_url('admin/components/cp/feedback/settings/update')}">
+                                            <div class="control-group">
+                                                <label class="control-label" for="email">{lang('amt_email')}</label>
+                                                <div class="controls">
+                                                    <input type="text" class="textbox_long" name="email" id="email" value="{$settings.email}" />
+                                                    <span class="help-block">{lang('amt_select_email')}</span>
                                                 </div>
-                                                <div class="control-group">
-                                                    <label class="control-label" for="name">{lang('amt_max_message_length')}</label>
-                                                    <div class="controls">
-                                                        <input type="text" class="textbox_long" name="message_max_len" value="{$settings.message_max_len}" />
-                                                    </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label" for="message_max_len">{lang('amt_max_message_length')}</label>
+                                                <div class="controls">
+                                                    <input type="text" class="textbox_long" name="message_max_len" id="message_max_len" value="{$settings.message_max_len}" />
                                                 </div>
-
-                                            </form>
-                                        </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </td>
                         </tr>
                     </tbody>
-                </table> 
+                </table>
             </div>
-
+        </div>
     </section>
 </div>
