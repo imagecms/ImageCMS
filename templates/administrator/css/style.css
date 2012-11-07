@@ -422,3 +422,5 @@ input:-ms-input-placeholder{color: #c3c9ce;}
 .el-rte{overflow: visible !important;}
 select.alert-error{padding: 4px 6px;}
 .controls img{-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
+#elFinderTPLEd{max-width: 100%;}
+.ui-autocomplete{z-index: 5 !important;}
