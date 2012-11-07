@@ -45,32 +45,6 @@ $(document).ready(function(){
         })
     
 
-    $('#emailAutoC').autocomplete({
-        minChars: 0,
-        source: '/admin/components/cp/user_manager/auto_complit/email' + $('#emailAutoC').attr('value') + '?limit=25'
-    });
-    
-    $('#nameAutoC').autocomplete({
-        minChars: 0,
-        source: '/admin/components/cp/user_manager/auto_complit/name' + $('#nameAutoC').attr('value') + '?limit=25'
-        
-    });
-    
-    //    AUTO COMPLITE SHOP--------------------------------------------------------------------------------------------------
-    
-        
-        
-    $('#shopNameAutoC').autocomplete({
-        minChars: 0,
-        source: '/admin/components/run/shop/users/auto_complite/name' + $('#shopNameAutoC').attr('value') + '?limit=25'
-        
-    });
-
-    $('#shopEmailAutoC').autocomplete({
-        minChars: 0,
-        source: '/admin/components/run/shop/users/auto_complite/email' + $('#shopNameAutoC').attr('value') + '?limit=25'
-        
-    });
     $('.clearCashe').on('click', function() {
         $this = $(this);
         $.ajax({

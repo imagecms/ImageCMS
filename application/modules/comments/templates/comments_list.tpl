@@ -59,10 +59,10 @@
                             <th class="span2">{lang('amt_page')}</th>
                         </tr>
                     </thead>
-                    <tbody >
+                    <tbody>
                         {foreach $comments as $item }
                         {if count($item.child) == 0}
-                        <tr data-id="{$item.id}">
+                        <tr data-id="{$item.id}" data-tree>
                             <td class="t-a_c">
                                 <span class="frame_label">
                                     <span class="niceCheck b_n">
@@ -83,7 +83,7 @@
                                     <textarea id="edited_com_text_minus{$item.id}">{$item.text_minus}</textarea>
                                     {/if}
                                     <span class="js ref comment_update" data-cid="{$item.id}" data-uname="{$item.user_name}" data-uemail="{$item.user_mail}" data-cstatus="{$item.status}">Сохранить</span>
-                                        &nbsp;&nbsp;
+                                    &nbsp;&nbsp;
                                     <span class="js ref comment_update_cancel" data-cid="{$item.id}">Отменить</span>
                                     {if $item.status == 1}<a href="#" class="to_approved" data-id="{$item.id}">В одобренные</a>{/if}
                                     {if $item.status != 2}
@@ -157,7 +157,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr data-title="перетащите комментарий" data-id="{$item.id}">
+                                        <tr data-id="{$item.id}" class="comments">
                                             <td class="t-a_c">
                                                 <span class="frame_label">
                                                     <span class="niceCheck b_n">
@@ -209,162 +209,163 @@
                                                         {/for}
                                                         =======
                                                         <a href="#" class="ref_remove com_del" data-id="{$item.id}">Удалить</a>
-                                                        </span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="p_r frame_rating">
-                                                                <div class="patch_disabled"></div>
-                                                                <div class="star">
-                                                                    {for $i=0; $i<5; $i++}
-                                                                    <a href="#"><i class="icon-star{if $i>=(int)$item.rate}-empty{/if}"></i></a>
-                                                                    {/for}
-                                                                </div>
-                                                                <a href="#">
-                                                                    <i class="icon-thumbs-up"></i>
-                                                                    <span>+{$item.like}</span>
-                                                                </a>
-                                                                &nbsp;&nbsp;&nbsp;
-                                                                <a href="#">
-                                                                    <i class="icon-thumbs-down"></i>
-                                                                    <span>-{$item.disslike}</span>
-                                                                </a>
-                                                                >>>>>>> 3e255155ead34739e75c061a889c83c911031651
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <a href="#" class="u_ed">{$item.user_name}</a>
-                                                            <span class="frame_edit_comment ref_group u_ed">
-                                                                <input type="text" value="{$item.user_name}" name="user_name" id="u_ed{$item.id}">
-                                                            </span>
-                                                        </td>
-                                                        <td>
-                                                            <a href="#" class="m_ed">{$item.user_mail}</a>
-                                                            <span class="frame_edit_comment ref_group m_ed">
-                                                                <input type="text" value="{$item.user_mail}" name="user_mail" id="m_ed{$item.id}">
-                                                            </span>
-                                                        </td>
-                                                        <td>
-                                                            {if $item.module == 'core'}
-                                                            <a href="{$item.page_url}#comment_{$item.id}" target="_blank" title="{$item.page_title}">{truncate($item.page_title, 25, '...')}</a>
-                                                            {/if}
-                                                            {if $item.module == 'shop'}
-                                                            {if $this->CI->db->where('name','shop')->get('components')->num_rows() > 0}
-                                                            {$p_name = encode(SProductsQuery::create()->filterById($item.item_id)->findOne()->name)}
-                                                            <a href="/shop/product/{$item.item_id}" target="_blank">{truncate($p_name,25,'...')}</a>
-                                                            {/if}
-                                                            {/if}
-                                                        </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td colspan="7">
-                                                                <table>
-                                                                    <thead>
-                                                                        <tr class="no_vis">
-                                                                            <th class="span1"></th>
-                                                                            <th class="span1"></th>
-                                                                            <th class="span5"></th>
-                                                                            <th class="span2"></th>
-                                                                            <th class="span2"></th>
-                                                                            <th class="span2"></th>
-                                                                            <th class="span2"></th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody class="sortable">
-                                                                        {foreach $item.child as $ic}
-                                                                        <tr data-title="перетащите комментарий" data-id={$ic.id}>
-                                                                            <td class="t-a_c">
-                                                                                <span class="frame_label">
-                                                                                    <span class="niceCheck b_n">
-                                                                                        <input type="checkbox" value="{echo $ic.id}" id="nc{$ic.id}" name="ids"/>
-                                                                                    </span>
-                                                                                </span>
-                                                                            </td>
-                                                                            <td>{$ic.id}</td>
-                                                                            <td>
-                                                                                <span class="simple_tree pull-left">&#8627;</span>
-                                                                                <div class="o_h">
-                                                                                    <span class="time muted">{date('d-m-Y H:i', $ic.date)}</span>
-                                                                                    <span class="text_comment" id="comment_text_holder{$ic.id}">{truncate(htmlspecialchars($ic.text), 80, '...')}</span>
-                                                                                    <span class="frame_edit_comment ref_group" id="comment_text_editor{$ic.id}">
-                                                                                        <textarea id="edited_com_text{$ic.id}">{$ic.text}</textarea>
-                                                                                        <span class="js ref comment_update" data-cid="{$ic.id}" data-uname="{$ic.user_name}" data-uemail="{$ic.user_mail}" data-cstatus="{$ic.status}">Сохранить</span>
-                                                                                        <span class="js ref comment_update_cancel" data-cid="{$ic.id}">Отменить</span>
-                                                                                        {if $ic.status == 1}<a href="#" class="to_approved" data-id="{$ic.id}">В одобренные</a>{/if}
-                                                                                        {if $ic.status != 2}
-                                                                                        <a href="#" class="to_spam" data-id="{$ic.id}">В спам</a>
-                                                                                        {else:}
-                                                                                        <a href="#" class="to_waiting" data-id="{$ic.id}">В ожидающие модерации</a>
-                                                                                        {/if}
-                                                                                        <a href="#" class="ref_remove com_del" data-id="{$ic.id}">Удалить</a>
-                                                                                    </span>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td>
-                                                                                <div class="p_r frame_rating">
-                                                                                    <div class="patch_disabled"></div>
-                                                                                    <div class="star">
-                                                                                        {for $i=0; $i<5; $i++}
-                                                                                        <a href="#"><i class="icon-star{if $i>=(int)$item.rate}-empty{/if}"></i></a>
-                                                                                        {/for}
-                                                                                    </div>
-                                                                                    <a href="#">
-                                                                                        <i class="icon-thumbs-up"></i>
-                                                                                        <span>+{$ic.like}</span>
-                                                                                    </a>
-                                                                                    &nbsp;&nbsp;&nbsp;
-                                                                                    <a href="#">
-                                                                                        <i class="icon-thumbs-down"></i>
-                                                                                        <span>-{$ic.disslike}</span>
-                                                                                    </a>
-                                                                                </div>
-                                                                            </td>
-                                                                            <td>
-                                                                                <a href="#" class="u_ed">{$ic.user_name}</a>
-                                                                                <span class="frame_edit_comment ref_group u_ed">
-                                                                                    <input type="text" value="{$ic.user_name}" name="user_name" id="u_ed{$ic.id}">
-                                                                                </span>
-                                                                            </td>
-                                                                            <td>
-                                                                                <a href="#" class="m_ed">{$ic.user_mail}</a>
-                                                                                <span class="frame_edit_comment ref_group m_ed">
-                                                                                    <input type="text" value="{$ic.user_mail}" name="user_mail" id="m_ed{$ic.id}">
-                                                                                </span>
-                                                                            </td>
-                                                                            <td>
-                                                                                {if $ic.module == 'core'}
-                                                                                <a href="{$item.page_url}#comment_{$ic.id}" target="_blank" title="{$ic.page_title}">{truncate($ic.page_title, 25, '...')}</a>
-                                                                                {/if}
-                                                                                {if $ic.module == 'shop'}
-                                                                                {if $this->CI->db->where('name','shop')->get('components')->num_rows() > 0}
-                                                                                {$p_name = encode(SProductsQuery::create()->filterById($ic.item_id)->findOne()->name)}
-                                                                                <a href="/shop/product/{$ic.item_id}" target="_blank">{truncate($p_name,25,'...')}</a>
-                                                                                {/if}
-                                                                                {/if}
-                                                                            </td>
-                                                                        </tr>
-                                                                        {/foreach}
-                                                                    </tbody>
-                                                                </table>
-                                                            </td>
-                                                        </tr>
-                                                        </tbody>
-                                                        </table>
-                                                        </td>
-                                                        </tr>
-                                                        {/if}
-                                                        {/foreach}
-                                                        </tbody>
-                                                        </table>
                                                     </div>
                                                 </div>
-                                                {else:}
-                                                </br>
-                                                <div class="alert alert-info">
-                                                    {lang('amt_nothing_found')}
+                                            </td>
+                                            <td>
+                                                <div class="p_r frame_rating">
+                                                    <div class="patch_disabled"></div>
+                                                    <div class="star">
+                                                        {for $i=0; $i<5; $i++}
+                                                        <a href="#"><i class="icon-star{if $i>=(int)$item.rate}-empty{/if}"></i></a>
+                                                        {/for}
+                                                    </div>
+                                                    <a href="#">
+                                                        <i class="icon-thumbs-up"></i>
+                                                        <span>+{$item.like}</span>
+                                                    </a>
+                                                    &nbsp;&nbsp;&nbsp;
+                                                    <a href="#">
+                                                        <i class="icon-thumbs-down"></i>
+                                                        <span>-{$item.disslike}</span>
+                                                    </a>
+                                                    >>>>>>> 3e255155ead34739e75c061a889c83c911031651
                                                 </div>
+                                            </td>
+                                            <td>
+                                                <a href="#" class="u_ed">{$item.user_name}</a>
+                                                <span class="frame_edit_comment ref_group u_ed">
+                                                    <input type="text" value="{$item.user_name}" name="user_name" id="u_ed{$item.id}">
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <a href="#" class="m_ed">{$item.user_mail}</a>
+                                                <span class="frame_edit_comment ref_group m_ed">
+                                                    <input type="text" value="{$item.user_mail}" name="user_mail" id="m_ed{$item.id}">
+                                                </span>
+                                            </td>
+                                            <td>
+                                                {if $item.module == 'core'}
+                                                <a href="{$item.page_url}#comment_{$item.id}" target="_blank" title="{$item.page_title}">{truncate($item.page_title, 25, '...')}</a>
                                                 {/if}
-                                                </div>
-                                                <div class="clearfix">
-                                                    {$paginator}
-                                                </div>
-                                                </section>
+                                                {if $item.module == 'shop'}
+                                                {if $this->CI->db->where('name','shop')->get('components')->num_rows() > 0}
+                                                {$p_name = encode(SProductsQuery::create()->filterById($item.item_id)->findOne()->name)}
+                                                <a href="/shop/product/{$item.item_id}" target="_blank">{truncate($p_name,25,'...')}</a>
+                                                {/if}
+                                                {/if}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="7">
+                                                <table>
+                                                    <thead>
+                                                        <tr class="no_vis">
+                                                            <th class="span1"></th>
+                                                            <th class="span1"></th>
+                                                            <th class="span5"></th>
+                                                            <th class="span2"></th>
+                                                            <th class="span2"></th>
+                                                            <th class="span2"></th>
+                                                            <th class="span2"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {foreach $item.child as $ic}
+                                                        <tr data-id={$ic.id} class="comments">
+                                                            <td class="t-a_c">
+                                                                <span class="frame_label">
+                                                                    <span class="niceCheck b_n">
+                                                                        <input type="checkbox" value="{echo $ic.id}" id="nc{$ic.id}" name="ids"/>
+                                                                    </span>
+                                                                </span>
+                                                            </td>
+                                                            <td>{$ic.id}</td>
+                                                            <td>
+                                                                <span class="simple_tree pull-left">&#8627;</span>
+                                                                <div class="o_h">
+                                                                    <span class="time muted">{date('d-m-Y H:i', $ic.date)}</span>
+                                                                    <span class="text_comment" id="comment_text_holder{$ic.id}">{truncate(htmlspecialchars($ic.text), 80, '...')}</span>
+                                                                    <span class="frame_edit_comment ref_group" id="comment_text_editor{$ic.id}">
+                                                                        <textarea id="edited_com_text{$ic.id}">{$ic.text}</textarea>
+                                                                        <span class="js ref comment_update" data-cid="{$ic.id}" data-uname="{$ic.user_name}" data-uemail="{$ic.user_mail}" data-cstatus="{$ic.status}">Сохранить</span>
+                                                                        <span class="js ref comment_update_cancel" data-cid="{$ic.id}">Отменить</span>
+                                                                        {if $ic.status == 1}<a href="#" class="to_approved" data-id="{$ic.id}">В одобренные</a>{/if}
+                                                                        {if $ic.status != 2}
+                                                                        <a href="#" class="to_spam" data-id="{$ic.id}">В спам</a>
+                                                                        {else:}
+                                                                        <a href="#" class="to_waiting" data-id="{$ic.id}">В ожидающие модерации</a>
+                                                                        {/if}
+                                                                        <a href="#" class="ref_remove com_del" data-id="{$ic.id}">Удалить</a>
+                                                                    </span>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="p_r frame_rating">
+                                                                    <div class="patch_disabled"></div>
+                                                                    <div class="star">
+                                                                        {for $i=0; $i<5; $i++}
+                                                                        <a href="#"><i class="icon-star{if $i>=(int)$item.rate}-empty{/if}"></i></a>
+                                                                        {/for}
+                                                                    </div>
+                                                                    <a href="#">
+                                                                        <i class="icon-thumbs-up"></i>
+                                                                        <span>+{$ic.like}</span>
+                                                                    </a>
+                                                                    &nbsp;&nbsp;&nbsp;
+                                                                    <a href="#">
+                                                                        <i class="icon-thumbs-down"></i>
+                                                                        <span>-{$ic.disslike}</span>
+                                                                    </a>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <a href="#" class="u_ed">{$ic.user_name}</a>
+                                                                <span class="frame_edit_comment ref_group u_ed">
+                                                                    <input type="text" value="{$ic.user_name}" name="user_name" id="u_ed{$ic.id}">
+                                                                </span>
+                                                            </td>
+                                                            <td>
+                                                                <a href="#" class="m_ed">{$ic.user_mail}</a>
+                                                                <span class="frame_edit_comment ref_group m_ed">
+                                                                    <input type="text" value="{$ic.user_mail}" name="user_mail" id="m_ed{$ic.id}">
+                                                                </span>
+                                                            </td>
+                                                            <td>
+                                                                {if $ic.module == 'core'}
+                                                                <a href="{$item.page_url}#comment_{$ic.id}" target="_blank" title="{$ic.page_title}">{truncate($ic.page_title, 25, '...')}</a>
+                                                                {/if}
+                                                                {if $ic.module == 'shop'}
+                                                                {if $this->CI->db->where('name','shop')->get('components')->num_rows() > 0}
+                                                                {$p_name = encode(SProductsQuery::create()->filterById($ic.item_id)->findOne()->name)}
+                                                                <a href="/shop/product/{$ic.item_id}" target="_blank">{truncate($p_name,25,'...')}</a>
+                                                                {/if}
+                                                                {/if}
+                                                            </td>
+                                                        </tr>
+                                                        {/foreach}
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        {/if}
+                        {/foreach}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {else:}
+        </br>
+        <div class="alert alert-info">
+            {lang('amt_nothing_found')}
+        </div>
+        {/if}
+    </div>
+    <div class="clearfix">
+        {$paginator}
+    </div>
+</section>

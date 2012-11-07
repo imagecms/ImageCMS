@@ -21,9 +21,15 @@ $(document).ajaxComplete( function(event, XHR, ajaxOptions){
     number_tooltip_live();
     fixed_frame_title();
     $('.tooltip').remove();
+    dropDownMenu();
+    autocomplete();
 });
 
 function init_2(){
+    $('#loading').css({
+        'height': $(window).height(), 
+        'background-position': '50%'+($(window).height()-$('#mainContent').offset().top)/2+'px'
+        });
     if ($.exists('.buy_prod, .popover_ref')){
         //alert('init2');
         $('.buy_prod').popover('destroy').each(function(){
@@ -131,6 +137,8 @@ function init_2(){
         
         else if (el.closest('[data-tree]').length > 0) el.closest('tr').addClass('active');
         
+        else if (el.closest('.comments').length > 0) el.closest('tr').addClass('active');
+        
         else{
             if (el.closest('.frame_level_3').length > 0) el.closest('.row-category').addClass('active');
         
@@ -142,6 +150,11 @@ function init_2(){
                     changeCheckallchecks($(this).find('> span:eq(0)'));
                 })
             }
+        }
+        if (el.closest('.comments').next('tr').length > 0) {
+            temp_nabir = el.closest('.comments').next('tr:not(.comments)').find('.frame_label').each(function(){
+                changeCheckallchecks($(this).find('> span:eq(0)'));
+            })
         }
     }
     function check2(el, input){
@@ -159,6 +172,8 @@ function init_2(){
         
         else if (el.closest('[data-tree]').length > 0) el.closest('tr').removeClass('active');
         
+        else if (el.closest('.comments').length > 0) el.closest('tr').removeClass('active');
+        
         else{
             if (el.closest('.frame_level_3').length > 0) el.closest('.row-category').removeClass('active');
         
@@ -170,6 +185,11 @@ function init_2(){
                     changeCheckallreset($(this).find('> span:eq(0)'));
                 })
             }
+        }
+        if (el.closest('.comments').next('tr').length > 0) {
+            temp_nabir = el.closest('.comments').next('tr:not(.comments)').find('.frame_label').each(function(){
+                changeCheckallreset($(this).find('> span:eq(0)'));
+            })
         }
     }
     function check3(el, input){
@@ -221,9 +241,10 @@ function init_2(){
         el.closest('.simple_tr').addClass('active');
         if (el.closest('[data-tree]').length > 0) el.closest('tr').addClass('active');
         else if (el.closest('.sortable2').find('tr').length > 0) el.closest('.sortable2').find('tr').has(el).addClass('active')
+        else if (el.closest('.comments').length > 0) el.closest('tbody').find('.comments').has(el).addClass('active');
         
         dis_un_dis();
-        textcomment_s_h('s', el);
+    //textcomment_s_h('s', el);
     }
     function changeCheckallreset(el)
     {
@@ -236,9 +257,10 @@ function init_2(){
         el.closest('.simple_tr').removeClass('active');
         if (el.closest('[data-tree]').length > 0) el.closest('tr').removeClass('active');
         else if (el.closest('.sortable2').find('tr').length > 0) el.closest('.sortable2').find('tr').has(el).removeClass('active')
+        else if (el.closest('.comments').length > 0) el.closest('tbody').find('.comments').has(el).removeClass('active');
         
         dis_un_dis();
-        textcomment_s_h('h', el);
+    //textcomment_s_h('h', el);
     }
     function changeCheckStart(el)
     {
@@ -291,7 +313,137 @@ function init_2(){
             $this.val(100);
         }
     });
-    $('input:first').focus();
+}
+function dropDownMenu(){
+    $('.to_pspam').unbind('click').on('click', function() {
+        var arr = new Array();
+        $('input[name=ids]:checked').each(function() {
+            arr.push(parseInt($(this).val()));
+        });
+        $.post('/admin/components/cp/comments/update_status',
+        {
+            id: arr, 
+            status: 2
+        },
+        function(data) {
+            $('.notifications').append(data);
+        }
+        );
+    });
+    $('.to_wait').unbind('click').on('click', function() {
+        var arr = new Array();
+        $('input[name=ids]:checked').each(function() {
+            arr.push(parseInt($(this).val()));
+        });
+        $.post('/admin/components/cp/comments/update_status',
+        {
+            id: arr, 
+            status: 1
+        },
+        function(data) {
+            $('.notifications').append(data);
+        }
+        );
+    });
+
+    $('.to_approved').unbind('click').on('click', function() {
+        var arr = new Array();
+        $('input[name=ids]:checked').each(function() {
+            arr.push(parseInt($(this).val()));
+        });
+        $.post('/admin/components/cp/comments/update_status',
+        {
+            id: arr, 
+            status: 0
+        },
+        function(data) {
+            $('.notifications').append(data);
+        }
+        );
+    });
+}
+function autocomplete(){
+    $('#kitMainProductName').autocomplete({
+        minChars: 1,
+        source: '/admin/components/run/shop/kits/get_products_list/' + $('#kitMainProductName').val() + '&limit=20',
+        select: function(event, ui) {
+            $('#MainProductHidden').attr('value', ui.item.identifier.id);
+            $('#kitMainProductName').attr('value', ui.item.label);
+        }
+    });
+
+    $('#AttachedProducts').autocomplete({
+        minChars: 0,
+        source: '/admin/components/run/shop/kits/get_products_list/' + $('#AttachedProducts').attr('value') + '&limit=20',
+        select: function(event, ui) {
+            var mainDisc = $('#mainDisc').attr('value');
+            $('#forAttached').append('<div id="tpm_row' + ui.item.identifier.id + '" class="m-t_10">' +
+                '<span class="d-i_b number v-a_t">' +
+                '<span class="help-inline d_b">ID</span>' +
+                '<input type="text" name="AttachedProductsIds[]" value="' + ui.item.identifier.id + '" class="input-mini"/>' +
+                '</span>&nbsp;' +
+                '<span  class="d-i_b v-a_t">' +
+                '<span class="help-inline d_b">Имя</span>' +
+                '<input type="text" id="AttachedProducts" value="' + ui.item.label + '" class="input-xxlarge"/>' +
+                '</span>&nbsp;' +
+                '<span  class="d-i_b number v-a_t">' +
+                '<span class="help-inline d_b">Скидка %</span>' +
+                '<input type="text" id="AttachedProductsDisc" name="Discounts[]" value="' + mainDisc + '" class="input-mini" data-max="100" data-rel="tooltip" data-title="только цифры"/>' +
+                '</span>&nbsp;' +
+                '<span  class="d-i_b v-a_t" style="margin-top:18px;">' +
+                '<button class="btn btn-danger btn-small del_tmp_row" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash icon-white"></i></button>' +
+                '</span>' +
+                '</div>');
+        },
+        close: function(event, ui) {
+            $('#AttachedProducts').attr('value', '');
+        }
+    });
+
+    $('#RelatedProducts').autocomplete({
+        minChars: 0,
+        source: '/admin/components/run/shop/kits/get_products_list/' + $('#RelatedProducts').attr('value') + '&limit=20',
+        select: function(event, ui) {
+            $('#relatedProductsNames').append('<div id="tpm_row' + ui.item.identifier.id + '">' +
+                '<span style="width: 70%;margin-left: 1%;" class="pull-left">' +
+                '<input type="text" id="AttachedProducts" value="' + ui.item.label + '"/>' +
+                '<input type="hidden" name="RelatedProducts[]" value="' + ui.item.identifier.id + '">' +
+                '</span>' +
+                '<span style="width: 8%;margin-left: 1%;" class="pull-left">' +
+                '<button class="btn btn-small del_tmp_row" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash"></i></button>' +
+                '</span>' +
+                '</div>');
+        },
+        close: function(event, ui) {
+            $('#RelatedProducts').attr('value', '');
+        }
+    });
+    $('#emailAutoC').autocomplete({
+        minChars: 0,
+        source: '/admin/components/cp/user_manager/auto_complit/email' + $('#emailAutoC').attr('value') + '?limit=25'
+    });
+    
+    $('#nameAutoC').autocomplete({
+        minChars: 0,
+        source: '/admin/components/cp/user_manager/auto_complit/name' + $('#nameAutoC').attr('value') + '?limit=25'
+        
+    });
+    
+    //    AUTO COMPLITE SHOP--------------------------------------------------------------------------------------------------
+    
+        
+        
+    $('#shopNameAutoC').autocomplete({
+        minChars: 0,
+        source: '/admin/components/run/shop/users/auto_complite/name' + $('#shopNameAutoC').attr('value') + '?limit=25'
+        
+    });
+
+    $('#shopEmailAutoC').autocomplete({
+        minChars: 0,
+        source: '/admin/components/run/shop/users/auto_complite/email' + $('#shopNameAutoC').attr('value') + '?limit=25'
+        
+    });
 }
 function textcomment_s_h(status, el){
     var status = status;
@@ -301,6 +453,7 @@ function textcomment_s_h(status, el){
         if (status == 's' && textcomment.css('display') != 'none')
         {
             var textcomment_h = textcomment.outerHeight();
+            console.log(textcomment)
             textcomment.hide().next().show().find('textarea').css('height', textcomment_h+13);
         }
         if (status == 's' && textcomment.css('display') == 'none') return true;
@@ -429,6 +582,16 @@ function difTooltip(){
     }
     else place_tr_ttp = 'top'
 }
+function what_key(enter_key, event){
+    var enter_key = enter_key; 
+    if (event)
+    {
+        var key = event.hasOwnProperty('keyCode')?event.keyCode:false;
+        if(key == enter_key) return true;
+    }
+    else
+        return false;
+}
 function initAdminArea(){
     if ($.exists('#shopAdminMenu')){
         if (isShop)
@@ -556,17 +719,6 @@ function initAdminArea(){
         event.stopPropagation();
     });
     
-    function what_key(enter_key, event){
-        var enter_key = enter_key; 
-        if (event)
-        {
-                var key = event.hasOwnProperty('keyCode')?event.keyCode:false;
-                if(key == enter_key) return true;
-        }
-        else
-                return false;
-    }
-    
     $('.js_price').die('click').live('click', function(){
         $(this).next().show();
     }).die('focus').live('focus', function(){
@@ -673,14 +825,6 @@ function initAdminArea(){
     }
     
     
-    //list filter
-   
-    $('.listFilterForm').die('keypress').live('keypress', function(){
-        $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
-        if (what_key(13))
-            $('.listFilterSubmitButton').click();
-    })
-
     //    $('#usersDatas').autocomplete({source:usersDatas});
     
     if (window.hasOwnProperty('productsDatas'))
@@ -853,10 +997,10 @@ function initAdminArea(){
     });
     
     $(document).on('pjax:start', function() {
-        $('#loading').fadeIn(100)
+        $('#loading').stop().fadeIn(100)
     })
     .on('pjax:end',   function() {
-        $('#loading').fadeOut(100)
+        $('#loading').stop().fadeOut(100)
     });
 
     //                $('a.pjax, .dropdown-menu li a').live('click', function(e){
@@ -934,15 +1078,13 @@ $(document).ready(
     
         $(this).keydown(function (e) {
             e = e || window.event;
-            if ( (e.keyCode === 13 || (e.keyCode === 83 && e.ctrlKey) ) && e.target.localName != 'textarea' ) {
-                if (e.target.id == "baseSearch" || e.target.id == "shopSearch")
-                {
+            if (e.target.id == "baseSearch" || e.target.id == "shopSearch")
+            {
+                if ( (e.keyCode === 13 || (e.keyCode === 83 && e.ctrlKey) ) && e.target.localName != 'textarea' ) {
                     $('#adminSearchSubmit').click();
                     return false;
                 }
-
-                return false;
-            }
+           }
         });
 
         if ($('#baseSearch').length)    
@@ -996,28 +1138,30 @@ $(document).ready(
         $(document).die('keydown').live('keydown', function (e) {
             var dataSubmit = $("[data-submit]");
             e = e || window.event;
-            if (event.ctrlKey) $('input:first').blur();
-            if (e.keyCode === 83 && event.ctrlKey) {
-                if (!dataSubmit.hasClass('disabled')) dataSubmit.trigger('click');
+            if (e.ctrlKey) $('#baseSearch').blur();
+            //if ((event.ctrlKey && event.shiftKey) || (event.shiftKey && event.altKey)) $('.baseSearch:first').focus();
+            if (e.keyCode === 83 && e.ctrlKey) {
+                if (!dataSubmit.hasClass('disabled') && dataSubmit.closest('.tab-pane').css('display')!='none') dataSubmit.trigger('click');
                 return false;
             }
         });
         
         init_2();
-        
-        
-        
-        
-        
-        
-        
+        autocomplete();
+        //list filter
+   
+        $('.listFilterForm').die('keydown').live('keydown', function(event){
+            $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
+            if (what_key(13, event))
+                $('.listFilterSubmitButton').trigger('click');
+        })
         
         /*      menu        */
         var found = false;
         $('#mainAdminMenu a').each(function(){
             if( $(this).attr('href').match(window.location.pathname) && !found)
             {
-//                console.log($(this));
+                //                console.log($(this));
                 $(this).closest('li').addClass('active');
                 $('li.active').closest('ul').closest('li').addClass('active');
                 found = true;
@@ -1025,6 +1169,7 @@ $(document).ready(
         })
         
         /**/
+        $('#baseSearch').focus();
     });
     
 $(window).load(function(){
@@ -1037,6 +1182,10 @@ $(window).load(function(){
         }
         $('.fade.in').remove();
         difTooltip();
+        $('#loading').css({
+            'height': $(window).height(), 
+            'background-position': '50%'+($(window).height()-$('#mainContent').offset().top)/2+'px'
+            });
     }).resize();
     $(window).scroll(function(){
         fixed_frame_title();

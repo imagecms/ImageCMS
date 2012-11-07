@@ -1,5 +1,4 @@
 <section class="mini-layout">
-
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
@@ -9,12 +8,11 @@
             <span class="help-inline"></span>
             <div class="d-i_b">
                 <a href="/admin/pages/GetPagesByCategory" class="pjax t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
-                <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#add_page_form" data-action="edit" data-submit><i class="icon-ok icon-white"></i>{lang('a_save')}</button>
+                <button type="button" class="btn btn-small btn-success action_on formSubmit" data-form="#add_page_form" data-action="edit" data-submit><i class="icon-plus-sign icon-white"></i>{lang('a_create')}</button>
                 <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form" data-action="close"><i class="icon-check"></i>{lang('a_save_and_exit')}</button>
             </div>
         </div>                            
     </div>  
-
     <div class="clearfix">
         <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
             <a href="#content_article" class="btn btn-small active">{lang('a_content')}</a>
