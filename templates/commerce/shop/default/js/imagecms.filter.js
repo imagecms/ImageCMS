@@ -29,9 +29,11 @@ $(document).ready(function(){
                     var selector = $('#prop_' + property.id);
                     selector.parent().children().eq(2).text('(' + property.count + ')');
                     if (property.disabled == 'false') {
-                        selector.removeClass('not_disabled');
+                        //selector.removeClass('not_disabled');
+                        selector.removeAttr('disabled');
                     } else if (property.disabled == 'true'){
-                        selector.addClass('not_disabled');
+                        //selector.addClass('not_disabled');
+                        selector.attr('disabled', 'disabled');
                     }
                 }
                 var value1=jQuery(".price_block input#minCost").val();
