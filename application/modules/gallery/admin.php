@@ -721,7 +721,7 @@ class Admin extends MY_Controller {
                 $i++;
             }
             if (isset($data['error']))
-                showMessage($data['error']);
+                showMessage($data['error'], '', 'r');
             else {
                 showMessage('Upload success');
                 pjax('');

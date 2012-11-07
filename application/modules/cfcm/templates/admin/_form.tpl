@@ -10,7 +10,7 @@
             <span class="help-inline"></span>
             <div class="d-i_b">
                 <a href="/admin/components/cp/cfcm" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
-                <button type="button" class="btn btn-small action_on formSubmit btn-primary" data-action="close" data-form="#{echo $f_id = uniqid()}" data-submit><i class="icon-ok"></i>{lang('a_save')}</button>
+                <button type="button" class="btn btn-small action_on formSubmit btn-success" data-action="close" data-form="#{echo $f_id = uniqid()}"><i class="icon-plus-sign icon-white"></i>{lang('a_save')}</button>
             </div>
         </div>                            
     </div>             

@@ -8,7 +8,7 @@
             <div class="pull-right">
                 <div class="d-i_b">
                     <a href="/admin/components/modules_table" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
-                    <button type="button" class="btn btn-small btn-success formSubmit" data-form="#send" ><i class="icon-list-alt icon-white"></i>{lang('a_mailer_send_mail')}</button>                   
+                    <button type="button" class="btn btn-small formSubmit" data-form="#send" ><i class="icon-list-alt"></i>{lang('a_mailer_send_mail')}</button>
                 </div>
             </div>                            
         </div>
