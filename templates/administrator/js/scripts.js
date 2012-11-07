@@ -1138,9 +1138,9 @@ $(document).ready(
         $(document).die('keydown').live('keydown', function (e) {
             var dataSubmit = $("[data-submit]");
             e = e || window.event;
-            if (event.ctrlKey) $('#baseSearch').blur();
+            if (e.ctrlKey) $('#baseSearch').blur();
             //if ((event.ctrlKey && event.shiftKey) || (event.shiftKey && event.altKey)) $('.baseSearch:first').focus();
-            if (e.keyCode === 83 && event.ctrlKey) {
+            if (e.keyCode === 83 && e.ctrlKey) {
                 if (!dataSubmit.hasClass('disabled') && dataSubmit.closest('.tab-pane').css('display')!='none') dataSubmit.trigger('click');
                 return false;
             }
