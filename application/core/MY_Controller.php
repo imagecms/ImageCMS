@@ -14,10 +14,13 @@ class MY_Controller extends MX_Controller {
 
     public function __construct() {
         parent::__construct();
-
+        
         if (in_array('X-PJAX', array_keys(getallheaders())))
+        {
             $this->pjaxRequest = true;
-
+            header('X-PJAX: true');
+        }
+        
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
             $this->ajaxRequest = true;
     }
