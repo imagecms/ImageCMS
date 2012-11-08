@@ -528,7 +528,9 @@ $(document).ready(function() {
         $('#tpm_row' + id).remove();
     });
 
-    $('.to_hit').live('click', function() {
+product = new Object;
+
+product.toHit = function(){
         var ids = new Array();
         $('input[name=ids]:checked').each(function() {
             ids.push($(this).val());
@@ -539,9 +541,10 @@ $(document).ready(function() {
             $('.notifications').append(data);
         }
         );
-    });
+};
 
-    $('.tonew').live('click', function() {
+product.toNew = function()
+{
         var ids = new Array();
         $('input[name=ids]:checked').each(function() {
             ids.push($(this).val());
@@ -552,9 +555,22 @@ $(document).ready(function() {
             $('.notifications').append(data);
         }
         );
-    });
+};
 
-    $('.clone').live('click', function() {
+product.toAction = function(){
+            var ids = new Array();
+        $('input[name=ids]:checked').each(function() {
+            ids.push($(this).val());
+        });
+        $.post('/admin/components/run/shop/products/ajaxChangeAction', {
+            ids: ids
+        }, function(data) {
+            $('.notifications').append(data);
+        }
+        );
+}
+
+product.cloneTo = function(){
         var ids = new Array();
         $('input[name=ids]:checked').each(function() {
             ids.push($(this).val());
@@ -565,20 +581,11 @@ $(document).ready(function() {
             $('.notifications').append(data);
         }
         );
-    });
+};
 
-    $('.toaction').live('click', function() {
-        var ids = new Array();
-        $('input[name=ids]:checked').each(function() {
-            ids.push($(this).val());
-        });
-        $.post('/admin/components/run/shop/products/ajaxChangeAction', {
-            ids: ids
-        }, function(data) {
-            $('.notifications').append(data);
-        }
-        );
-    });
+product.toCategory = function(){
+    $('.modal_move_to_cat').modal();
+}
 
     $(".save_positions").live("sortstop", function(event, ui) {
         var url = $(this).attr('data-url');
@@ -676,11 +683,7 @@ $(document).ready(function() {
             url: '/admin/components/run/shop/search/index/?' + query_string,
             container: '#mainContent'
         });
-    });
-
-    $('.tocategory').live('click', function() {
-        $('.modal_move_to_cat').modal();
-    });
+    });;
 
     $('.move_to_cat').live('click', function() {
         var catId = $('#moveCategoryId').attr('value');
