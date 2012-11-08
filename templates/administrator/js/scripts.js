@@ -367,6 +367,7 @@ function dropDownMenu(){
         }
         );
     });
+    
 }
 function autocomplete(){
     $('#kitMainProductName').autocomplete({
@@ -948,7 +949,7 @@ $(document).ready(
     function(){
         if ($.exists('#topPanelNotifications')) updateNotificationsTotal();
         initAdminArea();
-        $('.nav .dropdown-menu a').die('click');
+        //$('.nav .dropdown-menu a').die('click');
 
         $('a.pjax').not('#mainContent a.pjax').die('click').click(function(event){
             event.preventDefault();
