@@ -119,7 +119,6 @@ $(document).ready(function() {
     //*****change language by default*****
 
 //***************Scripts for languages page***************
-
     $('span.selwid').live('click', function() {
         var title = $(this).attr('data-title');
         var mname = $(this).attr('data-mname');
@@ -133,13 +132,15 @@ $(document).ready(function() {
         if ($(this).attr('value') === 'html')
         {
             $('#moduleholder').fadeOut(200, function() {
-                $('#textareaholder').css('display', '')
+                $('#textareaholder').css('display', '');
+                initElRTE();
             });
             $('#mod_name').fadeOut(200);
 
         } else {
             $('#textareaholder').fadeOut(200, function() {
-                $('#moduleholder').css('display', 'inline-table');
+                $('#moduleholder').css('display', '');
+                $('#mod_name').css('display', '');
             });
         }
     });

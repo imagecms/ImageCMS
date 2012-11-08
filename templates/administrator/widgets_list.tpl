@@ -30,6 +30,12 @@
             </div>  
         </div>
         <div class="tab-content">
+            {if $error}
+                <br>
+                <div class="alert alert-error">
+                {$error}
+               </div>
+            {else:}   
             {if count($widgets)>0}
                 <div class="row-fluid">
                     <form method="post" action="#" class="form-horizontal">
@@ -99,6 +105,7 @@
                     {lang('a_no_widgets_created')}
                 </div>
             {/if}
+        {/if}        
         </div>
     </section>
 </div>

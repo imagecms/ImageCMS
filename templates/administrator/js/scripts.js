@@ -13,21 +13,23 @@ $(document).ajaxComplete( function(event, XHR, ajaxOptions){
         
 //        console.log(XHR.getAllResponseHeaders());
         if ((XHR.getAllResponseHeaders().match(/X-PJAX/)))
+        {
             initAdminArea();
-        
+            init_2();
 //        console.log(XHR.getAllResponseHeaders().split(" "));        
         
 //        console.log(XHR.getAllResponseHeaders().match(/X-PJAX/));
-        
+
+
+            number_tooltip_live();
+            fixed_frame_title();
+            $('.tooltip').remove();
+            dropDownMenu();
+            autocomplete();
+        }
         if ($.exists('#chart')) brands();
         if ($.exists('#wrapper_gistogram')) gistogram();
     }
-    init_2();
-    number_tooltip_live();
-    fixed_frame_title();
-    $('.tooltip').remove();
-    dropDownMenu();
-    autocomplete();
 });
 
 function init_2(){
@@ -125,7 +127,6 @@ function init_2(){
     $(".frame_label:has(.niceRadio)").die('click').click(function() {
         var $this = $(this);
         changeRadio($this.find('> span:eq(0)'));
-        return false;
     });
     function check1(el, input){
         var el = el;
