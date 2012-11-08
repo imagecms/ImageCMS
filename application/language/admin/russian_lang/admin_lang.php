@@ -192,6 +192,7 @@ $lang['a_field_translate'] = 'Переводимое поле';
 $lang['a_name'] = 'Название';
 $lang['a_image'] = 'Изображение';
 $lang['a_select_image'] = 'Выбрать Изображение';
+$lang['a_add_pictures'] = 'Добавить изображения';
 $lang['a_desc'] = 'Описание';
 //$lang['a_meta_title']       =       'Meta title';
 //$lang['a_meta description'] =       'Meta description';

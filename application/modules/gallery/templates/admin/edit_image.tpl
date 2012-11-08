@@ -35,6 +35,12 @@
             <span class="help-inline"></span>
             <span class="title w-s_n">{lang('amt_album')}: <a href="/admin/components/cp/gallery/edit_album/{$album.id}" class="pjax">{$album.name}</a></span>
         </div>
+        <div class="pull-right">                
+            <div class="d-i_b">
+                <a  href="/admin/components/cp/gallery/edit_album/{$album.id}"  class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
+            </div>
+        </div>            
+            
     </div>
     <div class="row inside_padd">
         <div class="span4">
