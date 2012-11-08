@@ -10,7 +10,14 @@ var notificationsInitialized = false;
 $(document).ajaxComplete( function(event, XHR, ajaxOptions){
     if (ajaxOptions.url != "/admin/components/run/shop/notifications/getAvailableNotification")
     {
-        initAdminArea();
+        
+//        console.log(XHR.getAllResponseHeaders());
+        if ((XHR.getAllResponseHeaders().match(/X-PJAX/)))
+            initAdminArea();
+        
+//        console.log(XHR.getAllResponseHeaders().split(" "));        
+        
+//        console.log(XHR.getAllResponseHeaders().match(/X-PJAX/));
         
         if ($.exists('#chart')) brands();
         if ($.exists('#wrapper_gistogram')) gistogram();
@@ -887,15 +894,12 @@ function initAdminArea(){
     
     });
     
-
-    
-    
     $('#mainContent a.pjax').die('click').click(function(event){
         event.preventDefault();
         $.pjax({
             url:$(this).attr('href'), 
             container:'#mainContent',
-            timeout: 3000
+            timeout: 0
         })
         return false;
     });
@@ -945,7 +949,7 @@ $(document).ready(
         initAdminArea();
         $('.nav .dropdown-menu a').die('click');
 
-        $('a.pjax').die('click').click(function(event){
+        $('a.pjax').not('#mainContent a.pjax').die('click').click(function(event){
             event.preventDefault();
             $.pjax({
                 url:$(this).attr('href'), 
@@ -954,7 +958,7 @@ $(document).ready(
             });
             $('nav li').removeClass('active');
             $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
-            return false;
+            return true;
         });
                 
         
