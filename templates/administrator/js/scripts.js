@@ -951,10 +951,16 @@ function initAdminArea() {
     });
 
     $(document).on('pjax:start', function() {
-        $('#loading').stop().fadeIn(100)
+        console.log('pstrt');
+        //resize loading
+        $('#loading').height($('#mainContent').height())//.width($('#mainContent').width());
+        $('#loading').fadeIn(100);
+        
     })
             .on('pjax:end', function() {
-        $('#loading').stop().fadeOut(100)
+        console.log('pstp');
+        $('#loading').fadeOut(100);
+                
     });
 
 
