@@ -935,6 +935,14 @@ function initAdminArea(){
         return true;
     });
     
+    $('button.rmAddPic').die('click').live('click', function(event){
+        event.preventDefault();
+        $(this).closest('label').find('input[type=hidden]').val($(this).data('i'));
+        $(this).closest('label').find('span').find('input[type=file]').val('');
+        $(this).closest('div.control-group').find('img').attr('src', '/templates/administrator/images/select-picture.png');
+        return false;
+    });
+    
     console.log('initialising of administration area ended');
     console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.")
 };
