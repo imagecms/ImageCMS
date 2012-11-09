@@ -26,7 +26,7 @@
             <span class="simple_tree">↳</span>
             {/if}
 
-            <a href="{$ADMIN_URL}edit/{$item.id}" data-rel="tooltip" data-placement="top" data-original-title="редактировать категорию"  class="pjax">{truncate($item.name, 100)}</a>
+            <a href="/admin/categories/edit/{$item.id}" data-rel="tooltip" data-placement="top" data-original-title="редактировать категорию"  class="pjax">{truncate($item.name, 100)}</a>
 
         </div>
     </div>

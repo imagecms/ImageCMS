@@ -420,7 +420,7 @@ class Admin extends MY_Controller {
         if ($image != FALSE) {
             $this->load->library('Form_validation');
 
-            $this->form_validation->set_rules('new_name', lang('amt_name'), 'trim|required|alpha_dash');
+            $this->form_validation->set_rules('new_name', lang('amt_name'), 'trim|required');
 
             if ($this->form_validation->run($this) == FALSE) {
                 showMessage(validation_errors(), false, 'r');
