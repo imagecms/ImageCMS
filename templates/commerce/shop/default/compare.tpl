@@ -1,10 +1,12 @@
 <div id="has"  >
     <div class="content" >
+        {$CI->load->helper('translit')}
         <div class="center">
             <h1>{lang('s_compare_tovars')}</h1>
             {if count($products) > 0}
                 <a class="active" style="cursor: pointer; display:none;">{lang('s_all_par')}</a>
-                <a class="prod_dif" id="all" style="cursor:pointer;">{lang('s_only_diff')}</a>
+                <!--<a class="prod_dif" id="all" style="cursor:pointer;">{lang('s_only_diff')}</a>-->
+                <a class="prod_show_diff" style="cursor:pointer;">{lang('s_only_diff')}</a>
                 {$cnt = 1}
                 {$cnc = 1}
                 {foreach $categorys as $category}
@@ -15,7 +17,7 @@
                         <div class="comparison_slider_left">
                             {$data = ShopCore::app()->SPropertiesRenderer->renderCategoryPropertiesArray($category['Id'])}
                             {foreach $data as $d}                                    
-                                <span>
+                                <span data-row="{echo translit($d)}{echo $category['Id']}">
                                     <script> var den = {$cnt}</script>
                                     <span class="todifff{echo $cnt++}">{$d}</span>
                                 </span>
@@ -28,7 +30,7 @@
                                     {$prices = currency_convert($product->firstvariant->getPrice(), $product->firstvariant->getCurrency())}
                                     {$style = productInCart($cart_data, $product->getId(), $product->firstVariant->getId(), $product->firstVariant->getStock())}
                                     {if $product->category_id == $category['Id']}
-                                        <li class="list_desire">
+                                        <li class="list_desire" id="product_block_{echo $product->getId()}">
                                             <div class="frame_porivnjanja_tovar smallest_item">
                                                 <div class="photo_block">
                                                     <a href="{shop_url('product/' . $product->getUrl())}">
@@ -36,7 +38,7 @@
                                                     </a>
                                                     <div class="clearfix">
                                                     </div>
-                                                    <a class="delete_tovar img"  href="{shop_url('compare/remove/' . $product->getId())}" style="width: 20px; height: 20px;"></a>
+                                                    <span class="delete_tovar img" data-pid="{echo $product->getId()}" style="width: 20px; height: 20px;"></span>
                                                 </div>
                                                 <div class="func_description">
                                                     <a href="{shop_url('product/' . $product->getUrl())}" class="title">{echo $product->getName()}</a>
@@ -59,12 +61,22 @@
                                                     {$cnt = 1}   
                                                     {foreach $data as $d}
                                                         {$cval = ShopCore::encode($d)}
-                                                        <span>
-                                                            <span class="todiff{echo $cnt++}">
-                                                        {if $pdata[$cval]} {echo $pdata[$cval]} {else:} - {/if}
-                                                    </span>
-                                                </span>   
-                                            {/foreach}
+                                                        <span data-row="{echo translit($d)}{echo $category['Id']}">
+                                                            <span class="todiff" data-rows="{echo translit($d)}{echo $category['Id']}">
+                                                                {if count($pdata[$cval])>1}
+                                                                    {$i = 0}
+                                                                    {foreach $pdata[$cval] as $ms}
+                                                                        {echo $ms}
+                                                                        {if $i<(count($pdata[$cval])-1)},{/if}
+                                                                        {$i++}
+                                                                    {/foreach}
+                                                                {else:}
+                                                                    {if $pdata[$cval]} {echo $pdata[$cval]} {else:} - {/if}
+                                                                {/if}
+                                                            </span>
+                                                        </span>   
+                                                       
+                                                    {/foreach}
                                         </div>
                                 </li>
                             {/if}
