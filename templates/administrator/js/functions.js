@@ -117,6 +117,10 @@ function updateNotificationsTotal()
 
 function loadShopInterface()
 {
+    if ($.browser.opera == true)
+    {
+        window.location = '/admin/components/run/shop/dashboard';
+    }
     if ($('#baseSearch'))
     {
         $('#baseSearch').val('');
@@ -145,6 +149,11 @@ function loadShopInterface()
 
 function loadBaseInterface()
 {
+    if ($.browser.opera == true)
+    {
+        window.location = '/admin';
+    }
+    
     if ($('#shopSearch'))
     {
         $('#shopSearch').val('');
