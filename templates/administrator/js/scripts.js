@@ -10,19 +10,26 @@ var notificationsInitialized = false;
 $(document).ajaxComplete(function(event, XHR, ajaxOptions) {
     if (ajaxOptions.url != "/admin/components/run/shop/notifications/getAvailableNotification")
     {
-        initAdminArea();
+//        console.log(XHR.getAllResponseHeaders());
+        if ((XHR.getAllResponseHeaders().match(/X-PJAX/)))
+        {
+            initAdminArea();
+            init_2();
+//        console.log(XHR.getAllResponseHeaders().split(" "));        
+        
+//        console.log(XHR.getAllResponseHeaders().match(/X-PJAX/));
 
-        if ($.exists('#chart'))
-            brands();
-        if ($.exists('#wrapper_gistogram'))
-            gistogram();
+
+            number_tooltip_live();
+            fixed_frame_title();
+            $('.tooltip').remove();
+            dropDownMenu();
+            autocomplete();
+        }
+        if ($.exists('#chart')) brands();
+        if ($.exists('#wrapper_gistogram')) gistogram();
+
     }
-    init_2();
-    number_tooltip_live();
-    fixed_frame_title();
-    $('.tooltip').remove();
-    dropDownMenu();
-    autocomplete();
 });
 
 function init_2() {
@@ -120,7 +127,6 @@ function init_2() {
     $(".frame_label:has(.niceRadio)").die('click').click(function() {
         var $this = $(this);
         changeRadio($this.find('> span:eq(0)'));
-        return false;
     });
     function check1(el, input) {
         var el = el;
@@ -379,6 +385,7 @@ function dropDownMenu() {
                 }
         );
     });
+    
 }
 function autocomplete() {
     $('#kitMainProductName').autocomplete({
@@ -931,15 +938,14 @@ function initAdminArea() {
 
     });
 
-
-
-
-    $('#mainContent a.pjax').die('click').click(function(event) {
+    
+    $('#mainContent a.pjax').die('click').click(function(event){
         event.preventDefault();
         $.pjax({
-            url: $(this).attr('href'),
-            container: '#mainContent',
-            timeout: 3000
+            url:$(this).attr('href'), 
+            container:'#mainContent',
+            timeout: 0
+
         })
         return false;
     });
@@ -985,11 +991,38 @@ function initAdminArea() {
 //console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.");
 
 $(document).ready(
-        function() {
-            if ($.exists('#topPanelNotifications'))
-        updateNotificationsTotal();
-            initAdminArea();
-            $('.nav .dropdown-menu a').die('click');
+
+    function(){
+        if ($.exists('#topPanelNotifications')) updateNotificationsTotal();
+        initAdminArea();
+        //$('.nav .dropdown-menu a').die('click');
+
+        $('a.pjax').not('#mainContent a.pjax').die('click').click(function(event){
+            event.preventDefault();
+            $.pjax({
+                url:$(this).attr('href'), 
+                container:'#mainContent',
+                timeout: 3000
+            });
+            $('nav li').removeClass('active');
+            $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
+            return true;
+        });
+                
+        
+        $('.main_body').append('<div class="overlay"></div>');
+    
+        $(this).keydown(function (e) {
+            e = e || window.event;
+            if (e.target.id == "baseSearch" || e.target.id == "shopSearch")
+            {
+                if ( (e.keyCode === 13 || (e.keyCode === 83 && e.ctrlKey) ) && e.target.localName != 'textarea' ) {
+                    $('#adminSearchSubmit').click();
+                    return false;
+                }
+           }
+        });
+
 
             $('a.pjax').die('click').click(function(event) {
                 event.preventDefault();

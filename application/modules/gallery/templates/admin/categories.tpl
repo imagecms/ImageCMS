@@ -31,7 +31,7 @@
         </thead>
         <tbody class="sortable save_positions" data-url="/admin/components/cp/gallery/update_positions">
             {foreach $categories as $category}
-            <tr data-title="{lang('a_repalce')}">
+            <tr>
                 <td class="t-a_c">
                     <span class="frame_label">
                         <span class="niceCheck">
@@ -41,7 +41,9 @@
                 </td>
                 <td>{$category.id}</td>
                 <td class="share_alt">
+                    {if $category.albums_count}
                     <a href="/admin/components/init_window/gallery/category/{$category.id}" class="go_to_site pull-right btn btn-mini" data-rel="tooltip" data-placement="top" data-original-title="{lang('a_show_album')}" style="visibility: hidden; "><i class="icon-share-alt"></i></a>
+                    {/if}
                     <a class="pjax" href="/admin/components/init_window/gallery/edit_category/{$category.id}" data-rel="tooltip" data-placement="top" data-original-title="{lang('amt_category_edit')}">{$category.name}</a>
                 </td>
                 <td>{$category.albums_count}</td>
