@@ -906,14 +906,20 @@ $(document).ready(function() {
         });
         $.post("/shop/compare/calculate",
                 {ind: keys, val: values},
-                function(data) {
-                    $(data).toggle();
-                    if($('.prod_show_diff').text() === 'Только Различия'){
-                        $('.prod_show_diff').text('Сравнить все');
+                function(obj) {
+                    //console.log(data);
+                    if (obj.result) {
+                    //{console.log("success")};
+                        $(obj.selector).toggle();
+                        if ($('.prod_show_diff').text() === 'Только Различия') {
+                            $('.prod_show_diff').text('Сравнить все');
+                        } else {
+                            $('.prod_show_diff').text('Только Различия');
+                        }
                     }else{
-                        $('.prod_show_diff').text('Только Различия');
+                        $('.prod_show_diff').text('Нет различий');
                     }
-                } 
+                }, "json"
         );
         $.fancybox.hideActivity();
         //console.log(rows);
