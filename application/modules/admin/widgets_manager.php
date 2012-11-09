@@ -7,15 +7,17 @@
 
 class Widgets_Manager extends MY_Controller {
 
-	public function __construct()
-	{
+    protected $widget_path;
+    
+    public function __construct() {
         parent::__construct();
 
-		$this->load->library('DX_Auth');
-        admin_or_redirect(); 
+        $this->load->library('DX_Auth');
+        admin_or_redirect();
 
-		$this->load->library('lib_admin');
-		$this->lib_admin->init_settings();
+        $this->load->library('lib_admin');
+        $this->lib_admin->init_settings();
+
     }
 
     /**
@@ -23,7 +25,12 @@ class Widgets_Manager extends MY_Controller {
      */ 
     public function index()
     {
-        $this->_is_wratible();
+        if (!$this->_is_wratible())
+        {
+            $this->template->assign('error',  lang('ac_to_contin_work_set_perm').'<b>'.$this->widgets_path.'</b>');
+            $this->template->show('widgets_list', FALSE);
+            exit;
+        }
 
         //$this->db->order_by('created', 'desc');
         $query = $this->db->order_by('id', 'asc')->get('widgets');
@@ -61,20 +68,22 @@ class Widgets_Manager extends MY_Controller {
         $this->db->select('site_template');
         $query = $this->db->get('settings')->row_array();
 
-        $widgets_path = PUBPATH.'/templates/'.$query['site_template'].'/widgets/';
-
-        if ( !is_really_writable($widgets_path) )
-        {
-            echo '<div id="notice_error">'.
-                lang('ac_to_contin_work_set_perm').'<b>'.$widgets_path.'</b>
-            </div>';
-            exit;
-        }
+        $this->widgets_path = PUBPATH . '/templates/' . $query['site_template'] . '/widgets/';
+        
+        if ( !is_really_writable($this->widgets_path) )
+            return false;
+        else
+            return true;
     }
 
 
     public function create()
     {
+        if (!$this->_is_wratible())
+        {
+            showMessage( lang('ac_to_contin_work_set_perm').'<b>'.$this->widgets_path.'</b>', '', 'r');
+            exit;
+        }
         cp_check_perm('widget_create'); 
 
         $this->load->library('form_validation');
@@ -184,6 +193,13 @@ class Widgets_Manager extends MY_Controller {
     public function create_tpl()
     {
         cp_check_perm('widget_create');
+        
+        if (!$this->_is_wratible())
+        {
+            $this->template->assign('error',  lang('ac_to_contin_work_set_perm').'<b>'.$this->widgets_path.'</b>');
+            $this->template->show('widgets_list', FALSE);
+            exit;
+        }
         
         $blocks = $this->display_create_tpl('tmodule');
                 

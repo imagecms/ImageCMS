@@ -8,7 +8,7 @@
             <div class="d-i_b">
                 <a href="/admin/components/cp/gallery/category/{$album['category_id']}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
                 <label for="addPictures" style="display:inline;">
-                    <button type="button" class="btn btn-small btn-success"><i class="icon-white icon-plus"></i>Add pictures</button>
+                    <button type="button" class="btn btn-small btn-success"><i class="icon-white icon-plus"></i>{lang('a_add_pictures')}</button>
                 </label>
                 <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#addPics" data-submit><i class="icon-white icon-ok"></i>{lang('amt_save')}</button>
                 <button type="button" class="btn btn-small btn-danger action_on disabled"  onclick="$('.modal').modal('show');"><i class="icon-trash icon-white"></i>{lang('a_delete')}</button>
