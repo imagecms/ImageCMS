@@ -4,7 +4,7 @@
         <div class="center">
             <h1>{lang('s_compare_tovars')}</h1>
             {if count($products) > 0}
-                <a class="active" style="cursor: pointer; display:none;">{lang('s_all_par')}</a>
+                <!--<a class="active" style="cursor: pointer; display:none;">{lang('s_all_par')}</a>-->
                 <!--<a class="prod_dif" id="all" style="cursor:pointer;">{lang('s_only_diff')}</a>-->
                 <a class="prod_show_diff" style="cursor:pointer;">{lang('s_only_diff')}</a>
                 {$cnt = 1}
@@ -56,41 +56,42 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="field_container_character">
-                                                    {$pdata = ShopCore::app()->SPropertiesRenderer->renderPropertiesCompareArray($product)}
-                                                    {$cnt = 1}   
-                                                    {foreach $data as $d}
-                                                        {$cval = ShopCore::encode($d)}
-                                                        <span data-row="{echo translit($d)}{echo $category['Id']}">
-                                                            <span class="todiff" data-rows="{echo translit($d)}{echo $category['Id']}">
-                                                                {if count($pdata[$cval])>1}
-                                                                    {$i = 0}
-                                                                    {foreach $pdata[$cval] as $ms}
-                                                                        {echo $ms}
-                                                                        {if $i<(count($pdata[$cval])-1)},{/if}
-                                                                        {$i++}
-                                                                    {/foreach}
-                                                                {else:}
-                                                                    {if $pdata[$cval]} {echo $pdata[$cval]} {else:} - {/if}
-                                                                {/if}
-                                                            </span>
-                                                        </span>   
-                                                       
-                                                    {/foreach}
-                                        </div>
-                                </li>
-                            {/if}
-                        {/foreach}
-                    </ul>
-                </div>
-            </div> 
-        {/foreach}           
-    {else:}
-        <div class="comparison_slider">
-            <div class="f-s_18 m-t_29 t-a_c">{lang('s_compare_list_em')}</div>
-        </div>
-    {/if}
-    {widget('latest_news')}
+                                            </div>
+                                            <div class="field_container_character">
+                                                {$pdata = ShopCore::app()->SPropertiesRenderer->renderPropertiesCompareArray($product)}
+                                                {$cnt = 1}   
+                                                {foreach $data as $d}
+                                                    {$cval = ShopCore::encode($d)}
+                                                    <span data-row="{echo translit($d)}{echo $category['Id']}">
+                                                        <span class="todiff" data-rows="{echo translit($d)}{echo $category['Id']}">
+                                                            {if count($pdata[$cval])>1}
+                                                                {$i = 0}
+                                                                {foreach $pdata[$cval] as $ms}
+                                                                    {echo $ms}
+                                                                {if $i<(count($pdata[$cval])-1)},{/if}
+                                                                {$i++}
+                                                            {/foreach}
+                                                        {else:}
+                                                    {if $pdata[$cval]} {echo $pdata[$cval]} {else:} - {/if}
+                                                {/if}
+                                            </span>
+                                        </span>   
+
+                                    {/foreach}
+                                </div>
+                            </li>
+                        {/if}
+                    {/foreach}
+                </ul>
+            </div>
+        </div> 
+    {/foreach}           
+{else:}
+    <div class="comparison_slider">
+        <div class="f-s_18 m-t_29 t-a_c">{lang('s_compare_list_em')}</div>
+    </div>
+{/if}
+{widget('latest_news')}
 </div>
 </div>
 </div>
