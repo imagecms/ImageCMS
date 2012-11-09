@@ -473,11 +473,6 @@ $(document).ready(function() {
         }
     });
 
-    if (window.hasOwnProperty('tpls'))
-        $('#inputTemplateCategory').autocomplete({
-            source: tpls
-        });
-
     $('.prop_active').live('click', function() {
         var id = $(this).attr('data-id');
         $.ajax({
