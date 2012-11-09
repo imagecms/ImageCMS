@@ -30,7 +30,7 @@
                                     <div class="control-group m-t_10">
                                         <label class="control-label" for="inputName">{lang('a_n')}:</label>
                                         <div class="controls">
-                                            <input type="text" name="name" id="inputName"/>
+                                            <input type="text" name="name" id="inputName" class="required"/>
                                         </div>
                                     </div>
                                     <div class="control-group">
@@ -49,18 +49,20 @@
                                             </select>
                                         </div>
                                     </div>
+                                        
                                     <div class="control-group" id="mod_name">
                                         <label class="control-label">{lang('a_module_name')}:</label>
-                                        <div class="controls" style="top: 6px;">
-                                            <b class="selmod"></b>
-                                            <input type="hidden" name="module" value="" id="sw">
+                                        <div class="controls"  >
+                                            <span class="selmod input-xlarge uneditable-input required" style="height:18px !important;">Выберите тип модуля с таблицы ниже</span>
+                                            <input type="hidden" class="required" name="module" value="" id="sw">
                                             <input type="hidden" name="method" value="" id="swm">
                                         </div>
                                     </div>
+                                        
                                     <div class="control-group" id="textareaholder" style="display:none;">
-                                        <label class="control-label">{lang('a_module_name')}:</label>
+                                        <label class="control-label">HTML:</label>
                                         <div class="controls" style="top: 6px;">
-                                            <textarea name="html_code" rows="15"></textarea>
+                                            <textarea name="html_code" rows="15" class="elRTE"></textarea>
                                         </div>
                                     </div>
                                 </div>
