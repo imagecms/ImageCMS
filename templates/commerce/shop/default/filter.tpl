@@ -147,7 +147,8 @@
                         <span>({$count_property})</span>
                     </label>
                 {/foreach}
-            {else:}    
+            {else:}
+                {if count($propertiesInCategory[$prop->getId()])>0}
                 {$temp = array_count_values($propertiesInCategory[$prop->getId()])}
                 {$counter = 0}
                 {foreach $temp as $key=>$val}
@@ -159,6 +160,7 @@
                     </label>
                     {$counter++}
                 {/foreach}
+                {/if}
             {/if}
         </div>
     {/foreach}
