@@ -367,7 +367,6 @@ $(window).load(function() {
         $js_carousel.each(function(index) {
             var index = index,
                     $count_visible = (cont_width / ($item_w[index])).toFixed(1);
-
             if ($item_w[index] * $item_l[index] > cont_width) {
                 //$this_prev[index].add($this_next[index]).fadeIn();
                 $this_carousel[index].jcarousel({
