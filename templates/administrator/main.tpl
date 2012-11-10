@@ -75,22 +75,24 @@
 
 
 
-                        <div class="btn-group" id="topPanelNotifications" style="display: none;">
-                            <div class="span4 d-i_b">
-                                <a href="/admin/components/run/shop/orders/index" class=" pjax btn btn-large" data-title="Заказы" data-rel="tooltip" data-original-title="Заказы">
-                                    <i class="icon-bask "></i>
-                                </a>
-                                <a href="#" class="btn btn-large pjax" data-title="{lang('a_product_no_icon')}" data-rel="tooltip" data-original-title="">
-                                    <i class="icon-report_exists"></i>
-                                </a>
-                                <a href="#" class="btn btn-large pjax" data-title="Callback" data-rel="tooltip" data-original-title="Callback">
-                                    <i class="icon-callback "></i>
-                                </a>
-                                <a href="/admin/components/cp/comments" class="btn btn-large pjax" data-title="{lang('a_last_comm')}" data-rel="tooltip" data-original-title="{lang('a_last_comm')}">
-                                    <i class="icon-comment_head "></i>
-                                </a>
-                            </div>
-                        </div>
+                            {if SHOP_INSTALLED}
+                                <div class="btn-group" id="topPanelNotifications" style="display: none;">
+                                    <div class="span4 d-i_b">
+                                        <a href="/admin/components/run/shop/orders/index" class=" pjax btn btn-large" data-title="Заказы" data-rel="tooltip" data-original-title="Заказы">
+                                            <i class="icon-bask "></i>
+                                        </a>
+                                        <a href="#" class="btn btn-large pjax" data-title="{lang('a_product_no_icon')}" data-rel="tooltip" data-original-title="">
+                                            <i class="icon-report_exists"></i>
+                                        </a>
+                                        <a href="#" class="btn btn-large pjax" data-title="Callback" data-rel="tooltip" data-original-title="Callback">
+                                            <i class="icon-callback "></i>
+                                        </a>
+                                        <a href="/admin/components/cp/comments" class="btn btn-large pjax" data-title="{lang('a_last_comm')}" data-rel="tooltip" data-original-title="{lang('a_last_comm')}">
+                                            <i class="icon-comment_head "></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            {/if}
                         {/if}
 
 
@@ -173,11 +175,15 @@
                                 </ul>
                             </li>
                         </ul>
-                        <a class="btn btn-small pull-right btn-info" onclick="loadShopInterface();" href="#">Администрировать магазин <span class="f-s_14">→</span></a>
+                            {if SHOP_INSTALLED}
+                                <a class="btn btn-small pull-right btn-info" onclick="loadShopInterface();" href="#">Администрировать магазин <span class="f-s_14">→</span></a>
+                            {/if}
                     </nav>
                 </div>
 
-                <div style="display:none;" class="container" id="shopAdminMenu"  > {include_tpl('shop_menu.tpl')} </div>
+                    {if SHOP_INSTALLED}
+                        <div style="display:none;" class="container" id="shopAdminMenu"  > {include_tpl('shop_menu.tpl')} </div>
+                    {/if}
             </div>
             {/if}
             <div id="loading" style=" display: none; background: url(/templates/administrator/images/ajax-loader.gif) no-repeat 50% 0; z-index: 10000; position: absolute;width: 100%; background-color: rgba(255, 255, 255, 0.7);"></div>

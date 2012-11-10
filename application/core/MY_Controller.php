@@ -23,6 +23,18 @@ class MY_Controller extends MX_Controller {
         
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
             $this->ajaxRequest = true;
+        
+        define('SHOP_INSTALLED', $this->checkForShop());
+    }
+    
+        
+    private function checkForShop()
+    {
+        $res = $this->db->where('identif', 'shop')
+                ->get('components')
+                ->result_array();
+        
+        return (bool) count($res);
     }
 
 }
