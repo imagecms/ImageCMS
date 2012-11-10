@@ -1,7 +1,13 @@
 <h2>Лицензионное Соглашение</h2>
 <p>
-
-<textarea style="width:699px;height:550px;" readonly >
+<style>
+    
+    textarea{
+        background-color: #fff !important;
+    }
+    
+</style>
+<textarea style="width:100%;height:550px;" readonly >
 Программа Система Управления Сайтом ImageCMS распространяется под генеральной общественной лицензией GNU. Перевод текста лицензии изложен ниже.
 
 ГЕНЕРАЛЬНАЯ ОБЩЕСТВЕННАЯ ЛИЦЕНЗИЯ GNU
@@ -118,6 +124,6 @@
 
 <br />
 <br />
-<a href="<?php echo $next_link ?>"><input type="submit" class="button_130" value="Принять лицензию"></a>
-<a href="http://www.imagecms.net/"><input type="submit" class="button_130" value="Отмена"></a>
+<a href="<?php echo $next_link ?>" class="btn btn-primary"><i class="icon-ok icon-white"></i> Принять лицензию</a>
+<a href="http://www.imagecms.net/" class="btn btn-danger"><i class="icon-ban-circle icon-white"></i> Отмена</a>
 </p>

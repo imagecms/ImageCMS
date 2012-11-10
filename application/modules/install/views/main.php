@@ -3,15 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>ImageCMS - Установка</title>
-
-<?php
-    $img = str_replace('index.php', '',$_SERVER['SCRIPT_NAME']).'/application/modules/install/templates/images/';
-    $img = reduce_multiples($img,'/');
-?>
+<link rel="stylesheet" type="text/css" href="/templates/administrator/css/bootstrap.css">
 
 <style>
 body {
-    background-image:url('<?php echo $img; ?>bg.png');
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-image: url("/templates/administrator/img/fon_document.png");
     font-family:"Trebuchet MS", Arial,Tahoma,Verdana; 
     width:100%; 
     font-size:13px;
@@ -42,13 +39,16 @@ div.form_overflow {
     padding-top:1px;
     width:auto;
 }
+
+a.btn{
+    text-decoration: none;
+}
 .button_130, .button_silver_130 {
 -moz-background-clip:border;
 -moz-background-inline-policy:continuous;
 -moz-background-origin:padding;
 background:transparent url('<?php echo $img; ?>btn1_130.png') no-repeat scroll center top;
 border:0 none;
-font-family:'Trebuchet MS',Helvetica,Arial,sans-serif;
 font-size:12px;
 height:22px;
 padding:3px;
@@ -67,6 +67,10 @@ background-position:center -22px;
     padding:3px;
 }
 
+.list li i{
+    float: right;
+}
+
 .list li:hover {
     cursor:pointer;
     background-color:#ADD3DC; 
@@ -81,13 +85,11 @@ background-position:center -22px;
 }
 
 .list .ok {
-    background-image:url('<?php echo $img; ?>okay.png');
     background-repeat:no-repeat;
     background-position:center right;
     border-left:2px solid #A8CC4A ; 
 }
 .list .warning {
-    background-image:url('<?php echo $img; ?>warning.png');
     background-repeat:no-repeat;
     background-position:center right;
     border-left:2px solid #DD6464; 
@@ -115,17 +117,33 @@ background-position:center -22px;
     padding-top:10px;
     color:#F15858; 
 }
+
+section.mini-layout{
+    font-size: 12px;
+    margin-bottom: 20px;
+    padding: 39px;
+    border: 1px solid #DDD;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .075);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.075);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .075);
+    background-color: white;
+}
 </style>
 
 </head>
 <body>
-    <div id="content" style="width:700px;margin:auto;margin-top:50px;">
+    <div style="width:960px;margin:auto;margin-top:50px;">
         <div id="logo">
-            <img src="<?php echo $img; ?>logo.png" align="bottom"/>
+            <img src="/templates/administrator/img/logo.png" align="bottom"/>
         </div>
 
-        <div id="main_content" style="margin-top:25px;">
-        <?php echo $content ?>
+        <div id="mainContent" class="container" style="margin-top:25px;">
+            <section class="mini-layout">
+                <?php echo $content ?>
+            </section>
         </div>
     </div>
 

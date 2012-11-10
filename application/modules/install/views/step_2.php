@@ -1,6 +1,6 @@
 <?php
 if (validation_errors() OR $other_errors) {
-    echo '<b>Обнаружены следующие ошибки:</b><br/><div class="errors_list">' . validation_errors('', '<br/>') . $other_errors . '</div>';
+    echo '<b>Обнаружены следующие ошибки:</b><br/><div class="alert alert-error errors_list">' . validation_errors('', '<br/>') . $other_errors . '</div>';
 }
 ?>
 
@@ -34,9 +34,9 @@ if (validation_errors() OR $other_errors) {
     <h2>Подключение к базе данных</h2>
     <div class="form_text"></div>
     <div class="form_input">
-        <span style="background-color:#EF8080;padding:4px;color:#000000;border:2px solid #C82F2F;">
+        <div class="alert">
             <b>Внимание:</b> все данные в указанной Вами базе будут уничтожены.
-        </span>
+        </div>
     </div>
     <div class="form_overflow"></div>
 
@@ -87,10 +87,10 @@ if (validation_errors() OR $other_errors) {
 
 <p align="left">
     <br/>
-    <input type="submit" class="button_130" value="Далее">
+    <button class="btn btn-success" type="submit" class="button_130"><i class="icon-ok icon-white"></i> Далее</button>
 
 </p>
 </form>
 
-<div class="lite">Все поля обязательны к заполнению.</div>
+<div >Все поля обязательны к заполнению.</div>
 <br/>
