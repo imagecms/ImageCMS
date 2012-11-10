@@ -70,7 +70,7 @@ class Login extends MY_Controller {
             if ($rezult == TRUE) {
                 $this->lib_admin->log(lang('ac_entered_in_cp_ip') . $this->input->ip_address());
 
-                redirect('admin', 'refresh');
+                redirect('admin/init', 'refresh');
             } else {
                 $this->template->assign('login_failed', lang('ac_error_login'));
             }
