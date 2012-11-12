@@ -23,7 +23,7 @@ $(document).ready(function() {
         var variable = $('[href=' + location.hash + ']').parent().index();
     }
 
-    $('.nav_tabs li a').one('click', function(event) {
+    $('.nav_tabs li a').live('click', function(event) {
         event.stopPropagation();
 
         nav_tabs_li.removeClass('ui-tabs-selected');
