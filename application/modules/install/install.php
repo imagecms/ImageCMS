@@ -64,6 +64,14 @@ class Install extends MY_Controller {
                 $allow_params[$k] = 'ok';
             }
         }
+        
+        if (strnatcmp(phpversion(),'5.3.4'))
+            $allow_params['PHP version >= 5.3.4'] = 'ok';
+        else
+        {
+            $allow_params['PHP version >= 5.3.4'] = 'warning';
+            $result = false;
+        }   
 
         // Check installed php exts.
         $exts = array(

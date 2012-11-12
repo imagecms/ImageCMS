@@ -426,6 +426,9 @@ select.alert-error{padding: 4px 6px;}
 .ui-autocomplete{z-index: 5 !important;}
 
 
+.img-polaroid {max-width: 100%;}
+
+
 /*  product variants    */
 
 .variantImage .controls{
@@ -439,3 +442,4 @@ select.alert-error{padding: 4px 6px;}
 .controls img.img-polaroid{
     cursor: pointer;
 }
+
