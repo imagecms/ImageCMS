@@ -20,7 +20,8 @@ class Admin extends MY_Controller {
         $this->template->add_array(array(
             'settings' => $this->get_settings(),
         ));
-        $this->display_tpl('settings');
+        //$this->display_tpl('settings');
+        $this->render('settings');
     }
 
     private function display_tpl($file) {
@@ -33,6 +34,8 @@ class Admin extends MY_Controller {
         $data = $_POST['ss'];
         $string = serialize($data);
         ShopCore::app()->SSettings->set('ss', $string);
+        if($this->input->post('action') == 'tomain')
+            pjax('/admin/components/modules_table');
         showMessage("Настройки успешно сохранены");
     }
     
@@ -40,6 +43,19 @@ class Admin extends MY_Controller {
     {
         $settings = ShopCore::app()->SSettings->getss_settings();
         return $settings;
+    }
+    
+    public function render($viewName, array $data = array(), $return = false) {
+        if (!empty($data))
+            $this->template->add_array($data);
+
+        $this->template->show('file:' . 'application/modules/share/templates/admin/' . $viewName);
+        exit;
+
+        if ($return === false)
+            $this->template->show('file:' . 'application/modules/share/templates/admin/' . $viewName);
+        else
+            return $this->template->fetch('file:' . 'application/modules/share/templates/admin/' . $viewName);
     }
 
 }
