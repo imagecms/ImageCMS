@@ -30,11 +30,16 @@ class MY_Controller extends MX_Controller {
         
     private function checkForShop()
     {
+    if ($this->db)
+    {
         $res = $this->db->where('identif', 'shop')
                 ->get('components')
                 ->result_array();
         
         return (bool) count($res);
+    }
+    else
+    	return false;
     }
 
 }
