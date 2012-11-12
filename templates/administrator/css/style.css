@@ -425,4 +425,21 @@ select.alert-error{padding: 4px 6px;}
 #elFinderTPLEd{max-width: 100%;}
 .ui-autocomplete{z-index: 5 !important;}
 
+
 .img-polaroid {max-width: 100%;}
+
+
+/*  product variants    */
+
+.variantImage .controls{
+    margin-left: 9% !important;
+}
+
+.variantImage button.delete_image{
+    margin-left: 37%;
+}
+
+.controls img.img-polaroid{
+    cursor: pointer;
+}
+
