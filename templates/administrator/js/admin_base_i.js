@@ -738,11 +738,13 @@ product.toCategory = function(){
         container.find('img').attr('src', "/templates/administrator/images/select-picture.png");
     });
 
-    $('.deleteMainImages').live('click', function() {
+    $('button.deleteMainImages').die('click').live('click', function(event) {
+        event.preventDefault();
         var container = $(this).parents('div.control-group');
         container.find('img').attr('src', "/templates/administrator/images/select-picture.png");
         container.find('input:hidden').attr('value', 1);
         container.find('input:file').attr('value', '');
+        return false;
     });
 
     $('.item_parent_id').live('change', function() {
