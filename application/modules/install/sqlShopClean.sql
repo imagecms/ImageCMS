@@ -127,6 +127,7 @@ CREATE TABLE IF NOT EXISTS `components` (
   `autoload` int(1) NOT NULL,
   `in_menu` int(1) NOT NULL DEFAULT '0',
   `settings` text,
+  `position` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`),
   KEY `identif` (`identif`),
@@ -703,6 +704,18 @@ INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
 
 -- --------------------------------------------------------
 
+-- Структура таблицы `mail`
+--
+
+CREATE TABLE IF NOT EXISTS `mail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) DEFAULT NULL,
+  `date` int(15) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
 --
 -- Table structure for table `menus`
 --
@@ -958,6 +971,8 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `sidepanel` varchar(5) NOT NULL,
   `lk` varchar(250) DEFAULT NULL,
   `lang_sel` varchar(15) NOT NULL DEFAULT 'russian_lang',
+  `google_webmaster` varchar(200) DEFAULT NULL,
+  `yandex_webmaster` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `s_name` (`s_name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
@@ -1236,6 +1251,22 @@ CREATE TABLE IF NOT EXISTS `shop_category_i18n` (
   PRIMARY KEY (`id`,`locale`),
   KEY `shop_category_i18n_I_1` (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+-- Структура таблицы `shop_comulativ_discount`
+--
+
+CREATE TABLE IF NOT EXISTS `shop_comulativ_discount` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `description` varchar(255) DEFAULT NULL,
+  `discount` int(3) DEFAULT NULL,
+  `active` int(1) DEFAULT NULL,
+  `date` int(15) DEFAULT NULL,
+  `total` int(255) DEFAULT NULL,
+  `total_a` int(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1522,6 +1553,7 @@ CREATE TABLE IF NOT EXISTS `shop_orders` (
   `external_id` varchar(255) DEFAULT NULL,
   `gift_cert_key` varchar(25) DEFAULT NULL,
   `gift_cert_price` int(11) DEFAULT NULL,
+  `comulativ` int(3) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_orders_I_1` (`key`),
   KEY `shop_orders_I_2` (`status`),
@@ -1856,6 +1888,22 @@ INSERT INTO `shop_product_properties` (`id`, `csv_name`, `active`, `show_in_comp
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `shop_product_properties_data_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `shop_product_properties_data_i18n` (
+  `id` int(11) NOT NULL,
+  `locale` varchar(5) NOT NULL,
+  `value` varchar(500) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `shop_product_properties_data_i18n_I_1` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+
+
+--
 -- Table structure for table `shop_product_properties_categories`
 --
 
@@ -1938,6 +1986,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_variants` (
   `smallImage` varchar(255) DEFAULT NULL,
   `external_id` varchar(255) DEFAULT NULL,
   `currency` int(11) DEFAULT NULL,
+  `price_in_main` float(10,5) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_product_variants_I_1` (`product_id`),
   KEY `shop_product_variants_I_2` (`position`),
@@ -2705,6 +2754,10 @@ CREATE TABLE IF NOT EXISTS `shop_spy` (
   `user_id` int(11) DEFAULT NULL,
   `product_id` int(11) DEFAULT NULL,
   `price` int(11) DEFAULT NULL,
+  `variant_id` int(11) DEFAULT NULL,
+  `key` varchar(500) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `old_price` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
@@ -2735,6 +2788,8 @@ CREATE TABLE IF NOT EXISTS `shop_user_profile` (
   `wish_list_data` text,
   `role_id` int(11) DEFAULT NULL,
   `user_external_id` varchar(255) DEFAULT NULL,
+  `amout` float(10,2) NOT NULL,
+  `discount` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_user_profile_I_1` (`key`),
   KEY `shop_user_profile_FI_1` (`role_id`)

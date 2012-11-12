@@ -1,24 +1,10 @@
--- phpMyAdmin SQL Dump
--- version 3.4.10.1deb1
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Generation Time: Sep 04, 2012 at 03:58 PM
--- Server version: 5.5.24
--- PHP Version: 5.3.10-1ubuntu3.2
-
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
-
---
--- Database: `clients`
---
 
 -- --------------------------------------------------------
 
@@ -141,6 +127,7 @@ CREATE TABLE IF NOT EXISTS `components` (
   `autoload` int(1) NOT NULL,
   `in_menu` int(1) NOT NULL DEFAULT '0',
   `settings` text,
+  `position` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`),
   KEY `identif` (`identif`),
@@ -716,6 +703,18 @@ INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
 
 -- --------------------------------------------------------
 
+-- Структура таблицы `mail`
+--
+
+CREATE TABLE IF NOT EXISTS `mail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) DEFAULT NULL,
+  `date` int(15) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
 --
 -- Table structure for table `menus`
 --
@@ -971,6 +970,8 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `sidepanel` varchar(5) NOT NULL,
   `lk` varchar(250) DEFAULT NULL,
   `lang_sel` varchar(15) NOT NULL DEFAULT 'russian_lang',
+  `google_webmaster` varchar(200) DEFAULT NULL,
+  `yandex_webmaster` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `s_name` (`s_name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
