@@ -96,6 +96,7 @@
                     </div>
                     <!--<span class="response">{echo $model->totalComments()} {echo SStringHelper::Pluralize($model->totalComments(), array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}</span>-->
                     </br><span>{echo ShopCore::app()->SProductSpy->getsubscribescount($model->getId())}</span>
+                    <div>{echo $CI->load->module('share')->_make_share_form()}</div>
                 </div>
                 <div class="buy clearfix m-t_30">
                     {if count($model->getProductVariants())>1}
@@ -176,7 +177,7 @@
                 <p class="c_b">{echo $model->getShortDescription()}</p>
                 <p>{echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInline($model)}</p>
                 <div>
-
+                    {echo $CI->load->module('share')->_make_like_buttons()}
                 </div>
             </div>
         </div>
