@@ -71,8 +71,8 @@
         <div style="padding-bottom:4px;">
             <p class="clear">
                 {if $captcha_type == 'captcha'}
-                    <label for="captcha" style="width:140px;" class="left">{lang('lang_captcha')}</label>
-                    <input type="text" name="captcha" id="captcha" />  <span style="color:red;">*</span>
+                    <label for="captcha" style="width:140px;" class="left">{lang('lang_captcha')}<span style="color:red;">*</span></label>
+                    <input type="text" name="captcha" id="captcha" />
                 {/if}
                 <br/>
                 <label class="left" style="width:140px;" >&nbsp;</label>

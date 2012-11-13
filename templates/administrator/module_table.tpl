@@ -62,9 +62,6 @@
                                 </thead>
                                 <tbody class="sortable save_positions" data-url="/admin/components/save_components_positions">
                                     {foreach $installed as $module}
-                                        {if $module.name == 'share'}
-                                            {continue}
-                                        {/if}
                                         <tr data-id="{$module.id}">
                                             <td class="t-a_c">
                                                 <span class="frame_label">
@@ -116,7 +113,7 @@
                     <h3>{lang('a_modules_not_installed')}</h3>
                 {/if}
                 <div class="tab-pane" id="set_modul">
-                    {if count($not_installed) > 0 }
+                    {if count($not_installed) > 0}
                         <div class="row-fluid" id="nimc">
                             <table class="table table-striped table-bordered table-hover table-condensed" id="nimt">
                                 <thead>
