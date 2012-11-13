@@ -30,7 +30,7 @@ class Share extends MY_Controller {
 
     public function _make_share_form() {
         $settings = $this->settings;
-        if ($settings['yar'] == 1) {
+        if ($settings['yaru'] == 1) {
             $html .= 'yaru,';
         }
         if ($settings['vkcom'] == 1) {
