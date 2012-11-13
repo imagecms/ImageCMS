@@ -35,22 +35,24 @@ $(document).ready(function() {
     })
 
     $('#makeImportForm').on('submit', function() {
+        $chekedFile = $('input[name=csvfile]:checked').val();
+
         $names = '';
         $('.attrnameHolder').each(function(index) {
             $names = $names + $(this).attr('data-attrnames') + ',';
         })
         $('input[type=hidden].attributes').val($names);
+        $('input[type=hidden].slothidden').val($chekedFile);
 
-//        $.ajax({
-//            url: "/admin/components/run/shop/system/import",
-//            type: 'post',
-//            data: 'csvfile=' + val,
-//            success: function(data) {
-//                $('.attrHandler').html(data);
-//            }
-//        });
+        $.ajax({
+            url: "/admin/components/run/shop/system/import",
+            type: 'post',
+            data: $(this).serialize(),
+            success: function(data) {
+                showMessage('', data);
+            }
+        });
 
-        $chekedFile = $('input[name=csvfile]:checked').val();
         console.log($('input[type=hidden].attributes').val());
         console.log($chekedFile);
         return false;
