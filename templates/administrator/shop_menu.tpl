@@ -1,3 +1,6 @@
+{if !$ADMIN_URL}
+    {$ADMIN_URL = '/admin/components/run/shop/'}
+{/if}
 <nav class="navbar navbar-inverse">
     <ul class="nav">
         <li class="homeAnchor" ><a href="{$ADMIN_URL}dashboard" class="pjax "><i class="icon-home"></i><span>Главная</span></a></li>
