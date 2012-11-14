@@ -5,27 +5,9 @@
  *
  * Polls Module
  * Usage:
-* 	    <!-- Загружаем голосование по ID -->
-        {$data = modules::load('polls')->getPoll(3)}
-
-        {if $data.userVoted}
-            <!-- Пользователь уже голосовал в опросе. Выводим результаты -->
-            <div style="width:100%;position:relative;">
-            {foreach $data['answers'] as $answer}
-                {encode($answer.text)} ({$answer.percent}%)
-                <div style="width:{$answer.percent}%;background-color:silver;height:5px;"></div>
-            {/foreach}
-            </div>
-        {else:}
-            <!-- Пользователь не голосовал в опросе. Выводим форму голосования -->
-            <form action="" method="post">
-            {foreach $data['answers'] as $answer}
-                <label><input name="cms_polls_make_vote" value="{$answer.id}" type="radio">{echo encode($answer.text)}</label><br/>
-            {/foreach}
-            <input type="submit" value="Проголосовать">
-            {form_csrf()}
-            </form>
-        {/if}
+* 	    <!-- Отображаем голосование по ID -->
+        {echo modules::load('polls')->displayPoll(3)}
+ * 
  */
 
 class Polls extends MY_Controller {
@@ -187,23 +169,24 @@ class Polls extends MY_Controller {
         $this->dbforge->drop_table('cms_polls_voters');
     }
 
+    /*
+     * Display poll by ID
+     */
+    
+    public function displayPoll($id)
+    {
+        echo 'sd lfhksdjfh ksjdfkj sdfjsgdkj dfkjsdf kjsdfkj skd fkjsgd f';
+        $this->template->assign('data', $this->getPoll($id));
+        $this->display_tpl('poll');
+    }
     /**
      * Display template file
-     */ 
-	private function display_tpl($file = '')
-	{
+    */ 
+    private function display_tpl($file = '')
+    {
         $file = realpath(dirname(__FILE__)).'/templates/public/'.$file.'.tpl';  
-		$this->template->display('file:'.$file);
-	}
-
-    /**
-     * Fetch template file
-     */ 
-	private function fetch_tpl($file = '')
-	{
-        $file = realpath(dirname(__FILE__)).'/templates/public/'.$file.'.tpl';  
-		return $this->template->fetch('file:'.$file);
-	}
+        $this->template->display('file:'.$file);
+    }
 
 }
 

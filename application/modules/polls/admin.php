@@ -8,20 +8,20 @@
 
 class Admin extends MY_Controller {
 
-	public function __construct()
-	{
-		parent::__construct();
+    public function __construct()
+    {
+        parent::__construct();
         cp_check_perm('module_admin');
-	}
+    }
 
 
-	public function index()
-	{
-	    $polls = $this->db->get('cms_polls');
+    public function index()
+    {
+        $polls = $this->db->get('cms_polls');
 
         $this->template->assign('polls',$polls);
-        $this->display_tpl('list');
-	}
+        $this->render('list');
+    }
 
     public function create()
     {
@@ -36,40 +36,46 @@ class Admin extends MY_Controller {
                 showMessage(validation_errors(),false,'r');
                 exit();
             }
-            else
+
+            // Create new poll.
+            $this->db->insert('cms_polls', array(
+                'name'=>  $this->input->post('name'),
+            ));
+
+            // Process answers
+            if (sizeof($_POST['answers']) > 0)
             {
-                // Create new poll.
-                $this->db->insert('cms_polls', array(
-                    'name'=>$_POST['name'],
-                ));
+                // Get poll id
+                $poll_id = $this->db->insert_id();
 
-                // Process answers
-                if (sizeof($_POST['answers']) > 0)
+                $toInsert = array();
+                $p=0;
+                foreach ($this->input->post('answers') as $answer)
                 {
-                    // Get poll id
-                    $poll_id = $this->db->insert_id();
-                    $position = 0;
-
-                    foreach ($_POST['answers'] as $answer)
+                    if ($answer != '')
                     {
-                        if ($answer != '')
-                        {
-                            $this->db->insert('cms_polls_answers', array(
-                                'poll_id'=>$poll_id,
-                                'text'=>$answer,
-                                'position'=>(int)$position,
-                            ));
-
-                            $position++;
-                        }
+                        $toInsert[] = array(
+                            'poll_id'=>$poll_id,
+                            'text'=>$answer,
+                            'position'=>$p,
+                        );
+                        $p++;
                     }
                 }
 
-                updateDiv('page', site_url('admin/components/cp/polls/edit/'.$poll_id));
+                if (count($toInsert))
+                    $this->db->insert_batch('cms_polls_answers', $toInsert);
             }
-        }else{
-            $this->display_tpl('create');
+
+            showMessage('Poll created success');
+
+            if ($this->input->post('action') == 'close')
+                pjax('/admin/components/cp/polls/');
+            else
+                pjax('/admin/components/cp/polls/edit/'.$poll_id);
         }
+        else
+            $this->render('create');
     }
 
     public function edit($id = null)
@@ -112,6 +118,7 @@ class Admin extends MY_Controller {
                 // Update existing answers
                 if (sizeof($_POST['answers']) > 0)
                 {
+                    $variants = array();
                     foreach ($_POST['answers'] as $key=>$val)
                     {
                         if ($val != '')
@@ -119,30 +126,34 @@ class Admin extends MY_Controller {
                             $this->db->where('id',$key);
                             $this->db->where('poll_id',$poll['id']);
                             $this->db->update('cms_polls_answers',array('text'=>$val));
+                            $variants[] = $val;
+                        }
+                    }
+                    
+                    // Insert next answers
+                    foreach ($this->input->post('new_answer') as $answer)
+                    {
+                        if ( !in_array($answer, $variants) && trim($answer) != '')
+                        {
+                            $key++;
+                            $this->db->insert('cms_polls_answers', array(
+                                'poll_id'=>$poll['id'],
+                                'text'=>$answer,
+                                'position'=>$key
+                                ));
                         }
                     }
                 }
-
-                // Insert next answer
-                if ($_POST['next_answer'] != '')
-                {
-                    $this->db->where('poll_id',$poll['id']);
-                    $this->db->select_max('position');
-                    $max_query = $this->db->get('cms_polls_answers')->row_array();
-                    $max_position = $max_query['position'];
-
-                    $this->db->insert('cms_polls_answers', array(
-                        'poll_id'=>$poll['id'],
-                        'text'=>$_POST['next_answer'],
-                        'position'=>(int)$max_position+1,
-                    ));
-                }
             }
 
-            updateDiv('page', site_url('admin/components/cp/polls/edit/'.$poll['id']));
+            showMessage('Poll update successfull');
+            if ($this->input->post('action') == 'close')
+                pjax('/admin/components/cp/polls/');
+            else
+                pjax('');
         }
-
-        $this->display_tpl('edit');
+        else
+            $this->render('edit');
     }
 
     /**
@@ -162,41 +173,55 @@ class Admin extends MY_Controller {
             'answer_id'=>$id,
         ));
 
-        updateDiv('page', site_url('admin/components/cp/polls/edit/'.$poll_id));
+        showMessage('Answer deleted success');
+        pjax('');
     }
 
     public function delete($poll_id=null)
     {
-        $this->db->delete('cms_polls', array(
-            'id' => $poll_id,
-        ));
-        $this->db->delete('cms_polls_answers', array(
-            'poll_id' => $poll_id,
-        ));
-        $this->db->delete('cms_polls_voters', array(
-            'poll_id' => $poll_id,
-        ));
+        if ($poll_id)
+        {
+            $this->db->delete('cms_polls', array(
+                'id' => $poll_id,
+            ));
+            $this->db->delete('cms_polls_answers', array(
+                'poll_id' => $poll_id,
+            ));
+            $this->db->delete('cms_polls_voters', array(
+                'poll_id' => $poll_id,
+            ));
 
-        updateDiv('page', site_url('admin/components/cp/polls/index'));
+            showMessage('Poll deleted success');
+            pjax('');
+        }
+    }
+    
+    
+    private function render($file)
+    {
+        if ($this->ajaxRequest)
+            echo $this->fetch_tpl ($file);
+        else
+            $this->display_tpl($file);
     }
 
     /**
      * Display template file
      */ 
-	private function display_tpl($file = '')
-	{
-        $file = realpath(dirname(__FILE__)).'/templates/admin/'.$file.'.tpl';  
-		$this->template->display('file:'.$file);
-	}
+    private function display_tpl($file = '')
+    {
+        $file = realpath(dirname(__FILE__)).'/templates/admin/'.$file;  
+        $this->template->show('file:'.$file);
+    }
 
     /**
      * Fetch template file
      */ 
-	private function fetch_tpl($file = '')
-	{
+    private function fetch_tpl($file = '')
+    {
         $file = realpath(dirname(__FILE__)).'/templates/admin/'.$file.'.tpl';  
-		return $this->template->fetch('file:'.$file);
-	}
+        return $this->template->fetch('file:'.$file);
+    }
 
 }
 

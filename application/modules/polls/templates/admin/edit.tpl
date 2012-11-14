@@ -1,42 +1,64 @@
-<div class="top-navigation">
-        <div style="float:left;">
-            <ul>
-            <li>
-                <p>{lang('amt_poll_edit')}</p>
-            </li>
-            </ul>
+<div class="container">
+<section class="mini-layout">
+    <div class="frame_title clearfix">
+        <div class="pull-left">
+            <span class="help-inline"></span>
+            <span class="title">{lang('amt_poll_edit')}</span>
         </div>
-</div>
-<div style="clear:both;"></div>
+        <div class="pull-right">
+            <div class="d-i_b">
+                <a href="{$BASE_URL}admin/components/cp/polls/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
+                <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#poll"><i class="icon-ok"></i>{lang('a_save')}</button>
+                <button type="button" class="btn btn-small formSubmit" data-form="#poll" data-action="close"><i class="icon-check"></i>{lang('a_save_and_exit')}</button>
+            </div>
+        </div>
 
-<form method="post" action="{site_url('admin/components/cp/polls/edit/' . $poll.id)}" id="polls_create_form" style="width:100%;">
-       	<div class="form_text">{lang('amt_tname')}:</div>
-		<div class="form_input">
-		    <input type="text" class="textbox_long" name="name" value="{encode($poll.name)}" />
-		    <span style="color:red;">*</span>
-		</div>
-        <div class="form_overflow"></div>
-
+    </div>
+            
+    <div class="content_big_td clearfix m-t_20">
+        <form method="post" action="{site_url('admin/components/cp/polls/edit/' . $poll.id)}" id="poll" class="form-horizontal span9">
+        <div class="control-group">
+            <label class="control-label" for="inputName">{lang('amt_tname')}:</label>
+            <div class="controls">
+                <input type="text" class="required" name="name" value="{$poll.name}"  id="inputName"/>
+            </div>
+        </div>
+    
         {$n=1}
         {foreach $answers as $a}
-       	<div class="form_text">{lang('amt_answer')} {$n}:</div>
-		<div class="form_input">
-		    <input type="text" class="textbox_long" name="answers[{$a.id}]" value="{encode($a.text)}" />
-		    <img align="middle" src="{$THEME}/images/delete.png" onclick="ajax_div('page', base_url + 'admin/components/cp/polls/delete_answer/{$poll.id}/{$a.id}');" title="Удалить" width="16" height="16" style="cursor:pointer;" />
-		</div>
-        <div class="form_overflow"></div>
+            
+        <div class="control-group">
+            <label class="control-label">{lang('amt_answer')} {$n}:</label>
+            <div class="controls">
+                <div class="group_icon pull-right">
+                    <div>
+                        <button onclick="polls.deleteAnswer({$poll.id}, {$a.id}); return false;" class="btn btn-danger btn-small"><i class="icon-trash icon-white"></i> {lang('a_delete')}</button>
+                    </div>
+                </div>
+                <div class="o_h">
+                    <input type="text" class="textbox_long" name="answers[{$a.id}]" value="{encode($a.text)}" />
+                </div>
+            </div>
+        </div>     
+            
         {$n++}
         {/foreach}
-
-       	<div class="form_text">{lang('amt_next_answer')}:</div>
-		<div class="form_input">
-		    <input type="text" class="textbox_long" name="next_answer" value="" />
-		</div>
-        <div class="form_overflow"></div>
-
-   		<div class="form_text"></div>
-		<div class="form_input">
-            <input type="submit" name="button"  class="button_130" value="{lang('amt_save')}" onclick="ajax_me('polls_create_form');" />
+          
+        <div class="control-group addAnswerBtn">
+            <div class="controls">
+                <button class="btn btn-success btn-small" onclick="polls.addAnswerField(); return false;"><i class="icon-plus-sign icon-white"></i>{lang('a_add')}</button>
+            </div>    
         </div>
-		<div class="form_overflow"></div>
-</form>
+        </form>
+    </div>
+            
+
+</section> 
+</div>
+<div class="control-group" style="display: none" id="answerTpl">
+    <label class="control-label">{lang('amt_answer')}</label>
+    <div class="controls">
+        <input type="text" class="textbox_long" name="new_answer[]" value="" />
+    </div>
+</div>
+<script src="/application/modules/polls/templates/admin/admin.js"></script>
