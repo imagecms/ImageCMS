@@ -1,140 +1,48 @@
-<div class="top-navigation">
-    <div style="float:left;">
-        <ul>
-        <li>
-            <p><input type="button" class="button_silver_130" value="{lang('amt_all_tickets')}" onclick="ajax_div('page', base_url + 'admin/components/cp/user_support'); return false;" /></p>
-        </li>
+<div class="container">
     
-        <li>
-            <input type="button" class="button_silver_130" value="{lang('amt_departments')}" onclick="ajax_div('page', base_url + 'admin/components/cp/user_support/departments'); return false;" />
-        </li>
-
-        </ul>
-    </div>
-
-    <div align="right" style="float:right;">
-        <ul>
-    
-        <li>
-            <p><input type="button" class="button_green_130" value="{lang('amt_create_department')}" onclick="ajax_div('page', base_url + 'admin/components/cp/user_support/create_department'); return false;" /></p>
-        </li>
-
-        </ul>
-    </div>
-
-</div>
-<div style="clear:both"></div>
-
-{if $departments}
-<div id="sortable" >
-		  <table id="departments_table">
-		  	<thead>
-                <!--<th width="5px"></th>-->
-				<th axis="number" width="5px;">ID</th>
-                <th axis="string">{lang('amt_tname')}</th>
-                <th style="width:32px;"></th>
-			</thead>
-			<tbody>
+    <section class="mini-layout">
+        <div class="frame_title clearfix">
+            <div class="pull-left">
+                <span class="help-inline"></span>
+                <span class="title">User support</span>
+            </div>
+                            <div class="pull-right">
+                    <div class="d-i_b">
+                        <a href="/admin/components/init_window/user_support/create_department" class="pjax btn btn-small btn-success"><i class="icon-plus-sign icon-white"></i>{lang('amt_create_department')}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix">
+                <div class="btn-group m-t_20 pull-left" data-toggle="buttons-radio">
+                    <a href="/admin/components/init_window/user_support" class=" pjax btn btn-small">{lang('amt_all_tickets')}</a>
+                    <a href="/admin/components/init_window/user_support/departments" class=" active pjax btn btn-small">{lang('amt_departments')}</a>
+                </div>   
+            </div>
+       
+            {if $departments}
+                <table id="departments_table" class="table table-striped table-bordered table-hover table-condensed" style="clear:both;">
+                    <thead>
+                    <th class="span2">ID</th>
+                        <th>{lang('amt_tname')}</th>
+                        <th class="span2"></th>
+                    </thead>
+                <tbody>
 
 		{foreach $departments as $d}
             <tr>
-                <!--<td><input type="checkbox" id="chkb_{$d.id}" class="chbx"/></td>-->
                 <td>{$d.id}</td>
                 <td>
-                    <a href="#" onclick="ajax_div('page', base_url + 'admin/components/cp/user_support/edit_department/{$d.id}'); return false;" >{truncate($d.name, 70, '...')}</a>
+                    <a href="/admin/components/cp/user_support/edit_department/{$d.id}" class="pjax">{truncate($d.name, 70, '...')}</a>
                 </td>
                 <td>
-                    <img onclick="confirm_department_delete({$d.id});" src="{$THEME}/images/delete.png"  style="cursor:pointer" width="16" height="16" title="{lang('amt_delete')}" />
+                    <button onclick="USTickets.deleteDepartment({$d.id})" class="btn btn-small btn-danger"><i class="icon-white icon-trash"></i> {lang('a_delete')}</button>
                 </td>
 
             </tr>
 		{/foreach}
-
-			</tbody>
-			<tfoot>
-				<tr>
-					<!--<td></td>-->
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</tfoot>
-		  </table>
+                    </tbody>
+              </table>
+            {/if}
+</section>
 </div>
-
-<!--
-<div style="padding-left:15px;padding-top:2px;">
-<a href="#" onclick="check_all(); return false;">Отметить все</a>  /  <a href="#" onclick="uncheck_all(); return false;">Снять выделение</a> 
-</div>
-
-<p align="right" style="padding:5px;padding-top:10px;">
-С отмечеными:
-<input type="submit" name="delete"  class="button_silver" style="font-weight:bold;" value="Удалить" onclick="delete_sel_tickets(); return false;" />
-</p>
--->
-
-<div align="center" style="padding:5px;" id="pagination">
-{$paginator}
-</div>
-
-{literal}
-    <script type="text/javascript">
-        window.addEvent('domready', function(){
-            d_table = new sortableTable('departments_table', {overCls: 'over', sortOn: -1 ,onClick: function(){}});
-            d_table.altRow();
-        });
-    </script>
-{/literal}
-
-{/if}
-
-{literal}
-<script type="text/javascript">
-
-function confirm_department_delete(id)
-{
-    alertBox.confirm('<h1>Удалить департамент ID ' + id + '?</h1>', {onComplete:
-        function(returnvalue) {
-        if(returnvalue)
-        {
-            var req = new Request.HTML({
-                method: 'post',
-                url: base_url + 'admin/components/cp/user_support/delete_department/',
-                evalResponse: true,
-                onComplete: function(response) {  
-                    ajax_div('page', base_url + 'admin/components/cp/user_support/departments');                     
-                }
-            }).post({'id': id});
-        }
-        else
-        {
-
-        }
-        }
-    });
-}
-
-    function check_all()
-    {
-        var items = $('departments_table').getElements('input');
-        items.each(function(el,i){
-        if(el.hasClass('chbx')) 
-        {
-            el.checked = true;
-        }  
-        });
-    }
-
-    function uncheck_all()
-    {
-        var items = $('departments_table').getElements('input');
-        items.each(function(el,i){
-        if(el.hasClass('chbx')) 
-        {
-            el.checked = false;
-        }  
-        });
-    }
-
-</script>
-{/literal}
+<script src="/application/modules/user_support/templates/admin/admin.js"></script>

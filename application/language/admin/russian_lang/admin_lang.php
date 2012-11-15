@@ -362,6 +362,7 @@ $lang['a_clean_old'] = 'Очистить устаревшие';
 $lang['a_event_journal'] = 'Журнал событий';
 $lang['a_backup_copy'] = 'Резервное копирование';
 $lang['a_show_site'] = 'Просмотреть сайт';
+$lang['a_view_on_site'] = 'Просмотреть на сайте';
 $lang['a_show_album'] = 'Просмотреть альбомы';
 $lang['a_album_empty'] = 'Альбом пустой';
 $lang['a_show_page'] = 'Просмотр страницы';
