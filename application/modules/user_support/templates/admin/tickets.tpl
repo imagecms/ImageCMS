@@ -51,6 +51,11 @@
                     </tbody>
               </table>
 
+            {else:}
+                <br/>
+                <div class="alert alert-info">
+                    No tickets avaliable
+                </div>
             {/if}
 </section>
 </div>

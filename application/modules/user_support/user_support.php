@@ -220,9 +220,11 @@ class User_support extends MY_Controller {
 
         if ($this->form_validation->run($this) == FALSE)
         {
+            
+            
             $this->ticket($ticket['id']);
-
-            return FALSE;
+exit;
+            //return FALSE;
         }
         else
         {
