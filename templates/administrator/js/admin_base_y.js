@@ -12,7 +12,7 @@ $(document).ready(function() {
                         if (obj.error)
                             showMessage('Ошибка', obj.error);
                         if (obj.success == true) {
-                            showMessage('Успешно', 'Файл загружен. Слот '+ $chekedFile);
+                            showMessage('Успешно', 'Файл загружен. Слот ' + $chekedFile);
                             if (obj.filesInfo.product_csv_1csv != '')
                                 $('span[data-file=product_csv_1csv]').text(obj.filesInfo.product_csv_1csv);
                             if (obj.filesInfo.product_csv_2csv != '')
@@ -35,19 +35,40 @@ $(document).ready(function() {
     })
 
     $('#makeImportForm').on('submit', function() {
-        console.log('dasd');
+        $chekedFile = $('input[name=csvfile]:checked').val();
+
+        $names = '';
+        $('.attrnameHolder').each(function(index) {
+            $names = $names + $(this).attr('data-attrnames') + ',';
+        })
+        $('input[type=hidden].attributes').val($names);
+        $('input[type=hidden].slothidden').val($chekedFile);
+
+        $.ajax({
+            url: "/admin/components/run/shop/system/import",
+            type: 'post',
+            data: $(this).serialize(),
+            success: function(data) {
+                showMessage('', data);
+            }
+        });
+
+        console.log($('input[type=hidden].attributes').val());
+        console.log($chekedFile);
         return false;
     });
     $('.dropdown-attr a').live('click', function() {
         $startPoint = $(this).closest('div');
         $name = $(this).text();
+        $attname = $(this).attr('data-attname');
+        $names = '';
         $startPoint
                 .find('.attrnameHolder')
                 .text($name)
+                .attr('data-attrnames', $attname)
                 .end()
                 .find('button')
                 .attr('title', $name);
-//        console.log($(this).attr('data-attName'));
     })
     function loadCsvAttributes(val)
     {

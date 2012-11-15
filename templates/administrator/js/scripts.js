@@ -1103,13 +1103,14 @@ $(document).ready(
                 return false;
             });
             $('.frame_rep_bug [type="submit"]').die('click').live('click', function() {
+                var overlay = $('.overlay');
                 var url = 'hostname=' + location.hostname + '&pathname=' + location.pathname + '&user_name=' + $('#user_name').text() + '&text=' + $('.frame_rep_bug textarea').val() + '&ip_address=' + $('.frame_rep_bug #ip_address').val();
                 $.ajax({
                     type: 'GET',
-                    url: 'admin/report_bug',
+                    url: '/admin/report_bug',
                     data: url,
                     success: function(data) {
-                        $('.frame_rep_bug').prepend('<div class="alert alert-success">Ваше повідомлення відправлено</div>');
+                        $('.frame_rep_bug').prepend('<div class="alert alert-success">Ваше сообщение отправлено</div>');
                         setTimeout(function() {
                             overlay.trigger('click')
                         }, 2000)
