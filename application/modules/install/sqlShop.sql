@@ -973,6 +973,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `lang_sel` varchar(15) NOT NULL DEFAULT 'russian_lang',
   `google_webmaster` varchar(200) DEFAULT NULL,
   `yandex_webmaster` varchar(200) DEFAULT NULL,
+  `yandex_metric` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `s_name` (`s_name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
@@ -3477,6 +3478,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `last_login` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `key` varchar(50) DEFAULT NULL,  
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`),
