@@ -7,15 +7,15 @@
     $lang['a_info_buyer_ch_stat'] = 'Notify the buyer of the status change';
     $lang['a_info_buyer_ch_stat'] = 'Уведомлять покупателя о смене статуса';
 
-    $lang['a_s_collback_list_th_s']		=	'Просмотр тем collback\'ов';
-    $lang['a_s_collback_edit_th_s']		=	'Редактирование теми collback\'а';
+    $lang['a_s_collback_list_th_s']		=	'Просмотр тем callback\'ов';
+    $lang['a_s_collback_edit_th_s']		=	'Редактирование темы callback\'а';
     $lang['a_s_dusc_parem_comulativ_fis']		=	'Список накопительных скидок';
     $lang['a_exp_users_systeam_failed']		=	'Вы ничего не выбрали';
     $lang['a_exp_users_systeam_succes']		=	'Експорт успешно прошел';
     $lang['a_s_dusc_parem_pollis_fis']		=	'Список постоянных скидок';
     $lang['a_s_notif_status_list_eools']		=	'Просмотр статусов о появлении';
-    $lang['a_s_notif_status_create_eools']		=	'Создание статуса товара в ожидании';
-    $lang['a_s_notif_status_edit_eools']		=	'Редактирование статуса о появлении';
+    $lang['a_s_notif_status_create_eools']		=	'Создание статуса уведомления о появлении';
+    $lang['a_s_notif_status_edit_eools']		=	'Редактирование статуса уведомления о появлении';
     $lang['a_s_customFiled_create_ent']		=	'Тип';
     $lang['a_s_banner_new_succes']		=	'Баннер создан';
     $lang['a_mh_error_sys_m']		=	'Нет настроек ключа аккаунта или<br /> ключа списка на Mailchimp';
@@ -80,12 +80,12 @@
     $lang['a_coll_status_new_create_succes']                  =	'Статус создан';
     $lang['a_col_new_status_cp_a']                  =	'Создание статуса колбека';
     $lang['a_edit_status_theme_col']                  =	'Данные статуса callback\'a';
-    $lang['a_editing_theme_coll_one']                  =	'Редактирование статуса colback\'a';
+    $lang['a_editing_theme_coll_one']                  =	'Редактирование статуса callback\'a';
     $lang['a_status_delete_3']                  =	'Удалить статус?';
     $lang['a_status_delete_2']                  =	'Удалить выбранные статусы?';
     $lang['a_status_delete_1']                  =	'Удаление статуса';
     $lang['a_create_status_coll_new']                  =	'Создать статус';
-    $lang['a_view_list_coll_stat']                  =	'Просмотр тем collback\'ов';
+    $lang['a_view_list_coll_stat']                  =	'Просмотр статусов callback\'ов';
     $lang['a_comul_refresh_succes']                  =	'обновилась успешно';
     $lang['a_comul_disc_user_data']                  =	'Скидка пользователя';
     $lang['a_comulativ_editing_user_discount']                  =	'Редактирование скидки пользователя';
@@ -768,7 +768,7 @@
     $lang['a_order_statuses_list'] = 'Список статусов заказов';
     $lang['a_os_list_is_empty'] = 'Список статусов заказов пустой';
     $lang['a_os_edit'] = 'Редактирование статуса заказа';
-    $lang['a_os_create'] = 'Создать статус заказа';
+    $lang['a_os_create'] = 'Создание статуса заказа';
     $lang['a_drag_status'] = 'перетащите статус';
     $lang['a_drag_product'] = 'перетащите товар';
     $lang['a_drag_variant_product'] = 'перетащите вариант товара';
@@ -838,4 +838,6 @@
     $lang['a_sel_collback_shop'] = 'Запрос об уведомлений';
     $lang['a_empty_kit_list_prod'] = 'Список наборов продуктов пустой';
     
+    $lang['a_s_callback_editing'] = 'Редактирование колбека';
+    $lang['a_category_creating'] = 'Создание категории';
 ?>
