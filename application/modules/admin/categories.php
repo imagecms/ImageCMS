@@ -24,6 +24,7 @@ class Categories extends MY_Controller {
 
     function index() {
         //code
+        $this->cat_list();
     }
 
     // Display create category form
@@ -220,7 +221,6 @@ class Categories extends MY_Controller {
 
                 case 'update':
                     ($hook = get_hook('admin_update_category')) ? eval($hook) : NULL;
-
                     $this->cms_admin->update_category($data, $cat_id);
 
                     $this->lib_category->clear_cache();
@@ -508,7 +508,8 @@ class Categories extends MY_Controller {
         foreach($_POST['ids'] as $p){
             
         $cat_id = $p;
-
+//if (0)
+//{
         if ($this->db->get('category')->num_rows() == 1) {
             showMessage(lang('ac_delete_cat_err'), lang('ac_error'), 'r');
             exit;
