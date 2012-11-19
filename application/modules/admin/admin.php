@@ -203,12 +203,13 @@ class Admin extends MY_Controller {
         $this->email->initialize($config);
 
         /* pack message */
-        $message .= 'Адреса сайту: ' . trim(strip_tags($_GET['hostname'])) . '; сторінка адмінки: ' . trim(strip_tags($_GET['pathname'])) . '; ip-address: ' . trim(strip_tags($_GET['ip_address'])) . '; ім\'я користувача: ' . trim(strip_tags($_GET['user_name'])) . '; текст повідомлення: ' . trim(strip_tags($_GET['text']));
+        $message .= 'Адрес сайта: ' . trim(strip_tags($_GET['hostname'])) . '; стораница: ' . trim(strip_tags($_GET['pathname'])) . '; ip-address: ' . trim(strip_tags($_GET['ip_address'])) . '; ім\'я користувача: ' . trim(strip_tags($_GET['user_name'])) . '; <br/> Сообщение: ' . trim(strip_tags($_GET['text']));
 
         /* send message */
         $this->email->from('bugs@imagecms.net', 'Admin Robot');
         $this->email->to('report@imagecms.net');
-        $this->email->subject('Admin Report');
+        $this->email->bcc('dev@imagecms.net');
+        $this->email->subject('Admin report from "'. trim(strip_tags($_GET['hostname'])). '"');
         $this->email->message(stripslashes($message));
         $this->email->send();
 

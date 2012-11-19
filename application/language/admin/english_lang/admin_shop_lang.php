@@ -744,7 +744,7 @@ $lang['a_sender']           =	'sender';
     $lang['a_order_statuses_list'] = 'Orders statuses list';
     $lang['a_os_list_is_empty'] = 'Orders statuses list is empty';
     $lang['a_os_edit'] = 'Orders status edit';
-    $lang['a_os_create'] = 'Orders status create';
+    $lang['a_os_create'] = 'Orders status creating';
     $lang['a_drag_status'] = 'drag the status';
     $lang['a_drag_product'] = 'drag the product';
     $lang[''] = 'drag versiant product';
@@ -819,5 +819,7 @@ $lang['a_sender']           =	'sender';
     $lang['a_sel_collback_shop'] = 'The request for notification';
     $lang['a_empty_kit_list_prod'] = 'Kit List products are empty';
     
+    $lang['a_s_callback_editing'] = 'Callback editing';
     
+    $lang['a_category_creating'] = 'Create category';
 ?>
