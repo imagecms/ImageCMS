@@ -20,7 +20,7 @@ class Components extends MY_Controller {
     }
 
     function index() {
-        // index
+        $this->modules_table();
     }
 
     function modules_table() {

@@ -1,29 +1,50 @@
-<div class="top-navigation">
-    <div style="float:left;">
-        <ul>
-        <li>
-            <p><input type="button" class="button_silver_130" value="{lang('amt_all_tickets')}" onclick="ajax_div('page', base_url + 'admin/components/cp/user_support'); return false;" /></p>
-        </li>
-    
-        <li>
-            <input type="button" class="button_silver_130" value="{lang('amt_departments')}" onclick="ajax_div('page', base_url + 'admin/components/cp/user_support/departments'); return false;" />
-        </li>
+<section class="mini-layout">               
+                    <div class="frame_title clearfix">
+                        <div class="w-s_n-w pull-left">
+                            <span class="help-inline"></span>
+                            <span class="title w-s_n">{lang('amt_create_department')}</span>
+                        </div>
 
-        </ul>
+                        <div class="pull-right">
+                            <span class="help-inline"></span>
+                            <div class="d-i_b">
+                                <a href="/admin/components/init_window/user_support/departments" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
+                                <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#save_form"><i class="icon-ok"></i> {lang('a_save')}</button>
+                                <button type="button" class="btn btn-small action_on formSubmit" data-action="close" data-form="#save_form"><i class="icon-check"></i> {lang('a_save_and_exit')}</button>
+                            </div>
+                        </div>                            
+                    </div>             
+    <div id="content_big_td" >                
+	
+   <table class="table table-striped table-bordered table-hover table-condensed">
+    <thead>
+        <tr>
+            <th colspan="6">
+                {lang('a_info')}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td colspan="6">
+            <div class="inside_padd">
+                <div class="span12">
+                    <form action="/admin/components/cp/user_support/edit_department/{$model.id}" method="post" id="save_form" class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label">{lang('amt_tname')}:</label>
+                        	<div class="controls">
+                                    <input type="text" name="name" value="{$model.name}" /> 
+                        	</div>
+                        </div>
+                        {form_csrf()}
+                    </form>
+                </div>
+            </div>
+
+    	</td>
+	</tr>
+	</tbody>
+    </table>    
+        
     </div>
-
-</div>
-<div style="clear:both"></div>
-
-<form action="{$BASE_URL}admin/components/cp/user_support/edit_department/{$model.id}" method="post" id="save_form" style="width:100%;">
-{form_csrf()}
-	<div class="form_text">{lang('amt_tname')}:</div>
-	<div class="form_input"><input type="text" name="name" value="{$model.name}" class="textbox_long" /></div>
-	<div class="form_overflow"></div>
-
-	<div class="form_text"></div>
-	<div class="form_input">
-	<input type="submit" name="button" class="button" value="{lang('amt_save')}" onclick="ajax_me('save_form');" />
-	</div>
-
-</form>
+</section>

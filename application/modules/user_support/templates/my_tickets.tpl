@@ -2,43 +2,29 @@
 <style type="text/css">
 
 #box-table-a {
-border-collapse:collapse;
-font-family:"Lucida Sans Unicode","Lucida Grande",Sans-Serif;
-font-size:11px;
 text-align:left;
 width:100%;
+margin-top: 20px;
 }
 
 #box-table-a th {
--moz-background-clip:border;
--moz-background-inline-policy:continuous;
--moz-background-origin:padding;
-background:#B9C9FE none repeat scroll 0 0;
+background:#F2F2F2;
 border-bottom:1px solid #FFFFFF;
-border-top:4px solid #AABCFE;
-color:#003399;
-font-size:13px;
-font-weight:normal;
+border-top:4px solid #019FDE;
 padding:8px;
 }
 
 #box-table-a td {
--moz-background-clip:border;
--moz-background-inline-policy:continuous;
--moz-background-origin:padding;
-background:#E8EDFF none repeat scroll 0 0;
+background:#f8f8f8 none repeat scroll 0 0;
 border-bottom:1px solid #FFFFFF;
 border-top:1px solid transparent;
-color:#666699;
+color:#666;
 padding:8px;
+border-radius: 3px;
 }
 
 #box-table-a tr:hover td {
--moz-background-clip:border;
--moz-background-inline-policy:continuous;
--moz-background-origin:padding;
-background:#D0DAFD none repeat scroll 0 0;
-color:#333399;
+background:#fafafa none repeat scroll 0 0;
 }
 
 </style>
@@ -46,9 +32,11 @@ color:#333399;
 
 {if $tickets}
 <h3>Мои билеты</h3>
-<p>
-    <a href="{site_url('user_support/create_ticket')}">Создать билет</a> | <a href="{site_url('user_support')}">Главный раздел</a>
-</p>
+<div class="button_middle_blue buttons t-a_c">
+    <a href="{site_url('user_support/create_ticket')}">Создать билет</a>
+</div>
+    
+<div class="button_middle_blue buttons t-a_c"><a href="{site_url('user_support')}">Главный раздел</a></div>
 
 <table id="box-table-a">
 
@@ -81,12 +69,15 @@ color:#333399;
 {/foreach}
 </tbody>
 </table>
-
-<p align="right">
+<br/>
+<div class="button_middle_blue buttons t-a_c">
     <a href="{site_url('user_support/my_tickets')}">Все билеты</a>
-</p>
+</div>
 {else:}
-<p>
-    <a href="{site_url('user_support/create_ticket')}">Создать билет</a> | <a href="{site_url('user_support')}">Главный раздел</a>
-</p>
+<div class="button_middle_blue buttons t-a_c">
+    <a href="{site_url('user_support/create_ticket')}">Создать билет</a>
+</div>
+<div class="button_middle_blue buttons t-a_c">
+    <a href="{site_url('user_support')}">Главный раздел</a>
+</div>
 {/if}
