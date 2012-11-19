@@ -37,7 +37,7 @@
 
 <hook id="admin_create_category">
 <![CDATA[
-	$data['field_group'] = $this->input->post('field_group');
+    $data['field_group'] = $this->input->post('field_group');
     $data['category_field_group'] = $this->input->post('category_field_group');
 
     $this->db->select('id');
