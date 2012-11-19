@@ -53,12 +53,6 @@ class Admin extends MY_Controller {
         $config['checkgroup_delimiter'] = '';
         $config['radiogroup_delimiter'] = '';
         $config['default_attr'] = array(
-            'textarea' => array(
-                'attributes' => 'rows="10" cols="50"',
-            ),
-            'text' => array(
-                'class' => 'textbox_long',
-            ),
             'captcha' => array(
                 'label' => lang('amt_protection_code'),
             ),
@@ -69,7 +63,6 @@ class Admin extends MY_Controller {
 
     public function index() {
         $this->template->add_array(array(
-            'top_navigation' => $this->fetch_tpl('top_navigation'),
             'fields' => $this->db->order_by('weight', 'ASC')->get('content_fields')->result_array(),
             'groups' => $this->load->module('cfcm/cfcm_forms')->prepare_groups_select(),
         ));
@@ -105,9 +98,16 @@ class Admin extends MY_Controller {
             }
 
             if ($form->isValid()) {
+                
                 $data = $form->getData();
+                $groups = $data['groups'];
+                unset($data['groups']);
                 $data['field_name'] = 'field_' . $data['field_name'];
-
+                echo '<pre>';
+                var_dump($data);
+                echo '</pre>';
+//                exit;
+                
                 if ($this->db->get_where('content_fields', array('field_name' => $data['field_name']))->num_rows() > 0) {
                     showMessage(lang('amt_select_another_name'), false, 'r');
                 } else {
@@ -117,8 +117,21 @@ class Admin extends MY_Controller {
                     $data['weight'] = $query->weight + 1;
 
                     $this->db->insert('content_fields', $data);
-                    showMessage(lang('amt_field_created'));
                     
+                    //write relations
+                    $toInsert = array();
+                    if (count($groups))
+                    {
+                        foreach($groups as $group)
+                            $toInsert[] = array('field_name' => $data['field_name'],
+                                    'group_id' => $group
+                                );
+
+                        if (count($toInsert))
+                            $this->db->insert_batch ('content_fields_groups_relations', $toInsert);
+                    }
+                    
+                    showMessage(lang('amt_field_created'));
                     pjax( $this->get_url('edit_field/' . $data['field_name']));
                     exit;
                 }
@@ -181,11 +194,15 @@ class Admin extends MY_Controller {
 
     public function delete_field($field_name) {
         $field_name = urldecode($field_name);
-        $this->db->where('field_name', $field_name);
-        $this->db->delete('content_fields');
+        
+        $this->db->where('field_name', $field_name)
+                ->delete('content_fields');
 
-        $this->db->where('field_name', $field_name);
-        $this->db->delete('content_fields_data');
+        $this->db->where('field_name', $field_name)
+                ->delete('content_fields_data');
+        
+        $this->db->where('field_name', $field_name)
+                ->delete('custom_fields_groups_relations');
         
         showMessage(lang('a_field_deleted_success'));
         pjax($this->get_url('index'));
@@ -252,7 +269,7 @@ class Admin extends MY_Controller {
                 $this->db->insert('content_field_groups', $form->getData());
                 showMessage(lang('amt_group_created'));
 
-                pjax($this->get_url('edit_group/' . $this->db->insert_id()));
+                pjax('/admin/components/cp/cfcm');
             } else {
                 showMessage($form->_validation_errors(), false, 'r');
             }
@@ -310,28 +327,21 @@ class Admin extends MY_Controller {
     }
 
     public function delete_group($id) {
-        $this->db->where('id', $id);
-        $this->db->delete('content_field_groups');
+        //todo: delete group
+        $this->db->where('id', $id)
+                ->delete('content_field_groups');
 
-        $this->db->where('group', $id);
-        $this->db->update('content_fields', array('group' => '0'));
+        $this->db->where('group_id', $id)
+                ->update('content_fields_groups_relations', array('group_id' => '0'));
 
-        $this->db->where('field_group', $id);
-        $this->db->update('category', array('field_group' => '-1'));
+        $this->db->where('field_group', $id)
+                ->update('category', array('field_group' => '-1'));
+        
+        $this->db->where('category_field_group', $id)
+                ->update('category', array('category_field_group' => '-1'));
         
         showMessage(lang('a_group_deleted_success'));
         pjax($this->get_url('index'));
-    }
-
-    public function list_groups() {
-        //$groups = $this->db->get('content_field_groups');
-
-        //if ($groups->num_rows() > 0) {
-        //    $this->template->assign('groups', $groups->result_array());
-        //}
-
-        //$this->display_tpl('top_navigation');
-        //$this->display_tpl('group_list');
     }
 
     // Create form from category field group
@@ -363,9 +373,13 @@ class Admin extends MY_Controller {
             $group = $this->db->get_where('content_field_groups', array('id' => $category->field_group))->row();
 
             // Get all fields in group
-            $this->db->where('group', $category->field_group);
-            $this->db->order_by('weight', 'ASC');
-            $query = $this->db->get('content_fields');
+            $fg = (int) $category->field_group;
+            $query = $this->db->select('*')
+                ->from('content_fields')
+                ->join('content_fields_groups_relations', 'content_fields_groups_relations.field_name = content_fields.field_name')
+                ->where("content_fields_groups_relations.group_id = $category->field_group")
+                ->order_by('weight', 'ASC')
+                ->get();
 
             if ($query->num_rows() > 0) {
                 $form_fields = array();
