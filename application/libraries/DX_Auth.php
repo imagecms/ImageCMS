@@ -951,12 +951,12 @@ class DX_Auth
 		$this->ci->session->sess_destroy();
 	}
 
-	function register($username, $password, $email)
+	function register($username, $password, $email, $key)
 	{
+           
 		// Load Models
 		$this->ci->load->model('dx_auth/users', 'users');
-		$this->ci->load->model('dx_auth/user_temp', 'user_temp');
-                $key = random_string('alnum', 5);
+		$this->ci->load->model('dx_auth/user_temp', 'user_temp');              
 		$this->ci->load->helper('url');
 
 		// Default return value
