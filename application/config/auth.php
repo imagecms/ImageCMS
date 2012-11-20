@@ -28,7 +28,7 @@ $config['DX_webmaster_email'] = 'webmaster@localhost';
 
 $config['DX_table_prefix'] = '';
 $config['DX_users_table'] = 'users';
-$config['DX_user_profile_table'] = 'users';
+$config['DX_user_profile_table'] = '';
 $config['DX_user_temp_table'] = 'user_temp';
 $config['DX_user_autologin'] = 'user_autologin';
 $config['DX_roles_table'] = 'roles';
