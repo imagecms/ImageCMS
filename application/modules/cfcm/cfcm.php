@@ -56,12 +56,31 @@ class Cfcm extends MY_Controller {
         }
     }
 
-    public function get_group_fields($group_id)
+    public function get_group_fields($group_id = -1)
     {
-        // Get all fields in group
-        $this->db->where('group', $group_id);
-        $this->db->order_by('weight', 'ASC');
-        $query = $this->db->get('content_fields');
+        if (!$group_id)
+            $group_id = -1;
+        
+        //Chech if we need fields without group
+        if ($group_id == 0)
+        {
+            $queryStr = "SELECT * 
+                FROM  `content_fields` 
+                WHERE field_name NOT 
+                IN (
+                    SELECT field_name
+                    FROM content_fields_groups_relations
+                )";
+            $query = $this->db->query($queryStr);
+        }
+        else
+            // Get all fields in group
+            $query = $this->db->select('*')
+                ->from('content_fields')
+                ->join('content_fields_groups_relations', 'content_fields_groups_relations.field_name = content_fields.field_name')
+                ->where("content_fields_groups_relations.group_id = $group_id")
+                ->order_by('weight', 'ASC')
+                ->get();        
 
         if ($query->num_rows() > 0)
         {

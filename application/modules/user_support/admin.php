@@ -12,23 +12,22 @@ class Admin extends MY_Controller {
 
 	function __construct()
 	{
-		parent::__construct();
+            parent::__construct();
 
         // Only admin access 
-        // Do not delete this code !
-        if( $this->dx_auth->is_admin() == FALSE) exit;
+            if( $this->dx_auth->is_admin() == FALSE) exit;
 
 	    $this->load->model('tickets');
-        $this->load->model('departments');
+            $this->load->model('departments');
 
-        $this->load->helper('user_support');
+            $this->load->helper('user_support');
 	}
 
 
     /** 
      * Display list of tickets
      */
-	public function index($offset = 0)
+    public function index($offset = 0)
     {
         $row_count = $this->tickets_per_page;
 
@@ -38,7 +37,7 @@ class Admin extends MY_Controller {
         $total = $this->db->count_all_results();
 
         if ($total > $row_count)
-        {
+        {   
             $this->load->library('Pagination');
 
             $config['base_url']    = site_url('admin/components/cp/user_support/index');
@@ -71,7 +70,7 @@ class Admin extends MY_Controller {
             ));
 
         $this->display_tpl('tickets');
-	}
+    }
 
     public function view_ticket($id = 0)
     {
@@ -95,33 +94,37 @@ class Admin extends MY_Controller {
 
     public function add_comment($ticket_id = 0)
     {
-        $this->load->model('ticket_comments');
-
-        $ticket = $this->tickets->get($ticket_id)->row_array();
-
-        if ($this->dx_auth->is_admin() === TRUE)
+        if (strlen(trim($this->input->post('text'))) > 0 )
         {
-            $user_status = 1;
+            $this->load->model('ticket_comments');
+
+            $ticket = $this->tickets->get($ticket_id)->row_array();
+
+            if ($this->dx_auth->is_admin() === TRUE)
+            {
+                $user_status = 1;
+            }
+            else
+            {
+                $user_status = 0;
+            }
+
+            $data = array(
+                'ticket_id'   => $ticket['id'],
+                'user_id'     => $this->dx_auth->get_user_id(),
+                'user_name'   => $this->dx_auth->get_username(),
+                'text'        => htmlspecialchars( $this->input->post('text') ),
+                'user_status' => $user_status,
+                'date'        => time(),
+            );
+
+            $this->ticket_comments->create($data);
+            $this->tickets->change_update_date($ticket['id'], time() );
+            $this->tickets->set_last_comment_author($ticket['id'], $data['user_name']);
+
+            showMessage('Comment added success');
+            pjax('#addMessage');
         }
-        else
-        {
-            $user_status = 0;
-        }
-
-        $data = array(
-            'ticket_id'   => $ticket['id'],
-            'user_id'     => $this->dx_auth->get_user_id(),
-            'user_name'   => $this->dx_auth->get_username(),
-            'text'        => htmlspecialchars( $this->input->post('text') ),
-            'user_status' => $user_status,
-            'date'        => time(),
-        );
-
-        $this->ticket_comments->create($data);
-        $this->tickets->change_update_date($ticket['id'], time() );
-        $this->tickets->set_last_comment_author($ticket['id'], $data['user_name']);
-
-        updateDiv('page', site_url('admin/components/cp/user_support/view_ticket/' . $ticket['id']));
     }
 
     public function update_ticket($id = 0)
@@ -136,7 +139,12 @@ class Admin extends MY_Controller {
 
         $this->tickets->update($id, $data);
 
-        showMessage('Изменения сохранены.');
+        showMessage(lang('amt_changes_saved'));
+        if ($this->input->post('action') == 'close')
+            pjax('/admin/components/init_window/user_support');
+        else
+            pjax('');
+        
     }
 
     public function delete_comment()
@@ -145,6 +153,9 @@ class Admin extends MY_Controller {
 
         $this->load->model('ticket_comments');
         $this->ticket_comments->delete($c_id);
+        
+        showMessage('Comment deleted success');
+        pjax('#comments');
     }
 
     public function delete_ticket()
@@ -156,6 +167,9 @@ class Admin extends MY_Controller {
         // Delete ticket comments
         $this->load->model('ticket_comments');
         $this->ticket_comments->delete_ticket_comments($id);
+        
+        showMessage('Ticket deleted success');
+        pjax('');
     }
 
     // Delete selected tickets
@@ -172,6 +186,9 @@ class Admin extends MY_Controller {
                 $this->ticket_comments->delete_ticket_comments($id);
             }
         }
+        
+        showMessage('Tickets deleted success');
+        pjax('');
     }
 
     /*******************************************
@@ -215,55 +232,53 @@ class Admin extends MY_Controller {
                 ));
 
                 showMessage(lang('amt_dep_created'));
-                updateDiv('page', site_url('admin/components/cp/user_support/departments'));
+                
+                if ($this->input->post('action') == 'close')
+                    pjax('/admin/components/init_window/user_support/departments');
+                else
+                    pjax('/admin/components/init_window/user_support/edit_department/'.$this->db->insert_id());
             } 
         }
-
-        $this->display_tpl('create_department');
+        else
+            $this->render('create_department');
     }
 
     // Update department data
-    public function edit_department()
+    public function edit_department($id)
     {
-        $this->db->limit(1);
-        $this->db->where('id', $this->uri->segment(6));
-        $query = $this->db->get('support_departments');
+        if (!empty($_POST))
+        {
+            $this->load->library('Form_validation');
+            $this->form_validation->set_rules('name', lang('amt_dep_name'), 'required|xss_clean|max_length[45]'); 
 
-        if ($query->num_rows() == 1)
-        {  
-            if (!empty($_POST))
+            if ($this->form_validation->run($this) == FALSE)
             {
-                $this->load->library('Form_validation');
-                $this->form_validation->set_rules('name', lang('amt_dep_name'), 'required|xss_clean|max_length[45]'); 
-
-                if ($this->form_validation->run($this) == FALSE)
-                {
-                    showMessage(validation_errors(),false,'r');
-                }
-                else
-                {
-                    $this->db->where('id', $this->uri->segment(6));
-                    $this->db->update('support_departments',array(
-                        'name'=>$this->input->post('name'),         
-                    ));
-
-                    showMessage(lang('amt_changes_saved'));
-                    updateDiv('page', site_url('admin/components/cp/user_support/departments'));
-                }
+                showMessage(validation_errors(),false,'r');
             }
+            else
+            {
+                $this->db->where('id', $id);
+                $this->db->update('support_departments',array(
+                    'name'=>$this->input->post('name'),         
+                ));
 
+                showMessage(lang('amt_changes_saved'));
 
-            $this->template->add_array(
-                array(
-                    'model'=>$query->row_array(),
-                )            
-            );
-
-            $this->display_tpl('edit_department'); 
+                if ($this->input->post('action') == 'close')
+                    pjax('/admin/components/init_window/user_support/departments');
+                else
+                    pjax('/admin/components/init_window/user_support/edit_department/'.$id);
+            }
         }
         else
         {
-            //          
+            $this->template->add_array(
+                array(
+                    'model'=>$this->db->where('id', $id)->get('support_departments')->row_array(),
+                )            
+            );
+
+            $this->render('edit_department'); 
         }
     }
 
@@ -290,32 +305,39 @@ class Admin extends MY_Controller {
                 $this->db->delete('support_comments');
             }
         }
+        
+        showMessage('Department deleted success');
+        pjax('');
     }
 
-	private function display_tpl($file = '', $data = array())
+    private function render($file)
+    {
+        if ($this->ajaxRequest)
+            echo $this->fetch_tpl ($file);
+        else
+            $this->display_tpl ($file);
+    }
+
+    private function display_tpl($file = '', $data = array())
     {
         if (count($data) > 0)
-        {
             $this->template->add_array($data);
-        }
 
-        $file = realpath(dirname(__FILE__)).'/templates/admin/'.$file.'.tpl';  
-        echo $this->template->fetch('file:'.$file);
+        $file = realpath(dirname(__FILE__)).'/templates/admin/'.$file;  
+        $this->template->show('file:'.$file);
     }
 
     /**
      * Fetch template file
      */ 
-	private function fetch_tpl($file = '', $data = array())
+    private function fetch_tpl($file = '', $data = array())
     {
         if (count($data) > 0)
-        {
             $this->template->add_array($data);
-        }
 
         $file = realpath(dirname(__FILE__)).'/templates/admin/'.$file.'.tpl';  
         return $this->template->fetch('file:'.$file);
-	}
+    }
 
 }
 
