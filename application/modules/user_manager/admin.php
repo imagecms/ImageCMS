@@ -157,7 +157,7 @@ class Admin extends MY_Controller {
             $this->load->model('dx_auth/users', 'user2');
             $val = $this->form_validation;
 
-            $val->set_rules('username', lang('amt_user_login'), 'trim|required|xss_clean|alpha_dash');
+            $val->set_rules('username', lang('amt_user_login'), 'trim|required|xss_clean');
             $val->set_rules('password', lang('amt_password'), 'trim|min_length[' . $this->config->item('DX_login_min_length') . ']|max_length[' . $this->config->item('DX_login_max_length') . ']|required|xss_clean');
             $val->set_rules('password_conf', lang('amt_new_pass_confirm'), 'matches[password]|required');
             $val->set_rules('email', lang('amt_email'), 'trim|required|xss_clean|valid_email');
@@ -167,12 +167,6 @@ class Admin extends MY_Controller {
             $user = $this->input->post('username');
             $email = $this->input->post('email');
             $role = $this->input->post('role');
-
-            // check user
-            if ($this->user2->check_username($user)->num_rows() > 0) {
-                showMessage(lang('amt_login_exists'), '', 'r');
-                exit;
-            }
 
             // check user mail
             if ($this->user2->check_email($email)->num_rows() > 0) {
@@ -188,11 +182,12 @@ class Admin extends MY_Controller {
                 $role = $this->dx_auth->get_role_id();
             }
 
-            if ($val->run() AND $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'))) {
+            $this->load->helper('string');
+            if ($val->run() AND $user_info = $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'), random_string('alnum', 5))) {
                 ($hook = get_hook('users_user_created')) ? eval($hook) : NULL;
 
                 //set user role
-                $user_info = $this->user2->get_user_by_username($user)->row_array();
+                $user_info = $this->user2->get_user_by_email($user_info['email'])->row_array();
                 $this->user2->set_role($user_info['id'], $role);
 
                 //$this->lib_admin->log(lang('amt_create_user') . $val->set_value('username'));
@@ -207,7 +202,7 @@ class Admin extends MY_Controller {
                 $action = $_POST['action'];
 
                 if ($action == 'close') {
-                    pjax('/admin/components/cp/user_manager/create_user');
+                    pjax('/admin/components/cp/user_manager/edit_user/'.$user_info['id']);
                 } else {
                     pjax('/admin/components/init_window/user_manager');
                 }
