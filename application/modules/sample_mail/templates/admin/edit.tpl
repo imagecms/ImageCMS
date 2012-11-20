@@ -36,7 +36,7 @@
                                         <div class="control-group">
                                             <label class="control-label" for="comcount2">От кого:</label>
                                             <div class="controls">
-                                                <input id="comcount2" type="text" name="sender_name" value="{$settings.from}"/> 
+                                                <input id="comcount2" type="text" name="sender_name" value="{$settings.sender_name}"/> 
                                                 <span class="help-inline">По умолчанию от "Администрация сайта"</span>
                                             </div>
                                         </div>
