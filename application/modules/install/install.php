@@ -64,14 +64,13 @@ class Install extends MY_Controller {
                 $allow_params[$k] = 'ok';
             }
         }
-        
-        if (strnatcmp(phpversion(),'5.3.4'))
+
+        if (strnatcmp(phpversion(), '5.3.4'))
             $allow_params['PHP version >= 5.3.4'] = 'ok';
-        else
-        {
+        else {
             $allow_params['PHP version >= 5.3.4'] = 'warning';
             $result = false;
-        }   
+        }
 
         // Check installed php exts.
         $exts = array(
@@ -226,6 +225,32 @@ class Install extends MY_Controller {
         // Update site title
         mysql_query('UPDATE `settings` SET `site_title`=\'' . mysql_real_escape_string($this->input->post('site_title')) . '\' ', $link);
         mysql_query('UPDATE `settings` SET `lang_sel`=\'' . mysql_real_escape_string($this->input->post('lang_sel')) . '\' ', $link);
+
+        // TRUNCATE if user want (product_samples not chacked)
+        if ($this->input->post('product_samples') != "on") {
+            mysql_query('TRUNCATE `category`;', $link);
+            mysql_query('INSERT INTO `category` (`id`, `name`, `url`, `per_page`, `order_by`) VALUES (\'1\', \'test\', \'test\', \'1\', \'publish_date\');', $link);
+            mysql_query('UPDATE `settings` SET `main_type`=\'category\', `main_page_cat`=\'1\';', $link);
+            mysql_query('TRUNCATE `comments`;', $link);
+            mysql_query('TRUNCATE `content`;', $link);
+            mysql_query('TRUNCATE `content_fields`;', $link);
+            mysql_query('TRUNCATE `content_fields_data`;', $link);
+            mysql_query('TRUNCATE `content_field_groups`;', $link);
+            mysql_query('TRUNCATE `gallery_albums`;', $link);
+            mysql_query('TRUNCATE `gallery_category`;', $link);
+            mysql_query('TRUNCATE `gallery_images`;', $link);
+            mysql_query('TRUNCATE `gallery_images`;', $link);
+            mysql_query('TRUNCATE `menus`;', $link);
+            mysql_query('TRUNCATE `menus_data`;', $link);
+            mysql_query('TRUNCATE `support_comments`;', $link);
+            mysql_query('TRUNCATE `support_tickets`;', $link);
+            mysql_query('TRUNCATE `tags`;', $link);
+            mysql_query('TRUNCATE `content_permissions`;', $link);
+            mysql_query('TRUNCATE `content_tags`;', $link);
+            
+            $this->load->helper("file");
+            delete_files('./uploads/gallery', TRUE);
+        }
 
         // Create admin account
         $this->load->helper('cookie');
