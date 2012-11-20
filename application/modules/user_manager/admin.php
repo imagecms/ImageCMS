@@ -27,7 +27,7 @@ class Admin extends MY_Controller {
     function index() {
         $this->set_tpl_roles();
         $this->template->add_array($this->genre_user_table());
-        $this->template->add_array($this->show_edit_prems_tpl($id = 2));
+        //$this->template->add_array($this->show_edit_prems_tpl($id = 2));
         $this->display_tpl('main');
     }
 
@@ -55,7 +55,6 @@ class Admin extends MY_Controller {
 
     function genre_user_table() {
 
-
         cp_check_perm('user_view_data');
 
         $this->load->model('dx_auth/users', 'users');
@@ -65,7 +64,6 @@ class Admin extends MY_Controller {
 
         // Get all users
         $users = $this->users->get_all($offset, $row_count);
-
 
         if (count($users)) {
             $this->load->library('Pagination');
