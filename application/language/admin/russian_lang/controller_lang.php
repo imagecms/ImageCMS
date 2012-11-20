@@ -144,8 +144,10 @@
     $lang['ac_page_is_al_cr']                                                   = 'Страница c таким URL уже существует! Укажите другой URL.';
     $lang['ac_created_page']                                                    = 'Создал страницу';
     $lang['ac_page_created']                                                    = 'Страница создана';
-    
-    //modules/admin/pages.php/edit
+    $lang['ac_modul_exists'] 													= 'Зарезервировано одноименным модулем'; 
+    $lang['ac_category_exists']													= 'Зарезервировано одноименной категорией'; 
+	
+	//modules/admin/pages.php/edit
     $lang['ac_page']                                                            = 'Страница ';
     $lang['ac_not_found']                                                       = ' не найдена';
     $lang['ac_page_in_language']                                                = 'Страница на языке ';

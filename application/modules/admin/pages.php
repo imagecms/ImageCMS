@@ -74,7 +74,10 @@ class Pages extends MY_Controller {
         // Update page tags
 
         $this->load->module('tags')->_set_page_tags($_POST['search_tags'], (int) $page['id']);
-    }
+    
+	
+	
+	}
 
     /**
      * This event occurs right after page deleted
@@ -109,7 +112,9 @@ class Pages extends MY_Controller {
 
         $this->form_validation->set_rules('page_title', lang('ac_val_t'), 'trim|required|min_length[1]|max_length[500]');
         $this->form_validation->set_rules('page_url', lang('ac_val_url'), 'alpha_dash');
-        $this->form_validation->set_rules('page_keywords', lang('ac_val_keywords'), 'trim');
+       
+
+	   $this->form_validation->set_rules('page_keywords', lang('ac_val_keywords'), 'trim');
         $this->form_validation->set_rules('prev_text', lang('ac_val_prev_cont'), 'trim|required');
         $this->form_validation->set_rules('page_description', lang('ac_val_desc'), 'trim');
         $this->form_validation->set_rules('full_tpl', lang('ac_val_page_tpl'), 'trim|max_length[150]|min_length[2]');
@@ -128,8 +133,10 @@ class Pages extends MY_Controller {
         } else {
             // load site settings
             $settings = $this->cms_admin->get_settings();
-
-
+			
+			
+			
+		
             $def_lang = $this->cms_admin->get_default_lang();
 
             if ($this->input->post('page_url') == '' or $this->input->post('page_url') == NULL) {
@@ -139,7 +146,29 @@ class Pages extends MY_Controller {
                 $url = $this->input->post('page_url');
             }
 
-            // check if we have existing page with entered URL
+            // check if we have existing module with entered URL
+            $this->db->where('name', $url);
+			$query = $this->db->get('components');
+
+            if ($query->num_rows() > 0) {
+                showMessage(lang('ac_modul_exists'), false, 'r');
+                exit;
+            }
+            // end module check
+	
+	
+			// check if we have existing category with entered URL
+            $this->db->where('url', $url);
+            $query = $this->db->get('category', 1);
+
+            if ($query->num_rows() > 0) {
+                showMessage(lang('ac_category_exists'), false, 'r');
+                exit;
+            }
+            // end check
+			
+			
+			// check if we have existing page with entered URL
             $this->db->select('id, lang, url');
             $this->db->where('url', $url);
             $this->db->where('lang', $def_lang['id']);
@@ -439,7 +468,36 @@ class Pages extends MY_Controller {
                 $url = $this->input->post('page_url');
             }
 
-            // check if we have existing page with entered URL
+           
+			// check if we have existing module with entered URL
+            $this->db->where('name', $url);
+			$query = $this->db->get('components');
+
+            if ($query->num_rows() > 0) {
+                showMessage(lang('ac_modul_exists'), false, 'r');
+                exit;
+            }
+            // end module check
+	
+	
+			// check if we have existing category with entered URL
+            $this->db->where('url', $url);
+            $query = $this->db->get('category', 1);
+
+            if ($query->num_rows() > 0) {
+                showMessage(lang('ac_category_exists'), false, 'r');
+                exit;
+            }
+            // end check
+
+
+
+
+
+
+
+
+		   // check if we have existing page with entered URL
             $b_page = $this->cms_admin->get_page($page_id);
 
             $this->db->where('url', $url);

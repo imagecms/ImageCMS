@@ -17,6 +17,8 @@ class Cms_admin extends CI_Model {
 	 *
 	 * @return integer
 	 */
+	
+	
 	function add_page($data)
 	{
 		$this->db->limit(1);
