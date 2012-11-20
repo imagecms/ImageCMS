@@ -37,7 +37,7 @@ class Admin extends MY_Controller {
                 $data['name'] = $this->input->post('mail_name');
                 $data['text'] = $this->input->post('mail_text');
                 $data['settings']['theme'] = $this->input->post('mail_theme');
-                $data['settings']['from'] = $this->input->post('mail_from');
+                $data['settings']['from'] = $this->input->post('sender_name');
                 $data['settings']['from_email'] = $this->input->post('from_email');
                 $data['settings']['variables'] = $this->input->post('mail_variables');
                 $data['settings']['mail_type'] = $this->input->post('mail_type');
@@ -80,7 +80,7 @@ class Admin extends MY_Controller {
                 $data['name'] = $this->input->post('mail_name');
                 $data['text'] = $this->input->post('mail_text');
                 $data['settings']['theme'] = $this->input->post('mail_theme');
-                $data['settings']['from'] = $this->input->post('mail_from');
+                $data['settings']['from'] = $this->input->post('sender_name');
                 $data['settings']['from_mail'] = $this->input->post('from_email');
                 $data['settings']['variables'] = $this->input->post('mail_variables');
                 $data['settings']['mail_type'] = $this->input->post('mail_type');
