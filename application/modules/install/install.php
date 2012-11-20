@@ -239,7 +239,6 @@ class Install extends MY_Controller {
             mysql_query('TRUNCATE `gallery_albums`;', $link);
             mysql_query('TRUNCATE `gallery_category`;', $link);
             mysql_query('TRUNCATE `gallery_images`;', $link);
-            mysql_query('TRUNCATE `gallery_images`;', $link);
             mysql_query('TRUNCATE `menus`;', $link);
             mysql_query('TRUNCATE `menus_data`;', $link);
             mysql_query('TRUNCATE `support_comments`;', $link);
@@ -247,9 +246,46 @@ class Install extends MY_Controller {
             mysql_query('TRUNCATE `tags`;', $link);
             mysql_query('TRUNCATE `content_permissions`;', $link);
             mysql_query('TRUNCATE `content_tags`;', $link);
-            
+            mysql_query('TRUNCATE `logs`;', $link);
+
             $this->load->helper("file");
+
+            if (file_exists('./application/modules/shop')) {
+                delete_files('./uploads/shop', TRUE);
+
+                mysql_query('UPDATE `settings` SET `main_type`=\'module\', `main_page_module`=\'shop\';', $link);
+                mysql_query('TRUNCATE `shop_category`;', $link);
+                mysql_query('TRUNCATE `shop_category_i18n`;', $link);
+                mysql_query('TRUNCATE `shop_kit`;', $link);
+                mysql_query('TRUNCATE `shop_kit_product`;', $link);
+                mysql_query('TRUNCATE `shop_notifications`;', $link);
+                mysql_query('TRUNCATE `shop_notification_statuses`;', $link);
+                mysql_query('TRUNCATE `shop_notification_statuses_i18n`;', $link);
+                mysql_query('TRUNCATE `shop_orders`;', $link);
+                mysql_query('TRUNCATE `shop_orders_products`;', $link);
+                mysql_query('TRUNCATE `shop_orders_status_history`;', $link);
+                mysql_query('TRUNCATE `shop_order_statuses`;', $link);
+                mysql_query('TRUNCATE `shop_order_statuses_i18n`;', $link);
+                mysql_query('TRUNCATE `shop_products`;', $link);
+                mysql_query('TRUNCATE `shop_products_i18n`;', $link);
+                mysql_query('TRUNCATE `shop_product_categories`;', $link);
+                mysql_query('TRUNCATE `shop_product_images`;', $link);
+                mysql_query('TRUNCATE `shop_product_properties`;', $link);
+                mysql_query('TRUNCATE `shop_product_properties`;', $link);
+                mysql_query('TRUNCATE `shop_product_properties_categories`;', $link);
+                mysql_query('TRUNCATE `shop_product_properties_data`;', $link);
+                mysql_query('TRUNCATE `shop_product_properties_data_i18n`;', $link);
+                mysql_query('TRUNCATE `shop_product_properties_i18n`;', $link);
+                mysql_query('TRUNCATE `shop_product_variants`;', $link);
+                mysql_query('TRUNCATE `shop_product_variants_i18n`;', $link);
+                mysql_query('TRUNCATE `shop_banners`;', $link);
+                mysql_query('TRUNCATE `shop_banners_i18n`;', $link);
+                mysql_query('TRUNCATE `shop_brands`;', $link);
+                mysql_query('TRUNCATE `shop_brands_i18n`;', $link);
+            }
+
             delete_files('./uploads/gallery', TRUE);
+            delete_files('./uploads/images', TRUE);
         }
 
         // Create admin account
