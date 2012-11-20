@@ -35,18 +35,19 @@ class Auth extends MY_Controller {
     /* Callback functions */
 
     function username_check($username) {
-        ($hook = get_hook('auth_username_check')) ? eval($hook) : NULL;
+//         ($hook = get_hook('auth_username_check')) ? eval($hook) : NULL;
 
-        $result = $this->dx_auth->is_username_available($username);
-        if (!$result) {
-            $this->form_validation->set_message('username_check', lang('lang_login_exists'));
-        }
+//         $result = $this->dx_auth->is_username_available($username);
+//         if (!$result) {
+//             $this->form_validation->set_message('username_check', lang('lang_login_exists'));
+//         }
 
-        if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest')
-            return $result;
-        else
-            return $result;
-//            return json_encode(array('result' => $result));
+//         if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest')
+//             return $result;
+//         else
+//             return $result;
+// //            return json_encode(array('result' => $result));
+		return true;
     }
 
     function email_check($email) {
@@ -70,12 +71,12 @@ class Auth extends MY_Controller {
     }
 
     function validate_username($str) {
-        $result = (!preg_match("/^([@.-a-z0-9_-])+$/i", $str)) ? false : true;
+//         $result = (!preg_match("/^([@.-a-z0-9_-])+$/i", $str)) ? false : true;
 
-        if ($result === false)
-            $this->form_validation->set_message('validate_username', 'Поле Логин может содержать только буквы, цифры, подчеркивания тире или e-mail адрес.');
+//         if ($result === false)
+//             $this->form_validation->set_message('validate_username', 'Поле Логин может содержать только буквы, цифры, подчеркивания тире или e-mail адрес.');
 
-        return $result;
+//         return $result;
     }
 
     function recaptcha_check() {
@@ -97,17 +98,17 @@ class Auth extends MY_Controller {
      */
 
     function login() {
-        ($hook = get_hook('auth_on_login')) ? eval($hook) : NULL;
+//         ($hook = get_hook('auth_on_login')) ? eval($hook) : NULL;
 
         if (!$this->dx_auth->is_logged_in()) {
             $val = $this->form_validation;
 
             // Set form validation rules
-            $val->set_rules('username', lang('lang_login'), 'trim|required|min_length[3]|max_length[30]|xss_clean');
+            $val->set_rules('email', lang('lang_email'), 'trim|required|min_length[3]|xss_clean|valid_email');
             $val->set_rules('password', lang('lang_password'), 'trim|required|min_length[3]|max_length[30]|xss_clean');
             $val->set_rules('remember', 'Remember me', 'integer');
 
-            ($hook = get_hook('auth_login_set_rules')) ? eval($hook) : NULL;
+//             ($hook = get_hook('auth_login_set_rules')) ? eval($hook) : NULL;
 
             // Set captcha rules if login attempts exceed max attempts in config
             if ($this->dx_auth->is_max_login_attempts_exceeded()) {
@@ -117,8 +118,8 @@ class Auth extends MY_Controller {
                     $val->set_rules('captcha', lang('lang_captcha'), 'trim|required|xss_clean|callback_captcha_check');
             }
 
-            if ($val->run() AND $this->dx_auth->login($val->set_value('username'), $val->set_value('password'), $val->set_value('remember'))) {
-                ($hook = get_hook('auth_login_success')) ? eval($hook) : NULL;
+            if ($val->run() AND $this->dx_auth->login($val->set_value('email'), $val->set_value('password'), $val->set_value('remember'))) {
+//                 ($hook = get_hook('auth_login_success')) ? eval($hook) : NULL;
 
                 // Redirect to homepage
                 if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
@@ -134,7 +135,7 @@ class Auth extends MY_Controller {
                 }
             } else {
 
-                ($hook = get_hook('auth_login_failed')) ? eval($hook) : NULL;
+//                 ($hook = get_hook('auth_login_failed')) ? eval($hook) : NULL;
 
                 $this->template->assign('info_message', $this->dx_auth->get_auth_error());
 
@@ -153,7 +154,7 @@ class Auth extends MY_Controller {
 
                     // Show captcha if login attempts exceed max attempts in config
                     if ($this->dx_auth->is_max_login_attempts_exceeded()) {
-                        ($hook = get_hook('auth_login_attemps_exceeded')) ? eval($hook) : NULL;
+//                         ($hook = get_hook('auth_login_attemps_exceeded')) ? eval($hook) : NULL;
 
                         // Create catpcha
                         $this->dx_auth->captcha();
@@ -162,7 +163,7 @@ class Auth extends MY_Controller {
                         $data['show_captcha'] = TRUE;
                     }
 
-                    ($hook = get_hook('auth_show_login_tpl')) ? eval($hook) : NULL;
+//                     ($hook = get_hook('auth_show_login_tpl')) ? eval($hook) : NULL;
 
                     // Load login page view
                     if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
@@ -173,7 +174,7 @@ class Auth extends MY_Controller {
                 }
             }
         } else {
-            ($hook = get_hook('auth_user_is_logged')) ? eval($hook) : NULL;
+//             ($hook = get_hook('auth_user_is_logged')) ? eval($hook) : NULL;
 
             $this->template->assign('content', lang('lang_user_logged_in'));
             $this->template->show();
@@ -186,15 +187,15 @@ class Auth extends MY_Controller {
     }
 
     function logout() {
-        ($hook = get_hook('auth_logout')) ? eval($hook) : NULL;
+//         ($hook = get_hook('auth_logout')) ? eval($hook) : NULL;
         $this->dx_auth->logout();
-        ($hook = get_hook('auth_logout_redirect')) ? eval($hook) : NULL;
+//         ($hook = get_hook('auth_logout_redirect')) ? eval($hook) : NULL;
 
         redirect('', 'location');
     }
 
     public function register() {
-        ($hook = get_hook('auth_on_register')) ? eval($hook) : NULL;
+//         ($hook = get_hook('auth_on_register')) ? eval($hook) : NULL;
         $this->core->set_meta_tags(lang('lang_register'));
 
         $this->load->library('Form_validation');
@@ -202,12 +203,12 @@ class Auth extends MY_Controller {
             $val = $this->form_validation;
 
             // Set form validation rules
-            $val->set_rules('username', lang('lang_login'), 'trim|required|xss_clean|min_length[' . $this->min_username . ']|max_length[' . $this->max_username . ']|callback_username_check|callback_validate_username');
+//             $val->set_rules('username', lang('lang_login'), 'trim|required|xss_clean|min_length[' . $this->min_username . ']|max_length[' . $this->max_username . ']|callback_username_check|callback_validate_username');
             $val->set_rules('password', lang('lang_password'), 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']|matches[confirm_password]');
             $val->set_rules('confirm_password', lang('lang_confirm_password'), 'trim|required|xss_clean');
             $val->set_rules('email', lang('lang_email'), 'trim|required|xss_clean|valid_email|callback_email_check');
 
-            ($hook = get_hook('auth_reg_set_rules')) ? eval($hook) : NULL;
+//             ($hook = get_hook('auth_reg_set_rules')) ? eval($hook) : NULL;
 
             if ($this->dx_auth->captcha_registration) {
                 if ($this->dx_auth->use_recaptcha)
@@ -219,8 +220,8 @@ class Auth extends MY_Controller {
             // Run form validation and register user if it's pass the validation
             $this->load->helper('string');
             $key = random_string('alnum', 5);
-            if ($val->run() AND $this->dx_auth->register($this->input->post('username'), $val->set_value('password'), $val->set_value('email'), $key)) {
-                ($hook = get_hook('auth_register_success')) ? eval($hook) : NULL;
+            if ($val->run() AND $this->dx_auth->register('', $val->set_value('password'), $val->set_value('email'), $key)) {
+//                 ($hook = get_hook('auth_register_success')) ? eval($hook) : NULL;
                 
                 
                 // Set success message accordingly
@@ -230,7 +231,7 @@ class Auth extends MY_Controller {
                     $data['auth_message'] = lang('lang_reg_success') . anchor(site_url($this->dx_auth->login_uri), lang('lang_login'));
                 }
 
-                ($hook = get_hook('auth_show_success_message')) ? eval($hook) : NULL;
+//                 ($hook = get_hook('auth_show_success_message')) ? eval($hook) : NULL;
 
                 // Load registration success page
                 if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
@@ -249,7 +250,7 @@ class Auth extends MY_Controller {
                     $this->template->assign('cap_image', $this->dx_auth->get_captcha_image());
                 }
 
-                ($hook = get_hook('auth_show_register_tpl')) ? eval($hook) : NULL;
+//                 ($hook = get_hook('auth_show_register_tpl')) ? eval($hook) : NULL;
 
                 if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
                     $this->template->show('register');
@@ -258,14 +259,14 @@ class Auth extends MY_Controller {
                 }
             }
         } elseif (!$this->dx_auth->allow_registration) {
-            ($hook = get_hook('auth_register_closed')) ? eval($hook) : NULL;
+//             ($hook = get_hook('auth_register_closed')) ? eval($hook) : NULL;
 
             $data['auth_message'] = lang('lang_register_off');
 
             $this->template->assign('content', $data['auth_message']);
             $this->template->show();
         } else {
-            ($hook = get_hook('auth_logout_to_reg')) ? eval($hook) : NULL;
+//             ($hook = get_hook('auth_logout_to_reg')) ? eval($hook) : NULL;
 
             $data['auth_message'] = lang('lang_logout_to_reg');
 
@@ -275,14 +276,14 @@ class Auth extends MY_Controller {
     }
 
     function activate() {
-        ($hook = get_hook('auth_on_activate_acc')) ? eval($hook) : NULL;
+//         ($hook = get_hook('auth_on_activate_acc')) ? eval($hook) : NULL;
 
         // Get username and key
-        $username = $this->uri->segment(3);
+        $email = $this->uri->segment(3);
         $key = $this->uri->segment(4);
 
         // Activate user
-        if ($this->dx_auth->activate($username, $key)) {
+        if ($this->dx_auth->activate($email, $key)) {
             $data['auth_message'] = lang('lang_acc_activated') . anchor(site_url($this->dx_auth->login_uri), lang('lang_login'));
 
             $this->template->assign('content', $data['auth_message']);
@@ -296,14 +297,14 @@ class Auth extends MY_Controller {
     }
 
     function forgot_password() {
-        ($hook = get_hook('auth_on_forgot_pass')) ? eval($hook) : NULL;
+//         ($hook = get_hook('auth_on_forgot_pass')) ? eval($hook) : NULL;
         $this->core->set_meta_tags(lang('lang_forgot_pass'));
         $this->load->library('Form_validation');
 
         $val = $this->form_validation;
 
         // Set form validation rules
-        $val->set_rules('login', lang('lang_username_or_mail'), 'trim|required|xss_clean');
+        $val->set_rules('login', lang('lang_email'), 'trim|required|xss_clean');
 
         // Validate rules and call forgot password function
         if ($val->run() AND $this->dx_auth->forgot_password($val->set_value('login'))) {
@@ -315,28 +316,28 @@ class Auth extends MY_Controller {
             $this->template->assign('info_message', $this->dx_auth->_auth_error);
         }
 
-        ($hook = get_hook('auth_show_forgot_pass_tpl')) ? eval($hook) : NULL;
+//         ($hook = get_hook('auth_show_forgot_pass_tpl')) ? eval($hook) : NULL;
 
         $this->template->show('forgot_password');
     }
 
     function reset_password() {
-        ($hook = get_hook('auth_on_pass_reset')) ? eval($hook) : NULL;
+//         ($hook = get_hook('auth_on_pass_reset')) ? eval($hook) : NULL;
 
         // Get username and key
-        $username = $this->uri->segment(3);
+        $email = $this->uri->segment(3);
         $key = $this->uri->segment(4);
 
         // Reset password
-        if ($this->dx_auth->reset_password($username, $key)) {
-            ($hook = get_hook('auth_reset_pass_restored')) ? eval($hook) : NULL;
+        if ($this->dx_auth->reset_password($email, $key)) {
+//             ($hook = get_hook('auth_reset_pass_restored')) ? eval($hook) : NULL;
 
             $data['auth_message'] = lang('lang_pass_restored') . anchor(site_url($this->dx_auth->login_uri), lang('lang_login'));
 
             $this->template->assign('content', $data['auth_message']);
             $this->template->show();
         } else {
-            ($hook = get_hook('auth_reset_pass_failed')) ? eval($hook) : NULL;
+//             ($hook = get_hook('auth_reset_pass_failed')) ? eval($hook) : NULL;
 
             $data['auth_message'] = lang('lang_reset_failed');
 
@@ -346,7 +347,7 @@ class Auth extends MY_Controller {
     }
 
     function change_password() {
-        ($hook = get_hook('auth_on_change_pass')) ? eval($hook) : NULL;
+//         ($hook = get_hook('auth_on_change_pass')) ? eval($hook) : NULL;
 
         $this->load->library('Form_validation');
 
@@ -375,7 +376,7 @@ class Auth extends MY_Controller {
     }
 
     function cancel_account() {
-        ($hook = get_hook('auth_on_cancel_acc')) ? eval($hook) : NULL;
+//         ($hook = get_hook('auth_on_cancel_acc')) ? eval($hook) : NULL;
 
         $this->load->library('Form_validation');
 
@@ -404,14 +405,14 @@ class Auth extends MY_Controller {
      */
 
     function deny() {
-        ($hook = get_hook('auth_page_access_deny')) ? eval($hook) : NULL;
+//         ($hook = get_hook('auth_page_access_deny')) ? eval($hook) : NULL;
 
         $this->template->assign('content', lang('lang_access_deny'));
         $this->template->show();
     }
 
     function banned() {
-        ($hook = get_hook('auth_show_banned_message')) ? eval($hook) : NULL;
+//         ($hook = get_hook('auth_show_banned_message')) ? eval($hook) : NULL;
 
         echo lang('lang_user_banned');
 
