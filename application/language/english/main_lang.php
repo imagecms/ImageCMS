@@ -12,6 +12,7 @@ $lang['lang_categories1'] = 'Categories';
 
 // Auth module
 $lang['lang_register'] = 'Registration';
+$lang['lang_email_form'] = 'Enter email';
 $lang['lang_login'] = 'Login';
 $lang['lang_password'] = 'Password';
 $lang['orderind_shop_sg'] = 'Ordering';

@@ -36,18 +36,16 @@ class Auth extends MY_Controller {
 
     function username_check($username) {
 //         ($hook = get_hook('auth_username_check')) ? eval($hook) : NULL;
-
 //         $result = $this->dx_auth->is_username_available($username);
 //         if (!$result) {
 //             $this->form_validation->set_message('username_check', lang('lang_login_exists'));
 //         }
-
 //         if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest')
 //             return $result;
 //         else
 //             return $result;
 // //            return json_encode(array('result' => $result));
-		return true;
+        return true;
     }
 
     function email_check($email) {
@@ -72,10 +70,8 @@ class Auth extends MY_Controller {
 
     function validate_username($str) {
 //         $result = (!preg_match("/^([@.-a-z0-9_-])+$/i", $str)) ? false : true;
-
 //         if ($result === false)
 //             $this->form_validation->set_message('validate_username', 'Поле Логин может содержать только буквы, цифры, подчеркивания тире или e-mail адрес.');
-
 //         return $result;
     }
 
@@ -109,7 +105,6 @@ class Auth extends MY_Controller {
             $val->set_rules('remember', 'Remember me', 'integer');
 
 //             ($hook = get_hook('auth_login_set_rules')) ? eval($hook) : NULL;
-
             // Set captcha rules if login attempts exceed max attempts in config
             if ($this->dx_auth->is_max_login_attempts_exceeded()) {
                 if ($this->dx_auth->use_recaptcha)
@@ -120,7 +115,6 @@ class Auth extends MY_Controller {
 
             if ($val->run() AND $this->dx_auth->login($val->set_value('email'), $val->set_value('password'), $val->set_value('remember'))) {
 //                 ($hook = get_hook('auth_login_success')) ? eval($hook) : NULL;
-
                 // Redirect to homepage
                 if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
                     redirect('', 'location');
@@ -155,7 +149,6 @@ class Auth extends MY_Controller {
                     // Show captcha if login attempts exceed max attempts in config
                     if ($this->dx_auth->is_max_login_attempts_exceeded()) {
 //                         ($hook = get_hook('auth_login_attemps_exceeded')) ? eval($hook) : NULL;
-
                         // Create catpcha
                         $this->dx_auth->captcha();
                         $this->template->assign('cap_image', $this->dx_auth->get_captcha_image());
@@ -164,7 +157,6 @@ class Auth extends MY_Controller {
                     }
 
 //                     ($hook = get_hook('auth_show_login_tpl')) ? eval($hook) : NULL;
-
                     // Load login page view
                     if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
                         $this->template->show('login');
@@ -203,7 +195,7 @@ class Auth extends MY_Controller {
             $val = $this->form_validation;
 
             // Set form validation rules
-//             $val->set_rules('username', lang('lang_login'), 'trim|required|xss_clean|min_length[' . $this->min_username . ']|max_length[' . $this->max_username . ']|callback_username_check|callback_validate_username');
+            $val->set_rules('username', lang('s_fio'), 'trim|xss_clean');
             $val->set_rules('password', lang('lang_password'), 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']|matches[confirm_password]');
             $val->set_rules('confirm_password', lang('lang_confirm_password'), 'trim|required|xss_clean');
             $val->set_rules('email', lang('lang_email'), 'trim|required|xss_clean|valid_email|callback_email_check');
@@ -220,10 +212,8 @@ class Auth extends MY_Controller {
             // Run form validation and register user if it's pass the validation
             $this->load->helper('string');
             $key = random_string('alnum', 5);
-            if ($val->run() AND $this->dx_auth->register('', $val->set_value('password'), $val->set_value('email'), $key)) {
+            if ($val->run() AND $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'), $key)) {
 //                 ($hook = get_hook('auth_register_success')) ? eval($hook) : NULL;
-                
-                
                 // Set success message accordingly
                 if ($this->dx_auth->email_activation) {
                     $data['auth_message'] = lang('lang_check_mail_acc');
@@ -232,7 +222,6 @@ class Auth extends MY_Controller {
                 }
 
 //                 ($hook = get_hook('auth_show_success_message')) ? eval($hook) : NULL;
-
                 // Load registration success page
                 if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
                     $this->template->assign('content', $data['auth_message']);
@@ -277,7 +266,6 @@ class Auth extends MY_Controller {
 
     function activate() {
 //         ($hook = get_hook('auth_on_activate_acc')) ? eval($hook) : NULL;
-
         // Get username and key
         $email = $this->uri->segment(3);
         $key = $this->uri->segment(4);
@@ -304,10 +292,10 @@ class Auth extends MY_Controller {
         $val = $this->form_validation;
 
         // Set form validation rules
-        $val->set_rules('login', lang('lang_email'), 'trim|required|xss_clean');
+        $val->set_rules('email', lang('lang_email'), 'trim|required|xss_clean|valid_email');
 
         // Validate rules and call forgot password function
-        if ($val->run() AND $this->dx_auth->forgot_password($val->set_value('login'))) {
+        if ($val->run() AND $this->dx_auth->forgot_password($val->set_value('email'))) {
             $data['auth_message'] = lang('lang_acc_mail_sent');
             $this->template->assign('info_message', $data['auth_message']);
         }
@@ -323,7 +311,6 @@ class Auth extends MY_Controller {
 
     function reset_password() {
 //         ($hook = get_hook('auth_on_pass_reset')) ? eval($hook) : NULL;
-
         // Get username and key
         $email = $this->uri->segment(3);
         $key = $this->uri->segment(4);
@@ -332,7 +319,7 @@ class Auth extends MY_Controller {
         if ($this->dx_auth->reset_password($email, $key)) {
 //             ($hook = get_hook('auth_reset_pass_restored')) ? eval($hook) : NULL;
 
-            $data['auth_message'] = lang('lang_pass_restored') . anchor(site_url($this->dx_auth->login_uri), lang('lang_login'));
+            $data['auth_message'] = lang('lang_pass_restored') . anchor(site_url($this->dx_auth->login_uri), lang('s_login_here'));
 
             $this->template->assign('content', $data['auth_message']);
             $this->template->show();
