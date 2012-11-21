@@ -11,15 +11,16 @@
 	<div class="comment_form_info">
 	
 	<div class="textbox">
-        <label for="username" class="left">{lang('lang_login')}</label>
-        <input type="text" size="30" name="username" id="username" value="{set_value('username')}"/>
+        <label for="email" class="left">{lang('lang_email')}</label>
+        <input type="text" size="30" name="email" id="email" value="{set_value('email')}" />
     </div>
 	
 	<div class="textbox_spacer"></div>
 	
     <div class="textbox">
-        <label for="email" class="left">{lang('lang_email')}</label>
-        <input type="text" size="30" name="email" id="email" value="{set_value('email')}" />
+        <label for="username" class="left">{lang('s_fio')}</label>
+        <input type="text" size="30" name="username" id="username" value="{set_value('username')}"/>
+        
     </div>
 
     <div class="textbox">
