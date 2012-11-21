@@ -819,7 +819,7 @@ $lang['a_not_asked_main_prod_kit'] = 'Вы не задали главный то
 $lang['a_must_attach_main_prod_kit'] = 'Необходимо прикрепить товары для создания набора';
 $lang['a_kit_with_products_exists'] = 'Набор с такими товарами уже существует';
 $lang['a_kits_succ_deleted'] = 'Набор(ы) успешно удален(ы)';
-
+ 
 $lang['a_back'] = 'Вернуться';
 
 //new
