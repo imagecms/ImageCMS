@@ -216,11 +216,14 @@ class Auth extends MY_Controller {
                 else
                     $val->set_rules('captcha', lang('lang_captcha'), 'trim|xss_clean|required|callback_captcha_check');
             }
-            
-            // Run form validation and register user if it's pass the validation
-            if ($val->run() AND $this->dx_auth->register($this->input->post('username'), $val->set_value('password'), $val->set_value('email'))) {
-                ($hook = get_hook('auth_register_success')) ? eval($hook) : NULL;
 
+            // Run form validation and register user if it's pass the validation
+            $this->load->helper('string');
+            $key = random_string('alnum', 5);
+            if ($val->run() AND $this->dx_auth->register($this->input->post('username'), $val->set_value('password'), $val->set_value('email'), $key)) {
+                ($hook = get_hook('auth_register_success')) ? eval($hook) : NULL;
+                
+                
                 // Set success message accordingly
                 if ($this->dx_auth->email_activation) {
                     $data['auth_message'] = lang('lang_check_mail_acc');
