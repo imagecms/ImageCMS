@@ -27,11 +27,13 @@ class Cfcm_forms extends MY_Controller {
                 'label'      => 'Имя',
                 'validation' => 'alpha_dash|max_length[255]',
                 'help_text'  => 'К имени будет добавлен префикс field_',
+                'class'      => 'required alphanumeric'
             ),
             'label' => array(
                 'type'       => 'text',
                 'label'      => 'Label',
                 'validation' => 'max_length[255]',
+                'class'      => 'required'
             ),
             'in_search' => array(
                 'type'       => 'checkbox',
@@ -43,10 +45,11 @@ class Cfcm_forms extends MY_Controller {
                 'label'      => 'Тип',
                 'initial'    => $this->field_types,
             ),
-            'group' => array(
+            'groups' => array(
                 'type'       => 'select',
                 'label'      => 'Группа',
                 'initial'    => self::prepare_groups_select(),
+                'multiple'   => true
             ), 
 			'data' => array(
                 'type'       => 'hidden',

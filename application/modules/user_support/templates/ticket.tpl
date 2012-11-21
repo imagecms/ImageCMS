@@ -1,10 +1,11 @@
 {literal}
 <style>
     .ticket_comment {
-        width:90%;
         position:relative;
         margin-top:10px;
         font-size:13px;
+        border: 1px solid #ddd;
+        border-radius: 2px;
     }
 
 
@@ -43,16 +44,19 @@
 {/literal}
 
 <h3>Тема билета: {$ticket.theme}</h3>
-<p>
-    <a href="{site_url('user_support/create_ticket')}">Создать новый билет</a> | <a href="{site_url('user_support/my_tickets')}">Все билеты</a>
-</p>
+<div class="button_middle_blue buttons t-a_c">
+    <a href="{site_url('user_support/create_ticket')}">Создать билет</a>
+</div>
+<div class="button_middle_blue buttons t-a_c">
+    <a href="{site_url('user_support/my_tickets')}">Все билеты</a>
+</div>
 
 <?php
     $ci = get_instance();
     $ci->load->helper('typography');
 ?>
 
-    <fieldset class="fieldset">
+    <fieldset class="fieldset well">
         <table cellspacing="1" cellpadding="4" border="0" width="100%">
           <tbody><tr>
             <td align="left" width="20%" valign="top" class="row2"><span class="smalltext">Номер билета:</span></td>
@@ -80,19 +84,22 @@
 
     <br/>
 
+    <div class="well">
     <h3>Описание</h3>
     <p>
     {nl2br_except_pre($ticket.text)}
     </p>
-
+    </div>
+    
     <p>
         <a href="javascript:history.back(-1);">← Назад</a>
     </p>
 
     <br/>
     {if $ticket.comments}
+        
     <h3>Корреспонденция</h3>
- 
+    <div class="well light">
     {foreach $ticket.comments as $c}
     <div class="ticket_comment">
 
@@ -106,6 +113,7 @@
 	</div>
     </div>
     {/foreach}
+    </div>
     {/if}
 
 <p>
@@ -123,8 +131,8 @@
     {form_csrf()}
         <div class="form"> 
         <div class="textbox">
-			<label for="text" class="left">Введите Ваше сообщение</label>
-            <textarea rows="10" cols="45" class="textarea" name="text"></textarea>
+			<label for="text" class="left">Введите Ваше сообщение</label><br/>
+            <textarea rows="10" cols="45" class="textarea well" name="text"></textarea>
         </div>
             <br />
             <button type="submit" class="submit">Отослать</button> 
