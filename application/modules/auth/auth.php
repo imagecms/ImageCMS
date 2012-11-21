@@ -307,7 +307,7 @@ class Auth extends MY_Controller {
         $val->set_rules('login', lang('lang_email'), 'trim|required|xss_clean');
 
         // Validate rules and call forgot password function
-        if ($val->run() AND $this->dx_auth->forgot_password($val->set_value('login'))) {
+        if ($val->run() AND $this->dx_auth->forgot_password($val->set_value('email'))) {
             $data['auth_message'] = lang('lang_acc_mail_sent');
             $this->template->assign('info_message', $data['auth_message']);
         }
