@@ -16,7 +16,7 @@
         <div class="m-t_10">
             <select class="link_type input-xxlarge">
                 <option value="page" {if $item.item_type == 'page'}selected="selected"{/if}>Страница</option>
-                <option value="category2" {if $item.item_type == 'category'}selected="selected"{/if}>Категория</option>
+                <option value="category" {if $item.item_type == 'category'}selected="selected"{/if}>Категория</option>
                 <option value="module" {if $item.item_type == 'module'}selected="selected"{/if}>Модуль</option>
                 <option value="url" {if $item.item_type == 'url'}selected="selected"{/if}>Ссылка</option>
             </select>
@@ -71,7 +71,9 @@
                                                         <div id="pages_list_holder">
                                                             <ul>
                                                                 {foreach $pages.pages_list as $p}
-                                                                <li><a class="page_title" data-url="{$p.cat_url}/{$p.url}" data-title="{$p.title}" data-id="{$p.id}">{echo $p.title}</a></li>
+                                                                    <li>
+                                                                        <a class="page_title" data-url="{$p.cat_url}/{$p.url}" data-title="{$p.title}" data-id="{$p.id}">{echo $p.title}</a>
+                                                                    </li>
                                                                 {/foreach}
                                                             </ul>
                                                         </div>
@@ -140,10 +142,21 @@
                                                         </select>
                                                     </div>
                                                 </div>
+                                                        &nbsp;
                                                 <div class="control-group">
                                                     <label class="control-label">{lang('amt_image')}:</label>
                                                     <div class="controls">
-                                                        <input type="text" value="" name="item_image"  id="page_image" />
+<!--                                                        <input type="text" value="" name="item_image"  id="page_image" />-->
+
+                                                            <div class="group_icon pull-right">            
+                                                                <button class="btn btn-small" onclick="elFinderPopup('item_image', 'page_image'); return false;" type="button">
+                                                                    <i class="icon-picture"></i>  {lang('a_select_image')}
+                                                                </button>
+                                                            </div>
+                                                            <div class="o_h">		            
+                                                                <!--<input type="text" name="Image" id="Img" value="">		-->
+                                                                <input type="text" value="" name="item_image"  id="page_image" />
+                                                            </div>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
@@ -181,8 +194,8 @@
                 </div>
             </form>
         </div>
-        <div {if $item.item_type != 'category'}style="display: none;"{/if} id="category2" class="edit_holder">
-            <form method="post" action="/admin/components/cp/menu/create_item/" id="category2_form" >
+        <div {if $item.item_type != 'category'}style="display: none;"{/if} id="category" class="edit_holder">
+            <form method="post" action="/admin/components/cp/menu/create_item/" id="category_form" >
                 <input type="hidden" name="menu_id" value="{$menu.id}"/>
                 <input type="hidden" name="item_id" value="" id="cat_input"/>
                 <input type="hidden" name="item_type" value="category"/>
