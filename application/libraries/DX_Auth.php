@@ -961,16 +961,15 @@ class DX_Auth
 
 		// Default return value
 		$result = FALSE;
-
-		// New user array
-		$new_user = array(
+                
+                $new_user = array(
 			'username'				=> $username,
 			'password'				=> crypt($this->_encode($password)),
 			'email'						=> $email,
 			'key'						=> $key,
 			'last_ip'					=> $this->ci->input->ip_address()
 		);
-
+               
 		// Do we need to send email to activate user
 		if ($this->ci->config->item('DX_email_activation'))
 		{
@@ -1068,7 +1067,7 @@ class DX_Auth
 					$this->ci->users->newpass($row->id, $encode, $data['key']);
 
 					// Create reset password link to be included in email
-					$data['reset_password_uri'] = site_url($this->ci->config->item('DX_reset_password_uri')."{$row->username}/{$data['key']}");
+					$data['reset_password_uri'] = site_url($this->ci->config->item('DX_reset_password_uri')."{$row->email}/{$data['key']}");
 
 					// Create email
 					$from = $this->ci->config->item('DX_webmaster_email');
@@ -1097,7 +1096,7 @@ class DX_Auth
 		return $result;
 	}
         
-	function reset_password($username, $key = '')
+	function reset_password($email, $key = '')
 	{
 		// Load Models
 		$this->ci->load->model('dx_auth/users', 'users');
@@ -1110,12 +1109,12 @@ class DX_Auth
 		$user_id = 0;
 
 		// Get user id
-		if ($query = $this->ci->users->get_user_by_username($username) AND $query->num_rows() == 1)
+		if ($query = $this->ci->users->get_user_by_email($email) AND $query->num_rows() == 1)
 		{
 			$user_id = $query->row()->id;
 
 			// Try to activate new password
-			if ( ! empty($username) AND ! empty($key) AND $this->ci->users->activate_newpass($user_id, $key) AND $this->ci->db->affected_rows() > 0 )
+			if ( ! empty($email) AND ! empty($key) AND $this->ci->users->activate_newpass($user_id, $key) AND $this->ci->db->affected_rows() > 0 )
 			{
 				// Clear previously setup new password and keys
 				$this->ci->user_autologin->clear_keys($user_id);
@@ -1126,7 +1125,7 @@ class DX_Auth
 		return $result;
 	}
 
-	function activate($username, $key = '')
+	function activate($email, $key = '')
 	{
 		// Load Models
 		$this->ci->load->model('dx_auth/users', 'users');
@@ -1142,7 +1141,7 @@ class DX_Auth
 		}
 
 		// Activate user
-		if ($query = $this->ci->user_temp->activate_user($username, $key) AND $query->num_rows() > 0)
+		if ($query = $this->ci->user_temp->activate_user($email, $key) AND $query->num_rows() > 0)
 		{
 			// Get user
 			$row = $query->row_array();

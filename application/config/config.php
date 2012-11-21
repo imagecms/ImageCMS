@@ -44,8 +44,8 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
             $db['default']['username'] = 'root';
-            $db['default']['password'] = 'kolo90da90';
-            $db['default']['database'] = 'inst4';
+            $db['default']['password'] = 'pefolios';
+            $db['default']['database'] = 'base';
             $db['default']['dbdriver'] = 'mysql';
             $db['default']['dbprefix'] = '';
             $db['default']['pconnect'] = FALSE;
