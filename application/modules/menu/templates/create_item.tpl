@@ -147,7 +147,7 @@
                                                     <label class="control-label">{lang('amt_image')}:</label>
                                                     <div class="controls">
                                                         <div class="group_icon pull-right">            
-                                                            <button class="btn btn-small" onclick="elFinderPopup('item_image', 'page_image');
+                                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'page_image');
                                                                     return false;" type="button">
                                                                 <i class="icon-picture"></i>  {lang('a_select_image')}
                                                             </button>
@@ -288,7 +288,7 @@
                                                     <label class="control-label">{lang('amt_image')}:</label>
                                                     <div class="controls">
                                                         <div class="group_icon pull-right">            
-                                                            <button class="btn btn-small" onclick="elFinderPopup('item_image', 'page_image');
+                                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'page_image');
                                                                     return false;" type="button">
                                                                 <i class="icon-picture"></i>  {lang('a_select_image')}
                                                             </button>
@@ -437,7 +437,7 @@
                                                     <label class="control-label">{lang('amt_image')}:</label>
                                                     <div class="controls">
                                                         <div class="group_icon pull-right">            
-                                                            <button class="btn btn-small" onclick="elFinderPopup('item_image', 'page_image');
+                                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'page_image');
                                                                     return false;" type="button">
                                                                 <i class="icon-picture"></i>  {lang('a_select_image')}
                                                             </button>
@@ -563,7 +563,7 @@
                                                     <label class="control-label">{lang('amt_image')}:</label>
                                                     <div class="controls">
                                                         <div class="group_icon pull-right">            
-                                                            <button class="btn btn-small" onclick="elFinderPopup('item_image', 'page_image');
+                                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'page_image');
                                                                     return false;" type="button">
                                                                 <i class="icon-picture"></i>  {lang('a_select_image')}
                                                             </button>

@@ -246,9 +246,9 @@ function elFinderPopup(type, id)
         dlg = $('#elFinder').dialogelfinder({
             url: '/admin/elfinder_init',
             commandsOptions: {
-//                getfile: {
-//                    oncomplete : 'destroy' // close/hide elFinder
-//                }
+                getfile: {
+                    oncomplete : 'close' // close/hide elFinder
+                }
             },
             getFileCallback: function(file) {
                 $('#'+id).val( '/'+file.path);
