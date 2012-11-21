@@ -237,31 +237,34 @@ function initElRTE()
         );
 }
 
+var dlg = false;
 function elFinderPopup(type, id)
 {
     //todo: create diferent browsers (check 'type' variable)
-    dlg = $('#elFinder').dialogelfinder({
-        url: '/admin/elfinder_init',
-        commandsOptions: {
-            getfile: {
-                oncomplete : 'destroy' // close/hide elFinder
+    if (!dlg)
+    {
+        dlg = $('#elFinder').dialogelfinder({
+            url: '/admin/elfinder_init',
+            commandsOptions: {
+//                getfile: {
+//                    oncomplete : 'destroy' // close/hide elFinder
+//                }
+            },
+            getFileCallback: function(file) {
+                $('#'+id).val( '/'+file.path);
+                if ( type == 'image' && $('#'+id+'-preview').length)
+                {
+                    var img = document.createElement('img');
+                    img.src = $('#'+id).val(); 
+                    img.className = "img-polaroid";
+                    console.log(img);
+                    $('#'+id+'-preview').html(img);
+                }
             }
-        },
-        getFileCallback: function(file) {
-            $('#'+id).val( '/'+file.path);
-            if ( type == 'image' && $('#'+id+'-preview').length)
-            {
-                var img = document.createElement('img');
-                img.src = $('#'+id).val(); 
-                img.className = "img-polaroid";
-                console.log(img);
-                $('#'+id+'-preview').html(img);
-            }
-        }
-			        
-    //			        getFileCallback: callback // pass callback to file manager
-    });
-    
+        });
+    }
+else
+    dlg.show();
     return false;
 }
 
