@@ -75,7 +75,7 @@ class Admin extends MY_Controller {
             $parents = $this->db->where('menu_id', $id)->get('menus_data')->result_array();
             $menu = $this->db->where('id', $id)->get('menus')->row_array();
             $cats = $this->lib_category->build();
-            $pages = $this->get_pages();
+            $pages = $this->get_pages(0, 0, 'controller');
             $query = $this->db->get('roles');
             $this->template->assign('roles', $query->result_array());
             $this->template->assign('modules', $this->_load_module_list());
@@ -356,7 +356,7 @@ class Admin extends MY_Controller {
             $parents = $this->db->where('menu_id', $item['menu_id'])->get('menus_data')->result_array();
             $menu = $this->db->where('id', $item['menu_id'])->get('menus')->row_array();
             $cats = $this->lib_category->build();
-            $pages = $this->get_pages();
+            $pages = $this->get_pages(0, 0, 'controller');
             $query = $this->db->get('roles');
             $this->template->assign('roles', $query->result_array());
             $this->template->assign('modules', $this->_load_module_list());
@@ -849,7 +849,7 @@ class Admin extends MY_Controller {
     /**
      * Get pages and return in JSON
      */
-    function get_pages($cat_id = 0, $cur_page = 0) {
+    function get_pages($cat_id = 0, $cur_page = 0, $referer = null) {
         $data['nav_count'] = array();
         $data['links'] = 0;
         $per_page = 10;
@@ -876,8 +876,11 @@ class Admin extends MY_Controller {
             if ($data['links'] == 1)
                 $data['links'] = 0;
 
-            if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
+            if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
+                if ($referer == 'controller')
+                    return $data;
                 echo json_encode($data);
+            }
             else
                 return $data;
         }
