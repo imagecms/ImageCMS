@@ -842,4 +842,8 @@ $lang['a_s_callback_editing'] = 'Редактирование колбека';
 $lang['a_category_creating'] = 'Создание категории';
 
 $lang['a_general_settings'] = 'Общие настройки';
+
+$lang['a_user_name'] = 'Имя пользователя';
+$lang['a_delete_order_status_confirm'] = 'Действительно далить статус(ы)?';
+$lang['a_order_status_deleting'] = 'Удаление статуса заказа';
 ?>
