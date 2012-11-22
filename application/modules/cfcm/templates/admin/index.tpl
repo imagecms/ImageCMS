@@ -35,7 +35,7 @@
                         <td>{$f.field_name}</td>
                         <td>{$f.type}</td>
                         <td>{$groups[$f.group]['name']}</td>
-                        <td align="right">
+                        <td class="t-a_c">
                             <button onclick="CFAdmin.deleteOne('{$f.field_name}'); return false;" class="btn btn-small btn-danger my_btn_s" data-rel="tooltip" data-title="{lang('a_delete')}"> <i class="icon-trash icon-white"></i></button>
                         </td>
                     </tr>        
@@ -66,9 +66,9 @@
                         </td>
                         <td>{truncate($g.description, 35)}</td>
                         <td>
-                            {echo $this->CI->db->get_where('content_fields', array('group' => $g.id))->num_rows()}
+                            {echo $this->CI->db->get_where('content_fields_groups_relations', array('group_id' => $g.id))->num_rows()}
                         </td>
-                        <td align="right">
+                        <td class="t-a_c">
                             <button onclick="CFAdmin.deleteOneGroup({$g.id}); return false;" class="btn btn-danger btn-small my_btn_s" data-rel="tooltip" data-title="{lang('a_delete')}"> <i class="icon-trash icon-white"></i></button>
                         </td>
                     </tr>        
