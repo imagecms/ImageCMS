@@ -271,6 +271,7 @@ $lang['a_created'] = 'Has been created';
 $lang['a_url'] = 'URL';
 $lang['a_ip_addres_1c'] = 'Server 1C IP address'; // 'IP Адрес сервера 1С';
 $lang['a_description'] = 'Description';
+$lang['a_pricedescription'] = 'Description delivery price';
 $lang['a_meta_title'] = 'Meta Title';
 $lang['a_meta_description'] = 'Meta Description';
 $lang['a_meta_keywords'] = 'Meta Keywords';
