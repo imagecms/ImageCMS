@@ -270,6 +270,7 @@ $lang['a_url'] = 'URL';
 $lang['a_b_last_ip'] = 'Последний IP';
 $lang['a_ip_addres_1c'] = 'IP Адрес сервера 1С';
 $lang['a_description'] = 'Описание';
+$lang['a_pricedescription'] = 'Описание цены доставки';
 $lang['a_meta_title'] = 'Meta Title';
 $lang['a_meta_description'] = 'Meta Description';
 $lang['a_meta_keywords'] = 'Meta Keywords';
