@@ -74,6 +74,7 @@ class Admin extends MY_Controller {
         }
 
         $this->render('index');
+//         echo $this->display_tpl('index');
     }
 
     public function create_field() {
@@ -102,6 +103,10 @@ class Admin extends MY_Controller {
                 $groups = $data['groups'];
                 unset($data['groups']);
                 $data['field_name'] = 'field_' . $data['field_name'];
+                echo '<pre>';
+                var_dump($data);
+                echo '</pre>';
+//                exit;
                 
                 if ($this->db->get_where('content_fields', array('field_name' => $data['field_name']))->num_rows() > 0) {
                     showMessage(lang('amt_select_another_name'), false, 'r');
@@ -197,7 +202,7 @@ class Admin extends MY_Controller {
                 ->delete('content_fields_data');
         
         $this->db->where('field_name', $field_name)
-                ->delete('content_fields_groups_relations');
+                ->delete('custom_fields_groups_relations');
         
         showMessage(lang('a_field_deleted_success'));
         pjax($this->get_url('index'));

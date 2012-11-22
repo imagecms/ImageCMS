@@ -237,21 +237,15 @@ function initElRTE()
         );
 }
 
-var dlg;
-
 function elFinderPopup(type, id)
 {
     //todo: create diferent browsers (check 'type' variable)
-	if (!dlg)
     dlg = $('#elFinder').dialogelfinder({
         url: '/admin/elfinder_init',
         commandsOptions: {
             getfile: {
                 oncomplete : 'destroy' // close/hide elFinder
-            },
-        	upload : {
-        		ui : 'uploadbutton'
-        	},
+            }
         },
         getFileCallback: function(file) {
             $('#'+id).val( '/'+file.path);
@@ -263,16 +257,10 @@ function elFinderPopup(type, id)
                 console.log(img);
                 $('#'+id+'-preview').html(img);
             }
-        },
-        customData: {
-        	'cms_token':'c3cd8c6168d46e600f0b989e8628398e'
-        },
-        destroyOnClose : false
+        }
 			        
     //			        getFileCallback: callback // pass callback to file manager
-    }).dialogelfinder('instance');
-	else
-		dlg.show();
+    });
     
     return false;
 }
