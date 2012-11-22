@@ -42,8 +42,8 @@ class Login extends MY_Controller {
      * @access public
      */
     function do_login() {
-        $this->form_validation->set_rules('login', lang('lang_login'), 'trim|required|min_length[3]|max_length[50]');
-        $this->form_validation->set_rules('password', lang('lang_password'), 'trim|required|min_length[5]|max_length[32]');
+        $this->form_validation->set_rules('login', lang('a_email'), 'trim|required|min_length[3]|max_length[50]');
+        $this->form_validation->set_rules('password', lang('a_password'), 'trim|required|min_length[5]|max_length[32]');
 
         if ($_POST['remember'] == 1) {
             $remember = true;

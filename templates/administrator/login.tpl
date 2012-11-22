@@ -30,7 +30,7 @@
                         {$login_failed}
                         {/if}
                         <label>
-                            <input type="text" name="login" placeholder="{lang('a_login')}"/>{$login_error}
+                            <input type="text" name="login" placeholder="{lang('a_email')}"/>{$login_error}
                             <span class="icon-user"></span>
                         </label>
                         <label>

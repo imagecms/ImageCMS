@@ -20,7 +20,7 @@ class Users extends CI_Model
 	{
 		$users_table = $this->_table;
 		$roles_table = $this->_roles_table;
-
+		
 		if ($offset >= 0 AND $row_count > 0)
 		{
 			$this->db->select("$users_table.*", FALSE);
@@ -47,8 +47,9 @@ class Users extends CI_Model
 
 	function get_user_by_username($username)
 	{
-		$this->db->where('username', $username);
-		return $this->db->get($this->_table);
+// 		$this->db->where('username', $username);
+// 		return $this->db->get($this->_table);
+		return false;
 	}
 
 	function get_user_by_email($email)
@@ -59,8 +60,7 @@ class Users extends CI_Model
 
 	function get_login($login)
 	{
-		$this->db->where('username', $login);
-		$this->db->or_where('email', $login);
+		$this->db->where('email', $login);
 		return $this->db->get($this->_table);
 	}
 
@@ -74,9 +74,10 @@ class Users extends CI_Model
 
 	function check_username($username)
 	{
-		$this->db->select('1', FALSE);
-		$this->db->where('LOWER(username)=', strtolower($username));
-		return $this->db->get($this->_table);
+// 		$this->db->select('1', FALSE);
+// 		$this->db->where('LOWER(username)=', strtolower($username));
+// 		return $this->db->get($this->_table);
+		return true;
 	}
 
 	function check_email($email)
