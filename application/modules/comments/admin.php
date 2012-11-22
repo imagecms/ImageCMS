@@ -29,8 +29,8 @@ class Admin extends MY_Controller {
 
         switch ($status) {
             case 'all':
-                $this->db->where('status', '0');
-                $this->db->or_where('status', '1');
+//                $this->db->where('status', '0');
+//                $this->db->or_where('status', '1');
                 $status_all = 'all';
                 break;
 

@@ -169,7 +169,6 @@
             
             {$counter = true}
             {foreach $deliveryMethods as $deliveryMethod}
-            {literal}
             {$del_id = $deliveryMethod->getId()}
             <label><input type="radio" {if $counter} checked="checked" {$del_id = $deliveryMethod->getId()} {$counter = false}{$del_price = ceil($deliveryMethod->getPrice())}{$del_freefrom = ceil($deliveryMethod->getFreeFrom())}{/if} name="met_del" class="met_del" value="{echo $del_id}" data-price="{echo ceil($deliveryMethod->getPrice())}" data-freefrom="{echo ceil($deliveryMethod->getFreeFrom())}"/>{echo $deliveryMethod->getName()}</label>
             {/foreach}
@@ -211,7 +210,7 @@
                     <span class="red">*</span>
                     {/if}
                     {lang('s_c_uoy_user_el')}
-                    <input type="text"{if $isRequired['userInfo[email]']} class="required email"{/if} name="userInfo[email]" value="{$profile.email}">
+                    <input type="text" {if $isRequired['userInfo[email]']} class="required email"{/if} name="userInfo[email]" value="{$profile.email}">
                 </label>
                 <label class="f_l">
                     {if $isRequired['userInfo[phone]']}
@@ -243,7 +242,7 @@
         </div>
         <div class="foot_cleaner c_b t-a_c">
             <div class="buttons button_big_blue">
-                <input type="submit" value="{lang('s_c_of_z_')}"/>
+                <input type="submit" value="{lang('s_c_of_z_')}" id="orderSubmit" data-logged="{if ShopCore::$ci->dx_auth->is_logged_in()===true}1{else:}0{/if}"/>
             </div>
         </div>   
         <input type="hidden" name="deliveryMethodId" id="deliveryMethodId" value="{echo $del_id}" />
