@@ -307,6 +307,7 @@ class Auth extends MY_Controller {
 //         ($hook = get_hook('auth_show_forgot_pass_tpl')) ? eval($hook) : NULL;
 
         $this->template->show('forgot_password');
+        //$this->template->display('forgot_password');
     }
 
     function reset_password() {
