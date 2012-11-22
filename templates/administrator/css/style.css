@@ -25,7 +25,7 @@ header .btn-group .btn{margin-bottom: 15px;}
 header .btn{position: relative;margin-left: 10px;}
 header .btn:first-child{margin-left: 0;}
 header .btn > [class^="icon-"], header .btn > [class*=" icon-"]{background-image: url("../img/header_icon.png");font-size: 0;width: 32px;height: 31px;}
-header > .container > .span3{margin-bottom: 15px;}
+header > .container > .span4{margin-bottom: 15px;}
 .btn > .icon-bask{background-position: 0 0;}
 .btn > .icon-bask.active{background-position: 0 -32px;}
 .btn > .icon-report_exists{background-position: -35px 0;}
@@ -60,7 +60,7 @@ header form{margin-bottom: 0;}
 [class^="icon-"], [class*=" icon-"]{margin-top: 0 !important;position: relative;top: 1px;vertical-align: baseline !important;}
 .navbar-inverse .brand, .navbar-inverse .nav > li > a{color: #fff !important;}
 .navbar-inverse .nav li.dropdown > .dropdown-toggle .caret{border-top-color: #a6d0e1 !important;border-bottom-color: #a6d0e1 !important;margin-left: 3px;}
-.mini-layout {font-size: 12px;margin-bottom: 20px;padding: 39px 10px 10px;border: 1px solid #DDD;-webkit-border-radius: 6px;-moz-border-radius: 6px;border-radius: 6px;-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .075);-moz-box-shadow: 0 1px 2px rgba(0,0,0,.075);box-shadow: 0 1px 2px rgba(0, 0, 0, .075);background-color: #fff;}
+.mini-layout {font-size: 12px;margin-bottom: 20px;padding: 19px 10px 10px;border: 1px solid #DDD;-webkit-border-radius: 6px;-moz-border-radius: 6px;border-radius: 6px;-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .075);-moz-box-shadow: 0 1px 2px rgba(0,0,0,.075);box-shadow: 0 1px 2px rgba(0, 0, 0, .075);background-color: #fff;}
 .mini-layout > .frame_title{
     width: 1168px;
     position: fixed;z-index: 4;
@@ -127,7 +127,7 @@ table thead td a:hover, table thead th a:hover{color: #aaa;}
 .popover{width: auto !important;}
 .btn-group{white-space: normal !important;}
 .time{display: block;}
-.news{margin-top: 20px;}
+.news{margin-top: 10px;}
 .news .time{margin-top: 5px;}
 .navbar .nav {margin-right: 0 !important;}
 .navbar .btn{margin-bottom: 5px;}
