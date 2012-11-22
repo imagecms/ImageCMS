@@ -14,7 +14,7 @@
 
 	<div class="fieldName">{lang('lang_username_or_mail')}</div>
 	<div class="field">
-		<input type="text" size="30" name="login" id="login" />
+		<input type="text" size="30" name="email" id="login" />
 	</div>
 	<div class="clear"></div>
 
