@@ -229,7 +229,9 @@ class Core extends MY_Controller {
             ($hook = get_hook('core_get_page_query')) ? eval($hook) : NULL;
             $query = $this->db->get('content', 1);
 
-            if ($query->num_rows() > 0) {
+           
+
+		   if ($query->num_rows() > 0) {
                 ($hook = get_hook('core_page_found')) ? eval($hook) : NULL;
 
                 if (substr($cat_path, -1) == '/')
@@ -253,13 +255,11 @@ class Core extends MY_Controller {
                             break;
                         }
                     }
-
-                    if ($page_found == FALSE) {
-                        ($hook = get_hook('core_set_type_404')) ? eval($hook) : NULL;
-
-                        // show 404 page
-                        $data_type = '404';
-                    }
+					
+					
+					
+					
+                    
                 } else {
                     // display page without category
                     $data_type = 'page';
@@ -270,7 +270,10 @@ class Core extends MY_Controller {
                     ($hook = get_hook('core_set_type_nocat')) ? eval($hook) : NULL;
                 }
             } else {
-                $data_type = '404';
+                
+				
+				
+				$data_type = '404';
                 ($hook = get_hook('core_type_404')) ? eval($hook) : NULL;
             }
         }
