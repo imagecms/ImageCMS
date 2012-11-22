@@ -18,6 +18,11 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
+if(strpos($_SERVER['REQUEST_URI'],'index.php')!==false){
+	header("Location:http://".$_SERVER['SERVER_NAME']."/page_not_found"); 
+    exit;
+}
+
 ini_set('display_errors', true);
 define('ENVIRONMENT', 'development');
 /*
@@ -127,6 +132,9 @@ $application_folder = 'application';
  */
 
 // Set the current directory correctly for CLI requests
+
+
+
 if (defined('STDIN')) {
     chdir(dirname(__FILE__));
 }
@@ -142,6 +150,7 @@ $system_path = rtrim($system_path, '/') . '/';
 if (!is_dir($system_path)) {
     exit("Your system folder path does not appear to be set correctly. Please open the following file and correct this: " . pathinfo(__FILE__, PATHINFO_BASENAME));
 }
+
 
 /*
  * -------------------------------------------------------------------
@@ -182,7 +191,6 @@ if (is_dir($application_folder)) {
 define('IMAGECMS_NUMBER', '4.0.0b');
 define('IMAGECMS_VERSION', '20120810');
 define('IMAGECMS_PUBLIC_ID', '51035d2a96a227c54d0dea3ff415ced6d39266c3');
-
 /*
  * --------------------------------------------------------------------
  * LOAD THE BOOTSTRAP FILE

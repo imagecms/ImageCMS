@@ -112,9 +112,6 @@ class Pages extends MY_Controller {
 
         $this->form_validation->set_rules('page_title', lang('ac_val_t'), 'trim|required|min_length[1]|max_length[500]');
         $this->form_validation->set_rules('page_url', lang('ac_val_url'), 'alpha_dash');
-       
-
-	   $this->form_validation->set_rules('page_keywords', lang('ac_val_keywords'), 'trim');
         $this->form_validation->set_rules('prev_text', lang('ac_val_prev_cont'), 'trim|required');
         $this->form_validation->set_rules('page_description', lang('ac_val_desc'), 'trim');
         $this->form_validation->set_rules('full_tpl', lang('ac_val_page_tpl'), 'trim|max_length[150]|min_length[2]');
