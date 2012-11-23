@@ -126,6 +126,7 @@ class Auth extends MY_Controller {
                 } else {
                     $this->template->add_array(array('is_logged_in' => $this->dx_auth->is_logged_in()));
                     $template = $this->template->fetch('shop/default/auth_data');
+                    ShopCore::app()->SCart->transferCartData();
                     return json_encode(array(
                                 'close' => true,
                                 'msg' => "<div class='fancy authcomplete'><h1>Авторизация</h1><div class='comparison_slider'><div class='f-s_18 m-t_29 t-a_c'>Авторизация успешно завершена</div></div></div>",
