@@ -432,11 +432,7 @@ select.alert-error{padding: 4px 6px;}
 /*  product variants    */
 
 .variantImage .controls{
-    margin-left: 9% !important;
-}
-
-.variantImage button.delete_image{
-    margin-left: 37%;
+    margin-left: 0 !important;
 }
 
 .controls img.img-polaroid{
@@ -621,3 +617,4 @@ span.check_gg {
     background-position: 0 -426px;
 }
 .frame_title .caret{margin-left: 3px !important;}
+.delete_image{padding: 2px !important;}
