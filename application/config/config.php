@@ -44,8 +44,13 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
             $db['default']['username'] = 'root';
+<<<<<<< HEAD
             $db['default']['password'] = '';
             $db['default']['database'] = 'imagecms';
+=======
+            $db['default']['password'] = 'pefolios';
+            $db['default']['database'] = 'admin';
+>>>>>>> 2932a25b00d899586f9440732858f0d9a89ddf04
             $db['default']['dbdriver'] = 'mysql';
             $db['default']['dbprefix'] = '';
             $db['default']['pconnect'] = FALSE;
