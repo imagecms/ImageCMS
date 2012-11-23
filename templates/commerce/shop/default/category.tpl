@@ -54,21 +54,7 @@
                         {$style = productInCart($cart_data, $product->getId(), $product->firstVariant->getId(), $product->firstVariant->getStock())}
                         {$prices = currency_convert($product->firstvariant->getPrice(), $product->firstvariant->getCurrency())}
                         <li {if $product->firstvariant->getstock()== 0}class="not_avail"{/if}>
-                            <div class="photo_block">
-                                <a href="{shop_url('product/' . $product->getUrl())}">
-                                    <img id="mim{echo $product->getId()}" src="{productImageUrl($product->getMainModimage())}" alt="{echo ShopCore::encode($product->name)} - {echo $product->getId()}" />
-                                    <!--<img id="vim{echo $product->getId()}" class="smallpimagev" src="" alt="" />-->
-                                    {if $product->getHot() == 1}
-                                        <div class="promoblock">{lang('s_shot')}</div>
-                                    {/if}
-                                    {if $product->getAction() == 1}
-                                        <div class="promoblock">{lang('s_saction')}</div>
-                                    {/if}
-                                    {if $product->getHit() == 1}
-                                        <div class="promoblock">{lang('s_shit')}</div>
-                                    {/if}
-                                </a>
-                            </div>
+                       
                             <div class="func_description">
                                 <a href="{shop_url('product/' . $product->getUrl())}" class="title">{echo ShopCore::encode($product->name)}</a>
                                 <div class="f-s_0">
@@ -153,6 +139,21 @@
                                         <a href="/shop/wish_list">{lang('s_ilw')}</a>
                                     {/if}
                                 </div>
+                            </div>
+							<div class="photo_block">
+                                <a href="{shop_url('product/' . $product->getUrl())}">
+                                    <img id="mim{echo $product->getId()}" src="{productImageUrl($product->getMainModimage())}" alt="{echo ShopCore::encode($product->name)} - {echo $product->getId()}" />
+                                    <!--<img id="vim{echo $product->getId()}" class="smallpimagev" src="" alt="" />-->
+                                    {if $product->getHot() == 1}
+                                        <div class="promoblock">{lang('s_shot')}</div>
+                                    {/if}
+                                    {if $product->getAction() == 1}
+                                        <div class="promoblock">{lang('s_saction')}</div>
+                                    {/if}
+                                    {if $product->getHit() == 1}
+                                        <div class="promoblock">{lang('s_shit')}</div>
+                                    {/if}
+                                </a>
                             </div>
                             {if $product->countProperties() > 0}
                                 <p class="c_b">
