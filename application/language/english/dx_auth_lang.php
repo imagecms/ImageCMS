@@ -18,6 +18,8 @@ $lang['auth_incorrect_password'] = "Your password is incorrect.";
 $lang['auth_account_subject'] = "%s account details";
 $lang['auth_activate_subject'] = "%s activation";
 $lang['auth_forgot_password_subject'] = "New password request";
+$lang['auth_account_no_activation'] = "Hello 
+    You have been successfully registered on the site %s %s";
 
 // Email content
 $lang['auth_account_content'] = "Welcome to %s,
