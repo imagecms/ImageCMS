@@ -93,7 +93,7 @@ a:hover > .my_icon{background-position: 0 -13px;}
 .exit_ico{width: 10px;height: 10px;margin-left: 4px;top: 1px;}
 i.icon-statistic{width: 15px;height: 14px;background-position: -13px 0;top: 3px;}
 i.icon-search{width: 12px !important;height: 13px !important;background-position: -32px 0;top: 2px;}
-.my_icon.icon-minus{width: 8px;height: 3px;background-position: -143px 0;top: 0;}
+.my_icon.icon-minus{width: 8px;height: 3px;background-position: -143px 0;top: 0;margin: 3px 0 !important;}
 .my_icon.icon-plus{width: 8px;height: 9px;background-position: -143px -4px;top: 0;}
 table thead td, table thead th{
     color: #fff;
@@ -620,3 +620,4 @@ span.check_gg {
     width: 16px;
     background-position: 0 -426px;
 }
+.frame_title .caret{margin-left: 3px !important;}
