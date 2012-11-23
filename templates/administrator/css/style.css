@@ -336,12 +336,12 @@ form > *{font-size: 12px;}
 .ui-datepicker.dropdown-menu a{padding: 2px 10px;}
 .ui-state-disabled{color: #999;}
 
-.input-mini {width: 60px !important;}
-.input-small {width: 90px !important;}
-.input-medium {width: 150px !important;}
-.input-large {width: 210px !important;}
-.input-xlarge {width: 270px !important;}
-.input-xxlarge {width: 530px !important;}
+.control-group .input-mini {width: 60px !important;}
+.control-group .input-small {width: 90px !important;}
+.control-group .input-medium {width: 150px !important;}
+.control-group .input-large {width: 210px !important;}
+.control-group .input-xlarge {width: 270px !important;}
+.control-group .input-xxlarge {width: 530px !important;}
 .form-horizontal .control-label{width: 180px !important;}
 .form-horizontal .controls{margin-left: 200px !important;}
 .form-horizontal .controls.c_b{margin-left: 0 !important;}
