@@ -18,10 +18,10 @@ $(document).ajaxComplete(function(event, XHR, ajaxOptions) {
             $('.tooltip').remove();
         }
         
-        fixed_frame_title();
         dropDownMenu();
         autocomplete();
         init_2();
+        fixed_frame_title();
         
         if ($.exists('#chart')) brands();
         if ($.exists('#wrapper_gistogram')) gistogram();
@@ -29,6 +29,8 @@ $(document).ajaxComplete(function(event, XHR, ajaxOptions) {
 });
 
 function init_2() {
+    //    /if ($.exists('[data-submit]')) $('body').append('<div class="notifications bottom-right"><div class="alert-message" style="color:#666;text-shadow:0 1px #fff;">Для того чтоб <span style="color:green;font-weight:bold;">'+$('[data-submit]').text()+'</span> используйте комбинацию клавиш <span style="color:green;font-weight:bold;">Ctrl + s</span></div></div>')
+    
     if ($.exists('#mainContent')){
         $('#loading').css({
             'height': $(window).height(),
@@ -331,8 +333,9 @@ function init_2() {
         });
     $('[data-max]').die('keyup').live('keyup', function(event) {
         $this = $(this);
-        if ($this.val() > $this.data('max')) {
-            $this.val(100);
+        if (parseInt($this.val()) > $this.data('max')) {
+            if ($this.val().toString().match(/%/)) $this.val(100+'%');
+            else $this.val(100);
         }
     });
 }
@@ -387,15 +390,15 @@ function dropDownMenu() {
 }
 function autocomplete() {
     if ($('#baseSearch').length > 0)
-        {
-            $.get('/admin/admin_search/autocomplete', function(data) {
-                baseAutocompleteData = JSON.parse(data);
-                //                console.log(baseAutocompleteData);
-                $('#baseSearch').autocomplete({
-                    source: baseAutocompleteData
-                });
+    {
+        $.get('/admin/admin_search/autocomplete', function(data) {
+            baseAutocompleteData = JSON.parse(data);
+            //                console.log(baseAutocompleteData);
+            $('#baseSearch').autocomplete({
+                source: baseAutocompleteData
             });
-        }
+        });
+    }
     if (window.hasOwnProperty('productsDatas'))
         $('#ordersFilterProduct').autocomplete({
             source: productsDatas,
@@ -442,20 +445,20 @@ function autocomplete() {
             select: function(event, ui) {
                 var mainDisc = $('#mainDisc').attr('value');
                 $('#forAttached').append('<div id="tpm_row' + ui.item.identifier.id + '" class="m-t_10">' +
-                    '<span class="d-i_b number v-a_t">' +
+                    '<span class="d-i_b number v-a_b">' +
                     '<span class="help-inline d_b">ID</span>' +
                     '<input type="text" name="AttachedProductsIds[]" value="' + ui.item.identifier.id + '" class="input-mini"/>' +
                     '</span>&nbsp;' +
-                    '<span  class="d-i_b v-a_t">' +
+                    '<span  class="d-i_b v-a_b">' +
                     '<span class="help-inline d_b">Имя</span>' +
                     '<input type="text" id="AttachedProducts" value="' + ui.item.label + '" class="input-xxlarge"/>' +
                     '</span>&nbsp;' +
-                    '<span  class="d-i_b number v-a_t">' +
+                    '<span  class="d-i_b number v-a_b">' +
                     '<span class="help-inline d_b">Скидка %</span>' +
                     '<input type="text" id="AttachedProductsDisc" name="Discounts[]" value="' + mainDisc + '" class="input-mini" data-max="100" data-rel="tooltip" data-title="только цифры"/>' +
                     '</span>&nbsp;' +
-                    '<span  class="d-i_b v-a_t" style="margin-top:18px;">' +
-                    '<button class="btn btn-danger btn-small del_tmp_row" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash icon-white"></i></button>' +
+                    '<span  class="d-i_b v-a_b">' +
+                    '<button class="btn btn-danger btn-small del_tmp_row" type="button" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash icon-white"></i></button>' +
                     '</span>' +
                     '</div>');
             },
@@ -616,6 +619,7 @@ function getScrollTop() {
     return scrOfY;
 }
 function fixed_frame_title() {
+    console.log(1)
     fixed_block = $(".frame_title:not(.no_fixed)");
     mini_layout = $('.mini-layout');
     container = $('.container');
@@ -969,12 +973,10 @@ function initAdminArea() {
         //resize loading
         $('#loading').height($('#mainContent').height())//.width($('#mainContent').width());
         $('#loading').stop().fadeIn(100);
-        
     })
     .on('pjax:end', function() {
         console.log('pstp');
         $('#loading').stop().fadeOut(100);
-                
     });
 
 
@@ -1122,7 +1124,7 @@ $(document).ready(
             var dataSubmit = $("[data-submit]");
             e = e || window.event;
             if (e.ctrlKey)
-                $('#baseSearch').blur();
+                $('#baseSearch, #shopSearch').blur();
             //if ((event.ctrlKey && event.shiftKey) || (event.shiftKey && event.altKey)) $('.baseSearch:first').focus();
             if (e.keyCode === 83 && e.ctrlKey) {
                 if (!dataSubmit.hasClass('disabled') && dataSubmit.closest('.tab-pane').css('display') != 'none')
@@ -1154,17 +1156,19 @@ $(document).ready(
         })
 
         /**/
-        $('#baseSearch').focus();
+        $('#baseSearch, #shopSearch').focus();
+        $('.btn').live('click', function(){
+            $('.tooltip').remove();
+        })
     });
 
 $(window).load(function() {
-    $(window).resize(function(event) {
+    $(window).scroll(function() {
         fixed_frame_title();
-        if ($.exists_nabir(fixed_block)) {
-            fixed_block_h = fixed_block.outerHeight(true);
-            fixed_block_top = mini_layout.offset().top;
-            $(this).trigger('scroll');
-        }
+    })
+    $(window).resize(function(event) {
+        $(this).trigger('scroll');
+
         $('.fade.in').remove();
         difTooltip();
         if ($.exists('#mainContent')){
@@ -1174,7 +1178,4 @@ $(window).load(function() {
             });
         }
     }).resize();
-    $(window).scroll(function() {
-        fixed_frame_title();
-    })
 })
