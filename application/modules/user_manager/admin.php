@@ -202,7 +202,7 @@ class Admin extends MY_Controller {
                 $action = $_POST['action'];
 
                 if ($action == 'close') {
-                    pjax('/admin/components/cp/user_manager/edit_user/'.$user_info['id']);
+                    pjax('/admin/components/cp/user_manager/edit_user/' . $user_info['id']);
                 } else {
                     pjax('/admin/components/init_window/user_manager');
                 }
@@ -445,8 +445,8 @@ class Admin extends MY_Controller {
                 showMessage(validation_errors(), false, 'r');
             } else {
                 $data = array(
-                    'name' => $this->input->post('name'),
-                    'alt_name' => $this->input->post('alt_name'),
+                    'name' => $this->input->post('alt_name'),
+                    'alt_name' => $this->input->post('name'),
                     'desc' => $this->lib_admin->db_post('desc')
                 );
 
@@ -459,8 +459,11 @@ class Admin extends MY_Controller {
 
                 $action = $_POST['action'];
 
+                $user_info = $this->db->get_where('roles', array('name' => $data['name']));
+                $row = $user_info->row(); 
+                
                 if ($action == 'close') {
-                    pjax('/admin/components/cp/user_manager/create');
+                    pjax('/admin/components/cp/user_manager/edit/' . $row->id);
                 } else {
                     pjax('/admin/components/init_window/user_manager');
                 }
