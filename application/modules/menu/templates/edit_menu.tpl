@@ -30,7 +30,7 @@
                         <tbody>
                             <tr>
                                 <td colspan="6">
-                                    <div class="inside_padd span12">
+                                    <div class="inside_padd span9">
                                         <div class="form-horizontal">
                                             <div class="control-group m-t_10">
                                                 <label class="control-label" for="inputParent">{lang('amt_name')}:</label>

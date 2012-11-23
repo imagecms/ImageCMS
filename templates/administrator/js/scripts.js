@@ -808,9 +808,10 @@ function initAdminArea() {
             $(this).next().hide();
             $(this).tooltip('hide');
         }
-    }).die('keydown').live('keydown', function(event) {
+    }).die('keypress').live('keypress', function(event) {
         if (what_key('13', event)) {
             $(this).next().trigger('click');
+            return false;
         }
     });
     $('.share_alt').hover(function() {
