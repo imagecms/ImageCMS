@@ -30,9 +30,6 @@
         <link rel="stylesheet" type="text/css" href="/js/elrte-1.3/css/elrte.min.css" media="screen" charset="utf-8">
         <link rel="stylesheet" type="text/css" href="/js/elfinder-2.0/css/elfinder.min.css" media="screen" charset="utf-8">
 
-
-
-
         <link rel="stylesheet" type="text/css" href="/js/elfinder-2.0/css/theme.css" media="screen" charset="utf-8">
 
 
@@ -191,7 +188,20 @@
                     {/if}
             </div>
             {/if}
-            <div id="loading" style=" display: none; background: url(/templates/administrator/images/ajax-loader.gif) no-repeat 50% 0; z-index: 10000; position: absolute;width: 100%; background-color: rgba(255, 255, 255, 0.7);"></div>
+            <div id="loading" style="left: 50%;
+height: 100px;
+background-image: url(http://p4/templates/administrator/images/ajax-loader.gif);
+background-color: rgba(255, 255, 255, 0.8);
+z-index: 10000;
+position: fixed;
+width: 300px;
+display: none;
+background-position: 50% 50%;
+background-repeat: no-repeat no-repeat;
+margin-left: -150px;
+top: 300px;
+border: 1px solid #3BF;
+border-radius: 3px;"></div>
             <div class="container" id="mainContent">
 
                 {$content}

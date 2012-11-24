@@ -34,10 +34,12 @@ $(document).ajaxComplete(function(event, XHR, ajaxOptions) {
 
 function init_2() {
     if ($.exists('#mainContent')){
+        /*
     $('#loading').css({
         'height': $(window).height(),
         'background-position': '50%' + ($(window).height() - $('#mainContent').offset().top) / 2 + 'px'
     });
+    */
     }
     if ($.exists('.buy_prod, .popover_ref')) {
         //alert('init2');
@@ -964,7 +966,7 @@ function initAdminArea() {
     $(document).on('pjax:start', function() {
         console.log('pstrt');
         //resize loading
-        $('#loading').height($('#mainContent').height())//.width($('#mainContent').width());
+       // $('#loading').height($('#mainContent').height())//.width($('#mainContent').width());
         $('#loading').fadeIn(100);
         
     })
@@ -1176,10 +1178,12 @@ $(window).load(function() {
         $('.fade.in').remove();
         difTooltip();
         if ($.exists('#mainContent')){
+            /*
         $('#loading').css({
             'height': $(window).height(),
             'background-position': '50%' + ($(window).height() - $('#mainContent').offset().top) / 2 + 'px'
         });
+        */
         }
     }).resize();
     $(window).scroll(function() {
