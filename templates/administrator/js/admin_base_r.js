@@ -30,7 +30,7 @@ var pagesAdmin = new Object({
     },
     confirmListAction:function(actionURL)
     {
-        event.preventDefault();
+        //event.preventDefault();
         var pagesArray = {};
         //var actionURL = $(this).attr('url');
         var checkedPages = $('.pages-table > tbody').children('tr').children('td.t-a_c').find('input:checked');
