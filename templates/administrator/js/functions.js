@@ -237,43 +237,34 @@ function initElRTE()
         );
 }
 
-var dlg;
-
+var dlg = false;
 function elFinderPopup(type, id)
 {
     //todo: create diferent browsers (check 'type' variable)
-	if (!dlg)
-    dlg = $('#elFinder').dialogelfinder({
-        url: '/admin/elfinder_init',
-        commandsOptions: {
-            getfile: {
-                oncomplete : 'destroy' // close/hide elFinder
+    if (!dlg)
+    {
+        dlg = $('#elFinder').dialogelfinder({
+            url: '/admin/elfinder_init',
+            commandsOptions: {
+                getfile: {
+                    oncomplete : 'close' // close/hide elFinder
+                }
             },
-        	upload : {
-        		ui : 'uploadbutton'
-        	},
-        },
-        getFileCallback: function(file) {
-            $('#'+id).val( '/'+file.path);
-            if ( type == 'image' && $('#'+id+'-preview').length)
-            {
-                var img = document.createElement('img');
-                img.src = $('#'+id).val(); 
-                img.className = "img-polaroid";
-                console.log(img);
-                $('#'+id+'-preview').html(img);
+            getFileCallback: function(file) {
+                $('#'+id).val( '/'+file.path);
+                if ( type == 'image' && $('#'+id+'-preview').length)
+                {
+                    var img = document.createElement('img');
+                    img.src = $('#'+id).val(); 
+                    img.className = "img-polaroid";
+                    console.log(img);
+                    $('#'+id+'-preview').html(img);
+                }
             }
-        },
-        customData: {
-        	'cms_token':'c3cd8c6168d46e600f0b989e8628398e'
-        },
-        destroyOnClose : false
-			        
-    //			        getFileCallback: callback // pass callback to file manager
-    }).dialogelfinder('instance');
-	else
-		dlg.show();
-    
+        });
+    }
+else
+    dlg.show();
     return false;
 }
 

@@ -824,4 +824,11 @@ $lang['a_s_callback_editing'] = 'Callback editing';
 $lang['a_category_creating'] = 'Create category';
 
 $lang['a_general_settings'] = 'General settings';
+
+$lang['a_user_name'] = 'User name';
+
+$lang['a_delete_order_status_confirm'] = 'Delete order status(es)?';
+$lang['a_order_status_deleting'] = 'Order status deleting';
+
+$lang['a_order_cr'] = 'Order create';
 ?>

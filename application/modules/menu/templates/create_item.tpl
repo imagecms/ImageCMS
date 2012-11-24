@@ -125,7 +125,7 @@
                                                         <select name="parent_id" class="item_parent_id">
                                                             <option value="0">{lang('amt_no')}</option>
                                                             {foreach $parents as $par}
-                                                            <option value="{$par.id}"> - {$par.title}</option>
+                                                                <option value="{$par.id}"> - {$par.title}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -137,26 +137,24 @@
                                                             <option value="0">{lang('amt_no')}</option>
                                                             <option value="first">{lang('amt_first')}</option>
                                                             {foreach $parents as $p}
-                                                            <option value="{$p.id}"> - {$p.title}</option>
+                                                                <option value="{$p.id}"> - {$p.title}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
                                                 </div>
-                                                        &nbsp;
+                                                &nbsp;
                                                 <div class="control-group">
                                                     <label class="control-label">{lang('amt_image')}:</label>
                                                     <div class="controls">
-<!--                                                        <input type="text" value="" name="item_image"  id="page_image" />-->
-
-                                                            <div class="group_icon pull-right">            
-                                                                <button class="btn btn-small" onclick="elFinderPopup('item_image', 'page_image'); return false;" type="button">
-                                                                    <i class="icon-picture"></i>  {lang('a_select_image')}
-                                                                </button>
-                                                            </div>
-                                                            <div class="o_h">		            
-                                                                <!--<input type="text" name="Image" id="Img" value="">		-->
-                                                                <input type="text" value="" name="item_image"  id="page_image" />
-                                                            </div>
+                                                        <div class="group_icon pull-right">            
+                                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'page_image');
+                                                                    return false;" type="button">
+                                                                <i class="icon-picture"></i>  {lang('a_select_image')}
+                                                            </button>
+                                                        </div>
+                                                        <div class="o_h">		            
+                                                            <input type="text" value="" name="item_image"  id="page_image" />
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
@@ -165,7 +163,7 @@
                                                         <select id="item_roles" name="item_roles[]" multiple="multiple">
                                                             <option value="0">{lang('amt_all')}</option>
                                                             {foreach $roles as $role}
-                                                            <option value ="{$role.id}">{$role.alt_name}</option>
+                                                                <option value ="{$role.id}">{$role.alt_name}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -219,8 +217,8 @@
                                                     <div class="controls">
                                                         <ul>
                                                             {foreach $cats as $c}
-                                                            <li><a href="#" class="category_item" data-id="{$c.id}" data-title="{$c.name}">{$c.name}</a></li>
-                                                            {/foreach}   
+                                                                <li><a href="#" class="category_item" data-id="{$c.id}" data-title="{$c.name}">{$c.name}</a></li>
+                                                                {/foreach}   
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -269,7 +267,7 @@
                                                         <select name="parent_id" class="item_parent_id">
                                                             <option value="0">{lang('amt_no')}</option>
                                                             {foreach $parents as $p}
-                                                            <option value="{$p.id}" {if $parent != 0 AND $parent == $p.parent}selected="selected"{/if}> - {$p.title}</option>
+                                                                <option value="{$p.id}" {if $parent != 0 AND $parent == $p.parent}selected="selected"{/if}> - {$p.title}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -281,7 +279,7 @@
                                                             <option value="0">{lang('amt_no')}</option>
                                                             <option value="first">{lang('amt_first')}</option>
                                                             {foreach $parents as $p}
-                                                            <option value="{$p.id}"> - {$p.title}</option>
+                                                                <option value="{$p.id}"> - {$p.title}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -289,7 +287,15 @@
                                                 <div class="control-group">
                                                     <label class="control-label">{lang('amt_image')}:</label>
                                                     <div class="controls">
-                                                        <input type="text" value="" name="item_image"  id="page_image" />
+                                                        <div class="group_icon pull-right">            
+                                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'page_image');
+                                                                    return false;" type="button">
+                                                                <i class="icon-picture"></i>  {lang('a_select_image')}
+                                                            </button>
+                                                        </div>
+                                                        <div class="o_h">		            
+                                                            <input type="text" value="" name="item_image"  id="page_image" />
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
@@ -298,7 +304,7 @@
                                                         <select id="item_roles" name="item_roles[]" multiple="multiple">
                                                             <option value="0">{lang('amt_all')}</option>
                                                             {foreach $roles as $role}
-                                                            <option value ="{$role.id}">{$role.alt_name}</option>
+                                                                <option value ="{$role.id}">{$role.alt_name}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -353,8 +359,8 @@
                                                     <div class="controls">
                                                         <ul>
                                                             {foreach $modules as $module}
-                                                            <li><a href="#" class="module_item" data-mname="{$module.name}" id="module_{$module.name}" title="{$module.description}">{$module.menu_name}</a></li>
-                                                            {/foreach}   
+                                                                <li><a href="#" class="module_item" data-mname="{$module.name}" id="module_{$module.name}" title="{$module.description}">{$module.menu_name}</a></li>
+                                                                {/foreach}   
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -410,7 +416,7 @@
                                                         <select name="parent_id" class="item_parent_id">
                                                             <option value="0">{lang('amt_no')}</option>
                                                             {foreach $parents as $p}
-                                                            <option value="{$p.id}"> - {$p.title}</option>
+                                                                <option value="{$p.id}"> - {$p.title}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -422,7 +428,7 @@
                                                             <option value="0">{lang('amt_no')}</option>
                                                             <option value="first">{lang('amt_first')}</option>
                                                             {foreach $parents as $p}
-                                                            <option value="{$p.id}"> - {$p.title}</option>
+                                                                <option value="{$p.id}"> - {$p.title}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -430,7 +436,15 @@
                                                 <div class="control-group">
                                                     <label class="control-label">{lang('amt_image')}:</label>
                                                     <div class="controls">
-                                                        <input type="text" value="" name="item_image"  id="page_image" />
+                                                        <div class="group_icon pull-right">            
+                                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'page_image');
+                                                                    return false;" type="button">
+                                                                <i class="icon-picture"></i>  {lang('a_select_image')}
+                                                            </button>
+                                                        </div>
+                                                        <div class="o_h">		            
+                                                            <input type="text" value="" name="item_image"  id="page_image" />
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
@@ -439,7 +453,7 @@
                                                         <select id="item_roles" name="item_roles[]" multiple="multiple">
                                                             <option value="0">{lang('amt_all')}</option>
                                                             {foreach $roles as $role}
-                                                            <option value ="{$role.id}">{$role.alt_name}</option>
+                                                                <option value ="{$role.id}">{$role.alt_name}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -528,7 +542,7 @@
                                                         <select name="parent_id" class="item_parent_id">
                                                             <option value="0">{lang('amt_no')}</option>
                                                             {foreach $parents as $p}
-                                                            <option value="{$p.id}"> - {$p.title}</option>
+                                                                <option value="{$p.id}"> - {$p.title}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -540,7 +554,7 @@
                                                             <option value="0">{lang('amt_no')}</option>
                                                             <option value="first">{lang('amt_first')}</option>
                                                             {foreach $parents as $p}
-                                                            <option value="{$p.id}"> - {$p.title}</option>
+                                                                <option value="{$p.id}"> - {$p.title}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -548,7 +562,15 @@
                                                 <div class="control-group">
                                                     <label class="control-label">{lang('amt_image')}:</label>
                                                     <div class="controls">
-                                                        <input type="text" value="" name="item_image"  id="page_image" />
+                                                        <div class="group_icon pull-right">            
+                                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'page_image');
+                                                                    return false;" type="button">
+                                                                <i class="icon-picture"></i>  {lang('a_select_image')}
+                                                            </button>
+                                                        </div>
+                                                        <div class="o_h">		            
+                                                            <input type="text" value="" name="item_image"  id="page_image" />
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
@@ -557,7 +579,7 @@
                                                         <select id="item_roles" name="item_roles[]" multiple="multiple">
                                                             <option value="0">{lang('amt_all')}</option>
                                                             {foreach $roles as $role}
-                                                            <option value ="{$role.id}" {if @in_array($role.id, $r)}selected="selected"{/if}>{$role.alt_name}</option>
+                                                                <option value ="{$role.id}" {if @in_array($role.id, $r)}selected="selected"{/if}>{$role.alt_name}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -587,3 +609,4 @@
             </form>
         </div>                                            
 </section>
+<div id="elFinder"></div>

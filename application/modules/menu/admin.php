@@ -159,7 +159,6 @@ class Admin extends MY_Controller {
                 if ($_POST['item_type'] != 'module' AND $_POST['item_type'] != 'url') {
                     if ($_POST['item_id'] == $_POST['parent_id']) {
                         $error = TRUE;
-                        echo "dsfsdjfkldsjfskd";
                     }
                 }
 

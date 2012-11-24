@@ -70,7 +70,7 @@
                                         <td>{$item.description}
                                         </td>
                                         <td>{$item.created}</td>
-                                        <td><a href="{$BASE_URL}admin/components/cp/menu/edit_menu/{$item.id}" >{lang('a_edit')}</a></td>
+                                        <td><a href="{$BASE_URL}admin/components/cp/menu/edit_menu/{$item.id}" class="pjax">{lang('a_edit')}</a></td>
                                     </tr>
                                 {/foreach}
                             {/if}
