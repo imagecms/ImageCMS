@@ -53,7 +53,7 @@
                         {if $CI->dx_auth->is_logged_in()}
                         <div class="pull-right span3">
                             <div class="clearfix">
-                                <div class="pull-left m-r_10">{lang('a_wellcome')}, 
+                                <div class="pull-left m-l_10 m-r_10">{lang('a_wellcome')},
                                     {if $CI->dx_auth->get_username()}
                                     <a href="/admin/components/run/shop/users/edit/{echo $CI->dx_auth->get_user_id()}" id="user_name">
                                         {echo $CI->dx_auth->get_username()}
@@ -63,7 +63,7 @@
                                     {echo lang('a_guest')}
                                     {/if}
                                 </div>
-                                <div class="pull-right m-l_10">Просмотр <a href="{$BASE_URL}" target="_blank">сайта <span class="f-s_14">→</span></a></div>
+                                <div class="pull-left m-l_10">Просмотр <a href="{$BASE_URL}" target="_blank">сайта <span class="f-s_14">→</span></a></div>
                             </div>
                             <form method="get" action="{if $ADMIN_URL}/admin/components/run/shop/search/advanced{else:}/admin/admin_search{/if}" id="adminAdvancedSearch">
                                 <div class="input-append search">
