@@ -15,18 +15,18 @@
             {if $item.hasKids}
                 <button type="button" class="btn btn-small my_btn_s"
                         style="display: none; margin-top: 1px;" data-rel="tooltip"
-                        data-placement="top" data-original-title="свернуть категорию">
+                        data-placement="top" data-original-title="свернуть меню">
                     <i class="my_icon icon-minus"></i>
                 </button>
                 <button type="button" class="btn btn-small my_btn_s btn-primary"
                         data-rel="tooltip" data-placement="top"
-                        data-original-title="розвернуть категорию">
+                        data-original-title="розвернуть меню">
                     <i class="my_icon icon-plus"></i>
                 </button>
             {else:}
                 <span class="simple_tree">↳</span>
             {/if}
-            <a href="/admin/components/cp/menu/edit_item/{$item.id}" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="редактировать категорию" >{truncate($item.title, 100)}</a>
+            <a href="/admin/components/cp/menu/edit_item/{$item.id}" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="редактировать меню">{truncate($item.title, 100)}</a>
         </div>
     </div>
     <div>
