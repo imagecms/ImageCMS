@@ -1,4 +1,5 @@
 *{margin:0px;padding: 0px;border: 0px;outline: none;line-height: 1.5;background-color: transparent;vertical-align: baseline;}
+h1, h2, h3, h4, h5, h6{font-weight: normal;}
 a{cursor: pointer;}
 .f-s_14{font-size: 14px;}
 .f-s_26{font-size: 26px !important;}
@@ -25,7 +26,7 @@ header .btn-group .btn{margin-bottom: 15px;}
 header .btn{position: relative;margin-left: 10px;}
 header .btn:first-child{margin-left: 0;}
 header .btn > [class^="icon-"], header .btn > [class*=" icon-"]{background-image: url("../img/header_icon.png");font-size: 0;width: 32px;height: 31px;}
-header > .container > .span3{margin-bottom: 15px;}
+header > .container > .span4{margin-bottom: 15px;}
 .btn > .icon-bask{background-position: 0 0;}
 .btn > .icon-bask.active{background-position: 0 -32px;}
 .btn > .icon-report_exists{background-position: -35px 0;}
@@ -60,7 +61,7 @@ header form{margin-bottom: 0;}
 [class^="icon-"], [class*=" icon-"]{margin-top: 0 !important;position: relative;top: 1px;vertical-align: baseline !important;}
 .navbar-inverse .brand, .navbar-inverse .nav > li > a{color: #fff !important;}
 .navbar-inverse .nav li.dropdown > .dropdown-toggle .caret{border-top-color: #a6d0e1 !important;border-bottom-color: #a6d0e1 !important;margin-left: 3px;}
-.mini-layout {font-size: 12px;margin-bottom: 20px;padding: 39px 10px 10px;border: 1px solid #DDD;-webkit-border-radius: 6px;-moz-border-radius: 6px;border-radius: 6px;-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .075);-moz-box-shadow: 0 1px 2px rgba(0,0,0,.075);box-shadow: 0 1px 2px rgba(0, 0, 0, .075);background-color: #fff;}
+.mini-layout {font-size: 12px;margin-bottom: 20px;padding: 19px 10px 10px;border: 1px solid #DDD;-webkit-border-radius: 6px;-moz-border-radius: 6px;border-radius: 6px;-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .075);-moz-box-shadow: 0 1px 2px rgba(0,0,0,.075);box-shadow: 0 1px 2px rgba(0, 0, 0, .075);background-color: #fff;}
 .mini-layout > .frame_title{
     width: 1168px;
     position: fixed;z-index: 4;
@@ -93,7 +94,7 @@ a:hover > .my_icon{background-position: 0 -13px;}
 .exit_ico{width: 10px;height: 10px;margin-left: 4px;top: 1px;}
 i.icon-statistic{width: 15px;height: 14px;background-position: -13px 0;top: 3px;}
 i.icon-search{width: 12px !important;height: 13px !important;background-position: -32px 0;top: 2px;}
-.my_icon.icon-minus{width: 8px;height: 3px;background-position: -143px 0;top: 0;}
+.my_icon.icon-minus{width: 8px;height: 3px;background-position: -143px 0;top: 0;margin: 3px 0 !important;}
 .my_icon.icon-plus{width: 8px;height: 9px;background-position: -143px -4px;top: 0;}
 table thead td, table thead th{
     color: #fff;
@@ -127,7 +128,7 @@ table thead td a:hover, table thead th a:hover{color: #aaa;}
 .popover{width: auto !important;}
 .btn-group{white-space: normal !important;}
 .time{display: block;}
-.news{margin-top: 20px;}
+.news{margin-top: 10px;}
 .news .time{margin-top: 5px;}
 .navbar .nav {margin-right: 0 !important;}
 .navbar .btn{margin-bottom: 5px;}
@@ -336,12 +337,12 @@ form > *{font-size: 12px;}
 .ui-datepicker.dropdown-menu a{padding: 2px 10px;}
 .ui-state-disabled{color: #999;}
 
-.input-mini {width: 60px !important;}
-.input-small {width: 90px !important;}
-.input-medium {width: 150px !important;}
-.input-large {width: 210px !important;}
-.input-xlarge {width: 270px !important;}
-.input-xxlarge {width: 530px !important;}
+.control-group .input-mini {width: 60px !important;}
+.control-group .input-small {width: 90px !important;}
+.control-group .input-medium {width: 150px !important;}
+.control-group .input-large {width: 210px !important;}
+.control-group .input-xlarge {width: 270px !important;}
+.control-group .input-xxlarge {width: 530px !important;}
 .form-horizontal .control-label{width: 180px !important;}
 .form-horizontal .controls{margin-left: 200px !important;}
 .form-horizontal .controls.c_b{margin-left: 0 !important;}
@@ -432,11 +433,7 @@ select.alert-error{padding: 4px 6px;}
 /*  product variants    */
 
 .variantImage .controls{
-    margin-left: 9% !important;
-}
-
-.variantImage button.delete_image{
-    margin-left: 37%;
+    margin-left: 0 !important;
 }
 
 .controls img.img-polaroid{
@@ -620,3 +617,5 @@ span.check_gg {
     width: 16px;
     background-position: 0 -426px;
 }
+.frame_title .caret{margin-left: 3px !important;}
+.delete_image{padding: 2px !important;}

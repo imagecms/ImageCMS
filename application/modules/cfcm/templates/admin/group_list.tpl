@@ -66,7 +66,7 @@
                 </td>
                 <td>{truncate($g.description, 35)}</td>
                 <td>
-                    {echo $this->CI->db->get_where('content_fields_groups_relations', array('group_id' => $g.id))->num_rows()}
+                    {echo $this->CI->db->get_where('content_fields', array('group' => $g.id))->num_rows()}
                 </td>
                 <td align="right">
                     <img onclick="ajax_div('page', base_url + 'admin/components/cp/cfcm/edit_group/{$g.id}');" style="cursor:pointer" src="{$THEME}/images/edit_page.png" width="16" height="16" title="{lang('amt_edit')}" />

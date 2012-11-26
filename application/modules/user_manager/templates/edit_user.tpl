@@ -25,7 +25,7 @@
                 <tbody>
                     <tr>
                         <td colspan="6">
-                            <div class="inside_padd span12">
+                            <div class="inside_padd span9">
                                 <div class="form-horizontal">
                                     <form id="update" method="post" action="{$SELF_URL}/update_user/{$id}">
                                         <div class="control-group">
