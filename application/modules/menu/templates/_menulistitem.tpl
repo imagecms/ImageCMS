@@ -14,7 +14,7 @@
         <div class="title {if $item.parent_id > 0} lev {/if}">
             {if $item.hasKids}
                 <button type="button" class="btn btn-small my_btn_s"
-                        style="display: none; margin-top: 1px;" data-rel="tooltip"
+                        style="display: none;" data-rel="tooltip"
                         data-placement="top" data-original-title="свернуть меню">
                     <i class="my_icon icon-minus"></i>
                 </button>
