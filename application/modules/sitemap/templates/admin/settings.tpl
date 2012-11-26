@@ -61,13 +61,13 @@
                                 <div class="control-group">
                                     <label class="control-label">{lang('amt_other_pages')}:</label>
                                     <div class="controls">
-                                        {form_dropdown('pages_changefreq', $changefreq_options, $settings.pages_changefreq)}
+                                         {form_dropdown('categories_changefreq', $changefreq_options, $settings.categories_changefreq)}
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label" for="sppri">{lang('amt_simple_pages')}:</label>
                                     <div class="controls">
-                                        <input type="text" id="sppri" name="pages_priority" value="{$settings.pages_priority}" />
+                                         {form_dropdown('pages_changefreq', $changefreq_options, $settings.pages_changefreq)}
                                     </div>
                                 </div>    
                             </div>
