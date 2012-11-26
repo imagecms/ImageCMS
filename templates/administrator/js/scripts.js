@@ -973,6 +973,7 @@ function initAdminArea() {
         //resize loading
         $('#loading').height($('#mainContent').height())//.width($('#mainContent').width());
         $('#loading').stop().fadeIn(100);
+
     })
     .on('pjax:end', function() {
         console.log('pstp');
@@ -1179,6 +1180,7 @@ $(window).load(function() {
                 'height': $(window).height(),
                 'background-position': '50%' + ($(window).height() - $('#mainContent').offset().top) / 2 + 'px'
             });
+
         }
     }).resize();
 })
