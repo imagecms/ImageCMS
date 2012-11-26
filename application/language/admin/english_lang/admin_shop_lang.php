@@ -830,4 +830,6 @@ $lang['a_user_name'] = 'User name';
 
 $lang['a_delete_order_status_confirm'] = 'Delete order status(es)?';
 $lang['a_order_status_deleting'] = 'Order status deleting';
+
+$lang['a_order_cr'] = 'Order create';
 ?>
