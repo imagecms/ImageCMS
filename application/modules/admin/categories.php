@@ -73,10 +73,12 @@ class Categories extends MY_Controller {
             $this->db->from('content');
             $cats[$i]['pages'] = $this->db->count_all_results();
         }
+        //var_dump($tree);
         
         $this->template->add_array(array(
                 'tree' => $cats,
-        		'catTreeHTML'=> $this->renderCatList($tree)
+                //'catTreeHTML'=> $this->renderCatList($tree)
+                'catTreeHTML'=> $this->renderCatList($cats)
             ));
 
         $this->template->show('category_list', FALSE);
