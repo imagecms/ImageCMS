@@ -715,11 +715,12 @@ $(document).ready(function() {
 
     $('#addVariant').live('click', function() {
         var clonedVarTr = $('.variantRowSample').find('tr').clone();
-        var randId = Math.random();
+        var randId = Math.ceil( Math.random()* 1000000);
         var countVarRows = $('#variantHolder').children('tr').length;
         clonedVarTr.find('.random_id').attr('value', randId);
         clonedVarTr.find('[name="variants[mainPhoto][]"]').attr('name', 'variants[mainPhoto][' + randId + ']');
         clonedVarTr.find('[name="variants[smallPhoto][]"]').attr('name', 'variants[smallPhoto][' + randId + ']');
+
         clonedVarTr.attr('id', 'ProductVariantRow_' + countVarRows);
         $('#variantHolder').append(clonedVarTr);
     });
