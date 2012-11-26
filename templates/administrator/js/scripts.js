@@ -16,12 +16,12 @@ $(document).ajaxComplete(function(event, XHR, ajaxOptions) {
             initAdminArea();
             number_tooltip_live();
             $('.tooltip').remove();
+
+            dropDownMenu();
+            autocomplete();
+            init_2();
+            fixed_frame_title();
         }
-        
-        dropDownMenu();
-        autocomplete();
-        init_2();
-        fixed_frame_title();
         
         if ($.exists('#chart')) brands();
         if ($.exists('#wrapper_gistogram')) gistogram();
@@ -389,11 +389,14 @@ function dropDownMenu() {
     
 }
 function autocomplete() {
-    if ($('#baseSearch').length > 0)
+    var bae = false;
+    if ($('#baseSearch').length > 0 && !bae)
     {
         $.get('/admin/admin_search/autocomplete', function(data) {
+
             baseAutocompleteData = JSON.parse(data);
             //                console.log(baseAutocompleteData);
+            bae = true;
             $('#baseSearch').autocomplete({
                 source: baseAutocompleteData
             });
