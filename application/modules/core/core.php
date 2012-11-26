@@ -886,7 +886,7 @@ class Core extends MY_Controller {
     /**
      * Set meta tags for pages
      */
-    public function set_meta_tags($title = '', $keywords = '', $description = '', $page_number = '') {
+    public function set_meta_tags($title = '', $keywords = '', $description = '', $page_number = '',$showsitename=0) {
         ($hook = get_hook('core_set_meta_tags')) ? eval($hook) : NULL;
         if ($this->core_data['data_type'] == 'main') {
             $this->template->add_array(array(
@@ -912,7 +912,7 @@ class Core extends MY_Controller {
                 $title = $n_title;
             }
 
-            if ($this->settings['add_site_name'] == 1) {
+            if ($this->settings['add_site_name'] == 1 && $showsitename!=1) {
                 $title .= ' ' . $this->settings['delimiter'] . ' ' . $this->settings['site_short_title'];
             }
 
