@@ -13,7 +13,7 @@
             
             {if count($item.subtree)}
             <button type="button" class="btn btn-small my_btn_s"
-            style="display: none; margin-top: 1px;" data-rel="tooltip"
+            style="display: none;" data-rel="tooltip"
             data-placement="top" data-original-title="свернуть категорию">
             <i class="my_icon icon-minus"></i>
             </button>

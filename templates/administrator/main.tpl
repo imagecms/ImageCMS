@@ -17,13 +17,8 @@
 
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery-ui-1.8.16.custom.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery.ui.1.8.16.ie.css">
-<!--
+
         <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/smoothness/jquery-ui.css" />
-    -->    
-        	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
-        
-        
         <!-- 
         <link rel="stylesheet" type="text/css" href="/js/elfinder-2.0/css/Aristo/css/Aristo/Aristo.css" media="screen" charset="utf-8">
         -->
@@ -51,7 +46,7 @@
                         </a>
 
                         {if $CI->dx_auth->is_logged_in()}
-                        <div class="pull-right span3">
+                        <div class="pull-right span4">
                             <div class="clearfix">
                                 <div class="pull-left m-l_10 m-r_10">{lang('a_wellcome')},
                                     {if $CI->dx_auth->get_username()}

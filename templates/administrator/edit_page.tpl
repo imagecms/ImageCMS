@@ -60,7 +60,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span12">
+                                <div class="inside_padd span9">
                                     <div class="control-group">
                                         <label class="control-label" for="category_selectbox">
                                             {lang('a_category')}:
@@ -127,7 +127,7 @@
                         <tr>
                             <td colspan="6">
 
-                                <div class="inside_padd span12">
+                                <div class="inside_padd span9">
                                     <div class="control-group">
                                         <label class="control-label" for="page_url">
                                             {lang('a_url')}:
@@ -249,7 +249,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span12">
+                                <div class="inside_padd span9">
                                     <div class="control-group">
                                         <label class="control-label" for="post_status">
                                             {lang('a_pub_stat')}:
