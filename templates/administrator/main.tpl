@@ -49,7 +49,7 @@
                         </a>
 
                         {if $CI->dx_auth->is_logged_in()}
-                        <div class="pull-right span3">
+                        <div class="pull-right span4">
                             <div class="clearfix">
                                 <div class="pull-left m-r_10">{lang('a_wellcome')}, 
                                     {if $CI->dx_auth->get_username()}
