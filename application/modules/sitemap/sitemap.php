@@ -156,12 +156,15 @@ class Sitemap extends MY_Controller {
             } else {
                 $date = date('Y-m-d', $page['created']);
             }
-
+            $c_priority=$this->cats_priority;
+            if($page['cat_url']==''){
+            $c_priority=$this->cats_priority;}
+            else {$c_priority=$this->pages_priority;}
             $this->items[] = array(
                 'loc' => $url,
                 'lastmod' => $date,
                 'changefreq' => $this->pages_changefreq,
-                'priority' => $this->pages_priority
+                'priority' => $c_priority
             );
         }
 
@@ -212,7 +215,7 @@ class Sitemap extends MY_Controller {
     }
 
     public function _get_all_pages() {
-        $this->db->select('id, created, updated, lang');
+        $this->db->select('id, created, updated, lang,cat_url');
         $this->db->select('CONCAT_WS("", cat_url, url) as full_url', FALSE);
         $this->db->where('post_status', 'publish');
         $this->db->where('publish_date <=', time());
