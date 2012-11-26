@@ -10,13 +10,14 @@ if (!defined('BASEPATH'))
  */
 class Sitemap extends MY_Controller {
 
-    public $pages_priority = '0.5'; // priority for pages
-    public $cats_priority = '0.9'; // priority for categories
+    public $pages_priority = '0.6'; // priority for pages
+    public $cats_priority = '0.8'; // priority for categories
     public $main_page_priority = '1'; // priority for main page
     public $pages_changefreq = 'daily';
+    public $categories_changefreq='weekly';
     public $main_page_changefreq = 'daily';
     public $changefreq = 'daily';
-    public $gzip_level = 9;
+    public $gzip_level = 0;
     public $result = '';
     public $langs = array();
     public $default_lang = array();
@@ -43,7 +44,7 @@ class Sitemap extends MY_Controller {
 
         $this->template->assign('content', $this->sitemap_ul($categories));
         $this->template->show();
-    }
+   }
 
     public function initialize($settings = array()) {
         if (count($settings) > 0) {
@@ -51,6 +52,7 @@ class Sitemap extends MY_Controller {
             $this->cats_priority = $settings['cats_priority'];
             $this->pages_priority = $settings['pages_priority'];
             $this->main_page_changefreq = $settings['main_page_changefreq'];
+            $this->categories_changefreq =$settings['categories_changefreq'];
             $this->pages_changefreq = $settings['pages_changefreq'];
         }
     }
@@ -120,7 +122,7 @@ class Sitemap extends MY_Controller {
         foreach ($categories as $category) {
             $this->items[] = array(
                 'loc' => site_url($category['path_url']),
-                'changefreq' => $this->pages_changefreq,
+                'changefreq' => $this->categories_changefreq,
                 'priority' => $this->cats_priority
             );
 
@@ -129,7 +131,7 @@ class Sitemap extends MY_Controller {
                 if ($v['id'] != $this->default_lang['id']) {
                     $this->items[] = array(
                         'loc' => site_url($k . '/' . $category['path_url']),
-                        'changefreq' => $this->pages_changefreq,
+                        'changefreq' => $this->categories_changefreq,
                         'priority' => $this->cats_priority
                     );
                 }
@@ -172,7 +174,7 @@ class Sitemap extends MY_Controller {
                 'loc' => $url,
                 'lastmod' => '',
                 'changefreq' => 'daily',
-                'priority' => '0.9',
+                'priority' => $this->cats_priority,
             );
         }
 
@@ -183,7 +185,7 @@ class Sitemap extends MY_Controller {
                 'loc' => $url,
                 'lastmod' => '',
                 'changefreq' => 'daily',
-                'priority' => '0.9',
+                'priority' => $this->cats_priority,
             );
         }
 
@@ -199,13 +201,13 @@ class Sitemap extends MY_Controller {
                 'loc' => $url,
                 'lastmod' => $date,
                 'changefreq' => 'daily',
-                'priority' => '0.9',
+                'priority' => $this->pages_priority,
             );
         }
 
         $this->result = $this->generate_xml($this->items);
 
-        $this->cache->store($this->sitemap_key, $this->result, $this->sitemap_ttl);
+        //$this->cache->store($this->sitemap_key, $this->result, $this->sitemap_ttl);
         // }
     }
 
@@ -284,18 +286,18 @@ class Sitemap extends MY_Controller {
     }
 
     public function _load_settings() {
-        $this->db->select('value');
-        $this->db->where('name', 'xmlSiteMap');
-        $query = $this->db->get('shop_settings', 1)->row_array();
+        $this->db->select('settings');
+        $this->db->where('name', 'sitemap');
+        $query = $this->db->get('components', 1)->row_array();
 
-        return unserialize($query['value']);
+        return unserialize($query['settings']);
     }
 
     function _install() {
         $data = array(
-            'main_page_priority' => 1,
-            'cats_priority' => '0.9',
-            'pages_priority' => '0.5',
+            'main_page_priority' => '1',
+            'cats_priority' => '0.8',
+            'pages_priority' => '0.6',
             'main_page_changefreq' => 'weekly',
             'pages_changefreq' => 'weekly'
         );
