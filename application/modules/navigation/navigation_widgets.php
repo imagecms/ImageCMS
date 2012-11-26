@@ -27,7 +27,7 @@ class Navigation_Widgets extends MY_Controller{
         switch ($this->core->core_data['data_type'])
         {
             case 'category':                
-                $cur_category = $this->core->cat_content;
+                $cur_category = $this->core->cat_content
 
                 $i = 0;
                 $path_count = count($cur_category['path']);
@@ -56,7 +56,7 @@ class Navigation_Widgets extends MY_Controller{
 
                     return $this->template->fetch('widgets/'.$widget['name'], $tpl_data); 
                 }
-            break;
+            break
         }
     }
 
