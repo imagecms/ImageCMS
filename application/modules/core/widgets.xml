@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets>
+
+    <widget>
+        <title>Последние новости</title>
+        <description>Выводит список последних новостей.</description>
+        <method>recent_news</method>
+    </widget>
+
+    <widget>
+        <title>Похожие темы</title>
+        <description>Выводит список страниц, которые связаны между собой заголовком.</description>
+        <method>similar_posts</method>
+    </widget>
+
+</widgets>

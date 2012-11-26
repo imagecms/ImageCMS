@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets>
+
+    <widget>
+        <title>Навигация по сайту</title>
+        <description>Отображает текущее местонахождение пользователя на сайте.</description>
+        <method>widget_navigation</method>
+    </widget>
+
+</widgets>

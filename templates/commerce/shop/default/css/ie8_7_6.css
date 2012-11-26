@@ -1,0 +1,8 @@
+@charset "utf-8";
+.b-r_3,.promotion li,.info_buy,.filter,.header form,.addres_recip textarea,.addres_recip input, .b-r_4,.cleaner_table .count input,.foot_cleaner, .discount, .main_menu > ul,.jspDrag, .nav_tabs li{behavior: url(PIE/PIE.htc);}
+.map{width: 752px;height: 281px;background: url('../images/ie_map.png') no-repeat;padding: 8px 11px 17px 8px;left: -8px;}
+.comparison_slider_left span span, .field_container_character span span{display: block;}
+.comparison_slider_left span span,.field_container_character span span{min-height: 44px;height: auto;}
+.thumb_frame a{filter:progid:DXImageTransform.Microsoft.Alpha(opacity=40);zoom: 1;}
+.thumb_frame a.active{filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);zoom: 1;}
+.not_avail .star{filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);zoom: 1;}

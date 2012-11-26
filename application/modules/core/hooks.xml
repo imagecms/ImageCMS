@@ -1,0 +1,139 @@
+<hook id="core_init">
+<![CDATA[
+  
+]]>
+</hook>
+<hook id="render_google_analytics">
+<![CDATA[
+$GACode = "     
+<script type='text/javascript'>
+            var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', '" . $this->settings['google_analytics_id'] . "']);
+          _gaq.push (['_addOrganic', 'images.yandex.ru', 'text']);
+          _gaq.push (['_addOrganic', 'blogs.yandex.ru', 'text']);
+          _gaq.push (['_addOrganic', 'video.yandex.ru', 'text']);
+          _gaq.push (['_addOrganic', 'meta.ua', 'q']);
+          _gaq.push (['_addOrganic', 'search.bigmir.net', 'z']);
+          _gaq.push (['_addOrganic', 'search.i.ua', 'q']);
+          _gaq.push (['_addOrganic', 'mail.ru', 'q']);
+          _gaq.push (['_addOrganic', 'go.mail.ru', 'q']);
+          _gaq.push (['_addOrganic', 'google.com.ua', 'q']);
+          _gaq.push (['_addOrganic', 'images.google.com.ua', 'q']);
+          _gaq.push (['_addOrganic', 'maps.google.com.ua', 'q']);
+          _gaq.push (['_addOrganic', 'images.google.ru', 'q']);
+          _gaq.push (['_addOrganic', 'maps.google.ru', 'q']);
+          _gaq.push (['_addOrganic', 'rambler.ru', 'words']);
+          _gaq.push (['_addOrganic', 'nova.rambler.ru', 'query']);
+          _gaq.push (['_addOrganic', 'nova.rambler.ru', 'words']);
+          _gaq.push (['_addOrganic', 'gogo.ru', 'q']);
+          _gaq.push (['_addOrganic', 'nigma.ru', 's']);
+          _gaq.push (['_addOrganic', 'poisk.ru', 'text']);
+          _gaq.push (['_addOrganic', 'go.km.ru', 'sq']);
+          _gaq.push (['_addOrganic', 'liveinternet.ru', 'ask']);
+          _gaq.push (['_addOrganic', 'gde.ru', 'keywords']);
+          _gaq.push (['_addOrganic', 'search.qip.ru', 'query']);
+          _gaq.push (['_addOrganic', 'webalta.ru', 'q']);
+          _gaq.push (['_addOrganic', 'sm.aport.ru', 'r']);
+          _gaq.push (['_addOrganic', 'index.online.ua', 'q']);
+          _gaq.push (['_addOrganic', 'web20.a.ua', 'query']);
+          _gaq.push (['_addOrganic', 'search.ukr.net', 'search_query']);
+          _gaq.push (['_addOrganic', 'search.com.ua', 'q']);
+          _gaq.push (['_addOrganic', 'search.ua', 'q']);
+          _gaq.push (['_addOrganic', 'affiliates.quintura.com', 'request']);
+          _gaq.push (['_addOrganic', 'akavita.by', 'z']);
+          _gaq.push (['_addOrganic', 'search.tut.by', 'query']);
+          _gaq.push (['_addOrganic', 'all.by', 'query']);
+          _gaq.push(['_trackPageview']);
+        </script>";
+
+
+/*if ($this->session->flashdata('makeOrder') === true) {
+    $GACode = "
+        <script type='text/javascript'>
+            _gaq.push(['_addTrans',
+                '$model->id',
+                '',
+                '$model->getTotalPrice()',
+                '',
+                '$model->getSDeliveryMethods()->name',
+                '',
+                '',
+                ''
+            ]);";
+
+    foreach ($model->getSOrderProductss() as $item) {
+        $total = $total + $item->getQuantity() * $item->toCurrency();
+        $product = $item->getSProducts();
+
+        $GACode = "_gaq.push(['_addItem',
+                '$model->id',
+                '$product->getUrl()',
+                ' encode(ShopCore::encode($product->getName())) encode($item->getVariantName())',
+                'encode($product->getMainCategory()->name)',
+                '$item->toCurrency()',
+                '$item->getQuantity()'
+            ]);";
+    }
+
+    $GACode = "_gaq . push(['_trackTrans']);</script>";
+}*/
+
+$GACode = "<script type='text/javascript'>
+    (function() {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+";
+$this->tpl_data['renderGA'] = $GACode;
+]]>
+</hook>
+
+<hook id="render_google_webmaster">
+<![CDATA[
+    $GWebmaster = '
+        <meta name="google-site-verification" content="'.$this->settings['google_webmaster'].'" />';
+    $this->tpl_data['gmeta'] = $GWebmaster;
+]]>
+</hook>
+
+<hook id="render_yandex_webmaster">
+<![CDATA[
+    $YaWebmaster = '<meta name="yandex-verification" content="'.$this->settings['yandex_webmaster'].'" />';
+    $this->tpl_data['yameta'] = $YaWebmaster;
+]]>
+</hook>
+
+<hook id="render_yandex_metrik">
+<![CDATA[
+    $YandexMetrik = '<!-- Yandex.Metrika counter -->
+
+                    <script type="text/javascript">
+                        (function (d, w, c) {
+                            (w[c] = w[c] || []).push(function() {
+                            try {
+                                w.yaCounter4788157 = new Ya.Metrika({id:'.$this->settings['yandex_metric'].', enableAll: true, webvisor:true,params:window.yaParams||{ }});
+                            } catch(e) { }
+                        });
+
+                        var n = d.getElementsByTagName("script")[0],
+                            s = d.createElement("script"),
+                            f = function () { n.parentNode.insertBefore(s, n); };
+                        s.type = "text/javascript";
+                        s.async = true;
+                        s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+                        if (w.opera == "[object Opera]") {
+                            d.addEventListener("DOMContentLoaded", f);
+                        } else { f(); }
+                        })(document, window, "yandex_metrika_callbacks");
+                    </script>
+                    <noscript><div><img src="//mc.yandex.ru/watch/'. $this->settings['yandex_metric'] .'" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+                    <!-- /Yandex.Metrika counter -->';
+                    $this->tpl_data['ymetric'] = $YandexMetrik;
+]]>
+</hook>

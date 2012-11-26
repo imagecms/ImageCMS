@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets>
+
+    <widget>
+        <title>Облако Тегов</title>
+        <description> </description>
+        <method>tags_cloud</method>
+    </widget>
+
+</widgets>
