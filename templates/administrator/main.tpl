@@ -17,16 +17,18 @@
 
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery-ui-1.8.16.custom.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery.ui.1.8.16.ie.css">
-
+<!--
         <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/smoothness/jquery-ui.css" />
+    -->    
+        	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+        
+        
         <!-- 
         <link rel="stylesheet" type="text/css" href="/js/elfinder-2.0/css/Aristo/css/Aristo/Aristo.css" media="screen" charset="utf-8">
         -->
         <link rel="stylesheet" type="text/css" href="/js/elrte-1.3/css/elrte.min.css" media="screen" charset="utf-8">
         <link rel="stylesheet" type="text/css" href="/js/elfinder-2.0/css/elfinder.min.css" media="screen" charset="utf-8">
-
-
-
 
         <link rel="stylesheet" type="text/css" href="/js/elfinder-2.0/css/theme.css" media="screen" charset="utf-8">
 
@@ -51,7 +53,7 @@
                         {if $CI->dx_auth->is_logged_in()}
                         <div class="pull-right span4">
                             <div class="clearfix">
-                                <div class="pull-left m-r_10">{lang('a_wellcome')}, 
+                                <div class="pull-left m-l_10 m-r_10">{lang('a_wellcome')},
                                     {if $CI->dx_auth->get_username()}
                                     <a href="/admin/components/run/shop/users/edit/{echo $CI->dx_auth->get_user_id()}" id="user_name">
                                         {echo $CI->dx_auth->get_username()}
@@ -61,7 +63,7 @@
                                     {echo lang('a_guest')}
                                     {/if}
                                 </div>
-                                <div class="pull-right m-l_10">Просмотр <a href="{$BASE_URL}" target="_blank">сайта <span class="f-s_14">→</span></a></div>
+                                <div class="pull-left m-l_10">Просмотр <a href="{$BASE_URL}" target="_blank">сайта <span class="f-s_14">→</span></a></div>
                             </div>
                             <form method="get" action="{if $ADMIN_URL}/admin/components/run/shop/search/advanced{else:}/admin/admin_search{/if}" id="adminAdvancedSearch">
                                 <div class="input-append search">
@@ -186,7 +188,20 @@
                     {/if}
             </div>
             {/if}
-            <div id="loading" style=" display: none; background: url(/templates/administrator/images/ajax-loader.gif) no-repeat 50% 0; z-index: 10000; position: absolute;width: 100%; background-color: rgba(255, 255, 255, 0.7);"></div>
+            <div id="loading" style="left: 50%;
+height: 100px;
+background-image: url(http://p4/templates/administrator/images/ajax-loader.gif);
+background-color: rgba(255, 255, 255, 0.8);
+z-index: 10000;
+position: fixed;
+width: 300px;
+display: none;
+background-position: 50% 50%;
+background-repeat: no-repeat no-repeat;
+margin-left: -150px;
+top: 300px;
+border: 1px solid #3BF;
+border-radius: 3px;"></div>
             <div class="container" id="mainContent">
 
                 {$content}

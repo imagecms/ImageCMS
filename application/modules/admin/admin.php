@@ -157,12 +157,18 @@ class Admin extends MY_Controller {
                 array(
                     'driver' => 'LocalFileSystem',
                     'path' => set_realpath($path),
-                    'URL' => site_url() . $path
+                    'URL' => site_url() . $path,
+                	'accessControl' => 'access',
                 // more elFinder options here
                 )
             )
         );
         $this->load->library('elfinder_lib', $opts);
+    }
+    
+    public function get_csrf()
+    {
+    	echo form_csrf();
     }
 
     public function sidebar_cats() {

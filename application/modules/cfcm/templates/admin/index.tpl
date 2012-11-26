@@ -27,6 +27,7 @@
                     </tr>
                 </thead>
                 <tbody class="sortable">
+                    {$groupRels = $this->CI->db->get('content_fields_groups_relations')->result_array()}
                     {foreach $fields as $f}
                     <tr>
                         <td>
@@ -34,8 +35,23 @@
                         </td>
                         <td>{$f.field_name}</td>
                         <td>{$f.type}</td>
-                        <td>{$groups[$f.group]['name']}</td>
-                        <td class="t-a_c">
+                        <td>
+                            {$i=0}
+                            {$arr = array()}
+                            {foreach $groupRels as $gr}
+                                {if $gr['field_name'] == $f.field_name}
+                                    {if $arr[] = $gr['group_id']}
+                                    {$i++}
+                                    {/if}
+                                {/if}
+                            {/foreach}
+                            {if !$i}
+                                0
+                            {else:} 
+                                {echo implode(', ', array_unique($arr))}
+                            {/if}
+                        </td>
+                        <td align="right">
                             <button onclick="CFAdmin.deleteOne('{$f.field_name}'); return false;" class="btn btn-small btn-danger my_btn_s" data-rel="tooltip" data-title="{lang('a_delete')}"> <i class="icon-trash icon-white"></i></button>
                         </td>
                     </tr>        

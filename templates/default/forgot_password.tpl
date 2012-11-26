@@ -12,7 +12,7 @@
 	<div class="comment_form_info">
 	
     <div class="textbox">
-        <input type="text" size="30" name="login" id="login" value="{lang('lang_username_or_mail')}" onfocus="if(this.value=='{lang('lang_username_or_mail')}') this.value='';" onblur="if(this.value=='') this.value='{lang('lang_username_or_mail')}';" />
+        <input type="text" size="30" name="email" id="login" value="{lang('lang_email')}" onfocus="if(this.value=='{lang('lang_email')}') this.value='';" onblur="if(this.value=='') this.value='{lang('lang_email')}';" />
     </div>
 	
 	<br /><br /><br /><br />

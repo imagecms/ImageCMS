@@ -16,12 +16,12 @@ $(document).ajaxComplete(function(event, XHR, ajaxOptions) {
             initAdminArea();
             number_tooltip_live();
             $('.tooltip').remove();
+
+            dropDownMenu();
+            autocomplete();
+            init_2();
+            fixed_frame_title();
         }
-        
-        dropDownMenu();
-        autocomplete();
-        init_2();
-        fixed_frame_title();
         
         if ($.exists('#chart')) brands();
         if ($.exists('#wrapper_gistogram')) gistogram();
@@ -30,7 +30,7 @@ $(document).ajaxComplete(function(event, XHR, ajaxOptions) {
 
 function init_2() {
     //    /if ($.exists('[data-submit]')) $('body').append('<div class="notifications bottom-right"><div class="alert-message" style="color:#666;text-shadow:0 1px #fff;">Для того чтоб <span style="color:green;font-weight:bold;">'+$('[data-submit]').text()+'</span> используйте комбинацию клавиш <span style="color:green;font-weight:bold;">Ctrl + s</span></div></div>')
-    
+   
     if ($.exists('#mainContent')){
         $('#loading').css({
             'height': $(window).height(),
@@ -389,11 +389,14 @@ function dropDownMenu() {
     
 }
 function autocomplete() {
-    if ($('#baseSearch').length > 0)
+    var bae = false;
+    if ($('#baseSearch').length > 0 && !bae)
     {
         $.get('/admin/admin_search/autocomplete', function(data) {
+
             baseAutocompleteData = JSON.parse(data);
             //                console.log(baseAutocompleteData);
+            bae = true;
             $('#baseSearch').autocomplete({
                 source: baseAutocompleteData
             });
@@ -619,7 +622,6 @@ function getScrollTop() {
     return scrOfY;
 }
 function fixed_frame_title() {
-    console.log(1)
     fixed_block = $(".frame_title:not(.no_fixed)");
     mini_layout = $('.mini-layout');
     container = $('.container');
@@ -908,6 +910,7 @@ function initAdminArea() {
     $('[type="file"]').die('change').change(function() {
         var $this = $(this);
         $this.parent().prev().children().val($this.val());
+        $this.parent().next().children().val($this.val());
     });
     $('.item_menu .row-category:even').addClass('even');
 
@@ -973,6 +976,7 @@ function initAdminArea() {
         //resize loading
         $('#loading').height($('#mainContent').height())//.width($('#mainContent').width());
         $('#loading').stop().fadeIn(100);
+
     })
     .on('pjax:end', function() {
         console.log('pstp');
@@ -1160,6 +1164,9 @@ $(document).ready(
         $('.btn').live('click', function(){
             $('.tooltip').remove();
         })
+        $('#settings_form .control-label').live('click', function(){
+            $(this).next().find(':input:first').focus();
+        })
     });
 
 $(window).load(function() {
@@ -1176,6 +1183,7 @@ $(window).load(function() {
                 'height': $(window).height(),
                 'background-position': '50%' + ($(window).height() - $('#mainContent').offset().top) / 2 + 'px'
             });
+
         }
     }).resize();
 })

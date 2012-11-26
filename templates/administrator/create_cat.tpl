@@ -35,7 +35,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd span9">
+                                        <div class="inside_padd span12">
                                             <div class="form-horizontal">
                                                 <div class="control-group">
                                                     <label class="control-label" for="name">{lang('a_name')}:</label>
@@ -154,7 +154,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd span9">
+                                        <div class="inside_padd span12">
                                             <div class="form-horizontal">
                                                 <div class="control-group">
                                                     <label class="control-label" for="order_by">{lang('a_sort')}:</label>
@@ -249,7 +249,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd span9">
+                                        <div class="inside_padd span12">
                                             <div class="form-horizontal">
                                                 <div class="control-group">
                                                     <label class="control-label" for="title">{lang('a_meta_title')}:</label>

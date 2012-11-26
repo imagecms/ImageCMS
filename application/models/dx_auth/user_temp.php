@@ -25,9 +25,9 @@ class User_Temp extends CI_Model
 		return $query;
 	}		
 	
-	function get_user_by_username($username)
+	function get_user_by_username($email)
 	{
-		$this->db->where('username', $username);
+		$this->db->where('email', $email);
 		return $this->db->get($this->_table);
 	}
 	
@@ -37,17 +37,17 @@ class User_Temp extends CI_Model
 		return $this->db->get($this->_table);
 	}
 
-	function get_login($login)
+	function get_login($email)
 	{
-		$this->db->where('username', $login);
-		$this->db->or_where('email', $login);
+		$this->db->where('email', $email);
+		$this->db->or_where('email', email);
 		return $this->db->get($this->_table);
 	}
 
-	function check_username($username)
+	function check_username($email)
 	{
 		$this->db->select('1', FALSE);
-		$this->db->where('username', $username);
+		$this->db->where('email', $email);
 		return $this->db->get($this->_table);
 	}
 
@@ -58,9 +58,9 @@ class User_Temp extends CI_Model
 		return $this->db->get($this->_table);
 	}
 
-	function activate_user($username, $key)
+	function activate_user($email, $key)
 	{
-		$this->db->where(array('username' => $username, 'activation_key' => $key));
+		$this->db->where(array('email' => $email, 'activation_key' => $key));
 		return $this->db->get($this->_table);
 	}
 
