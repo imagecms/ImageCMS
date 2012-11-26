@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets>
+
+    <widget>
+        <title>Последние комментарии</title>
+        <description>Вывод последних комментариев.</description>
+        <method>recent_comments</method>
+    </widget>
+    
+    <widget>
+        <title>Последние отзывы о товарах</title>
+        <description>Вывод последних отзывов о товарах</description>
+        <method>recent_product_comments</method>
+    </widget>
+
+</widgets>
