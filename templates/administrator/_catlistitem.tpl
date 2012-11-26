@@ -7,7 +7,6 @@
         </span>
     </div>       
     <div><p>{$item.id}</p></div>
-    <>
     <div><div class="title {if $item.parent_id > 0} lev {/if}" onclick="edit_category({$item.id});
             return false;">
             {if count($item.subtree)}
@@ -27,7 +26,7 @@
             <a href="/admin/categories/edit/{$item.id}" data-rel="tooltip" data-placement="top" data-original-title="редактировать категорию"  class="pjax">{truncate($item.name, 100)}</a>
         </div></div>
     <div class="share_alt" >
-        <a href="{$BASE_URL}{$item.path_url}" target="_blank">{truncate($item.url, 75)}</a>
+        <a href="{$BASE_URL}{$item.path_url}" target="_blank" class="f_l">{truncate($item.url, 75)}</a>
         <a target="_blank" href="{$BASE_URL}{$item.path_url}" class="go_to_site pull-right btn btn-small" data-rel="tooltip" data-placement="top" data-original-title="перейти на сайт"><i class="icon-share-alt"></i></a>
     </div>
     <div><p>{$item['pages']}</p></div>
