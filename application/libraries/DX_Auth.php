@@ -828,7 +828,7 @@ class DX_Auth {
         $this->ci->session->sess_destroy();
     }
 
-    function register($username, $password, $email, $key) {
+    function register($username, $password, $email, $address, $key, $phone) {
 
         // Load Models
         $this->ci->load->model('dx_auth/users', 'users');
@@ -841,9 +841,11 @@ class DX_Auth {
         $new_user = array(
             'username' => $username,
             'password' => crypt($this->_encode($password)),
+            'address' => $address,
             'email' => $email,
-            'last_ip' => $this->ci->input->ip_address(),
-            'key' => $key
+            'key' => $key,
+            'phone' => $phone,
+            'last_ip' => $this->ci->input->ip_address()
         );
 
         // Do we need to send email to activate user
