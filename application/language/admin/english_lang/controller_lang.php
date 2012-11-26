@@ -127,7 +127,8 @@
     $lang['ac_page_is_al_cr'] = 'Page with the same URL has been created yet. Specify or select another URL'; 
     $lang['ac_created_page'] = 'Created a page';
     $lang['ac_page_created'] = 'Page has been created'; 
-    
+    $lang['ac_modul_exists'] = 'Reserved the same name module'; 
+	$lang['ac_category_exists'] = 'Reserved of the same name category';
     //modules/admin/pages.php/edit
     $lang['ac_page'] = 'Page'; 
     $lang['ac_not_found'] = 'Not found';  
