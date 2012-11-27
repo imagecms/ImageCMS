@@ -1,6 +1,20 @@
 $(document).ready(function() {
-
-    /**
+	
+	/** Show/Hide  category description **/
+	$('#cat_desc').hide();
+    $('#show').click(function() {
+	if ( jQuery.browser.msie && parseInt(jQuery.browser.version) == 6) {	
+		if ($('#cat_desc').css("display")=="block") {
+			$('#cat_desc').css("display", "none");} 
+			else {$('#cat_desc').css("display", "block");}
+			} else {$('#cat_desc').toggle("slow");}
+			
+			if ($('#show').text()=='Описание катагории>>') {$('#show').text('Скрыть');
+			} else {$('#show').text('Описание катагории>>');
+	}
+	});
+	
+	/**
      * Add product to cart functionality
      * @event ckick
      * @return event
