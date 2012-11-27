@@ -27,6 +27,7 @@
                     </tr>
                 </thead>
                 <tbody class="sortable">
+                    {$groupRels = $this->CI->db->get('content_fields_groups_relations')->result_array()}
                     {foreach $fields as $f}
                     <tr>
                         <td>

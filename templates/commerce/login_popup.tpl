@@ -4,7 +4,7 @@
         {if validation_errors() OR $info_message}<div class="errors">{validation_errors()}{$info_message}</div>{/if}        
         <label>
             {lang('s_email')}
-            <input type="text" name="username"/>
+            <input type="text" name="email"/>
         </label>
         <label>
             {lang('lang_password')}

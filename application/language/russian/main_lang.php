@@ -11,6 +11,7 @@ $lang['lang_categories'] = 'Категории';
 
 // Auth module
 $lang['lang_register'] = 'Регистрация';
+$lang['lang_email_form'] = 'Введите email';
 $lang['lang_login'] = 'Логин';
 $lang['orderind_shop_sg'] = 'Оформление заказа';
 $lang['lang_password'] = 'Пароль';

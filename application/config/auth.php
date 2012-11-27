@@ -28,7 +28,7 @@ $config['DX_webmaster_email'] = 'webmaster@localhost';
 
 $config['DX_table_prefix'] = '';
 $config['DX_users_table'] = 'users';
-$config['DX_user_profile_table'] = 'user_profile';
+$config['DX_user_profile_table'] = '';
 $config['DX_user_temp_table'] = 'user_temp';
 $config['DX_user_autologin'] = 'user_autologin';
 $config['DX_roles_table'] = 'roles';
@@ -71,7 +71,7 @@ $config['DX_email_account_details'] = FALSE;
 */
 $config['DX_login_max_length'] = 20;
 $config['DX_login_min_length'] = 5;
-$config['DX_login_using_username'] = TRUE;
+$config['DX_login_using_username'] = FALSE;
 $config['DX_login_using_email'] = TRUE;
 $config['DX_login_record_ip'] = TRUE;
 $config['DX_login_record_time'] = TRUE;
