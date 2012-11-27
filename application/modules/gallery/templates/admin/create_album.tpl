@@ -13,7 +13,7 @@
     </div>
     <div class="inside_padd">
         <div class="form-horizontal row-fluid">
-            <div class="span7">
+            <div class="span9">
                 <form method="post" action="{site_url('admin/components/cp/gallery/create_album')}" id="create_album_form">
                     <div class="control-group">
                         <label class="control-label" for="category_id">{lang('amt_category')}:</label>
@@ -35,7 +35,7 @@
                     <div class="control-group">
                         <label class="control-label" for="description">{lang('amt_description')}:</label>
                         <div class="controls">
-                            <textarea name="description" id="description" class="mceEditor"></textarea>
+                            <textarea name="description" id="description" class="elRTE"></textarea>
                         </div>
                     </div>
                     {form_csrf()}
