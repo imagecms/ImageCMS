@@ -12,8 +12,8 @@
 	<div class="comment_form_info">
    
 	<div class="textbox">
-		<label for="username" class="left">{lang('lang_login')}</label>
-        <input type="text" id="username" size="30" name="username" value="Введите Ваш логин" onfocus="if(this.value=='Введите Ваш логин') this.value='';" onblur="if(this.value=='') this.value='Введите Ваш логин';" />
+		<label for="username" class="left">{lang('s_email')}</label>
+        <input type="text" id="username" size="30" name="email" value="{lang('lang_email_form')}" onfocus="if(this.value=='{lang('lang_email_form')}') this.value='';" onblur="if(this.value=='') this.value='{lang('lang_email_form')}';" />
     </div>
 	
 	<div class="textbox_spacer"></div>

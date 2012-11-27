@@ -28,18 +28,22 @@
                             <div class="inside_padd span9">
                                 <div class="form-horizontal">
                                     <form id="update" method="post" action="{$SELF_URL}/update_user/{$id}">
-                                        <div class="control-group">
-                                            <label class="control-label" for="username">{lang('amt_user_login')}</label>
-                                            <div class="controls">
-                                                <input type="text" name="username" id="username" value="{$username}" required/>
-                                            </div>
-                                        </div>
+                                    
+                                        
                                         <div class="control-group">
                                             <label class="control-label" for="email">{lang('amt_email')}</label>
                                             <div class="controls">
                                                 <input type="text" name="email" id="email" value="{$email}" class="required email"/>
                                             </div>
                                         </div>
+                                        
+                                        <div class="control-group">
+                                            <label class="control-label" for="username">{lang('a_fio')}</label>
+                                            <div class="controls">
+                                                <input type="text" name="username" id="username" value="{$username}" required/>
+                                            </div>
+                                        </div>
+                                        
                                         <div class="control-group">
                                             <label class="control-label" for="role_id">{lang('amt_group')}</label>
                                             <div class="controls">
@@ -66,8 +70,8 @@
                                             <label class="control-label" for="banned">{lang('amt_ban')}</label>
                                             <div class="controls">
                                                 <select name="banned" id="banned">
+                                                	<option value ="0" selected="selected" >{lang('amt_no')}</option>
                                                     <option value ="1" {if $banned == "1"} selected="selected" {/if}>{lang('amt_yes')}</option>
-                                                    <option value ="0" {if $banned == "0"} selected="selected" {/if}>{lang('amt_no')}</option>
                                                 </select>
                                             </div>
                                         </div>

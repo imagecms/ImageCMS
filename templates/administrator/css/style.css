@@ -138,6 +138,8 @@ table thead td a:hover, table thead th a:hover{color: #aaa;}
 .frame_label{font-size: 12px;display: inline-block;}
 .frame_label + .frame_label{margin-top: 5px;}
 .controls .frame_label:first-child{margin-top: 2px;}
+.controls .thumbnails > li{margin-left: 20px;}
+.row-fluid .controls .thumbnails {margin-left: -20px;}
 .text_comment, label{cursor: pointer;}
 .niceCheck{width: 16px;height: 16px;cursor: pointer;display: inline-block;background-position: -46px 0;position: relative;top: 1px;}
 .niceRadio{width: 17px;height: 17px;cursor: pointer;display: inline-block;background-position: -179px 0;position: relative;top: 1px;}

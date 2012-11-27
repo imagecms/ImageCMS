@@ -39,7 +39,6 @@
 | routes must come before any wildcard or regular expression routes.
 |
 */
-
 $route['default_controller'] = "core";
 $route['scaffolding_trigger'] = "";
 
