@@ -399,7 +399,7 @@
     $lang['amt_priority']                                                       = 'Приоритеты';
     $lang['amt_simple_pages']                                                   = 'Обычные страницы';
     $lang['amt_changefreq']                                                     = 'Частота изменения страниц';
-    $lang['amt_other_pages']                                                    = 'Другие страницы';
+    $lang['amt_other_pages']                                                    = 'Cтраницы категорий';
     
     //modules/template_editor/tags/templates/admin/tags_admin.tpl
     $lang['amt_all_tags']                                                       = 'Все теги';

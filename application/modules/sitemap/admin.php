@@ -57,9 +57,9 @@ class Admin extends MY_Controller {
             'cats_priority' => $this->input->post('cats_priority'),
             'pages_priority' => $this->input->post('pages_priority'),
             'main_page_changefreq' => $this->input->post('main_page_changefreq'),
+            'categories_changefreq' => $this->input->post('categories_changefreq'),
             'pages_changefreq' => $this->input->post('pages_changefreq')
         );
-
         $this->db->limit(1);
         $this->db->where('name', 'sitemap');
         $this->db->update('components', array('settings' => serialize($XMLDataMap)));

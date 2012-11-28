@@ -44,10 +44,11 @@
                 <ul>
                     {if $page_number == 1}
                         {if $model->getDescription() != ''}
-                            <li>
+							<li id="cat_desc">
                                 {echo $model->getDescription()}
-                            </li>
-                        {/if}
+							</li>
+							<span id='show' class='js'>Описание катагории>></span></br>
+					   {/if}
                     {/if}
                     <!--  Render produts list   -->
                     {foreach $products as $product}
