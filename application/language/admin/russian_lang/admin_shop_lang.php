@@ -23,6 +23,8 @@ $lang['a_shop_sett_xml_set_map'] = 'XML карта сайту';
 $lang['a_shop_sett_int_sco_net'] = 'Интеграция с соцсетями';
 $lang['a_shop_sett_yandex_market_s'] = 'Настройки Яндекс.Маркета';
 $lang['a_shop_sett_yandex_market'] = 'Яндекс.Маркет';
+$lang['a_shop_sett_yandex_market_t'] = 'Яндекс.Маркет документ';
+$lang['a_shop_sett_yandex_market_p'] = 'XML Документ';
 $lang['a_imageCMS_news'] = 'Новости системы ImageCMS';
 $lang['a_s_settings_m_c_for_c'] = 'Ключ от вашего списку <br />новостей на Mailchimp';
 $lang['a_s_settings_m_c_for_p'] = 'Ключ от вашего аккаунта <br /> на Mailchimp';
@@ -582,7 +584,9 @@ $lang['a_automatick'] = 'Автоматическая';
 $lang['a_oformlenia'] = 'оформления';
 $lang['a_block_top_pr'] = 'Блок Топ-Продаж';
 $lang['a_koef'] = 'Коэффициент формулы популярности';
-$lang['a_formula_pr'] = 'Формула популярности: количество просмотров + количество <br />добавлений в корзину * коэффициент. Например: 1000.';
+$lang['a_formula_pr'] = 'Формула популярности: количество просмотров + количество добавлений в корзину * коэффициент. 
+                        <br />Например: 1000 + 500 * n.
+                        <br />Где n - Коэффициент формулы популярности';
 $lang['a_requi_pass'] = 'Восстановление пароля';
 $lang['a_vubr_ot'] = 'Выбор отображаемых';
 $lang['a_mess_po'] = 'Сообщение о появлении';
@@ -783,7 +787,7 @@ $lang['a_role_group_create'] = 'Создание групы ролей';
 $lang['a_role_group_edit'] = 'Редактирование групы ролей';
 $lang['a_roles_list'] = 'Список привилегий';
 
-$lang['a_memcached'] = 'Кеширование';
+$lang['a_memcached'] = 'MemCache';
 $lang['a_memcached_settings'] = 'Настройки кеширования Memcached';
 $lang['a_memcached_on'] = 'Включено';
 $lang['a_memcached_hostname'] = 'Адрес Memcached сервера';
