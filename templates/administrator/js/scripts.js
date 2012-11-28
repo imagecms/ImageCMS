@@ -1025,8 +1025,14 @@ function initAdminArea() {
 //console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.");
 
 $(document).ready(
+        
 
     function(){
+
+        if($('#shopSearch').length){
+            initShopSearch();
+        }
+    
         if ($.exists('#topPanelNotifications')) updateNotificationsTotal();
         initAdminArea();
         //$('.nav .dropdown-menu a').die('click');
@@ -1187,3 +1193,4 @@ $(window).load(function() {
         }
     }).resize();
 })
+
