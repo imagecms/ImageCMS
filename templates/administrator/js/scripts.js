@@ -1122,6 +1122,11 @@ $(document).ready(
             })
             return false;
         });
+        $('[name="cancel_button"]').live('click', function(){
+            var overlay = $('.overlay');
+            overlay.trigger('click');
+            //$('.frame_rep_bug').hide('slow');
+        });
         if ($.exists('#chart'))
             brands();
         if ($.exists('#wrapper_gistogram'))

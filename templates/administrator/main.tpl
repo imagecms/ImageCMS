@@ -242,9 +242,9 @@ border-radius: 3px;"></div>
                     {lang('a_your_remark')}:
                     <textarea></textarea>
                 </label>
-                <input type="submit" value="{lang('a_send')}" class="btn btn-info"/>
+                <input type="submit" value="{lang('a_send_report')}" class="btn btn-info"/>
+                <input type="button" value="{lang('a_cancel')}" class="btn btn-info" style="float:right" name="cancel_button"/>
                 <input type="hidden" value="{$_SERVER['REMOTE_ADDR']}" id="ip_address"/>
-
             </form>
         </div>
         <script>
