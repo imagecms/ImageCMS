@@ -8,7 +8,7 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="{$BASE_URL}admin/components/cp/menu" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
+                    <a href="{$BASE_URL}admin/components/cp/menu" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
                     <!--<button type="submit" class="btn btn-small action_on saveButton"  idMenu="{$id}"><i class="icon-ok"></i>Сохранить</button>-->
                     <button type="submit" class="btn btn-small btn-primary action_on formSubmit"  data-form="#saveForm" data-submit><i class="icon-ok"></i>{lang('a_save')}</button>
                     <button type="button" class="btn btn-small action_on formSubmit" data-form="#saveForm" data-action="tomain"><i class="icon-check"></i>Сохранить и выйти</button>
@@ -30,7 +30,7 @@
                         <tbody>
                             <tr>
                                 <td colspan="6">
-                                    <div class="inside_padd span12">
+                                    <div class="inside_padd span9">
                                         <div class="form-horizontal">
                                             <div class="control-group m-t_10">
                                                 <label class="control-label" for="inputParent">{lang('amt_name')}:</label>

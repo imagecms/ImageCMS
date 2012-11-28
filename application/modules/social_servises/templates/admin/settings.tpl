@@ -29,7 +29,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span12">
+                                <div class="inside_padd span9">
                                     <div class="control-group">
                                         <div class="control-label"></div>
                                         <div class="controls">
@@ -81,7 +81,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span12">
+                                <div class="inside_padd span9">
                                     <div class="control-group">
                                         <div class="control-label"></div>
                                         <div class="controls">

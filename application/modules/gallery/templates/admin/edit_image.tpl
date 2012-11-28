@@ -70,7 +70,7 @@
                 </label>
                 <label>
                     {lang('amt_description')}
-                    <textarea name="description" class="textarea">{$image.description}</textarea>
+                    <textarea name="description" class="textarea elRTE">{$image.description}</textarea>
                 </label>
                 <div class="m-t_10">
                     <button type="submit" class="btn btn-primary formSubmit" data-form="#change_img_desc"><i class="icon-ok"></i> {lang('amt_save')}</button>

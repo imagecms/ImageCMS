@@ -370,9 +370,9 @@ $(document).ready(function() {
             $.post('/admin/components/cp/comments/delete', {
                 id: arr
             },
-                    function(data) {
-                        $('.notifications').append(data);
-                    }
+            function(data) {
+                $('.notifications').append(data);
+            }
             );
         }
     });
@@ -382,9 +382,9 @@ $(document).ready(function() {
         $.post('/admin/components/cp/comments/delete', {
             id: id
         },
-                function(data) {
-                    $('.notifications').append(data);
-                }
+        function(data) {
+            $('.notifications').append(data);
+        }
         );
     });
 
@@ -495,9 +495,9 @@ $(document).ready(function() {
                 {
                     positions: arr
                 },
-                function(data) {
-                    $('.notifications').append(data);
-                });
+        function(data) {
+            $('.notifications').append(data);
+        });
     }
 
     //  sortstop blocks end    
@@ -523,9 +523,9 @@ $(document).ready(function() {
         $('#tpm_row' + id).remove();
     });
 
-product = new Object;
+    product = new Object;
 
-product.toHit = function(){
+    product.toHit = function() {
         var ids = new Array();
         $('input[name=ids]:checked').each(function() {
             ids.push($(this).val());
@@ -536,10 +536,10 @@ product.toHit = function(){
             $('.notifications').append(data);
         }
         );
-};
+    };
 
-product.toNew = function()
-{
+    product.toNew = function()
+    {
         var ids = new Array();
         $('input[name=ids]:checked').each(function() {
             ids.push($(this).val());
@@ -550,10 +550,10 @@ product.toNew = function()
             $('.notifications').append(data);
         }
         );
-};
+    };
 
-product.toAction = function(){
-            var ids = new Array();
+    product.toAction = function() {
+        var ids = new Array();
         $('input[name=ids]:checked').each(function() {
             ids.push($(this).val());
         });
@@ -563,9 +563,9 @@ product.toAction = function(){
             $('.notifications').append(data);
         }
         );
-}
+    }
 
-product.cloneTo = function(){
+    product.cloneTo = function() {
         var ids = new Array();
         $('input[name=ids]:checked').each(function() {
             ids.push($(this).val());
@@ -576,11 +576,11 @@ product.cloneTo = function(){
             $('.notifications').append(data);
         }
         );
-};
+    };
 
-product.toCategory = function(){
-    $('.modal_move_to_cat').modal();
-}
+    product.toCategory = function() {
+        $('.modal_move_to_cat').modal();
+    }
 
     $(".save_positions").live("sortstop", function(event, ui) {
         var url = $(this).attr('data-url');
@@ -600,7 +600,6 @@ product.toCategory = function(){
     });
 
     $('#category_sel').live('change', function() {
-        alert(1)
         var id = $(this).attr('value');
         var per_page = $('#per_page').attr('value');
         $.ajax({
@@ -637,7 +636,7 @@ product.toCategory = function(){
         var identif = $(this).val();
         $('.edit_holder').hide();
         $('#' + identif).show();
-        $('.submit_link').each(function(){
+        $('.submit_link').each(function() {
             $(this).attr('data-form', '#' + identif + '_form')
             $('input[name=item_type]').attr('value', identif);
         });
@@ -678,7 +677,8 @@ product.toCategory = function(){
             url: '/admin/components/run/shop/search/index/?' + query_string,
             container: '#mainContent'
         });
-    });;
+    });
+    ;
 
     $('.move_to_cat').live('click', function() {
         var catId = $('#moveCategoryId').attr('value');
@@ -715,11 +715,12 @@ product.toCategory = function(){
 
     $('#addVariant').live('click', function() {
         var clonedVarTr = $('.variantRowSample').find('tr').clone();
-        var randId = Math.random();
+        var randId = Math.ceil( Math.random()* 1000000);
         var countVarRows = $('#variantHolder').children('tr').length;
         clonedVarTr.find('.random_id').attr('value', randId);
         clonedVarTr.find('[name="variants[mainPhoto][]"]').attr('name', 'variants[mainPhoto][' + randId + ']');
         clonedVarTr.find('[name="variants[smallPhoto][]"]').attr('name', 'variants[smallPhoto][' + randId + ']');
+
         clonedVarTr.attr('id', 'ProductVariantRow_' + countVarRows);
         $('#variantHolder').append(clonedVarTr);
     });
@@ -758,6 +759,25 @@ product.toCategory = function(){
             }
         });
     });
+
+    $('#mailVariables').live('click', function() {
+        $('#mailText').elrte()[0].elrte.selection.insertHtml(' ' + $(this).val() + ' ');
+    });
+
+    $('[data-del="wares"]').live('click', function() {
+        //event.preventDefault();
+        $(this).parent('div').remove();
+    });
+
+    $('[data-clone="wares"]').live('click', function() {
+        //event.preventDefault();
+        $('.warehouse_line').clone().removeClass().attr('id', 'warehouse_line' + Math.floor(1000 * Math.random())).appendTo($('.warehouses_container'));
+    });
+
+    $('.openDlg').live('click', function(){
+        $('#addPictures').trigger('click');
+    });
+
 });
 
 

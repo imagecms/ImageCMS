@@ -109,35 +109,17 @@
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <!--                                
-                                                                                                                                   <div class="control-group">
-                                                                                   <label class="control-label" for="inputImg">{lang('a_image')}:</label>
-                                                                                   <div class="controls">
-                                                                                       <div>
-                                                                                           <span class="f_l span8">
-                                                                                               <input type="text" disabled="disabled" name="image" id="cat_image" value="{$image}" />
-                                                                                           </span>
-                                                                                           <span class="btn btn-small p_r">
-                                                                                               <i class="icon-camera"></i>&nbsp;&nbsp;{lang('a_select_image')}
-                                                                                               <input type="file" class="btn-small btn" id="inputImg" onclick="tinyBrowserPopUp('image', 'cat_image');"/>
-                                                                                           </span>
-                                                                                       </div>
-                                                                                       <p class="help-block span8">
-                                                                                           <img src="img/temp/50X50.png" class="img-polaroid pull-right m-l_15">                                                                
-                                                                                       </p>
-                                                                                   </div>
-                                                                               </div>
-                                                -->                          
+                                                         
                                                 <div class="control-group">
                                                     <label class="control-label" for="Img">
                                                         {lang('a_image')}:                            
                                                     </label>
                                                     <div class="controls">
                                                         <div class="group_icon pull-right">
-                                                            <button id="Img" class="btn btn-small" onclick="elFinderPopup('image', 'Img');return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
+                                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
                                                         </div>
                                                         <div class="o_h">
-                                                            <input type="text" name="image">
+                                                            <input type="text" name="image" id="Img"/>
                                                         </div>
                                                     </div>
                                                 </div>

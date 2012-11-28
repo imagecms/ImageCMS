@@ -32,17 +32,18 @@
                                 <div class="form-horizontal">
                                     <div class="row-fluid">
                                         <form id="create" method="post" active="{$SELF_URL}/create_user/">
-
-                                            <div class="control-group">
-                                                <label class="control-label" for="username">{lang('amt_user_login')}</label>
+											
+											<div class="control-group">
+                                            	<label class="control-label" for="email">{lang('amt_email')}</label>
                                                 <div class="controls">
-                                                    <input type="text" name="username" id="username" value="" required/>
+                                                    <input type="text" name="email" id="email" value="" class="required email" autocomplete="off"/>
                                                 </div>
                                             </div>
+
                                             <div class="control-group">
                                                 <label class="control-label" for="password">{lang('amt_new_pass')}</label>
                                                 <div class="controls">
-                                                    <input type="password" name="password" id="password" value="" required/>
+                                                    <input type="password" name="password" id="password" value="" required autocomplete="off"/>
                                                 </div>
                                             </div>
                                             <div class="control-group">
@@ -51,12 +52,14 @@
                                                     <input type="password" name="password_conf" id="password_conf" value="" required/>
                                                 </div>
                                             </div>
-                                            <div class="control-group">
-                                                <label class="control-label" for="email">{lang('amt_email')}</label>
+                                            
+                                                                                        <div class="control-group">
+                                            <label class="control-label" for="username">{lang('a_fio')}:</label>
                                                 <div class="controls">
-                                                    <input type="text" name="email" id="email" value="" class="required email"/>
+                                                    <input type="text" name="username" id="username" value="" required autocomplete="off"/>
                                                 </div>
                                             </div>
+                                            
                                             <div class="control-group">
                                                 <label class="control-label" for="role">{lang('amt_group')}</label>
                                                 <div class="controls">
