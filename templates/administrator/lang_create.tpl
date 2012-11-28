@@ -28,7 +28,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd span12">
+                                        <div class="inside_padd span9">
                                             <div class="form-horizontal">
                                                 <div class="control-group">
                                                     <label class="control-label" for="name">{lang('a_name')}:</label>

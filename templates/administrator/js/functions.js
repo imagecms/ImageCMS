@@ -5,45 +5,45 @@ var base_url = 'http://p4/';
 
 function showMessage(title, text, messageType)
 {
-    text = '<h4>'+title+'</h4>'+text;
-    messageType = typeof messageType !== 'undefined' ? messageType: 'success';
+    text = '<h4>' + title + '</h4>' + text;
+    messageType = typeof messageType !== 'undefined' ? messageType : 'success';
     if (messageType == 'r')
         messageType = 'error';
     $('.notifications').notify({
         message: {
-            html:text
+            html: text
         },
         type: messageType
     }).show();
-	
+
     console.log(text);
 }
 
 function translite_title(from, to)
 {
-    var url = base_url + 'admin/pages/ajax_translit/'; 
+    var url = base_url + 'admin/pages/ajax_translit/';
     $.post(
-        url, {
-            'str': $(from).val()
-        }, function(data)
+            url, {
+        'str': $(from).val()
+    }, function(data)
 
-        {
-            $(to).val(data);
-        }
-        );
+    {
+        $(to).val(data);
+    }
+    );
 }
 
 function create_description(from, to)
 {
     $('textarea.elRTE').elrte('updateSource');
     $.post(
-        base_url + 'admin/pages/ajax_create_description/',{
-            'text' :$(from).val()
-        },
-        function(data) {
-            $(to).val( data);
-        }
-        );		
+            base_url + 'admin/pages/ajax_create_description/', {
+        'text': $(from).val()
+    },
+    function(data) {
+        $(to).val(data);
+    }
+    );
 }
 
 function retrive_keywords(from, to)
@@ -52,7 +52,7 @@ function retrive_keywords(from, to)
 
     $.post(base_url + 'admin/pages/ajax_create_keywords/', {
         'keys': $(from).val()
-    },		
+    },
     function(data) {
         $(to).html(data);
     }
@@ -61,20 +61,20 @@ function retrive_keywords(from, to)
 
 function ajax_div(target, url)
 {
-    $('#'+target).load(url);
+    $('#' + target).load(url);
 }
 
 //submit form
-$('.formSubmit').live('click',function(){
-        
+$('.formSubmit').live('click', function() {
+
     //        collectMCEData();
     //update content in textareas with elRTE 
     $this = $(this);
 
     $('textarea.elRTE').elrte('updateSource');
-    
+
     var btn = this;
-	
+
     var selector = $(this).data('form');
     var action = $(this).data('action');
     $(selector).validate()
@@ -83,14 +83,14 @@ $('.formSubmit').live('click',function(){
         $('#loading').fadeIn(100);
         var options = {
             //                target: '.notifications',
-            beforeSubmit: function (formData){
-                formData.push( {
-                    name: "action", 
+            beforeSubmit: function(formData) {
+                formData.push({
+                    name: "action",
                     value: action
-                } );
+                });
                 console.log(formData);
             },
-            success: function (data) {
+            success: function(data) {
                 $('#loading').fadeOut(100);
                 var resp = document.createElement('div');
                 resp.innerHTML = data;
@@ -125,21 +125,21 @@ function loadShopInterface()
     {
         $('#baseSearch').val('');
         $('#baseSearch').attr('id', 'shopSearch');
-        $('#adminAdvancedSearch').attr('action', '/admin/components/run/shop/search/advanced');        
+        $('#adminAdvancedSearch').attr('action', '/admin/components/run/shop/search/advanced');
         initShopSearch();
     }
     // Switch menu
     $('#baseAdminMenu').hide();
     $('#shopAdminMenu').show();
-    
+
     $('li').removeClass('active');
     $('#shopAdminMenu li.homeAnchor').addClass('active');
-	 
+
     updateNotificationsTotal();
     $('#topPanelNotifications').fadeIn(300);
     $.pjax({
-        url:'/admin/components/run/shop/dashboard', 
-        container:'#mainContent',
+        url: '/admin/components/run/shop/dashboard',
+        container: '#mainContent',
         timeout: 3000
     });
     isShop = true;
@@ -153,7 +153,7 @@ function loadBaseInterface()
     {
         window.location = '/admin';
     }
-    
+
     if ($('#shopSearch'))
     {
         $('#shopSearch').val('');
@@ -164,23 +164,23 @@ function loadBaseInterface()
     // Switch menu
     $('#shopAdminMenu').hide();
     $('#baseAdminMenu').show();
-    
+
     $('li').removeClass('active');
     $('#baseAdminMenu li.homeAnchor').addClass('active');
-	 
+
     $('#topPanelNotifications').fadeOut(300);
     $.pjax({
-        url:'/admin/dashboard', 
-        container:'#mainContent',
+        url: '/admin/dashboard',
+        container: '#mainContent',
         timeout: 3000
     });
     isShop = false;
-    $('a.logo').attr('href', '/admin/dashboard');	
+    $('a.logo').attr('href', '/admin/dashboard');
     return false;
 }
 
-function initBaseSearch(){
-    $.get('/admin/admin_search/autocomplete', function(data){
+function initBaseSearch() {
+    $.get('/admin/admin_search/autocomplete', function(data) {
         baseAutocompleteData = JSON.parse(data);
 //                console.log(baseAutocompleteData);
         $('#baseSearch').autocomplete({
@@ -189,22 +189,21 @@ function initBaseSearch(){
     });
 }
 
-function initShopSearch(){
+function initShopSearch() {
 
-        $('#shopSearch').autocomplete({
-            source: '/admin/components/run/shop/search/autocomplete'
-        });
+    $('#shopSearch').autocomplete({
+        source: '/admin/components/run/shop/search/autocomplete'
+    });
 }
 
 function initElRTE()
 {
-	
+
     var opts = {
         //lang         : 'ru',   // set your language
-        styleWithCSS : true,
-        height       : 300,
-        fmAllow		: true,
-           	
+        styleWithCSS: true,
+        height: 300,
+        fmAllow: true,
         fmOpen: function(callback) {
             //			    if (typeof dialog === 'undefined') {
             // create new elFinder
@@ -212,68 +211,58 @@ function initElRTE()
                 url: '/admin/elfinder_init',
                 commandsOptions: {
                     getfile: {
-                        oncomplete : 'destroy' // close/hide elFinder
+                        oncomplete: 'destroy' // close/hide elFinder
                     }
                 },
                 getFileCallback: function(file) {
-                    callback('/'+file.path);
+                    callback('/' + file.path);
                 }
-            //			        getFileCallback: callback // pass callback to file manager
+                //			        getFileCallback: callback // pass callback to file manager
             });
-        //			    } else {
-        //			      // reopen elFinder
-        //			      dialog.dialogelfinder('open')
-        //			    }
+            //			    } else {
+            //			      // reopen elFinder
+            //			      dialog.dialogelfinder('open')
+            //			    }
         },
-           	
-        toolbar      : 'maxi'
+        toolbar: 'maxi'
     };
     $('textarea.elRTE').each(
-            function(){
-                    if ($(this).is(':visible'))
-                        if (!$(this).closest('div.workzone').length)
-                            $(this).elrte(opts);
+            function() {
+                if ($(this).is(':visible'))
+                    if (!$(this).closest('div.workzone').length)
+                        $(this).elrte(opts);
             }
-        );
+    );
 }
 
-var dlg;
-
+var dlg = false;
 function elFinderPopup(type, id)
 {
     //todo: create diferent browsers (check 'type' variable)
-	if (!dlg)
-    dlg = $('#elFinder').dialogelfinder({
-        url: '/admin/elfinder_init',
-        commandsOptions: {
-            getfile: {
-                oncomplete : 'destroy' // close/hide elFinder
+    if (!dlg)
+    {
+        dlg = $('#elFinder').dialogelfinder({
+            url: '/admin/elfinder_init',
+            commandsOptions: {
+                getfile: {
+                    oncomplete: 'close' // close/hide elFinder
+                }
             },
-        	upload : {
-        		ui : 'uploadbutton'
-        	},
-        },
-        getFileCallback: function(file) {
-            $('#'+id).val( '/'+file.path);
-            if ( type == 'image' && $('#'+id+'-preview').length)
-            {
-                var img = document.createElement('img');
-                img.src = $('#'+id).val(); 
-                img.className = "img-polaroid";
-                console.log(img);
-                $('#'+id+'-preview').html(img);
+            getFileCallback: function(file) {
+                $('#' + id).val('/' + file.path);
+                if (type == 'image' && $('#' + id + '-preview').length)
+                {
+                    var img = document.createElement('img');
+                    img.src = $('#' + id).val();
+                    img.className = "img-polaroid";
+                    console.log(img);
+                    $('#' + id + '-preview').html(img);
+                }
             }
-        },
-        customData: {
-        	'cms_token':'c3cd8c6168d46e600f0b989e8628398e'
-        },
-        destroyOnClose : false
-			        
-    //			        getFileCallback: callback // pass callback to file manager
-    }).dialogelfinder('instance');
-	else
-		dlg.show();
-    
+        });
+    }
+    else
+        dlg.show();
     return false;
 }
 
@@ -282,59 +271,57 @@ function elFinderTPLEd()
     //todo: create diferent browsers (check 'type' variable)
     eD = $('#elFinderTPLEd').elfinder({
         url: '/admin/elfinder_init/1',
-        height: $(window).height()*0.6,
+        height: $(window).height() * 0.6,
         commandsOptions: {
-
         },
-        uiOptions : {
+        uiOptions: {
             // toolbar configuration
-            toolbar : [
-            ['back', 'forward'],
-            ['reload'],
-            ['home', 'up'],
-            ['mkdir', 'mkfile', 'upload'],
-            //        		['mkfile', 'upload'],
-            //        		['open', 'download', 'getfile'],
-            ['download'],
-            ['info'],
-            //        		['quicklook'],
-            ['copy', 'cut', 'paste'],
-            ['rm'],
-            //        		['duplicate', 'rename', 'edit', 'resize'],
-            ['duplicate', 'rename', 'edit'],
-            ['extract', 'archive'],
-            ['view', 'sort'],
-            ['help'],
-            ['search']
+            toolbar: [
+                ['back', 'forward'],
+                ['reload'],
+                ['home', 'up'],
+                ['mkdir', 'mkfile', 'upload'],
+                //        		['mkfile', 'upload'],
+                //        		['open', 'download', 'getfile'],
+                ['download'],
+                ['info'],
+                //        		['quicklook'],
+                ['copy', 'cut', 'paste'],
+                ['rm'],
+                //        		['duplicate', 'rename', 'edit', 'resize'],
+                ['duplicate', 'rename', 'edit'],
+                ['extract', 'archive'],
+                ['view', 'sort'],
+                ['help'],
+                ['search']
             ],
-
             // directories tree options
-            tree : {
+            tree: {
                 // expand current root on init
-                openRootOnLoad : true,
+                openRootOnLoad: true,
                 // auto load current dir parents
-                syncTree : true
+                syncTree: true
             },
         },
         editors: {
-            editor:{
-                load: function(){
+            editor: {
+                load: function() {
                     alert(111);
                 },
-                save: function(){
+                save: function() {
                     alert(111);
                 },
                 mimes: []
             }
         },
-        getFileCallback : function(e, ev, c){
+        getFileCallback: function(e, ev, c) {
             //self.fm.select($(this), true);
             eD.exec('edit');
             return  false;
-		
-        //self.ui.exec(self.ui.isCmdAllowed('open') ? 'open' : 'select');
+
+            //self.ui.exec(self.ui.isCmdAllowed('open') ? 'open' : 'select');
         },
-        contextmenu : {
+        contextmenu: {
             // navbarfolder menu
             //        	navbar : ['open', '|', 'copy', 'cut', 'paste', 'duplicate', '|', 'rm', '|', 'info'],
 
@@ -342,18 +329,18 @@ function elFinderTPLEd()
             //        	cwd    : ['reload', 'back', '|', 'upload', 'mkdir', 'mkfile', 'paste', '|', 'info'],
 
             // current directory file menu
-            files  : [
-            'edit', 'rename', 'getfile', '|', 'quicklook', '|', 'download', '|', 'copy', 'cut', 'paste', 'duplicate', '|',
-            'rm', '|', 'resize', '|', 'archive', 'extract', '|', 'info'
+            files: [
+                'edit', 'rename', 'getfile', '|', 'quicklook', '|', 'download', '|', 'copy', 'cut', 'paste', 'duplicate', '|',
+                'rm', '|', 'resize', '|', 'archive', 'extract', '|', 'info'
             ]
         },
         onlyMimes: ['text'],
     }).elfinder('instance');
-    
-    eD.bind('get', function(v){
+
+    eD.bind('get', function(v) {
         $('textarea.elfinder-file-edit').closest('div.ui-dialog').css({
-            'width':'90%', 
-            'left':'5%'
+            'width': '90%',
+            'left': '5%'
         });
     });
 }
@@ -421,81 +408,75 @@ function elFinderTPLEd()
 //orders
 
 var orders = new Object({
-	
-    chOrderStatus:function (status){
+    chOrderStatus: function(status) {
         var ids = new Array();
-        $('input[name=ids]:checked').each(function(){
+        $('input[name=ids]:checked').each(function() {
             ids.push($(this).val());
         });
-        $.post('/admin/components/run/shop/orders/ajaxChangeOrdersStatus/'+status, {
-            ids:ids
-        }, function(data){
+        $.post('/admin/components/run/shop/orders/ajaxChangeOrdersStatus/' + status, {
+            ids: ids
+        }, function(data) {
             $('#mainContent').after(data);
             $.pjax({
-                url:window.location.pathname, 
-                container:'#mainContent',
+                url: window.location.pathname,
+                container: '#mainContent',
                 timeout: 3000
             });
         });
         return true;
     },
-
-    fixAddressA:function()
+    fixAddressA: function()
     {
-        $('#postAddressBtn').attr('href', "http://maps.google.com/?q="+$('#postAddress').val());
+        $('#postAddressBtn').attr('href', "http://maps.google.com/?q=" + $('#postAddress').val());
         return true;
     },
-
-    chOrderPaid:function (paid){
+    chOrderPaid: function(paid) {
         var ids = new Array();
-        $('input[name=ids]:checked').each(function(){
+        $('input[name=ids]:checked').each(function() {
             ids.push($(this).val());
         });
-        $.post('/admin/components/run/shop/orders/ajaxChangeOrdersPaid/'+paid, {
-            ids:ids
-        }, function(data){
+        $.post('/admin/components/run/shop/orders/ajaxChangeOrdersPaid/' + paid, {
+            ids: ids
+        }, function(data) {
             $('#mainContent').after(data);
             $.pjax({
-                url:window.location.pathname, 
-                container:'#mainContent',
+                url: window.location.pathname,
+                container: '#mainContent',
                 timeout: 3000
             });
         });
         return true;
     },
-
-    deleteOrders:function (){
+    deleteOrders: function() {
         $('.modal').modal();
     },
-
-    deleteOrdersConfirm:function ()
+    deleteOrdersConfirm: function()
     {
         var ids = new Array();
-        $('input[name=ids]:checked').each(function(){
+        $('input[name=ids]:checked').each(function() {
             ids.push($(this).val());
         });
         $.post('/admin/components/run/shop/orders/ajaxDeleteOrders/', {
-            ids:ids
-        }, function(data){
+            ids: ids
+        }, function(data) {
             $('#mainContent').after(data);
             $.pjax({
-                url:window.location.pathname, 
-                container:'#mainContent',
+                url: window.location.pathname,
+                container: '#mainContent',
                 timeout: 3000
             });
         });
         $('.modal').modal('hide');
         return true;
     },
-	
-    addProduct:function(modelId)
+    addProduct: function(modelId)
     {
         productName = '';
-        variants='';
-        $('.modal .modal-body').load('/admin/components/run/shop/orders/ajaxEditAddToCartWindow/'+modelId, function(){
+        variants = '';
+        $('.modal .modal-body').load('/admin/components/run/shop/orders/ajaxEditAddToCartWindow/' + modelId, function() {
             $('#product_name').autocomplete({
-                source: '/admin/components/run/shop/orders/ajaxGetProductList/?categoryId='+$('#Categories').val(),
-                select: function(event, ui){
+                source: '/admin/components/run/shop/orders/ajaxGetProductList/?categoryId=' + $('#Categories').val(),
+                select: function(event, ui) {
                     //					console.log(ui);
                     //					console.log(ui.item);
                     productName = ui.item.label;
@@ -504,44 +485,40 @@ var orders = new Object({
                     //					console.log(ui.item.variants.lenght);
                     $('#product_id').val(ui.item.value);
                     vKeys = Object.keys(ui.item.variants);
-					
-                    for (var i=0; i<vKeys.length; i++)
-						 
+
+                    for (var i = 0; i < vKeys.length; i++)
                         $('#product_variant_name').append(new Option(ui.item.variants[ vKeys[i] ].name + ui.item.variants[ vKeys[i] ].price + " " + ui.item.cs, vKeys[i], true, true));
                 },
-                close: function(){
+                close: function() {
                     $('#product_name').val(productName);
-                }	
+                }
             });
-			
-            $('#Categories').change(function(){
+
+            $('#Categories').change(function() {
                 $('#product_name').val('');
             });
         });
         $('.modal').modal('show');
-        $('#addToCartConfirm').live('click', function(){
+        $('#addToCartConfirm').live('click', function() {
             if ($('.modal form').valid())
                 $('.modal').modal('hide');
         });
         return false;
     },
-	
-    deleteProduct:function(id){
-        $('.notifications').load('/admin/components/run/shop/orders/ajaxDeleteProduct/'+id);
+    deleteProduct: function(id) {
+        $('.notifications').load('/admin/components/run/shop/orders/ajaxDeleteProduct/' + id);
     },
-    
-    refreshTotalPrice:function(dmId)
+    refreshTotalPrice: function(dmId)
     {
         deliveryPrice = deliveryPrices[dmId];
         if (deliveryPrice === undefined)
             deliveryPrice = 0;
         var totalPrice = deliveryPrice + productsAmount - giftPrice;
-    	
+
         $('.totalOrderPrice').html(totalPrice);
-    //console.log(totalPrice);
+        //console.log(totalPrice);
     },
-    
-    updateOrderItem:function(id, btn)
+    updateOrderItem: function(id, btn)
     {
         var data = {};
         if ($(btn).data('update') == 'price')
@@ -549,28 +526,28 @@ var orders = new Object({
             data.newPrice = $(btn).closest('td').find('input').val();
         if ($(btn).data('update') == 'count')
             data.newQuantity = $(btn).closest('td').find('input').val();
-    		
-        $.post('/admin/components/run/shop/orders/ajaxEditOrderCart/'+id, data, function(data){
+
+        $.post('/admin/components/run/shop/orders/ajaxEditOrderCart/' + id, data, function(data) {
             $('.notifications').append(data);
         });
     }
-	
+
 });
 
 var orderStatuses = new Object({
-    reorderPositions:function(){
-        var i=1;
-        $('.sortable tr').each(function(){
+    reorderPositions: function() {
+        var i = 1;
+        $('.sortable tr').each(function() {
             $(this).find('input').val(i);
             i++;
-        });	
+        });
         $('#orderStatusesList').ajaxSubmit({
-            target:'.notifications'
+            target: '.notifications'
         });
         return true;
     },
-    deleteOne:function(id){
-        $('.modal .modal-body').load('/admin/components/run/shop/orderstatuses/ajaxDeleteWindow/'+id, function(){
+    deleteOne: function(id) {
+        $('.modal .modal-body').load('/admin/components/run/shop/orderstatuses/ajaxDeleteWindow/' + id, function() {
             return true;
         });
         $('.modal').modal('show');
@@ -578,106 +555,99 @@ var orderStatuses = new Object({
 });
 
 var callbacks = new Object({
-    deleteOne:function(id){
+    deleteOne: function(id) {
         $.post('/admin/components/run/shop/callbacks/deleteCallback', {
-            id:id
-        }, function(data){
+            id: id
+        }, function(data) {
             $('.notifications').append(data);
         });
     },
-	
-    deleteMany:function(){
+    deleteMany: function() {
         var id = new Array();
-        $('input[name=ids]:checked').each(function(){
+        $('input[name=ids]:checked').each(function() {
             id.push($(this).val());
         });
-		
+
         this.deleteOne(id);
         $('.modal').modal('hide');
         return true;
     },
-	
-    changeStatus:function(id, statusId)
+    changeStatus: function(id, statusId)
     {
         $.post('/admin/components/run/shop/callbacks/changeStatus', {
-            CallbackId:id, 
-            StatusId:statusId
-        }, function(data){
+            CallbackId: id,
+            StatusId: statusId
+        }, function(data) {
             $('.notifications').append(data);
         });
-        $('#callback_'+id).closest('tr').data('status', statusId);
+        $('#callback_' + id).closest('tr').data('status', statusId);
         this.reorderList(id);
     },
-    reorderList:function(id)
+    reorderList: function(id)
     {
-        var stId = $(' #callback_'+id).data('status');
+        var stId = $(' #callback_' + id).data('status');
         //var html = $('#callback_'+id);
         console.log(id);
         console.log(stId);
         //		$('#callback_'+id).remove()
         //		$('#callbacks_'+stId ).append(html);
-        $('#callbacks_'+stId + ' table tbody' ).append($('#callback_'+id));
-        console.log($('#callback_'+$(this).data('id')));
-		
-    //		$('.tab-pane tr').each(function(id){
-    //			var stId = $(this).data('status');
-    //			$('#callbacks_'+stId + ' #callback_'+id).append($('#callback_'+$(this).data('id'))).remove();
-    //			console.log($('#callback_'+$(this).data('id')));
-    //		});
+        $('#callbacks_' + stId + ' table tbody').append($('#callback_' + id));
+        console.log($('#callback_' + $(this).data('id')));
+
+        //		$('.tab-pane tr').each(function(id){
+        //			var stId = $(this).data('status');
+        //			$('#callbacks_'+stId + ' #callback_'+id).append($('#callback_'+$(this).data('id'))).remove();
+        //			console.log($('#callback_'+$(this).data('id')));
+        //		});
     },
-	
-    changeTheme:function(id, themeId)
+    changeTheme: function(id, themeId)
     {
         $.post('/admin/components/run/shop/callbacks/changeTheme', {
-            CallbackId:id, 
-            ThemeId:themeId
-        }, function(data){
+            CallbackId: id,
+            ThemeId: themeId
+        }, function(data) {
             $('.notifications').append(data);
         });
     },
-	
-    setDefaultStatus:function(id, element)
+    setDefaultStatus: function(id, element)
     {
-		
+
         $('.prod-on_off').addClass('disable_tovar').css('left', '-28px');
         $.post('/admin/components/run/shop/callbacks/setDefaultStatus', {
-            id:id
-        }, function(data){
+            id: id
+        }, function(data) {
             $('.notifications').append(data);
         });
         //console.log(element);
         //if ((element).removeClass('disable_tovar'))
         return true;
     },
-	
-    deleteStatus:function(id)
+    deleteStatus: function(id)
     {
         $.post('/admin/components/run/shop/callbacks/deleteStatus', {
-            id:id
-        }, function(data){
+            id: id
+        }, function(data) {
             $('.notifications').append(data);
         });
     },
-	
-    deleteTheme:function(id)
+    deleteTheme: function(id)
     {
         $.post('/admin/components/run/shop/callbacks/deleteTheme', {
-            id:id
-        }, function(data){
+            id: id
+        }, function(data) {
             $('.notifications').append(data);
         });
     },
-	
-    reorderThemes:function()
+    reorderThemes: function()
     {
         var positions = new Array();
-        $('.sortable tr').each(function(){
+        $('.sortable tr').each(function() {
             positions.push($(this).data('id'));
-        });	
-		
+        });
+
         $.post('/admin/components/run/shop/callbacks/reorderThemes', {
-            positions:positions
-        }, function(data){
+            positions: positions
+        }, function(data) {
             $('.notifications').append(data);
         });
         return true;
@@ -685,28 +655,30 @@ var callbacks = new Object({
 });
 
 var shopCategories = new Object({
-    deleteCategories:function (){
+    deleteCategories: function() {
         $('.modal').modal();
     },
-    deleteCategoriesConfirm:function (simple)
+    deleteCategoriesConfirm: function(simple)
     {
         var ids = new Array();
-        if (simple == undefined){
-            $('input[name=id]:checked').each(function(){
+        if (simple == undefined) {
+            $('input[name=id]:checked').each(function() {
                 ids.push($(this).val());
             });
         }
-        else ids.push(simple);
-        
+        else
+            ids.push(simple);
+
         var url = '/admin/components/run/shop/categories/delete';
-        if ($('[data-url-delete]').length > 0) url = $('[data-url-delete]').data('url-delete');
+        if ($('[data-url-delete]').length > 0)
+            url = $('[data-url-delete]').data('url-delete');
         $.post(url, {
-            id:ids
-        }, function(data){
+            id: ids
+        }, function(data) {
             $('#mainContent').after(data);
             $.pjax({
-                url:window.location.pathname, 
-                container:'#mainContent',
+                url: window.location.pathname,
+                container: '#mainContent',
                 timeout: 3000
             });
         });
@@ -716,22 +688,22 @@ var shopCategories = new Object({
 });
 
 var GalleryCategories = new Object({
-    deleteCategories:function (){
+    deleteCategories: function() {
         $('.modal').modal();
     },
-    deleteCategoriesConfirm:function ()
+    deleteCategoriesConfirm: function()
     {
         var ids = new Array();
-        $('input[name=ids]:checked').each(function(){
+        $('input[name=ids]:checked').each(function() {
             ids.push($(this).val());
         });
         $.post('/admin/components/cp/gallery/delete_category', {
-            id:ids
-        }, function(data){
+            id: ids
+        }, function(data) {
             $('#mainContent').after(data);
             $.pjax({
-                url:window.location.pathname, 
-                container:'#mainContent',
+                url: window.location.pathname,
+                container: '#mainContent',
                 timeout: 3000
             });
         });
@@ -740,32 +712,33 @@ var GalleryCategories = new Object({
     }
 });
 var GalleryAlbums = new Object({
-    whatDelete:function (el){
+    whatDelete: function(el) {
         var el = el;
-        
+
         var closest_tr = $(el).closest('tr');
         var mini_layout = $(el).closest('.mini-layout');
-        
-        if (closest_tr[0] != undefined){
+
+        if (closest_tr[0] != undefined) {
             this.id = $(el).closest('tr').find("[type = hidden]").val();
         }
-        else if (mini_layout[0] != undefined){
+        else if (mini_layout[0] != undefined) {
             this.id = mini_layout.find('[name = album_id]').val();
         }
     },
-    deleteCategoriesConfirm:function ()
+    deleteCategoriesConfirm: function()
     {
         if (mini_layout[0] != undefined) {
-            url = '/admin/components/cp/gallery/category/'+mini_layout.find('[name = category_id]').val();
+            url = '/admin/components/cp/gallery/category/' + mini_layout.find('[name = category_id]').val();
         }
-        else url = window.location.pathname;
-        
+        else
+            url = window.location.pathname;
+
         $.post('/admin/components/cp/gallery/delete_album', {
-            album_id:this.id
-        }, function(data){
+            album_id: this.id
+        }, function(data) {
             $.pjax({
-                url:url, 
-                container:'#mainContent',
+                url: url,
+                container: '#mainContent',
                 timeout: 3000
             });
         });
@@ -774,36 +747,30 @@ var GalleryAlbums = new Object({
     }
 });
 
-function clone_object(){
+function clone_object() {
     btn_temp = $('[data-remove="example"]');
-    $('[data-frame]').each(function(){
+    $('[data-frame]').each(function() {
         cloneObject($(this))
     })
-    
-    $('[data-clone="wares"]').on('click', function(event){
-        event.preventDefault();
-        $('.warehouse_line').clone().removeClass().attr('id', 'warehouse_line'+Math.floor(1000*Math.random())).appendTo($('.warehouses_container'));
-    })
-    
     function cloneObject(data) {
         var data = data;
         var add_variants = {
             cloneObjectVariant: data.find('[data-rel="add_new_clone"]'),
             frameSetClone: data.find('tbody'),
-            frameСlone: function(){
+            frameСlone: function() {
                 var variant_row = this.frameSetClone.find('tr:first').clone();
                 console.log(variant_row);
                 return this.frameSetClone.find('tr:first').clone().find('input').val('').parents('tr')
             },
-            addNewVariant: function(){
+            addNewVariant: function() {
                 btn_temp = btn_temp.clone().show();
                 return this.frameСlone().find('td:last').append(btn_temp).parents('tr');
             }
         }
-        add_variants.cloneObjectVariant.on('click', function(){
+        add_variants.cloneObjectVariant.on('click', function() {
             add_variants.frameSetClone.append(add_variants.addNewVariant());
         })
-        $('[data-remove]').live('click', function(){
+        $('[data-remove]').live('click', function() {
             $(this).closest('tr').remove();
         })
     }

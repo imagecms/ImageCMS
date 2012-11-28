@@ -182,6 +182,11 @@ $(document).ready(function() {
                 bindLoginForm();
                 bindRegisterLink();
                 $.fancybox.hideActivity();
+
+                if ($('#cartForm input[name="userInfo[email]"]').length)
+                {
+                    $('#enter input[name="username"]').val($('#cartForm input[name="userInfo[email]"]').val());
+                }
             }
         });
         return false;
@@ -405,7 +410,7 @@ $(document).ready(function() {
     })
 
 
-    $("#cartForm").validate();
+    //$("#cartForm").validate();
     $('.met_del:checked').trigger('click');
     $("input.met_del").click(function() {
         recount();
@@ -517,7 +522,7 @@ $(document).ready(function() {
                             $('.auth_data').html(obj.header);
                             $('.addToWList').bind('click');
                             $('.addToWList').attr('data-logged_in', 'true');
-                            $.fancybox.resize();
+                            //$.fancybox.resize();
                         }
                     }
                     $('.reg_me').bind('click', bindRegisterForm());
@@ -920,22 +925,64 @@ $(document).ready(function() {
         });
         $.post("/shop/compare/calculate",
                 {ind: keys, val: values},
-                function(obj) {
-                    //console.log(data);
-                    if (obj.result) {
-                    //{console.log("success")};
-                        $(obj.selector).toggle();
-                        if ($('.prod_show_diff').text() === 'Только Различия') {
-                            $('.prod_show_diff').text('Сравнить все');
-                        } else {
-                            $('.prod_show_diff').text('Только Различия');
-                        }
-                    }else{
-                        $('.prod_show_diff').text('Нет различий');
-                    }
-                }, "json"
-        );
+        function(obj) {
+            //console.log(data);
+            if (obj.result) {
+                //{console.log("success")};
+                $(obj.selector).toggle();
+                if ($('.prod_show_diff').text() === 'Только Различия') {
+                    $('.prod_show_diff').text('Сравнить все');
+                } else {
+                    $('.prod_show_diff').text('Только Различия');
+                }
+            } else {
+                $('.prod_show_diff').text('Нет различий');
+            }
+        }, "json"
+                );
         $.fancybox.hideActivity();
         //console.log(rows);
     });
+
+    $('#orderSubmit').live('click', function(event) {
+        if ($(this).data('logged') === 1) {
+            $('#cartForm').submit();
+        } else {
+            var email = $('[name="userInfo[email]"]').val();
+            var name = $('[name="userInfo[fullName]"]').val();
+            if ((email != '') && (name != '')) {
+                event.preventDefault();
+                $.ajax({
+                    type: "post",
+                    url: "/shop/ajax/checkEmail",
+                    data: "email=" + email,
+                    dataType: "json",
+                    success: function(obj) {
+                        if (obj.result === false) {
+                            $.ajax({
+                                type: "post",
+                                url: "/shop/cart/displayPopupConfirm",
+                                success: function(msg) {
+                                    showResponse(msg);
+                                }
+                            });
+                        } else {
+                            $('#cartForm').submit();
+                        }
+                    }
+                });
+            } else {
+                $('#cartForm').submit();
+            }
+        }
+    });
+
+    $('.confirmYes').live('click', function() {
+        $('.loginAjax').trigger('click');
+    });
+
+    $('.confirmNo').live('click', function() {
+        $('#cartForm').submit();
+    });
+
 });

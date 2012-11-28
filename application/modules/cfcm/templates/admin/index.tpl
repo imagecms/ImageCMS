@@ -84,7 +84,7 @@
                         <td>
                             {echo $this->CI->db->get_where('content_fields_groups_relations', array('group_id' => $g.id))->num_rows()}
                         </td>
-                        <td align="right">
+                        <td class="t-a_c">
                             <button onclick="CFAdmin.deleteOneGroup({$g.id}); return false;" class="btn btn-danger btn-small my_btn_s" data-rel="tooltip" data-title="{lang('a_delete')}"> <i class="icon-trash icon-white"></i></button>
                         </td>
                     </tr>        

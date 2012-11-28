@@ -22,6 +22,7 @@
                 </ul>
             </div>
             <div class="span9 content_big_td">
+                <form action="{$BASE_URL}admin/settings/save" method="post" id="saveSettings">
                 <div class="tab-content">
                     <div class="tab-pane active" id="setings">                                    
                         <table class="table table-striped table-bordered table-hover table-condensed">
@@ -38,7 +39,6 @@
                                         <div class="inside_padd">
                                             <div class="form-horizontal">
                                                 <div class="row-fluid">
-                                                    <form action="{$BASE_URL}admin/settings/save" method="post" id="saveSettings">
                                                         <div class="control-group m-t_10">
                                                             <label class="control-label" for="titleNa">{lang('a_site_title')}:</label>
                                                             <div class="controls">
@@ -280,8 +280,8 @@
                         </table>
                     </div>                    
                 </div>
+            {form_csrf()}
+            </form>                       
             </div>
     </section>
 </div>
-{form_csrf()}
-</form>                       

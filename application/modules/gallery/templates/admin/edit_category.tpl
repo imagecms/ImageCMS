@@ -14,7 +14,7 @@
     </div>
     <div class="inside_padd">
         <div class="form-horizontal row-fluid">
-            <div class="span6">
+            <div class="span9">
                 <form method="post" action="{site_url('admin/components/cp/gallery/update_category/' . $category.id)}" id="create_category_form">
                     <div class="control-group">
                         <label class="control-label" for="name">{lang('amt_name')}:</label>
@@ -25,7 +25,7 @@
                     <div class="control-group">
                         <label class="control-label" for="g_c_desc">{lang('amt_description')}:</label>
                         <div class="controls">
-                            <textarea name="description" id="g_c_desc" class="mceEditor">{htmlspecialchars($category.description)}</textarea>
+                            <textarea name="description" id="g_c_desc" class="elRTE">{htmlspecialchars($category.description)}</textarea>
                         </div>
                     </div>
                     <div class="control-group">
