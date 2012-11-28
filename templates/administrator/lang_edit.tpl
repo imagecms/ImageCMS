@@ -44,12 +44,26 @@
                                                         </div>
                                                     </div> 
                                                     <div class="row-fluid">
-                                                        <div class="control-group">
+                                                        <!--<div class="control-group">
                                                             <label class="control-label" for="inputName">{lang('a_image_url')}:</label>
                                                             <div class="controls">
                                                                 <input type="text" name="image" id="" value="{$image}"/>
                                                             </div>
-                                                        </div>   
+                                                        </div>-->
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="Img">
+                                                                {lang('a_image_url')}:
+                                                            </label>
+                                                            <div class="controls">
+                                                                <div class="group_icon pull-right">            
+                                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');
+                                                                        return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
+                                                                </div>
+                                                                <div class="o_h">		            
+                                                                    <input type="text" name="image" id="Img" value="{$image}">					
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <div class="control-group">
                                                             <label class="control-label" for="inputParent">{lang('a_folder')}:</label>
                                                             <div class="controls">
@@ -81,3 +95,4 @@
         </div>
     </section>
 </div>
+<div id="elFinder"></div>
