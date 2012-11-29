@@ -115,6 +115,7 @@ class Comments extends MY_Controller {
             'use_captcha' => $this->use_captcha,
             'item_id' => $item_id
         );
+
         if ($this->use_captcha == TRUE) {
             $this->dx_auth->captcha();
             $data['cap_image'] = $this->dx_auth->get_captcha_image();
