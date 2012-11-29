@@ -328,7 +328,7 @@ $lang['s_spec_promotion'] = 'Special promotion';
 
 $lang['s_shot'] = 'New';
 $lang['s_saction'] = 'Promotion';
-$lang['s_shit'] = 'Hit';
+$lang['s_s_hit'] = 'Hit';
 
 $lang['s_found_in_categories'] = 'Found in categories:';
 $lang['s_not_found_in_categories'] = 'Not found in categories';
