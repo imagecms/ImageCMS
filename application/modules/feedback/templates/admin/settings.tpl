@@ -26,7 +26,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span9">
+                                <div class="inside_padd span12">
                                     <div class="form-horizontal">
                                         <form id="save" method="post" action="{site_url('admin/components/cp/feedback/settings/update')}">
                                             <div class="control-group">

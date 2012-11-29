@@ -28,7 +28,7 @@
                 <tbody>
                     <tr>
                         <td colspan="6">
-                            <div class="inside_padd">
+                            <div class="inside_padd span12">
                                 <div class="form-horizontal">
                                     <div class="row-fluid">
                                         <form id="create" method="post" active="{$SELF_URL}/create_user/">
@@ -41,24 +41,35 @@
                                             </div>
 
                                             <div class="control-group">
+                                                <label class="control-label" for="username">{lang('a_fio')}:</label>
+                                                <div class="controls">
+                                                    <input type="text" name="username" id="username" value="" required autocomplete="off"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="control-group">
+                                                <label class="control-label" for="phone">{lang('a_phone')}</label>
+                                                <div class="controls">
+                                                    <input type="text" name="phone" id="phone" value="" autocomplete="off"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="control-group">
                                                 <label class="control-label" for="password">{lang('amt_new_pass')}</label>
                                                 <div class="controls">
                                                     <input type="password" name="password" id="password" value="" required autocomplete="off"/>
                                                 </div>
                                             </div>
+
+
+
                                             <div class="control-group">
                                                 <label class="control-label" for="password_conf">{lang('amt_new_pass_confirm')}</label>
                                                 <div class="controls">
                                                     <input type="password" name="password_conf" id="password_conf" value="" required/>
                                                 </div>
                                             </div>
-                                            
-                                                                                        <div class="control-group">
-                                            <label class="control-label" for="username">{lang('a_fio')}:</label>
-                                                <div class="controls">
-                                                    <input type="text" name="username" id="username" value="" required autocomplete="off"/>
-                                                </div>
-                                            </div>
+
                                             
                                             <div class="control-group">
                                                 <label class="control-label" for="role">{lang('amt_group')}</label>

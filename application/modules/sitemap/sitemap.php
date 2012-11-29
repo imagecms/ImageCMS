@@ -284,11 +284,11 @@ class Sitemap extends MY_Controller {
     }
 
     public function _load_settings() {
-        $this->db->select('value');
-        $this->db->where('name', 'xmlSiteMap');
-        $query = $this->db->get('shop_settings', 1)->row_array();
+        $this->db->select('settings');
+        $this->db->where('name', 'sitemap');
+        $query = $this->db->get('components', 1)->row_array();
 
-        return unserialize($query['value']);
+        return unserialize($query['settings']);
     }
 
     function _install() {
