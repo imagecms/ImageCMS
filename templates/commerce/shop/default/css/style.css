@@ -887,14 +887,14 @@ span.required {color: #D80600;}
 .promoblock{position: absolute;
             left: 0;
             top: 0;
-            background-color: #FF0000;
+            background-color: silver;
             padding: 5px 10px;
-            color: white;
+            color: black;
             font-size: 10px;
             -moz-border-radius: 4px;
             -webkit-border-radius: 4px;
             border-radius: 4px;
-            text-shadow: 0 1px blue;}
+            text-shadow: 0 1px grey;}
 
 .promoblock+.promoblock{top:21px;}
 .promoblock+.promoblock+.promoblock{top:42px;}

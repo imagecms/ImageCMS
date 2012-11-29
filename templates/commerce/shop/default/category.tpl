@@ -68,7 +68,7 @@
                                         <div class="promoblock">{lang('s_saction')}</div>
                                     {/if}
                                     {if $product->getHit() == 1}
-                                        <div class="promoblock">{lang('s_shit')}</div>
+                                        <div class="promoblock">{lang('s_s_hit')}</div>
                                     {/if}
                                 </a>
                             </div>
