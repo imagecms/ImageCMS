@@ -44,12 +44,26 @@
                                                         </div>
                                                     </div> 
                                                     <div class="row-fluid">
-                                                        <div class="control-group">
+                                                        <!--<div class="control-group">
                                                             <label class="control-label" for="image">{lang('a_image_url')}:</label>
                                                             <div class="controls">
                                                                 <input type="text" name="image" id="image"/>
                                                             </div>
-                                                        </div>   
+                                                        </div>  -->
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="Img">
+                                                                {lang('a_image_url')}:
+                                                            </label>
+                                                            <div class="controls">
+                                                                <div class="group_icon pull-right">            
+                                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');
+                                                                        return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
+                                                                </div>
+                                                                <div class="o_h">		            
+                                                                    <input type="text" name="image" id="Img" value="">					
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <div class="control-group">
                                                             <label class="control-label" for="folder">{lang('a_folder')}:</label>
                                                             <div class="controls">
@@ -85,3 +99,4 @@
         </div>
     </section>
 </div>
+<div id="elFinder"></div>

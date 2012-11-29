@@ -57,7 +57,8 @@ class Languages extends MY_Controller {
             $data = array(
                 'lang_name' => $this->input->post('name'),
                 'identif' => $this->input->post('identif'),
-                'image' => $this->lib_admin->db_post('image'),
+                //'image' => $this->lib_admin->db_post('image'),
+                'image' => $this->input->post('image'),
                 'folder' => $this->input->post('folder'),
                 'template' => $this->input->post('template')
             );
@@ -114,7 +115,8 @@ class Languages extends MY_Controller {
             $data = array(
                 'lang_name' => $this->input->post('name'),
                 'identif' => $this->input->post('identif'),
-                'image' => $this->lib_admin->db_post('image'),
+                //'image' => $this->lib_admin->db_post('image'),
+                'image' => $this->input->post('image'),
                 'folder' => $this->input->post('folder'),
                 'template' => $this->input->post('template')
             );
