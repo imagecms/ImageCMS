@@ -18,6 +18,7 @@
         </colgroup>
         <tbody>
             {foreach $model->getSOrderProductss() as $item}
+                {$discount = ShopCore::app()->SDiscountsManager->productDiscount($item->id)}
                 {$total = $total + $item->getQuantity() * $item->toCurrency()}
                 {$product = $item->getSProducts()}
                 {$variants = $item->getSProducts()->getProductVariants()}
@@ -85,11 +86,21 @@
                             </div>
                         </td>
                         <td> {//echo $summary = ShopCore::app()->SCurrencyHelper->convert($item.totalAmount)}
-                            <div class="price f-s_18 f_l">{echo $variant->getPrice() * $item->getQuantity()} 
-                                <sub> {$CS}</sub>
-                                {if $NextCS != $CS}
+                            <div class="price f-s_18 f_l">
+                                {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
+                                    {$prOne = $variant->getPrice() * $item->getQuantity()}
+
+                                    {$prThree = $prOne - $prOne / 100 * $discount}
+                                    <del class="price price-c_red f-s_12 price-c_9">{echo $variant->getPrice() * $item->getQuantity()} {$CS}</del><br /> 
+                                {else:}
+                                    {$prThree = $variant->getPrice() * $item->getQuantity()}
+                                {/if}
+                                {echo $prThree} <sub>{$CS}</sub>
+
+                                {if $NextCS != $CS AND empty($discount)}
                                     <span class="d_b">{echo $item->toCurrency('Price', $NextCSId)} {$NextCS}</span>
                                 {/if}
+
                             </div>
                         </td>
                     </tr>
@@ -107,68 +118,68 @@
                                 {/if}
                                 {if $total >= $deliveryMethod->getFreeFrom()}
                                     {$total} {$CS}
-                                    {else:}
-                                        {echo $total + $model->getDeliveryPrice()} {$CS}
-                                    {/if}</div>
-                            </div>
-                            <div class="f_l" style="width: 775px;">
-                                <ul class="info_curr_buy f_l" >
-                                    
-                                    <li>
-                                        <span>{lang('s_paid')}:</span>
-                                        <b>{if $model->getPaid() == true} {lang('s_yes')}{else: }{lang('s_no')}{/if}</b>
-                                    </li>
-                                    <li>
-                                        <span>{lang('s_status')}:</span>
-                                        <b>{echo SOrders::getStatusName('Id',$model->getStatus())} {if $model->getDeliveryMethod() > 0}</b>
-                                    </li>                                   
-                                    {if $model->getGiftCertKey() != null}
-                                        <li>
-                                            <span>{lang('s_do_you_cer_tif')}: </span>
-                                            <b>(-{echo $model->getgiftCertPrice()} {$CS})</b>
-                                        </li>
-                                    {/if}                                    
-                                     {if count($discountCom)}
-                                        <li>
-                                            <span>Скидка: </span>
-                                            <b>(-{echo $model->getComulativ()}%)
-                                            
-                                           </b>
-<!--                                            <b>(-{echo $discountCom->getDiscount()}%)</b>-->
-                                        </li>
-                                    {/if}
-                                    <li>
-                                        <span>{lang('s_dostavka')}:</span>
-                                        <b>{echo $model->getSDeliveryMethods()->getName()}{/if}</b>
-                                    </li>
-                                    {if $paymentMethods[0] != null && !$model->getPaid()}
-                                        <li><span>{lang('s_pay')}:</span>
-                                            <b>
-                                                <div class="sp"></div>
-                                                <ul>
-                                                    {foreach $paymentMethods as $pm}
-                                                        <li class="buyandpay">
-                                                            <label><b>{echo encode($pm->getName())}</b></label>
-                                                            <div>{echo $pm->getPaymentForm($model)} </div>
-                                                            {echo $pm->getDescription()}
+                                {else:}
+                                    {echo $total + $model->getDeliveryPrice()} {$CS}
+                                {/if}</div>
+                        </div>
+                        <div class="f_l" style="width: 775px;">
+                            <ul class="info_curr_buy f_l" >
 
-                                                        </li>
-                                                    {/foreach}
-                                                </ul>
-                                            </b>
-                                        </li>
-                                    {/if}
-                                </ul>
-                                <div class="sum f_r">
-                                    {lang('s_summ')}:
-                                </div>
+                                <li>
+                                    <span>{lang('s_paid')}:</span>
+                                    <b>{if $model->getPaid() == true} {lang('s_yes')}{else: }{lang('s_no')}{/if}</b>
+                                </li>
+                                <li>
+                                    <span>{lang('s_status')}:</span>
+                                    <b>{echo SOrders::getStatusName('Id',$model->getStatus())} {if $model->getDeliveryMethod() > 0}</b>
+                                </li>                                   
+                                {if $model->getGiftCertKey() != null}
+                                    <li>
+                                        <span>{lang('s_do_you_cer_tif')}: </span>
+                                        <b>(-{echo $model->getgiftCertPrice()} {$CS})</b>
+                                    </li>
+                                {/if}                                    
+                                {if count($discountCom)}
+                                    <li>
+                                        <span>Скидка: </span>
+                                        <b>(-{echo $model->getComulativ()}%)
+
+                                        </b>
+<!--                                            <b>(-{echo $discountCom->getDiscount()}%)</b>-->
+                                    </li>
+                                {/if}
+                                <li>
+                                    <span>{lang('s_dostavka')}:</span>
+                                    <b>{echo $model->getSDeliveryMethods()->getName()}{/if}</b>
+                                </li>
+                                {if $paymentMethods[0] != null && !$model->getPaid()}
+                                    <li><span>{lang('s_pay')}:</span>
+                                        <b>
+                                            <div class="sp"></div>
+                                            <ul>
+                                                {foreach $paymentMethods as $pm}
+                                                    <li class="buyandpay">
+                                                        <label><b>{echo encode($pm->getName())}</b></label>
+                                                        <div>{echo $pm->getPaymentForm($model)} </div>
+                                                        {echo $pm->getDescription()}
+
+                                                    </li>
+                                                {/foreach}
+                                            </ul>
+                                        </b>
+                                    </li>
+                                {/if}
+                            </ul>
+                            <div class="sum f_r">
+                                {lang('s_summ')}:
                             </div>
                         </div>
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
+                    </div>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
 </div>
 
 

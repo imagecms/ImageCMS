@@ -56,6 +56,7 @@
                 </colgroup>
                 <tbody>
                     {foreach $items as $key=>$item}
+                        {$discount = ShopCore::app()->SDiscountsManager->productDiscount($item->id)}
                         {$prices = currency_convert($item.model->firstvariant->getPrice(), $item.model->firstvariant->getCurrency())}
                         {$style = productInCart($cart_data, $item.model->getId(), $item.model->firstVariant->getId(), $item.model->firstVariant->getStock())}
                         <tr>
@@ -70,9 +71,7 @@
                             <td>
                                 <div class="price f-s_16 f_l">{$prices.main.price}
                                     <sub>{$prices.main.symbol}</sub>
-                                    {if $NextCS != $CS}
-                                        <span class="d_b">{echo $prices.second.price} {$prices.second.symbol}</span>
-                                    {/if}
+
                                 </div>
                             </td>
                             <td>    
@@ -85,11 +84,17 @@
                                 </div>
                             </td>
                             <td>
-                                <div class="price f-s_18 f_l">{echo $summary = $prices.main.price * 1} 
-                                    <sub>{$prices.main.symbol}</sub>
-                                    {if $NextCS != $CS}
-                                        <span class="d_b">{echo $summary_nextc = $prices.second.price} {$prices.second.symbol}</span>
+                                <div class="price f-s_18 f_l">
+                                    {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
+                                        {$prOne = $prices.main.price * 1}
+                                        {$prTwo = $prices.main.price * 1}
+                                        {$summary = $prOne - $prTwo / 100 * $discount}
+                                        <del class="price price-c_red f-s_12 price-c_9">{echo $prices.main.price * 1} {$prices.main.symbol}</del> <br />
+                                    {else:}
+                                        {$summary = $prices.main.price}
                                     {/if}
+                                    {echo $summary} 
+                                    {$prices.main.symbol}
                                 </div>
                             </td>
                             <td>
@@ -105,7 +110,6 @@
                             </td>
                         </tr>
                         {$total     += $summary}
-                        {$total_nc  += $summary_nextc}
                     {/foreach}
                 </tbody>
                 <tfoot>
@@ -116,7 +120,9 @@
                                     <div class="f_r sum">{lang('s_summ')}:</div>
                                 </div>
                                 <div class="f_r">                                  
-                                    <div class="price f-s_26 f_l" style="width: 170px;">{$total} <sub>{$CS}</sub><span class="d_b">{$total_nc} {$NextCS}</span></div>
+                                    <div class="price f-s_26 f_l" style="width: 170px; margin-top: 23px;">{$total} <sub>{$CS}</sub>
+
+                                    </div>
                                 </div>
 
                             </div>
