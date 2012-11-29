@@ -183,14 +183,16 @@ class Admin extends MY_Controller {
             }
 
             $this->load->helper('string');
-            if ($val->run() AND $user_info = $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'), random_string('alnum', 5))) {
-                ($hook = get_hook('users_user_created')) ? eval($hook) : NULL;
+            if ($val->run() AND $user_info = $this->dx_auth->register($val->set_value('username'),
+                $val->set_value('password'),
+                $val->set_value('email'),
+                '',
+                random_string('alnum', 5),
+                $this->input->post('phone'))) {
 
                 //set user role
                 $user_info = $this->user2->get_user_by_email($user_info['email'])->row_array();
                 $this->user2->set_role($user_info['id'], $role);
-
-                //$this->lib_admin->log(lang('amt_create_user') . $val->set_value('username'));
 
                 $this->lib_admin->log(
                         lang('amt_create_user') .
@@ -363,13 +365,6 @@ class Admin extends MY_Controller {
             $val->set_rules('new_pass_conf', lang('amt_new_pass_confirm'), 'matches[new_pass]|required');
         }
 
-        if ($user_data['username'] != $this->input->post('username')) {
-            if ($this->user2->check_username($this->input->post('username'))->num_rows() > 0) {
-                showMessage(lang('amt_login_exists'), false, 'r');
-                exit;
-            }
-        }
-
         if ($user_data['email'] != $this->input->post('email')) {
             if ($this->user2->check_email($this->input->post('email'))->num_rows() > 0) {
                 showMessage(lang('amt_email_exists'), false, 'r');
@@ -379,11 +374,12 @@ class Admin extends MY_Controller {
 
         if ($val->run()) {
             $data = array(
-                'username' => $this->input->post('username'),
-                'email' => $this->input->post('email'),
-                'role_id' => $this->input->post('role_id'),
-                'banned' => $this->input->post('banned'),
-                'ban_reason' => $_POST['ban_reason']
+                'username'      => $this->input->post('username'),
+                'email'         => $this->input->post('email'),
+                'role_id'       => $this->input->post('role_id'),
+                'phone'         => $this->input->post('phone'),
+                'banned'        => $this->input->post('banned'),
+                'ban_reason'    => $this->input->post('ban_reason')
             );
 
             //change password
@@ -445,8 +441,8 @@ class Admin extends MY_Controller {
                 showMessage(validation_errors(), false, 'r');
             } else {
                 $data = array(
-                    'name' => $this->input->post('alt_name'),
-                    'alt_name' => $this->input->post('name'),
+                    'name' => $this->input->post('name'),
+                    'alt_name' => $this->input->post('alt_name'),
                     'desc' => $this->lib_admin->db_post('desc')
                 );
 
