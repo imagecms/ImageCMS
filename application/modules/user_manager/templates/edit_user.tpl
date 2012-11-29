@@ -25,7 +25,7 @@
                 <tbody>
                     <tr>
                         <td colspan="6">
-                            <div class="inside_padd span9">
+                            <div class="inside_padd span12">
                                 <div class="form-horizontal">
                                     <form id="update" method="post" action="{$SELF_URL}/update_user/{$id}">
                                     
@@ -41,6 +41,13 @@
                                             <label class="control-label" for="username">{lang('a_fio')}</label>
                                             <div class="controls">
                                                 <input type="text" name="username" id="username" value="{$username}" required/>
+                                            </div>
+                                        </div>
+
+                                        <div class="control-group">
+                                            <label class="control-label" for="phone">{lang('a_phone')}</label>
+                                            <div class="controls">
+                                                <input type="text" name="phone" id="phone" value="{$phone}" autocomplete="off"/>
                                             </div>
                                         </div>
                                         

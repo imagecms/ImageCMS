@@ -37,7 +37,9 @@
                 </div>
             </div><!-- top -->
             <div class="header center">
-                <a href="{shop_url('')}" class="logo"></a>
+
+                <a href="{$BASE_URL}" class="logo"></a>
+            {$CI->load->module('mailer')}
                 <div class="frame_form_search">
                     <form action="{shop_url('search')}" method="get" class="clearfix">
                         <!--                        <input type="text" value="Поиск по сайту" name="text" />-->
