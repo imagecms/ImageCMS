@@ -134,6 +134,7 @@ class Admin_search extends MY_Controller {
                         
                     $usersResult = $this->db->where('id =', $searchText)
                             ->or_where("username LIKE '%$searchText%'" )
+                            ->or_where("email LIKE '%$searchText%'" )
                             ->get('users')
                             ->result_array();
                     
