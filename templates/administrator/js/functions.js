@@ -61,13 +61,19 @@ function retrive_keywords(from, to)
 
 function ajax_div(target, url)
 {
-    $('#' + target).load(url);
+    $.ajax(url, {
+        headers: {
+            'X-PJAX': 'X-PJAX'
+        },
+        success: function(data){
+            $('#'+target).append(data);
+        }
+    });
 }
 
 //submit form
 $('.formSubmit').live('click', function() {
 
-    //        collectMCEData();
     //update content in textareas with elRTE 
     $this = $(this);
 

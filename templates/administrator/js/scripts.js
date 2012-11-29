@@ -920,15 +920,18 @@ function initAdminArea() {
         notificationsInitialized = true;
     }
 
-    $('.listFilterForm').die('focus').live('focus', function() {
-        $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
-    });
+//    $('.listFilterForm').die('focus').live('focus', function() {
+//        $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
+//    });
 
     $('.listFilterSubmitButton').die('click').live('click', function() {
         if (!$(this).attr('disabled') && !$(this).hasClass('disabled'))
         {
             $('.listFilterForm').ajaxSubmit({
-                target: '#mainContent'
+                target: '#mainContent',
+                headers: {
+                    'X-PJAX': 'X-PJAX'
+                }
             });
         }
     });

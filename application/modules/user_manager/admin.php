@@ -465,7 +465,7 @@ class Admin extends MY_Controller {
                 if ($action == 'close') {
                     pjax('/admin/components/cp/user_manager/edit/' . $row->id);
                 } else {
-                    pjax('/admin/components/init_window/user_manager');
+                    pjax('/admin/components/init_window/user_manager#group');
                 }
             }
         }
@@ -533,7 +533,7 @@ class Admin extends MY_Controller {
             if ($action == 'close') {
                 pjax('/admin/components/cp/user_manager/edit/' . $id);
             } else {
-                pjax('/admin/components/init_window/user_manager');
+                pjax('/admin/components/init_window/user_manager#group');
             }
         }
     }
@@ -559,7 +559,7 @@ class Admin extends MY_Controller {
                     lang('amt_deleted_group') . ' ' . $id
             );
             showMessage(lang('a_use_man_group_del_1'));
-            pjax('/admin/components/cp/user_manager');
+            pjax('/admin/components/cp/user_manager#group');
         }
 
         // $this->update_groups_block();

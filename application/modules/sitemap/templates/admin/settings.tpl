@@ -20,7 +20,7 @@
                 <tbody>
                     <tr>
                         <td>
-                            <div class="inside_padd span9">
+                            <div class="inside_padd span12">
                                 <div class="control-group">
                                     <label class="control-label" for="comcount">{lang('amt_main_page')}:</label>
                                     <div class="controls">
@@ -51,7 +51,7 @@
                 <tbody>
                     <tr>
                         <td>
-                            <div class="inside_padd span9">
+                            <div class="inside_padd span12">
                                 <div class="control-group">
                                     <label class="control-label">{lang('amt_main_page')}:</label>
                                     <div class="controls">
@@ -64,12 +64,6 @@
                                         {form_dropdown('pages_changefreq', $changefreq_options, $settings.pages_changefreq)}
                                     </div>
                                 </div>
-                                <div class="control-group">
-                                    <label class="control-label" for="sppri">{lang('amt_simple_pages')}:</label>
-                                    <div class="controls">
-                                        <input type="text" id="sppri" name="pages_priority" value="{$settings.pages_priority}" />
-                                    </div>
-                                </div>    
                             </div>
                         </td>
                     </tr>
