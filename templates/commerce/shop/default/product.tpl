@@ -12,25 +12,19 @@
 <script type="text/javascript">
     var currentProductId = '{echo $model->getId()}';
 </script>
-<!-- BEGIN STAR RATING -->
-<link rel="stylesheet" type="text/css" href="{$SHOP_THEME}js/rating/jquery.rating-min.css" />
-<script src="{$SHOP_THEME}js/rating/jquery.rating-min.js"></script>
-<script src="{$SHOP_THEME}js/rating/jquery.MetaData-min.js"></script>
-<script src="{$SHOP_THEME}js/product.js"></script>
 
 <link rel="stylesheet" href="{$SHOP_THEME}/js/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.6" type="text/css" media="screen" />
 <script type="text/javascript" src="{$SHOP_THEME}/js/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.6"></script>
 
 <div class="content">   
-
     <div class="center">
         <div class="tovar_frame clearfix{if $model->firstvariant->getstock()== 0} not_avail{/if}">
             <div class="thumb_frame f_l">
                 {if sizeof($model->getSProductImagess()) > 0}
-                        {$i = 1}
+                    {$i = 1}
                     {foreach $model->getSProductImagess() as $image}
                         <span>
-                            <a  class="grouped_elements fancybox-thumb" rel="fancybox-thumb" href="{echo $image->getThumbUrl()}" data-title-id="fancyboxAdditionalContent">                         
+                            <a class="grouped_elements fancybox-thumb" rel="fancybox-thumb" href="{echo $image->getThumbUrl()}" data-title-id="fancyboxAdditionalContent">                         
                                 <img src="{echo $image->getThumbUrl()}" width="90" alt="{echo ShopCore::encode($model->getName())} - {echo $i}"/>
                             </a>                                
                         </span>
@@ -46,8 +40,8 @@
             </div>
             {$prices = currency_convert($model->firstVariant->getPrice(), $model->firstVariant->getCurrency())}
             {$style = productInCartI($cart_data, $model->getId(), $model->firstVariant->getId(), $model->firstVariant->getStock())}
-            <!-- Fancybox additional blocks -->
 
+            <!-- Fancybox additional blocks -->
             <div id="fancyboxAdditionalContent" style="display: none;">
                 <div class="price f-s_26">
                     <span id="pricem76">{echo $prices.main.price}</span>
@@ -63,6 +57,7 @@
                     </div>
                 {/if}
             </div>
+            <!-- Fancybox additional blocks -->
 
             <div class="func_description">
                 <div class="crumbs">
@@ -70,7 +65,6 @@
                 </div>
                 <h1>{echo ShopCore::encode($model->getName())}</h1>
                 <div class="f-s_0">
-                    <!--<span class="code">{lang('s_kod')}: {echo $model->firstvariant->getNumber()}</span>-->
                     <div class="star_rating">
                         <div id="star_rating_{echo $model->getId()}" class="rating {echo count_star($model->getRating())} star_rait" data-id="{echo $model->getId()}">
                             <div id="1" class="rate one">
@@ -94,7 +88,6 @@
                         &nbsp;Рейтинг товара: {if $model->firstVariant->getNumber() != ''}«<span itemprop="itemreviewed">{echo $model->firstvariant->getNumber()}</span>»{/if} 
                         <meta itemprop="rating" content="4"> оставило <span itemprop="count">{echo $model->getVotes()}</span> человек(а).
                     </div>
-                    <!--<span class="response">{echo $model->totalComments()} {echo SStringHelper::Pluralize($model->totalComments(), array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}</span>-->
                     </br><span>{echo ShopCore::app()->SProductSpy->getsubscribescount($model->getId())}</span>
                     <div>{echo $CI->load->module('share')->_make_share_form()}</div>
                 </div>
@@ -152,7 +145,13 @@
                         </span>
                         <span class="ajax_refer_marg" style="margin-top: -2px">
                             {if !is_in_wish($model->getId())}
-                                <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" data-varid="{echo $model->firstVariant->getId()}" data-prodid="{echo $model->getId()}" href="#" class="js gray addToWList">{lang('s_save_W_L')}</a>
+                                <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" 
+                                   data-varid="{echo $model->firstVariant->getId()}" 
+                                   data-prodid="{echo $model->getId()}" 
+                                   href="#" 
+                                   class="js gray addToWList">
+                                    {lang('s_save_W_L')}
+                                </a>
                             {else:}
                                 <a href="/shop/wish_list">{lang('s_ilw')}</a>
                             {/if}
@@ -160,7 +159,14 @@
                         {if ShopCore::$ci->dx_auth->is_logged_in()===true}
                             <span class="ajax_refer_marg" style="margin-top: -2px">
                                 {if !is_in_spy(ShopCore::$ci->dx_auth->get_user_id(), $model->getId())}
-                                    <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" data-price="{echo $model->firstVariant->toCurrency()}" data-user_id="{echo ShopCore::$ci->dx_auth->get_user_id()}" data-varid="{echo $model->firstVariant->getId()}" data-prodid="{echo $model->getId()}" href="#" class="js gray addtoSpy">{lang('s_sle_product')}</a>
+                                    <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" 
+                                       data-price="{echo $model->firstVariant->toCurrency()}" 
+                                       data-user_id="{echo ShopCore::$ci->dx_auth->get_user_id()}" 
+                                       data-varid="{echo $model->firstVariant->getId()}" 
+                                       data-prodid="{echo $model->getId()}" 
+                                       href="#" class="js gray addtoSpy">
+                                        {lang('s_sle_product')}
+                                    </a>
                                 {else:}
                                     <a data-user_id="{echo ShopCore::$ci->dx_auth->get_user_id()}" 
                                        data-varid="{echo $model->firstVariant->getId()}" 
@@ -183,7 +189,7 @@
         </div>
         <ul class="info_buy">
             <li>
-                <img src="{$SHOP_THEME}images/order_phone.png">
+                <img src="{$SHOP_THEME}images/order_phone.png"/>
                 <div>
                     <div class="title">{lang('s_zaka_phone')}:</div>
                     <span></span>
@@ -241,7 +247,6 @@
                             {foreach $kid->getShopKitProducts() as $coompl}
                                 {$ap = $coompl->getSProducts()}
                                 {$kp = currency_convert($ap->getFirstVariant()->getPrice(), $ap->getFirstVariant()->getCurrency())}
-                                <div>
                                     <div class="f_l smallest_item">                                        
                                         <div class="photo_block">
                                             <a href="{shop_url('product/' . $ap->getUrl())}">
@@ -265,44 +270,42 @@
                                     {if $i == 1}
                                         {break}
                                     {/if}
-                                {/foreach}
-                                <div class="plus_eval"><div>=</div></div>
-                                {$n_pr = currency_convert($ap->getfirstVariant()->getPrice(), $ap->getfirstVariant()->getCurrency())}
-                                {$n_pr = $n_pr.main.price*(1 - $coompl->getdiscount()/100)}
-                                {$grn = currency_convert($kid->getMainProduct()->getfirstVariant()->getPrice(), $kid->getMainProduct()->getfirstVariant()->getCurrency())}
-                                {$grn = $grn.main.price + $n_pr}
-                                {$old = currency_convert($kid->getMainProduct()->getfirstVariant()->getPrice(), $kid->getMainProduct()->getfirstVariant()->getCurrency())}
-                                {$old = $old.main.price}
-                                {$pp = currency_convert($ap->getfirstVariant()->getPrice(), $ap->getfirstVariant()->getCurrency())}
-                                {$pp = $pp.main.price}
-                                {$old += $pp}
-                                <div class="button_block ">
-                                    <div class="buy">
-
-                                        <del class="price f-s_12 price-c_9">
-                                            <span>{echo $old} <span>{$CS}</span>
-                                            </span>
-                                        </del>
-                                        <div class="price f-s_18">
-                                            <span>{echo number_format($grn,0, '.', '')} {$CS}</span>
-                                        </div>
-                                        {$inCart = ShopCore::app()->SCart->getData()}
-                                        {$prod_in_cart = false}
-                                        {foreach $inCart as $Cart}
-                                            {if $Cart[kitId] == $kid->getId()}
-                                                {$prod_in_cart = true}
+                            {/foreach}
+                            <div class="plus_eval"><div>=</div></div>
+                            {$n_pr = currency_convert($ap->getfirstVariant()->getPrice(), $ap->getfirstVariant()->getCurrency())}
+                            {$n_pr = $n_pr.main.price*(1 - $coompl->getdiscount()/100)}
+                            {$grn = currency_convert($kid->getMainProduct()->getfirstVariant()->getPrice(), $kid->getMainProduct()->getfirstVariant()->getCurrency())}
+                            {$grn = $grn.main.price + $n_pr}
+                            {$old = currency_convert($kid->getMainProduct()->getfirstVariant()->getPrice(), $kid->getMainProduct()->getfirstVariant()->getCurrency())}
+                            {$old = $old.main.price}
+                            {$pp = currency_convert($ap->getfirstVariant()->getPrice(), $ap->getfirstVariant()->getCurrency())}
+                            {$pp = $pp.main.price}
+                            {$old += $pp}
+                            <div class="button_block ">
+                                <div class="buy">
+                                    <del class="price f-s_12 price-c_9">
+                                        <span>{echo $old} <span>{$CS}</span>
+                                        </span>
+                                    </del>
+                                    <div class="price f-s_18">
+                                        <span>{echo number_format($grn,0, '.', '')} {$CS}</span>
+                                    </div>
+                                    {$inCart = ShopCore::app()->SCart->getData()}
+                                    {$prod_in_cart = false}
+                                    {foreach $inCart as $Cart}
+                                        {if $Cart[kitId] == $kid->getId()}
+                                            {$prod_in_cart = true}
+                                        {/if}
+                                    {/foreach}
+                                    <div class="buttons button_gs">
+                                        <div class="buy"> 
+                                            {if !$prod_in_cart}                                       
+                                                <a data-id="{echo $kid->getId()}" class="add_cart_kid" id="kitBuy">{lang('s_buy')}</a>
                                             {/if}
-                                        {/foreach}
-                                        <div class="buttons button_gs">
-                                            <div class="buy"> 
-
-                                                {if !$prod_in_cart}                                       
-                                                    <a data-id="{echo $kid->getId()}" class="add_cart_kid" id="kitBuy">{lang('s_buy')}</a>
-                                                {/if}
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                         </li>
                     {/foreach}
                 </ul>
@@ -363,7 +366,11 @@
                 {if $model->getRelatedProductsModels()}
                     <li><a href="#third">{lang('s_accessories')}</a></li>
                 {/if}
-                <li><a href="#four">{echo SStringHelper::Pluralize($model->totalComments(), array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}({echo $model->totalComments()})</a></li>
+                <li>
+                    <a href="#four">
+                        {echo SStringHelper::Pluralize($model->totalComments(), array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}({echo $model->totalComments()})
+                    </a>
+                </li>
             </ul>
             {if $model->getFullDescription()}
                 <div id="first">
@@ -411,8 +418,8 @@
                 {$comments}
             </div>
         </div>
+            
         <div class="nowelty_auction m-t_29">
-
             <div class="box_title">
                 <span>{lang('s_new')}</span>
             </div>
@@ -443,7 +450,7 @@
                     </li>  
                 {/foreach}
             </ul>
-                {widget('latest_news')}
+            {widget('latest_news')}
         </div>
     </div>
 </div>
