@@ -236,7 +236,7 @@
             </label>
             
             <div>
-                {echo ShopCore::app()->CustomFieldsWidgetHelper->renderPartOfFormWithCustomFields(-1, 'order', 'cartCustomData') }
+                {echo ShopCore::app()->CustomFieldsWidgetHelper->renderPartOfFormWithCustomFields(-1, 'order', 'cartCustomData')}
             </div>
             
         </div>

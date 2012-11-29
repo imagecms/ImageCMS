@@ -95,7 +95,12 @@
                                                         data-img="{echo $pv->getsmallimage()}" 
                                                         data-vname="{echo $pv->getName()}" 
                                                         data-vnumber="{echo $pv->getNumber()}">
-                                                    {echo $pv->getName()}
+                                                    {//echo $pv->getName()}
+                                                    {if $pv->getName() != ''}
+                                                        {echo $pv->getName()}
+                                                    {else:}
+                                                        {echo $product->getName()}
+                                                    {/if}
                                                 </option>
                                             {/foreach}
                                         </select>
