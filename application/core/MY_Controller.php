@@ -47,6 +47,7 @@
  * @property CI_Jquery $jquery                    Jquery Class
  * @property CI_Utf8 $utf8                        Provides support for UTF-8 environments
  * @property CI_Security $security                Security Class, xss, csrf, etc...
+ * @property DX_Auth $dx_auth                     I know about dx_auth and don't need to write abouth them
  */
 class MY_Controller extends MX_Controller {
 
