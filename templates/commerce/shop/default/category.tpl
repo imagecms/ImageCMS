@@ -36,6 +36,7 @@
                                     <option value="36" {if ShopCore::$_GET['user_per_page']=='36'}selected="selected"{/if} >36</option>
                                 </select>
                             </div>
+
                         {if isset($_GET['lp'])}<input type="hidden" name="lp" value="{echo $_GET['lp']}">{/if}
                     {if isset($_GET['rp'])}<input type="hidden" name="rp" value="{echo $_GET['rp']}">{/if}
                 </form>
@@ -51,7 +52,7 @@
             {/if}
             <!--  Render produts list   -->
             {foreach $products as $product}
-                {$discount = ShopCore::app()->SDiscountsManager->productDiscount($product->getId())}                                  
+                {$discount = ShopCore::app()->SDiscountsManager->productDiscount($product->getId())}                             
                 {$style = productInCart($cart_data, $product->getId(), $product->firstVariant->getId(), $product->firstVariant->getStock())}
                 {$prices = currency_convert($product->firstvariant->getPrice(), $product->firstvariant->getCurrency())}
                 <li {if $product->firstvariant->getstock()== 0}class="not_avail"{/if}>
@@ -64,6 +65,7 @@
                             <div id="{echo $model->getId()}_star_rating" class="rating_nohover {echo count_star($product->getRating())} star_rait" data-id="{echo $model->getId()}">
                                 <div id="1" class="rate one">
                                     <span title="1">1</span>
+
                                 </div>
                                 <div id="2" class="rate two">
                                     <span title="2">2</span>
