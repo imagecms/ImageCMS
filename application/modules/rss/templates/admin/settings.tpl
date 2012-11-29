@@ -20,7 +20,7 @@
                 <tbody>
                     <tr>
                         <td>
-                            <div class="inside_padd span9">
+                            <div class="inside_padd span12">
                                 <div class="control-group">
                                     <label class="control-label" for="comcount">{lang('amt_tname')}:</label>
                                     <div class="controls">
@@ -57,7 +57,7 @@
                                         <input type="text" name="cache_ttl" value="{$settings.cache_ttl}" id="cache"/>
                                         <span class="help-inline">{lang('amt_cache_life_in_minutes')}</span>
                                     </div>
-                                </div>    
+                                </div>
                             </div>
                         </td>
                     </tr>

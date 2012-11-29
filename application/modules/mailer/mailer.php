@@ -75,7 +75,7 @@ class Mailer extends MY_Controller {
     }
 
     public function getForm() {
-        $this->display_tpl('form');
+        return $this->fetch_tpl('form');
     }
 
     public function success() {
@@ -149,7 +149,6 @@ class Mailer extends MY_Controller {
      * Display template file
      */
     private function display_tpl($file = '') {
-
         $file = realpath(dirname(__FILE__)) . '/templates/public/' . $file;
         $this->template->show('file:' . $file);
     }

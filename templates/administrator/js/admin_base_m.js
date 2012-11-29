@@ -28,6 +28,9 @@ $(document).ready(function(){
         
         $.ajax({            
             dataType: "html",
+            headers: {
+              'X-PJAX':'X-PJAX'
+            },
             url: '/admin/components/cp/user_manager/getRolesTable/'+$roleId,
             success: function(msg) {
                 $('#privilege').html(msg);                
