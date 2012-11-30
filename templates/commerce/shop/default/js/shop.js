@@ -123,12 +123,14 @@ $(document).ready(function() {
             },
             success: function(msg) {
                 $('.bask_block').load('/shop/ajax/getCartDataHtml');
-                $this
-                        .attr('href', '/shop/cart')
-                        .unbind('click');
+                $this.removeClass().addClass("goToCart").html('Оформить</br> заказ');
+                $this.parents(".buttons").removeClass("button_gs").addClass("button_middle_blue");
+                console.log($this.parents('.buttons'));
+//                        .attr('href', '/shop/cart')
+//                        .unbind('click');
                 showResponse(msg);
                 $.fancybox.hideActivity();
-                $this.hide();
+                //$this.hide();
             }
         })
         return false;
