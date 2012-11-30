@@ -2,12 +2,16 @@
 <script type="text/javascript">
     var currentProductId = '{echo $item_id}';
 </script>
-{if $can_comment === 1 AND !is_logged_in}
-    <p>{sprintf(lang('login_for_comments'), site_url($modules.auth))}</p>
+{if $can_comment == 1 AND !$is_logged_in}
+    <p class="m-l_10">{sprintf(lang('login_for_comments'), site_url($modules.auth))}</p>
 {/if}
+
+{if $can_comment == 0 OR $is_logged_in}
 <div class="di_b">
     <span class="comment_ajax_refer b-r_4 visible">
+
         <a href="#" class="t-d_n"><span class="js">{lang('s_leave_comment')}</span><span class="blue_arrow"></span></a>
+
         {if $is_logged_in}
             {lang('s_lang_logged')} {$username}
         {else:}
@@ -15,6 +19,9 @@
         {/if}
     </span>
 </div>
+{/if}
+
+{if $can_comment == 0 OR $is_logged_in}
 <form action="" method="post" class="comment_form clearfix">
     <input type="hidden" name="comment_item_id" value="{$item_id}" />
     <input type="hidden" name="redirect" value="{uri_string()}" />
@@ -87,6 +94,8 @@
     {form_csrf()}
 </form>
 
+{/if}
+
 {if $comments_arr}
     <ul class="comments" style="width:100%">
         {foreach $comments_arr as $comment}
@@ -125,13 +134,24 @@
                     {/if}
                 <div class="di_b">
                     <span class="comment_ajax_refer b-r_4 visible">
-                        <a href="#" class="t-d_n"><span class="js">{lang('s_comment_answer')}</span><span class="blue_arrow"></span></a>
+
+                        {if $can_comment == 0 OR $is_logged_in}
+                        <a href="#" class="t-d_n">
+                            <span class="js">{lang('s_comment_answer')}</span>
+
+                            <span class="blue_arrow"></span></a>
+
+                        {/if}
+
                         {lang('s_review_comment')}
                         <span></span>
+
                         <span class="usefullyes" data-comid="{echo $comment.id}"><span class="js">{lang('s_yes')}</span></span><span id="yesholder{$comment.id}">({echo $comment.like})</span>/
                         <span class="usefullno" data-comid="{echo $comment.id}"><span class="js">{lang('s_no')}</span></span><span id="noholder{$comment.id}">({echo $comment.disslike})</span>
                     </span>
                 </div>
+
+            {if $can_comment == 0 OR $is_logged_in}
                 <form action="" method="post" class="comment_form">
                     <input type="hidden" name="comment_item_id" value="{$item_id}"/>
                     <input type="hidden" name="redirect" value="{uri_string()}"/>
@@ -153,7 +173,7 @@
 
                     {form_csrf()}
                 </form>
-
+            {/if}
                 {foreach $comment_ch as $com_ch}
                     {if $com_ch.parent == $comment.id}
                     <li style="padding-left: 50px">
