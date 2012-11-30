@@ -18,7 +18,9 @@
         {if $cap_image}
             <div class="comment_form_info">
                 <div class="textbox captcha">
-                    <input type="text" name="captcha" id="captcha" value="{lang('lang_captcha')}" onfocus="if(this.value=='{lang('lang_captcha')}') this.value='';" onblur="if(this.value=='') this.value='{lang('lang_captcha')}';"/>
+                    <input type="text" name="captcha" id="captcha" value="{lang('lang_captcha')}" onfocus="if (this.value == '{lang('lang_captcha')}')
+                                this.value = '';" onblur="if (this.value == '')
+                                this.value = '{lang('lang_captcha')}';"/>
                 </div>
                 {$cap_image}
             </div>
@@ -29,11 +31,11 @@
                     <input type="submit" value="{lang('s_sign_up')}">
                 </div>
             </div>
-            <div class="f_l">
-                <a href="{$BASE_URL}auth/login" class="button_middle_blue_neigh f_l auth_me">
+            <div class="t-a_c">
+                <a href="{$BASE_URL}auth/login" class="button_middle_blue_neigh auth_me">
                     {lang('lang_login_page')}
-                </a><br />
-                <a href="{$BASE_URL}auth/forgot_password" class="button_middle_blue_neigh f_l forgot_password">
+                </a><br/>
+                <a href="{$BASE_URL}auth/forgot_password" class="button_middle_blue_neigh forgot_password">
                     {lang('lang_forgot_password')}
                 </a>
             </div>
@@ -42,7 +44,7 @@
         {form_csrf()}
     </form> 
 {else:}
-    
+
     <div style="height: 42px;">{lang('s_y_h_s_r')}</div>    
 {/if}
 </div>
