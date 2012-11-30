@@ -528,7 +528,7 @@ $(document).ready(function() {
                         }
                     }
                     $('.reg_me').bind('click', bindRegisterForm());
-                    $('.auth_forgot_password').bind('click', bindForgotPasswordForm());
+                    $('.forgot_password').bind('click', bindForgotPasswordForm());
                     $.fancybox.hideActivity();
                 }
             });
@@ -550,6 +550,7 @@ $(document).ready(function() {
                     showResponse(msg);
                     bindRegisterForm();
                     bindLoginLink();
+                    bindForgotPasswordLink();
                     $.fancybox.hideActivity();
                 }
             });
@@ -568,6 +569,7 @@ $(document).ready(function() {
                 success: function(msg) {
                     showResponse(msg);
                     bindRegisterForm();
+                    bindForgotPasswordLink();
                     bindLoginLink();
                     $.fancybox.hideActivity();
                 }
@@ -576,7 +578,7 @@ $(document).ready(function() {
         })
     }
     function bindForgotPasswordLink() {
-        $('.auth_forgot_password').bind('click', function() {
+        $('.forgot_password').bind('click', function() {
             $this = $(this);
             $.ajax({
                 type: 'post',
@@ -588,6 +590,7 @@ $(document).ready(function() {
                     showResponse(msg);
                     bindForgotPasswordForm();
                     bindLoginLink();
+                    bindRegisterLink();
                     $.fancybox.hideActivity();
                 }
             });
@@ -607,8 +610,10 @@ $(document).ready(function() {
                 },
                 success: function(msg) {
                     showResponse(msg);
-                    bindForgotPasswordForm();
                     bindLoginLink();
+                    bindLoginForm();
+                    bindRegisterLink();
+                    bindRegisterForm();
                     $.fancybox.hideActivity();
                 }
             });
