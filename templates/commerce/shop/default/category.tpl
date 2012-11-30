@@ -267,40 +267,6 @@
             </div>
             <!--   Right sidebar     -->
         </div>
-        <ul>
-            {foreach getPromoBlock('action', 3, $product->category_id) as $hotProduct}
-                {$action_prices = currency_convert($hotProduct->firstVariant->getPrice(), $hotProduct->firstVariant->getCurrency())}
-                <li class="smallest_item">
-                    <div class="photo_block">
-                        <a href="{shop_url('product/' . $hotProduct->getUrl())}">
-                            <img src="{productImageUrl($hotProduct->getSmallModImage())}" alt="{echo ShopCore::encode($hotProduct->getName())} - {echo $hotProduct->getId()}" />
-                        </a>
-                    </div>
-                    <div class="func_description">
-                        <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
-                        <div class="buy">
-                            <div class="price f-s_14">
-                                {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                    {$prOne = $action_prices.main.price}
-                                    {$prTwo = $action_prices.main.price}
-                                    {$prThree = $prOne - $prTwo / 100 * $discount}
-                                    <del class="price price-c_red f-s_12 price-c_9">{echo $action_prices.main.price} {$action_prices.main.symbol}</del><br /> 
-                                {else:}
-                                    {$prThree = $action_prices.main.price}
-                                {/if}
-                                {echo $prThree} 
-                                <sub>{$action_prices.main.symbol}</sub>
-
-                                {if $NextCS != $CS AND empty($discount)}
-                                    <span class="d_b">{echo $action_prices.second.price} {$action_prices.second.symbol}</span>
-                                {/if}
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            {/foreach}
-        </ul>
-    {/if}
     {widget('latest_news')}  
     <!--   Promo products block     -->
 </div>
