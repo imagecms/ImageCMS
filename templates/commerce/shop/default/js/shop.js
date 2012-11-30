@@ -730,7 +730,6 @@ $(document).ready(function() {
         if (img != '') {
             $('#mim' + pid).addClass('smallpimagev');
             $('#vim' + pid).attr('src', '/uploads/shop/' + img).removeClass().attr('alt', vname);
-            console.log(img);
             $('#mim' + pid).attr('src', '/uploads/shop/' + pid + '_main.jpg')
         }
         $('#code' + pid).html('Код ' + vnumber);
@@ -748,10 +747,17 @@ $(document).ready(function() {
                 $('#pFancy' + pid).removeClass().addClass(obj.stclass + ' buttons');
                 $('#buy' + pid).removeClass().addClass(obj.stidentif).html(obj.stmsg).attr('href', obj.stlink).unbind('click');
                 $('#buyFancy' + pid).removeClass().addClass(obj.stidentif).html(obj.stmsg).attr('href', obj.stlink).unbind('click');
-                if (obj.stidentif == "goNotifMe")
+                if (obj.stidentif == "goNotifMe") {
+                    $('.in_cart').html('');
                     bindgoNotifMe();
-                if (obj.stidentif == "goBuy")
+                }
+                if (obj.stidentif == "goBuy") {
+                    $('.in_cart').html('');
                     bindGoBuy();
+                }
+                if (obj.stidentif == "goToCart") {
+                    $('.in_cart').html('Уже в корзине');
+                }
                 $.fancybox.hideActivity();
             }
         })
