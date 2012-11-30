@@ -432,6 +432,7 @@ class Tags extends MY_Controller {
 
         $this->load->dbforge();
 
+        //content tags
         $fields = array(
             'id' => array(
                          'type' => 'INT',
@@ -451,6 +452,24 @@ class Tags extends MY_Controller {
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table('content_tags', TRUE);
+
+        //tags
+        $fields = array(
+            'id' => array(
+                'type' => 'INT',
+                'constraint' => 11,
+                'auto_increment' => TRUE,
+            ),
+            'value' => array(
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+            )
+        );
+
+        $this->dbforge->add_key('id', true);
+        $this->dbforge->add_key('value');
+        $this-> dbforge->add_field($fields);
+        $this->dbforge->create_table('tags');
 
         //autoload
         $this->db->where('name', 'tags');

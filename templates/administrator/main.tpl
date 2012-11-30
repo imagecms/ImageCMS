@@ -11,27 +11,21 @@
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/style.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap-responsive.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap-notify.css">
-        <!--
-       <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery-ui-1.8.23.custom.css">
-        -->
+
 
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery-ui-1.8.16.custom.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery.ui.1.8.16.ie.css">
-<!--
-        <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/smoothness/jquery-ui.css" />
-    -->    
-        	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
         
-        
-        <!-- 
+
         <link rel="stylesheet" type="text/css" href="/js/elfinder-2.0/css/Aristo/css/Aristo/Aristo.css" media="screen" charset="utf-8">
-        -->
         <link rel="stylesheet" type="text/css" href="/js/elrte-1.3/css/elrte.min.css" media="screen" charset="utf-8">
+
         <link rel="stylesheet" type="text/css" href="/js/elfinder-2.0/css/elfinder.min.css" media="screen" charset="utf-8">
-
         <link rel="stylesheet" type="text/css" href="/js/elfinder-2.0/css/theme.css" media="screen" charset="utf-8">
-
 
     </head>
     <body>
@@ -242,9 +236,9 @@ border-radius: 3px;"></div>
                     {lang('a_your_remark')}:
                     <textarea></textarea>
                 </label>
-                <input type="submit" value="{lang('a_send')}" class="btn btn-info"/>
+                <input type="submit" value="{lang('a_send_report')}" class="btn btn-info"/>
+                <input type="button" value="{lang('a_cancel')}" class="btn btn-info" style="float:right" name="cancel_button"/>
                 <input type="hidden" value="{$_SERVER['REMOTE_ADDR']}" id="ip_address"/>
-
             </form>
         </div>
         <script>

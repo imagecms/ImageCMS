@@ -18,22 +18,7 @@ class Admin extends MY_Controller {
     }
 
     function index() {
-        //$this->load->helper('form');
 
-//        $this->template->add_array(array(
-//            'settings' => $this->_load_settings(),
-//            'changefreq_options' => array(
-//                'always' => 'always',
-//                'hourly' => 'hourly',
-//                'daily' => 'daily',
-//                'weekly' => 'weekly',
-//                'monthly' => 'monthly',
-//                'yearly' => 'yearly',
-//                'never' => 'never'
-//            ),
-//        ));
-//
-//        $this->display_tpl('settings');
         $this->render('settings', array(
             'settings' => $this->_load_settings(),
             'changefreq_options' => array(

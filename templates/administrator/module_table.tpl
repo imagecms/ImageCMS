@@ -65,15 +65,17 @@
                                         <tr data-id="{$module.id}">
                                             <td class="t-a_c">
                                                 <span class="frame_label">
+                                                    {if $module.name != 'shop'}
                                                     <span class="niceCheck b_n">
                                                         <input type="checkbox" name="ids" value="{$module.name}"/>
                                                     </span>
+                                                    {/if}
                                                 </span>
                                             </td>
                                             <td>
                                                 {if $module['admin_file'] == 1}
                                                     {if $module.name == 'shop'}
-                                                        <a href="#">{$module.menu_name}</a>
+                                                        {$module.menu_name}
                                                     {else:}
                                                         <a href="/admin/components/init_window/{$module.name}" class="pjax">{$module.menu_name}</a>
                                                     {/if}
