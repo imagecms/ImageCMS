@@ -108,7 +108,11 @@
                                    data-vname="{echo $pv->getName()}" 
                                    data-vnumber="{echo $pv->getNumber()}"/>
                             <label for="sVar{echo $pv->getId()}">
-                                <i>{echo $pv->getName()}</i><b> {echo $var_prices.main.price}</b> {$var_prices.main.symbol}
+                                {if $pv->getName() != ''}
+                                    <i>{echo $pv->getName()}</i><b>: {echo $var_prices.main.price}</b> {$var_prices.main.symbol}
+                                {else:}
+                                    <i>{echo $model->getName()}</i><b>: {echo $var_prices.main.price}</b> {$var_prices.main.symbol}
+                                {/if}
                             </label></br>
                         {/foreach}
                     {/if}
