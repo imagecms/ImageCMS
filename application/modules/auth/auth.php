@@ -123,9 +123,9 @@ class Auth extends MY_Controller {
                     $template = $this->template->fetch('shop/default/auth_data');
                     ShopCore::app()->SCart->transferCartData();
                     return json_encode(array(
-                                'close' => true,
-                                'msg' => "<div class='fancy authcomplete'><h1>Авторизация</h1><div class='comparison_slider'><div class='f-s_18 m-t_29 t-a_c'>Авторизация успешно завершена</div></div></div>",
-                                'header' => $template
+                        'close' => true,
+                        'msg' => "<div class='fancy authcomplete'><h1>Авторизация</h1><div class='comparison_slider'><div class='f-s_18 m-t_29 t-a_c'>Авторизация успешно завершена</div></div></div>",
+                        'header' => $template
                             ));
                 }
             } else {
@@ -307,7 +307,12 @@ class Auth extends MY_Controller {
 
 //         ($hook = get_hook('auth_show_forgot_pass_tpl')) ? eval($hook) : NULL;
 
-        $this->template->show('forgot_password');
+
+        if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
+            $this->template->show('forgot_password');
+        } else {
+            $this->template->display('forgot_password');
+        }
         //$this->template->display('forgot_password');
     }
 
