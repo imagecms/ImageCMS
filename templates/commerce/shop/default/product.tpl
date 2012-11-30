@@ -131,7 +131,11 @@
                             <span id="prices{echo $model->getId()}" class="d_b">{echo $prices.second.price} {echo $prices.second.symbol}</span>
                         {/if}
                     </div>
-                    <div class="in_cart"></div>
+                    <div class="in_cart">
+                        {if $style.identif == "goToCart"}
+                            Уже в корзине
+                        {/if}
+                    </div>
                     <div id="p{echo $model->getId()}" class="{$style.class}">
                         <a id="buy{echo $model->getId()}" class="{$style.identif}" href="{$style.link}" data-varid="{echo $model->firstVariant->getId()}" data-prodid="{echo $model->getId()}" >{$style.message}</a>
                     </div>
