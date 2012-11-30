@@ -178,7 +178,7 @@
                     {if $com_ch.parent == $comment.id}
                     <li style="padding-left: 50px">
                         <b>{$com_ch.user_name}</b>
-                        <div class="c_9 f-s_11">lang('s_on_comment')} {date('d-m-Y H:i', $com_ch.date)}</div>
+                        <div class="c_9 f-s_11">{lang('s_on_comment')} {date('d-m-Y H:i', $com_ch.date)}</div>
                         <p>{$com_ch.text}</p>
                     </li>
                 {/if}

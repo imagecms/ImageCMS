@@ -196,10 +196,10 @@ class Auth extends MY_Controller {
             $val = $this->form_validation;
 
             // Set form validation rules
+            $val->set_rules('email', lang('lang_email'), 'trim|required|xss_clean|valid_email|callback_email_check');
             $val->set_rules('username', lang('s_fio'), 'trim|xss_clean');
             $val->set_rules('password', lang('lang_password'), 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']|matches[confirm_password]');
             $val->set_rules('confirm_password', lang('lang_confirm_password'), 'trim|required|xss_clean');
-            $val->set_rules('email', lang('lang_email'), 'trim|required|xss_clean|valid_email|callback_email_check');
 
 //             ($hook = get_hook('auth_reg_set_rules')) ? eval($hook) : NULL;
 
@@ -213,7 +213,7 @@ class Auth extends MY_Controller {
             // Run form validation and register user if it's pass the validation
             $this->load->helper('string');
             $key = random_string('alnum', 5);
-            if ($val->run() AND $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'), $key)) {
+            if ($val->run() AND $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'), '',$key, '')) {
 //                 ($hook = get_hook('auth_register_success')) ? eval($hook) : NULL;
                 // Set success message accordingly
                 if ($this->dx_auth->email_activation) {
