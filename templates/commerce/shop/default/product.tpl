@@ -131,7 +131,11 @@
                             <span id="prices{echo $model->getId()}" class="d_b">{echo $prices.second.price} {echo $prices.second.symbol}</span>
                         {/if}
                     </div>
-                    <div class="in_cart"></div>
+                    <div class="in_cart">
+                        {if $style.identif == "goToCart"}
+                            Уже в корзине
+                        {/if}
+                    </div>
                     <div id="p{echo $model->getId()}" class="{$style.class}">
                         <a id="buy{echo $model->getId()}" class="{$style.identif}" href="{$style.link}" data-varid="{echo $model->firstVariant->getId()}" data-prodid="{echo $model->getId()}" >{$style.message}</a>
                     </div>
@@ -242,6 +246,8 @@
                                     </div>
                                 </div>
                             </div>
+                            {$summa = $prices.main.price}
+                            {$summa_with_discount = $prices.main.price}
                             <div class="plus_eval">+</div>
                             {$i = 1}
                             {foreach $kid->getShopKitProducts() as $coompl}
@@ -257,38 +263,35 @@
                                         </div>
                                         <div class="func_description">
                                             <a href="{shop_url('product/' . $ap->getUrl())}">{echo ShopCore::encode($ap->getName())}</a>
-                                            <del class="d_b price-f-s_12 price-c_red">
-                                                <span >{echo $kp.main.price} <sub>{$kp.main.symbol}</sub</span>
-                                            </del>                                            
+                                            {if $coompl->getDiscount() != 0}
+                                                <del class="d_b price-f-s_12 price-c_red">
+                                                    <span >{echo $kp.main.price} <sub>{$kp.main.symbol}</sub</span>
+                                                </del>
+                                            {/if}
                                             <div class="buy">
                                                 <div class="price f-s_16 f_l">
-                                                    <span>{echo number_format($kp.main.price*(1 - $coompl->getdiscount()/100),0, '.', '')} <sub>{$kp.main.symbol}</sub></span>
+                                                    <span>{echo number_format($kp.main.price*(1 - $coompl->getdiscount()/100), 2, '.', '')} <sub>{$kp.main.symbol}</sub></span>
                                                 </div>
                                             </div>                                        
                                         </div> 
                                     </div>
-                                    {if $i == 1}
-                                        {break}
+                                    {if $i == count($kid->getShopKitProducts())}
+                                        <div class="plus_eval"><div>=</div></div>
+                                    {else:}
+                                        <div class="plus_eval">+</div>
                                     {/if}
+                                    {$i++}
+                                    {$summa += $kp.main.price}
+                                    {$summa_with_discount += number_format($kp.main.price*(1 - $coompl->getdiscount()/100), 2, '.', '')}
                             {/foreach}
-                            <div class="plus_eval"><div>=</div></div>
-                            {$n_pr = currency_convert($ap->getfirstVariant()->getPrice(), $ap->getfirstVariant()->getCurrency())}
-                            {$n_pr = $n_pr.main.price*(1 - $coompl->getdiscount()/100)}
-                            {$grn = currency_convert($kid->getMainProduct()->getfirstVariant()->getPrice(), $kid->getMainProduct()->getfirstVariant()->getCurrency())}
-                            {$grn = $grn.main.price + $n_pr}
-                            {$old = currency_convert($kid->getMainProduct()->getfirstVariant()->getPrice(), $kid->getMainProduct()->getfirstVariant()->getCurrency())}
-                            {$old = $old.main.price}
-                            {$pp = currency_convert($ap->getfirstVariant()->getPrice(), $ap->getfirstVariant()->getCurrency())}
-                            {$pp = $pp.main.price}
-                            {$old += $pp}
                             <div class="button_block ">
                                 <div class="buy">
                                     <del class="price f-s_12 price-c_9">
-                                        <span>{echo $old} <span>{$CS}</span>
+                                        <span>{echo $summa} <span>{$CS}</span>
                                         </span>
                                     </del>
                                     <div class="price f-s_18">
-                                        <span>{echo number_format($grn,0, '.', '')} {$CS}</span>
+                                        <span>{echo $summa_with_discount} {$CS}</span>
                                     </div>
                                     {$inCart = ShopCore::app()->SCart->getData()}
                                     {$prod_in_cart = false}
@@ -297,10 +300,12 @@
                                             {$prod_in_cart = true}
                                         {/if}
                                     {/foreach}
-                                    <div class="buttons button_gs">
+                                    <div class="buttons {if $prod_in_cart}button_middle_blue{else:}button_gs{/if}">
                                         <div class="buy"> 
                                             {if !$prod_in_cart}                                       
-                                                <a data-id="{echo $kid->getId()}" class="add_cart_kid" id="kitBuy">{lang('s_buy')}</a>
+                                                <span data-id="{echo $kid->getId()}" class="add_cart_kid" id="kitBuy">{lang('s_buy')}</span>
+                                            {else:}
+                                                <span class="goToCart">Оформить</br> заказ</span>
                                             {/if}
                                         </div>
                                     </div>
