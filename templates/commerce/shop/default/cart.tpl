@@ -250,23 +250,10 @@
                     {echo ShopCore::app()->CustomFieldsWidgetHelper->renderPartOfFormWithCustomFields(-1, 'order', 'cartCustomData')}
                 </div>
             </div>
-            <label class="c_b d_b">
-                {if $isRequired['userInfo[commentText]']}
-                    <span class="red">*</span>
-                    {/if}
-                {lang('s_comment')}
-                <textarea{if $isRequired['userInfo[commentText]']} class="required"{/if} name="userInfo[commentText]"></textarea> 
-            </label>
-            
-            <div>
-                {echo ShopCore::app()->CustomFieldsWidgetHelper->renderPartOfFormWithCustomFields(-1, 'order', 'cartCustomData')}
-            </div>
-            
-        </div>
-        <div class="foot_cleaner c_b t-a_c">
-            <div class="buttons button_big_blue">
-                <input type="submit" value="{lang('s_c_of_z_')}" id="orderSubmit" data-logged="{if ShopCore::$ci->dx_auth->is_logged_in()===true}1{else:}0{/if}"/>
-            </div>
+            <div class="foot_cleaner c_b t-a_c">
+                <div class="buttons button_big_blue">
+                    <input type="submit" value="{lang('s_c_of_z_')}" id="orderSubmit" data-logged="{if ShopCore::$ci->dx_auth->is_logged_in()===true}1{else:}0{/if}"/>
+                </div>
             </div>
             <input type="hidden" name="deliveryMethodId" id="deliveryMethodId" value="{echo $del_id}" />
             <input type="hidden" name="deliveryMethod" value="1" />
