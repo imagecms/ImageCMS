@@ -787,7 +787,7 @@ $lang['a_role_group_create'] = 'Создание групы ролей';
 $lang['a_role_group_edit'] = 'Редактирование групы ролей';
 $lang['a_roles_list'] = 'Список привилегий';
 
-$lang['a_memcached'] = 'MemCache';
+$lang['a_memcached'] = 'Кеширование';
 $lang['a_memcached_settings'] = 'Настройки кеширования Memcached';
 $lang['a_memcached_on'] = 'Включено';
 $lang['a_memcached_hostname'] = 'Адрес Memcached сервера';

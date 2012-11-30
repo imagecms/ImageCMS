@@ -20,7 +20,7 @@
                 <tbody>
                     <tr>
                         <td>
-                            <div class="inside_padd span12">
+                            <div class="inside_padd span9">
                                 <div class="control-group">
                                     <label class="control-label" for="comcount">{lang('amt_tname')}:</label>
                                     <div class="controls">

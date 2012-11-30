@@ -30,7 +30,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span12">
+                                <div class="inside_padd span9">
                                     <div class="form-horizontal">
                                         <div class="row-fluid">
                                             <form id="send" method="post" action="{$BASE_URL}admin/components/cp/mailer/send_email">
