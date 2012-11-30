@@ -1,3 +1,4 @@
+<div class="content center">
 <div id="titleExt"><h5>{widget('path')}<span class="ext">Контакты</span></h5></div>
 <div id="contact">
 <div class="left">
@@ -47,6 +48,7 @@
 <div id="detail">
 <h2 id="title">Контакты</h2>
 {widget('contacts')}
+</div>
 </div>
 </div>
 </div>

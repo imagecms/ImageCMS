@@ -5,7 +5,7 @@
             {if $page.id == 68 || $page.lang_alias == 68}
             <div class="f_l map">
                 <img src="{$SHOP_THEME}images/map.jpg"/>
-            </div>
+            </div> 
             <div class="f_r contacts_info">
                 {$page.full_text}
             </div>

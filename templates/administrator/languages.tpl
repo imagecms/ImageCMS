@@ -7,7 +7,7 @@
             <h3>{lang('a_language_delete')}</h3>
         </div>
         <div class="modal-body">
-            <p>{lang('a_delete_selected_modules')}</p>
+            <p>{lang('a_delete_selected_languages')}</p>
             <p>{lang('a_warning_ld')}</p>
         </div>
         <div class="modal-footer">

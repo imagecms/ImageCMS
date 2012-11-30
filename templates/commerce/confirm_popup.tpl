@@ -7,5 +7,5 @@
         <div class="buttons button_middle_blue">
             <span class="confirmNo">Нет</span>
         </div>
-    </div>
+    </div> 
 </div>
