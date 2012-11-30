@@ -85,7 +85,7 @@
                                 <div class="photo_block">
                                     <a href="{shop_url('product/' . $p->getUrl())}">
                                             <!--                                <img src="{productImageUrl($p->getId() . '_small.jpg')}" border="0"  alt="image" />-->
-                                        <img id="mim{echo $p->getId()}" src="{productImageUrl($p->getId() . '_small.jpg')}" alt="{echo ShopCore::encode($p->name)}" />
+                                        <img id="mim{echo $p->getId()}" src="{productImageUrl($p->getMainModimage())}" alt="{echo ShopCore::encode($p->name)} - {echo $p->getId()}" />
                                         <img id="vim{echo $p->getId()}" class="smallpimagev" src="" alt="" />
                                     </a>
                                 </div>

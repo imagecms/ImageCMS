@@ -727,11 +727,12 @@ $(document).ready(function() {
         var cs = $this.attr('data-cs');
         var st = $this.attr('data-st');
         var pp = $this.attr('data-pp');
-//        $('#mim' + pid).addClass('smallpimagev');
-//        $('#vim' + pid).attr('src', '/uploads/shop/' + img).removeClass().attr('alt', vname);
-//        if(img == ''){
-//            $('#vim' + pid).attr('src', '/uploads/shop/' + pid +'_main.jpg')
-//        }
+        if (img != '') {
+            $('#mim' + pid).addClass('smallpimagev');
+            $('#vim' + pid).attr('src', '/uploads/shop/' + img).removeClass().attr('alt', vname);
+            console.log(img);
+            $('#mim' + pid).attr('src', '/uploads/shop/' + pid + '_main.jpg')
+        }
         $('#code' + pid).html('Код ' + vnumber);
         $('#pricem' + pid).html(pr);
         $('#prices' + pid).html(spr + ' ' + cs);

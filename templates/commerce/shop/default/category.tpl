@@ -60,7 +60,7 @@
                             <div class="photo_block">
                                 <a href="{shop_url('product/' . $product->getUrl())}">
                                     <img id="mim{echo $product->getId()}" src="{productImageUrl($product->getMainModimage())}" alt="{echo ShopCore::encode($product->name)} - {echo $product->getId()}" />
-                                    <!--<img id="vim{echo $product->getId()}" class="smallpimagev" src="" alt="" />-->
+                                    <img id="vim{echo $product->getId()}" class="smallpimagev" src="" alt="" />
                                     {if $product->getHot() == 1}
                                         <div class="promoblock">{lang('s_shot')}</div>
                                     {/if}
