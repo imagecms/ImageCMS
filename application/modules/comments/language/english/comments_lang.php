@@ -1,6 +1,6 @@
 <?php
 
-$lang['login_for_comments']  = 'Только авторизованные пользователи могут оставлять комментарии. <a href="%s">Авторизуйтесь</a>, пожалуйста.';
+$lang['login_for_comments']  = 'Только авторизованные пользователи могут оставлять комментарии. <a href="%s" class="loginAjax">Авторизуйтесь</a>, пожалуйста.';
 $lang['lang_total_comments'] = 'Всего комментариев: ';
 $lang['lang_comment_text']   = 'Текст Комментария';
 $lang['lang_comment_button'] = 'Написать &rarr;';

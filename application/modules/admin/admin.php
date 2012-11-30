@@ -159,6 +159,20 @@ class Admin extends MY_Controller {
                     'path' => set_realpath($path),
                     'URL' => site_url() . $path,
                 	'accessControl' => 'access',
+                    'attributes' => array(
+                        array(
+                            'pattern' => '/administrator/', //You can also set permissions for file types by adding, for example, .jpg inside pattern.
+                            'read'    => false,
+                            'write'   => false,
+                            'locked'  => true
+                        ),
+                        array(
+                            'pattern' => '/commerce/', //You can also set permissions for file types by adding, for example, .jpg inside pattern.
+                            'read'    => true,
+                            'write'   => true,
+                            'locked'  => false
+                        )
+                    )
                 // more elFinder options here
                 )
             )
