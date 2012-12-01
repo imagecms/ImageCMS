@@ -851,44 +851,66 @@ $(document).ready(function() {
             });
         });
     }
+
     $('.findincats').live('click', function() {
         var id = $(this).attr('data-id');
         $('[name="categoryId"]').attr('value', id);
         $('#orderForm').submit();
         //console.log($('[name="categoryId"]'));
     });
+
     $('.clear_filter').live('click', function() {
         console.log($(this).attr('data-url'));
         var url = $(this).attr('data-url');
         $(location).attr('href', url);
     });
+
     $("#button_email").live('click', function() {
-        $("#send_email").slideToggle();
-        $("#button_email").hide();
-        $("#close_email").slideToggle();
+        $("#send_email").slideToggle('slow', function() {
+            if ($("#send_email").css('display') == 'block')
+                $("#button_email").text('Закрыть форму');
+            else
+                $("#button_email").text('Отправить другу WishList');
+        });
     });
-    $("#close_email").live('click', function() {
-        $("#send_email").slideToggle();
-        $("#close_email").hide();
-        $("#button_email").slideToggle();
+
+    $('[name="editForm"]').validate({
+        rules: {
+            friendsMail: {
+                required: true,
+                email: true
+            }
+        },
+        messages: {
+            friendsMail: {
+                required: "Введите email друга",
+                email: "Поле должно содержать правильный адресс почты"
+            }
+        },
+        submitHandler: function() {
+        var data = $('[name="friendsMail"]').val();
+            $.ajax({
+                type: "post",
+                url: "/shop/wish_list/sendWishList",
+                data: "email=" + data,
+                beforeSend: function() {
+                    $.fancybox.showActivity();
+                },
+                success: function() {
+                    $.fancybox.hideActivity();
+                    $('.notificationWish').text("Ваш список желаний успешно отправлен на "+ data);
+                    //$('.notificationWish').hide(4000);
+                    $("#button_email").trigger('click');
+                    $('[name="editForm"]').validate().resetForm();
+                }
+            });
+        }
     });
+
     $('.fancybuy').live('click', function() {
         var id = $(this).attr('data-id');
         $('#buy' + id).trigger('click');
     });
-//    console.log(location.hash);
-//    if (location.hash == '')
-//    {
-//        var variable = 0;
-//    }
-//    else {
-//        var forfind = $(this).find('a[href="'+location.hash+'"]').parent('li')
-//                //.trigger('click');
-//                .removeClass().addClass('ui-tabs-selected');
-//        console.log(forfind);
-//        //ui-tabs-selected
-//        //var variable = $('[href=' + location.hash + ']').parent().index();
-//    }
 
     $('.delete_tovar').live('click', function() {
         console.log($(this).data('pid'));
