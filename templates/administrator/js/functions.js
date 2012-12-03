@@ -72,6 +72,7 @@ function ajax_div(target, url)
 //submit form
 $('.formSubmit').live('click', function() {
 
+    //        collectMCEData();
     //update content in textareas with elRTE 
     $this = $(this);
 
@@ -279,7 +280,6 @@ function elFinderTPLEd()
             'resize', 'sort'
         ],
         commandsOptions: {
-
         },
         uiOptions: {
             // toolbar configuration
@@ -307,7 +307,18 @@ function elFinderTPLEd()
                 // expand current root on init
                 openRootOnLoad: true,
                 // auto load current dir parents
-                syncTree: false
+                syncTree: true
+            },
+        },
+        editors: {
+            editor: {
+                load: function() {
+                    alert(111);
+                },
+                save: function() {
+                    alert(111);
+                },
+                mimes: []
             }
         },
         getFileCallback: function(e, ev, c) {

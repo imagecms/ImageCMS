@@ -197,6 +197,7 @@
                     </div>
                     <ul>
                         {foreach getPromoBlock('hot', 3, $product->category_id) as $hotProduct}
+                {$discount = ShopCore::app()->SDiscountsManager->productDiscount($hotProduct->id)}
                             {$hot_prices = currency_convert($hotProduct->firstVariant->getPrice(), $hotProduct->firstVariant->getCurrency())}
                             <li class="smallest_item">
                                 <div class="photo_block">
@@ -207,8 +208,18 @@
                                 <div class="func_description">
                                     <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                                     <div class="buy">
+                            <div class="price f-s_14">
+                                {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
+                                    {$prOne = $hot_prices.main.price}
+                                    {$prTwo = $hot_prices.main.price}
+                                    {$prThree = $prOne - $prTwo / 100 * $discount}
+                                    <del class="price price-c_red f-s_12 price-c_9">{echo $hot_prices.main.price} {$hot_prices.main.symbol}</del><br /> 
+                                {else:}
                                         <div class="price f-s_14">{echo $hot_prices.main.price}
+                                {/if}
+                                {echo $prThree} 
                                             <sub>{$hot_prices.main.symbol}</sub>
+
                                             {if $NextCS != $CS}
                                                 <span class="d_b">{echo $hot_prices.second.price} {$hot_prices.second.symbol}</span>
                                             {/if}
@@ -256,5 +267,10 @@
             </div>
             <!--   Right sidebar     -->
         </div>
-    </div>
+    {widget('latest_news')}  
+    <!--   Promo products block     -->
+</div>
+<!--   Right sidebar     -->
+</div>
+</div>
 </div>

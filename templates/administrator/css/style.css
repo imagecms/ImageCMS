@@ -621,3 +621,11 @@ span.check_gg {
 }
 .frame_title .caret{margin-left: 3px !important;}
 .delete_image{padding: 2px !important;}
+#loading{
+    background-image: url(../images/ajax-loader.gif);width: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 10000;
+    position: fixed;
+    display: none;
+    background-position: 50% 50%;
+    background-repeat: no-repeat no-repeat;}

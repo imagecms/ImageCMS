@@ -46,9 +46,18 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="price f-s_18 f_l">{$summary = $vprices.main.price * $item.quantity}
-                                        {echo $summary}
-                                        <sub>{$vprices.main.symbol}</sub>                           
+                                    <div class="price f-s_18 f_l">
+                                        {if $item.discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
+                                            <div class="price f-s_12 f_l">Скидка {echo $item.discount}%</div><br /> 
+                                            {$summary = $vprices.main.price * $item.quantity}
+                                            {echo $summary - $summary / 100 *$item.discount}
+                                            <sub>{$vprices.main.symbol}</sub>      <br />       
+                                            <del class="price price-c_red f-s_12 price-c_9">{echo $summary} {$vprices.main.symbol}</del> 
+                                        {else:}
+                                            {$summary = $vprices.main.price * $item.quantity}
+                                            {echo $summary}
+                                            <sub>{$vprices.main.symbol}</sub>
+                                        {/if}
                                     </div>
                                 </td>
                                 <td>
@@ -123,6 +132,13 @@
                     <tr>
                         <td colspan="6">
                             <div class="foot_cleaner">
+                                <div class="f_l f-s_26" style="width: 268px;">                                   
+                                    {if count($discountCom)} 
+                                        <span class="price f-s_12 price-c_9" style="font-size: 14px;">
+                                            Накопительная скидка {echo $discountCom->getDiscount()}%
+                                        </span>
+                                    {/if}
+                                </div>
                                 <div class="f_r buttons button_big_blue">
                                     <a href="{shop_url('cart')}">{lang('s_c_of_z_')}</a>
                                 </div>
@@ -136,8 +152,12 @@
                                                     <span class="price f-s_12 price-c_9" style="font-size: 14px;">Скидка {echo $discountCom->getDiscount()}%</span><br />
                                                     {echo $total - $total / 100 * $discountCom->getDiscount()} {$CS}
 
-                                                {else:}
+                                                {elseif $item.discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
                                                     <div class="price f-s_26 f_l">
+                                                        {echo $total - $total / 100 * $item.discount} {$CS}
+                                                    </div>
+                                                    {else:}
+                                                          <div class="price f-s_26 f_l">
                                                         {echo $total} {$CS}
                                                     </div>
                                                 {/if}
