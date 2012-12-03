@@ -212,10 +212,10 @@ class Menu extends MY_Controller {
                 $this->arranged_menu_array[$arranged_items_count]['id'] = $item['id'];
                 $this->arranged_menu_array[$arranged_items_count]['title'] = $item['title'];
                 $this->arranged_menu_array[$arranged_items_count]['image'] = $item['image'];
-                if (!is_array($item['add_data']))
+                if (!is_array($item['add_data'])){
                     $item['add_data'] = unserialize($item['add_data']);
                 $item['add_data']['newpage'] == '1' ? $this->arranged_menu_array[$arranged_items_count]['target'] = 'target="_blank"' : $this->arranged_menu_array[$arranged_items_count]['target'] = 'target="_self"';
-
+                }
 
                 if (($menu_array[$start_index]['position'] != $item['position']) AND ($menu_array[$end_index]['position'] != $item['position'])) {
                     $this->arranged_menu_array[$arranged_items_count]['edge'] = "default";
