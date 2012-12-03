@@ -454,7 +454,9 @@ class Admin extends MY_Controller {
                     $item_data['item_id'] = 0;
                     $item_data['add_data'] = serialize(array('url' => $_POST['item_url'], 'newpage' => $_POST['newpage']));
                 }
-
+                if ($item_data['item_type'] == 'page') {
+                    $item_data['add_data'] = serialize(array('page' => $_POST['item_url'], 'newpage' => $_POST['newpage']));
+                }
                 if (!isset($item_data['add_data']))
                     $item_data['add_data'] = serialize($data);
 
