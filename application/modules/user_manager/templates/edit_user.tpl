@@ -25,7 +25,7 @@
                 <tbody>
                     <tr>
                         <td colspan="6">
-                            <div class="inside_padd span12">
+                            <div class="inside_padd span9">
                                 <div class="form-horizontal">
                                     <form id="update" method="post" action="{$SELF_URL}/update_user/{$id}">
                                     
@@ -40,7 +40,7 @@
                                         <div class="control-group">
                                             <label class="control-label" for="username">{lang('a_fio')}</label>
                                             <div class="controls">
-                                                <input type="text" name="username" id="username" value="{$username}" required/>
+                                                <input type="text" name="email" id="email" value="{$email}" class="required email"/>
                                             </div>
                                         </div>
 

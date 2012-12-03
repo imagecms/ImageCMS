@@ -197,7 +197,6 @@ top: 300px;
 border: 1px solid #3BF;
 border-radius: 3px;"></div>
             <div class="container" id="mainContent">
-
                 {$content}
             </div>
             <div class="hfooter"></div>

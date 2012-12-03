@@ -28,7 +28,7 @@
                 <tbody>
                     <tr>
                         <td colspan="6">
-                            <div class="inside_padd span12">
+                            <div class="inside_padd span9">
                                 <div class="form-horizontal">
                                     <form id="create" method="post" active="{$BASE_URL}admin/components/cp/user_manager/create">
                                         <div class="control-group">
