@@ -98,7 +98,7 @@ class Admin extends MY_Controller {
             }
             if ($_POST['item_type'] == 'module') {
                 $this->form_validation->set_rules('mod_name', 'Название модуля', 'required');
-                $this->form_validation->set_rules('mod_method', 'Метод модуля', 'required');
+                //$this->form_validation->set_rules('mod_method', 'Метод модуля', 'required');
                 $this->form_validation->set_rules('item_id', 'ID модуля', 'required');
             }
             if ($_POST['item_type'] == 'url') {
@@ -378,7 +378,7 @@ class Admin extends MY_Controller {
             }
             if ($_POST['item_type'] == 'module') {
                 $this->form_validation->set_rules('mod_name', 'Название модуля', 'required');
-                $this->form_validation->set_rules('mod_method', 'Метод модуля', 'required');
+                //$this->form_validation->set_rules('mod_method', 'Метод модуля', 'required');
                 $this->form_validation->set_rules('item_id', 'ID страницы', 'required');
             }
             if ($_POST['item_type'] == 'url') {
