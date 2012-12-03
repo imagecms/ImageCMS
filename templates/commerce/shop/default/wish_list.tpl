@@ -7,32 +7,24 @@
 <div class="content">
     <div class="center">
         <h1>{lang('s_WL')}</h1>
-        <h2>{echo $err}</h2>
-        <h2>{echo $success}</h2>
+        <h2 class="notificationWish"></h2>
         {if ShopCore::$ci->dx_auth->is_logged_in()===true}
-            <a href="#" class="f_r w-s_n-w" id="button_email">{lang('s_s_wish_list')}</a>
-            <a href="#" class="f_r w-s_n-w" style="display: none;" id="close_email">{lang('s_close_form_wl')}</a>              
-
-            <div class="fancy c_b f_r" style="border: none; display: none;" id="send_email">
-                <form action="{shop_url('wish_list')}" method="post" name="editForm" style="padding-left: 0; padding-right: 0px;">
+            <a href="#" class="f_l w-s_n-w" id="button_email">{lang('s_s_wish_list')}</a>
+            <div class="fancy c_b f_l" style="border: none; display: none;" id="send_email">
+                <form action="" method="post" name="editForm" style="padding-left: 0; padding-right: 0px;">
                     <div id="change_info_edit" class="f_r">
                         <label class="f_r">{lang('s_form_input_wl')}:
-                            <input type="text" name="emailtofriend"/>
+                            <input type="text" name="friendsMail"/>
                         </label>
-                        <input type="hidden" name="wishkey" value="{$profile.key}"/>
-                        <input type="hidden" name="email" value="{$profile.email}"/>
-                        <input type="hidden" name="sname" value="{$profile.name}"/>
-                        <input type="hidden" name="makeWish" value="1"/>
-
                         <div id="buttons">
                             <div class="p-t_19 c_b clearfix"  style="width: 191px;">
-                                <div class="buttons button_middle_blue f_r">
-                                    <input type="submit" id="checkout"  name="sendwish" value="{lang('s_send')}"/>
+                                <div class="buttons button_middle_blue f_l">
+                                    <input type="submit" name="sendwish" value="{lang('s_send')}"/>
                                 </div>
                             </div>
                         </div>                                    
                     </div>
-                    {form_csrf()}
+                     {form_csrf()}
                 </form>
             </div>
         {else:}
@@ -43,9 +35,7 @@
                 <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t(lang('s_list_wish_empty'))}</div>
             </div>
         {else:}
-
             <table class="cleaner_table forCartProducts" cellspacing="0">
-
                 <colgroup>
                     <col width="140" span="1">
                     <col width="371" span="1">
