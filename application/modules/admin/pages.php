@@ -644,8 +644,7 @@ class Pages extends MY_Controller {
         cp_check_perm('page_edit');
 
         ($hook = get_hook('admin_update_page_positions')) ? eval($hook) : NULL;
-
-        //var_dump($_POST);
+        
         foreach ($_POST['pages_pos'] as $k => $v)
         {
             $item = explode('_', substr($v, 4));
