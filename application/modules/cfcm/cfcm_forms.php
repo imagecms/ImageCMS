@@ -117,15 +117,15 @@ class Cfcm_forms extends MY_Controller {
             
         }
         
-        if ($type == 'textarea')
-        {
-                $f['enable_tinymce_editor'] = array(
-                'type'  => 'checkbox',
-                'label' => 'Включить редактор Tinymce',
-                'initial'=> '1',
-                'checked'=> FALSE,
-            );
-        }
+//        if ($type == 'textarea')
+//        {
+//                $f['enable_tinymce_editor'] = array(
+//                'type'  => 'checkbox',
+//                'label' => 'Включить редактор Tinymce',
+//                'initial'=> '1',
+//                'checked'=> FALSE,
+//            );
+//        }
 
         $f['validation'] = array(
             'type'      => 'text',

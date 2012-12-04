@@ -10,7 +10,6 @@ var notificationsInitialized = false;
 $(document).ajaxComplete(function(event, XHR, ajaxOptions) {
     if (ajaxOptions.url != "/admin/components/run/shop/notifications/getAvailableNotification")
     {
-        console.log(XHR.getAllResponseHeaders().match(/X-PJAX/));
         if ((XHR.getAllResponseHeaders().match(/X-PJAX/)))
         {
             initAdminArea();
@@ -395,7 +394,6 @@ function autocomplete() {
         $.get('/admin/admin_search/autocomplete', function(data) {
 
             baseAutocompleteData = JSON.parse(data);
-            //                console.log(baseAutocompleteData);
             bae = true;
             $('#baseSearch').autocomplete({
                 source: baseAutocompleteData
@@ -535,7 +533,6 @@ function textcomment_s_h(status, el) {
         if (status == 's' && textcomment.css('display') != 'none')
         {
             var textcomment_h = textcomment.outerHeight();
-            console.log(textcomment)
             textcomment.hide().next().show().find('textarea').css('height', textcomment_h + 13);
         }
         if (status == 's' && textcomment.css('display') == 'none')
@@ -975,14 +972,12 @@ function initAdminArea() {
     });
 
     $(document).on('pjax:start', function() {
-        console.log('pstrt');
         //resize loading
         $('#loading').height($('#mainContent').height())//.width($('#mainContent').width());
         $('#loading').stop().fadeIn(100);
 
     })
     .on('pjax:end', function() {
-        console.log('pstp');
         $('#loading').stop().fadeOut(100);
     });
 
@@ -1018,17 +1013,9 @@ function initAdminArea() {
     
     console.log('initialising of administration area ended');
     console.log('script execution time:' + (Date.now() - startExecTime) / 1000 + " sec.")
-}
-;
-//    console.log('initialising of administration area ended');
-//    
-//}
-// 
-
-//console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.");
+};
 
 $(document).ready(
-        
 
     function(){
 
@@ -1054,6 +1041,7 @@ $(document).ready(
                 
         
         $('.main_body').append('<div class="overlay"></div>');
+    
     
         $(this).keydown(function (e) {
             e = e || window.event;
@@ -1166,7 +1154,6 @@ $(document).ready(
         $('#mainAdminMenu a').each(function() {
             if ($(this).attr('href').match(window.location.pathname) && !found)
             {
-                //                console.log($(this));
                 $(this).closest('li').addClass('active');
                 $('li.active').closest('ul').closest('li').addClass('active');
                 found = true;
