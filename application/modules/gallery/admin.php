@@ -269,15 +269,17 @@ class Admin extends MY_Controller {
             showMessage(validation_errors(), false, 'r');
         } else {
             $album_id = $this->gallery_m->create_album();
-
+            
             // Create album folder
             mkdir($this->conf['upload_path'] . $album_id);
 
+            chmod($this->conf['upload_path'] . $album_id, 0777);
+            
             // Create thumbs folder
             mkdir($this->conf['upload_path'] . $album_id . '/' . $this->conf['thumbs_folder']);
 
             // Create folder for admin thumbs 
-            mkdir($this->conf['upload_path'] . $album_id . '/_admin_thumbs');
+            mkdir($this->conf['upload_path'] . $album_id . '/_admin_thumbs');            
 
             showMessage('Альбом создан');
 
@@ -350,7 +352,7 @@ class Admin extends MY_Controller {
                 delete_files($this->conf['upload_path'] . $album['id'], TRUE);
 
                 // delete album dir.
-                rmdir($this->conf['upload_path'] . $album['id']);
+                rmdir($this->conf['upload_path'] . $album['id'], TRUE);
             }
             $this->gallery_m->delete_album($album['id']);
             echo 'deleted';
@@ -457,7 +459,8 @@ class Admin extends MY_Controller {
      * Delete image files
      */
     public function delete_image($ids = 0) {
-        if ($this->input->post('id')) $ids = $this->input->post('id');
+        if ($this->input->post('id'))
+            $ids = $this->input->post('id');
         foreach ($ids as $key => $id) {
             $image = $this->gallery_m->get_image_info($id);
             if ($image != FALSE) {
@@ -656,7 +659,7 @@ class Admin extends MY_Controller {
 
     public function delete_category() {
         foreach ($this->input->post('id') as $id) {
-            //var_dump($id);
+
             // Delete category albums
             $albums = $this->gallery_m->get_albums('date', 'desc', $id);
 
@@ -679,7 +682,6 @@ class Admin extends MY_Controller {
         $temp_conf = $this->conf;
 
 //         check if it's an atchive
-// var_dump($_FILES);
 // exit;
 //         for ($i = 0; $i <= count($_FILES['file']['type']) - 1; $i++) {
 // 			for ($i = 0; $i <= count($_FILES['file[]'])-1; $i++) {
@@ -842,7 +844,6 @@ class Admin extends MY_Controller {
      * Resize image and create thumb
      */
     private function resize_and_thumb($file = array()) {
-        //var_dump($file);
         $this->load->library('image_lib');
 
         // Resize image

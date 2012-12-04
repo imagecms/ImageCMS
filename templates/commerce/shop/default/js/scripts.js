@@ -217,7 +217,6 @@ $(document).ready(function() {
         $(document).ready(function() {
 
             for (var i = 1; i <= den; i++) {
-                //alert(i);
 
                 var target;
                 $('.prod_dif').on('click', function() {

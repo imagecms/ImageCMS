@@ -313,10 +313,8 @@ function elFinderTPLEd()
         editors: {
             editor: {
                 load: function() {
-                    alert(111);
                 },
                 save: function() {
-                    alert(111);
                 },
                 mimes: []
             }
