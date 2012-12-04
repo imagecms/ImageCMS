@@ -4,7 +4,6 @@ var pagesAdmin = new Object({
         $('#fast_add_form').ajaxSubmit({
             success: function(responseText){
                 responseObj = JSON.parse(responseText);
-                //console.log(responseObj);
                 $('.modal').modal('hide');
                 if (responseObj.data)
                 {
@@ -20,13 +19,30 @@ var pagesAdmin = new Object({
     loadCFAddPage:function()
     {
         var categoryId = $("#category_selectbox").val();
-        $("#cfcm_fields_block").load(base_url + "admin/components/cp/cfcm/form_from_category_group/" + categoryId + "/0/page");
+        
+        $.ajax({url:"/admin/components/cp/cfcm/form_from_category_group/" + categoryId + "/0/page",
+                type: 'GET',
+                headers:{
+                    'X-PJAX': 'X-PJAX'
+                },
+                complete: function(data){
+                    $("#cfcm_fields_block").append(data.responseText);
+                }
+                });
     },
     loadCFEditPage:function()
     {
         var updatePageId = $('#edit_page_form').data('pageid');
         var categoryId = $("#category_selectbox").val();
-        $("#cfcm_fields_block").load(base_url + "admin/components/cp/cfcm/form_from_category_group/" + categoryId + "/" + updatePageId + "/page");
+        $.ajax({url:"/admin/components/cp/cfcm/form_from_category_group/" + categoryId + "/" + updatePageId + "/page",
+                type: 'GET',
+                headers:{
+                    'X-PJAX': 'X-PJAX'
+                },
+                complete: function(data){
+                    $("#cfcm_fields_block").append(data.responseText);
+                }
+            });
     },
     confirmListAction:function(actionURL)
     {
