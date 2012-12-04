@@ -587,7 +587,7 @@ var shopCategories = new Object({
     {
         var ids = new Array();
         if (simple == undefined) {
-            $('input[name=id]:checked').each(function() {
+            $('input[name=ids]:checked').each(function() {
                 ids.push($(this).val());
             });
         }
