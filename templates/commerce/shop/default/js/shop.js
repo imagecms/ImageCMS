@@ -184,11 +184,11 @@ $(document).ready(function() {
                 bindLoginForm();
                 bindRegisterLink();
                 $.fancybox.hideActivity();
-
                 if ($('#cartForm input[name="userInfo[email]"]').length)
                 {
                     $('#enter input[name="username"]').val($('#cartForm input[name="userInfo[email]"]').val());
                 }
+                $('#orderSubmit').data('logged', 1);
             }
         });
         return false;
@@ -700,9 +700,11 @@ $(document).ready(function() {
                     'transitionOut': 'elastic',
                     'showNavArrows': false,
                     'onComplete': function() {
-                        setTimeout('$.fancybox.close()', 3000);
+                        setTimeout('$.fancybox.close()', 2000);
                     }
                 });
+                if (obj.reload === 1)
+                    location.reload();
             } else {
                 $.fancybox(responseText, {
                     'titleShow': false,
