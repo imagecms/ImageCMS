@@ -50,7 +50,6 @@ $(document).ready(function() {
             url: '/admin/pages/save_positions/',
             success: function(obj) {
                 if (obj.result) {
-                    //alert("positions changed successfull");
                 }
             }
         });
