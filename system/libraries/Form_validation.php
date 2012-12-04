@@ -1104,7 +1104,7 @@ class CI_Form_validation {
 	 */
 	function alpha_dash($str)
 	{
-		return ( ! preg_match("/^([-a-z0-9_-])+$/i", $str)) ? FALSE : TRUE;
+		return ( ! preg_match("/^([-a-z0-9_-])+$/i", $str) or is_numeric($str)) ? FALSE : TRUE;
 	}
 
 	// --------------------------------------------------------------------
