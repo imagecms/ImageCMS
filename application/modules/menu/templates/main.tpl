@@ -17,7 +17,7 @@
 
     <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->
 
-    <form method="post" action="#">
+    <form method="post" action="#"> 
         <section class="mini-layout">
             <div class="frame_title clearfix">
                 <div class="pull-left">

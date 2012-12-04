@@ -60,7 +60,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {foreach $comments as $item }
+                        {foreach $comments as $item}
                         {if count($item.child) == 0}
                         <tr data-id="{$item.id}" data-tree>
                             <td class="t-a_c">
@@ -188,26 +188,6 @@
                                                     {else:}
                                                     <a href="#" class="to_waiting" data-id="{$item.id}">В ожидающие модерации</a>
                                                     {/if}
-                                                    <<<<<<< HEAD
-                                                    <span class="js ref comment_update" data-cid="{$item.id}" data-uname="{$item.user_name}" data-uemail="{$item.user_mail}" data-cstatus="{$item.status}">{lang('a_save')}</span>
-                                                    <span class="js ref comment_update_cancel" data-cid="{$item.id}">Отменить</span>
-                                                    {if $item.status == 1}<a href="#" class="to_approved" data-id="{$item.id}">В одобренные</a>{/if}
-                                                    {if $item.status != 2}
-                                                    <a href="#" class="to_spam" data-id="{$item.id}">В спам</a>
-                                                    {else:}
-                                                    <a href="#" class="to_waiting" data-id="{$item.id}">В ожидающие модерации</a>
-                                                    {/if}
-                                                    <a href="#" class="ref_remove com_del" data-id="{$item.id}">Удалить</a>
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <div class="p_r frame_rating">
-                                                    <div class="patch_disabled"></div>
-                                                    <div class="star">
-                                                        {for $i=0; $i<5; $i++}
-                                                        <a href="#"><i class="icon-star{if $i>=(int)$item.rate}-empty{/if}"></i></a>
-                                                        {/for}
-                                                        =======
                                                         <a href="#" class="ref_remove com_del" data-id="{$item.id}">Удалить</a>
                                                     </div>
                                                 </div>
@@ -229,7 +209,6 @@
                                                         <i class="icon-thumbs-down"></i>
                                                         <span>-{$item.disslike}</span>
                                                     </a>
-                                                    >>>>>>> 3e255155ead34739e75c061a889c83c911031651
                                                 </div>
                                             </td>
                                             <td>
