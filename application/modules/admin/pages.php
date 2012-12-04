@@ -446,7 +446,7 @@ class Pages extends MY_Controller {
         $this->form_validation->set_rules('create_date', lang('ac_val_cr_date'), 'required|valid_date');
         $this->form_validation->set_rules('create_time', lang('ac_val_time_cr'), 'required|valid_time');
         $this->form_validation->set_rules('publish_date', lang('ac_val_pub_date'), 'required|valid_date');
-        $this->form_validation->set_rules('publish_time', lang('ac_val_pub_date'), 'required|valid_time');
+        $this->form_validation->set_rules('publish_time', lang('ac_val_pub_time'), 'required|valid_time');
 
         ($hook = get_hook('admin_page_update_set_rules')) ? eval($hook) : NULL;
 
