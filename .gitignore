@@ -25,4 +25,5 @@ Thumbs.db
 /application/modules/shop/build.properties
 /application/modules/shop/buildtime-conf.xml
 /application/modules/shop/runtime-conf.xml
-
+/pma/
+*.*~
