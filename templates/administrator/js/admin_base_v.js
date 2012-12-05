@@ -8,9 +8,9 @@ function change_page_status(page_id) {
 //        }
 //    });
 
-$.post(base_url + 'admin/pages/ajax_change_status/' + page_id, {}, function (data) {
-            $('.notifications').append(data);    
-})
+    $.post(base_url + 'admin/pages/ajax_change_status/' + page_id, {}, function(data) {
+        $('.notifications').append(data);
+    })
 }
 
 
@@ -76,7 +76,6 @@ $(document).ready(function() {
          url: '/admin/pages/save_positions/',
          success: function(obj){
          if(obj.result){
-         //alert("positions changed successfull");
          }
          }
          });
@@ -143,7 +142,7 @@ $(document).ready(function() {
         variantId['price'] = price;
 
 //        console.log(variant);
-        
+
         if (typeof variant !== 'undefined' && variant !== false)
             variantId['variant'] = variant;
 
@@ -162,7 +161,7 @@ $(document).ready(function() {
     $('.prodFilterSelect').live('change', function(event) {
         var query_string = $('#filter_form').serialize();
         $.pjax({
-            url: '/admin/components/run/shop/search/index/?'+query_string,
+            url: '/admin/components/run/shop/search/index/?' + query_string,
             container: '#mainContent'
         });
     });

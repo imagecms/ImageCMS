@@ -129,8 +129,6 @@ class Admin_search extends MY_Controller {
 //			);
 //                        
 //                        $usersResult = $this->search->execute($where, 0);
-//                        
-//                        var_dump($usersResult['query']);
                         
                     $usersResult = $this->db->where('id =', $searchText)
                             ->or_where("username LIKE '%$searchText%'" )

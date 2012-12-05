@@ -124,7 +124,6 @@
     <select class="m-l_10" name="selectVar">
         {foreach $model->getProductVariants() as $pv}
             {$var_prices = currency_convert($pv->getPrice(), $pv->getCurrency())}
-            {var_dump($var_prices)}
 <!--                                 <option class="selectVar" value="{echo $pv->getId()}" data-pp="1" data-st="{echo $pv->getStock()}" data-cs="{$NextCS}" data-spr="{echo ShopCore::app()->SCurrencyHelper->convert($pv->getPrice(), $NextCSId)}" data-pr="{echo $pv->getPrice()}" data-pid="{echo $model->getId()}" data-img="{echo $pv->getmainimage()}" data-vname="{echo $pv->getName()}" data-vnumber="{echo $pv->getNumber()}">{echo $pv->getName()}</option>-->
             <option class="selectVar"
                     value="{echo $pv->getId()}" 
