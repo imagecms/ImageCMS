@@ -27,7 +27,7 @@
             <tbody>
                 <tr>
                     <td colspan="6">
-                        <div class="inside_padd span9">
+                        <div class="inside_padd span12">
                             <form action="{echo $form->action}" method="post" id="{$f_id}" class="form-horizontal">
                                 {foreach $form->asArray() as $f}
                                 <div class="control-group">

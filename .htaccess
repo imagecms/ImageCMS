@@ -1,5 +1,16 @@
 AddDefaultCharset UTF-8
 
+
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
+
 #Options +FollowSymLinks
 Options -Indexes
 
@@ -7,6 +18,7 @@ RewriteEngine on
 
 # RewriteCond %{HTTP_HOST} ^www.site.com$ [NC]
 # RewriteRule ^(.*)$ http://site.com/$1 [L,R=301]
+
 
 RewriteCond $1 !^(index\.php|test.php|user_guide|uploads/.*|favicon\.ico|favicon\.png|captcha/.*|application/modules/.*/templates|templates|js|robots\.txt|application/controllers/install/images/.*)
 RewriteRule ^(.*)$ /index.php/$1 [L]

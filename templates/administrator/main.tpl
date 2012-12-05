@@ -7,18 +7,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="generator" content="ImageCMS">
 
-        <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap_complete.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/style.css">
+        <!--
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap-responsive.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap-notify.css">
-
+-->
 
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery-ui-1.8.16.custom.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery.ui.1.8.16.ie.css">
-
-
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
         
 
         <link rel="stylesheet" type="text/css" href="/js/elfinder-2.0/css/Aristo/css/Aristo/Aristo.css" media="screen" charset="utf-8">
@@ -184,7 +181,7 @@
             {/if}
             <div id="loading" style="left: 50%;
 height: 100px;
-background-image: url(http://p4/templates/administrator/images/ajax-loader.gif);
+background-image: url(/templates/administrator/images/ajax-loader.gif);
 background-color: rgba(255, 255, 255, 0.8);
 z-index: 10000;
 position: fixed;
@@ -249,25 +246,21 @@ border-radius: 3px;"></div>
         </script>
 
         <script src="{$THEME}/js/jquery-1.8.2.min.js" type="text/javascript"></script>
-        <script src="{$THEME}/js/pjax/jquery.pjax.js" type="text/javascript"></script>
+        <script src="{$THEME}/js/pjax/jquery.pjax.min.js" type="text/javascript"></script>
         <script src="{$THEME}/js/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script>
         <script src="{$THEME}/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="{$THEME}/js/bootstrap-notify.js" type="text/javascript"></script>
+        <script async="async" src="{$THEME}/js/bootstrap-notify.js" type="text/javascript"></script>
         <script src="{$THEME}/js/jquery.form.js" type="text/javascript"></script>        
 
-        <script src="{$THEME}/js/jquery-validate/jquery.validate.min.js" type="text/javascript"></script>
+        <script async="async" src="{$THEME}/js/jquery-validate/jquery.validate.min.js" type="text/javascript"></script>
 
         <script src="{$THEME}/js/functions.js" type="text/javascript"></script>
         <script src="{$THEME}/js/scripts.js" type="text/javascript"></script>
 
         <script type="text/javascript" src="/js/elrte-1.3/js/elrte.min.js"></script>
-        <script type="text/javascript" src="/js/elfinder-2.0/js/elfinder.min.js"></script>
+        <script async="async" type="text/javascript" src="/js/elfinder-2.0/js/elfinder.min.js"></script>
 
-        <script src="{$THEME}/js/admin_base_i.js" type="text/javascript"></script>        
-        <script src="{$THEME}/js/admin_base_m.js" type="text/javascript"></script>        
-        <script src="{$THEME}/js/admin_base_v.js" type="text/javascript"></script>        
-        <script src="{$THEME}/js/admin_base_y.js" type="text/javascript"></script>
-        <script src="{$THEME}/js/admin_base_r.js" type="text/javascript"></script>    
+        <script src="{$THEME}/js/admin_base.min.js" type="text/javascript"></script>       
 
         <script>
             {if $CI->uri->segment('4') == 'shop'}
