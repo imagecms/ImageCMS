@@ -210,6 +210,7 @@ function initElRTE()
         styleWithCSS: true,
         height: 300,
         fmAllow: true,
+        lang: 'ru',
         fmOpen: function(callback) {
             //			    if (typeof dialog === 'undefined') {
             // create new elFinder
@@ -249,6 +250,7 @@ function elFinderPopup(type, id)
     {
         dlg = $('#elFinder').dialogelfinder({
             url: '/admin/elfinder_init',
+            lang: 'ru',
             commandsOptions: {
                 getfile: {
                     oncomplete: 'close' // close/hide elFinder
@@ -277,6 +279,7 @@ function elFinderTPLEd()
     eD = $('#elFinderTPLEd').elfinder({
         url: '/admin/elfinder_init/1',
         height: $(window).height() * 0.6,
+        lang: 'ru',
         commands : [
             'open', 'reload', 'home', 'up', 'back', 'forward', 'getfile', 'quicklook',
             'download', 'rm', 'duplicate', 'rename', 'mkdir', 'mkfile', 'upload', 'copy',

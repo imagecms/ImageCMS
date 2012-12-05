@@ -16,7 +16,6 @@ class Pages extends MY_Controller {
         admin_or_redirect();
 
         $this->load->library('lib_admin');
-        $this->load->library('lib_editor');
         $this->load->library('lib_category');
         $this->load->library('pagination');
         $this->load->library('lib_seo');
@@ -34,7 +33,6 @@ class Pages extends MY_Controller {
 
         $this->template->add_array(array(
             'tree' => $this->lib_category->build(), // Load category tree
-            'editor' => $this->lib_editor->init(), // Load editor javascript code
             'cur_time' => date('H:i:s'),
             'cur_date' => date('Y-m-d'),
             'sel_cat' => $uri_segs['category']
