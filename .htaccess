@@ -5,7 +5,6 @@ Options -Indexes
 
 RewriteEngine on
 
-
 # RewriteCond %{HTTP_HOST} ^www.site.com$ [NC]
 # RewriteRule ^(.*)$ http://site.com/$1 [L,R=301]
 

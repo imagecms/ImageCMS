@@ -92,9 +92,12 @@
                     <div>{echo $CI->load->module('share')->_make_share_form()}</div>
                 </div>
                 <div class="buy clearfix m-t_30">
-                    {if count($model->getProductVariants())>1}
+                    {if count($model->getProductVariants()) > 1}
                         Выбор варианта:</br>
-                        {foreach $model->getProductVariants() as $pv}
+                        
+                        {foreach $model->getProductVariants() as $key => $pv}
+                            
+                           {echo $pv->getPosition()}
                             {$var_prices = currency_convert($pv->getPrice(), $pv->getCurrency())}
                             <input type="radio" class="selectVar" id="sVar{echo $pv->getId()}" name="selectVar" {if $model->firstVariant->getId() == $pv->getId()}checked="checked"{/if}
                                    value="{echo $pv->getId()}" 
