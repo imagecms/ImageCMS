@@ -33,7 +33,9 @@ function translite_title(from, to)
 
 function create_description(from, to)
 {
-    $('textarea.elRTE').elrte('updateSource');
+    if ( $('.workzone textarea.elRTE').length)
+        $('.workzone textarea.elRTE').elrte('updateSource');
+    
     $.post(
             base_url + 'admin/pages/ajax_create_description/', {
         'text': $(from).val()
@@ -46,7 +48,8 @@ function create_description(from, to)
 
 function retrive_keywords(from, to)
 {
-    $('textarea.elRTE').elrte('updateSource');
+    if ( $('.workzone textarea.elRTE').length)
+        $('.workzone textarea.elRTE').elrte('updateSource');
 
     $.post(base_url + 'admin/pages/ajax_create_keywords/', {
         'keys': $(from).val()
@@ -76,8 +79,9 @@ $('.formSubmit').live('click', function() {
     //update content in textareas with elRTE 
     $this = $(this);
 
-    $('textarea.elRTE').elrte('updateSource');
-
+    if ( $('.workzone textarea.elRTE').length)
+        $('.workzone textarea.elRTE').elrte('updateSource');
+    
     var btn = this;
 
     var selector = $(this).data('form');
