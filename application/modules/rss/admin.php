@@ -21,8 +21,6 @@ class Admin extends MY_Controller {
         $this->load->library('lib_category');
         $cats = $this->lib_category->build();
 
-        //var_dump($this->get_settings());
-
         $this->template->add_array(array(
             'cats' => $cats,
             'settings' => $this->get_settings()
