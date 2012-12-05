@@ -182,7 +182,6 @@
             <div id="loading" style="left: 50%;
 height: 100px;
 background-image: url(/templates/administrator/images/ajax-loader.gif);
-background-color: rgba(255, 255, 255, 0.8);
 z-index: 10000;
 position: fixed;
 width: 300px;
@@ -191,7 +190,6 @@ background-position: 50% 50%;
 background-repeat: no-repeat no-repeat;
 margin-left: -150px;
 top: 300px;
-border: 1px solid #3BF;
 border-radius: 3px;"></div>
             <div class="container" id="mainContent">
                 {$content}
