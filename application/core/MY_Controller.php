@@ -57,7 +57,7 @@ class MY_Controller extends MX_Controller {
     public function __construct() {
         parent::__construct();
         
-        if (in_array('X-PJAX', array_keys(getallheaders())))
+        if (isset($_SERVER['HTTP_X_PJAX']) && $_SERVER['HTTP_X_PJAX'] == true)
         {
             $this->pjaxRequest = true;
             header('X-PJAX: true');
