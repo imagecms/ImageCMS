@@ -501,5 +501,3 @@ class Admin extends MY_Controller {
     }
 
 }
-
-/* End of file admin.php */
