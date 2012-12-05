@@ -243,6 +243,8 @@ border-radius: 3px;"></div>
             {else:}
             var userLogined = false;
             {/if}
+                
+            var locale = '{echo $this->CI->config->item('language')}';
         </script>
 
         <script src="{$THEME}/js/jquery-1.8.2.min.js" type="text/javascript"></script>
@@ -253,12 +255,19 @@ border-radius: 3px;"></div>
         <script src="{$THEME}/js/jquery.form.js" type="text/javascript"></script>        
 
         <script async="async" src="{$THEME}/js/jquery-validate/jquery.validate.min.js" type="text/javascript"></script>
-
+        
         <script src="{$THEME}/js/functions.js" type="text/javascript"></script>
         <script src="{$THEME}/js/scripts.js" type="text/javascript"></script>
 
         <script type="text/javascript" src="/js/elrte-1.3/js/elrte.min.js"></script>
-        <script async="async" type="text/javascript" src="/js/elfinder-2.0/js/elfinder.min.js"></script>
+        <script type="text/javascript" src="/js/elfinder-2.0/js/elfinder.min.js"></script>
+        
+        
+        {if $this->CI->config->item('language') == 'russian'}
+        <script async="async" src="{$THEME}/js/jquery-validate/messages_ru.js" type="text/javascript"></script>
+        <script type="text/javascript" src="/js/elrte-1.3/js/i18n/elrte.ru.js"></script>
+        <script type="text/javascript" src="/js/elfinder-2.0/js/i18n/elfinder.ru.js"></script>
+        {/if}
 
         <script src="{$THEME}/js/admin_base.min.js" type="text/javascript"></script>       
 
