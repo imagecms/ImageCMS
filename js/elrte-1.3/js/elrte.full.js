@@ -3023,7 +3023,6 @@ elRTE.prototype.dom = function(rte) {
 				.replace(this.serviceClassRegExp, function(t, n, a, e) {
 
 					var a = self.parseAttrs(a), j, o = '';
-					// alert(t)
 					if (a['class']['elrte-google-maps']) {
 						var t = '';
 						if (self.scripts[a.id]) {
@@ -3036,7 +3035,6 @@ elRTE.prototype.dom = function(rte) {
 					} else if (a['class']['elrtebm']) {
 						return '';
 					} else if (a['class']['elrte-media']) {
-						// alert(a.rel)
 						// return ''
 						// j = a.rel ? JSON.parse(self.rte.utils.decode(a.rel)) : {};
 						j = self.scripts[a.rel]||{};

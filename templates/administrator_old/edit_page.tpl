@@ -321,12 +321,7 @@
 
 			new Autocompleter.Request.JSON('tags', base_url + 'admin/pages/json_tags', {
 				'postVar': 'search_tags'
-			});
-			
-			$(document).ready(function{
-				alert('asads');	
-			})
-			
+			});			
 			
 		    if ($.exists('.datepicker')) {
 		        $( ".datepicker" ).datepicker({
