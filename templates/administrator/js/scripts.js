@@ -475,7 +475,7 @@ function autocomplete() {
             select: function(event, ui) {
                 $('#relatedProductsNames').append('<div id="tpm_row' + ui.item.identifier.id + '">' +
                     '<span style="width: 70%;margin-left: 1%;" class="pull-left">' +
-                    '<input type="text" id="AttachedProducts" value="' + ui.item.label + '"/>' +
+                    '<a id="AttachedProducts" >'+ ui.item.label + '</a>' +
                     '<input type="hidden" name="RelatedProducts[]" value="' + ui.item.identifier.id + '">' +
                     '</span>' +
                     '<span style="width: 8%;margin-left: 1%;" class="pull-left">' +
