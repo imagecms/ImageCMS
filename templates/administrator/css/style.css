@@ -623,9 +623,30 @@ span.check_gg {
 .delete_image{padding: 2px !important;}
 #loading{
     background-image: url(../images/ajax-loader.gif);width: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
     z-index: 10000;
     position: fixed;
     display: none;
     background-position: 50% 50%;
     background-repeat: no-repeat no-repeat;}
+
+.dialogelfinder{
+    font-size: 16px !important;
+}
+
+.elfinder-contextmenu{
+    font-size: 13px !important;
+}
+
+.el-dialogform-content #el-df-tab-main input, .el-dialogform-content #el-df-tab-main select {
+    width: 45px !important;
+}
+
+#el-df-tab-main td:nth-child(2n+1) {
+    width: 85px;
+}
+
+.btn.btn-small.rmAddPic {
+    left: 9px;
+    position: absolute;
+    top: 66px;
+}
