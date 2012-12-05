@@ -644,3 +644,9 @@ span.check_gg {
 #el-df-tab-main td:nth-child(2n+1) {
     width: 85px;
 }
+
+.btn.btn-small.rmAddPic {
+    left: 9px;
+    position: absolute;
+    top: 66px;
+}
