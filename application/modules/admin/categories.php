@@ -51,16 +51,13 @@ class Categories extends MY_Controller {
             return false;
         }
 
-        var_dump($_POST['positions']);
-
         if ($_POST['positions']) {
             foreach ($_POST['positions'] as $pos => $id) {
-                $query = "UPDATE `category` SET `position`=" . $pos . " WHERE `id`=" . (int) $id . ";";
+                $query = "UPDATE `category` SET `position`='" . $pos . "' WHERE `id`='" . (int) $id . "';";
                 $this->db->query($query);
             }
             
-            $this->db->order_by('position');
-            showMessage('Position saved success');
+            showMessage('Позиция успешно сохранена');
         }
     }
 
@@ -82,8 +79,8 @@ class Categories extends MY_Controller {
 
         $this->template->add_array(array(
             'tree' => $cats,
-            'catTreeHTML'=> $this->renderCatList($tree)
-            //'catTreeHTML' => $this->renderCatList($cats)
+            'catTreeHTML' => $this->renderCatList($tree)
+                //'catTreeHTML' => $this->renderCatList($cats)
         ));
 
         $this->template->show('category_list', FALSE);
