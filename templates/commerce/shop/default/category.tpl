@@ -54,6 +54,7 @@
             {/if}
             <!--  Render produts list   -->
             {foreach $products as $product}
+                {$discount = ShopCore::app()->SDiscountsManager->productDiscount($product->id)}
                 {$style = productInCart($cart_data, $product->getId(), $product->firstVariant->getId(), $product->firstVariant->getStock())}
                 {$prices = currency_convert($product->firstvariant->getPrice(), $product->firstvariant->getCurrency())}
                 <li {if $product->firstvariant->getstock()== 0}class="not_avail"{/if}>
@@ -118,10 +119,10 @@
                                                 data-vname="{echo $pv->getName()}"
                                                 data-vnumber="{echo $pv->getNumber()}">
                                             {if $pv->getName() != ''}
-                                                <i>{echo $pv->getName()}</i><b>: {echo $var_prices.main.price}</b> {$var_prices.main.symbol}
-                                            {else:}
-                                                <i>{echo $product->getName()}</i><b>: {echo $var_prices.main.price}</b> {$var_prices.main.symbol}
-                                            {/if}
+                                            <i>{echo $pv->getName()}</i><b>: {echo $var_prices.main.price}</b> {$var_prices.main.symbol}
+                                        {else:}
+                                            <i>{echo $product->getName()}</i><b>: {echo $var_prices.main.price}</b> {$var_prices.main.symbol}
+                                        {/if}
                                         </option>
                                     {/foreach}
                                 </select>
@@ -141,12 +142,22 @@
                                         {/if}
                                     {/if}
                                     <span id="pricem{echo $product->getId()}">
-                                        {echo $prices.main.price}
+                                        {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
+                                            {$prOne = $prices.main.price}
+                                            {$prTwo = $prices.main.price}
+                                            {$prThree = $prOne - $prTwo / 100 * $discount}
+                                            <del class="price price-c_red f-s_12 price-c_9">{echo $prices.main.price} {$prices.main.symbol}</del><br /> 
+                                        {else:}
+                                            <div class="price f-s_14">{echo $prices.main.price}
+                                            {/if}
+                                            {echo $prThree} 
+                                            <sub>{$prices.main.symbol}</sub>
+
+                                            {if $NextCS != $CS AND empty($discount)}
+                                                <span class="d_b">{echo $prices.second.price} {$prices.second.symbol}</span>
+                                            {/if}
+
                                     </span>
-                                    <sub>{$prices.main.symbol}</sub>
-                                    {if $NextCS != $CS}
-                                        <span id="prices{echo $product->getId()}" class="d_b">{echo $prices.second.price} {$prices.second.symbol}</span>
-                                    {/if}
                                 </div>
                                 <div id="p{echo $product->getId()}" class="{$style.class} buttons">
                                     <span id="buy{echo $product->getId()}"
@@ -224,7 +235,7 @@
                                         {echo $prThree} 
                                         <sub>{$hot_prices.main.symbol}</sub>
 
-                                        {if $NextCS != $CS}
+                                        {if $NextCS != $CS AND empty($discount)}
                                             <span class="d_b">{echo $hot_prices.second.price} {$hot_prices.second.symbol}</span>
                                         {/if}
                                     </div>
@@ -243,6 +254,7 @@
             </div>
             <ul>
                 {foreach getPromoBlock('action', 3, $product->category_id) as $hotProduct}
+                    {$discount = ShopCore::app()->SDiscountsManager->productDiscount($hotProduct->id)}
                     {$action_prices = currency_convert($hotProduct->firstVariant->getPrice(), $hotProduct->firstVariant->getCurrency())}
                     <li class="smallest_item">
                         <div class="photo_block">
@@ -253,11 +265,22 @@
                         <div class="func_description">
                             <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                             <div class="buy">
-                                <div class="price f-s_14">{echo $action_prices.main.price}
-                                    <sub>{$action_prices.main.symbol}</sub>
-                                    {if $NextCS != $CS}
-                                        <span class="d_b">{echo $action_prices.second.price} {$action_prices.second.symbol}</span>
-                                    {/if}
+                                <div class="price f-s_14">
+                                     {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
+                                            {$prOne = $action_prices.main.price}
+                                            {$prTwo = $action_prices.main.price}
+                                            {$prThree = $prOne - $prTwo / 100 * $discount}
+                                            <del class="price price-c_red f-s_12 price-c_9">{echo $action_prices.main.price} {$action_prices.main.symbol}</del><br /> 
+                                        {else:}
+                                            <div class="price f-s_14">{echo $action_prices.main.price}
+                                            {/if}
+                                            {echo $prThree} 
+                                            <sub>{$action_prices.main.symbol}</sub>
+
+                                            {if $NextCS != $CS AND empty($discount)}
+                                                <span class="d_b">{echo $action_prices.second.price} {$action_prices.second.symbol}</span>
+                                            {/if}
+                                
                                 </div>
                             </div>
                         </div>
