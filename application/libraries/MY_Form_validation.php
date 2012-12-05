@@ -7,7 +7,8 @@ class MY_Form_validation extends CI_Form_validation {
         parent::__construct();
 
         $this->set_message('valid_date', 'Поле %s должно содержать правильную дату.');
-    }
+		$this->set_message('valid_time', 'Поле %s должно содержать правильное время.');
+	}
 
     // --------------------------------------------------------------------
 

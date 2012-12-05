@@ -29,7 +29,7 @@ $(document).ready(function(){
         $.ajax({            
             dataType: "html",
             headers: {
-              'X-PJAX':'X-PJAX'
+                'X-PJAX':'X-PJAX'
             },
             url: '/admin/components/cp/user_manager/getRolesTable/'+$roleId,
             success: function(msg) {
@@ -175,6 +175,29 @@ var delete_function = new Object({
 
 });
 
+
+function save_positions_variant(url) {
+    var arr = new Array();
+    $('input[name=idv]').each(function() {
+        arr.push($(this).val());
+    });
+    $.post(
+        url,
+        {
+            positions: arr
+        },
+        function(data) {
+            $('.notifications').append(data);
+        });
+        
+}
+
+$(".save_positions_variant").live("sortstop", function(event, ui) {
+        var url = $(this).attr('data-url');
+        save_positions_variant(url);
+    });
+    
+    
 var delete_functionS = new Object({
 
     deleteFunctionS: function() {

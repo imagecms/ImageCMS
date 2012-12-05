@@ -157,7 +157,10 @@ class Categories extends MY_Controller {
             if (count($fetch_pages) > 0) {
                 $fetch_pages = serialize($fetch_pages);
             }
-
+            $settings = array(
+                'category_apply_for_subcats'=>$this->input->post('category_apply_for_subcats'),
+                'apply_for_subcats'=>$this->input->post('apply_for_subcats'),
+            );
             $data = array(
                 'name' => $this->input->post('name'),
                 'url' => $url,
@@ -176,8 +179,9 @@ class Categories extends MY_Controller {
                 'sort_order' => $this->lib_admin->db_post('sort_order'),
                 'comments_default' => $this->lib_admin->db_post('comments_default'),
                 'fetch_pages' => $fetch_pages,
+                'settings' => serialize($settings),
             );
-
+            
             $parent = $this->lib_category->get_category($data['parent_id']);
 
             if ($parent != 'NULL') {
@@ -376,11 +380,12 @@ class Categories extends MY_Controller {
             // Get langs
             $langs = $this->cms_base->get_langs();
             $this->template->assign('langs', $langs);
-
+            $settings=unserialize($cat['settings']);
             $cat['fetch_pages'] = unserialize($cat['fetch_pages']);
             $this->template->add_array($cat);
             $this->template->assign('tree', $this->lib_category->build());
             $this->template->assign('include_cats', $this->sub_cats($this->lib_category->build()));
+            $this->template->assign('settings', $settings);
             ($hook = get_hook('admin_show_category_edit')) ? eval($hook) : NULL;
 
             $this->template->show('category_edit', FALSE);
