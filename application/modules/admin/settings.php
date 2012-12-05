@@ -28,16 +28,16 @@ class Settings extends MY_Controller {
         $this->template->assign('template_selected', $settings['site_template']);
 
         #Tiny MCE themes in lib_editor
-        $themes_arr = array(
-            'simple' => 'Простая',
-            'advanced' => 'Расширеная',
-            'full' => 'Полная'
-        );
+//        $themes_arr = array(
+//            'simple' => 'Простая',
+//            'advanced' => 'Расширеная',
+//            'full' => 'Полная'
+//        );
+//
+//        ($hook = get_hook('admin_set_editor_theme')) ? eval($hook) : NULL;
 
-        ($hook = get_hook('admin_set_editor_theme')) ? eval($hook) : NULL;
-
-        $this->template->assign('editor_themes', $themes_arr);
-        $this->template->assign('theme_selected', $settings['editor_theme']);
+//        $this->template->assign('editor_themes', $themes_arr);
+//        $this->template->assign('theme_selected', $settings['editor_theme']);
 
         $this->template->assign('work_values', array('yes' => 'Да', 'no' => 'Нет'));
         $this->template->assign('site_offline', $settings['site_offline']);

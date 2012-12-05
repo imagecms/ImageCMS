@@ -65,6 +65,12 @@ class Cfcm_forms extends MY_Controller {
     {
         $f = array();
 
+         $f['label'] = array(
+                'type'       => 'text',
+                'label'      => 'Label',
+                'validation' => 'max_length[255]',
+                'class'      => 'required',
+         );
         $f['initial'] = array(
             'type'    => 'textarea',
             'label'   => 'Начальное значение',
@@ -78,6 +84,11 @@ class Cfcm_forms extends MY_Controller {
             'type'    => 'checkbox',
             'label'   => 'Обязательное поле',
             'initial' => '1',
+        );
+        $f['type'] = array(
+                'type'       => 'select',
+                'label'      => 'Тип',
+                'initial'    => $this->field_types,
         );
         
         if (in_array($type, array('select', 'checkgroup', 'radiogroup')))
@@ -132,7 +143,11 @@ class Cfcm_forms extends MY_Controller {
             'label'     => 'Условия проверки',
             'help_text' => 'Например: valid_email|max_length[255]',
         );
-
+        $f['groups'] = array(
+                'type'       => 'select',
+                'label'      => 'Группа',
+                'initial'    => self::prepare_groups_select(),
+                'multiple'   => true,);
         return $this->forms->add_fields($f);
     
     }
