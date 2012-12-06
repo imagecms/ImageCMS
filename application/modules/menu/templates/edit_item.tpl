@@ -14,7 +14,7 @@
     </div>
     <div class="tab-content content_big_td">
         <div class="m-t_10">
-            <select class="link_type">
+            <select class="link_type input-xxlarge">
                 <option value="page" {if $item.item_type == 'page'}selected="selected"{/if}>{lang('a_page')}</option>
                 <option value="category" {if $item.item_type == 'category'}selected="selected"{/if}>{lang('a_category')}</option>
                 <option value="module" {if $item.item_type == 'module'}selected="selected"{/if}>{lang('a_module')}</option>
@@ -171,14 +171,14 @@
                                                 <div class="control-group">
                                                     <label class="control-label">{lang('amt_hide')}:</label>
                                                     <div class="controls">
-                                                        <input type="radio" name="hidden" value="1" {if $item.hidden == 1}checked="checked"{/if}/> {lang('amt_yes')}
+                                                        <span class="m-r_15"><input type="radio" name="hidden" value="1" {if $item.hidden == 1}checked="checked"{/if}/> {lang('amt_yes')}</span>
                                                         <input type="radio" name="hidden" value="0" {if $item.hidden == 0}checked="checked"{/if}/> {lang('amt_no')}
                                                     </div>
                                                 </div>            
                                                 <div class="control-group">
                                                     <label class="control-label">{lang('amt_open_in_new_window')}:</label>
                                                     <div class="controls">
-                                                        <input type="radio" name="newpage" value="1" {if $data.newpage == 1}checked="checked"{/if}/> {lang('amt_yes')}
+                                                        <span class="m-r_15"><input type="radio" name="newpage" value="1" {if $data.newpage == 1}checked="checked"{/if}/> {lang('amt_yes')}</span>
                                                         <input type="radio" name="newpage" value="0" {if $data.newpage == 0}checked="checked"{/if}/> {lang('amt_no')}
                                                     </div>
                                                 </div>    
@@ -312,14 +312,14 @@
                                                 <div class="control-group">
                                                     <label class="control-label">{lang('amt_hide')}:</label>
                                                     <div class="controls">
-                                                        <input type="radio" name="hidden" value="1" {if $item.hidden == 1}checked="checked"{/if}/> {lang('amt_yes')}
+                                                        <span class="m-r_15"><input type="radio" name="hidden" value="1" {if $item.hidden == 1}checked="checked"{/if}/> {lang('amt_yes')}</span>
                                                         <input type="radio" name="hidden" value="0" {if $item.hidden == 0}checked="checked"{/if}/> {lang('amt_no')}
                                                     </div>
                                                 </div>            
                                                 <div class="control-group">
                                                     <label class="control-label">{lang('amt_open_in_new_window')}:</label>
                                                     <div class="controls">
-                                                        <input type="radio" name="newpage" value="1" {if $data.newpage == 1}checked="checked"{/if}/> {lang('amt_yes')}
+                                                        <span class="m-r_15"><input type="radio" name="newpage" value="1" {if $data.newpage == 1}checked="checked"{/if}/> {lang('amt_yes')}</span>
                                                         <input type="radio" name="newpage" value="0" {if $data.newpage == 0}checked="checked"{/if}/> {lang('amt_no')}
                                                     </div>
                                                 </div>    
@@ -460,14 +460,14 @@
                                                 <div class="control-group">
                                                     <label class="control-label">{lang('amt_hide')}:</label>
                                                     <div class="controls">
-                                                        <input type="radio" name="hidden" value="1" {if $item.hidden == 1}checked="checked"{/if}/> {lang('amt_yes')}
+                                                        <span class="m-r_15"><input type="radio" name="hidden" value="1" {if $item.hidden == 1}checked="checked"{/if}/> {lang('amt_yes')}</span>
                                                         <input type="radio" name="hidden" value="0" {if $item.hidden == 0}checked="checked"{/if}/> {lang('amt_no')}
                                                     </div>
                                                 </div>            
                                                 <div class="control-group">
                                                     <label class="control-label">{lang('amt_open_in_new_window')}:</label>
                                                     <div class="controls">
-                                                        <input type="radio" name="newpage" value="1" {if $data.newpage == 1}checked="checked"{/if}/> {lang('amt_yes')}
+                                                        <span class="m-r_15"><input type="radio" name="newpage" value="1" {if $data.newpage == 1}checked="checked"{/if}/> {lang('amt_yes')}</span>
                                                         <input type="radio" name="newpage" value="0" {if $data.newpage == 0}checked="checked"{/if}/> {lang('amt_no')}
                                                     </div>
                                                 </div>    
@@ -585,14 +585,14 @@
                                                 <div class="control-group">
                                                     <label class="control-label">{lang('amt_hide')}:</label>
                                                     <div class="controls">
-                                                        <input type="radio" name="hidden" value="1" {if $item.hidden == 1}checked="checked"{/if}/> {lang('amt_yes')}
+                                                        <span class="m-r_15"><input type="radio" name="hidden" value="1" {if $item.hidden == 1}checked="checked"{/if}/> {lang('amt_yes')}</span>
                                                         <input type="radio" name="hidden" value="0" {if $item.hidden == 0}checked="checked"{/if}/> {lang('amt_no')}
                                                     </div>
                                                 </div>            
                                                 <div class="control-group">
                                                     <label class="control-label">{lang('amt_open_in_new_window')}:</label>
                                                     <div class="controls">
-                                                        <input type="radio" name="newpage" value="1" {if $data.newpage == 1}checked="checked"{/if}/> {lang('amt_yes')}
+                                                        <span class="m-r_15"><input type="radio" name="newpage" value="1" {if $data.newpage == 1}checked="checked"{/if}/> {lang('amt_yes')}</span>
                                                         <input type="radio" name="newpage" value="0" {if $data.newpage == 0}checked="checked"{/if}/> {lang('amt_no')}
                                                     </div>
                                                 </div>    
