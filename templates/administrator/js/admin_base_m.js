@@ -193,9 +193,9 @@ function save_positions_variant(url) {
 }
 
 $(".save_positions_variant").live("sortstop", function(event, ui) {
-        var url = $(this).attr('data-url');
-        save_positions_variant(url);
-    });
+    var url = $(this).attr('data-url');
+    save_positions_variant(url);
+});
     
     
 var delete_functionS = new Object({
