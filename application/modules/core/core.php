@@ -886,7 +886,7 @@ class Core extends MY_Controller {
     /**
      * Set meta tags for pages
      */
-    public function set_meta_tags($title = '', $keywords = '', $description = '', $page_number = '',$showsitename=0) {
+    public function set_meta_tags($title = '', $keywords = '', $description = '', $page_number = '', $showsitename = 0, $category = '') {
         ($hook = get_hook('core_set_meta_tags')) ? eval($hook) : NULL;
         if ($this->core_data['data_type'] == 'main') {
             $this->template->add_array(array(
@@ -896,9 +896,14 @@ class Core extends MY_Controller {
                 'meta_noindex' => $this->_for_meta_noindex(),
             ));
         } else {
+            if ($this->settings['add_site_name_to_cat']){
+                $title .=  ' - ' . $category;
+            }
+            
             if ($this->core_data['data_type'] == 'page' AND $this->page_content['category'] != 0 AND $this->settings['add_site_name_to_cat']) {
                 $title .= ' ' . $this->settings['delimiter'] . ' ' . $this->cat_content['name'];
             }
+            
 
             if (is_array($title)) {
                 $n_title = '';
@@ -923,7 +928,7 @@ class Core extends MY_Controller {
                 'page_number' => $page_number,
                 'meta_noindex' => $this->_for_meta_noindex(),
             ));
-        }
+        }      
     }
 
     public function _for_meta_noindex() {

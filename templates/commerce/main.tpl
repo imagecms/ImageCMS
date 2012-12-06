@@ -38,12 +38,16 @@
             </div><!-- top -->
             <div class="header center">
 
-                <a href="{$BASE_URL}" class="logo"></a>
-            {$CI->load->module('mailer')}
+                <a href="{$BASE_URL}" class="logo">
+                    <img src="{$SHOP_THEME}/images/imagecms.png">
+                </a>
+                {$CI->load->module('mailer')}
                 <div class="frame_form_search">
                     <form action="{shop_url('search')}" method="get" class="clearfix">
                         <!--                        <input type="text" value="Поиск по сайту" name="text" />-->
-                        <input type="text" size="30" name="text" value="{lang('s_search')} {lang('s_po')} {lang('s_site')}" onfocus="if(this.value=='{lang('s_search')} {lang('s_po')} {lang('s_site')}') this.value='';" onblur="if(this.value=='') this.value='{lang('s_search')} {lang('s_po')} {lang('s_site')}';" />
+                        <input type="text" size="30" name="text" value="{lang('s_search')} {lang('s_po')} {lang('s_site')}" onfocus="if (this.value == '{lang('s_search')} {lang('s_po')} {lang('s_site')}')
+                                    this.value = '';" onblur="if (this.value == '')
+                                    this.value = '{lang('s_search')} {lang('s_po')} {lang('s_site')}';" />
                         <input type="submit" class="submit"  value="{lang('s_search')}" />
                         <div class="search_drop d_n">
                             <ul>
