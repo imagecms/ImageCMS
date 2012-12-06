@@ -294,7 +294,7 @@
     </div>
     <!--   Right sidebar     -->
 </div>
-{widget('latest_news')}  
+
 <!--   Promo products block     -->
 </div>
 <!--   Right sidebar     -->
