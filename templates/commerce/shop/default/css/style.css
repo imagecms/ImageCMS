@@ -134,7 +134,7 @@ img[align=left]{margin-right:18px;float: left;}
 .cart.is_avail a{border-bottom-color: #d80600;}
 .login{background: url('../images/icon_login.gif') 0 3px;}
 .header{height: 98px;position: relative;z-index: 3;}
-.header .logo{float: left; width: 173px; height: 47px; background: url('../images/imagecms.png'); display: block; margin-top: 26px;}
+.header .logo{float: left; width: 173px; height: 47px; display: block; margin-top: 26px;}
 .header .frame_form_search{float: left;margin: 38px 0 0 50px;position: relative;}
 .search_drop{position: absolute;top: 100%;left: 0;-moz-box-shadow: 0 6px 4px 0 rgba(0, 0, 0, 0.36);-webkit-box-shadow: 0 6px 4px 0 rgba(0, 0, 0, 0.36);box-shadow: 0 6px 4px 0 rgba(0, 0, 0, 0.36);-webkit-border-radius: 0 0 4px 4px;-moz-border-radius: 0 0 4px 4px;border-radius: 0 0 4px 4px;}
 .search_drop ul{overflow: hidden;width: 282px;border-bottom: 1px solid #d5d5d5;background-color: #fff;}
