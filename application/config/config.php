@@ -44,8 +44,8 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
-$db['default']['password'] = 'kolo90da90';
-$db['default']['database'] = 'its';
+$db['default']['password'] = '';
+$db['default']['database'] = 'imagecms';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = FALSE;
