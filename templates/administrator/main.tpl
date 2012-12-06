@@ -9,10 +9,6 @@
 
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap_complete.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/style.css">
-        <!--
-        <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap-responsive.css">
-        <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap-notify.css">
--->
 
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery-ui-1.8.16.custom.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery.ui.1.8.16.ie.css">
@@ -159,7 +155,6 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="/admin/settings" class="pjax">{lang('a_sett_global_sett_menu')}</a></li>
                                     <li><a href="/admin/components/cp/template_editor" class="pjax">Редактор шаблонов</a></li>
-                                    <li><a href="/admin/languages" class="pjax">{lang('a_languages')}</a></li>
                                     <li><a href="/admin/cache_all" class="pjax">{lang('a_cache')}</a></li>
 
                                     <li class="divider"></li>
