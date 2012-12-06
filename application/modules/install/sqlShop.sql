@@ -3866,15 +3866,6 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=70 ;
 
 --
--- Дамп данных таблицы `users`
---
-
-INSERT INTO `users` (`id`, `role_id`, `username`, `password`, `email`, `banned`, `ban_reason`, `newpass`, `newpass_key`, `newpass_time`, `last_ip`, `last_login`, `created`, `modified`, `address`, `cart_data`, `wish_list_data`, `key`, `amout`, `discount`, `phone`) VALUES
-(1, 10, 'admin', '$6$FuIQPqkk$sn2TmnbycqEpuXBmqYQ9gkYZWq3EylhZaWt1HKbFJ1ETaQP09UIM.KtKcRfjMyYeETdT/mIMwoKu2tNz8Clig/', 'admin@m.cc', 0, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 2012, '2012-11-19 16:33:25', 'Львів, Пасічна ', 'a:0:{}', 'a:0:{}', '3', 0.00, NULL, '093 00 00 000');
-
--- --------------------------------------------------------
-
---
 -- Структура таблицы `user_autologin`
 --
 
