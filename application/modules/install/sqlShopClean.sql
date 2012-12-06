@@ -489,8 +489,7 @@ CREATE TABLE IF NOT EXISTS `languages` (
 --
 
 INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `template`, `default`) VALUES
-(3, 'Русский', 'ru', '', 'russian', 'commerce', 1),
-(30, 'English', 'en', '', 'english', 'commerce', 0);
+(3, 'Русский', 'ru', '', 'russian', 'commerce', 1);
 
 -- --------------------------------------------------------
 
