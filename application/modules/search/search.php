@@ -178,7 +178,6 @@ class Search extends MY_Controller {
         if (sizeof($positions) == 0)
             return false;
         
-        var_dumps($positions);
         foreach ($positions as $key => $val) {
             $query = "UPDATE `shop_product_variants` SET `position`=" . $key . " WHERE `id`=" . (int) $val . "; ";
             $this->db->query($query);
