@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.11.1deb1
+-- version 3.5.4
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Час створення: Гру 06 2012 р., 12:03
--- Версія сервера: 5.5.28
--- Версія PHP: 5.4.6-1ubuntu1.1
+-- Время создания: Дек 06 2012 г., 13:43
+-- Версия сервера: 5.5.25a-log
+-- Версия PHP: 5.3.15
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- БД: `imagecms`
+-- База данных: `its`
 --
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `category`
+-- Структура таблицы `category`
 --
 
 CREATE TABLE IF NOT EXISTS `category` (
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `category` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=67 ;
 
 --
--- Дамп даних таблиці `category`
+-- Дамп данных таблицы `category`
 --
 
 INSERT INTO `category` (`id`, `parent_id`, `position`, `name`, `title`, `short_desc`, `url`, `image`, `keywords`, `description`, `fetch_pages`, `main_tpl`, `tpl`, `page_tpl`, `per_page`, `order_by`, `sort_order`, `comments_default`, `field_group`, `category_field_group`, `settings`) VALUES
@@ -63,7 +63,7 @@ INSERT INTO `category` (`id`, `parent_id`, `position`, `name`, `title`, `short_d
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `category_translate`
+-- Структура таблицы `category_translate`
 --
 
 CREATE TABLE IF NOT EXISTS `category_translate` (
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `category_translate` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `comments`
+-- Структура таблицы `comments`
 --
 
 CREATE TABLE IF NOT EXISTS `comments` (
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=66 ;
 
 --
--- Дамп даних таблиці `comments`
+-- Дамп данных таблицы `comments`
 --
 
 INSERT INTO `comments` (`id`, `module`, `user_id`, `user_name`, `user_mail`, `user_site`, `item_id`, `text`, `date`, `status`, `agent`, `user_ip`, `rate`, `text_plus`, `text_minus`, `like`, `disslike`, `parent`) VALUES
@@ -121,7 +121,7 @@ INSERT INTO `comments` (`id`, `module`, `user_id`, `user_name`, `user_mail`, `us
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `components`
+-- Структура таблицы `components`
 --
 
 CREATE TABLE IF NOT EXISTS `components` (
@@ -141,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `components` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=132 ;
 
 --
--- Дамп даних таблиці `components`
+-- Дамп данных таблицы `components`
 --
 
 INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_menu`, `settings`, `position`) VALUES
@@ -152,7 +152,6 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (30, 'tags', 'tags', 1, 1, 1, NULL, 5),
 (92, 'gallery', 'gallery', 1, 0, 1, 'a:26:{s:13:"max_file_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:2:"95";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:0;s:14:"prev_img_width";s:3:"500";s:15:"prev_img_height";s:3:"500";s:11:"thumb_width";s:3:"100";s:12:"thumb_height";s:3:"100";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:19:"watermark_font_path";s:20:"./system/fonts/1.ttf";s:15:"watermark_image";s:0:"";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";}', 6),
 (55, 'rss', 'rss', 1, 0, 1, 'a:5:{s:5:"title";s:9:"Image CMS";s:11:"description";s:35:"Тестируем модуль RSS";s:10:"categories";a:1:{i:0;s:1:"3";}s:9:"cache_ttl";i:60;s:11:"pages_count";i:10;}', 7),
-(72, 'imagebox', 'imagebox', 0, 1, 0, 'a:6:{s:9:"max_width";i:800;s:10:"max_height";i:600;s:11:"thumb_width";i:100;s:12:"thumb_height";i:100;s:14:"maintain_ratio";b:1;s:7:"quality";s:3:"95%";}', 8),
 (60, 'menu', 'menu', 0, 1, 1, NULL, 9),
 (58, 'sitemap', 'sitemap', 1, 0, 1, 'a:5:{s:18:"main_page_priority";s:1:"1";s:13:"cats_priority";s:3:"0.9";s:14:"pages_priority";s:3:"0.5";s:20:"main_page_changefreq";s:6:"weekly";s:16:"pages_changefreq";s:7:"monthly";}', 10),
 (80, 'search', 'search', 1, 0, 0, NULL, 11),
@@ -162,13 +161,12 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (95, 'filter', 'filter', 1, 0, 0, NULL, 15),
 (96, 'cfcm', 'cfcm', 0, 0, 0, NULL, 16),
 (121, 'shop', 'shop', 1, 0, 0, NULL, 17),
-(123, 'share', 'share', 0, 0, 0, NULL, 18),
-(131, 'user_support', 'user_support', 1, 0, 0, NULL, NULL);
+(123, 'share', 'share', 0, 0, 0, NULL, 18);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `content`
+-- Структура таблицы `content`
 --
 
 CREATE TABLE IF NOT EXISTS `content` (
@@ -207,7 +205,7 @@ CREATE TABLE IF NOT EXISTS `content` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=87 ;
 
 --
--- Дамп даних таблиці `content`
+-- Дамп данных таблицы `content`
 --
 
 INSERT INTO `content` (`id`, `title`, `meta_title`, `url`, `cat_url`, `keywords`, `description`, `prev_text`, `full_text`, `category`, `full_tpl`, `main_tpl`, `position`, `comments_status`, `comments_count`, `post_status`, `author`, `publish_date`, `created`, `updated`, `showed`, `lang`, `lang_alias`) VALUES
@@ -227,7 +225,7 @@ INSERT INTO `content` (`id`, `title`, `meta_title`, `url`, `cat_url`, `keywords`
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `content_fields`
+-- Структура таблицы `content_fields`
 --
 
 CREATE TABLE IF NOT EXISTS `content_fields` (
@@ -244,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `content_fields` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `content_fields`
+-- Дамп данных таблицы `content_fields`
 --
 
 INSERT INTO `content_fields` (`field_name`, `type`, `label`, `data`, `weight`, `in_search`) VALUES
@@ -253,7 +251,7 @@ INSERT INTO `content_fields` (`field_name`, `type`, `label`, `data`, `weight`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `content_fields_data`
+-- Структура таблицы `content_fields_data`
 --
 
 CREATE TABLE IF NOT EXISTS `content_fields_data` (
@@ -271,7 +269,7 @@ CREATE TABLE IF NOT EXISTS `content_fields_data` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `content_fields_groups_relations`
+-- Структура таблицы `content_fields_groups_relations`
 --
 
 CREATE TABLE IF NOT EXISTS `content_fields_groups_relations` (
@@ -280,7 +278,7 @@ CREATE TABLE IF NOT EXISTS `content_fields_groups_relations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Дамп даних таблиці `content_fields_groups_relations`
+-- Дамп данных таблицы `content_fields_groups_relations`
 --
 
 INSERT INTO `content_fields_groups_relations` (`field_name`, `group_id`) VALUES
@@ -294,7 +292,7 @@ INSERT INTO `content_fields_groups_relations` (`field_name`, `group_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `content_field_groups`
+-- Структура таблицы `content_field_groups`
 --
 
 CREATE TABLE IF NOT EXISTS `content_field_groups` (
@@ -306,7 +304,7 @@ CREATE TABLE IF NOT EXISTS `content_field_groups` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
--- Дамп даних таблиці `content_field_groups`
+-- Дамп данных таблицы `content_field_groups`
 --
 
 INSERT INTO `content_field_groups` (`id`, `name`, `description`) VALUES
@@ -317,7 +315,7 @@ INSERT INTO `content_field_groups` (`id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `content_permissions`
+-- Структура таблицы `content_permissions`
 --
 
 CREATE TABLE IF NOT EXISTS `content_permissions` (
@@ -329,7 +327,7 @@ CREATE TABLE IF NOT EXISTS `content_permissions` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
 
 --
--- Дамп даних таблиці `content_permissions`
+-- Дамп данных таблицы `content_permissions`
 --
 
 INSERT INTO `content_permissions` (`id`, `page_id`, `data`) VALUES
@@ -339,7 +337,7 @@ INSERT INTO `content_permissions` (`id`, `page_id`, `data`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `content_tags`
+-- Структура таблицы `content_tags`
 --
 
 CREATE TABLE IF NOT EXISTS `content_tags` (
@@ -354,7 +352,7 @@ CREATE TABLE IF NOT EXISTS `content_tags` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `custom_fields`
+-- Структура таблицы `custom_fields`
 --
 
 CREATE TABLE IF NOT EXISTS `custom_fields` (
@@ -375,7 +373,7 @@ CREATE TABLE IF NOT EXISTS `custom_fields` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Дамп даних таблиці `custom_fields`
+-- Дамп данных таблицы `custom_fields`
 --
 
 INSERT INTO `custom_fields` (`id`, `field_type_id`, `field_name`, `field_label`, `field_description`, `is_required`, `is_active`, `is_private`, `possible_values`, `validators`, `field_access_rules`, `entity`, `options`) VALUES
@@ -384,7 +382,7 @@ INSERT INTO `custom_fields` (`id`, `field_type_id`, `field_name`, `field_label`,
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `custom_fields_data`
+-- Структура таблицы `custom_fields_data`
 --
 
 CREATE TABLE IF NOT EXISTS `custom_fields_data` (
@@ -396,7 +394,7 @@ CREATE TABLE IF NOT EXISTS `custom_fields_data` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Дамп даних таблиці `custom_fields_data`
+-- Дамп данных таблицы `custom_fields_data`
 --
 
 INSERT INTO `custom_fields_data` (`id`, `field_id`, `entity_id`, `field_data`) VALUES
@@ -405,7 +403,7 @@ INSERT INTO `custom_fields_data` (`id`, `field_id`, `entity_id`, `field_data`) V
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `gallery_albums`
+-- Структура таблицы `gallery_albums`
 --
 
 CREATE TABLE IF NOT EXISTS `gallery_albums` (
@@ -424,7 +422,7 @@ CREATE TABLE IF NOT EXISTS `gallery_albums` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 --
--- Дамп даних таблиці `gallery_albums`
+-- Дамп данных таблицы `gallery_albums`
 --
 
 INSERT INTO `gallery_albums` (`id`, `category_id`, `name`, `description`, `cover_id`, `position`, `created`, `updated`, `tpl_file`) VALUES
@@ -442,7 +440,7 @@ INSERT INTO `gallery_albums` (`id`, `category_id`, `name`, `description`, `cover
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `gallery_category`
+-- Структура таблицы `gallery_category`
 --
 
 CREATE TABLE IF NOT EXISTS `gallery_category` (
@@ -458,7 +456,7 @@ CREATE TABLE IF NOT EXISTS `gallery_category` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Дамп даних таблиці `gallery_category`
+-- Дамп данных таблицы `gallery_category`
 --
 
 INSERT INTO `gallery_category` (`id`, `name`, `description`, `cover_id`, `position`, `created`) VALUES
@@ -468,7 +466,7 @@ INSERT INTO `gallery_category` (`id`, `name`, `description`, `cover_id`, `positi
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `gallery_images`
+-- Структура таблицы `gallery_images`
 --
 
 CREATE TABLE IF NOT EXISTS `gallery_images` (
@@ -491,7 +489,7 @@ CREATE TABLE IF NOT EXISTS `gallery_images` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `languages`
+-- Структура таблицы `languages`
 --
 
 CREATE TABLE IF NOT EXISTS `languages` (
@@ -508,17 +506,16 @@ CREATE TABLE IF NOT EXISTS `languages` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
 
 --
--- Дамп даних таблиці `languages`
+-- Дамп данных таблицы `languages`
 --
 
 INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `template`, `default`) VALUES
-(3, 'Русский', 'ru', '', 'russian', 'commerce', 1),
-(30, 'English', 'en', '', 'english', 'commerce', 0);
+(3, 'Русский', 'ru', '', 'russian', 'commerce', 1);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `login_attempts`
+-- Структура таблицы `login_attempts`
 --
 
 CREATE TABLE IF NOT EXISTS `login_attempts` (
@@ -533,7 +530,7 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `logs`
+-- Структура таблицы `logs`
 --
 
 CREATE TABLE IF NOT EXISTS `logs` (
@@ -547,7 +544,7 @@ CREATE TABLE IF NOT EXISTS `logs` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=471 ;
 
 --
--- Дамп даних таблиці `logs`
+-- Дамп данных таблицы `logs`
 --
 
 INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
@@ -1025,7 +1022,7 @@ INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mail`
+-- Структура таблицы `mail`
 --
 
 CREATE TABLE IF NOT EXISTS `mail` (
@@ -1038,7 +1035,7 @@ CREATE TABLE IF NOT EXISTS `mail` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `menus`
+-- Структура таблицы `menus`
 --
 
 CREATE TABLE IF NOT EXISTS `menus` (
@@ -1054,7 +1051,7 @@ CREATE TABLE IF NOT EXISTS `menus` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
--- Дамп даних таблиці `menus`
+-- Дамп данных таблицы `menus`
 --
 
 INSERT INTO `menus` (`id`, `name`, `main_title`, `tpl`, `expand_level`, `description`, `created`) VALUES
@@ -1065,7 +1062,7 @@ INSERT INTO `menus` (`id`, `name`, `main_title`, `tpl`, `expand_level`, `descrip
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `menus_data`
+-- Структура таблицы `menus_data`
 --
 
 CREATE TABLE IF NOT EXISTS `menus_data` (
@@ -1087,7 +1084,7 @@ CREATE TABLE IF NOT EXISTS `menus_data` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
 
 --
--- Дамп даних таблиці `menus_data`
+-- Дамп данных таблицы `menus_data`
 --
 
 INSERT INTO `menus_data` (`id`, `menu_id`, `item_id`, `item_type`, `item_image`, `roles`, `hidden`, `title`, `parent_id`, `position`, `description`, `add_data`) VALUES
@@ -1116,7 +1113,7 @@ INSERT INTO `menus_data` (`id`, `menu_id`, `item_id`, `item_type`, `item_image`,
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `menu_translate`
+-- Структура таблицы `menu_translate`
 --
 
 CREATE TABLE IF NOT EXISTS `menu_translate` (
@@ -1130,7 +1127,7 @@ CREATE TABLE IF NOT EXISTS `menu_translate` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=52 ;
 
 --
--- Дамп даних таблиці `menu_translate`
+-- Дамп данных таблицы `menu_translate`
 --
 
 INSERT INTO `menu_translate` (`id`, `item_id`, `lang_id`, `title`) VALUES
@@ -1178,7 +1175,7 @@ INSERT INTO `menu_translate` (`id`, `item_id`, `lang_id`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `permissions`
+-- Структура таблицы `permissions`
 --
 
 CREATE TABLE IF NOT EXISTS `permissions` (
@@ -1190,7 +1187,7 @@ CREATE TABLE IF NOT EXISTS `permissions` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Дамп даних таблиці `permissions`
+-- Дамп данных таблицы `permissions`
 --
 
 INSERT INTO `permissions` (`id`, `role_id`, `data`) VALUES
@@ -1199,7 +1196,7 @@ INSERT INTO `permissions` (`id`, `role_id`, `data`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `propel_migration`
+-- Структура таблицы `propel_migration`
 --
 
 CREATE TABLE IF NOT EXISTS `propel_migration` (
@@ -1207,7 +1204,7 @@ CREATE TABLE IF NOT EXISTS `propel_migration` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `propel_migration`
+-- Дамп данных таблицы `propel_migration`
 --
 
 INSERT INTO `propel_migration` (`version`) VALUES
@@ -1216,7 +1213,7 @@ INSERT INTO `propel_migration` (`version`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `roles`
+-- Структура таблицы `roles`
 --
 
 CREATE TABLE IF NOT EXISTS `roles` (
@@ -1231,7 +1228,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=78 ;
 
 --
--- Дамп даних таблиці `roles`
+-- Дамп данных таблицы `roles`
 --
 
 INSERT INTO `roles` (`id`, `parent_id`, `name`, `alt_name`, `desc`) VALUES
@@ -1242,7 +1239,7 @@ INSERT INTO `roles` (`id`, `parent_id`, `name`, `alt_name`, `desc`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `search`
+-- Структура таблицы `search`
 --
 
 CREATE TABLE IF NOT EXISTS `search` (
@@ -1265,7 +1262,7 @@ CREATE TABLE IF NOT EXISTS `search` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `settings`
+-- Структура таблицы `settings`
 --
 
 CREATE TABLE IF NOT EXISTS `settings` (
@@ -1301,16 +1298,16 @@ CREATE TABLE IF NOT EXISTS `settings` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Дамп даних таблиці `settings`
+-- Дамп данных таблицы `settings`
 --
 
 INSERT INTO `settings` (`id`, `s_name`, `site_title`, `site_short_title`, `site_description`, `site_keywords`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`) VALUES
-(2, 'main', '', 'ImageCMS', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'commerce', 'no', '', 'module', 69, '63', 'shop', '', '', 'russian_lang', '', '', '');
+(2, 'main', 'sss', 'ImageCMS', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'commerce', 'no', '', 'module', 69, '63', 'shop', '', '', 'russian_lang', '', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_banners`
+-- Структура таблицы `shop_banners`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_banners` (
@@ -1321,7 +1318,7 @@ CREATE TABLE IF NOT EXISTS `shop_banners` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Дамп даних таблиці `shop_banners`
+-- Дамп данных таблицы `shop_banners`
 --
 
 INSERT INTO `shop_banners` (`id`, `position`) VALUES
@@ -1332,7 +1329,7 @@ INSERT INTO `shop_banners` (`id`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_banners_i18n`
+-- Структура таблицы `shop_banners_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_banners_i18n` (
@@ -1346,7 +1343,7 @@ CREATE TABLE IF NOT EXISTS `shop_banners_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_banners_i18n`
+-- Дамп данных таблицы `shop_banners_i18n`
 --
 
 INSERT INTO `shop_banners_i18n` (`id`, `locale`, `name`, `text`, `url`, `image`) VALUES
@@ -1362,7 +1359,7 @@ INSERT INTO `shop_banners_i18n` (`id`, `locale`, `name`, `text`, `url`, `image`)
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_brands`
+-- Структура таблицы `shop_brands`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_brands` (
@@ -1375,7 +1372,7 @@ CREATE TABLE IF NOT EXISTS `shop_brands` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
 
 --
--- Дамп даних таблиці `shop_brands`
+-- Дамп данных таблицы `shop_brands`
 --
 
 INSERT INTO `shop_brands` (`id`, `url`, `image`) VALUES
@@ -1390,7 +1387,7 @@ INSERT INTO `shop_brands` (`id`, `url`, `image`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_brands_i18n`
+-- Структура таблицы `shop_brands_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_brands_i18n` (
@@ -1406,7 +1403,7 @@ CREATE TABLE IF NOT EXISTS `shop_brands_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_brands_i18n`
+-- Дамп данных таблицы `shop_brands_i18n`
 --
 
 INSERT INTO `shop_brands_i18n` (`id`, `locale`, `name`, `description`, `meta_title`, `meta_description`, `meta_keywords`) VALUES
@@ -1428,7 +1425,7 @@ INSERT INTO `shop_brands_i18n` (`id`, `locale`, `name`, `description`, `meta_tit
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_callbacks`
+-- Структура таблицы `shop_callbacks`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_callbacks` (
@@ -1450,7 +1447,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_callbacks_statuses`
+-- Структура таблицы `shop_callbacks_statuses`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_callbacks_statuses` (
@@ -1460,7 +1457,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_statuses` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
--- Дамп даних таблиці `shop_callbacks_statuses`
+-- Дамп данных таблицы `shop_callbacks_statuses`
 --
 
 INSERT INTO `shop_callbacks_statuses` (`id`, `is_default`) VALUES
@@ -1470,7 +1467,7 @@ INSERT INTO `shop_callbacks_statuses` (`id`, `is_default`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_callbacks_statuses_i18n`
+-- Структура таблицы `shop_callbacks_statuses_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_callbacks_statuses_i18n` (
@@ -1482,7 +1479,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_statuses_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_callbacks_statuses_i18n`
+-- Дамп данных таблицы `shop_callbacks_statuses_i18n`
 --
 
 INSERT INTO `shop_callbacks_statuses_i18n` (`id`, `locale`, `text`) VALUES
@@ -1492,7 +1489,7 @@ INSERT INTO `shop_callbacks_statuses_i18n` (`id`, `locale`, `text`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_callbacks_themes`
+-- Структура таблицы `shop_callbacks_themes`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_callbacks_themes` (
@@ -1502,7 +1499,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_themes` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
--- Дамп даних таблиці `shop_callbacks_themes`
+-- Дамп данных таблицы `shop_callbacks_themes`
 --
 
 INSERT INTO `shop_callbacks_themes` (`id`, `position`) VALUES
@@ -1511,7 +1508,7 @@ INSERT INTO `shop_callbacks_themes` (`id`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_callbacks_themes_i18n`
+-- Структура таблицы `shop_callbacks_themes_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_callbacks_themes_i18n` (
@@ -1523,7 +1520,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_themes_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_callbacks_themes_i18n`
+-- Дамп данных таблицы `shop_callbacks_themes_i18n`
 --
 
 INSERT INTO `shop_callbacks_themes_i18n` (`id`, `locale`, `text`) VALUES
@@ -1533,7 +1530,7 @@ INSERT INTO `shop_callbacks_themes_i18n` (`id`, `locale`, `text`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_category`
+-- Структура таблицы `shop_category`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_category` (
@@ -1558,7 +1555,7 @@ CREATE TABLE IF NOT EXISTS `shop_category` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=74 ;
 
 --
--- Дамп даних таблиці `shop_category`
+-- Дамп данных таблицы `shop_category`
 --
 
 INSERT INTO `shop_category` (`id`, `url`, `parent_id`, `position`, `full_path`, `full_path_ids`, `active`, `external_id`, `image`, `tpl`, `order_method`, `showsitetitle`) VALUES
@@ -1583,7 +1580,7 @@ INSERT INTO `shop_category` (`id`, `url`, `parent_id`, `position`, `full_path`, 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_category_i18n`
+-- Структура таблицы `shop_category_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_category_i18n` (
@@ -1600,7 +1597,7 @@ CREATE TABLE IF NOT EXISTS `shop_category_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_category_i18n`
+-- Дамп данных таблицы `shop_category_i18n`
 --
 
 INSERT INTO `shop_category_i18n` (`id`, `locale`, `name`, `h1`, `description`, `meta_desc`, `meta_title`, `meta_keywords`) VALUES
@@ -1643,7 +1640,7 @@ INSERT INTO `shop_category_i18n` (`id`, `locale`, `name`, `h1`, `description`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_comulativ_discount`
+-- Структура таблицы `shop_comulativ_discount`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_comulativ_discount` (
@@ -1658,7 +1655,7 @@ CREATE TABLE IF NOT EXISTS `shop_comulativ_discount` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
--- Дамп даних таблиці `shop_comulativ_discount`
+-- Дамп данных таблицы `shop_comulativ_discount`
 --
 
 INSERT INTO `shop_comulativ_discount` (`id`, `description`, `discount`, `active`, `date`, `total`, `total_a`) VALUES
@@ -1672,7 +1669,7 @@ INSERT INTO `shop_comulativ_discount` (`id`, `description`, `discount`, `active`
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_currencies`
+-- Структура таблицы `shop_currencies`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_currencies` (
@@ -1690,7 +1687,7 @@ CREATE TABLE IF NOT EXISTS `shop_currencies` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп даних таблиці `shop_currencies`
+-- Дамп данных таблицы `shop_currencies`
 --
 
 INSERT INTO `shop_currencies` (`id`, `name`, `main`, `is_default`, `code`, `symbol`, `rate`) VALUES
@@ -1700,7 +1697,7 @@ INSERT INTO `shop_currencies` (`id`, `name`, `main`, `is_default`, `code`, `symb
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_delivery_methods`
+-- Структура таблицы `shop_delivery_methods`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_delivery_methods` (
@@ -1715,7 +1712,7 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
 
 --
--- Дамп даних таблиці `shop_delivery_methods`
+-- Дамп данных таблицы `shop_delivery_methods`
 --
 
 INSERT INTO `shop_delivery_methods` (`id`, `price`, `free_from`, `enabled`, `is_price_in_percent`) VALUES
@@ -1731,7 +1728,7 @@ INSERT INTO `shop_delivery_methods` (`id`, `price`, `free_from`, `enabled`, `is_
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_delivery_methods_i18n`
+-- Структура таблицы `shop_delivery_methods_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_delivery_methods_i18n` (
@@ -1745,7 +1742,7 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_delivery_methods_i18n`
+-- Дамп данных таблицы `shop_delivery_methods_i18n`
 --
 
 INSERT INTO `shop_delivery_methods_i18n` (`id`, `locale`, `name`, `description`, `pricedescription`) VALUES
@@ -1762,7 +1759,7 @@ INSERT INTO `shop_delivery_methods_i18n` (`id`, `locale`, `name`, `description`,
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_delivery_methods_systems`
+-- Структура таблицы `shop_delivery_methods_systems`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_delivery_methods_systems` (
@@ -1773,7 +1770,7 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods_systems` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_delivery_methods_systems`
+-- Дамп данных таблицы `shop_delivery_methods_systems`
 --
 
 INSERT INTO `shop_delivery_methods_systems` (`delivery_method_id`, `payment_method_id`) VALUES
@@ -1809,7 +1806,7 @@ INSERT INTO `shop_delivery_methods_systems` (`delivery_method_id`, `payment_meth
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_discounts`
+-- Структура таблицы `shop_discounts`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_discounts` (
@@ -1829,7 +1826,7 @@ CREATE TABLE IF NOT EXISTS `shop_discounts` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
--- Дамп даних таблиці `shop_discounts`
+-- Дамп данных таблицы `shop_discounts`
 --
 
 INSERT INTO `shop_discounts` (`id`, `name`, `active`, `date_start`, `date_stop`, `discount`, `min_price`, `max_price`, `categories`, `products`, `description`, `user_group`) VALUES
@@ -1838,7 +1835,7 @@ INSERT INTO `shop_discounts` (`id`, `name`, `active`, `date_start`, `date_stop`,
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_gifts`
+-- Структура таблицы `shop_gifts`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_gifts` (
@@ -1852,7 +1849,7 @@ CREATE TABLE IF NOT EXISTS `shop_gifts` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп даних таблиці `shop_gifts`
+-- Дамп данных таблицы `shop_gifts`
 --
 
 INSERT INTO `shop_gifts` (`id`, `key`, `active`, `price`, `created`, `espdate`) VALUES
@@ -1863,7 +1860,7 @@ INSERT INTO `shop_gifts` (`id`, `key`, `active`, `price`, `created`, `espdate`) 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_kit`
+-- Структура таблицы `shop_kit`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_kit` (
@@ -1876,7 +1873,7 @@ CREATE TABLE IF NOT EXISTS `shop_kit` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
--- Дамп даних таблиці `shop_kit`
+-- Дамп данных таблицы `shop_kit`
 --
 
 INSERT INTO `shop_kit` (`id`, `product_id`, `active`, `position`) VALUES
@@ -1887,7 +1884,7 @@ INSERT INTO `shop_kit` (`id`, `product_id`, `active`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_kit_product`
+-- Структура таблицы `shop_kit_product`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_kit_product` (
@@ -1899,7 +1896,7 @@ CREATE TABLE IF NOT EXISTS `shop_kit_product` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_kit_product`
+-- Дамп данных таблицы `shop_kit_product`
 --
 
 INSERT INTO `shop_kit_product` (`product_id`, `kit_id`, `discount`) VALUES
@@ -1910,7 +1907,7 @@ INSERT INTO `shop_kit_product` (`product_id`, `kit_id`, `discount`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_notifications`
+-- Структура таблицы `shop_notifications`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_notifications` (
@@ -1939,7 +1936,7 @@ CREATE TABLE IF NOT EXISTS `shop_notifications` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_notification_statuses`
+-- Структура таблицы `shop_notification_statuses`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_notification_statuses` (
@@ -1951,7 +1948,7 @@ CREATE TABLE IF NOT EXISTS `shop_notification_statuses` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Дамп даних таблиці `shop_notification_statuses`
+-- Дамп данных таблицы `shop_notification_statuses`
 --
 
 INSERT INTO `shop_notification_statuses` (`id`, `position`) VALUES
@@ -1961,7 +1958,7 @@ INSERT INTO `shop_notification_statuses` (`id`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_notification_statuses_i18n`
+-- Структура таблицы `shop_notification_statuses_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_notification_statuses_i18n` (
@@ -1973,7 +1970,7 @@ CREATE TABLE IF NOT EXISTS `shop_notification_statuses_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_notification_statuses_i18n`
+-- Дамп данных таблицы `shop_notification_statuses_i18n`
 --
 
 INSERT INTO `shop_notification_statuses_i18n` (`id`, `locale`, `name`) VALUES
@@ -1983,7 +1980,7 @@ INSERT INTO `shop_notification_statuses_i18n` (`id`, `locale`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_orders`
+-- Структура таблицы `shop_orders`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_orders` (
@@ -2017,7 +2014,7 @@ CREATE TABLE IF NOT EXISTS `shop_orders` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
 
 --
--- Дамп даних таблиці `shop_orders`
+-- Дамп данных таблицы `shop_orders`
 --
 
 INSERT INTO `shop_orders` (`id`, `key`, `delivery_method`, `delivery_price`, `status`, `paid`, `user_full_name`, `user_email`, `user_phone`, `user_deliver_to`, `user_comment`, `date_created`, `date_updated`, `user_ip`, `user_id`, `payment_method`, `total_price`, `external_id`, `gift_cert_key`, `gift_cert_price`, `comulativ`) VALUES
@@ -2028,7 +2025,7 @@ INSERT INTO `shop_orders` (`id`, `key`, `delivery_method`, `delivery_price`, `st
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_orders_products`
+-- Структура таблицы `shop_orders_products`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_orders_products` (
@@ -2048,7 +2045,7 @@ CREATE TABLE IF NOT EXISTS `shop_orders_products` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=38 ;
 
 --
--- Дамп даних таблиці `shop_orders_products`
+-- Дамп данных таблицы `shop_orders_products`
 --
 
 INSERT INTO `shop_orders_products` (`id`, `order_id`, `product_id`, `variant_id`, `product_name`, `variant_name`, `price`, `quantity`, `kit_id`, `is_main`) VALUES
@@ -2059,7 +2056,7 @@ INSERT INTO `shop_orders_products` (`id`, `order_id`, `product_id`, `variant_id`
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_orders_status_history`
+-- Структура таблицы `shop_orders_status_history`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_orders_status_history` (
@@ -2077,7 +2074,7 @@ CREATE TABLE IF NOT EXISTS `shop_orders_status_history` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_order_statuses`
+-- Структура таблицы `shop_order_statuses`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_order_statuses` (
@@ -2089,7 +2086,7 @@ CREATE TABLE IF NOT EXISTS `shop_order_statuses` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
--- Дамп даних таблиці `shop_order_statuses`
+-- Дамп данных таблицы `shop_order_statuses`
 --
 
 INSERT INTO `shop_order_statuses` (`id`, `position`) VALUES
@@ -2099,7 +2096,7 @@ INSERT INTO `shop_order_statuses` (`id`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_order_statuses_i18n`
+-- Структура таблицы `shop_order_statuses_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_order_statuses_i18n` (
@@ -2111,7 +2108,7 @@ CREATE TABLE IF NOT EXISTS `shop_order_statuses_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_order_statuses_i18n`
+-- Дамп данных таблицы `shop_order_statuses_i18n`
 --
 
 INSERT INTO `shop_order_statuses_i18n` (`id`, `locale`, `name`) VALUES
@@ -2121,7 +2118,7 @@ INSERT INTO `shop_order_statuses_i18n` (`id`, `locale`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_payment_methods`
+-- Структура таблицы `shop_payment_methods`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_payment_methods` (
@@ -2137,7 +2134,7 @@ CREATE TABLE IF NOT EXISTS `shop_payment_methods` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Дамп даних таблиці `shop_payment_methods`
+-- Дамп данных таблицы `shop_payment_methods`
 --
 
 INSERT INTO `shop_payment_methods` (`id`, `active`, `currency_id`, `position`, `payment_system_name`) VALUES
@@ -2149,7 +2146,7 @@ INSERT INTO `shop_payment_methods` (`id`, `active`, `currency_id`, `position`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_payment_methods_i18n`
+-- Структура таблицы `shop_payment_methods_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_payment_methods_i18n` (
@@ -2162,7 +2159,7 @@ CREATE TABLE IF NOT EXISTS `shop_payment_methods_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_payment_methods_i18n`
+-- Дамп данных таблицы `shop_payment_methods_i18n`
 --
 
 INSERT INTO `shop_payment_methods_i18n` (`id`, `locale`, `name`, `description`) VALUES
@@ -2178,7 +2175,7 @@ INSERT INTO `shop_payment_methods_i18n` (`id`, `locale`, `name`, `description`) 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_products`
+-- Структура таблицы `shop_products`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_products` (
@@ -2212,7 +2209,7 @@ CREATE TABLE IF NOT EXISTS `shop_products` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=185 ;
 
 --
--- Дамп даних таблиці `shop_products`
+-- Дамп данных таблицы `shop_products`
 --
 
 INSERT INTO `shop_products` (`id`, `url`, `active`, `hit`, `brand_id`, `category_id`, `related_products`, `mainImage`, `smallImage`, `created`, `updated`, `old_price`, `views`, `hot`, `action`, `added_to_cart_count`, `enable_comments`, `external_id`, `mainModImage`, `smallModImage`, `tpl`, `user_id`) VALUES
@@ -2270,7 +2267,7 @@ INSERT INTO `shop_products` (`id`, `url`, `active`, `hit`, `brand_id`, `category
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_products_i18n`
+-- Структура таблицы `shop_products_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_products_i18n` (
@@ -2287,7 +2284,7 @@ CREATE TABLE IF NOT EXISTS `shop_products_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_products_i18n`
+-- Дамп данных таблицы `shop_products_i18n`
 --
 
 INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `full_description`, `meta_title`, `meta_description`, `meta_keywords`) VALUES
@@ -2397,7 +2394,7 @@ INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_products_rating`
+-- Структура таблицы `shop_products_rating`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_products_rating` (
@@ -2408,7 +2405,7 @@ CREATE TABLE IF NOT EXISTS `shop_products_rating` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_products_rating`
+-- Дамп данных таблицы `shop_products_rating`
 --
 
 INSERT INTO `shop_products_rating` (`product_id`, `votes`, `rating`) VALUES
@@ -2429,7 +2426,7 @@ INSERT INTO `shop_products_rating` (`product_id`, `votes`, `rating`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_product_categories`
+-- Структура таблицы `shop_product_categories`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_product_categories` (
@@ -2440,7 +2437,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_categories` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_product_categories`
+-- Дамп данных таблицы `shop_product_categories`
 --
 
 INSERT INTO `shop_product_categories` (`product_id`, `category_id`) VALUES
@@ -2544,7 +2541,7 @@ INSERT INTO `shop_product_categories` (`product_id`, `category_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_product_images`
+-- Структура таблицы `shop_product_images`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_product_images` (
@@ -2556,7 +2553,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_images` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_product_images`
+-- Дамп данных таблицы `shop_product_images`
 --
 
 INSERT INTO `shop_product_images` (`product_id`, `image_name`, `position`) VALUES
@@ -2569,7 +2566,7 @@ INSERT INTO `shop_product_images` (`product_id`, `image_name`, `position`) VALUE
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_product_properties`
+-- Структура таблицы `shop_product_properties`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_product_properties` (
@@ -2592,7 +2589,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
 
 --
--- Дамп даних таблиці `shop_product_properties`
+-- Дамп данных таблицы `shop_product_properties`
 --
 
 INSERT INTO `shop_product_properties` (`id`, `csv_name`, `active`, `show_in_compare`, `position`, `show_on_site`, `multiple`, `external_id`, `show_in_filter`, `main_property`) VALUES
@@ -2607,7 +2604,7 @@ INSERT INTO `shop_product_properties` (`id`, `csv_name`, `active`, `show_in_comp
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_product_properties_categories`
+-- Структура таблицы `shop_product_properties_categories`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_product_properties_categories` (
@@ -2618,7 +2615,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_categories` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_product_properties_categories`
+-- Дамп данных таблицы `shop_product_properties_categories`
 --
 
 INSERT INTO `shop_product_properties_categories` (`property_id`, `category_id`) VALUES
@@ -2669,7 +2666,7 @@ INSERT INTO `shop_product_properties_categories` (`property_id`, `category_id`) 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_product_properties_data`
+-- Структура таблицы `shop_product_properties_data`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_product_properties_data` (
@@ -2685,7 +2682,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_data` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=101 ;
 
 --
--- Дамп даних таблиці `shop_product_properties_data`
+-- Дамп данных таблицы `shop_product_properties_data`
 --
 
 INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `value`, `locale`) VALUES
@@ -2711,7 +2708,7 @@ INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_product_properties_data_i18n`
+-- Структура таблицы `shop_product_properties_data_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_product_properties_data_i18n` (
@@ -2725,7 +2722,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_data_i18n` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_product_properties_i18n`
+-- Структура таблицы `shop_product_properties_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_product_properties_i18n` (
@@ -2739,7 +2736,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_product_properties_i18n`
+-- Дамп данных таблицы `shop_product_properties_i18n`
 --
 
 INSERT INTO `shop_product_properties_i18n` (`id`, `name`, `locale`, `data`) VALUES
@@ -2762,7 +2759,7 @@ INSERT INTO `shop_product_properties_i18n` (`id`, `name`, `locale`, `data`) VALU
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_product_variants`
+-- Структура таблицы `shop_product_variants`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_product_variants` (
@@ -2787,7 +2784,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_variants` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=211 ;
 
 --
--- Дамп даних таблиці `shop_product_variants`
+-- Дамп данных таблицы `shop_product_variants`
 --
 
 INSERT INTO `shop_product_variants` (`id`, `product_id`, `price`, `number`, `stock`, `position`, `mainImage`, `smallImage`, `external_id`, `currency`, `price_in_main`) VALUES
@@ -2846,7 +2843,7 @@ INSERT INTO `shop_product_variants` (`id`, `product_id`, `price`, `number`, `sto
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_product_variants_i18n`
+-- Структура таблицы `shop_product_variants_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_product_variants_i18n` (
@@ -2858,7 +2855,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_variants_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_product_variants_i18n`
+-- Дамп данных таблицы `shop_product_variants_i18n`
 --
 
 INSERT INTO `shop_product_variants_i18n` (`id`, `locale`, `name`) VALUES
@@ -2938,7 +2935,7 @@ INSERT INTO `shop_product_variants_i18n` (`id`, `locale`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_rbac_group`
+-- Структура таблицы `shop_rbac_group`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_rbac_group` (
@@ -2950,7 +2947,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_group` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=102 ;
 
 --
--- Дамп даних таблиці `shop_rbac_group`
+-- Дамп данных таблицы `shop_rbac_group`
 --
 
 INSERT INTO `shop_rbac_group` (`id`, `name`, `description`) VALUES
@@ -2978,7 +2975,7 @@ INSERT INTO `shop_rbac_group` (`id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_rbac_privileges`
+-- Структура таблицы `shop_rbac_privileges`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_rbac_privileges` (
@@ -2992,7 +2989,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_privileges` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1471 ;
 
 --
--- Дамп даних таблиці `shop_rbac_privileges`
+-- Дамп данных таблицы `shop_rbac_privileges`
 --
 
 INSERT INTO `shop_rbac_privileges` (`id`, `name`, `description`, `group_id`) VALUES
@@ -3162,7 +3159,7 @@ INSERT INTO `shop_rbac_privileges` (`id`, `name`, `description`, `group_id`) VAL
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_rbac_roles`
+-- Структура таблицы `shop_rbac_roles`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_rbac_roles` (
@@ -3174,7 +3171,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_roles` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 --
--- Дамп даних таблиці `shop_rbac_roles`
+-- Дамп данных таблицы `shop_rbac_roles`
 --
 
 INSERT INTO `shop_rbac_roles` (`id`, `name`, `description`, `importance`) VALUES
@@ -3184,7 +3181,7 @@ INSERT INTO `shop_rbac_roles` (`id`, `name`, `description`, `importance`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_rbac_roles_privileges`
+-- Структура таблицы `shop_rbac_roles_privileges`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_rbac_roles_privileges` (
@@ -3197,7 +3194,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_roles_privileges` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1943 ;
 
 --
--- Дамп даних таблиці `shop_rbac_roles_privileges`
+-- Дамп данных таблицы `shop_rbac_roles_privileges`
 --
 
 INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUES
@@ -3529,7 +3526,7 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_settings`
+-- Структура таблицы `shop_settings`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_settings` (
@@ -3540,7 +3537,7 @@ CREATE TABLE IF NOT EXISTS `shop_settings` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_settings`
+-- Дамп данных таблицы `shop_settings`
 --
 
 INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
@@ -3677,7 +3674,7 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_spy`
+-- Структура таблицы `shop_spy`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_spy` (
@@ -3693,7 +3690,7 @@ CREATE TABLE IF NOT EXISTS `shop_spy` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп даних таблиці `shop_spy`
+-- Дамп данных таблицы `shop_spy`
 --
 
 INSERT INTO `shop_spy` (`id`, `user_id`, `product_id`, `price`, `variant_id`, `key`, `email`, `old_price`) VALUES
@@ -3702,7 +3699,7 @@ INSERT INTO `shop_spy` (`id`, `user_id`, `product_id`, `price`, `variant_id`, `k
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_warehouse`
+-- Структура таблицы `shop_warehouse`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_warehouse` (
@@ -3716,7 +3713,7 @@ CREATE TABLE IF NOT EXISTS `shop_warehouse` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Дамп даних таблиці `shop_warehouse`
+-- Дамп данных таблицы `shop_warehouse`
 --
 
 INSERT INTO `shop_warehouse` (`id`, `name`, `address`, `phone`, `description`) VALUES
@@ -3726,7 +3723,7 @@ INSERT INTO `shop_warehouse` (`id`, `name`, `address`, `phone`, `description`) V
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_warehouse_data`
+-- Структура таблицы `shop_warehouse_data`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_warehouse_data` (
@@ -3740,7 +3737,7 @@ CREATE TABLE IF NOT EXISTS `shop_warehouse_data` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=38 ;
 
 --
--- Дамп даних таблиці `shop_warehouse_data`
+-- Дамп данных таблицы `shop_warehouse_data`
 --
 
 INSERT INTO `shop_warehouse_data` (`id`, `product_id`, `warehouse_id`, `count`) VALUES
@@ -3751,7 +3748,7 @@ INSERT INTO `shop_warehouse_data` (`id`, `product_id`, `warehouse_id`, `count`) 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `support_comments`
+-- Структура таблицы `support_comments`
 --
 
 CREATE TABLE IF NOT EXISTS `support_comments` (
@@ -3766,7 +3763,7 @@ CREATE TABLE IF NOT EXISTS `support_comments` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Дамп даних таблиці `support_comments`
+-- Дамп данных таблицы `support_comments`
 --
 
 INSERT INTO `support_comments` (`id`, `ticket_id`, `user_id`, `user_status`, `user_name`, `text`, `date`) VALUES
@@ -3775,7 +3772,7 @@ INSERT INTO `support_comments` (`id`, `ticket_id`, `user_id`, `user_status`, `us
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `support_departments`
+-- Структура таблицы `support_departments`
 --
 
 CREATE TABLE IF NOT EXISTS `support_departments` (
@@ -3785,7 +3782,7 @@ CREATE TABLE IF NOT EXISTS `support_departments` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп даних таблиці `support_departments`
+-- Дамп данных таблицы `support_departments`
 --
 
 INSERT INTO `support_departments` (`id`, `name`) VALUES
@@ -3796,7 +3793,7 @@ INSERT INTO `support_departments` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `support_tickets`
+-- Структура таблицы `support_tickets`
 --
 
 CREATE TABLE IF NOT EXISTS `support_tickets` (
@@ -3814,7 +3811,7 @@ CREATE TABLE IF NOT EXISTS `support_tickets` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп даних таблиці `support_tickets`
+-- Дамп данных таблицы `support_tickets`
 --
 
 INSERT INTO `support_tickets` (`id`, `user_id`, `last_comment_author`, `text`, `theme`, `department`, `status`, `priority`, `date`, `updated`) VALUES
@@ -3825,7 +3822,7 @@ INSERT INTO `support_tickets` (`id`, `user_id`, `last_comment_author`, `text`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `tags`
+-- Структура таблицы `tags`
 --
 
 CREATE TABLE IF NOT EXISTS `tags` (
@@ -3838,7 +3835,7 @@ CREATE TABLE IF NOT EXISTS `tags` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `users`
+-- Структура таблицы `users`
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
@@ -3869,7 +3866,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=70 ;
 
 --
--- Дамп даних таблиці `users`
+-- Дамп данных таблицы `users`
 --
 
 INSERT INTO `users` (`id`, `role_id`, `username`, `password`, `email`, `banned`, `ban_reason`, `newpass`, `newpass_key`, `newpass_time`, `last_ip`, `last_login`, `created`, `modified`, `address`, `cart_data`, `wish_list_data`, `key`, `amout`, `discount`, `phone`) VALUES
@@ -3878,7 +3875,7 @@ INSERT INTO `users` (`id`, `role_id`, `username`, `password`, `email`, `banned`,
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `user_autologin`
+-- Структура таблицы `user_autologin`
 --
 
 CREATE TABLE IF NOT EXISTS `user_autologin` (
@@ -3892,7 +3889,7 @@ CREATE TABLE IF NOT EXISTS `user_autologin` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `user_autologin`
+-- Дамп данных таблицы `user_autologin`
 --
 
 INSERT INTO `user_autologin` (`key_id`, `user_id`, `user_agent`, `last_ip`, `last_login`) VALUES
@@ -3904,7 +3901,7 @@ INSERT INTO `user_autologin` (`key_id`, `user_id`, `user_agent`, `last_ip`, `las
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `user_temp`
+-- Структура таблицы `user_temp`
 --
 
 CREATE TABLE IF NOT EXISTS `user_temp` (
@@ -3921,7 +3918,7 @@ CREATE TABLE IF NOT EXISTS `user_temp` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `widgets`
+-- Структура таблицы `widgets`
 --
 
 CREATE TABLE IF NOT EXISTS `widgets` (
@@ -3939,7 +3936,7 @@ CREATE TABLE IF NOT EXISTS `widgets` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
--- Дамп даних таблиці `widgets`
+-- Дамп данных таблицы `widgets`
 --
 
 INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `description`, `roles`, `created`) VALUES
