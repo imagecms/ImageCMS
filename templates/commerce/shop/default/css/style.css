@@ -210,7 +210,7 @@ img[align=left]{margin-right:18px;float: left;}
 .featured ul{height: 130px;}
 .featured{margin:0 auto 32px;}
 .featured ul, .scroll-box ul,.promotion ul{overflow: hidden;}
-.featured ul li, .scroll-box li{float: left; width: 290px;margin: 0 23px 0 0;}
+.featured ul li{float: left; width: 290px;margin: 0 23px 0 0;}
 .carusel_frame{position:relative;}
 .carusel_frame .next, .carusel_frame .prev{background: url('../images/carusel_arrows.png');position: absolute;top: 50%;z-index: 10;cursor: pointer;border: none;-moz-opacity: 0.8;-khtml-opacity: 0.8;opacity: 0.8;-webkit-transition: opacity 0.3s ease-in-out;-moz-transition: opacity 0.3s ease-in-out;-o-transition: opacity 0.3s ease-in-out;transition: opacity 0.3s ease-in-out;}
 .carusel_frame .next:hover, .carusel_frame .prev:hover{-moz-opacity: 1;-khtml-opacity: 1;opacity: 1;}
@@ -226,7 +226,7 @@ img[align=left]{margin-right:18px;float: left;}
 .box_title > span{position: relative;background-color: #fff;padding-right: 20px;top: 12px;font-size: 24px;} 
 
 .small_item{overflow: hidden;}
-.small_item .img{float: left; max-width: 140px; text-align: center; margin: 0 10px 0 0;overflow: hidden;}
+.small_item .img{float: left; max-width: 106px; text-align: center; margin: 0 10px 0 0;overflow: hidden;}
 .small_item .img span{display: table-cell; vertical-align: middle; height: 130px;}
 .small_item .info{overflow: hidden;margin-top: 10px;}
 .small_item .title{display: block; line-height: 16px; margin-bottom: 10px;}
@@ -265,9 +265,8 @@ img[align=left]{margin-right:18px;float: left;}
 .nav_tabs li.ui-tabs-selected{background-color: #fff;height: 30px;text-align: center;}
 .nav_tabs li.ui-tabs-selected a{color:#000;}
 
-.scroll-box{overflow: hidden;height: 360px;}
-.scroll-box ul{margin-left: -20px;}
-.scroll-box ul li{padding-bottom: 10px;margin-top: 30px;}
+.scroll-box{overflow: hidden;height: 360px;font-size: 0;}
+.scroll-box ul li{padding-bottom: 10px;margin: 30px 23px 0 0;display: inline-block;font-size: 12px;width: 290px;vertical-align: top;//display: inline;zoom: 1;}
 
 .jspTrack,.jspDrag,.jspDrag:after,.icon2,.jspArrow{background: url('../images/scroll.png') no-repeat;}
 .jspTrack,.jspDrag{background-repeat: repeat-x;}
