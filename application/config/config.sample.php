@@ -44,8 +44,8 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
-$db['default']['password'] = 'kolo90da90';
-$db['default']['database'] = 'im2';
+$db['default']['password'] = '';
+$db['default']['database'] = 'imagecms';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = FALSE;
@@ -88,7 +88,7 @@ $config['static_base_url'] = $config['base_url'];
 |
 */
 $config['index_page'] = "";
-$config['is_installed'] = TRUE;
+$config['is_installed'] = FALSE;
 $config['rebuild_hooks_tree'] = TRUE;
 /*
 |--------------------------------------------------------------------------
