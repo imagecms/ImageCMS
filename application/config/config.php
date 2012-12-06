@@ -44,8 +44,13 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
+<<<<<<< HEAD
+$db['default']['password'] = '';
+$db['default']['database'] = 'admin';
+=======
 $db['default']['password'] = 'kolo90da90';
 $db['default']['database'] = 'im2';
+>>>>>>> 4053a2d4adbafff1d5cfbada52b7f2821377d875
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = FALSE;
