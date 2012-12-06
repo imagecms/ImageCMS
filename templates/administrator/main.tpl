@@ -257,15 +257,16 @@
             <script type="text/javascript" src="/js/elfinder-2.0/js/i18n/elfinder.ru.js"></script>
         {/if}
 
-        <!--
-        <script src="{$THEME}/js/admin_base.min.js" type="text/javascript"></script>       
-        -->
         
+        <script src="{$THEME}/js/admin_base.min.js" type="text/javascript"></script>       
+        
+        <!--
         <script src="{$THEME}/js/admin_base_i.js" type="text/javascript"></script>       
         <script src="{$THEME}/js/admin_base_m.js" type="text/javascript"></script>       
         <script src="{$THEME}/js/admin_base_r.js" type="text/javascript"></script>       
         <script src="{$THEME}/js/admin_base_v.js" type="text/javascript"></script>       
         <script src="{$THEME}/js/admin_base_y.js" type="text/javascript"></script>       
+        -->
 
         <script>
             {if $CI->uri->segment('4') == 'shop'}
