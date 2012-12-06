@@ -29,37 +29,38 @@
             <header>
                 <section class="container"> 
                     {if $ADMIN_URL}
-                    <a href="{$ADMIN_URL}dashboard" class="logo pull-left pjax">
+                        <a href="{$ADMIN_URL}dashboard" class="logo pull-left pjax">
                         {else:}
-                        <a href="/admin/dashboard" class="logo pull-left pjax">
+                            <a href="/admin/dashboard" class="logo pull-left pjax">
                             {/if}
                             <img src="{$THEME}/img/logo.png"/>
                         </a>
 
                         {if $CI->dx_auth->is_logged_in()}
-                        <div class="pull-right span4">
-                            <div class="clearfix">
-                                <div class="pull-left m-l_10 m-r_10">{lang('a_wellcome')},
-                                    {if $CI->dx_auth->get_username()}
-                                    <a href="/admin/components/run/shop/users/edit/{echo $CI->dx_auth->get_user_id()}" id="user_name">
-                                        {echo $CI->dx_auth->get_username()}
-                                    </a>
-                                    <a href="/admin/logout"><i class="my_icon exit_ico"></i></a>
-                                    {else:}
-                                    {echo lang('a_guest')}
-                                    {/if}
+                            <div class="pull-right span4">
+                                <div class="clearfix">
+                                    <span class="m-r_10">
+                                        {lang('a_wellcome')},
+                                        {if $CI->dx_auth->get_username()}
+                                            <a href="/admin/components/run/shop/users/edit/{echo $CI->dx_auth->get_user_id()}" id="user_name">
+                                                {echo $CI->dx_auth->get_username()}
+                                            </a>
+                                            <a href="/admin/logout"><i class="my_icon exit_ico"></i></a>
+                                        {else:}
+                                            {echo lang('a_guest')}
+                                        {/if}
+                                    </span>
+                                    <span class="m-l_10">Просмотр <a href="{$BASE_URL}" target="_blank">сайта <span class="f-s_14">→</span></a></span>
                                 </div>
-                                <div class="pull-left m-l_10">Просмотр <a href="{$BASE_URL}" target="_blank">сайта <span class="f-s_14">→</span></a></div>
-                            </div>
-                            <form method="get" action="{if $ADMIN_URL}/admin/components/run/shop/search/advanced{else:}/admin/admin_search{/if}" id="adminAdvancedSearch">
-                                <div class="input-append search">
-                                    <button id="adminSearchSubmit" type="submit" class="btn pull-right"><i class="icon-search"></i></button>
-                                    <div class="o_h">
-                                        <input id="{if $ADMIN_URL}shopSearch{else:}baseSearch{/if}" name="q" size="16" type="text"  autocomplete="off" tabindex="1" value="{$_GET['q']}">
+                                <form method="get" action="{if $ADMIN_URL}/admin/components/run/shop/search/advanced{else:}/admin/admin_search{/if}" id="adminAdvancedSearch">
+                                    <div class="input-append search">
+                                        <button id="adminSearchSubmit" type="submit" class="btn pull-right"><i class="icon-search"></i></button>
+                                        <div class="o_h">
+                                            <input id="{if $ADMIN_URL}shopSearch{else:}baseSearch{/if}" name="q" size="16" type="text"  autocomplete="off" tabindex="1" value="{$_GET['q']}">
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
-                        </div>
+                                </form>
+                            </div>
 
 
 
@@ -88,41 +89,41 @@
             </header>
 
             {if $CI->dx_auth->is_logged_in()}
-            <div class="frame_nav" id="mainAdminMenu">
-                <div class="container" id="baseAdminMenu">
-                    <nav class="navbar navbar-inverse">
-                        <ul class="nav">
-                            <li class="homeAnchor"><a href="/admin/dashboard" class="pjax"><i class="icon-home"></i><span>Главная</span></a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-align-justify"></i>{lang('a_cont')}<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="/admin/pages/GetPagesByCategory/" class="pjax">{lang('a_cont_list')}</a></li>
-                                    <li><a href="/admin/pages" class="pjax">{lang('a_create_page')}</a></li>
+                <div class="frame_nav" id="mainAdminMenu">
+                    <div class="container" id="baseAdminMenu">
+                        <nav class="navbar navbar-inverse">
+                            <ul class="nav">
+                                <li class="homeAnchor"><a href="/admin/dashboard" class="pjax"><i class="icon-home"></i><span>Главная</span></a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-align-justify"></i>{lang('a_cont')}<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/admin/pages/GetPagesByCategory/" class="pjax">{lang('a_cont_list')}</a></li>
+                                        <li><a href="/admin/pages" class="pjax">{lang('a_create_page')}</a></li>
 
-                                    <li class="divider"></li>
-                                    <li><a href="/admin/components/cp/cfcm" class="pjax">{lang('a_field_constructor')}</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="/admin/components/cp/cfcm" class="pjax">{lang('a_field_constructor')}</a></li>
 
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list"></i>{lang('a_categories')}<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="/admin/categories/create_form" class="pjax">{lang('a_create')}</a></li>
-                                    <li><a href="/admin/categories/cat_list" class="pjax">{lang('a_edit')}</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list-alt"></i>{lang('a_menu')}<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list"></i>{lang('a_categories')}<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/admin/categories/create_form" class="pjax">{lang('a_create')}</a></li>
+                                        <li><a href="/admin/categories/cat_list" class="pjax">{lang('a_edit')}</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list-alt"></i>{lang('a_menu')}<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
 
-                                    {if !$menus}
-                                    {$CI->load->module('menu'); $menus=$CI->menu->get_all_menus()}
-                                    {/if}
-                                    <li><a href="/admin/components/cp/menu" class="pjax">{lang('a_control')}</a></li>
-                                    <li class="divider"></li>
-                                    {foreach $menus as $menu}
-                                    <li><a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="pjax">{$menu.main_title}</a></li>
-                                    {/foreach}
+                                        {if !$menus}
+                                            {$CI->load->module('menu'); $menus=$CI->menu->get_all_menus()}
+                                        {/if}
+                                        <li><a href="/admin/components/cp/menu" class="pjax">{lang('a_control')}</a></li>
+                                        <li class="divider"></li>
+                                        {foreach $menus as $menu}
+                                            <li><a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="pjax">{$menu.main_title}</a></li>
+                                        {/foreach}
 
                                 </ul>
                             </li>
@@ -156,35 +157,24 @@
                                     <li><a href="/admin/components/cp/template_editor" class="pjax">Редактор шаблонов</a></li>
                                     <li><a href="/admin/cache_all" class="pjax">{lang('a_cache')}</a></li>
 
-                                    <li class="divider"></li>
-                                    <li><a href="/admin/admin_logs" class="pjax">{lang('a_event_journal')}</a></li>
-                                    <li><a href="/admin/backup" class="pjax">{lang('a_backup_copy')}</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                                        <li class="divider"></li>
+                                        <li><a href="/admin/admin_logs" class="pjax">{lang('a_event_journal')}</a></li>
+                                        <li><a href="/admin/backup" class="pjax">{lang('a_backup_copy')}</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
                             {if SHOP_INSTALLED}
                                 <a class="btn btn-small pull-right btn-info" onclick="loadShopInterface();" href="#">Администрировать магазин <span class="f-s_14">→</span></a>
                             {/if}
-                    </nav>
-                </div>
+                        </nav>
+                    </div>
 
                     {if SHOP_INSTALLED}
                         <div style="display:none;" class="container" id="shopAdminMenu"  > {include_tpl('shop_menu.tpl')} </div>
                     {/if}
-            </div>
+                </div>
             {/if}
-            <div id="loading" style="left: 50%;
-height: 100px;
-background-image: url(/templates/administrator/images/ajax-loader.gif);
-z-index: 10000;
-position: fixed;
-width: 300px;
-display: none;
-background-position: 50% 50%;
-background-repeat: no-repeat no-repeat;
-margin-left: -150px;
-top: 300px;
-border-radius: 3px;"></div>
+            <div id="loading"></div>
             <div class="container" id="mainContent">
                 {$content}
             </div>
@@ -231,12 +221,12 @@ border-radius: 3px;"></div>
         </div>
         <script>
             {if $CI->dx_auth->is_logged_in()}
-            var userLogined = true;
+                var userLogined = true;
             {else:}
-            var userLogined = false;
+                var userLogined = false;
             {/if}
                 
-            var locale = '{echo $this->CI->config->item('language')}';
+                var locale = '{echo $this->CI->config->item('language')}';
         </script>
 
         <script src="{$THEME}/js/jquery-1.8.2.min.js" type="text/javascript"></script>
@@ -247,31 +237,40 @@ border-radius: 3px;"></div>
         <script src="{$THEME}/js/jquery.form.js" type="text/javascript"></script>        
 
         <script async="async" src="{$THEME}/js/jquery-validate/jquery.validate.min.js" type="text/javascript"></script>
-        
+
         <script src="{$THEME}/js/functions.js" type="text/javascript"></script>
         <script src="{$THEME}/js/scripts.js" type="text/javascript"></script>
 
         <script type="text/javascript" src="/js/elrte-1.3/js/elrte.min.js"></script>
         <script type="text/javascript" src="/js/elfinder-2.0/js/elfinder.min.js"></script>
-        
-        
+
+
         {if $this->CI->config->item('language') == 'russian'}
-        <script async="async" src="{$THEME}/js/jquery-validate/messages_ru.js" type="text/javascript"></script>
-        <script type="text/javascript" src="/js/elrte-1.3/js/i18n/elrte.ru.js"></script>
-        <script type="text/javascript" src="/js/elfinder-2.0/js/i18n/elfinder.ru.js"></script>
+            <script async="async" src="{$THEME}/js/jquery-validate/messages_ru.js" type="text/javascript"></script>
+            <script type="text/javascript" src="/js/elrte-1.3/js/i18n/elrte.ru.js"></script>
+            <script type="text/javascript" src="/js/elfinder-2.0/js/i18n/elfinder.ru.js"></script>
         {/if}
 
+        
         <script src="{$THEME}/js/admin_base.min.js" type="text/javascript"></script>       
+        
+        <!--
+        <script src="{$THEME}/js/admin_base_i.js" type="text/javascript"></script>       
+        <script src="{$THEME}/js/admin_base_m.js" type="text/javascript"></script>       
+        <script src="{$THEME}/js/admin_base_r.js" type="text/javascript"></script>       
+        <script src="{$THEME}/js/admin_base_v.js" type="text/javascript"></script>       
+        <script src="{$THEME}/js/admin_base_y.js" type="text/javascript"></script>       
+        -->
 
         <script>
             {if $CI->uri->segment('4') == 'shop'}
-            var isShop = true;
+                var isShop = true;
             {else:}
-            var isShop = false;
+                var isShop = false;
             {/if}
-            var lang_only_number = "{lang('a_numbers_only')}";
-            var show_tovar_text = "{lang('a_show')}";
-            var hide_tovar_text = "{lang('a_dont_show')}";
+                var lang_only_number = "{lang('a_numbers_only')}";
+                var show_tovar_text = "{lang('a_show')}";
+                var hide_tovar_text = "{lang('a_dont_show')}";
             {literal}
 
             $(document).ready(function(){
@@ -326,7 +325,7 @@ border-radius: 3px;"></div>
                 prod_on_off();
             })
             base_url = '{/literal}{$BASE_URL}{literal}';
-        </script>
+            </script>
         {/literal}
         <div id="jsOutput" style="display: none;"></div>
     </body>
