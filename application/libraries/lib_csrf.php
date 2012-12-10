@@ -42,7 +42,7 @@ class Lib_csrf {
                 echo 'test1';
                 return TRUE;
             }
-            echo 'test2';
+            
             // Don't check ajax requests
             if (isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
                 if (strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
