@@ -60,7 +60,7 @@
             </div><!-- top -->
             <div class="header center">
                 <a href="{$BASE_URL}" class="logo">
-                    <img src="{$SHOP_THEME}/images/imagecms.png">
+                    <img src="{$SHOP_THEME}images/imagecms.png">
                 </a>
                 <div class="frame_form_search">
                     <form name="search" class="clearfix" action="{shop_url('search')}" method="get" id="autocomlete">
