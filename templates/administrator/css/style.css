@@ -323,7 +323,7 @@ a:hover .icon-thumbs-up{background-position: -152px 0;}
 .dl-horizontal dt, .dl-horizontal dd{padding: 4px 0;}
 .gen_sum{color: #468847;text-shadow: 0 1px #fff;background-color: #dff0d8;font-size: 18px;padding: 1px 15px;margin: 3px 0 0 0;display: block;}
 .btn-small input[type="file"]{height: 25px !important;}
-input[type="file"]{position: absolute !important;left: 0;top: 0;opacity: 0;-moz-opacity: 0;-khtml-opacity: 0;padding: 0;}
+.controls input[type="file"]{position: absolute !important;left: 0;top: 0;opacity: 0;-moz-opacity: 0;-khtml-opacity: 0;padding: 0;}
 form{font-size: 0;}
 form > *{font-size: 12px;}
 .controls{position: relative;}
