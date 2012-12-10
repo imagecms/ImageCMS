@@ -78,7 +78,7 @@ class Core extends MY_Controller {
 
         /* Show Google Analytics code if some value inserted in admin panel */
         if ($this->settings['google_analytics_id'])
-            ($hook = get_hook('render_google_analytics')) ? eval($hook) : NULL;
+                    $this->renderGA();
 
         if ($this->settings['google_webmaster'])
             ($hook = get_hook('render_google_webmaster')) ? eval($hook) : NULL;
@@ -897,7 +897,7 @@ class Core extends MY_Controller {
             ));
         } else {
             if ($this->settings['add_site_name_to_cat']){
-                $title .=  ' - ' . $category;
+                $title .= $category;
             }
             
             if ($this->core_data['data_type'] == 'page' AND $this->page_content['category'] != 0 AND $this->settings['add_site_name_to_cat']) {
@@ -958,6 +958,91 @@ class Core extends MY_Controller {
         return $result;
     }
 
+    public function renderGA($model = null) {
+        /* Show Google Analytics code if some value inserted in admin panel */
+        if ($this->settings['google_analytics_id']) {
+            $ga = "<script type='text/javascript'>
+            var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', '" . $this->settings['google_analytics_id'] . "']);
+          _gaq.push (['_addOrganic', 'images.yandex.ru', 'text']);
+          _gaq.push (['_addOrganic', 'blogs.yandex.ru', 'text']);
+          _gaq.push (['_addOrganic', 'video.yandex.ru', 'text']);
+          _gaq.push (['_addOrganic', 'meta.ua', 'q']);
+          _gaq.push (['_addOrganic', 'search.bigmir.net', 'z']);
+          _gaq.push (['_addOrganic', 'search.i.ua', 'q']);
+          _gaq.push (['_addOrganic', 'mail.ru', 'q']);
+          _gaq.push (['_addOrganic', 'go.mail.ru', 'q']);
+          _gaq.push (['_addOrganic', 'google.com.ua', 'q']);
+          _gaq.push (['_addOrganic', 'images.google.com.ua', 'q']);
+          _gaq.push (['_addOrganic', 'maps.google.com.ua', 'q']);
+          _gaq.push (['_addOrganic', 'images.google.ru', 'q']);
+          _gaq.push (['_addOrganic', 'maps.google.ru', 'q']);
+          _gaq.push (['_addOrganic', 'rambler.ru', 'words']);
+          _gaq.push (['_addOrganic', 'nova.rambler.ru', 'query']);
+          _gaq.push (['_addOrganic', 'nova.rambler.ru', 'words']);
+          _gaq.push (['_addOrganic', 'gogo.ru', 'q']);
+          _gaq.push (['_addOrganic', 'nigma.ru', 's']);
+          _gaq.push (['_addOrganic', 'poisk.ru', 'text']);
+          _gaq.push (['_addOrganic', 'go.km.ru', 'sq']);
+          _gaq.push (['_addOrganic', 'liveinternet.ru', 'ask']);
+          _gaq.push (['_addOrganic', 'gde.ru', 'keywords']);
+          _gaq.push (['_addOrganic', 'search.qip.ru', 'query']);
+          _gaq.push (['_addOrganic', 'webalta.ru', 'q']);
+          _gaq.push (['_addOrganic', 'sm.aport.ru', 'r']);
+          _gaq.push (['_addOrganic', 'index.online.ua', 'q']);
+          _gaq.push (['_addOrganic', 'web20.a.ua', 'query']);
+          _gaq.push (['_addOrganic', 'search.ukr.net', 'search_query']);
+          _gaq.push (['_addOrganic', 'search.com.ua', 'q']);
+          _gaq.push (['_addOrganic', 'search.ua', 'q']);
+          _gaq.push (['_addOrganic', 'affiliates.quintura.com', 'request']);
+          _gaq.push (['_addOrganic', 'akavita.by', 'z']);
+          _gaq.push (['_addOrganic', 'search.tut.by', 'query']);
+          _gaq.push (['_addOrganic', 'all.by', 'query']);
+          _gaq.push(['_trackPageview']);
+        </script>";
+            if ($model && $this->session->flashdata('makeOrder') === true) {
+                $ga .= "
+                    <script type='text/javascript'>
+            _gaq.push(['_addTrans',
+                '" . $model->id . "',
+                '',
+                '" . $model->getTotalPrice() . "',
+                '',
+                '" . $model->getSDeliveryMethods()->name . "',
+                '',
+                '',
+                ''
+            ]);";
+
+                foreach ($model->getSOrderProductss() as $item) {
+                    $total = $total + $item->getQuantity() * $item->toCurrency();
+                    $product = $item->getSProducts();
+
+                    $ga .="_gaq.push(['_addItem',
+                '" . $model->id . "',
+                '" . $product->getUrl() . "',
+                '" . encode($product->getName()) . " " . encode($item->getVariantName()) . "',
+                '" . encode($product->getMainCategory()->name) . "',
+                '" . $item->toCurrency() . "',
+                '" . $item->getQuantity() . "']);";
+                }
+                $ga .="_gaq.push(['_trackTrans']);</script>";
+            }
+
+            $ga .= "
+<script type = 'text/javascript'>
+(function() {
+var ga = document.createElement('script');
+ga.type = 'text/javascript';
+ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0];
+s.parentNode.insertBefore(ga, s);
+})();
+</script>";
+            $this->template->assign('renderGA', $ga);
+        }
+    }
 }
 
 /* End of file core.php */
