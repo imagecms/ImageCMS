@@ -622,7 +622,6 @@ $(document).ready(function() {
     });
 
     $('#per_page').live('change', function() {
-        alert(1)
         $('#category_sel').trigger('change');
     });
 
@@ -779,5 +778,3 @@ $(document).ready(function() {
     });
 
 });
-
-

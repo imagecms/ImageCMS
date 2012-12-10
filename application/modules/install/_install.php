@@ -13,7 +13,7 @@ class Install extends MY_Controller {
         error_reporting(0);
         parent::__construct();
 
-        $this->host = 'http://' . str_replace('index.php', '', $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME']) . 'index.php/';
+//        $this->host = 'http://' . str_replace('index.php', '', $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME']) . 'index.php/';
         $this->load->helper('string');
         $this->host = reduce_multiples($this->host);
         $this->load->language('main', 'russian');
@@ -21,7 +21,7 @@ class Install extends MY_Controller {
 
     public function index() {
         $data = array(
-            'content' => $this->load->view('license', array('next_link' => $this->host . 'install/step_1'), TRUE),
+            'content' => $this->load->view('license', array('next_link' => $this->host . '/install/step_1'), TRUE),
         );
         $this->load->view('main', $data);
     }
@@ -299,7 +299,7 @@ class Install extends MY_Controller {
         $admin_created = date('Y-m-d H:i:s', time());
 
         $sql = "INSERT INTO `users` (`id`, `role_id`, `username`, `password`, `email`, `banned`, `ban_reason`, `newpass`, `newpass_key`, `newpass_time`, `last_ip`, `last_login`, `created`, `modified`)
-                        VALUES (1, 2, '$admin_login', '$admin_pass', '$admin_mail', 0, NULL, NULL, NULL, NULL, '127.0.0.1', '0000-00-00 00:00:00', '$admin_created', '0000-00-00 00:00:00'); ";
+                        VALUES (1, 10, '$admin_login', '$admin_pass', '$admin_mail', 0, NULL, NULL, NULL, NULL, '127.0.0.1', '0000-00-00 00:00:00', '$admin_created', '0000-00-00 00:00:00'); ";
 
         mysql_query($sql, $link);
 
@@ -311,7 +311,7 @@ class Install extends MY_Controller {
         $this->write_config_file();
 
         //redirect('install/done','refresh');
-        header("Location: " . $this->host . "install/done");
+        header("Location: " . $this->host . "/install/done");
     }
 
     public function done() {
@@ -356,9 +356,9 @@ class Install extends MY_Controller {
 
     private function _get_next_link($result = FALSE, $step = 1) {
         if ($result === TRUE) {
-            $next_link = $this->host . 'install/step_' . ($step + 1);
+            $next_link = $this->host . '/install/step_' . ($step + 1);
         } else {
-            $next_link = $this->host . 'install/step_' . $step;
+            $next_link = $this->host . '/install/step_' . $step;
         }
 
         return $next_link;

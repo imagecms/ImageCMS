@@ -10,11 +10,7 @@ function modules_namespaces_initialize() {
 }
 
 function modules_namespaces_autoload($name) {
-//            var_dump($name);
-//            echo'<br/>';
     if (strpos($name, "\\")) {
-//        $file = 'application/modules/shop/classes/' . str_replace('\\', DIRECTORY_SEPARATOR, $name) . EXT;
-//        var_dump($file);
         if (file_exists($file = 'application/modules/' . strtolower(str_replace('\\', DIRECTORY_SEPARATOR, $name)) . EXT))
             require $file;
         if (file_exists($file = 'application/modules/shop/classes/' . str_replace('\\', DIRECTORY_SEPARATOR, $name) . EXT))

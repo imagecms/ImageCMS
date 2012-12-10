@@ -98,7 +98,7 @@ class Admin extends MY_Controller {
             }
             if ($_POST['item_type'] == 'module') {
                 $this->form_validation->set_rules('mod_name', 'Название модуля', 'required');
-                $this->form_validation->set_rules('mod_method', 'Метод модуля', 'required');
+                //$this->form_validation->set_rules('mod_method', 'Метод модуля', 'required');
                 $this->form_validation->set_rules('item_id', 'ID модуля', 'required');
             }
             if ($_POST['item_type'] == 'url') {
@@ -378,7 +378,7 @@ class Admin extends MY_Controller {
             }
             if ($_POST['item_type'] == 'module') {
                 $this->form_validation->set_rules('mod_name', 'Название модуля', 'required');
-                $this->form_validation->set_rules('mod_method', 'Метод модуля', 'required');
+                //$this->form_validation->set_rules('mod_method', 'Метод модуля', 'required');
                 $this->form_validation->set_rules('item_id', 'ID страницы', 'required');
             }
             if ($_POST['item_type'] == 'url') {
@@ -454,7 +454,9 @@ class Admin extends MY_Controller {
                     $item_data['item_id'] = 0;
                     $item_data['add_data'] = serialize(array('url' => $_POST['item_url'], 'newpage' => $_POST['newpage']));
                 }
-
+                if ($item_data['item_type'] == 'page') {
+                    $item_data['add_data'] = serialize(array('page' => $_POST['item_url'], 'newpage' => $_POST['newpage']));
+                }
                 if (!isset($item_data['add_data']))
                     $item_data['add_data'] = serialize($data);
 
@@ -540,8 +542,6 @@ class Admin extends MY_Controller {
      * Set positions
      */
     function insert_menu_item() {
-
-        //var_dump($_POST);
 
         cp_check_perm('menu_edit');
 
@@ -694,12 +694,9 @@ class Admin extends MY_Controller {
         $val->set_rules('menu_tpl', lang('amt_template'), 'max_length[500]');
         $val->set_rules('menu_expand_level', lang('amt_open_level'), 'numeric|max_length[2]');
 
-
         if ($this->form_validation->run($this) == FALSE) {
-
             showMessage(validation_errors(), '', 'r');
         } else {
-
             $data = array(
                 'name' => $this->input->post('menu_name'),
                 'main_title' => $this->input->post('main_title'),

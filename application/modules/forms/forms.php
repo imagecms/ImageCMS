@@ -100,16 +100,18 @@ class Forms extends MY_Controller {
 			// Load form classes.
 			if (!class_exists('CForm_'.$class))
 				require 'elements/CForm_'.$class.EXT;
+                        
+                        if (isset($field['type']) && 'textarea' == $field['type'])
+                            $field['class'] = 'elRTE';
+                        
+                        if ($field['required'])
+                            $field['class'] .= ' required';
 
 			if (isset($field['type']) AND class_exists('CForm_'.$class))
 			{
 				$this->$key = new $class_name($key, $field);
 			}
-
-			if ($field['enable_tinymce_editor'] == 1)
-			{
-				$fields[$key]['class'] = 'mceEditor2';
-			}
+			
 		}
 
 		$this->fields = $fields;

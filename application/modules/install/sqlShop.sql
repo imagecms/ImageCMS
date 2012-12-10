@@ -1,15 +1,29 @@
+-- phpMyAdmin SQL Dump
+-- version 3.4.11.1deb1
+-- http://www.phpmyadmin.net
+--
+-- Хост: localhost
+-- Час створення: Гру 06 2012 р., 12:03
+-- Версія сервера: 5.5.28
+-- Версія PHP: 5.4.6-1ubuntu1.1
+
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
+--
+-- БД: `imagecms`
+--
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category`
+-- Структура таблиці `category`
 --
 
 CREATE TABLE IF NOT EXISTS `category` (
@@ -33,23 +47,23 @@ CREATE TABLE IF NOT EXISTS `category` (
   `comments_default` tinyint(1) NOT NULL DEFAULT '0',
   `field_group` int(11) NOT NULL,
   `category_field_group` int(11) NOT NULL,
+  `settings` varchar(10000) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`),
   KEY `url` (`url`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=61 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ;
 
 --
--- Dumping data for table `category`
+-- Дамп даних таблиці `category`
 --
 
-INSERT INTO `category` (`id`, `parent_id`, `position`, `name`, `title`, `short_desc`, `url`, `image`, `keywords`, `description`, `fetch_pages`, `main_tpl`, `tpl`, `page_tpl`, `per_page`, `order_by`, `sort_order`, `comments_default`, `field_group`, `category_field_group`) VALUES
-(1, 0, 0, 'Главная', '', '', 'main', '', '', '', 'b:0;', '', '', '', 10, 'publish_date', 'desc', 1, 0, 0),
-(56, 0, 0, 'Новости и акции', '', '', 'novosti_i_aktsii', '', '', '', 'b:0;', '', '', '', 15, 'publish_date', 'desc', 0, 7, 0);
+INSERT INTO `category` (`id`, `parent_id`, `position`, `name`, `title`, `short_desc`, `url`, `image`, `keywords`, `description`, `fetch_pages`, `main_tpl`, `tpl`, `page_tpl`, `per_page`, `order_by`, `sort_order`, `comments_default`, `field_group`, `category_field_group`, `settings`) VALUES
+(63, 0, 1, 'root', 'root category', '', 'root', '', '', '', 'b:0;', '', '', '', 5, 'publish_date', 'desc', 0, 11, 9, 'a:2:{s:26:"category_apply_for_subcats";s:1:"1";s:17:"apply_for_subcats";s:1:"1";}');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category_translate`
+-- Структура таблиці `category_translate`
 --
 
 CREATE TABLE IF NOT EXISTS `category_translate` (
@@ -66,19 +80,10 @@ CREATE TABLE IF NOT EXISTS `category_translate` (
   KEY `name` (`name`,`lang`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
---
--- Dumping data for table `category_translate`
---
-
-INSERT INTO `category_translate` (`id`, `alias`, `name`, `title`, `short_desc`, `image`, `keywords`, `description`, `lang`) VALUES
-(6, 1, 'Home', '', '', '', '', '', 30),
-(7, 1, 'Главная', '', '', '', '', '', 3),
-(8, 56, 'News and Events', '', '', '', '', '', 30);
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comments`
+-- Структура таблиці `comments`
 --
 
 CREATE TABLE IF NOT EXISTS `comments` (
@@ -104,10 +109,10 @@ CREATE TABLE IF NOT EXISTS `comments` (
   KEY `module` (`module`),
   KEY `item_id` (`item_id`),
   KEY `date` (`date`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=64 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=66 ;
 
 --
--- Dumping data for table `comments`
+-- Дамп даних таблиці `comments`
 --
 
 INSERT INTO `comments` (`id`, `module`, `user_id`, `user_name`, `user_mail`, `user_site`, `item_id`, `text`, `date`, `status`, `agent`, `user_ip`, `rate`, `text_plus`, `text_minus`, `like`, `disslike`, `parent`) VALUES
@@ -116,7 +121,7 @@ INSERT INTO `comments` (`id`, `module`, `user_id`, `user_name`, `user_mail`, `us
 -- --------------------------------------------------------
 
 --
--- Table structure for table `components`
+-- Структура таблиці `components`
 --
 
 CREATE TABLE IF NOT EXISTS `components` (
@@ -133,36 +138,37 @@ CREATE TABLE IF NOT EXISTS `components` (
   KEY `identif` (`identif`),
   KEY `enabled` (`enabled`),
   KEY `autoload` (`autoload`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=126 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=132 ;
 
 --
--- Dumping data for table `components`
+-- Дамп даних таблиці `components`
 --
 
-INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_menu`, `settings`) VALUES
-(1, 'user_manager', 'user_manager', 0, 0, 0, NULL),
-(2, 'auth', 'auth', 1, 0, 0, NULL),
-(4, 'comments', 'comments', 1, 1, 1, 'a:5:{s:18:"max_comment_length";i:550;s:6:"period";i:0;s:11:"can_comment";i:0;s:11:"use_captcha";b:0;s:14:"use_moderation";b:0;}'),
-(7, 'navigation', 'navigation', 0, 0, 1, NULL),
-(30, 'tags', 'tags', 1, 1, 1, NULL),
-(92, 'gallery', 'gallery', 1, 0, 1, 'a:26:{s:13:"max_file_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:2:"95";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:0;s:14:"prev_img_width";s:3:"500";s:15:"prev_img_height";s:3:"500";s:11:"thumb_width";s:3:"100";s:12:"thumb_height";s:3:"100";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:19:"watermark_font_path";s:20:"./system/fonts/1.ttf";s:15:"watermark_image";s:0:"";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";}'),
-(55, 'rss', 'rss', 1, 0, 1, 'a:5:{s:5:"title";s:9:"Image CMS";s:11:"description";s:35:"Тестируем модуль RSS";s:10:"categories";a:1:{i:0;s:1:"3";}s:9:"cache_ttl";i:60;s:11:"pages_count";i:10;}'),
-(72, 'imagebox', 'imagebox', 0, 1, 0, 'a:6:{s:9:"max_width";i:800;s:10:"max_height";i:600;s:11:"thumb_width";i:100;s:12:"thumb_height";i:100;s:14:"maintain_ratio";b:1;s:7:"quality";s:3:"95%";}'),
-(60, 'menu', 'menu', 0, 1, 1, NULL),
-(58, 'sitemap', 'sitemap', 1, 0, 1, 'a:5:{s:18:"main_page_priority";s:1:"1";s:13:"cats_priority";s:3:"0.9";s:14:"pages_priority";s:3:"0.5";s:20:"main_page_changefreq";s:6:"weekly";s:16:"pages_changefreq";s:7:"monthly";}'),
-(80, 'search', 'search', 1, 0, 0, NULL),
-(84, 'feedback', 'feedback', 1, 0, 0, 'a:2:{s:5:"email";s:19:"admin@localhost.loc";s:15:"message_max_len";i:550;}'),
-(117, 'template_editor', 'template_editor', 0, 0, 0, NULL),
-(86, 'group_mailer', 'group_mailer', 0, 0, 1, NULL),
-(95, 'filter', 'filter', 1, 0, 0, NULL),
-(96, 'cfcm', 'cfcm', 0, 0, 0, NULL),
-(121, 'shop', 'shop', 1, 0, 0, NULL),
-(123, 'share', 'share', 0, 0, 0, NULL);
+INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_menu`, `settings`, `position`) VALUES
+(1, 'user_manager', 'user_manager', 0, 0, 1, NULL, 0),
+(2, 'auth', 'auth', 1, 0, 0, NULL, 1),
+(4, 'comments', 'comments', 1, 1, 1, 'a:5:{s:18:"max_comment_length";i:550;s:6:"period";i:0;s:11:"can_comment";i:0;s:11:"use_captcha";b:0;s:14:"use_moderation";b:0;}', 3),
+(7, 'navigation', 'navigation', 0, 0, 1, NULL, 4),
+(30, 'tags', 'tags', 1, 1, 1, NULL, 5),
+(92, 'gallery', 'gallery', 1, 0, 1, 'a:26:{s:13:"max_file_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:2:"95";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:0;s:14:"prev_img_width";s:3:"500";s:15:"prev_img_height";s:3:"500";s:11:"thumb_width";s:3:"100";s:12:"thumb_height";s:3:"100";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:19:"watermark_font_path";s:20:"./system/fonts/1.ttf";s:15:"watermark_image";s:0:"";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";}', 6),
+(55, 'rss', 'rss', 1, 0, 1, 'a:5:{s:5:"title";s:9:"Image CMS";s:11:"description";s:35:"Тестируем модуль RSS";s:10:"categories";a:1:{i:0;s:1:"3";}s:9:"cache_ttl";i:60;s:11:"pages_count";i:10;}', 7),
+(72, 'imagebox', 'imagebox', 0, 1, 0, 'a:6:{s:9:"max_width";i:800;s:10:"max_height";i:600;s:11:"thumb_width";i:100;s:12:"thumb_height";i:100;s:14:"maintain_ratio";b:1;s:7:"quality";s:3:"95%";}', 8),
+(60, 'menu', 'menu', 0, 1, 1, NULL, 9),
+(58, 'sitemap', 'sitemap', 1, 0, 1, 'a:5:{s:18:"main_page_priority";s:1:"1";s:13:"cats_priority";s:3:"0.9";s:14:"pages_priority";s:3:"0.5";s:20:"main_page_changefreq";s:6:"weekly";s:16:"pages_changefreq";s:7:"monthly";}', 10),
+(80, 'search', 'search', 1, 0, 0, NULL, 11),
+(84, 'feedback', 'feedback', 1, 0, 0, 'a:2:{s:5:"email";s:19:"admin@localhost.loc";s:15:"message_max_len";i:550;}', 12),
+(117, 'template_editor', 'template_editor', 0, 0, 0, NULL, 13),
+(86, 'group_mailer', 'group_mailer', 0, 0, 1, NULL, 14),
+(95, 'filter', 'filter', 1, 0, 0, NULL, 15),
+(96, 'cfcm', 'cfcm', 0, 0, 0, NULL, 16),
+(121, 'shop', 'shop', 1, 0, 0, NULL, 17),
+(123, 'share', 'share', 0, 0, 0, NULL, 18),
+(131, 'user_support', 'user_support', 1, 0, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content`
+-- Структура таблиці `content`
 --
 
 CREATE TABLE IF NOT EXISTS `content` (
@@ -198,34 +204,30 @@ CREATE TABLE IF NOT EXISTS `content` (
   KEY `category` (`category`),
   KEY `created` (`created`),
   KEY `updated` (`updated`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=83 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=87 ;
 
 --
--- Dumping data for table `content`
+-- Дамп даних таблиці `content`
 --
 
 INSERT INTO `content` (`id`, `title`, `meta_title`, `url`, `cat_url`, `keywords`, `description`, `prev_text`, `full_text`, `category`, `full_tpl`, `main_tpl`, `position`, `comments_status`, `comments_count`, `post_status`, `author`, `publish_date`, `created`, `updated`, `showed`, `lang`, `lang_alias`) VALUES
-(35, 'О сайте', '', 'o-sajte', '', 'это, базовый, шаблон, imagecms, котором, релизованы, следующие, функции, вывод, фотогалереи, статической, статьи, блога', 'Это базовый шаблон ImageCMS, на котором релизованы следующие функции: вывод фотогалереи, вывод статической статьи, вывод блога.', '<p>Это базовый шаблон ImageCMS, на котором релизованы следующие функции: отображение фотогалереи, отображение статической статьи, отображение корпоративного блога, отображение формы обратной связи.</p>\n<p>Общий вид шаблона можно отредактировать и изменить лого, графическую вставку на свои тематические.</p>\n<p>Слева в сайдбаре Вы видите список категорий блога, который легко вставляется с помощью функции {sub_category_list()} в файле main.tpl. Также в левом сайдбаре находится форма поиска по сайту, виджет последних комментариев и виджет тегов сайта. В этот сайдбар можно также добавить виджет последних либо популярных новостей, а также любые счетчики, информеры.</p>\n<p>Верхнее меню реализовано с помощью модуля Меню. Управлять его содержимым можно из административной части в разделе Меню - Главное меню. Сюда как правило можно еще добавить страницы: о компании, контакты, услуги и т.п.</p>\n<p>За дополнительной информацией обращайтесь в официальный раздел документации: <a href="http://www.imagecms.net/wiki">http://www.imagecms.net/wiki</a></p>\n<p>Обсудить дополнительные возможности, а также вопросы по установке, настройке системы можно на официальном форуме: <a href="http://forum.imagecms.net/index.php">http://forum.imagecms.net/</a></p>', '', 0, 'page_static', '', 0, 1, 0, 'publish', 'admin', 1267203253, 1267203328, 1290100400, 8, 3, 0),
-(64, 'О магазине', '', 'about', '', 'магазине', 'О магазине', '<p>Магазин ImageCMS Shop предоставляет огромный выбор техники на любой вкус по лучшим ценам.</p>\n<p>Наш магазин существует более 5 лет и за это время не было ни единого возврата товара.</p>\n<p>Мы обслуживаем ежедневно сотни покупателей и делаем это с радостью.</p>\n<p><strong>Покупайте технику у нас и становитесь обладателем лучшей в мире техники!!!</strong></p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295776, 1291295792, 1291743386, 287, 3, 0),
+(35, 'О сайте', '', 'o-sajte', '', 'это, базовый, шаблон, imagecms, котором, релизованы, следующие, функции, вывод, фотогалереи, статической, статьи, блога', 'Это базовый шаблон ImageCMS, на котором релизованы следующие функции: вывод фотогалереи, вывод статической статьи, вывод блога.', '<p>Это базовый шаблон ImageCMS, на котором релизованы следующие функции: отображение фотогалереи, отображение статической статьи, отображение корпоративного блога, отображение формы обратной связи.</p>\n<p>Общий вид шаблона можно отредактировать и изменить лого, графическую вставку на свои тематические.</p>\n<p>Слева в сайдбаре Вы видите список категорий блога, который легко вставляется с помощью функции {sub_category_list()} в файле main.tpl. Также в левом сайдбаре находится форма поиска по сайту, виджет последних комментариев и виджет тегов сайта. В этот сайдбар можно также добавить виджет последних либо популярных новостей, а также любые счетчики, информеры.</p>\n<p>Верхнее меню реализовано с помощью модуля Меню. Управлять его содержимым можно из административной части в разделе Меню - Главное меню. Сюда как правило можно еще добавить страницы: о компании, контакты, услуги и т.п.</p>\n<p>За дополнительной информацией обращайтесь в официальный раздел документации: <a href="http://www.imagecms.net/wiki">http://www.imagecms.net/wiki</a></p>\n<p>Обсудить дополнительные возможности, а также вопросы по установке, настройке системы можно на официальном форуме: <a href="http://forum.imagecms.net/index.php">http://forum.imagecms.net/</a></p>', '', 0, 'page_static', '', 0, 1, 0, 'publish', 'admin', 1267203253, 1267203328, 1290100400, 13, 3, 0),
+(64, 'О магазине', '', 'about', '', 'магазине', 'О магазине', '<p>Магазин ImageCMS Shop предоставляет огромный выбор техники на любой вкус по лучшим ценам.</p>\n<p>Наш магазин существует более 5 лет и за это время не было ни единого возврата товара.</p>\n<p>Мы обслуживаем ежедневно сотни покупателей и делаем это с радостью.</p>\n<p><strong>Покупайте технику у нас и становитесь обладателем лучшей в мире техники!!!</strong></p>', '', 0, '', '', 0, 1, 0, 'publish', 'Roman Koloda', 1291295776, 0, 1354551261, 289, 3, 0),
 (65, 'Оплата', '', 'oplata', '', 'оплата', 'Оплата', '<p>Наш магазин поддерживает все доступные на данный момент методы оплаты.</p>\n<p>Также действует возможность оплаты курьеру при доставке для всех крупных городов Украины и России. (возможность оплаты курьеру в Вашем городе уточняйте по телефону <strong>0 800 820 22 22</strong>).</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295824, 1291295836, 1291743521, 167, 3, 0),
-(66, 'Доставка', '', 'dostavka', '', 'доставка', 'Доставка', '<p>Мы поддерживаем доставку службой Автомир по всему миру.</p>\n<p>Также возможна доставка курьером для всех больших городов Украины и России (возможность доставки курьером в Вашем городе уточняйте по телефону <strong>0 800 820 22 22</strong>).</p>\n<p>При желании Вы можете сами забрать купленный товар в наших офисах.</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295844, 1291295851, 1291743683, 125, 3, 0),
-(67, 'Помощь', '', 'help', '', 'помощь', 'Помощь', '<p>Для того, чтобы приобрести товар в нашем магазине, Вам нужно выполнить несколько простых шагов:</p>\n<ul>\n<li>Выбрать нужный товар, воспользовавшить навигацией слева, либо поиском.</li>\n<li>Добавить товар в корзину.</li>\n<li>Перейти в корзину, выбрать способ доставки и указать Ваши контактные данные.</li>\n<li>Подтвердить заказ и выбрать способ оплаты.</li>\n</ul>\n<p>После этого наши менеджеры свяжуться с Вами и помогут с оплатой и доставкой товара, а также проконсультируют по любому вопросу.</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295855, 1291295867, 1291743919, 75, 3, 0),
-(68, 'Контакты', '', 'contact_us', '', 'контакты', 'Контакты', '<p><strong>Горячий телефон</strong>: 0 800 80 80 800</p>\n<p><strong>Главный офис в Москве</strong></p>\n<p>ул. Гагарина 1/2</p>\n<p>тел. 095 095 00 00</p>\n<p>&nbsp;</p>\n<p><strong>Главный офис в Киеве</strong></p>\n<p>ул. Гагарина 1/2</p>\n<p>тел. 098 098 00 00</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295870, 1291295888, 1291744068, 73, 3, 0),
-(74, 'Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!', '', 'aktsiia-k-fotoapparatu-nikon-s9100-karta-pamiati-8gb-v-podarok-1', 'novosti_i_aktsii/', 'windows, отримує, подарунок, сумку, ноутбука, кожен, покупець, акційних, ноутбуків, передвстановленою', 'ОС Windows отримує в подарунок сумку для ноутбука! Кожен покупець акційних ноутбуків з передвстановленою ОС Windows отримує в подарунок сумку для ноутбука!', '<p>ОС Windows получает в подарок сумку для ноутбука! Каждый покупатель акционных ноутбуков с предустановленной ОС Windows получает в подарок сумку для ноутбука!</p>', '', 56, '', '', 0, 1, 0, 'publish', 'admin', 1336737588, 1336737588, 1346689293, 3, 3, 0),
-(73, 'Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!', '', 'aktsiia-k-fotoapparatu-nikon-s9100-karta-pamiati-8gb-v-podarok', 'novosti_i_aktsii/', 'windows, отримує, подарунок, сумку, ноутбука, кожен, покупець, акційних, ноутбуків, передвстановленою', 'ОС Windows отримує в подарунок сумку для ноутбука! Кожен  покупець акційних ноутбуків з передвстановленою ОС Windows отримує в  подарунок сумку для ноутбука!', '<p><span id="result_box" lang="ru"><span>&nbsp;ОС Windows,</span> <span>получает в подарок</span> <span>сумку</span> <span>для ноутбука</span><span>!</span> <span>Каждая покупка</span> <span>рекламных</span> <span>ноутбуков</span> <span>с предустановленной</span> <span>Windows,</span> <span>получает в подарок</span> <span>сумку</span> <span>для ноутбука</span><span>!</span></span></p>', '', 56, '', '', 0, 1, 0, 'publish', 'admin', 1336477654, 1336477654, 1346689653, 0, 3, 0),
+(66, 'Доставка', '', 'dostavka', '', 'доставка', 'Доставка', '<p>Мы поддерживаем доставку службой Автомир по всему миру.</p>\n<p>Также возможна доставка курьером для всех больших городов Украины и России (возможность доставки курьером в Вашем городе уточняйте по телефону <strong>0 800 820 22 22</strong>).</p>\n<p>При желании Вы можете сами забрать купленный товар в наших офисах.</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295844, 1291295851, 1291743683, 129, 3, 0),
+(67, 'Помощь', '', 'help', '', 'помощь', 'Помощь', '<p>Для того, чтобы приобрести товар в нашем магазине, Вам нужно выполнить несколько простых шагов:</p>\n<ul>\n<li>Выбрать нужный товар, воспользовавшить навигацией слева, либо поиском.</li>\n<li>Добавить товар в корзину.</li>\n<li>Перейти в корзину, выбрать способ доставки и указать Ваши контактные данные.</li>\n<li>Подтвердить заказ и выбрать способ оплаты.</li>\n</ul>\n<p>После этого наши менеджеры свяжуться с Вами и помогут с оплатой и доставкой товара, а также проконсультируют по любому вопросу.</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295855, 1291295867, 1291743919, 77, 3, 0),
+(68, 'Контакты', '', 'contact_us', '', 'контакты', 'Контакты', '<p><strong>Горячий телефон</strong>: 0 800 80 80 800</p>\n<p><strong>Главный офис в Москве</strong></p>\n<p>ул. Гагарина 1/2</p>\n<p>тел. 095 095 00 00</p>\n<p>&nbsp;</p>\n<p><strong>Главный офис в Киеве</strong></p>\n<p>ул. Гагарина 1/2</p>\n<p>тел. 098 098 00 00</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295870, 1291295888, 1291744068, 76, 3, 0),
 (75, 'Contact', '', 'contact_us', '', 'ssss', 'ssss', '<p><span id="result_box" lang="en"><span>Hot Phone</span><span>:</span> <span>0800</span> <span>80</span> <span>80 800</span><br /><br /> <span>Head office in</span> <span>Moscow</span><br /><br /> <span>street</span><span>.</span> <span>Gagarin</span> <span>half</span><br /><br /> <span>tel.</span> <span>095</span> <span>095</span> <span>00</span> <span>00</span><br /><br /> <span>The main office</span> <span>in Kiev</span><br /><br /> <span>street</span><span>.</span> <span>Gagarin</span> <span>half</span><br /><br /> <span>tel.</span> <span>098</span> <span>098</span> <span>00</span> <span>00</span></span></p>', '', 0, '', '', 0, 1, 4, 'publish', 'admin', 1291295870, 1291295888, 1343664873, 35, 30, 68),
 (76, 'Delivery', '', 'dostavka', '', 'support, the, delivery, service, autoworld, around, world, also, possible, all, major, cities, ukraine, and, russia, possibility, courier, your, area, please, call, desired, you, can, pick, purchased, goods, themselves, our, offices', 'We support the delivery of service Autoworld around the world. It is also possible delivery to all major cities of Ukraine and Russia (the possibility of delivery by courier in your area please call 0800820 22 22.) If desired, you can pick up the purchase', '<p><span id="result_box" lang="en"><span>We support the</span> <span>delivery of</span> <span>service</span> <span>Autoworld</span> <span>around the world.</span><br /><br /> <span>It is also possible</span> <span>delivery</span> <span>to all</span> <span>major cities</span> <span>of Ukraine and Russia</span> <span>(the possibility of</span> <span>delivery</span> <span>by courier</span> <span>in your area</span> <span>please call</span> <span>0800820</span> <span>22 22</span><span>.)</span><br /><br /> <span>If desired,</span> <span>you can</span> <span>pick up the</span> <span>purchased goods</span> <span>themselves</span> <span>in our offices.</span></span></p>', '', 0, '', '', 0, 1, 4, 'publish', 'admin', 1291295844, 1291295851, 1343664842, 8, 30, 66),
 (77, 'Help', '', 'help', '', 'order, purchase, goods, our, store, you, must, follow, few, simple, steps, choose, the, right, product, vospolzovavshit, navigation, left, search, add, products, cart, shopping, select, shipping, method, and, provide, your, contact', 'In order to purchase goods in our store, you must follow a few simple steps: Choose the right product, vospolzovavshit navigation on the left, or search. Add products to cart. Go to the shopping cart, select shipping method and provide your contact inform', '<p><span id="result_box" lang="en"><span>In order to</span> <span>purchase goods</span> <span>in our store,</span> <span>you must follow</span> <span>a few simple steps</span><span>:</span><br /><br />&nbsp;&nbsp;&nbsp;&nbsp; <span>Choose</span> <span>the right product,</span> <span>vospolzovavshit</span> <span>navigation</span> <span>on the left</span><span>, or</span> <span>search.</span><br />&nbsp;&nbsp;&nbsp;&nbsp; <span>Add products</span> <span>to cart</span><span>.</span><br />&nbsp;&nbsp;&nbsp;&nbsp; <span>Go to the</span> <span>shopping cart,</span> <span>select</span> <span>shipping method</span> <span>and provide</span> <span>your contact information.</span><br />&nbsp;&nbsp;&nbsp;&nbsp; <span>Proceed to checkout</span> <span>and select the</span> <span>payment method.</span><br /><br /> <span>After that,</span> <span>our managers</span> <span>will contact</span> <span>you and</span> <span>help you</span> <span>with payment</span> <span>and delivery</span> <span>of the goods</span><span>, as well</span> <span>as give advice on</span> <span>any subject.</span></span></p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295855, 1291295867, 1343664897, 11, 30, 67),
 (78, 'Payment', '', 'oplata', '', 'our, store, supports, all, currently, available, methods, payment, also, there, possibility, pay, the, courier, for, delivery, major, cities, ukraine, and, russia, ability, your, area, please, call', 'Our store supports all currently available methods of payment. Also there is a possibility to pay the courier for delivery to all major cities of Ukraine and Russia. (ability to pay for the courier in your area please call 0800820 22 22.)', '<p><span id="result_box" lang="en"><span>Our store</span> <span>supports all</span> <span>currently available</span> <span>methods of payment.</span><br /><br /> <span>Also there is</span> <span>a possibility to pay</span> <span>the courier</span> <span>for delivery</span> <span>to all</span> <span>major cities</span> <span>of Ukraine</span> <span>and Russia.</span> <span>(ability to</span> <span>pay for</span> <span>the courier</span> <span>in your area</span> <span>please call</span> <span>0800820</span> <span>22 22</span><span>.)</span></span></p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295824, 1291295836, 1343664949, 1, 30, 65),
 (79, 'About us', '', 'about', '', 'shop, imagecms, offers, huge, selection, vehicles, suit, every, taste, the, best, prices, our, store, has, more, than, years, and, during, that, time, was, not, single, return, goods, serve, hundreds, customers', 'Shop ImageCMS Shop offers a huge selection of vehicles to suit every taste at the best prices. Our store has more than 5 years and during that time was not a single return of the goods. We serve hundreds of customers every day and do it with joy. Buy equi', '<p><span id="result_box" lang="en"><span>Shop</span> <span>ImageCMS Shop</span> <span>offers</span> <span>a huge selection</span> <span>of vehicles</span> <span>to suit every taste</span> <span>at the best prices</span><span>.</span><br /><br /> <span>Our store</span> <span>has more than</span> <span>5 years</span> <span>and during that time</span> <span>was not a single</span> <span>return of the goods</span><span>.</span><br /><br /> <span>We serve</span> <span>hundreds of</span> <span>customers</span> <span>every day</span> <span>and do</span> <span>it with joy.</span><br /><br /> <span>Buy</span> <span>equipment from</span> <span>us and</span> <span>become the owner of</span> <span>the world''s best</span> <span>technology</span><span>!</span></span></p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295776, 1291295792, 1343745649, 5, 30, 64),
-(80, 'Site', '', 'o-sajte', '', 'new', 'new', '<p><span id="result_box" lang="en"><span>This is</span> <span>the basic template</span> <span>ImageCMS,</span> <span>which</span> <span>relizovany</span> <span>the following functions</span><span>: display</span> <span>gallery</span><span>, displaying</span> <span>static</span> <span>articles</span><span>, displaying</span> <span>a corporate blog</span><span>, displaying</span> <span>the feedback form.</span><br /><br /> <span>General view of the</span> <span>template, you can</span> <span>edit and</span> <span>change the</span> <span>logo,</span> <span>a graphic</span> <span>box on</span> <span>your</span> <span>case</span><span>.</span><br /><br /> <span>On the left</span> <span>you can see</span> <span>in the sidebar</span> <span>list of</span> <span>categories of</span> <span>the blog,</span> <span>which is easily</span> <span>inserted</span> <span>by using the</span> <span>{sub_category_list ()}</span> <span>in the file</span> <span>main.tpl.</span> <span>Also</span> <span>in the left</span> <span>sidebar</span> <span>is</span> <span>a search form</span> <span>on the site,</span> <span>recent comments</span> <span>widget</span> <span>and the widget</span> <span>tag</span> <span>site.</span> <span>In</span> <span>this</span> <span>sidebar</span> <span>you can also</span> <span>add a widget</span><span>, or</span> <span>the latest</span> <span>popular</span> <span>news,</span> <span>as well as any</span> <span>counters,</span> <span>widgets</span><span>.</span><br /><br /> <span>The top menu</span> <span>is implemented</span> <span>by the module</span> <span>menu</span><span>.</span> <span>And manage</span> <span>its content</span> <span>can be</span> <span>part</span> <span>of the</span> <span>administration</span> <span>in Menu</span> <span>-</span> <span>Main Menu.</span> <span>It</span> <span>is usually</span> <span>possible to add</span> <span>page</span> <span>about the company</span><span>, contacts,</span> <span>services, etc.</span><br /><br /> <span>For more</span> <span>information, contact the</span> <span>official</span> <span>section of the documentation</span><span>: http://www.imagecms.net/wiki</span><br /><br /> <span>Discuss</span> <span>additional opportunities</span><span>, as well as</span> <span>questions about</span> <span>installation, configuration,</span> <span>the system can be</span> <span>on the official forum</span><span>: http://forum.imagecms.net/</span></span></p>', '', 0, 'page_static', '', 0, 1, 0, 'publish', 'admin', 1267203253, 1267203328, 1343722704, 0, 30, 35),
-(81, 'Action! Go to the camera Nikon S9100 - Memory Card 8 GB as a gift', '', 'aktsiia-k-fotoapparatu-nikon-s9100-karta-pamiati-8gb-v-podarok', 'novosti_i_aktsii/', 'windows, otrimuє, podarunok, laptop, bag, kozeny, pokupets, aktsіynih, noutbukіv, peredvstanovlenoyu, the', 'Windows OS otrimuє in podarunok laptop bag! Kozeny pokupets aktsіynih noutbukіv s peredvstanovlenoyu of Windows otrimuє podarunok in the laptop bag!', '<p><span id="result_box" lang="en"><span>Windows,</span> <span>receives a gift</span> <span>bag</span> <span>for a</span> <span>laptop!</span> <span>Each purchase</span> <span>advertising</span> <span>laptops</span> <span>preloaded with</span> <span>Windows,</span> <span>receives a gift</span> <span>bag for</span> <span>a laptop</span><span>!</span></span></p>', '', 56, '', '', 0, 1, 0, 'publish', 'admin', 1336477654, 1336477654, 1346689406, 4, 30, 73),
-(82, 'Action! To the camera Nikon S9100 - 8GB memory card for free!', '', 'aktsiia-k-fotoapparatu-nikon-s9100-karta-pamiati-8gb-v-podarok-1', 'novosti_i_aktsii/', 'windows, operating, system, receives, gift, bag, for, laptop, each, purchaser, promotional, notebooks, with', 'Windows operating system receives a gift bag for a laptop! Each purchaser of promotional notebooks with Windows receives a gift bag for a laptop!', '<p><span id="result_box" lang="en"><span>Windows</span> <span>operating system</span> <span>receives a gift</span> <span>bag for</span> <span>a laptop</span><span>!</span> <span>Each purchaser</span> <span>of promotional</span> <span>notebooks</span> <span>with Windows</span> <span>receives a gift</span> <span>bag for</span> <span>a laptop</span><span>!</span></span></p>', '', 56, '', '', 0, 1, 0, 'publish', 'admin', 1336737588, 1336737588, 1346689276, 0, 30, 74);
+(80, 'Site', '', 'o-sajte', '', 'new', 'new', '<p><span id="result_box" lang="en"><span>This is</span> <span>the basic template</span> <span>ImageCMS,</span> <span>which</span> <span>relizovany</span> <span>the following functions</span><span>: display</span> <span>gallery</span><span>, displaying</span> <span>static</span> <span>articles</span><span>, displaying</span> <span>a corporate blog</span><span>, displaying</span> <span>the feedback form.</span><br /><br /> <span>General view of the</span> <span>template, you can</span> <span>edit and</span> <span>change the</span> <span>logo,</span> <span>a graphic</span> <span>box on</span> <span>your</span> <span>case</span><span>.</span><br /><br /> <span>On the left</span> <span>you can see</span> <span>in the sidebar</span> <span>list of</span> <span>categories of</span> <span>the blog,</span> <span>which is easily</span> <span>inserted</span> <span>by using the</span> <span>{sub_category_list ()}</span> <span>in the file</span> <span>main.tpl.</span> <span>Also</span> <span>in the left</span> <span>sidebar</span> <span>is</span> <span>a search form</span> <span>on the site,</span> <span>recent comments</span> <span>widget</span> <span>and the widget</span> <span>tag</span> <span>site.</span> <span>In</span> <span>this</span> <span>sidebar</span> <span>you can also</span> <span>add a widget</span><span>, or</span> <span>the latest</span> <span>popular</span> <span>news,</span> <span>as well as any</span> <span>counters,</span> <span>widgets</span><span>.</span><br /><br /> <span>The top menu</span> <span>is implemented</span> <span>by the module</span> <span>menu</span><span>.</span> <span>And manage</span> <span>its content</span> <span>can be</span> <span>part</span> <span>of the</span> <span>administration</span> <span>in Menu</span> <span>-</span> <span>Main Menu.</span> <span>It</span> <span>is usually</span> <span>possible to add</span> <span>page</span> <span>about the company</span><span>, contacts,</span> <span>services, etc.</span><br /><br /> <span>For more</span> <span>information, contact the</span> <span>official</span> <span>section of the documentation</span><span>: http://www.imagecms.net/wiki</span><br /><br /> <span>Discuss</span> <span>additional opportunities</span><span>, as well as</span> <span>questions about</span> <span>installation, configuration,</span> <span>the system can be</span> <span>on the official forum</span><span>: http://forum.imagecms.net/</span></span></p>', '', 0, 'page_static', '', 0, 1, 0, 'publish', 'admin', 1267203253, 1267203328, 1343722704, 0, 30, 35);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content_fields`
+-- Структура таблиці `content_fields`
 --
 
 CREATE TABLE IF NOT EXISTS `content_fields` (
@@ -233,7 +235,6 @@ CREATE TABLE IF NOT EXISTS `content_fields` (
   `type` varchar(255) NOT NULL,
   `label` varchar(255) NOT NULL,
   `data` text NOT NULL,
-  `group` int(11) NOT NULL DEFAULT '0',
   `weight` int(11) NOT NULL,
   `in_search` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`field_name`),
@@ -243,17 +244,16 @@ CREATE TABLE IF NOT EXISTS `content_fields` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `content_fields`
+-- Дамп даних таблиці `content_fields`
 --
 
-INSERT INTO `content_fields` (`field_name`, `type`, `label`, `data`, `group`, `weight`, `in_search`) VALUES
-('field_field1', 'text', 'Field 1', '', 7, 1, 1),
-('field_pole2', 'select', 'Pole 2', 'a:3:{s:7:"initial";s:13:"value1\nvalue2";s:9:"help_text";s:0:"";s:10:"validation";s:0:"";}', 7, 2, 1);
+INSERT INTO `content_fields` (`field_name`, `type`, `label`, `data`, `weight`, `in_search`) VALUES
+('field_doc', 'text', 'Documentation', 'a:4:{s:7:"initial";s:0:"";s:9:"help_text";s:8:"PDF-file";s:19:"enable_file_browser";s:1:"1";s:10:"validation";s:0:"";}', 6, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content_fields_data`
+-- Структура таблиці `content_fields_data`
 --
 
 CREATE TABLE IF NOT EXISTS `content_fields_data` (
@@ -266,28 +266,35 @@ CREATE TABLE IF NOT EXISTS `content_fields_data` (
   KEY `item_id` (`item_id`),
   KEY `item_type` (`item_type`),
   KEY `field_name` (`field_name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
-
---
--- Dumping data for table `content_fields_data`
---
-
-INSERT INTO `content_fields_data` (`id`, `item_id`, `item_type`, `field_name`, `data`) VALUES
-(10, 74, 'page', 'field_pole2', '0'),
-(9, 74, 'page', 'field_field1', ''),
-(5, 72, 'page', 'field_field1', ''),
-(6, 72, 'page', 'field_pole2', '0'),
-(7, 73, 'page', 'field_field1', ''),
-(8, 73, 'page', 'field_pole2', '0'),
-(11, 81, 'page', 'field_field1', ''),
-(12, 81, 'page', 'field_pole2', '0'),
-(13, 82, 'page', 'field_field1', ''),
-(14, 82, 'page', 'field_pole2', '0');
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content_field_groups`
+-- Структура таблиці `content_fields_groups_relations`
+--
+
+CREATE TABLE IF NOT EXISTS `content_fields_groups_relations` (
+  `field_name` varchar(64) NOT NULL,
+  `group_id` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Дамп даних таблиці `content_fields_groups_relations`
+--
+
+INSERT INTO `content_fields_groups_relations` (`field_name`, `group_id`) VALUES
+('field_sfsdfsdf', 0),
+('field_sfsdfsdf', 11),
+('field_fyjtyutyu', 0),
+('field_fg12', 9),
+('field_fg12', 9),
+('field_doc', 11);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `content_field_groups`
 --
 
 CREATE TABLE IF NOT EXISTS `content_field_groups` (
@@ -296,19 +303,21 @@ CREATE TABLE IF NOT EXISTS `content_field_groups` (
   `description` text,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
--- Dumping data for table `content_field_groups`
+-- Дамп даних таблиці `content_field_groups`
 --
 
 INSERT INTO `content_field_groups` (`id`, `name`, `description`) VALUES
-(7, 'test', 'sdfsdfsdf');
+(9, 'g1', ''),
+(11, 'g4', ''),
+(12, 'g3', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content_permissions`
+-- Структура таблиці `content_permissions`
 --
 
 CREATE TABLE IF NOT EXISTS `content_permissions` (
@@ -320,7 +329,7 @@ CREATE TABLE IF NOT EXISTS `content_permissions` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
 
 --
--- Dumping data for table `content_permissions`
+-- Дамп даних таблиці `content_permissions`
 --
 
 INSERT INTO `content_permissions` (`id`, `page_id`, `data`) VALUES
@@ -330,7 +339,7 @@ INSERT INTO `content_permissions` (`id`, `page_id`, `data`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content_tags`
+-- Структура таблиці `content_tags`
 --
 
 CREATE TABLE IF NOT EXISTS `content_tags` (
@@ -345,7 +354,7 @@ CREATE TABLE IF NOT EXISTS `content_tags` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `custom_fields`
+-- Структура таблиці `custom_fields`
 --
 
 CREATE TABLE IF NOT EXISTS `custom_fields` (
@@ -363,12 +372,19 @@ CREATE TABLE IF NOT EXISTS `custom_fields` (
   `entity` varchar(32) DEFAULT NULL,
   `options` varchar(65) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Дамп даних таблиці `custom_fields`
+--
+
+INSERT INTO `custom_fields` (`id`, `field_type_id`, `field_name`, `field_label`, `field_description`, `is_required`, `is_active`, `is_private`, `possible_values`, `validators`, `field_access_rules`, `entity`, `options`) VALUES
+(2, 0, 'fd', 'dfg', 'іфвфів  ', 0, 1, 0, NULL, NULL, '', 'user', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `custom_fields_data`
+-- Структура таблиці `custom_fields_data`
 --
 
 CREATE TABLE IF NOT EXISTS `custom_fields_data` (
@@ -377,12 +393,19 @@ CREATE TABLE IF NOT EXISTS `custom_fields_data` (
   `entity_id` int(11) NOT NULL,
   `field_data` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Дамп даних таблиці `custom_fields_data`
+--
+
+INSERT INTO `custom_fields_data` (`id`, `field_id`, `entity_id`, `field_data`) VALUES
+(1, 2, 1, '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gallery_albums`
+-- Структура таблиці `gallery_albums`
 --
 
 CREATE TABLE IF NOT EXISTS `gallery_albums` (
@@ -398,19 +421,28 @@ CREATE TABLE IF NOT EXISTS `gallery_albums` (
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`),
   KEY `created` (`created`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 --
--- Dumping data for table `gallery_albums`
+-- Дамп даних таблиці `gallery_albums`
 --
 
 INSERT INTO `gallery_albums` (`id`, `category_id`, `name`, `description`, `cover_id`, `position`, `created`, `updated`, `tpl_file`) VALUES
-(1, 1, 'new album', '', 0, 0, 1264086406, 1307538865, '');
+(5, 1, 'uiyui', '', 0, 0, 1354635595, NULL, '0'),
+(19, 1, 'asd', '', 0, 1, 1354637900, NULL, '0'),
+(8, 1, 'hjkhj', '', 0, 2, 1354635933, NULL, '0'),
+(9, 1, 'sdf', '', 0, 3, 1354636016, NULL, '0'),
+(10, 1, 'asd', 'sdf', 0, 5, 1354636058, NULL, '0'),
+(11, 1, 'asdasd', '', 0, 6, 1354636132, NULL, '0'),
+(12, 1, 'sdfsdf', '', 0, 7, 1354636795, NULL, '0'),
+(13, 1, 'sdfsdf', '', 0, 8, 1354637084, NULL, '0'),
+(14, 1, 'dfgdfg', '', 0, 9, 1354637130, NULL, '0'),
+(15, 1, 'sdf', '', 0, 10, 1354637157, NULL, '0');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gallery_category`
+-- Структура таблиці `gallery_category`
 --
 
 CREATE TABLE IF NOT EXISTS `gallery_category` (
@@ -423,19 +455,20 @@ CREATE TABLE IF NOT EXISTS `gallery_category` (
   PRIMARY KEY (`id`),
   KEY `created` (`created`),
   KEY `position` (`position`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `gallery_category`
+-- Дамп даних таблиці `gallery_category`
 --
 
 INSERT INTO `gallery_category` (`id`, `name`, `description`, `cover_id`, `position`, `created`) VALUES
-(1, 'test category', '', 0, 0, 1264086398);
+(1, 'test category', '', 0, 0, 1264086398),
+(2, 'test', 'sd', 0, 1, 1354634866);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gallery_images`
+-- Структура таблиці `gallery_images`
 --
 
 CREATE TABLE IF NOT EXISTS `gallery_images` (
@@ -453,22 +486,12 @@ CREATE TABLE IF NOT EXISTS `gallery_images` (
   PRIMARY KEY (`id`),
   KEY `album_id` (`album_id`),
   KEY `position` (`position`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
-
---
--- Dumping data for table `gallery_images`
---
-
-INSERT INTO `gallery_images` (`id`, `album_id`, `file_name`, `file_ext`, `file_size`, `position`, `width`, `height`, `description`, `uploaded`, `views`) VALUES
-(18, 1, 'test', '.jpg', '201.3 Кб', 1, 800, 600, NULL, 1266935445, 229),
-(19, 1, 'Frangipani_Flowers', '.jpg', '53.2 Кб', 2, 800, 600, NULL, 1266935848, 231),
-(37, 1, 'flowers', '.jpg', '81.8 Кб', 4, 800, 600, NULL, 1307538860, 0),
-(36, 1, 'winter', '.jpg', '103.1 Кб', 3, 800, 600, NULL, 1307538860, 0);
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=47 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `languages`
+-- Структура таблиці `languages`
 --
 
 CREATE TABLE IF NOT EXISTS `languages` (
@@ -485,7 +508,7 @@ CREATE TABLE IF NOT EXISTS `languages` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
 
 --
--- Dumping data for table `languages`
+-- Дамп даних таблиці `languages`
 --
 
 INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `template`, `default`) VALUES
@@ -495,7 +518,7 @@ INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `templ
 -- --------------------------------------------------------
 
 --
--- Table structure for table `login_attempts`
+-- Структура таблиці `login_attempts`
 --
 
 CREATE TABLE IF NOT EXISTS `login_attempts` (
@@ -505,12 +528,12 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
   PRIMARY KEY (`id`),
   KEY `ip_address` (`ip_address`),
   KEY `time` (`time`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=64 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=75 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `logs`
+-- Структура таблиці `logs`
 --
 
 CREATE TABLE IF NOT EXISTS `logs` (
@@ -521,10 +544,10 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `date` (`date`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=174 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=471 ;
 
 --
--- Dumping data for table `logs`
+-- Дамп даних таблиці `logs`
 --
 
 INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
@@ -700,11 +723,309 @@ INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
 (170, 1, 'admin', 'Назначил язык Русский по умолчанию', 1346745879),
 (171, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346749198),
 (172, 1, 'admin', 'Очистил кеш', 1346752792),
-(173, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346759724);
+(173, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346759724),
+(174, 1, 'admin', 'Назначил язык English по умолчанию', 1352810204),
+(175, 1, 'admin', 'Назначил язык Русский по умолчанию', 1352810207),
+(176, 1, 'admin', 'Установил модуль polls', 1352810661),
+(177, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1352886442),
+(178, 1, 'admin', 'Удалил модуль polls', 1352891350),
+(179, 1, 'admin', 'Установил модуль polls', 1352891445),
+(180, 1, 'admin', 'Удалил модуль polls', 1352891519),
+(181, 1, 'admin', 'Установил модуль polls', 1352891525),
+(182, 1, 'admin', 'Удалил модуль polls', 1352891559),
+(183, 1, 'admin', 'Установил модуль polls', 1352899034),
+(184, 1, 'admin', 'Удалил модуль polls', 1352901046),
+(185, 1, 'admin', 'Установил модуль user_support', 1352901480),
+(186, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1352972821),
+(187, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1353060877),
+(188, 1, 'admin', 'Удалил модуль user_support', 1353060972),
+(189, 1, 'admin', 'Установил модуль user_support', 1353061053),
+(190, 1, 'admin', 'Удалил категорию ID 1', 1353076909),
+(191, 1, 'admin', 'Удалил категорию ID 1', 1353077097),
+(192, 1, 'admin', 'Удалил категорию ID 56', 1353077097),
+(193, 1, 'admin', 'Удалил страницу ID 74', 1353077097),
+(194, 1, 'admin', 'Удалил страницу ID 73', 1353077097),
+(195, 1, 'admin', 'Удалил страницу ID ', 1353077097),
+(196, 1, 'admin', 'Удалил страницу ID ', 1353077097),
+(197, 1, 'admin', 'Удалил категорию ID 62', 1353077244),
+(198, 1, 'admin', 'Удалил категорию ID 61', 1353077244),
+(199, 1, 'admin', 'Создал категорию        <a href="/admin/categories/edit/64"> asdasdasd</a>', 1353077427),
+(200, 1, 'admin', 'Изменил категорию   <a href="/admin/categories/edit/64"> asdasdasd</a>', 1353078924),
+(201, 1, 'admin', 'Изменил категорию   <a href="/admin/categories/edit/64"> asdasdasd</a>', 1353078930),
+(202, 1, 'admin', 'Изменил категорию   <a href="/admin/categories/edit/64"> asdasdasd</a>', 1353079183),
+(203, 1, 'admin', 'Изменил категорию   <a href="/admin/categories/edit/63"> root</a>', 1353079196),
+(204, 1, 'admin', 'Изменил категорию   <a href="/admin/categories/edit/63"> root</a>', 1353079427),
+(205, 1, 'admin', 'Изменил категорию   <a href="/admin/categories/edit/64"> asdasdasd</a>', 1353079472),
+(206, 1, 'admin', 'Изменил категорию   <a href="/admin/categories/edit/64"> asdasdasd</a>', 1353079478),
+(207, 1, 'admin', 'Изменил категорию   <a href="/admin/categories/edit/64"> asdasdasd</a>', 1353079485),
+(208, 1, 'admin', 'Создал страницу<a href="http://p4/admin/pages/edit/83">e4rt b ey</a>', 1353079496),
+(209, 1, 'admin', 'Изменил страницу<a href="http://p4/admin/pages/edit/83">e4rt b ey</a>', 1353079509),
+(210, 1, 'admin', 'Создал категорию        <a href="/admin/categories/edit/65"> wwcc</a>', 1353080471),
+(211, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1353322808),
+(212, 1, 'admin', 'Изменил категорию   <a href="/admin/categories/edit/64"> asdasdasd</a>', 1353324828),
+(213, 1, 'admin', 'Изменил страницу<a href="http://p4/admin/pages/edit/83">e4rt b ey</a>', 1353332589),
+(214, 1, 'admin', 'Изменил страницу<a href="http://p4/admin/pages/edit/83">e4rt b ey</a>', 1353335116),
+(215, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1353335467),
+(216, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1353335605),
+(217, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1353413838),
+(218, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1353414250),
+(219, 1, 'admin', 'Магазин - Изменения сохранены<a href="http://p4/admin/components/run/shop/users/edit/1">admin</a>', 1353427170),
+(220, 1, 'admin', 'Магазин - Изменения сохранены<a href="http://p4/admin/components/run/shop/users/edit/1">Roman Koloda</a>', 1353427421),
+(221, 1, 'admin', 'Создал пользователя ', 1353428546),
+(222, 1, 'admin', 'Магазин - Изменения сохранены<a href="http://p4/admin/components/run/shop/users/edit/6">ad</a>', 1353428597),
+(223, 1, 'admin', 'Создал группу Managers', 1353430153),
+(224, 1, 'admin', 'Создал пользователя <a href="http://p4/admin/components/cp/user_manager/edit_user">Roman Koklo</a>', 1353433176),
+(225, 1, 'admin', 'Создал пользователя <a href="http://p4/admin/components/cp/user_manager/edit_user">sfsafsdfsdf</a>', 1353433381),
+(226, 1, 'admin', 'Создал пользователя <a href="http://p4/admin/components/cp/user_manager/edit_user/14">asdasdasdasd</a>', 1353433635),
+(227, 1, 'admin', 'Создал пользователя <a href="http://p4/admin/components/cp/user_manager/edit_user/15">Bad User</a>', 1353434457),
+(228, 1, 'admin', 'Обновил пользователя <a href="http://p4/admin/components/cp/user_manager/edit_user/15">Bad User</a>', 1353434471),
+(229, 1, 'admin', 'Создал пользователя <a href="http://p4/admin/components/cp/user_manager/edit_user/16">Roamn</a>', 1353434567),
+(230, 1, 'admin', 'Обновил пользователя <a href="http://p4/admin/components/cp/user_manager/edit_user/16">Roamn</a>', 1353434833),
+(231, 1, 'admin', 'Обновил пользователя <a href="http://p4/admin/components/cp/user_manager/edit_user/16">Roamn</a>', 1353434842),
+(232, 1, 'admin', 'Обновил пользователя <a href="http://p4/admin/components/cp/user_manager/edit_user/16">Roamn</a>', 1353434848),
+(233, 1, 'admin', 'Обновил пользователя <a href="http://p4/admin/components/cp/user_manager/edit_user/16">Roamn</a>', 1353434855),
+(234, 1, 'admin', 'Обновил пользователя <a href="http://p4/admin/components/cp/user_manager/edit_user/15">Bad User</a>', 1353434965),
+(235, 1, 'admin', 'Создал пользователя ', 1353435211),
+(236, 1, 'admin', 'Удалил пользователя 17', 1353435284),
+(237, 1, 'admin', 'Создал пользователя ', 1353435333),
+(238, 1, 'admin', 'Удалил пользователя 20', 1353435638),
+(239, 1, 'admin', 'Удалил пользователя 19', 1353435638),
+(240, 1, 'admin', 'Создал пользователя ', 1353436884),
+(241, 1, 'admin', 'Создал пользователя ', 1353436934),
+(242, 1, 'admin', 'Создал пользователя ', 1353437073),
+(243, 1, 'admin', 'Создал пользователя ', 1353437176),
+(244, 1, 'admin', 'Обновил пользователя <a href="http://p4/admin/components/cp/user_manager/edit_user/30">Test 2</a>', 1353437199),
+(245, 1, 'admin', 'Удалил пользователя 14', 1353437256),
+(246, 1, 'admin', 'Удалил пользователя 6', 1353437256),
+(247, 1, 'admin', 'Удалил пользователя 16', 1353437262),
+(248, 1, 'admin', 'Вышел из панели управления', 1353437286),
+(249, 1, 'Roman Koloda', 'Вошел в панель управления IP 127.0.0.1', 1353497693),
+(250, 1, 'Roman Koloda', 'Вошел в панель управления IP 127.0.0.1', 1353497827),
+(251, 1, 'Roman Koloda', 'Вошел в панель управления IP 127.0.0.1', 1353500263),
+(252, 1, 'Roman Koloda', 'Вошел в панель управления IP 127.0.0.1', 1353502224),
+(253, 1, 'Roman Koloda', 'Магазин - Изменения сохранены<a href="http://p4/admin/components/run/shop/users/edit/15">Bad User</a>', 1353505853),
+(254, 1, 'Roman Koloda', 'Вошел в панель управления IP 127.0.0.1', 1353512229),
+(255, 1, 'Roman Koloda', 'Вошел в панель управления IP 127.0.0.1', 1353598913),
+(256, 1, 'Roman Koloda', 'Создал пользователя ', 1353599155),
+(257, 1, 'Roman Koloda', 'Создал пользователя ', 1353599730),
+(258, 1, 'Roman Koloda', 'Создал пользователя ', 1353600013),
+(259, 1, 'Roman Koloda', 'Создал пользователя <a href="http://www.t1.loc/admin/components/cp/user_manager/edit_user/35">fesdfsdgngf</a>', 1353603436),
+(260, 1, 'Roman Koloda', 'Создал пользователя ', 1353603881),
+(261, 1, 'Roman Koloda', 'Создал группу gdfg', 1353603994),
+(262, 1, 'Roman Koloda', 'Создал пользователя <a href="http://www.t1.loc/admin/components/cp/user_manager/edit_user/38">esdfs</a>', 1353604090),
+(263, 1, 'Roman Koloda', 'Создал группу sdfsdf', 1353604314),
+(264, 1, 'Roman Koloda', 'Создал группу dfg', 1353604410),
+(265, 1, 'Roman Koloda', 'Создал группу sdfsdf', 1353604777),
+(266, 1, 'Roman Koloda', 'Создал группу sdfsdf', 1353604817),
+(267, 1, 'Roman Koloda', 'Создал группу sdfs', 1353604878),
+(268, 1, 'Roman Koloda', 'Создал группу dfgdfg', 1353605024),
+(269, 1, 'Roman Koloda', 'Создал группу sdfsdfsdf', 1353605277),
+(270, 1, 'Roman Koloda', 'Создал группу dfgdfg', 1353605377),
+(271, 1, 'Roman Koloda', 'Создал группу sdfsdf', 1353605452),
+(272, 1, 'Roman Koloda', 'Создал группу erter', 1353605629),
+(273, 1, 'Roman Koloda', 'Создал группу sdfsdf', 1353605651),
+(274, 1, 'Roman Koloda', 'Создал группу sdfsdf', 1353606339),
+(275, 1, 'Roman Koloda', 'Создал группу dfgdf', 1353606367),
+(276, 1, 'Roman Koloda', 'Создал группу ghjg', 1353606385),
+(277, 1, 'Roman Koloda', 'Создал группу fgdfg', 1353606436),
+(278, 1, 'Roman Koloda', 'Создал группу asdas', 1353606480),
+(279, 1, 'Roman Koloda', 'Создал группу sdfsdfs', 1353606999),
+(280, 1, 'Roman Koloda', 'Создал пользователя ', 1353607143),
+(281, 1, 'Roman Koloda', 'Создал пользователя ', 1353607171),
+(282, 1, 'Roman Koloda', 'Магазин - Изменения сохранены<a href="http://www.t1.loc/admin/components/run/shop/users/edit/40">sdf</a>', 1353607184),
+(283, 1, 'Roman Koloda', 'Вошел в панель управления IP 127.0.0.1', 1353664059),
+(284, 1, 'Roman Koloda', 'Создал пользователя ', 1353664082),
+(285, 1, 'Roman Koloda', 'Создал группу sdfsd', 1353664240),
+(286, 1, 'Roman Koloda', 'Создал группу sdfsd', 1353664463),
+(287, 1, 'Roman Koloda', 'Создал группу sdfsdfsd', 1353664475),
+(288, 1, 'Roman Koloda', 'Создал группу sdfsdfsdf', 1353665410),
+(289, 1, 'Roman Koloda', 'Создал группу dfgdfg', 1353665465),
+(290, 1, 'Roman Koloda', 'Создал группу dfgdfg', 1353665594),
+(291, 1, 'Roman Koloda', 'Создал группу sdfs', 1353665626),
+(292, 1, 'Roman Koloda', 'Создал группу sdfs', 1353665770),
+(293, 1, 'Roman Koloda', 'Создал группу fsdfsd', 1353665821),
+(294, 1, 'Roman Koloda', 'Создал группу fsdfsd', 1353666305),
+(295, 1, 'Roman Koloda', 'Создал группу fsdfsdf', 1353666313),
+(296, 1, 'Roman Koloda', 'Создал группу fsdfdaf', 1353666343),
+(297, 1, 'Roman Koloda', 'Создал группу sdfsdf', 1353666418),
+(298, 1, 'Roman Koloda', 'Создал группу gsdfgs', 1353666458),
+(299, 1, 'Roman Koloda', 'Создал группу dfgsdfg', 1353666468),
+(300, 1, 'Roman Koloda', 'Создал группу hdfgh', 1353666522),
+(301, 1, 'Roman Koloda', 'Создал группу fghjfghj', 1353666571),
+(302, 1, 'Roman Koloda', 'Создал группу fhjf', 1353666661),
+(303, 1, 'Roman Koloda', 'Создал группу dfg', 1353666776),
+(304, 1, 'Roman Koloda', 'Создал группу dfg', 1353666880),
+(305, 1, 'Roman Koloda', 'Создал группу sdasd', 1353666900),
+(306, 1, 'Roman Koloda', 'Создал группу name2', 1353666989),
+(307, 1, 'Roman Koloda', 'Создал группу name3', 1353667227),
+(308, 1, 'Roman Koloda', 'Создал группу name3', 1353667247),
+(309, 1, 'Roman Koloda', 'Создал группу dfgdfgdfg', 1353667258),
+(310, 1, 'Roman Koloda', 'Создал группу dfgdfgdfg', 1353667362),
+(311, 1, 'Roman Koloda', 'Создал группу sdf', 1353667445),
+(312, 1, 'Roman Koloda', 'Создал группу 4444fff', 1353667506),
+(313, 1, 'Roman Koloda', 'Создал группу 4444fff', 1353667532),
+(314, 1, 'Roman Koloda', 'Создал группу werwer', 1353667552),
+(315, 1, 'Roman Koloda', 'Создал группу werwer', 1353667606),
+(316, 1, 'Roman Koloda', 'Создал группу werwer', 1353667635),
+(317, 1, 'Roman Koloda', 'Создал группу wer', 1353667665),
+(318, 1, 'Roman Koloda', 'Создал группу wer', 1353667775),
+(319, 1, 'Roman Koloda', 'Создал группу erter', 1353667912),
+(320, 1, 'Roman Koloda', 'Создал группу erterwerwerwer', 1353667921),
+(321, 1, 'Roman Koloda', 'Создал группу erterwerwerwerd', 1353667962),
+(322, 1, 'Roman Koloda', 'Создал группу tyrt', 1353668027),
+(323, 1, 'Roman Koloda', 'Создал группу hgjhjtfklgnffg', 1353668235),
+(324, 1, 'Roman Koloda', 'Создал группу ewrwer', 1353668264),
+(325, 1, 'Roman Koloda', 'Создал пользователя ', 1353668491),
+(326, 1, 'Roman Koloda', 'Вошел в панель управления IP 127.0.0.1', 1353924517),
+(327, 1, 'Roman Koloda', 'Создал пользователя ', 1353924537),
+(328, 1, 'Roman Koloda', 'Создал пользователя ', 1353925451),
+(329, 1, 'Roman Koloda', 'Создал пользователя ', 1353926633),
+(330, 1, 'Roman Koloda', 'Создал пользователя ', 1353929260),
+(331, 1, 'Roman Koloda', 'Создал пользователя ', 1353929693),
+(332, 1, 'Roman Koloda', 'Создал пользователя ', 1353929796),
+(333, 1, 'Roman Koloda', 'Создал пользователя ', 1353929822),
+(334, 1, 'Roman Koloda', 'Создал пользователя ', 1353929968),
+(335, 1, 'Roman Koloda', 'Создал пользователя ', 1353930087),
+(336, 1, 'Roman Koloda', 'Создал пользователя ', 1353930156),
+(337, 1, 'Roman Koloda', 'Создал пользователя ', 1353930290),
+(338, 1, 'Roman Koloda', 'Создал пользователя ', 1353930492),
+(339, 1, 'Roman Koloda', 'Создал пользователя ', 1353930563),
+(340, 1, 'Roman Koloda', 'Создал пользователя ', 1353931012),
+(341, 1, 'Roman Koloda', 'Создал пользователя ', 1353931361),
+(342, 1, 'Roman Koloda', 'Создал пользователя ', 1353931981),
+(343, 1, 'Roman Koloda', 'Создал пользователя ', 1353932120),
+(344, 1, 'Roman Koloda', 'Создал пользователя ', 1353932212),
+(345, 1, 'Roman Koloda', 'Создал пользователя ', 1353932879),
+(346, 1, 'Roman Koloda', 'Создал пользователя ', 1353932934),
+(347, 1, 'Roman Koloda', 'Вошел в панель управления IP 127.0.0.1', 1353933349),
+(348, 1, 'Roman Koloda', 'Создал пользователя ', 1353948633),
+(349, 1, 'Roman Koloda', 'Удалил группу  20', 1354035514),
+(350, 1, 'Roman Koloda', 'Удалил группу  21', 1354035515),
+(351, 1, 'Roman Koloda', 'Удалил группу  22', 1354035515),
+(352, 1, 'Roman Koloda', 'Удалил группу  23', 1354035515),
+(353, 1, 'Roman Koloda', 'Удалил группу  24', 1354035515),
+(354, 1, 'Roman Koloda', 'Удалил группу  25', 1354035515),
+(355, 1, 'Roman Koloda', 'Удалил группу  26', 1354035515),
+(356, 1, 'Roman Koloda', 'Удалил группу  27', 1354035515),
+(357, 1, 'Roman Koloda', 'Удалил группу  28', 1354035515),
+(358, 1, 'Roman Koloda', 'Удалил группу  29', 1354035515),
+(359, 1, 'Roman Koloda', 'Удалил группу  30', 1354035515),
+(360, 1, 'Roman Koloda', 'Удалил группу  31', 1354035515),
+(361, 1, 'Roman Koloda', 'Удалил группу  32', 1354035515),
+(362, 1, 'Roman Koloda', 'Удалил группу  33', 1354035515),
+(363, 1, 'Roman Koloda', 'Удалил группу  34', 1354035515),
+(364, 1, 'Roman Koloda', 'Удалил группу  35', 1354035515),
+(365, 1, 'Roman Koloda', 'Удалил группу  36', 1354035515),
+(366, 1, 'Roman Koloda', 'Удалил группу  37', 1354035515),
+(367, 1, 'Roman Koloda', 'Удалил группу  38', 1354035515),
+(368, 1, 'Roman Koloda', 'Удалил группу  39', 1354035515),
+(369, 1, 'Roman Koloda', 'Удалил группу  40', 1354035515),
+(370, 1, 'Roman Koloda', 'Удалил группу  41', 1354035515),
+(371, 1, 'Roman Koloda', 'Удалил группу  42', 1354035515),
+(372, 1, 'Roman Koloda', 'Удалил группу  43', 1354035515),
+(373, 1, 'Roman Koloda', 'Удалил группу  44', 1354035515),
+(374, 1, 'Roman Koloda', 'Удалил группу  45', 1354035515),
+(375, 1, 'Roman Koloda', 'Удалил группу  46', 1354035515),
+(376, 1, 'Roman Koloda', 'Удалил группу  47', 1354035515),
+(377, 1, 'Roman Koloda', 'Удалил группу  48', 1354035515),
+(378, 1, 'Roman Koloda', 'Удалил группу  49', 1354035515),
+(379, 1, 'Roman Koloda', 'Удалил группу  50', 1354035515),
+(380, 1, 'Roman Koloda', 'Удалил группу  51', 1354035515),
+(381, 1, 'Roman Koloda', 'Удалил группу  52', 1354035515),
+(382, 1, 'Roman Koloda', 'Удалил группу  53', 1354035515),
+(383, 1, 'Roman Koloda', 'Удалил группу  54', 1354035515),
+(384, 1, 'Roman Koloda', 'Удалил группу  55', 1354035515),
+(385, 1, 'Roman Koloda', 'Удалил группу  56', 1354035515),
+(386, 1, 'Roman Koloda', 'Удалил группу  57', 1354035515),
+(387, 1, 'Roman Koloda', 'Удалил группу  58', 1354035515),
+(388, 1, 'Roman Koloda', 'Удалил группу  59', 1354035515),
+(389, 1, 'Roman Koloda', 'Удалил группу  60', 1354035515),
+(390, 1, 'Roman Koloda', 'Удалил группу  61', 1354035515),
+(391, 1, 'Roman Koloda', 'Удалил группу  62', 1354035515),
+(392, 1, 'Roman Koloda', 'Удалил группу  63', 1354035515),
+(393, 1, 'Roman Koloda', 'Удалил группу  64', 1354035515),
+(394, 1, 'Roman Koloda', 'Удалил группу  65', 1354035515),
+(395, 1, 'Roman Koloda', 'Удалил группу  66', 1354035515),
+(396, 1, 'Roman Koloda', 'Удалил группу  67', 1354035515),
+(397, 1, 'Roman Koloda', 'Удалил группу  68', 1354035515),
+(398, 1, 'Roman Koloda', 'Удалил группу  69', 1354035515),
+(399, 1, 'Roman Koloda', 'Удалил группу  70', 1354035515),
+(400, 1, 'Roman Koloda', 'Удалил группу  71', 1354035515),
+(401, 1, 'Roman Koloda', 'Удалил группу  72', 1354035515),
+(402, 1, 'Roman Koloda', 'Удалил группу  73', 1354035515),
+(403, 1, 'Roman Koloda', 'Удалил группу  74', 1354035515),
+(404, 1, 'Roman Koloda', 'Удалил группу  75', 1354035515),
+(405, 1, 'Roman Koloda', 'Удалил группу  76', 1354035515),
+(406, 1, 'Roman Koloda', 'Удалил группу  77', 1354035515),
+(407, 1, 'Roman Koloda', 'Вышел из панели управления', 1354096414),
+(408, 1, 'Roman Koloda', 'Вошел в панель управления IP 127.0.0.1', 1354096946),
+(409, 1, 'Roman Koloda', 'Вышел из панели управления', 1354096954),
+(410, 1, 'Roman Koloda', 'Вошел в панель управления IP 127.0.0.1', 1354096961),
+(411, 1, 'Roman Koloda', 'Вышел из панели управления', 1354096968),
+(412, 1, 'Roman Koloda', 'Вошел в панель управления IP 127.0.0.1', 1354097772),
+(413, 1, 'Roman Koloda', 'Вышел из панели управления', 1354098099),
+(414, 1, 'Roman Koloda', 'Вошел в панель управления IP 127.0.0.1', 1354098450),
+(415, 1, 'Roman Koloda', 'Вошел в панель управления IP 127.0.0.1', 1354103182),
+(416, 1, 'Roman Koloda', 'Вошел в панель управления IP 127.0.0.1', 1354105052),
+(417, 1, 'Roman Koloda', 'Вошел в панель управления IP 127.0.0.1', 1354110203),
+(418, 1, 'Roman Koloda', 'Вошел в панель управления IP 127.0.0.1', 1354199844),
+(419, 1, 'Roman Koloda', 'Вошел в панель управления IP 127.0.0.1', 1354200171),
+(420, 1, 'Roman Koloda', 'Вошел в панель управления IP 127.0.0.1', 1354203891),
+(421, 1, 'Roman Koloda', 'Вошел в панель управления IP 127.0.0.1', 1354206775),
+(422, 1, 'Roman Koloda', 'Вошел в панель управления IP 127.0.0.1', 1354206852),
+(423, 1, 'Roman Koloda', 'Вошел в панель управления IP 127.0.0.1', 1354288922),
+(424, 1, 'Roman Koloda', 'Вошел в панель управления IP 127.0.0.1', 1354530441),
+(425, 1, 'Roman Koloda', 'Вышел из панели управления', 1354536772),
+(426, 1, 'Roman Koloda', 'Вошел в панель управления IP 127.0.0.1', 1354536807),
+(427, 1, 'Roman Koloda', 'Вошел в панель управления IP 127.0.0.1', 1354537630),
+(428, 1, 'Roman Koloda', 'Очистил кеш', 1354539866),
+(429, 1, 'Roman Koloda', 'Очистил кеш', 1354539873),
+(430, 1, 'Roman Koloda', 'Очистил кеш', 1354539875),
+(431, 1, 'Roman Koloda', 'Очистил кеш', 1354539877),
+(432, 1, 'Roman Koloda', 'Очистил кеш', 1354539886),
+(433, 1, 'Roman Koloda', 'Удалил страницу ID 83', 1354547522),
+(434, 1, 'Roman Koloda', 'Создал страницу<a href="http://www.imagecms.loc/admin/pages/edit/86">1111</a>', 1354547673),
+(435, 1, 'Roman Koloda', 'Удалил страницу ID 84', 1354547775),
+(436, 1, 'Roman Koloda', 'Удалил страницу ID 86', 1354547780),
+(437, 1, 'Roman Koloda', 'Изменил страницу<a href="http://www.imagecms.loc/admin/pages/edit/64">О магазине</a>', 1354549612),
+(438, 1, 'Roman Koloda', 'Изменил страницу<a href="http://www.imagecms.loc/admin/pages/edit/64">О магазине</a>', 1354551261),
+(439, 1, 'Roman Koloda', 'Создал категорию        <a href="/admin/categories/edit/66"> oui</a>', 1354552730),
+(440, 1, 'Roman Koloda', 'Создал категорию        <a href="/admin/categories/edit/67"> adsadf</a>', 1354554603),
+(441, 1, 'Roman Koloda', 'Удалил категорию ID 67', 1354554785),
+(442, 1, 'Roman Koloda', 'Создал категорию        <a href="/admin/categories/edit/68"> dfgdfg</a>', 1354613521),
+(443, 1, 'Roman Koloda', 'Изменил категорию   <a href="/admin/categories/edit/66"> asd</a>', 1354628071),
+(444, 1, 'Roman Koloda', 'Изменил категорию   <a href="/admin/categories/edit/66"> asd</a>', 1354630920),
+(445, 1, 'Roman Koloda', 'Изменил категорию   <a href="/admin/categories/edit/66"> asd</a>', 1354630921),
+(446, 1, 'Roman Koloda', 'Изменил категорию   <a href="/admin/categories/edit/66"> asd</a>', 1354630934),
+(447, 1, 'Roman Koloda', 'Создал виджет test', 1354641106),
+(448, 1, 'Roman Koloda', 'Удалил виджет test', 1354641123),
+(449, 1, 'Roman Koloda', 'Очистил кеш', 1354726712),
+(450, 1, 'Roman Koloda', 'Очистил кеш', 1354728692),
+(451, 1, 'Roman Koloda', 'Очистил кеш', 1354728693),
+(452, 1, 'Roman Koloda', 'Очистил кеш', 1354728698),
+(453, 1, 'Roman Koloda', 'Очистил кеш', 1354728698),
+(454, 1, 'Roman Koloda', 'Очистил кеш', 1354728698),
+(455, 1, 'Roman Koloda', 'Очистил кеш', 1354728699),
+(456, 1, 'Roman Koloda', 'Очистил кеш', 1354728699),
+(457, 1, 'Roman Koloda', 'Очистил кеш', 1354728699),
+(458, 1, 'Roman Koloda', 'Очистил кеш', 1354728700),
+(459, 1, 'Roman Koloda', 'Очистил кеш', 1354728700),
+(460, 1, 'Roman Koloda', 'Вошел в панель управления IP 127.0.0.1', 1354729668),
+(461, 1, 'Roman Koloda', 'Магазин - Изменения сохранены<a href="http://www.imagecms.loc/admin/components/run/shop/users/edit/1">admin</a>', 1354730474),
+(462, 1, 'admin', 'Изменил настройки сайта', 1354731703),
+(463, 1, 'admin', 'Изменил настройки сайта', 1354731713),
+(464, 1, 'admin', 'Изменил настройки сайта', 1354731720),
+(465, 1, 'admin', 'Изменил настройки сайта', 1354731747),
+(466, 1, 'admin', 'Изменил настройки сайта', 1354731787),
+(467, 1, 'admin', 'Изменил настройки сайта', 1354731816),
+(468, 1, 'admin', 'Удалил категорию ID 65', 1354732458),
+(469, 1, 'admin', 'Удалил категорию ID 64', 1354732458),
+(470, 1, 'admin', 'Удалил категорию ID 66', 1354732458);
 
 -- --------------------------------------------------------
 
--- Структура таблицы `mail`
+--
+-- Структура таблиці `mail`
 --
 
 CREATE TABLE IF NOT EXISTS `mail` (
@@ -712,12 +1033,12 @@ CREATE TABLE IF NOT EXISTS `mail` (
   `email` varchar(255) DEFAULT NULL,
   `date` int(15) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menus`
+-- Структура таблиці `menus`
 --
 
 CREATE TABLE IF NOT EXISTS `menus` (
@@ -730,10 +1051,10 @@ CREATE TABLE IF NOT EXISTS `menus` (
   `created` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
--- Dumping data for table `menus`
+-- Дамп даних таблиці `menus`
 --
 
 INSERT INTO `menus` (`id`, `name`, `main_title`, `tpl`, `expand_level`, `description`, `created`) VALUES
@@ -744,7 +1065,7 @@ INSERT INTO `menus` (`id`, `name`, `main_title`, `tpl`, `expand_level`, `descrip
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menus_data`
+-- Структура таблиці `menus_data`
 --
 
 CREATE TABLE IF NOT EXISTS `menus_data` (
@@ -763,10 +1084,10 @@ CREATE TABLE IF NOT EXISTS `menus_data` (
   PRIMARY KEY (`id`),
   KEY `menu_id` (`menu_id`),
   KEY `position` (`position`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
 
 --
--- Dumping data for table `menus_data`
+-- Дамп даних таблиці `menus_data`
 --
 
 INSERT INTO `menus_data` (`id`, `menu_id`, `item_id`, `item_type`, `item_image`, `roles`, `hidden`, `title`, `parent_id`, `position`, `description`, `add_data`) VALUES
@@ -795,7 +1116,7 @@ INSERT INTO `menus_data` (`id`, `menu_id`, `item_id`, `item_type`, `item_image`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menu_translate`
+-- Структура таблиці `menu_translate`
 --
 
 CREATE TABLE IF NOT EXISTS `menu_translate` (
@@ -809,7 +1130,7 @@ CREATE TABLE IF NOT EXISTS `menu_translate` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=52 ;
 
 --
--- Dumping data for table `menu_translate`
+-- Дамп даних таблиці `menu_translate`
 --
 
 INSERT INTO `menu_translate` (`id`, `item_id`, `lang_id`, `title`) VALUES
@@ -857,7 +1178,7 @@ INSERT INTO `menu_translate` (`id`, `item_id`, `lang_id`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permissions`
+-- Структура таблиці `permissions`
 --
 
 CREATE TABLE IF NOT EXISTS `permissions` (
@@ -869,16 +1190,16 @@ CREATE TABLE IF NOT EXISTS `permissions` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `permissions`
+-- Дамп даних таблиці `permissions`
 --
 
 INSERT INTO `permissions` (`id`, `role_id`, `data`) VALUES
-(1, 2, 'a:37:{s:9:"cp_access";s:1:"1";s:13:"cp_autoupdate";s:1:"1";s:14:"cp_page_search";s:1:"1";s:11:"lang_create";s:1:"1";s:9:"lang_edit";s:1:"1";s:11:"lang_delete";s:1:"1";s:16:"cp_site_settings";s:1:"1";s:11:"cache_clear";s:1:"1";s:11:"page_create";s:1:"1";s:9:"page_edit";s:1:"1";s:11:"page_delete";s:1:"1";s:15:"category_create";s:1:"1";s:13:"category_edit";s:1:"1";s:15:"category_delete";s:1:"1";s:14:"module_install";s:1:"1";s:16:"module_deinstall";s:1:"1";s:12:"module_admin";s:1:"1";s:13:"widget_create";s:1:"1";s:13:"widget_delete";s:1:"1";s:22:"widget_access_settings";s:1:"1";s:11:"menu_create";s:1:"1";s:9:"menu_edit";s:1:"1";s:11:"menu_delete";s:1:"1";s:11:"user_create";s:1:"1";s:21:"user_create_all_roles";s:1:"1";s:9:"user_edit";s:1:"1";s:11:"user_delete";s:1:"1";s:14:"user_view_data";s:1:"1";s:12:"roles_create";s:1:"1";s:10:"roles_edit";s:1:"1";s:12:"roles_delete";s:1:"1";s:9:"logs_view";s:1:"1";s:13:"backup_create";s:1:"1";s:15:"tinybrowser_all";s:1:"1";s:18:"tinybrowser_upload";s:1:"1";s:16:"tinybrowser_edit";s:1:"1";s:19:"tinybrowser_folders";s:1:"1";}');
+(1, 10, 'a:37:{s:9:"cp_access";s:1:"1";s:13:"cp_autoupdate";s:1:"1";s:14:"cp_page_search";s:1:"1";s:11:"lang_create";s:1:"1";s:9:"lang_edit";s:1:"1";s:11:"lang_delete";s:1:"1";s:16:"cp_site_settings";s:1:"1";s:11:"cache_clear";s:1:"1";s:11:"page_create";s:1:"1";s:9:"page_edit";s:1:"1";s:11:"page_delete";s:1:"1";s:15:"category_create";s:1:"1";s:13:"category_edit";s:1:"1";s:15:"category_delete";s:1:"1";s:14:"module_install";s:1:"1";s:16:"module_deinstall";s:1:"1";s:12:"module_admin";s:1:"1";s:13:"widget_create";s:1:"1";s:13:"widget_delete";s:1:"1";s:22:"widget_access_settings";s:1:"1";s:11:"menu_create";s:1:"1";s:9:"menu_edit";s:1:"1";s:11:"menu_delete";s:1:"1";s:11:"user_create";s:1:"1";s:21:"user_create_all_roles";s:1:"1";s:9:"user_edit";s:1:"1";s:11:"user_delete";s:1:"1";s:14:"user_view_data";s:1:"1";s:12:"roles_create";s:1:"1";s:10:"roles_edit";s:1:"1";s:12:"roles_delete";s:1:"1";s:9:"logs_view";s:1:"1";s:13:"backup_create";s:1:"1";s:15:"tinybrowser_all";s:1:"1";s:18:"tinybrowser_upload";s:1:"1";s:16:"tinybrowser_edit";s:1:"1";s:19:"tinybrowser_folders";s:1:"1";}');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `propel_migration`
+-- Структура таблиці `propel_migration`
 --
 
 CREATE TABLE IF NOT EXISTS `propel_migration` (
@@ -886,16 +1207,16 @@ CREATE TABLE IF NOT EXISTS `propel_migration` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `propel_migration`
+-- Дамп даних таблиці `propel_migration`
 --
 
 INSERT INTO `propel_migration` (`version`) VALUES
-(1346160931);
+(1353942341);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `roles`
+-- Структура таблиці `roles`
 --
 
 CREATE TABLE IF NOT EXISTS `roles` (
@@ -907,20 +1228,21 @@ CREATE TABLE IF NOT EXISTS `roles` (
   PRIMARY KEY (`id`),
   KEY `parent_id` (`parent_id`),
   KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=78 ;
 
 --
--- Dumping data for table `roles`
+-- Дамп даних таблиці `roles`
 --
 
 INSERT INTO `roles` (`id`, `parent_id`, `name`, `alt_name`, `desc`) VALUES
-(1, 0, 'user', 'Пользователи', ''),
-(2, 0, 'admin', 'Администраторы', '');
+(11, 0, 'user', 'Пользователи', ''),
+(10, 0, 'admin', 'Администраторы', ''),
+(12, 0, 'Manager', 'Менеджеры', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `search`
+-- Структура таблиці `search`
 --
 
 CREATE TABLE IF NOT EXISTS `search` (
@@ -943,7 +1265,7 @@ CREATE TABLE IF NOT EXISTS `search` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `settings`
+-- Структура таблиці `settings`
 --
 
 CREATE TABLE IF NOT EXISTS `settings` (
@@ -973,22 +1295,22 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `lang_sel` varchar(15) NOT NULL DEFAULT 'russian_lang',
   `google_webmaster` varchar(200) DEFAULT NULL,
   `yandex_webmaster` varchar(200) DEFAULT NULL,
-  `yandex_metric` varchar(200) DEFAULT NULL,
+  `yandex_metric` varchar(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `s_name` (`s_name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `settings`
+-- Дамп даних таблиці `settings`
 --
 
-INSERT INTO `settings` (`id`, `s_name`, `site_title`, `site_short_title`, `site_description`, `site_keywords`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`) VALUES
-(2, 'main', 'imagecmsshop', 'ImageCMS Shop', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники', 'auto', 'auto', '0', '0', 1, 1, '/', 'full', 'commerce', 'no', '', 'module', 69, '56', 'shop', '', '', 'russian_lang');
+INSERT INTO `settings` (`id`, `s_name`, `site_title`, `site_short_title`, `site_description`, `site_keywords`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`) VALUES
+(2, 'main', '', 'ImageCMS', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'commerce', 'no', '', 'module', 69, '63', 'shop', '', '', 'russian_lang', '', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_banners`
+-- Структура таблиці `shop_banners`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_banners` (
@@ -999,7 +1321,7 @@ CREATE TABLE IF NOT EXISTS `shop_banners` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `shop_banners`
+-- Дамп даних таблиці `shop_banners`
 --
 
 INSERT INTO `shop_banners` (`id`, `position`) VALUES
@@ -1010,7 +1332,7 @@ INSERT INTO `shop_banners` (`id`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_banners_i18n`
+-- Структура таблиці `shop_banners_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_banners_i18n` (
@@ -1024,7 +1346,7 @@ CREATE TABLE IF NOT EXISTS `shop_banners_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_banners_i18n`
+-- Дамп даних таблиці `shop_banners_i18n`
 --
 
 INSERT INTO `shop_banners_i18n` (`id`, `locale`, `name`, `text`, `url`, `image`) VALUES
@@ -1040,7 +1362,7 @@ INSERT INTO `shop_banners_i18n` (`id`, `locale`, `name`, `text`, `url`, `image`)
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_brands`
+-- Структура таблиці `shop_brands`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_brands` (
@@ -1053,7 +1375,7 @@ CREATE TABLE IF NOT EXISTS `shop_brands` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
 
 --
--- Dumping data for table `shop_brands`
+-- Дамп даних таблиці `shop_brands`
 --
 
 INSERT INTO `shop_brands` (`id`, `url`, `image`) VALUES
@@ -1068,7 +1390,7 @@ INSERT INTO `shop_brands` (`id`, `url`, `image`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_brands_i18n`
+-- Структура таблиці `shop_brands_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_brands_i18n` (
@@ -1084,7 +1406,7 @@ CREATE TABLE IF NOT EXISTS `shop_brands_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_brands_i18n`
+-- Дамп даних таблиці `shop_brands_i18n`
 --
 
 INSERT INTO `shop_brands_i18n` (`id`, `locale`, `name`, `description`, `meta_title`, `meta_description`, `meta_keywords`) VALUES
@@ -1106,7 +1428,7 @@ INSERT INTO `shop_brands_i18n` (`id`, `locale`, `name`, `description`, `meta_tit
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_callbacks`
+-- Структура таблиці `shop_callbacks`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_callbacks` (
@@ -1123,22 +1445,22 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks` (
   KEY `shop_callbacks_I_2` (`status_id`),
   KEY `shop_callbacks_I_3` (`theme_id`),
   KEY `shop_callbacks_I_4` (`date`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_callbacks_statuses`
+-- Структура таблиці `shop_callbacks_statuses`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_callbacks_statuses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `is_default` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
--- Dumping data for table `shop_callbacks_statuses`
+-- Дамп даних таблиці `shop_callbacks_statuses`
 --
 
 INSERT INTO `shop_callbacks_statuses` (`id`, `is_default`) VALUES
@@ -1148,7 +1470,7 @@ INSERT INTO `shop_callbacks_statuses` (`id`, `is_default`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_callbacks_statuses_i18n`
+-- Структура таблиці `shop_callbacks_statuses_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_callbacks_statuses_i18n` (
@@ -1160,7 +1482,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_statuses_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_callbacks_statuses_i18n`
+-- Дамп даних таблиці `shop_callbacks_statuses_i18n`
 --
 
 INSERT INTO `shop_callbacks_statuses_i18n` (`id`, `locale`, `text`) VALUES
@@ -1170,17 +1492,17 @@ INSERT INTO `shop_callbacks_statuses_i18n` (`id`, `locale`, `text`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_callbacks_themes`
+-- Структура таблиці `shop_callbacks_themes`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_callbacks_themes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `position` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
--- Dumping data for table `shop_callbacks_themes`
+-- Дамп даних таблиці `shop_callbacks_themes`
 --
 
 INSERT INTO `shop_callbacks_themes` (`id`, `position`) VALUES
@@ -1189,7 +1511,7 @@ INSERT INTO `shop_callbacks_themes` (`id`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_callbacks_themes_i18n`
+-- Структура таблиці `shop_callbacks_themes_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_callbacks_themes_i18n` (
@@ -1201,7 +1523,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_themes_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_callbacks_themes_i18n`
+-- Дамп даних таблиці `shop_callbacks_themes_i18n`
 --
 
 INSERT INTO `shop_callbacks_themes_i18n` (`id`, `locale`, `text`) VALUES
@@ -1211,7 +1533,7 @@ INSERT INTO `shop_callbacks_themes_i18n` (`id`, `locale`, `text`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_category`
+-- Структура таблиці `shop_category`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_category` (
@@ -1226,41 +1548,42 @@ CREATE TABLE IF NOT EXISTS `shop_category` (
   `image` varchar(255) DEFAULT NULL,
   `tpl` varchar(250) DEFAULT NULL,
   `order_method` int(11) DEFAULT NULL,
+  `showsitetitle` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_category_I_2` (`url`),
   KEY `shop_category_I_3` (`active`),
   KEY `shop_category_I_4` (`parent_id`),
   KEY `shop_category_I_5` (`position`),
   KEY `shop_category_I_1` (`url`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=64 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=74 ;
 
 --
--- Dumping data for table `shop_category`
+-- Дамп даних таблиці `shop_category`
 --
 
-INSERT INTO `shop_category` (`id`, `url`, `parent_id`, `position`, `full_path`, `full_path_ids`, `active`, `external_id`, `image`, `tpl`, `order_method`) VALUES
-(52, 'avto_muzyka_i_video', 0, 17, 'avto_muzyka_i_video', 'a:0:{}', 1, NULL, NULL, '', 1),
-(51, 'bluetooth', 48, 16, 'domashniaia_elektronika/bluetooth', 'a:1:{i:0;i:48;}', 1, NULL, NULL, '', 1),
-(50, 'telefony', 48, 15, 'domashniaia_elektronika/telefony', 'a:1:{i:0;i:48;}', 1, NULL, NULL, '', 1),
-(48, 'domashniaia_elektronika', 0, 13, 'domashniaia_elektronika', 'a:0:{}', 1, NULL, NULL, '', 1),
-(46, 'fotoprintery', 44, 11, 'foto_i_kamery/fotoprintery', 'a:1:{i:0;i:44;}', 1, NULL, NULL, '', 1),
-(45, 'tsifrovye_kamery', 44, 10, 'foto_i_kamery/tsifrovye_kamery', 'a:1:{i:0;i:44;}', 1, NULL, NULL, '', 1),
-(44, 'foto_i_kamery', 0, 9, 'foto_i_kamery', 'a:0:{}', 1, NULL, NULL, '', 1),
-(43, 'saund_bary', 40, 8, 'domashnee_audio/saund_bary', 'a:1:{i:0;i:40;}', 1, NULL, NULL, '', 1),
-(41, 'domashnie_teatry', 40, 6, 'domashnee_audio/domashnie_teatry', 'a:1:{i:0;i:40;}', 1, NULL, NULL, '', 1),
-(40, 'domashnee_audio', 0, 5, 'domashnee_audio', 'a:0:{}', 1, NULL, NULL, NULL, NULL),
-(36, 'video', 0, 1, 'video', 'a:0:{}', 1, NULL, NULL, NULL, NULL),
-(37, 'tv_hdtv', 36, 2, 'video/tv_hdtv', 'a:1:{i:0;i:36;}', 1, NULL, NULL, NULL, NULL),
-(38, 'dvd_dvr_pleery', 36, 3, 'video/dvd_dvr_pleery', 'a:1:{i:0;i:36;}', 1, NULL, NULL, NULL, NULL),
-(39, 'blu-ray', 36, 4, 'video/blu-ray', 'a:1:{i:0;i:36;}', 1, NULL, NULL, NULL, NULL),
-(53, 'subwoofer', 52, 18, 'avto_muzyka_i_video/subwoofer', 'a:1:{i:0;i:52;}', 1, NULL, NULL, '', 1),
-(54, 'cd_chendzhery', 52, 19, 'avto_muzyka_i_video/cd_chendzhery', 'a:1:{i:0;i:52;}', 1, NULL, NULL, '', 1),
-(55, 'gps', 52, 20, 'avto_muzyka_i_video/gps', 'a:1:{i:0;i:52;}', 1, NULL, NULL, '', 1);
+INSERT INTO `shop_category` (`id`, `url`, `parent_id`, `position`, `full_path`, `full_path_ids`, `active`, `external_id`, `image`, `tpl`, `order_method`, `showsitetitle`) VALUES
+(52, 'avto_muzyka_i_video', 0, 7, 'avto_muzyka_i_video', 'a:0:{}', 1, NULL, NULL, '', 1, NULL),
+(51, 'bluetooth', 48, 13, 'domashniaia_elektronika/bluetooth', 'a:1:{i:0;i:48;}', 1, NULL, NULL, '', 1, NULL),
+(50, 'telefony', 48, 12, 'domashniaia_elektronika/telefony', 'a:1:{i:0;i:48;}', 1, NULL, NULL, '', 1, NULL),
+(48, 'domashniaia_elektronika', 0, 11, 'domashniaia_elektronika', 'a:0:{}', 1, NULL, NULL, '', 1, NULL),
+(46, 'fotoprintery', 44, 16, 'foto_i_kamery/fotoprintery', 'a:1:{i:0;i:44;}', 1, NULL, NULL, '', 1, NULL),
+(45, 'tsifrovye_kamery', 44, 15, 'foto_i_kamery/tsifrovye_kamery', 'a:1:{i:0;i:44;}', 1, NULL, NULL, '', 1, NULL),
+(44, 'foto_i_kamery', 0, 14, 'foto_i_kamery', 'a:0:{}', 1, NULL, NULL, '', 1, NULL),
+(43, 'saund_bary', 40, 6, 'domashnee_audio/saund_bary', 'a:1:{i:0;i:40;}', 1, NULL, NULL, '', 1, NULL),
+(41, 'domashnie_teatry', 40, 5, 'domashnee_audio/domashnie_teatry', 'a:1:{i:0;i:40;}', 1, NULL, NULL, '', 1, NULL),
+(40, 'domashnee_audio', 0, 4, 'domashnee_audio', 'a:0:{}', 1, NULL, NULL, NULL, NULL, NULL),
+(36, 'video', 0, 0, 'video', 'a:0:{}', 1, NULL, NULL, NULL, NULL, NULL),
+(37, 'tv_hdtv', 36, 1, 'video/tv_hdtv', 'a:1:{i:0;i:36;}', 1, NULL, NULL, NULL, NULL, NULL),
+(38, 'dvd_dvr_pleery', 36, 2, 'video/dvd_dvr_pleery', 'a:1:{i:0;i:36;}', 1, NULL, '', '', 0, NULL),
+(39, 'blu-ray', 36, 3, 'video/blu-ray', 'a:1:{i:0;i:36;}', 1, NULL, NULL, NULL, NULL, NULL),
+(53, 'subwoofer', 52, 8, 'avto_muzyka_i_video/subwoofer', 'a:1:{i:0;i:52;}', 1, NULL, NULL, '', 1, NULL),
+(54, 'cd_chendzhery', 52, 9, 'avto_muzyka_i_video/cd_chendzhery', 'a:1:{i:0;i:52;}', 1, NULL, NULL, '', 1, NULL),
+(55, 'gps', 52, 10, 'avto_muzyka_i_video/gps', 'a:1:{i:0;i:52;}', 1, NULL, NULL, '', 1, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_category_i18n`
+-- Структура таблиці `shop_category_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_category_i18n` (
@@ -1277,7 +1600,7 @@ CREATE TABLE IF NOT EXISTS `shop_category_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_category_i18n`
+-- Дамп даних таблиці `shop_category_i18n`
 --
 
 INSERT INTO `shop_category_i18n` (`id`, `locale`, `name`, `h1`, `description`, `meta_desc`, `meta_title`, `meta_keywords`) VALUES
@@ -1293,7 +1616,7 @@ INSERT INTO `shop_category_i18n` (`id`, `locale`, `name`, `h1`, `description`, `
 (40, 'ru', 'Домашнее аудио', '', '', '', '', ''),
 (36, 'ru', 'Видео', '', '', '', '', ''),
 (37, 'ru', 'TV & HDTV русс', 'H1 Рус', '<p><span style="color: #384654; font-size: 13px; text-align: right; background-color: #f8f8f8;">Описание русс</span></p>', 'Meta Description русс', 'Meta Title русс', 'Meta Keywords русс'),
-(38, 'ru', 'DVD/DVR Плееры', '', '', '', '', ''),
+(38, 'ru', 'DVD/DVR Плееры', '', 'some text  ', '', '', ''),
 (39, 'ru', 'Blu-Ray Плееры', '', '', '', '', ''),
 (53, 'ru', 'Сабвуферы', '', '', '', '', ''),
 (54, 'ru', 'CD Ченджеры', '', '', '', '', ''),
@@ -1319,7 +1642,8 @@ INSERT INTO `shop_category_i18n` (`id`, `locale`, `name`, `h1`, `description`, `
 
 -- --------------------------------------------------------
 
--- Структура таблицы `shop_comulativ_discount`
+--
+-- Структура таблиці `shop_comulativ_discount`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_comulativ_discount` (
@@ -1331,12 +1655,24 @@ CREATE TABLE IF NOT EXISTS `shop_comulativ_discount` (
   `total` int(255) DEFAULT NULL,
   `total_a` int(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+
+--
+-- Дамп даних таблиці `shop_comulativ_discount`
+--
+
+INSERT INTO `shop_comulativ_discount` (`id`, `description`, `discount`, `active`, `date`, `total`, `total_a`) VALUES
+(8, '0fghfghdfgh', 43, 1, 1354038462, 345, 345345),
+(9, 'sadfas  ', 3, 1, 1354038672, 453, 34534),
+(7, '0', 45, 1, 1354038238, 34, 4),
+(6, '0', 100, 1, 1354038213, 34, 5),
+(10, 'tyutyjnffsv', 5, 1, 1354038753, 567, 4),
+(11, 'dfsd', 43, 1, 1354039216, 4, 34);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_currencies`
+-- Структура таблиці `shop_currencies`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_currencies` (
@@ -1354,7 +1690,7 @@ CREATE TABLE IF NOT EXISTS `shop_currencies` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `shop_currencies`
+-- Дамп даних таблиці `shop_currencies`
 --
 
 INSERT INTO `shop_currencies` (`id`, `name`, `main`, `is_default`, `code`, `symbol`, `rate`) VALUES
@@ -1364,7 +1700,7 @@ INSERT INTO `shop_currencies` (`id`, `name`, `main`, `is_default`, `code`, `symb
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_delivery_methods`
+-- Структура таблиці `shop_delivery_methods`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_delivery_methods` (
@@ -1376,21 +1712,26 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods` (
   PRIMARY KEY (`id`),
   KEY `shop_delivery_methods_I_2` (`enabled`),
   KEY `shop_delivery_methods_I_1` (`enabled`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
 
 --
--- Dumping data for table `shop_delivery_methods`
+-- Дамп даних таблиці `shop_delivery_methods`
 --
 
 INSERT INTO `shop_delivery_methods` (`id`, `price`, `free_from`, `enabled`, `is_price_in_percent`) VALUES
 (7, 0.00, 0.00, 1, 0),
 (5, 0.00, 0.00, 1, 0),
-(6, 0.00, 0.00, 1, 0);
+(6, 0.00, 0.00, 1, 0),
+(51, 454.00, 534.00, 1, 0),
+(50, 324.00, 32.00, NULL, 0),
+(49, 324.00, 32.00, NULL, 0),
+(48, 20.00, 40.00, 1, 0),
+(39, 54.00, 34.00, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_delivery_methods_i18n`
+-- Структура таблиці `shop_delivery_methods_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_delivery_methods_i18n` (
@@ -1398,27 +1739,30 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods_i18n` (
   `locale` varchar(5) NOT NULL,
   `name` varchar(500) NOT NULL,
   `description` text,
+  `pricedescription` text,
   PRIMARY KEY (`id`,`locale`),
   KEY `shop_delivery_methods_i18n_I_1` (`name`(333))
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_delivery_methods_i18n`
+-- Дамп даних таблиці `shop_delivery_methods_i18n`
 --
 
-INSERT INTO `shop_delivery_methods_i18n` (`id`, `locale`, `name`, `description`) VALUES
-(7, 'ru', 'Самовывоз', ''),
-(5, 'ru', 'Курьером', '<p>Только по Киеву и Москве</p>'),
-(6, 'ru', 'АвтоМир', '<p>Доставка по всему миру</p>'),
-(7, 'ua', 'Самовивезення', ''),
-(5, 'en', 'Courier', ''),
-(6, 'en', 'AutoWorld', ''),
-(7, 'en', 'Pickup', '');
+INSERT INTO `shop_delivery_methods_i18n` (`id`, `locale`, `name`, `description`, `pricedescription`) VALUES
+(7, 'ru', 'Самовывоз', '', NULL),
+(5, 'ru', 'Курьером', '<p>Только по Киеву и Москве</p>', NULL),
+(6, 'ru', 'АвтоМир', '<p>Доставка по всему миру</p>', NULL),
+(7, 'ua', 'Самовивезення', '', NULL),
+(48, 'ru', 'name', 'desc  ', NULL),
+(39, 'ru', 'sdfsdsds', 'dfsdfsd  ', NULL),
+(49, 'ru', 'цук', 'цукцу', NULL),
+(50, 'ru', 'цук', '', NULL),
+(51, 'ru', 'fsdf', 'sdfsdf  ', ' ');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_delivery_methods_systems`
+-- Структура таблиці `shop_delivery_methods_systems`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_delivery_methods_systems` (
@@ -1429,7 +1773,7 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods_systems` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_delivery_methods_systems`
+-- Дамп даних таблиці `shop_delivery_methods_systems`
 --
 
 INSERT INTO `shop_delivery_methods_systems` (`delivery_method_id`, `payment_method_id`) VALUES
@@ -1441,12 +1785,31 @@ INSERT INTO `shop_delivery_methods_systems` (`delivery_method_id`, `payment_meth
 (6, 2),
 (6, 3),
 (6, 4),
-(7, 1);
+(7, 1),
+(15, 1),
+(16, 1),
+(16, 2),
+(16, 3),
+(20, 1),
+(20, 3),
+(21, 2),
+(23, 3),
+(24, 3),
+(25, 1),
+(25, 2),
+(25, 3),
+(25, 4),
+(39, 3),
+(48, 1),
+(48, 2),
+(48, 3),
+(48, 4),
+(51, 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_discounts`
+-- Структура таблиці `shop_discounts`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_discounts` (
@@ -1463,12 +1826,19 @@ CREATE TABLE IF NOT EXISTS `shop_discounts` (
   `description` text,
   `user_group` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+
+--
+-- Дамп даних таблиці `shop_discounts`
+--
+
+INSERT INTO `shop_discounts` (`id`, `name`, `active`, `date_start`, `date_stop`, `discount`, `min_price`, `max_price`, `categories`, `products`, `description`, `user_group`) VALUES
+(5, 'dfgd', 1, 1353355200, 1355342400, '4', 44.00, 444.00, 'a:17:{i:0;s:2:"36";i:1;s:2:"37";i:2;s:2:"38";i:3;s:2:"39";i:4;s:2:"40";i:5;s:2:"41";i:6;s:2:"43";i:7;s:2:"44";i:8;s:2:"45";i:9;s:2:"46";i:10;s:2:"48";i:11;s:2:"50";i:12;s:2:"51";i:13;s:2:"52";i:14;s:2:"53";i:15;s:2:"54";i:16;s:2:"55";}', '81', 'rtrt', 'a:3:{i:0;s:5:"admin";i:1;s:7:"Manager";i:2;s:4:"user";}');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_gifts`
+-- Структура таблиці `shop_gifts`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_gifts` (
@@ -1479,12 +1849,21 @@ CREATE TABLE IF NOT EXISTS `shop_gifts` (
   `created` int(11) DEFAULT NULL,
   `espdate` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Дамп даних таблиці `shop_gifts`
+--
+
+INSERT INTO `shop_gifts` (`id`, `key`, `active`, `price`, `created`, `espdate`) VALUES
+(1, 'WTWWwPHJ4Al91jnZ', NULL, 100, 1354039607, 1354219200),
+(2, '7WMAohSSCA3OViRL', NULL, 4, 1354039810, 1353700800),
+(3, 'psnqw6IFxamCOCVmsd', NULL, 35, 1354039839, 1352404800);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_kit`
+-- Структура таблиці `shop_kit`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_kit` (
@@ -1494,19 +1873,21 @@ CREATE TABLE IF NOT EXISTS `shop_kit` (
   `position` smallint(6) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_kit_FI_1` (`product_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
--- Dumping data for table `shop_kit`
+-- Дамп даних таблиці `shop_kit`
 --
 
 INSERT INTO `shop_kit` (`id`, `product_id`, `active`, `position`) VALUES
-(2, 76, 1, 0);
+(3, 71, 1, 0),
+(4, 71, 1, 1),
+(5, 78, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_kit_product`
+-- Структура таблиці `shop_kit_product`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_kit_product` (
@@ -1518,16 +1899,18 @@ CREATE TABLE IF NOT EXISTS `shop_kit_product` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_kit_product`
+-- Дамп даних таблиці `shop_kit_product`
 --
 
 INSERT INTO `shop_kit_product` (`product_id`, `kit_id`, `discount`) VALUES
-(74, 2, '25');
+(77, 3, '0'),
+(78, 4, '0'),
+(78, 5, '0');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_notifications`
+-- Структура таблиці `shop_notifications`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_notifications` (
@@ -1551,20 +1934,12 @@ CREATE TABLE IF NOT EXISTS `shop_notifications` (
   KEY `shop_notifications_I_5` (`active_to`),
   KEY `shop_notifications_FI_1` (`product_id`),
   KEY `shop_notifications_FI_2` (`variant_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
-
---
--- Dumping data for table `shop_notifications`
---
-
-INSERT INTO `shop_notifications` (`id`, `product_id`, `variant_id`, `user_name`, `user_email`, `user_phone`, `user_comment`, `status`, `date_created`, `active_to`, `manager_id`, `notified_by_email`) VALUES
-(2, 102, 113, 'фывывфыв', 'asdsasad@mail.ru', 'фывфвфыв', 'ыфв', 2, 1343638402, 1343638402, NULL, 0),
-(3, 102, 113, 'фвыв', 'asdsa@mail.ru', 'adsdasd', 'asdsdsdd', 1, 1343744944, 1343744944, NULL, 0);
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_notification_statuses`
+-- Структура таблиці `shop_notification_statuses`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_notification_statuses` (
@@ -1573,20 +1948,20 @@ CREATE TABLE IF NOT EXISTS `shop_notification_statuses` (
   PRIMARY KEY (`id`),
   KEY `shop_notification_statuses_I_2` (`position`),
   KEY `shop_notification_statuses_I_1` (`position`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `shop_notification_statuses`
+-- Дамп даних таблиці `shop_notification_statuses`
 --
 
 INSERT INTO `shop_notification_statuses` (`id`, `position`) VALUES
 (1, 1),
-(2, 2);
+(2, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_notification_statuses_i18n`
+-- Структура таблиці `shop_notification_statuses_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_notification_statuses_i18n` (
@@ -1598,7 +1973,7 @@ CREATE TABLE IF NOT EXISTS `shop_notification_statuses_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_notification_statuses_i18n`
+-- Дамп даних таблиці `shop_notification_statuses_i18n`
 --
 
 INSERT INTO `shop_notification_statuses_i18n` (`id`, `locale`, `name`) VALUES
@@ -1608,7 +1983,7 @@ INSERT INTO `shop_notification_statuses_i18n` (`id`, `locale`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_orders`
+-- Структура таблиці `shop_orders`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_orders` (
@@ -1639,25 +2014,21 @@ CREATE TABLE IF NOT EXISTS `shop_orders` (
   KEY `shop_orders_I_3` (`date_created`),
   KEY `shop_orders_FI_1` (`delivery_method`),
   KEY `shop_orders_FI_2` (`payment_method`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
 
 --
--- Dumping data for table `shop_orders`
+-- Дамп даних таблиці `shop_orders`
 --
 
-INSERT INTO `shop_orders` (`id`, `key`, `delivery_method`, `delivery_price`, `status`, `paid`, `user_full_name`, `user_email`, `user_phone`, `user_deliver_to`, `user_comment`, `date_created`, `date_updated`, `user_ip`, `user_id`, `payment_method`, `total_price`, `external_id`, `gift_cert_key`, `gift_cert_price`) VALUES
-(10, 'i5077926yf', 5, 0.00, 1, NULL, 'Administrator', 'admin@localhost.loc', '+7123456789', 'Россия, г Москва', '', 1342007508, 1342007508, '127.0.0.1', 1, 4, 999.99, NULL, NULL, NULL),
-(9, 'n0z76159t2', 7, 0.00, 2, 1, 'Administrator', 'admin@localhost.loc', '+7123456789', 'Россия, г Москва', '', 1342007474, 1342007474, '127.0.0.1', 1, 1, 698.00, NULL, NULL, NULL),
-(11, 'li865v3686', 7, 0.00, 1, NULL, 'Administrator', 'admin@localhost.loc', '+7123456789', 'Россия, г Москва', '', 1343641791, 1343641791, '127.0.0.1', 1, 1, 44.77, NULL, NULL, NULL),
-(12, 'u2051a676j', 7, 0.00, 1, NULL, 'Administrator', 'admin@localhost.loc', '+7123456789', 'Россия, г Москва', '', 1343665999, 1343665999, '127.0.0.1', 1, 1, 99.95, NULL, NULL, NULL),
-(13, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(22, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(23, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `shop_orders` (`id`, `key`, `delivery_method`, `delivery_price`, `status`, `paid`, `user_full_name`, `user_email`, `user_phone`, `user_deliver_to`, `user_comment`, `date_created`, `date_updated`, `user_ip`, `user_id`, `payment_method`, `total_price`, `external_id`, `gift_cert_key`, `gift_cert_price`, `comulativ`) VALUES
+(24, '83t4fj8892', 6, 0.00, 1, NULL, 'Roman Koloda', 'admin@m.cc', '096 1 999 214', 'Львів, Пасічна 62б', '', 1353503364, 1353503364, '127.0.0.1', 1, 1, 89.54, NULL, NULL, NULL, NULL),
+(25, '2367n8bz75', 48, 20.00, 1, NULL, 'Roman Koloda', 'admin@m.cc', '096 1 999 214', 'Львів, Пасічна 62б', 'df', 1354031067, 1354031067, '127.0.0.1', 1, 3, 44.77, NULL, NULL, NULL, NULL),
+(26, '586090nt5w', 51, 45345.00, 1, 1, 'Roman Koloda', 'admin@m.cc', '096 1 999 214', 'Львів, Пасічна 62б', '', 1354031941, 1354031941, '127.0.0.1', 1, 2, 68.80, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_orders_products`
+-- Структура таблиці `shop_orders_products`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_orders_products` (
@@ -1674,22 +2045,21 @@ CREATE TABLE IF NOT EXISTS `shop_orders_products` (
   PRIMARY KEY (`id`),
   KEY `shop_orders_products_I_1` (`order_id`),
   KEY `shop_orders_products_FI_1` (`product_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=38 ;
 
 --
--- Dumping data for table `shop_orders_products`
+-- Дамп даних таблиці `shop_orders_products`
 --
 
 INSERT INTO `shop_orders_products` (`id`, `order_id`, `product_id`, `variant_id`, `product_name`, `variant_name`, `price`, `quantity`, `kit_id`, `is_main`) VALUES
-(19, 10, 72, 83, 'LG 47LD450 - 47" Widescreen 1080p LCD HDTV', '', 999.99, 1, NULL, NULL),
-(18, 9, 87, 98, 'Sony HT-SS370 Home Theater', '', 349.00, 2, NULL, NULL),
-(20, 11, 80, 91, 'LG DN898 DVD Player', '', 44.77, 1, NULL, NULL),
-(21, 12, 94, 105, 'Yamaha NSIW760 Speaker', '', 99.95, 1, NULL, NULL);
+(35, 24, 80, 91, 'LG DN898 DVD Player', '', 44.77, 2, NULL, NULL),
+(36, 25, 80, 91, 'LG DN898 DVD Player', '', 44.77, 1, NULL, NULL),
+(37, 26, 81, 92, 'Samsung DVD-H1080 - 1080p', '', 68.80, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_orders_status_history`
+-- Структура таблиці `shop_orders_status_history`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_orders_status_history` (
@@ -1704,17 +2074,10 @@ CREATE TABLE IF NOT EXISTS `shop_orders_status_history` (
   KEY `shop_orders_status_history_FI_2` (`status_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
---
--- Dumping data for table `shop_orders_status_history`
---
-
-INSERT INTO `shop_orders_status_history` (`id`, `order_id`, `status_id`, `user_id`, `date_created`, `comment`) VALUES
-(8, 9, 2, 1, 1342007520, NULL);
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_order_statuses`
+-- Структура таблиці `shop_order_statuses`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_order_statuses` (
@@ -1723,10 +2086,10 @@ CREATE TABLE IF NOT EXISTS `shop_order_statuses` (
   PRIMARY KEY (`id`),
   KEY `shop_order_statuses_I_2` (`position`),
   KEY `shop_order_statuses_I_1` (`position`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
--- Dumping data for table `shop_order_statuses`
+-- Дамп даних таблиці `shop_order_statuses`
 --
 
 INSERT INTO `shop_order_statuses` (`id`, `position`) VALUES
@@ -1736,7 +2099,7 @@ INSERT INTO `shop_order_statuses` (`id`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_order_statuses_i18n`
+-- Структура таблиці `shop_order_statuses_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_order_statuses_i18n` (
@@ -1748,7 +2111,7 @@ CREATE TABLE IF NOT EXISTS `shop_order_statuses_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_order_statuses_i18n`
+-- Дамп даних таблиці `shop_order_statuses_i18n`
 --
 
 INSERT INTO `shop_order_statuses_i18n` (`id`, `locale`, `name`) VALUES
@@ -1758,7 +2121,7 @@ INSERT INTO `shop_order_statuses_i18n` (`id`, `locale`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_payment_methods`
+-- Структура таблиці `shop_payment_methods`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_payment_methods` (
@@ -1774,7 +2137,7 @@ CREATE TABLE IF NOT EXISTS `shop_payment_methods` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `shop_payment_methods`
+-- Дамп даних таблиці `shop_payment_methods`
 --
 
 INSERT INTO `shop_payment_methods` (`id`, `active`, `currency_id`, `position`, `payment_system_name`) VALUES
@@ -1786,7 +2149,7 @@ INSERT INTO `shop_payment_methods` (`id`, `active`, `currency_id`, `position`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_payment_methods_i18n`
+-- Структура таблиці `shop_payment_methods_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_payment_methods_i18n` (
@@ -1799,7 +2162,7 @@ CREATE TABLE IF NOT EXISTS `shop_payment_methods_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_payment_methods_i18n`
+-- Дамп даних таблиці `shop_payment_methods_i18n`
 --
 
 INSERT INTO `shop_payment_methods_i18n` (`id`, `locale`, `name`, `description`) VALUES
@@ -1815,7 +2178,7 @@ INSERT INTO `shop_payment_methods_i18n` (`id`, `locale`, `name`, `description`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_products`
+-- Структура таблиці `shop_products`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_products` (
@@ -1846,49 +2209,44 @@ CREATE TABLE IF NOT EXISTS `shop_products` (
   KEY `shop_products_I_3` (`brand_id`),
   KEY `shop_products_I_4` (`category_id`),
   KEY `shop_products_I_1` (`url`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=184 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=185 ;
 
 --
--- Dumping data for table `shop_products`
+-- Дамп даних таблиці `shop_products`
 --
 
 INSERT INTO `shop_products` (`id`, `url`, `active`, `hit`, `brand_id`, `category_id`, `related_products`, `mainImage`, `smallImage`, `created`, `updated`, `old_price`, `views`, `hot`, `action`, `added_to_cart_count`, `enable_comments`, `external_id`, `mainModImage`, `smallModImage`, `tpl`, `user_id`) VALUES
-(71, '71', 1, 1, 28, 37, '74,72,73', '71_main.jpg', '71_small.jpg', 1307542725, 1337881902, 1150.00, 104, 1, 1, 1, 1, NULL, '71_mainMod.jpg', '71_smallMod.jpg', NULL, NULL),
-(72, '72', 1, 1, 27, 37, '', '72_main.jpg', '72_small.jpg', 1307542324, 1346747134, 0.00, 29, 1, 1, 8, 1, NULL, '72_mainMod.jpg', '72_smallMod.jpg', '', NULL),
-(73, '73', 1, 1, 30, 37, '', '73_main.jpg', '73_small.jpg', 1307541561, 1346747120, 0.00, 82, 1, 1, 8, 1, NULL, '73_mainMod.jpg', '73_smallMod.jpg', '', NULL),
-(74, '74', 1, 1, 31, 37, '', '74_main.jpg', '74_small.jpg', 1307543711, 1346747176, 0.00, 72, 1, 1, 5, 1, NULL, '74_mainMod.jpg', '74_smallMod.jpg', '', NULL),
-(75, '75', 1, 1, 31, 37, '73', '75_main.jpg', '75_small.jpg', 1307544631, 1346746031, 0.00, 199, 1, NULL, 9, 1, NULL, '75_mainMod.jpg', '75_smallMod.jpg', '', NULL),
-(76, '76', 1, 1, 0, 37, '84,73', '76_main.jpg', '76_small.jpg', 1307543917, 1346746005, 0.00, 551, 1, 1, 5, 1, NULL, '76_mainMod.jpg', '76_smallMod.jpg', '', NULL),
-(96, '96', 1, 1, 0, 45, '', '96_main.jpg', '96_small.jpg', 1307542081, 1346746867, 0.00, 2, NULL, NULL, NULL, 1, NULL, '96_mainMod.jpg', '96_smallMod.jpg', '', NULL),
-(77, '77', 1, NULL, 0, 38, '', '77_main.jpg', '77_small.jpg', 1307542980, 1337931461, 0.00, 7, NULL, NULL, NULL, 1, NULL, '77_mainMod.jpg', '77_smallMod.jpg', NULL, NULL),
-(78, '78', 1, NULL, 0, 38, '', '78_main.jpg', '78_small.jpg', 1307543572, 1337883493, 0.00, 2, NULL, NULL, 2, 1, NULL, '78_mainMod.jpg', '78_smallMod.jpg', NULL, NULL),
-(79, '79', 1, NULL, 0, 38, '', '79_main.jpg', '79_small.jpg', 1307544450, 1337883384, 0.00, 2, 1, NULL, NULL, 1, NULL, '79_mainMod.jpg', '79_smallMod.jpg', NULL, NULL),
-(80, '80', 1, 1, 26, 38, '', '80_main.jpg', '80_small.jpg', 1307544569, 1343729205, 0.00, 25, 1, 1, 9, 1, NULL, '80_mainMod.jpg', '80_smallMod.jpg', '', NULL),
-(81, '81', 1, 1, 30, 38, '', '81_main.jpg', '81_small.jpg', 1307544442, 1346759869, 0.00, 2, 1, 1, NULL, 1, NULL, '81_mainMod.jpg', '81_smallMod.jpg', '', NULL),
-(82, '82', 1, NULL, 0, 39, '', '82_main.jpg', '82_small.jpg', 1307542064, 1337884172, 0.00, 5, NULL, NULL, NULL, 1, NULL, '82_mainMod.jpg', '82_smallMod.jpg', NULL, NULL),
-(83, '83', 1, NULL, 0, 39, '', '83_main.jpg', '83_small.jpg', 1307545378, 1343729236, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '83_mainMod.jpg', '83_smallMod.jpg', '', NULL),
-(84, '84', 1, NULL, 0, 39, '', '84_main.jpg', '84_small.jpg', 1307541602, 1343729228, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '84_mainMod.jpg', '84_smallMod.jpg', '', NULL),
+(71, '71', 1, 1, 28, 37, '', '', '', 1307542725, 1354288949, 1150.00, 152, 1, 1, 1, 1, NULL, '', '', '', NULL),
+(96, '96', 0, 1, 0, 45, '', '96_main.jpg', '96_small.jpg', 1307542081, 1353934988, 0.00, 2, NULL, NULL, NULL, 1, NULL, '96_mainMod.jpg', '96_smallMod.jpg', '', NULL),
+(77, '77', 0, NULL, 0, 38, '', '77_main.jpg', '77_small.jpg', 1307542980, 1337931461, 0.00, 8, NULL, NULL, NULL, 1, NULL, '77_mainMod.jpg', '77_smallMod.jpg', NULL, NULL),
+(78, '78', 0, NULL, 0, 38, '', '78_main.jpg', '78_small.jpg', 1307543572, 1337883493, 0.00, 2, NULL, NULL, 2, 1, NULL, '78_mainMod.jpg', '78_smallMod.jpg', NULL, NULL),
+(79, '79', NULL, NULL, 0, 38, '', '79_main.jpg', '79_small.jpg', 1307544450, 1353951159, 0.00, 2, 1, NULL, NULL, 1, NULL, '79_mainMod.jpg', '79_smallMod.jpg', '', NULL),
+(80, '80', 1, 1, 26, 38, '71,112,96', '80_main.jpg', '80_small.jpg', 1307544569, 1354030169, 0.00, 32, 1, 1, 12, 1, NULL, '80_mainMod.jpg', '80_smallMod.jpg', '', NULL),
+(81, '81', 1, 1, 30, 38, '', '81_main.jpg', '81_small.jpg', 1307544442, 1346759869, 0.00, 12, 1, 1, 1, 1, NULL, '81_mainMod.jpg', '81_smallMod.jpg', '', NULL),
+(82, '82', 1, NULL, 0, 39, '', '82_main.jpg', '82_small.jpg', 1307542064, 1337884172, 0.00, 5, NULL, 1, NULL, 1, NULL, '82_mainMod.jpg', '82_smallMod.jpg', NULL, NULL),
+(83, '83', 1, NULL, 0, 39, '', '83_main.jpg', '83_small.jpg', 1307545378, 1343729236, 0.00, NULL, NULL, 1, NULL, 1, NULL, '83_mainMod.jpg', '83_smallMod.jpg', '', NULL),
+(84, '84', 1, NULL, 0, 39, '', '84_main.jpg', '84_small.jpg', 1307541602, 1343729228, 0.00, NULL, NULL, 1, NULL, 1, NULL, '84_mainMod.jpg', '84_smallMod.jpg', '', NULL),
 (85, '85', 1, NULL, 0, 39, '', '85_main.jpg', '85_small.jpg', 1307544238, 1343729220, 0.00, 5, NULL, NULL, NULL, 1, NULL, '85_mainMod.jpg', '85_smallMod.jpg', '', NULL),
 (86, '86', 1, NULL, 0, 39, '', '86_main.jpg', '86_small.jpg', 1307545023, 1343729213, 0.00, 1, NULL, NULL, NULL, 1, NULL, '86_mainMod.jpg', '86_smallMod.jpg', '', NULL),
-(87, '87', 1, NULL, 0, 41, '', '87_main.jpg', '87_small.jpg', 1307541766, 1346746803, 0.00, 24, NULL, NULL, 2, 1, NULL, '87_mainMod.jpg', '87_smallMod.jpg', '', NULL),
+(87, '87', 1, NULL, 0, 41, '', '87_main.jpg', '87_small.jpg', 1307541766, 1353934911, 0.00, 24, NULL, NULL, 2, 1, NULL, '87_mainMod.jpg', '87_smallMod.jpg', '', NULL),
 (88, '88', 1, NULL, 0, 41, '', '88_main.jpg', '88_small.jpg', 1307544977, 1346746795, 0.00, 1, NULL, NULL, NULL, 1, NULL, '88_mainMod.jpg', '88_smallMod.jpg', '', NULL),
-(95, '95', 1, NULL, 0, 45, '', '95_main.jpg', '95_small.jpg', 1307542081, 1346746875, 0.00, 4, NULL, NULL, NULL, 1, NULL, '95_mainMod.jpg', '95_smallMod.jpg', '', NULL),
-(89, '89', 1, NULL, 0, 41, '', '89_main.jpg', '89_small.jpg', 1307541636, 1346746786, 0.00, 1, NULL, NULL, NULL, 1, NULL, '89_mainMod.jpg', '89_smallMod.jpg', '', NULL),
+(95, '95', 1, NULL, 0, 45, '', '95_main.jpg', '95_small.jpg', 1307542081, 1354203324, 0.00, 4, NULL, NULL, NULL, 1, NULL, '95_mainMod.jpg', '95_smallMod.jpg', '', NULL),
+(89, '89', 1, NULL, 0, 41, '', '89_main.jpg', '89_small.jpg', 1307541636, 1346746786, 0.00, 2, NULL, NULL, NULL, 1, NULL, '89_mainMod.jpg', '89_smallMod.jpg', '', NULL),
 (90, '90', 1, NULL, 0, 41, '', '90_main.jpg', '90_small.jpg', 1307543337, 1346746776, 0.00, 3, NULL, NULL, NULL, 1, NULL, '90_mainMod.jpg', '90_smallMod.jpg', '', NULL),
-(91, '91', 1, NULL, 0, 41, '', '91_main.jpg', '91_small.jpg', 1307544214, 1346746765, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '91_mainMod.jpg', '91_smallMod.jpg', '', NULL),
+(91, '91', 1, NULL, 0, 41, '', '91_main.jpg', '91_small.jpg', 1307544214, 1346746765, 0.00, 1, NULL, NULL, NULL, 1, NULL, '91_mainMod.jpg', '91_smallMod.jpg', '', NULL),
 (92, '92', 1, NULL, 0, 43, '', '92_main.jpg', '92_small.jpg', 1307544791, 1337884861, 0.00, 1, NULL, NULL, NULL, 1, NULL, '92_mainMod.jpg', '92_smallMod.jpg', NULL, NULL),
 (93, '93', 1, NULL, 0, 43, '', '93_main.jpg', '93_small.jpg', 1307542628, 1346746828, 0.00, 1, NULL, NULL, NULL, 1, NULL, '93_mainMod.jpg', '93_smallMod.jpg', '', NULL),
 (94, '94', 1, 1, 0, 43, '', '94_main.jpg', '94_small.jpg', 1307544425, 1346746821, 0.00, 41, 1, 1, 1, 1, NULL, '94_mainMod.jpg', '94_smallMod.jpg', '', NULL),
-(97, '97', 1, NULL, 0, 45, '', '97_main.jpg', '97_small.jpg', 1307541628, 1346746860, 0.00, 33, NULL, NULL, NULL, 1, NULL, '97_mainMod.jpg', '97_smallMod.jpg', '', NULL),
-(98, '98', 1, 1, 0, 45, '', '98_main.jpg', '98_small.jpg', 1307542730, 1346746854, 0.00, 17, NULL, NULL, NULL, 1, NULL, '98_mainMod.jpg', '98_smallMod.jpg', '', NULL),
-(99, '99', 1, NULL, 0, 45, '', '99_main.jpg', '99_small.jpg', 1307543877, 1346746848, 0.00, 2, NULL, NULL, NULL, 1, NULL, '99_mainMod.jpg', '99_smallMod.jpg', '', NULL),
-(100, '100', 1, NULL, 0, 46, '', '100_main.jpg', '100_small.jpg', 1307543018, 1346746916, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '100_mainMod.jpg', '100_smallMod.jpg', '', NULL),
+(97, '97', 1, NULL, 0, 45, '', '97_main.jpg', '97_small.jpg', 1307541628, 1354204292, 0.00, 35, NULL, NULL, NULL, 1, NULL, '97_mainMod.jpg', '97_smallMod.jpg', '', NULL),
+(98, '98', 1, 1, 0, 45, '', '98_main.jpg', '98_small.jpg', 1307542730, 1346746854, 0.00, 19, NULL, NULL, NULL, 1, NULL, '98_mainMod.jpg', '98_smallMod.jpg', '', NULL),
+(99, '99', 1, NULL, 0, 45, '', '99_main.jpg', '99_small.jpg', 1307543877, 1354203376, 0.00, 7, NULL, NULL, NULL, 1, NULL, '99_mainMod.jpg', '99_smallMod.jpg', '', NULL),
+(100, '100', 1, NULL, 0, 46, '', '100_main.jpg', '100_small.jpg', 1307543018, 1354206813, 0.00, 48, NULL, NULL, NULL, 1, NULL, '100_mainMod.jpg', '100_smallMod.jpg', '', NULL),
 (101, '101', 1, NULL, 0, 46, '', '101_main.jpg', '101_small.jpg', 1307543107, 1346746909, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '101_mainMod.jpg', '101_smallMod.jpg', '', NULL),
-(102, '102', 1, NULL, 0, 46, '', '102_main.jpg', '102_small.jpg', 1307545161, 1346746902, 0.00, 13, NULL, NULL, NULL, 1, NULL, '102_mainMod.jpg', '102_smallMod.jpg', '', NULL),
+(102, '102', 1, NULL, 0, 46, '', '102_main.jpg', '102_small.jpg', 1307545161, 1346746902, 0.00, 18, NULL, NULL, NULL, 1, NULL, '102_mainMod.jpg', '102_smallMod.jpg', '', NULL),
 (103, '103', 1, NULL, 0, 46, '', '103_main.jpg', '103_small.jpg', 1307543901, 1346746894, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '103_mainMod.jpg', '103_smallMod.jpg', '', NULL),
 (104, '104', 1, NULL, 0, 46, '', '104_main.jpg', '104_small.jpg', 1307543227, 1346746886, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '104_mainMod.jpg', '104_smallMod.jpg', '', NULL),
 (105, '105', 1, NULL, 0, 50, '', '105_main.jpg', '105_small.jpg', 1307543429, 1346746952, 0.00, 2, NULL, NULL, NULL, 1, NULL, '105_mainMod.jpg', '105_smallMod.jpg', '', NULL),
-(106, '106', 1, 1, 0, 50, '', '106_main.jpg', '106_small.jpg', 1307543089, 1346746946, 0.00, 13, NULL, NULL, 1, 1, NULL, '106_mainMod.jpg', '106_smallMod.jpg', '', NULL),
+(106, '106', 1, 1, 30, 50, '', '106_main.jpg', '106_small.jpg', 1307543089, 1354730361, 0.00, 14, NULL, NULL, 1, 1, NULL, '106_mainMod.jpg', '106_smallMod.jpg', '', NULL),
 (107, '107', 1, NULL, 0, 50, '', '107_main.jpg', '107_small.jpg', 1307541701, 1346746940, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '107_mainMod.jpg', '107_smallMod.jpg', '', NULL),
 (108, '108', 1, 1, 0, 50, '', '108_main.jpg', '108_small.jpg', 1307544069, 1346746933, 0.00, 133, NULL, NULL, 4, 1, NULL, '108_mainMod.jpg', '108_smallMod.jpg', '', NULL),
 (109, '109', 1, NULL, 0, 50, '', '109_main.jpg', '109_small.jpg', 1307544627, 1346746926, 0.00, 1, NULL, NULL, NULL, 1, NULL, '109_mainMod.jpg', '109_smallMod.jpg', '', NULL),
@@ -1902,17 +2260,17 @@ INSERT INTO `shop_products` (`id`, `url`, `active`, `hit`, `brand_id`, `category
 (117, '117', 1, NULL, 0, 53, '', '117_main.jpg', '117_small.jpg', 1307542495, 1346747023, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '117_mainMod.jpg', '117_smallMod.jpg', '', NULL),
 (118, '118', 1, NULL, 0, 53, '', '118_main.jpg', '118_small.jpg', 1307543269, 1346747017, 0.00, 1, NULL, NULL, NULL, 1, NULL, '118_mainMod.jpg', '118_smallMod.jpg', '', NULL),
 (119, '119', 1, 1, 0, 53, '', '119_main.jpg', '119_small.jpg', 1307543316, 1346747011, 0.00, 7, NULL, NULL, NULL, 1, NULL, '119_mainMod.jpg', '119_smallMod.jpg', '', NULL),
-(120, '120', 1, NULL, 0, 54, '', '120_main.jpg', '120_small.jpg', 1307542029, 1346747081, 0.00, 4, NULL, NULL, NULL, 1, NULL, '120_mainMod.jpg', '120_smallMod.jpg', '', NULL),
+(120, '120', 1, NULL, 0, 54, '', '120_main.jpg', '120_small.jpg', 1307542029, 1346747081, 0.00, 6, NULL, NULL, NULL, 1, NULL, '120_mainMod.jpg', '120_smallMod.jpg', '', NULL),
 (121, '121', 1, NULL, 0, 54, '', '121_main.jpg', '121_small.jpg', 1307543909, 1346747075, 0.00, 4, NULL, NULL, NULL, 1, NULL, '121_mainMod.jpg', '121_smallMod.jpg', '', NULL),
 (122, '122', 1, NULL, 0, 54, '', '122_main.jpg', '122_small.jpg', 1307543511, 1346747058, 0.00, 1, NULL, NULL, NULL, 1, NULL, '122_mainMod.jpg', '122_smallMod.jpg', '', NULL),
-(123, '123', 1, NULL, 0, 54, '', '123_main.jpg', '123_small.jpg', 1307543925, 1346747052, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '123_mainMod.jpg', '123_smallMod.jpg', '', NULL),
+(123, '123', 1, NULL, 0, 54, '', '123_main.jpg', '123_small.jpg', 1307543925, 1346747052, 0.00, 20, NULL, NULL, NULL, 1, NULL, '123_mainMod.jpg', '123_smallMod.jpg', '', NULL),
 (124, '124', 1, NULL, 0, 54, '', '124_main.jpg', '124_small.jpg', 1307542680, 1346747044, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '124_mainMod.jpg', '124_smallMod.jpg', '', NULL),
 (128, '128', 1, NULL, 0, 36, '', '128_main.jpg', '128_small.jpg', 1307543046, 1346747321, 0.00, 9, NULL, NULL, NULL, 1, NULL, '128_mainMod.jpg', '128_smallMod.jpg', '', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_products_i18n`
+-- Структура таблиці `shop_products_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_products_i18n` (
@@ -1929,46 +2287,41 @@ CREATE TABLE IF NOT EXISTS `shop_products_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_products_i18n`
+-- Дамп даних таблиці `shop_products_i18n`
 --
 
 INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `full_description`, `meta_title`, `meta_description`, `meta_keywords`) VALUES
-(71, 'ru', 'Sony KDL46EX710 46', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
-(72, 'ru', 'LG 47LD450 - 47" Widescreen 1080p LCD HDTV', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
-(73, 'ru', 'Panasonic Viera TC-L42U22 42" LCD TV', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
-(74, 'ru', 'Samsung LN40C650 40" LCD TV', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br />На все продукты мы предоставляем гарантию качества.<br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', '', ''),
-(75, 'ru', 'Calypso CLP-32LC1A 32" LCD 720p LCD', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
-(76, 'ru', 'Calypso CLP-32LE110 32', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br />На все продукты мы предоставляем гарантию качества.<br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
-(96, 'ru', 'Canon VIXIA HF R11 Digital', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
+(71, 'ru', 'Sony KDL46EX710 46', ' ', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br><br>Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br><br>На все продукты мы предоставляем гарантию качества.<br><br>Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>  ', '', '', ''),
+(96, 'ru', 'Canon VIXIA HF R11 Digital', ' ', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br><br>Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br><br>На все продукты мы предоставляем гарантию качества.<br><br>Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>  ', '', '', ''),
 (77, 'ru', 'Sony EXTERNAL DVDIRECT DVD', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
 (78, 'ru', 'Panasonic DVD-S58 DVD Player', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
-(79, 'ru', 'Panasonic DVD-S38 DVD', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
-(80, 'ru', 'LG DN898 DVD Player', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
+(79, 'ru', 'Panasonic DVD-S38 DVD', ' ', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br><br>Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br><br>На все продукты мы предоставляем гарантию качества.<br><br>Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>  ', '', '', ''),
+(80, 'ru', 'LG DN898 DVD Player', ' ', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br><br>Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br><br>На все продукты мы предоставляем гарантию качества.<br><br>Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>  ', '', '', ''),
 (81, 'ru', 'Samsung DVD-H1080 - 1080p', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
 (82, 'ru', 'Samsung BD-C5500 Blu-ray', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
 (83, 'ru', 'Sony BDP-S470 Network', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
 (84, 'ru', 'Panasonic DMP-BD45 Ultra-Fast', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
 (85, 'ru', 'LG BD570 Network Audio', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
 (86, 'ru', 'Samsung BD-C6900 1080p 3D Blu-ray', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
-(87, 'ru', 'Sony HT-SS370 Home Theater', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
+(87, 'ru', 'Sony HT-SS370 Home Theater', ' ', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br><br>Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br><br>На все продукты мы предоставляем гарантию качества.<br><br>Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>  ', '', '', ''),
 (88, 'ru', 'Samsung HW-C770BS 7.1 Channel', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
-(95, 'ru', 'Canon EOS Rebel T2i 18 Megapixel Digital', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
+(95, 'ru', 'Canon EOS Rebel T2i 18 Megapixel Digital', ' ', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br><br>Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br><br>На все продукты мы предоставляем гарантию качества.<br><br>Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>  ', '', '', ''),
 (89, 'ru', 'Panasonic SCPTX7 Home Theater', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
 (90, 'ru', 'Samsung HT-C7530W 5.1 Channel', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
 (91, 'ru', 'Sony BDV-E770W Home Theater1', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
 (92, 'ru', 'Samsung HW-C700 7.2 Channel', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
 (93, 'ru', 'Yamaha HS80M Powered Speaker', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
 (94, 'ru', 'Yamaha NSIW760 Speaker', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
-(97, 'ru', 'Sony Handycam HDR-CX3', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
+(97, 'ru', 'Sony Handycam HDR-CX3', ' ', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br><br>Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br><br>На все продукты мы предоставляем гарантию качества.<br><br>Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>  ', '', '', ''),
 (98, 'ru', 'Samsung NX10 14 Megapixel Digital', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
-(99, 'ru', 'Samsung NX100 Interchangeable Lens', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
-(100, 'ru', 'Canon PIXMA iP100 Photo Printer', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
+(99, 'ru', 'Samsung NX100 Interchangeable Lens', ' ', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br><br>Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br><br>На все продукты мы предоставляем гарантию качества.<br><br>Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>  ', '', '', ''),
+(100, 'ru', 'Canon PIXMA iP100 Photo Printer', 'ShortDescriptions  ', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br><br>Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br><br>На все продукты мы предоставляем гарантию качества.<br><br>Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>  ', '', '', ''),
 (101, 'ru', 'Canon PIXMA iP4820 Premium', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
 (102, 'ru', 'Epson Stylus R1900 Photo Printer', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
 (103, 'ru', 'Epson Stylus C88+ Inkjet Printer', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
 (104, 'ru', 'Epson Stylus Photo R2880 Color', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
 (105, 'ru', 'Panasonic KX-TG6582T Cordless Phone', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
-(106, 'ru', 'Panasonic KX-TG7433B Expandable', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
+(106, 'ru', 'Panasonic KX-TG7433B Expandable', ' ', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br><br>Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br><br>На все продукты мы предоставляем гарантию качества.<br><br>Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>  ', '', '', ''),
 (107, 'ru', 'Plantronics CS70N Wireless Earset', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
 (108, 'ru', 'Plantronics CS55 Wireless Earset', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
 (109, 'ru', 'Panasonic KX-TG6445 Cordless Phone', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
@@ -2006,27 +2359,20 @@ INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `
 (90, 'en', 'Samsung HT-C7530W 5.1 Channel', '', '<p><span id="result_box" lang="en"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
 (89, 'en', 'Panasonic SCPTX7 Home Theater', '', '<p><span id="result_box" lang="en"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
 (93, 'en', 'Yamaha HS80M Powered Speaker', '', '<p><span id="result_box" lang="en"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
-(99, 'en', 'Samsung NX100 Interchangeable Lens', '', '<p><span id="result_box" lang="en"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', '');
-INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `full_description`, `meta_title`, `meta_description`, `meta_keywords`) VALUES
+(99, 'en', 'Samsung NX100 Interchangeable Lens', '', '<p><span id="result_box" lang="en"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
 (98, 'en', 'Samsung NX10 14 Megapixel Digital', '', '<p><span id="result_box" lang="en"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
 (97, 'en', 'Sony Handycam HDR-CX3', '', '<p><span id="result_box" lang="en"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
 (96, 'en', 'Canon VIXIA HF R11 Digital', '', '<p><span id="result_box" lang="en"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
 (104, 'en', 'Epson Stylus Photo R2880 Color', '', '<p><span id="result_box" lang="en"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
 (103, 'en', 'Epson Stylus C88+ Inkjet Printer', '', '<p><span id="result_box" lang="en"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
-(128, 'ru', 'TOMTOM XL 350 Automobile', '', '', '', '', ''),
+(128, 'ru', 'TOMTOM XL 350 Automobile', '', '', '', '', '');
+INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `full_description`, `meta_title`, `meta_description`, `meta_keywords`) VALUES
 (94, 'en', 'Yamaha NSIW760 Speaker', '', '<p><span id="result_box" lang="en"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
-(76, 'en', 'Calypso CLP-32LE110 32', '', '<p><span id="result_box" lang="en"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
-(75, 'en', 'Calypso CLP-32LC1A 32" LCD 720p LCD', '', '<p><span id="result_box" lang="en"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
-(74, 'en', 'Samsung LN40C650 40" LCD TV', '<p><span id="result_box" lang="en"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '<p><span id="result_box" lang="en"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
-(73, 'en', 'Panasonic Viera TC-L42U22 42" LCD TV', '', '<p><span id="result_box" lang="en"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
-(72, 'en', 'LG 47LD450 - 47" Widescreen 1080p LCD HDTV', '', '<p><span id="result_box" lang="en"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
 (81, 'en', 'Samsung DVD-H1080 - 1080p', '', '', '', '', ''),
 (80, 'en', 'LG DN898 DVD Player', '', '', '', '', ''),
 (86, 'en', 'Samsung BD-C6900 1080p 3D Blu-ray', '', '', '', '', ''),
 (85, 'en', 'LG BD570 Network Audio', '', '', '', '', ''),
 (84, 'en', 'Panasonic DMP-BD45 Ultra-Fast', '', '', '', '', ''),
-(76, 'ua', 'Calypso CLP-32LE110 32 укр', '', '', '', '', ''),
-(73, 'ua', 'Panasonic Viera TC-L42U22 42 укр', '', '<p>Высоко технологический продукт, который поможет Вам оценить качество на высшем уровне.<br /><br />Все продукты доступны в наличии, а наши менеджеры помогу Вам произвести покупку в кратчайшие сроки.<br /><br />На все продукты мы предоставляем гарантию качества.<br /><br />Приобретайте только в нашем Интернет-магазине по лучшим ценам.</p>', '', '', ''),
 (91, 'ua', 'Sony BDV-E770W Home Theater', '', '', '', '', ''),
 (71, 'en', 'Sony KDL46EX710 46', '', '<p><span id="result_box" lang="en"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
 (79, 'en', 'Panasonic DVD-S38 DVD', '', '', '', '', ''),
@@ -2051,7 +2397,7 @@ INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_products_rating`
+-- Структура таблиці `shop_products_rating`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_products_rating` (
@@ -2062,7 +2408,7 @@ CREATE TABLE IF NOT EXISTS `shop_products_rating` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_products_rating`
+-- Дамп даних таблиці `shop_products_rating`
 --
 
 INSERT INTO `shop_products_rating` (`product_id`, `votes`, `rating`) VALUES
@@ -2083,7 +2429,7 @@ INSERT INTO `shop_products_rating` (`product_id`, `votes`, `rating`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_product_categories`
+-- Структура таблиці `shop_product_categories`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_product_categories` (
@@ -2094,22 +2440,12 @@ CREATE TABLE IF NOT EXISTS `shop_product_categories` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_product_categories`
+-- Дамп даних таблиці `shop_product_categories`
 --
 
 INSERT INTO `shop_product_categories` (`product_id`, `category_id`) VALUES
 (71, 36),
 (71, 37),
-(72, 36),
-(72, 37),
-(73, 36),
-(73, 37),
-(74, 36),
-(74, 37),
-(75, 36),
-(75, 37),
-(76, 36),
-(76, 37),
 (77, 36),
 (77, 38),
 (78, 36),
@@ -2130,7 +2466,7 @@ INSERT INTO `shop_product_categories` (`product_id`, `category_id`) VALUES
 (85, 39),
 (86, 36),
 (86, 39),
-(87, 40),
+(87, 37),
 (87, 41),
 (88, 40),
 (88, 41),
@@ -2148,7 +2484,7 @@ INSERT INTO `shop_product_categories` (`product_id`, `category_id`) VALUES
 (94, 43),
 (95, 44),
 (95, 45),
-(96, 44),
+(96, 37),
 (96, 45),
 (97, 44),
 (97, 45),
@@ -2156,7 +2492,7 @@ INSERT INTO `shop_product_categories` (`product_id`, `category_id`) VALUES
 (98, 45),
 (99, 44),
 (99, 45),
-(100, 44),
+(100, 37),
 (100, 46),
 (101, 44),
 (101, 46),
@@ -2208,7 +2544,7 @@ INSERT INTO `shop_product_categories` (`product_id`, `category_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_product_images`
+-- Структура таблиці `shop_product_images`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_product_images` (
@@ -2220,29 +2556,20 @@ CREATE TABLE IF NOT EXISTS `shop_product_images` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_product_images`
+-- Дамп даних таблиці `shop_product_images`
 --
 
 INSERT INTO `shop_product_images` (`product_id`, `image_name`, `position`) VALUES
 (71, '71_0.jpg', 0),
 (71, '71_1.jpg', 1),
 (71, '71_2.jpg', 2),
-(72, '72_0.jpg', 0),
-(72, '72_1.jpg', 1),
-(72, '72_2.jpg', 2),
-(74, '74_0.jpg', 0),
-(74, '74_1.jpg', 1),
-(74, '74_2.jpg', 2),
-(76, '76_0.jpg', 0),
-(76, '76_1.jpg', 1),
-(76, '76_2.jpg', 2),
 (81, '81_0.jpg', 0),
 (81, '81_1.jpg', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_product_properties`
+-- Структура таблиці `shop_product_properties`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_product_properties` (
@@ -2265,7 +2592,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
 
 --
--- Dumping data for table `shop_product_properties`
+-- Дамп даних таблиці `shop_product_properties`
 --
 
 INSERT INTO `shop_product_properties` (`id`, `csv_name`, `active`, `show_in_compare`, `position`, `show_on_site`, `multiple`, `external_id`, `show_in_filter`, `main_property`) VALUES
@@ -2280,23 +2607,7 @@ INSERT INTO `shop_product_properties` (`id`, `csv_name`, `active`, `show_in_comp
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_product_properties_data_i18n`
---
-
-CREATE TABLE IF NOT EXISTS `shop_product_properties_data_i18n` (
-  `id` int(11) NOT NULL,
-  `locale` varchar(5) NOT NULL,
-  `value` varchar(500) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `shop_product_properties_data_i18n_I_1` (`value`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
-
-
---
--- Table structure for table `shop_product_properties_categories`
+-- Структура таблиці `shop_product_properties_categories`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_product_properties_categories` (
@@ -2307,20 +2618,46 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_categories` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_product_properties_categories`
+-- Дамп даних таблиці `shop_product_properties_categories`
 --
 
 INSERT INTO `shop_product_properties_categories` (`property_id`, `category_id`) VALUES
-(20, 36),
 (20, 37),
-(21, 36),
-(21, 37),
+(21, 48),
+(22, 36),
+(22, 37),
+(22, 38),
+(22, 39),
 (22, 40),
 (22, 41),
+(22, 43),
+(22, 44),
+(22, 45),
+(22, 46),
+(22, 48),
+(22, 50),
+(22, 51),
+(22, 52),
+(22, 53),
+(22, 54),
+(22, 55),
 (23, 36),
+(23, 37),
 (23, 38),
+(23, 39),
 (23, 40),
 (23, 41),
+(23, 43),
+(23, 44),
+(23, 45),
+(23, 46),
+(23, 48),
+(23, 50),
+(23, 51),
+(23, 52),
+(23, 53),
+(23, 54),
+(23, 55),
 (24, 40),
 (24, 41),
 (25, 44),
@@ -2332,7 +2669,7 @@ INSERT INTO `shop_product_properties_categories` (`property_id`, `category_id`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_product_properties_data`
+-- Структура таблиці `shop_product_properties_data`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_product_properties_data` (
@@ -2345,42 +2682,50 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_data` (
   KEY `shop_product_properties_data_I_1` (`value`(333)),
   KEY `shop_product_properties_data_FI_2` (`product_id`),
   KEY `shop_product_properties_data_FI_1` (`property_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=101 ;
 
 --
--- Dumping data for table `shop_product_properties_data`
+-- Дамп даних таблиці `shop_product_properties_data`
 --
 
 INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `value`, `locale`) VALUES
-(12, 20, 76, 'LED', 'ru'),
-(14, 20, 75, 'Plasma', 'ru'),
-(4, 20, 74, 'LCD', 'ru'),
-(5, 21, 74, '24', 'ru'),
-(6, 20, 72, 'LCD', 'ru'),
-(7, 21, 72, '25', 'ru'),
 (8, 22, 91, 'Да', 'ru'),
 (9, 23, 91, '1500 Вт', 'ru'),
 (10, 24, 91, '2', 'ru'),
-(16, 20, 76, 'LED', 'en'),
-(13, 21, 76, '16', 'ru'),
-(15, 21, 75, '24', 'ru'),
-(17, 21, 76, '16', 'en'),
-(18, 20, 75, 'Plasma', 'en'),
-(19, 21, 75, '24', 'en'),
-(20, 20, 73, 'LED', 'ru'),
-(28, 20, 73, 'LED', 'en'),
 (22, 22, 91, 'Да', 'en'),
 (23, 23, 91, '1500 Вт', 'en'),
 (24, 24, 91, '2', 'en'),
-(34, 21, 74, '24', 'en'),
-(33, 20, 74, 'LCD', 'en'),
-(32, 21, 72, '25', 'en'),
-(31, 20, 72, 'LCD', 'en');
+(71, 22, 95, 'Да', 'ru'),
+(72, 25, 95, '+', 'ru'),
+(83, 22, 100, 'Нет', 'ru'),
+(73, 26, 95, '-', 'ru'),
+(74, 22, 99, 'Да', 'ru'),
+(75, 25, 99, '+', 'ru'),
+(76, 26, 99, '+', 'ru'),
+(82, 25, 97, '+', 'ru'),
+(81, 22, 97, 'Да', 'ru'),
+(100, 23, 71, 'НЕТ', 'ru'),
+(98, 20, 71, 'LED', 'ru'),
+(99, 22, 71, 'Нет', 'ru');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_product_properties_i18n`
+-- Структура таблиці `shop_product_properties_data_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `shop_product_properties_data_i18n` (
+  `id` int(11) NOT NULL,
+  `locale` varchar(5) NOT NULL,
+  `value` varchar(500) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `shop_product_properties_data_i18n_I_1` (`value`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `shop_product_properties_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_product_properties_i18n` (
@@ -2394,7 +2739,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_product_properties_i18n`
+-- Дамп даних таблиці `shop_product_properties_i18n`
 --
 
 INSERT INTO `shop_product_properties_i18n` (`id`, `name`, `locale`, `data`) VALUES
@@ -2403,7 +2748,7 @@ INSERT INTO `shop_product_properties_i18n` (`id`, `name`, `locale`, `data`) VALU
 (24, 'Количество цифровых входов', 'ru', NULL),
 (23, 'Мощность', 'ru', ''),
 (22, 'HDMI', 'ru', 'a:2:{i:0;s:4:"Да";i:1;s:6:"Нет";}'),
-(21, 'Размер экрана', 'ru', ''),
+(21, 'Размер экрана', 'ru', 'a:4:{i:0;s:1:"1";i:1;s:1:"2";i:2;s:1:"3";i:3;s:1:"4";}'),
 (20, 'Технология дисплея', 'ru', 'a:3:{i:0;s:3:"LED";i:1;s:3:"LCD";i:2;s:6:"Plasma";}'),
 (20, 'Технологія дисплею', 'ua', 'a:4:{i:0;s:6:"LED-ua";i:1;s:9:"Plasma-ua";i:2;s:9:"Litium-ua";i:3;s:8:"Freon-ua";}'),
 (20, 'Display Technology', 'en', ''),
@@ -2417,7 +2762,7 @@ INSERT INTO `shop_product_properties_i18n` (`id`, `name`, `locale`, `data`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_product_variants`
+-- Структура таблиці `shop_product_variants`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_product_variants` (
@@ -2439,75 +2784,69 @@ CREATE TABLE IF NOT EXISTS `shop_product_variants` (
   KEY `shop_product_variants_I_5` (`price`),
   KEY `shop_product_variants_I_4` (`price`),
   KEY `shop_product_variants_FI_2` (`currency`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=208 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=211 ;
 
 --
--- Dumping data for table `shop_product_variants`
+-- Дамп даних таблиці `shop_product_variants`
 --
 
-INSERT INTO `shop_product_variants` (`id`, `product_id`, `price`, `number`, `stock`, `position`, `mainImage`, `smallImage`, `external_id`, `currency`) VALUES
-(82, 71, 1000.00000, 'KDL4', 1, 1, NULL, NULL, NULL, 1),
-(83, 72, 999.98999, 'LD450', 6, 0, NULL, NULL, NULL, 1),
-(84, 73, 899.98999, 'TC-L42', 1, 0, NULL, NULL, NULL, 1),
-(85, 74, 899.98999, 'LN40C', 9, 0, NULL, NULL, NULL, 1),
-(86, 75, 299.00000, 'CLP-32', 0, 0, NULL, NULL, NULL, 1),
-(87, 76, 399.00000, 'CLP-32L', 0, 0, '', '', NULL, 1),
-(88, 77, 244.00000, '', 1, 0, NULL, NULL, NULL, 1),
-(89, 78, 67.79000, '', 2, 0, NULL, NULL, NULL, 1),
-(90, 79, 39.95000, '', 9, 0, NULL, NULL, NULL, 1),
-(91, 80, 44.77000, '', 5, 0, NULL, NULL, NULL, 1),
-(92, 81, 68.80000, 'AD-78-SA-QW', 7, 0, NULL, NULL, NULL, 1),
-(93, 82, 129.00000, '', 5, 0, NULL, NULL, NULL, 1),
-(94, 83, 129.00000, '', 6, 0, NULL, NULL, NULL, 1),
-(95, 84, 100.51000, '', 8, 0, NULL, NULL, NULL, 1),
-(96, 85, 219.99001, 'D01B570', 7, 0, NULL, NULL, NULL, 1),
-(97, 86, 154.00000, '', 4, 0, NULL, NULL, NULL, 1),
-(98, 87, 349.00000, '', 7, 0, NULL, NULL, NULL, 1),
-(99, 88, 549.98999, '', 8, 0, NULL, NULL, NULL, 1),
-(100, 89, 371.98999, '', 9, 0, NULL, NULL, NULL, 1),
-(101, 90, 999.00000, '', 2, 0, NULL, NULL, NULL, 1),
-(102, 91, 548.00000, '', 1, 0, NULL, NULL, NULL, 1),
-(103, 92, 297.00000, '', 4, 0, NULL, NULL, NULL, 1),
-(104, 93, 349.98999, '', 8, 0, NULL, NULL, NULL, 1),
-(105, 94, 99.95000, '', 4, 0, NULL, NULL, NULL, 1),
-(106, 95, 799.00000, '', 5, 0, NULL, NULL, NULL, 1),
-(107, 96, 699.00000, '', 6, 0, NULL, NULL, NULL, 1),
-(108, 97, 799.00000, '', 1, 0, NULL, NULL, NULL, 1),
-(109, 98, 549.00000, '', 4, 0, NULL, NULL, NULL, 1),
-(110, 99, 499.98999, '', 8, 0, NULL, NULL, NULL, 1),
-(111, 100, 179.87000, '', 2, 0, NULL, NULL, NULL, 1),
-(112, 101, 74.99000, '', 9, 0, NULL, NULL, NULL, 1),
-(113, 102, 549.98999, '', 0, 0, NULL, NULL, NULL, 1),
-(114, 103, 86.91000, '', 8, 0, NULL, NULL, NULL, 1),
-(115, 104, 799.98999, '', 1, 0, NULL, NULL, NULL, 1),
-(116, 105, 99.95000, '', 2, 0, NULL, NULL, NULL, 1),
-(117, 106, 72.05000, '', 7, 0, NULL, NULL, NULL, 1),
-(118, 107, 219.28000, '', 5, 0, NULL, NULL, NULL, 1),
-(119, 108, 219.99001, '', 2, 0, NULL, NULL, NULL, 1),
-(120, 109, 123.37000, '', 9, 0, NULL, NULL, NULL, 1),
-(121, 110, 36.95000, '', 5, 0, NULL, NULL, NULL, 1),
-(122, 111, 20.40000, '', 7, 0, NULL, NULL, NULL, 1),
-(123, 112, 12.99000, '', 6, 0, NULL, NULL, NULL, 1),
-(124, 113, 10.99000, '', 9, 0, NULL, NULL, NULL, 1),
-(125, 114, 19.99000, '', 3, 0, NULL, NULL, NULL, 1),
-(126, 115, 45.00000, '', 5, 0, NULL, NULL, NULL, 1),
-(127, 116, 60.99000, '', 6, 0, NULL, NULL, NULL, 1),
-(128, 117, 47.22000, '', 7, 0, NULL, NULL, NULL, 1),
-(129, 118, 56.00000, '', 2, 0, NULL, NULL, NULL, 1),
-(130, 119, 69.00000, '', 5, 0, NULL, NULL, NULL, 1),
-(131, 120, 30.71000, '', 6, 0, NULL, NULL, NULL, 1),
-(132, 121, 28.18000, '', 4, 0, NULL, NULL, NULL, 1),
-(133, 122, 35.00000, '', 6, 0, NULL, NULL, NULL, 1),
-(134, 123, 42.00000, '', 1, 0, NULL, NULL, NULL, 1),
-(135, 124, 34.00000, '', 2, 0, NULL, NULL, NULL, 1),
-(141, 76, 299.00000, 'CLP-33L', 0, 1, '', '', NULL, 1),
-(142, 76, 499.00000, 'CLP-34L', 6, 2, '', '', NULL, 1),
-(192, 128, 179.99001, '', 2, 0, NULL, NULL, NULL, 1);
+INSERT INTO `shop_product_variants` (`id`, `product_id`, `price`, `number`, `stock`, `position`, `mainImage`, `smallImage`, `external_id`, `currency`, `price_in_main`) VALUES
+(82, 71, 1000.00000, 'KDL4', 0, 0, '', '', NULL, 1, 400.00000),
+(88, 77, 244.00000, '', 1, 0, NULL, NULL, NULL, 1, 0.00000),
+(89, 78, 67.79000, '', 2, 0, NULL, NULL, NULL, 1, 0.00000),
+(90, 79, 39.95000, '', 9, 0, NULL, '79_vS90.jpg', NULL, 1, 15.98000),
+(91, 80, 44.77000, '', 5, 0, NULL, NULL, NULL, 1, 17.91000),
+(92, 81, 68.80000, 'AD-78-SA-QW', 7, 0, NULL, NULL, NULL, 1, 0.00000),
+(93, 82, 129.00000, '', 5, 0, NULL, NULL, NULL, 1, 0.00000),
+(94, 83, 129.00000, '', 6, 0, NULL, NULL, NULL, 1, 0.00000),
+(95, 84, 100.51000, '', 8, 0, NULL, NULL, NULL, 1, 0.00000),
+(96, 85, 219.99001, 'D01B570', 7, 0, NULL, NULL, NULL, 1, 0.00000),
+(97, 86, 154.00000, '', 4, 0, NULL, NULL, NULL, 1, 0.00000),
+(98, 87, 349.00000, '', 7, 0, NULL, NULL, NULL, 1, 139.60001),
+(99, 88, 549.98999, '', 8, 0, NULL, NULL, NULL, 1, 0.00000),
+(100, 89, 371.98999, '', 9, 0, NULL, NULL, NULL, 1, 0.00000),
+(101, 90, 999.00000, '', 2, 0, NULL, NULL, NULL, 1, 0.00000),
+(102, 91, 548.00000, '', 1, 0, NULL, NULL, NULL, 1, 0.00000),
+(103, 92, 297.00000, '', 4, 0, NULL, NULL, NULL, 1, 0.00000),
+(104, 93, 349.98999, '', 8, 0, NULL, NULL, NULL, 1, 0.00000),
+(105, 94, 99.95000, '', 4, 0, NULL, NULL, NULL, 1, 0.00000),
+(106, 95, 799.00000, '', 5, 0, NULL, NULL, NULL, 1, 319.60001),
+(107, 96, 699.00000, '', 6, 0, NULL, NULL, NULL, 1, 279.60001),
+(108, 97, 799.00000, '', 1, 0, NULL, NULL, NULL, 1, 319.60001),
+(109, 98, 549.00000, '', 4, 0, NULL, NULL, NULL, 1, 0.00000),
+(110, 99, 499.98999, '', 8, 0, NULL, NULL, NULL, 1, 200.00000),
+(111, 100, 179.87000, '', 2, 0, NULL, NULL, NULL, 1, 71.95000),
+(112, 101, 74.99000, '', 9, 0, NULL, NULL, NULL, 1, 0.00000),
+(113, 102, 549.98999, '', 0, 0, NULL, NULL, NULL, 1, 0.00000),
+(114, 103, 86.91000, '', 8, 0, NULL, NULL, NULL, 1, 0.00000),
+(115, 104, 799.98999, '', 1, 0, NULL, NULL, NULL, 1, 0.00000),
+(116, 105, 99.95000, '', 2, 0, NULL, NULL, NULL, 1, 0.00000),
+(117, 106, 272.04999, '', 73, 0, NULL, '106_vS117.jpg', NULL, 2, 272.04999),
+(118, 107, 219.28000, '', 5, 0, NULL, NULL, NULL, 1, 0.00000),
+(119, 108, 219.99001, '', 2, 0, NULL, NULL, NULL, 1, 0.00000),
+(120, 109, 123.37000, '', 9, 0, NULL, NULL, NULL, 1, 0.00000),
+(121, 110, 36.95000, '', 5, 0, NULL, NULL, NULL, 1, 0.00000),
+(122, 111, 20.40000, '', 7, 0, NULL, NULL, NULL, 1, 0.00000),
+(123, 112, 12.99000, '', 6, 0, NULL, NULL, NULL, 1, 0.00000),
+(124, 113, 10.99000, '', 9, 0, NULL, NULL, NULL, 1, 0.00000),
+(125, 114, 19.99000, '', 3, 0, NULL, NULL, NULL, 1, 0.00000),
+(126, 115, 45.00000, '', 5, 0, NULL, NULL, NULL, 1, 0.00000),
+(127, 116, 60.99000, '', 6, 0, NULL, NULL, NULL, 1, 0.00000),
+(128, 117, 47.22000, '', 7, 0, NULL, NULL, NULL, 1, 0.00000),
+(129, 118, 56.00000, '', 2, 0, NULL, NULL, NULL, 1, 0.00000),
+(130, 119, 69.00000, '', 5, 0, NULL, NULL, NULL, 1, 0.00000),
+(131, 120, 30.71000, '', 6, 0, NULL, NULL, NULL, 1, 0.00000),
+(132, 121, 28.18000, '', 4, 0, NULL, NULL, NULL, 1, 0.00000),
+(133, 122, 35.00000, '', 6, 0, NULL, NULL, NULL, 1, 0.00000),
+(134, 123, 42.00000, '', 1, 0, NULL, NULL, NULL, 1, 0.00000),
+(135, 124, 34.00000, '', 2, 0, NULL, NULL, NULL, 1, 0.00000),
+(192, 128, 179.99001, '', 2, 0, NULL, NULL, NULL, 1, 0.00000),
+(210, 100, 174.87000, '', 1, 1, NULL, NULL, NULL, 1, 69.95000);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_product_variants_i18n`
+-- Структура таблиці `shop_product_variants_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_product_variants_i18n` (
@@ -2519,16 +2858,11 @@ CREATE TABLE IF NOT EXISTS `shop_product_variants_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_product_variants_i18n`
+-- Дамп даних таблиці `shop_product_variants_i18n`
 --
 
 INSERT INTO `shop_product_variants_i18n` (`id`, `locale`, `name`) VALUES
 (82, 'ru', ''),
-(83, 'ru', ''),
-(84, 'ru', ''),
-(85, 'ru', ''),
-(86, 'ru', ''),
-(87, 'ru', 'Красный'),
 (88, 'ru', ''),
 (89, 'ru', ''),
 (90, 'ru', ''),
@@ -2552,13 +2886,13 @@ INSERT INTO `shop_product_variants_i18n` (`id`, `locale`, `name`) VALUES
 (108, 'ru', ''),
 (109, 'ru', ''),
 (110, 'ru', ''),
-(111, 'ru', ''),
+(111, 'ru', '1gdfgdfgdfg'),
 (112, 'ru', ''),
 (113, 'ru', ''),
 (114, 'ru', ''),
 (115, 'ru', ''),
 (116, 'ru', ''),
-(117, 'ru', ''),
+(117, 'ru', 'Panasonic KX-TG7433B Expandabledsf'),
 (118, 'ru', ''),
 (119, 'ru', ''),
 (120, 'ru', ''),
@@ -2577,18 +2911,8 @@ INSERT INTO `shop_product_variants_i18n` (`id`, `locale`, `name`) VALUES
 (133, 'ru', ''),
 (134, 'ru', ''),
 (135, 'ru', ''),
-(142, 'en', 'White'),
-(141, 'en', 'Green'),
-(87, 'en', 'Red'),
 (105, 'en', ''),
-(141, 'ru', 'Зеленый'),
-(142, 'ru', 'Белый'),
 (192, 'ru', ''),
-(87, 'ua', 'Червоний'),
-(141, 'ua', 'Зелений'),
-(142, 'ua', 'Білий'),
-(84, 'ua', ''),
-(86, 'en', ''),
 (82, 'en', ''),
 (90, 'en', ''),
 (89, 'en', ''),
@@ -2608,12 +2932,13 @@ INSERT INTO `shop_product_variants_i18n` (`id`, `locale`, `name`) VALUES
 (192, 'en', ''),
 (127, 'en', ''),
 (133, 'en', ''),
-(132, 'en', '');
+(132, 'en', ''),
+(210, 'ru', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_rbac_group`
+-- Структура таблиці `shop_rbac_group`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_rbac_group` (
@@ -2622,10 +2947,10 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_group` (
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_rbac_group_I_1` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=101 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=102 ;
 
 --
--- Dumping data for table `shop_rbac_group`
+-- Дамп даних таблиці `shop_rbac_group`
 --
 
 INSERT INTO `shop_rbac_group` (`id`, `name`, `description`) VALUES
@@ -2653,7 +2978,7 @@ INSERT INTO `shop_rbac_group` (`id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_rbac_privileges`
+-- Структура таблиці `shop_rbac_privileges`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_rbac_privileges` (
@@ -2667,7 +2992,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_privileges` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1471 ;
 
 --
--- Dumping data for table `shop_rbac_privileges`
+-- Дамп даних таблиці `shop_rbac_privileges`
 --
 
 INSERT INTO `shop_rbac_privileges` (`id`, `name`, `description`, `group_id`) VALUES
@@ -2837,7 +3162,7 @@ INSERT INTO `shop_rbac_privileges` (`id`, `name`, `description`, `group_id`) VAL
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_rbac_roles`
+-- Структура таблиці `shop_rbac_roles`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_rbac_roles` (
@@ -2846,21 +3171,20 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_roles` (
   `description` varchar(255) DEFAULT NULL,
   `importance` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 --
--- Dumping data for table `shop_rbac_roles`
+-- Дамп даних таблиці `shop_rbac_roles`
 --
 
 INSERT INTO `shop_rbac_roles` (`id`, `name`, `description`, `importance`) VALUES
-(12, 'Менеджер2', '', 3),
 (10, 'Администартор', '', 1),
 (11, 'Менеджер', '', 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_rbac_roles_privileges`
+-- Структура таблиці `shop_rbac_roles_privileges`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_rbac_roles_privileges` (
@@ -2873,7 +3197,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_roles_privileges` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1943 ;
 
 --
--- Dumping data for table `shop_rbac_roles_privileges`
+-- Дамп даних таблиці `shop_rbac_roles_privileges`
 --
 
 INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUES
@@ -3205,7 +3529,7 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_settings`
+-- Структура таблиці `shop_settings`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_settings` (
@@ -3216,7 +3540,7 @@ CREATE TABLE IF NOT EXISTS `shop_settings` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_settings`
+-- Дамп даних таблиці `shop_settings`
 --
 
 INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
@@ -3233,7 +3557,7 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 ('ordersMessageFormat', 'text', ''),
 ('ordersMessageText', 'Здравствуйте, %userName%.  \n\nМы благодарны Вам за то, что совершили заказ в нашем магазине "ImageCMS Shop" \nВы указали следующие контактные данные: \n\nEmail адрес: %userEmail% \nНомер телефона: %userPhone% \nАдрес доставки: %userDeliver%  \n\nМенеджеры нашего магазина вскоре свяжутся с Вами и помогут с оформлением и оплатой товара.  \n\nТакже, Вы можете всегда посмотреть за статусом Вашего заказа, перейдя по ссылке:  %orderLink%.  \n\nСпасибо за ваш заказ, искренне Ваши, сотрудники ImageCMS Shop.  \n\nПри возникновении любых вопросов, обращайтесь за телефонами:  \n+7 (095) 222-33-22 +38 (098) 222-33-22', ''),
 ('ordersSendMessage', 'true', ''),
-('ordersSenderEmail', 'noreply@demoshop.imagecm.net', ''),
+('ordersSenderEmail', 'noreply@example.com', ''),
 ('ordersSenderName', 'DemoShop ImageCms.net', ''),
 ('ordersMessageTheme', 'Данные для просмотра совершенной покупки', ''),
 ('2_LMI_SECRET_KEY', 'bank', ''),
@@ -3261,14 +3585,14 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 ('callbacksSendNotification', '0', ''),
 ('callbacksMessageFormat', 'text', ''),
 ('callbacksMessageText', '', ''),
-('callbacksSendEmailTo', '', ''),
-('callbacksSenderEmail', '', ''),
+('callbacksSendEmailTo', 'manager@example.com', ''),
+('callbacksSenderEmail', 'noreply@example.com', ''),
 ('callbacksSenderName', '', ''),
 ('callbacksMessageTheme', '', ''),
 ('userInfoRegister', '0', ''),
 ('userInfoMessageFormat', 'text', ''),
 ('userInfoMessageText', '', ''),
-('userInfoSenderEmail', '', ''),
+('userInfoSenderEmail', 'noreply@example.com', ''),
 ('userInfoSenderName', '', ''),
 ('userInfoMessageTheme', '', ''),
 ('topSalesBlockFormulaCoef', '1', ''),
@@ -3287,31 +3611,31 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 ('watermark_watermark_color', '', ''),
 ('watermark_watermark_font_path', '', ''),
 ('watermark_active', '', ''),
-('forgotPasswordMessageText', 'Здравствуйте!\n\nНа сайте %webSiteName% создан запрос на восстановление пароля для Вашего аккаунта.\n\nДля завершения процедуры восстановления пароля перейдите по ссылке %resetPasswordUri% \n\nВаш новый пароль для входа: %password%\n\nЕсли это письмо попало к Вам по ошибке просто проигнорируйте его.\n\n\nПри возникновении любых вопросов, обращайтесь по телефонам:  \n(012)  345-67-89 , (012)  345-67-89 \n---\n\nС уважением, \nсотрудники службы продаж %webSiteName%', 'ru'),
-('ordersMessageText', 'Здравствуйте, %userName%.  \n\nМы благодарны Вам за то, что совершили заказ в нашем магазине "ImageCMS Shop" \nВы указали следующие контактные данные: \n\nEmail адрес: %userEmail% \nНомер телефона: %userPhone% \nАдрес доставки: %userDeliver%  \n\nМенеджеры нашего магазина вскоре свяжутся с Вами и помогут с оформлением и оплатой товара.  \n\nТакже, Вы можете всегда посмотреть за статусом Вашего заказа, перейдя по ссылке:  %orderLink%.  \n\nСпасибо за ваш заказ, искренне Ваши, сотрудники ImageCMS Shop.  \n\nПри возникновении любых вопросов, обращайтесь за телефонами:  \n+7 (095) 222-33-22 +38 (098) 222-33-22', 'ru'),
-('ordersSenderName', 'DemoShop ImageCms.net', 'ru'),
+('forgotPasswordMessageText', 'Здравствуйте!\nНа сайте %webSiteName% создан запрос на восстановление пароля для Вашего аккаунта.\nДля завершения процедуры восстановления пароля перейдите по ссылке %resetPasswordUri%\nВаш новый пароль для входа: %password%\nЕсли это письмо попало к Вам по ошибке просто проигнорируйте его.\nПри возникновении любых вопросов, обращайтесь по телефонам:  \n(012)  345-67-89 , (012)  345-67-89 \n---\nС уважением, \nсотрудники службы продаж %webSiteName%  ', 'ru'),
+('ordersMessageText', 'Здравствуйте, %userName%.\nМы благодарны Вам за то, что совершили заказ в нашем магазине "ImageCMS Shop" \nВы указали следующие контактные данные:\nEmail адрес: %userEmail% \nНомер телефона: %userPhone% \nАдрес доставки: %userDeliver%\nМенеджеры нашего магазина вскоре свяжутся с Вами и помогут с оформлением и оплатой товара.\nТакже, Вы можете всегда посмотреть за статусом Вашего заказа, перейдя по ссылке:  %orderLink%.\nСпасибо за ваш заказ, искренне Ваши, сотрудники ImageCMS Shop.\nПри возникновении любых вопросов, обращайтесь за телефонами:  \n+7 (095) 222-33-22 +38 (098) 222-33-22  ', 'ru'),
+('ordersSenderName', '', 'ru'),
 ('ordersMessageTheme', 'Данные для просмотра совершенной покупки', 'ru'),
-('notifyOrderStatusMessageText', '', 'ru'),
+('notifyOrderStatusMessageText', ' ', 'ru'),
 ('notifyOrderStatusSenderName', '', 'ru'),
 ('notifyOrderStatusMessageTheme', '', 'ru'),
-('wishListsMessageText', '', 'ru'),
-('wishListsSenderName', '', 'ru'),
-('wishListsMessageTheme', '', 'ru'),
-('notificationsMessageText', '', 'ru'),
+('wishListsMessageText', ' ', 'ru'),
+('wishListsSenderName', 'admin', 'ru'),
+('wishListsMessageTheme', 'sad', 'ru'),
+('notificationsMessageText', ' ', 'ru'),
 ('notificationsSenderName', '', 'ru'),
 ('notificationsMessageTheme', '', 'ru'),
-('callbacksMessageText', '', 'ru'),
+('callbacksMessageText', ' ', 'ru'),
 ('callbacksSenderName', '', 'ru'),
 ('callbacksMessageTheme', '', 'ru'),
-('userInfoMessageText', '', 'ru'),
+('userInfoMessageText', ' ', 'ru'),
 ('userInfoSenderName', '', 'ru'),
 ('userInfoMessageTheme', '', 'ru'),
-('adminMessageCallback', '<h1>Спасибо за заказ звонка</h1>\n<div>В ближайшее время наши менеджеры свяжутся с Вами</div>', ''),
+('adminMessageCallback', '<h1>Спасибо за заказ звонка</h1>\n<div>В ближайшее время наши менеджеры свяжутся с Вами</div>  ', ''),
 ('1CCatSettings', 'a:4:{s:3:"zip";s:6:"zip=no";s:8:"filesize";s:15:"file_limit=1024";s:7:"validIP";s:9:"127.0.0.1";s:8:"password";s:0:"";}', ''),
 ('adminMessages', 'a:3:{s:8:"incoming";s:0:"";s:8:"callback";s:27:"вфы вфыв фыв фы";s:5:"order";s:0:"";}', 'ru'),
 ('selectedProductCats', 'a:5:{i:0;s:2:"36";i:1;s:2:"37";i:2;s:2:"38";i:3;s:2:"39";i:4;s:2:"41";}', ''),
-('adminMessageIncoming', '<h1>Спасибо</h1>\n<div>В ближайшее время наши менеджеры свяжутся с Вами</div>', ''),
-('adminMessageOrderPage', '<h1>Спасибо</h1>\n<div>В ближайшее время наши менеджеры свяжутся с Вами</div>', ''),
+('adminMessageIncoming', '<h1>Спасибо</h1>\n<div>В ближайшее время наши менеджеры свяжутся с Вами</div>  ', ''),
+('adminMessageOrderPage', '<h1>Спасибо</h1>\n<div>В ближайшее время наши менеджеры свяжутся с Вами</div>  ', ''),
 ('mainModImageWidth', '140', ''),
 ('mainModImageHeight', '100', ''),
 ('smallModImageWidth', '90', ''),
@@ -3321,7 +3645,7 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 ('ordersMessageText', 'Здравствуйте, %userName%.  \n\nМы благодарны Вам за то, что совершили заказ в нашем магазине "ImageCMS Shop" \nВы указали следующие контактные данные: \n\nEmail адрес: %userEmail% \nНомер телефона: %userPhone% \nАдрес доставки: %userDeliver%  \n\nМенеджеры нашего магазина вскоре свяжутся с Вами и помогут с оформлением и оплатой товара.  \n\nТакже, Вы можете всегда посмотреть за статусом Вашего заказа, перейдя по ссылке:  %orderLink%.  \n\nСпасибо за ваш заказ, искренне Ваши, сотрудники ImageCMS Shop.  \n\nПри возникновении любых вопросов, обращайтесь за телефонами:  \n+7 (095) 222-33-22 +38 (098) 222-33-22', 'en'),
 ('ordersSenderName', 'DemoShop ImageCms.net', 'en'),
 ('ordersMessageTheme', 'Данные для просмотра совершенной покупки', 'en'),
-('ordersManagerEmail', '', ''),
+('ordersManagerEmail', 'noreply@example.com', ''),
 ('ordersSendManagerMessage', 'true', ''),
 ('notifyOrderStatusMessageText', '', 'en'),
 ('notifyOrderStatusSenderName', '', 'en'),
@@ -3338,15 +3662,22 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 ('userInfoMessageText', '', 'en'),
 ('userInfoSenderName', '', 'en'),
 ('userInfoMessageTheme', '', 'en'),
-('1CSettingsOS', 'N;', ''),
+('1CSettingsOS', 'a:1:{i:0;s:1:"1";}', ''),
 ('MemcachedSettings', 'a:5:{s:11:"MEMCACHE_ON";b:0;s:17:"MEMCACHE_HOSTNAME";s:9:"localhost";s:13:"MEMCACHE_PORT";s:5:"11211";s:18:"MEMCACHE_NAMESPACE";s:13:"imagecms_shop";s:13:"CACHE_EXPIRES";s:4:"3600";}', ''),
 ('adminMessageMonkey', '', ''),
-('adminMessageMonkeylist', '', '');
+('adminMessageMonkeylist', '', ''),
+('MobileVersionSettings', 'a:3:{s:15:"MobileVersionON";b:1;s:17:"MobileVersionSite";s:9:"localhost";s:20:"MobileVersionAddress";s:16:"mobile.localhost";}', ''),
+('facebook_int', 'a:3:{s:9:"secretkey";s:0:"";s:9:"appnumber";s:0:"";s:8:"template";s:17:"administrator_old";}', ''),
+('vk_int', 'a:3:{s:7:"protkey";s:0:"";s:9:"appnumber";s:0:"";s:8:"template";s:17:"administrator_old";}', ''),
+('xmlSiteMap', 'a:5:{s:18:"main_page_priority";s:1:"1";s:13:"cats_priority";s:3:"0.9";s:14:"pages_priority";s:3:"0.5";s:20:"main_page_changefreq";s:6:"weekly";s:16:"pages_changefreq";s:7:"monthly";}', ''),
+('mobileTemplatePath', './templates/commerce_mobiles/shop/default', ''),
+('ordersRecountGoods', '0', ''),
+('ordersuserInfoRegister', NULL, '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_spy`
+-- Структура таблиці `shop_spy`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_spy` (
@@ -3359,46 +3690,19 @@ CREATE TABLE IF NOT EXISTS `shop_spy` (
   `email` varchar(50) DEFAULT NULL,
   `old_price` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `shop_spy`
+-- Дамп даних таблиці `shop_spy`
 --
 
-INSERT INTO `shop_spy` (`id`, `user_id`, `product_id`, `price`) VALUES
-(1, 1, 73, 899),
-(2, 1, 74, 899);
+INSERT INTO `shop_spy` (`id`, `user_id`, `product_id`, `price`, `variant_id`, `key`, `email`, `old_price`) VALUES
+(3, 69, 102, 549, 113, 'IPrMlWydoeP9Cmex30upNOUsdTa4bIrg', NULL, 549);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_user_profile`
---
-
-CREATE TABLE IF NOT EXISTS `shop_user_profile` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `cart_data` text,
-  `user_email` varchar(100) DEFAULT NULL,
-  `date_created` int(11) DEFAULT NULL,
-  `key` varchar(255) NOT NULL,
-  `wish_list_data` text,
-  `role_id` int(11) DEFAULT NULL,
-  `user_external_id` varchar(255) DEFAULT NULL,
-  `amout` float(10,2) NOT NULL,
-  `discount` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `shop_user_profile_I_1` (`key`),
-  KEY `shop_user_profile_FI_1` (`role_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `shop_warehouse`
+-- Структура таблиці `shop_warehouse`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_warehouse` (
@@ -3412,7 +3716,7 @@ CREATE TABLE IF NOT EXISTS `shop_warehouse` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `shop_warehouse`
+-- Дамп даних таблиці `shop_warehouse`
 --
 
 INSERT INTO `shop_warehouse` (`id`, `name`, `address`, `phone`, `description`) VALUES
@@ -3422,7 +3726,7 @@ INSERT INTO `shop_warehouse` (`id`, `name`, `address`, `phone`, `description`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_warehouse_data`
+-- Структура таблиці `shop_warehouse_data`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_warehouse_data` (
@@ -3436,7 +3740,7 @@ CREATE TABLE IF NOT EXISTS `shop_warehouse_data` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=38 ;
 
 --
--- Dumping data for table `shop_warehouse_data`
+-- Дамп даних таблиці `shop_warehouse_data`
 --
 
 INSERT INTO `shop_warehouse_data` (`id`, `product_id`, `warehouse_id`, `count`) VALUES
@@ -3447,7 +3751,81 @@ INSERT INTO `shop_warehouse_data` (`id`, `product_id`, `warehouse_id`, `count`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tags`
+-- Структура таблиці `support_comments`
+--
+
+CREATE TABLE IF NOT EXISTS `support_comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ticket_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `user_status` int(11) NOT NULL,
+  `user_name` varchar(100) NOT NULL,
+  `text` varchar(500) NOT NULL,
+  `date` int(11) NOT NULL,
+  UNIQUE KEY `id` (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Дамп даних таблиці `support_comments`
+--
+
+INSERT INTO `support_comments` (`id`, `ticket_id`, `user_id`, `user_status`, `user_name`, `text`, `date`) VALUES
+(1, 3, 1, 1, 'admin', 'Вы можете оплатить услуги безналичным переводом и наличными.', 1353064129);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `support_departments`
+--
+
+CREATE TABLE IF NOT EXISTS `support_departments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Дамп даних таблиці `support_departments`
+--
+
+INSERT INTO `support_departments` (`id`, `name`) VALUES
+(1, 'Техническая поддержка'),
+(2, 'Финансовый отдел'),
+(3, 'Отдел консультаций');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `support_tickets`
+--
+
+CREATE TABLE IF NOT EXISTS `support_tickets` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `last_comment_author` varchar(50) NOT NULL,
+  `text` text,
+  `theme` varchar(100) NOT NULL,
+  `department` int(11) NOT NULL,
+  `status` smallint(1) DEFAULT NULL,
+  `priority` varchar(15) DEFAULT NULL,
+  `date` int(11) DEFAULT NULL,
+  `updated` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Дамп даних таблиці `support_tickets`
+--
+
+INSERT INTO `support_tickets` (`id`, `user_id`, `last_comment_author`, `text`, `theme`, `department`, `status`, `priority`, `date`, `updated`) VALUES
+(1, 1, '', 'Не могу настроить на сайте переадресации. На локалке все работает. Помогите пожалуйста.', 'htaccess', 1, 0, '2', 1353061322, 1353061322),
+(2, 1, '', 'Какой тарифный план лучше подходит для моего сайта?', 'хостинг', 3, 0, '1', 1353061376, 1353061376),
+(3, 1, 'admin', 'Как я могу полатить хостинг?', 'Оплата услуг', 2, 0, '0', 1353061402, 1353064130);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `tags`
 --
 
 CREATE TABLE IF NOT EXISTS `tags` (
@@ -3460,37 +3838,41 @@ CREATE TABLE IF NOT EXISTS `tags` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Структура таблиці `users`
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `role_id` int(11) NOT NULL DEFAULT '1',
-  `username` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `banned` tinyint(1) NOT NULL DEFAULT '0',
+  `role_id` int(11) DEFAULT NULL,
+  `username` varchar(50) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `banned` tinyint(1) DEFAULT NULL,
   `ban_reason` varchar(255) DEFAULT NULL,
   `newpass` varchar(255) DEFAULT NULL,
   `newpass_key` varchar(255) DEFAULT NULL,
-  `newpass_time` datetime DEFAULT NULL,
-  `last_ip` varchar(40) NOT NULL,
-  `last_login` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `key` varchar(50) DEFAULT NULL,  
+  `newpass_time` int(11) DEFAULT NULL,
+  `last_ip` varchar(40) DEFAULT NULL,
+  `last_login` int(11) DEFAULT NULL,
+  `created` int(11) DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `cart_data` text,
+  `wish_list_data` text,
+  `key` varchar(255) NOT NULL,
+  `amout` float(10,2) NOT NULL,
+  `discount` varchar(255) DEFAULT NULL,
+  `phone` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`),
-  UNIQUE KEY `email` (`email`),
   KEY `role_id` (`role_id`),
-  KEY `banned` (`banned`),
-  KEY `password` (`password`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
+  KEY `users_I_1` (`key`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=70 ;
 
 --
--- Table structure for table `user_autologin`
+-- Дамп даних таблиці `users`
+--
+--
+-- Структура таблиці `user_autologin`
 --
 
 CREATE TABLE IF NOT EXISTS `user_autologin` (
@@ -3503,23 +3885,20 @@ CREATE TABLE IF NOT EXISTS `user_autologin` (
   KEY `last_ip` (`last_ip`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Дамп даних таблиці `user_autologin`
+--
+
+INSERT INTO `user_autologin` (`key_id`, `user_id`, `user_agent`, `last_ip`, `last_login`) VALUES
+('9cd15a337a323b381463ec5cac8cb829', 1, 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:16.0) Gecko/20100101 Firefox/16.0', '127.0.0.1', '2012-11-21 15:37:09'),
+('bb202ce871862ffe8c9387ab5f48c6f1', 1, 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:17.0) Gecko/17.0 Firefox/17.0', '127.0.0.1', '2012-12-03 12:13:27'),
+('1bd267b4f4183c5d6c7785d016fdcdaf', 1, 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11', '127.0.0.1', '2012-12-03 12:27:10'),
+('e3186cf5def063dd12901d8336ba6fd9', 1, 'Mozilla/5.0 (X11; Linux x86_64; rv:2.0) Gecko/20100101 Firefox/4.0 Opera 12.11', '127.0.0.1', '2012-12-05 17:47:48');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_profile`
---
-
-CREATE TABLE IF NOT EXISTS `user_profile` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user_temp`
+-- Структура таблиці `user_temp`
 --
 
 CREATE TABLE IF NOT EXISTS `user_temp` (
@@ -3536,7 +3915,7 @@ CREATE TABLE IF NOT EXISTS `user_temp` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `widgets`
+-- Структура таблиці `widgets`
 --
 
 CREATE TABLE IF NOT EXISTS `widgets` (
@@ -3551,10 +3930,10 @@ CREATE TABLE IF NOT EXISTS `widgets` (
   `created` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
--- Dumping data for table `widgets`
+-- Дамп даних таблиці `widgets`
 --
 
 INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `description`, `roles`, `created`) VALUES

@@ -43,69 +43,64 @@ class Categories extends MY_Controller {
         $this->template->assign('tree', $this->lib_category->build());
         $this->template->show('cats_sidebar', FALSE);
     }
-    
-    public function save_positions()
-    {
-    	if ($_POST['positions'])
-    	{
-    		foreach ($_POST['positions'] as $pos=>$id)
-    			$this->db->where('id', $id)
-    				->set('position', $pos)
-    				->update('category');
-    		showMessage('Position saved success');
-    	}
+
+    public function save_positions() {
+        $positions = $_POST['positions'];
+
+        if (sizeof($positions) == 0) {
+            return false;
+        }
+
+        if ($_POST['positions']) {
+            foreach ($_POST['positions'] as $pos => $id) {
+                $query = "UPDATE `category` SET `position`='" . $pos . "' WHERE `id`='" . (int) $id . "';";
+                $this->db->query($query);
+            }
+            
+            showMessage('Позиция успешно сохранена');
+        }
     }
 
-    function cat_list()
-    {
+    function cat_list() {
         $cats = array();
 
         $tree = $this->lib_category->build();
-        
+
         $cats = $this->sub_cats($tree);
 
         // Get total pages in category
         $cnt = count($cats);
-        for ($i = 0; $i < $cnt; $i++) 
-        {
-            $this->db->where('category', $cats[$i]['id']);
+        for ($i = 0; $i < $cnt; $i++) {
+            $this->db->where('category', $cats[$i]['position']);
             $this->db->where('lang_alias', 0);
             $this->db->from('content');
             $cats[$i]['pages'] = $this->db->count_all_results();
         }
-        //var_dump($tree);
-        
+
         $this->template->add_array(array(
-                'tree' => $cats,
-                //'catTreeHTML'=> $this->renderCatList($tree)
-                'catTreeHTML'=> $this->renderCatList($cats)
-            ));
+            'tree' => $cats,
+            'catTreeHTML' => $this->renderCatList($tree)
+                //'catTreeHTML' => $this->renderCatList($cats)
+        ));
 
         $this->template->show('category_list', FALSE);
     }
 
-   	
-    private function renderCatList($tree)
-    {
-    	$html  = '';
-    	
-    	foreach ($tree as $item)
-    	{
-    		$html .= '<div>';
-    		$html .= $this->template->fetch('_catlistitem', array('item' => $item));
-    		if (count($item['subtree']))
-    		{
-    			$html .= '<div class="frame_level sortable" style="display:none;">';
-    			$html .= $this->renderCatList($item['subtree']);
-    			$html .= '</div>';
-    		}
-    		$html .= '</div>';
-    	}
-    	return $html;
+    private function renderCatList($tree) {
+        $html = '';
+
+        foreach ($tree as $item) {
+            $html .= '<div>';
+            $html .= $this->template->fetch('_catlistitem', array('item' => $item));
+            if (count($item['subtree'])) {
+                $html .= '<div class="frame_level sortable" style="display:none;">';
+                $html .= $this->renderCatList($item['subtree']);
+                $html .= '</div>';
+            }
+            $html .= '</div>';
+        }
+        return $html;
     }
-
-
-    
 
     function sub_cats($array = array()) {
         foreach ($array as $item) {
@@ -118,7 +113,6 @@ class Categories extends MY_Controller {
 
         return $this->temp_cats;
     }
-
 
     /*
      * Create or update new category
@@ -147,9 +141,8 @@ class Categories extends MY_Controller {
 
         if ($this->form_validation->run($this) == FALSE) {
             ($hook = get_hook('admin_create_cat_val_failed')) ? eval($hook) : NULL;
-            
+
             showMessage(validation_errors(), false, 'r');
-            
         } else {
             // Create category URL
             if ($this->input->post('url') == FALSE) {
@@ -164,7 +157,10 @@ class Categories extends MY_Controller {
             if (count($fetch_pages) > 0) {
                 $fetch_pages = serialize($fetch_pages);
             }
-
+            $settings = array(
+                'category_apply_for_subcats'=>$this->input->post('category_apply_for_subcats'),
+                'apply_for_subcats'=>$this->input->post('apply_for_subcats'),
+            );
             $data = array(
                 'name' => $this->input->post('name'),
                 'url' => $url,
@@ -183,8 +179,9 @@ class Categories extends MY_Controller {
                 'sort_order' => $this->lib_admin->db_post('sort_order'),
                 'comments_default' => $this->lib_admin->db_post('comments_default'),
                 'fetch_pages' => $fetch_pages,
+                'settings' => serialize($settings),
             );
-
+            
             $parent = $this->lib_category->get_category($data['parent_id']);
 
             if ($parent != 'NULL') {
@@ -204,20 +201,20 @@ class Categories extends MY_Controller {
                     $id = $this->cms_admin->create_category($data);
 
                     $this->lib_admin->log(
-                            lang('ac_cr_cat') .                            
-                            '<a href="'.$BASE_URL.'/admin/categories/edit/'.$id.'"> ' . $data['name'] . '</a>'
+                            lang('ac_cr_cat') .
+                            '<a href="' . $BASE_URL . '/admin/categories/edit/' . $id . '"> ' . $data['name'] . '</a>'
                     );
 
-                    showMessage(lang('ac_cat') .' '. $data['name'] .' '. lang('ac_created'));
-                    
+                    showMessage(lang('ac_cat') . ' ' . $data['name'] . ' ' . lang('ac_created'));
+
                     //showMessage(lang('a_categ_translate_upda'));
-	                $act = $_POST['action'];
-	                
-	                if($act == 'close'){
-	                	pjax('/admin/categories/cat_list');
-	                }else{
-	                    pjax('/admin/categories/edit/'.$id);
-	                }                
+                    $act = $_POST['action'];
+
+                    if ($act == 'close') {
+                        pjax('/admin/categories/cat_list');
+                    } else {
+                        pjax('/admin/categories/edit/' . $id);
+                    }
                     //updateDiv('page', site_url('admin/categories/edit/' . $id));
                     break;
 
@@ -240,22 +237,22 @@ class Categories extends MY_Controller {
 
                     $this->lib_admin->log(
                             lang('ac_changed_cat') .
-                            '<a href="'.$BASE_URL.'/admin/categories/edit/'.$cat_id.'"> ' . $data['name'] . '</a>'
+                            '<a href="' . $BASE_URL . '/admin/categories/edit/' . $cat_id . '"> ' . $data['name'] . '</a>'
                     );
 
                     showMessage(lang('ac_cat_updated'));
-                    
+
                     $act = $_POST['action'];
-	                if($act == 'close')
-	                    pjax('/admin/categories/cat_list');
-	                else
-	                	pjax('/admin/categories/edit/'.$cat_id);
-                
+                    if ($act == 'close')
+                        pjax('/admin/categories/cat_list');
+                    else
+                        pjax('/admin/categories/edit/' . $cat_id);
+
                     break;
             }
 
             $this->lib_category->clear_cache();
-            
+
             //updateDiv('categories', site_url('/admin/categories/update_block')); // Update categories on workspace
         }
     }
@@ -341,10 +338,10 @@ class Categories extends MY_Controller {
 
                 $this->lib_admin->log(
                         lang('ac_cr_cat') .
-                        '<a href="'.$BASE_URL.'/admin/categories/edit/'.id.'"> ' . $data['name'] . '</a>'
+                        '<a href="' . $BASE_URL . '/admin/categories/edit/' . id . '"> ' . $data['name'] . '</a>'
                 );
 
-                echo json_encode(array('data'=>$id));
+                echo json_encode(array('data' => $id));
                 //updateDiv('categories', site_url('/admin/categories/update_block'));
                 //updateDiv('fast_category_list', site_url('/admin/categories/update_fast_block/' . $id));
                 //closeWindow('fast_add_cat_w');
@@ -383,11 +380,12 @@ class Categories extends MY_Controller {
             // Get langs
             $langs = $this->cms_base->get_langs();
             $this->template->assign('langs', $langs);
-
+            $settings=unserialize($cat['settings']);
             $cat['fetch_pages'] = unserialize($cat['fetch_pages']);
             $this->template->add_array($cat);
             $this->template->assign('tree', $this->lib_category->build());
             $this->template->assign('include_cats', $this->sub_cats($this->lib_category->build()));
+            $this->template->assign('settings', $settings);
             ($hook = get_hook('admin_show_category_edit')) ? eval($hook) : NULL;
 
             $this->template->show('category_edit', FALSE);
@@ -414,7 +412,7 @@ class Categories extends MY_Controller {
             ($hook = get_hook('admin_set_cat_translate_rules')) ? eval($hook) : NULL;
 
             if ($this->form_validation->run($this) == FALSE) {
-                showMessage(validation_errors(),''.'r');
+                showMessage(validation_errors(), '' . 'r');
             } else {
                 $data = array();
                 $data['alias'] = $id;
@@ -433,8 +431,7 @@ class Categories extends MY_Controller {
                 if ($query->num_rows() == 0) {
                     $this->lib_admin->log(
                             lang('ac_create_cat_trans') .
-                            
-                            '<a href="'.$BASE_URL.'/admin/categories/edit/'.$cat['id'].'"> ' . $cat['name'] . '</a>'
+                            '<a href="' . $BASE_URL . '/admin/categories/edit/' . $cat['id'] . '"> ' . $cat['name'] . '</a>'
                     );
 
                     ($hook = get_hook('admin_insert_cat_translation')) ? eval($hook) : NULL;
@@ -442,8 +439,8 @@ class Categories extends MY_Controller {
                     $this->db->insert('category_translate', $data);
                 } else {
                     $this->lib_admin->log(
-                            lang('ac_changed_cat_trans') .                            
-                            '<a href="'.$BASE_URL.'/admin/categories/edit/'.$cat['id'].'"> ' . $cat['name'] . '</a>'
+                            lang('ac_changed_cat_trans') .
+                            '<a href="' . $BASE_URL . '/admin/categories/edit/' . $cat['id'] . '"> ' . $cat['name'] . '</a>'
                     );
 
                     ($hook = get_hook('admin_update_cat_translation')) ? eval($hook) : NULL;
@@ -456,13 +453,12 @@ class Categories extends MY_Controller {
                 $this->lib_category->clear_cache();
                 showMessage(lang('a_categ_translate_upda'));
                 $active = $_POST['action'];
-                
-                if($active == 'close'){
-                    pjax('/admin/categories/translate/'.$id.'/'.$lang);
-                }else{
-                    pjax('/admin/categories/edit/'.$id);
-                }                
-               
+
+                if ($active == 'close') {
+                    pjax('/admin/categories/translate/' . $id . '/' . $lang);
+                } else {
+                    pjax('/admin/categories/edit/' . $id);
+                }
             }
 
             exit;
@@ -477,7 +473,7 @@ class Categories extends MY_Controller {
             // Get langs
             $langs = $this->cms_base->get_langs();
             $this->template->assign('langs', $langs);
-            
+
             if ($query->num_rows() > 0) {
                 $this->template->add_array(array(
                     'cat' => $query->row_array(),
@@ -505,76 +501,75 @@ class Categories extends MY_Controller {
      */
     function delete() {
         cp_check_perm('category_delete');
-        
-        
-        foreach($_POST['ids'] as $p){
-            
-        $cat_id = $p;
+
+
+        foreach ($_POST['ids'] as $p) {
+
+            $cat_id = $p;
 //if (0)
 //{
-        if ($this->db->get('category')->num_rows() == 1) {
-            showMessage(lang('ac_delete_cat_err'), lang('ac_error'), 'r');
-            exit;
-        }
-
-        ($hook = get_hook('admin_category_delete')) ? eval($hook) : NULL;
-
-        // Delete Category
-        $this->db->limit(1);
-        $this->db->where('id', $cat_id);
-        $this->db->delete('category');
-
-        $this->lib_admin->log(lang('ac_delete_cat') . $cat_id);
-
-        // Delete translates
-        $this->db->where('alias', $cat_id);
-        $this->db->delete('category_translate');
-
-        // Delete pages
-        $this->db->where('category', $cat_id);
-        $pages = $this->db->get('content');
-
-        if ($pages->num_rows() > 0) {
-            $this->load->module('admin/pages', 'pages');
-            foreach ($pages->result_array() as $page) {
-                $this->pages->delete($page['id'], FALSE);
+            if ($this->db->get('category')->num_rows() == 1) {
+                showMessage(lang('ac_delete_cat_err'), lang('ac_error'), 'r');
+                exit;
             }
-        }
 
-        // Delete sub cats
-        $this->sub_cats = array();
-        $this->categories = $this->db->get('category')->result_array();
-        $this->_get_sub_cats($cat_id);
+            ($hook = get_hook('admin_category_delete')) ? eval($hook) : NULL;
 
-        if (count($this->sub_cats) > 0) {
-            foreach ($this->sub_cats as $key => $cat_id) {
+            // Delete Category
+            $this->db->limit(1);
+            $this->db->where('id', $cat_id);
+            $this->db->delete('category');
 
-                ($hook = get_hook('admin_sub_category_delete')) ? eval($hook) : NULL;
+            $this->lib_admin->log(lang('ac_delete_cat') . $cat_id);
 
-                // Delete Category
-                $this->db->limit(1);
-                $this->db->where('id', $cat_id);
-                $this->db->delete('category');
+            // Delete translates
+            $this->db->where('alias', $cat_id);
+            $this->db->delete('category_translate');
 
-                $this->lib_admin->log(lang('ac_delete_cat') . $cat_id);
+            // Delete pages
+            $this->db->where('category', $cat_id);
+            $pages = $this->db->get('content');
 
-                // Delete translates
-                $this->db->where('alias', $cat_id);
-                $this->db->delete('category_translate');
+            if ($pages->num_rows() > 0) {
+                $this->load->module('admin/pages', 'pages');
+                foreach ($pages->result_array() as $page) {
+                    $this->pages->delete($page['id'], FALSE);
+                }
+            }
 
-                // Delete pages
-                $this->db->where('category', $cat_id);
-                $pages = $this->db->get('content');
+            // Delete sub cats
+            $this->sub_cats = array();
+            $this->categories = $this->db->get('category')->result_array();
+            $this->_get_sub_cats($cat_id);
 
-                if ($pages->num_rows() > 0) {
-                    $this->load->module('admin/pages', 'pages');
-                    foreach ($pages->result_array() as $page) {
-                        $this->pages->delete($page['id'], FALSE);
+            if (count($this->sub_cats) > 0) {
+                foreach ($this->sub_cats as $key => $cat_id) {
+
+                    ($hook = get_hook('admin_sub_category_delete')) ? eval($hook) : NULL;
+
+                    // Delete Category
+                    $this->db->limit(1);
+                    $this->db->where('id', $cat_id);
+                    $this->db->delete('category');
+
+                    $this->lib_admin->log(lang('ac_delete_cat') . $cat_id);
+
+                    // Delete translates
+                    $this->db->where('alias', $cat_id);
+                    $this->db->delete('category_translate');
+
+                    // Delete pages
+                    $this->db->where('category', $cat_id);
+                    $pages = $this->db->get('content');
+
+                    if ($pages->num_rows() > 0) {
+                        $this->load->module('admin/pages', 'pages');
+                        foreach ($pages->result_array() as $page) {
+                            $this->pages->delete($page['id'], FALSE);
+                        }
                     }
                 }
             }
-        }
-
         }
         $this->lib_category->clear_cache();
         showMessage(lang('ac_cat_deleted'));

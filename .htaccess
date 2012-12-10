@@ -1,13 +1,14 @@
 AddDefaultCharset UTF-8
 
+
 #Options +FollowSymLinks
 Options -Indexes
 
 RewriteEngine on
 
-
 # RewriteCond %{HTTP_HOST} ^www.site.com$ [NC]
 # RewriteRule ^(.*)$ http://site.com/$1 [L,R=301]
+
 
 RewriteCond $1 !^(index\.php|test.php|user_guide|uploads/.*|favicon\.ico|favicon\.png|captcha/.*|application/modules/.*/templates|templates|js|robots\.txt|application/controllers/install/images/.*)
 RewriteRule ^(.*)$ /index.php/$1 [L]

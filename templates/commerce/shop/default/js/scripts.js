@@ -6,15 +6,13 @@ $(document).ready(function() {
         return (nabir.length > 0);
     }
     var ie = jQuery.browser.msie,
-            ieV = jQuery.browser.version,
-            ltie7 = ie && (ieV <= 7),
-            ltie8 = ie && (ieV <= 8);
+    ieV = jQuery.browser.version,
+    ltie7 = ie && (ieV <= 7),
+    ltie8 = ie && (ieV <= 8);
+
 
     nav_tabs_li = $('.nav_tabs li');
     tabs_div = $('.tabs > div');
-
-
-
     if (location.hash == '')
     {
         var variable = 0;
@@ -32,29 +30,25 @@ $(document).ready(function() {
         $($(this).attr('href')).show();
 
         $this = $($(this).attr('href')).children('.scroll-box');
+        if ($.exists_nabir($this)){
+            first_elem = $this.find('li:eq(0)');
+            width_elem = first_elem.outerWidth(true);
+            count_elem_2 = count_elem = $this.find('li').length;
+            width = width_elem * count_elem;
 
-        first_elem = $this.find('li:eq(0)');
-        width_elem = first_elem.outerWidth();
-        vidstup = first_elem.outerWidth(true) - width_elem;
-        count_elem_2 = count_elem = $this.find('li').length;
-        width = width_elem * count_elem;
-
-        if (count_elem % 2 != 0) {
-            width = width + width_elem;
-        }
-        if (count_elem > 2) {
-            width = width / 2;
-            count_elem_2 = count_elem / 2;
-        }
-        if (count_elem <= 4) {
-            width = width - 30;
-            $this.find('li').css('margin-right', 15);
-        }
-        first_elem.parent().css('width', width + Math.round(count_elem) * vidstup);
-        if (!$this.is('.jspScrollable') && count_elem > 4) {
-            $this.jScrollPane({
-                'showArrows': true
-            });
+            if (count_elem % 2 != 0) {
+                width = width + width_elem;
+            }
+            if (count_elem > 2) {
+                width = width / 2;
+                count_elem_2 = count_elem / 2;
+            }
+            first_elem.parent().css('width', width);
+            if (!$this.is('.jspScrollable') && count_elem > 4) {
+                $this.jScrollPane({
+                    'showArrows': true
+                });
+            }
         }
         return false;
     }).filter(':eq(' + variable + ')').click();
@@ -75,15 +69,15 @@ $(document).ready(function() {
         return false;
     });
 
-//    $('.nav_tabs li a').click(function() {
-//
-//        nav_tabs_li.removeClass('ui-tabs-selected');
-//        $(this).parent().addClass('ui-tabs-selected');
-//        tabs_div.hide();
-//        $($(this).attr('href')).show();
-//
-//        return false;
-//    }).filter(':first').click();
+    //    $('.nav_tabs li a').click(function() {
+    //
+    //        nav_tabs_li.removeClass('ui-tabs-selected');
+    //        $(this).parent().addClass('ui-tabs-selected');
+    //        tabs_div.hide();
+    //        $($(this).attr('href')).show();
+    //
+    //        return false;
+    //    }).filter(':first').click();
 
     $('.formCost input[type="text"], .count input').keypress(function(event) {
         var key, keyChar;
@@ -217,7 +211,6 @@ $(document).ready(function() {
         $(document).ready(function() {
 
             for (var i = 1; i <= den; i++) {
-                //alert(i);
 
                 var target;
                 $('.prod_dif').on('click', function() {
@@ -344,7 +337,7 @@ $(window).load(function() {
     });
 
     var $js_carousel = $('.carousel_js'),
-            $item = new Array();
+    $item = new Array();
     $item_l = new Array();
     $item_w = new Array();
     $this_carousel = new Array();
@@ -353,7 +346,7 @@ $(window).load(function() {
 
     $js_carousel.each(function(index) {
         var index = index,
-                $this = $(this);
+        $this = $(this);
 
         $item[index] = $this.find('li');
         $item_l[index] = $item[index].length;
@@ -366,7 +359,7 @@ $(window).load(function() {
         var cont_width = 940;
         $js_carousel.each(function(index) {
             var index = index,
-                    $count_visible = (cont_width / ($item_w[index])).toFixed(1);
+            $count_visible = (cont_width / ($item_w[index])).toFixed(1);
             if ($item_w[index] * $item_l[index] > cont_width) {
                 //$this_prev[index].add($this_next[index]).fadeIn();
                 $this_carousel[index].jcarousel({

@@ -8,8 +8,6 @@
 /application/config/config.php
 /application/config/database.php
 /application/modules/shop
-application/config/config.php
-application/config/database.php
 application/modules/shop
 /application/libraries/fake
 Thumbs.db
@@ -25,4 +23,5 @@ Thumbs.db
 /application/modules/shop/build.properties
 /application/modules/shop/buildtime-conf.xml
 /application/modules/shop/runtime-conf.xml
-
+/pma/
+*.*~

@@ -10,7 +10,6 @@ var notificationsInitialized = false;
 $(document).ajaxComplete(function(event, XHR, ajaxOptions) {
     if (ajaxOptions.url != "/admin/components/run/shop/notifications/getAvailableNotification")
     {
-        console.log(XHR.getAllResponseHeaders().match(/X-PJAX/));
         if ((XHR.getAllResponseHeaders().match(/X-PJAX/)))
         {
             initAdminArea();
@@ -25,18 +24,13 @@ $(document).ajaxComplete(function(event, XHR, ajaxOptions) {
         
         if ($.exists('#chart')) brands();
         if ($.exists('#wrapper_gistogram')) gistogram();
+        $('#loading').stop().fadeOut(200);
     }
 });
 
 function init_2() {
-    //    /if ($.exists('[data-submit]')) $('body').append('<div class="notifications bottom-right"><div class="alert-message" style="color:#666;text-shadow:0 1px #fff;">Для того чтоб <span style="color:green;font-weight:bold;">'+$('[data-submit]').text()+'</span> используйте комбинацию клавиш <span style="color:green;font-weight:bold;">Ctrl + s</span></div></div>')
-   
-    if ($.exists('#mainContent')){
-        $('#loading').css({
-            'height': $(window).height(),
-            'background-position': '50%' + ($(window).height() - $('#mainContent').offset().top) / 2 + 'px'
-        });
-    }
+    // /if ($.exists('[data-submit]')) $('body').append('<div class="notifications bottom-right"><div class="alert-message" style="color:#666;text-shadow:0 1px #fff;">Для того чтоб <span style="color:green;font-weight:bold;">'+$('[data-submit]').text()+'</span> используйте комбинацию клавиш <span style="color:green;font-weight:bold;">Ctrl + s</span></div></div>')
+
     if ($.exists('.buy_prod, .popover_ref')) {
         //alert('init2');
         $('.buy_prod').popover('destroy').each(function() {
@@ -395,7 +389,6 @@ function autocomplete() {
         $.get('/admin/admin_search/autocomplete', function(data) {
 
             baseAutocompleteData = JSON.parse(data);
-            //                console.log(baseAutocompleteData);
             bae = true;
             $('#baseSearch').autocomplete({
                 source: baseAutocompleteData
@@ -452,15 +445,15 @@ function autocomplete() {
                     '<span class="help-inline d_b">ID</span>' +
                     '<input type="text" name="AttachedProductsIds[]" value="' + ui.item.identifier.id + '" class="input-mini"/>' +
                     '</span>&nbsp;' +
-                    '<span  class="d-i_b v-a_b">' +
+                    '<span class="d-i_b v-a_b">' +
                     '<span class="help-inline d_b">Имя</span>' +
                     '<input type="text" id="AttachedProducts" value="' + ui.item.label + '" class="input-xxlarge"/>' +
                     '</span>&nbsp;' +
-                    '<span  class="d-i_b number v-a_b">' +
+                    '<span class="d-i_b number v-a_b">' +
                     '<span class="help-inline d_b">Скидка %</span>' +
                     '<input type="text" id="AttachedProductsDisc" name="Discounts[]" value="' + mainDisc + '" class="input-mini" data-max="100" data-rel="tooltip" data-title="только цифры"/>' +
                     '</span>&nbsp;' +
-                    '<span  class="d-i_b v-a_b">' +
+                    '<span class="d-i_b v-a_b">' +
                     '<button class="btn btn-danger btn-small del_tmp_row" type="button" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash icon-white"></i></button>' +
                     '</span>' +
                     '</div>');
@@ -477,7 +470,7 @@ function autocomplete() {
             select: function(event, ui) {
                 $('#relatedProductsNames').append('<div id="tpm_row' + ui.item.identifier.id + '">' +
                     '<span style="width: 70%;margin-left: 1%;" class="pull-left">' +
-                    '<input type="text" id="AttachedProducts" value="' + ui.item.label + '"/>' +
+                    '<a id="AttachedProducts" >'+ ui.item.label + '</a>' +
                     '<input type="hidden" name="RelatedProducts[]" value="' + ui.item.identifier.id + '">' +
                     '</span>' +
                     '<span style="width: 8%;margin-left: 1%;" class="pull-left">' +
@@ -504,7 +497,7 @@ function autocomplete() {
         });
     }
 
-    //    AUTO COMPLITE SHOP--------------------------------------------------------------------------------------------------
+    // AUTO COMPLITE SHOP--------------------------------------------------------------------------------------------------
 
 
     if ($.exists('#shopNameAutoC')){
@@ -535,7 +528,6 @@ function textcomment_s_h(status, el) {
         if (status == 's' && textcomment.css('display') != 'none')
         {
             var textcomment_h = textcomment.outerHeight();
-            console.log(textcomment)
             textcomment.hide().next().show().find('textarea').css('height', textcomment_h + 13);
         }
         if (status == 's' && textcomment.css('display') == 'none')
@@ -642,7 +634,7 @@ function fixed_frame_title() {
     }
 }
 function difTooltip() {
-    //  tooltip
+    // tooltip
     var tr_tooltip = $('tr[data-title]').add('.row-category[data-title]');
     if ($.exists_nabir(tr_tooltip)) {
         tr_tooltip.tooltip('destroy');
@@ -699,6 +691,7 @@ function initAdminArea() {
 
     //gistogram
     $('[name="date"]').die('change').live('change', function() {
+        $('#loading').stop().fadeIn(100);
         $.pjax({
             'url': '/admin/components/run/shop/charts/byDate/' + $(this).val(),
             'container': '#mainContent',
@@ -706,7 +699,7 @@ function initAdminArea() {
         });
     });
 
-    //  tabs
+    // tabs
     $('.myTab a').die('click').live('click', function(e) {
         top = getScrollTop();
         $this_href = $(this).attr('href');
@@ -723,7 +716,7 @@ function initAdminArea() {
         $('.myTab li.active a').click();
     }
 
-    //  drop search
+    // drop search
     if ($.exists('.typeahead'))
         $('.typeahead').typeahead();
 
@@ -791,7 +784,7 @@ function initAdminArea() {
     }
     $('.ui-datepicker').addClass('dropdown-menu');
 
-    //    $('.ui-dialog button').ready(function(){ $('.ui-dialog button').addClass('btn')});
+    // $('.ui-dialog button').ready(function(){ $('.ui-dialog button').addClass('btn')});
 
     //my
     $('html').die('click').live('click', function(event) {
@@ -914,25 +907,22 @@ function initAdminArea() {
     });
     $('.item_menu .row-category:even').addClass('even');
 
-    if (window.hasOwnProperty('userLogined') && !notificationsInitialized)
-    {
-        window.setInterval('updateNotificationsTotal()', 20000);
-        notificationsInitialized = true;
-    }
 
-//    $('.listFilterForm').die('focus').live('focus', function() {
-//        $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
-//    });
+// $('.listFilterForm').die('focus').live('focus', function() {
+// $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
+// });
 
     $('.listFilterSubmitButton').die('click').live('click', function() {
         if (!$(this).attr('disabled') && !$(this).hasClass('disabled'))
         {
+            $('#loading').stop().fadeIn(100);
             $('.listFilterForm').ajaxSubmit({
                 target: '#mainContent',
                 headers: {
                     'X-PJAX': 'X-PJAX'
                 }
             });
+            
         }
     });
 
@@ -965,8 +955,9 @@ function initAdminArea() {
     
     $('#mainContent a.pjax').die('click').click(function(event){
         event.preventDefault();
+        $('#loading').fadeIn(100);
         $.pjax({
-            url:$(this).attr('href'), 
+            url:$(this).attr('href'),
             container:'#mainContent',
             timeout: 0
 
@@ -975,15 +966,11 @@ function initAdminArea() {
     });
 
     $(document).on('pjax:start', function() {
-        console.log('pstrt');
-        //resize loading
-        $('#loading').height($('#mainContent').height())//.width($('#mainContent').width());
-        $('#loading').stop().fadeIn(100);
+        $('#loading').fadeIn(100);
 
     })
     .on('pjax:end', function() {
-        console.log('pstp');
-        $('#loading').stop().fadeOut(100);
+        $('#loading').fadeOut(300);
     });
 
 
@@ -1020,15 +1007,8 @@ function initAdminArea() {
     console.log('script execution time:' + (Date.now() - startExecTime) / 1000 + " sec.")
 }
 ;
-//    console.log('initialising of administration area ended');
-//    
-//}
-// 
 
-//console.log('script execution time:' + ( Date.now() - startExecTime)/1000  + " sec.");
-
-$(document).ready(
-        
+$(document).ready(        
 
     function(){
 
@@ -1042,8 +1022,9 @@ $(document).ready(
 
         $('a.pjax').not('#mainContent a.pjax').die('click').click(function(event){
             event.preventDefault();
+            $('#loading').fadeIn(100);
             $.pjax({
-                url:$(this).attr('href'), 
+                url:$(this).attr('href'),
                 container:'#mainContent',
                 timeout: 3000
             });
@@ -1069,6 +1050,7 @@ $(document).ready(
 
         $('a.pjax').die('click').click(function(event) {
             event.preventDefault();
+            $('#loading').fadeIn(100);
             $.pjax({
                 url: $(this).attr('href'),
                 container: '#mainContent',
@@ -1161,12 +1143,11 @@ $(document).ready(
                 $('.listFilterSubmitButton').trigger('click');
         })
 
-        /*      menu        */
+        /* menu */
         var found = false;
         $('#mainAdminMenu a').each(function() {
             if ($(this).attr('href').match(window.location.pathname) && !found)
             {
-                //                console.log($(this));
                 $(this).closest('li').addClass('active');
                 $('li.active').closest('ul').closest('li').addClass('active');
                 found = true;
@@ -1192,13 +1173,11 @@ $(window).load(function() {
 
         $('.fade.in').remove();
         difTooltip();
-        if ($.exists('#mainContent')){
-            $('#loading').css({
-                'height': $(window).height(),
-                'background-position': '50%' + ($(window).height() - $('#mainContent').offset().top) / 2 + 'px'
-            });
-
-        }
     }).resize();
-})
 
+    if (window.hasOwnProperty('userLogined') && !notificationsInitialized)
+    {
+        window.setInterval('updateNotificationsTotal()', 20000);
+        notificationsInitialized = true;
+    }
+})

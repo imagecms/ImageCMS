@@ -21,24 +21,22 @@
                             <tr>
                                 <td colspan="6">
                                     <div class="inside_padd">
-                                        <div class="row-fluid">
-                                            <div class="control-group m-t_10">
-                                                <label class="control-label" for="inputName">{lang('a_all_cache_file')}:</label>
-                                                <div class="controls">
-                                                    <span class="filesCount">{echo $allFile}</span>                                                      
-                                                </div>
+                                        <div class="control-group m-t_10">
+                                            <label class="control-label" for="inputName">{lang('a_all_cache_file')}:</label>
+                                            <div class="controls">
+                                                <span class="filesCount">{echo $allFile}</span>                                                      
                                             </div>
-                                            <div class="control-group m-t_10">
-                                                <label class="control-label" for="inputLocal">{lang('a_clean_old')}</label>
-                                                <div class="controls">                                                        
-                                                    <button type="button" data-target="/admin/delete_cache" data-param="expried" id="inputLocal" class="btn btn-small clearCashe" ><i class="icon-trash" ></i> Очистить</button>
-                                                </div>
+                                        </div>
+                                        <div class="control-group m-t_10">
+                                            <label class="control-label" for="inputLocal">{lang('a_clean_old')}</label>
+                                            <div class="controls">                                                        
+                                                <button type="button" data-target="/admin/delete_cache" data-param="expried" id="inputLocal" class="btn btn-small clearCashe btn-danger" ><i class="icon-trash icon-white" ></i> Очистить</button>
                                             </div>
-                                            <div class="control-group m-t_10">
-                                                <label class="control-label" for="inputLocal2">{lang('a_clean_all')}</label>
-                                                <div class="controls">                                                        
-                                                    <button type="button" data-target="/admin/delete_cache" data-param="all" id="inputLocal2" class="btn btn-small clearCashe" ><i class="icon-trash" ></i> Очистить</button>
-                                                </div>
+                                        </div>
+                                        <div class="control-group m-t_10">
+                                            <label class="control-label" for="inputLocal2">{lang('a_clean_all')}</label>
+                                            <div class="controls">                                                        
+                                                <button type="button" data-target="/admin/delete_cache" data-param="all" id="inputLocal2" class="btn btn-small clearCashe btn-danger"><i class="icon-trash icon-white" ></i> Очистить</button>
                                             </div>
                                         </div>
                                     </div>

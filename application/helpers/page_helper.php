@@ -57,8 +57,6 @@ if ( ! function_exists('category_pages'))
 
 		$query = $ci->db->get('content');
 
-		//var_dump($query);
-
 		return $query->result_array();
 	}
 }

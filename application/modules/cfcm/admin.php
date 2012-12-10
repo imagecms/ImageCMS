@@ -101,7 +101,8 @@ class Admin extends MY_Controller {
                 
                 $data = $form->getData();
                 $groups = $data['groups'];
-                unset($data['groups']);
+                $data['data']=  serialize($data);
+                 unset($data['groups']);
                 $data['field_name'] = 'field_' . $data['field_name'];
                 if ($this->db->get_where('content_fields', array('field_name' => $data['field_name']))->num_rows() > 0) {
                     showMessage(lang('amt_select_another_name'), false, 'r');
@@ -110,7 +111,7 @@ class Admin extends MY_Controller {
                     $this->db->select_max('weight');
                     $query = $this->db->get('content_fields')->row();
                     $data['weight'] = $query->weight + 1;
-
+                    
                     $this->db->insert('content_fields', $data);
                     
                     //write relations
@@ -227,9 +228,28 @@ class Admin extends MY_Controller {
                 if (isset($data['required']))
                     $data['validation'] = 'required|' . $data['validation'];
                 unset($data['validation_required']);
-
+                
                 $this->db->where('field_name', $field->field_name);
-                $this->db->update('content_fields', array('data' => serialize($data)));
+                $this->db->update('content_fields', array('data' => serialize($data),
+                                                          'type' => $data['type'],
+                                                          'label' => $data['label'],  
+                    
+                    ));
+                
+               
+                $groups = $data['groups'];
+                $data['field_name'] = end($this->uri->segment_array());;
+                if (count($groups))
+                    {
+                        foreach($groups as $group)
+                            $toInsert[] = array('field_name' => $data['field_name'],
+                                    'group_id' => $group
+                                );
+
+                        if (count($toInsert))
+                            $this->db->delete('content_fields_groups_relations', array('field_name' =>$data['field_name'] ));
+                            $this->db->insert_batch ('content_fields_groups_relations', $toInsert);
+                    }
                 showMessage(lang('amt_field_updated'));
                 if ($this->input->post('action') == 'close')
                     pjax( $this->get_url('index'));
@@ -501,5 +521,3 @@ class Admin extends MY_Controller {
     }
 
 }
-
-/* End of file admin.php */

@@ -59,7 +59,9 @@
                 </div>
             </div><!-- top -->
             <div class="header center">
-                <a href="{$BASE_URL}" class="logo"></a>
+                <a href="{$BASE_URL}" class="logo">
+                    <img src="{$SHOP_THEME}images/imagecms.png">
+                </a>
                 <div class="frame_form_search">
                     <form name="search" class="clearfix" action="{shop_url('search')}" method="get" id="autocomlete">
                         <input type="text" name="text" value="{lang('s_se_thi_sit')}"  onfocus="if(this.value=='{lang('s_se_thi_sit')}') this.value='';" onblur="if(this.value=='') this.value='{lang('s_se_thi_sit')}';"  id="inputString" autocomplete="off" onkeyup="lookup(event);" class="place_hold"/>
