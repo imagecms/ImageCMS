@@ -106,6 +106,10 @@ $(document).ready(function() {
         cuSel(params);
     }
     if ($.exists('#slider')) {
+        var def_min = $("#opt1").data("def_min");
+        var def_max = $("#opt2").data("def_max");
+        var cur_min = $("#minCost").val();
+        var cur_max = $("#maxCost").val();
         jQuery("#slider").slider({
             min: def_min,
             max: def_max,
