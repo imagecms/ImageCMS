@@ -33,7 +33,9 @@ function translite_title(from, to)
 
 function create_description(from, to)
 {
-    $('textarea.elRTE').elrte('updateSource');
+    if ( $('.workzone textarea.elRTE').length)
+        $('.workzone textarea.elRTE').elrte('updateSource');
+    
     $.post(
             base_url + 'admin/pages/ajax_create_description/', {
         'text': $(from).val()
@@ -46,7 +48,8 @@ function create_description(from, to)
 
 function retrive_keywords(from, to)
 {
-    $('textarea.elRTE').elrte('updateSource');
+    if ( $('.workzone textarea.elRTE').length)
+        $('.workzone textarea.elRTE').elrte('updateSource');
 
     $.post(base_url + 'admin/pages/ajax_create_keywords/', {
         'keys': $(from).val()
@@ -76,8 +79,9 @@ $('.formSubmit').live('click', function() {
     //update content in textareas with elRTE 
     $this = $(this);
 
-    $('textarea.elRTE').elrte('updateSource');
-
+    if ( $('.workzone textarea.elRTE').length)
+        $('.workzone textarea.elRTE').elrte('updateSource');
+    
     var btn = this;
 
     var selector = $(this).data('form');
@@ -206,6 +210,7 @@ function initElRTE()
         styleWithCSS: true,
         height: 300,
         fmAllow: true,
+        lang: 'ru',
         fmOpen: function(callback) {
             //			    if (typeof dialog === 'undefined') {
             // create new elFinder
@@ -245,6 +250,7 @@ function elFinderPopup(type, id)
     {
         dlg = $('#elFinder').dialogelfinder({
             url: '/admin/elfinder_init',
+            lang: 'ru',
             commandsOptions: {
                 getfile: {
                     oncomplete: 'close' // close/hide elFinder
@@ -273,6 +279,7 @@ function elFinderTPLEd()
     eD = $('#elFinderTPLEd').elfinder({
         url: '/admin/elfinder_init/1',
         height: $(window).height() * 0.6,
+        lang: 'ru',
         commands : [
             'open', 'reload', 'home', 'up', 'back', 'forward', 'getfile', 'quicklook',
             'download', 'rm', 'duplicate', 'rename', 'mkdir', 'mkfile', 'upload', 'copy',
@@ -313,10 +320,8 @@ function elFinderTPLEd()
         editors: {
             editor: {
                 load: function() {
-                    alert(111);
                 },
                 save: function() {
-                    alert(111);
                 },
                 mimes: []
             }
@@ -587,7 +592,7 @@ var shopCategories = new Object({
     {
         var ids = new Array();
         if (simple == undefined) {
-            $('input[name=id]:checked').each(function() {
+            $('input[name=ids]:checked').each(function() {
                 ids.push($(this).val());
             });
         }

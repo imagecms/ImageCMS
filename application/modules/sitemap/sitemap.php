@@ -169,7 +169,6 @@ class Sitemap extends MY_Controller {
         }
 
         $shop_categories = $this->_shop_category_pages();
-        //var_dump($shop_categories);
         foreach ($shop_categories as $shopcat) {
 
             $url = site_url('shop/category/' . $shopcat['full_path']);

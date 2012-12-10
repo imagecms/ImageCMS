@@ -261,10 +261,9 @@ class Lib_category {
 		{
 			if($cats['id'] == $cat_id)
 			{
-                //array_push($this->path,$cats['url']);
-                $this->path[ $cats['id'] ] = $cats['url'];
-                //var_dump($cats);
-				$this->_PathToCat($cats['parent_id']);
+                            //array_push($this->path,$cats['url']);
+                            $this->path[ $cats['id'] ] = $cats['url'];
+                            $this->_PathToCat($cats['parent_id']);
 			}
 		}
 

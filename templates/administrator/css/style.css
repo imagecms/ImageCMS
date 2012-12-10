@@ -142,7 +142,7 @@ table thead td a:hover, table thead th a:hover{color: #aaa;}
 .row-fluid .controls .thumbnails {margin-left: -20px;}
 .text_comment, label{cursor: pointer;}
 .niceCheck{width: 16px;height: 16px;cursor: pointer;display: inline-block;background-position: -46px 0;position: relative;top: 1px;}
-.niceRadio{width: 17px;height: 17px;cursor: pointer;display: inline-block;background-position: -179px 0;position: relative;top: 1px;}
+.niceRadio{width: 17px;height: 17px;cursor: pointer;display: inline-block;background-position: -179px 0;position: relative;top: 3px;}
 .niceCheck input, .niceRadio input{display: none !important;}
 .b_n.niceCheck, .b_n.niceRadio{background: none !important;}
 .b_n.niceCheck input, .b_n.niceRadio input{display: block !important;}
@@ -345,7 +345,7 @@ form > *{font-size: 12px;}
 .control-group .input-large {width: 210px !important;}
 .control-group .input-xlarge {width: 270px !important;}
 .control-group .input-xxlarge {width: 530px !important;}
-.form-horizontal .control-label{width: 180px !important;}
+.form-horizontal .control-label{width: 180px !important;padding-top: 3px !important;}
 .form-horizontal .controls{margin-left: 200px !important;}
 .form-horizontal .controls.c_b{margin-left: 0 !important;}
 
@@ -366,9 +366,7 @@ tr.active span.m_ed{display: inline-block;}
 tr.active a.u_ed{display: none;}
 tr.active a.m_ed{display: none;}*/
 .notifications{z-index: 100;}
-.alert-error{display: inline-block;}
 .required + .alert-error, [required] + .alert-error{margin-top: 10px;display: block;}
-.alert-error{display: inline-block;}
 
 .form-horizontal .help-block, .form-horizontal .help-inline{margin-top: 4px;}
 .controls > input[type="checkbox"], .controls > input[type="radio"]{margin-top: 6px;}
@@ -622,10 +620,39 @@ span.check_gg {
 .frame_title .caret{margin-left: 3px !important;}
 .delete_image{padding: 2px !important;}
 #loading{
-    background-image: url(../images/ajax-loader.gif);width: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-image: url(../images/ajax-loader.gif);
+    width: 100%;
+    height: 100%;
     z-index: 10000;
     position: fixed;
     display: none;
     background-position: 50% 50%;
-    background-repeat: no-repeat no-repeat;}
+    background-repeat: no-repeat no-repeat;
+    background-color: rgba(255,255,255,0.5);
+}
+
+.dialogelfinder{
+    font-size: 16px !important;
+}
+
+.elfinder-contextmenu{
+    font-size: 13px !important;
+}
+
+.el-dialogform-content #el-df-tab-main input, .el-dialogform-content #el-df-tab-main select {
+    width: 45px !important;
+}
+
+#el-df-tab-main td:nth-child(2n+1) {
+    width: 85px;
+}
+
+.btn.btn-small.rmAddPic {
+    left: 9px;
+    position: absolute;
+    top: 66px;
+}
+
+@media (max-width: 979px) and (min-width: 768px){
+    #productsPhoto .controls{margin-left: 0 !important;float: right;}
+}

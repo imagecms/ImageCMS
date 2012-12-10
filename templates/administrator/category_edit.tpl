@@ -96,10 +96,11 @@
                                                             <option value="{$k}" {if $k == $category_field_group} selected="selected" {/if}>{$v}</option>
                                                             {/foreach}
                                                         </select>
-                                                        <p class="help-block">Основной шаблон категории. По умолчанию category.tpl</p>
+                                                        <p class="help-block">{lang('a_sel_gr_fld_f_subcats')}</p>
                                                         <span class="frame_label no_connection m-t_20">
                                                             <span class="niceCheck b_n">
-                                                                <input type="checkbox" value="1" name="category_apply_for_subcats"> 
+                                                                <input type="checkbox" value="1" name="category_apply_for_subcats" 
+                                                                {if  $settings['category_apply_for_subcats']== '1'} checked {/if}> 
                                                             </span>
                                                             {lang('a_apply_for_subcats')}
                                                         </span>
@@ -118,7 +119,8 @@
                                                         <p class="help-block">{lang('a_select_fields_group')}</p>
                                                         <span class="frame_label no_connection m-t_20">
                                                             <span class="niceCheck b_n">
-                                                                <input type="checkbox" value="1" name="apply_for_subcats"> 
+                                                                <input type="checkbox" value="1" name="apply_for_subcats"
+                                                                       {if  $settings['apply_for_subcats']== '1'} checked {/if}>  
                                                             </span>
                                                             {lang('a_apply_for_subcats')}
                                                         </span>

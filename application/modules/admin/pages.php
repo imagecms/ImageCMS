@@ -16,7 +16,6 @@ class Pages extends MY_Controller {
         admin_or_redirect();
 
         $this->load->library('lib_admin');
-        $this->load->library('lib_editor');
         $this->load->library('lib_category');
         $this->load->library('pagination');
         $this->load->library('lib_seo');
@@ -34,7 +33,6 @@ class Pages extends MY_Controller {
 
         $this->template->add_array(array(
             'tree' => $this->lib_category->build(), // Load category tree
-            'editor' => $this->lib_editor->init(), // Load editor javascript code
             'cur_time' => date('H:i:s'),
             'cur_date' => date('Y-m-d'),
             'sel_cat' => $uri_segs['category']
@@ -446,7 +444,7 @@ class Pages extends MY_Controller {
         $this->form_validation->set_rules('create_date', lang('ac_val_cr_date'), 'required|valid_date');
         $this->form_validation->set_rules('create_time', lang('ac_val_time_cr'), 'required|valid_time');
         $this->form_validation->set_rules('publish_date', lang('ac_val_pub_date'), 'required|valid_date');
-        $this->form_validation->set_rules('publish_time', lang('ac_val_pub_date'), 'required|valid_time');
+        $this->form_validation->set_rules('publish_time', lang('ac_val_pub_time'), 'required|valid_time');
 
         ($hook = get_hook('admin_page_update_set_rules')) ? eval($hook) : NULL;
 
@@ -644,8 +642,7 @@ class Pages extends MY_Controller {
         cp_check_perm('page_edit');
 
         ($hook = get_hook('admin_update_page_positions')) ? eval($hook) : NULL;
-
-        //var_dump($_POST);
+        
         foreach ($_POST['pages_pos'] as $k => $v)
         {
             $item = explode('_', substr($v, 4));

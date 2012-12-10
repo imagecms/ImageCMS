@@ -27,7 +27,7 @@ class Admin extends MY_Controller {
     function index() {
         $this->set_tpl_roles();
         $this->template->add_array($this->genre_user_table());
-        //$this->template->add_array($this->show_edit_prems_tpl($id = 2));
+        $this->template->add_array($this->show_edit_prems_tpl($id = 2));
         $this->display_tpl('main');
     }
 

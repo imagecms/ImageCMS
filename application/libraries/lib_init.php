@@ -18,7 +18,7 @@ class Lib_init {
         {
             if ($CI->uri->segment(1) != 'install')
             {
-                header("Location: http://".$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']."/install");
+                redirect("/install");
             }
         }
         else

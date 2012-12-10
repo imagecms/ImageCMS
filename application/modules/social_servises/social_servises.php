@@ -27,7 +27,6 @@ class Social_servises extends MY_Controller {
     public function autoload() {
         if (isset($_POST['signed_request'])) {
             //if (isset($_GET['a'])) {
-            //var_dump($this->fsettings);
             $this->auth($_POST['signed_request']);
         }
         if (strpos($_SERVER['HTTP_REFERER'] . "", 'vk.com')) {

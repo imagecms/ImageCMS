@@ -122,7 +122,7 @@
     $lang['ac_val_cr_date'] = 'Date of creation or creation date'; 
     $lang['ac_val_time_cr'] = 'Time of creation or creation time'; 
     $lang['ac_val_pub_date'] = 'Publication date or date of publication';  
-    $lang['ac_val_pub_time'] = 'publication time or time of publication'; 
+    $lang['ac_val_pub_time'] = 'Publication time or time of publication'; 
     $lang['ac_main_tpl'] = 'Main page template';  
     $lang['ac_page_is_al_cr'] = 'Page with the same URL has been created yet. Specify or select another URL'; 
     $lang['ac_created_page'] = 'Created a page';
