@@ -39,10 +39,8 @@ class Lib_csrf {
             if ($this->ci->uri->segment(2) == 'elfinder_init')
                 return TRUE;
             if (defined('ICMS_DISBALE_CSRF') AND ICMS_DISBALE_CSRF === TRUE) {
-                echo 'test1';
                 return TRUE;
             }
-            echo 'test2';
             // Don't check ajax requests
             if (isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
                 if (strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
