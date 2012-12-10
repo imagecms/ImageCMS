@@ -309,7 +309,9 @@ $(document).ready(function() {
     /* End of Event */
 
     $('.lineForm input[type=hidden]').on('change', function() {
-        $(this).parents('form').submit();
+        $('[name="order"]').val($('#sort').val());
+        $('[name="user_per_page"]').val($('#count').val());
+        $('[name="brandsfilter"]').submit();
     });
     $('.plus_minus button').live('click', function() {
         $this = $(this);
@@ -735,7 +737,7 @@ $(document).ready(function() {
     $('[name="selectVar"]').live('change', function() {
         $.fancybox.showActivity();
         var vid = $(this).val();
-        if ($(this).attr('type') == 'radio') {
+        if ($(this).attr('type') === 'radio') {
             $this = $(this);
         } else {
             $this = $(this).find('[value=' + vid + ']');
@@ -1021,6 +1023,19 @@ $(document).ready(function() {
 
     $('.confirmNo').live('click', function() {
         $('#cartForm').submit();
+    });
+
+    $('[name="brand[]"]').live('change', function() {
+        $('#brandsfilter').submit();
+    });
+
+    $('[name="pricebutton"]').live('click', function(event) {
+        event.preventDefault();
+        $('#brandsfilter').submit();
+    });
+
+    $('.propertyCheck').live('change', function() {
+        $('#brandsfilter').submit();
     });
 
 });
