@@ -97,7 +97,6 @@
                         
                         {foreach $model->getProductVariants() as $key => $pv}
                             
-                           {echo $pv->getPosition()}
                             {$var_prices = currency_convert($pv->getPrice(), $pv->getCurrency())}
                             <input type="radio" class="selectVar" id="sVar{echo $pv->getId()}" name="selectVar" {if $model->firstVariant->getId() == $pv->getId()}checked="checked"{/if}
                                    value="{echo $pv->getId()}" 
@@ -382,7 +381,7 @@
                                             <sub>{$sim_prod.main.symbol}</sub>
 
                                             {if $NextCS != $CS AND empty($discount)}
-                                                <span>{echo $sim_prod.second.price} {$sim_prod.second.symbol}</span> 
+                                                <span>{echo money_format('%i', $sim_prod.second.price)} {$sim_prod.second.symbol}</span> 
                                             {/if}
                                             
                                         </div>                                                                             
