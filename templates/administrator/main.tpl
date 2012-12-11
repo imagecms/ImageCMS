@@ -331,8 +331,10 @@
                 prod_on_off();
             })
             base_url = '{/literal}{$BASE_URL}{literal}';
+            {/literal}
+            var elfToken = '{echo $CI->lib_csrf->get_token()}';
             </script>
-        {/literal}
+        
         <div id="jsOutput" style="display: none;"></div>
     </body>
 </html>
