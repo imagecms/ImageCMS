@@ -1141,7 +1141,11 @@ $(document).ready(
             $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
             if (what_key(13, event))
                 $('.listFilterSubmitButton').trigger('click');
-        })
+        });
+        
+        $('.listFilterForm select').die('change').live('change', function(event){
+            $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
+        });
 
         /* menu */
         var found = false;

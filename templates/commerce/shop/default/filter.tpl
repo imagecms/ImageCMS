@@ -82,6 +82,7 @@
                 <div class="title">Свойства</div>
                 <div class="clearfix check_form">
                     {foreach $propertiesInCat as $prop}
+                        {if empty($prop->possibleValues)}{continue}{/if}
                         <div class="padding_filter">
                             <div class="padding_filter check_frame">
                                 <div class="title">{echo $prop->name}</div>

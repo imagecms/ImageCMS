@@ -36,13 +36,11 @@ class Lib_csrf {
 
     private function check_token() {
         if (count($_POST) > 0) {
-            if ($this->ci->uri->segment(2) == 'elfinder_init')
-                return TRUE;
+//            if ($this->ci->uri->segment(2) == 'elfinder_init')
+//                return TRUE;
             if (defined('ICMS_DISBALE_CSRF') AND ICMS_DISBALE_CSRF === TRUE) {
-                echo 'test1';
                 return TRUE;
             }
-            
             // Don't check ajax requests
             if (isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
                 if (strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
