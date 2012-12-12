@@ -104,12 +104,11 @@ class Auth extends MY_Controller {
             $val->set_rules('password', lang('lang_password'), 'trim|required|min_length[3]|max_length[30]|xss_clean');
             $val->set_rules('remember', 'Remember me', 'integer');
 
-//             ($hook = get_hook('auth_login_set_rules')) ? eval($hook) : NULL;
-            // Set captcha rules if login attempts exceed max attempts in config
-            if ($this->dx_auth->is_max_login_attempts_exceeded()) {
+            // Set captcha rules if login attempts exceed max attempts in config           
+            if ($this->dx_auth->is_max_login_attempts_exceeded()) {                
                 if ($this->dx_auth->use_recaptcha)
                     $val->set_rules('recaptcha_response_field', lang('lang_captcha'), 'trim|xss_clean|required|callback_captcha_check');
-                else
+                else                    
                     $val->set_rules('captcha', lang('lang_captcha'), 'trim|required|xss_clean|callback_captcha_check');
             }
 
