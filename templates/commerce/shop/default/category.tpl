@@ -55,7 +55,7 @@
             {/if}
             <!--  Render produts list   -->
             {foreach $products as $product}
-                {$style = productInCart($cart_data, $product->id, $product->variants[0]->id, $product->variants[0]->stock)}
+                {$style = productInCart($cart_data, (int)$product->id, (int)$product->variants[0]->id, (int)$product->variants[0]->stock)}
                 {$prices = currency_convert($product->variants[0]->price, $product->variants[0]->currency)}
                 <li {if $product->variants[0]->stock == 0}class="not_avail"{/if}>
                     <div class="photo_block">
@@ -147,27 +147,26 @@
                                         {else:}
                                             <div class="price f-s_14">{//echo number_format($prices.main.price, 2, ".", "")}
                                                 {$prThree = $prices.main.price}
-                                        {/if}
-                                        {echo number_format($prThree, 2, ".", "")} 
-                                        <sub>{$prices.main.symbol}</sub>
-
+                                            {/if}
+                                            {echo number_format($prThree, 2, ".", "")} 
+                                            <sub>{$prices.main.symbol}</sub>
                                             {if $NextCS != $CS AND empty($discount)}
                                                 <span class="d_b">{echo number_format($prices.second.price, 2, ".", "")} {$prices.second.symbol}</span>
                                             {/if}
                                     </span>
                                 </div>
-                                <div id="p{echo $product->id}" class="{$style.class} buttons">
-                                    <span id="buy{echo $product->id}"
-                                          class="{$style.identif}"
-                                          data-varid="{echo $product->variants[0]->id}"
-                                          data-prodid="{echo $product->id}">
-                                        {$style.message}
-                                    </span>
-                                </div>
+                            </div>
+                            <div id="p{echo $product->id}" class="{$style.class} buttons">
+                                <span id="buy{echo $product->id}"
+                                      class="{$style.identif}"
+                                      data-varid="{echo $product->variants[0]->id}"
+                                      data-prodid="{echo $product->id}">
+                                    {$style.message}
+                                </span>
                             </div>
                         </div>
                     </div>
-					<div class="f_r t-a_r">
+                    <div class="f_r t-a_r">
                         <span class="ajax_refer_marg">
                             {if $forCompareProducts && in_array($product->id, $forCompareProducts)}
                                 <a href="{shop_url('compare')}" class="">{lang('s_compare')}</a>
@@ -179,20 +178,21 @@
                             <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}"
                                data-varid="{echo $product->variants[0]->id}"
                                data-prodid="{echo $product->id}"
-                                       href="#"
-                                       class="js gray addToWList">
-                                       {lang('s_slw')}
-                                   </a>
-                               {else:}
-                                   <a href="/shop/wish_list">{lang('s_ilw')}</a>
-                               {/if}
-                    </div>
-                        {if ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($product->id)}
-                            <p class="c_b">
-                                {echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($product->id)}
-                                <a href="{shop_url('product/' . $product->url)}" class="t-d_n"><span class="t-d_u">{lang('s_more')}</span> →</a>
-                            </p>
+                               href="#"
+                               class="js gray addToWList">
+                                {lang('s_slw')}
+                            </a>
+                        {else:}
+                            <a href="/shop/wish_list">{lang('s_ilw')}</a>
                         {/if}
+                    </div>
+                    </div>
+                    {if ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($product->id)}
+                        <p class="c_b">
+                            {echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($product->id)}
+                            <a href="{shop_url('product/' . $product->url)}" class="t-d_n"><span class="t-d_u">{lang('s_more')}</span> →</a>
+                        </p>
+                    {/if}
                 </li>
             {/foreach}
         </ul>
@@ -200,97 +200,97 @@
             <div class="t-a_c">{$pagination}</div>
         </div>
     </div>
-                    <!--   Right sidebar     -->
-                    <div class="nowelty_auction">
-                        <!--   New products block     -->
-                        {if count(getPromoBlock('hot', 3, $product->category_id))}
-                            <div class="box_title">
-                                <span>{lang('s_new')}</span>
-                            </div>
-                            <ul>
-                                {foreach getPromoBlock('hot', 3, $product->category_id) as $hotProduct}
-                                    {$discount = ShopCore::app()->SDiscountsManager->productDiscount($hotProduct->id)}
-                                    {$hot_prices = currency_convert($hotProduct->firstVariant->getPrice(), $hotProduct->firstVariant->getCurrency())}
-                                    <li class="smallest_item">
-                                        <div class="photo_block">
-                                            <a href="{shop_url('product/' . $hotProduct->getUrl())}">
-                                                <img src="{productImageUrl($hotProduct->getSmallModimage())}" alt="{echo ShopCore::encode($hotProduct->getName())} - {echo $hotProduct->getId()}" />
-                                            </a>
-                                        </div>
-                                        <div class="func_description">
-                                            <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
-                                            <div class="buy">
-                                                <div class="price f-s_14">
-                                                    {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                                        {$prOne = $hot_prices.main.price}
-                                                        {$prTwo = $hot_prices.main.price}
-                                                        {$prThree = $prOne - $prTwo / 100 * $discount}
-                                                        <del class="price price-c_red f-s_12 price-c_9">{echo number_format($hot_prices.main.price, 2, ".", "")} {$hot_prices.main.symbol}</del><br /> 
-                                                    {else:}
-                                                        <div class="price f-s_14">{echo number_format($hot_prices.main.price, 2, ".", "")}
-                                                        {/if}
-                                                        {echo number_format($prThree, 2, ".", "")} 
-                                                        <sub>{$hot_prices.main.symbol}</sub>
-
-                                                        {if $NextCS != $CS AND empty($discount)}
-                                                            <span class="d_b">{echo number_format($hot_prices.second.price, 2, ".", "")} {$hot_prices.second.symbol}</span>
-                                                        {/if}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                    </li>
-                                {/foreach}
-                            </ul>
-                        {/if}
-                        <!--   New products block     -->
-
-                        <!--   Promo products block     -->
-                        {if count(getPromoBlock('action', 3, $product->category_id))}
-                            <div class="box_title">
-                                <span>{lang('s_action')}</span>
-                            </div>
-                            <ul>
-                                {foreach getPromoBlock('action', 3, $product->category_id) as $hotProduct}
-                                    {$discount = ShopCore::app()->SDiscountsManager->productDiscount($hotProduct->id)}
-                                    {$action_prices = currency_convert($hotProduct->firstVariant->getPrice(), $hotProduct->firstVariant->getCurrency())}
-                                    <li class="smallest_item">
-                                        <div class="photo_block">
-                                            <a href="{shop_url('product/' . $hotProduct->getUrl())}">
-                                                <img src="{productImageUrl($hotProduct->getSmallModImage())}" alt="{echo ShopCore::encode($hotProduct->getName())} - {echo $hotProduct->getId()}" />
-                                            </a>
-                                        </div>
-                                        <div class="func_description">
-                                            <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
-                                            <div class="buy">
-                                                <div class="price f-s_14">
-                                                    {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                                        {$prOne = $action_prices.main.price}
-                                                        {$prTwo = $action_prices.main.price}
-                                                        {$prThree = $prOne - $prTwo / 100 * $discount}
-                                                        <del class="price price-c_red f-s_12 price-c_9">{echo number_format($action_prices.main.price, 2, ".", "")} {$action_prices.main.symbol}</del><br /> 
-                                                    {else:}
-                                                        <div class="price f-s_14">{echo number_format($action_prices.main.price, 2, ".", "")}
-                                                        {/if}
-                                                        {echo number_format($prThree, 2, ".", "")} 
-                                                        <sub>{$action_prices.main.symbol}</sub>
-
-                                                        {if $NextCS != $CS AND empty($discount)}
-                                                            <span class="d_b">{echo number_format($action_prices.second.price, 2, ".", "")} {$action_prices.second.symbol}</span>
-                                                        {/if}
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                    </li>
-                                {/foreach}
-                            </ul>
-                        {/if}
-                        <!--   Promo products block     -->
-                        {widget('latest_news')}
-                    </div>
-                    <!--   Right sidebar     -->
-                </div>
+    <!--   Right sidebar     -->
+    <div class="nowelty_auction">
+        <!--   New products block     -->
+        {if count(getPromoBlock('hot', 3, $product->category_id))}
+            <div class="box_title">
+                <span>{lang('s_new')}</span>
             </div>
-        </div>
+            <ul>
+                {foreach getPromoBlock('hot', 3, $product->category_id) as $hotProduct}
+                    {$discount = ShopCore::app()->SDiscountsManager->productDiscount($hotProduct->id)}
+                    {$hot_prices = currency_convert($hotProduct->firstVariant->getPrice(), $hotProduct->firstVariant->getCurrency())}
+                    <li class="smallest_item">
+                        <div class="photo_block">
+                            <a href="{shop_url('product/' . $hotProduct->getUrl())}">
+                                <img src="{productImageUrl($hotProduct->getSmallModimage())}" alt="{echo ShopCore::encode($hotProduct->getName())} - {echo $hotProduct->getId()}" />
+                            </a>
+                        </div>
+                        <div class="func_description">
+                            <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
+                            <div class="buy">
+                                <div class="price f-s_14">
+                                    {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
+                                        {$prOne = $hot_prices.main.price}
+                                        {$prTwo = $hot_prices.main.price}
+                                        {$prThree = $prOne - $prTwo / 100 * $discount}
+                                        <del class="price price-c_red f-s_12 price-c_9">{echo number_format($hot_prices.main.price, 2, ".", "")} {$hot_prices.main.symbol}</del><br /> 
+                                    {else:}
+                                        <div class="price f-s_14">{echo number_format($hot_prices.main.price, 2, ".", "")}
+                                        {/if}
+                                        {echo number_format($prThree, 2, ".", "")} 
+                                        <sub>{$hot_prices.main.symbol}</sub>
+
+                                        {if $NextCS != $CS AND empty($discount)}
+                                            <span class="d_b">{echo number_format($hot_prices.second.price, 2, ".", "")} {$hot_prices.second.symbol}</span>
+                                        {/if}
+                                    </div>
+                                </div>
+                            </div>
+                    </li>
+                {/foreach}
+            </ul>
+        {/if}
+        <!--   New products block     -->
+
+        <!--   Promo products block     -->
+        {if count(getPromoBlock('action', 3, $product->category_id))}
+            <div class="box_title">
+                <span>{lang('s_action')}</span>
+            </div>
+            <ul>
+                {foreach getPromoBlock('action', 3, $product->category_id) as $hotProduct}
+                    {$discount = ShopCore::app()->SDiscountsManager->productDiscount($hotProduct->id)}
+                    {$action_prices = currency_convert($hotProduct->firstVariant->getPrice(), $hotProduct->firstVariant->getCurrency())}
+                    <li class="smallest_item">
+                        <div class="photo_block">
+                            <a href="{shop_url('product/' . $hotProduct->getUrl())}">
+                                <img src="{productImageUrl($hotProduct->getSmallModImage())}" alt="{echo ShopCore::encode($hotProduct->getName())} - {echo $hotProduct->getId()}" />
+                            </a>
+                        </div>
+                        <div class="func_description">
+                            <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
+                            <div class="buy">
+                                <div class="price f-s_14">
+                                    {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
+                                        {$prOne = $action_prices.main.price}
+                                        {$prTwo = $action_prices.main.price}
+                                        {$prThree = $prOne - $prTwo / 100 * $discount}
+                                        <del class="price price-c_red f-s_12 price-c_9">{echo number_format($action_prices.main.price, 2, ".", "")} {$action_prices.main.symbol}</del><br /> 
+                                    {else:}
+                                        <div class="price f-s_14">{echo number_format($action_prices.main.price, 2, ".", "")}
+                                        {/if}
+                                        {echo number_format($prThree, 2, ".", "")} 
+                                        <sub>{$action_prices.main.symbol}</sub>
+
+                                        {if $NextCS != $CS AND empty($discount)}
+                                            <span class="d_b">{echo number_format($action_prices.second.price, 2, ".", "")} {$action_prices.second.symbol}</span>
+                                        {/if}
+
+                                    </div>
+                                </div>
+                            </div>
+                    </li>
+                {/foreach}
+            </ul>
+        {/if}
+        <!--   Promo products block     -->
+        {widget('latest_news')}
     </div>
+    <!--   Right sidebar     -->
+</div>
+</div>
+</div>
+</div>
 </div>

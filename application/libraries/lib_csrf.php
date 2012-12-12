@@ -36,8 +36,8 @@ class Lib_csrf {
 
     private function check_token() {
         if (count($_POST) > 0) {
-            if ($this->ci->uri->segment(2) == 'elfinder_init')
-                return TRUE;
+//            if ($this->ci->uri->segment(2) == 'elfinder_init')
+//                return TRUE;
             if (defined('ICMS_DISBALE_CSRF') AND ICMS_DISBALE_CSRF === TRUE) {
                 return TRUE;
             }
