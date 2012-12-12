@@ -62,19 +62,6 @@ class Core extends MY_Controller {
             $data_type = 'bridge';
         }
 
-        if ($this->settings['site_offline'] == 'yes') {
-            if ($this->session->userdata('DX_role_id') != 2) {
-
-                ($hook = get_hook('core_goes_offline')) ? eval($hook) : NULL;
-                header('HTTP/1.1 503 Service Unavailable');
-                $this->template->display('offline');
-                exit;
-                //$this->display_tpl('offline');
-                //show_error('Сайт на реконструкции.');
-                //$this->template->show('offline');
-            }
-            //show_error('Site is offline.');
-        }
 
         /* Show Google Analytics code if some value inserted in admin panel */
         if ($this->settings['google_analytics_id'])
@@ -137,6 +124,16 @@ class Core extends MY_Controller {
         }
         // End language detect
 
+        if ($this->settings['site_offline'] == 'yes') {
+            if ($this->session->userdata('DX_role_id') != 10) {
+                
+                ($hook = get_hook('core_goes_offline')) ? eval($hook) : NULL;
+                header('HTTP/1.1 503 Service Unavailable');
+                $this->template->display('offline');
+                exit;
+            }
+        }
+        
         if ($this->uri->segment(1) == $this->def_lang[0]['identif']) {
             $url = implode('/', array_slice($this->uri->segment_array(), 1));
             header('Location:/' . $url);
