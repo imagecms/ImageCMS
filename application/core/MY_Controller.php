@@ -1,5 +1,4 @@
 <?php
-
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /* The MX_Controller class is autoloaded as required */
@@ -48,6 +47,7 @@
  * @property DX_Auth $dx_auth                     I know about dx_auth and don't need to write abouth them
  * @property Lib_csrf $lib_csrf
  * @property Template $template Description
+ * @property Console $console Description
  */
 class MY_Controller extends MX_Controller {
 

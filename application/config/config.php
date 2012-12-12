@@ -412,3 +412,6 @@ $config['proxy_ips'] = '';
 
 /* End of file config.php */
 /* Location: ./system/application/config/config.php */
+
+/*enable or disable profiler output (now only for shop)*/
+$config['enable_profiler'] = TRUE;
