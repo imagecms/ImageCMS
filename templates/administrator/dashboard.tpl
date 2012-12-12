@@ -175,7 +175,7 @@
                         {foreach $api_news as $a}
                         <tr><td>
                                 <span>{date('d-m-Y H:i', $a.publish_date)}
-                                    <a style="padding-left:10px;" target="_blank" href="http://www.imagecms.net/blog/news/{$a.url}">>>></a>
+                                    <a style="padding-left:10px;" target="_blank" href="http://www.imagecms.net/blog/news/{$a.url}?utm_source=imagecms&utm_medium=admin&utm_campaign={str_replace(array("http://", "/"), "",site_url())}">>>></a>
                                 </span>
                                 <br/> {truncate(strip_tags($a.prev_text), 100)}
                             </td></tr>
