@@ -203,7 +203,7 @@
             </div>
             {if $product->countProperties() > 0}
                 <p class="c_b">
-                    {echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInline($product)}
+                    {echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($product->getId())}
                     <a href="{shop_url('product/' . $product->getUrl())}" class="t-d_n"><span class="t-d_u">{lang('s_more')}</span> ></a>
                 </p>
             {/if}
