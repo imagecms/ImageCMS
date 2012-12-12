@@ -64,7 +64,8 @@ class Categories extends MY_Controller {
     function cat_list() {
         $cats = array();
 
-        $tree = $this->lib_category->build();
+        //$tree = $this->lib_category->build();
+        $tree = $this->lib_category->buildForAdmin();
 
         $cats = $this->sub_cats($tree);
 

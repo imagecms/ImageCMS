@@ -1157,7 +1157,10 @@ class DX_Auth {
     // Use this in callback function in your form validation
     function is_captcha_match($code) {
         // Just check if code is the same value with flash data captcha_word which created in captcha() function
-        return ($code == $this->ci->session->flashdata('captcha_word'));
+        if ($this->ci->config->item('DX_captcha_case_sensetive'))
+            return ($code == $this->ci->session->flashdata('captcha_word'));
+        else
+            return (strtolower($code) == strtolower($this->ci->session->flashdata('captcha_word')));
     }
 
     /* End of captcha related function */

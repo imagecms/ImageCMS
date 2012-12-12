@@ -737,7 +737,7 @@ $(document).ready(function() {
     $('[name="selectVar"]').live('change', function() {
         $.fancybox.showActivity();
         var vid = $(this).val();
-        if ($(this).attr('type') === 'radio') {
+        if ($(this).attr('type') == 'radio') {
             $this = $(this);
         } else {
             $this = $(this).find('[value=' + vid + ']');

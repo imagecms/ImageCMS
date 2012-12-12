@@ -55,7 +55,7 @@
             {/if}
             <!--  Render produts list   -->
             {foreach $products as $product}
-                {$style = productInCart($cart_data, $product->id, $product->variants[0]->id, $product->variants[0]->stock)}
+                {$style = productInCart($cart_data, (int)$product->id, (int)$product->variants[0]->id, (int)$product->variants[0]->stock)}
                 {$prices = currency_convert($product->variants[0]->price, $product->variants[0]->currency)}
                 <li {if $product->variants[0]->stock == 0}class="not_avail"{/if}>
                     <div class="photo_block">
@@ -119,11 +119,7 @@
                                                 data-img="{echo $pv->smallimage}"
                                                 data-vname="{echo $pv->name}"
                                                 data-vnumber="{echo $pv->number}">
-                                            {if $pv->name != ''}
-                                                {echo $pv->name}
-                                            {else:}
-                                                {echo $product->name}
-                                            {/if}
+                                            {echo $pv->name}
                                         </option>
                                     {/foreach}
                                 </select>
@@ -154,20 +150,19 @@
                                             {/if}
                                             {echo number_format($prThree, 2, ".", "")} 
                                             <sub>{$prices.main.symbol}</sub>
-
                                             {if $NextCS != $CS AND empty($discount)}
                                                 <span class="d_b">{echo number_format($prices.second.price, 2, ".", "")} {$prices.second.symbol}</span>
                                             {/if}
                                     </span>
                                 </div>
-                                <div id="p{echo $product->id}" class="{$style.class} buttons">
-                                    <span id="buy{echo $product->id}"
-                                          class="{$style.identif}"
-                                          data-varid="{echo $product->variants[0]->id}"
-                                          data-prodid="{echo $product->id}">
-                                        {$style.message}
-                                    </span>
-                                </div>
+                            </div>
+                            <div id="p{echo $product->id}" class="{$style.class} buttons">
+                                <span id="buy{echo $product->id}"
+                                      class="{$style.identif}"
+                                      data-varid="{echo $product->variants[0]->id}"
+                                      data-prodid="{echo $product->id}">
+                                    {$style.message}
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -190,6 +185,7 @@
                         {else:}
                             <a href="/shop/wish_list">{lang('s_ilw')}</a>
                         {/if}
+                    </div>
                     </div>
                     {if ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($product->id)}
                         <p class="c_b">
