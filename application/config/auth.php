@@ -134,6 +134,7 @@ $config['DX_captcha_height'] = 40;
 $config['DX_captcha_font_size'] = '14';
 $config['DX_captcha_grid'] = FALSE;
 $config['DX_captcha_expire'] = 900;
+$config['DX_captcha_case_sensetive'] = FALSE;
 
 /*
 |--------------------------------------------------------------------------
