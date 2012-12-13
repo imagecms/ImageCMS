@@ -750,6 +750,7 @@ $(document).ready(function() {
         var vnumber = $this.attr('data-vnumber');
         var vname = $this.attr('data-vname');
         var cs = $this.attr('data-cs');
+        var csMain = $this.attr('data-csMain');
         var st = $this.attr('data-st');
         var pp = $this.attr('data-pp');
         if (img != '') {
@@ -759,6 +760,7 @@ $(document).ready(function() {
         }
         $('#code' + pid).html('Код ' + vnumber);
         $('#pricem' + pid).html(pr);
+        $('#priceB' + pid).html(pr + ' ' + csMain);
         $('#prices' + pid).html(spr + ' ' + cs);
         $('#buy' + pid).attr('data-varid', vid);
         $('#buy' + pid).attr('data-prodid', pid);
