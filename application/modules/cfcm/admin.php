@@ -217,7 +217,7 @@ class Admin extends MY_Controller {
 
             $form->title = lang('amt_field_editing') . $field->label;
             $form->action = $this->get_url('edit_field/' . $name);
-
+            
             $form->setAttributes($field_data);
 
             $form->validation->setInitial(str_replace('required|', '', $field_data['validation']));
@@ -273,7 +273,7 @@ class Admin extends MY_Controller {
         $form = $this->get_form('create_group_form');
         $form->action = $this->get_url('create_group');
         $form->title = lang('a_create_group_m');
-
+        $form->type = "group";
         if ($_POST) {
             if (empty($_POST['name'])) {
                 showMessage(lang('amt_type_group_name'), false, 'r');
@@ -314,7 +314,7 @@ class Admin extends MY_Controller {
         $form = $this->get_form('create_group_form');
         $form->action = $this->get_url('edit_group/' . $id);
         $form->title = lang('amt_group_editing_id') . $group['id'];
-
+        $form->type = "group";
         if ($_POST)
             if ($form->isValid()) {
                 $data = $form->getData();
@@ -324,7 +324,7 @@ class Admin extends MY_Controller {
                 $this->db->update('content_field_groups', $data);
                 showMessage(lang('amt_group_updated'));
 
-                pjax( $this->get_url('index'));
+                pjax( $this->get_url('index#fields_groups'));
                 exit;
             } else {
                 showMessage($form->_validation_errors(), false, 'r');
