@@ -44,7 +44,7 @@
             </ul>
         </li>
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-statistic"></i>Компоненты<b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-magnet"></i>Компоненты<b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li><a href="/admin/components/run/shop/brands/c_list" class="pjax">Бренды</a></li>
                 <li><a href="/admin/components/run/shop/warehouses/index" class="pjax">Склады</a></li>
