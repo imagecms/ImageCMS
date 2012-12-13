@@ -106,7 +106,10 @@
                                         <li><a href="/admin/pages" class="pjax">{lang('a_create_page')}</a></li>
 
                                         <li class="divider"></li>
-                                        <li><a href="/admin/components/cp/cfcm" class="pjax">{lang('a_field_constructor')}</a></li>
+                                        <li class="nav-header">{lang('a_field_constructor')}</li>
+                                        <li><a href="/admin/components/cp/cfcm/index#additional_fields" class="pjax">Список полей</a></li>
+                                        <li><a href="/admin/components/cp/cfcm/index#fields_groups" class="pjax">Список груп</a></li>
+                                        <!--<li><a href="/admin/components/cp/cfcm" class="pjax">{lang('a_field_constructor')}</a></li>-->
 
                                     </ul>
                                 </li>
