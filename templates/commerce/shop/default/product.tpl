@@ -212,7 +212,7 @@
                     </div>
                 </div>
                 <p class="c_b">{echo $model->getShortDescription()}</p>
-                <p>{echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInline($model)}</p>
+                <p>{echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($model->getId())}</p>
                 <div>
                     {echo $CI->load->module('share')->_make_like_buttons()}
                 </div>
