@@ -129,22 +129,19 @@
                     {if count($product->getProductVariants())>1}
                         <select class="m-l_10" name="selectVar">
                             {foreach $product->getProductVariants() as $pv}
-                                {$variant_prices = currency_convert($pv->getPrice(), $pv->getCurrency())}
+                                {$variant_prices = currency_convert($pv->price, $pv->currency)}
                                 <option class="selectVar"
-                                        value="{echo $pv->getId()}" 
-                                        data-st="{echo $pv->getStock()}" 
-                                        data-cs="{$variant_prices.second.symbol}" 
-                                        data-spr="{echo $variant_prices.second.price}" 
-                                        data-pr="{echo $variant_prices.main.price}" 
-                                        data-pid="{echo $product->getId()}" 
-                                        data-img="{echo $pv->getsmallimage()}" 
-                                        data-vname="{echo $pv->getName()}" 
-                                        data-vnumber="{echo $pv->getNumber()}">
-                                    {if $pv->getName() != ''}
-                                        {echo $pv->getName()}
-                                    {else:}
-                                        {echo $product->getName()}
-                                    {/if}
+                                        value="{echo $pv->id}"
+                                        data-st="{echo $pv->stock}"
+                                        data-cs="{$variant_prices.second.symbol}"
+                                        data-csMain="{$variant_prices.main.symbol}"
+                                        data-spr="{echo number_format($variant_prices.second.price, 2, ".", "")}"
+                                        data-pr="{echo number_format($variant_prices.main.price, 2 , ".", "")}"
+                                        data-pid="{echo $product->id}"
+                                        data-img="{echo $pv->smallimage}"
+                                        data-vname="{echo $pv->name}"
+                                        data-vnumber="{echo $pv->number}">
+                                    {echo $pv->name}
                                 </option>
                             {/foreach}
                         </select>
@@ -163,9 +160,9 @@
                                         </del>
                                     </div>
                                 {/if}
-                            {/if}
-                            <span id="pricem{echo $product->getId()}">
-
+                            {/if}                            
+                            <span id="priceB{echo $product->getId()}">
+                                
                                 {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
                                     {$prOne = $prices.main.price}
                                     {$prTwo = $prices.main.price}
@@ -180,6 +177,8 @@
                                 {if $NextCS != $CS AND empty($discount)}
                                     <span class="d_b">{echo $prices.second.price} {$prices.second.symbol}</span>
                                 {/if}
+                            </span>
+                            <br /><span id="prices{echo $product->getId()}"></span>
                         </div>
                         <div id="p{echo $product->getId()}" class="{$style.class} buttons">
                             <span id="buy{echo $product->getId()}" class="{$style.identif}" href="{$style.link}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" >{$style.message}</span>
