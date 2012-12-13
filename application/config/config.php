@@ -44,8 +44,8 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
-$db['default']['password'] = 'kolo90da90';
-$db['default']['database'] = 'im2';
+$db['default']['password'] = 'pefolios';
+$db['default']['database'] = 'admin';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = FALSE;
@@ -412,6 +412,3 @@ $config['proxy_ips'] = '';
 
 /* End of file config.php */
 /* Location: ./system/application/config/config.php */
-
-/*enable or disable profiler output (now only for shop)*/
-$config['enable_profiler'] = TRUE;
