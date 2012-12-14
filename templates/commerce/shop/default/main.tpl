@@ -39,11 +39,12 @@
         <script type="text/javascript" src="{$SHOP_THEME}/js/shop.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}js/jquery.validate.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}js/autocomplete.js"></script>
+        <script type="text/javascript" src="{$SHOP_THEME}js/jquery.mousewheel.js"></script>
         {$gmeta}
 
         {$yameta}
         {$renderGA}
-            
+
         {$ymetric}
     </head>
     <body>
@@ -55,7 +56,8 @@
                     <ul class="user_menu cart_data_holder">                        
                         <!--                        <li><a href="/" style="color:silver;">ru</a></li>
                                                 <li style="margin-left: 0; padding-left: 5px;"><a href="{$BASE_URL}en" style="color:silver;">en</a></li>-->
-                        {include_tpl('cart_data')}</ul>
+                        {include_tpl('cart_data')}
+                    </ul>
                 </div>
             </div><!-- top -->
             <div class="header center">
@@ -67,12 +69,12 @@
                         <span id="suggestions" style="display: none; width: 0px; right: 0px;"></span>
                     </form>
                 </div>
-                        
+
                 <div class="phone">
-                    <address>(095)<span> 555-55-55</span></address>
+                    <address>(095)<span><span class="d_n">&minus;</span> 555-55-55</span></address>
                     <span class="js showCallback">{lang('s_coll_order')}</span>
                 </div>
-                
+
                 <ul class="user_menu">
                     <!--    Show callback's form    -->
                     {if count(get_currencies())>2}
@@ -105,9 +107,704 @@
                 </ul>
             </div><!-- header -->
 
-            <div class="main_menu center">
-                <ul class="clearfix">{echo ShopCore::app()->SCategoryTree->ul()}</ul>
-            </div><!-- main_menu -->
+            <!--            <div class="main_menu center">
+                            <ul class="clearfix">{echo ShopCore::app()->SCategoryTree->ul()}</ul>
+                        </div> main_menu -->
+            <div class="frame-frame-menu-main">
+                <div class="frame-menu-main">
+                    <div class="nav menu-main center not-js">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="frame-item-menu">
+                                            <div><a href="#" class="title"><span class="helper"></span><span class="title-text">Видео</span></a></div>
+                                            <ul>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Телефоны 11</span>
+                                                    </a>
+                                                    <div>
+                                                        <ul>
+                                                            <li>
+                                                                <span class="title">Телефоны11</span>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                        </ul>
+                                                        <ul>
+                                                            <li>
+                                                                <span class="title">Телефоны11</span>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Мобильные телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Телефоны Телефоны Телефоны Телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Мобильные телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Мобильные телефоны</span>
+                                                    </a>
+                                                    <div>
+                                                        <ul>
+                                                            <li>
+                                                                <span class="title">Телефоны11</span>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                        </ul>
+                                                        <ul>
+                                                            <li>
+                                                                <span class="title">Телефоны11</span>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="frame-item-menu">
+                                            <div><a href="#" class="title"><span class="helper"></span><span class="title-text">Домашнее аудио</span></a></div>
+                                            <ul>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Телефоны 11</span>
+                                                    </a>
+                                                    <div>
+                                                        <ul>
+                                                            <li>
+                                                                <span class="title">Телефоны11</span>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Мобильные телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Телефоны Телефоны Телефоны Телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Мобильные телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Мобильные телефоны</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="frame-item-menu">
+                                            <div><a href="#" class="title"><span class="helper"></span><span class="title-text">Авто музыка и видео</span></a></div>
+                                            <ul>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Телефоны 11</span>
+                                                    </a>
+                                                    <div>
+                                                        <ul>
+                                                            <li>
+                                                                <span class="title">Телефоны11</span>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Мобильные телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Телефоны Телефоны Телефоны Телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Мобильные телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Мобильные телефоны</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="frame-item-menu">
+                                            <div><a href="#" class="title"><span class="helper"></span><span class="title-text">Домашняя электроника</span></a></div>
+                                            <ul>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Телефоны 11</span>
+                                                    </a>
+                                                    <div>
+                                                        <ul>
+                                                            <li>
+                                                                <span class="title">Телефоны11</span>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Мобильные телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Телефоны Телефоны Телефоны Телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Мобильные телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Мобильные телефоны</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="frame-item-menu">
+                                            <div><a href="#" class="title"><span class="helper"></span><span class="title-text">Фото и камеры</span></a></div>
+                                            <ul>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Телефоны 11</span>
+                                                    </a>
+                                                    <div>
+                                                        <ul>
+                                                            <li>
+                                                                <span class="title">Телефоны11</span>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Мобильные телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Телефоны Телефоны Телефоны Телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Мобильные телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Мобильные телефоны</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="frame-item-menu">
+                                            <div><a href="#" class="title"><span class="helper"></span><span class="title-text">Фото и камеры</span></a></div>
+                                            <ul>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Телефоны 11</span>
+                                                    </a>
+                                                    <div>
+                                                        <ul>
+                                                            <li>
+                                                                <span class="title">Телефоны11</span>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Мобильные телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Телефоны Телефоны Телефоны Телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Мобильные телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Мобильные телефоны</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="frame-item-menu">
+                                            <div><a href="#" class="title"><span class="helper"></span><span class="title-text">Фото и камеры</span></a></div>
+                                            <ul>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Телефоны 11</span>
+                                                    </a>
+                                                    <div>
+                                                        <ul>
+                                                            <li>
+                                                                <span class="title">Телефоны11</span>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Мобильные телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Телефоны Телефоны Телефоны Телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Мобильные телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Мобильные телефоны</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="frame-item-menu">
+                                            <div><a href="#" class="title"><span class="helper"></span><span class="title-text">Фото и камеры</span></a></div>
+                                            <ul>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Телефоны 11</span>
+                                                    </a>
+                                                    <div>
+                                                        <ul>
+                                                            <li>
+                                                                <span class="title">Телефоны11</span>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Мобильные телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Телефоны Телефоны Телефоны Телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Мобильные телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Мобильные телефоны</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="frame-item-menu">
+                                            <div><a href="#" class="title"><span class="helper"></span><span class="title-text">Фото и камеры</span></a></div>
+                                            <ul>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Телефоны 11</span>
+                                                    </a>
+                                                    <div>
+                                                        <ul>
+                                                            <li>
+                                                                <span class="title">Телефоны11</span>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Мобильные телефоны</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Телефоны</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Мобильные телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Телефоны Телефоны Телефоны Телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Мобильные телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Телефоны</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="helper"></span>
+                                                        <span>Мобильные телефоны</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
             {$shop_content}
 
