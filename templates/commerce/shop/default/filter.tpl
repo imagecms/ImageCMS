@@ -63,50 +63,43 @@
                 </div>
             </div>
         </div>
-        {if count($brands)>0}
-            <div class="padding_filter">
-                <div class="padding_filter check_frame">
-                    <div class="title">Брэнды в категории</div>
-                    <div class="clearfix check_form">
-                        {foreach $brands as $br}
-                            <label>
-                                <input {if $br->countProducts == 0}disabled="disabled"{/if} id="brand_{echo $br->id}" name="brand[]" value="{echo $br->id}" type="checkbox" {if $br->countProducts !=0 && is_array(ShopCore::$_GET['brand']) && in_array($br->id, ShopCore::$_GET['brand'])}checked="checked"{/if}/>
-                                <span class="name_model">{echo $br->name}</span>
-                                <span>&nbsp;({if $br->countProducts !=0 && is_array(ShopCore::$_GET['brand']) && !in_array($br->id, ShopCore::$_GET['brand'])}+{/if}{echo $br->countProducts}) </span>
-                            </label>
-                        {/foreach}
-                    </div>
+        <div class="padding_filter">
+            <div class="padding_filter check_frame">
+                <div class="title">Брэнды в категории</div>
+                <div class="clearfix check_form">
+                    {foreach $brands as $br}
+                        <label>
+                            <input {if $br->countProducts == 0}disabled="disabled"{/if} id="brand_{echo $br->id}" name="brand[]" value="{echo $br->id}" type="checkbox" {if $br->countProducts !=0 && is_array(ShopCore::$_GET['brand']) && in_array($br->id, ShopCore::$_GET['brand'])}checked="checked"{/if}/>
+                            <span class="name_model">{echo $br->name}</span>
+                            <span>&nbsp;({if $br->countProducts !=0 && is_array(ShopCore::$_GET['brand']) && !in_array($br->id, ShopCore::$_GET['brand'])}+{/if}{echo $br->countProducts}) </span>
+                        </label>
+                    {/foreach}
                 </div>
             </div>
-        {/if}
-        {foreach $propertiesInCat as $p}
-            {if empty($p->possibleValues)}{$show[] = "1"}{/if}
-        {/foreach}
-        {if count($show) != count($propertiesInCat)}
-            <div class="padding_filter">
-                <div class="padding_filter check_frame">
-                    <div class="title">Свойства</div>
-                    <div class="clearfix check_form">
-                        {foreach $propertiesInCat as $prop}
-                            {if empty($prop->possibleValues)}{continue}{/if}
-                            <div class="padding_filter">
-                                <div class="padding_filter check_frame">
-                                    <div class="title">{echo $prop->name}</div>
-                                    <div class="clearfix check_form">
-                                        {foreach $prop->possibleValues as $item}
-                                            <label>
-                                                <input {if $item.count == 0}disabled="disabled"{/if} class="propertyCheck" name="p[{echo $prop->property_id}][]" value="{echo $item.value}" type="checkbox" {if is_array(ShopCore::$_GET['p'][$prop->property_id]) && in_array($item.value, ShopCore::$_GET['p'][$prop->property_id]) && $item.count != 0}checked="checked"{/if}/>
-                                                <span class="name_model">{echo $item.value}</span>
-                                                <span>&nbsp;({if $item.count != 0 && is_array(ShopCore::$_GET['p'][$prop->property_id]) && !in_array($item.value, ShopCore::$_GET['p'][$prop->property_id])}+{/if}{echo $item.count}) </span>
-                                            </label>
-                                        {/foreach}
-                                    </div>
+        </div>
+        <div class="padding_filter">
+            <div class="padding_filter check_frame">
+                <div class="title">Свойства</div>
+                <div class="clearfix check_form">
+                    {foreach $propertiesInCat as $prop}
+                        {if empty($prop->possibleValues)}{continue}{/if}
+                        <div class="padding_filter">
+                            <div class="padding_filter check_frame">
+                                <div class="title">{echo $prop->name}</div>
+                                <div class="clearfix check_form">
+                                    {foreach $prop->possibleValues as $item}
+                                        <label>
+                                            <input {if $item.count == 0}disabled="disabled"{/if} class="propertyCheck" name="p[{echo $prop->property_id}][]" value="{echo $item.value}" type="checkbox" {if is_array(ShopCore::$_GET['p'][$prop->property_id]) && in_array($item.value, ShopCore::$_GET['p'][$prop->property_id]) && $item.count != 0}checked="checked"{/if}/>
+                                            <span class="name_model">{echo $item.value}</span>
+                                            <span>&nbsp;({if $item.count != 0 && is_array(ShopCore::$_GET['p'][$prop->property_id]) && !in_array($item.value, ShopCore::$_GET['p'][$prop->property_id])}+{/if}{echo $item.count}) </span>
+                                        </label>
+                                    {/foreach}
                                 </div>
                             </div>
-                        {/foreach}
-                    </div>
+                        </div>
+                    {/foreach}
                 </div>
             </div>
-        {/if}
+        </div>
     </form>
 </div>
