@@ -37,33 +37,6 @@
                     <img id="mim{echo $model->getId()}" src="{productImageUrl($model->getMainimage())}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
                     <img id="vim{echo $model->getId()}" class="smallpimagev" src="{productImageUrl($model->getMainimage())}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
                 </a>
-            </div>
-            {$prices = currency_convert($model->firstVariant->getPrice(), $model->firstVariant->getCurrency())}
-            {$style = productInCartI($cart_data, $model->getId(), $model->firstVariant->getId(), $model->firstVariant->getStock())}
-
-            <!-- Fancybox additional blocks -->
-            <div id="fancyboxAdditionalContent" style="display: none;">
-                <div class="price f-s_26">
-                    <span id="pricem76">{echo $prices.main.price}</span>
-                    <sub>{echo $prices.main.symbol}</sub>
-                    {if $NextCS != $CS}
-                        <span id="prices76" class="d_b">{echo $prices.second.price} {echo $prices.second.symbol}</span>
-                    {/if}
-                </div>
-                {if count($model->getProductVariants())==1}
-                    <div class="in_cart"></div>
-                    <div class="{echo str_replace('f_l', '', $style.class)} pfancy">
-                        <span class="fancybuy {echo $style.identif} bfancy" data-id="{echo $model->getId()}">{echo $style.message}</span>
-                    </div>
-                {/if}
-            </div>
-            <!-- Fancybox additional blocks -->
-
-            <div class="func_description">
-                <div class="crumbs">
-                    {renderCategoryPath($model->getMainCategory())}
-                </div>
-                <h1>{echo ShopCore::encode($model->getName())}</h1>
                 <div class="f-s_0">
                     <div class="star_rating">
                         <div id="star_rating_{echo $model->getId()}" class="rating {echo count_star($model->getRating())} star_rait" data-id="{echo $model->getId()}">
@@ -91,13 +64,40 @@
                     </br><span>{echo ShopCore::app()->SProductSpy->getsubscribescount($model->getId())}</span>
                     <div>{echo $CI->load->module('share')->_make_share_form()}</div>
                 </div>
+            </div>
+            {$prices = currency_convert($model->firstVariant->getPrice(), $model->firstVariant->getCurrency())}
+            {$style = productInCartI($cart_data, $model->getId(), $model->firstVariant->getId(), $model->firstVariant->getStock())}
+
+            <!-- Fancybox additional blocks -->
+            <div id="fancyboxAdditionalContent" style="display: none;">
+                <div class="price f-s_26">
+                    <span id="pricem76">{echo $prices.main.price}</span>
+                    <sub>{echo $prices.main.symbol}</sub>
+                    {if $NextCS != $CS}
+                        <span id="prices76" class="d_b">{echo $prices.second.price} {echo $prices.second.symbol}</span>
+                    {/if}
+                </div>
+                {if count($model->getProductVariants())==1}
+                    <div class="in_cart"></div>
+                    <div class="{echo str_replace('f_l', '', $style.class)} pfancy">
+                        <span class="fancybuy {echo $style.identif} bfancy" data-id="{echo $model->getId()}">{echo $style.message}</span>
+                    </div>
+                {/if}
+            </div>
+            <!-- Fancybox additional blocks -->
+
+            <div class="func_description">
+                <div class="crumbs">
+                    {renderCategoryPath($model->getMainCategory())}
+                </div>
+                <h1>{echo ShopCore::encode($model->getName())}</h1>
                 <div class="buy clearfix m-t_30">
                     {if count($model->getProductVariants()) > 1}
                         Выбор варианта:</br>
-                        
+
                         {foreach $model->getProductVariants() as $key => $pv}
-                            
-                           {echo $pv->getPosition()}
+
+                            {echo $pv->getPosition()}
                             {$var_prices = currency_convert($pv->getPrice(), $pv->getCurrency())}
                             <input type="radio" class="selectVar" id="sVar{echo $pv->getId()}" name="selectVar" {if $model->firstVariant->getId() == $pv->getId()}checked="checked"{/if}
                                    value="{echo $pv->getId()}" 
@@ -147,10 +147,10 @@
                                     {$prOne = $prices.second.price}
                                     {$prTwo = $prices.second.price}                                    
                                     {$prThree = $prOne - $prTwo / 100 * $discount}
-                                    
+
                                     <del class="price price-c_red f-s_12 price-c_9">{echo $prices.second.price} {echo $prices.second.symbol}</del>
                                 {else:}
-                                    
+
                                     {$prThree = $prices.second.price}
                                 {/if}
 
@@ -281,36 +281,36 @@
                             {foreach $kid->getShopKitProducts() as $coompl}
                                 {$ap = $coompl->getSProducts()}
                                 {$kp = currency_convert($ap->getFirstVariant()->getPrice(), $ap->getFirstVariant()->getCurrency())}
-                                    <div class="f_l smallest_item">                                        
-                                        <div class="photo_block">
-                                            <a href="{shop_url('product/' . $ap->getUrl())}">
-                                                <figure>
-                                                    <img src="{productImageUrl($ap->getSmallModImage())}"/>
-                                                </figure>                                        
-                                            </a>
-                                        </div>
-                                        <div class="func_description">
-                                            <a href="{shop_url('product/' . $ap->getUrl())}">{echo ShopCore::encode($ap->getName())}</a>
-                                            {if $coompl->getDiscount() != 0}
-                                                <del class="d_b price-f-s_12 price-c_red">
-                                                    <span >{echo $kp.main.price} <sub>{$kp.main.symbol}</sub</span>
-                                                </del>
-                                            {/if}
-                                            <div class="buy">
-                                                <div class="price f-s_16 f_l">
-                                                    <span>{echo number_format($kp.main.price*(1 - $coompl->getdiscount()/100), 2, '.', '')} <sub>{$kp.main.symbol}</sub></span>
-                                                </div>
-                                            </div>                                        
-                                        </div> 
+                                <div class="f_l smallest_item">                                        
+                                    <div class="photo_block">
+                                        <a href="{shop_url('product/' . $ap->getUrl())}">
+                                            <figure>
+                                                <img src="{productImageUrl($ap->getSmallModImage())}"/>
+                                            </figure>                                        
+                                        </a>
                                     </div>
-                                    {if $i == count($kid->getShopKitProducts())}
-                                        <div class="plus_eval"><div>=</div></div>
-                                    {else:}
-                                        <div class="plus_eval">+</div>
-                                    {/if}
-                                    {$i++}
-                                    {$summa += $kp.main.price}
-                                    {$summa_with_discount += number_format($kp.main.price*(1 - $coompl->getdiscount()/100), 2, '.', '')}
+                                    <div class="func_description">
+                                        <a href="{shop_url('product/' . $ap->getUrl())}">{echo ShopCore::encode($ap->getName())}</a>
+                                        {if $coompl->getDiscount() != 0}
+                                            <del class="d_b price-f-s_12 price-c_red">
+                                                <span >{echo $kp.main.price} <sub>{$kp.main.symbol}</sub</span>
+                                            </del>
+                                        {/if}
+                                        <div class="buy">
+                                            <div class="price f-s_16 f_l">
+                                                <span>{echo number_format($kp.main.price*(1 - $coompl->getdiscount()/100), 2, '.', '')} <sub>{$kp.main.symbol}</sub></span>
+                                            </div>
+                                        </div>                                        
+                                    </div> 
+                                </div>
+                                {if $i == count($kid->getShopKitProducts())}
+                                    <div class="plus_eval"><div>=</div></div>
+                                {else:}
+                                    <div class="plus_eval">+</div>
+                                {/if}
+                                {$i++}
+                                {$summa += $kp.main.price}
+                                {$summa_with_discount += number_format($kp.main.price*(1 - $coompl->getdiscount()/100), 2, '.', '')}
                             {/foreach}
                             <div class="button_block ">
                                 <div class="buy">
@@ -353,7 +353,7 @@
             <div class="f-s_18 c_6 center">{lang('s_similar_product')}</div>
             <div class="carusel">
                 <ul>
-                    {$simprod = getSimilarProduct($model, 20)}
+                    {//$simprod = getSimilarProduct($model, 20)}
                     {foreach $simprod as $sp}
                         {$discount = ShopCore::app()->SDiscountsManager->productDiscount($sp->id)}
                         {$sim_prod = currency_convert($sp->firstvariant->getPrice(), $sp->firstvariant->getCurrency())}
@@ -478,7 +478,7 @@
                 {$comments}
             </div>
         </div>
-            
+
         <div class="nowelty_auction m-t_29">
             <div class="box_title">
                 <span>{lang('s_new')}</span>
