@@ -5,15 +5,15 @@ class Dashboard extends MY_Controller{
 
 	public function __construct()
 	{
-		parent::__construct();
+            parent::__construct();
 
-		$this->load->library('DX_Auth');
-        admin_or_redirect();
+            $this->load->library('DX_Auth');
+            admin_or_redirect();
 
-		$this->load->library('lib_admin');
-		$this->lib_admin->init_settings();
+            $this->load->library('lib_admin');
+            $this->lib_admin->init_settings();
 	}
-
+        
 	public function index()
 	{
         // get latest pages

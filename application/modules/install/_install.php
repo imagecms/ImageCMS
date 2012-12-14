@@ -299,12 +299,8 @@ class Install extends MY_Controller {
         $admin_created = date('Y-m-d H:i:s', time());
 
         $sql = "INSERT INTO `users` (`id`, `role_id`, `username`, `password`, `email`, `banned`, `ban_reason`, `newpass`, `newpass_key`, `newpass_time`, `last_ip`, `last_login`, `created`, `modified`)
-                        VALUES (1, 2, '$admin_login', '$admin_pass', '$admin_mail', 0, NULL, NULL, NULL, NULL, '127.0.0.1', '0000-00-00 00:00:00', '$admin_created', '0000-00-00 00:00:00'); ";
+                        VALUES (1, 10, '$admin_login', '$admin_pass', '$admin_mail', 0, NULL, NULL, NULL, NULL, '127.0.0.1', '0000-00-00 00:00:00', '$admin_created', '0000-00-00 00:00:00'); ";
 
-        mysql_query($sql, $link);
-
-        $sql = "INSERT INTO `shop_user_profile` (`id` ,`user_id` ,`name` ,`phone` ,`address` ,`cart_data` ,`user_email` ,`date_created` ,`key` ,`wish_list_data` ,`role_id` ,`user_external_id`)
-                        VALUES ('1' , '1', '$admin_login', NULL , NULL , NULL , '$admin_mail' , NULL , '', NULL , '10', NULL);";
         mysql_query($sql, $link);
 
         // Rewrite config file

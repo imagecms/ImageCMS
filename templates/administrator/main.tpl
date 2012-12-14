@@ -106,7 +106,10 @@
                                         <li><a href="/admin/pages" class="pjax">{lang('a_create_page')}</a></li>
 
                                         <li class="divider"></li>
-                                        <li><a href="/admin/components/cp/cfcm" class="pjax">{lang('a_field_constructor')}</a></li>
+                                        <li class="nav-header">{lang('a_field_constructor')}</li>
+                                        <li><a href="/admin/components/cp/cfcm/index#additional_fields" class="pjax">Список полей</a></li>
+                                        <li><a href="/admin/components/cp/cfcm/index#fields_groups" class="pjax">Список груп</a></li>
+                                        <!--<li><a href="/admin/components/cp/cfcm" class="pjax">{lang('a_field_constructor')}</a></li>-->
 
                                     </ul>
                                 </li>
@@ -257,7 +260,16 @@
             <script type="text/javascript" src="/js/elfinder-2.0/js/i18n/elfinder.ru.js"></script>
         {/if}
 
+        
         <script src="{$THEME}/js/admin_base.min.js" type="text/javascript"></script>       
+        
+        <!--
+        <script src="{$THEME}/js/admin_base_i.js" type="text/javascript"></script>       
+        <script src="{$THEME}/js/admin_base_m.js" type="text/javascript"></script>       
+        <script src="{$THEME}/js/admin_base_r.js" type="text/javascript"></script>       
+        <script src="{$THEME}/js/admin_base_v.js" type="text/javascript"></script>       
+        <script src="{$THEME}/js/admin_base_y.js" type="text/javascript"></script>       
+        -->
 
         <script>
             {if $CI->uri->segment('4') == 'shop'}
@@ -322,8 +334,10 @@
                 prod_on_off();
             })
             base_url = '{/literal}{$BASE_URL}{literal}';
+            {/literal}
+            var elfToken = '{echo $CI->lib_csrf->get_token()}';
             </script>
-        {/literal}
+        
         <div id="jsOutput" style="display: none;"></div>
     </body>
 </html>

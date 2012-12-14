@@ -88,7 +88,7 @@ $config['static_base_url'] = $config['base_url'];
 |
 */
 $config['index_page'] = "";
-$config['is_installed'] = TRUE;
+$config['is_installed'] = true;
 $config['rebuild_hooks_tree'] = TRUE;
 /*
 |--------------------------------------------------------------------------
@@ -412,3 +412,6 @@ $config['proxy_ips'] = '';
 
 /* End of file config.php */
 /* Location: ./system/application/config/config.php */
+
+/*enable or disable profiler output (now only for shop)*/
+$config['enable_profiler'] = TRUE;

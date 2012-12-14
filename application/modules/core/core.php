@@ -62,23 +62,10 @@ class Core extends MY_Controller {
             $data_type = 'bridge';
         }
 
-        if ($this->settings['site_offline'] == 'yes') {
-            if ($this->session->userdata('DX_role_id') != 2) {
-
-                ($hook = get_hook('core_goes_offline')) ? eval($hook) : NULL;
-                header('HTTP/1.1 503 Service Unavailable');
-                $this->template->display('offline');
-                exit;
-                //$this->display_tpl('offline');
-                //show_error('Сайт на реконструкции.');
-                //$this->template->show('offline');
-            }
-            //show_error('Site is offline.');
-        }
 
         /* Show Google Analytics code if some value inserted in admin panel */
         if ($this->settings['google_analytics_id'])
-            ($hook = get_hook('render_google_analytics')) ? eval($hook) : NULL;
+                    $this->renderGA();
 
         if ($this->settings['google_webmaster'])
             ($hook = get_hook('render_google_webmaster')) ? eval($hook) : NULL;
@@ -137,6 +124,16 @@ class Core extends MY_Controller {
         }
         // End language detect
 
+        if ($this->settings['site_offline'] == 'yes') {
+            if ($this->session->userdata('DX_role_id') != 10) {
+                
+                ($hook = get_hook('core_goes_offline')) ? eval($hook) : NULL;
+                header('HTTP/1.1 503 Service Unavailable');
+                $this->template->display('offline');
+                exit;
+            }
+        }
+        
         if ($this->uri->segment(1) == $this->def_lang[0]['identif']) {
             $url = implode('/', array_slice($this->uri->segment_array(), 1));
             header('Location:/' . $url);
@@ -886,7 +883,7 @@ class Core extends MY_Controller {
     /**
      * Set meta tags for pages
      */
-    public function set_meta_tags($title = '', $keywords = '', $description = '', $page_number = '',$showsitename=0) {
+    public function set_meta_tags($title = '', $keywords = '', $description = '', $page_number = '', $showsitename = 0, $category = '') {
         ($hook = get_hook('core_set_meta_tags')) ? eval($hook) : NULL;
         if ($this->core_data['data_type'] == 'main') {
             $this->template->add_array(array(
@@ -896,9 +893,14 @@ class Core extends MY_Controller {
                 'meta_noindex' => $this->_for_meta_noindex(),
             ));
         } else {
+            if ($this->settings['add_site_name_to_cat']){
+                $title .= $category;
+            }
+            
             if ($this->core_data['data_type'] == 'page' AND $this->page_content['category'] != 0 AND $this->settings['add_site_name_to_cat']) {
                 $title .= ' ' . $this->settings['delimiter'] . ' ' . $this->cat_content['name'];
             }
+            
 
             if (is_array($title)) {
                 $n_title = '';
@@ -923,7 +925,7 @@ class Core extends MY_Controller {
                 'page_number' => $page_number,
                 'meta_noindex' => $this->_for_meta_noindex(),
             ));
-        }
+        }      
     }
 
     public function _for_meta_noindex() {
@@ -953,6 +955,91 @@ class Core extends MY_Controller {
         return $result;
     }
 
+    public function renderGA($model = null) {
+        /* Show Google Analytics code if some value inserted in admin panel */
+        if ($this->settings['google_analytics_id']) {
+            $ga = "<script type='text/javascript'>
+            var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', '" . $this->settings['google_analytics_id'] . "']);
+          _gaq.push (['_addOrganic', 'images.yandex.ru', 'text']);
+          _gaq.push (['_addOrganic', 'blogs.yandex.ru', 'text']);
+          _gaq.push (['_addOrganic', 'video.yandex.ru', 'text']);
+          _gaq.push (['_addOrganic', 'meta.ua', 'q']);
+          _gaq.push (['_addOrganic', 'search.bigmir.net', 'z']);
+          _gaq.push (['_addOrganic', 'search.i.ua', 'q']);
+          _gaq.push (['_addOrganic', 'mail.ru', 'q']);
+          _gaq.push (['_addOrganic', 'go.mail.ru', 'q']);
+          _gaq.push (['_addOrganic', 'google.com.ua', 'q']);
+          _gaq.push (['_addOrganic', 'images.google.com.ua', 'q']);
+          _gaq.push (['_addOrganic', 'maps.google.com.ua', 'q']);
+          _gaq.push (['_addOrganic', 'images.google.ru', 'q']);
+          _gaq.push (['_addOrganic', 'maps.google.ru', 'q']);
+          _gaq.push (['_addOrganic', 'rambler.ru', 'words']);
+          _gaq.push (['_addOrganic', 'nova.rambler.ru', 'query']);
+          _gaq.push (['_addOrganic', 'nova.rambler.ru', 'words']);
+          _gaq.push (['_addOrganic', 'gogo.ru', 'q']);
+          _gaq.push (['_addOrganic', 'nigma.ru', 's']);
+          _gaq.push (['_addOrganic', 'poisk.ru', 'text']);
+          _gaq.push (['_addOrganic', 'go.km.ru', 'sq']);
+          _gaq.push (['_addOrganic', 'liveinternet.ru', 'ask']);
+          _gaq.push (['_addOrganic', 'gde.ru', 'keywords']);
+          _gaq.push (['_addOrganic', 'search.qip.ru', 'query']);
+          _gaq.push (['_addOrganic', 'webalta.ru', 'q']);
+          _gaq.push (['_addOrganic', 'sm.aport.ru', 'r']);
+          _gaq.push (['_addOrganic', 'index.online.ua', 'q']);
+          _gaq.push (['_addOrganic', 'web20.a.ua', 'query']);
+          _gaq.push (['_addOrganic', 'search.ukr.net', 'search_query']);
+          _gaq.push (['_addOrganic', 'search.com.ua', 'q']);
+          _gaq.push (['_addOrganic', 'search.ua', 'q']);
+          _gaq.push (['_addOrganic', 'affiliates.quintura.com', 'request']);
+          _gaq.push (['_addOrganic', 'akavita.by', 'z']);
+          _gaq.push (['_addOrganic', 'search.tut.by', 'query']);
+          _gaq.push (['_addOrganic', 'all.by', 'query']);
+          _gaq.push(['_trackPageview']);
+        </script>";
+            if ($model && $this->session->flashdata('makeOrder') === true) {
+                $ga .= "
+                    <script type='text/javascript'>
+            _gaq.push(['_addTrans',
+                '" . $model->id . "',
+                '',
+                '" . $model->getTotalPrice() . "',
+                '',
+                '" . $model->getSDeliveryMethods()->name . "',
+                '',
+                '',
+                ''
+            ]);";
+
+                foreach ($model->getSOrderProductss() as $item) {
+                    $total = $total + $item->getQuantity() * $item->toCurrency();
+                    $product = $item->getSProducts();
+
+                    $ga .="_gaq.push(['_addItem',
+                '" . $model->id . "',
+                '" . $product->getUrl() . "',
+                '" . encode($product->getName()) . " " . encode($item->getVariantName()) . "',
+                '" . encode($product->getMainCategory()->name) . "',
+                '" . $item->toCurrency() . "',
+                '" . $item->getQuantity() . "']);";
+                }
+                $ga .="_gaq.push(['_trackTrans']);</script>";
+            }
+
+            $ga .= "
+<script type = 'text/javascript'>
+(function() {
+var ga = document.createElement('script');
+ga.type = 'text/javascript';
+ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0];
+s.parentNode.insertBefore(ga, s);
+})();
+</script>";
+            $this->template->assign('renderGA', $ga);
+        }
+    }
 }
 
 /* End of file core.php */

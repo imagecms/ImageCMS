@@ -493,7 +493,7 @@ class CI_Profiler {
 
 		// Has the user created an override in application/views?
 		
-		echo APPPATH;
+//		echo APPPATH;
 		if (is_file(APPPATH .'views/profiler_template'.EXT))
 		{
 			$output = $this->CI->load->view('profiler_template', array('sections' => $this->_sections), true);
