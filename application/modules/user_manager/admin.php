@@ -352,7 +352,7 @@ class Admin extends MY_Controller {
 
         $val = $this->form_validation;
 
-        $val->set_rules('username', lang('amt_user_login'), 'trim|required|xss_clean');
+        $val->set_rules('username', lang('amt_user_login'), 'trim|xss_clean');
         $val->set_rules('new_pass', lang('amt_password'), 'trim|max_length[' . $this->config->item('DX_login_max_length') . ']|xss_clean');
         $val->set_rules('new_pass_conf', lang('amt_new_pass_confirm'), 'matches[new_pass]');
 
