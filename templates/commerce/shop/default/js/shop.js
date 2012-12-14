@@ -309,7 +309,9 @@ $(document).ready(function() {
     /* End of Event */
 
     $('.lineForm input[type=hidden]').on('change', function() {
-        $(this).parents('form').submit();
+        $('[name="order"]').val($('#sort').val());
+        $('[name="user_per_page"]').val($('#count').val());
+        $('[name="brandsfilter"]').submit();
     });
     $('.plus_minus button').live('click', function() {
         $this = $(this);
@@ -748,6 +750,7 @@ $(document).ready(function() {
         var vnumber = $this.attr('data-vnumber');
         var vname = $this.attr('data-vname');
         var cs = $this.attr('data-cs');
+        var csMain = $this.attr('data-csMain');
         var st = $this.attr('data-st');
         var pp = $this.attr('data-pp');
         if (img != '') {
@@ -757,6 +760,7 @@ $(document).ready(function() {
         }
         $('#code' + pid).html('Код ' + vnumber);
         $('#pricem' + pid).html(pr);
+        $('#priceB' + pid).html(pr + ' ' + csMain);
         $('#prices' + pid).html(spr + ' ' + cs);
         $('#buy' + pid).attr('data-varid', vid);
         $('#buy' + pid).attr('data-prodid', pid);
@@ -1021,6 +1025,19 @@ $(document).ready(function() {
 
     $('.confirmNo').live('click', function() {
         $('#cartForm').submit();
+    });
+
+    $('[name="brand[]"]').live('change', function() {
+        $('#brandsfilter').submit();
+    });
+
+    $('[name="pricebutton"]').live('click', function(event) {
+        event.preventDefault();
+        $('#brandsfilter').submit();
+    });
+
+    $('.propertyCheck').live('change', function() {
+        $('#brandsfilter').submit();
     });
 
 });

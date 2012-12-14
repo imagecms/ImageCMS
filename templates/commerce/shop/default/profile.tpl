@@ -63,7 +63,7 @@
                 </div>
 
                 <div class="fancy c_b" style="border: none; display: none;" id="change_user_fields">
-                    <form action="{shop_url('profile')}" method="post" name="editForm" style="padding-left: 0;">
+                    <form action="{shop_url('profile')}" method="post" name="editForms" style="padding-left: 0;">
                         <div id="change_info_edit">
 
                             <h3>{lang('s_edit_personal_information')}</h3>

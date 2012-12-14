@@ -2,8 +2,7 @@
 
 class Lib_init {
 
-	public function Lib_init()
-	{
+	public function __construct() {
         $CI =& get_instance();
 
         log_message('debug', "Lib_init Class Initialized");
@@ -18,7 +17,7 @@ class Lib_init {
         {
             if ($CI->uri->segment(1) != 'install')
             {
-                header("Location: http://".$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']."/install");
+                redirect("/install");
             }
         }
         else

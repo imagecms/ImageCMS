@@ -28,97 +28,30 @@ $(document).ready(function() {
         $(this).parent().addClass('ui-tabs-selected');
         tabs_div.hide();
         $($(this).attr('href')).show();
+
+        $this = $($(this).attr('href')).children('.scroll-box');
+        if ($.exists_nabir($this)){
+            first_elem = $this.find('li:eq(0)');
+            width_elem = first_elem.outerWidth(true);
+            count_elem_2 = count_elem = $this.find('li').length;
+            width = width_elem * count_elem;
+
+            if (count_elem % 2 != 0) {
+                width = width + width_elem;
+            }
+            if (count_elem > 2) {
+                width = width / 2;
+                count_elem_2 = count_elem / 2;
+            }
+            first_elem.parent().css('width', width);
+            if (!$this.is('.jspScrollable') && count_elem > 4) {
+                $this.jScrollPane({
+                    'showArrows': true
+                });
+            }
+        }
+        return false;
     }).filter(':eq(' + variable + ')').click();
-    
-    (function($){
-        var methods = {
-            init : function(options) {
-                var settings = $.extend({
-                    item : this.find('li'),
-                    duration: 300,
-                    drop: this.find('li > ul')
-                }, options);
-                
-                var sH = 0;
-                
-                var menu = $(this);
-                var menuW = menu.width();
-                var menuItem = settings.item;
-                var item_menu_l = menuItem.length;
-                var drop = settings.drop;
-                var dropW = 540;
-                var duration = time_dur_m = settings.duration;
-                
-                menuItem.each(function(index){
-                    var $this = $(this);
-                    var $thisW = $this.width();
-                    var $thisL = $this.position().left;
-                    
-                    var $thisH = $this.height()
-                    if ($thisH > sH) sH = $thisH;
-                    
-                    if (menuW - $thisL < dropW) {
-                        drop.eq(index).css('right', menuW-$thisW-$thisL).addClass('right-drop');
-                    }
-                    else drop.eq(index).css('left', $thisL)
-                })
-                menuItem.css('height', sH);
-                menuItem.find('.title .helper').css('height', sH-4)
-                    
-                $('.not-js').removeClass('not-js');
-                $('.frame-item-menu > ul > li').hover(function(){
-                    var $this = $(this);
-                    if (!$(this).hasClass('visited')){
-                        $this.addClass('visited');
-                        var $thisD = $this.children('div');
-                        var $thisU = $this.find('ul');
-                        var $thisUH=0;
-                        $thisU.each(function(){
-                            return $thisUH += $(this).outerHeight();
-                        })
-                        if ($thisD.outerHeight() < $thisUH) $thisD.css('height', $thisUH);
-                    }
-                })
-                menuItem.hover(
-                    function(){
-                        var $this = $(this);
-                        var $thisDrop = drop.eq($this.index());
-                        if ($this.index() == 0) $this.addClass('first_h');
-                        if ($this.index() == item_menu_l - 1) $this.addClass('last_h');
-                        hover_t_o = setTimeout(function(){
-                            $thisDrop.stop().fadeIn(200);
-                            menu.addClass('hover');
-                        }, time_dur_m);
-                    },function(){
-                        drop.stop().fadeOut(200);
-                        $('.first_h, .last_h').removeAttr('class');
-                        clearTimeout(hover_t_o);
-                        menu.removeClass('hover');
-                    });
-                menu.hover(
-                    function(){
-                        return time_dur_m = 0;
-                    },
-                    function(){
-                        return time_dur_m = duration;
-                    });
-            }
-        };
-        $.fn.menuPacket1 = function( method ) {
-            if ( methods[method] ) {
-                return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ));
-            } else if ( typeof method === 'object' || ! method ) {
-                return methods.init.apply( this, arguments );
-            } else {
-                $.error( 'Method ' +  method + ' does not exist on jQuery.tooltip' );
-            }
-        };
-    })(jQuery);
-    $('.menu-main').menuPacket1({
-        item: $(this).find('td'),
-        duration: 300,
-        drop: $(this).find('.frame-item-menu > ul')
-    })
 
     $('.frame_rep_bug [type="submit"]').die('click').live('click', function() {
         var url = 'hostname=' + location.hostname + '&pathname=' + location.pathname + '&user_name=' + $('#user_name').text() + '&text=' + $('.frame_rep_bug textarea').val() + '&ip_address=' + $('.frame_rep_bug #ip_address').val();
@@ -135,7 +68,17 @@ $(document).ready(function() {
         })
         return false;
     });
-    
+
+    //    $('.nav_tabs li a').click(function() {
+    //
+    //        nav_tabs_li.removeClass('ui-tabs-selected');
+    //        $(this).parent().addClass('ui-tabs-selected');
+    //        tabs_div.hide();
+    //        $($(this).attr('href')).show();
+    //
+    //        return false;
+    //    }).filter(':first').click();
+
     $('.formCost input[type="text"], .count input').keypress(function(event) {
         var key, keyChar;
         if (!event)
@@ -163,6 +106,10 @@ $(document).ready(function() {
         cuSel(params);
     }
     if ($.exists('#slider')) {
+        var def_min = $("#opt1").data("def_min");
+        var def_max = $("#opt2").data("def_max");
+        var cur_min = $("#minCost").val();
+        var cur_max = $("#maxCost").val();
         jQuery("#slider").slider({
             min: def_min,
             max: def_max,
