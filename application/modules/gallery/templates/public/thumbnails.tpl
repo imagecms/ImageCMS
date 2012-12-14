@@ -1,4 +1,5 @@
 <div id="titleExt"><h5><a href="{site_url('gallery')}">Галерея</a> &gt;&gt; <span class="ext">{$album.name}</span></h5></div>
+{$paginator}
 <ul class="products thumbs">
 	 {$counter = 1}
     {foreach $album.images as $image}

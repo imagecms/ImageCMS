@@ -1,20 +1,20 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 
 /**
  * Image CMS
  *
  * Gallery main model
  */
-
 class Gallery_m extends CI_Model {
 
-	function Base()
-	{
-		parent::__construct();
+    function Base() {
+        parent::__construct();
     }
 
-    function load_settings()
-    {
+    function load_settings() {
         $this->db->select('settings');
         $query = $this->db->get_where('components', array('name' => 'gallery'))->row_array();
 
@@ -24,8 +24,7 @@ class Gallery_m extends CI_Model {
     /**
      * Create new album
      */
-    function create_album()
-    {
+    function create_album() {
         $this->db->select_max('position');
         $pos = $this->db->get('gallery_albums')->row_array();
 
@@ -33,11 +32,11 @@ class Gallery_m extends CI_Model {
         $data['position'] = $pos['position'] + 1;
 
         $data = array(
-            'name'        => $this->input->post('name'),
+            'name' => $this->input->post('name'),
             'description' => trim($this->input->post('description')),
-            'created'     => time(),
+            'created' => time(),
             'category_id' => $this->input->post('category_id'),
-            'tpl_file'    => $this->input->post('tpl_file')
+            'tpl_file' => $this->input->post('tpl_file')
         );
 
         $this->db->insert('gallery_albums', $data);
@@ -45,15 +44,12 @@ class Gallery_m extends CI_Model {
         return $this->db->insert_id();
     }
 
-
-    function update_album($id, $data = array())
-    {
+    function update_album($id, $data = array()) {
         $this->db->where('id', $id);
         $this->db->update('gallery_albums', $data);
     }
 
-    function delete_album($id)
-    {
+    function delete_album($id) {
         // delete album
         $this->db->where('id', $id);
         $this->db->delete('gallery_albums');
@@ -65,13 +61,11 @@ class Gallery_m extends CI_Model {
 
     /**
      * Get all albums
-     */ 
-    function get_albums($order_by = 'date', $sort_order = 'desc', $category_id = 0)
-    {
+     */
+    function get_albums($order_by = 'date', $sort_order = 'desc', $category_id = 0) {
         // Select albums
 
-        if ($category_id > 0)
-        {
+        if ($category_id > 0) {
             $this->db->where('gallery_albums.category_id', $category_id);
         }
 
@@ -81,53 +75,43 @@ class Gallery_m extends CI_Model {
         $this->db->join('gallery_images', 'gallery_images.id = gallery_albums.cover_id', 'left');
 
         // Subquery. album views.
-        $this->db->select('(SELECT SUM(gallery_images.views) FROM gallery_images WHERE gallery_images.album_id = gallery_albums.id) AS views'); 
+        $this->db->select('(SELECT SUM(gallery_images.views) FROM gallery_images WHERE gallery_images.album_id = gallery_albums.id) AS views');
 
-        if ($sort_order != 'desc' AND $sort_order != 'asc')
-        {
+        if ($sort_order != 'desc' AND $sort_order != 'asc') {
             $sort_order = 'desc';
         }
 
-        switch ($order_by)
-        {
+        switch ($order_by) {
             case 'date':
-                $this->db->order_by('created', $sort_order); 
+                $this->db->order_by('created', $sort_order);
                 break;
 
             case 'name':
-                $this->db->order_by('name', $sort_order); 
-            break;
+                $this->db->order_by('name', $sort_order);
+                break;
 
             case 'position':
-                $this->db->order_by('position', $sort_order); 
-            break;
+                $this->db->order_by('position', $sort_order);
+                break;
         }
 
         $query = $this->db->get('gallery_albums');
 
-        if ($query->num_rows() > 0)
-        {
+        if ($query->num_rows() > 0) {
             return $query->result_array();
-        }
-        else
-        {
+        } else {
             return FALSE;
         }
     }
 
-
-    function get_last_image($album_id)
-    {
+    function get_last_image($album_id) {
         $this->db->order_by('uploaded', 'desc');
         $this->db->where('album_id', $album_id);
         $query = $this->db->get('gallery_images', 1);
 
-        if ($query->num_rows() == 1)
-        {
+        if ($query->num_rows() == 1) {
             return $query->row_array();
-        }
-        else
-        {
+        } else {
             return FALSE;
         }
     }
@@ -135,60 +119,72 @@ class Gallery_m extends CI_Model {
     /**
      * Get Album info
      */
-    function get_album($id = 0, $include_images = TRUE)
-    {
-        $this->db->limit(1);
+    function get_album($id = 0, $include_images = TRUE, $limit = false, $position = false) {
+        $this->db->limit(1);        
         $this->db->where('id', $id);
         $query = $this->db->get('gallery_albums');
 
-        if ($query->num_rows() > 0)
-        {
+        if ($query->num_rows() > 0) {
             $album = $query->row_array();
 
-            if ($include_images == TRUE)
-            {
-                $album['images'] = $this->get_album_images($album['id']);
+            if ($include_images == TRUE) {
+                $album['images'] = $this->get_album_images($album['id'], $limit, $position);
             }
 
             return $album;
-        }
-        else
-        {
+        } else {
             return FALSE;
         }
     }
 
-    function get_album_images($album_id)
-    {
-        //$this->db->order_by('uploaded', 'asc');
-
-        $this->db->select('*');
-        $this->db->select('CONCAT_WS("", file_name, file_ext) as full_name', FALSE);
-        $this->db->order_by('position', 'asc');
+    function get_count_album($album_id) {
+        if (!is_numeric($album_id) OR $album_id < 0) {
+            return false;
+        }
+        $this->db->select('id');
         $this->db->where('album_id', $album_id);
-        $query = $this->db->get('gallery_images');
-
-        if ($query->num_rows() > 0)
-        {
-            return $query->result_array();
-        }
-        else
-        {
-            return FALSE;
-        }
+        $this->db->from('gallery_images');
+        return $this->db->count_all_results();
     }
 
+        function get_album_images($album_id, $limit = false, $position = false)
+        {
+            if (!is_numeric($position) OR $position < 0)
+                {
+                $position = false;
+                }
+           
+            $this->db->select('*');
+            $this->db->select('CONCAT_WS("", file_name, file_ext) as full_name', FALSE);
+            $this->db->order_by('position', 'asc');
+            if ($limit)
+                {
+                if ($position)
+                    {$this->db->limit($limit,$position);}
+                else
+                    {$this->db->limit($limit);}
+                }   
+            $this->db->where('album_id', $album_id);
+            $query = $this->db->get('gallery_images');
 
-    function set_album_cover($album_id, $image_id)
-    {
+            if ($query->num_rows() > 0)
+            {
+                return $query->result_array();
+            }
+            else
+            {
+                return FALSE;
+            }
+        }
+
+    function set_album_cover($album_id, $image_id) {
         $this->db->where('id', $album_id);
         $this->db->update('gallery_albums', array('cover_id' => $image_id));
     }
 
     // --------------------------------------------------------------------
 
-    function add_image($data = array())
-    {
+    function add_image($data = array()) {
         $this->db->select_max('position');
         $pos = $this->db->get('gallery_images')->row_array();
 
@@ -204,130 +200,108 @@ class Gallery_m extends CI_Model {
         return $this->db->insert_id();
     }
 
-    function get_image_info($id)
-    {
+    function get_image_info($id) {
         $this->db->limit(1);
         $this->db->where('id', $id);
         $query = $this->db->get('gallery_images');
 
-        if ($query->num_rows() == 1)
-        {
+        if ($query->num_rows() == 1) {
             return $query->row_array();
-        }
-        else
-        {
+        } else {
             return FALSE;
         }
     }
 
-    function increase_image_views($id)
-    {
+    function increase_image_views($id) {
         $this->db->limit(1);
         $this->db->set('views', 'views + 1', FALSE);
         $this->db->where('id', $id);
         $this->db->update('gallery_images');
     }
 
-    function rename_image($id, $name)
-    {
+    function rename_image($id, $name) {
         $this->db->where('id', $id);
         $this->db->update('gallery_images', array('file_name' => $name));
     }
 
-    function delete_image($id)
-    {
+    function delete_image($id) {
         $this->db->limit(1);
         $this->db->where('id', $id);
         $this->db->delete('gallery_images');
-    } 
+    }
 
-    function update_description($id, $text)
-    {
+    function update_description($id, $text) {
         $this->db->limit(1);
         $this->db->where('id', $id);
         $this->db->update('gallery_images', array('description' => $text));
     }
 
-    function update_position($id, $position  = 0)
-    {
+    function update_position($id, $position = 0) {
         $this->db->limit(1);
         $this->db->where('id', $id);
         $this->db->update('gallery_images', array('position' => $position));
     }
-    
+
     // --------------------------------------------------------------------
 
-    function create_category($data = array())
-    {
+    function create_category($data = array()) {
         $this->db->insert('gallery_category', $data);
         return $this->db->insert_id();
     }
 
-    function get_category($id)
-    {
+    function get_category($id) {
         $this->db->limit(1);
         $this->db->where('id', $id);
         $query = $this->db->get('gallery_category');
 
-        if ($query->num_rows() == 1)
-        {
+        if ($query->num_rows() == 1) {
             return $query->row_array();
-        }
-        else
-        {
+        } else {
             return FALSE;
         }
     }
 
-    function get_categories($order_by = 'name', $sort_order = 'desc')
-    {
-        if ($sort_order != 'desc' AND $sort_order != 'asc')
-        {
+    function get_categories($order_by = 'name', $sort_order = 'desc') {
+        if ($sort_order != 'desc' AND $sort_order != 'asc') {
             $sort_order = 'desc';
         }
 
-        switch ($order_by)
-        {
+        switch ($order_by) {
             case 'date':
-                $this->db->order_by('created', $sort_order); 
+                $this->db->order_by('created', $sort_order);
                 break;
 
             case 'name':
-                $this->db->order_by('name', $sort_order); 
-            break;
+                $this->db->order_by('name', $sort_order);
+                break;
 
             case 'position':
-                $this->db->order_by('position', $sort_order); 
-            break;
+                $this->db->order_by('position', $sort_order);
+                break;
         }
 
         $query = $this->db->get('gallery_category');
 
-        if ($query->num_rows() > 0)
-        {
+        if ($query->num_rows() > 0) {
             return $query->result_array();
-        }
-        else
-        {
+        } else {
             return FALSE;
         }
     }
 
-    function update_category($data = array(), $id)
-    {
+    function update_category($data = array(), $id) {
         $this->db->limit(1);
         $this->db->where('id', $id);
 
         $this->db->update('gallery_category', $data);
     }
 
-    function delete_category($id)
-    {
+    function delete_category($id) {
         $this->db->limit(1);
         $this->db->where('id', $id);
         $this->db->delete('gallery_category');
     }
- 
+
 }
 
 /* End of file gallery_m.php */
