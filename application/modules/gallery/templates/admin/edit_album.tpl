@@ -42,7 +42,7 @@
                                         <div class="pull-left m-r_15">
                                             <spna class="frame_label">
                                                 <span class="niceCheck">
-                                                    <input type="checkbox" name="ids" value="{$item.id}"/>
+                                                    <input type="checkbox" name="id" value="{$item.id}"/>
                                                 </span>
                                             </spna>
                                         </div>
@@ -69,7 +69,6 @@
             </tr>
         </tbody>
     </table>
-                    {$paginator}
     {else:}
     <div class="alert alert-info m-t_20">
         {lang('a_album_empty')}

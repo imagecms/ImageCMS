@@ -163,7 +163,7 @@ class Sitemap extends MY_Controller {
             $this->items[] = array(
                 'loc' => $url,
                 'lastmod' => $date,
-                'changefreq' => $this->categories_changefreq,
+                'changefreq' => $this->pages_changefreq,
                 'priority' => $c_priority
             );
         }
@@ -300,8 +300,7 @@ class Sitemap extends MY_Controller {
             'main_page_priority' => '1',
             'cats_priority' => '0.8',
             'pages_priority' => '0.6',
-            'main_page_changefreq' => 'always',
-            'categories_changefreq' => 'always',
+            'main_page_changefreq' => 'weekly',
             'pages_changefreq' => 'weekly'
         );
 

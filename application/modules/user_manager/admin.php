@@ -64,7 +64,7 @@ class Admin extends MY_Controller {
 
         // Get all users
         $users = $this->users->get_all($offset, $row_count);
-        
+
         if (count($users)) {
             $this->load->library('Pagination');
 
