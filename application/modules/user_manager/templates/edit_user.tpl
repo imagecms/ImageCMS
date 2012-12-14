@@ -40,7 +40,7 @@
                                         <div class="control-group">
                                             <label class="control-label" for="username">{lang('a_fio')}</label>
                                             <div class="controls">
-                                                <input type="text" name="email" id="email" value="{$email}" class="required email"/>
+                                                <input type="text" name="username" id="email" value="{$username}"/>
                                             </div>
                                         </div>
 
