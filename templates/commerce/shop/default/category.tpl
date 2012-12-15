@@ -144,68 +144,64 @@
                                 </select>
                             {/if}
                         </div>
-                        <div class="f_l">
-                            <div class="buy">
-                                <div class="price f-s_18 f_l">
-                                    {if (float)$product->old_price > 0}
-                                        {if $product->old_price > $product->price_in_main}
-                                            <div>
-                                                <del class="price f-s_12 price-c_9" style="margin-top: 1px;">
-                                                    {echo number_format($product->old_price, 2, ".", "")}
-                                                    <sub> {$CS}</sub>
-                                                </del>
-                                            </div>
-                                        {/if}
-                                    {/if}
-                                    <div id="pricem{echo $product->id}">
-                                        {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                            {$prOne = $prices.main.price}
-                                            {$prTwo = $prices.main.price}
-                                            {$prThree = $prOne - $prTwo / 100 * $discount}
-                                            <del class="price price-c_red f-s_12 price-c_9">{echo number_format($prices.main.price, 2, ".", "")} {$prices.main.symbol}</del><br /> 
-                                        <div class="price f-s_14">
-                                            {else:}
-                                                {//echo number_format($prices.main.price, 2, ".", "")}
-                                                    {$prThree = $prices.main.price}
-                                            {/if}
-                                            {echo number_format($prThree, 2, ".", "")} 
-                                            <sub>{$prices.main.symbol}</sub>
-                                            {if $NextCS != $CS AND empty($discount)}
-                                                <span class="d_b">{echo number_format($prices.second.price, 2, ".", "")} {$prices.second.symbol}</span>
-                                            {/if}
+                        <div class="buy">
+                            <div class="price f-s_18">
+                                {if (float)$product->old_price > 0}
+                                    {if $product->old_price > $product->price_in_main}
+                                        <div>
+                                            <del class="price f-s_12 price-c_9" style="margin-top: 1px;">
+                                                {echo number_format($product->old_price, 2, ".", "")}
+                                                <sub> {$CS}</sub>
+                                            </del>
                                         </div>
-                                    </div>
-                                </div>
-                                <div id="p{echo $product->id}" class="{$style.class} buttons">
-                                    <span id="buy{echo $product->id}"
-                                          class="{$style.identif}"
-                                          data-varid="{echo $product->variants[0]->id}"
-                                          data-prodid="{echo $product->id}">
-                                        {$style.message}
-                                    </span>
+                                    {/if}
+                                {/if}
+                                <div id="pricem{echo $product->id}">
+                                    {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
+                                        {$prOne = $prices.main.price}
+                                        {$prTwo = $prices.main.price}
+                                        {$prThree = $prOne - $prTwo / 100 * $discount}
+                                        <del class="price price-c_red f-s_12 price-c_9">{echo number_format($prices.main.price, 2, ".", "")} {$prices.main.symbol}</del>
+
+                                    {else:}
+                                        {//echo number_format($prices.main.price, 2, ".", "")}
+                                        {$prThree = $prices.main.price}
+                                    {/if}
+                                    {echo number_format($prThree, 2, ".", "")} 
+                                    <sub>{$prices.main.symbol}</sub>
+                                    {if $NextCS != $CS AND empty($discount)}
+                                        <span class="d_b">{echo number_format($prices.second.price, 2, ".", "")} {$prices.second.symbol}</span>
+                                    {/if}
                                 </div>
                             </div>
+                            <div id="p{echo $product->id}" class="{$style.class} buttons">
+                                <span id="buy{echo $product->id}"
+                                      class="{$style.identif}"
+                                      data-varid="{echo $product->variants[0]->id}"
+                                      data-prodid="{echo $product->id}">
+                                    {$style.message}
+                                </span>
+                            </div>
                         </div>
-                        <div class="f_r t-a_r">
-                            {if !is_in_wish($product->id)}
-                                <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}"
-                                   data-varid="{echo $product->variants[0]->id}"
-                                   data-prodid="{echo $product->id}"
-                                   href="#"
-                                   class="js gray addToWList">
-                                    {lang('s_slw')}
-                                </a>
-                            {else:}
-                                <a href="/shop/wish_list">{lang('s_ilw')}</a>
-                            {/if}
-                        </div>
+                        {if !is_in_wish($product->id)}
+                            <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}"
+                               data-varid="{echo $product->variants[0]->id}"
+                               data-prodid="{echo $product->id}"
+                               href="#"
+                               class="js gray addToWList">
+                                {lang('s_slw')}
+                            </a>
+                        {else:}
+                            <a href="/shop/wish_list">{lang('s_ilw')}</a>
+                        {/if}
+
+                        {if ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($product->id)}
+                            <p class="c_b">
+                                {echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($product->id)}
+                                &nbsp;&nbsp;<a href="{shop_url('product/' . $product->url)}" class="t-d_n"><span class="t-d_u">{lang('s_more')}</span> →</a>
+                            </p>
+                        {/if}
                     </div>
-                    {if ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($product->id)}
-                        <p class="c_b">
-                            {echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($product->id)}
-                            <a href="{shop_url('product/' . $product->url)}" class="t-d_n"><span class="t-d_u">{lang('s_more')}</span> →</a>
-                        </p>
-                    {/if}
                 </li>
             {/foreach}
         </ul>
