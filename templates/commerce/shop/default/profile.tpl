@@ -145,16 +145,13 @@
                 </span>
                 {if count($goodsinspy)>0}
                     <table cellspacing="0">
-                        <colgroup>
-                            <col span="1" width="100">
-                        </colgroup>
                         <thead>
                             <tr>
                                 <th>{lang('s_to_falitem_number')}</th>
-                                <th style="width:300px;">{lang('s_to_falo_product_name')}</th>
-                                <th style="width:100px;">Разница</th>
-                                <th style="width:100px;">Разница в процентах</th>
-                                <th style="width:100px;">Отписатся</th>
+                                <th>{lang('s_to_falo_product_name')}</th>
+                                <th>Разница</th>
+                                <th>Разница в процентах</th>
+                                <th>Отписатся</th>
                             </tr>
                         </thead>
                         <tbody>
