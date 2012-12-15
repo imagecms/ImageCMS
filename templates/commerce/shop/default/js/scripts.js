@@ -115,9 +115,9 @@ $(document).ready(function() {
         };
     })(jQuery);
     $('.menu-main').menuPacket1({
-        item: $(this).find('td'),
+        item: $('.menu-main').find('td'),
         duration: 300,
-        drop: $(this).find('.frame-item-menu > ul')
+        drop: $('.menu-main').find('.frame-item-menu > ul')
     })
 
     $('.frame_rep_bug [type="submit"]').die('click').live('click', function() {

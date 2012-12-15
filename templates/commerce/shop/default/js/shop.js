@@ -210,19 +210,19 @@ $(document).ready(function() {
      */
     $('.addToWList').on('click', function() {
         var $this = $(this);
+        var $thisNext = $(this).next();
         var variantId = $(this).attr('data-varid');
         var productId = $(this).attr('data-prodid');
         var logged_in = $(this).attr('data-logged_in');
         $.fancybox.showActivity();
-        console.log($(this).attr('data-logged_in'));
         if (logged_in == 'true') {
             $.ajax({
                 type: "POST",
                 data: 'productId = ' + productId + '&variantId = ' + variantId,
                 url: "/shop/wish_list/add",
                 success: function() {
-                    $this.html('Уже в списке желаний').removeClass('js').removeClass('gray');
-                    $this.attr('href', '/shop/wish_list');
+                    $this.remove();
+                    $thisNext.show() ;
                     $this.unbind('click');
                     $("#wishListHolder").load('/shop/ajax/getWishListDataHtml').addClass('is_avail');
                     $.fancybox.hideActivity();

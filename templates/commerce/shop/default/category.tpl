@@ -182,18 +182,21 @@
                                     {$style.message}
                                 </span>
                             </div>
+                            <span class="frame_wish-list">
+                                {if !is_in_wish($product->id)}
+                                    <span data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}"
+                                          data-varid="{echo $product->variants[0]->id}"
+                                          data-prodid="{echo $product->id}"
+                                          class="addToWList">
+                                        <span class="icon-wish"></span>
+                                        <span class="js blue">{lang('s_slw')}</span>
+                                    </span>
+                                    <a href="/shop/wish_list" class="red" style="display:none;"><span class="icon-wish"></span>{lang('s_ilw')}</a>
+                                {else:}
+                                    <a href="/shop/wish_list" class="red"><span class="icon-wish"></span>{lang('s_ilw')}</a>
+                                {/if}
+                            </span> 
                         </div>
-                        {if !is_in_wish($product->id)}
-                            <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}"
-                               data-varid="{echo $product->variants[0]->id}"
-                               data-prodid="{echo $product->id}"
-                               href="#"
-                               class="js gray addToWList">
-                                {lang('s_slw')}
-                            </a>
-                        {else:}
-                            <a href="/shop/wish_list">{lang('s_ilw')}</a>
-                        {/if}
 
                         {if ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($product->id)}
                             <p class="c_b">

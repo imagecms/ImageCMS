@@ -94,9 +94,9 @@
                 <div class="buy clearfix m-t_30">
                     {if count($model->getProductVariants()) > 1}
                         Выбор варианта:</br>
-                        
+
                         {foreach $model->getProductVariants() as $key => $pv}
-                            
+
                             {$var_prices = currency_convert($pv->getPrice(), $pv->getCurrency())}
                             <input type="radio" class="selectVar" id="sVar{echo $pv->getId()}" name="selectVar" {if $model->firstVariant->getId() == $pv->getId()}checked="checked"{/if}
                                    value="{echo $pv->getId()}" 
@@ -146,10 +146,10 @@
                                     {$prOne = $prices.second.price}
                                     {$prTwo = $prices.second.price}                                    
                                     {$prThree = $prOne - $prTwo / 100 * $discount}
-                                    
+
                                     <del class="price price-c_red f-s_12 price-c_9">{echo $prices.second.price} {echo $prices.second.symbol}</del>
                                 {else:}
-                                    
+
                                     {$prThree = $prices.second.price}
                                 {/if}
 
@@ -168,7 +168,7 @@
                     </div>
                     <div class="f_l">
                         <span class="ajax_refer_marg" style="margin-top: -2px">
-                            <span data-prodid="{echo $product->id}" class="compare
+                            <span data-prodid="{echo $model->id}" class="compare
                                   {if $forCompareProducts && in_array($model->getId(), $forCompareProducts)}
                                       is_avail">
                                       <a href="{shop_url('compare')}" class="red">{lang('s_compare')}</a>
@@ -180,40 +180,42 @@
                             </span>
                         </span>
                         <span class="ajax_refer_marg" style="margin-top: -2px">
-                            {if !is_in_wish($model->getId())}
-                                <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" 
-                                   data-varid="{echo $model->firstVariant->getId()}" 
-                                   data-prodid="{echo $model->getId()}" 
-                                   href="#" 
-                                   class="js gray addToWList">
-                                    {lang('s_save_W_L')}
-                                </a>
-                            {else:}
-                                <a href="/shop/wish_list">{lang('s_ilw')}</a>
-                            {/if}
-                        </span>
-                        {if ShopCore::$ci->dx_auth->is_logged_in()===true}
-                            <span class="ajax_refer_marg" style="margin-top: -2px">
-                                {if !is_in_spy(ShopCore::$ci->dx_auth->get_user_id(), $model->getId())}
-                                    <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" 
-                                       data-price="{echo $model->firstVariant->toCurrency()}" 
-                                       data-user_id="{echo ShopCore::$ci->dx_auth->get_user_id()}" 
-                                       data-varid="{echo $model->firstVariant->getId()}" 
-                                       data-prodid="{echo $model->getId()}" 
-                                       href="#" class="js gray addtoSpy">
-                                        {lang('s_sle_product')}
-                                    </a>
+                            <span class="frame_wish-list">
+                                {if !is_in_wish($model->getId())}
+                                    <span data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" 
+                                          data-varid="{echo $model->firstVariant->getId()}" 
+                                          data-prodid="{echo $model->getId()}" 
+                                          class="addToWList">
+                                        <span class="icon-wish"></span>
+                                        <span class="js blue">{lang('s_slw')}</span>
+                                    </span>
+                                    <a href="/shop/wish_list" class="red" style="display:none;"><span class="icon-wish"></span>{lang('s_ilw')}</a>
                                 {else:}
-                                    <a data-user_id="{echo ShopCore::$ci->dx_auth->get_user_id()}" 
-                                       data-varid="{echo $model->firstVariant->getId()}" 
-                                       data-prodid="{echo $model->getId()}" 
-                                       href="#" 
-                                       class="deleteFromSpy">
-                                        {lang('s_sle_product_alerady')}
-                                    </a>
+                                    <a href="/shop/wish_list" class="red"><span class="icon-wish"></span>{lang('s_ilw')}</a>
                                 {/if}
                             </span>
-                        {/if}
+                            {if ShopCore::$ci->dx_auth->is_logged_in()===true}
+                                <span class="ajax_refer_marg" style="margin-top: -2px">
+                                    {if !is_in_spy(ShopCore::$ci->dx_auth->get_user_id(), $model->getId())}
+                                        <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" 
+                                           data-price="{echo $model->firstVariant->toCurrency()}" 
+                                           data-user_id="{echo ShopCore::$ci->dx_auth->get_user_id()}" 
+                                           data-varid="{echo $model->firstVariant->getId()}" 
+                                           data-prodid="{echo $model->getId()}" 
+                                           href="#" class="js gray addtoSpy">
+                                            {lang('s_sle_product')}
+                                        </a>
+                                    {else:}
+                                        <a data-user_id="{echo ShopCore::$ci->dx_auth->get_user_id()}" 
+                                           data-varid="{echo $model->firstVariant->getId()}" 
+                                           data-prodid="{echo $model->getId()}" 
+                                           href="#" 
+                                           class="deleteFromSpy">
+                                            {lang('s_sle_product_alerady')}
+                                        </a>
+                                    {/if}
+                                </span>
+                            {/if}
                     </div>
                 </div>
                 <p class="c_b">{echo $model->getShortDescription()}</p>
@@ -285,36 +287,36 @@
                             {foreach $kid->getShopKitProducts() as $coompl}
                                 {$ap = $coompl->getSProducts()}
                                 {$kp = currency_convert($ap->getFirstVariant()->getPrice(), $ap->getFirstVariant()->getCurrency())}
-                                    <div class="f_l smallest_item">                                        
-                                        <div class="photo_block">
-                                            <a href="{shop_url('product/' . $ap->getUrl())}">
-                                                <figure>
-                                                    <img src="{productImageUrl($ap->getSmallModImage())}"/>
-                                                </figure>                                        
-                                            </a>
-                                        </div>
-                                        <div class="func_description">
-                                            <a href="{shop_url('product/' . $ap->getUrl())}">{echo ShopCore::encode($ap->getName())}</a>
-                                            {if $coompl->getDiscount() != 0}
-                                                <del class="d_b price-f-s_12 price-c_red">
-                                                    <span >{echo $kp.main.price} <sub>{$kp.main.symbol}</sub</span>
-                                                </del>
-                                            {/if}
-                                            <div class="buy">
-                                                <div class="price f-s_16 f_l">
-                                                    <span>{echo number_format($kp.main.price*(1 - $coompl->getdiscount()/100), 2, '.', '')} <sub>{$kp.main.symbol}</sub></span>
-                                                </div>
-                                            </div>                                        
-                                        </div> 
+                                <div class="f_l smallest_item">                                        
+                                    <div class="photo_block">
+                                        <a href="{shop_url('product/' . $ap->getUrl())}">
+                                            <figure>
+                                                <img src="{productImageUrl($ap->getSmallModImage())}"/>
+                                            </figure>                                        
+                                        </a>
                                     </div>
-                                    {if $i == count($kid->getShopKitProducts())}
-                                        <div class="plus_eval"><div>=</div></div>
-                                    {else:}
-                                        <div class="plus_eval">+</div>
-                                    {/if}
-                                    {$i++}
-                                    {$summa += $kp.main.price}
-                                    {$summa_with_discount += number_format($kp.main.price*(1 - $coompl->getdiscount()/100), 2, '.', '')}
+                                    <div class="func_description">
+                                        <a href="{shop_url('product/' . $ap->getUrl())}">{echo ShopCore::encode($ap->getName())}</a>
+                                        {if $coompl->getDiscount() != 0}
+                                            <del class="d_b price-f-s_12 price-c_red">
+                                                <span >{echo $kp.main.price} <sub>{$kp.main.symbol}</sub</span>
+                                            </del>
+                                        {/if}
+                                        <div class="buy">
+                                            <div class="price f-s_16 f_l">
+                                                <span>{echo number_format($kp.main.price*(1 - $coompl->getdiscount()/100), 2, '.', '')} <sub>{$kp.main.symbol}</sub></span>
+                                            </div>
+                                        </div>                                        
+                                    </div> 
+                                </div>
+                                {if $i == count($kid->getShopKitProducts())}
+                                    <div class="plus_eval"><div>=</div></div>
+                                {else:}
+                                    <div class="plus_eval">+</div>
+                                {/if}
+                                {$i++}
+                                {$summa += $kp.main.price}
+                                {$summa_with_discount += number_format($kp.main.price*(1 - $coompl->getdiscount()/100), 2, '.', '')}
                             {/foreach}
                             <div class="button_block ">
                                 <div class="buy">
@@ -381,14 +383,14 @@
                                             {else:}
                                                 {$prThree = $sim_prod.main.price}
                                             {/if}
-                                           
+
                                             {echo money_format('%i', $prThree)}
                                             <sub>{$sim_prod.main.symbol}</sub>
 
                                             {if $NextCS != $CS AND empty($discount)}
                                                 <span>{echo money_format('%i', $sim_prod.second.price)} {$sim_prod.second.symbol}</span> 
                                             {/if}
-                                            
+
                                         </div>                                                                             
                                         <div class="{$style.class} buttons">                                            
                                             <a class="{$style.identif}" href="{$style.link}" data-varid="{echo $sp['VariandId']}"  data-prodid="{echo $sp['ProductId']}" >{$style.message}</a>
@@ -483,7 +485,7 @@
                 {$comments}
             </div>
         </div>
-            
+
         <div class="nowelty_auction m-t_29">
             <div class="box_title">
                 <span>{lang('s_new')}</span>
