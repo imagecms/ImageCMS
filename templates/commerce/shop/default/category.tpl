@@ -101,51 +101,53 @@
                                     {lang('s_kod')} {echo ShopCore::encode($product->variants[0]->number)}
                                 </span>
                             {/if}
-                            <div class="star_rating">
-                                <div id="{echo $model->id}_star_rating" class="rating_nohover {echo count_star(countRating($product->id))} star_rait" data-id="{echo $model->id}">
-                                    <div id="1" class="rate one">
-                                        <span title="1">1</span>
-                                    </div>
-                                    <div id="2" class="rate two">
-                                        <span title="2">2</span>
-                                    </div>
-                                    <div id="3" class="rate three">
-                                        <span title="3">3</span>
-                                    </div>
-                                    <div id="4" class="rate four">
-                                        <span title="4">4</span>
-                                    </div>
-                                    <div id="5" class="rate five">
-                                        <span title="5">5</span>
+                            <div>
+                                <div class="star_rating">
+                                    <div id="{echo $model->id}_star_rating" class="rating_nohover {echo count_star(countRating($product->id))} star_rait" data-id="{echo $model->id}">
+                                        <div id="1" class="rate one">
+                                            <span title="1">1</span>
+                                        </div>
+                                        <div id="2" class="rate two">
+                                            <span title="2">2</span>
+                                        </div>
+                                        <div id="3" class="rate three">
+                                            <span title="3">3</span>
+                                        </div>
+                                        <div id="4" class="rate four">
+                                            <span title="4">4</span>
+                                        </div>
+                                        <div id="5" class="rate five">
+                                            <span title="5">5</span>
+                                        </div>
                                     </div>
                                 </div>
+                                <a href="{shop_url('product/'.$product->id.'#four')}" rel="nofollow" class="response">
+                                    {totalComments($product->id)}
+                                    {echo SStringHelper::Pluralize((int)totalComments($product->id), array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}
+                                </a>
+                                {if count($product->variants)>1}
+                                    <select class="m-l_10" name="selectVar">
+                                        {foreach $product->variants as $pv}
+                                            {$variant_prices = currency_convert($pv->price, $pv->currency)}
+                                            <option class="selectVar"
+                                                    value="{echo $pv->id}"
+                                                    data-st="{echo $pv->stock}"
+                                                    data-cs="{$variant_prices.second.symbol}"
+                                                    data-spr="{echo number_format($variant_prices.second.price, 2, ".", "")}"
+                                                    data-pr="{echo number_format($variant_prices.main.price, 2 , ".", "")}"
+                                                    data-pid="{echo $product->id}"
+                                                    data-img="{echo $pv->smallimage}"
+                                                    data-vname="{echo $pv->name}"
+                                                    data-vnumber="{echo $pv->number}">
+                                                {echo $pv->name}
+                                            </option>
+                                        {/foreach}
+                                    </select>
+                                {/if}
                             </div>
-                            <a href="{shop_url('product/'.$product->id.'#four')}" rel="nofollow" class="response">
-                                {totalComments($product->id)}
-                                {echo SStringHelper::Pluralize((int)totalComments($product->id), array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}
-                            </a>
-                            {if count($product->variants)>1}
-                                <select class="m-l_10" name="selectVar">
-                                    {foreach $product->variants as $pv}
-                                        {$variant_prices = currency_convert($pv->price, $pv->currency)}
-                                        <option class="selectVar"
-                                                value="{echo $pv->id}"
-                                                data-st="{echo $pv->stock}"
-                                                data-cs="{$variant_prices.second.symbol}"
-                                                data-spr="{echo number_format($variant_prices.second.price, 2, ".", "")}"
-                                                data-pr="{echo number_format($variant_prices.main.price, 2 , ".", "")}"
-                                                data-pid="{echo $product->id}"
-                                                data-img="{echo $pv->smallimage}"
-                                                data-vname="{echo $pv->name}"
-                                                data-vnumber="{echo $pv->number}">
-                                            {echo $pv->name}
-                                        </option>
-                                    {/foreach}
-                                </select>
-                            {/if}
                         </div>
                         <div class="buy">
-                            <div class="price f-s_18">
+                            <div class="price f-s_18 d_b">
                                 {if (float)$product->old_price > 0}
                                     {if $product->old_price > $product->price_in_main}
                                         <div>
