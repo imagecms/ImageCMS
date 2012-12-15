@@ -46,7 +46,7 @@
                                 <div class="info">
                                     <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                                     <div class="buy">
-                                        <div class="price f-s_16 f_l">
+                                        <div class="price f-s_16">
                                             {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
                                                 {$prOne = $prices.main.price}
                                                 {$prTwo = $prices.main.price}
@@ -58,9 +58,9 @@
                                             {echo $prThree} 
                                             <sub>{$prices.main.symbol}</sub>
 
-                                            {if $NextCS != $CS AND empty($discount)}
+                                            {/*}{if $NextCS != $CS AND empty($discount)}
                                                 <span class="d_b">{echo $prices.second.price} {$prices.second.symbol}</span>
-                                            {/if}
+                                            {/if}{ */}
                                         </div>
                                         <div class="{$style.class} buttons">
                                             <span class="{$style.identif}" data-varid="{echo $hotProduct->firstVariant->getId()}" data-prodid="{echo $hotProduct->getId()}">{$style.message}</span>
@@ -93,7 +93,7 @@
                                 <div class="info">
                                     <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                                     <div class="buy">
-                                        <div class="price f-s_16 f_l">
+                                        <div class="price f-s_16">
                                             {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
                                                 {$prOne = $hot_prices.main.price}
                                                 {$prTwo = $hot_prices.main.price}
@@ -104,10 +104,10 @@
                                             {/if}
                                             {echo $prThree} 
                                             <sub>{$hot_prices.main.symbol}</sub>
-
-                                            {if $NextCS != $CS AND empty($discount)}
+                                            
+                                            {/*}{if $NextCS != $CS AND empty($discount)}
                                                 <span class="d_b">{echo $hot_prices.second.price} {$hot_prices.second.symbol}</span>
-                                            {/if}
+                                            {/if}{ */}
                                         </div>
 
                                         <div class="{$style.class} buttons">
@@ -141,7 +141,7 @@
                                 <div class="info">
                                     <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                                     <div class="buy">
-                                        <div class="price f-s_16 f_l">
+                                        <div class="price f-s_16">
                                             {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
                                                 {$prOne = $hot_prices.main.price}
                                                 {$prTwo = $hot_prices.main.price}
@@ -153,9 +153,9 @@
                                             {echo $prThree} 
                                             <sub>{$hot_prices.main.symbol}</sub>
 
-                                            {if $NextCS != $CS AND empty($discount)}
+                                            {/*}{if $NextCS != $CS AND empty($discount)}
                                                 <span class="d_b">{echo $hot_prices.second.price} {$hot_prices.second.symbol}</span>
-                                            {/if}
+                                            {/if}{ */}
                                         </div>
                                         <div class="{$style.class} buttons">
                                             <span class="{$style.identif}"  data-varid="{echo $hotProduct->firstVariant->getId()}" data-prodid="{echo $hotProduct->getId()}">{$style.message}</span>

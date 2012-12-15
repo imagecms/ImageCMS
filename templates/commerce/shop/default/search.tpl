@@ -147,9 +147,9 @@
                                                     {echo $prThree} 
                                                     <sub>{$prices.main.symbol}</sub>
 
-                                                    {if $NextCS != $CS AND empty($discount)}
+                                                    {/*}{if $NextCS != $CS AND empty($discount)}
                                                         <span class="d_b">{echo $prices.second.price} {$prices.second.symbol}</span>
-                                                    {/if}
+                                                    {/if}{ */}
 
                                             </div>
                                             <div id="p{echo $p->getId()}" class="{$style.class} buttons">
