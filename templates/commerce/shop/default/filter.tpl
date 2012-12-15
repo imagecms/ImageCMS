@@ -17,7 +17,7 @@
                         {foreach $brands as $brand}
                             {foreach $_GET['brand'] as $id}
                                 {if $id == $brand->id}
-                                    <li><a href="{echo str_replace('&brand[]=' . $brand->id,'',$aurl)}"><i class="times"></i>{echo $brand->name}</a></li>
+                                    <li><a href="{echo str_replace('&brand[]=' . $brand->id,'',$aurl)}"><i class="icon-times-red"></i>{echo $brand->name}</a></li>
                                 {/if}
                             {/foreach}
                         {/foreach}
@@ -28,20 +28,18 @@
                                 {foreach $prop->possibleValues as $key}
                                     {foreach $_GET['p'][$prop->id] as $id}
                                         {if $id == $key.value}
-                                            <li><a href="{echo str_replace('&p[' . $prop->id . '][]=' . $key.value,'',$aurl)}"><i class="times"></i>{echo $key.value}</a></li>
+                                            <li><a href="{echo str_replace('&p[' . $prop->id . '][]=' . $key.value,'',$aurl)}"><i class="icon-times-red"></i>{echo $key.value}</a></li>
                                         {/if}
                                     {/foreach}
                                 {/foreach}
-                            {else:}
-                                <li><a href="{echo str_replace('&p[' . $prop->id . '][single]=' . ShopCore::$_GET['p'][$prop->id]['single'], '' ,$aurl)}"><i class="times"></i>{echo ShopCore::$_GET['f'][$prop->id]['single']}</a></li>
                             {/if}
                         {/foreach}
                     {/if}
                     {if isset(ShopCore::$_GET['lp']) OR isset(ShopCore::$_GET['rp'])}
-                        <li><a href="{echo str_replace('&lp=' . ShopCore::$_GET['lp'] . '&rp=' . ShopCore::$_GET['rp'], '&lp=' . $priceRange.minPrice . '&rp=' . $priceRange.maxPrice, $aurl)}"><i class="times"></i>{if isset(ShopCore::$_GET['lp'])}{lang('s_from')} {echo ShopCore::$_GET['lp']}{$CS}{/if}{if isset(ShopCore::$_GET['rp'])} {lang('s_do')} {echo ShopCore::$_GET['rp']} {$CS}{/if}</a></li>
+                        <li><a href="{echo str_replace('&lp=' . ShopCore::$_GET['lp'] . '&rp=' . ShopCore::$_GET['rp'], '&lp=' . $priceRange.minPrice . '&rp=' . $priceRange.maxPrice, $aurl)}"><i class="icon-times-red"></i>{if isset(ShopCore::$_GET['lp'])}{lang('s_from')} {echo ShopCore::$_GET['lp']}{$CS}{/if}{if isset(ShopCore::$_GET['rp'])} {lang('s_do')} {echo ShopCore::$_GET['rp']} {$CS}{/if}</a></li>
                     {/if}
                 </ul>
-                <a href="{site_url($CI->uri->uri_string())}" class="reset">{lang('s_filter_all_reset')}</a>
+                    <a href="{site_url($CI->uri->uri_string())}" class="reset"><span class="icon-reset"></span>{lang('s_filter_all_reset')}</a>
             </div>
         {/if}
         <div class="content-filter">

@@ -198,11 +198,20 @@
                               {/if}
                         </span>
                     </span>
-                    {if !is_in_wish($product->getId())}
-                        <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" href="#" class="js gray addToWList">{lang('s_save_W_L')}</a>
-                    {else:}
-                        <a href="/shop/wish_list">{lang('s_ilw')}</a>
-                    {/if}
+                    <span class="frame_wish-list">
+                        {if !is_in_wish($product->id)}
+                            <span data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}"
+                                  data-varid="{echo $product->variants[0]->id}"
+                                  data-prodid="{echo $product->id}"
+                                  class="addToWList">
+                                <span class="icon-wish"></span>
+                                <span class="js blue">{lang('s_slw')}</span>
+                            </span>
+                            <a href="/shop/wish_list" class="red" style="display:none;"><span class="icon-wish"></span>{lang('s_ilw')}</a>
+                        {else:}
+                            <a href="/shop/wish_list" class="red"><span class="icon-wish"></span>{lang('s_ilw')}</a>
+                        {/if}
+                    </span>
                 </div>
             </div>
             {if $product->countProperties() > 0}
