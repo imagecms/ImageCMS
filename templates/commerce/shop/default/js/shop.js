@@ -253,14 +253,13 @@ $(document).ready(function() {
                 $("#compareHolder").load('/shop/ajax/getCompareDataHtml').addClass('is_avail');
                 $.fancybox.hideActivity();
                 $this
-                        .html('Сравнить')
                         .removeClass('js')
                         .removeClass('toCompare')
                         .removeClass('gray')
-                        .addClass('gotoComp')
-                        .css('color', '#3A88CC')
-                        .css('cursor', 'pointer')
-                        .unbind('click');
+                        .addClass('is_avail')
+                        .unbind('click')
+                        .find('span')
+                        .remove().end().find('a').show();
             }
         });
         return false;

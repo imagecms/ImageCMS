@@ -16,39 +16,46 @@
             <div class="catalog_frame">
                 <div class="crumbs">{echo $crumbs}</div>
                 <div class="box_title clearfix">
-                    <div class="f-s_24 f_l">
+                    <div class="f-s_24">
                         {echo ShopCore::encode($model->name)}
                         <span class="count_search">({$totalProducts})</span>
                     </div>
+                </div>
+                <form method="GET">
+                    <div class="f_l">
+                        <span class="v-a_m">Сортировать:&nbsp;</span>
+                        <div class="lineForm w_145 v-a_m">
+                            <select id="sort" name="order">
+                                <option value="" {if !ShopCore::$_GET['order']}selected="selected"{/if}>-Нет-</option>
+                                <option value="rating" {if ShopCore::$_GET['order']=='rating'}selected="selected"{/if}>{lang('s_po')} {lang('s_rating')}</option>
+                                <option value="price" {if ShopCore::$_GET['order']=='price'}selected="selected"{/if}>{lang('s_dewevye')}</option>
+                                <option value="price_desc" {if ShopCore::$_GET['order']=='price_desc'}selected="selected"{/if} >{lang('s_dor')}</option>
+                                <option value="hit" {if ShopCore::$_GET['order']=='hit'}selected="selected"{/if}>{lang('s_popular')}</option>
+                                <option value="hot" {if ShopCore::$_GET['order']=='hot'}selected="selected"{/if}>{lang('s_new')}</option>
+                                <option value="action" {if ShopCore::$_GET['order']=='action'}selected="selected"{/if}>{lang('s_action')}</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="f_r">
-                        <form method="GET">
-                            <div class="lineForm f_l w_145">
-                                <select id="sort" name="order">
-                                    <option value="" {if !ShopCore::$_GET['order']}selected="selected"{/if}>-Нет-</option>
-                                    <option value="rating" {if ShopCore::$_GET['order']=='rating'}selected="selected"{/if}>{lang('s_po')} {lang('s_rating')}</option>
-                                    <option value="price" {if ShopCore::$_GET['order']=='price'}selected="selected"{/if}>{lang('s_dewevye')}</option>
-                                    <option value="price_desc" {if ShopCore::$_GET['order']=='price_desc'}selected="selected"{/if} >{lang('s_dor')}</option>
-                                    <option value="hit" {if ShopCore::$_GET['order']=='hit'}selected="selected"{/if}>{lang('s_popular')}</option>
-                                    <option value="hot" {if ShopCore::$_GET['order']=='hot'}selected="selected"{/if}>{lang('s_new')}</option>
-                                    <option value="action" {if ShopCore::$_GET['order']=='action'}selected="selected"{/if}>{lang('s_action')}</option>
-                                </select>
-                            </div>
-                            <div class="lineForm f_l w_50 m-l_10">
-                                <select id="count" name="user_per_page">
-                                    <option value="12" {if ShopCore::$_GET['user_per_page']=='12'}selected="selected"{/if} >12</option>
-                                    <option value="24" {if ShopCore::$_GET['user_per_page']=='24'}selected="selected"{/if} >24</option>
-                                    <option value="36" {if ShopCore::$_GET['user_per_page']=='36'}selected="selected"{/if} >36</option>
-                                </select>
-                            </div>
-                        {if isset($_GET['lp'])}<input type="hidden" name="lp" value="{echo $_GET['lp']}">{/if}
-                    {if isset($_GET['rp'])}<input type="hidden" name="rp" value="{echo $_GET['rp']}">{/if}
-                </form>
-            </div>
-        </div>
+                        <span class="v-a_m">Товаров на странице:&nbsp;</span>
+                        <div class="lineForm w_50 v-a_m">
+                            <select id="count" name="user_per_page">
+                                <option value="12" {if ShopCore::$_GET['user_per_page']=='12'}selected="selected"{/if} >12</option>
+                                <option value="24" {if ShopCore::$_GET['user_per_page']=='24'}selected="selected"{/if} >24</option>
+                                <option value="36" {if ShopCore::$_GET['user_per_page']=='36'}selected="selected"{/if} >36</option>
+                            </select>
+                        </div>
+                    </div>
+                {if isset($_GET['lp'])}<input type="hidden" name="lp" value="{echo $_GET['lp']}">{/if}
+            {if isset($_GET['rp'])}<input type="hidden" name="rp" value="{echo $_GET['rp']}">{/if}
+        </form>
         <ul>
             {if (int)$pageNumber == 1}
                 {if $model->description != ''}
                     <li>
+                        <div class="box_title">
+                <span class="f-s_18">Описание</span>
+            </div>
                         {echo $model->description}
                     </li>
                 {/if}
@@ -63,16 +70,28 @@
                             <img id="mim{echo $product->id}" src="{productImageUrl($product->mainModImage)}" alt="{echo ShopCore::encode($product->name)} - {echo $product->id}" />
                             <img id="vim{echo $product->id}" class="smallpimagev" src="" alt="" />
                             {if $product->hot == 1}
-                                <div class="promoblock">{lang('s_shot')}</div>
+                                <div class="promoblock nowelty">{lang('s_shot')}</div>
                             {/if}
                             {if $product->action == 1}
-                                <div class="promoblock">{lang('s_saction')}</div>
+                                <div class="promoblock action">{lang('s_saction')}</div>
                             {/if}
                             {if $product->hit == 1}
                                 {$discount = ShopCore::app()->SDiscountsManager->productDiscount($product->id)}
-                                <div class="promoblock">{lang('s_s_hit')}</div>
+                                <div class="promoblock hit">{lang('s_s_hit')}</div>
                             {/if}
                         </a>
+                        <span class="ajax_refer_marg t-a_c">
+                            <span data-prodid="{echo $product->id}" class="compare
+                                  {if $forCompareProducts && in_array($product->id, $forCompareProducts)}
+                                      is_avail">
+                                      <a href="{shop_url('compare')}" class="red">{lang('s_compare')}</a>
+                                  {else:}
+                                      toCompare blue">
+                                      <span class="js blue">{lang('s_compare_add')}</span>
+                                      <a href="{shop_url('compare')}" class="red" style="display: none;">{lang('s_compare')}</a>
+                                  {/if}
+                            </span>
+                        </span>
                     </div>
                     <div class="func_description">
                         <a href="{shop_url('product/' . $product->url)}" class="title">{echo ShopCore::encode($product->name)}</a>
@@ -167,13 +186,6 @@
                         </div>
                     </div>
                     <div class="f_r t-a_r">
-                        <span class="ajax_refer_marg">
-                            {if $forCompareProducts && in_array($product->id, $forCompareProducts)}
-                                <a href="{shop_url('compare')}" class="">{lang('s_compare')}</a>
-                            {else:}
-                                <span data-prodid="{echo $product->id}" class="js gray toCompare">{lang('s_compare_add')}</span>
-                            {/if}
-                        </span>
                         {if !is_in_wish($product->id)}
                             <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}"
                                data-varid="{echo $product->variants[0]->id}"
@@ -289,8 +301,6 @@
         {widget('latest_news')}
     </div>
     <!--   Right sidebar     -->
-</div>
-</div>
 </div>
 </div>
 </div>

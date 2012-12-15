@@ -168,11 +168,16 @@
                     </div>
                     <div class="f_l">
                         <span class="ajax_refer_marg" style="margin-top: -2px">
-                            {if $forCompareProducts && in_array($model->getId(), $forCompareProducts)}
-                                <a href="{shop_url('compare')}">{lang('s_compare')}</a>
-                            {else:}
-                                <span data-prodid="{echo $model->getId()}" class="js gray toCompare">{lang('s_compare_add')}</span>
-                            {/if}
+                            <span data-prodid="{echo $product->id}" class="compare
+                                  {if $forCompareProducts && in_array($model->getId(), $forCompareProducts)}
+                                      is_avail">
+                                      <a href="{shop_url('compare')}" class="red">{lang('s_compare')}</a>
+                                  {else:}
+                                      toCompare blue">
+                                      <span class="js blue">{lang('s_compare_add')}</span>
+                                      <a href="{shop_url('compare')}" class="red" style="display: none;">{lang('s_compare')}</a>
+                                  {/if}
+                            </span>
                         </span>
                         <span class="ajax_refer_marg" style="margin-top: -2px">
                             {if !is_in_wish($model->getId())}
