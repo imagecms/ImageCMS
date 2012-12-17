@@ -228,7 +228,11 @@
                                                     data-img="{echo $pv->smallimage}"
                                                     data-vname="{echo $pv->name}"
                                                     data-vnumber="{echo $pv->number}">
-                                                {echo $pv->name}
+                                                {if $pv->name != ''}
+                                                    {echo $pv->name}
+                                                {else:}
+                                                    {echo $product->name}
+                                                {/if}
                                             </option>
                                         {/foreach}
                                     </select>
@@ -283,9 +287,9 @@
                                         <span class="js blue">{lang('s_slw')}</span>
                                     </span>
                                     <a href="/shop/wish_list" class="red" style="display:none;"><span class="icon-wish"></span>{lang('s_ilw')}</a>
-                                {else:}
+                                    {else:}
                                     <a href="/shop/wish_list" class="red"><span class="icon-wish"></span>{lang('s_ilw')}</a>
-                                {/if}
+                                    {/if}
                             </span> 
                         </div>
 
