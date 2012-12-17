@@ -939,7 +939,6 @@ $(document).ready(function() {
     });
 
     $('.delete_tovar').live('click', function() {
-        console.log($(this).data('pid'));
         var count_products = $(this).parents('.comparison_tovars').find('.list_desire').length;
         var id = $(this).data('pid');
         $.fancybox.showActivity();
@@ -955,10 +954,7 @@ $(document).ready(function() {
             //}
             }
         });
-        if (count_products === 1) {
-            $(this).parents('.comparison_slider').remove();
-        //console.log($(this).parents('.comparison_slider'));
-        }
+        if (count_products === 1) $(this).parents('.comparison_slider').remove();
         $.fancybox.hideActivity();
     });
     $('.prod_show_diff').live('click', function() {
