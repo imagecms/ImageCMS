@@ -34,7 +34,7 @@ class Login extends MY_Controller {
         }
         $browser = $this->user_browser($_SERVER['HTTP_USER_AGENT']);
 
-        if (($browser[0] === 'Firefox' && $browser[1] < 16.0) || $browser[0] === 'IE' ||($browser[0] === 'Chrome' && $browser[1]< 17 ) || ($browser[0] === 'Opera' && $browser[1] < 11.0)) {
+        if (($browser[0] === 'Firefox' && $browser[1] < 16.0) || $browser[0] === 'IE' ||($browser[0] === 'Chrome' && $browser[1]< 17 ) || ($browser[0] === 'Opera' && $browser[1] < 12.11)) {
             $this->template->display('old_browser');
         } else {
             $this->do_login();
