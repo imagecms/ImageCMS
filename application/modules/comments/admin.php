@@ -132,7 +132,7 @@ class Admin extends MY_Controller {
             'total_waiting' => $this->comments->count_by_status(1),
             'total_spam' => $this->comments->count_by_status(2),
             'total_app' => $this->comments->count_by_status(0),
-            'all_comm' => $all_comments,
+            'all_comm_show' => $all_comments - count($this->db->where('status', 1)->get('comments')->result_array()),
         ));
     }
     
