@@ -29,7 +29,7 @@ $(document).ajaxComplete(function(event, XHR, ajaxOptions) {
 });
 
 function init_2() {
-    // /if ($.exists('[data-submit]')) $('body').append('<div class="notifications bottom-right"><div class="alert-message" style="color:#666;text-shadow:0 1px #fff;">Для того чтоб <span style="color:green;font-weight:bold;">'+$('[data-submit]').text()+'</span> используйте комбинацию клавиш <span style="color:green;font-weight:bold;">Ctrl + s</span></div></div>')
+    // /if ($.exists('[data-submit]')) $('body').append('<div class="notifications bottom-right"><div class="alert-message" style="color:#666;text-shadow:0 1px #fff;">??? ???? ???? <span style="color:green;font-weight:bold;">'+$('[data-submit]').text()+'</span> ??????????? ?????????? ?????? <span style="color:green;font-weight:bold;">Ctrl + s</span></div></div>')
 
     if ($.exists('.buy_prod, .popover_ref')) {
         //alert('init2');
@@ -446,12 +446,12 @@ function autocomplete() {
                     '<input type="text" name="AttachedProductsIds[]" value="' + ui.item.identifier.id + '" class="input-mini"/>' +
                     '</span>&nbsp;' +
                     '<span class="d-i_b v-a_b">' +
-                    '<span class="help-inline d_b">Имя</span>' +
+                    '<span class="help-inline d_b">???</span>' +
                     '<input type="text" id="AttachedProducts" value="' + ui.item.label + '" class="input-xxlarge"/>' +
                     '</span>&nbsp;' +
                     '<span class="d-i_b number v-a_b">' +
-                    '<span class="help-inline d_b">Скидка %</span>' +
-                    '<input type="text" id="AttachedProductsDisc" name="Discounts[]" value="' + mainDisc + '" class="input-mini" data-max="100" data-rel="tooltip" data-title="только цифры"/>' +
+                    '<span class="help-inline d_b">?????? %</span>' +
+                    '<input type="text" id="AttachedProductsDisc" name="Discounts[]" value="' + mainDisc + '" class="input-mini" data-max="100" data-rel="tooltip" data-title="?????? ?????"/>' +
                     '</span>&nbsp;' +
                     '<span class="d-i_b v-a_b">' +
                     '<button class="btn btn-danger btn-small del_tmp_row" type="button" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash icon-white"></i></button>' +
@@ -1099,7 +1099,7 @@ $(document).ready(
                 url: '/admin/report_bug',
                 data: url,
                 success: function(data) {
-                    $('.frame_rep_bug').prepend('<div class="alert alert-success">Ваше сообщение отправлено</div>');
+                    $('.frame_rep_bug').prepend('<div class="alert alert-success">???? ????????? ??????????</div>');
                     setTimeout(function() {
                         overlay.trigger('click')
                     }, 2000)
