@@ -6,12 +6,17 @@
             {if count($products) > 0}
                 <!--<a class="active" style="cursor: pointer; display:none;">{lang('s_all_par')}</a>-->
                 <!--<a class="prod_dif" id="all" style="cursor:pointer;">{lang('s_only_diff')}</a>-->
-                <a class="prod_show_diff" style="cursor:pointer;">{lang('s_only_diff')}</a>
+
                 {$cnt = 1}
                 {$cnc = 1}
                 {foreach $categorys as $category}
                     <div class="comparison_slider">
-                        <div class="parameters_compr" style="position: relative; min-width: 50px;">        
+                        <div class="frame_button_compare">
+                            <div class="prod_show_diff button_compare disabled"><span class="js blue">{lang('s_all_par')}</span></div>
+                            <div class="prod_show_diff"><span class="js blue">{lang('s_only_diff')}</span></div>
+                            <div class="no_differ">Нет различий</div>
+                        </div>
+                        <div class="parameters_compr">
                             <div class="title">{lang('lang_categories')}: {echo $category.Name}</div>
                         </div>
                         <div class="comparison_slider_left">
@@ -42,7 +47,7 @@
                                                     <span class="delete_tovar img" data-pid="{echo $product->getId()}" style="width: 20px; height: 20px;"></span>
                                                 </div>
                                                 <div class="func_description">
-                                                    <a href="{shop_url('product/' . $product->getUrl())}" class="title">{echo $product->getName()}</a>
+                                                    <a href="{shop_url('product/' . $product->getUrl())}" class="title">{echo $product->getName()}{echo $product->getName()}</a>
                                                     <div class="buy">
                                                         <div class="price f-s_14">
 
@@ -61,7 +66,7 @@
                                                             {if $NextCS != $CS AND empty($discount)}
                                                                 <span class="d_b">{echo $prices.second.price} {$prices.second.symbol}</span>
                                                             {/if}
-                                                            
+
                                                         </div>
                                                         <div id="p{echo $product->getId()}" class="{$style.class} buttons">
                                                             <span id="buy{echo $product->getId()}" class="{$style.identif}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" >
