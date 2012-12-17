@@ -67,8 +67,6 @@ class Admin extends MY_Controller {
         $this->test_uploads_folder($this->conf['upload_path']);
     }
 
-    public $perPage = 9;
-
     /**
      * Test if gallery upload folder exists.
      */
@@ -271,17 +269,17 @@ class Admin extends MY_Controller {
             showMessage(validation_errors(), false, 'r');
         } else {
             $album_id = $this->gallery_m->create_album();
-
+            
             // Create album folder
             mkdir($this->conf['upload_path'] . $album_id);
 
             chmod($this->conf['upload_path'] . $album_id, 0777);
-
+            
             // Create thumbs folder
             mkdir($this->conf['upload_path'] . $album_id . '/' . $this->conf['thumbs_folder']);
 
             // Create folder for admin thumbs 
-            mkdir($this->conf['upload_path'] . $album_id . '/_admin_thumbs');
+            mkdir($this->conf['upload_path'] . $album_id . '/_admin_thumbs');            
 
             showMessage('Альбом создан');
 
