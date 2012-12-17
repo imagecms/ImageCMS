@@ -24,7 +24,7 @@
                             </div>
                         </div>                                    
                     </div>
-                     {form_csrf()}
+                    {form_csrf()}
                 </form>
             </div>
         {else:}
@@ -106,15 +106,8 @@
                     <tr>
                         <td colspan="6">
                             <div class="foot_cleaner">
-                                <div class="f_l"> 
-                                    <div class="f_r sum">{lang('s_summ')}:</div>
-                                </div>
-                                <div class="f_r">                                  
-                                    <div class="price f-s_26 f_l" style="width: 170px; margin-top: 23px;">{$total} <sub>{$CS}</sub>
-
-                                    </div>
-                                </div>
-
+                                <div class="price f-s_26 f_r">{$total} <sub>{$CS}</sub></div>
+                                <div class="f_r sum">{lang('s_summ')}:</div>
                             </div>
                         </td>
                     </tr>

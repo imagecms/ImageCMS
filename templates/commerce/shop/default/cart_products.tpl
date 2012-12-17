@@ -1,8 +1,8 @@
 {if count($items)}
-    <caption>{lang('s_cart')}</caption>
+<!--    <caption>{lang('s_cart')}</caption>-->
     <colgroup>
         <col span="1" width="120">
-        <col span="1" width="396">
+        <col span="1" width="390">
         <col span="1" width="160">
         <col span="1" width="140">
         <col span="1" width="160">
