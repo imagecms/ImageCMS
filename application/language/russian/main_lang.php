@@ -243,7 +243,7 @@ $lang ['s_pcs1'] = 'шт';
 $lang ['s_pcs'] = 'Мои заказы';
 $lang ['s_my_acc'] = 'Мой аккаунт';
 $lang ['s_my_ord'] = 'Мои заказы';
-$lang ['s_compare_add'] = 'Добавить к сравнению';
+$lang ['s_compare_add'] = 'К сравнению';
 $lang ['s_youre'] = 'Вы';
 $lang ['s_all_brand_shop'] = 'Все бренды магазина';
 $lang ['s_brand_allfa'] = 'Бренды по алфавиту';
@@ -325,7 +325,7 @@ $lang['s_sea_search_for'] = 'Вы искали';
 $lang['s_js_fisa'] = 'Показать';
 $lang['s_spec_promotion'] = 'Акционное предложение';
 
-$lang['s_shot'] = 'Новинка';
+$lang['s_shot'] = 'New';
 $lang['s_saction'] = 'Акция';
 $lang['s_s_hit'] = 'Хит';
 
