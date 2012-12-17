@@ -70,7 +70,7 @@
                 </div>
                         
                 <div class="phone">
-                    <address>(095)<span> 555-55-55</span></address>
+                    <address>(095)<span><span class="d_n">&minus;</span> 555-55-55</span></address>
                     <span class="js showCallback">{lang('s_coll_order')}</span>
                 </div>
                 
@@ -106,9 +106,8 @@
                 </ul>
             </div><!-- header -->
 
-            <div class="main_menu center">
-                <ul class="clearfix">{echo ShopCore::app()->SCategoryTree->ul()}</ul>
-            </div><!-- main_menu -->
+                {echo ShopCore::app()->SCategoryTree->ul()}
+
 
             {$shop_content}
 
@@ -135,7 +134,7 @@
                 <ul class="contacts f_l">
                     <li>
                         <span class="b">{lang('s_tel')}:</span>
-                        <span>(095) 555-55-55</span>
+                        <span>(095) <span class="d_n">&minus; </span>555-55-55</span>
                     </li>
                     <li>
                         <span class="b">{lang('s_email')}:</span>

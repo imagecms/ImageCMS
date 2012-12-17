@@ -147,9 +147,9 @@
                                                     {echo $prThree} 
                                                     <sub>{$prices.main.symbol}</sub>
 
-                                                    {if $NextCS != $CS AND empty($discount)}
+                                                    {/*}{if $NextCS != $CS AND empty($discount)}
                                                         <span class="d_b">{echo $prices.second.price} {$prices.second.symbol}</span>
-                                                    {/if}
+                                                    {/if}{ */}
 
                                             </div>
                                             <div id="p{echo $p->getId()}" class="{$style.class} buttons">
@@ -161,11 +161,16 @@
                                     </div>
                                     <div class="f_r t-a_r">
                                         <span class="ajax_refer_marg">
-                                            {if $forCompareProducts && in_array($p->getId(), $forCompareProducts)}
-                                                <a href="{shop_url('compare')}" class="">{lang('s_compare')}</a>
-                                            {else:}
-                                                <span data-prodid="{echo $p->getId()}" class="js gray toCompare">{lang('s_compare_add')}</span>
-                                            {/if}
+                                            <span data-prodid="{echo $product->id}" class="compare
+                                                  {if $forCompareProducts && in_array($model->getId(), $forCompareProducts)}
+                                                      is_avail">
+                                                      <a href="{shop_url('compare')}" class="red">{lang('s_compare')}</a>
+                                                  {else:}
+                                                      toCompare blue">
+                                                      <span class="js blue">{lang('s_compare_add')}</span>
+                                                      <a href="{shop_url('compare')}" class="red" style="display: none;">{lang('s_compare')}</a>
+                                                  {/if}
+                                            </span>
                                         </span>
                                         <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" data-varid="{echo $p->firstVariant->getId()}" data-prodid="{echo $p->getId()}" href="#" class="js gray addToWList">
                                             {lang('s_save_W_L')}
@@ -179,14 +184,14 @@
                             </li>
                             {if $count == 3}
                                 <li class="separator"></li>{$count=0}
-                                {/if}
-                                {$count++}
-                            {/foreach}
+                            {/if}
+                            {$count++}
+                        {/foreach}
                     </ul>
                     {if $pagination}
                         <div class="pagination"><div class="t-a_c">{$pagination}</div></div>
-                        {/if}
-                    {else:}
+                    {/if}
+                {else:}
                     <p>
                         {echo ShopCore::t(lang('s_not_found'))}.
                     </p>

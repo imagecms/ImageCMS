@@ -84,13 +84,13 @@
                     <img id="mim{echo $product->getId()}" src="{productImageUrl($product->getMainModimage())}" alt="{echo ShopCore::encode($product->name)} - {echo $product->getId()}" />
                     <img id="vim{echo $product->getId()}" class="smallpimagev" src="" alt="" />
                     {if $product->getHot() == 1}
-                        <div class="promoblock">{lang('s_shot')}</div>
+                        <div class="promoblock nowelty">{lang('s_shot')}</div>
                     {/if}
                     {if $product->getAction() == 1}
-                        <div class="promoblock">{lang('s_saction')}</div>
+                        <div class="promoblock action">{lang('s_saction')}</div>
                     {/if}
                     {if $product->getHit() == 1}
-                        <div class="promoblock">{lang('s_s_hit')}</div>
+                        <div class="promoblock hit">{lang('s_s_hit')}</div>
                     {/if}
                 </a>
             </div>
@@ -162,7 +162,7 @@
                                 {/if}
                             {/if}                            
                             <span id="priceB{echo $product->getId()}">
-                                
+
                                 {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
                                     {$prOne = $prices.main.price}
                                     {$prTwo = $prices.main.price}
@@ -174,9 +174,9 @@
                                 {echo $prThree} 
                                 <sub>{$prices.main.symbol}</sub>
 
-                                {if $NextCS != $CS AND empty($discount)}
+                                {/*}{if $NextCS != $CS AND empty($discount)}
                                     <span class="d_b">{echo $prices.second.price} {$prices.second.symbol}</span>
-                                {/if}
+                                {/if}{ */}
                             </span>
                             <br /><span id="prices{echo $product->getId()}"></span>
                         </div>
@@ -187,17 +187,31 @@
                 </div>
                 <div class="f_r t-a_r">
                     <span class="ajax_refer_marg">
-                        {if $forCompareProducts && in_array($product->getId(), $forCompareProducts)}
-                            <a href="{shop_url('compare')}" class="">{lang('s_compare')}</a>
+                        <span data-prodid="{echo $product->id}" class="compare
+                              {if $forCompareProducts && in_array($model->getId(), $forCompareProducts)}
+                                  is_avail">
+                                  <a href="{shop_url('compare')}" class="red">{lang('s_compare')}</a>
+                              {else:}
+                                  toCompare blue">
+                                  <span class="js blue">{lang('s_compare_add')}</span>
+                                  <a href="{shop_url('compare')}" class="red" style="display: none;">{lang('s_compare')}</a>
+                              {/if}
+                        </span>
+                    </span>
+                    <span class="frame_wish-list">
+                        {if !is_in_wish($product->id)}
+                            <span data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}"
+                                  data-varid="{echo $product->variants[0]->id}"
+                                  data-prodid="{echo $product->id}"
+                                  class="addToWList">
+                                <span class="icon-wish"></span>
+                                <span class="js blue">{lang('s_slw')}</span>
+                            </span>
+                            <a href="/shop/wish_list" class="red" style="display:none;"><span class="icon-wish"></span>{lang('s_ilw')}</a>
                         {else:}
-                            <span data-prodid="{echo $product->getId()}" class="js gray toCompare">{lang('s_compare_add')}</span>
+                            <a href="/shop/wish_list" class="red"><span class="icon-wish"></span>{lang('s_ilw')}</a>
                         {/if}
                     </span>
-                    {if !is_in_wish($product->getId())}
-                        <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" href="#" class="js gray addToWList">{lang('s_save_W_L')}</a>
-                    {else:}
-                        <a href="/shop/wish_list">{lang('s_ilw')}</a>
-                    {/if}
                 </div>
             </div>
             {if $product->countProperties() > 0}
