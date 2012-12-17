@@ -171,7 +171,7 @@
     {foreach $products as $product}
         {$discount = ShopCore::app()->SDiscountsManager->productDiscount($product->id)}
         {$style = productInCart($cart_data, $product->getId(), $product->firstVariant->getId(), $product->firstVariant->getStock())}
-        <li {if $product->variants[0]->stock == 0}class="not_avail"{/if}>
+        <li>
             <div class="photo_block">
                 <a href="{shop_url('product/' . $product->url)}">
                     <img id="mim{echo $product->id}" src="{productImageUrl($product->mainModImage)}" alt="{echo ShopCore::encode($product->name)} - {echo $product->id}" />

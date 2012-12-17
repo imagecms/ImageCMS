@@ -548,7 +548,7 @@ span.code{color: #999;font-size: 11px;margin-right: 9px;}
 .info_buy li img{float: left;margin-right: 19px;}
 .info_buy li div{overflow: hidden;margin-top: 4px;}
 .info_buy li > div > span{display: block;color: #666;}
-.info_buy.one_item{min-height: 48px;position: relative;}
+.info_buy.one_item{min-height: 48px;position: relative;margin-top: 30px;}
 .phone_product{position: absolute;left: 10px;top: -8px;}
 .info_buy.one_item li{width: 79%;float: right;}
 .info_buy.two_item li{width: 47%;}
