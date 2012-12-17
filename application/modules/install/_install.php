@@ -20,9 +20,15 @@ class Install extends MY_Controller {
     }
 
     public function index() {
-        $data = array(
-            'content' => $this->load->view('license', array('next_link' => $this->host . '/install/step_1'), TRUE),
-        );
+        if (file_exists('./application/modules/shop')) {
+            $data = array(
+                'content' => $this->load->view('license_shop', array('next_link' => $this->host . '/install/step_1'), TRUE),
+            );
+        } else {
+            $data = array(
+                'content' => $this->load->view('license', array('next_link' => $this->host . '/install/step_1'), TRUE),
+            );
+        }
         $this->load->view('main', $data);
     }
 
