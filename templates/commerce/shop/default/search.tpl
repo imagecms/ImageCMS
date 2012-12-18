@@ -90,7 +90,7 @@
                                     </a>
                                     <span class="ajax_refer_marg t-a_c">
                                         <span data-prodid="{echo $product->id}" class="compare
-                                              {if $forCompareProducts && in_array($model->getId(), $forCompareProducts)}
+                                              {if $forCompareProducts && in_array($p->getId(), $forCompareProducts)}
                                                   is_avail">
                                                   <a href="{shop_url('compare')}" class="red">{lang('s_compare')}</a>
                                               {else:}

@@ -55,13 +55,13 @@ class Comments extends MY_Controller {
         $settings = $this->base->get_settings();
 
         ($hook = get_hook('comments_settigs_init')) ? eval($hook) : NULL;
-        if (is_array($settings)){
+        if (is_array($settings)) {
             foreach ($settings as $k => $v) {
                 $this->$k = $v;
             }
         }
     }
-    
+
     /**
      * Fetch comments and load template
      */
@@ -76,15 +76,15 @@ class Comments extends MY_Controller {
 //            ($hook = get_hook('comments_fetch_cache_ok')) ? eval($hook) : NULL;
 //            // Comments fetched from cahce file
 //        } else {
-            $this->db->where('module', $this->module);
-            $comments = $this->base->get($item_id);
+        $this->db->where('module', $this->module);
+        $comments = $this->base->get($item_id);
 
-            // Read comments template
-            // Set page id for comments form
-            if ($comments != FALSE) {
-                ($hook = get_hook('comments_store_cache')) ? eval($hook) : NULL;
-                $this->cache->store('comments_' . $item_id . $this->module, $comments, $this->cache_ttl, 'comments');
-            }
+        // Read comments template
+        // Set page id for comments form
+        if ($comments != FALSE) {
+            ($hook = get_hook('comments_store_cache')) ? eval($hook) : NULL;
+            $this->cache->store('comments_' . $item_id . $this->module, $comments, $this->cache_ttl, 'comments');
+        }
         //}
 
         if (is_array($comments)) {
@@ -125,9 +125,9 @@ class Comments extends MY_Controller {
 
         $comments = $this->template->read($this->tpl_name, $data);
 
-        ($hook = get_hook('comments_assign_tpl_data')) ? eval($hook) : NULL;        
+        ($hook = get_hook('comments_assign_tpl_data')) ? eval($hook) : NULL;
         //$this->render('comments_list', array('comments'=>$comments));
-        
+
         $this->template->add_array(array(
             'comments' => $comments,
         ));
@@ -218,8 +218,7 @@ class Comments extends MY_Controller {
             $comment_text_minus = trim(htmlspecialchars($this->input->post('comment_text_minus')));
             $comment_text_minus = str_replace("\n", '<br/>', $comment_text_minus);
             $rate = $this->input->post('ratec');
-            if($this->input->post('ratec'))
-            {
+            if ($this->input->post('ratec')) {
                 if (SProductsQuery::create()->findPk($item_id) !== null) {
                     $model = SProductsRatingQuery::create()->findPk($item_id);
                     if ($model === null) {
@@ -402,7 +401,7 @@ class Comments extends MY_Controller {
             $this->db->where('id', $comid);
             $this->db->update('comments', $data);
             $this->session->set_userdata('commentl' . $comid, 1);
-            if($this->input->is_ajax_request()) {
+            if ($this->input->is_ajax_request()) {
                 return json_encode(array("y_count" => "$like"));
             }
         }
@@ -418,96 +417,96 @@ class Comments extends MY_Controller {
             $this->db->where('id', $comid);
             $this->db->update('comments', $data);
             $this->session->set_userdata('commentl' . $comid, 1);
-            if($this->input->is_ajax_request()) {
+            if ($this->input->is_ajax_request()) {
                 return json_encode(array("n_count" => "$disslike"));
             }
         }
     }
-    
-     public function _install()
-    {
-        
-    	if( $this->dx_auth->is_admin() == FALSE) exit;
+
+    public function _install() {
+
+        if ($this->dx_auth->is_admin() == FALSE)
+            exit;
 
         $this->load->dbforge();
 
         $fields = array(
             'id' => array(
-                         'type' => 'INT',
-                         'constraint' => 11,
-                         'auto_increment' => TRUE,
-                     ),
+                'type' => 'INT',
+                'constraint' => 11,
+                'auto_increment' => TRUE,
+            ),
             'module' => array(
-                         'type' => 'varchar',
-                         'constraint' => 25,
-                     ),
-            'user_id'=> array(
-                         'type' => 'INT',
-                         'constraint' => 11,
+                'type' => 'varchar',
+                'constraint' => 25,
             ),
-            'user_name'=> array(
-                         'type' => 'varchar',
-                         'constraint' => 50,
+            'user_id' => array(
+                'type' => 'INT',
+                'constraint' => 11,
             ),
-            'user_mail'=> array(
-                         'type' => 'varchar',
-                         'constraint' => 50,
+            'user_name' => array(
+                'type' => 'varchar',
+                'constraint' => 50,
             ),
-            'user_site'=> array(
-                         'type' => 'varchar',
-                         'constraint' => 250,
+            'user_mail' => array(
+                'type' => 'varchar',
+                'constraint' => 50,
             ),
-            'item_id'=> array(
-                         'type' => 'bigint',
-                         'constraint' => 11,
+            'user_site' => array(
+                'type' => 'varchar',
+                'constraint' => 250,
             ),
-            'text'=> array(
-                         'type' => 'varchar',
-                         'constraint' => 500,
+            'item_id' => array(
+                'type' => 'bigint',
+                'constraint' => 11,
             ),
-            'date'=> array(
-                         'type' => 'int',
-                         'constraint' => 11,
+            'text' => array(
+                'type' => 'varchar',
+                'constraint' => 500,
             ),
-            'status'=> array(
-                         'type' => 'smallint',
-                         'constraint' => 1,
+            'date' => array(
+                'type' => 'int',
+                'constraint' => 11,
             ),
-            'agent'=> array(
-                         'type' => 'varchar',
-                         'constraint' => 250,
+            'status' => array(
+                'type' => 'smallint',
+                'constraint' => 1,
             ),
-            'user_ip'=> array(
-                         'type' => 'varchar',
-                         'constraint' => 64,
+            'agent' => array(
+                'type' => 'varchar',
+                'constraint' => 250,
             ),
-            'rate'=> array(
-                         'type' => 'int',
-                         'constraint' => 11,
+            'user_ip' => array(
+                'type' => 'varchar',
+                'constraint' => 64,
             ),
-            'text_plus'=> array(
-                         'type' => 'varchar',
-                         'constraint' => 500,
+            'rate' => array(
+                'type' => 'int',
+                'constraint' => 11,
             ),
-            'text_minus'=> array(
-                         'type' => 'varchar',
-                         'constraint' => 500,
+            'text_plus' => array(
+                'type' => 'varchar',
+                'constraint' => 500,
             ),
-            'like'=> array(
-                         'type' => 'int',
-                         'constraint' => 11,
-                         'default' => 0,
+            'text_minus' => array(
+                'type' => 'varchar',
+                'constraint' => 500,
             ),
-            'disslike'=> array(
-                         'type' => 'int',
-                         'constraint' => 11,
-                         'default' => 0,
+            'like' => array(
+                'type' => 'int',
+                'constraint' => 11,
+                'default' => 0,
             ),
-            'parent'=> array(
-                         'type' => 'int',
-                         'constraint' => 11,
+            'disslike' => array(
+                'type' => 'int',
+                'constraint' => 11,
+                'default' => 0,
             ),
-                 );
+            'parent' => array(
+                'type' => 'int',
+                'constraint' => 11,
+            ),
+        );
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table('comments', TRUE);

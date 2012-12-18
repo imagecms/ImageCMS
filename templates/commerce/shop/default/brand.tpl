@@ -171,7 +171,7 @@
     {foreach $products as $product}
         {$discount = ShopCore::app()->SDiscountsManager->productDiscount($product->id)}
         {$style = productInCart($cart_data, $product->getId(), $product->firstVariant->getId(), $product->firstVariant->getStock())}
-        <li>
+        <li {if $product->getFirstVariant()->getStock() == 0}class="not_avail"{/if}>
             <div class="photo_block">
                 <a href="{shop_url('product/' . $product->url)}">
                     <img id="mim{echo $product->id}" src="{productImageUrl($product->mainModImage)}" alt="{echo ShopCore::encode($product->name)} - {echo $product->id}" />
@@ -246,7 +246,11 @@
                                             data-img="{echo $pv->smallimage}"
                                             data-vname="{echo $pv->name}"
                                             data-vnumber="{echo $pv->number}">
-                                        {echo $pv->name}
+                                        {if $pv->name != ''}
+                                            {echo $pv->name}
+                                        {else:}
+                                            {echo $product->name}
+                                        {/if}
                                     </option>
                                 {/foreach}
                             </select>
@@ -273,7 +277,7 @@
                                 <del class="price price-c_red f-s_12 price-c_9">{echo number_format($prices.main.price, 2, ".", "")} {$prices.main.symbol}</del>
 
                             {else:}
-                                {//echo number_format($prices.main.price, 2, ".", "")}
+                                {echo number_format($prices.main.price, 2, ".", "")}
                                 {$prThree = $prices.main.price}
                             {/if}
                             {echo number_format($prThree, 2, ".", "")} 
@@ -301,9 +305,9 @@
                                 <span class="js blue">{lang('s_slw')}</span>
                             </span>
                             <a href="/shop/wish_list" class="red" style="display:none;"><span class="icon-wish"></span>{lang('s_ilw')}</a>
-                        {else:}
+                            {else:}
                             <a href="/shop/wish_list" class="red"><span class="icon-wish"></span>{lang('s_ilw')}</a>
-                        {/if}
+                            {/if}
                     </span> 
                 </div>
 

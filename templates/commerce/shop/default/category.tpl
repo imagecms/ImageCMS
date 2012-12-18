@@ -164,10 +164,11 @@
                             {if $product->action == 1}
                                 <div class="promoblock action">{lang('s_saction')}</div>
                             {/if}
+                            
                             {if $product->hit == 1}
-                                {$discount = ShopCore::app()->SDiscountsManager->productDiscount($product->id)}
                                 <div class="promoblock hit">{lang('s_s_hit')}</div>
                             {/if}
+                                {$discount = ShopCore::app()->SDiscountsManager->productDiscount($product->id)}
                         </a>
                         <span class="ajax_refer_marg t-a_c">
                             <span data-prodid="{echo $product->id}" class="compare
@@ -228,7 +229,11 @@
                                                     data-img="{echo $pv->smallimage}"
                                                     data-vname="{echo $pv->name}"
                                                     data-vnumber="{echo $pv->number}">
-                                                {echo $pv->name}
+                                                {if $pv->name != ''}
+                                                    {echo $pv->name}
+                                                {else:}
+                                                    {echo $product->name}
+                                                {/if}
                                             </option>
                                         {/foreach}
                                     </select>
@@ -283,9 +288,9 @@
                                         <span class="js blue">{lang('s_slw')}</span>
                                     </span>
                                     <a href="/shop/wish_list" class="red" style="display:none;"><span class="icon-wish"></span>{lang('s_ilw')}</a>
-                                {else:}
+                                    {else:}
                                     <a href="/shop/wish_list" class="red"><span class="icon-wish"></span>{lang('s_ilw')}</a>
-                                {/if}
+                                    {/if}
                             </span> 
                         </div>
 
