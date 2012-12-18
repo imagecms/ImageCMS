@@ -33,6 +33,11 @@ class Backup extends MY_Controller {
 
     // Create backup file
     public function create() {
+        if (!file_exists('./application/backups/')) {
+            mkdir('./application/backups/');
+            chmod('./application/backups/', 0777);
+        }
+        
         if (!is_really_writable('./application/backups')) {
             showMessage(lang('ac_msg_dir'), false, 'r');
             exit;
