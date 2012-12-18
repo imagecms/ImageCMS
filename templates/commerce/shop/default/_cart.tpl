@@ -2,96 +2,96 @@
     <h1>{lang('orderind_shop_sg')}</h1>
     {if count($items) > 0}
         <form method="post" action="{site_url(uri_string())}" id="cartForm">
-            <div class="order-cleaner">
-                <table class="cleaner_table forCartProducts" cellspacing="0">
-<!--                    <caption>{lang('s_cart')}</caption>-->
-                    <colgroup>
-                        <col span="1" width="120">
-                        <col span="1" width="390">
-                        <col span="1" width="160">
-                        <col span="1" width="140">
-                        <col span="1" width="160">
-                        <col span="1" width="25">
-                    </colgroup>
-                    <tbody>
-                        {foreach $items as $key=>$item}
-                            {if $item.model instanceof SProducts}
-                                {$variants = $item.model->getProductVariants()}
-                                {foreach $variants as $v}
-                                    {if $v->getId() == $item.variantId}
-                                        {$variant = $v}
-                                    {/if}
-                                {/foreach}
-                                <tr>
-                                    <td>
-                                        <a href="{shop_url('product/' . $item.model->getUrl())}" class="photo_block">
-                                            <img src="{if count($variants)>1 && $variant->getSmallImage() != ''}{productImageUrl($variant->getsmallimage())}{else:}{productImageUrl($item.model->getMainModimage())}{/if}" alt="{echo ShopCore::encode($item.model->getName())}{if count($variants)>1} - {echo ShopCore::encode($variant->name)}{/if}"/>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}{if count($variants)>1} - {echo ShopCore::encode($variant->name)}{/if}</a>
-                                    </td>
-                                    <td>
-                                        <div class="price f-s_16 f_l">{echo $variant->getPrice()} <sub>{$CS}</sub>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="count">
-                                            <input name="products[{$key}]" type="text" value="{$item.quantity}"/>
-                                            <span class="plus_minus">
-                                                <button class="count_up inCartProducts">&#9650;</button>
-                                                <button class="count_down inCartProducts">&#9660;</button>
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="price f-s_18 f_l">{$summary = $variant->getPrice() * $item.quantity}
-                                            {echo $summary}
-                                            <sub>{$CS}</sub>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="{shop_url('cart/delete/'.$key)}" class="delete_text inCartProducts">&times;</a>
-                                    </td>
-                                </tr>
-                            {elseif($item.model instanceof ShopKit):}
+            <table class="cleaner_table forCartProducts" cellspacing="0">
+                <caption>{lang('s_cart')}</caption>
+                <colgroup>
+                    <col span="1" width="120">
+                    <col span="1" width="396">
+                    <col span="1" width="160">
+                    <col span="1" width="140">
+                    <col span="1" width="160">
+                    <col span="1" width="25">
+                </colgroup>
+                <tbody>
+                    {foreach $items as $key=>$item}
+                        {if $item.model instanceof SProducts}
+                            {$variants = $item.model->getProductVariants()}
+                            {foreach $variants as $v}
+                                {if $v->getId() == $item.variantId}
+                                    {$variant = $v}
+                                {/if}
+                            {/foreach}
+                            <tr>
+                                <td>
+                                    <a href="{shop_url('product/' . $item.model->getUrl())}" class="photo_block">
+                                        <img src="{if count($variants)>1 && $variant->getSmallImage() != ''}{productImageUrl($variant->getsmallimage())}{else:}{productImageUrl($item.model->getMainModimage())}{/if}" alt="{echo ShopCore::encode($item.model->getName())}{if count($variants)>1} - {echo ShopCore::encode($variant->name)}{/if}"/>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}{if count($variants)>1} - {echo ShopCore::encode($variant->name)}{/if}</a>
+                                </td>
+                                <td>
+                                    <div class="price f-s_16 f_l">{echo $variant->getPrice()} <sub>{$CS}</sub>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="count">
+                                        <input name="products[{$key}]" type="text" value="{$item.quantity}"/>
+                                        <span class="plus_minus">
+                                            <button class="count_up inCartProducts">&#9650;</button>
+                                            <button class="count_down inCartProducts">&#9660;</button>
+                                        </span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="price f-s_18 f_l">{$summary = $variant->getPrice() * $item.quantity}
+                                        {echo $summary}
+                                        <sub>{$CS}</sub>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="{shop_url('cart/delete/'.$key)}" class="delete_text inCartProducts">&times;</a>
+                                </td>
+                            </tr>
+                        {elseif($item.model instanceof ShopKit):}
+                            <tr>
+                                <td style="width:90px;padding:2px;">
+
+                                    {if $item.model->getMainProduct()->getMainImage()}
+                                        <a href="{shop_url('product/' . $item.model->getProductId())}" class="photo_block">
+                                            <img src="{productImageUrl($item.model->getMainProduct()->getId() . '_main.jpg')}" border="0"  width="100" />
+                                        </a>                                        
+                                    {/if}                                   
+                                </td>
+                                <td>
+                                    <a href="{shop_url('product/' . $item.model->getMainProduct()->getUrl())}">{echo ShopCore::encode($item.model->getMainProduct()->getName())}</a> {echo ShopCore::encode($item.model->getMainProduct()->firstVariant->getName())}
+                                    <br /><span style="font-size:16px;">{echo $item.model->getMainProduct()->firstVariant->toCurrency()} {$CS}</span>
+                                </td>
+                                <td rowspan="{echo $item.model->countProducts()}">
+                                    {//echo ShopCore::app()->SCurrencyHelper->convert($item.price)} {//$CS}                              
+                                    {echo $item.price} {$CS}                              
+                                </td>
+                                <td rowspan="{echo $item.model->countProducts()}">
+                                    <div class="count">
+                                        <input type="text" name="products[{$key}]" value="{$item.quantity}">
+                                        <span class="plus_minus">
+                                            <button class="count_up inCartProducts">&#9650;</button>
+                                            <button class="count_down inCartProducts">&#9660;</button>
+                                        </span>
+                                    </div>
+                                </td>
+                                <td rowspan="{echo $item.model->countProducts()}">
+                                    {//echo $summary = ShopCore::app()->SCurrencyHelper->convert($item.totalAmount)} {//$CS}
+                                    {echo $summary = $item.totalAmount} {$CS}
+                                </td>
+                                <td rowspan="{echo $item.model->countProducts()}"><a href="{shop_url('cart/delete/' . $key)}" rel="nofollow" class="delete_text inCartProducts">&times;</a></td>
+                            </tr>
+                            {foreach $item.model->getShopKitProducts() as $shopKitProduct}
+                                {$ap = $shopKitProduct->getSProducts()}
+                                {$ap->setLocale(ShopController::getCurrentLocale())}
+                                {$kitFirstVariant = $ap->getKitFirstVariant($shopKitProduct)}
                                 <tr>
                                     <td style="width:90px;padding:2px;">
-
-                                        {if $item.model->getMainProduct()->getMainImage()}
-                                            <a href="{shop_url('product/' . $item.model->getProductId())}" class="photo_block">
-                                                <img src="{productImageUrl($item.model->getMainProduct()->getId() . '_main.jpg')}" border="0"  width="100" />
-                                            </a>                                        
-                                        {/if}                                   
-                                    </td>
-                                    <td>
-                                        <a href="{shop_url('product/' . $item.model->getMainProduct()->getUrl())}">{echo ShopCore::encode($item.model->getMainProduct()->getName())}</a> {echo ShopCore::encode($item.model->getMainProduct()->firstVariant->getName())}
-                                        <br /><span style="font-size:16px;">{echo $item.model->getMainProduct()->firstVariant->toCurrency()} {$CS}</span>
-                                    </td>
-                                    <td rowspan="{echo $item.model->countProducts()}">
-                                        {//echo ShopCore::app()->SCurrencyHelper->convert($item.price)} {//$CS}                              
-                                        {echo $item.price} {$CS}                              
-                                    </td>
-                                    <td rowspan="{echo $item.model->countProducts()}">
-                                        <div class="count">
-                                            <input type="text" name="products[{$key}]" value="{$item.quantity}">
-                                            <span class="plus_minus">
-                                                <button class="count_up inCartProducts">&#9650;</button>
-                                                <button class="count_down inCartProducts">&#9660;</button>
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td rowspan="{echo $item.model->countProducts()}">
-                                        {echo $summary = ShopCore::app()->SCurrencyHelper->convert($item.totalAmount)} {$CS}
-                                    </td>
-                                    <td rowspan="{echo $item.model->countProducts()}"><a href="{shop_url('cart/delete/' . $key)}" rel="nofollow" class="delete_text inCartProducts">&times;</a></td>
-                                </tr>
-                                {foreach $item.model->getShopKitProducts() as $shopKitProduct}
-                                    {$ap = $shopKitProduct->getSProducts()}
-                                    {$ap->setLocale(ShopController::getCurrentLocale())}
-                                    {$kitFirstVariant = $ap->getKitFirstVariant($shopKitProduct)}
-                                    <tr>
-                                        <td style="width:90px;padding:2px;">
                                             {if $ap->getMainImage()}
                                                 <a href="{shop_url('product/' . $ap->getId())}" class="photo_block">
                                                     <img src="{productImageUrl($ap->getId() . '_main.jpg')}" border="0" width="100" alt="{echo ShopCore::encode($ap->getName())}" />                                                
@@ -115,32 +115,30 @@
                         {$total += $summary}
                         {$total_nc += $summary_nextc}
                     {/foreach}
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="6">
-                                <div class="foot_cleaner">
-                                    <div class="f_r">
-                                        {if $NextCS == $CS}
-                                            <div class="price f-s_26_lh_50 f_l">
-                                            {else:}
-                                                <div class="price f-s_26 f_l">
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="6">
+                            <div class="foot_cleaner">
+                                <div class="f_r">
+                                        <div class="price f-s_26_lh_50 f_l">
+                                            <div class="price f-s_26 f_l">
+                                                {if $total < $item.delivery_free_from}
+                                                    {$total += $item.delivery_price}
                                                 {/if}
-                                                <div class="price f-s_26 f_l">
-                                                    {if $total < $item.delivery_free_from}
-                                                        {$total += $item.delivery_price}
-                                                    {/if}
-                                                    {if isset($item.gift_cert_price)}
-                                                        {$total -= $item.gift_cert_price}
-                                                    {/if}
-                                                    {echo $total}
-                                                    <sub>{$CS}</sub>
+                                                {if isset($item.gift_cert_price)}
+                                                    {$cprice = $item.gift_cert_price}
+                                                    {$item.gift_cert_price = $cprice}
+                                                    {$total -= $item.gift_cert_price}
+                                                {/if}
+                                                {echo $total}
+                                                <sub>{$CS}</sub>
                                                 {if $item.delivery_price > 0}<span style="font-size:16px;">{lang('s_delivery')}: {echo $item.delivery_price} {$CS}</span>{/if}
-                                            {if $item.gift_cert_price > 0}<span style="font-size:16px;">{lang('s_do_you_syrp_pr')}: {echo $item.gift_cert_price} {$CS}</span>{/if}
+                                                {if $item.gift_cert_price > 0}<span style="font-size:16px;">{lang('s_do_you_syrp_pr')}: {echo $item.gift_cert_price} {$CS}</span>{/if}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                     </td>
                 </tr>
             </tfoot>
@@ -250,8 +248,8 @@
     </div>
     <div class="foot_cleaner c_b result">
         <span class="v-a_m">
-            <span class="c_9 f-s_16">(Сумма товаров: <span class="b">{echo $total}</span> {$CS} +   Доставка: <span class="b">{echo $deliveryMethod->getPrice()}</span> {$CS})</span>
-            <span class="c_3 f-s_18">&nbsp;&nbsp;Сумма товаров: <span class="f-s_26 b">{echo $total + $deliveryMethod->getPrice()}</span> {$CS}</span>
+            <span class="c_9 f-s_16">(Сумма товаров: <span class="b">{$vprices.main.price}</span> {$vprices.main.symbol} +   Доставка: <span class="b">{echo $deliveryMethod->getPrice()}</span> руб)</span>
+            <span class="c_3 f-s_18">&nbsp;&nbsp;Сумма товаров: <span class="f-s_26 b">{echo $vprices.main.price + $deliveryMethod->getPrice()}</span> грн.</span>
         </span>
         <div class="buttons button_big_blue v-a_m">
             <input type="submit" value="{lang('s_c_of_z_')}" id="orderSubmit" data-logged="{if ShopCore::$ci->dx_auth->is_logged_in()===true}1{else:}0{/if}"/>

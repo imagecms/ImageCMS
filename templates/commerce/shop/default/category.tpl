@@ -23,7 +23,6 @@
                     <ul>
                         {foreach getPromoBlock('hot', 3, $product->category_id) as $hotProduct}
                             {$discount = ShopCore::app()->SDiscountsManager->productDiscount($hotProduct->id)}
-                            {$hot_prices = currency_convert($hotProduct->firstVariant->getPrice(), $hotProduct->firstVariant->getCurrency())}
                             <li class="smallest_item">
                                 <div class="photo_block">
                                     <a href="{shop_url('product/' . $hotProduct->getUrl())}">
@@ -35,19 +34,15 @@
                                     <div class="buy">
                                         <div class="price f-s_14">
                                             {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                                {$prOne = $hot_prices.main.price}
-                                                {$prTwo = $hot_prices.main.price}
+                                                {$prOne = $hotProduct->firstVariant->getPrice()}
+                                                {$prTwo = $hotProduct->firstVariant->getPrice()}
                                                 {$prThree = $prOne - $prTwo / 100 * $discount}
-                                                <del class="price price-c_red f-s_12 price-c_9">{echo number_format($hot_prices.main.price, 2, ".", "")} {$hot_prices.main.symbol}</del><br /> 
+                                                <del class="price price-c_red f-s_12 price-c_9">{echo number_format($hotProduct->firstVariant->getPrice(), 2, ".", "")} {$CS}</del><br /> 
                                             {else:}
-                                                <div class="price f-s_14">{echo number_format($hot_prices.main.price, 2, ".", "")}
+                                                <div class="price f-s_14">{$prThree = number_format($hotProduct->firstVariant->getPrice(), 2, ".", "")}
                                                 {/if}
                                                 {echo number_format($prThree, 2, ".", "")} 
-                                                <sub>{$hot_prices.main.symbol}</sub>
-
-                                                {if $NextCS != $CS AND empty($discount)}
-                                                    <span class="d_b">{echo number_format($hot_prices.second.price, 2, ".", "")} {$hot_prices.second.symbol}</span>
-                                                {/if}
+                                                <sub>{$CS}</sub>
                                             </div>
                                         </div>
                                     </div>
@@ -77,20 +72,15 @@
                                     <div class="buy">
                                         <div class="price f-s_14">
                                             {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                                {$prOne = $action_prices.main.price}
-                                                {$prTwo = $action_prices.main.price}
+                                                {$prOne = $hotProduct->firstVariant->getPrice()}
+                                                {$prTwo = $hotProduct->firstVariant->getPrice()}
                                                 {$prThree = $prOne - $prTwo / 100 * $discount}
-                                                <del class="price price-c_red f-s_12 price-c_9">{echo number_format($action_prices.main.price, 2, ".", "")} {$action_prices.main.symbol}</del><br /> 
+                                                <del class="price price-c_red f-s_12 price-c_9">{echo number_format($hotProduct->firstVariant->getPrice(), 2, ".", "")} {$CS}</del><br /> 
                                             {else:}
-                                                <div class="price f-s_14">{echo number_format($action_prices.main.price, 2, ".", "")}
+                                                <div class="price f-s_14">{$prThree = number_format($hotProduct->firstVariant->getPrice(), 2, ".", "")}
                                                 {/if}
                                                 {echo number_format($prThree, 2, ".", "")} 
-                                                <sub>{$action_prices.main.symbol}</sub>
-
-                                                {if $NextCS != $CS AND empty($discount)}
-                                                    <span class="d_b">{echo number_format($action_prices.second.price, 2, ".", "")} {$action_prices.second.symbol}</span>
-                                                {/if}
-
+                                                <sub>{$CS}</sub>
                                             </div>
                                         </div>
                                     </div>
@@ -152,7 +142,7 @@
             <!--  Render produts list   -->
             {foreach $products as $product}
                 {$style = productInCart($cart_data, (int)$product->id, (int)$product->variants[0]->id, (int)$product->variants[0]->stock)}
-                {$prices = currency_convert($product->variants[0]->price, $product->variants[0]->currency)}
+                {$discount = ShopCore::app()->SDiscountsManager->productDiscount($product->id)}
                 <li {if $product->variants[0]->stock == 0}class="not_avail"{/if}>
                     <div class="photo_block">
                         <a href="{shop_url('product/' . $product->url)}">
@@ -218,13 +208,10 @@
                                 {if count($product->variants)>1}
                                     <select class="m-l_10" name="selectVar">
                                         {foreach $product->variants as $pv}
-                                            {$variant_prices = currency_convert($pv->price, $pv->currency)}
                                             <option class="selectVar"
                                                     value="{echo $pv->id}"
                                                     data-st="{echo $pv->stock}"
-                                                    data-cs="{$variant_prices.second.symbol}"
-                                                    data-spr="{echo number_format($variant_prices.second.price, 2, ".", "")}"
-                                                    data-pr="{echo number_format($variant_prices.main.price, 2 , ".", "")}"
+                                                    data-pr="{echo number_format($pv->price, 2 , ".", "")}"
                                                     data-pid="{echo $product->id}"
                                                     data-img="{echo $pv->smallimage}"
                                                     data-vname="{echo $pv->name}"
@@ -243,7 +230,7 @@
                         <div class="buy">
                             <div class="price f-s_18 d_b">
                                 {if (float)$product->old_price > 0}
-                                    {if $product->old_price > $product->price_in_main}
+                                    {if $product->old_price > $product->price}
                                         <div>
                                             <del class="price f-s_12 price-c_9" style="margin-top: 1px;">
                                                 {echo number_format($product->old_price, 2, ".", "")}
@@ -254,20 +241,15 @@
                                 {/if}
                                 <div id="pricem{echo $product->id}">
                                     {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                        {$prOne = $prices.main.price}
-                                        {$prTwo = $prices.main.price}
+                                        {$prOne = $product->variants[0]->price}
+                                        {$prTwo = $product->variants[0]->price}
                                         {$prThree = $prOne - $prTwo / 100 * $discount}
-                                        <del class="price price-c_red f-s_12 price-c_9">{echo number_format($prices.main.price, 2, ".", "")} {$prices.main.symbol}</del>
-
+                                        <del class="price price-c_red f-s_12 price-c_9">{echo number_format($product->variants[0]->price, 2, ".", "")} {$CS}</del>
                                     {else:}
-                                        {//echo number_format($prices.main.price, 2, ".", "")}
-                                        {$prThree = $prices.main.price}
+                                        {$prThree = $product->variants[0]->price}
                                     {/if}
                                     {echo number_format($prThree, 2, ".", "")} 
-                                    <sub>{$prices.main.symbol}</sub>
-                                    {if $NextCS != $CS AND empty($discount)}
-                                        <span class="d_b">{echo number_format($prices.second.price, 2, ".", "")} {$prices.second.symbol}</span>
-                                    {/if}
+                                    <sub>{$CS}</sub>
                                 </div>
                             </div>
                             <div id="p{echo $product->id}" class="{$style.class} buttons">
@@ -308,6 +290,7 @@
             <div class="t-a_c">{$pagination}</div>
         </div>
     </div>
+    <!--   Right sidebar     -->
 </div>
 </div>
 </div>
