@@ -31,6 +31,7 @@ a.gray:hover, .js.gray:hover, .reset:hover, .news > .title a:hover, .menu_fiter 
 h1{font-size: 24px !important;font-weight: normal;}
 .text p{color: #666;line-height: 20px;margin: 10px 0;}
 .center{width: 1000px; margin: auto}
+.c_d, .c_d span{cursor: default !important;border: 0;color: #5c5c5c !important;}
 
 [class*="icon-"], .frame-item-menu > ul > li.hasSub > a:after, .promoblock{display: inline-block;font-size: 0;line-height: 0;position: relative;background: url("../images/sprite.png") no-repeat;}
 .icon-cart{width: 15px;height: 16px;background-position: -20px 0;margin-right: 6px;top: 4px;}
@@ -83,6 +84,7 @@ img[align=left]{margin-right:18px;float: left;}
 .m-t_29{margin-top: 29px;}
 .m-t_10{margin-top: 10px;}
 .m-b_29{margin-bottom: 29px;}
+.m-b_5{margin-bottom: 5px;}
 .p-t_19{padding-top: 19px;}
 .p-l_0{padding-left: 0!important;}
 .di_b{display: inline-block;}

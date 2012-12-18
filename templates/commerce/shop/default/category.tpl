@@ -127,9 +127,9 @@
                 {if isset($_GET['lp'])}<input type="hidden" name="lp" value="{echo $_GET['lp']}">{/if}
             {if isset($_GET['rp'])}<input type="hidden" name="rp" value="{echo $_GET['rp']}">{/if}
         </form>
-        <ul>
+        <ul>            
             {if (int)$pageNumber == 1}
-                {if $model->description != ''}
+                {if trim($model->description)}
                     <li>
                         <div class="box_title">
                             <span class="f-s_18">Описание</span>

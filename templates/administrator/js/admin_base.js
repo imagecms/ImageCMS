@@ -714,7 +714,7 @@ $(document).ready(function() {
 
     $('#addVariant').live('click', function() {
         var clonedVarTr = $('.variantRowSample').find('tr').clone();
-        var randId = Math.ceil( Math.random()* 1000000);
+        var randId = Math.ceil(Math.random() * 1000000);
         var countVarRows = $('#variantHolder').children('tr').length;
         clonedVarTr.find('.random_id').attr('value', randId);
         clonedVarTr.find('[name="variants[mainPhoto][]"]').attr('name', 'variants[mainPhoto][' + randId + ']');
@@ -773,7 +773,7 @@ $(document).ready(function() {
         $('.warehouse_line').clone().removeClass().attr('id', 'warehouse_line' + Math.floor(1000 * Math.random())).appendTo($('.warehouses_container'));
     });
 
-    $('.openDlg').live('click', function(){
+    $('.openDlg').live('click', function() {
         $('#addPictures').trigger('click');
     });
 
@@ -784,50 +784,50 @@ function change_status(hrefFn) {
         $('.notifications').append(data)
     })
 }
-function export_csv(){
-    $('.export').die('click').live('click', function(){ 
+function export_csv() {
+    $('.export').die('click').live('click', function() {
 
         if ($('input[name=export]:checked').val() == 'csv') {
-            
+
             $('#exportUsers').submit();
-            
+
             $('#loading').hide();
             return false;
         }
     });
 }
 
-$(document).ajaxComplete( function(event, XHR, ajaxOptions){
+$(document).ajaxComplete(function(event, XHR, ajaxOptions) {
     export_csv();
 });
 
-$(document).ready(function(){
+$(document).ready(function() {
     export_csv();
 
-    $('#role_id').live('change', function(){
+    $('#role_id').live('change', function() {
         var $roleId = $(this).find('option:selected').val();
-        
-        $.ajax({            
+
+        $.ajax({
             dataType: "html",
             headers: {
-                'X-PJAX':'X-PJAX'
+                'X-PJAX': 'X-PJAX'
             },
-            url: '/admin/components/cp/user_manager/getRolesTable/'+$roleId,
+            url: '/admin/components/cp/user_manager/getRolesTable/' + $roleId,
             success: function(msg) {
-                $('#privilege').html(msg);                
+                $('#privilege').html(msg);
             }
         });
     })
 
-    
+
     if ($('select#type_select'))
-        $('select#type_select').live('change', function(){
+        $('select#type_select').live('change', function() {
             if ($(this).val() != '2')
                 $('#possVal').slideUp(200);
             else
                 $('#possVal').slideDown(200);
         })
-    
+
 
     $('.clearCashe').live('click', function() {
         $this = $(this);
@@ -897,7 +897,6 @@ $(document).ready(function(){
 
 
 var delete_function = new Object({
-
     deleteFunction: function() {
         if ($('#banner_del').hasClass('disabled')) {
             return false;
@@ -933,7 +932,7 @@ var delete_function = new Object({
             return false;
         }
         $('.modal_del').modal();
-        
+
     },
     deleteFunctionConfirm: function(href)
     {
@@ -963,31 +962,29 @@ function save_positions_variant(url) {
         arr.push($(this).val());
     });
     $.post(
-        url,
-        {
-            positions: arr
-        },
-        function(data) {
-            $('.notifications').append(data);
-        });
-        
+            url,
+            {
+                positions: arr
+            },
+    function(data) {
+        $('.notifications').append(data);
+    });
+
 }
 
 $(".save_positions_variant").live("sortstop", function(event, ui) {
     var url = $(this).attr('data-url');
     save_positions_variant(url);
 });
-    
-    
-var delete_functionS = new Object({
 
+
+var delete_functionS = new Object({
     deleteFunctionS: function() {
         if ($('#group_del').hasClass('disabled')) {
             return false;
         }
         $('.modal_dels').modal();
     },
-    
     deleteFunctionConfirmS: function(href)
     {
         var ids = new Array();
@@ -1057,91 +1054,88 @@ var delete_currency_function = new Object({
 });
 
 var pagesAdmin = new Object({
-    quickAddCategory:function(){
+    quickAddCategory: function() {
         if ($('#fast_add_form').valid())
-        $('#fast_add_form').ajaxSubmit({
-            success: function(responseText){
-                responseObj = JSON.parse(responseText);
-                $('.modal').modal('hide');
-                if (responseObj.data)
-                {
-                    showMessage('','Категория добавлена успешно');
-                    $('#category_selectbox').load('/admin/categories/update_fast_block/'+responseObj.data);
+            $('#fast_add_form').ajaxSubmit({
+                success: function(responseText) {
+                    responseObj = JSON.parse(responseText);
+                    $('.modal').modal('hide');
+                    if (responseObj.data)
+                    {
+                        showMessage('', 'Категория добавлена успешно');
+                        $('#category_selectbox').load('/admin/categories/update_fast_block/' + responseObj.data);
+                    }
+                    else
+                        $('.notifications').append(responseText);
                 }
-                else
-                    $('.notifications').append(responseText);
-            }
             });
-    return false;
+        return false;
     },
-    loadCFAddPage:function()
+    loadCFAddPage: function()
     {
         var categoryId = $("#category_selectbox").val();
-        
-        $.ajax({url:"/admin/components/cp/cfcm/form_from_category_group/" + categoryId + "/0/page",
-                type: 'GET',
-                headers:{
-                    'X-PJAX': 'X-PJAX'
-                },
-                complete: function(data){
-                    $("#cfcm_fields_block").append(data.responseText);
-                }
-                });
+
+        $.ajax({url: "/admin/components/cp/cfcm/form_from_category_group/" + categoryId + "/0/page",
+            type: 'GET',
+            headers: {
+                'X-PJAX': 'X-PJAX'
+            },
+            complete: function(data) {
+                $("#cfcm_fields_block").append(data.responseText);
+            }
+        });
     },
-    loadCFEditPage:function()
+    loadCFEditPage: function()
     {
         var updatePageId = $('#edit_page_form').data('pageid');
         var categoryId = $("#category_selectbox").val();
-        $.ajax({url:"/admin/components/cp/cfcm/form_from_category_group/" + categoryId + "/" + updatePageId + "/page",
-                type: 'GET',
-                headers:{
-                    'X-PJAX': 'X-PJAX'
-                },
-                complete: function(data){
-                    $("#cfcm_fields_block").append(data.responseText);
-                }
-            });
+        $.ajax({url: "/admin/components/cp/cfcm/form_from_category_group/" + categoryId + "/" + updatePageId + "/page",
+            type: 'GET',
+            headers: {
+                'X-PJAX': 'X-PJAX'
+            },
+            complete: function(data) {
+                $("#cfcm_fields_block").append(data.responseText);
+            }
+        });
     },
-    confirmListAction:function(actionURL)
+    confirmListAction: function(actionURL)
     {
         //event.preventDefault();
         var pagesArray = {};
         //var actionURL = $(this).attr('url');
         var checkedPages = $('.pages-table > tbody').children('tr').children('td.t-a_c').find('input:checked');
-        
-        checkedPages.each(function(){
-            pagesArray[$(this).attr('data-id')] = 'chkb_'+$(this).attr('data-id');
+
+        checkedPages.each(function() {
+            pagesArray[$(this).attr('data-id')] = 'chkb_' + $(this).attr('data-id');
         });
-        
+
         if (checkedPages.size() < 1)
             return false;
-        
+
         var newCat = false;
         if ($('#CopyMoveCategorySelect'))
             newCat = $('#CopyMoveCategorySelect').val();
-            
-        $.post(actionURL, {pages:pagesArray, new_cat:newCat}, function(data){
+
+        $.post(actionURL, {pages: pagesArray, new_cat: newCat}, function(data) {
             $('.modal').modal('hide');
             $('.notifications').append(data);
-            
-            });
+
+        });
     },
-    
-    updDialogMove:function()
+    updDialogMove: function()
     {
         $('#confirmMove').attr('onclick', "pagesAdmin.confirmListAction('/admin/pages/move_pages/move')");
     },
-    
-    updDialogCopy:function()
+    updDialogCopy: function()
     {
         $('#confirmMove').attr('onclick', "pagesAdmin.confirmListAction('/admin/pages/move_pages/copy')");
     },
-    
-    initialize:function()
+    initialize: function()
     {
         if ($('#edit_page_form').length)
             this.loadCFEditPage();
-            
+
         if ($('#add_page_form').length)
             this.loadCFAddPage();
     }
@@ -1149,17 +1143,17 @@ var pagesAdmin = new Object({
 
 
 var CFAdmin = new Object({
-        deleteOne:function(label){
-            $.post('/admin/components/cp/cfcm/delete_field/'+label, {}, function(data){
-                $('.notifications').append(data);
-            });
-        },
-        deleteOneGroup:function(id){
-            $.post('/admin/components/cp/cfcm/delete_group/'+id, {}, function(data){
-                $('.notifications').append(data);
-            });
-        }, 
-    });
+    deleteOne: function(label) {
+        $.post('/admin/components/cp/cfcm/delete_field/' + label, {}, function(data) {
+            $('.notifications').append(data);
+        });
+    },
+    deleteOneGroup: function(id) {
+        $.post('/admin/components/cp/cfcm/delete_group/' + id, {}, function(data) {
+            $('.notifications').append(data);
+        });
+    },
+});
 
 
 pagesAdmin.initialize();
@@ -1334,90 +1328,4 @@ $(document).ready(function() {
         });
     });
 
-});
-
-
-$(document).ready(function() {
-    $('#importcsvfile').on('change', function() {
-        var selector = $(this).closest('form');
-        $chekedFile = $('input[name=csvfile]:checked').val();
-        selector.append('<input type="hidden" name="csvfile" value="' + $chekedFile + '"/>');
-        $(selector).validate()
-        if ($(selector).valid()) {
-            var options = {
-                success: function(data) {
-                    try {
-                        var obj = JSON.parse(data);
-                        if (obj.error)
-                            showMessage('Ошибка', obj.error);
-                        if (obj.success == true) {
-                            showMessage('Успешно', 'Файл загружен. Слот ' + $chekedFile);
-                            if (obj.filesInfo.product_csv_1csv != '')
-                                $('span[data-file=product_csv_1csv]').text(obj.filesInfo.product_csv_1csv);
-                            if (obj.filesInfo.product_csv_2csv != '')
-                                $('span[data-file=product_csv_2csv]').text(obj.filesInfo.product_csv_2csv);
-                            if (obj.filesInfo.product_csv_3csv != '')
-                                $('span[data-file=product_csv_3csv]').text(obj.filesInfo.product_csv_3csv);
-                            loadCsvAttributes($chekedFile);
-                        }
-                    } catch (e) {
-                    }
-                    return true;
-                }
-            };
-            $(selector).ajaxSubmit(options);
-        }
-    });
-
-    $('input[name=csvfile]').on('change', function() {
-        loadCsvAttributes($(this).val());
-    })
-
-    $('#makeImportForm').on('submit', function() {
-        $chekedFile = $('input[name=csvfile]:checked').val();
-
-        $names = '';
-        $('.attrnameHolder').each(function(index) {
-            $names = $names + $(this).attr('data-attrnames') + ',';
-        })
-        $('input[type=hidden].attributes').val($names);
-        $('input[type=hidden].slothidden').val($chekedFile);
-
-        $.ajax({
-            url: "/admin/components/run/shop/system/import",
-            type: 'post',
-            data: $(this).serialize(),
-            success: function(data) {
-                showMessage('', data);
-            }
-        });
-
-        console.log($('input[type=hidden].attributes').val());
-        console.log($chekedFile);
-        return false;
-    });
-    $('.dropdown-attr a').live('click', function() {
-        $startPoint = $(this).closest('div');
-        $name = $(this).text();
-        $attname = $(this).attr('data-attname');
-        $names = '';
-        $startPoint
-                .find('.attrnameHolder')
-                .text($name)
-                .attr('data-attrnames', $attname)
-                .end()
-                .find('button')
-                .attr('title', $name);
-    })
-    function loadCsvAttributes(val)
-    {
-        $.ajax({
-            url: "/admin/components/run/shop/system/getAttributes",
-            type: 'post',
-            data: 'csvfile=' + val,
-            success: function(data) {
-                $('.attrHandler').html(data);
-            }
-        });
-    }
 });
