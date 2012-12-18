@@ -64,9 +64,7 @@
                 </span>
                 <div class="m-t_10">{echo $CI->load->module('share')->_make_share_form()}</div>
             </div>
-            {$prices = currency_convert($model->firstVariant->getPrice(), $model->firstVariant->getCurrency())}
             {$style = productInCartI($cart_data, $model->getId(), $model->firstVariant->getId(), $model->firstVariant->getStock())}
-
             <!-- Fancybox additional blocks -->
             <div id="fancyboxAdditionalContent" style="display: none;">
                 <div class="price f-s_26">
@@ -104,58 +102,36 @@
                         {/if}
                         <span id="pricem{echo $model->getId()}">   
                             {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                {$prOne = $prices.main.price}
-                                {$prTwo = $prices.main.price}
+                                {$prOne = $model->firstVariant->getPrice()}
+                                {$prTwo = $model->firstVariant->getPrice()}
                                 {$prThree = $prOne - $prTwo / 100 * $discount}
-                                <del class="price price-c_red f-s_12 price-c_9">{echo $prices.main.price} {$prices.main.symbol}</del> 
+                                <del class="price price-c_red f-s_12 price-c_9">{echo $model->firstVariant->getPrice()} {$CS}</del> 
                             {else:}
-                                {$prThree = $prices.main.price}
+                                {$prThree = $model->firstVariant->getPrice()}
                             {/if}
-                            {echo money_format('%i',$prThree)} {$prices.main.symbol}
+                            {echo money_format('%i',$prThree)} {$CS}
                         </span>
-                        {/*}<span id="prices{echo $model->getId()}">
-                            {if $NextCS != $CS}
-                                {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() == true}
-                                    {$prOne = $prices.second.price}
-                                    {$prTwo = $prices.second.price}                                    
-                                    {$prThree = $prOne - $prTwo / 100 * $discount}
-
-                                    <del class="price price-c_red f-s_12 price-c_9">{echo $prices.second.price} {echo $prices.second.symbol}</del>
-                                {else:}
-
-                                    {$prThree = $prices.second.price}
-                                {/if}
-
-                                {echo money_format('%i',$prThree)} {echo $prices.second.symbol}
-
-                            {/if}
-                        </span>{ */}
                     </div>
                 </div>
 
                 <div class="buy clearfix">
                     {if count($model->getProductVariants()) > 1}
                         Выбор варианта:</br>
-
                         {foreach $model->getProductVariants() as $key => $pv}
-
-                            {$var_prices = currency_convert($pv->getPrice(), $pv->getCurrency())}
                             <input type="radio" class="selectVar" id="sVar{echo $pv->getId()}" name="selectVar" {if $model->firstVariant->getId() == $pv->getId()}checked="checked"{/if}
                                    value="{echo $pv->getId()}" 
                                    data-pp="1" 
                                    data-st="{echo $pv->getStock()}" 
-                                   data-cs="{echo $var_prices.second.symbol}" 
-                                   data-spr="{echo $var_prices.second.price}" 
-                                   data-pr="{echo $var_prices.main.price}" 
+                                   data-pr="{echo $pv->getPrice()}" 
                                    data-pid="{echo $model->getId()}" 
                                    data-img="{echo $pv->getmainimage()}" 
                                    data-vname="{echo $pv->getName()}" 
                                    data-vnumber="{echo $pv->getNumber()}"/>
                             <label for="sVar{echo $pv->getId()}">
                                 {if $pv->getName() != ''}
-                                    <i>{echo $pv->getName()}</i><b>: {echo $var_prices.main.price}</b> {$var_prices.main.symbol}
+                                    <i>{echo $pv->getName()}</i><b>: {echo $pv->getPrice()}</b> {$CS}
                                 {else:}
-                                    <i>{echo $model->getName()}</i><b>: {echo $var_prices.main.price}</b> {$var_prices.main.symbol}
+                                    <i>{echo $model->getName()}</i><b>: {echo $pv->getPrice()}</b> {$CS}
                                 {/if}
                             </label></br>
                         {/foreach}
@@ -219,9 +195,9 @@
                 {if $model->getShortDescription() != ''}
                     <p class="c_b">{echo $model->getShortDescription()}</p>
                 {/if}
-                {if ShopCore::app()->SPropertiesRenderer->renderPropertiesInline($model)!=''}
+                {if ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($model->getId()) != ''}
                     <div class="title_18 m-t_20">Свойства</div>
-                    <p>{echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInline($model)}</p>
+                    <p>{echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($model->getId())}</p>
                 {/if}
 
                 <div>
@@ -303,22 +279,15 @@
                                                     <div class="price f-s_16 f_l">
 
                                                         {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                                            {$prOne = $rel_prod.main.price}
-                                                            {$prTwo = $rel_prod.main.price}
+                                                            {$prOne = $p->firstvariant->getPrice()}
+                                                            {$prTwo = $p->firstvariant->getPrice()}
                                                             {$prThree = $prOne - $prTwo / 100 * $discount}
-                                                            <del class="price price-c_red f-s_12 price-c_9">{echo $rel_prod.main.price} {$rel_prod.main.symbol}</del><br /> 
+                                                            <del class="price price-c_red f-s_12 price-c_9">{echo $p->firstvariant->getPrice()} {$CS}</del><br /> 
                                                         {else:}
-                                                            {$prThree = $rel_prod.main.price}
+                                                            {$prThree = $p->firstvariant->getPrice()}
                                                         {/if}
                                                         {echo $prThree} 
-                                                        <sub>{$rel_prod.main.symbol}</sub>
-
-                                                        {if $NextCS != $CS AND empty($discount)}
-                                                            <span>{echo $rel_prod.second.price} {$rel_prod.second.symbol}</span> 
-                                                        {/if}
-
-
-
+                                                        <sub>{$CS}</sub>
                                                     </div>
                                                     <div class="{$style.class} buttons"><a class="{$style.identif}" href="{$style.link}" data-varid="{echo $p->firstVariant->getId()}" data-prodid="{echo $p->getId()}" >{$style.message}</a></div> 
                                                 </div>
