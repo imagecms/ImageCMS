@@ -64,7 +64,7 @@
             <div class="padding_filter">
                 {if count($brands)>0}
                     <div class="check_frame">
-                        <div class="title">Брэнды в категории</div>
+                        <div class="title">Бренды в категории</div>
                         <div class="clearfix check_form">
                             {foreach $brands as $br}
                                 <label>

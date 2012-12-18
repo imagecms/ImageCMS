@@ -40,7 +40,6 @@
                         </div>
                     </td>
                     <td>
-
                         <div class="price f-s_18 f_l">
                             {if $item.discount}
                                 <div class="price f-s_12 f_l">Скидка {echo $item.discount}%</div><br /> 
@@ -53,6 +52,7 @@
                                 {echo $summary}
                                 <sub>{$CS}</sub>
                             {/if}
+                            
                         </div>
                     </td>
                     <td>
@@ -155,8 +155,10 @@
                                 </div>
 
                             {/if}
-                            {if $total < $item.delivery_free_from}<span class="d_b">(+{echo $item.delivary_price} {$CS})</span>{/if}
+                            {if $total < $item.delivery_free_from}<span class="d_b">(+{echo $item.delivery_price} {$CS})</span>{/if}
+                            <span id="dpholder" data-dp="{echo $item.delivery_price}"></span>
                             {if isset($item.gift_cert_price)}<span class="d_b">(-{echo $item.gift_cert_price} {$CS})</span>{/if}
+                            <span id="allpriceholder" data-summary="{echo $total}"></span>
                 </div>
             </div>
             <div class="f_r sum">{lang('s_summ')}:
