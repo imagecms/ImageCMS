@@ -714,7 +714,7 @@ $(document).ready(function() {
 
     $('#addVariant').live('click', function() {
         var clonedVarTr = $('.variantRowSample').find('tr').clone();
-        var randId = Math.ceil( Math.random()* 1000000);
+        var randId = Math.ceil(Math.random() * 1000000);
         var countVarRows = $('#variantHolder').children('tr').length;
         clonedVarTr.find('.random_id').attr('value', randId);
         clonedVarTr.find('[name="variants[mainPhoto][]"]').attr('name', 'variants[mainPhoto][' + randId + ']');
@@ -737,13 +737,13 @@ $(document).ready(function() {
         }
         container.find('img').attr('src', "/templates/administrator/images/select-picture.png");
     });
-    
-    $("button.deleteMainImages").die("click").live("click",function(event){
+
+    $("button.deleteMainImages").die("click").live("click", function(event) {
         event.preventDefault();
-        var container=$(this).parents("div.control-group");
-        container.find("img").attr("src","/templates/administrator/images/select-picture.png");
-        container.find("input[type=hidden]").attr("value",1);
-        container.find("input[type=file]").attr("value","");
+        var container = $(this).parents("div.control-group");
+        container.find("img").attr("src", "/templates/administrator/images/select-picture.png");
+        container.find("input[type=hidden]").attr("value", 1);
+        container.find("input[type=file]").attr("value", "");
         return false;
     });
 
@@ -773,18 +773,27 @@ $(document).ready(function() {
         $('.warehouse_line').clone().removeClass().attr('id', 'warehouse_line' + Math.floor(1000 * Math.random())).appendTo($('.warehouses_container'));
     });
 
-    $('.openDlg').live('click', function(){
+    $('.openDlg').live('click', function() {
         $('#addPictures').trigger('click');
     });
-    
-    $('[name="makeResize"]').live('click', function(){
+
+    $('[name="makeResize"]').live('click', function() {
         $.ajax({
-            url:        "/admin/components/run/shop/settings/runResize",
-            type:       "post",
-            success:    function(data){
+            url: "/admin/components/run/shop/settings/runResize",
+            type: "post",
+            success: function(data) {
                 $('.notifications').append(data);
             }
         });
     });
+
+    $('[name="checkPrices"]').live('click', function() {
+        $.ajax({
+            url: "/admin/components/run/shop/currencies/checkPrices",
+            success: function(data) {
+                $('.notifications').append(data);
+            }
+        });
+    })
 
 });
