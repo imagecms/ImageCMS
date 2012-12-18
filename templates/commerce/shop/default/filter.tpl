@@ -17,28 +17,28 @@
                             {foreach $_GET['brand'] as $id}
                                 {if $id == $brand->id}
                                     <li><a href="{echo str_replace('&brand[]=' . $brand->id,'',$aurl)}"><i class="icon-times-red"></i>{echo $brand->name}</a></li>
-                                {/if}
-                            {/foreach}
-                        {/foreach}
-                    {/if}
-                    {if count($propertiesInCat) > 0}
-                        {foreach $propertiesInCat as $prop}
-                            {if count(ShopCore::$_GET['p'][$prop->property_id])>0}
-                                {foreach $prop->possibleValues as $key}
-                                    {foreach $_GET['p'][$prop->property_id] as $id}
-                                        {if $id == $key.value}
-                                            <li><a href="{echo str_replace('&p[' . $prop->property_id . '][]=' . $key.value,'',$aurl)}"><i class="icon-times-red"></i>{echo $prop->name.": ".$key.value}</a></li>
                                         {/if}
                                     {/foreach}
                                 {/foreach}
                             {/if}
-                        {/foreach}
-                    {/if}
-                    {if isset(ShopCore::$_GET['lp']) OR isset(ShopCore::$_GET['rp'])}
+                            {if count($propertiesInCat) > 0}
+                                {foreach $propertiesInCat as $prop}
+                                    {if count(ShopCore::$_GET['p'][$prop->property_id])>0}
+                                        {foreach $prop->possibleValues as $key}
+                                            {foreach $_GET['p'][$prop->property_id] as $id}
+                                                {if $id == $key.value}
+                                            <li><a href="{echo str_replace('&p[' . $prop->property_id . '][]=' . $key.value,'',$aurl)}"><i class="icon-times-red"></i>{echo $prop->name.": ".$key.value}</a></li>
+                                                {/if}
+                                            {/foreach}
+                                        {/foreach}
+                                    {/if}
+                                {/foreach}
+                            {/if}
+                            {if isset(ShopCore::$_GET['lp']) OR isset(ShopCore::$_GET['rp'])}
                         <li><a href="{echo str_replace('&lp=' . ShopCore::$_GET['lp'] . '&rp=' . ShopCore::$_GET['rp'], "", $aurl)}"><i class="icon-times-red"></i>{if isset(ShopCore::$_GET['lp'])}{lang('s_from')} {echo ShopCore::$_GET['lp']} {$CS}{/if}{if isset(ShopCore::$_GET['rp'])} {lang('s_do')} {echo ShopCore::$_GET['rp']} {$CS}{/if}</a></li>
-                    {/if}
+                        {/if}
                 </ul>
-                    <a href="{site_url($CI->uri->uri_string())}" class="reset"><span class="icon-reset"></span>{lang('s_filter_all_reset')}</a>
+                <a href="{site_url($CI->uri->uri_string())}" class="reset"><span class="icon-reset"></span>{lang('s_filter_all_reset')}</a>
             </div>
         {/if}
         <div class="content-filter">
@@ -64,7 +64,7 @@
             <div class="padding_filter">
                 {if count($brands)>0}
                     <div class="check_frame">
-                        <div class="title">Брэнды в категории</div>
+                        <div class="title">Бренды в категории</div>
                         <div class="clearfix check_form">
                             {foreach $brands as $br}
                                 <label>
@@ -77,29 +77,29 @@
                 {/if}
                 <div class="check_frame">
                     {foreach $propertiesInCat as $p}
-                        {if empty($p->possibleValues)}{$show[] = "1"}{/if}
-                    {/foreach}
-                    {if count($show) != count($propertiesInCat)}
-                        <div class="title">Свойства</div>
-                        <div class="clearfix check_form">
-                            {foreach $propertiesInCat as $prop}
-                            {if empty($prop->possibleValues)}{continue}{/if}
-                            <div class="padding_filter">
-                                <div class="title2">{echo $prop->name}</div>
-                                <div class="clearfix">
-                                    {foreach $prop->possibleValues as $item}
-                                        <label>
-                                            <input {if $item.count == 0}disabled="disabled"{/if} class="propertyCheck" name="p[{echo $prop->property_id}][]" value="{echo $item.value}" type="checkbox" {if is_array(ShopCore::$_GET['p'][$prop->property_id]) && in_array($item.value, ShopCore::$_GET['p'][$prop->property_id]) && $item.count != 0}checked="checked"{/if}/>
-                                            <span class="name_model">{echo $item.value}<span>&nbsp;({if $item.count != 0 && is_array(ShopCore::$_GET['p'][$prop->property_id]) && !in_array($item.value, ShopCore::$_GET['p'][$prop->property_id])}+{/if}{echo $item.count}) </span></span>
-                                        </label>
-                                    {/foreach}
-                                </div>
+                    {if empty($p->possibleValues)}{$show[] = "1"}{/if}
+                {/foreach}
+                {if count($show) != count($propertiesInCat)}
+                    <div class="title">Свойства</div>
+                    <div class="clearfix check_form">
+                        {foreach $propertiesInCat as $prop}
+                        {if empty($prop->possibleValues)}{continue}{/if}
+                        <div class="padding_filter">
+                            <div class="title2">{echo $prop->name}</div>
+                            <div class="clearfix">
+                                {foreach $prop->possibleValues as $item}
+                                    <label>
+                                        <input {if $item.count == 0}disabled="disabled"{/if} class="propertyCheck" name="p[{echo $prop->property_id}][]" value="{echo $item.value}" type="checkbox" {if is_array(ShopCore::$_GET['p'][$prop->property_id]) && in_array($item.value, ShopCore::$_GET['p'][$prop->property_id]) && $item.count != 0}checked="checked"{/if}/>
+                                        <span class="name_model">{echo $item.value}<span>&nbsp;({if $item.count != 0 && is_array(ShopCore::$_GET['p'][$prop->property_id]) && !in_array($item.value, ShopCore::$_GET['p'][$prop->property_id])}+{/if}{echo $item.count}) </span></span>
+                                    </label>
+                                {/foreach}
                             </div>
-                        {/foreach}
                         </div>
-                    {/if}
-            </div>
-                    </div>
+                    {/foreach}
+                </div>
+            {/if}
         </div>
+    </div>
+</div>
 </form>
 </div>
