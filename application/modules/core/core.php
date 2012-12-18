@@ -894,7 +894,7 @@ class Core extends MY_Controller {
             ));
         } else {
             if ($this->settings['add_site_name_to_cat']){
-                $title .= $category;
+                $title .= ' - ' . $category . ' ';
             }
             
             if ($this->core_data['data_type'] == 'page' AND $this->page_content['category'] != 0 AND $this->settings['add_site_name_to_cat']) {
@@ -914,7 +914,7 @@ class Core extends MY_Controller {
                 $title = $n_title;
             }
 
-            if ($this->settings['add_site_name'] == 1 && $showsitename!=1) {
+            if ($this->settings['add_site_name'] == 1 && $showsitename != 1) {
                 $title .= ' ' . $this->settings['delimiter'] . ' ' . $this->settings['site_short_title'];
             }
 
