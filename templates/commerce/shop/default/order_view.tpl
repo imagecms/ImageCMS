@@ -67,9 +67,9 @@
             </colgroup>
             <tbody>
                 {foreach $model->getSOrderProductss() as $item}
-                    {$discount = ShopCore::app()->SDiscountsManager->productDiscount($item->id)}
                     {$total = $total + $item->getQuantity() * $item->toCurrency()}
                     {$product = $item->getSProducts()}
+                    {$discount = ShopCore::app()->SDiscountsManager->productDiscount($product->getId())}
                     {$variants = $item->getSProducts()->getProductVariants()}
                     {foreach $variants as $v}
                         {if $v->getId() == $item->getVariantId()}

@@ -272,10 +272,13 @@ img[align=left]{margin-right:18px;float: left;}
 .frame-item-menu > ul > li > div{display: none;position: absolute;left: 100%;top:-4px;height: 100%;width: 270px;border-top:4px solid #505050;-moz-border-radius: 0 0 2px 2px;-webkit-border-radius: 0 0 2px 2px;border-radius: 0 0 2px 2px;-moz-box-shadow: 0 5px 10px 0 rgba(110, 110, 110, 0.9);-webkit-box-shadow: 0 5px 10px 0 rgba(110, 110, 110, 0.9);box-shadow: 0 5px 10px 0 rgba(110, 110, 110, 0.9);background-color: #f4f4f4;}
 .frame-item-menu > ul > li:hover > div{display: block;}
 .frame-item-menu > ul > li > div > ul{padding-bottom: 13px;}
-.frame-item-menu > ul > li > div > ul > li{padding: 0 20px 8px;}
-.frame-item-menu > ul > li > div > ul > li > a{color: #464646;}
-.frame-item-menu > ul > li > div > ul > li > a:hover{color: #f44524;}
-.frame-item-menu > ul > li > div > ul > li > .title{color: #f44524;font-size: 16px;font-weight: bold;padding-top: 12px;display: block;}
+.frame-item-menu > ul > li > div > ul > li{padding: 8px 20px 4px;}
+.frame-item-menu > ul > li > div > ul > li > a{color: #464646; padding-left: 5px; font-size: 14px;}
+.frame-item-menu > ul > li > div > ul > li > a:hover{color: #f44524; }
+.frame-item-menu > ul > li > div > ul > li > .title,  .frame-item-menu > ul > li > div > ul > li > .title a{color: #f44524;font-size: 16px;font-weight: bold;display: block; text-decoration: none;}
+
+.frame-item-menu > ul > li > div > ul > li > ul > li > a {padding:4px 12px; color: #464646;}
+.frame-item-menu > ul > li > div > ul > li > ul > li > a:hover{color: #f44524; }
 
 .frame-item-menu .right-drop > li > div{left: auto !important;right: 100%;}
 .frame-item-menu .right-drop > li{text-align: right;}

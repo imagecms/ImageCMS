@@ -63,6 +63,7 @@
                 </div>
             </div>
             <div class="padding_filter">
+                {if $brands}
                 <div class="check_frame">
                     <div class="title">Брэнды в категории</div>
                     <div class="clearfix check_form">
@@ -73,7 +74,8 @@
                             </label>
                         {/foreach}
                     </div>
-                </div>
+                </div>{/if}
+                {if $propertiesInCat}
                 <div class="check_frame">
                     <div class="title">Свойства</div>
                     <div class="clearfix check_form">
@@ -92,7 +94,7 @@
                         </div>
                     {/foreach}
                     </div>
-            </div>
+            </div>{/if}
         </div>
     </div>
 </form>

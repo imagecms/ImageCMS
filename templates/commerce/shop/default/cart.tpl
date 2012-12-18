@@ -163,9 +163,9 @@
                 </label>
             {/if}
             <div class="block_title_18"><span class="title_18">{lang('s_sdm')}</span></div>
-            {$counter = true}
-            {foreach $deliveryMethods as $deliveryMethod}
-                {$del_id = $deliveryMethod->getId()}
+                {$counter = true}
+                {foreach $deliveryMethods as $deliveryMethod}
+                    {$del_id = $deliveryMethod->getId()}
                 <label>
                     <input type="radio" 
                            {if $counter} checked="checked" 
@@ -256,8 +256,8 @@
     </div>
     <div class="foot_cleaner c_b result">
         <span class="v-a_m">
-            <span class="c_9 f-s_16">(Сумма товаров: <span class="b">100</span> руб  +   Доставка: <span class="b">100</span> руб)</span>
-            <span class="c_3 f-s_18">&nbsp;&nbsp;Сумма товаров: <span class="f-s_26 b">12328</span> грн.</span>
+            <span class="c_9 f-s_16">(Сумма товаров: <span class="b">{$vprices.main.price}</span> {$vprices.main.symbol} +   Доставка: <span class="b">{echo $deliveryMethod->getPrice()}</span> руб)</span>
+            <span class="c_3 f-s_18">&nbsp;&nbsp;Сумма товаров: <span class="f-s_26 b">{echo $vprices.main.price + $deliveryMethod->getPrice()}</span> грн.</span>
         </span>
         <div class="buttons button_big_blue v-a_m">
             <input type="submit" value="{lang('s_c_of_z_')}" id="orderSubmit" data-logged="{if ShopCore::$ci->dx_auth->is_logged_in()===true}1{else:}0{/if}"/>
