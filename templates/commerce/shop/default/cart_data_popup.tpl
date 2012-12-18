@@ -21,7 +21,6 @@
                                     {$variant = $v}
                                 {/if}
                             {/foreach}
-                            {$vprices = currency_convert($variant->getPrice(), $variant->getCurrency())}
                             <tr>
                                 <td>
                                     <a href="{shop_url('product/' . $item.model->getUrl())}" class="photo_block">

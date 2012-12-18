@@ -79,7 +79,6 @@
                     <ul class="products">
                         {foreach $products as $p}
                             {$discount = ShopCore::app()->SDiscountsManager->productDiscount($p->id)}
-                            {$prices = currency_convert($p->firstvariant->getPrice(), $p->firstvariant->getCurrency())}
                             {$style = productInCart($cart_data, $p->getId(), $p->firstVariant->getId(), $p->firstVariant->getStock())}
                             <li>
                                 <div class="photo_block">
@@ -144,11 +143,11 @@
                                     {/if}
                                     <div class="buy">
                                         <div class="price f-s_18 d_b">
-                                            {if (float)$product->old_price > 0}
-                                                {if $product->old_price > $product->price_in_main}
+                                            {if (float)$p->getOldPrice() > 0}
+                                                {if $p->getOldPrice() > $p->firstvariant->getPrice()}
                                                     <div>
                                                         <del class="price f-s_12 price-c_9" style="margin-top: 1px;">
-                                                            {echo number_format($product->old_price, 2, ".", "")}
+                                                            {echo number_format($p->getOldPrice(), 2, ".", "")}
                                                             <sub> {$CS}</sub>
                                                         </del>
                                                     </div>
@@ -156,20 +155,15 @@
                                             {/if}
                                             <div id="pricem{echo $product->id}">
                                                 {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                                    {$prOne = $prices.main.price}
-                                                    {$prTwo = $prices.main.price}
+                                                    {$prOne = $p->firstvariant->getPrice()}
+                                                    {$prTwo = $p->firstvariant->getPrice()}
                                                     {$prThree = $prOne - $prTwo / 100 * $discount}
-                                                    <del class="price price-c_red f-s_12 price-c_9">{echo number_format($prices.main.price, 2, ".", "")} {$prices.main.symbol}</del>
-
+                                                    <del class="price price-c_red f-s_12 price-c_9">{echo number_format($p->firstvariant->getPrice(), 2, ".", "")} {$CS}</del>
                                                 {else:}
-                                                    {//echo number_format($prices.main.price, 2, ".", "")}
-                                                    {$prThree = $prices.main.price}
+                                                    {$prThree = $p->firstvariant->getPrice()}
                                                 {/if}
                                                 {echo number_format($prThree, 2, ".", "")} 
-                                                <sub>{$prices.main.symbol}</sub>
-                                                {if $NextCS != $CS AND empty($discount)}
-                                                    <span class="d_b">{echo number_format($prices.second.price, 2, ".", "")} {$prices.second.symbol}</span>
-                                                {/if}
+                                                <sub>{$CS}</sub>
                                             </div>
                                         </div>
                                         <div id="p{echo $p->getId()}" class="{$style.class} buttons">
