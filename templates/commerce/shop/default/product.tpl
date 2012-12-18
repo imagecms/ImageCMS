@@ -68,11 +68,8 @@
             <!-- Fancybox additional blocks -->
             <div id="fancyboxAdditionalContent" style="display: none;">
                 <div class="price f-s_26">
-                    <span id="pricem76">{echo $prices.main.price}</span>
-                    <sub>{echo $prices.main.symbol}</sub>
-                    {if $NextCS != $CS}
-                        <span id="prices76" class="d_b">{echo $prices.second.price} {echo $prices.second.symbol}</span>
-                    {/if}
+                    <span id="pricem76">{echo $model->firstVariant->getPrice()}</span>
+                    <sub>{echo $CS}</sub>
                 </div>
                 {if count($model->getProductVariants())==1}
                     <div class="in_cart"></div>
