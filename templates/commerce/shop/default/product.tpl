@@ -457,6 +457,7 @@
             </div>
         {/if} 
         <div class="m-t_29 featured">
+            {if count(getPromoBlock('hot', 3))>0}
             <div class="box_title">
                 <span>{lang('s_new')}</span>
             </div>
@@ -498,7 +499,7 @@
                         </div>
                     </li>  
                 {/foreach}
-            </ul>
+            </ul>{/if}
             {widget('latest_news')}
         </div>
     </div>
