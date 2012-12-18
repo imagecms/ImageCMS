@@ -640,6 +640,7 @@ span.code{color: #999;font-size: 11px;margin-right: 9px;}
 .cleaner_table{margin: 29px 0 0;}
 .cleaner_table caption{text-align: left;color: #666;font-size: 18px;padding-bottom: 3px;padding-left: 15px;}
 .cleaner_table .photo_block{width: 100%;text-align: center;}
+.cleaner_table .photo_block img{max-width: 100px;}
 .cleaner_table tr{border-top: 1px dashed #d6d6d6;}
 .cleaner_table tr:first-child{border-top: none;}
 .cleaner_table td{height: 89px;}
