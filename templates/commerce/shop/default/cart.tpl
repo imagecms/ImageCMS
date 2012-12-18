@@ -48,6 +48,7 @@
                                         <div class="price f-s_18 f_l">{$summary = $variant->getPrice() * $item.quantity}
                                             {echo $summary}
                                             <sub>{$CS}</sub>
+                                            <span id="allpriceholder" data-summary="{echo $summary}"></span>
                                         </div>
                                     </td>
                                     <td>
@@ -250,8 +251,8 @@
     </div>
     <div class="foot_cleaner c_b result">
         <span class="v-a_m">
-            <span class="c_9 f-s_16">(Сумма товаров: <span class="b">{echo $total}</span> {$CS} +   Доставка: <span class="b">{echo $deliveryMethod->getPrice()}</span> {$CS})</span>
-            <span class="c_3 f-s_18">&nbsp;&nbsp;Сумма товаров: <span class="f-s_26 b">{echo $total + $deliveryMethod->getPrice()}</span> {$CS}</span>
+            <span class="c_9 f-s_16">(Сумма товаров: <span class="b" id="price1">{echo $total}</span> {$CS} +   Доставка: <span class="b" id="price2">{echo $deliveryMethod->getPrice()}</span> {$CS})</span>
+            <span class="c_3 f-s_18">&nbsp;&nbsp;Сумма товаров: <span class="f-s_26 b" id="price3">{echo $total + $deliveryMethod->getPrice()}</span> {$CS}</span>
         </span>
         <div class="buttons button_big_blue v-a_m">
             <input type="submit" value="{lang('s_c_of_z_')}" id="orderSubmit" data-logged="{if ShopCore::$ci->dx_auth->is_logged_in()===true}1{else:}0{/if}"/>
