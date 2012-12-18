@@ -9,24 +9,26 @@
         <h1>{lang('s_WL')}</h1>
         <h2 class="notificationWish"></h2>
         {if ShopCore::$ci->dx_auth->is_logged_in()===true}
-            <a href="#" class="f_l w-s_n-w" id="button_email">{lang('s_s_wish_list')}</a>
-            <div class="fancy c_b f_l" style="border: none; display: none;" id="send_email">
-                <form action="" method="post" name="editForm" style="padding-left: 0; padding-right: 0px;">
-                    <div id="change_info_edit" class="f_r">
-                        <label class="f_r">{lang('s_form_input_wl')}:
-                            <input type="text" name="friendsMail"/>
-                        </label>
-                        <div id="buttons">
-                            <div class="p-t_19 c_b clearfix"  style="width: 191px;">
-                                <div class="buttons button_middle_blue f_l">
-                                    <input type="submit" name="sendwish" value="{lang('s_send')}"/>
+            {if $items != null}
+                <a href="#" class="f_l w-s_n-w" id="button_email">{lang('s_s_wish_list')}</a>
+                <div class="fancy c_b f_l" style="border: none; display: none;" id="send_email">
+                    <form action="" method="post" name="editForm" style="padding-left: 0; padding-right: 0px;">
+                        <div id="change_info_edit" class="f_r">
+                            <label class="f_r">{lang('s_form_input_wl')}:
+                                <input type="text" name="friendsMail"/>
+                            </label>
+                            <div id="buttons">
+                                <div class="p-t_19 c_b clearfix"  style="width: 191px;">
+                                    <div class="buttons button_middle_blue f_l">
+                                        <input type="submit" name="sendwish" value="{lang('s_send')}"/>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>                                    
-                    </div>
-                    {form_csrf()}
-                </form>
-            </div>
+                            </div>                                    
+                        </div>
+                        {form_csrf()}
+                    </form>
+                </div>
+            {/if}
         {else:}
             {lang('s_to_sen_wish_auth')}
         {/if}
