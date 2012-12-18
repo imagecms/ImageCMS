@@ -11,7 +11,7 @@
         <ul class="info_curr_buy">
             <li>
                 <span>{lang('s_paid')}:</span>
-                <b>{if $model->getPaid() == true} {lang('s_yes')}{else: }{lang('s_no')}{/if}</b>
+                <b>{if $model->getPaid() == true} {lang('s_yes')}{else:}{lang('s_no')}{/if}</b>
             </li>
             <li>
                 <span>{lang('s_status')}:</span>
@@ -27,9 +27,7 @@
                 <li>
                     <span>Скидка: </span>
                     <b>(-{echo $model->getComulativ()}%)
-
                     </b>
-<!--                                            <b>(-{echo $discountCom->getDiscount()}%)</b>-->
                 </li>
             {/if}
             <li>
@@ -69,7 +67,7 @@
                 {foreach $model->getSOrderProductss() as $item}
                     {$total = $total + $item->getQuantity() * $item->toCurrency()}
                     {$product = $item->getSProducts()}
-                    {$discount = ShopCore::app()->SDiscountsManager->productDiscount($product->getId())}
+                    {$discount = ShopCore::app()->SDiscountsManager->productDiscount($product->getid())}
                     {$variants = $item->getSProducts()->getProductVariants()}
                     {foreach $variants as $v}
                         {if $v->getId() == $item->getVariantId()}
@@ -124,9 +122,6 @@
                             <td>
                                 <div class="price f-s_16 f_l">{echo $variant->getPrice()}
                                     <sub> {$CS}</sub>
-                                    {if $NextCS != $CS}
-                                        <span class="d_b">{echo ShopCore::app()->SCurrencyHelper->convert($variant->getPrice(), $NextCSId)} {$NextCS}</span>
-                                    {/if}
                                 </div>
                             </td>
                             <td>
@@ -138,18 +133,12 @@
                                 <div class="price f-s_18 f_l">
                                     {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
                                         {$prOne = $variant->getPrice() * $item->getQuantity()}
-
                                         {$prThree = $prOne - $prOne / 100 * $discount}
                                         <del class="price price-c_red f-s_12 price-c_9">{echo $variant->getPrice() * $item->getQuantity()} {$CS}</del><br /> 
                                     {else:}
                                         {$prThree = $variant->getPrice() * $item->getQuantity()}
                                     {/if}
                                     {echo $prThree} <sub>{$CS}</sub>
-
-                                    {if $NextCS != $CS AND empty($discount)}
-                                        <span class="d_b">{echo $item->toCurrency('Price', $NextCSId)} {$NextCS}</span>
-                                    {/if}
-
                                 </div>
                             </td>
                         </tr>
@@ -172,7 +161,7 @@
                                     {/if}</div>
                             </div>
                             <div class="sum f_r">
-                                {lang('s_summ')}:
+                                {lang('s_summ')}: 
                             </div>
                         </div>
                     </td>
