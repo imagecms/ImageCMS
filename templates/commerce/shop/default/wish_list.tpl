@@ -31,7 +31,7 @@
             {else:}
                 {lang('s_to_sen_wish_auth')}
             {/if}
-        {/if}
+            {/if}
         {if !$items}
             <div class="comparison_slider">
                 <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t(lang('s_list_wish_empty'))}</div>
@@ -107,15 +107,8 @@
                     <tr>
                         <td colspan="6">
                             <div class="foot_cleaner">
-                                <div class="f_l"> 
-                                    <div class="f_r sum">{lang('s_summ')}:</div>
-                                </div>
-                                <div class="f_r">                                  
-                                    <div class="price f-s_26 f_l" style="width: 170px; margin-top: 23px;">{$total} <sub>{$CS}</sub>
-
-                                    </div>
-                                </div>
-
+                                <div class="price f-s_26 f_r">{$total} <sub>{$CS}</sub></div>
+                                <div class="f_r sum">{lang('s_summ')}:</div>
                             </div>
                         </td>
                     </tr>

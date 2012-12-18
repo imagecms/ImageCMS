@@ -28,6 +28,7 @@
 
     {$cart_data = ShopCore::app()->SCart->getData()}
     <div class="center">
+        {if count(getPromoBlock('popular', 10))>0}
         <div class="box_title"><span class="f-s_24">{lang('s_PP')}</span></div>
         <div class="featured carusel_frame carousel_js">
             <div class="carusel">
@@ -69,7 +70,10 @@
             </div>
             <button class="prev"></button>
             <button class="next"></button>
-        </div><!-- featured -->
+        </div>{/if}
+                <!-- featured -->
+       
+        {if count(getPromoBlock('hot', 10))>0}
         <div class="box_title"><span class="f-s_24">{lang('s_new')}</span></div>
         <div class="featured carusel_frame carousel_js">
             <div class="carusel">
@@ -111,7 +115,8 @@
             </div>
             <button class="prev"></button>
             <button class="next"></button>
-        </div>
+        </div>{/if}
+         {if count(getPromoBlock('action', 10))>0}
         <div class="box_title"><span class="f-s_24">{lang('s_action')}</span></div>
         <div class="featured carusel_frame carousel_js">
             <div class="carusel">
@@ -153,7 +158,7 @@
             </div>
             <button class="prev"></button>
             <button class="next"></button>
-        </div>
+        </div>{/if}
         {widget('latest_news')}
     </div>
 </div>
