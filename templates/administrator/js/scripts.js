@@ -22,10 +22,8 @@ $(document).ajaxComplete(function(event, XHR, ajaxOptions) {
             fixed_frame_title();
         }
         
-        if ($.exists('#chart')) brands();
-            brands();
-        if ($.exists('#wrapper_gistogram')) gistogram();
-            gistogram();
+        if ($.exists('#chart')) brands();            
+        if ($.exists('#wrapper_gistogram')) gistogram();            
         $('#loading').stop().fadeOut(200);
     }
 });
