@@ -161,7 +161,7 @@
                                     {/if}</div>
                             </div>
                             <div class="sum f_r">
-                                {lang('s_summ')}:
+                                {lang('s_summ')}: 
                             </div>
                         </div>
                     </td>
