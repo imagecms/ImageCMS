@@ -446,11 +446,11 @@ function autocomplete() {
                     '<input type="text" name="AttachedProductsIds[]" value="' + ui.item.identifier.id + '" class="input-mini"/>' +
                     '</span>&nbsp;' +
                     '<span class="d-i_b v-a_b">' +
-                    '<span class="help-inline d_b">???</span>' +
+                    '<span class="help-inline d_b">Имя</span>' +
                     '<input type="text" id="AttachedProducts" value="' + ui.item.label + '" class="input-xxlarge"/>' +
                     '</span>&nbsp;' +
                     '<span class="d-i_b number v-a_b">' +
-                    '<span class="help-inline d_b">?????? %</span>' +
+                    '<span class="help-inline d_b">Скидка %</span>' +
                     '<input type="text" id="AttachedProductsDisc" name="Discounts[]" value="' + mainDisc + '" class="input-mini" data-max="100" data-rel="tooltip" data-title="?????? ?????"/>' +
                     '</span>&nbsp;' +
                     '<span class="d-i_b v-a_b">' +
