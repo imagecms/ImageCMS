@@ -153,9 +153,11 @@
                             {if $product->action == 1}
                                 <div class="promoblock action">{lang('s_saction')}</div>
                             {/if}
+                            
                             {if $product->hit == 1}
                                 <div class="promoblock hit">{lang('s_s_hit')}</div>
                             {/if}
+                                {$discount = ShopCore::app()->SDiscountsManager->productDiscount($product->id)}
                         </a>
                         <span class="ajax_refer_marg t-a_c">
                             <span data-prodid="{echo $product->id}" class="compare
