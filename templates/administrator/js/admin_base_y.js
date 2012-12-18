@@ -1,4 +1,6 @@
 $(document).ready(function() {
+
+    /*IMPORT EXPORT*/
     $('#importcsvfile').on('change', function() {
         var selector = $(this).closest('form');
         $chekedFile = $('input[name=csvfile]:checked').val();
@@ -30,7 +32,7 @@ $(document).ready(function() {
         }
     });
 
-    $('input[name=csvfile]').on('change', function() {
+    $('input[name=csvfile]').live('change', function() {
         loadCsvAttributes($(this).val());
     })
 
@@ -52,9 +54,6 @@ $(document).ready(function() {
                 showMessage('', data);
             }
         });
-
-        console.log($('input[type=hidden].attributes').val());
-        console.log($chekedFile);
         return false;
     });
     $('.dropdown-attr a').live('click', function() {
@@ -81,4 +80,20 @@ $(document).ready(function() {
             }
         });
     }
+
+    $(".runExport").on("click", function() {
+        $this = $('#makeExportForm');
+        $.ajax({
+            url: "/admin/components/run/shop/system/export",
+            type: "post",
+            data: $this.serialize(),
+            success: function(msg) {
+                if (msg == '')
+                    $this.submit();
+                else
+                    showMessage("", msg);
+            }
+        });
+    });
+    /**/
 });
