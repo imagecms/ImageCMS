@@ -100,7 +100,7 @@
                         </div>
                     {/if}
             </div>
+                    </div>
         </div>
-    </div>
 </form>
 </div>

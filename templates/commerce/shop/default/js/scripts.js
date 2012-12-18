@@ -314,8 +314,6 @@ $(document).ready(function() {
 
     })
 
-    comprasion();
-
     if ($("a[rel=group]").length > 0) {
         $("a[rel=group]").fancybox({
             'padding': 0,
@@ -338,6 +336,7 @@ $(document).ready(function() {
 });
 
 $(window).load(function() {
+    comprasion();
     $('.cycle ul').cycle({
         speed: 600,
         timeout: 2000,
