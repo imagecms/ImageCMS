@@ -50,23 +50,16 @@
                                                     <a href="{shop_url('product/' . $product->getUrl())}" class="title">{echo $product->getName()}{echo $product->getName()}</a>
                                                     <div class="buy">
                                                         <div class="price f-s_14">
-
-
                                                             {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                                                {$prOne = $prices.main.price}
-                                                                {$prTwo = $prices.main.price}
+                                                                {$prOne = $product->firstvariant->getPrice()}
+                                                                {$prTwo = $product->firstvariant->getPrice()}
                                                                 {$prThree = $prOne - $prTwo / 100 * $discount}
-                                                                <del class="price price-c_red f-s_12 price-c_9">{echo $prices.main.price} {$prices.main.symbol}</del><br /> 
+                                                                <del class="price price-c_red f-s_12 price-c_9">{echo $product->firstvariant->getPrice()} {$CS}</del><br /> 
                                                             {else:}
-                                                                {$prThree = $prices.main.price}
+                                                                {$prThree = $product->firstvariant->getPrice()}
                                                             {/if}
                                                             {echo $prThree} 
-                                                            <sub>{$prices.main.symbol}</sub>
-
-                                                            {if $NextCS != $CS AND empty($discount)}
-                                                                <span class="d_b">{echo $prices.second.price} {$prices.second.symbol}</span>
-                                                            {/if}
-
+                                                            <sub>{$CS}</sub>
                                                         </div>
                                                         <div id="p{echo $product->getId()}" class="{$style.class} buttons">
                                                             <span id="buy{echo $product->getId()}" class="{$style.identif}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" >
