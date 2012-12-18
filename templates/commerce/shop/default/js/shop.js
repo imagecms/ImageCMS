@@ -343,6 +343,8 @@ $(document).ready(function() {
                 else
                     showResponse(msg);
                 $form.find('input[name=makeOrder]').val(1);
+                $('#price1').text($('#allpriceholder').data('summary'));
+                $('#price3').text(parseFloat($('#allpriceholder').data('summary'))+parseFloat($('#price2').text()));
                 $.fancybox.hideActivity();
             }
         });
@@ -369,11 +371,17 @@ $(document).ready(function() {
                     $('.forCartProducts').html(msg);
                 else
                     showResponse(msg);
+                $('#price1').text($('#allpriceholder').data('summary'));
+                $('#price2').text($('#dpholder').data('dp'));
+                $('#price3').text(parseFloat($('#allpriceholder').data('summary'))+parseFloat($('#price2').text()));
                 $.fancybox.hideActivity();
             }
         });
         return false;
     });
+    
+    
+
     $('.met_del').bind('click', function() {
         var nid = $(this);
         $('#deliveryMethodId').val(nid.val());
@@ -382,6 +390,9 @@ $(document).ready(function() {
             success: function(msg) {
                 $("#paymentMethods").html(msg);
                 $('#paymentMethodId').val($('.met_buy:eq(0)').val());
+                $('#price1').text($('#allpriceholder').data('summary'));
+                $('#price2').text($('#dpholder').data('dp'));
+                $('#price3').text(parseFloat($('#allpriceholder').data('summary'))+parseFloat($('#price2').text()));
             }
         });
     });
