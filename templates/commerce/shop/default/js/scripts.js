@@ -45,7 +45,6 @@ $(document).ready(function() {
                 var menuW = menu.width();
                 var menuItem = settings.item;
                 var item_menu_l = menuItem.length;
-                var drop = settings.drop;
                 var dropW = 540;
                 var duration = time_dur_m = settings.duration;
                 
@@ -53,14 +52,15 @@ $(document).ready(function() {
                     var $this = $(this);
                     var $thisW = $this.width();
                     var $thisL = $this.position().left;
+                    var drop = $this.find(settings.drop);
                     
                     var $thisH = $this.height()
                     if ($thisH > sH) sH = $thisH;
                     
                     if (menuW - $thisL < dropW) {
-                        drop.eq(index).css('right', menuW-$thisW-$thisL).addClass('right-drop');
+                        drop.css('right', menuW-$thisW-$thisL).addClass('right-drop');
                     }
-                    else drop.eq(index).css('left', $thisL)
+                    else drop.css('left', $thisL)
                 })
                 menuItem.css('height', sH);
                 menuItem.find('.title .helper').css('height', sH-4)
@@ -82,18 +82,18 @@ $(document).ready(function() {
                 menuItem.hover(
                     function(){
                         var $this = $(this);
-                        var $thisDrop = drop.eq($this.index());
+                        var $thisDrop = $this.find(settings.drop);
                         if ($this.index() == 0) $this.addClass('first_h');
                         if ($this.index() == item_menu_l - 1) $this.addClass('last_h');
                         hover_t_o = setTimeout(function(){
                             $thisDrop.stop().fadeIn(200);
-                            menu.addClass('hover');
+                            if ($thisDrop.length != 0) menu.addClass('hover');
                         }, time_dur_m);
                     },function(){
-                        drop.stop().fadeOut(200);
+                        $(settings.drop).stop().fadeOut(200);
                         $('.first_h, .last_h').removeAttr('class');
                         clearTimeout(hover_t_o);
-                        menu.removeClass('hover');
+                        if ($thisDrop.length != 0) menu.removeClass('hover');
                     });
                 menu.hover(
                     function(){
