@@ -60,7 +60,6 @@
                     <ul>
                         {foreach getPromoBlock('action', 3, $product->category_id) as $hotProduct}
                             {$discount = ShopCore::app()->SDiscountsManager->productDiscount($hotProduct->id)}
-                            {$action_prices = currency_convert($hotProduct->firstVariant->getPrice(), $hotProduct->firstVariant->getCurrency())}
                             <li class="smallest_item">
                                 <div class="photo_block">
                                     <a href="{shop_url('product/' . $hotProduct->getUrl())}">
@@ -294,3 +293,4 @@
 </div>
 </div>
 </div>
+        

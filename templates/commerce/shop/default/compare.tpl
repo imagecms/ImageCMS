@@ -33,7 +33,6 @@
                             <ul class="comparison_slider_right{echo $cnc++}">                                   
                                 {foreach $products as $product}
                                     {$discount = ShopCore::app()->SDiscountsManager->productDiscount($product->id)}
-                                    {$prices = currency_convert($product->firstvariant->getPrice(), $product->firstvariant->getCurrency())}
                                     {$style = productInCart($cart_data, $product->getId(), $product->firstVariant->getId(), $product->firstVariant->getStock())}
                                     {if $product->category_id == $category['Id']}
                                         <li class="list_desire" id="product_block_{echo $product->getId()}">
