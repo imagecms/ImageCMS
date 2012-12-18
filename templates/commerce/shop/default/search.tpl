@@ -88,7 +88,7 @@
                                         <img id="vim{echo $p->getId()}" class="smallpimagev" src="" alt="" />
                                     </a>
                                     <span class="ajax_refer_marg t-a_c">
-                                        <span data-prodid="{echo $product->id}" class="compare
+                                        <span data-prodid="{echo $p->getId()}" class="compare
                                               {if $forCompareProducts && in_array($p->getId(), $forCompareProducts)}
                                                   is_avail">
                                                   <a href="{shop_url('compare')}" class="red">{lang('s_compare')}</a>
