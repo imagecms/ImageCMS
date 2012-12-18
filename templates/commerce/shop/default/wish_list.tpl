@@ -7,28 +7,30 @@
 <div class="content">
     <div class="center">
         <h1>{lang('s_WL')}</h1>
-        <h2 class="notificationWish"></h2>
-        {if ShopCore::$ci->dx_auth->is_logged_in()===true}
-            <a href="#" class="f_l w-s_n-w" id="button_email">{lang('s_s_wish_list')}</a>
-            <div class="fancy c_b f_l" style="border: none; display: none;" id="send_email">
-                <form action="" method="post" name="editForm" style="padding-left: 0; padding-right: 0px;">
-                    <div id="change_info_edit" class="f_r">
-                        <label class="f_r">{lang('s_form_input_wl')}:
-                            <input type="text" name="friendsMail"/>
-                        </label>
-                        <div id="buttons">
-                            <div class="p-t_19 c_b clearfix"  style="width: 191px;">
-                                <div class="buttons button_middle_blue f_l">
-                                    <input type="submit" name="sendwish" value="{lang('s_send')}"/>
+        {if $items}
+            <h2 class="notificationWish"></h2>
+            {if ShopCore::$ci->dx_auth->is_logged_in()===true}
+                <a href="#" class="f_l w-s_n-w" id="button_email">{lang('s_s_wish_list')}</a>
+                <div class="fancy c_b f_l" style="border: none; display: none;" id="send_email">
+                    <form action="" method="post" name="editForm" style="padding-left: 0; padding-right: 0px;">
+                        <div id="change_info_edit" class="f_r">
+                            <label class="f_r">{lang('s_form_input_wl')}:
+                                <input type="text" name="friendsMail"/>
+                            </label>
+                            <div id="buttons">
+                                <div class="p-t_19 c_b clearfix"  style="width: 191px;">
+                                    <div class="buttons button_middle_blue f_l">
+                                        <input type="submit" name="sendwish" value="{lang('s_send')}"/>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>                                    
-                    </div>
-                     {form_csrf()}
-                </form>
-            </div>
-        {else:}
-            {lang('s_to_sen_wish_auth')}
+                            </div>                                    
+                        </div>
+                         {form_csrf()}
+                    </form>
+                </div>
+            {else:}
+                {lang('s_to_sen_wish_auth')}
+            {/if}
         {/if}
         {if !$items}
             <div class="comparison_slider">
@@ -47,7 +49,6 @@
                 <tbody>
                     {foreach $items as $key=>$item}
                         {$discount = ShopCore::app()->SDiscountsManager->productDiscount($item->id)}
-                        {$prices = currency_convert($item.model->firstvariant->getPrice(), $item.model->firstvariant->getCurrency())}
                         {$style = productInCart($cart_data, $item.model->getId(), $item.model->firstVariant->getId(), $item.model->firstVariant->getStock())}
                         <tr>
                             <td>
@@ -59,8 +60,8 @@
                                 <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}</a>
                             </td>
                             <td>
-                                <div class="price f-s_16 f_l">{$prices.main.price}
-                                    <sub>{$prices.main.symbol}</sub>
+                                <div class="price f-s_16 f_l">{echo $item.model->firstvariant->getPrice()}
+                                    <sub>{$CS}</sub>
 
                                 </div>
                             </td>
@@ -76,15 +77,15 @@
                             <td>
                                 <div class="price f-s_18 f_l">
                                     {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                        {$prOne = $prices.main.price * 1}
-                                        {$prTwo = $prices.main.price * 1}
+                                        {$prOne = $item.model->firstvariant->getPrice() * 1}
+                                        {$prTwo = $item.model->firstvariant->getPrice() * 1}
                                         {$summary = $prOne - $prTwo / 100 * $discount}
-                                        <del class="price price-c_red f-s_12 price-c_9">{echo $prices.main.price * 1} {$prices.main.symbol}</del> <br />
+                                        <del class="price price-c_red f-s_12 price-c_9">{echo $item.model->firstvariant->getPrice() * 1} {$CS}</del> <br />
                                     {else:}
-                                        {$summary = $prices.main.price}
+                                        {$summary = $item.model->firstvariant->getPrice()}
                                     {/if}
                                     {echo $summary} 
-                                    {$prices.main.symbol}
+                                    {$CS}
                                 </div>
                             </td>
                             <td>
