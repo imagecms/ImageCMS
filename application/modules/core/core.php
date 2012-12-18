@@ -888,12 +888,10 @@ class Core extends MY_Controller {
                 'meta_noindex' => $this->_for_meta_noindex(),
             ));
         } else {
-            if ($this->settings['add_site_name_to_cat']) {
-                if (is_array($category))
+            if ($this->settings['add_site_name_to_cat'])
+                if ($category != '')
                     $title .= ' - ' . $category;
-                else 
-                    $title .= $category;
-            }
+
 
             if ($this->core_data['data_type'] == 'page' AND $this->page_content['category'] != 0 AND $this->settings['add_site_name_to_cat']) {
                 $title .= ' ' . $this->settings['delimiter'] . ' ' . $this->cat_content['name'];
