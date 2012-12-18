@@ -17,7 +17,6 @@
                         {$variant = $v}
                     {/if}
                 {/foreach}
-                {$vprices = currency_convert($variant->getPrice(), $variant->getCurrency())}
                 <tr>
                     <td>
                         <a href="{shop_url('product/' . $item.model->getUrl())}" class="photo_block">
@@ -28,7 +27,7 @@
                         <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}{if count($variants)>1} - {echo ShopCore::encode($variant->name)}{/if}</a>
                     </td>
                     <td>
-                        <div class="price f-s_16 f_l">{echo $vprices.main.price} <sub>{$vprices.main.symbol}</sub>
+                        <div class="price f-s_16 f_l">{echo $variant->getPrice()} <sub>{$CS}</sub>
                         </div>
                     </td>
                     <td>
@@ -45,19 +44,15 @@
                         <div class="price f-s_18 f_l">
                             {if $item.discount}
                                 <div class="price f-s_12 f_l">Скидка {echo $item.discount}%</div><br /> 
-                                {$summary = $vprices.main.price * $item.quantity}
+                                {$summary = $variant->getPrice() * $item.quantity}
                                 {echo $summary - $summary / 100 *$item.discount}
-                                <sub>{$vprices.main.symbol}</sub>      <br />       
-                                <del class="price price-c_red f-s_12 price-c_9">{echo $summary} {$vprices.main.symbol}</del> 
+                                <sub>{$CS}</sub>      <br />       
+                                <del class="price price-c_red f-s_12 price-c_9">{echo $summary} {$CS}</del> 
                             {else:}
-                                {$summary = $vprices.main.price * $item.quantity}
+                                {$summary = $variant->getPrice() * $item.quantity}
                                 {echo $summary}
-                                <sub>{$vprices.main.symbol}</sub>
+                                <sub>{$CS}</sub>
                             {/if}
-                            {//$summary = $vprices.main.price * $item.quantity}
-                            {//echo $summary}
-                            <!--<sub>{//$vprices.main.symbol}</sub>-->                
-
                         </div>
                     </td>
                     <td>
@@ -79,7 +74,8 @@
                         <br /><span style="font-size:16px;">{echo $item.model->getMainProduct()->firstVariant->toCurrency()} {$CS}</span>
                     </td>
                     <td rowspan="{echo $item.model->countProducts()}">
-                        {echo ShopCore::app()->SCurrencyHelper->convert($item.price)} {$CS}                               
+                        {//echo ShopCore::app()->SCurrencyHelper->convert($item.price)} {//$CS}                               
+                        {echo $item.price} {$CS}                               
                     </td>
                     <td rowspan="{echo $item.model->countProducts()}">
                         <div class="count">
@@ -91,7 +87,8 @@
                         </div>
                     </td>
                     <td rowspan="{echo $item.model->countProducts()}">
-                        {echo $summary = ShopCore::app()->SCurrencyHelper->convert($item.totalAmount)} {$CS}
+                        {//echo $summary = ShopCore::app()->SCurrencyHelper->convert($item.totalAmount)} {//$CS}
+                        {echo $summary = $item.totalAmount} {$CS}
                     </td>
                     <td rowspan="{echo $item.model->countProducts()}"><a href="{shop_url('cart/delete/' . $key)}" rel="nofollow" class="delete_text inCartProducts">&times;</a></td>
 
@@ -102,28 +99,25 @@
                     {$kitFirstVariant = $ap->getKitFirstVariant($shopKitProduct)}
                     <tr>
                         <td style="width:90px;padding:2px;">
-
                             {if $ap->getMainImage()}
                                 <a href="{shop_url('product/' . $ap->getId())}" class="photo_block">
                                     <img src="{productImageUrl($ap->getId() . '_main.jpg')}" border="0" width="100" alt="{echo ShopCore::encode($ap->getName())}" />                                                
                                 </a>
                             {/if}                      
-
-
                         </td>
                         <td>
                             <a href="{shop_url('product/' . $ap->getUrl())}">{echo ShopCore::encode($ap->getName())}</a> {echo ShopCore::encode($kitFirstVariant->getName())}
                             {if $kitFirstVariant->getEconomy() > 0}
-                    <br /><s style="font-size:14px;">{echo $kitFirstVariant->toCurrency('origPrice')} {$CS}</s>
-                    <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
-                {else:}
-                    <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
-                {/if}
-            </td>
-        </tr>
-        {$i++}
-    {/foreach}
-{/if}
+                                <br /><s style="font-size:14px;">{echo $kitFirstVariant->toCurrency('origPrice')} {$CS}</s>
+                                <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
+                            {else:}
+                                <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
+                            {/if}
+                        </td>
+                    </tr>
+                    {$i++}
+                {/foreach}
+            {/if}
 {$total     += $summary}
 {$total_nc  += $summary_nextc}
 {/foreach}
@@ -140,15 +134,7 @@
                     {/if}
                 </div>
                 <div class="f_r">
-                    {if $NextCS == $CS}
-                        <div class="price f-s_26_lh_50 f_l">
-                        {else:}
                             <div class="price f-s_26 f_l">
-                            {/if}
-                            {if isset($item.delivery_price)}
-                                {$dprice =  currency_convert($item.delivery_price, Null)}
-                                {$item.delivery_price = $dprice.main.price}
-                            {/if}
                             {if $total < $item.delivery_free_from}
                                 {$total += $item.delivery_price}
                             {/if}
@@ -158,9 +144,7 @@
                             {if count($discountCom)} 
                                 <del class="price price-c_red f-s_12 price-c_9">{echo $total} {$CS}</del> 
                                 <span class="price f-s_12 price-c_9" style="font-size: 14px;">Скидка {echo $discountCom->getDiscount()}%</span>
-                                {//$total - $total / 100 * $discountCom->getDiscount()} 
                                 {echo money_format('%i', $total - $total / 100 * $discountCom->getDiscount())} {$CS} 
-
                             {elseif $item.discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
                                 <div class="price f-s_26 f_l">
                                     {echo $total - $total / 100 * $item.discount} {$CS}
@@ -171,11 +155,8 @@
                                 </div>
 
                             {/if}
-
-                            <sub>{//$CS}</sub>
-                        {if $total < $item.delivery_free_from}<span class="d_b">(+{echo $dprice.main.price} {$dprice.main.symbol})</span>{/if}
-                    {if isset($item.gift_cert_price)}<span class="d_b">(-{echo $item.gift_cert_price} руб)</span>{/if}
-
+                            {if $total < $item.delivery_free_from}<span class="d_b">(+{echo $item.delivary_price} {$CS})</span>{/if}
+                            {if isset($item.gift_cert_price)}<span class="d_b">(-{echo $item.gift_cert_price} {$CS})</span>{/if}
                 </div>
             </div>
             <div class="f_r sum">{lang('s_summ')}:

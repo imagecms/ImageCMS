@@ -76,7 +76,7 @@
                 
                 <ul class="user_menu">
                     <!--    Show callback's form    -->
-                    {if count(get_currencies())>2}
+                    {if !count(get_currencies())}
                         <li class="p-l_0">
                             <form action="" method="post" name="currencyChangeForm" id="currencyChangeForm">
                                 {lang('s_currency')}: <select class="changeCurrency" name="setCurrency" >
