@@ -882,7 +882,6 @@ $(document).ready(function() {
         var id = $(this).attr('data-id');
         $('[name="categoryId"]').attr('value', id);
         $('#orderForm').submit();
-    //console.log($('[name="categoryId"]'));
     });
 
     $('.clear_filter').live('click', function() {
