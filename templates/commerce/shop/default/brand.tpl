@@ -9,26 +9,29 @@
 #}
 
 {$forCompareProducts = $CI->session->userdata('shopForCompare')}
-
+{$cart_data = ShopCore::app()->SCart->getData()}
 <div class="content">
     <div class="center">
         <div class="filter">
             {if count($incats)>0}
-                <div class="title padding_filter">{lang('s_found_in_categories')}</div>
-                <div style="padding-left: 15px;">
-                    <div class="padding_filter">
-                        <span style="cursor: pointer;" class="clear_filter" data-url="{site_url($CI->uri->uri_string())}">{lang('s_cancel')}</span><br/>
+                <form id="orderForm" method="get">
+                    <input type="hidden" name="categoryId" value=""/>
+                    <div class="title padding_filter">{lang('s_found_in_categories')}</div>
+                    <div style="padding-left: 15px;">
+                        <div class="padding_filter">
+                            <span style="cursor: pointer;" class="clear_filter" data-url="{site_url($CI->uri->uri_string())}">{lang('s_cancel')}</span><br/>
+                        </div>
+                        <div class="padding_filter check_frame">
+                            <div>
+                                {foreach $categories_names as $item}
+                                {if ShopCore::$_GET['categoryId'] == $item.id}<b>{$cat_name = $item.name}{/if}
+                                    <span style="cursor: pointer;" class="findincats" data-id="{echo $item.id}">{$item.name} ({echo $incats[$item.id]})</span></br>
+                                {if ShopCore::$_GET['categoryId'] == $item.id}</b>{/if}
+                            {/foreach}    
                     </div>
-                    <div class="padding_filter check_frame">
-                        <div>
-                            {foreach $categories_names as $item}
-                            {if ShopCore::$_GET['categoryId'] == $item.id}<b>{$cat_name = $item.name}{/if}
-                                <span style="cursor: pointer;" class="findincats" data-id="{echo $item.id}">{$item.name} ({echo $incats[$item.id]})</span></br>
-                            {if ShopCore::$_GET['categoryId'] == $item.id}</b>{/if}
-                        {/foreach}    
                 </div>
             </div>
-        </div>
+        </form>
     {else:}
         <div class="title padding_filter">В категориях ничего не найдено</div>
     {/if}
@@ -44,7 +47,6 @@
             <ul>
                 {foreach getPromoBlock('hot', 3, '', $model->getId()) as $hotProduct}
                     {$discount = ShopCore::app()->SDiscountsManager->productDiscount($hotProduct->id)}
-                    {$hot_prices = currency_convert($hotProduct->firstVariant->getPrice(), $hotProduct->firstVariant->getCurrency())}
                     <li class="smallest_item">
                         <div class="photo_block">
                             <a href="{shop_url('product/' . $hotProduct->getUrl())}">
@@ -56,19 +58,15 @@
                             <div class="buy">
                                 <div class="price f-s_14">                                
                                     {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                        {$prOne = $hot_prices.main.price}
-                                        {$prTwo = $hot_prices.main.price}
+                                        {$prOne = $hotProduct->firstVariant->getPrice()}
+                                        {$prTwo = $hotProduct->firstVariant->getPrice()}
                                         {$prThree = $prOne - $prTwo / 100 * $discount}
-                                        <del class="price price-c_red f-s_12 price-c_9">{echo $hot_prices.main.price} {$hot_prices.main.symbol}</del><br /> 
+                                        <del class="price price-c_red f-s_12 price-c_9">{echo $hotProduct->firstVariant->getPrice()} {$CS}</del><br /> 
                                     {else:}
-                                        {$prThree = $hot_prices.main.price}
+                                        {$prThree = $hotProduct->firstVariant->getPrice()}
                                     {/if}
                                     {echo $prThree} 
-                                    <sub>{$hot_prices.second.symbol}</sub>
-
-                                    {if $NextCS != $CS AND empty($discount)}
-                                        <span class="d_b">{echo $hot_prices.second.price} {$hot_prices.second.symbol}</span>
-                                    {/if}
+                                    <sub>{$CS}</sub>
                                 </div>
                             </div>
                         </div>
@@ -86,7 +84,6 @@
             <ul>
                 {foreach getPromoBlock('action', 3, '', $model->getId()) as $hotProduct}
                     {$discount = ShopCore::app()->SDiscountsManager->productDiscount($hotProduct->id)}
-                    {$action_prices = currency_convert($hotProduct->firstVariant->getPrice(), $hotProduct->firstVariant->getCurrency())}
                     <li class="smallest_item">
                         <div class="photo_block">
                             <a href="{shop_url('product/' . $hotProduct->getUrl())}">
@@ -99,19 +96,15 @@
                                 <div class="price f-s_14">
 
                                     {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                        {$prOne = $action_prices.main.price}
-                                        {$prTwo = $action_prices.main.price}
+                                        {$prOne = $hotProduct->firstVariant->getPrice()}
+                                        {$prTwo = $hotProduct->firstVariant->getPrice()}
                                         {$prThree = $prOne - $prTwo / 100 * $discount}
-                                        <del class="price price-c_red f-s_12 price-c_9">{echo $action_prices.main.price} {$action_prices.main.symbol}</del><br /> 
+                                        <del class="price price-c_red f-s_12 price-c_9">{echo $hotProduct->firstVariant->getPrice()} {$CS}</del><br /> 
                                     {else:}
-                                        {$prThree = $action_prices.main.price}
+                                        {$prThree = $hotProduct->firstVariant->getPrice()}
                                     {/if}
                                     {echo $prThree} 
-                                    <sub>{$action_prices.second.symbol}</sub>
-
-                                    {if $NextCS != $CS AND empty($discount)}
-                                        <span class="d_b">{echo $action_prices.second.price} {$action_prices.second.symbol}</span>
-                                    {/if}
+                                    <sub>{$CS}</sub>
                                 </div>
                             </div>
                         </div>
@@ -169,27 +162,26 @@
     {/if}
     <!--  Render produts list   -->
     {foreach $products as $product}
-        {$discount = ShopCore::app()->SDiscountsManager->productDiscount($product->id)}
+        {$discount = ShopCore::app()->SDiscountsManager->productDiscount($product->getId())}
         {$style = productInCart($cart_data, $product->getId(), $product->firstVariant->getId(), $product->firstVariant->getStock())}
         <li {if $product->getFirstVariant()->getStock() == 0}class="not_avail"{/if}>
             <div class="photo_block">
-                <a href="{shop_url('product/' . $product->url)}">
-                    <img id="mim{echo $product->id}" src="{productImageUrl($product->mainModImage)}" alt="{echo ShopCore::encode($product->name)} - {echo $product->id}" />
-                    <img id="vim{echo $product->id}" class="smallpimagev" src="" alt="" />
-                    {if $product->hot == 1}
+                <a href="{shop_url('product/' . $product->getUrl())}">
+                    <img id="mim{echo $product->getid()}" src="{productImageUrl($product->getmainModImage())}" alt="{echo ShopCore::encode($product->getname())} - {echo $product->getid()}" />
+                    <img id="vim{echo $product->getid()}" class="smallpimagev" src="" alt="" />
+                    {if $product->getHot() == 1}
                         <div class="promoblock nowelty">{lang('s_shot')}</div>
                     {/if}
-                    {if $product->action == 1}
+                    {if $product->getAction() == 1}
                         <div class="promoblock action">{lang('s_saction')}</div>
                     {/if}
-                    {if $product->hit == 1}
-                        {$discount = ShopCore::app()->SDiscountsManager->productDiscount($product->id)}
+                    {if $product->getHit() == 1}
                         <div class="promoblock hit">{lang('s_s_hit')}</div>
                     {/if}
                 </a>
                 <span class="ajax_refer_marg t-a_c">
-                    <span data-prodid="{echo $product->id}" class="compare
-                          {if $forCompareProducts && in_array($product->id, $forCompareProducts)}
+                    <span data-prodid="{echo $product->getid()}" class="compare
+                          {if $forCompareProducts && in_array($product->getid(), $forCompareProducts)}
                               is_avail">
                               <a href="{shop_url('compare')}" class="red">{lang('s_compare')}</a>
                           {else:}
@@ -201,16 +193,16 @@
                 </span>
             </div>
             <div class="func_description">
-                <a href="{shop_url('product/' . $product->url)}" class="title">{echo ShopCore::encode($product->name)}</a>
+                <a href="{shop_url('product/' . $product->geturl())}" class="title">{echo ShopCore::encode($product->getname())}</a>
                 <div class="f-s_0">
-                    {if $product->variants[0]->number}
-                        <span id="code{echo $product->id}" class="code">
-                            {lang('s_kod')} {echo ShopCore::encode($product->variants[0]->number)}
+                    {if $product->firstVariant->getnumber()}
+                        <span id="code{echo $product->getid()}" class="code">
+                            {lang('s_kod')} {echo ShopCore::encode($product->firstVariant->getnumber())}
                         </span>
                     {/if}
                     <div>
                         <div class="star_rating">
-                            <div id="{echo $model->id}_star_rating" class="rating_nohover {echo count_star(countRating($product->id))} star_rait" data-id="{echo $model->id}">
+                            <div id="{echo $model->getid()}_star_rating" class="rating_nohover {echo count_star(countRating($product->getid()))} star_rait" data-id="{echo $model->getid()}">
                                 <div id="1" class="rate one">
                                     <span title="1">1</span>
                                 </div>
@@ -229,27 +221,24 @@
                             </div>
                         </div>
                         <a href="{shop_url('product/'.$product->id.'#four')}" rel="nofollow" class="response">
-                            {totalComments($product->id)}
-                            {echo SStringHelper::Pluralize((int)totalComments($product->id), array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}
+                            {totalComments($product->getid())}
+                            {echo SStringHelper::Pluralize((int)totalComments($product->getid()), array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}
                         </a>
-                        {if count($product->variants)>1}
+                        {if count($product->getProductVariants())>1}
                             <select class="m-l_10" name="selectVar">
-                                {foreach $product->variants as $pv}
-                                    {$variant_prices = currency_convert($pv->price, $pv->currency)}
+                                {foreach $product->getProductVariants() as $pv}
                                     <option class="selectVar"
-                                            value="{echo $pv->id}"
-                                            data-st="{echo $pv->stock}"
-                                            data-cs="{$variant_prices.second.symbol}"
-                                            data-spr="{echo number_format($variant_prices.second.price, 2, ".", "")}"
-                                            data-pr="{echo number_format($variant_prices.main.price, 2 , ".", "")}"
-                                            data-pid="{echo $product->id}"
-                                            data-img="{echo $pv->smallimage}"
-                                            data-vname="{echo $pv->name}"
-                                            data-vnumber="{echo $pv->number}">
-                                        {if $pv->name != ''}
-                                            {echo $pv->name}
+                                            value="{echo $pv->getid()}"
+                                            data-st="{echo $pv->getstock()}"
+                                            data-pr="{echo number_format($pv->getPrice(), 2 , ".", "")}"
+                                            data-pid="{echo $product->getid()}"
+                                            data-img="{echo $pv->getsmallimage()}"
+                                            data-vname="{echo $pv->getname()}"
+                                            data-vnumber="{echo $pv->getnumber()}">
+                                        {if $pv->getname() != ''}
+                                            {echo $pv->getname()}
                                         {else:}
-                                            {echo $product->name}
+                                            {echo $product->getname()}
                                         {/if}
                                     </option>
                                 {/foreach}
@@ -259,47 +248,42 @@
                 </div>
                 <div class="buy">
                     <div class="price f-s_18 d_b">
-                        {if (float)$product->old_price > 0}
-                            {if $product->old_price > $product->price_in_main}
+                        {if (float)$product->getOldPrice() > 0}
+                            {if $product->getOldPrice() > $product->firstVariant->getPrice()}
                                 <div>
                                     <del class="price f-s_12 price-c_9" style="margin-top: 1px;">
-                                        {echo number_format($product->old_price, 2, ".", "")}
+                                        {echo number_format($product->getOldPrice(), 2, ".", "")}
                                         <sub> {$CS}</sub>
                                     </del>
                                 </div>
                             {/if}
                         {/if}
-                        <div id="pricem{echo $product->id}">
+                        <div id="pricem{echo $product->getId()}">
                             {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                {$prOne = $prices.main.price}
-                                {$prTwo = $prices.main.price}
+                                {$prOne = $product->firstVariant->getPrice()}
+                                {$prTwo = $product->firstVariant->getPrice()}
                                 {$prThree = $prOne - $prTwo / 100 * $discount}
-                                <del class="price price-c_red f-s_12 price-c_9">{echo number_format($prices.main.price, 2, ".", "")} {$prices.main.symbol}</del>
-
+                                <del class="price price-c_red f-s_12 price-c_9">{echo number_format($product->firstVariant->getPrice(), 2, ".", "")} {$CS}</del>
                             {else:}
-                                {echo number_format($prices.main.price, 2, ".", "")}
-                                {$prThree = $prices.main.price}
+                                {$prThree = $product->firstVariant->getPrice()}
                             {/if}
                             {echo number_format($prThree, 2, ".", "")} 
-                            <sub>{$prices.main.symbol}</sub>
-                            {if $NextCS != $CS AND empty($discount)}
-                                <span class="d_b">{echo number_format($prices.second.price, 2, ".", "")} {$prices.second.symbol}</span>
-                            {/if}
+                            <sub>{$CS}</sub>
                         </div>
                     </div>
-                    <div id="p{echo $product->id}" class="{$style.class} buttons">
-                        <span id="buy{echo $product->id}"
+                    <div id="p{echo $product->getid()}" class="{$style.class} buttons">
+                        <span id="buy{echo $product->getid()}"
                               class="{$style.identif}"
-                              data-varid="{echo $product->variants[0]->id}"
-                              data-prodid="{echo $product->id}">
+                              data-varid="{echo $product->firstVariant->getid()}"
+                              data-prodid="{echo $product->getid()}">
                             {$style.message}
                         </span>
                     </div>
                     <span class="frame_wish-list">
-                        {if !is_in_wish($product->id)}
+                        {if !is_in_wish($product->getid())}
                             <span data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}"
-                                  data-varid="{echo $product->variants[0]->id}"
-                                  data-prodid="{echo $product->id}"
+                                  data-varid="{echo $product->firstVariant->getid()}"
+                                  data-prodid="{echo $product->getid()}"
                                   class="addToWList">
                                 <span class="icon-wish"></span>
                                 <span class="js blue">{lang('s_slw')}</span>
@@ -311,10 +295,10 @@
                     </span> 
                 </div>
 
-                {if ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($product->id)}
+                {if ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($product->getid())}
                     <p class="c_b">
-                        {echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($product->id)}
-                        &nbsp;&nbsp;<a href="{shop_url('product/' . $product->url)}" class="t-d_n"><span class="t-d_u">{lang('s_more')}</span> →</a>
+                        {echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($product->getid())}
+                        &nbsp;&nbsp;<a href="{shop_url('product/' . $product->geturl())}" class="t-d_n"><span class="t-d_u">{lang('s_more')}</span> →</a>
                     </p>
                 {/if}
             </div>

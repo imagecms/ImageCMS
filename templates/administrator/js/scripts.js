@@ -21,10 +21,10 @@ $(document).ajaxComplete(function(event, XHR, ajaxOptions) {
             init_2();
             fixed_frame_title();
         }
-
-        if ($.exists('#chart'))
+        
+        if ($.exists('#chart')) brands();
             brands();
-        if ($.exists('#wrapper_gistogram'))
+        if ($.exists('#wrapper_gistogram')) gistogram();
             gistogram();
         $('#loading').stop().fadeOut(200);
     }
@@ -445,22 +445,22 @@ function autocomplete() {
             select: function(event, ui) {
                 var mainDisc = $('#mainDisc').attr('value');
                 $('#forAttached').append('<div id="tpm_row' + ui.item.identifier.id + '" class="m-t_10">' +
-                        '<span class="d-i_b number v-a_b">' +
-                        '<span class="help-inline d_b">ID</span>' +
-                        '<input type="text" name="AttachedProductsIds[]" value="' + ui.item.identifier.id + '" class="input-mini"/>' +
-                        '</span>&nbsp;' +
-                        '<span class="d-i_b v-a_b">' +
-                        '<span class="help-inline d_b">???</span>' +
-                        '<input type="text" id="AttachedProducts" value="' + ui.item.label + '" class="input-xxlarge"/>' +
-                        '</span>&nbsp;' +
-                        '<span class="d-i_b number v-a_b">' +
-                        '<span class="help-inline d_b">?????? %</span>' +
-                        '<input type="text" id="AttachedProductsDisc" name="Discounts[]" value="' + mainDisc + '" class="input-mini" data-max="100" data-rel="tooltip" data-title="?????? ?????"/>' +
-                        '</span>&nbsp;' +
-                        '<span class="d-i_b v-a_b">' +
-                        '<button class="btn btn-danger btn-small del_tmp_row" type="button" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash icon-white"></i></button>' +
-                        '</span>' +
-                        '</div>');
+                    '<span class="d-i_b number v-a_b">' +
+                    '<span class="help-inline d_b">ID</span>' +
+                    '<input type="text" name="AttachedProductsIds[]" value="' + ui.item.identifier.id + '" class="input-mini"/>' +
+                    '</span>&nbsp;' +
+                    '<span class="d-i_b v-a_b">' +
+                    '<span class="help-inline d_b">Имя</span>' +
+                    '<input type="text" id="AttachedProducts" value="' + ui.item.label + '" class="input-xxlarge"/>' +
+                    '</span>&nbsp;' +
+                    '<span class="d-i_b number v-a_b">' +
+                    '<span class="help-inline d_b">Скидка %</span>' +
+                    '<input type="text" id="AttachedProductsDisc" name="Discounts[]" value="' + mainDisc + '" class="input-mini" data-max="100" data-rel="tooltip" data-title="?????? ?????"/>' +
+                    '</span>&nbsp;' +
+                    '<span class="d-i_b v-a_b">' +
+                    '<button class="btn btn-danger btn-small del_tmp_row" type="button" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash icon-white"></i></button>' +
+                    '</span>' +
+                    '</div>');
             },
             close: function(event, ui) {
                 $('#AttachedProducts').attr('value', '');
