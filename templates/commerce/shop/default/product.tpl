@@ -188,7 +188,6 @@
                     {/if}
                     </span>
                 {/if}
-                &nbsp;&nbsp;<span>{echo ShopCore::app()->SProductSpy->getsubscribescount($model->getId())}</span>
                 {if $model->getShortDescription() != ''}
                     <p class="c_b">{echo $model->getShortDescription()}</p>
                 {/if}
