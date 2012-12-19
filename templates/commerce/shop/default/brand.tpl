@@ -16,21 +16,19 @@
             {if count($incats)>0}
                 <form id="orderForm" method="get">
                     <input type="hidden" name="categoryId" value=""/>
-                    <div class="title padding_filter">{lang('s_found_in_categories')}</div>
-                    <div style="padding-left: 15px;">
-                        <div class="padding_filter">
-                            <span style="cursor: pointer;" class="clear_filter" data-url="{site_url($CI->uri->uri_string())}">{lang('s_cancel')}</span><br/>
-                        </div>
-                        <div class="padding_filter check_frame">
-                            <div>
-                                {foreach $categories_names as $item}
-                                {if ShopCore::$_GET['categoryId'] == $item.id}<b>{$cat_name = $item.name}{/if}
-                                    <span style="cursor: pointer;" class="findincats" data-id="{echo $item.id}">{$item.name} ({echo $incats[$item.id]})</span></br>
+                    <div class="title">{lang('s_found_in_categories')}</div>
+                    <div class="padding_filter check_frame">
+                        <ul class="menu_fiter">
+                            {foreach $categories_names as $item}
+                                <li>
+                                {if ShopCore::$_GET['categoryId'] == $item.id}<b class="c_d">{$cat_name = $item.name}{/if}
+                                    <span class="findincats js gray" data-id="{echo $item.id}">{$item.name} ({echo $incats[$item.id]})</span>
                                 {if ShopCore::$_GET['categoryId'] == $item.id}</b>{/if}
-                            {/foreach}    
-                    </div>
-                </div>
+                            {/foreach}
+                    </li>
+                </ul>
             </div>
+            <span class="clear_filter" data-url="{site_url($CI->uri->uri_string())}"><span class="icon-reset"></span>{lang('s_cancel')}</span><br/>
         </form>
     {else:}
         <div class="title padding_filter">В категориях ничего не найдено</div>

@@ -65,14 +65,14 @@ class Core extends MY_Controller {
 
         /* Show Google Analytics code if some value inserted in admin panel */
         if ($this->settings['google_analytics_id'])
-                    $this->renderGA();
+            $this->renderGA();
 
         if ($this->settings['google_webmaster'])
             ($hook = get_hook('render_google_webmaster')) ? eval($hook) : NULL;
 
         if ($this->settings['yandex_webmaster'])
             ($hook = get_hook('render_yandex_webmaster')) ? eval($hook) : NULL;
-        
+
         if (true)
             ($hook = get_hook('render_yandex_metrik')) ? eval($hook) : NULL;
 
@@ -126,14 +126,14 @@ class Core extends MY_Controller {
 
         if ($this->settings['site_offline'] == 'yes') {
             if ($this->session->userdata('DX_role_id') != 10) {
-                
+
                 ($hook = get_hook('core_goes_offline')) ? eval($hook) : NULL;
                 header('HTTP/1.1 503 Service Unavailable');
                 $this->template->display('offline');
                 exit;
             }
         }
-        
+
         if ($this->uri->segment(1) == $this->def_lang[0]['identif']) {
             $url = implode('/', array_slice($this->uri->segment_array(), 1));
             header('Location:/' . $url);
@@ -226,9 +226,9 @@ class Core extends MY_Controller {
             ($hook = get_hook('core_get_page_query')) ? eval($hook) : NULL;
             $query = $this->db->get('content', 1);
 
-           
 
-		   if ($query->num_rows() > 0) {
+
+            if ($query->num_rows() > 0) {
                 ($hook = get_hook('core_page_found')) ? eval($hook) : NULL;
 
                 if (substr($cat_path, -1) == '/')
@@ -252,11 +252,6 @@ class Core extends MY_Controller {
                             break;
                         }
                     }
-					
-					
-					
-					
-                    
                 } else {
                     // display page without category
                     $data_type = 'page';
@@ -267,10 +262,10 @@ class Core extends MY_Controller {
                     ($hook = get_hook('core_set_type_nocat')) ? eval($hook) : NULL;
                 }
             } else {
-                
-				
-				
-				$data_type = '404';
+
+
+
+                $data_type = '404';
                 ($hook = get_hook('core_type_404')) ? eval($hook) : NULL;
             }
         }
@@ -893,14 +888,15 @@ class Core extends MY_Controller {
                 'meta_noindex' => $this->_for_meta_noindex(),
             ));
         } else {
-            if ($this->settings['add_site_name_to_cat']){
-                $title .= ' - ' . $category . ' ';
-            }
-            
+            if ($this->settings['add_site_name_to_cat'])
+                if ($category != '')
+                    $title .= ' - ' . $category;
+
+
             if ($this->core_data['data_type'] == 'page' AND $this->page_content['category'] != 0 AND $this->settings['add_site_name_to_cat']) {
                 $title .= ' ' . $this->settings['delimiter'] . ' ' . $this->cat_content['name'];
             }
-            
+
 
             if (is_array($title)) {
                 $n_title = '';
@@ -925,7 +921,7 @@ class Core extends MY_Controller {
                 'page_number' => $page_number,
                 'meta_noindex' => $this->_for_meta_noindex(),
             ));
-        }      
+        }
     }
 
     public function _for_meta_noindex() {
@@ -1040,6 +1036,7 @@ s.parentNode.insertBefore(ga, s);
             $this->template->assign('renderGA', $ga);
         }
     }
+
 }
 
 /* End of file core.php */
