@@ -1018,3 +1018,4 @@ span.required {color: #D80600;}
 .foot_cleaner.result{border-color: #aad653;background-color: #f4ffde;padding-left: 20px;padding-right: 20px;text-align: center;}
 .foot_cleaner.result .buttons{margin-left: 15px;}
 .cleaner_table .photo_block img{max-width: 100px;}
+.clear_filter {cursor: pointer;}
