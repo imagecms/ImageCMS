@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <span itemscope="" itemtype="http://data-vocabulary.org/Review-aggregate" id="pageRatingData"> 
-                    &nbsp;&nbsp;Рейтинг товара: {if $model->firstVariant->getNumber() != ''}«<span itemprop="itemreviewed">{echo $model->firstvariant->getNumber()}</span>»{/if} 
+                    &nbsp;&nbsp;Рейтинг товара {if $model->firstVariant->getNumber() != ''}«<span itemprop="itemreviewed">: {echo $model->firstvariant->getNumber()}</span>»{/if} 
                     <meta itemprop="rating" content="4"> оставило <span itemprop="count">{echo $model->getVotes()}</span> человек(а).
                 </span>
                 <div class="m-t_10">{echo $CI->load->module('share')->_make_share_form()}</div>
@@ -188,7 +188,6 @@
                     {/if}
                     </span>
                 {/if}
-                &nbsp;&nbsp;<span>{echo ShopCore::app()->SProductSpy->getsubscribescount($model->getId())}</span>
                 {if $model->getShortDescription() != ''}
                     <p class="c_b">{echo $model->getShortDescription()}</p>
                 {/if}

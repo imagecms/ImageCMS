@@ -137,7 +137,7 @@ $(document).ready(function() {
                 //                        .unbind('click');
                 showResponse(msg);
                 $.fancybox.hideActivity();
-            //$this.hide();
+                //$this.hide();
             }
         })
         return false;
@@ -239,7 +239,7 @@ $(document).ready(function() {
             $('.loginAjax').trigger('click');
         }
         return false;
-    //setTimeout(function() { $("#wishListNotify").css('display', 'none') }, 2000);
+        //setTimeout(function() { $("#wishListNotify").css('display', 'none') }, 2000);
     });
     $('#towishlist').on('click', function() {
         var logged_in = $(this).attr('data-logged_in');
@@ -270,7 +270,7 @@ $(document).ready(function() {
             }
         });
         return false;
-    //setTimeout(function() { $("#wishListNotify").css('display', 'none') }, 2000);
+        //setTimeout(function() { $("#wishListNotify").css('display', 'none') }, 2000);
     });
     $('.gotoComp').live('click', function() {
         $(location).attr('href', '/shop/compare');
@@ -290,7 +290,7 @@ $(document).ready(function() {
                 $.fancybox.hideActivity();
             }
         }
-        );
+    );
         return false;
     })
     function bindgoNotifMe() {
@@ -313,7 +313,6 @@ $(document).ready(function() {
         });
     }
     /* End of Event */
-
     $('.lineForm input[type=hidden]').on('change', function() {
         $('[name="order"]').val($('#sort').val());
         $('[name="user_per_page"]').val($('#count').val());
@@ -344,6 +343,8 @@ $(document).ready(function() {
                 else
                     showResponse(msg);
                 $form.find('input[name=makeOrder]').val(1);
+                $('#price1').text($('#allpriceholder').data('summary'));
+                $('#price3').text(parseFloat($('#allpriceholder').data('summary'))+parseFloat($('#price2').text()));
                 $.fancybox.hideActivity();
             }
         });
@@ -370,11 +371,17 @@ $(document).ready(function() {
                     $('.forCartProducts').html(msg);
                 else
                     showResponse(msg);
+                $('#price1').text($('#allpriceholder').data('summary'));
+                $('#price2').text($('#dpholder').data('dp'));
+                $('#price3').text(parseFloat($('#allpriceholder').data('summary'))+parseFloat($('#price2').text()));
                 $.fancybox.hideActivity();
             }
         });
         return false;
     });
+    
+    
+
     $('.met_del').bind('click', function() {
         var nid = $(this);
         $('#deliveryMethodId').val(nid.val());
@@ -383,6 +390,9 @@ $(document).ready(function() {
             success: function(msg) {
                 $("#paymentMethods").html(msg);
                 $('#paymentMethodId').val($('.met_buy:eq(0)').val());
+                $('#price1').text($('#allpriceholder').data('summary'));
+                $('#price2').text($('#dpholder').data('dp'));
+                $('#price3').text(parseFloat($('#allpriceholder').data('summary'))+parseFloat($('#price2').text()));
             }
         });
     });
@@ -532,7 +542,7 @@ $(document).ready(function() {
                             $('.auth_data').html(obj.header);
                             $('.addToWList').bind('click');
                             $('.addToWList').attr('data-logged_in', 'true');
-                        //$.fancybox.resize();
+                            //$.fancybox.resize();
                         }
                     }
                     $('.reg_me').bind('click', bindRegisterForm());
@@ -885,7 +895,6 @@ $(document).ready(function() {
     });
 
     $('.clear_filter').live('click', function() {
-        console.log($(this).attr('data-url'));
         var url = $(this).attr('data-url');
         $(location).attr('href', url);
     });
@@ -950,7 +959,7 @@ $(document).ready(function() {
                 //                    //console.log($(this).parents('.comparison_slider'));
                 //                }else{
                 $('#product_block_' + id).remove();
-            //}
+                //}
             }
         });
         if (count_products === 1) $(this).parents('.comparison_slider').remove();
@@ -988,7 +997,7 @@ $(document).ready(function() {
                 }
                 $.fancybox.hideActivity();
             }, "json"
-            );
+        );
         }
     });
 
