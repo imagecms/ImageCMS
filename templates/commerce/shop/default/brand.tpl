@@ -22,13 +22,13 @@
                             {foreach $categories_names as $item}
                                 <li>
                                 {if ShopCore::$_GET['categoryId'] == $item.id}<b class="c_d">{$cat_name = $item.name}{/if}
-                                    <span class="findincats js gray" data-id="{echo $item.id}">{$item.name} ({echo $incats[$item.id]})</span>
+                                    <span class="{if ShopCore::$_GET['categoryId']!=$item.id}findincats{/if} js gray" data-id="{echo $item.id}">{$item.name} ({echo $incats[$item.id]})</span>
                                 {if ShopCore::$_GET['categoryId'] == $item.id}</b>{/if}
                             {/foreach}
                     </li>
                 </ul>
             </div>
-            <span class="clear_filter" data-url="{site_url($CI->uri->uri_string())}"><span class="icon-reset"></span>{lang('s_cancel')}</span><br/>
+            <span {if ShopCore::$_GET['categoryId']}class="clear_filter"{/if} data-url="{site_url($CI->uri->uri_string())}"><span class="icon-reset"></span>{lang('s_cancel')}</span><br/>
         </form>
     {else:}
         <div class="title padding_filter">В категориях ничего не найдено</div>
