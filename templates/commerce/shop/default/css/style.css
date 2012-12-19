@@ -594,7 +594,7 @@ span.code{color: #999;font-size: 11px;margin-right: 9px;}
 
 
 .accessories {overflow: hidden;margin-left: -110px;width: 830px;padding-left: 27px;}
-.accessories li{width: 302px;height: 130px;border-bottom: 1px dashed #999;margin-left: 110px;display: inline-block;margin-bottom: -1px;padding: 19px 0;}
+.accessories li{width: 302px;height: 130px;border-bottom: 1px dashed #999;margin-left: 130px;display: inline-block;margin-bottom: -1px;padding: 19px 0;}
 
 .comment_ajax_refer{display: block;color: #666;margin: 27px 0 0 8px;height: 22px;padding: 8px 17px 0 11px;border: 1px solid transparent;}
 .comment_ajax_refer.visible{border: 1px solid #d7d7d7;background-color: #f7f7f7;}
