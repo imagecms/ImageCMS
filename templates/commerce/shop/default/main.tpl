@@ -7,6 +7,7 @@
         <meta name="keywords" content="{$site_keywords}" /> 
         <meta name="generator" content="ImageCMS" />
         {$meta_noindex}
+        {$canonical}
         <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}css/style.css" media="all" />
         <!--
         <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/jquery.fancybox-1.3.4.css" media="all" />

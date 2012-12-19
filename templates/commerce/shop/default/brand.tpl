@@ -28,7 +28,7 @@
                     </li>
                 </ul>
             </div>
-            <span {if ShopCore::$_GET['categoryId']}class="clear_filter"{/if} data-url="{site_url($CI->uri->uri_string())}"><span class="icon-reset"></span>{lang('s_cancel')}</span><br/>
+            {if ShopCore::$_GET['categoryId']}<a href="{site_url($CI->uri->uri_string())}"><span class="icon-reset"></span>{lang('s_cancel')}</span><br/>{/if}
         </form>
     {else:}
         <div class="title padding_filter">В категориях ничего не найдено</div>
