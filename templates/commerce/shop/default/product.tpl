@@ -84,7 +84,8 @@
                 <div class="crumbs">
                     {renderCategoryPath($model->getMainCategory())}
                 </div>
-                <h1>{echo ShopCore::encode($model->getName())}</h1>
+                    <h1 class="d_i">{echo ShopCore::encode($model->getName())}</h1>&nbsp;&nbsp;&nbsp;
+                {if $model->firstVariant->getNumber() != ''}<span class="code">Код:{echo $model->firstVariant->getNumber()}</span>{/if}
                 <div>
                     <div class="price f-s_26 d-i_b v-a_m">
                         {if $model->getOldPrice() > 0}
@@ -191,11 +192,6 @@
                 {if $model->getShortDescription() != ''}
                     <p class="c_b">{echo $model->getShortDescription()}</p>
                 {/if}
-                {if ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($model->getId()) != ''}
-                    <div class="title_18 m-t_20">Свойства</div>
-                    <p>{echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($model->getId())}</p>
-                {/if}
-
                 <div>
                     {echo $CI->load->module('share')->_make_like_buttons()}
                 </div>
