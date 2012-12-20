@@ -18,9 +18,7 @@ class Login extends MY_Controller {
         if ($this->dx_auth->is_admin() == TRUE)
             redirect('/admin');
 
-        $this->load->library('lib_admin');
-        $this->load->library('form_validation');
-        $this->form_validation->CI = & $this;
+        $this->load->library(array('lib_admin', 'form_validation'));
         $this->lib_admin->init_settings();
 
         $this->form_validation->set_error_delimiters('<div class="alert alert-error">', '</div>');
@@ -34,7 +32,7 @@ class Login extends MY_Controller {
         }
         $browser = $this->user_browser($_SERVER['HTTP_USER_AGENT']);
 
-        if (($browser[0] === 'Firefox' && $browser[1] < 16.0) || $browser[0] === 'IE' ||($browser[0] === 'Chrome' && $browser[1]< 17 ) || ($browser[0] === 'Opera' && $browser[1] < 12.11)) {
+        if (($browser[0] === 'Firefox' && $browser[1] < 16.0) || $browser[0] === 'IE' || ($browser[0] === 'Chrome' && $browser[1] < 17 ) || ($browser[0] === 'Opera' && $browser[1] < 12.11)) {
             $this->template->display('old_browser');
         } else {
             $this->do_login();
@@ -49,8 +47,8 @@ class Login extends MY_Controller {
         if ($browser == 'MSIE') {
             preg_match("/(Maxthon|Avant Browser|MyIE2)/i", $agent, $ie); // check to see whether the development is based on IE
             if ($ie)
-                return $browserIn = array('0' => $ie[1], '1' => $version);// If so, it returns an
-            return $browserIn = array('0' => 'IE', '1' => $version);// otherwise just return the IE and the version number
+                return $browserIn = array('0' => $ie[1], '1' => $version); // If so, it returns an
+            return $browserIn = array('0' => 'IE', '1' => $version); // otherwise just return the IE and the version number
         }
         if ($browser == 'Firefox') {
             preg_match("/(Flock|Navigator|Epiphany)\/([0-9.]+)/", $agent, $ff); // check to see whether the development is based on Firefox

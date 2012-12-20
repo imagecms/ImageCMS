@@ -163,7 +163,7 @@ class Comments extends MY_Controller {
 
         $this->load->library('user_agent');
         $this->load->library('form_validation');
-        $this->form_validation->CI = & $this;
+//        $this->form_validation->CI = & $this;
 
         // Check post comment period.
         if ($this->period > 0)
