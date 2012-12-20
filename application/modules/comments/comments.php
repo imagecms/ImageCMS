@@ -106,11 +106,14 @@ class Comments extends MY_Controller {
 //        $this->pagination->initialize($config);
 //
 //        echo $this->pagination->create_links();
-        $data = array(
+       
+       if($comments != null){ $comments_count=count($comments);}else {$comments_count=0;}
+      
+       $data = array(
             'comments_arr' => $comments,
             'comment_ch' => $comment_ch,
             'comment_controller' => $this->comment_controller,
-            'total_comments' => lang('lang_total_comments') . count($comments),
+            'total_comments' => $comments_count,
             'can_comment' => $this->can_comment,
             'use_captcha' => $this->use_captcha,
             'item_id' => $item_id
@@ -127,7 +130,6 @@ class Comments extends MY_Controller {
 
         ($hook = get_hook('comments_assign_tpl_data')) ? eval($hook) : NULL;
         //$this->render('comments_list', array('comments'=>$comments));
-
         $this->template->add_array(array(
             'comments' => $comments,
         ));
