@@ -22,13 +22,17 @@ $(document).ready(function() {
     }
 
     $('.nav_tabs li a').live('click', function(event) {
-        event.stopPropagation();
+        //event.stopPropagation();
+        event.preventDefault();
 
         nav_tabs_li.removeClass('ui-tabs-selected');
         $(this).parent().addClass('ui-tabs-selected');
         tabs_div.hide();
         $($(this).attr('href')).show();
+        //window.location.hash = $(this).attr('href');
+        sc = $(window).scrollTop();
     }).filter(':eq(' + variable + ')').click();
+    
     
     (function($){
         var methods = {

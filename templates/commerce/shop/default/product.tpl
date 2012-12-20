@@ -237,7 +237,7 @@
                         {/if}
                         <li>
                             <a href="#four">
-                                {echo SStringHelper::Pluralize($model->totalComments(), array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}({echo $model->totalComments()})
+                                {echo SStringHelper::Pluralize($data['total_comments'], array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}({echo $data['total_comments']})
                             </a>
                         </li>
                     </ul>
