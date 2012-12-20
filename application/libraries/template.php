@@ -19,11 +19,6 @@ class Template extends Mabilis {
     public function load() {
         $this->CI = & get_instance();
 
-        if (function_exists('get_hook'))
-            ($hook = get_hook('lib_template_init')) ? eval($hook) : NULL;
-
-        //$this->compile_dir = BASEPATH.'cache/templates_c/';
-        //$this->template_dir = TEMPLATES_PATH.$this->CI->config->item('template').'/';
         $this->modules_template_dir = TEMPLATES_PATH . 'modules/';
 
         $tpl = $this->CI->config->item('template');
@@ -38,10 +33,6 @@ class Template extends Mabilis {
             'use_filemtime' => $this->CI->config->item('tpl_use_filemtime')
         );
 
-        if (function_exists('get_hook')) {
-            ($hook = get_hook('lib_template_set_conf')) ? eval($hook) : NULL;
-        }
-
         $this->load_config($config);
 
         $this->template_dir = $config['tpl_path'];
@@ -52,7 +43,6 @@ class Template extends Mabilis {
         // Assign CI instance
         $this->assign('CI', $this->CI);
 
-        ($hook = get_hook('lib_template_init_end')) ? eval($hook) : NULL;
     }
 
     public function assign($key, $value) {
@@ -87,8 +77,6 @@ class Template extends Mabilis {
             $load_main = (!$CI->input->is_ajax_request()) ? TRUE : FALSE;            
         }
 
-        ($hook = get_hook('lib_template_show')) ? eval($hook) : NULL;
-
         $this->assign('BASE_URL', site_url()); //Base URL
 
         if (sizeof($data) > 0)
@@ -117,8 +105,6 @@ class Template extends Mabilis {
     }
 
     public function run_info() {
-        ($hook = get_hook('lib_template_run_info')) ? eval($hook) : NULL;
-
         /*         * ********************* */
         echo '<!--';
         echo 'Total Time:' . $this->CI->benchmark->elapsed_time('total_execution_time_start', 'total_execution_time_end') . ', ';
@@ -160,6 +146,10 @@ class Template extends Mabilis {
         else
             echo $result;
     }
+    
+    public function view($file, $data = array(), $return = FALSE) {
+        return $this->splitTplFiles(parent::view($file, $data, $return));
+    }
 
     public function include_tpl($name, $path) {
         $this->display('file:' . $path . '/' . $name);
@@ -174,17 +164,17 @@ class Template extends Mabilis {
     private $_js_code_pos = array();
     private $_metas = array();
 
-    public function registerCssCode($name, $code, $position = 'before') {
-        $position = $this->_check_postion($position);
-        $this->_css_code[$name] = $code;
-        $this->_css_code_pos[$name] = $position;
-    }
-
-    public function registerJsCode($name, $code, $position = 'before') {
-        $position = $this->_check_postion($position);
-        $this->_js_code[$name] = $code;
-        $this->_js_code_pos[$name] = $position;
-    }
+//    public function registerCssCode($name, $code, $position = 'before') {
+//        $position = $this->_check_postion($position);
+//        $this->_css_code[$name] = $code;
+//        $this->_css_code_pos[$name] = $position;
+//    }
+//
+//    public function registerJsCode($name, $code, $position = 'before') {
+//        $position = $this->_check_postion($position);
+//        $this->_js_code[$name] = $code;
+//        $this->_js_code_pos[$name] = $position;
+//    }
 
     // $position possible values: before, after
     public function registerCssFile($url, $position = 'before') {
@@ -206,18 +196,18 @@ class Template extends Mabilis {
     }
 
     private function _check_postion($position) {
-        if ($position != 'before' AND $position != 'after')
-            echo '!';
+//        if ($position != 'before' AND $position != 'after')
+//            echo '!';
         return $position;
     }
 
     public function splitTplFiles($tpl) {
         $result_before = '';
         $result_after = '';
-        $result_css_before = '';
-        $result_css_after = '';
-        $result_js_before = '';
-        $result_js_after = '';
+//        $result_css_before = '';
+//        $result_css_after = '';
+//        $result_js_before = '';
+//        $result_js_after = '';
 
         // split css files
         if (sizeof($this->_css_files) > 0) {
@@ -248,68 +238,74 @@ class Template extends Mabilis {
         }
 
 
-        // split css code
-        if (sizeof($this->_css_code) > 0) {
-            foreach ($this->_css_code as $key => $code) {
-                switch ($this->_css_code_pos[$key]) {
-                    case 'before':
-                        $result_css_before .= "$code\n";
-                        break;
-                    case 'after':
-                        $result_css_after .= "$code\n";
-                        break;
-                }
-            }
-        }
-
-        // split js code
-        if (sizeof($this->_js_code) > 0) {
-            foreach ($this->_js_code as $key => $code) {
-                switch ($this->_js_code_pos[$key]) {
-                    case 'before':
-                        $result_js_before .= "$code\n";
-                        break;
-                    case 'after':
-                        $result_js_after .= "$code\n";
-                        break;
-                }
-            }
-        }
+//        // split css code
+//        if (sizeof($this->_css_code) > 0) {
+//            foreach ($this->_css_code as $key => $code) {
+//                switch ($this->_css_code_pos[$key]) {
+//                    case 'before':
+//                        $result_css_before .= "$code\n";
+//                        break;
+//                    case 'after':
+//                        $result_css_after .= "$code\n";
+//                        break;
+//                }
+//            }
+//        }
+//
+//        // split js code
+//        if (sizeof($this->_js_code) > 0) {
+//            foreach ($this->_js_code as $key => $code) {
+//                switch ($this->_js_code_pos[$key]) {
+//                    case 'before':
+//                        $result_js_before .= "$code\n";
+//                        break;
+//                    case 'after':
+//                        $result_js_after .= "$code\n";
+//                        break;
+//                }
+//            }
+//        }
 
         if (sizeof($this->_metas) > 0) {
             foreach ($this->_metas as $code)
                 $result_before .= "$code\n";
         }
 
-        $js_tpl_begin = "window.addEvent('domready', function() { ";
-        $js_tpl_end = " });";
+//        $js_tpl_begin = "window.addEvent('domready', function() { ";
+//        $js_tpl_end = " });";
 
         if ($result_before)
-            $tpl = preg_replace('/\<\/head\>/', $result_before . '</head>' . "\n", $tpl, 1);
+            if ($this->CI->input->is_ajax_request())
+                $tpl = $result_before.$tpl;
+            else
+                $tpl = preg_replace('/\<\/head\>/', $result_before . '</head>' . "\n", $tpl, 1);
 
         if ($result_after)
-            $tpl = preg_replace('/\<\/html\>/', "</html>\n" . $result_after, $tpl, 1);
+            if ($this->CI->input->is_ajax_request())
+                $tpl .= $result_after;
+            else
+                $tpl = preg_replace('/\<\/body\>/', "$result_after</body>\n" , $tpl, 1);
 
-
-        if ($result_js_before) {
-            $result_js_before = "<script type=\"text/javascript\">$js_tpl_begin\n$result_js_before\n$js_tpl_end</script>\n";
-            $tpl = preg_replace('/\<\/head\>/', $result_js_before . "</head>\n", $tpl, 1);
-        }
-
-        if ($result_js_after) {
-            $result_js_after = "<script type=\"text/javascript\">$js_tpl_begin\n$result_js_after\n$js_tpl_end</script>\n";
-            $tpl = preg_replace('/\<\/html\>/', "</html>\n" . $result_js_after, $tpl, 1);
-        }
-
-        if ($result_css_before) {
-            $result_css_before = "<style type=\"text/css\">\n$result_css_before\n</style>\n";
-            $tpl = preg_replace('/\<\/head\>/', $result_css_before . "</head>\n", $tpl, 1);
-        }
-
-        if ($result_css_after) {
-            $result_css_after = "<style type=\"text/css\">\n$result_css_after\n</style>\n";
-            $tpl = preg_replace('/\<\/html\>/', "</html>\n" . $result_css_after, $tpl, 1);
-        }
+//
+//        if ($result_js_before) {
+//            $result_js_before = "<script type=\"text/javascript\">$js_tpl_begin\n$result_js_before\n$js_tpl_end</script>\n";
+//            $tpl = preg_replace('/\<\/head\>/', $result_js_before . "</head>\n", $tpl, 1);
+//        }
+//
+//        if ($result_js_after) {
+//            $result_js_after = "<script type=\"text/javascript\">$js_tpl_begin\n$result_js_after\n$js_tpl_end</script>\n";
+//            $tpl = preg_replace('/\<\/html\>/', "</html>\n" . $result_js_after, $tpl, 1);
+//        }
+//
+//        if ($result_css_before) {
+//            $result_css_before = "<style type=\"text/css\">\n$result_css_before\n</style>\n";
+//            $tpl = preg_replace('/\<\/head\>/', $result_css_before . "</head>\n", $tpl, 1);
+//        }
+//
+//        if ($result_css_after) {
+//            $result_css_after = "<style type=\"text/css\">\n$result_css_after\n</style>\n";
+//            $tpl = preg_replace('/\<\/html\>/', "</html>\n" . $result_css_after, $tpl, 1);
+//        }
 
         return $tpl;
     }
