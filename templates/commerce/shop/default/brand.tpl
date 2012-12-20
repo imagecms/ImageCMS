@@ -24,16 +24,16 @@
                                 {if ShopCore::$_GET['categoryId'] == $item.id}<b class="c_d">{$cat_name = $item.name}{/if}
                                     <span class="{if ShopCore::$_GET['categoryId']!=$item.id}findincats{/if} js gray" data-id="{echo $item.id}">{$item.name} ({echo $incats[$item.id]})</span>
                                 {if ShopCore::$_GET['categoryId'] == $item.id}</b>{/if}
+                                </li>
                             {/foreach}
-                    </li>
-                </ul>
-            </div>
-            {if ShopCore::$_GET['categoryId']}<a href="{site_url($CI->uri->uri_string())}"><span class="icon-reset"></span>{lang('s_cancel')}</span><br/>{/if}
-        </form>
-    {else:}
-        <div class="title padding_filter">В категориях ничего не найдено</div>
-    {/if}
-</div>
+                        </ul>
+                    </div>
+                    {if ShopCore::$_GET['categoryId']}<a href="{site_url($CI->uri->uri_string())}"><span class="icon-reset"></span>{lang('s_cancel')}</a><br/>{/if}
+                </form>
+            {else:}
+                <div class="title padding_filter">В категориях ничего не найдено</div>
+            {/if}
+        </div>
 <div class="catalog_content">
     <!--   Right sidebar     -->
     <div class="nowelty_auction">

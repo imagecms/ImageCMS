@@ -199,7 +199,7 @@ class Core extends MY_Controller {
                 break;
             }
         }
-
+        $data_type = 'main';
         if ($data_type != 'main' AND $data_type != 'category' AND $data_type != 'bridge') {
             $cat_path_url = substr($cat_path, 0, strripos($cat_path, '/') + 1);
 
@@ -226,7 +226,8 @@ class Core extends MY_Controller {
             ($hook = get_hook('core_get_page_query')) ? eval($hook) : NULL;
             $query = $this->db->get('content', 1);
 
-
+//            var_dump($this->db->queries);
+//            exit();
 
             if ($query->num_rows() > 0) {
                 ($hook = get_hook('core_page_found')) ? eval($hook) : NULL;

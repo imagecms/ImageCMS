@@ -25,7 +25,7 @@ class Auth extends MY_Controller {
 
         $this->load->helper('url');
         $this->load->library('Form_validation');
-        $this->form_validation->CI = & $this;
+        //$this->form_validation->CI = & $this;
     }
 
     public function index() {
