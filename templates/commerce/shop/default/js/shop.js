@@ -1,26 +1,26 @@
 $(document).ready(function() {
-	
+
     /** Show/Hide  category description **/
     $('#cat_desc').hide();
     $('#show').click(function() {
-        if ( jQuery.browser.msie && parseInt(jQuery.browser.version) == 6) {	
-            if ($('#cat_desc').css("display")=="block") {
+        if (jQuery.browser.msie && parseInt(jQuery.browser.version) == 6) {
+            if ($('#cat_desc').css("display") == "block") {
                 $('#cat_desc').css("display", "none");
-            } 
+            }
             else {
                 $('#cat_desc').css("display", "block");
             }
         } else {
             $('#cat_desc').toggle("slow");
         }
-			
-        if ($('#show').text()=='Описание катагории>>') {
+
+        if ($('#show').text() == 'Описание катагории>>') {
             $('#show').text('Скрыть');
         } else {
             $('#show').text('Описание катагории>>');
         }
     });
-	
+
     /**
      * Add product to cart functionality
      * @event ckick
@@ -164,12 +164,12 @@ $(document).ready(function() {
                 else
                 {
                     $this
-                    .removeClass('goBuy')
-                    .addClass('goToCart')
-                    .html('Оформить <br/> заказ')
-                    .parent('div')
-                    .removeClass('button_gs')
-                    .addClass('button_middle_blue');
+                            .removeClass('goBuy')
+                            .addClass('goToCart')
+                            .html('Оформить <br/> заказ')
+                            .parent('div')
+                            .removeClass('button_gs')
+                            .addClass('button_middle_blue');
                 }
                 // $('.in_cart').html('Уже в корзине');
                 $this.unbind('click');
@@ -229,7 +229,7 @@ $(document).ready(function() {
                 url: "/shop/wish_list/add",
                 success: function() {
                     $this.remove();
-                    $thisNext.show() ;
+                    $thisNext.show();
                     $this.unbind('click');
                     $("#wishListHolder").load('/shop/ajax/getWishListDataHtml').addClass('is_avail');
                     $.fancybox.hideActivity();
@@ -260,13 +260,13 @@ $(document).ready(function() {
                 $("#compareHolder").load('/shop/ajax/getCompareDataHtml').addClass('is_avail');
                 $.fancybox.hideActivity();
                 $this
-                .removeClass('js')
-                .removeClass('toCompare')
-                .removeClass('gray')
-                .addClass('is_avail')
-                .unbind('click')
-                .find('span')
-                .remove().end().find('a').show();
+                        .removeClass('js')
+                        .removeClass('toCompare')
+                        .removeClass('gray')
+                        .addClass('is_avail')
+                        .unbind('click')
+                        .find('span')
+                        .remove().end().find('a').show();
             }
         });
         return false;
@@ -290,7 +290,7 @@ $(document).ready(function() {
                 $.fancybox.hideActivity();
             }
         }
-    );
+        );
         return false;
     })
     function bindgoNotifMe() {
@@ -344,7 +344,7 @@ $(document).ready(function() {
                     showResponse(msg);
                 $form.find('input[name=makeOrder]').val(1);
                 $('#price1').text($('#allpriceholder').data('summary'));
-                $('#price3').text(parseFloat($('#allpriceholder').data('summary'))+parseFloat($('#price2').text()));
+                $('#price3').text(parseFloat($('#allpriceholder').data('summary')) + parseFloat($('#price2').text()));
                 $.fancybox.hideActivity();
             }
         });
@@ -373,14 +373,14 @@ $(document).ready(function() {
                     showResponse(msg);
                 $('#price1').text($('#allpriceholder').data('summary'));
                 $('#price2').text($('#dpholder').data('dp'));
-                $('#price3').text(parseFloat($('#allpriceholder').data('summary'))+parseFloat($('#price2').text()));
+                $('#price3').text(parseFloat($('#allpriceholder').data('summary')) + parseFloat($('#price2').text()));
                 $.fancybox.hideActivity();
             }
         });
         return false;
     });
-    
-    
+
+
 
     $('.met_del').bind('click', function() {
         var nid = $(this);
@@ -392,7 +392,7 @@ $(document).ready(function() {
                 $('#paymentMethodId').val($('.met_buy:eq(0)').val());
                 $('#price1').text($('#allpriceholder').data('summary'));
                 $('#price2').text($('#dpholder').data('dp'));
-                $('#price3').text(parseFloat($('#allpriceholder').data('summary'))+parseFloat($('#price2').text()));
+                $('#price3').text(parseFloat($('#allpriceholder').data('summary')) + parseFloat($('#price2').text()));
             }
         });
     });
@@ -500,17 +500,17 @@ $(document).ready(function() {
                     else
                     {
                         $this
-                        .removeClass('goBuy')
-                        .addClass('goToCart')
-                        .html('Оформить <br/> заказ')
-                        .parent('div')
-                        .removeClass('button_gs')
-                        .addClass('button_middle_blue');
+                                .removeClass('goBuy')
+                                .addClass('goToCart')
+                                .html('Оформить <br/> заказ')
+                                .parent('div')
+                                .removeClass('button_gs')
+                                .addClass('button_middle_blue');
                     }
                     // $('.in_cart').html('Уже в корзине');
                     $this
-                    //.attr('href', '/shop/cart')
-                    .unbind('click');
+                            //.attr('href', '/shop/cart')
+                            .unbind('click');
                     showResponse(msg);
                     $.fancybox.hideActivity();
                 }
@@ -775,7 +775,7 @@ $(document).ready(function() {
             $('#mim' + pid).attr('src', '/uploads/shop/' + pid + '_main.jpg')
         }
         $('#code' + pid).html('Код ' + vnumber);
-        $('#pricem' + pid).html(pr);
+        $('#pricem' + pid).html(pr + "&nbsp;<sub>" + cs + "</sub>");
         $('#priceB' + pid).html(pr + ' ' + csMain);
         $('#prices' + pid).html(spr + ' ' + cs);
         $('#buy' + pid).attr('data-varid', vid);
@@ -932,7 +932,7 @@ $(document).ready(function() {
                 },
                 success: function() {
                     $.fancybox.hideActivity();
-                    $('.notificationWish').text("Ваш список желаний успешно отправлен на "+ data);
+                    $('.notificationWish').text("Ваш список желаний успешно отправлен на " + data);
                     //$('.notificationWish').hide(4000);
                     $("#button_email").trigger('click');
                     $('[name="editForm"]').validate().resetForm();
@@ -962,12 +962,13 @@ $(document).ready(function() {
                 //}
             }
         });
-        if (count_products === 1) $(this).parents('.comparison_slider').remove();
+        if (count_products === 1)
+            $(this).parents('.comparison_slider').remove();
         $.fancybox.hideActivity();
     });
     $('.prod_show_diff').live('click', function() {
         var $this = $(this);
-        if (!$this.is('.disabled')){
+        if (!$this.is('.disabled')) {
 
             var rows = $this.closest('.comparison_slider').find('.todiff');
 
@@ -979,15 +980,15 @@ $(document).ready(function() {
                 values.push($(this).html());
             });
             $.post("/shop/compare/calculate",
-            {
-                ind: keys, 
-                val: values
-            },
+                    {
+                        ind: keys,
+                        val: values
+                    },
             function(obj) {
                 //console.log(data);
                 $this.siblings().toggleClass('disabled').toggleClass('button_compare');
                 $this.toggleClass('disabled').toggleClass('button_compare');
-                
+
                 if (obj.result) {
                     //{console.log("success")};
                     $(obj.selector).toggle();
@@ -997,7 +998,7 @@ $(document).ready(function() {
                 }
                 $.fancybox.hideActivity();
             }, "json"
-        );
+                    );
         }
     });
 
