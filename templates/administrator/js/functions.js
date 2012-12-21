@@ -1,5 +1,20 @@
 //temporary
+function ChangeBannerActive(el, bannerId)
+{
+    var currentActiveStatus = $(el).attr('rel');
 
+    $.post('/admin/components/run/shop/banners/changeActive/', {bannerId:bannerId,status:currentActiveStatus}, function(data){
+        $('.notifications').append(data)
+        if(currentActiveStatus=='true')
+            {
+                $(el).addClass('disable_tovar').attr('rel',false);
+                    
+        }else{
+                $(el).removeClass('disable_tovar').attr('rel',true);
+            }
+    
+    });
+}
 var shopAdminMenuCache = false;
 var base_url = 'http://p4/';
 
@@ -288,8 +303,10 @@ function initElRTE()
 }
 
 var dlg = false;
-function elFinderPopup(type, id)
+function elFinderPopup(type, id, path)
 {
+    if (typeof path == 'undefined')
+        path = '';
     //todo: create diferent browsers (check 'type' variable)
     if (!dlg)
     {
@@ -328,7 +345,16 @@ function elFinderPopup(type, id)
                 }
             },
             getFileCallback: function(file) {
-                $('#' + id).val('/' + file.path);
+                if (path != '')
+                {
+                    var str = file.path;
+                    var m = str.match('[\\\\ /]');
+                    console.log(m)
+                    file.path = file.path.substr(m.index+1);
+                    if (path[0] != '/')
+                        path = '/'+path;
+                }
+                $('#' + id).val(path+'/' + file.path);
                 if (type == 'image' && $('#' + id + '-preview').length)
                 {
                     var img = document.createElement('img');
@@ -351,7 +377,8 @@ function elFinderPopup(type, id)
             ]
         },
         customData : {
-                cms_token : elfToken
+                cms_token : elfToken,
+                path:path
             }
         });
     }
