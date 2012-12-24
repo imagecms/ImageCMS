@@ -209,6 +209,7 @@
                                         {foreach $product->variants as $pv}
                                             <option class="selectVar"
                                                     value="{echo $pv->id}"
+                                                    data-cs="{$CS}"
                                                     data-st="{echo $pv->stock}"
                                                     data-pr="{echo number_format($pv->price, 2 , ".", "")}"
                                                     data-pid="{echo $product->id}"

@@ -107,7 +107,7 @@
                             {else:}
                                 {$prThree = $model->firstVariant->getPrice()}
                             {/if}
-                            {echo money_format('%i',$prThree)} {$CS}
+                            {echo money_format('%i',$prThree)}<sub> {$CS}</sub>
                         </span>
                     </div>
                 </div>
@@ -119,6 +119,7 @@
                             <input type="radio" class="selectVar" id="sVar{echo $pv->getId()}" name="selectVar" {if $model->firstVariant->getId() == $pv->getId()}checked="checked"{/if}
                                    value="{echo $pv->getId()}" 
                                    data-pp="1" 
+                                   data-cs= "{$CS}"
                                    data-st="{echo $pv->getStock()}" 
                                    data-pr="{echo $pv->getPrice()}" 
                                    data-pid="{echo $model->getId()}" 
