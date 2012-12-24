@@ -8,7 +8,7 @@ $com_info = array(
 	'w' => 600,
 	'h' => 550,
 	'version' => '1.0',
-	'author' => 'dev@imagecms.net',
+	'author' => 'avgustus@yandex.ru.net',
 	'setup_rules' => ''
 );
 
