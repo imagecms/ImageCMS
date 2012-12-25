@@ -229,6 +229,7 @@
                                             value="{echo $pv->getid()}"
                                             data-cs="{$CS}"
                                             data-st="{echo $pv->getstock()}"
+                                            data-cs = "{$CS}"
                                             data-pr="{echo number_format($pv->getPrice(), 2 , ".", "")}"
                                             data-pid="{echo $product->getid()}"
                                             data-img="{echo $pv->getsmallimage()}"
