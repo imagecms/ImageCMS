@@ -22,7 +22,7 @@ class Feedback extends MY_Controller {
     }
 
     public function autoload() {
-        \behaviorFactory\BehaviorFactory::create('test', 'moreTest', 'Feedback');
+//        \behaviorFactory\BehaviorFactory::create('test', 'moreTest', 'Feedback');
     }
 
     public function test() {
