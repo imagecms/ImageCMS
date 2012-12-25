@@ -23,29 +23,21 @@ class Trash extends MY_Controller {
     }
 
     public function autoload() {
-        $url = $this->uri->uri_string();
-        $this->db->where('trash_url', $url);
-        $query = $this->db->get('trash');
-        $row = $query->row();
+        $row = $this->db->get_where('trash', array('trash_url' => $this->uri->uri_string()))->row();
         if ($row != null) {
-            if ($row->trash_redirect_type == '404')
-                $this->core->error_404();
-            redirect($row->trash_redirect, 'refresh');
+            ($row->trash_redirect_type != '404') OR $this->core->error_404();
+            redirect($row->trash_redirect, 'location', 301);
         }
     }
 
     public function addProductWhenDelete(SProducts $model) {
-
-        $query = $this->db->get_where('shop_category', array('id' => $model->category_id));
-        $url = $query->row();
-
         $array = array(
             'trash_id' => $model->category_id,
             'trash_url' => 'shop/product/' . $model->url,
             'trash_redirect_type' => 'category',
-            'trash_redirect' => shop_url('category/' . $url->full_path)
+            'trash_redirect' => shop_url('category/' . $model->getMainCategory()->getFullPath())
         );
-
+        
         $this->db->insert('trash', $array);
     }
 
