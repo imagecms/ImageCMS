@@ -17,3 +17,7 @@ function modules_namespaces_autoload($name) {
             require $file;
     }
 }
+
+function test() {
+    behaviorFactory\BehaviorFactory::runFactory();
+}
