@@ -20,7 +20,6 @@ class Login extends MY_Controller {
 
         $this->load->library(array('lib_admin', 'form_validation'));
         $this->lib_admin->init_settings();
-
         $this->form_validation->set_error_delimiters('<div class="alert alert-error">', '</div>');
     }
 

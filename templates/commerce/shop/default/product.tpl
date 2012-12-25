@@ -107,7 +107,7 @@
                             {else:}
                                 {$prThree = $model->firstVariant->getPrice()}
                             {/if}
-                            {echo money_format('%i',$prThree)} {$CS}
+                            {echo money_format('%i',$prThree)}<sub> {$CS}</sub>
                         </span>
                     </div>
                 </div>

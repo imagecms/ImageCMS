@@ -226,9 +226,6 @@ class Core extends MY_Controller {
             ($hook = get_hook('core_get_page_query')) ? eval($hook) : NULL;
             $query = $this->db->get('content', 1);
 
-//            var_dump($this->db->queries);
-//            exit();
-
             if ($query->num_rows() > 0) {
                 ($hook = get_hook('core_page_found')) ? eval($hook) : NULL;
 

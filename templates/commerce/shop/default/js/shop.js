@@ -1045,15 +1045,18 @@ $(document).ready(function() {
 
     $('[name="brand[]"]').live('change', function() {
         $('#brandsfilter').submit();
+        $('#brandsfilter input[type=checkbox]').attr('disabled', 'disabled');
     });
 
     $('[name="pricebutton"]').live('click', function(event) {
         event.preventDefault();
         $('#brandsfilter').submit();
+        $('#brandsfilter input[type=checkbox]').attr('disabled', 'disabled');
     });
 
     $('.propertyCheck').live('change', function() {
         $('#brandsfilter').submit();
+        $('#brandsfilter input[type=checkbox]').attr('disabled', 'disabled');
     });
 
 });
