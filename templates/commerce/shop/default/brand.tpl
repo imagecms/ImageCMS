@@ -227,6 +227,7 @@
                                 {foreach $product->getProductVariants() as $pv}
                                     <option class="selectVar"
                                             value="{echo $pv->getid()}"
+                                            data-cs="{$CS}"
                                             data-st="{echo $pv->getstock()}"
                                             data-cs = "{$CS}"
                                             data-pr="{echo number_format($pv->getPrice(), 2 , ".", "")}"
