@@ -8,7 +8,8 @@ if (!defined('BASEPATH'))
  *
  * Gallery Module _Admin_
  */
-class Admin extends MY_Controller {
+//class Admin extends MY_Controller {
+class Admin extends BaseAdminController {
 
     // Gallery config
     public $conf = array(
