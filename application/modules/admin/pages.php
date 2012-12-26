@@ -3,7 +3,8 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Pages extends MY_Controller {
+//class Pages extends MY_Controller {
+class Pages extends BaseAdminController {
 
     public $_Config = array(
         'per_page' => 20 // Show news per one page
