@@ -169,6 +169,7 @@
                                         <li class="divider"></li>
                                         <li><a href="/admin/admin_logs" class="pjax">{lang('a_event_journal')}</a></li>
                                         <li><a href="/admin/backup" class="pjax">{lang('a_backup_copy')}</a></li>
+                                        <li><a href="/admin/rbac/roleList" class="pjax">Список ролей</a></li>
                                     </ul>
                                 </li>
                             </ul>
