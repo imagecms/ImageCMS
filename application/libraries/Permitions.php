@@ -93,44 +93,13 @@ class Permitions {
      * @return	void
      */
     public function groupCreate() {
-//        $model = new ShopRbacGroup();
 
-
-        $this->form_validation;
-
-//        $val = $this->set_rules('Name', lang('amt_user_login'), 'required');
         $this->form_validation->set_rules('Name', 'Name', 'required');
-
-//        $rules['Name'] = "required";
-
-
 
         if (!empty($_POST)) {
             if ($this->form_validation->run($this) == FALSE) {
                 showMessage(validation_errors(), '', 'r');
             } else {
-
-//            $this->form_validation->set_rules($model->rules());
-//
-//            if ($this->form_validation->run($this) == FALSE) {
-//                showMessage(validation_errors(), '', 'r');
-//            } else {
-//                // Check if privilege name is aviable.
-//                $nameCheck = ShopRbacGroupQuery::create()
-//                        ->filterByName($this->input->post('Name'))
-//                        ->findOne();
-//
-//                if ($nameCheck !== null) {
-//                    die(showMessage(ShopCore::t('Группа с таким названием уже существует')));
-//                }
-//
-//                $model->fromArray($_POST);
-//
-//                $privileges = ShopRbacPrivilegesQuery::create()
-//                        ->findPks($_POST['Privileges']);
-//
-//                $model->setShopRbacPrivilegess($privileges);
-//                $model->save();
 
                 $sql = "INSERT INTO shop_rbac_group (name, description) VALUES(" . $this->db->escape($_POST['Name']) . "," . $this->db->escape($_POST['Description']) . ")";
 
@@ -190,7 +159,7 @@ class Permitions {
 
             $sqlPrivilege = 'SELECT id, name, description, group_id FROM shop_rbac_privileges ORDER BY group_id ASC';
             $privileges = $this->db->query($sqlPrivilege);
-            
+
 
             $this->template->add_array(array(
                 'model' => $model->row(),
@@ -204,14 +173,8 @@ class Permitions {
     public function groupList() {
 
 
-//        $model = ShopRbacGroupQuery::create()
-//                ->orderByName(Criteria::ASC)
-//                ->find();
-
         $sql = 'SELECT id, name, description FROM shop_rbac_group ORDER BY name ASC';
         $query = $this->db->query($sql);
-
-//        var_dumps($query->result());
 
         $this->template->add_array(array(
             'model' => $query->result()
@@ -249,9 +212,6 @@ class Permitions {
      */
     public function roleCreate() {
 
-        $model = new ShopRbacRoles();
-
-
         if (!empty($_POST)) {
             $this->form_validation->set_rules('Name', 'Name', 'required');
 
@@ -278,28 +238,21 @@ class Permitions {
                 showMessage(ShopCore::t(lang('a_js_edit_save')));
 
                 if ($_POST['action'] == 'edit') {
-//                    pjax('/admin/components/run/shop/rbac/role_edit/' . $roleId);
-                    pjax('/admin/rbac/roleEdit/15');
+                    pjax('/admin/components/run/shop/rbac/roleEdit/' . $idCreate);
                 } else {
                     pjax('/admin/rbac/roleList');
                 }
             }
         } else {
+
             $queryGroups = $this->db->select(array('id', 'name', 'description'))->get('shop_rbac_group')->result();
             foreach ($queryGroups as $key => $value) {
                 $queryGroups[$key]->privileges = $this->db->get_where('shop_rbac_privileges', array('group_id' => $value->id))->result();
             }
 
-//            $groups = ShopRbacGroupQuery::create()
-//                    ->orderByName(Criteria::ASC)
-//                    ->find();            
             $this->template->add_array(array(
-                'model' => $model,
-                'groups' => $queryGroups,
-                'privilege123' => $queryPrivilegeR
+                'groups' => $queryGroups
             ));
-
-//            $this->template->show('roleEdit', FALSE);
 
             $this->template->show('roleCreate', FALSE);
         }
@@ -356,18 +309,23 @@ class Permitions {
         } else {
 
             $this->db->select('privilege_id');
-            $queryPrivilegeR = $this->db->get_where('shop_rbac_roles_privileges', array('role_id' => $roleId))->result();
+            $queryPrivilegeR = $this->db->get_where('shop_rbac_roles_privileges', array('role_id' => $roleId))->result_array();
 
             $queryGroups = $this->db->select(array('id', 'name', 'description'))->get('shop_rbac_group')->result();
             foreach ($queryGroups as $key => $value) {
                 $queryGroups[$key]->privileges = $this->db->get_where('shop_rbac_privileges', array('group_id' => $value->id))->result();
             }
 
+            $emptyArray = array();
+
+            foreach ($queryPrivilegeR as $key => $id) {
+                $emptyArray[$key] = $id['privilege_id'];
+            }            
 
             $this->template->add_array(array(
                 'model' => $queryModel->row(),
                 'groups' => $queryGroups,
-                'privilege123' => $queryPrivilegeR
+                'privilegeCheck' => $emptyArray
             ));
 
             $this->template->show('roleEdit', FALSE);
@@ -390,6 +348,25 @@ class Permitions {
         ));
 
         $this->template->show('roleList', FALSE);
+    }
+
+    /**
+     * delete a RBAC privileges group
+     * 
+     * @param integer $groupId
+     * @access public 
+     * @return	void
+     */
+    public function roleDelete() {
+        $groupId = $this->input->post('ids');
+
+        if ($groupId != null) {
+            foreach ($groupId as $id)
+                $this->db->delete('shop_rbac_roles', array('id' => $id));
+
+            showMessage('Успех', 'Группа(ы) успешно удалены');
+            pjax('/admin/rbac/roleList');
+        }
     }
 
     /*     * *************  RBAC privileges  ************** */
@@ -511,7 +488,7 @@ class Permitions {
 
         if ($model != null) {
             $model->delete();
-            showMessage('Успех', 'Привилегия успешно удалены');
+            showMessage('Успех', 'Привилегии успешно удалены');
             pjax('/admin/components/run/shop/rbac/privilege_list');
         }
     }

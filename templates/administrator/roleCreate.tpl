@@ -34,13 +34,13 @@
                                         <div class="inside_padd">
                                             <div class="row-fluid">
                                                 <div class="control-group m-t_10">
-                                                    <label class="control-label" for="Name">{//echo $model->getLabel('Name')}:</label>
+                                                    <label class="control-label" for="Name">{lang('a_name')}{//echo $model->getLabel('Name')}:</label>
                                                     <div class="controls">
                                                         <input type="text" name="Name" id="Name" value="" required/>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label" for="Description">{//echo $model->getLabel('Description')}:</label>
+                                                    <label class="control-label" for="Description">{lang('a_desc')}:</label>
                                                     <div class="controls">
                                                         <input type="text" name="Description" id="Description" value=""/>
                                                     </div>
@@ -53,6 +53,7 @@
                         </table>
                     </div>
                     {foreach $groups as $key => $group} 
+                        {if $group->privileges}
                         <div class="span3">
                             <table class="table table-striped table-bordered table-hover table-condensed">
                                 <thead>
@@ -68,7 +69,7 @@
                                     </tr>                        
                                 </thead>
                                 <tbody class="sortable">
-                                    {foreach $group->privileges as $privilege}                            
+                                    {foreach $group->privileges as $privilege} 
                                         <tr>       
                                             <td class="t-a_c">
                                                 <span class="frame_label">
@@ -83,8 +84,8 @@
                                 </tbody>
                             </table>
                         </div>
-                    {/foreach}         
-                    <!--                    <div class="tab-pane"></div>-->
+                                {/if}
+                    {/foreach}
                 </div>
                 {form_csrf()}
             </form>

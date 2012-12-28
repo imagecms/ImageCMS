@@ -26,6 +26,11 @@ class Rbac extends BaseAdminController {
         Permitions::groupCreate();
     }
 
+    public function roleCreate() {
+
+        Permitions::roleCreate();
+    }
+
     public function roleList() {
 
         Permitions::roleList();
@@ -36,9 +41,9 @@ class Rbac extends BaseAdminController {
         Permitions::roleEdit($roleId);
     }
 
-    public function roleCreate() {
+    public function roleDelete() {
 
-        Permitions::roleCreate();
+        Permitions::roleDelete();
     }
 
     public function privilegeList() {
