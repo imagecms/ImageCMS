@@ -17,12 +17,15 @@ class Admin extends MY_Controller {
     }
 
     function create_trash() {
+        $this->db->order_by("name", "asc");
         $query = $this->db->get('shop_products_i18n');
         $this->template->add_array(array('products' => $query->result()));
 
+        $this->db->order_by("name", "asc");
         $query = $this->db->get('shop_category_i18n');
         $this->template->add_array(array('category' => $query->result()));
 
+        $this->db->order_by("name", "asc");
         $query = $this->db->get('category');
         $this->template->add_array(array('category_base' => $query->result()));
 
@@ -103,12 +106,15 @@ class Admin extends MY_Controller {
         $query = $this->db->get_where('trash', array('id' => $id));
         $this->template->add_array(array('trash' => $query->row()));
 
+        $this->db->order_by("name", "asc");
         $query = $this->db->get('shop_products_i18n');
         $this->template->add_array(array('products' => $query->result()));
 
+        $this->db->order_by("name", "asc");
         $query = $this->db->get('shop_category_i18n');
         $this->template->add_array(array('category' => $query->result()));
 
+        $this->db->order_by("name", "asc");
         $query = $this->db->get('category');
         $this->template->add_array(array('category_base' => $query->result()));
 
