@@ -297,6 +297,8 @@ class Permitions {
                 }
 
 
+
+                
                 showMessage(ShopCore::t(lang('a_js_edit_save')));
 
                 if ($_POST['action'] == 'edit') {
@@ -307,6 +309,7 @@ class Permitions {
                 }
             }
         } else {
+            echo $_POST['dada'];
 
             $this->db->select('privilege_id');
             $queryPrivilegeR = $this->db->get_where('shop_rbac_roles_privileges', array('role_id' => $roleId))->result_array();
