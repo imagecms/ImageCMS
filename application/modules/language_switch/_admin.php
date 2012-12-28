@@ -14,7 +14,7 @@ class Admin extends MY_Controller {
 
         // Only admin access 
         // Do not delete this code !
-		 cp_check_perm('module_admin');
+		 //cp_check_perm('module_admin');
 	}
 
 

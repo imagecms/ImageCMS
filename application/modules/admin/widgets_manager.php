@@ -5,7 +5,7 @@
  * Widget manager class
  */ 
 
-class Widgets_Manager extends MY_Controller {
+class Widgets_Manager extends BaseAdminController {
 
     protected $widget_path;
     
@@ -84,7 +84,7 @@ class Widgets_Manager extends MY_Controller {
             showMessage( lang('ac_to_contin_work_set_perm').'<b>'.$this->widgets_path.'</b>', '', 'r');
             exit;
         }
-        cp_check_perm('widget_create'); 
+        //cp_check_perm('widget_create'); 
 
         $this->load->library('form_validation');
 
@@ -192,7 +192,7 @@ class Widgets_Manager extends MY_Controller {
      */
     public function create_tpl()
     {
-        cp_check_perm('widget_create');
+        //cp_check_perm('widget_create');
         
         if (!$this->_is_wratible())
         {
@@ -210,7 +210,7 @@ class Widgets_Manager extends MY_Controller {
 
     public function edit($id)
     {
-        cp_check_perm('widget_access_settings');
+        //cp_check_perm('widget_access_settings');
 
         $widget = $this->get($id);
 
@@ -232,7 +232,7 @@ class Widgets_Manager extends MY_Controller {
     
     public function update_widget($id, $update_info = FALSE)
     {
-        cp_check_perm('widget_access_settings');
+        //cp_check_perm('widget_access_settings');
 
         $widget = $this->get($id);
 
@@ -310,7 +310,7 @@ class Widgets_Manager extends MY_Controller {
     // Update widget config
     public function update_config($id = FALSE, $new_settings =  array())
     {
-        cp_check_perm('widget_access_settings');
+        //cp_check_perm('widget_access_settings');
 
         if ($id != FALSE AND count($new_settings) > 0)
         {
@@ -322,7 +322,7 @@ class Widgets_Manager extends MY_Controller {
 
     public function delete()
     {
-        cp_check_perm('widget_delete'); 
+        //cp_check_perm('widget_delete'); 
 
         $name = $this->input->post('ids');
         $this->db->where_in('name', $name);
@@ -349,7 +349,7 @@ class Widgets_Manager extends MY_Controller {
 
     public function edit_html_widget($id)
     {
-        cp_check_perm('widget_access_settings');
+        //cp_check_perm('widget_access_settings');
 
         $widget = $this->get($id);
 
@@ -362,7 +362,7 @@ class Widgets_Manager extends MY_Controller {
 
     public function edit_module_widget($id)
     {
-        cp_check_perm('widget_access_settings'); 
+        //cp_check_perm('widget_access_settings'); 
 
         $widget = $this->get($id);
 

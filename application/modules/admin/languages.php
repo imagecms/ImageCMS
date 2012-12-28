@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Languages extends MY_Controller {
+class Languages extends BaseAdminController {
 
     function __construct() {
         parent::__construct();
@@ -26,7 +26,7 @@ class Languages extends MY_Controller {
      * Show lang_create form
      */
     function create_form() {
-        cp_check_perm('lang_create');
+        //cp_check_perm('lang_create');
 
         $settings = $this->cms_admin->get_settings();
         $lang_folders = $this->_get_lang_folders();
@@ -42,7 +42,7 @@ class Languages extends MY_Controller {
      * Insert new language
      */
     function insert() {
-        cp_check_perm('lang_create');
+        //cp_check_perm('lang_create');
 
         $this->form_validation->set_rules('name', lang('ac_val_title'), 'trim|required|min_length[1]|max_length[100]');
         $this->form_validation->set_rules('identif', lang('ac_val_identif'), 'trim|required|min_length[1]|max_length[100]|alpha_dash');
@@ -81,7 +81,7 @@ class Languages extends MY_Controller {
      * Show lang_edit form
      */
     function edit($lang_id) {
-        cp_check_perm('lang_edit');
+        //cp_check_perm('lang_edit');
 
         // get lang params
         $lang = $this->cms_admin->get_lang($lang_id);
@@ -100,7 +100,7 @@ class Languages extends MY_Controller {
      * Update language
      */
     function update($lang_id) {
-        cp_check_perm('lang_edit');
+        //cp_check_perm('lang_edit');
 
         $this->form_validation->set_rules('name', lang('ac_val_title'), 'trim|required|min_length[1]|max_length[100]');
         $this->form_validation->set_rules('identif', lang('ac_val_identif'), 'trim|required|min_length[1]|max_length[100]|alpha_dash');
@@ -144,7 +144,7 @@ class Languages extends MY_Controller {
      * Delete language
      */
     function delete() {
-        cp_check_perm('lang_delete');
+        //cp_check_perm('lang_delete');
         //$id = $this->input->post('lang_id');
         $id = $this->input->post('ids');
         if (is_array($id)) {
@@ -191,7 +191,7 @@ class Languages extends MY_Controller {
      * Set default language
      */
     function set_default() {
-        cp_check_perm('lang_edit');
+        //cp_check_perm('lang_edit');
 
         $lang_id = $this->input->post('lang');
 
