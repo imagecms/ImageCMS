@@ -1,5 +1,5 @@
 <div class="container">
-    
+
     <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->    
     <div class="modal hide fade modal_del">
         <div class="modal-header">
@@ -10,7 +10,7 @@
             <p>{lang('a_rbak_del_role_gro')}</p>
         </div>
         <div class="modal-footer">
-            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('{$ADMIN_URL}rbac/roleDelete')" >{lang('a_delete')}</a>
+            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('{$ADMIN_URL}roleDelete')" >{lang('a_delete')}</a>
             <a href="#" class="btn" onclick="$('.modal').modal('hide');">Отмена</a>
         </div>
     </div>
@@ -20,7 +20,7 @@
         {lang('a_rb_del_roles')}
     </div>
     <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->
-    
+
     <section class="mini-layout">
         <div class="frame_title clearfix">
             <div class="pull-left">
@@ -48,14 +48,12 @@
                                             </span>
                                         </span>
                                     </th>
-                                    <th class="span1">{//echo $model[0]->getLabel('Id')}</th>
-                                    <th>{//echo $model[0]->getLabel('Name')}</th>
-                                    <th>{//echo $model[0]->getLabel('Description')}</th>
-                                    <!--                                <th class="span1">{//echo $model[0]->getLabel('Importance')}
-                                                                    </th>-->
+                                    <th class="span1">{lang('a_id')}</th>
+                                    <th>{lang('a_name')}</th>
+                                    <th>{lang('a_desc')}</th>                                   
                                 </tr>    
                             </thead>
-                            <tbody class="sortable save_positions" data-url="/admin/rbac/role_save_positions">
+                            <tbody>
                                 {foreach $model as $item}
                                     <tr data-id="{echo $item->id}" data-imp={echo $item->importance}>
                                         <td>

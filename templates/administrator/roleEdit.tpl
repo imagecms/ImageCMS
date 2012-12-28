@@ -58,36 +58,38 @@
                     </table>
                 </div>
                 {foreach $groups as $key =>$group} 
-                    <div class="span3">
-                        <table class="table table-striped table-bordered table-hover table-condensed">
-                            <thead>
-                                <tr>
-                                    <th class="t-a_c span1">
-                                        <span class="frame_label">
-                                            <span class="niceCheck b_n">
-                                                <input type="checkbox" />
-                                            </span>
-                                        </span>
-                                    </th>                           
-                                    <th>{echo $group->name}</th>
-                                </tr>                        
-                            </thead>
-                            <tbody class="sortable">
-                                {foreach $group->privileges as $privilege}                             
-                                    <tr>       
-                                        <td class="t-a_c">
+                    {if $group->privileges}
+                        <div class="span3">
+                            <table class="table table-striped table-bordered table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th class="t-a_c span1">
                                             <span class="frame_label">
-                                                <span class="niceCheck b_n">  
-                                                    <input type="checkbox" class="chldcheck"  value="{echo $privilege->id}" name="Privileges[]" {if in_array($privilege->id, $privilege123)} checked="checked" {/if}  />
+                                                <span class="niceCheck b_n">
+                                                    <input type="checkbox" />
                                                 </span>
                                             </span>
-                                        </td>
-                                        <td><p>{echo $privilege->name}</p></td>                               
-                                    </tr>
-                                {/foreach}
-                            </tbody>
-                        </table>
-                    </div>
+                                        </th>                           
+                                        <th>{echo $group->name}</th>
+                                    </tr>                        
+                                </thead>
+                                <tbody class="sortable">
+                                    {foreach $group->privileges as $privilege}                             
+                                        <tr>       
+                                            <td class="t-a_c">
+                                                <span class="frame_label">
+                                                    <span class="niceCheck b_n">  
+                                                        <input type="checkbox" class="chldcheck"  value="{echo $privilege->id}" name="Privileges[]" {if in_array($privilege->id, $privilegeCheck)} checked="checked" {/if}  />
+                                                    </span>
+                                                </span>
+                                            </td>
+                                            <td><p>{echo $privilege->name}</p></td>                               
+                                        </tr>
+                                    {/foreach}
+                                </tbody>
+                            </table>
+                        </div>
+                    {/if}
                 {/foreach}
             </div>
             {form_csrf()}
