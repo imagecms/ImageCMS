@@ -108,7 +108,7 @@ class Admin extends MY_Controller {
      * @return bool
      */
     public function delete_cache() {
-        cp_check_perm('cache_clear');
+        //cp_check_perm('cache_clear');
 
         $param = $this->input->post('param');
 

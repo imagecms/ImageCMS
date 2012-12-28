@@ -4,19 +4,21 @@ class BaseAdminController extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
-
-//        $adminController = $this->uri->segment(2);
-//        $adminClassName = ucfirst($adminController);
-//        $adminMethod = $this->uri->segment(3);
-//        $adminClassFile =  '/application/modules/admin/'. $adminController . '.php';
-//        var_dump($adminClassName);
-//        var_dump($adminController);
-//        var_dump($adminMethod);
-//        var_dump($adminClassFile);
-//        $this->load->library('Permitions');
-//        //Permitions::checkShopPermitions($adminClassName, $adminMethod);
-//        Permitions::checkPermitions();
+        $this->load->library('Permitions');
+        Permitions::checkPermitions();
     }
+
+//    public function render($viewName, array $data = array(), $return = false) {
+//        if (!empty($data))
+//            $this->template->add_array($data);
+//
+//        if ($this->ajaxRequest)
+//            echo $this->template->fetch('file:' . 'application/modules/cfcm/templates/admin/' . $viewName);
+//        else
+//            $this->template->show('file:' . 'application/modules/cfcm/templates/admin/' . $viewName);
+////     	$this->template->fetch('file:' . 'application/modules/cfcm/templates/admin/' . $viewName);
+//        exit;
+//    }
 
 }
 

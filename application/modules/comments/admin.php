@@ -7,7 +7,7 @@ if (!defined('BASEPATH'))
  * Image CMS
  * Comments admin
  */
-class Admin extends MY_Controller {
+class Admin extends BaseAdminController {
 
     private $per_page = 12;
 
@@ -15,7 +15,7 @@ class Admin extends MY_Controller {
         parent::__construct();
 
         $this->load->library('DX_Auth');
-        cp_check_perm('module_admin');
+        //cp_check_perm('module_admin');
 
         $this->load->model('base', 'comments');
     }
