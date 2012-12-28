@@ -79,7 +79,7 @@
                                             <td class="t-a_c">
                                                 <span class="frame_label">
                                                     <span class="niceCheck b_n">  
-                                                        <input type="checkbox" class="chldcheck"  value="{echo $privilege->id}" name="Privileges[]" {if in_array($privilege->id, $privilegeCheck)} checked="checked" {/if}  />
+                                                        <input type="checkbox" class="chldcheck"  value="{echo $privilege->id}" name="Privileges[]" {if in_array($privilege->id, $privilegeCheck)} checked="checked" {/if}/>
                                                     </span>
                                                 </span>
                                             </td>
