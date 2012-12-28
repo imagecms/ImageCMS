@@ -269,17 +269,17 @@ class Admin extends MY_Controller {
             showMessage(validation_errors(), false, 'r');
         } else {
             $album_id = $this->gallery_m->create_album();
-            
+
             // Create album folder
             mkdir($this->conf['upload_path'] . $album_id);
 
             chmod($this->conf['upload_path'] . $album_id, 0777);
-            
+
             // Create thumbs folder
             mkdir($this->conf['upload_path'] . $album_id . '/' . $this->conf['thumbs_folder']);
 
             // Create folder for admin thumbs 
-            mkdir($this->conf['upload_path'] . $album_id . '/_admin_thumbs');            
+            mkdir($this->conf['upload_path'] . $album_id . '/_admin_thumbs');
 
             showMessage('Альбом создан');
 
@@ -461,6 +461,8 @@ class Admin extends MY_Controller {
     public function delete_image($ids = 0) {
         if ($this->input->post('id'))
             $ids = $this->input->post('id');
+//        var_dump($ids);
+//        exit;
         foreach ($ids as $key => $id) {
             $image = $this->gallery_m->get_image_info($id);
             if ($image != FALSE) {
@@ -468,16 +470,16 @@ class Admin extends MY_Controller {
                 $path = $this->conf['upload_path'] . $album['id'] . '/';
 
                 // Delete image.
-                unlink($path . $image['file_name'] . $image['file_ext']);
+                delete_files($path . $image['file_name'] . $image['file_ext']);
 
                 // Delete thumb.
-                unlink($path . $this->conf['thumbs_folder'] . '/' . $image['file_name'] . $image['file_ext']);
+                delete_files($path . $this->conf['thumbs_folder'] . '/' . $image['file_name'] . $image['file_ext']);
 
                 // Delete preview file.
-                unlink($path . $image['file_name'] . $this->conf['prev_img_marker'] . $image['file_ext']);
+                delete_files($path . $image['file_name'] . $this->conf['prev_img_marker'] . $image['file_ext']);
 
                 // Delete admin thumb.
-                unlink($path . '_admin_thumbs/' . $image['file_name'] . $image['file_ext']);
+                delete_files($path . '_admin_thumbs/' . $image['file_name'] . $image['file_ext']);
 
                 // Delete image info.
                 $this->gallery_m->delete_image($image['id']);
