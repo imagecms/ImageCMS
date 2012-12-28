@@ -102,11 +102,10 @@
                 </ul>
             </div><!-- header -->
 
-                {echo ShopCore::app()->SCategoryTree->ul()}
-
+            {echo ShopCore::app()->SCategoryTree->ul()}
 
             {$shop_content}
-
+            
             <div class="hfooter"></div>
         </div>
         <div class="footer">
