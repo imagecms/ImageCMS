@@ -3,13 +3,13 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Admin extends MY_Controller {
+class Admin extends BaseAdminController {
 
     public function __construct() {
         parent::__construct();
 
         $this->load->library('DX_Auth');
-        cp_check_perm('module_admin');
+        //cp_check_perm('module_admin');
     }
 
     public function index() {

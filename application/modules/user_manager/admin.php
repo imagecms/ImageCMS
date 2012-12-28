@@ -6,7 +6,7 @@ if (!defined('BASEPATH'))
 /**
  * Image CMS
  */
-class Admin extends MY_Controller {
+class Admin extends BaseAdminController {
 
     private $mod_name = 'user_manager';
 
@@ -27,7 +27,7 @@ class Admin extends MY_Controller {
     function index() {
         $this->set_tpl_roles();
         $this->template->add_array($this->genre_user_table());
-        $this->template->add_array($this->show_edit_prems_tpl($id = 2));
+        $this->template->add_array($this->show_edit_prems_tpl($id = 10));
         $this->display_tpl('main');
     }
 
@@ -37,7 +37,7 @@ class Admin extends MY_Controller {
 
     function set_tpl_roles() {
         // roles
-        $query = $this->db->get('roles');
+        $query = $this->db->get('shop_rbac_roles');
         $this->template->assign('roles', $query->result_array());
         // roles
     }
@@ -55,7 +55,7 @@ class Admin extends MY_Controller {
 
     function genre_user_table() {
 
-        cp_check_perm('user_view_data');
+        //cp_check_perm('user_view_data');
 
         $this->load->model('dx_auth/users', 'users');
 
@@ -175,7 +175,7 @@ class Admin extends MY_Controller {
             }
 
             if (!check_perm('user_create') AND !check_perm('user_create_all_roles')) {
-                cp_check_perm('user_create');
+                //cp_check_perm('user_create');
             }
 
             if (!check_perm('user_create_all_roles')) {
@@ -234,7 +234,7 @@ class Admin extends MY_Controller {
 
             if ($row->banned == 0) {
 
-                cp_check_perm('user_edit');
+                //cp_check_perm('user_edit');
                 ($hook = get_hook('users_ban')) ? eval($hook) : NULL;
                 $this->users->ban_user($value);
                 $this->lib_admin->log(
@@ -243,7 +243,7 @@ class Admin extends MY_Controller {
                 );
             } else {
 
-                cp_check_perm('user_edit');
+                //cp_check_perm('user_edit');
                 ($hook = get_hook('users_unban')) ? eval($hook) : NULL;
                 $this->users->unban_user($value);
                 $this->lib_admin->log(
@@ -260,7 +260,7 @@ class Admin extends MY_Controller {
 
     function search() {
         if (!empty($_GET)) {
-            cp_check_perm('user_view_data');
+            //cp_check_perm('user_view_data');
 
 
             @$s_data = $this->input->get('s_data');
@@ -269,9 +269,9 @@ class Admin extends MY_Controller {
             $page = (int) $this->uri->segment(8);
 
             $this->db->select("users.*", FALSE);
-            $this->db->select("roles.name AS role_name", FALSE);
-            $this->db->select("roles.alt_name AS role_alt_name", FALSE);
-            $this->db->join("roles", "roles.id = users.role_id");
+            $this->db->select("shop_rbac_roles.name AS role_name", FALSE);
+            $this->db->select("shop_rbac_roles.alt_name AS role_alt_name", FALSE);
+            $this->db->join("shop_rbac_roles", "shop_rbac_roles.id = users.role_id");
             if (!empty($s_data)) {
                 $this->db->like('username', $s_data);
             } elseif (!empty($s_email)) {
@@ -322,7 +322,7 @@ class Admin extends MY_Controller {
      */
 
     function edit_user($user_id) {
-        //cp_check_perm('user_edit');
+        ////cp_check_perm('user_edit');
 
         $this->load->model('dx_auth/users', 'users');
 
@@ -346,7 +346,7 @@ class Admin extends MY_Controller {
     function update_user($user_id) {
 
 
-        cp_check_perm('edit_user');
+        //cp_check_perm('edit_user');
 
         $this->load->model('dx_auth/users', 'user2');
 
@@ -429,7 +429,7 @@ class Admin extends MY_Controller {
 
         if (!$this->ajaxRequest)
             $this->display_tpl('create_group');
-        cp_check_perm('roles_create');
+        //cp_check_perm('roles_create');
 
         if ($_POST) {
 
@@ -468,10 +468,10 @@ class Admin extends MY_Controller {
     }
 
     function edit($id) {
-        cp_check_perm('roles_edit');
+        //cp_check_perm('roles_edit');
 
         $this->db->where('id', $id);
-        $query = $this->db->get('roles', 1);
+        $query = $this->db->get('shop_rbac_roles', 1);
 
         if ($query->num_rows() > 0) {
             $this->template->add_array($query->row_array());
@@ -481,7 +481,7 @@ class Admin extends MY_Controller {
     }
 
     function save($id) {
-        cp_check_perm('roles_edit');
+        //cp_check_perm('roles_edit');
 
         $this->form_validation->set_rules('alt_name', lang('amt_tname'), 'required|trim|max_length[150]|min_length[2]');
         $this->form_validation->set_rules('name', lang('amt_identif'), 'required|trim|max_length[150]|min_length[2]|alpha');
@@ -535,7 +535,7 @@ class Admin extends MY_Controller {
     }
 
     function delete() {
-        cp_check_perm('roles_delete');
+        //cp_check_perm('roles_delete');
         $ids = $_POST['ids'];
         foreach ($ids as $id) {
             switch ($id) {
@@ -570,7 +570,7 @@ class Admin extends MY_Controller {
             $this->load->model('dx_auth/users', 'users');
         $ids = $_POST['ids'];
         foreach ($ids as $id) {
-            cp_check_perm('user_delete');
+            //cp_check_perm('user_delete');
             ($hook = get_hook('users_delete')) ? eval($hook) : NULL;
             $this->users->delete_user($id);
             $this->lib_admin->log(lang('amt_deleted_user') . $id);
@@ -579,7 +579,7 @@ class Admin extends MY_Controller {
 
     function update_role_perms() {
 
-        cp_check_perm('roles_edit');
+        //cp_check_perm('roles_edit');
 
         $this->load->model('dx_auth/permissions', 'permissions');
         $permission_data = array();
@@ -624,7 +624,7 @@ class Admin extends MY_Controller {
 
         $this->template->add_array(array(
             'selected_role' => $id,
-            'roles' => $this->db->get('roles')->result_array(),
+            'roles' => $this->db->get('shop_rbac_roles')->result_array(),
             'all_perms' => $all_perms,
             'permissions' => $permissions,
             'groups' => $groups,

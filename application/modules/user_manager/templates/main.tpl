@@ -36,8 +36,8 @@
         <div class="clearfix">
             <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
                 <a href="#users" class="btn btn-small active">{lang('amt_users')}</a>
-                <a href="#group" class="btn btn-small">{lang('amt_groups')}</a>
-                <a href="#privilege" class="btn btn-small">{lang('amt_perm_div')}</a>
+                <!--<a href="#group" class="btn btn-small">{lang('amt_groups')}</a>-->
+                <!--<a href="#privilege" class="btn btn-small">{lang('amt_perm_div')}</a>-->
 
             </div>   
         </div>
@@ -72,6 +72,7 @@
                                 <td></td>                                    
                                 <td><input type="text" id="nameAutoC" name="s_data"/></td>
                                 <td><input type="text" id="emailAutoC"  name="s_email"/></td>
+                                        
                                 <td><select name="role" id="role">
                                         <option value ="0">{lang('amt_all_groups')}</option>
                                         {foreach $roles as $role}
@@ -117,7 +118,7 @@
 
                 </div>
             </div>
-
+{/*}
             <!-- ---------------------------------------------------Блок видалення групп------------------------------------------------- -->    
             <div class="modal hide fade modal_dels">
                 <div class="modal-header">
@@ -248,8 +249,10 @@
                             </table>
                         </div>
                     {/foreach}
-            </div>
+            </div>{ */}
             </form>
         </div>
     </section>
 </div>
+{$ci = &get_instance()}
+{var_dump($ci->session->userdata('DX_roles'))}
