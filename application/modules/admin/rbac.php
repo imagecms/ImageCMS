@@ -26,6 +26,36 @@ class Rbac extends BaseAdminController {
         Permitions::groupCreate();
     }
 
+    public function roleList() {
+
+        Permitions::roleList();
+    }
+
+    public function roleEdit($roleId) {
+
+        Permitions::roleEdit($roleId);
+    }
+
+    public function roleCreate() {
+
+        Permitions::roleCreate();
+    }
+
+    public function privilegeList() {
+
+        Permitions::privilegeList();
+    }
+
+    public function privilegeEdit($id) {
+
+        Permitions::privilegeEdit($id);
+    }
+
+    public function privilegeCreate() {
+
+        Permitions::privilegeCreate();
+    }
+
 }
 
 ?>
