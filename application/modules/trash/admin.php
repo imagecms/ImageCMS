@@ -32,6 +32,7 @@ class Admin extends MY_Controller {
         ($this->ajaxRequest) OR $this->display_tpl('create_trash');
 
         if ($_POST) {
+            var_dump($_POST);
 
             switch ($this->input->post('redirect_type')) {
 
@@ -39,6 +40,7 @@ class Admin extends MY_Controller {
                     $array = array(
                         'trash_url' => $this->input->post('url'),
                         'trash_redirect_type' => $this->input->post('redirect_type'),
+                        'trash_type' => $this->input->post('type'),
                         'trash_redirect' => $this->input->post('redirect_url')
                     );
                     break;
@@ -50,6 +52,7 @@ class Admin extends MY_Controller {
                         'trash_id' => $this->input->post('products'),
                         'trash_url' => $this->input->post('url'),
                         'trash_redirect_type' => $this->input->post('redirect_type'),
+                        'trash_type' => $this->input->post('type'),
                         'trash_redirect' => site_url() . 'shop/product/' . $url->url
                     );
                     break;
@@ -61,6 +64,7 @@ class Admin extends MY_Controller {
                         'trash_id' => $this->input->post('category'),
                         'trash_url' => $this->input->post('url'),
                         'trash_redirect_type' => $this->input->post('redirect_type'),
+                        'trash_type' => $this->input->post('type'),
                         'trash_redirect' => site_url() . 'shop/category/' . $url->full_path
                     );
                     break;
@@ -72,6 +76,7 @@ class Admin extends MY_Controller {
                         'trash_id' => $this->input->post('category_base'),
                         'trash_url' => $this->input->post('url'),
                         'trash_redirect_type' => $this->input->post('redirect_type'),
+                        'trash_type' => $this->input->post('type'),
                         'trash_redirect' => site_url() . $url->name
                     );
                     break;
@@ -122,13 +127,13 @@ class Admin extends MY_Controller {
             $this->display_tpl('edit_trash');
 
         if ($_POST) {
-
             switch ($this->input->post('redirect_type')) {
                 case "url":
                     $array = array(
                         'id' => $this->input->post('id'),
                         'trash_url' => $this->input->post('old_url'),
                         'trash_redirect_type' => $this->input->post('redirect_type'),
+                        'trash_type' => $this->input->post('type'),
                         'trash_redirect' => prep_url($this->input->post('redirect_url'))
                     );
                     break;
@@ -142,6 +147,7 @@ class Admin extends MY_Controller {
                         'trash_id' => $this->input->post('products'),
                         'trash_url' => $this->input->post('old_url'),
                         'trash_redirect_type' => $this->input->post('redirect_type'),
+                        'trash_type' => $this->input->post('type'),
                         'trash_redirect' => site_url() . 'shop/product/' . $url->url
                     );
                     break;
@@ -155,6 +161,7 @@ class Admin extends MY_Controller {
                         'trash_id' => $this->input->post('category'),
                         'trash_url' => $this->input->post('old_url'),
                         'trash_redirect_type' => $this->input->post('redirect_type'),
+                        'trash_type' => $this->input->post('type'),
                         'trash_redirect' => site_url() . 'shop/category/' . $url->url
                     );
                     break;
@@ -168,6 +175,7 @@ class Admin extends MY_Controller {
                         'trash_id' => $this->input->post('category_base'),
                         'trash_url' => $this->input->post('old_url'),
                         'trash_redirect_type' => $this->input->post('redirect_type'),
+                        'trash_type' => $this->input->post('type'),
                         'trash_redirect' => site_url() . $url->name
                     );
                     break;
