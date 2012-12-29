@@ -52,7 +52,6 @@
                                                 </span>
                                                 Url 
                                             </span>
-
                                             <span class="frame_label no_connection m-r_15">
                                                 <span class="niceRadio b_n">
                                                     <input type="radio" name="redirect_type" value="product" {if $trash->trash_redirect_type == 'product'}checked="checked"{/if}/>
@@ -76,6 +75,24 @@
                                                     <input type="radio" name="redirect_type" value="404" {if $trash->trash_redirect_type == '404'}checked="checked"{/if}/>
                                                 </span>
                                                 404
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="type">Вид</label>
+                                        <div class="controls">
+                                            <span class="frame_label no_connection m-r_15">
+                                                <span class="niceRadio b_n">
+                                                    <input type="radio" name="type" value="301" {if $trash->trash_type == '301'}checked="checked"{/if}/>
+                                                </span>
+                                                301 
+                                            </span>
+                                            <span class="frame_label no_connection m-r_15">
+                                                <span class="niceRadio b_n">
+                                                    <input type="radio" name="type" value="302" {if $trash->trash_type == '302'}checked="checked"{/if}/>
+                                                </span>
+                                                302
                                             </span>
                                         </div>
                                     </div>

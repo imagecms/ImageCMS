@@ -53,7 +53,7 @@
                 </div>
                 <div class="formCost f_l">
                     <label>{lang('s_from')}</label>
-                    <input type="text" id="minCost" name="lp" value="{if ShopCore::$_GET['lp'] && (int)ShopCore::$_GET['lp']>0}{echo ShopCore::$_GET['lp']}{else:}{echo (int)$priceRange.minCost}{/if}" autocomplete="off"/>
+                    <input type="text" id="minCost" name="lp" value="{if ShopCore::$_GET['lp'] && (int)ShopCore::$_GET['lp']>0 && (int)ShopCore::$_GET['lp']>(int)$priceRange.minCost}{echo ShopCore::$_GET['lp']}{else:}{echo (int)$priceRange.minCost}{/if}" autocomplete="off"/>
                     <label>{lang('s_do')}</label>
                     <input type="text" id="maxCost" name="rp" value="{if ShopCore::$_GET['rp'] && (int)ShopCore::$_GET['rp']>0}{echo ShopCore::$_GET['rp']}{else:}{echo (int)$priceRange.maxCost}{/if}" autocomplete="off"/>
                     <div class="buttons button_bs">

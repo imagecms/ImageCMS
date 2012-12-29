@@ -24,7 +24,7 @@ class Trash extends MY_Controller {
         $row = $this->db->get_where('trash', array('trash_url' => $this->uri->uri_string()))->row();
         if ($row != null) {
             ($row->trash_redirect_type != '404') OR $this->core->error_404();
-            redirect($row->trash_redirect, 'location', 301);
+            redirect($row->trash_redirect, 'location', $row->trash_type);
         }
     }
 
@@ -63,6 +63,11 @@ class Trash extends MY_Controller {
                 'null' => TRUE,
             ),
             'trash_redirect' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '255',
+                'null' => TRUE,
+            ),
+            'trash_type' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => TRUE,
