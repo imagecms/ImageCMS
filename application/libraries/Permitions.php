@@ -20,6 +20,8 @@ class Permitions {
     }
 
     public static function checkPermitions() {
+        //self::processRbacPrivileges();
+//        self::createSuperAdmin();
         self::checkUrl();
     }
 
@@ -394,7 +396,7 @@ class Permitions {
                 showMessage(ShopCore::t(lang('a_js_edit_save')));
 
                 if ($_POST['action'] == 'edit') {
-                    pjax('/admin/components/run/shop/rbac/roleEdit/' . $idCreate);
+                    pjax('/admin/rbac/roleEdit/' . $idCreate);
                 } else {
                     pjax('/admin/rbac/roleList');
                 }
@@ -444,28 +446,32 @@ class Permitions {
 
 
                 if ($_POST['Privileges']) {
+                    $idForDelete = implode(',', $_POST['Privileges']);
+
+
+                    $sqlDelete = "DELETE FROM shop_rbac_roles_privileges WHERE role_id = " . $roleId . " AND privilege_id NOT IN(" . $idForDelete . ")";
+                    $this->db->query($sqlDelete);
 
                     foreach ($_POST['Privileges'] as $idPrivilege) {
+
                         $sqlPrivilege = "INSERT INTO shop_rbac_roles_privileges (role_id, privilege_id) VALUES(" . $this->db->escape($roleId) . ", " . $this->db->escape($idPrivilege) . ")";
-//                      
                         $this->db->query($sqlPrivilege);
                     }
                 }
 
 
 
-                
+
                 showMessage(ShopCore::t(lang('a_js_edit_save')));
 
                 if ($_POST['action'] == 'edit') {
 
                     pjax('/admin/rbac/roleEdit/' . $roleId);
                 } else {
-                    pjax('/admin/components/run/shop/rbac/role_list');
+                    pjax('/admin/rbac/roleList');
                 }
             }
         } else {
-            echo $_POST['dada'];
 
             $this->db->select('privilege_id');
             $queryPrivilegeR = $this->db->get_where('shop_rbac_roles_privileges', array('role_id' => $roleId))->result_array();
@@ -479,7 +485,7 @@ class Permitions {
 
             foreach ($queryPrivilegeR as $key => $id) {
                 $emptyArray[$key] = $id['privilege_id'];
-            }            
+            }
 
             $this->template->add_array(array(
                 'model' => $queryModel->row(),
@@ -554,9 +560,9 @@ class Permitions {
                 showMessage(ShopCore::t(lang('a_rbak_privile_create')));
 
                 if ($_POST['action'] == 'close') {
-                    pjax('/admin/components/run/shop/rbac/privilege_create');
+                    pjax('/admin/rbac/privilegeCreate');
                 } else {
-                    pjax('/admin/components/run/shop/rbac/privilege_list');
+                    pjax('/admin/rbac/privilegeList');
                 }
             }
         } else {
