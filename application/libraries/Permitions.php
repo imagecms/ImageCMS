@@ -20,7 +20,7 @@ class Permitions {
     }
 
     public static function checkPermitions() {
-        //self::processRbacPrivileges();
+//      self::processRbacPrivileges();
 //        self::createSuperAdmin();
         self::checkUrl();
     }
@@ -44,13 +44,12 @@ class Permitions {
                     if (count($userPrivilege) > 0)
                         return TRUE;
                     else
-                        die(str_replace('%error_message%', ShopCore::t('Не достаточно прав для: ') . $privilege->description, $err_text));
+                        die(str_replace('%error_message%', 'Не достаточно прав для: ' . $privilege->description, $err_text));
                 }
             } else {
                 return true;
             }
         }
-        //die(str_replace('%error_message%', ShopCore::t('Ошибка проверки прав доступа'), $err_text));
     }
 
     private static function checkUrl($checkLink = FALSE, $link = '') {
@@ -192,7 +191,7 @@ class Permitions {
                 $dbPrivilege = $ci->db->where('name', $privilegeName)->get(self::$rbac_privileges_table)->row();
                 $group = $ci->db->where('name', ucfirst($controllerName))->get(self::$rbac_group_table)->row();
                 if (empty($group)) {
-                    $ci->db->insert(self::$rbac_group_table, array('name' => ucfirst($controllerName), 'description' => ''));
+                    $ci->db->insert(self::$rbac_group_table, array('name' => ucfirst($controllerName), 'description' => '', 'type' => $folder));
                     $group = $ci->db->where('name', ucfirst($controllerName))->get(self::$rbac_group_table)->row();
                 }
                 if (empty($dbPrivilege))
@@ -269,7 +268,7 @@ class Permitions {
                     $this->db->query($sql);
                 }
 
-                showMessage(ShopCore::t('Группа создана'));
+                showMessage('Группа создана');
                 if ($_POST['action'] == 'tomain')
                     pjax('/admin/rbac/groupEdit/' . $this->db->insert_id());
                 if ($_POST['action'] == 'tocreate')
@@ -297,7 +296,7 @@ class Permitions {
         $model = $this->db->query($sqlModel);
 
         if ($model === null)
-            $this->error404(ShopCore::t('Группа не найдена'));
+            $this->error404('Группа не найдена');
 
         if (!empty($_POST)) {
 
@@ -306,7 +305,7 @@ class Permitions {
                 $sql = "UPDATE shop_rbac_privileges SET group_id = " . $groupId . " WHERE id IN(" . $idPrivilege . ")";
                 $this->db->query($sql);
             }
-            showMessage(ShopCore::t('Изменения сохранены'));
+            showMessage('Изменения сохранены');
             if ($_POST['action'] == 'tomain')
                 pjax('/admin/rbac/groupList');
             if ($_POST['action'] == 'tocreate')
@@ -386,16 +385,15 @@ class Permitions {
 
                     $idCreate = $this->db->insert_id();
                     foreach ($_POST['Privileges'] as $idPrivilege) {
-                        $sqlPrivilege = "INSERT INTO shop_rbac_roles_privileges (role_id, privilege_id) VALUES(" . $idCreate . ", " . $this->db->escape($idPrivilege) . ")";
-//                      
+                        $sqlPrivilege = "INSERT INTO shop_rbac_roles_privileges (role_id, privilege_id) VALUES(" . $idCreate . ", " . $this->db->escape($idPrivilege) . ")";                     
                         $this->db->query($sqlPrivilege);
                     }
                 }
 
 
-                showMessage(ShopCore::t(lang('a_js_edit_save')));
+                showMessage(lang('a_js_edit_save'));
 
-                if ($_POST['action'] == 'edit') {
+                if ($_POST['action'] == 'new') {
                     pjax('/admin/rbac/roleEdit/' . $idCreate);
                 } else {
                     pjax('/admin/rbac/roleList');
@@ -408,8 +406,17 @@ class Permitions {
                 $queryGroups[$key]->privileges = $this->db->get_where('shop_rbac_privileges', array('group_id' => $value->id))->result();
             }
 
+            $array = $this->db->select('type')->distinct()->get('shop_rbac_group')->result();
+
+            foreach ($array as $item) {
+                $result[$item->type] = $this->db->where('type', $item->type)->get(self::$rbac_group_table)->result_array();
+                foreach ($result[$item->type] as $k => $v) {
+                    $result[$item->type][$k]['privileges'] = $this->db->get_where('shop_rbac_privileges', array('group_id' => $v['id']))->result();
+                }
+            }
+
             $this->template->add_array(array(
-                'groups' => $queryGroups
+                'groups' => $result
             ));
 
             $this->template->show('roleCreate', FALSE);
@@ -431,7 +438,7 @@ class Permitions {
         $queryModel->row();
 
         if ($queryModel === null)
-            $this->error404(ShopCore::t(lang('a_rback_not_found')));
+            $this->error404(lang('a_rback_not_found'));
 
         if (!empty($_POST)) {
             $this->form_validation->set_rules('Name', 'Name', 'required');
@@ -459,10 +466,7 @@ class Permitions {
                     }
                 }
 
-
-
-
-                showMessage(ShopCore::t(lang('a_js_edit_save')));
+                showMessage(lang('a_js_edit_save'));
 
                 if ($_POST['action'] == 'edit') {
 
@@ -476,7 +480,7 @@ class Permitions {
             $this->db->select('privilege_id');
             $queryPrivilegeR = $this->db->get_where('shop_rbac_roles_privileges', array('role_id' => $roleId))->result_array();
 
-            $queryGroups = $this->db->select(array('id', 'name', 'description'))->get('shop_rbac_group')->result();
+            $queryGroups = $this->db->select(array('id', 'name', 'description', 'type'))->get('shop_rbac_group')->result();
             foreach ($queryGroups as $key => $value) {
                 $queryGroups[$key]->privileges = $this->db->get_where('shop_rbac_privileges', array('group_id' => $value->id))->result();
             }
@@ -487,10 +491,19 @@ class Permitions {
                 $emptyArray[$key] = $id['privilege_id'];
             }
 
+            $array = $this->db->select('type')->distinct()->get('shop_rbac_group')->result();
+
+            foreach ($array as $item) {
+                $result[$item->type] = $this->db->where('type', $item->type)->get(self::$rbac_group_table)->result_array();
+                foreach ($result[$item->type] as $k => $v) {
+                    $result[$item->type][$k]['privileges'] = $this->db->get_where('shop_rbac_privileges', array('group_id' => $v['id']))->result();
+                }
+            }
             $this->template->add_array(array(
                 'model' => $queryModel->row(),
                 'groups' => $queryGroups,
-                'privilegeCheck' => $emptyArray
+                'privilegeCheck' => $emptyArray,
+                'types' => $result
             ));
 
             $this->template->show('roleEdit', FALSE);
@@ -557,7 +570,7 @@ class Permitions {
                 $this->db->query($sql);
 
 
-                showMessage(ShopCore::t(lang('a_rbak_privile_create')));
+                showMessage(lang('a_rbak_privile_create'));
 
                 if ($_POST['action'] == 'close') {
                     pjax('/admin/rbac/privilegeCreate');
@@ -587,7 +600,7 @@ class Permitions {
         $queryRBACPrivilege = $this->db->get_where('shop_rbac_privileges', array('id' => $privilegeId))->row();
 
         if ($queryRBACPrivilege === null AND FALSE)
-            $this->error404(ShopCore::t(lang('a_rbak_privi_not')));
+            $this->error404(lang('a_rbak_privi_not'));
 
         if (!empty($_POST)) {
 
@@ -595,7 +608,7 @@ class Permitions {
             $sql = "UPDATE shop_rbac_privileges SET name = " . $this->db->escape($_POST['Name']) . ", description = " . $this->db->escape($_POST['Description']) . ", group_id = " . $this->db->escape($_POST['GroupId']) . " WHERE id = " . $privilegeId;
             $this->db->query($sql);
 
-            showMessage(ShopCore::t(lang('a_js_edit_save')));
+            showMessage(lang('a_js_edit_save'));
 
             if ($_POST['action'] == 'close') {
                 pjax('/admin/rbac/privilegeEdit/' . $privilegeId);
