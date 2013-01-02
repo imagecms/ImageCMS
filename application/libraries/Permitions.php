@@ -20,9 +20,10 @@ class Permitions {
     }
 
     public static function checkPermitions() {
+        //self::checkControlPanelAccess();
         //self::processRbacPrivileges();
 //        self::createSuperAdmin();
-        self::checkUrl();
+        //self::checkUrl();
     }
 
     private static function checkAllPermitions($adminClassName, $adminMethod) {
@@ -192,7 +193,7 @@ class Permitions {
                 $dbPrivilege = $ci->db->where('name', $privilegeName)->get(self::$rbac_privileges_table)->row();
                 $group = $ci->db->where('name', ucfirst($controllerName))->get(self::$rbac_group_table)->row();
                 if (empty($group)) {
-                    $ci->db->insert(self::$rbac_group_table, array('name' => ucfirst($controllerName), 'description' => ''));
+                    $ci->db->insert(self::$rbac_group_table, array('name' => ucfirst($controllerName), 'description' => '', 'type' => $folder));
                     $group = $ci->db->where('name', ucfirst($controllerName))->get(self::$rbac_group_table)->row();
                 }
                 if (empty($dbPrivilege))
@@ -505,7 +506,7 @@ class Permitions {
      */
     public function roleList() {
 
-        $sql = 'SELECT id, name, description, importance FROM shop_rbac_roles ORDER BY name ASC';
+        $sql = 'SELECT id, name, alt_name, description, importance FROM shop_rbac_roles ORDER BY name ASC';
         $query = $this->db->query($sql);
 
         $this->template->add_array(array(
@@ -656,6 +657,21 @@ class Permitions {
             showMessage('Успех', 'Привилегии успешно удалены');
             pjax('/admin/components/run/shop/rbac/privilege_list');
         }
+    }
+
+    public static function checkControlPanelAccess($role_id) {
+        if ($role_id != null) {
+            $ci = & get_instance();
+            $r = $ci->db->query("SELECT * FROM `" . self::$rbac_roles_privileges_table . "` 
+                JOIN `" . self::$rbac_privileges_table . "` ON " . self::$rbac_roles_privileges_table . ".privilege_id=" . self::$rbac_privileges_table . ".id 
+                WHERE " . self::$rbac_roles_privileges_table . ".role_id=" . $role_id . " AND `name`='Admin::__construct'")->num_rows();
+            if ($r > 0)
+                return 'admin';
+            else
+                return '';
+        }
+        else
+            return '';
     }
 
 }
