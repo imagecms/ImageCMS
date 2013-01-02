@@ -254,5 +254,3 @@
         </div>
     </section>
 </div>
-{$ci = &get_instance()}
-{var_dump($ci->session->userdata('DX_roles'))}
