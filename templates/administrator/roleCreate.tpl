@@ -52,40 +52,52 @@
                             </tbody>
                         </table>
                     </div>
-                    {foreach $groups as $key => $group} 
-                        {if $group->privileges}
-                        <div class="span3">
-                            <table class="table table-striped table-bordered table-hover table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th class="t-a_c span1">
-                                            <span class="frame_label">
-                                                <span class="niceCheck b_n">
-                                                    <input type="checkbox" />
-                                                </span>
-                                            </span>
-                                        </th>                           
-                                        <th>{echo $group->name}</th>
-                                    </tr>                        
-                                </thead>
-                                <tbody class="sortable">
-                                    {foreach $group->privileges as $privilege} 
-                                        <tr>       
-                                            <td class="t-a_c">
-                                                <span class="frame_label">
-                                                    <span class="niceCheck b_n">  
-                                                        <input type="checkbox" class="chldcheck"  value="{echo $privilege->id}" name="Privileges[]" />
-                                                    </span>
-                                                </span>
-                                            </td>
-                                            <td><p>{echo $privilege->name}</p></td>                               
-                                        </tr>
-                                    {/foreach}
-                                </tbody>
-                            </table>
-                        </div>
-                                {/if}
-                    {/foreach}
+                    <div class="tab-content clearfix">
+                        <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
+                            <a href="#shop" class="btn btn-small active">Shop</a>
+                            <a href="#base" class="btn btn-small">Base</a>
+                            <a href="#module" class="btn btn-small">Modules</a>
+                        </div> 
+                    </div>
+
+                    <div class="tab-content">
+                        {foreach $groups as $key => $groups} 
+                            <div class="tab-pane active" id="{echo $key}">
+                                {foreach $groups as $k => $group} 
+                                    <div class="span3">
+                                        <table class="table table-striped table-bordered table-hover table-condensed">
+                                            <thead>
+                                                <tr>
+                                                    <th class="t-a_c span1">
+                                                        <span class="frame_label">
+                                                            <span class="niceCheck b_n">
+                                                                <input type="checkbox" />
+                                                            </span>
+                                                        </span>
+                                                    </th>                           
+                                                    <th>{echo $group['name']}</th>
+                                                </tr>                        
+                                            </thead>
+                                            <tbody class="sortable">
+                                                {foreach $group['privileges'] as $privilege} 
+                                                    <tr>       
+                                                        <td class="t-a_c">
+                                                            <span class="frame_label">
+                                                                <span class="niceCheck b_n">  
+                                                                    <input type="checkbox" class="chldcheck"  value="{echo $privilege->id}" name="Privileges[]" />
+                                                                </span>
+                                                            </span>
+                                                        </td>
+                                                        <td><p>{echo $privilege->name}</p></td>                               
+                                                    </tr>
+                                                {/foreach}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                {/foreach}
+                            </div>
+                        {/foreach}
+                    </div>
                 </div>
                 {form_csrf()}
             </form>
