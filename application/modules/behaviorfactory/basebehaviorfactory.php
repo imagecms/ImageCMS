@@ -18,7 +18,7 @@ abstract class BaseBehaviorFactory {
      * @access public
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
      */
-    public function state($value = null) {
+    public function registerEvent($value = null) {
         $trace = debug_backtrace();
         $key = sprintf('%s:%s', $trace[1]['class'], $trace[1]['function']);
         $this->storage[$key]['run'] = TRUE;
