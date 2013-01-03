@@ -20,7 +20,6 @@ class Permitions {
     }
 
     public static function checkPermitions() {
-
         //self::checkControlPanelAccess();
         //self::processRbacPrivileges();
         //self::createSuperAdmin();
@@ -159,6 +158,7 @@ class Permitions {
     }
 
     private static function scanControllers($controller, $folder) {
+        $locale = BaseAdminController::getCurrentLocale();
         $ci = & get_instance();
         $fileExtension = EXT;
         if ($folder == 'module') {
@@ -191,13 +191,16 @@ class Permitions {
             if ($controllerMethod->class == $controllerClassName) {
                 $privilegeName = $controllerMethod->class . '::' . $controllerMethod->name;
                 $dbPrivilege = $ci->db->where('name', $privilegeName)->get(self::$rbac_privileges_table)->row();
-                $group = $ci->db->where('name', ucfirst($controllerName))->get(self::$rbac_group_table)->row();
+                $group = $ci->db->where('name', ucfirst($controllerClassName))->get(self::$rbac_group_table)->row();
                 if (empty($group)) {
-                    $ci->db->insert(self::$rbac_group_table, array('name' => ucfirst($controllerName), 'description' => '', 'type' => $folder));
+                    $ci->db->insert(self::$rbac_group_table, array('name' => ucfirst($controllerClassName), 'type' => $folder));
+                    $ci->db->insert(self::$rbac_group_table . "_i18n", array('id' => $ci->db->insert_id(), 'description' => '', 'locale' => $locale));
                     $group = $ci->db->where('name', ucfirst($controllerName))->get(self::$rbac_group_table)->row();
                 }
-                if (empty($dbPrivilege))
-                    $ci->db->insert(self::$rbac_privileges_table, array('name' => $privilegeName, 'description' => $privilegeName, 'group_id' => $group->id, 'type' => $folder));
+                if (empty($dbPrivilege)) {
+                    $ci->db->insert(self::$rbac_privileges_table, array('name' => $privilegeName, 'group_id' => $group->id));
+                    $ci->db->insert(self::$rbac_privileges_table."_i18n", array('id' => $ci->db->insert_id(), 'title' => $privilegeName, 'description' => '', 'locale' => $locale));
+                }
             }
         }
         if ($folder == 'module')
@@ -387,7 +390,7 @@ class Permitions {
 
                     $idCreate = $this->db->insert_id();
                     foreach ($_POST['Privileges'] as $idPrivilege) {
-                        $sqlPrivilege = "INSERT INTO shop_rbac_roles_privileges (role_id, privilege_id) VALUES(" . $idCreate . ", " . $this->db->escape($idPrivilege) . ")";                     
+                        $sqlPrivilege = "INSERT INTO shop_rbac_roles_privileges (role_id, privilege_id) VALUES(" . $idCreate . ", " . $this->db->escape($idPrivilege) . ")";
                         $this->db->query($sqlPrivilege);
                     }
                 }
