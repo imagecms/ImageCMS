@@ -311,7 +311,7 @@ class DX_Auth {
             $data['role_name'] = Permitions::checkControlPanelAccess($role_id);
         
         // Set return value
-        $data['role_name'] = $role_name;
+        //$data['role_name'] = $role_name;
         $data['parent_roles_id'] = $parent_roles_id;
         $data['parent_roles_name'] = $parent_roles_name;
         $data['permission'] = $permission;
