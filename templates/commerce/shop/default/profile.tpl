@@ -195,5 +195,3 @@
         });
     </script>
 {/literal}
-
-
