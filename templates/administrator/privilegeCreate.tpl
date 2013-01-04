@@ -35,15 +35,15 @@
                                         </div>
                                     </div>                                   
                                     <div class="control-group">
-                                        <label class="control-label" for="Description">{lang('a_desc')}:</label>
+                                        <label class="control-label" for="Title">{lang('a_desc')}:</label>
                                         <div class="controls">
-                                            <input type="text" name="Description" id="Description" value=""/>
+                                            <input type="text" name="Title" id="Title" value=""/>
                                         </div>
                                     </div>
                                     <div class="control-group">
-                                        <label class="control-label" for="Title">Полное описание:</label>
+                                        <label class="control-label" for="Description">Полное описание:</label>
                                         <div class="controls">
-                                            <textarea type="text" name="Title" id="Title" value=""></textarea>
+                                            <textarea type="text" name="Description" id="Description" value=""></textarea>
                                         </div>
                                     </div>
                                     <div class="control-group">
