@@ -14,26 +14,35 @@ class Permitions {
     private static $rbac_roles_privileges_table = 'shop_rbac_roles_privileges';
     private static $controller_types = array('shop', 'base', 'module');
 
+    //public static $error_message = "Недостаточно прав";
+
     public function __construct() {
         $ci = & get_instance();
         $ci->load->library('DX_Auth');
     }
 
     public static function checkPermitions() {
-        self::privilegesIntoDB();
+        //self::privilegesIntoDB();
         //self::privilegesIntoFile();
         //self::groupsIntoFile();
         //self::checkControlPanelAccess();
         //self::processRbacPrivileges();
         //self::createSuperAdmin();
         //self::groupsIntoDB();
-        //self::checkUrl();
+        self::checkUrl();
     }
 
     private static function checkAllPermitions($adminClassName, $adminMethod) {
         $ci = & get_instance();
-        $err_text = '<div id="notice" style="width: 500px;">' . '<b>%error_message%.</b>' . '
-			</div><script type="text/javascript">showMessage(\'Сообщение: \',\'%error_message%\',\'\');</script>';
+//        $err_text = '<div id="notice" style="width: 500px;">' . '<b>%error_message%.</b>' . '
+//			</div><script type="text/javascript">showMessage(\'Сообщение: \',\'%error_message%\',\'\');</script>';
+
+        $err_text = '<div class="alert alert-error">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <h4>Warning!</h4>
+            %error_message%.
+            </div>';
+
         //check if user is loged in
         if ($ci->dx_auth->is_logged_in()) {
             $privilege = $adminClassName . '::' . $adminMethod;
@@ -41,15 +50,20 @@ class Permitions {
             //check if current privilege exist in db
             if ($privilege) {
                 $userProfile = $ci->db->where('id', $ci->dx_auth->get_user_id())->get('users')->row();
+                $locale = 'ru';
+                $priv_title = $ci->db->select("title")->where(array('id' => $privilege->id, 'locale' => $locale))->get(self::$rbac_privileges_table . "_i18n")->row();
                 if ($userProfile)
                     $userRole = $ci->db->where('id', $userProfile->role_id)->get(self::$rbac_roles_table)->row();
                 //check if user has as role
                 if ($userRole) {
                     $userPrivilege = $ci->db->where(array('role_id' => (int) $userRole->id, 'privilege_id' => (int) $privilege->id))->get(self::$rbac_roles_privileges_table)->result();
                     if (count($userPrivilege) > 0)
+                    //die(str_replace('%error_message%', 'Не достаточно прав для: ' . $priv_title->title, $err_text));
+                    //echo str_replace('%error_message%', 'Не достаточно прав для: ' . $priv_title->title, $err_text);
+                    //return false;}
                         return TRUE;
                     else
-                        die(str_replace('%error_message%', 'Не достаточно прав для: ' . $privilege->description, $err_text));
+                        die(str_replace('%error_message%', 'Не достаточно прав для: ' . $priv_title->title, $err_text));
                 }
             } else {
                 return true;
@@ -68,11 +82,6 @@ class Permitions {
             $for_check = $ci->uri->segment(2);
 
         if ($for_check == 'components') {
-            if ($ci->uri->segment(4) == 'shop' OR $uri_array[3] == 'shop') {
-                $classNamePrep = 'ShopAdmin';
-                $controller_segment = 5;
-                $controller_method = 6;
-            }
             if (in_array($ci->uri->segment(3), array('init_window', 'run', 'cp')) OR in_array($uri_array[2], array('init_window', 'run', 'cp'))) {
                 $classNamePrep = 'Admin';
                 $controller_segment = 4;
@@ -82,11 +91,17 @@ class Permitions {
                 $controller_method = 3;
                 $classNamePrep = 'Base';
             }
+            if ($ci->uri->segment(4) == 'shop' OR $uri_array[3] == 'shop') {
+                $classNamePrep = 'ShopAdmin';
+                $controller_segment = 5;
+                $controller_method = 6;
+            }
         } else {
             $controller_segment = 2;
             $controller_method = 3;
             $classNamePrep = 'Base';
         }
+        //var_dump($classNamePrep);
         if ($checkLink AND $link != '')
             $adminController = $uri_array[$controller_segment - 1];
         else
@@ -152,6 +167,7 @@ class Permitions {
                 if (!$controllers)
                     $controllers = glob($adminControllersDir . "*$fileExtension");
                 foreach ($controllers as $controller) {
+
                     self::scanControllers($controller, $folder);
                 }
                 $controllers = false;
@@ -186,6 +202,7 @@ class Permitions {
                 $controllerClassName = 'ShopAdmin' . ucfirst($controllerName);
                 break;
         }
+
 
         $class = new ReflectionClass($controllerClassName);
 
@@ -695,49 +712,48 @@ class Permitions {
             return '';
     }
 
-    /*private static function groupsIntoFile() {
-        $ci = &get_instance();
-        $join_string = self::$rbac_group_table . ".id=" . self::$rbac_group_table . "_i18n.id";
-        $groups = $ci->db->query("SELECT * FROM `" . self::$rbac_group_table . "` 
-            JOIN `" . self::$rbac_group_table . "_i18n` ON " . $join_string)->result_array();
-        file_put_contents('groups.php', var_export($groups, true));
-    }
+    /* private static function groupsIntoFile() {
+      $ci = &get_instance();
+      $join_string = self::$rbac_group_table . ".id=" . self::$rbac_group_table . "_i18n.id";
+      $groups = $ci->db->query("SELECT * FROM `" . self::$rbac_group_table . "`
+      JOIN `" . self::$rbac_group_table . "_i18n` ON " . $join_string)->result_array();
+      file_put_contents('groups.php', var_export($groups, true));
+      }
 
-    private static function groupsIntoDB() {
-        $ci = &get_instance();
-        $locale = 'ru';
-        $string = "\$result = " . file_get_contents('groups_descriptions.php') . ";";
-        eval($string);
-        if (is_array($result)) {
-            foreach ($result as $item) {
-                $ci->db->where('id', $item['id'])->update(self::$rbac_group_table . "_i18n", array('description' => $item['description']));
-            }
-        }
-    }
+      private static function groupsIntoDB() {
+      $ci = &get_instance();
+      $locale = 'ru';
+      $string = "\$result = " . file_get_contents('groups_descriptions.php') . ";";
+      eval($string);
+      if (is_array($result)) {
+      foreach ($result as $item) {
+      $ci->db->where('id', $item['id'])->update(self::$rbac_group_table . "_i18n", array('description' => $item['description']));
+      }
+      }
+      }
 
-    private static function privilegesIntoFile() {
-        $ci = &get_instance();
-        $locale = 'ru';
-        $join_string = self::$rbac_privileges_table . ".id=" . self::$rbac_privileges_table . "_i18n.id";
-        $privileges = $ci->db->query("SELECT * FROM `" . self::$rbac_privileges_table . "` 
-            JOIN `" . self::$rbac_privileges_table . "_i18n` ON " . $join_string)->result_array();
-        file_put_contents('privileges.php', var_export($privileges, true));
-    }
+      private static function privilegesIntoFile() {
+      $ci = &get_instance();
+      $locale = 'ru';
+      $join_string = self::$rbac_privileges_table . ".id=" . self::$rbac_privileges_table . "_i18n.id";
+      $privileges = $ci->db->query("SELECT * FROM `" . self::$rbac_privileges_table . "`
+      JOIN `" . self::$rbac_privileges_table . "_i18n` ON " . $join_string)->result_array();
+      file_put_contents('privileges.php', var_export($privileges, true));
+      }
 
-    private static function privilegesIntoDB() {
-        $ci = &get_instance();
-        $locale = 'ru';
-        $string = "\$result = " . file_get_contents('privileges.php') . ";";
-        eval($string);
-//        var_dump($result);
-//        exit();
-        if (is_array($result)) {
-            foreach ($result as $item) {
-                $ci->db->where('id', $item['id'])->update(self::$rbac_privileges_table . "_i18n", array('title' => $item['title'], 'description' => $item['description']));
-            }
-        }
-    }*/
-
+      private static function privilegesIntoDB() {
+      $ci = &get_instance();
+      $locale = 'ru';
+      $string = "\$result = " . file_get_contents('privileges.php') . ";";
+      eval($string);
+      //        var_dump($result);
+      //        exit();
+      if (is_array($result)) {
+      foreach ($result as $item) {
+      $ci->db->where('id', $item['id'])->update(self::$rbac_privileges_table . "_i18n", array('title' => $item['title'], 'description' => $item['description']));
+      }
+      }
+      } */
 }
 
 ?>
