@@ -13,27 +13,27 @@
                 <div class="dropdown d-i_b">   
                     {$arr = get_lang_admin_folders()}                   
                     {foreach $arr as $a}
-                        {if $lang_sel->lang_sel == $a}
+                        {if $lang_sel == $a}
                             <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
-                                 {if $a == 'english_lang'}{lang('a_english')}{else:}{lang('a_russian')}{/if}
-                                <span class="caret"></span>
-                            </a>
-                        {/if}   
-                    {/foreach}
-                    <ul class="dropdown-menu">
-                        {foreach $arr as $a}
-                            <li>
-                                <a href="{$BASE_URL}admin/rbac/translateRole/{echo $model->id}/{if $a == 'russian_lang'}en{else:}ru{/if}">
-                                    
-                                {if $a == 'english_lang'}{lang('a_russian')} {else:} {lang('a_english')} (beta){/if}
-                            </a>
-                        </li>                          
-                    {/foreach}
-                </ul>
+                        {if $a == 'english_lang'}{lang('a_english')}{else:}{lang('a_russian')}{/if}
+                        <span class="caret"></span>
+                    </a>
+                {/if}   
+            {/foreach}
+            <ul class="dropdown-menu">
+                {foreach $arr as $a}
+                    <li>
+                        <a href="{$BASE_URL}admin/rbac/translateRole/{echo $model->id}/{if $a == 'russian_lang'}en{else:}ru{/if}">
 
-            </div>
-        </div>
-    </div>
+                    {if $a == 'english_lang'}{lang('a_russian')} {else:} {lang('a_english')} (beta){/if}
+                </a>
+            </li>                          
+        {/foreach}
+    </ul>
+
+</div>
+</div>
+</div>
 </div>
 
 
@@ -62,11 +62,11 @@
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label" for="Description">{lang('a_description')}:</label>
+                                            <label class="control-label" for="Title">{lang('a_description')}:</label>
                                             <div class="controls">
-                                                <input type="text" name="Description" id="Description" value="{echo $model->description}"/>
+                                                <input type="text" name="Title" id="Title" value="{echo $model->title}"/>
                                             </div>
-                                        </div>
+                                        </div>                                                                                
                                         <div class="control-group">
                                             <label class="control-label" for="Importance">{lang('a_imp_rbak')}:</label>
                                             <div class="controls">
@@ -116,7 +116,8 @@
                                                         </span>
                                                     </span>
                                                 </td>
-                                                <td><p>{echo $privilege->title}</p></td>                               
+                                                <td><p title="{echo $privilege->description}">{echo $privilege->title}</p>
+                                                </td>                              
                                             </tr>
                                         {/foreach}
                                     </tbody>
