@@ -33,7 +33,7 @@
                                         <div class="controls">
                                             <input type="text" name="Name" id="Name" value="" required/>
                                         </div>
-                                    </div>
+                                    </div>                                   
                                     <div class="control-group">
                                         <label class="control-label" for="Description">{lang('a_desc')}:</label>
                                         <div class="controls">
@@ -41,11 +41,17 @@
                                         </div>
                                     </div>
                                     <div class="control-group">
+                                        <label class="control-label" for="Title">Полное описание:</label>
+                                        <div class="controls">
+                                            <textarea type="text" name="Title" id="Title" value=""></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
                                         <label class="control-label" for="GroupId">{lang('a_group')}</label>
                                         <div class="controls">
                                             <select name="GroupId" id="GroupId">
                                                 {foreach $groups as $group}
-                                                    <option value="{echo $group->id}">{echo ShopCore::encode($group->name)}</option>
+                                                    <option value="{echo $group->id}">{echo ShopCore::encode($group->description)}</option>
                                                 {/foreach}
                                             </select>
                                         </div>

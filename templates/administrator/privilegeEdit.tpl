@@ -37,7 +37,7 @@
                                     <div class="control-group">
                                         <label class="control-label" for="Description">{lang('a_desc')}:</label>
                                         <div class="controls">
-                                            <input type="text" name="Description" id="Description" value="{echo $model->description}"/>
+                                            <input type="text" name="Description" id="Description" value="{echo $model->title}"/>
                                         </div>
                                     </div>
                                     <div class="control-group">
@@ -45,7 +45,7 @@
                                         <div class="controls">
                                             <select name="GroupId" id="GroupId">
                                                 {foreach $groups as $group}
-                                                    <option {if $model->group_id == $group->id} selected="selected" {/if} value="{echo $group->id}">{echo ShopCore::encode($group->name)}</option>
+                                                    <option {if $model->group_id == $group->id} selected="selected" {/if} value="{echo $group->id}">{echo ShopCore::encode($group->description)}</option>
                                                 {/foreach}
                                             </select>
                                         </div>
