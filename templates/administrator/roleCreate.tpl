@@ -34,7 +34,7 @@
                                         <div class="inside_padd">
                                             <div class="row-fluid">
                                                 <div class="control-group m-t_10">
-                                                    <label class="control-label" for="Name">{lang('a_name')}{//echo $model->getLabel('Name')}:</label>
+                                                    <label class="control-label" for="Name">{lang('a_name')}:</label>
                                                     <div class="controls">
                                                         <input type="text" name="Name" id="Name" value="" required/>
                                                     </div>
@@ -43,6 +43,12 @@
                                                     <label class="control-label" for="Description">{lang('a_desc')}:</label>
                                                     <div class="controls">
                                                         <input type="text" name="Description" id="Description" value=""/>
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label" for="Description">{lang('a_imp_rbak')}:</label>
+                                                    <div class="controls">
+                                                        <input type="text" name="Importance" id="Description" value=""/>
                                                     </div>
                                                 </div>
                                             </div>
