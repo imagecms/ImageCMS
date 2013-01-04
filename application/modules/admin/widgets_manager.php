@@ -5,7 +5,7 @@
  * Widget manager class
  */ 
 
-class Widgets_Manager extends BaseAdminController {
+class Widgets_manager extends BaseAdminController {
 
     protected $widget_path;
     
