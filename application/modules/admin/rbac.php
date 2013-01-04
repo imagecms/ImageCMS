@@ -9,7 +9,8 @@ class Rbac extends BaseAdminController {
         $this->lib_admin->init_settings();
         $url = $this->uri->segment(3);
         $data = $this->uri->segment(4);
-        Permitions::$url($data);
+        $lang = $this->uri->segment(5);
+        Permitions::$url($data, $lang);
         exit();
     }
 
