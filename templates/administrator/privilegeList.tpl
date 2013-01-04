@@ -26,7 +26,7 @@
                                             </span>
                                         </span>
                                     </th>                           
-                                    <th>{echo $group->name} {//echo $group->id}</th>
+                                    <th>{echo $group->description}</th>
                                 </tr>                        
                             </thead>
                             <tbody>
@@ -39,7 +39,7 @@
                                                 </span>
                                             </span>
                                         </td>
-                                        <td><a href="/admin/rbac/privilegeEdit/{echo $privilege->id}">{echo $privilege->name}</a></td>                               
+                                        <td><a href="/admin/rbac/privilegeEdit/{echo $privilege->id}">{echo $privilege->title}</a></td>                               
                                     </tr>
                                 {/foreach}
                             </tbody>

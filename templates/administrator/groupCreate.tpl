@@ -30,16 +30,28 @@
                             <td colspan="6">
                                 <div class="inside_padd span9">
                                     <div class="control-group m-t_10">
-                                        <label class="control-label" for="Name">{//echo $model->getLabel('Name')}:</label>
+                                        <label class="control-label" for="Name">{lang('a_name')}:</label>
                                         <div class="controls">
                                             <input type="text" name="Name" id="Name" value="" />
                                         </div>
                                     </div>
                                         <!--required-->
                                     <div class="control-group">
-                                        <label class="control-label" for="Description">{//echo $model->getLabel('Description')}:</label>
+                                        <label class="control-label" for="Description">{lang('a_desc')}:</label>
                                         <div class="controls">
                                             <input type="text" name="Description" id="Description" value=""/>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="Description">{lang('a_desc')}:</label>
+                                        <div class="controls">
+                                            <select name="type">
+                                                <option value="shop">Shop</option>
+                                                <option value="base">Base</option>
+                                                <option value="module">Module</option>
+                                            
+                                            </select>
+                                            <!--<input type="text" name="Description" id="Description" value=""/>-->
                                         </div>
                                     </div>
                                 </div>
