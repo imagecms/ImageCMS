@@ -24,7 +24,6 @@ class Permitions {
     public static function checkPermitions() {
 
 //        self::privilegesIntoDB();
-
         //self::privilegesIntoFile();
         //self::groupsIntoFile();
         //self::checkControlPanelAccess();
@@ -582,11 +581,11 @@ class Permitions {
             } else {
 
 
-                $sql = "UPDATE shop_rbac_roles SET importance = " . $this->db->escape($_POST['Importance']) .
+                $sql = "UPDATE shop_rbac_roles SET name = " . $this->db->escape($_POST['Name']) . ", importance = " . $this->db->escape($_POST['Importance']) .
                         " WHERE id   =   '" . $roleId . "'";
                 $this->db->query($sql);
 
-                $sqlI = "UPDATE shop_rbac_roles_i18n SET alt_name = " . $this->db->escape($_POST['Name']) . ", description = " . $this->db->escape($_POST['Description']) . " WHERE id = '" . $roleId . "' AND locale = '" . BaseAdminController::getCurrentLocale() . "'";
+                $sqlI = "UPDATE shop_rbac_roles_i18n SET alt_name = " . $this->db->escape($_POST['alt_name']) . ", description = " . $this->db->escape($_POST['Description']) . " WHERE id = '" . $roleId . "' AND locale = '" . BaseAdminController::getCurrentLocale() . "'";
                 $this->db->query($sqlI);
 
 
