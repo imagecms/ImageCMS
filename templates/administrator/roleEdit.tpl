@@ -58,15 +58,21 @@
                                         <div class="control-group m-t_10">
                                             <label class="control-label" for="Name">{lang('a_name')}:</label>
                                             <div class="controls">
-                                                <input type="text" name="Name" id="Name" value="{echo $model->alt_name}" />
+                                                <input type="text" name="Name" id="Name" value="{echo $model->name}" />
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label" for="Title">{lang('a_description')}:</label>
+                                            <label class="control-label" for="alt_name">{lang('a_description')}:</label>
                                             <div class="controls">
-                                                <input type="text" name="Title" id="Title" value="{echo $model->title}"/>
+                                                <input type="text" name="alt_name" id="alt_name" value="{echo $model->alt_name}"/>
                                             </div>
-                                        </div>                                                                                
+                                        </div>          
+                                            <div class="control-group">
+                                            <label class="control-label" for="Description">Полное описание:</label>
+                                            <div class="controls">
+                                                <input type="text" name="Description" id="Description" value="{echo $model->description}"/>
+                                            </div>
+                                        </div>    
                                         <div class="control-group">
                                             <label class="control-label" for="Importance">{lang('a_imp_rbak')}:</label>
                                             <div class="controls">
