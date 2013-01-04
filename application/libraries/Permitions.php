@@ -20,10 +20,14 @@ class Permitions {
     }
 
     public static function checkPermitions() {
+        self::privilegesIntoDB();
+        //self::privilegesIntoFile();
+        //self::groupsIntoFile();
         //self::checkControlPanelAccess();
         //self::processRbacPrivileges();
         //self::createSuperAdmin();
-        self::checkUrl();
+        //self::groupsIntoDB();
+        //self::checkUrl();
     }
 
     private static function checkAllPermitions($adminClassName, $adminMethod) {
@@ -199,7 +203,7 @@ class Permitions {
                 }
                 if (empty($dbPrivilege)) {
                     $ci->db->insert(self::$rbac_privileges_table, array('name' => $privilegeName, 'group_id' => $group->id));
-                    $ci->db->insert(self::$rbac_privileges_table."_i18n", array('id' => $ci->db->insert_id(), 'title' => $privilegeName, 'description' => '', 'locale' => $locale));
+                    $ci->db->insert(self::$rbac_privileges_table . "_i18n", array('id' => $ci->db->insert_id(), 'title' => $privilegeName, 'description' => '', 'locale' => $locale));
                 }
             }
         }
@@ -690,6 +694,49 @@ class Permitions {
         else
             return '';
     }
+
+    /*private static function groupsIntoFile() {
+        $ci = &get_instance();
+        $join_string = self::$rbac_group_table . ".id=" . self::$rbac_group_table . "_i18n.id";
+        $groups = $ci->db->query("SELECT * FROM `" . self::$rbac_group_table . "` 
+            JOIN `" . self::$rbac_group_table . "_i18n` ON " . $join_string)->result_array();
+        file_put_contents('groups.php', var_export($groups, true));
+    }
+
+    private static function groupsIntoDB() {
+        $ci = &get_instance();
+        $locale = 'ru';
+        $string = "\$result = " . file_get_contents('groups_descriptions.php') . ";";
+        eval($string);
+        if (is_array($result)) {
+            foreach ($result as $item) {
+                $ci->db->where('id', $item['id'])->update(self::$rbac_group_table . "_i18n", array('description' => $item['description']));
+            }
+        }
+    }
+
+    private static function privilegesIntoFile() {
+        $ci = &get_instance();
+        $locale = 'ru';
+        $join_string = self::$rbac_privileges_table . ".id=" . self::$rbac_privileges_table . "_i18n.id";
+        $privileges = $ci->db->query("SELECT * FROM `" . self::$rbac_privileges_table . "` 
+            JOIN `" . self::$rbac_privileges_table . "_i18n` ON " . $join_string)->result_array();
+        file_put_contents('privileges.php', var_export($privileges, true));
+    }
+
+    private static function privilegesIntoDB() {
+        $ci = &get_instance();
+        $locale = 'ru';
+        $string = "\$result = " . file_get_contents('privileges.php') . ";";
+        eval($string);
+//        var_dump($result);
+//        exit();
+        if (is_array($result)) {
+            foreach ($result as $item) {
+                $ci->db->where('id', $item['id'])->update(self::$rbac_privileges_table . "_i18n", array('title' => $item['title'], 'description' => $item['description']));
+            }
+        }
+    }*/
 
 }
 
