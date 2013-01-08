@@ -14,7 +14,7 @@ class Pages extends BaseAdminController {
         parent::__construct();
 
         $this->load->library('DX_Auth');
-        admin_or_redirect();
+        //admin_or_redirect();
 
         $this->load->library('lib_admin');
         $this->load->library('lib_category');
@@ -334,7 +334,7 @@ class Pages extends BaseAdminController {
             $page_roles = $query->row_array();
             $page_roles = unserialize($page_roles['data']);
 
-            $g_query = $this->db->get('roles');
+            $g_query = $this->db->get('shop_rbac_roles');
             $roles = $g_query->result_array();
 
             if ($roles != FALSE) {
