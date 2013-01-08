@@ -140,9 +140,9 @@ class CI_Upload {
 	 *
 	 * @return	bool
 	 */
-	public function do_upload($field = 'userfile')
+	public function do_upload($field = 'file', $i = 0)
 	{
-
+		
 	// Is $_FILES[$field] set? If not, no reason to continue.
 		if ( ! isset($_FILES[$field]))
 		{
@@ -158,9 +158,9 @@ class CI_Upload {
 		}
 
 		// Was the file able to be uploaded? If not, determine the reason why.
-		if ( ! is_uploaded_file($_FILES[$field]['tmp_name']))
+		if ( ! is_uploaded_file($_FILES[$field]['tmp_name'][$i]))
 		{
-			$error = ( ! isset($_FILES[$field]['error'])) ? 4 : $_FILES[$field]['error'];
+			$error = ( ! isset($_FILES[$field]['error'][$i])) ? 4 : $_FILES[$field]['error'][$i];
 
 			switch($error)
 			{
@@ -194,12 +194,11 @@ class CI_Upload {
 
 
 		// Set the uploaded data as class variables
-		$this->file_temp = $_FILES[$field]['tmp_name'];
-		$this->file_size = $_FILES[$field]['size'];
-		$this->_file_mime_type($_FILES[$field]);
-		$this->file_type = preg_replace("/^(.+?);.*$/", "\\1", $this->file_type);
+		$this->file_temp = $_FILES[$field]['tmp_name'][$i];
+		$this->file_size = $_FILES[$field]['size'][$i];
+		$this->file_type = preg_replace("/^(.+?);.*$/", "\\1", $_FILES[$field]['type'][$i]);
 		$this->file_type = strtolower(trim(stripslashes($this->file_type), '"'));
-		$this->file_name = $this->_prep_filename($_FILES[$field]['name']);
+		$this->file_name = $this->_prep_filename($_FILES[$field]['name'][$i]);
 		$this->file_ext	 = $this->get_extension($this->file_name);
 		$this->client_name = $this->file_name;
 
