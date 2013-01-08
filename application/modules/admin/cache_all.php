@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Cache_all extends MY_Controller {
+class Cache_all extends BaseAdminController {
 
     function __construct() {
         parent::__construct();

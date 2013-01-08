@@ -4,7 +4,7 @@
  *
  */
 
-class Mod_search extends MY_Controller {
+class Mod_search extends BaseAdminController {
 
     private $api_url = '';
 
@@ -107,7 +107,7 @@ class Mod_search extends MY_Controller {
     // Connect to ftp server
     public function connect_ftp($id)
     {
-        cp_check_perm('module_install');
+        //cp_check_perm('module_install');
 
         if (is_really_writable(APPPATH.'modules/'))
         {

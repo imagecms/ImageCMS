@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Settings extends MY_Controller {
+class Settings extends BaseAdminController {
 
     function __construct() {
         parent::__construct();
@@ -19,7 +19,7 @@ class Settings extends MY_Controller {
     function index() {
         
         $this->cms_admin->get_langs();
-        cp_check_perm('cp_site_settings');
+        //cp_check_perm('cp_site_settings');
 
         $settings = $this->cms_admin->get_settings();
 
@@ -101,7 +101,7 @@ class Settings extends MY_Controller {
      * @access public
      */
     function save() {
-        cp_check_perm('cp_site_settings');
+        //cp_check_perm('cp_site_settings');
 
         switch ($this->input->post('main_type')) {
             case 'category':

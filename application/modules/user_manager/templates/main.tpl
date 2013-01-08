@@ -36,8 +36,8 @@
         <div class="clearfix">
             <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
                 <a href="#users" class="btn btn-small active">{lang('amt_users')}</a>
-                <a href="#group" class="btn btn-small">{lang('amt_groups')}</a>
-                <a href="#privilege" class="btn btn-small">{lang('amt_perm_div')}</a>
+                <!--<a href="#group" class="btn btn-small">{lang('amt_groups')}</a>-->
+                <!--<a href="#privilege" class="btn btn-small">{lang('amt_perm_div')}</a>-->
 
             </div>   
         </div>
@@ -72,10 +72,11 @@
                                 <td></td>                                    
                                 <td><input type="text" id="nameAutoC" name="s_data"/></td>
                                 <td><input type="text" id="emailAutoC"  name="s_email"/></td>
+                                        
                                 <td><select name="role" id="role">
                                         <option value ="0">{lang('amt_all_groups')}</option>
                                         {foreach $roles as $role}
-                                        <option value ="{$role.id}">{$role.alt_name}</option>
+                                            <option value ="{$role.id}">{$role.alt_name}</option>
                                         {/foreach}
                                     </select>
                                 </td>
@@ -85,28 +86,28 @@
                         </thead>
                         <tbody>
                             {foreach $users as $user}
-                            <tr class="simple_tr">
-                                <td class="t-a_c">
-                                    {if $user.id != $CI->dx_auth->get_user_id()}
-                                    <span class="frame_label">
-                                        <span class="niceCheck b_n">
-                                            <input type="checkbox" id="user_del" name="ids" data-id-group="1" value="{echo $user.id}"/>
-                                        </span>
-                                    </span>
-                                    {/if}
-                                </td>
-                                <td><p>{echo $user.id}</p></td>
-                                <td><a href="{$SELF_URL}/edit_user/{echo $user.id}" class="pjax">{echo $user.username}</a></td>                            
-                                <td>{$user.email}</td>
-                                <td><p>{$user.role_alt_name}</p></td>
-                                <td>
-                                    <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" onclick="change_status('{$BASE_URL}admin/components/cp/user_manager/actions/{echo $user.id}');" >
-                                        <span class="prod-on_off {if $user.banned == 1}disable_tovar{/if}" ></span>
-                                    </div>
-                                    </div>
-                                </td>
-                                <td><p>{$user.last_ip}</p></td>
-                            </tr>
+                                <tr class="simple_tr">
+                                    <td class="t-a_c">
+                                        {if $user.id != $CI->dx_auth->get_user_id()}
+                                            <span class="frame_label">
+                                                <span class="niceCheck b_n">
+                                                    <input type="checkbox" id="user_del" name="ids" data-id-group="1" value="{echo $user.id}"/>
+                                                </span>
+                                            </span>
+                                        {/if}
+                                    </td>
+                                    <td><p>{echo $user.id}</p></td>
+                                    <td><a href="{$SELF_URL}/edit_user/{echo $user.id}" class="pjax">{echo $user.username}</a></td>                            
+                                    <td>{$user.email}</td>
+                                    <td><p>{$user.role_alt_name}</p></td>
+                                    <td>
+                                        <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" onclick="change_status('{$BASE_URL}admin/components/cp/user_manager/actions/{echo $user.id}');" >
+                                            <span class="prod-on_off {if $user.banned == 1}disable_tovar{/if}" ></span>
+                                        </div>
+                                        </div>
+                                    </td>
+                                    <td><p>{$user.last_ip}</p></td>
+                                </tr>
                             {/foreach}
                         </tbody>
                     </table>
@@ -117,7 +118,7 @@
 
                 </div>
             </div>
-
+{/*}
             <!-- ---------------------------------------------------Блок видалення групп------------------------------------------------- -->    
             <div class="modal hide fade modal_dels">
                 <div class="modal-header">
@@ -161,19 +162,19 @@
                     </thead>
                     <tbody>
                         {foreach $roles as $group}
-                        <tr class="simple_tr">
-                            <td class="t-a_c">
-                                <span class="frame_label">
-                                    <span class="niceCheck b_n">
-                                        <input type="checkbox" id="group_del"  name="ids" data-id-group="1" value="{$group.id}"/>
+                            <tr class="simple_tr">
+                                <td class="t-a_c">
+                                    <span class="frame_label">
+                                        <span class="niceCheck b_n">
+                                            <input type="checkbox" id="group_del"  name="ids" data-id-group="1" value="{$group.id}"/>
+                                        </span>
                                     </span>
-                                </span>
-                            </td>
-                            <td><p>{$group.id}</p></td>
-                            <td><a href="{$SELF_URL}/edit/{$group.id}" class="pjax">{$group.alt_name}</a></td>
-                            <td>{$group.name}</td>
-                            <td><p>{$group.desc}</p></td>                               
-                        </tr>
+                                </td>
+                                <td><p>{$group.id}</p></td>
+                                <td><a href="{$SELF_URL}/edit/{$group.id}" class="pjax">{$group.alt_name}</a></td>
+                                <td>{$group.name}</td>
+                                <td><p>{$group.desc}</p></td>                               
+                            </tr>
                         {/foreach}
 
                     </tbody>
@@ -203,7 +204,7 @@
                                                     <div class="controls">
                                                         <select name="role_id" id="role_id">
                                                             {foreach $roles as $role}
-                                                            <option class="pjax" value="{$role.id}" {if $role.id == $selected_role} selected="selected" {/if} >{$role.alt_name}</option>
+                                                                <option class="pjax" value="{$role.id}" {if $role.id == $selected_role} selected="selected" {/if} >{$role.alt_name}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -216,39 +217,39 @@
                         </tbody>
                     </table> 
                     {foreach $groups as $group_k => $group_v}
-                    <div class="span3">
-                        <table class="table table-striped table-bordered table-hover table-condensed">
-                            <thead>
-                                <tr>
-                                    <th class="t-a_c span1">
-                                        <span class="frame_label">
-                                            <span class="niceCheck b_n">
-                                                <input type="checkbox" />
+                        <div class="span3">
+                            <table class="table table-striped table-bordered table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th class="t-a_c span1">
+                                            <span class="frame_label">
+                                                <span class="niceCheck b_n">
+                                                    <input type="checkbox" />
+                                                </span>
                                             </span>
-                                        </span>
-                                    </th>                           
-                                    <th>{$group_names[$group_k]}</th>
-                                </tr>                        
-                            </thead>
-                            <tbody class="sortable">
-                                {foreach $group_v as $k => $v}
-                                <tr>       
-                                    <td class="t-a_c">
-                                        <span class="frame_label">
-                                            <span class="niceCheck b_n">
-                                                <input type="checkbox"  name="{$k}" value="1" {if array_key_exists($k, $permissions)} checked="checked" {/if}/>
-                                            </span>
-                                        </span>
-                                    </td>
-                                    <td><p>{$v}</p></td>                               
-                                </tr>
-                                {/foreach}
+                                        </th>                           
+                                        <th>{$group_names[$group_k]}</th>
+                                    </tr>                        
+                                </thead>
+                                <tbody class="sortable">
+                                    {foreach $group_v as $k => $v}
+                                        <tr>       
+                                            <td class="t-a_c">
+                                                <span class="frame_label">
+                                                    <span class="niceCheck b_n">
+                                                        <input type="checkbox"  name="{$k}" value="1" {if array_key_exists($k, $permissions)} checked="checked" {/if}/>
+                                                    </span>
+                                                </span>
+                                            </td>
+                                            <td><p>{$v}</p></td>                               
+                                        </tr>
+                                    {/foreach}
 
-                            </tbody>
-                        </table>
-                    </div>
+                                </tbody>
+                            </table>
+                        </div>
                     {/foreach}
-            </div>
+            </div>{ */}
             </form>
         </div>
     </section>

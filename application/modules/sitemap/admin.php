@@ -8,13 +8,13 @@ if (!defined('BASEPATH'))
  *
  * Sample Module Admin
  */
-class Admin extends MY_Controller {
+class Admin extends BaseAdminController {
 
     function __construct() {
         parent::__construct();
 
         $this->load->library('DX_Auth');
-        cp_check_perm('module_admin');
+        //cp_check_perm('module_admin');
     }
 
     function index() {

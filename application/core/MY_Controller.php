@@ -51,10 +51,11 @@
  */
 class MY_Controller extends MX_Controller {
 
+    
     public $pjaxRequest = false;
     public $ajaxRequest = false;
 
-    public function __construct() {
+    public function __construct() {        
         parent::__construct();
         
         if (isset($_SERVER['HTTP_X_PJAX']) && $_SERVER['HTTP_X_PJAX'] == true)

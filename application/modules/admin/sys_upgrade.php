@@ -2,7 +2,7 @@
 
 //error_reporting(0);
 
-class Sys_upgrade extends MY_Controller {
+class Sys_upgrade extends BaseAdminController {
 
     private $upgrade_server = 'http://imagecms.net/upgrades/';
 
@@ -25,7 +25,7 @@ class Sys_upgrade extends MY_Controller {
 
     public function make_upgrade()
     {
-        cp_check_perm('cp_autoupdate');
+        //cp_check_perm('cp_autoupdate');
 
         if (!function_exists('ftp_connect'))
         {

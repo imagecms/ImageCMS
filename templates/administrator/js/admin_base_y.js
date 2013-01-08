@@ -62,12 +62,12 @@ $(document).ready(function() {
         $attname = $(this).attr('data-attname');
         $names = '';
         $startPoint
-                .find('.attrnameHolder')
-                .text($name)
-                .attr('data-attrnames', $attname)
-                .end()
-                .find('button')
-                .attr('title', $name);
+        .find('.attrnameHolder')
+        .text($name)
+        .attr('data-attrnames', $attname)
+        .end()
+        .find('button')
+        .attr('title', $name);
     })
     function loadCsvAttributes(val)
     {
@@ -82,7 +82,8 @@ $(document).ready(function() {
     }
 
     $(".runExport").on("click", function() {
-        $this = $('#makeExportForm');
+        
+        $this = $('#makeExportForm');        
         $.ajax({
             url: "/admin/components/run/shop/system/export",
             type: "post",
@@ -95,5 +96,5 @@ $(document).ready(function() {
             }
         });
     });
-    /**/
+/**/
 });
