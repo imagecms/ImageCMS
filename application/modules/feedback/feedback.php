@@ -22,11 +22,11 @@ class Feedback extends MY_Controller {
     }
 
     public function autoload() {
-//        \behaviorFactory\BehaviorFactory::create('test', 'moreTest', 'Feedback');
+        \CMSFactory\Events::create()->onRemoveFromCart()->addСorrelation('test');
     }
 
-    public function test() {
-        echo 'test';
+    public function test($arg) {
+        var_dumps($arg);
     }
 
     // Index function
