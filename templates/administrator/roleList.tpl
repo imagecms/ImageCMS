@@ -20,24 +20,23 @@
         {lang('a_rb_del_roles')}
     </div>
     <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->
-
-    <section class="mini-layout">
-        <div class="frame_title clearfix">
-            <div class="pull-left">
-                <span class="help-inline"></span>
-                <span class="title">{lang('a_role_list')}</span>
-            </div>
-            <div class="pull-right">
-                <div class="d-i_b">
-                    <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="del_sel_role"><i class="icon-trash icon-white"></i>{lang('a_delete')}</button>
-                    <a class="btn btn-small pjax btn-success" href="/admin/rbac/roleCreate" ><i class="icon-plus-sign icon-white"></i>{lang('a_rbak_new_role')}</a>
+    <form method="post" action="#">
+        <section class="mini-layout">
+            <div class="frame_title clearfix">
+                <div class="pull-left">
+                    <span class="help-inline"></span>
+                    <span class="title">{lang('a_role_list')}</span>
                 </div>
-            </div>  
-        </div>
-        <div class="tab-content">
-            {if count($model)>0}
-                <div class="row-fluid">
-                    <form method="post" action="#" class="form-horizontal">
+                <div class="pull-right">
+                    <div class="d-i_b">
+                        <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="del_sel_role"><i class="icon-trash icon-white"></i>{lang('a_delete')}</button>
+                        <a class="btn btn-small pjax btn-success" href="/admin/rbac/roleCreate" ><i class="icon-plus-sign icon-white"></i>{lang('a_rbak_new_role')}</a>
+                    </div>
+                </div>  
+            </div>
+            <div class="tab-content m-t_20">
+                {if count($model)>0}
+                    <div class="row-fluid">
                         <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                             <thead>
                                 <tr>
@@ -74,14 +73,14 @@
                                 {/foreach}
                             </tbody>
                         </table>
-                    </form>
-                </div>
-            {else:}
-                </br>
-                <div class="alert alert-info">
-                    {lang('a_list')} {lang('a_role')} {lang('a_empty')}
-                </div>
-            {/if}
-        </div>
-    </section>
+                    </div>
+                {else:}
+                    </br>
+                    <div class="alert alert-info">
+                        {lang('a_list')} {lang('a_role')} {lang('a_empty')}
+                    </div>
+                {/if}
+            </div>
+        </section>
+    </form>
 </div>
