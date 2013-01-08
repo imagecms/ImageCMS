@@ -35,7 +35,7 @@
                                         <td class="t-a_c">
                                             <span class="frame_label">
                                                 <span class="niceCheck b_n">       
-                                                    <input type="checkbox" class="chldcheck"  value="{echo $privilege->id}" name="Privileges[]" />
+                                                    <input type="checkbox" class="chldcheck"  value="{echo $privilege->id}" name="ids" />
                                                 </span>
                                             </span>
                                         </td>
@@ -52,13 +52,23 @@
     </div>
 
 </section>
-<div class="modal hide fade">
+<!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->    
+<div class="modal hide fade modal_del">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>{lang('a_delete_group')}?</h3>
+        <h3>{lang('a_rbak_delete_role')}</h3>
+    </div>
+    <div class="modal-body">
+        <p>{lang('a_rbak_del_role_gro')}</p>
     </div>
     <div class="modal-footer">
-        <a href="" class="btn" onclick="$('.modal').modal('hide');">{lang('a_footer_cancel')}</a>
-        <a href="" class="btn btn-primary" onclick="shopCategories.deleteCategoriesConfirm();$('.modal').modal('hide');">{lang('a_delete')}</a>
+        <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('{$ADMIN_URL}privilegeDelete')" >{lang('a_delete')}</a>
+        <a href="#" class="btn" onclick="$('.modal').modal('hide');">Отмена</a>
     </div>
 </div>
+
+
+<div id="delete_dialog" style="display: none">
+    {lang('a_rb_del_roles')}
+</div>
+<!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->

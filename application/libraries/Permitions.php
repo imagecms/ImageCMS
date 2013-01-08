@@ -495,17 +495,36 @@ class Permitions {
             }
         } else {
 
-            $queryGroups = $this->db->select(array('id', 'name'))->get('shop_rbac_group')->result();
+            $sqlGroup = 'SELECT SRG.id, SRG.name, SRGI.description
+            FROM shop_rbac_group SRG
+            INNER JOIN shop_rbac_group_i18n SRGI ON SRGI.id = SRG.id WHERE SRGI.locale = "' . BaseAdminController::getCurrentLocale() . '"';
+            $queryGroups = $this->db->query($sqlGroup)->result();
+
             foreach ($queryGroups as $key => $value) {
-                $queryGroups[$key]->privileges = $this->db->get_where('shop_rbac_privileges', array('group_id' => $value->id))->result();
+                $sqlPrivilege = 'SELECT SRP.id, SRP.name, SRPI.title, SRPI.description
+            FROM shop_rbac_privileges SRP
+            INNER JOIN  shop_rbac_privileges_i18n SRPI ON SRPI.id = SRP.id WHERE SRPI.locale = "' . BaseAdminController::getCurrentLocale() . '" AND SRP.group_id = ' . $value->id;
+
+                $queryGroups[$key]->privileges = $this->db->query($sqlPrivilege)->result();
             }
 
             $array = $this->db->select('type')->distinct()->get('shop_rbac_group')->result();
 
             foreach ($array as $item) {
-                $result[$item->type] = $this->db->where('type', $item->type)->get(self::$rbac_group_table)->result_array();
+                $sqlGroupS = 'SELECT SRG.id, SRG.name, SRGI.description
+            FROM shop_rbac_group SRG
+            INNER JOIN shop_rbac_group_i18n SRGI ON SRGI.id = SRG.id WHERE SRGI.locale = "' . BaseAdminController::getCurrentLocale() . '" AND SRG.type = "' . $item->type . '"';
+                $queryGroupsS = $this->db->query($sqlGroupS)->result_array();
+
+                $result[$item->type] = $queryGroupsS;
+
                 foreach ($result[$item->type] as $k => $v) {
-                    $result[$item->type][$k]['privileges'] = $this->db->get_where('shop_rbac_privileges', array('group_id' => $v['id']))->result();
+
+                    $sqlPrivilegeS = 'SELECT SRP.id, SRP.name, SRPI.title, SRPI.description
+            FROM shop_rbac_privileges SRP
+            INNER JOIN  shop_rbac_privileges_i18n SRPI ON SRPI.id = SRP.id WHERE SRPI.locale = "' . BaseAdminController::getCurrentLocale() . '" AND SRP.group_id = ' . $v['id'];
+                    $queryPrivilegeS = $this->db->query($sqlPrivilegeS)->result();
+                    $result[$item->type][$k]['privileges'] = $queryPrivilegeS;
                 }
             }
 
@@ -896,16 +915,19 @@ class Permitions {
      * @return	void
      */
     public function privilegeDelete() {
-        $privilegeId = $this->input->post('id');
-        $model = ShopRbacPrivilegesQuery::create()
-                ->findPks($privilegeId);
+        $groupId = $this->input->post('ids');
 
-        if ($model != null) {
-            $model->delete();
+        if ($groupId != null) {
+            foreach ($groupId as $id) {
+                $this->db->delete('shop_rbac_privileges', array('id' => $id));
+                $this->db->delete('shop_rbac_privileges_i18n', array('id' => $id));
+            }
+
             showMessage('Успех', 'Привилегии успешно удалены');
-            pjax('/admin/components/run/shop/rbac/privilege_list');
+            pjax('/admin/rbac/privilegeList');
         }
     }
+
 
     public static function checkControlPanelAccess($role_id) {
         if ($role_id != null) {
