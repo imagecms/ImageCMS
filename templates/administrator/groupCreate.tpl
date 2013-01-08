@@ -43,7 +43,7 @@
                                         </div>
                                     </div>
                                     <div class="control-group">
-                                        <label class="control-label" for="Description">{lang('a_desc')}:</label>
+                                        <label class="control-label" for="Description">Группа:</label>
                                         <div class="controls">
                                             <select name="type">
                                                 <option value="shop">Shop</option>
