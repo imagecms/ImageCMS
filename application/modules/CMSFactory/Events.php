@@ -1,8 +1,8 @@
 <?php
 
-namespace behaviorFactory;
+namespace CMSFactory;
 
-class BehaviorFactory extends BaseBehaviorFactory {
+class Events extends BaseEvents {
 
     protected static $_BehaviorInstance;
     public $storage = array();

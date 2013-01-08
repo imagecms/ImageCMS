@@ -106,10 +106,14 @@ class Comments extends MY_Controller {
 //        $this->pagination->initialize($config);
 //
 //        echo $this->pagination->create_links();
-       
-       if($comments != null){ $comments_count=count($comments);}else {$comments_count=0;}
-      
-       $data = array(
+
+        if ($comments != null) {
+            $comments_count = count($comments);
+        } else {
+            $comments_count = 0;
+        }
+
+        $data = array(
             'comments_arr' => $comments,
             'comment_ch' => $comment_ch,
             'comment_controller' => $this->comment_controller,
@@ -164,7 +168,6 @@ class Comments extends MY_Controller {
         $this->load->library('user_agent');
         $this->load->library('form_validation');
 //        $this->form_validation->CI = & $this;
-
         // Check post comment period.
         if ($this->period > 0)
             if ($this->check_comment_period() == FALSE) {
@@ -269,7 +272,7 @@ class Comments extends MY_Controller {
                 $this->cache->delete('comments_' . $item_id . $this->module, 'comments');
 
                 ($hook = get_hook('comments_goes_redirect')) ? eval($hook) : NULL;
-
+                \behaviorFactory\BehaviorFactory::create()->registerEvent(array('commentId' => $id));
                 // Redirect back to page
                 //redirect($this->input->post('redirect'));
                 if ($_POST['redirect'])

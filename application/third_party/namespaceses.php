@@ -11,7 +11,8 @@ function modules_namespaces_initialize() {
 
 function modules_namespaces_autoload($name) {
     if (strpos($name, "\\")) {
-        if (file_exists($file = 'application/modules/' . strtolower(str_replace('\\', DIRECTORY_SEPARATOR, $name)) . EXT))
+        if (file_exists($file = 'application/modules/' . str_replace('\\', DIRECTORY_SEPARATOR, $name) . EXT))
+//        if (file_exists($file = 'application/modules/' . strtolower(str_replace('\\', DIRECTORY_SEPARATOR, $name)) . EXT))
             require $file;
         if (file_exists($file = 'application/modules/shop/classes/' . str_replace('\\', DIRECTORY_SEPARATOR, $name) . EXT))
             require $file;
@@ -19,5 +20,5 @@ function modules_namespaces_autoload($name) {
 }
 
 function test() {
-    behaviorFactory\BehaviorFactory::runFactory();
+    \CMSFactory\Events::runFactory();
 }
