@@ -25,9 +25,12 @@ class Pages extends BaseAdminController {
 
     function index($params = array()) {
         ////cp_check_perm('page_create');
-
+        
         // Set roles
-        $query = $this->db->get('shop_rbac_roles');
+        $locale = $this->cms_admin->get_default_lang();
+        $locale = $locale['identif'];
+        
+        $query = $this->db->query("SELECT * FROM `shop_rbac_roles` JOIN `shop_rbac_roles_i18n` ON shop_rbac_roles.id=shop_rbac_roles_i18n.id WHERE `locale`='".$locale."'");
         $this->template->assign('roles', $query->result_array());
 
         $uri_segs = $this->uri->uri_to_assoc(2);
@@ -334,7 +337,11 @@ class Pages extends BaseAdminController {
             $page_roles = $query->row_array();
             $page_roles = unserialize($page_roles['data']);
 
-            $g_query = $this->db->get('roles');
+            // Set roles
+            $locale = $this->cms_admin->get_default_lang();
+            $locale = $locale['identif'];
+        
+            $g_query = $this->db->query("SELECT * FROM `shop_rbac_roles` JOIN `shop_rbac_roles_i18n` ON shop_rbac_roles.id=shop_rbac_roles_i18n.id WHERE `locale`='".$locale."'");
             $roles = $g_query->result_array();
 
             if ($roles != FALSE) {
