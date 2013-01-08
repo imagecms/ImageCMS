@@ -67,7 +67,7 @@
                     </div>
 
                     <div class="tab-content">
-                        {foreach $groups as $key => $groups} 
+                        {foreach $groups as $key => $groups}
                             <div class="tab-pane active" id="{echo $key}">
                                 {foreach $groups as $k => $group} 
                                     <div class="span3">
@@ -81,7 +81,7 @@
                                                             </span>
                                                         </span>
                                                     </th>                           
-                                                    <th>{echo $group['name']}</th>
+                                                    <th>{echo $group['description']}</th>
                                                 </tr>                        
                                             </thead>
                                             <tbody class="sortable">
@@ -94,7 +94,7 @@
                                                                 </span>
                                                             </span>
                                                         </td>
-                                                        <td><p>{echo $privilege->name}</p></td>                               
+                                                        <td><p>{echo $privilege->title}</p></td>                               
                                                     </tr>
                                                 {/foreach}
                                             </tbody>
