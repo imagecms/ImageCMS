@@ -183,12 +183,7 @@ class Admin extends BaseAdminController {
             }
 
             $this->load->helper('string');
-            if ($val->run() AND $user_info = $this->dx_auth->register($val->set_value('username'),
-                $val->set_value('password'),
-                $val->set_value('email'),
-                '',
-                random_string('alnum', 5),
-                $this->input->post('phone'))) {
+            if ($val->run() AND $user_info = $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'), '', random_string('alnum', 5), $this->input->post('phone'))) {
 
                 //set user role
                 $user_info = $this->user2->get_user_by_email($user_info['email'])->row_array();
@@ -270,7 +265,7 @@ class Admin extends BaseAdminController {
 
             $this->db->select("users.*", FALSE);
             $this->db->select("shop_rbac_roles.name AS role_name", FALSE);
-            $this->db->select("shop_rbac_roles.alt_name AS role_alt_name", FALSE);
+//            $this->db->select("shop_rbac_roles.alt_name AS role_alt_name", FALSE);
             $this->db->join("shop_rbac_roles", "shop_rbac_roles.id = users.role_id");
             if (!empty($s_data)) {
                 $this->db->like('username', $s_data);
@@ -374,12 +369,12 @@ class Admin extends BaseAdminController {
 
         if ($val->run()) {
             $data = array(
-                'username'      => $this->input->post('username'),
-                'email'         => $this->input->post('email'),
-                'role_id'       => $this->input->post('role_id'),
-                'phone'         => $this->input->post('phone'),
-                'banned'        => $this->input->post('banned'),
-                'ban_reason'    => $this->input->post('ban_reason')
+                'username' => $this->input->post('username'),
+                'email' => $this->input->post('email'),
+                'role_id' => $this->input->post('role_id'),
+                'phone' => $this->input->post('phone'),
+                'banned' => $this->input->post('banned'),
+                'ban_reason' => $this->input->post('ban_reason')
             );
 
             //change password
@@ -456,8 +451,8 @@ class Admin extends BaseAdminController {
                 $action = $_POST['action'];
 
                 $user_info = $this->db->get_where('roles', array('name' => $data['name']));
-                $row = $user_info->row(); 
-                
+                $row = $user_info->row();
+
                 if ($action == 'close') {
                     pjax('/admin/components/cp/user_manager/edit/' . $row->id);
                 } else {
@@ -622,9 +617,15 @@ class Admin extends BaseAdminController {
 
         array_multisort($count, SORT_ASC, $groups);
 
+        $this->db->select("shop_rbac_roles.*", FALSE);
+        $this->db->select("shop_rbac_roles_i18n.alt_name", FALSE);
+        $this->db->where('locale', BaseAdminController::getCurrentLocale());
+        $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles_i18n.id = shop_rbac_roles.id");
+        $role = $this->db->get('shop_rbac_roles')->result_array();
+
         $this->template->add_array(array(
             'selected_role' => $id,
-            'roles' => $this->db->get('shop_rbac_roles')->result_array(),
+            'roles' => $role,
             'all_perms' => $all_perms,
             'permissions' => $permissions,
             'groups' => $groups,
