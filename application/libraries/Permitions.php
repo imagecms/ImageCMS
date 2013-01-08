@@ -14,29 +14,17 @@ class Permitions {
     private static $rbac_roles_privileges_table = 'shop_rbac_roles_privileges';
     private static $controller_types = array('shop', 'base', 'module');
 
-    //public static $error_message = "Недостаточно прав";
-
     public function __construct() {
         $ci = & get_instance();
         $ci->load->library('DX_Auth');
     }
 
     public static function checkPermitions() {
-
-//        self::privilegesIntoDB();
-        //self::privilegesIntoFile();
-        //self::groupsIntoFile();
-        //self::checkControlPanelAccess();
-        //self::processRbacPrivileges();
-        //self::createSuperAdmin();
-        //self::groupsIntoDB();
         self::checkUrl();
     }
 
     private static function checkAllPermitions($adminClassName, $adminMethod) {
         $ci = & get_instance();
-//        $err_text = '<div id="notice" style="width: 500px;">' . '<b>%error_message%.</b>' . '
-//			</div><script type="text/javascript">showMessage(\'Сообщение: \',\'%error_message%\',\'\');</script>';
 
         $err_text = '<div class="alert alert-error">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -268,12 +256,6 @@ class Permitions {
         }
     }
 
-    private function lang() {
-        $sqlLangSel = 'SELECT lang_sel FROM settings';
-        $lang = $this->db->query($sqlLangSel)->row();
-        return $lang->lang_sel;
-    }
-
     /*     * *************  RBAC privileges groups  ************** */
 
     /**
@@ -297,6 +279,7 @@ class Permitions {
                 $idNewGroup = $this->db->insert_id();
 
                 $sql = "INSERT INTO  shop_rbac_group_i18n (id, description, locale) VALUES(" . $idNewGroup . ", " . $this->db->escape($_POST['Description']) . ", '" . BaseAdminController::getCurrentLocale() . "' ) ";
+
                 $this->db->query($sql);
 
                 if ($_POST['Privileges']) {
@@ -329,38 +312,6 @@ class Permitions {
         }
     }
 
-    public function translateGroup($id, $lang) {
-        $sqlModel = 'SELECT description 
-            FROM shop_rbac_group_i18n WHERE id =' . $id . ' AND locale = "' . $lang . '"';
-        $model = $this->db->query($sqlModel)->row();
-
-
-        if ($_POST) {
-            if (empty($model)) {
-
-                $sql = "INSERT INTO  shop_rbac_group_i18n (id, description, locale) VALUES(" . $id . ", " . $this->db->escape($_POST['Description']) . ", '" . $lang . "' ) ";
-                $this->db->query($sql);
-            } else {
-
-                $sql = "UPDATE shop_rbac_group_i18n SET description = " . $this->db->escape($_POST['Description']) . " WHERE id = " . $id . " AND locale = '" . $lang . "'";
-                $this->db->query($sql);
-            }
-            if ($_POST['action'] == 'tomain') {
-                pjax('/admin/rbac/translateGroup/' . $id . '/' . $lang);
-            } else {
-                pjax('/admin/rbac/groupEdit/' . $id);
-            }
-        } else {
-            $this->template->add_array(array(
-                'model' => $model,
-                'id' => $id,
-                'lang_sel' => $lang
-            ));
-
-            $this->template->show('translateGroup', FALSE);
-        }
-    }
-
     public function groupEdit($groupId) {
 
         $sqlModel = 'SELECT SRG.id, SRG.name, SRGI.description 
@@ -369,7 +320,8 @@ class Permitions {
         $model = $this->db->query($sqlModel);
 
         if ($model === null)
-            $this->error404('Группа не найдена');
+            $this->error404('Гр
+                    уппа не найдена');
 
         if (!empty($_POST)) {
 
@@ -394,16 +346,11 @@ class Permitions {
                 pjax('/admin/rbac/groupEdit/' . $groupId);
         } else {
 
-//            $sqlPrivilege = $this->db->select(array('id', 'name', 'group_id'))->get('shop_rbac_privileges')->result();
-            $sqlPrivilege = 'SELECT SRP.id, SRP.name, SRP.group_id, SRPI.title, SRPI.description 
-            FROM shop_rbac_privileges SRP
-            INNER JOIN  shop_rbac_privileges_i18n SRPI ON SRPI.id = SRP.id WHERE SRPI.locale = "' . BaseAdminController::getCurrentLocale() . '"  ORDER BY SRPI.title ASC';
-            $sqlPrivilege = $this->db->query($sqlPrivilege)->result();
+            $sqlPrivilege = $this->db->select(array('id', 'name', 'group_id'))->get('shop_rbac_privileges')->result();
 
 
             $this->template->add_array(array(
                 'model' => $model->row(),
-                'lang_sel' => self::lang(),
                 'privileges' => $sqlPrivilege
             ));
 
@@ -495,36 +442,17 @@ class Permitions {
             }
         } else {
 
-            $sqlGroup = 'SELECT SRG.id, SRG.name, SRGI.description
-            FROM shop_rbac_group SRG
-            INNER JOIN shop_rbac_group_i18n SRGI ON SRGI.id = SRG.id WHERE SRGI.locale = "' . BaseAdminController::getCurrentLocale() . '"';
-            $queryGroups = $this->db->query($sqlGroup)->result();
-
+            $queryGroups = $this->db->select(array('id', 'name'))->get('shop_rbac_group')->result();
             foreach ($queryGroups as $key => $value) {
-                $sqlPrivilege = 'SELECT SRP.id, SRP.name, SRPI.title, SRPI.description
-            FROM shop_rbac_privileges SRP
-            INNER JOIN  shop_rbac_privileges_i18n SRPI ON SRPI.id = SRP.id WHERE SRPI.locale = "' . BaseAdminController::getCurrentLocale() . '" AND SRP.group_id = ' . $value->id;
-
-                $queryGroups[$key]->privileges = $this->db->query($sqlPrivilege)->result();
+                $queryGroups[$key]->privileges = $this->db->get_where('shop_rbac_privileges', array('group_id' => $value->id))->result();
             }
 
             $array = $this->db->select('type')->distinct()->get('shop_rbac_group')->result();
 
             foreach ($array as $item) {
-                $sqlGroupS = 'SELECT SRG.id, SRG.name, SRGI.description
-            FROM shop_rbac_group SRG
-            INNER JOIN shop_rbac_group_i18n SRGI ON SRGI.id = SRG.id WHERE SRGI.locale = "' . BaseAdminController::getCurrentLocale() . '" AND SRG.type = "' . $item->type . '"';
-                $queryGroupsS = $this->db->query($sqlGroupS)->result_array();
-
-                $result[$item->type] = $queryGroupsS;
-
+                $result[$item->type] = $this->db->where('type', $item->type)->get(self::$rbac_group_table)->result_array();
                 foreach ($result[$item->type] as $k => $v) {
-
-                    $sqlPrivilegeS = 'SELECT SRP.id, SRP.name, SRPI.title, SRPI.description
-            FROM shop_rbac_privileges SRP
-            INNER JOIN  shop_rbac_privileges_i18n SRPI ON SRPI.id = SRP.id WHERE SRPI.locale = "' . BaseAdminController::getCurrentLocale() . '" AND SRP.group_id = ' . $v['id'];
-                    $queryPrivilegeS = $this->db->query($sqlPrivilegeS)->result();
-                    $result[$item->type][$k]['privileges'] = $queryPrivilegeS;
+                    $result[$item->type][$k]['privileges'] = $this->db->get_where('shop_rbac_privileges', array('group_id' => $v['id']))->result();
                 }
             }
 
@@ -600,11 +528,11 @@ class Permitions {
             } else {
 
 
-                $sql = "UPDATE shop_rbac_roles SET name = " . $this->db->escape($_POST['Name']) . ", importance = " . $this->db->escape($_POST['Importance']) .
+                $sql = "UPDATE shop_rbac_roles SET importance = " . $this->db->escape($_POST['Importance']) .
                         " WHERE id   =   '" . $roleId . "'";
                 $this->db->query($sql);
 
-                $sqlI = "UPDATE shop_rbac_roles_i18n SET alt_name = " . $this->db->escape($_POST['alt_name']) . ", description = " . $this->db->escape($_POST['Description']) . " WHERE id = '" . $roleId . "' AND locale = '" . BaseAdminController::getCurrentLocale() . "'";
+                $sqlI = "UPDATE shop_rbac_roles_i18n SET alt_name = " . $this->db->escape($_POST['Name']) . ", description = " . $this->db->escape($_POST['Description']) . " WHERE id = '" . $roleId . "' AND locale = '" . BaseAdminController::getCurrentLocale() . "'";
                 $this->db->query($sqlI);
 
 
@@ -637,6 +565,8 @@ class Permitions {
             FROM shop_rbac_roles_privileges WHERE role_id = ' . $roleId;
             $queryPrivilegeR = $this->db->query($sql)->result_array();
 
+
+//            $queryGroups = $this->db->select(array('id', 'name'))->get('shop_rbac_group')->result();
             $sqlGroup = 'SELECT SRG.id, SRG.name, SRGI.description
             FROM shop_rbac_group SRG
             INNER JOIN shop_rbac_group_i18n SRGI ON SRGI.id = SRG.id WHERE SRGI.locale = "' . BaseAdminController::getCurrentLocale() . '"';
@@ -649,6 +579,8 @@ class Permitions {
             INNER JOIN shop_rbac_privileges_i18n SRPI ON SRPI.id = SRP.id WHERE SRPI.locale = "' . BaseAdminController::getCurrentLocale() . '" AND SRP.group_id = ' . $value->id;
                 $queryGroups = $this->db->query($sqlPrivilegeS)->result();
                 $queryGroups[$key]->privileges = $queryGroups;
+
+//                $queryGroups[$key]->privileges = $this->db->get_where('shop_rbac_privileges', array('group_id' => $value->id))->result();
             }
             $emptyArray = array();
 
@@ -656,12 +588,16 @@ class Permitions {
                 $emptyArray[$key] = $id['privilege_id'];
             }
 
+//            $array = $this->db->select('type')->distinct()->get('shop_rbac_group')->result();
             $sqlGroupAr = 'SELECT SRG.type, SRGI.description
             FROM shop_rbac_group SRG
             INNER JOIN shop_rbac_group_i18n SRGI ON SRGI.id = SRG.id WHERE SRGI.locale = "' . BaseAdminController::getCurrentLocale() . '"';
             $array = $this->db->query($sqlGroupAr)->result();
 
             foreach ($array as $item) {
+
+//                $result[$item->type] = $this->db->where('type', $item->type)->get(self::$rbac_group_table)->result_array();
+//                 $this->db->where('type', $item->type)->get(self::$rbac_group_table)->result_array();
 
                 $sqlGroupArTh = 'SELECT SRG.id, SRG.type, SRG.name, SRGI.description
             FROM ' . self::$rbac_group_table . ' SRG
@@ -673,16 +609,20 @@ class Permitions {
                     $sqlGroupArF = 'SELECT SRP.id, SRP.name, SRPI.title, SRPI.description
             FROM shop_rbac_privileges SRP
             INNER JOIN shop_rbac_privileges_i18n SRPI ON SRPI.id = SRP.id WHERE SRPI.locale = "' . BaseAdminController::getCurrentLocale() . '" AND SRP.group_id = "' . $v['id'] . '"';
+                    
 
                     $result[$item->type][$k]['privileges'] = $this->db->query($sqlGroupArF)->result();
+//                    $result[$item->type][$k]['privileges'] = $this->db->get_where('shop_rbac_privileges', array('group_id' => $v['id']))->result();
                 }
             }
 
+            $sqlLangSel = 'SELECT lang_sel FROM settings';
+            $Lang = $this->db->query($sqlLangSel)->row();
             $this->template->add_array(array(
                 'model' => $queryModel->row(),
                 'groups' => $queryGroups,
                 'privilegeCheck' => $emptyArray,
-                'lang_sel' => self::lang(),
+                'lang_sel' => $Lang,
                 'types' => $result
             ));
 
@@ -768,7 +708,7 @@ class Permitions {
                 showMessage(lang('a_rbak_privile_create'));
 
                 if ($_POST['action'] == 'close') {
-                    pjax('/admin/rbac/privilegeEdit/' . $idNewPrivilege);
+                    pjax('/admin/rbac/privilegeCreate');
                 } else {
                     pjax('/admin/rbac/privilegeList');
                 }
@@ -787,45 +727,6 @@ class Permitions {
         }
     }
 
-    public function translatePrivilege($id, $lang) {
-
-        $sqlPr = 'SELECT SRP.id, SRP.name, SRP.group_id, SRPI.title, SRPI.description  
-            FROM shop_rbac_privileges SRP
-            INNER JOIN   shop_rbac_privileges_i18n SRPI ON SRPI.id = SRP.id WHERE SRPI.locale = "' . $lang . '" AND SRP.id = ' . $id;
-
-        $queryRBACPrivilege = $this->db->query($sqlPr)->row();
-
-        if ($_POST) {
-            if (empty($queryRBACPrivilege)) {
-
-                $sqlI = "INSERT INTO shop_rbac_privileges_i18n(id, title, description, locale) VALUES("
-                        . $id .
-                        ", " . $this->db->escape($_POST['Title']) .
-                        ", " . $this->db->escape($_POST['Description']) .
-                        ", '" . $lang . "')";
-                $this->db->query($sqlI);
-            } else {
-                $sqlI = "UPDATE shop_rbac_privileges_i18n SET title = " . $this->db->escape($_POST['Title']) . ",  description  =  " . $this->db->escape($_POST['Description']) . " WHERE id = " . $id . ' AND locale = "' . $lang . '"';
-                $this->db->query($sqlI);
-            }
-            if ($_POST['action'] == 'close') {
-                pjax('/admin/rbac/translatePrivilege/' . $id . '/' . $lang);
-            } else {
-                pjax('/admin/rbac/privilegeEdit/' . $id);
-            }
-        } else {
-
-
-            $this->template->add_array(array(
-                'model' => $queryRBACPrivilege,
-                'idRole' => $id,
-                'lang_sel' => $lang
-            ));
-
-            $this->template->show('translatePrivilege', FALSE);
-        }
-    }
-
     /**
      * edit a RBAC privilege
      * 
@@ -834,10 +735,11 @@ class Permitions {
      * @return	void
      */
     public function privilegeEdit($privilegeId) {
+//        $queryRBACPrivilege = $this->db->get_where('shop_rbac_privileges', array('id' => $privilegeId))->row();
+
         $sqlPr = 'SELECT SRP.id, SRP.name, SRP.group_id, SRPI.title, SRPI.description  
             FROM shop_rbac_privileges SRP
             INNER JOIN   shop_rbac_privileges_i18n SRPI ON SRPI.id = SRP.id WHERE SRPI.locale = "' . BaseAdminController::getCurrentLocale() . '" AND SRP.id = ' . $privilegeId;
-
         $queryRBACPrivilege = $this->db->query($sqlPr)->row();
 
         if ($queryRBACPrivilege === null AND FALSE)
@@ -846,12 +748,11 @@ class Permitions {
 
         if (!empty($_POST)) {
 
-            $sql = "UPDATE shop_rbac_privileges SET name = " . $this->db->escape($_POST['Name']) . ", group_id = " . $this->db->escape($_POST['GroupId']) .
+
+            $sql = "UPDATE shop_rbac_privileges SET name = " . $this->db->escape($_POST[
+                            'Name']) . ",  description  =  " . $this->db->escape($_POST['Description']) . ", group_id = " . $this->db->escape($_POST['GroupId']) .
                     " WHERE id = " . $privilegeId;
             $this->db->query($sql);
-
-            $sqlI = "UPDATE shop_rbac_privileges_i18n SET title = " . $this->db->escape($_POST['Title']) . ",  description  =  " . $this->db->escape($_POST['Description']) . " WHERE id = " . $privilegeId . ' AND locale = "' . BaseAdminController::getCurrentLocale() . '"';
-            $this->db->query($sqlI);
 
             showMessage(lang('a_js_edit_save'));
 
@@ -868,7 +769,6 @@ class Permitions {
 
             $this->template->add_array(array(
                 'model' => $queryRBACPrivilege,
-                'lang_sel' => self::lang(),
                 'groups' => $queryRBACGroup
             ));
 
@@ -915,19 +815,16 @@ class Permitions {
      * @return	void
      */
     public function privilegeDelete() {
-        $groupId = $this->input->post('ids');
+        $privilegeId = $this->input->post('id');
+        $model = ShopRbacPrivilegesQuery::create()
+                ->findPks($privilegeId);
 
-        if ($groupId != null) {
-            foreach ($groupId as $id) {
-                $this->db->delete('shop_rbac_privileges', array('id' => $id));
-                $this->db->delete('shop_rbac_privileges_i18n', array('id' => $id));
-            }
-
+        if ($model != null) {
+            $model->delete();
             showMessage('Успех', 'Привилегии успешно удалены');
-            pjax('/admin/rbac/privilegeList');
+            pjax('/admin/components/run/shop/rbac/privilege_list');
         }
     }
-
 
     public static function checkControlPanelAccess($role_id) {
         if ($role_id != null) {
@@ -986,7 +883,7 @@ class Permitions {
       $ci->db->where('id', $item['id'])->update(self::$rbac_privileges_table . "_i18n", array('title' => $item['title'], 'description' => $item['description']));
       }
       }
-      } */
+      } */ 
 }
 
 ?>
