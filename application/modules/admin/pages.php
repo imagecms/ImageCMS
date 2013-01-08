@@ -3,7 +3,8 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Pages extends MY_Controller {
+//class Pages extends MY_Controller {
+class Pages extends BaseAdminController {
 
     public $_Config = array(
         'per_page' => 20 // Show news per one page
@@ -23,10 +24,10 @@ class Pages extends MY_Controller {
     }
 
     function index($params = array()) {
-        cp_check_perm('page_create');
+        ////cp_check_perm('page_create');
 
         // Set roles
-        $query = $this->db->get('roles');
+        $query = $this->db->get('shop_rbac_roles');
         $this->template->assign('roles', $query->result_array());
 
         $uri_segs = $this->uri->uri_to_assoc(2);
@@ -106,7 +107,7 @@ class Pages extends MY_Controller {
      */
     public function add() {
 
-        cp_check_perm('page_create');
+        //cp_check_perm('page_create');
 
         $this->form_validation->set_rules('page_title', lang('ac_val_t'), 'trim|required|min_length[1]|max_length[500]');
         $this->form_validation->set_rules('page_url', lang('ac_val_url'), 'alpha_dash');
@@ -289,7 +290,7 @@ class Pages extends MY_Controller {
      * @access public
      */
     function edit($page_id, $lang = 0) {
-        cp_check_perm('page_edit');
+        //cp_check_perm('page_edit');
 
         if ($this->cms_admin->get_page($page_id) == FALSE) {
             showMessage(lang('ac_page') . $page_id . lang('ac_not_found'), false, 'r');
@@ -432,7 +433,7 @@ class Pages extends MY_Controller {
      */
     function update($page_id) {
 
-        cp_check_perm('page_edit');
+        //cp_check_perm('page_edit');
 
         $this->form_validation->set_rules('page_title', lang('ac_val_t'), 'trim|required|min_length[1]|max_length[500]');
         $this->form_validation->set_rules('page_url', lang('ac_val_url'), 'alpha_dash');
@@ -584,7 +585,7 @@ class Pages extends MY_Controller {
      * @access public
      */
     function delete($page_id, $show_messages = TRUE) {
-        cp_check_perm('page_delete');
+        //cp_check_perm('page_delete');
 
         $settings = $this->cms_admin->get_settings();
 
@@ -639,7 +640,7 @@ class Pages extends MY_Controller {
     }
 
     function save_positions() {
-        cp_check_perm('page_edit');
+        //cp_check_perm('page_edit');
 
         ($hook = get_hook('admin_update_page_positions')) ? eval($hook) : NULL;
         
@@ -657,7 +658,7 @@ class Pages extends MY_Controller {
     }
 
     function delete_pages() {
-        cp_check_perm('page_delete');
+        //cp_check_perm('page_delete');
 
         $ids = $_POST['pages'];
 
@@ -675,7 +676,7 @@ class Pages extends MY_Controller {
     }
 
     function move_pages($action) {
-        cp_check_perm('page_edit');
+        //cp_check_perm('page_edit');
 
         $ids = $_POST['pages'];
 
@@ -847,7 +848,7 @@ class Pages extends MY_Controller {
      * Change page post_status
      */
     function ajax_change_status($page_id) {
-        cp_check_perm('page_edit');
+        //cp_check_perm('page_edit');
 
         $page = $this->cms_admin->get_page($page_id);
 

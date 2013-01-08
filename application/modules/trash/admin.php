@@ -2,11 +2,13 @@
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
-class Admin extends MY_Controller {
+class Admin extends BaseAdminController {
 
     public function __construct() {
         parent::__construct();
-        cp_check_perm('module_admin');
+
+        $this->load->library('DX_Auth');
+        //cp_check_perm('module_admin');
     }
 
     public function index() {
@@ -179,7 +181,10 @@ class Admin extends MY_Controller {
     }
 
     function delete_trash() {
-        $this->db->where_in('id', array_map('htmlspecialchars', $this->input->post('ids')))->delete('trash');
+        foreach ($_POST['ids'] as $item) {
+            $this->db->where('id', $item);
+            $this->db->delete('trash');
+        }
     }
 
     private function display_tpl($file = '') {

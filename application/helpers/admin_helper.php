@@ -88,9 +88,10 @@ if (!function_exists('check_admin_redirect')) {
             }
     }
 
+    function getCMSNumber() {
+        return IMAGECMS_NUMBER;
+    }
+
 }
 
-function getCMSNumber() {
-    return IMAGECMS_NUMBER;
-}
 

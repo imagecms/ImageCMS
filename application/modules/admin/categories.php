@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Categories extends MY_Controller {
+class Categories extends BaseAdminController {
 
     private $temp_cats = array();
     protected $multi = false;
@@ -29,7 +29,7 @@ class Categories extends MY_Controller {
 
     // Display create category form
     function create_form($parent_id = NULL) {
-        cp_check_perm('category_create');
+        //cp_check_perm('category_create');
 
         $this->template->assign('tree', $this->lib_category->build());
         $this->template->assign('parent_id', $parent_id);
@@ -122,7 +122,7 @@ class Categories extends MY_Controller {
      */
 
     function create($action, $cat_id = 0) {
-        cp_check_perm('category_create');
+        //cp_check_perm('category_create');
 
         $this->form_validation->set_rules('name', lang('ac_val_title'), 'trim|required|min_length[1]|max_length[160]');
         $this->form_validation->set_rules('url', lang('ac_val_cat_url'), 'trim|min_length[2]|max_length[300]|alpha_dash');
@@ -272,7 +272,7 @@ class Categories extends MY_Controller {
     }
 
     function fast_add($action = '') {
-        cp_check_perm('category_create');
+        //cp_check_perm('category_create');
 
         ($hook = get_hook('admin_fast_cat_add')) ? eval($hook) : NULL;
 
@@ -371,7 +371,7 @@ class Categories extends MY_Controller {
      * @access public
      */
     function edit($id) {
-        cp_check_perm('category_edit');
+        //cp_check_perm('category_edit');
 
         $cat = $this->cms_admin->get_category($id);
 
@@ -501,7 +501,7 @@ class Categories extends MY_Controller {
      * @access public
      */
     function delete() {
-        cp_check_perm('category_delete');
+        //cp_check_perm('category_delete');
 
 
         foreach ($_POST['ids'] as $p) {

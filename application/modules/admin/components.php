@@ -7,7 +7,7 @@ if (!defined('BASEPATH'))
  * Image CMS
  * Components Class
  */
-class Components extends MY_Controller {
+class Components extends BaseAdminController {
 
     function __construct() {
         parent::__construct();
@@ -71,7 +71,7 @@ class Components extends MY_Controller {
     }
 
     function install($module = '') {
-        cp_check_perm('module_install');
+        //cp_check_perm('module_install');
         $module = strtolower($module);
 
         ($hook = get_hook('admin_install_module')) ? eval($hook) : NULL;
@@ -114,7 +114,7 @@ class Components extends MY_Controller {
     }
 
     function deinstall() {
-        cp_check_perm('module_deinstall');
+        //cp_check_perm('module_deinstall');
         $modules = $_POST['ids'];
         foreach ($modules as $module) {
             $module = strtolower($module);
@@ -191,7 +191,7 @@ class Components extends MY_Controller {
     }
 
     function component_settings($component) {
-        cp_check_perm('module_admin');
+        //cp_check_perm('module_admin');
 
         $this->db->where('name', $component);
         $query = $this->db->get('components', 1);
@@ -210,7 +210,7 @@ class Components extends MY_Controller {
 
     // Save component settings
     function save_settings($component) {
-        cp_check_perm('module_admin');
+        //cp_check_perm('module_admin');
 
         $this->db->where('name', $component);
         $query = $this->db->get('components', 1);

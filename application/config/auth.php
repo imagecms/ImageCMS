@@ -31,8 +31,8 @@ $config['DX_users_table'] = 'users';
 $config['DX_user_profile_table'] = '';
 $config['DX_user_temp_table'] = 'user_temp';
 $config['DX_user_autologin'] = 'user_autologin';
-$config['DX_roles_table'] = 'roles';
-$config['DX_permissions_table'] = 'permissions';
+$config['DX_roles_table'] = 'shop_rbac_roles';
+$config['DX_permissions_table'] = 'shop_rbac_roles_privileges';
 $config['DX_login_attempts_table'] = 'login_attempts';
 
 /*
