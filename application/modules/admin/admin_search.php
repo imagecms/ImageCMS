@@ -23,8 +23,13 @@ class Admin_search extends BaseAdminController {
 	{
 		$this->load->module('search');
 		$this->load->helper('category');
-		
-		$searchText = trim($this->input->get('q'));
+		                
+		$data = trim($this->input->get('q'));
+		$data = strip_tags($data);
+		$data = htmlspecialchars($data, ENT_QUOTES);
+                
+                $searchText = $this->security->xss_clean($data);
+                
 		if (mb_strlen($searchText, 'UTF-8') >= 2)
 		{
 			$config = array(

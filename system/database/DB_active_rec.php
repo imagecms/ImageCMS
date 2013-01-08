@@ -74,6 +74,11 @@ class CI_DB_active_record extends CI_DB_driver {
 	 */
 	public function select($select = '*', $escape = NULL)
 	{
+                if (is_bool($escape))
+		{
+			$this->_protect_identifiers = $escape;
+		}
+                
 		if (is_string($select))
 		{
 			$select = explode(',', $select);

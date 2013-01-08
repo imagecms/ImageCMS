@@ -45,6 +45,7 @@
                             </th>
                             <th>Старый URL</th>
                             <th>Тип редиректа</th>
+                            <th>Вид редиректа</th>
                             <th>Редирект</th>
                         </tr>    
                     </thead>
@@ -63,6 +64,9 @@
                                 </td>
                                 <td>
                                     <label>{echo $item->trash_redirect_type}</label>
+                                </td>
+                                <td>
+                                    <label>{echo $item->trash_type}</label>
                                 </td>
                                 <td>
                                     <a href="{echo $item->trash_redirect}" target="_blank">{echo $item->trash_redirect}</a>

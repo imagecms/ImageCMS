@@ -8,6 +8,7 @@ $.exists_nabir = function(nabir) {
 var notificationsInitialized = false;
 
 $(document).ajaxComplete(function(event, XHR, ajaxOptions) {
+    $('.popover').remove();
     if (ajaxOptions.url != "/admin/components/run/shop/notifications/getAvailableNotification")
     {
         if ((XHR.getAllResponseHeaders().match(/X-PJAX/)))

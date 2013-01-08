@@ -168,7 +168,7 @@ class Core extends MY_Controller {
         $this->load->library('DX_Auth');
 
         // Are we on main page?
-        if (($cat_path == '/' OR $cat_path === FALSE) AND $data_type != 'bridge') {
+        if (($cat_path == '/' OR $cat_path == FALSE) AND $data_type != 'bridge') {
             $data_type = 'main';
 
             ($hook = get_hook('core_set_type_main')) ? eval($hook) : NULL;
@@ -199,7 +199,7 @@ class Core extends MY_Controller {
                 break;
             }
         }
-        $data_type = 'main';
+        
         if ($data_type != 'main' AND $data_type != 'category' AND $data_type != 'bridge') {
             $cat_path_url = substr($cat_path, 0, strripos($cat_path, '/') + 1);
 
@@ -260,9 +260,6 @@ class Core extends MY_Controller {
                     ($hook = get_hook('core_set_type_nocat')) ? eval($hook) : NULL;
                 }
             } else {
-
-
-
                 $data_type = '404';
                 ($hook = get_hook('core_type_404')) ? eval($hook) : NULL;
             }
