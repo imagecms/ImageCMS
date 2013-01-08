@@ -48,13 +48,13 @@
                                 <div class="inside_padd">
                                     <div class="row-fluid">
                                         <div class="control-group m-t_10">
-                                            <label class="control-label" for="alt_name">{lang('a_name')}:</label>
+                                            <label class="control-label" for="alt_name">{lang('a_description')}:</label>
                                             <div class="controls">
                                                 <input type="text" name="alt_name" id="alt_name" value="{echo $model->alt_name}" />
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label" for="Description">{lang('a_description')}:</label>
+                                            <label class="control-label" for="Description">Полное описание:</label>
                                             <div class="controls">
                                                 <input type="text" name="Description" id="Description" value="{echo $model->description}"/>
                                             </div>
