@@ -883,7 +883,7 @@ class Permitions {
       $ci->db->where('id', $item['id'])->update(self::$rbac_privileges_table . "_i18n", array('title' => $item['title'], 'description' => $item['description']));
       }
       }
-      } */
+      } */ 
 }
 
 ?>
