@@ -14,28 +14,17 @@ class Permitions {
     private static $rbac_roles_privileges_table = 'shop_rbac_roles_privileges';
     private static $controller_types = array('shop', 'base', 'module');
 
-    //public static $error_message = "Недостаточно прав";
-
     public function __construct() {
         $ci = & get_instance();
         $ci->load->library('DX_Auth');
     }
 
     public static function checkPermitions() {
-        //self::privilegesIntoDB();
-        //self::privilegesIntoFile();
-        //self::groupsIntoFile();
-        //self::checkControlPanelAccess();
-        //self::processRbacPrivileges();
-        //self::createSuperAdmin();
-        //self::groupsIntoDB();
         self::checkUrl();
     }
 
     private static function checkAllPermitions($adminClassName, $adminMethod) {
         $ci = & get_instance();
-//        $err_text = '<div id="notice" style="width: 500px;">' . '<b>%error_message%.</b>' . '
-//			</div><script type="text/javascript">showMessage(\'Сообщение: \',\'%error_message%\',\'\');</script>';
 
         $err_text = '<div class="alert alert-error">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
