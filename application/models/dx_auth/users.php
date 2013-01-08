@@ -22,8 +22,10 @@ class Users extends CI_Model {
         if ($offset >= 0 AND $row_count > 0) {
             $this->db->select("$users_table.*", FALSE);
             $this->db->select("$roles_table.name AS role_name", FALSE);
-            $this->db->select("$roles_table.alt_name AS role_alt_name", FALSE);
+            $this->db->select("shop_rbac_roles_i18n.alt_name AS role_alt_name", FALSE);            
             $this->db->join($roles_table, "$roles_table.id = $users_table.role_id");
+            $this->db->where('locale', BaseAdminController::getCurrentLocale());
+            $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles_i18n.id = shop_rbac_roles.id");
             $this->db->order_by("$users_table.id", "DESC");
 
             $query = $this->db->get($this->_table, $row_count, $offset);
