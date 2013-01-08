@@ -622,7 +622,7 @@ class Permitions {
                 'model' => $queryModel->row(),
                 'groups' => $queryGroups,
                 'privilegeCheck' => $emptyArray,
-                'lang_sel' => $Lang,
+                'lang_sel' => $Lang->lang_sel,
                 'types' => $result
             ));
 
