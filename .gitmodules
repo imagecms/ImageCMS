@@ -1,3 +1,0 @@
-[submodule "application/modules/shop"]
-	path = application/modules/shop
-	url = git@github.com:imagecms/ImageCMS-Shop.git
