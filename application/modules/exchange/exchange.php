@@ -13,6 +13,8 @@ class Exchange {
     private $ci;
     private $tempDir;
     private $locale;
+    private $categories_table = 'shop_category';
+    private $properties_table = 'shop_product_properties';
 
     public function __construct() {
         $this->ci = &get_instance();
@@ -146,10 +148,16 @@ class Exchange {
         if (!$this->xml)
             return "failure";
         echo "reading xml file:" . memory_get_usage() . "</br>";
+
         // Import categories
-        if (isset($this->xml->Классификатор->Группы)) {
-            $this->importCategories($this->xml->Классификатор->Группы);
+//        if (isset($this->xml->Классификатор->Группы)) {
+//            $this->importCategories($this->xml->Классификатор->Группы);
+//        }
+        // Import properties
+        if (isset($this->xml->Классификатор->Свойства)) {
+            $this->importProperties();
         }
+
         echo "finish:" . memory_get_usage() . "</br>";
         //}
     }
@@ -161,7 +169,6 @@ class Exchange {
             $searchedCat = $this->ci->db->select("id, external_id")->where('external_id', $category->Ид . "")->get('shop_category')->row_array();
 
             if (empty($searchedCat)) {
-                $operation = 'insert';
                 //category not found, it should be inserted
                 $translit = '';
                 $translit = translit_url($category->Наименование);
@@ -203,7 +210,6 @@ class Exchange {
                 //inserting data to i18n table
                 $this->ci->db->insert('shop_category_i18n', $i18n_data);
             } else {
-                $operation = 'update';
                 //category found - we'll update it
                 $translit = '';
                 $translit = translit_url($category->Наименование);
@@ -243,6 +249,81 @@ class Exchange {
             if (isset($category->Группы)) {
                 $parentCat = $this->ci->db->select("id, url, full_path, full_path_ids")->where('external_id', $category->Ид . "")->get('shop_category')->row_array();
                 $this->importCategories($category->Группы, $parentCat);
+            }
+        }
+    }
+
+    private function importProperties() {
+        if (isset($this->xml->Классификатор->Свойства->СвойствоНоменклатуры))
+            $properties = $this->xml->Классификатор->Свойства->СвойствоНоменклатуры;
+        elseif (isset($this->xml->Классификатор->Свойства->Свойство))
+            $properties = $this->xml->Классификатор->Свойства->Свойство;
+        foreach ($properties as $property) {
+            //searching property by external id
+            $searchedProperty = $this->ci->db->select('id, external_id')->where('external_id', $property->Ид . "")->get('shop_product_properties')->row_array();
+            if (empty($searchedProperty)) {
+                //property not found, it should be inserted
+                //preparing insert data array
+                $data = array();
+                $data['external_id'] = $property->Ид . "";
+                $data['csv_name'] = translit_url($property->Наименование);
+                if ($property->Обязательное . "" == 'true')
+                    $data['main_property'] = true;
+                elseif ($property->Обязательное . "" == 'false')
+                    $data['main_property'] = false;
+                if ($property->Множественное . "" == 'true')
+                    $data['multiple'] = true;
+                elseif ($property->Множественное . "" == 'false')
+                    $data['multiple'] = false;
+                if ($property->ИспользованиеСвойства . "" == 'true')
+                    $data['active'] = true;
+                elseif ($property->ИспользованиеСвойства . "" == 'false')
+                    $data['active'] = false;
+                $data['show_in_compare'] = false;
+                $data['show_on_site'] = true;
+                $data['show_in_filter'] = false;
+                //insert new property to properties table
+                $this->ci->db->insert($this->properties_table, $data);
+
+                $insert_id = null;
+                $insert_id = $this->ci->db->insert_id();
+
+                //preparing data for insert to i18n table
+                $i18n_data = array();
+                $i18n_data['id'] = $insert_id;
+                $i18n_data['name'] = $property->Наименование . "";
+                $i18n_data['locale'] = $this->locale;
+                $i18n_data['data'] = '';
+
+                //inserting data to i18n table
+                $this->ci->db->insert($this->properties_table . "_i18n", $i18n_data);
+            } else {
+                //property found, it sould be updated
+                //preparing data for update
+                $data = array();
+                $data['csv_name'] = translit_url($property->Наименование);
+                if ($property->Обязательное . "" == 'true')
+                    $data['main_property'] = true;
+                elseif ($property->Обязательное . "" == 'false')
+                    $data['main_property'] = false;
+                if ($property->Множественное . "" == 'true')
+                    $data['multiple'] = true;
+                elseif ($property->Множественное . "" == 'false')
+                    $data['multiple'] = false;
+                if ($property->ИспользованиеСвойства . "" == 'true')
+                    $data['active'] = true;
+                elseif ($property->ИспользованиеСвойства . "" == 'false')
+                    $data['active'] = false;
+
+                //updating property
+                $this->ci->db->where(array('id' => $searchedProperty['id'], 'external_id' => $searchedProperty['external_id']))->update($this->properties_table, $data);
+
+                //preparing update data for i18n table
+                $i18n_data = array();
+                $i18n_data['name'] = $property->Наименование . "";
+
+                //updating i18n property table
+                $this->ci->db->where(array('id' => $searchedProperty['id'], 'locale' => $this->locale))->update($this->properties_table . "_i18n", $i18n_data);
             }
         }
     }
