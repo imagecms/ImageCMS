@@ -38,7 +38,7 @@ class Admin extends BaseAdminController {
         if ($for_update) {
             $this->load->library('form_validation');
             $this->form_validation->set_rules('1CSettings[filesize]', 'Размер единовременно загружаемой части файла', 'integer|required');
-            $this->form_validation->set_rules('1CSettings[validIP]', 'Размер единовременно загружаемой части файла', 'valid_ip|required');
+            $this->form_validation->set_rules('1CSettings[validIP]', 'IP сервера 1С', 'valid_ip|required');
             $config['zip'] = $for_update['zip'];
             $config['filesize'] = $for_update['filesize'];
             $config['validIP'] = $for_update['validIP'];
@@ -47,7 +47,6 @@ class Admin extends BaseAdminController {
             $config['userstatuses'] = $for_update['statuses'];
             if ($this->form_validation->run() == false) {
                 showMessage(validation_errors(), '', '');
-                return false;
             } else {
                 $this->db->where('identif', 'exchange')->update('components', array('settings' => serialize($config)));
                 showMessage("Настройки сохранены");
