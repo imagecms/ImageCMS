@@ -146,29 +146,38 @@ class Exchange {
 
     private function command_catalog_import() {
         $start_time = time();
-        //if ($this->check_perm() === true) {
-        echo "start:" . memory_get_usage() . "</br>";
-        $this->xml = $this->_readXmlFile(ShopCore::$_GET['filename']);
-        if (!$this->xml)
-            return "failure";
-        echo "reading xml file:" . memory_get_usage() . "</br>";
+        if ($this->check_perm() === true) {
+            echo "start:" . memory_get_usage() . "</br>";
+            $this->xml = $this->_readXmlFile(ShopCore::$_GET['filename']);
+            if (!$this->xml)
+                return "failure";
+            echo "reading xml file:" . memory_get_usage() . "</br>";
 
-        // Import categories
-        if (isset($this->xml->Классификатор->Группы)) {
-            $this->importCategories($this->xml->Классификатор->Группы);
-        }
-        // Import properties
-        if (isset($this->xml->Классификатор->Свойства)) {
-            $this->importProperties();
-        }
-        //import products
-        if (isset($this->xml->Каталог->Товары)) {
-            $this->importProducts();
-        }
-        echo "finish:" . memory_get_usage() . "</br>";
-        echo "time:".date("h:i:s", time()-$start_time);
+            // Import categories
+            if (isset($this->xml->Классификатор->Группы)) {
+                $this->importCategories($this->xml->Классификатор->Группы);
+            }
+            // Import properties
+            if (isset($this->xml->Классификатор->Свойства)) {
+                $this->importProperties();
+            }
+            //import products
+            if (isset($this->xml->Каталог->Товары)) {
+                $this->importProducts();
+            }
 
-        //}
+            //import prices
+            if (isset($this->xml->ПакетПредложений->Предложения)) {
+                $this->importPrices();
+            }
+
+            //auto resize images if option is on
+            if ($this->config['autoresize'] == 'on')
+                $this->startImagesResize();
+
+            echo "finish:" . memory_get_usage() . "</br>";
+            echo "time:" . date("h:i:s", time() - $start_time);
+        }
     }
 
     private function importCategories($data, $parent = null) {
@@ -410,6 +419,7 @@ class Exchange {
                 $data = array();
                 $data['product_id'] = $insert_id;
                 $data['price'] = '0.00000';
+                $data['external_id'] = $product->Ид . "";
                 $data['number'] = $product->Артикул . "";
                 $data['stock'] = 0;
                 $data['position'] = 0;
@@ -536,6 +546,7 @@ class Exchange {
                 //preparing update data for shop_product_variants
                 $data = array();
                 $data['number'] = $product->Артикул . "";
+                $data['external_id'] = $product->Ид . "";
 
                 //updating prepared data in shop_product_variants
                 $this->ci->db->where(array('product_id' => $searchedProduct['id'], 'position' => 0))->update($this->product_variants_table, $data);
@@ -599,6 +610,236 @@ class Exchange {
                     }
                 }
             }
+        }
+    }
+
+    private function importPrices() {
+        foreach ($this->xml->ПакетПредложений->Предложения->Предложение as $offer) {
+            //prepare update data
+            $data = array();
+            $data['price'] = $offer->Цены->Цена->ЦенаЗаЕдиницу;
+            $data['price_in_main'] = $offer->Цены->Цена->ЦенаЗаЕдиницу;
+            $data['stock'] = $offer->Количество;
+            $this->ci->db->where('external_id', $offer->Ид . "")->or_where('number', $offer->Артикул . "")->update($this->product_variants_table, $data);
+        }
+    }
+
+    private function startImagesResize() {
+        ShopCore::app()->SWatermark->updateWatermarks(true);
+    }
+
+    private function command_sale_checkauth() {
+        if ($this->config['usepassword'] == 'on') {
+            $this->check_password();
+        } else {
+            $this->checkauth();
+        }
+    }
+
+    private function command_sale_init() {
+        if ($this->check_perm() === true) {
+            $this->command_catalog_init();
+        }
+    }
+
+    private function command_sale_file() {
+        if ($this->check_perm() === true) {
+            $this->load->helper('file');
+            if (write_file($this->tempDir . ShopCore::$_GET['filename'], file_get_contents('php://input'), 'a+'))
+                echo "success";
+            $this->command_sale_import();
+        }
+    }
+
+    private function command_sale_import() {
+        if ($this->check_perm() === true) {
+            $this->xml = $this->_readXmlFile(ShopCore::$_GET['filename']);
+            if (!$this->xml)
+                return "failure";
+            foreach ($this->xml->Документ as $order) {
+                $model = SOrdersQuery::create()->findOneById($order->Номер);
+                if ($model) {
+                    $model->setExternalId($order->Ид);
+                    $usr = SUserProfileQuery::create()->findByUserExternalId($order->Контрагенты->Контрагент->Ид);
+                    if (!$usr) {
+                        $usr->setUserExternalId($order->Контрагенты->Контрагент->Ид);
+                    }
+                    $model->setTotalPrice($order->Сумма);
+                    $model->setDateUpdated(date('U'));
+                    foreach ($order->ЗначенияРеквизитов->ЗначениеРеквизита as $item) {
+                        //echo $item->Наименование;
+                        if ($item->Наименование == 'ПометкаУдаления') {
+                            if ($item->Значение == true) {
+                                $model->setStatus(1);
+                            }
+                        }
+                        if ($item->Наименование . "" == 'Проведен') {
+                            if ($item->Значение == true) {
+                                $model->setStatus(10);
+                            }
+                        }
+                        if ($item->Наименование . "" == 'Дата оплаты по 1С') {
+                            if (strtotime($item->Значение)) {
+                                if ($item->Значение . "" != "Т") {
+                                    $model->setPaid(1);
+                                    echo "success</br>";
+                                }
+                            }
+                        }
+                        /* if ($item->Наименование == 'Номер отгрузки по 1С') {
+                          $model->setStatus(3);
+                          } */
+                    }
+                    $model->save();
+                } else {
+                    echo "fail. order not found";
+                }
+            }
+            rename($this->tempDir . ShopCore::$_GET['filename'], $this->tempDir . "success_" . ShopCore::$_GET['filename']);
+        }
+    }
+
+    private function command_sale_success() {
+        if ($this->check_perm() === true) {
+            $model = SOrdersQuery::create()->findByStatus(1);
+            foreach ($model as $order) {
+                $order->SetStatus(9);
+                $order->save();
+            }
+        }
+    }
+
+    private function command_sale_query() {
+        if ($this->check_perm() === true) {
+            $model = SOrdersQuery::create()->findByStatus($this->config['userstatuses']);
+            header('content-type: text/xml');
+            $xml_order .= "<?xml version='1.0' encoding='UTF-8'?>" . "\n" .
+                    "<КоммерческаяИнформация ВерсияСхемы='2.03' ДатаФормирования='" . date('Y-m-d') . "'>" . "\n";
+            foreach ($model as $order) {
+                if ($order->user_id != Null) {
+                    $user_prof = SUserProfileQuery::create()->findById($order->user_id);
+                    if ($user_prof->user_external_id != '')
+                        $ext_id = $row['external_id'];
+                }
+                $xml_order.="<Документ>\n" .
+                        "<Ид>" . $order->external_id . "</Ид>\n" .
+                        "<Номер>" . $order->Id . "</Номер>\n" .
+                        "<Дата>" . date('Y-m-d', $order->date_created) . "</Дата>\n" .
+                        "<ХозОперация>Заказ товара</ХозОперация>\n" .
+                        "<Роль>Продавец</Роль>\n" .
+                        "<Валюта>" . ShopCore::app()->SCurrencyHelper->main->getCode() . "</Валюта>\n" .
+                        "<Курс>1</Курс>\n" .
+                        "<Сумма>" . $order->totalprice . "</Сумма>\n" .
+                        "<Контрагенты>\n" .
+                        "<Контрагент>\n" .
+                        "<Ид>" . $ext_id . "</Ид>\n" .
+                        "<Наименование>" . $order->UserFullName . "</Наименование>\n" .
+                        "<Роль>Покупатель</Роль>\n" .
+                        "<ПолноеНаименование>" . $order->UserFullName . "</ПолноеНаименование>\n" .
+                        "<Фамилия/>\n" .
+                        "<Имя>" . $order->UserFullName . "</Имя>\n" .
+                        "<АдресРегистрации>\n" .
+                        "<Представление></Представление>\n" .
+                        "<АдресноеПоле>\n" .
+                        "<Тип>Электронная почта</Тип>\n" .
+                        "<Значение>" . $order->user_email . "</Значение>\n" .
+                        "</АдресноеПоле>\n" .
+                        "<АдресноеПоле>\n" .
+                        "<Тип>Телефон</Тип>\n" .
+                        "<Значение>" . $order->user_phone . "</Значение>\n" .
+                        "</АдресноеПоле>\n" .
+                        "<АдресноеПоле>\n" .
+                        "<Тип>Адрес доставки</Тип>\n" .
+                        "<Значение>" . $order->user_deliver_to . "</Значение>\n" .
+                        "</АдресноеПоле>\n" .
+                        "</АдресРегистрации>\n" .
+                        "</Контрагент>\n" .
+                        "</Контрагенты>\n" .
+                        "<Время>" . date('G:i:s', $order->date_created) . "</Время>\n" .
+                        "<Комментарий>" . $order->user_comment . "</Комментарий>\n" .
+                        "<Товары>\n";
+                $ordered_products = SOrderProductsQuery::create()->findByOrderId($order->Id);
+                if ($order->deliverymethod != null) {
+                    $xml_order .= "<Товар>\n" .
+                            "<Ид>ORDER_DELIVERY</Ид>\n" .
+                            "<Наименование>Доставка заказа</Наименование>\n" .
+                            '<БазоваяЕдиница Код="796" НаименованиеПолное="Штука" МеждународноеСокращение="PCE">шт</БазоваяЕдиница>' . "\n" .
+                            "<ЦенаЗаЕдиницу>" . $order->deliveryprice . "</ЦенаЗаЕдиницу>\n" .
+                            "<Количество>1</Количество>\n" .
+                            "<Сумма>" . $order->deliveryprice . "</Сумма>\n" .
+                            "<ЗначенияРеквизитов>\n" .
+                            "<ЗначениеРеквизита>\n" .
+                            "<Наименование>ВидНоменклатуры</Наименование>\n" .
+                            "<Значение>Услуга</Значение>\n" .
+                            "</ЗначениеРеквизита>\n" .
+                            "<ЗначениеРеквизита>\n" .
+                            "<Наименование>ТипНоменклатуры</Наименование>\n" .
+                            "<Значение>Услуга</Значение>\n" .
+                            "</ЗначениеРеквизита>\n" .
+                            "</ЗначенияРеквизитов>\n" .
+                            "</Товар>\n";
+                }
+                foreach ($ordered_products as $product) {
+                    $xml_order .= "<Товар>\n" .
+                            "<Ид>" . $product->external_id . "</Ид>\n" .
+                            "<ИдКаталога></ИдКаталога>\n" .
+                            "<Наименование>" . $product->product_name . "</Наименование>\n" .
+                            '<БазоваяЕдиница Код="796" НаименованиеПолное="Штука" МеждународноеСокращение="PCE">шт</БазоваяЕдиница>' . "\n" .
+                            "<ЦенаЗаЕдиницу>" . $product->price . "</ЦенаЗаЕдиницу>\n" .
+                            "<Количество>$product->quantity</Количество>\n" .
+                            "<Сумма>" . ($product->price) * ($product->quantity) . "</Сумма>\n" .
+                            "<ЗначенияРеквизитов>\n" .
+                            "<ЗначениеРеквизита>\n" .
+                            "<Наименование>ВидНоменклатуры</Наименование>\n" .
+                            "<Значение>Товар</Значение>\n" .
+                            "</ЗначениеРеквизита>\n" .
+                            "<ЗначениеРеквизита>\n" .
+                            "<Наименование>ТипНоменклатуры</Наименование>\n" .
+                            "<Значение>Товар</Значение>\n" .
+                            "</ЗначениеРеквизита>\n" .
+                            "</ЗначенияРеквизитов>\n" .
+                            "</Товар>\n";
+                }
+                $xml_order .= "</Товары>\n";
+                if ($order->paid == 0) {
+                    $paid_status = 'false';
+                } else {
+                    $paid_status = 'true';
+                }
+                $xml_order .= "<ЗначенияРеквизитов>\n" .
+                        "<ЗначениеРеквизита>\n" .
+                        "<Наименование>Метод оплаты</Наименование>\n" .
+                        "<Значение>" . $order->getpaymentMethodName() . "</Значение>\n" .
+                        "</ЗначениеРеквизита>\n" .
+                        "<ЗначениеРеквизита>\n" .
+                        "<Наименование>Заказ оплачен</Наименование>\n" .
+                        "<Значение>" . $paid_status . "</Значение>\n" .
+                        "</ЗначениеРеквизита>\n" .
+                        "<ЗначениеРеквизита>\n" .
+                        "<Наименование>Доставка разрешена</Наименование>\n" .
+                        "<Значение>true</Значение>\n" .
+                        "</ЗначениеРеквизита>\n" .
+                        "<ЗначениеРеквизита>\n" .
+                        "<Наименование>Отменен</Наименование>\n" .
+                        "<Значение>false</Значение>\n" .
+                        "</ЗначениеРеквизита>\n" .
+                        "<ЗначениеРеквизита>\n" .
+                        "<Наименование>Финальный статус</Наименование>\n" .
+                        "<Значение>false</Значение>\n" .
+                        "</ЗначениеРеквизита>\n" .
+                        "<ЗначениеРеквизита>\n" .
+                        "<Наименование>Статус заказа</Наименование>\n" .
+                        "<Значение>В обработке</Значение>\n" .
+                        "</ЗначениеРеквизита>\n" .
+                        "<ЗначениеРеквизита>\n" .
+                        "<Наименование>Дата изменения статуса</Наименование>\n" .
+                        "<Значение>" . date('Y-m-d H:i:s', $order->date_updated) . "</Значение>\n" .
+                        "</ЗначениеРеквизита>\n" .
+                        "</ЗначенияРеквизитов>\n";
+                $xml_order .= "</Документ>\n";
+            }
+            $xml_order .= "</КоммерческаяИнформация>";
+            echo $xml_order;
         }
     }
 

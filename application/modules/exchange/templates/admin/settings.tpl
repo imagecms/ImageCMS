@@ -73,6 +73,22 @@
                                     </select>
                                 </div>
                             </div>    
+                            <div class="control-group">
+                                <label class="control-label" for="autores">Запускать ресайз изображений автоматически?</label>
+                                <div class="controls">
+                                    <span class="frame_label no_connection">
+                                        <span class="niceCheck b_n">
+                                            <input type = "checkbox" name = "1CSettings[autoresize]" id="autores" {if $settings['autoresize'] == 'on'}checked="checked"{/if}/>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Ручной запуск ресайза</label>
+                                <div class="controls">
+                                    <a class="btn runResize"><i class="icon-play"></i>&nbsp;Запустить</a>
+                                </div>
+                            </div>
                         </div>
                     </td>
                 </tr>

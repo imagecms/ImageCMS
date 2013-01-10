@@ -45,6 +45,7 @@ class Admin extends BaseAdminController {
             $config['password'] = $for_update['password'];
             $config['usepassword'] = $for_update['usepassword'];
             $config['userstatuses'] = $for_update['statuses'];
+            $config['autoresize'] = $for_update['autoresize'];
             if ($this->form_validation->run() == false) {
                 showMessage(validation_errors(), '', '');
             } else {
@@ -52,6 +53,10 @@ class Admin extends BaseAdminController {
                 showMessage("Настройки сохранены");
             }
         }
+    }
+    
+    public function startImagesResize() {
+        ShopCore::app()->SWatermark->updateWatermarks(true);
     }
 
 }
