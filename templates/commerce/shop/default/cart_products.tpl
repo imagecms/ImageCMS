@@ -8,6 +8,7 @@
         <col span="1" width="160">
         <col span="1" width="25">
     </colgroup>
+
     <tbody>
         {foreach $items as $key=>$item}
             {if $item.model instanceof SProducts}
@@ -19,6 +20,13 @@
                 {/foreach}
                 <tr>
                     <td>
+                        {if $msg == 1}<span class="cert_fancybox"> Ви изпользовали сертификат!</span>{/if}
+                        {if $msg == 2}<span class="cert_fancybox"> Не верний ключ сертификата!</span>{/if}  
+                        {literal}
+                        <script type="text/javascript">
+                            $(".cert_fancybox").fancybox().click()
+                        </script>
+                        {/literal}
                         <a href="{shop_url('product/' . $item.model->getUrl())}" class="photo_block">
                             <img src="{if count($variants)>1 && $variant->getSmallImage() != ''}{productImageUrl($variant->getsmallimage())}{else:}{productImageUrl($item.model->getMainModimage())}{/if}" alt="{echo ShopCore::encode($item.model->getName())}{if count($variants)>1} - {echo ShopCore::encode($variant->name)}{/if}"/>
                         </a>
@@ -151,17 +159,22 @@
                                 </div>
                             {else:}
                                 <div class="price f-s_26 f_l">
-                                    {echo $total} {$CS}
+                                    {if isset($item.delivery_price)}
+                                        {echo $total+$item.delivery_price} {$CS}
+                                    {/if}
                                 </div>
 
                             {/if}
-                            {if $total < $item.delivery_free_from}<span class="d_b">(+{echo $item.delivery_price} {$CS})</span>{/if}
+                            {if $item.delivery_free_from}<span class="d_b " style="font-size:15px;">+{echo $item.delivery_price} {$CS}</span>{/if}
                             <span id="dpholder" data-dp="{echo $item.delivery_price}"></span>
-                            {if isset($item.gift_cert_price)}<span class="d_b">(-{echo $item.gift_cert_price} {$CS})</span>{/if}
+                            {if isset($item.gift_cert_price)}<span class="d_b" style="font-size:15px;">-{echo $item.gift_cert_price} {$CS}</span>{/if}
                             <span id="allpriceholder" data-summary="{echo $total}"></span>
                 </div>
             </div>
-            <div class="f_r sum">{lang('s_summ')}:
+                
+            <div class="f_r sum"><span class="price">{lang('s_summ')}:</span><br/>
+                <span style="font-size:15px;">Доставка:</span><br/>
+                {if isset($item.gift_cert_price)}<span style="font-size:15px;">Подарочный сертификат:{/if}
             </div>
         </div>
 </td>
@@ -171,3 +184,4 @@
 {else:}
     {lang('s_cart_empty')}
 {/if}
+
