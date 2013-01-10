@@ -15,9 +15,12 @@ class Exchange {
     private $locale;
     private $categories_table = 'shop_category';
     private $properties_table = 'shop_product_properties';
+    private $products_table = 'shop_products';
+    private $product_variants_table = 'shop_product_variants';
 
     public function __construct() {
         $this->ci = &get_instance();
+        set_time_limit(0);
         $this->ci->load->helper('translit');
         $this->locale = getDefaultLanguage();
         $this->locale = $this->locale['identif'];
@@ -142,6 +145,7 @@ class Exchange {
     }
 
     private function command_catalog_import() {
+        $start_time = time();
         //if ($this->check_perm() === true) {
         echo "start:" . memory_get_usage() . "</br>";
         $this->xml = $this->_readXmlFile(ShopCore::$_GET['filename']);
@@ -150,15 +154,20 @@ class Exchange {
         echo "reading xml file:" . memory_get_usage() . "</br>";
 
         // Import categories
-//        if (isset($this->xml->Классификатор->Группы)) {
-//            $this->importCategories($this->xml->Классификатор->Группы);
-//        }
+        if (isset($this->xml->Классификатор->Группы)) {
+            $this->importCategories($this->xml->Классификатор->Группы);
+        }
         // Import properties
         if (isset($this->xml->Классификатор->Свойства)) {
             $this->importProperties();
         }
-
+        //import products
+        if (isset($this->xml->Каталог->Товары)) {
+            $this->importProducts();
+        }
         echo "finish:" . memory_get_usage() . "</br>";
+        echo "time:".date("h:i:s", time()-$start_time);
+
         //}
     }
 
@@ -324,6 +333,271 @@ class Exchange {
 
                 //updating i18n property table
                 $this->ci->db->where(array('id' => $searchedProperty['id'], 'locale' => $this->locale))->update($this->properties_table . "_i18n", $i18n_data);
+            }
+        }
+    }
+
+    private function importProducts() {
+        foreach ($this->xml->Каталог->Товары->Товар as $product) {
+            $searchedProduct = array();
+
+            //search product by external id
+            $searchedProduct = $this->ci->db->select('id')->where('external_id', $product->Ид . "")->get($this->products_table)->row_array();
+            if (empty($searchedProduct)) {
+
+                //product not found, should be inserted
+                //preparing insert data for shop_products table
+                $data = array();
+                $data['external_id'] = $product->Ид . "";
+
+                //check if product belongs to any category
+                if (isset($product->Группы)) {
+                    $categoryId = $this->ci->db->select('id')->where('external_id', $product->Группы->Ид . "")->get($this->categories_table)->row_array();
+                    if (empty($categoryId))
+                        return false;
+                    $categoryId = $categoryId['id'];
+                    $data['category_id'] = $categoryId;
+                }
+                $data['active'] = true;
+                $data['hit'] = false;
+                $data['brand_id'] = 0;
+                $data['created'] = time();
+                $data['updated'] = '';
+                $data['old_price'] = '0.00';
+                $data['views'] = 0;
+                $data['hot'] = false;
+                $data['action'] = false;
+                $data['added_to_cart_count'] = 0;
+                $data['enable_comments'] = true;
+
+                //inserting prepared data to shop_products table
+                $this->ci->db->insert($this->products_table, $data);
+
+                //preparing after insert updating
+                $insert_id = null;
+                $insert_id = $this->ci->db->insert_id();
+                $data = array();
+                $data['url'] = $insert_id . "_" . translit_url($product->Наименование);
+
+                //setting images if $product->Картинка not empty
+                if ($product->Картинка . "" != '' OR $product->Картинка != null) {
+                    $data['mainImage'] = $insert_id . '_main.jpg';
+                    $data['smallImage'] = $insert_id . '_small.jpg';
+                    $data['mainModImage'] = $insert_id . '_mainMod.jpg';
+                    $data['smallModImage'] = $insert_id . '_smallMod.jpg';
+                    $this->ci->db->where('id', $insert_id)->update($this->products_table, $data);
+                }
+
+                //preparing data for shop_products_i18n table
+                $data = array();
+                $data['id'] = $insert_id;
+                $data['locale'] = $this->locale;
+                $data['name'] = $product->Наименование . "";
+
+                //inserting prepared data into shop_products_i18n
+                $this->ci->db->insert($this->products_table . "_i18n", $data);
+
+                //preparing data for shop_products_categories
+                $data = array();
+                if ($categoryId) {
+                    $data['product_id'] = $insert_id;
+                    $data['category_id'] = $categoryId;
+                    //inserting data into shop_products_categories
+                    $this->ci->db->insert("shop_product_categories", $data);
+                }
+
+                //preparing insert data for shop_product_variants
+                $data = array();
+                $data['product_id'] = $insert_id;
+                $data['price'] = '0.00000';
+                $data['number'] = $product->Артикул . "";
+                $data['stock'] = 0;
+                $data['position'] = 0;
+                $mainCurrencyId = $this->ci->db->select('id')->where('main', 1)->get('shop_currencies')->row_array();
+                if (!empty($mainCurrencyId))
+                    $mainCurrencyId = $mainCurrencyId['id'];
+                $data['currency'] = $mainCurrencyId;
+                $data['price_in_main'] = '0.00000';
+
+                //inserting prepared data to shop_product_variants
+                $this->ci->db->insert($this->product_variants_table, $data);
+
+                //preparing insert data for shop_product_variants_i18n table
+                $variant_insert_id = null;
+                $variant_insert_id = $this->ci->db->insert_id();
+                $data = array();
+                $data['locale'] = $this->locale;
+                $data['id'] = $variant_insert_id;
+                $data['name'] = '';
+
+                //inserting prepared data into shop_product_variants_i18n
+                $this->ci->db->insert($this->product_variants_table . "_i18n", $data);
+
+                //process properties
+                if ($product->ЗначенияСвойств) {
+                    foreach ($product->ЗначенияСвойств->ЗначенияСвойства as $property) {
+                        if ($property->Значение . "" == '')
+                            continue;
+                        //search property by external id
+                        $searchedProperty = null;
+                        $searchedProperty = $this->ci->db->select('shop_product_properties.id, multiple, data')
+                                ->join('shop_product_properties_i18n', 'shop_product_properties_i18n.id=shop_product_properties.id')
+                                ->where(array('external_id' => $property->Ид . "", 'locale' => $this->locale))
+                                ->get($this->properties_table)
+                                ->row_array();
+                        if (!empty($searchedProperty)) {
+
+                            //prepare insert data for shop_product_properties_data
+                            $data = array();
+                            $data['property_id'] = $searchedProperty['id'];
+                            $data['product_id'] = $insert_id;
+                            $data['value'] = $property->Значение . "";
+                            $data['locale'] = $this->locale;
+
+                            //insert prepared data into shop_product_properties_data
+                            $this->ci->db->insert($this->properties_table . "_data", $data);
+
+                            //if property is multiple, add its value to shop_product_properties->data column
+                            if ($searchedProperty['multiple'] == true) {
+                                if (is_array(unserialize($searchedProperty['data']))) {
+                                    $insert_array = array();
+                                    $insert_array = unserialize($searchedProperty['data']);
+                                    if (!in_array($property->Значение . "", $insert_array))
+                                        $insert_array[] = $property->Значение . "";
+                                }else {
+                                    $insert_array = array();
+                                    $insert_array[] = $property->Значение . "";
+                                }
+                                //prepare update data
+                                $data = array();
+                                $data['data'] = serialize($insert_array);
+
+                                //update property data
+                                $this->ci->where(array('id' => $searchedProperty['id'], 'locale' => $this->locale))->update($this->properties_table . "_i18n", $data);
+                            }
+
+                            //update shop_product_properties_categories
+                            //search if relation not exists and insert record to base
+                            if ($categoryId) {
+                                if ($this->ci->db->where(array('property_id' => $searchedProperty['id'], 'category_id' => $categoryId))->get('shop_product_properties_categories')->num_rows() == 0) {
+                                    $this->ci->db->insert('shop_product_properties_categories', array('property_id' => $searchedProperty['id'], 'category_id' => $categoryId));
+                                }
+                            }
+                        }
+                    }
+                }
+            } else {
+                //product found and should be updated
+                //preparing update data for shop_products table
+                $data = array();
+
+
+                //check if product belongs to any category
+                if (isset($product->Группы)) {
+                    $categoryId = $this->ci->db->select('id')->where('external_id', $product->Группы->Ид . "")->get($this->categories_table)->row_array();
+                    if (empty($categoryId))
+                        return false;
+                    $categoryId = $categoryId['id'];
+                    $data['category_id'] = $categoryId;
+                }
+                $data['updated'] = time();
+                $data['url'] = $searchedProduct['id'] . "_" . translit_url($product->Наименование . "");
+
+                //updating prepared data in shop_products table
+                $this->ci->db->where('id', $searchedProduct['id'])->update($this->products_table, $data);
+
+                //setting images if $product->Картинка not empty
+                if ($product->Картинка . "" != '' OR $product->Картинка != null) {
+                    $data = array();
+                    $data['mainImage'] = $insert_id . '_main.jpg';
+                    $data['smallImage'] = $insert_id . '_small.jpg';
+                    $data['mainModImage'] = $insert_id . '_mainMod.jpg';
+                    $data['smallModImage'] = $insert_id . '_smallMod.jpg';
+                    $this->ci->db->where('id', $searchedProduct['id'])->update($this->products_table, $data);
+                }
+
+                //preparing data for shop_products_i18n table
+                $data = array();
+                $data['name'] = $product->Наименование . "";
+
+                //updating prepared data in shop_products_i18n
+                $this->ci->db->where('id', $searchedProduct['id'])->update($this->products_table . "_i18n", $data);
+
+                //preparing data for shop_products_categories
+                if ($categoryId) {
+                    $data = array();
+                    $data['product_id'] = $searchedProduct['id'];
+                    $data['category_id'] = $categoryId;
+                    if ($this->ci->db->where($data)->get('shop_product_categories')->num_rows() == 0)
+                    //inserting data into shop_products_categories
+                        $this->ci->db->insert("shop_product_categories", $data);
+                }
+
+                //preparing update data for shop_product_variants
+                $data = array();
+                $data['number'] = $product->Артикул . "";
+
+                //updating prepared data in shop_product_variants
+                $this->ci->db->where(array('product_id' => $searchedProduct['id'], 'position' => 0))->update($this->product_variants_table, $data);
+
+                //process properties
+                if ($product->ЗначенияСвойств) {
+                    foreach ($product->ЗначенияСвойств->ЗначенияСвойства as $property) {
+                        if ($property->Значение . "" == '')
+                            continue;
+                        //search property by external id
+                        $searchedProperty = null;
+                        $searchedProperty = $this->ci->db->select('shop_product_properties.id, multiple, data')
+                                ->join('shop_product_properties_i18n', 'shop_product_properties_i18n.id=shop_product_properties.id')
+                                ->where(array('external_id' => $property->Ид . "", 'locale' => $this->locale))
+                                ->get($this->properties_table)
+                                ->row_array();
+                        if (!empty($searchedProperty)) {
+                            //prepare insert data for shop_product_properties_data
+                            $data = array();
+                            $data['value'] = $property->Значение . "";
+                            //check if product property exists
+                            if ($this->ci->db->where(array('property_id' => $searchedProperty['id'], 'product_id' => $searchedProduct['id']))->get('shop_product_properties_data')->num_rows() > 0)
+                            //update prepared data into shop_product_properties_data
+                                $this->ci->db->where(array('product_id' => $searchedProduct['id'], 'property_id' => $searchedProperty['id']))->update($this->properties_table . "_data", $data);
+                            else
+                            //insert new row
+                                $this->ci->db->insert($this->properties_table . "_data", array(
+                                    'property_id' => $searchedProperty['id'],
+                                    'product_id' => $searchedProduct['id'],
+                                    'value' => $property->Значение . "",
+                                    'locale' => $this->locale
+                                ));
+
+                            //if property is multiple, add its value to shop_product_properties->data column
+                            if ($searchedProperty['multiple'] == true) {
+                                if (is_array(unserialize($searchedProperty['data']))) {
+                                    $insert_array = array();
+                                    $insert_array = unserialize($searchedProperty['data']);
+                                    if (!in_array($property->Значение . "", $insert_array))
+                                        $insert_array[] = $property->Значение . "";
+                                }else {
+                                    $insert_array = array();
+                                    $insert_array[] = $property->Значение . "";
+                                }
+                                //prepare update data
+                                $data = array();
+                                $data['data'] = serialize($insert_array);
+
+                                //update property data
+                                $this->ci->where(array('id' => $searchedProperty['id'], 'locale' => $this->locale))->update($this->properties_table . "_i18n", $data);
+                            }
+
+                            //update shop_product_properties_categories
+                            //search if relation not exists and insert record to base
+                            if ($categoryId) {
+                                if ($this->ci->db->where(array('property_id' => $searchedProperty['id'], 'category_id' => $categoryId))->get('shop_product_properties_categories')->num_rows() == 0) {
+                                    $this->ci->db->insert('shop_product_properties_categories', array('property_id' => $searchedProperty['id'], 'category_id' => $categoryId));
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
