@@ -75,4 +75,4 @@
     </ul>
     <a class="btn btn-small pull-right btn-info" onclick=" loadBaseInterface();"  href="#"><span class="f-s_14">←</span> Администрировать сайт </a>
 </nav>
-<?php $mabilis_ttl=1357907693; $mabilis_last_modified=1357742253; //C:\wamp\www\imagecms.loc\templates\administrator/shop_menu.tpl ?>
+<?php $mabilis_ttl=1357909077; $mabilis_last_modified=1357742253; //C:\wamp\www\imagecms.loc\templates\administrator/shop_menu.tpl ?>

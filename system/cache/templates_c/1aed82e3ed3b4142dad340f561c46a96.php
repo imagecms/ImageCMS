@@ -6,4 +6,4 @@
 <?php endif; ?>
 <script type="text/javascript">
     var b_url = '<?php if(isset($BASE_URL)){ echo $BASE_URL; } ?>';
-</script><?php $mabilis_ttl=1357907700; $mabilis_last_modified=1357742253; //C:\wamp\www\imagecms.loc\templates\commerce\shop\default/auth_data.tpl ?>
+</script><?php $mabilis_ttl=1357909944; $mabilis_last_modified=1357742253; //C:\wamp\www\imagecms.loc\templates\commerce\shop\default/auth_data.tpl ?>

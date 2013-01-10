@@ -156,4 +156,4 @@
         </div><!-- footer -->
         <div class="h_bg_<?php echo whereami (); ?>"></div>
     </body>
-</html><?php $mabilis_ttl=1357907700; $mabilis_last_modified=1357820763; //C:\wamp\www\imagecms.loc\templates\commerce\shop\default/main.tpl ?>
+</html><?php $mabilis_ttl=1357909944; $mabilis_last_modified=1357820763; //C:\wamp\www\imagecms.loc\templates\commerce\shop\default/main.tpl ?>
