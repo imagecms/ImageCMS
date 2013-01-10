@@ -20,7 +20,7 @@
             {if $model->getGiftCertKey() != null}
                 <li>
                     <span>{lang('s_do_you_cer_tif')}: </span>
-                    <b>(-{echo $model->getgiftCertPrice()} {$CS})</b>
+                    <b>-{echo $model->getgiftCertPrice()} {$CS}</b>
                 </li>
             {/if}                                    
             {if count($discountCom)}

@@ -146,6 +146,7 @@
                 </tr>
             </tfoot>
             <input type="hidden" name="forCart" value ="1"/>
+            
         </table>
     </div>
     <div class="order-cleaner clearfix">
