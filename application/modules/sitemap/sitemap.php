@@ -168,45 +168,50 @@ class Sitemap extends MY_Controller {
             );
         }
 
-        $shop_categories = $this->_shop_category_pages();
-        foreach ($shop_categories as $shopcat) {
+        $is_shop = $this->db->where('name =','shop')->get('components')->row_array();
+        //var_dump($is_shop);
+        
+        if ($is_shop != NULL){
+               
+            $shop_categories = $this->_shop_category_pages();
+            foreach ($shop_categories as $shopcat) {
 
-            $url = site_url('shop/category/' . $shopcat['full_path']);
-            $this->items[] = array(
-                'loc' => $url,
-                'lastmod' => '',
-                'changefreq' => 'daily',
-                'priority' => $this->cats_priority,
-            );
-        }
-
-        $shop_brands = $this->_shop_brands_pages();
-        foreach ($shop_brands as $shopbr) {
-            $url = site_url('shop/brand/' . $shopbr['url']);
-            $this->items[] = array(
-                'loc' => $url,
-                'lastmod' => '',
-                'changefreq' => 'daily',
-                'priority' => $this->cats_priority,
-            );
-        }
-
-        $shop_products = $this->_shop_products_pages();
-        foreach ($shop_products as $shopprod) {
-            $url = site_url('shop/product/' . $shopprod['url']);
-            if ($shopprod['updated'] > 0) {
-                $date = date('Y-m-d', $shopprod['updated']);
-            } else {
-                $date = date('Y-m-d', $shopprod['created']);
+                $url = site_url('shop/category/' . $shopcat['full_path']);
+                $this->items[] = array(
+                    'loc' => $url,
+                    'lastmod' => '',
+                    'changefreq' => 'daily',
+                    'priority' => $this->cats_priority,
+                );
             }
-            $this->items[] = array(
-                'loc' => $url,
-                'lastmod' => $date,
-                'changefreq' => 'daily',
-                'priority' => $this->pages_priority,
-            );
-        }
 
+            $shop_brands = $this->_shop_brands_pages();
+            foreach ($shop_brands as $shopbr) {
+                $url = site_url('shop/brand/' . $shopbr['url']);
+                $this->items[] = array(
+                    'loc' => $url,
+                    'lastmod' => '',
+                    'changefreq' => 'daily',
+                    'priority' => $this->cats_priority,
+                );
+            }
+
+            $shop_products = $this->_shop_products_pages();
+            foreach ($shop_products as $shopprod) {
+                $url = site_url('shop/product/' . $shopprod['url']);
+                if ($shopprod['updated'] > 0) {
+                    $date = date('Y-m-d', $shopprod['updated']);
+                } else {
+                    $date = date('Y-m-d', $shopprod['created']);
+                }
+                $this->items[] = array(
+                    'loc' => $url,
+                    'lastmod' => $date,
+                    'changefreq' => 'daily',
+                    'priority' => $this->pages_priority,
+                );
+            }
+        }
         $this->result = $this->generate_xml($this->items);
 
         //$this->cache->store($this->sitemap_key, $this->result, $this->sitemap_ttl);
