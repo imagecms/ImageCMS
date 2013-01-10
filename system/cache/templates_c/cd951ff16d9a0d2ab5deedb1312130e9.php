@@ -1,0 +1,2 @@
+<a href="<?php echo shop_url ('compare'); ?>" rel="nofollow"><?php echo lang ('s_list_comp'); ?></a> 
+(<?php if($CI->session->userdata('shopForCompare')): ?><?php echo count ($CI->session->userdata('shopForCompare')); ?><?php else:?>0<?php endif; ?>)<?php $mabilis_ttl=1357907700; $mabilis_last_modified=1357742253; //C:\wamp\www\imagecms.loc\templates\commerce\shop\default/compare_data.tpl ?>

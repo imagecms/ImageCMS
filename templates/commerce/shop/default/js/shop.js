@@ -808,6 +808,8 @@ $(document).ready(function() {
     });
     $('.giftcertcheck').on('click', function() {
         recount();
+        
+        //$(".cert_fancybox").fancybox();
     });
     $('.addtoSpy').on('click', function() {
         $.fancybox.showActivity();
