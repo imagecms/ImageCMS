@@ -8,6 +8,7 @@
  * Класс exchange
  */
 class Exchange {
+//class Exchange extends MY_Controller {
 
     private $config = array();
     private $ci;
@@ -19,6 +20,7 @@ class Exchange {
     private $product_variants_table = 'shop_product_variants';
 
     public function __construct() {
+        //parent::__construct();
         $this->ci = &get_instance();
         set_time_limit(0);
         $this->ci->load->helper('translit');
@@ -49,7 +51,7 @@ class Exchange {
             $method .= strtolower(ShopCore::$_GET['type']) . '_' . strtolower(ShopCore::$_GET['mode']);
         if (method_exists($this, $method))
             $this->$method();
-        exit;
+        //exit;
     }
 
     private function get1CSettings() {
@@ -60,10 +62,10 @@ class Exchange {
             return unserialize($config['settings']);
     }
 
-    public function install() {
+    private function install() {
         if (is_array($this->config)) {
             $for_insert = serialize($this->config);
-            $this->ci->db->insert($this->settings_table, array('name' => $this->row_name, 'value' => $for_insert));
+            $this->ci->db->insert($this->settings_table, array('name' => $this->row_name, 'settings' => $for_insert));
         }
     }
 
