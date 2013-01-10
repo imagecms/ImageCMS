@@ -1,4 +1,11 @@
-/system/cache
+/system/cache/*.*
+/system/cache/сache_*
+/system/cache/templates_c/*.*
+/system/cache/templates_c/сache_*
+/system/cache/comments/*.*
+/system/cache/comments/cache_*
+/system/cache/menus/*.*
+/system/cache/menus/cache_*
 /application/logs
 /captcha
 /uploads
@@ -8,7 +15,6 @@
 /application/config/config.php
 /application/config/database.php
 /application/modules/shop
-application/modules/shop
 /application/libraries/fake
 Thumbs.db
 .idea/
@@ -17,7 +23,6 @@ Thumbs.db
 .directory
 /.project
 /p4.komodoproject
-
 /templates/.quarantine/
 /templates/.tmb/
 /application/modules/shop/build.properties
