@@ -1,0 +1,116 @@
+{# Display sidebar.tpl #}
+{include_tpl ('sidebar')}
+{$jsCode}
+<div class="products_list">
+
+      <div id="titleExt">
+        <h5 class="left">{echo ShopCore::encode($model->getName())}</h5>
+        <div class="right">
+            <!-- BEGIN FILTER BOX -->
+                <a href="#" onclick="$('#filterBox').toggle();return false;">Изменить параметры ↓</a>
+                <div id="filterBox">
+                <form method="get" action="">
+
+                    <div class="fieldName">Сиртировка:</div>
+                    <div class="field">
+                        <select name="order">
+                            <option>-</option>
+                            <option {if ShopCore::$_GET['order']=='price'}selected{/if} value="price">Возрастанию цены</option>
+                            <option {if ShopCore::$_GET['order']=='price_desc'}selected{/if} value="price_desc">Убыванию цены</option>
+                            <option {if ShopCore::$_GET['order']=='name'}selected{/if} value="name">Название  A-Z</option>
+                            <option {if ShopCore::$_GET['order']=='name_desc'}selected{/if} value="name_desc">Название Z-A</option>
+                            <option {if ShopCore::$_GET['order']=='hit'}selected{/if} value="hit">Сначала хиты</option>
+                            <option {if ShopCore::$_GET['order']=='hot'}selected{/if} value="hot">Сначала новинки</option>
+                            <option {if ShopCore::$_GET['order']=='action'}selected{/if} value="action">Сначала акции</option>
+                        </select>
+                    </div>
+                    <div class="clear"></div>
+                    
+                    <div class="fieldName">Товаров на страницу:</div>
+                    <div class="field">
+                        <select name="user_per_page" class="per_page">
+                           <option {if ShopCore::$_GET['user_per_page']=='12'}selected{/if} value="12">12</option>
+                           <option {if ShopCore::$_GET['user_per_page']=='24'}selected{/if} value="24">24</option>
+                           <option {if ShopCore::$_GET['user_per_page']=='48'}selected{/if} value="48">48</option>
+                           <option {if ShopCore::$_GET['user_per_page']=='all'}selected{/if} value="all">Все</option>
+                        </select>
+                    </div>
+                    <div class="clear"></div> 
+                    
+                    <div class="fieldName">Цена:</div>
+                    <div class="field">
+                        от <input type="text" value="{encode(ShopCore::$_GET['lp'])}" name="lp" style="width:26px;" />
+                        до <input type="text" value="{encode(ShopCore::$_GET['rp'])}" name="rp" style="width:26px;"/> 
+                    </div>
+                    <div class="clear"></div>
+
+                {if $model->countProperties() > 0}
+                    {foreach $model->getProperties() as $prop}
+                        <div class="fieldName">{echo $prop->getName()}:</div>
+                        <div class="field">
+                            {foreach $prop->asArray() as $key=>$val}
+                                <label>
+                                <input type="checkbox" {if is_property_in_get($prop->getId(), $key)} checked="checked" {/if} name="f[{echo $prop->getId()}][]" {$checked} value="{$key}" /> {$val}
+                                </label><br>
+                            {/foreach}
+                        </div>
+                        <div class="clear"></div>
+                    {/foreach}
+                {/if}
+                <div class="fieldName">В наличии:</div>
+                        <div class="field">
+                                <label>
+                                <input type="checkbox" {if isset(ShopCore::$_GET['stock'])} checked="checked" {/if} name="stock" {$checked} value="1" />
+                                </label><br>
+                        </div>
+                        <div class="clear"></div>
+                <div class="fieldName">Акции:</div>
+                        <div class="field">
+                                <label>
+                                <input type="checkbox" {if isset(ShopCore::$_GET['action'])} checked="checked" {/if} name="action" {$checked} value="1" />
+                                </label><br>
+                        </div>
+                        <div class="clear"></div>
+                <div class="fieldName">Новинки:</div>
+                        <div class="field">
+                                <label>
+                                <input type="checkbox" {if isset(ShopCore::$_GET['hot'])} checked="checked" {/if} name="hot" {$checked} value="1" />
+                                </label><br>
+                        </div>
+                        <div class="clear"></div>
+
+                    <div class="fieldName"></div>
+                    <div class="field">
+                        <input type="submit" value="Применить" />
+                    </div>
+                    <div class="clear"></div>
+
+                </form>
+                </div>
+            <!-- END FILTER BOX -->
+        </div>
+        <div class="sp"></div>
+       
+        <div id="categoryPath">
+            {renderCategoryPath($model)}
+        </div>
+      </div>
+
+    <div id="brands_list">
+    <!-- Display brans list -->
+    {if sizeof($brandsInCategory) > 0}
+        {foreach $brandsInCategory as $brand}
+            {if $brand->getId() != ShopCore::$_GET['brand']}
+                <a href="?brand={echo $brand->getId()}{if !empty(ShopCore::$_GET['order'])}&order={encode(ShopCore::$_GET['order'])}{/if}{if !empty(ShopCore::$_GET['user_per_page'])}&user_per_page={encode(ShopCore::$_GET['user_per_page'])}{/if}{if !empty(ShopCore::$_GET['lp'])}&lp={encode(ShopCore::$_GET['lp'])}{/if}{if !empty(ShopCore::$_GET['rp'])}&rp={encode(ShopCore::$_GET['rp'])}{/if}{if isset(ShopCore::$_GET['stock'])}&stock=1{/if}{if isset(ShopCore::$_GET['action'])}&action=1{/if}{if isset(ShopCore::$_GET['hot'])}&hot=1{/if}{if $model->countProperties() > 0}{foreach $model->getProperties() as $prop}{foreach $prop->asArray() as $key=>$val}{if is_property_in_get($prop->getId(), $key)}&f[{echo $prop->getId()}][]={$key}{/if}{/foreach}{/foreach}{/if}">{echo ShopCore::encode($brand->getName())}</a>
+            {else:}
+                <a href="#" style="font-weight:bold;">{echo ShopCore::encode($brand->getName())}</a>
+            {/if}
+            |
+        {/foreach}
+    {/if}
+    </div>
+        <div class="products_block">
+            {include_tpl('products_block')}
+        </div>
+    </div>
+    <div id="loadmoreajaxloader" style="display:none;"><center><img src="{$SHOP_THEME}style/images/ui-anim_basic_16x16.gif" /></center></div>
