@@ -1,11 +1,4 @@
-/system/cache/*.*
-/system/cache/сache_*
-/system/cache/templates_c/*.*
-/system/cache/templates_c/сache_*
-/system/cache/comments/*.*
-/system/cache/comments/cache_*
-/system/cache/menus/*.*
-/system/cache/menus/cache_*
+/system/cache/
 /application/logs
 /captcha
 /uploads
