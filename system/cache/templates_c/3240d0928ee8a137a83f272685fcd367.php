@@ -10,4 +10,4 @@
     <?php endif; ?>
     (<?php if(isset($total)){ echo $total; } ?>)
 </li>
-<?php $mabilis_ttl=1357907757; $mabilis_last_modified=1357742253; //C:\wamp\www\imagecms.loc\templates\commerce\shop\default/cart_data.tpl ?>
+<?php $mabilis_ttl=1357909944; $mabilis_last_modified=1357742253; //C:\wamp\www\imagecms.loc\templates\commerce\shop\default/cart_data.tpl ?>

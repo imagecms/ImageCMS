@@ -6,4 +6,4 @@
 ?>
 <a <?php if(ShopCore::$ci->dx_auth->is_logged_in()===true): ?>logged_in="true" href="<?php echo shop_url ('wish_list/'); ?>"<?php else:?>href="#"<?php endif; ?> id="towishlist"><?php echo lang ('s_WL'); ?></a> (<?php echo ShopCore::app()->SWishList->totalItems()?>)
 
-<?php $mabilis_ttl=1357907700; $mabilis_last_modified=1357742257; //C:\wamp\www\imagecms.loc\templates\commerce\shop\default/wish_list_data.tpl ?>
+<?php $mabilis_ttl=1357909944; $mabilis_last_modified=1357742257; //C:\wamp\www\imagecms.loc\templates\commerce\shop\default/wish_list_data.tpl ?>

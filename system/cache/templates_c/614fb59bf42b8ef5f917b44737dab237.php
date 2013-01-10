@@ -340,4 +340,4 @@
         
         <div id="jsOutput" style="display: none;"></div>
     </body>
-</html><?php $mabilis_ttl=1357907693; $mabilis_last_modified=1357742253; //C:\wamp\www\imagecms.loc\/templates/administrator/main.tpl ?>
+</html><?php $mabilis_ttl=1357909077; $mabilis_last_modified=1357742253; //C:\wamp\www\imagecms.loc\/templates/administrator/main.tpl ?>

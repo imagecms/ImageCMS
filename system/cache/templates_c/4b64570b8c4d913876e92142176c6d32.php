@@ -451,51 +451,51 @@
         <?php endif; ?> 
         <div class="m-t_29 featured">
             <?php if(count(getPromoBlock('hot', 3))>0): ?>
-            <div class="box_title">
-                <span><?php echo lang ('s_new'); ?></span>
-            </div>
-            <ul>                  
-                <?php $result = getPromoBlock('hot', 3); 
- if(is_true_array($result)){ foreach ($result as $hotProduct){ ?>  
-                    <?php $discount = ShopCore::app()->SDiscountsManager->productDiscount($hotProduct->id)?>
-                    <?php $hot_prices = currency_convert($hotProduct->firstvariant->getPrice(), $hotProduct->firstvariant->getCurrency())?>
-                    <?php $style = productInCart($cart_data, $hotProduct->getId(), $hotProduct->firstVariant->getId(), $hotProduct->firstVariant->getStock())?>
-                    <li>
-                        <div class="small_item">
-                            <a href="<?php echo shop_url ('product/' . $hotProduct->getUrl()); ?>" class="img">
-                                <span>
-                                    <img src="<?php echo productImageUrl ($hotProduct->getSmallModimage()); ?>" alt="<?php echo ShopCore::encode($hotProduct->getName())?>" />
-                                </span>
-                            </a>
-                            <div class="info">
-                                <a href="<?php echo shop_url ('product/' . $hotProduct->getUrl()); ?>" class="title"><?php echo ShopCore::encode($hotProduct->getName())?></a>
-                                <div class="buy">
-                                    <div class="price f-s_16 f_l">
-                                        <?php if($discount AND ShopCore::$ci->dx_auth->is_logged_in() === true): ?>
-                                            <?php $prOne =  $hot_prices['main']['price']  ?>
-                                            <?php $prTwo =  $hot_prices['main']['price']  ?>
-                                            <?php $prThree = $prOne - $prTwo / 100 * $discount?>
-                                            <del class="price price-c_red f-s_12 price-c_9"><?php echo  $hot_prices['main']['price']  ?> <?php echo $hot_prices['main']['symbol']; ?></del><br /> 
-                                        <?php else:?>
-                                            <?php $prThree =  $hot_prices['main']['price']  ?>
-                                        <?php endif; ?>
-                                        <?php echo $prThree?> 
-                                        <sub><?php echo $hot_prices['main']['symbol']; ?></sub>
-
-                                        <?php if($NextCS != $CS AND empty($discount)): ?>
-                                            <span class="d_b"><?php echo  $hot_prices['second']['price']  ?> <?php echo $hot_prices['second']['symbol']; ?></span>
-                                        <?php endif; ?>
-
-                                    </div>                               
-                                    <div class="<?php echo $style['class']; ?> buttons"><a class="<?php echo $style['identif']; ?>" data-varid="<?php echo $hotProduct->firstVariant->getId()?>" data-prodid="<?php echo $hotProduct->getId()?>" href="<?php echo shop_url ('cart'); ?>"><?php echo $style['message']; ?></a></div>
-                                </div>   
+        <div class="box_title"><span class="f-s_24"><?php echo lang ('s_new'); ?></span></div>
+        <div class="featured carusel_frame carousel_js">
+            <div class="carusel">
+                <ul>
+                    <?php $result = getPromoBlock('hot', 10); 
+ if(is_true_array($result)){ foreach ($result as $hotProduct){ ?>
+                        <?php $discount = ShopCore::app()->SDiscountsManager->productDiscount($hotProduct->id)?>
+                        <?php $style = productInCart($cart_data, $hotProduct->getId(), $hotProduct->firstVariant->getId(), $hotProduct->firstVariant->getStock())?>
+                        <li <?php if($hotProduct->firstvariant->getstock()==0): ?>class="not_avail"<?php endif; ?>>
+                            <div class="small_item">
+                                <a href="<?php echo shop_url ('product/' . $hotProduct->getUrl()); ?>" class="img">
+                                    <span>
+                                        <img src="<?php echo productImageUrl ($hotProduct->getMainModimage()); ?>" alt="<?php echo ShopCore::encode($hotProduct->getName())?>"/>
+                                    </span>
+                                </a>
+                                <div class="info">
+                                    <a href="<?php echo shop_url ('product/' . $hotProduct->getUrl()); ?>" class="title"><?php echo ShopCore::encode($hotProduct->getName())?></a>
+                                    <div class="buy">
+                                        <div class="price f-s_16">
+                                            <?php if($discount AND ShopCore::$ci->dx_auth->is_logged_in() === true): ?>
+                                                <?php $prOne = $hotProduct->firstvariant->getPrice()?>
+                                                <?php $prTwo = $hotProduct->firstvariant->getPrice()?>
+                                                <?php $prThree = $prOne - $prTwo / 100 * $discount?>
+                                                <del class="price price-c_red f-s_12 price-c_9"><?php echo $hotProduct->firstvariant->getPrice()?> <?php if(isset($CS)){ echo $CS; } ?></del><br /> 
+                                            <?php else:?>
+                                                <?php $prThree = $hotProduct->firstvariant->getPrice()?>
+                                            <?php endif; ?>
+                                            <?php echo $prThree?> 
+                                            <sub><?php if(isset($CS)){ echo $CS; } ?></sub>
+                                        </div>
+                                        <div class="<?php echo $style['class']; ?> buttons">
+                                            <span class="<?php echo $style['identif']; ?>" data-varid="<?php echo $hotProduct->firstVariant->getId()?>" data-prodid="<?php echo $hotProduct->getId()?>"><?php echo $style['message']; ?></span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </li>  
-                <?php }} ?>
-            </ul><?php endif; ?>
+                        </li>
+                    <?php }} ?>
+                </ul>
+            </div>
+            <button class="prev"></button>
+            <button class="next"></button>
+        </div><?php endif; ?>
             <?php echo widget ('latest_news'); ?>
         </div>
     </div>
 </div>
-<?php $mabilis_ttl=1357905422; $mabilis_last_modified=1357742257; //C:\wamp\www\imagecms.loc\templates\commerce\shop\default/product.tpl ?>
+<?php $mabilis_ttl=1357909944; $mabilis_last_modified=1357825281; //C:\wamp\www\imagecms.loc\templates\commerce\shop\default/product.tpl ?>

@@ -187,4 +187,4 @@
 
     <?php }} ?>
     <ul>
-    <?php endif; ?><?php $mabilis_ttl=1357905421; $mabilis_last_modified=1357742253; //C:\wamp\www\imagecms.loc\/templates/commerce/comments.tpl ?>
+    <?php endif; ?><?php $mabilis_ttl=1357909944; $mabilis_last_modified=1357742253; //C:\wamp\www\imagecms.loc\/templates/commerce/comments.tpl ?>

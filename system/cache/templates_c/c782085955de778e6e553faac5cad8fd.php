@@ -83,4 +83,4 @@
             <?php echo lang ('a_gift_certificate_list_empty'); ?>
         </div>
     <?php endif; ?>
-</section><?php $mabilis_ttl=1357907693; $mabilis_last_modified=1357754004; //C:\wamp\www\imagecms.loc\/application/modules/shop/admin\templates\gifts\index.tpl ?>
+</section><?php $mabilis_ttl=1357908695; $mabilis_last_modified=1357754004; //C:\wamp\www\imagecms.loc\/application/modules/shop/admin\templates\gifts\index.tpl ?>
