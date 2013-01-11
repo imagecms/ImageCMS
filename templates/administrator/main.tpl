@@ -47,7 +47,7 @@
                                     <span class="m-r_10">
                                         {lang('a_wellcome')},
                                         {if $CI->dx_auth->get_username()}
-                                            <a href="/admin/components/run/shop/users/edit/{echo $CI->dx_auth->get_user_id()}" id="user_name">
+                                            <a href="{echo base_url()}admin/components/cp/user_manager/edit_user/{echo $CI->dx_auth->get_user_id()}" id="user_name">
                                                 {echo $CI->dx_auth->get_username()}
                                             </a>
                                             <a href="/admin/logout"><i class="my_icon exit_ico"></i></a>
