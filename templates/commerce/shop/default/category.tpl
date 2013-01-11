@@ -10,6 +10,25 @@
 
 {$forCompareProducts = $CI->session->userdata('shopForCompare')}
 <div class="content">
+    {$id_cat=$products[0]->category_id;}
+     <!-- Show Brands in circle -->
+    {$banners = getBannersCat(3,$id_cat)}
+    {if count($banners)}
+        <div class="cycle center">
+            <ul> 
+                {foreach $banners as $banner}
+                    <li>
+                        <a href="{echo $banner->getUrl()}">
+                            <img src="/uploads/shop/banners/{echo $banner->getImage()}" alt="{echo ShopCore::encode($banner->getName())}" />
+                        </a>
+                    </li>
+                {/foreach}
+            </ul>
+            <span class="nav"></span>
+            <button class="prev"></button>
+            <button class="next"></button>
+        </div>
+    {/if}
     <div class="center">
         {include_tpl('filter')}
         <div class="catalog_content">
