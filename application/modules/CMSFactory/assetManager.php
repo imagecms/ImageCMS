@@ -34,6 +34,9 @@ class assetManager {
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
      */
     public function registerScript($name) {
+        $trace = debug_backtrace();
+        $paths = explode('/', $trace[0]['file']);
+        var_dumps($paths);
         return $this;
     }
 
