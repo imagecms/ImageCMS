@@ -1,3 +1,23 @@
+$(document).ready(function() {
+    if ($('#show_in_all_cat').attr('checked') == 'checked')
+        {
+            $('#cat_list').attr('disabled','disabled');
+        }
+
+    $('.frame_label').click(function(){
+        if ($('#show_in_all_cat').attr('checked')) {
+             $('#cat_list').removeAttr('disabled');
+        }else
+            {
+             $('#cat_list').attr('disabled','disabled');
+             $('#cat_list option:selected').each(function(){
+                this.selected=false;
+                });
+            }
+    })
+});
+
+
 $.exists = function(selector) {
     return ($(selector).length > 0);
 }
