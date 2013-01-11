@@ -796,4 +796,14 @@ $(document).ready(function() {
         });
     })
 
+    $('.runResize').live('click', function() {
+        $.ajax({
+            url: "/admin/components/cp/exchange/startImagesResize",
+            type: "post",
+            success: function(data) {
+                $('.notifications').append(data);
+            }
+        });
+    })
+
 });
