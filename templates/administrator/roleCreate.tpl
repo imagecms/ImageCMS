@@ -60,16 +60,16 @@
                     </div>
                     <div class="tab-content clearfix">
                         <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
-                            <a href="#shop" class="btn btn-small active">Shop</a>
-                            <a href="#base" class="btn btn-small">Base</a>
+                            <a href="#shop" class="btn btn-small">Shop</a>
+                            <a href="#base" class="btn btn-small active">Base</a>
                             <a href="#module" class="btn btn-small">Modules</a>
                         </div> 
                     </div>
 
                     <div class="tab-content">
-                        {foreach $groups as $key => $groups}
-                            <div class="tab-pane active" id="{echo $key}">
-                                {foreach $groups as $k => $group} 
+                        {foreach $types as $key => $type} 
+                            <div class="tab-pane {if $key == 'base'}active{/if}" id="{echo $key}">
+                                {foreach $type as $k => $groups} 
                                     <div class="span3">
                                         <table class="table table-striped table-bordered table-hover table-condensed">
                                             <thead>
@@ -81,20 +81,22 @@
                                                             </span>
                                                         </span>
                                                     </th>                           
-                                                    <th>{echo $group['description']}</th>
+                                                    <th>{echo $groups['description']}</th>
                                                 </tr>                        
                                             </thead>
                                             <tbody class="sortable">
-                                                {foreach $group['privileges'] as $privilege} 
+                                                {foreach $groups['privileges'] as $privilege}
                                                     <tr>       
                                                         <td class="t-a_c">
                                                             <span class="frame_label">
                                                                 <span class="niceCheck b_n">  
-                                                                    <input type="checkbox" class="chldcheck"  value="{echo $privilege->id}" name="Privileges[]" />
+                                                                    <input type="checkbox" class="chldcheck"  value="{echo $privilege['id']}" name="Privileges[]"/>
                                                                 </span>
                                                             </span>
                                                         </td>
-                                                        <td><p>{echo $privilege->title}</p></td>                               
+                                                        <td style="word-wrap : break-word;">
+                                                            <p title="{echo $privilege['description']}">{echo $privilege['title']}</p>
+                                                        </td>                              
                                                     </tr>
                                                 {/foreach}
                                             </tbody>
@@ -109,5 +111,4 @@
             </form>
         </div>
     </div>
-</div>
 </section>
