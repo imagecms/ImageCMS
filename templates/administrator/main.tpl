@@ -102,7 +102,7 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-align-justify"></i>{lang('a_cont')}<b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="/admin/pages/GetPagesByCategory/" class="pjax">{lang('a_cont_list')}</a></li>
+                                        <li><a href="/admin/pages/GetPagesByCategory" class="pjax">{lang('a_cont_list')}</a></li>
                                         <li><a href="/admin/pages" class="pjax">{lang('a_create_page')}</a></li>
 
                                         <li class="divider"></li>
@@ -127,7 +127,7 @@
                                         {if !$menus}
                                             {$CI->load->module('menu'); $menus=$CI->menu->get_all_menus()}
                                         {/if}
-                                        <li><a href="/admin/components/cp/menu" class="pjax">{lang('a_control')}</a></li>
+                                        <li><a href="/admin/components/cp/menu/index" class="pjax">{lang('a_control')}</a></li>
                                         <li class="divider"></li>
                                         {foreach $menus as $menu}
                                             <li><a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="pjax">{$menu.main_title}</a></li>
@@ -138,7 +138,7 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-circle-arrow-down"></i>{lang('a_modules')}<b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="/admin/components/modules_table/" class="pjax">{lang('a_all_modules')}</a></li>
+                                        <li><a href="/admin/components/modules_table" class="pjax">{lang('a_all_modules')}</a></li>
                                         <!-- <li><a href="/admin/mod_search/">{lang('a_search')}</a></li> -->
                                         <li class="divider returnFalse"></a></li>
                                         {if !$components}
