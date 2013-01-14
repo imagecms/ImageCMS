@@ -19,6 +19,6 @@ function modules_namespaces_autoload($name) {
     }
 }
 
-function test() {
+function runFactory() {
     \CMSFactory\Events::runFactory();
 }
