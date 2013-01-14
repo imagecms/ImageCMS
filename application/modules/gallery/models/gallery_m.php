@@ -135,7 +135,7 @@ class Gallery_m extends CI_Model {
     /**
      * Get Album info
      */
-    function get_album($id = 0, $include_images = TRUE)
+    function get_album($id = 0, $include_images = TRUE, $limit = false,$position = false)
     {
         $this->db->limit(1);
         $this->db->where('id', $id);
@@ -147,7 +147,7 @@ class Gallery_m extends CI_Model {
 
             if ($include_images == TRUE)
             {
-                $album['images'] = $this->get_album_images($album['id']);
+                $album['images'] = $this->get_album_images($album['id'],$limit,$position);
             }
 
             return $album;
@@ -157,14 +157,33 @@ class Gallery_m extends CI_Model {
             return FALSE;
         }
     }
-
-    function get_album_images($album_id)
+    function get_count_album($album_id)
     {
-        //$this->db->order_by('uploaded', 'asc');
-
+        if (!is_numeric($album_id) OR $album_id < 0)
+        {
+            return false;
+        }
+        $this->db->select('id');   
+        $this->db->where('album_id', $album_id);       
+        $this->db->from('gallery_images');
+        return $this->db->count_all_results();
+    }
+    function get_album_images($album_id, $limit = false, $position = false)
+    {
+        if (!is_numeric($position) OR $position < 0)
+            {
+            $position = false;
+            }            
         $this->db->select('*');
         $this->db->select('CONCAT_WS("", file_name, file_ext) as full_name', FALSE);
         $this->db->order_by('position', 'asc');
+        if ($limit)
+            {
+            if ($position)
+                {$this->db->limit($limit,$position);}
+            else
+                {$this->db->limit($limit);}
+            }    
         $this->db->where('album_id', $album_id);
         $query = $this->db->get('gallery_images');
 

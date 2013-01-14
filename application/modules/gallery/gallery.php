@@ -8,7 +8,9 @@
  */
 
 class Gallery extends MY_Controller {
-
+    
+    private $list_count = 10; // количество изображений на странице альбома
+    
     public $conf = array(
         'upload_url'    => 'uploads/gallery/',
         'thumbs_folder' => '_thumbs',
@@ -173,7 +175,27 @@ class Gallery extends MY_Controller {
 
     function thumbnails($id = 0)
     {
-        $album = $this->gallery_m->get_album($id);
+        if (!$page)
+            {$page = 0;}
+        $total = $this->gallery_m->get_count_album($id);
+        if ($total == FALSE)
+        {
+            $this->core->error_404();
+            exit;
+        }
+        $this->load->library('pagination');
+        $config= array(
+            'base_url' => site_url('gallery/thumbnails/'.$id),
+            'uri_segment' => 4,
+            'total_rows' =>  $total,
+            'per_page' => $this->list_count,
+            'num_links'=>'10'
+            );
+        $this->pagination->initialize($config);
+        $this->template->assign('paginator', $this->pagination->create_links());
+
+
+        $album = $this->gallery_m->get_album($id, true, $this->list_count ,$page);
 
         if ($album == FALSE)
         {
