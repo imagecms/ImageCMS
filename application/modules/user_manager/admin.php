@@ -37,8 +37,16 @@ class Admin extends BaseAdminController {
 
     function set_tpl_roles() {
         // roles
-        $query = $this->db->get('shop_rbac_roles');
-        $this->template->assign('roles', $query->result_array());
+        //$query = $this->db->get('shop_rbac_roles');
+        
+        $this->db->select("shop_rbac_roles.*", FALSE);
+        $this->db->select("shop_rbac_roles_i18n.alt_name", FALSE);
+        $this->db->where('locale', BaseAdminController::getCurrentLocale());
+        $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles_i18n.id = shop_rbac_roles.id");
+        $role = $this->db->get('shop_rbac_roles')->result_array();
+        
+        //$this->template->assign('roles', $query->result_array());
+        $this->template->assign('roles', $role);
         // roles
     }
 
@@ -265,8 +273,10 @@ class Admin extends BaseAdminController {
 
             $this->db->select("users.*", FALSE);
             $this->db->select("shop_rbac_roles.name AS role_name", FALSE);
-//            $this->db->select("shop_rbac_roles.alt_name AS role_alt_name", FALSE);
+            $this->db->select("shop_rbac_roles_i18n.alt_name AS role_alt_name", FALSE);
             $this->db->join("shop_rbac_roles", "shop_rbac_roles.id = users.role_id");
+            $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles.id = shop_rbac_roles_i18n.id");
+            $this->db->where('locale', BaseAdminController::getCurrentLocale());
             if (!empty($s_data)) {
                 $this->db->like('username', $s_data);
             } elseif (!empty($s_email)) {
@@ -420,7 +430,7 @@ class Admin extends BaseAdminController {
         $this->display_tpl('groups');
     }
 
-    function create() {
+    function _create() {
 
         if (!$this->ajaxRequest)
             $this->display_tpl('create_group');
@@ -460,100 +470,6 @@ class Admin extends BaseAdminController {
                 }
             }
         }
-    }
-
-    function edit($id) {
-        //cp_check_perm('roles_edit');
-
-        $this->db->where('id', $id);
-        $query = $this->db->get('shop_rbac_roles', 1);
-
-        if ($query->num_rows() > 0) {
-            $this->template->add_array($query->row_array());
-        }
-
-        $this->display_tpl('groups_edit');
-    }
-
-    function save($id) {
-        //cp_check_perm('roles_edit');
-
-        $this->form_validation->set_rules('alt_name', lang('amt_tname'), 'required|trim|max_length[150]|min_length[2]');
-        $this->form_validation->set_rules('name', lang('amt_identif'), 'required|trim|max_length[150]|min_length[2]|alpha');
-        $this->form_validation->set_rules('desc', lang('amt_description'), 'trim|max_length[500]|min_length[2]');
-
-        if ($this->form_validation->run($this) == FALSE) {
-
-            showMessage(validation_errors(), false, 'r');
-        } else {
-
-            $data = array(
-                'name' => $this->input->post('name'),
-                'alt_name' => $this->input->post('alt_name'),
-                'desc' => $this->lib_admin->db_post('desc')
-            );
-
-            switch ($id) {
-                case 1:
-                    $data['name'] = 'user';
-                    break;
-
-                case 2:
-                    $data['name'] = 'admin';
-                    break;
-            }
-
-            ($hook = get_hook('users_update_role')) ? eval($hook) : NULL;
-
-            $this->db->limit(1);
-            $this->db->where('id', intval($id));
-            $this->db->update('roles', $data);
-
-            //$this->lib_admin->log(lang('amt_changed_group') . $id);
-            $this->lib_admin->log(
-                    lang('amt_changed_group') .
-                    '<a href="' . site_url('/admin/components/cp/user_manager/edit/' . $id) . '">' . $data['alt_name'] . '</a>'
-            );
-
-
-            showMessage(lang('amt_group_saved'));
-            //$this->update_groups_block();
-
-            $action = $_POST['action'];
-
-            if ($action == 'close') {
-                pjax('/admin/components/cp/user_manager/edit/' . $id);
-            } else {
-                pjax('/admin/components/init_window/user_manager#group');
-            }
-        }
-    }
-
-    function delete() {
-        //cp_check_perm('roles_delete');
-        $ids = $_POST['ids'];
-        foreach ($ids as $id) {
-            switch ($id) {
-                case 1:
-                case 2:
-                    showMessage(lang('amt_error_deleting'), false, 'r');
-                    exit;
-                    break;
-            }
-
-            ($hook = get_hook('users_delete_role')) ? eval($hook) : NULL;
-
-            $this->db->limit(1);
-            $this->db->where('id', intval($id));
-            $this->db->delete('roles');
-            $this->lib_admin->log(
-                    lang('amt_deleted_group') . ' ' . $id
-            );
-            showMessage(lang('a_use_man_group_del_1'));
-            pjax('/admin/components/cp/user_manager#group');
-        }
-
-        // $this->update_groups_block();
     }
 
     public function deleteAll() {
