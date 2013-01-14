@@ -523,4 +523,3 @@ class Comments extends MY_Controller {
 
 }
 
-/* End of file comments.php */
