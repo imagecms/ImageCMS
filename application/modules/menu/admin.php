@@ -76,8 +76,15 @@ class Admin extends BaseAdminController {
             $menu = $this->db->where('id', $id)->get('menus')->row_array();
             $cats = $this->lib_category->build();
             $pages = $this->get_pages(0, 0, 'controller');
-            $query = $this->db->get('shop_rbac_roles');
-            $this->template->assign('roles', $query->result_array());
+            //$query = $this->db->get('shop_rbac_roles');
+
+            $this->db->select("shop_rbac_roles.*", FALSE);
+            $this->db->select("shop_rbac_roles_i18n.alt_name", FALSE);
+            $this->db->where('locale', BaseAdminController::getCurrentLocale());
+            $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles_i18n.id = shop_rbac_roles.id");
+            $role = $this->db->get('shop_rbac_roles')->result_array();
+
+            $this->template->assign('roles', $role);
             $this->template->assign('modules', $this->_load_module_list());
             $this->template->assign('cats', $cats);
             $this->template->assign('menu', $menu);
@@ -356,8 +363,15 @@ class Admin extends BaseAdminController {
             $menu = $this->db->where('id', $item['menu_id'])->get('menus')->row_array();
             $cats = $this->lib_category->build();
             $pages = $this->get_pages(0, 0, 'controller');
-            $query = $this->db->get('roles');
-            $this->template->assign('roles', $query->result_array());
+
+            $this->db->select("shop_rbac_roles.*", FALSE);
+            $this->db->select("shop_rbac_roles_i18n.alt_name", FALSE);
+            $this->db->where('locale', BaseAdminController::getCurrentLocale());
+            $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles_i18n.id = shop_rbac_roles.id");
+            $role = $this->db->get('shop_rbac_roles')->result_array();
+
+            //$query = $this->db->get('shop_rbac_roles');
+            $this->template->assign('roles', $role);
             $this->template->assign('modules', $this->_load_module_list());
             $this->template->assign('cats', $cats);
             $this->template->assign('menu', $menu);
@@ -725,7 +739,6 @@ class Admin extends BaseAdminController {
 
     function update_menu($id) {
         //cp_check_perm('menu_edit');
-
 //        if ($_POST['menu_name'] == NULL) {
 //            $title = lang('a_fail');
 //            $message = lang('a_menu_field_emp');
