@@ -1,23 +1,3 @@
-$(document).ready(function() {
-    if ($('#show_in_all_cat').attr('checked') == 'checked')
-        {
-            $('#cat_list').attr('disabled','disabled');
-        }
-
-    $('.frame_label').click(function(){
-        if ($('#show_in_all_cat').attr('checked')) {
-             $('#cat_list').removeAttr('disabled');
-        }else
-            {
-             $('#cat_list').attr('disabled','disabled');
-             $('#cat_list option:selected').each(function(){
-                this.selected=false;
-                });
-            }
-    })
-});
-
-
 $.exists = function(selector) {
     return ($(selector).length > 0);
 }
@@ -102,6 +82,15 @@ function init_2() {
     }
     $(".frame_label:has(.niceCheck)").die('click').live('click', function() {
         var $this = $(this);
+        if ($('#show_in_all_cat').attr('checked')) {
+             $('#cat_list').removeAttr('disabled');
+        }else
+            {
+             $('#cat_list').attr('disabled','disabled');
+             $('#cat_list option:selected').each(function(){
+                this.selected=false;
+                });
+            }
         if ($this.closest('thead')[0] != undefined) {
             changeCheck($this.find('> span:eq(0)'))
             if ($this.hasClass('active')) {
