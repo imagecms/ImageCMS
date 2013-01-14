@@ -17,11 +17,14 @@ class Permitions {
     public function __construct() {
         $ci = & get_instance();
         $ci->load->library('DX_Auth');
-        self::checkPermitions();
     }
 
     public static function checkPermitions() {
+        //self::processRbacPrivileges();
+        //self::createSuperAdmin();
         self::checkUrl();
+        //self::groupsIntoDB();
+        //self::privilegesIntoDB();
     }
 
     private static function checkAllPermitions($adminClassName, $adminMethod) {
@@ -94,7 +97,7 @@ class Permitions {
             $controller_method = 3;
             $classNamePrep = 'Base';
         }
-        
+
         if ($checkLink AND $link != '')
             $adminController = $uri_array[$controller_segment - 1];
         else
@@ -209,11 +212,14 @@ class Permitions {
                 if (empty($group)) {
                     $ci->db->insert(self::$rbac_group_table, array('name' => ucfirst($controllerClassName), 'type' => $folder));
                     $ci->db->insert(self::$rbac_group_table . "_i18n", array('id' => $ci->db->insert_id(), 'description' => '', 'locale' => $locale));
-                    $group = $ci->db->where('name', ucfirst($controllerName))->get(self::$rbac_group_table)->row();
+                    $group = $ci->db->where('name', ucfirst($controllerClassName))->get(self::$rbac_group_table)->row();
+//                    var_dump($ci->db);
+//                    var_dump($group);
                 }
                 if (empty($dbPrivilege)) {
                     $ci->db->insert(self::$rbac_privileges_table, array('name' => $privilegeName, 'group_id' => $group->id));
-                    $ci->db->insert(self::$rbac_privileges_table . "_i18n", array('id' => $ci->db->insert_id(), 'title' => $privilegeName, 'description' => '', 'locale' => $locale));
+                    //$ci->db->insert(self::$rbac_privileges_table . "_i18n", array('id' => $ci->db->insert_id(), 'title' => $privilegeName, 'description' => '', 'locale' => $locale));
+                    $ci->db->insert(self::$rbac_privileges_table . "_i18n", array('id' => $ci->db->insert_id(), 'title' => '', 'description' => '', 'locale' => $locale));
                 }
             }
         }
@@ -570,6 +576,7 @@ class Permitions {
             $sql = 'SELECT `privilege_id`
             FROM `shop_rbac_roles_privileges` WHERE `role_id` = ' . $roleId;
             $queryPrivilegeR = $this->db->query($sql)->result_array();
+            $role_privileges = array();
             foreach ($queryPrivilegeR as $item)
                 $role_privileges[] = (int) $item['privilege_id'];
 
@@ -845,7 +852,9 @@ class Permitions {
       eval($string);
       if (is_array($result)) {
       foreach ($result as $item) {
-      $ci->db->where('id', $item['id'])->update(self::$rbac_group_table . "_i18n", array('description' => $item['description']));
+      //$ci->db->where('id', $item['id'])->update(self::$rbac_group_table . "_i18n", array('description' => $item['description']));
+      $g = $ci->db->where('name', $item['name'])->get(self::$rbac_group_table)->row();
+      $ci->db->where('id', $g->id)->update(self::$rbac_group_table . "_i18n", array('description' => $item['description']));
       }
       }
       }
@@ -859,19 +868,21 @@ class Permitions {
       file_put_contents('privileges.php', var_export($privileges, true));
       }
 
+
       private static function privilegesIntoDB() {
       $ci = &get_instance();
       $locale = 'ru';
       $string = "\$result = " . file_get_contents('privileges.php') . ";";
       eval($string);
-      //        var_dump($result);
-      //        exit();
       if (is_array($result)) {
       foreach ($result as $item) {
-      $ci->db->where('id', $item['id'])->update(self::$rbac_privileges_table . "_i18n", array('title' => $item['title'], 'description' => $item['description']));
+      $p = $ci->db->where('name', $item['name'])->get(self::$rbac_privileges_table)->row();
+      $ci->db->where('id', $p->id)->update(self::$rbac_privileges_table . "_i18n", array('title' => $item['title'], 'description' => $item['description']));
       }
       }
-      } */
+      }
+
+     */
 }
 
 ?>
