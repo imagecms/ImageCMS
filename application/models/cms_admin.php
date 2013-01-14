@@ -255,7 +255,7 @@ class Cms_admin extends CI_Model {
 
 	function get_langs()
 	{
-		$this->db->order_by('default', 'desc');		
+//		$this->db->order_by('default', 'desc');		
 		$query = $this->db->get('languages');
 
 		return $query->result_array();
