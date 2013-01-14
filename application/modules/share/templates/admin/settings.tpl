@@ -17,9 +17,9 @@
         <a href="#share_buttons" class="btn btn-small">Кнопки "Мне нравится"</a>
     </div>
     <form action="{$BASE_URL}admin/components/cp/share/update_settings" id="widget_form" method="post" class="form-horizontal">
-    <div class="tab-content">
-        <div class="tab-pane active" id="likes">
-            <div class="row-fluid">
+        <div class="tab-content">
+            <div class="tab-pane active" id="likes">
+                <div class="row-fluid">
                     <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                         <thead>
                         <th>{lang('a_sett')}</th>
@@ -34,7 +34,7 @@
                                                 <div class="controls">
                                                     <span class="frame_label">
                                                         <span class="niceCheck b_n">
-                                                            <input type="checkbox" value="1" name="ss[yaru]" {if $settings.yaru == 1}checked="checked"{/if} id="yarucheck"/> 
+                                                            <input type="checkbox" value="1" name="ss[yaru]" {if $settings['yaru'] == '1'}checked="checked"{/if} id="yarucheck"/> 
                                                         </span>
                                                     </span>
                                                 </div>
@@ -44,7 +44,7 @@
                                                 <div class="controls">
                                                     <span class="frame_label">
                                                         <span class="niceCheck b_n">
-                                                            <input type="checkbox" value="1" name="ss[vkcom]" {if $settings.vkcom == 1}checked="checked"{/if}/>
+                                                            <input type="checkbox" value="1" name="ss[vkcom]" {if $settings['vkcom'] == 1}checked="checked"{/if}/>
                                                         </span>
                                                     </span>
                                                 </div>
@@ -54,7 +54,7 @@
                                                 <div class="controls">
                                                     <span class="frame_label">
                                                         <span class="niceCheck b_n">
-                                                            <input type="checkbox" value="1" name="ss[facebook]" {if $settings.facebook == 1}checked="checked"{/if}/>    
+                                                            <input type="checkbox" value="1" name="ss[facebook]" {if $settings['facebook'] == 1}checked="checked"{/if}/>    
                                                         </span>
                                                     </span>
                                                 </div>            
@@ -64,7 +64,7 @@
                                                 <div class="controls">
                                                     <span class="frame_label">
                                                         <span class="niceCheck b_n">
-                                                            <input type="checkbox" name="ss[twitter]" value="1" {if $settings.twitter == 1}checked="checked"{/if}/>
+                                                            <input type="checkbox" name="ss[twitter]" value="1" {if $settings['twitter'] == 1}checked="checked"{/if}/>
                                                         </span>
                                                     </span>
                                                 </div>            
@@ -74,7 +74,7 @@
                                                 <div class="controls">
                                                     <span class="frame_label">
                                                         <span class="niceCheck b_n">
-                                                            <input type="checkbox" name="ss[odnoclass]" value="1" {if $settings.odnoclass == 1}checked="checked"{/if}/>
+                                                            <input type="checkbox" name="ss[odnoclass]" value="1" {if $settings['odnoclass'] == 1}checked="checked"{/if}/>
                                                         </span>
                                                     </span>
                                                 </div>            
@@ -84,7 +84,7 @@
                                                 <div class="controls">
                                                     <span class="frame_label">
                                                         <span class="niceCheck b_n">
-                                                            <input type="checkbox" name="ss[myworld]" value="1" {if $settings.myworld == 1}checked="checked"{/if}/>
+                                                            <input type="checkbox" name="ss[myworld]" value="1" {if $settings['myworld'] == 1}checked="checked"{/if}/>
                                                         </span>
                                                     </span>
                                                 </div>            
@@ -94,7 +94,7 @@
                                                 <div class="controls">
                                                     <span class="frame_label">
                                                         <span class="niceCheck b_n">
-                                                            <input type="checkbox" name="ss[lj]" value="1" {if $settings.lj == 1}checked="checked"{/if}/>
+                                                            <input type="checkbox" name="ss[lj]" value="1" {if $settings['lj'] == 1}checked="checked"{/if}/>
                                                         </span>
                                                     </span>
                                                 </div>            
@@ -104,7 +104,7 @@
                                                 <div class="controls">
                                                     <span class="frame_label">
                                                         <span class="niceCheck b_n">
-                                                            <input type="checkbox" name="ss[ff]" value="1" {if $settings.ff == 1}checked="checked"{/if}/>
+                                                            <input type="checkbox" name="ss[ff]" value="1" {if $settings['ff'] == 1}checked="checked"{/if}/>
                                                         </span>
                                                     </span>
                                                 </div>            
@@ -114,7 +114,7 @@
                                                 <div class="controls">
                                                     <span class="frame_label">
                                                         <span class="niceCheck b_n">
-                                                            <input type="checkbox" name="ss[mc]" value="1" {if $settings.mc == 1}checked="checked"{/if}/>
+                                                            <input type="checkbox" name="ss[mc]" value="1" {if $settings['mc'] == 1}checked="checked"{/if}/>
                                                         </span>
                                                     </span>
                                                 </div>            
@@ -124,19 +124,19 @@
                                                 <div class="controls">
                                                     <span class="frame_label">
                                                         <span class="niceCheck b_n">
-                                                            <input type="checkbox" name="ss[gg]" value="1" {if $settings.gg == 1}checked="checked"{/if}/>
+                                                            <input type="checkbox" name="ss[gg]" value="1" {if $settings['gg'] == 1}checked="checked"{/if}/>
                                                         </span>
                                                     </span>
                                                 </div>            
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label" for="maxsym">Внешний вид</label>
+                                                <label class="control-label" for="maxsym">Внешний вид:</label>
                                                 <div class="controls">
                                                     <select name="ss[type]">
-                                                        <option value="button" {if $settings.type == 'button'}selected="selected"{/if}>кнопка</option>
-                                                        <option value="link" {if $settings.type == 'link'}selected="selected"{/if}>ссылка</option>
-                                                        <option value="icon" {if $settings.type == 'icon'}selected="selected"{/if}>иконки и меню</option>
-                                                        <option value="none" {if $settings.type == 'none'}selected="selected"{/if}>только иконки</option>
+                                                        <option value="button" {if $settings['type'] == 'button'}selected="selected"{/if}>кнопка</option>
+                                                        <option value="link" {if $settings['type'] == 'link'}selected="selected"{/if}>ссылка</option>
+                                                        <option value="icon" {if $settings['type'] == 'icon'}selected="selected"{/if}>иконки и меню</option>
+                                                        <option value="none" {if $settings['type'] == 'none'}selected="selected"{/if}>только иконки</option>
                                                     </select>
                                                 </div>            
                                             </div>
@@ -164,7 +164,7 @@
                                                 <div class="controls">
                                                     <span class="frame_label">
                                                         <span class="niceCheck b_n">
-                                                            <input type="checkbox" name="ss[facebook_like]" value="1" {if $settings.facebook_like == 1}checked="checked"{/if}/>
+                                                            <input type="checkbox" name="ss[facebook_like]" value="1" {if $settings['facebook_like'] == 1}checked="checked"{/if}/>
                                                         </span>
                                                     </span>
                                                 </div>
@@ -174,7 +174,7 @@
                                                 <div class="controls">
                                                     <span class="frame_label">
                                                         <span class="niceCheck b_n">
-                                                            <input type="checkbox" name="ss[vk_like]" value="1" {if $settings.vk_like == 1}checked="checked"{/if}/>
+                                                            <input type="checkbox" name="ss[vk_like]" value="1" {if $settings['vk_like'] == 1}checked="checked"{/if}/>
                                                         </span>
                                                     </span>
                                                 </div>
@@ -182,7 +182,7 @@
                                             <div class="control-group">
                                                 <label class="control-label" for="yarucheck">Ваш API ID<span class="check_vkcom"></span></label>
                                                 <div class="controls">
-                                                    <input type="text" name="ss[vk_apiid]" value="{$settings.vk_apiid}"/>
+                                                    <input type="text" name="ss[vk_apiid]" value="{$settings['vk_apiid']}"/>
                                                 </div>
                                             </div>
                                             <div class="control-group">
@@ -190,7 +190,7 @@
                                                 <div class="controls">
                                                     <span class="frame_label">
                                                         <span class="niceCheck b_n">
-                                                            <input type="checkbox" name="ss[gg_like]" value="1" {if $settings.gg_like == 1}checked="checked"{/if}/>
+                                                            <input type="checkbox" name="ss[gg_like]" value="1" {if $settings['gg_like'] == 1}checked="checked"{/if}/>
                                                         </span>
                                                     </span>
                                                 </div>
@@ -200,7 +200,7 @@
                                                 <div class="controls">
                                                     <span class="frame_label">
                                                         <span class="niceCheck b_n">
-                                                            <input type="checkbox" name="ss[twitter_like]" value="1" {if $settings.twitter_like == 1}checked="checked"{/if}/>
+                                                            <input type="checkbox" name="ss[twitter_like]" value="1" {if $settings['twitter_like'] == 1}checked="checked"{/if}/>
                                                         </span>
                                                     </span>
                                                 </div>
@@ -213,10 +213,10 @@
                     </table>
                 </div>
             </div>
-           {form_csrf()}
+            {form_csrf()}
         </div>
     </form>
 </section>
-            <!--                <div class="form_text">Код для вставки в шаблон:  echo $CI->load->module('share')->_make_share_form()</div>
-                            <div class="form_overflow"></div>-->
+<!--                <div class="form_text">Код для вставки в шаблон:  echo $CI->load->module('share')->_make_share_form()</div>
+                <div class="form_overflow"></div>-->
 

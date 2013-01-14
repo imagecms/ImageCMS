@@ -34,7 +34,6 @@ class Admin extends BaseAdminController {
         ($this->ajaxRequest) OR $this->display_tpl('create_trash');
 
         if ($_POST) {
-            var_dump($_POST);
 
             switch ($this->input->post('redirect_type')) {
 

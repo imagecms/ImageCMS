@@ -146,7 +146,7 @@
                 </tr>
             </tfoot>
             <input type="hidden" name="forCart" value ="1"/>
-            
+
         </table>
     </div>
     <div class="order-cleaner clearfix">
@@ -161,6 +161,7 @@
             <div class="block_title_18"><span class="title_18">{lang('s_sdm')}</span></div>
                 {$counter = true}
                 {foreach $deliveryMethods as $deliveryMethod}
+                    {var_dump($deliveryMethod->getFreeFrom())}
                     {$del_id = $deliveryMethod->getId()}
                 <label>
                     <input type="radio" 
