@@ -211,7 +211,7 @@
                         <div>
                             <div class="title">{lang('s_pay')} <span><a href="/oplata">{lang('s_all_infor_b')}</a></span></div>
                             {foreach $payment_methods as $methods}
-                                <span class="small_marker">{echo $methods.name}</span>
+                                {if $methods.active ==1}<span class="small_marker">{echo $methods.name}</span>{/if}
                             {/foreach}
                         </div>
                     </li>
@@ -220,7 +220,7 @@
                         <div>
                             <div class="title">{lang('s_delivery1')} <span><a href="/dostavka">{lang('s_all_infor_b')}</a></span></div>
                             {foreach $delivery_methods as $methods}
-                                <span class="small_marker">{echo $methods.name}</span>
+                                {if $methods.enabled ==1}<span class="small_marker">{echo $methods.name}</span>{/if}
                             {/foreach}
                         </div>
                     </li>
@@ -238,10 +238,10 @@
                         {/if}
                         <li>
                             <a href="#four">
-                                {echo SStringHelper::Pluralize($data['total_comments'], array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}({echo $data['total_comments']})
+                                {//echo SStringHelper::Pluralize($data['total_comments'], array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}{if $data['comments_arr']}{echo $data['total_comments']}{else:}Нет комментариев{/if}
                             </a>
                         </li>
-                    </ul>
+                    </ul> 
                     {if $model->getFullDescription()}
                         <div id="first">
                             <div class="info_text">
