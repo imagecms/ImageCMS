@@ -28,7 +28,7 @@ $hook['pre_controller'][] = array(
 );
 $hook['post_controller'][] = array(
     'class' => '',
-    'function' => 'test',
+    'function' => 'runFactory',
     'filename' => 'namespaceses.php',
     'filepath' => 'third_party/'
 );
