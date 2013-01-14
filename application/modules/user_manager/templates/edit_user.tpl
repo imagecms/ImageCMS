@@ -28,15 +28,15 @@
                             <div class="inside_padd span9">
                                 <div class="form-horizontal">
                                     <form id="update" method="post" action="{$SELF_URL}/update_user/{$id}">
-                                    
-                                        
+
+
                                         <div class="control-group">
                                             <label class="control-label" for="email">{lang('amt_email')}</label>
                                             <div class="controls">
                                                 <input type="text" name="email" id="email" value="{$email}" class="required email"/>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="control-group">
                                             <label class="control-label" for="username">{lang('a_fio')}</label>
                                             <div class="controls">
@@ -50,13 +50,14 @@
                                                 <input type="text" name="phone" id="phone" value="{$phone}" autocomplete="off"/>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="control-group">
                                             <label class="control-label" for="role_id">{lang('amt_group')}</label>
                                             <div class="controls">
                                                 <select name="role_id" id="role_id">
+                                                    <option value ="0">Без групы</option>
                                                     {foreach $roles as $role}
-                                                    <option value ="{$role['id']}" {if $role['id'] == $role_id} selected="selected" {/if}>{$role.alt_name}</option>
+                                                        <option value ="{$role.id}">{$role.alt_name}</option>
                                                     {/foreach}
                                                 </select>
                                             </div>
@@ -77,7 +78,7 @@
                                             <label class="control-label" for="banned">{lang('amt_ban')}</label>
                                             <div class="controls">
                                                 <select name="banned" id="banned">
-                                                	<option value ="0" selected="selected" >{lang('amt_no')}</option>
+                                                    <option value ="0" selected="selected" >{lang('amt_no')}</option>
                                                     <option value ="1" {if $banned == "1"} selected="selected" {/if}>{lang('amt_yes')}</option>
                                                 </select>
                                             </div>
