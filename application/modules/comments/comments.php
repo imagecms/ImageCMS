@@ -273,7 +273,6 @@ class Comments extends MY_Controller {
                 $this->cache->delete('comments_' . $item_id . $this->module, 'comments');
 
                 ($hook = get_hook('comments_goes_redirect')) ? eval($hook) : NULL;
-                \behaviorFactory\BehaviorFactory::create()->registerEvent(array('commentId' => $id));
                 // Redirect back to page
                 //redirect($this->input->post('redirect'));
                 if ($_POST['redirect'])
@@ -524,4 +523,3 @@ class Comments extends MY_Controller {
 
 }
 
-/* End of file comments.php */
