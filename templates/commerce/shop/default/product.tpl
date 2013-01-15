@@ -429,10 +429,6 @@
                                                 {echo money_format('%i', $prThree)}
                                                 <sub>{$sim_prod.main.symbol}</sub>
 
-                                                {if $NextCS != $CS AND empty($discount)}
-                                                    <span>{echo money_format('%i', $sim_prod.second.price)} {$sim_prod.second.symbol}</span> 
-                                                {/if}
-
                                             </div>                                                                             
                                             <div class="{$style.class} buttons">                                            
                                                 <a class="{$style.identif}" href="{$style.link}" data-varid="{echo $sp['VariandId']}"  data-prodid="{echo $sp['ProductId']}" >{$style.message}</a>

@@ -34,13 +34,6 @@ class Share extends MY_Controller {
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
 
-        $this->db->insert('components', array(
-            'name' => 'share',
-            'identif' => 'share',
-            'enabled' => 0,
-            'autoload' => 0,
-            'in_menu' => 0)
-        );
     }
 
     public function _deinstall() {

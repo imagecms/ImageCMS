@@ -26,7 +26,7 @@ class Feedback extends MY_Controller {
     }
 
     public function test($arg) {
-        var_dumps($arg);
+//        var_dumps($arg);
     }
 
     // Index function
