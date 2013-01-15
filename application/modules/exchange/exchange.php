@@ -18,6 +18,7 @@ class Exchange {
     private $properties_table = 'shop_product_properties';
     private $products_table = 'shop_products';
     private $product_variants_table = 'shop_product_variants';
+    private $settings_table = 'components';
 
     public function __construct() {
         //parent::__construct();
@@ -62,10 +63,10 @@ class Exchange {
             return unserialize($config['settings']);
     }
 
-    private function install() {
+    function _install() {
         if (is_array($this->config)) {
             $for_insert = serialize($this->config);
-            $this->ci->db->insert($this->settings_table, array('name' => $this->row_name, 'settings' => $for_insert));
+            $this->ci->db->where('identif', 'exchange')->update($this->settings_table, array('settings' => $for_insert));
         }
     }
 
