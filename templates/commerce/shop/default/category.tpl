@@ -10,9 +10,8 @@
 
 {$forCompareProducts = $CI->session->userdata('shopForCompare')}
 <div class="content">
-    {$id_cat=$products[0]->category_id;}
-     <!-- Show Brands in circle -->
-    {$banners = getBannersCat(3,$id_cat)}
+    <!-- Show Brands in circle -->
+    {$banners = getBannersCat(3,$model->id);}
     {if count($banners)}
         <div class="cycle center">
             <ul> 
