@@ -32,9 +32,9 @@
                                 <div class="form-horizontal">
                                     <div class="row-fluid">
                                         <form id="create" method="post" active="{$SELF_URL}/create_user/">
-											
-											<div class="control-group">
-                                            	<label class="control-label" for="email">{lang('amt_email')}</label>
+
+                                            <div class="control-group">
+                                                <label class="control-label" for="email">{lang('amt_email')}</label>
                                                 <div class="controls">
                                                     <input type="text" name="email" id="email" value="" class="required email" autocomplete="off"/>
                                                 </div>
@@ -70,11 +70,12 @@
                                                 </div>
                                             </div>
 
-                                            
+
                                             <div class="control-group">
                                                 <label class="control-label" for="role">{lang('amt_group')}</label>
                                                 <div class="controls">
                                                     <select name="role" id="role">
+                                                        <option value="0"> Без групы</option>
                                                         {foreach $roles as $role}
                                                             <option value ="{$role.id}">{$role.alt_name}</option>
                                                         {/foreach}
