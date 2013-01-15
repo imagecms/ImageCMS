@@ -150,29 +150,28 @@
                         {if count($discountCom)} 
                             <del class="price price-c_red f-s_12 price-c_9">{echo $total} {$CS}</del> 
                             <span class="price f-s_12 price-c_9" style="font-size: 14px;">Скидка {echo $discountCom->getDiscount()}%</span>
-                            {echo money_format('%i', $total - $total / 100 * $discountCom->getDiscount())} {$CS} 
+                            {$total -= $total / 100 * $discountCom->getDiscount()}
+                            {echo money_format('%i', $total)} {$CS} 
                         {elseif $item.discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
                             <div class="price f-s_26 f_l">
-                                {echo $total - $total / 100 * $item.discount} {$CS}
+                                {$total -= $total / 100 * $item.discount}
+                                {echo $total} {$CS}
                             </div>
                         {else:}
                             <div class="price f-s_26 f_l">
-                                {if isset($total)}
-                                    {echo $total} {$CS}
-                                {/if}
+                                {echo $total} {$CS}
                             </div>
-
                         {/if}                    
-                    <span id="dpholder" data-dp="{if $total >= $item.delivery_free_from AND $item.delivery_free_from > 0} 0 {else:}{echo $item.delivery_price}{/if}"></span>
-                {if isset($item.gift_cert_price)}<span class="d_b" style="font-size:15px;">-{echo $item.gift_cert_price} {$CS}</span>{/if}
-                <span id="allpriceholder" data-summary="{echo $total}"></span>
+                        <span id="dpholder" data-dp="{if $total >= $item.delivery_free_from AND $item.delivery_free_from > 0} 0 {else:}{echo $item.delivery_price}{/if}"></span>
+                    {if isset($item.gift_cert_price)}<span class="d_b" style="font-size:15px;">-{echo $item.gift_cert_price} {$CS}</span>{/if}
+                    <span id="allpriceholder" data-summary="{echo $total}"></span>
+                </div>
             </div>
-        </div>
 
-        <div class="f_r sum"><span class="price">{lang('s_summ')}:</span><br/>
-        {if isset($item.gift_cert_price)}<span style="font-size:15px;">Подарочный сертификат:{/if}
+            <div class="f_r sum"><span class="price">{lang('s_summ')}:</span><br/>
+            {if isset($item.gift_cert_price)}<span style="font-size:15px;">Подарочный сертификат:{/if}
+        </div>
     </div>
-</div>
 </td>
 </tr>
 </tfoot>

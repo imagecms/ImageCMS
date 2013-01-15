@@ -8,6 +8,7 @@ $lang['a_enter_sys'] = 'Log in';
 $lang['a_imageCMS_news'] = 'News of ImageCMS';
 $lang['a_s_collback_list_th_s'] = 'Browse topics collback';
 $lang['a_s_collback_edit_th_s'] = 'Editing by collback';
+$lang['a_s_discount_roles'] = 'There are no translations users';
 $lang['a_s_customFiled_create_ent'] = 'Entity';
 $lang['a_s_image_does_exist_s'] = 'Image does not exist';
 $lang['a_exp_users_systeam_failed'] = 'You do not choose';
