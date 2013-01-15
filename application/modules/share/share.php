@@ -15,10 +15,9 @@ class Share extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->module('core');
-        $this->settings = ShopCore::app()->SSettings->getss_settings();
 
-        $this->db->select('ss');
-        $this->settings = unserialize(implode(',', $this->db->get('settings')->row_array()));
+        $this->db->select('settings');
+        $this->settings = unserialize(implode(',', $this->db->get_where('components', array('name' => 'share'))->row_array()));
     }
 
     /**
@@ -29,6 +28,24 @@ class Share extends MY_Controller {
 //        $this->template->add_array('ss', array(
 //            'html' => $this->_make_share_form(),
 //        ));
+    }
+
+    public function _install() {
+        $this->load->dbforge();
+        ($this->dx_auth->is_admin()) OR exit;
+
+        $this->db->insert('components', array(
+            'name' => 'share',
+            'identif' => 'share',
+            'enabled' => 0,
+            'autoload' => 0,
+            'in_menu' => 0)
+        );
+    }
+
+    public function _deinstall() {
+        $this->load->dbforge();
+        ($this->dx_auth->is_admin()) OR exit;
     }
 
     public function _make_share_form() {
