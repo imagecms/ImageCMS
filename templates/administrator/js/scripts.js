@@ -871,6 +871,7 @@ function initAdminArea() {
 
     function mouseDown(e) {
         if (
+                (e.target.nodeName != "HTML") &&
                 (e.target.nodeName != "TEXTAREA") &&
                 (e.target.nodeName != "SELECT") &&
                 (e.target.nodeName != "OPTION") &&

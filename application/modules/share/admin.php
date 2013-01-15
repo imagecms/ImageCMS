@@ -28,23 +28,26 @@ class Admin extends BaseAdminController {
         $file = realpath(dirname(__FILE__)) . '/templates/admin/' . $file . '.tpl';
         $this->template->display('file:' . $file);
     }
-    
-    public function update_settings()
-    {
+
+    public function update_settings() {
         $data = $_POST['ss'];
         $string = serialize($data);
-        ShopCore::app()->SSettings->set('ss', $string);
-        if($this->input->post('action') == 'tomain')
+
+        $this->db->set('ss', $string);
+        $this->db->where('id', '2');
+        $this->db->update('settings');
+
+        if ($this->input->post('action') == 'tomain')
             pjax('/admin/components/modules_table');
         showMessage("Настройки успешно сохранены");
     }
-    
-    public function get_settings()
-    {
-        $settings = ShopCore::app()->SSettings->getss_settings();
-        return $settings;
+
+    public function get_settings() {
+        $this->db->select('ss');        
+        $settings = $this->db->get('settings')->row();
+        return unserialize(implode(',', $settings->ss));
     }
-    
+
     public function render($viewName, array $data = array(), $return = false) {
         if (!empty($data))
             $this->template->add_array($data);
