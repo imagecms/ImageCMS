@@ -33,9 +33,9 @@ class Admin extends BaseAdminController {
         $data = $_POST['ss'];
         $string = serialize($data);
 
-        $this->db->set('ss', $string);
-        $this->db->where('id', '2');
-        $this->db->update('settings');
+        $this->db->set('settings', $string);
+        $this->db->where('name', 'share');
+        $this->db->update('components');
 
         if ($this->input->post('action') == 'tomain')
             pjax('/admin/components/modules_table');
@@ -43,9 +43,9 @@ class Admin extends BaseAdminController {
     }
 
     public function get_settings() {
-        $this->db->select('ss');        
-        $settings = $this->db->get('settings')->row();
-        return unserialize(implode(',', $settings->ss));
+        $this->db->select('settings');
+        $this->settings = unserialize(implode(',', $this->db->get_where('components', array('name' => 'share'))->row_array()));
+        return $this->settings;
     }
 
     public function render($viewName, array $data = array(), $return = false) {

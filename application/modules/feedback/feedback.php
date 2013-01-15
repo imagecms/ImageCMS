@@ -35,7 +35,7 @@ class Feedback extends MY_Controller {
 
         $tpl_data = array();
         $this->load->library('form_validation');
-        $this->form_validation->CI =& $this;
+//        $this->form_validation->CI =& $this;
 
         if (count($_POST) > 0) {
             $this->form_validation->set_rules('name', 'Имя', 'trim|required|min_length[3]|max_length[' . $this->username_max_len . ']|xss_clean');
