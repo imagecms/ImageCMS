@@ -120,7 +120,8 @@
                                                     </td>
                                                     <td style="word-wrap : break-word;">
                                                         <p title="{echo $privilege['description']}">{echo $privilege['title']}</p>
-                                                    </td>                              
+                                                    </td>
+                                                    <!--<td><a href="/admin/rbac/deletePermition/{echo $privilege['id']}" class="pjax">удаление</a></td>-->
                                                 </tr>
                                             {/foreach}
                                         </tbody>
