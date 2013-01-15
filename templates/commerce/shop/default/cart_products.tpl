@@ -24,7 +24,8 @@
                         {if $msg == 2}<span class="cert_fancybox"> Не верний ключ сертификата!</span>{/if}  
                         {literal}
                         <script type="text/javascript">
-                            $(".cert_fancybox").fancybox().click()
+                            $(".cert_fancybox").fancybox().click();
+                            $('#giftcertkey').val('');
                         </script>
                         {/literal}
                         <a href="{shop_url('product/' . $item.model->getUrl())}" class="photo_block">
