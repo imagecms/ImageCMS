@@ -1,7 +1,7 @@
 <?php
 
-phpinfo();
-exit;
+//phpinfo();
+//exit;
 /*
  * ---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
