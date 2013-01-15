@@ -8,6 +8,7 @@ $lang['a_info_buyer_ch_stat'] = 'Notify the buyer of the status change';
 $lang['a_info_buyer_ch_stat'] = 'Уведомлять покупателя о смене статуса';
 
 $lang['a_s_collback_list_th_s'] = 'Просмотр тем callback\'ов';
+$lang['a_s_discount_roles'] = 'Не существует переведенных пользователей';
 $lang['a_s_image_does_exist_s'] = 'Изображения не существует.';
 $lang['a_s_collback_edit_th_s'] = 'Редактирование темы callback\'а';
 $lang['a_s_dusc_parem_comulativ_fis'] = 'Список накопительных скидок';

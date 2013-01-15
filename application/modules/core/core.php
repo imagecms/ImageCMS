@@ -199,7 +199,7 @@ class Core extends MY_Controller {
                 break;
             }
         }
-        
+
         if ($data_type != 'main' AND $data_type != 'category' AND $data_type != 'bridge') {
             $cat_path_url = substr($cat_path, 0, strripos($cat_path, '/') + 1);
 
@@ -287,6 +287,7 @@ class Core extends MY_Controller {
 
         // Assign template variables and load modules
         $this->_process_core_data();
+
         // If module than exit from core and load module
         if ($this->is_module($mod_segment) == TRUE)
             return TRUE;
