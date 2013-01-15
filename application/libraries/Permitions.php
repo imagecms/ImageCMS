@@ -836,6 +836,17 @@ class Permitions {
         else
             return '';
     }
+    
+    public function deletePermition($id = null){
+        if(!$id)
+            return false;
+        else{
+            $this->db->where('id', $id)->delete(self::$rbac_privileges_table."_i18n");
+            $this->db->where('id', $id)->delete(self::$rbac_privileges_table);
+            showMessage("Привилегия удалена");
+            pjax('/admin/rbac/roleEdit/1');
+        }
+    }
 
     /* private static function groupsIntoFile() {
       $ci = &get_instance();
