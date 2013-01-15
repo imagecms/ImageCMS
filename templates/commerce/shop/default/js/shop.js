@@ -316,7 +316,7 @@ $(document).ready(function() {
     $('.lineForm input[type=hidden]').on('change', function() {
         $('[name="order"]').val($('#sort').val());
         $('[name="user_per_page"]').val($('#count').val());
-        $('[name="brandsfilter"]').submit();
+        $(this).closest('form').submit();
     });
     $('.plus_minus button').live('click', function() {
         $this = $(this);
