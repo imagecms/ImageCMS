@@ -33,6 +33,7 @@ class Trash extends MY_Controller {
             'trash_id' => $model->category_id,
             'trash_url' => 'shop/product/' . $model->url,
             'trash_redirect_type' => 'category',
+            'trash_type' => '301',
             'trash_redirect' => shop_url('category/' . $model->getMainCategory()->getFullPath())
         );
 
@@ -59,7 +60,7 @@ class Trash extends MY_Controller {
             ),
             'trash_redirect_type' => array(
                 'type' => 'VARCHAR',
-                'constraint' => '255',
+                'constraint' => '20',
                 'null' => TRUE,
             ),
             'trash_redirect' => array(
@@ -69,7 +70,7 @@ class Trash extends MY_Controller {
             ),
             'trash_type' => array(
                 'type' => 'VARCHAR',
-                'constraint' => '255',
+                'constraint' => '3',
                 'null' => TRUE,
             ),
         );

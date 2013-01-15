@@ -40,7 +40,7 @@
                                             </div>
 
                                             <div class="control-group">
-                                                <label class="control-label" for="type">Тип</label>
+                                                <label class="control-label" for="redirect_type">Тип</label>
                                                 <div class="controls">
                                                     <span class="frame_label no_connection m-r_15">
                                                         <span class="niceRadio b_n">
@@ -48,7 +48,6 @@
                                                         </span>
                                                         Url 
                                                     </span>
-
                                                     <span class="frame_label no_connection m-r_15">
                                                         <span class="niceRadio b_n">
                                                             <input type="radio" name="redirect_type" value="product" />
@@ -72,6 +71,24 @@
                                                             <input type="radio" name="redirect_type" value="404" />
                                                         </span>
                                                         404
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="control-group">
+                                                <label class="control-label" for="type">Вид</label>
+                                                <div class="controls">
+                                                    <span class="frame_label no_connection m-r_15">
+                                                        <span class="niceRadio b_n">
+                                                            <input type="radio" name="type" value="301" checked="checked"/>
+                                                        </span>
+                                                        301 
+                                                    </span>
+                                                    <span class="frame_label no_connection m-r_15">
+                                                        <span class="niceRadio b_n">
+                                                            <input type="radio" name="type" value="302" />
+                                                        </span>
+                                                        302
                                                     </span>
                                                 </div>
                                             </div>

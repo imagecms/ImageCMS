@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <span itemscope="" itemtype="http://data-vocabulary.org/Review-aggregate" id="pageRatingData"> 
-                    &nbsp;&nbsp;Рейтинг товара {if $model->firstVariant->getNumber() != ''}«<span itemprop="itemreviewed">: {echo $model->firstvariant->getNumber()}</span>»{/if} 
+                    &nbsp;&nbsp;Рейтинг товара {if $model->firstVariant->getNumber() != ''}«<span itemprop="itemreviewed">{echo $model->firstvariant->getNumber()}</span>»{/if} 
                     <meta itemprop="rating" content="4"> оставило <span itemprop="count">{echo $model->getVotes()}</span> человек(а).
                 </span>
                 <div class="m-t_10">{echo $CI->load->module('share')->_make_share_form()}</div>
@@ -119,7 +119,7 @@
                             <input type="radio" class="selectVar" id="sVar{echo $pv->getId()}" name="selectVar" {if $model->firstVariant->getId() == $pv->getId()}checked="checked"{/if}
                                    value="{echo $pv->getId()}" 
                                    data-pp="1" 
-                                   data-cs= "{$CS}"
+                                   data-cs = "{$CS}"
                                    data-st="{echo $pv->getStock()}" 
                                    data-pr="{echo $pv->getPrice()}" 
                                    data-pid="{echo $model->getId()}" 
@@ -211,7 +211,7 @@
                         <div>
                             <div class="title">{lang('s_pay')} <span><a href="/oplata">{lang('s_all_infor_b')}</a></span></div>
                             {foreach $payment_methods as $methods}
-                                <span class="small_marker">{echo $methods.name}</span>
+                                {if $methods.active ==1}<span class="small_marker">{echo $methods.name}</span>{/if}
                             {/foreach}
                         </div>
                     </li>
@@ -220,7 +220,7 @@
                         <div>
                             <div class="title">{lang('s_delivery1')} <span><a href="/dostavka">{lang('s_all_infor_b')}</a></span></div>
                             {foreach $delivery_methods as $methods}
-                                <span class="small_marker">{echo $methods.name}</span>
+                                {if $methods.enabled ==1}<span class="small_marker">{echo $methods.name}</span>{/if}
                             {/foreach}
                         </div>
                     </li>
@@ -238,10 +238,10 @@
                         {/if}
                         <li>
                             <a href="#four">
-                                {echo SStringHelper::Pluralize($data['total_comments'], array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}({echo $data['total_comments']})
+                                {//echo SStringHelper::Pluralize($data['total_comments'], array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}{if $data['comments_arr']}{echo $data['total_comments']}{else:}Нет комментариев{/if}
                             </a>
                         </li>
-                    </ul>
+                    </ul> 
                     {if $model->getFullDescription()}
                         <div id="first">
                             <div class="info_text">
@@ -298,7 +298,6 @@
                 </div>
             </div>
         </div>
-
         {if $model->getShopKits()->count() > 0}
             <div class="f-s_18 c_6 center">{lang('s_spec_promotion')}</div>
             <div class="promotion carusel_frame carousel_js">
@@ -451,48 +450,48 @@
         {/if} 
         <div class="m-t_29 featured">
             {if count(getPromoBlock('hot', 3))>0}
-            <div class="box_title">
-                <span>{lang('s_new')}</span>
-            </div>
-            <ul>                  
-                {foreach getPromoBlock('hot', 3) as $hotProduct}  
-                    {$discount = ShopCore::app()->SDiscountsManager->productDiscount($hotProduct->id)}
-                    {$hot_prices = currency_convert($hotProduct->firstvariant->getPrice(), $hotProduct->firstvariant->getCurrency())}
-                    {$style = productInCart($cart_data, $hotProduct->getId(), $hotProduct->firstVariant->getId(), $hotProduct->firstVariant->getStock())}
-                    <li>
-                        <div class="small_item">
-                            <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="img">
-                                <span>
-                                    <img src="{productImageUrl($hotProduct->getSmallModimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
-                                </span>
-                            </a>
-                            <div class="info">
-                                <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
-                                <div class="buy">
-                                    <div class="price f-s_16 f_l">
-                                        {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                            {$prOne = $hot_prices.main.price}
-                                            {$prTwo = $hot_prices.main.price}
-                                            {$prThree = $prOne - $prTwo / 100 * $discount}
-                                            <del class="price price-c_red f-s_12 price-c_9">{echo $hot_prices.main.price} {$hot_prices.main.symbol}</del><br /> 
-                                        {else:}
-                                            {$prThree = $hot_prices.main.price}
-                                        {/if}
-                                        {echo $prThree} 
-                                        <sub>{$hot_prices.main.symbol}</sub>
-
-                                        {if $NextCS != $CS AND empty($discount)}
-                                            <span class="d_b">{echo $hot_prices.second.price} {$hot_prices.second.symbol}</span>
-                                        {/if}
-
-                                    </div>                               
-                                    <div class="{$style.class} buttons"><a class="{$style.identif}" data-varid="{echo $hotProduct->firstVariant->getId()}" data-prodid="{echo $hotProduct->getId()}" href="{shop_url('cart')}">{$style.message}</a></div>
-                                </div>   
+        <div class="box_title"><span class="f-s_24">{lang('s_new')}</span></div>
+        <div class="featured carusel_frame carousel_js">
+            <div class="carusel">
+                <ul>
+                    {foreach getPromoBlock('hot', 10) as $hotProduct}
+                        {$discount = ShopCore::app()->SDiscountsManager->productDiscount($hotProduct->id)}
+                        {$style = productInCart($cart_data, $hotProduct->getId(), $hotProduct->firstVariant->getId(), $hotProduct->firstVariant->getStock())}
+                        <li {if $hotProduct->firstvariant->getstock()==0}class="not_avail"{/if}>
+                            <div class="small_item">
+                                <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="img">
+                                    <span>
+                                        <img src="{productImageUrl($hotProduct->getMainModimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}"/>
+                                    </span>
+                                </a>
+                                <div class="info">
+                                    <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
+                                    <div class="buy">
+                                        <div class="price f-s_16">
+                                            {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
+                                                {$prOne = $hotProduct->firstvariant->getPrice()}
+                                                {$prTwo = $hotProduct->firstvariant->getPrice()}
+                                                {$prThree = $prOne - $prTwo / 100 * $discount}
+                                                <del class="price price-c_red f-s_12 price-c_9">{echo $hotProduct->firstvariant->getPrice()} {$CS}</del><br /> 
+                                            {else:}
+                                                {$prThree = $hotProduct->firstvariant->getPrice()}
+                                            {/if}
+                                            {echo $prThree} 
+                                            <sub>{$CS}</sub>
+                                        </div>
+                                        <div class="{$style.class} buttons">
+                                            <span class="{$style.identif}" data-varid="{echo $hotProduct->firstVariant->getId()}" data-prodid="{echo $hotProduct->getId()}">{$style.message}</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </li>  
-                {/foreach}
-            </ul>{/if}
+                        </li>
+                    {/foreach}
+                </ul>
+            </div>
+            <button class="prev"></button>
+            <button class="next"></button>
+        </div>{/if}
             {widget('latest_news')}
         </div>
     </div>
