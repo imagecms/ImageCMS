@@ -287,7 +287,10 @@ class Core extends MY_Controller {
 
         // Assign template variables and load modules
         $this->_process_core_data();
-
+        if ($this->uri->uri_string() !=  strtolower($this->uri->uri_string()))
+        {
+            $this->error_404();
+        }
         // If module than exit from core and load module
         if ($this->is_module($mod_segment) == TRUE)
             return TRUE;
