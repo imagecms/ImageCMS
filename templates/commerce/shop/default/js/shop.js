@@ -768,11 +768,12 @@ $(document).ready(function() {
         var cs = $this.attr('data-cs');
         var csMain = $this.attr('data-csMain');
         var st = $this.attr('data-st');
-        var pp = $this.attr('data-pp');
+        var pp = $this.attr('data-pp');        
         if (img != '') {
             $('#mim' + pid).addClass('smallpimagev');
             $('#vim' + pid).attr('src', '/uploads/shop/' + img).removeClass().attr('alt', vname);
             $('#mim' + pid).attr('src', '/uploads/shop/' + pid + '_main.jpg')
+            $('#varianBPhoto').attr('href', '/uploads/shop/' + img);
         }
         $('#code' + pid).html('Код ' + vnumber);
         $('#pricem' + pid).html(pr + "&nbsp;<sub>" + cs + "</sub>");
@@ -808,6 +809,8 @@ $(document).ready(function() {
     });
     $('.giftcertcheck').on('click', function() {
         recount();
+        
+        //$(".cert_fancybox").fancybox();
     });
     $('.addtoSpy').on('click', function() {
         $.fancybox.showActivity();

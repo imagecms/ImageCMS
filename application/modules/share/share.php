@@ -16,6 +16,9 @@ class Share extends MY_Controller {
         parent::__construct();
         $this->load->module('core');
         $this->settings = ShopCore::app()->SSettings->getss_settings();
+
+        $this->db->select('ss');
+        $this->settings = unserialize(implode(',', $this->db->get('settings')->row_array()));
     }
 
     /**
@@ -85,7 +88,7 @@ class Share extends MY_Controller {
                 <!-- Put this script tag to the <head> of your page -->
                 <script type="text/javascript" src="http://userapi.com/js/api/openapi.js"></script>
                 <script type="text/javascript">
-                    VK.init({apiId: '.$settings['vk_apiid'].', onlyWidgets: true});
+                    VK.init({apiId: ' . $settings['vk_apiid'] . ', onlyWidgets: true});
                 </script>
                 </head>
                 <body>
@@ -97,8 +100,8 @@ class Share extends MY_Controller {
                 </body>
                 </html></td>';
         }
-        if($settings['gg_like'] == 1){
-        $string['google'] = '<td>     <!-- Place this tag where you want the +1 button to render. -->
+        if ($settings['gg_like'] == 1) {
+            $string['google'] = '<td>     <!-- Place this tag where you want the +1 button to render. -->
                         <div class="g-plusone"></div>
                         <!-- Place this tag after the last +1 button tag. -->
                         <script type="text/javascript">
@@ -109,18 +112,18 @@ class Share extends MY_Controller {
                         })();
                         </script></td>';
         }
-        if($settings['twitter_like'] == 1){
-        $string['twitter'] = '<td><a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+        if ($settings['twitter_like'] == 1) {
+            $string['twitter'] = '<td><a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
                     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id))
                     {js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></td>';
         }
         $html = '<table>
                     <tr>'
-                        . $string['facebook'] 
-                        . $string['vk']
-                        . $string['google'] 
-                        . $string['twitter'] .
-                   '</tr>
+                . $string['facebook']
+                . $string['vk']
+                . $string['google']
+                . $string['twitter'] .
+                '</tr>
                 </table>';
         return $html;
     }

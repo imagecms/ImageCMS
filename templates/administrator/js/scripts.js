@@ -8,6 +8,7 @@ $.exists_nabir = function(nabir) {
 var notificationsInitialized = false;
 
 $(document).ajaxComplete(function(event, XHR, ajaxOptions) {
+    $('.popover').remove();
     if (ajaxOptions.url != "/admin/components/run/shop/notifications/getAvailableNotification")
     {
         if ((XHR.getAllResponseHeaders().match(/X-PJAX/)))
@@ -81,6 +82,15 @@ function init_2() {
     }
     $(".frame_label:has(.niceCheck)").die('click').live('click', function() {
         var $this = $(this);
+        if ($('#show_in_all_cat').attr('checked')) {
+             $('#cat_list').removeAttr('disabled');
+        }else
+            {
+             $('#cat_list').attr('disabled','disabled');
+             $('#cat_list option:selected').each(function(){
+                this.selected=false;
+                });
+            }
         if ($this.closest('thead')[0] != undefined) {
             changeCheck($this.find('> span:eq(0)'))
             if ($this.hasClass('active')) {
@@ -861,6 +871,7 @@ function initAdminArea() {
 
     function mouseDown(e) {
         if (
+                (e.target.nodeName != "HTML") &&
                 (e.target.nodeName != "TEXTAREA") &&
                 (e.target.nodeName != "SELECT") &&
                 (e.target.nodeName != "OPTION") &&
