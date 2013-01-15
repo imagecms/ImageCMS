@@ -55,12 +55,13 @@
                             <tbody>
                                 {foreach $model as $item}
                                     <tr data-id="{echo $item->id}" data-imp={echo $item->importance}>
-                                        <td>
+                                        <td>{if $item->id != 1}
                                             <span class="frame_label">
                                                 <span class="niceCheck b_n">
                                                     <input type="checkbox" value="{echo $item->id}" name="ids"/>
                                                 </span>
                                             </span>
+                                                {/if}
                                         </td>
                                         <td><a class="pjax" href="/admin/rbac/roleEdit/{echo $item->id}">{echo $item->id}</a></td>
                                         <td>
