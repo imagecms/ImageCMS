@@ -1081,7 +1081,7 @@ var pagesAdmin = new Object({
                 'X-PJAX': 'X-PJAX'
             },
             complete: function(data) {
-                $("#cfcm_fields_block").append(data.responseText);
+                $("#cfcm_fields_block").html(data.responseText);
             }
         });
     },
@@ -1095,7 +1095,7 @@ var pagesAdmin = new Object({
                 'X-PJAX': 'X-PJAX'
             },
             complete: function(data) {
-                $("#cfcm_fields_block").append(data.responseText);
+                $("#cfcm_fields_block").html(data.responseText);
             }
         });
     },
