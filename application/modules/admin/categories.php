@@ -137,8 +137,9 @@ class Categories extends BaseAdminController {
         $this->form_validation->set_rules('page_tpl', lang('ac_val_page_tpl'), 'trim|max_length[50]');
         $this->form_validation->set_rules('main_tpl', lang('ac_val_main_tpl'), 'trim|max_length[50]');
         $this->form_validation->set_rules('per_page', lang('ac_val_per_page'), 'required|trim|integer|max_length[9]|min_length[1]|is_natural_no_zero');
-
-        ($hook = get_hook('admin_create_cat_set_rules')) ? eval($hook) : NULL;
+        
+        $groupId = (int)$this->input->post('category_field_group');
+        ($hook = get_hook('cfcm_set_rules')) ? eval($hook) : NULL;
 
         if ($this->form_validation->run($this) == FALSE) {
             ($hook = get_hook('admin_create_cat_val_failed')) ? eval($hook) : NULL;
@@ -222,6 +223,8 @@ class Categories extends BaseAdminController {
                 case 'update':
                     ($hook = get_hook('admin_update_category')) ? eval($hook) : NULL;
                     $this->cms_admin->update_category($data, $cat_id);
+                    
+                    $this->load->module('cfcm')->save_item_data($cat_id, 'category');
 
                     $this->lib_category->clear_cache();
 
