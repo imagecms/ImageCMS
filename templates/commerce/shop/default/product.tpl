@@ -32,7 +32,7 @@
                             {$i++}
                         {/foreach}
                     {/if}                
-                </div>{var_dumps($model->getProductVariants()->Price)}
+                </div>
                 <div class="photo_block">
                     <a class="grouped_elements fancybox-thumb" id="varianBPhoto" rel="fancybox-thumb" href="{productImageUrl($model->getMainImage())}" data-title-id="fancyboxAdditionalContent">
                         <img id="mim{echo $model->getId()}" src="{productImageUrl($model->getMainimage())}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
