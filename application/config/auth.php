@@ -31,8 +31,8 @@ $config['DX_users_table'] = 'users';
 $config['DX_user_profile_table'] = '';
 $config['DX_user_temp_table'] = 'user_temp';
 $config['DX_user_autologin'] = 'user_autologin';
-$config['DX_roles_table'] = 'roles';
-$config['DX_permissions_table'] = 'permissions';
+$config['DX_roles_table'] = 'shop_rbac_roles';
+$config['DX_permissions_table'] = 'shop_rbac_roles_privileges';
 $config['DX_login_attempts_table'] = 'login_attempts';
 
 /*
@@ -134,6 +134,7 @@ $config['DX_captcha_height'] = 40;
 $config['DX_captcha_font_size'] = '14';
 $config['DX_captcha_grid'] = FALSE;
 $config['DX_captcha_expire'] = 900;
+$config['DX_captcha_case_sensetive'] = FALSE;
 
 /*
 |--------------------------------------------------------------------------

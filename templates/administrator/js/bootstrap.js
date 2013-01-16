@@ -1276,6 +1276,7 @@
     constructor: Popover
 
   , setContent: function () {
+      $('.popover').remove();
       var $tip = this.tip()
         , title = this.getTitle()
         , content = this.getContent()

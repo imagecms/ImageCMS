@@ -26,6 +26,11 @@ $hook['pre_controller'][] = array(
     'filename' => 'namespaceses.php',
     'filepath' => 'third_party/'
 );
-
+$hook['post_controller'][] = array(
+    'class' => '',
+    'function' => 'runFactory',
+    'filename' => 'namespaceses.php',
+    'filepath' => 'third_party/'
+);
 /* End of file hooks.php */
 /* Location: ./system/application/config/hooks.php */

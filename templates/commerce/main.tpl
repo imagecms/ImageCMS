@@ -10,6 +10,7 @@
         <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/style.css" media="all" />
         <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/jquery.fancybox-1.3.4.css" media="all" />
         <link rel="icon" type="image/x-icon" href="{$SHOP_THEME}images/favicon.png"/>
+        
         <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/ie8_7_6.css" /><![endif]-->
         <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/ie_7.css" /><![endif]-->
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery-1.7.2.min.js"></script>
@@ -21,7 +22,6 @@
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.ui-slider.js" ></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.fancybox-1.3.4.pack.js" ></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.form.js"></script>
-        <script type="text/javascript" src="{$SHOP_THEME}/js/imagecms.filter.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/scripts.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/shop.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}js/jquery.validate.js"></script>
@@ -110,9 +110,7 @@
                 </ul>
             </div><!-- header -->
 
-            <div class="main_menu center">
-                <ul class="clearfix">{echo ShopCore::app()->SCategoryTree->ulWithTitle()}</ul>
-            </div><!-- main_menu -->
+            {echo ShopCore::app()->SCategoryTree->ul()}
 
             {$content}
 

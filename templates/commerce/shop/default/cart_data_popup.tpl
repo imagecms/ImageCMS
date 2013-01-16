@@ -21,7 +21,6 @@
                                     {$variant = $v}
                                 {/if}
                             {/foreach}
-                            {$vprices = currency_convert($variant->getPrice(), $variant->getCurrency())}
                             <tr>
                                 <td>
                                     <a href="{shop_url('product/' . $item.model->getUrl())}" class="photo_block">
@@ -33,7 +32,7 @@
                                     <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}{if count($variants)>1} - {echo ShopCore::encode($variant->name)}{/if}</a>
                                 </td>
                                 <td>
-                                    <div class="price f-s_16 f_l">{echo $vprices.main.price} <sub>{$vprices.main.symbol}</sub>
+                                    <div class="price f-s_16 f_l">{echo $variant->getPrice()} <sub>{$CS}</sub>
                                     </div>
                                 </td>
                                 <td>
@@ -49,14 +48,14 @@
                                     <div class="price f-s_18 f_l">
                                         {if $item.discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
                                             <div class="price f-s_12 f_l">Скидка {echo $item.discount}%</div><br /> 
-                                            {$summary = $vprices.main.price * $item.quantity}
+                                            {$summary = $variant->getPrice() * $item.quantity}
                                             {echo $summary - $summary / 100 *$item.discount}
-                                            <sub>{$vprices.main.symbol}</sub>      <br />       
-                                            <del class="price price-c_red f-s_12 price-c_9">{echo $summary} {$vprices.main.symbol}</del> 
+                                            <sub>{$CS}</sub>      <br />       
+                                            <del class="price price-c_red f-s_12 price-c_9">{echo $summary} {$CS}</del> 
                                         {else:}
-                                            {$summary = $vprices.main.price * $item.quantity}
+                                            {$summary = $variant->getPrice() * $item.quantity}
                                             {echo $summary}
-                                            <sub>{$vprices.main.symbol}</sub>
+                                            <sub>{$CS}</sub>
                                         {/if}
                                     </div>
                                 </td>
@@ -102,25 +101,23 @@
                                 {$kitFirstVariant = $ap->getKitFirstVariant($shopKitProduct)}
                                 <tr>
                                     <td style="width:90px;padding:2px;">
-
                                         {if $ap->getMainImage()}
                                             <a href="{shop_url('product/' . $ap->getId())}" class="photo_block">
                                                 <img src="{productImageUrl($ap->getId() . '_main.jpg')}" border="0" width="100" alt="{echo ShopCore::encode($ap->getName())}" />                                                
                                             </a>
                                         {/if}                      
-
-
                                     </td>
                                     <td>
-                                        <a href="{shop_url('product/' . $ap->getUrl())}">{echo ShopCore::encode($ap->getName())}</a> {echo ShopCore::encode($kitFirstVariant->getName())}
+                                        <a href="{shop_url('product/' . $ap->getUrl())}">{echo ShopCore::encode($ap->getName())}</a> 
+                                        {echo ShopCore::encode($kitFirstVariant->getName())}
                                         {if $kitFirstVariant->getEconomy() > 0}
-                                <br /><s style="font-size:14px;">{echo $kitFirstVariant->toCurrency('origPrice')} {$CS}</s>
-                                <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
-                            {else:}
-                                <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
-                            {/if}
-                            </td>
-                            </tr>
+                                            <br/><s style="font-size:14px;">{echo $kitFirstVariant->toCurrency('origPrice')} {$CS}</s>
+                                            <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
+                                        {else:}
+                                            <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
+                                        {/if}
+                                    </td>
+                                </tr>
                             {$i++}
                         {/foreach}
                     {/if}

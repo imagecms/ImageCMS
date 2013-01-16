@@ -1,4 +1,3 @@
-
 {include_tpl('shop/default/sidebar')}
 
 {if $no_pages}

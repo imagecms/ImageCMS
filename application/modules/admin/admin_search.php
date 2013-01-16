@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Admin_search extends MY_Controller {
+class Admin_search extends BaseAdminController {
 
 	public $items_per_page = '20'; // items per page for advanced search.
 
@@ -16,15 +16,20 @@ class Admin_search extends MY_Controller {
 
 		$_POST['search_text'] = urldecode($_POST['search_text']);
 
-		cp_check_perm('cp_page_search');
+		//cp_check_perm('cp_page_search');
 	}
 
 	public function index($hash = '', $offset = 0)
 	{
 		$this->load->module('search');
 		$this->load->helper('category');
-		
-		$searchText = trim($this->input->get('q'));
+		                
+		$data = trim($this->input->get('q'));
+		$data = strip_tags($data);
+		$data = htmlspecialchars($data, ENT_QUOTES);
+                
+                $searchText = $this->security->xss_clean($data);
+                
 		if (mb_strlen($searchText, 'UTF-8') >= 2)
 		{
 			$config = array(

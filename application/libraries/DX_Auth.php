@@ -307,9 +307,11 @@ class DX_Auth {
         }
 
         /* End of Get user and parents permission */
-
+        if($role_id)
+            $data['role_name'] = Permitions::checkControlPanelAccess($role_id);
+        
         // Set return value
-        $data['role_name'] = $role_name;
+        //$data['role_name'] = $role_name;
         $data['parent_roles_id'] = $parent_roles_id;
         $data['parent_roles_name'] = $parent_roles_name;
         $data['permission'] = $permission;
@@ -1157,7 +1159,10 @@ class DX_Auth {
     // Use this in callback function in your form validation
     function is_captcha_match($code) {
         // Just check if code is the same value with flash data captcha_word which created in captcha() function
-        return ($code == $this->ci->session->flashdata('captcha_word'));
+        if ($this->ci->config->item('DX_captcha_case_sensetive'))
+            return ($code == $this->ci->session->flashdata('captcha_word'));
+        else
+            return (strtolower($code) == strtolower($this->ci->session->flashdata('captcha_word')));
     }
 
     /* End of captcha related function */

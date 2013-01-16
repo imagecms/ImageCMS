@@ -16,9 +16,7 @@ class Admin extends MY_Controller {
     private $request_url = 'http://requests.imagecms.net/index.php/requests/req';
 
     public function __construct() {
-        
         parent::__construct();
-
         $this->load->library('DX_Auth');
         admin_or_redirect();
 
@@ -108,7 +106,7 @@ class Admin extends MY_Controller {
      * @return bool
      */
     public function delete_cache() {
-        cp_check_perm('cache_clear');
+        //cp_check_perm('cache_clear');
 
         $param = $this->input->post('param');
 
@@ -151,6 +149,9 @@ class Admin extends MY_Controller {
         else
         	$path = 'templates';
         
+        if ($this->input->get('path'))
+            $path = $this->input->get ('path');
+        
         $opts = array(
             // 'debug' => true,
             'roots' => array(
@@ -166,12 +167,12 @@ class Admin extends MY_Controller {
                             'write'   => false,
                             'locked'  => true
                         ),
-                        array(
-                            'pattern' => '/commerce/', //You can also set permissions for file types by adding, for example, .jpg inside pattern.
-                            'read'    => true,
-                            'write'   => true,
-                            'locked'  => false
-                        )
+//                        array(
+//                            'pattern' => '/commerce/', //You can also set permissions for file types by adding, for example, .jpg inside pattern.
+//                            'read'    => true,
+//                            'write'   => true,
+//                            'locked'  => false
+//                        )
                     )
                 // more elFinder options here
                 )

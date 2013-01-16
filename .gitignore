@@ -1,4 +1,4 @@
-/system/cache
+/system/cache/
 /application/logs
 /captcha
 /uploads
@@ -8,7 +8,6 @@
 /application/config/config.php
 /application/config/database.php
 /application/modules/shop
-application/modules/shop
 /application/libraries/fake
 Thumbs.db
 .idea/
@@ -17,7 +16,6 @@ Thumbs.db
 .directory
 /.project
 /p4.komodoproject
-
 /templates/.quarantine/
 /templates/.tmb/
 /application/modules/shop/build.properties
@@ -25,3 +23,4 @@ Thumbs.db
 /application/modules/shop/runtime-conf.xml
 /pma/
 *.*~
+/*.csv

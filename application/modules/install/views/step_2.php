@@ -23,13 +23,11 @@ if (validation_errors() OR $other_errors) {
     </div>
     <div class="form_overflow"></div>
 
-
     <div class="form_text">Устанавливать примеры продуктов</div>
     <div class="form_input">
         <input type="checkbox" class="checkbox" name="product_samples" checked="checked" value = "on">
     </div>
     <div class="form_overflow"></div>
-
 
     <h2>Подключение к базе данных</h2>
     <div class="form_text"></div>
@@ -65,24 +63,19 @@ if (validation_errors() OR $other_errors) {
     <div class="form_overflow"></div>
 
     <h2>Данные администратора</h2>
-    <div class="form_text">Логин</div>
-    <div class="form_input">
-        <input type="text" class="textbox" value="<?php echo $_POST['admin_login'] ?>" name="admin_login" autocomplete="off">
-    </div>
-    <div class="form_overflow"></div>
-
-    <div class="form_text">Пароль</div>
-    <div class="form_input">
-        <input type="text" class="textbox" value="<?php echo $_POST['admin_pass'] ?>" name="admin_pass" autocomplete="off">
-    </div>
-    <div class="form_overflow"></div>
-
-
+    
     <div class="form_text">E-Mail</div>
     <div class="form_input">
         <input type="text" class="textbox" value="<?php echo $_POST['admin_mail'] ?>" name="admin_mail" autocomplete="off">
     </div>
     <div class="form_overflow"></div>
+    
+    <div class="form_text">Пароль</div>
+    <div class="form_input">
+        <input type="text" class="textbox" value="<?php echo $_POST['admin_pass'] ?>" name="admin_pass" autocomplete="off">
+    </div>
+    <div class="form_overflow"></div>
+    
 </p>
 
 <p align="left">

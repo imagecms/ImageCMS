@@ -297,7 +297,7 @@
                                             <select multiple="multiple" name="roles[]" id="roles[]">
                                                 <option value="0" {$all_selected} >{lang('a_all')}</option>
                                                 {foreach $roles as $role}
-                                                <option {$role.selected} value="{$role.id}">{$role.alt_name}</option>
+                                                <option {$role.selected} value="{$role.id}">{$role.name}</option>
                                                 {/foreach}
                                             </select>        	
                                         </div>

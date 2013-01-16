@@ -7,7 +7,7 @@ if (!defined('BASEPATH'))
  * Image CMS
  * Comments admin
  */
-class Admin extends MY_Controller {
+class Admin extends BaseAdminController {
 
     private $per_page = 12;
 
@@ -15,7 +15,7 @@ class Admin extends MY_Controller {
         parent::__construct();
 
         $this->load->library('DX_Auth');
-        cp_check_perm('module_admin');
+        //cp_check_perm('module_admin');
 
         $this->load->model('base', 'comments');
     }
@@ -29,8 +29,9 @@ class Admin extends MY_Controller {
 
         switch ($status) {
             case 'all':
-//                $this->db->where('status', '0');
-//                $this->db->or_where('status', '1');
+                $this->db->where('status', '0');
+                $this->db->or_where('status', '1');
+                $this->db->or_where('status', '2');
                 $status_all = 'all';
                 break;
 
@@ -119,12 +120,11 @@ class Admin extends MY_Controller {
         }
 
         $this->load->helper('string');
-            
+
         if(is_array($comments))
             $comments = $this->proccess_child_comments($comments);
         
         $all_comments = count($this->db->get('comments')->result_array());
-        
         $this->render('comments_list', array(
             'comments_cur_url' => site_url(trim_slashes($this->uri->uri_string())),
             'comments' => $comments,
@@ -132,7 +132,7 @@ class Admin extends MY_Controller {
             'total_waiting' => $this->comments->count_by_status(1),
             'total_spam' => $this->comments->count_by_status(2),
             'total_app' => $this->comments->count_by_status(0),
-            'all_comm' => $all_comments,
+            'all_comm_show' => $all_comments,
         ));
     }
     

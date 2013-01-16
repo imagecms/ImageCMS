@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Categories extends MY_Controller {
+class Categories extends BaseAdminController {
 
     private $temp_cats = array();
     protected $multi = false;
@@ -29,7 +29,7 @@ class Categories extends MY_Controller {
 
     // Display create category form
     function create_form($parent_id = NULL) {
-        cp_check_perm('category_create');
+        //cp_check_perm('category_create');
 
         $this->template->assign('tree', $this->lib_category->build());
         $this->template->assign('parent_id', $parent_id);
@@ -64,7 +64,8 @@ class Categories extends MY_Controller {
     function cat_list() {
         $cats = array();
 
-        $tree = $this->lib_category->build();
+        //$tree = $this->lib_category->build();
+        $tree = $this->lib_category->buildForAdmin();
 
         $cats = $this->sub_cats($tree);
 
@@ -121,7 +122,7 @@ class Categories extends MY_Controller {
      */
 
     function create($action, $cat_id = 0) {
-        cp_check_perm('category_create');
+        //cp_check_perm('category_create');
 
         $this->form_validation->set_rules('name', lang('ac_val_title'), 'trim|required|min_length[1]|max_length[160]');
         $this->form_validation->set_rules('url', lang('ac_val_cat_url'), 'trim|min_length[2]|max_length[300]|alpha_dash');
@@ -136,8 +137,9 @@ class Categories extends MY_Controller {
         $this->form_validation->set_rules('page_tpl', lang('ac_val_page_tpl'), 'trim|max_length[50]');
         $this->form_validation->set_rules('main_tpl', lang('ac_val_main_tpl'), 'trim|max_length[50]');
         $this->form_validation->set_rules('per_page', lang('ac_val_per_page'), 'required|trim|integer|max_length[9]|min_length[1]|is_natural_no_zero');
-
-        ($hook = get_hook('admin_create_cat_set_rules')) ? eval($hook) : NULL;
+        
+        $groupId = (int)$this->input->post('category_field_group');
+        ($hook = get_hook('cfcm_set_rules')) ? eval($hook) : NULL;
 
         if ($this->form_validation->run($this) == FALSE) {
             ($hook = get_hook('admin_create_cat_val_failed')) ? eval($hook) : NULL;
@@ -221,6 +223,8 @@ class Categories extends MY_Controller {
                 case 'update':
                     ($hook = get_hook('admin_update_category')) ? eval($hook) : NULL;
                     $this->cms_admin->update_category($data, $cat_id);
+                    
+                    $this->load->module('cfcm')->save_item_data($cat_id, 'category');
 
                     $this->lib_category->clear_cache();
 
@@ -271,7 +275,7 @@ class Categories extends MY_Controller {
     }
 
     function fast_add($action = '') {
-        cp_check_perm('category_create');
+        //cp_check_perm('category_create');
 
         ($hook = get_hook('admin_fast_cat_add')) ? eval($hook) : NULL;
 
@@ -370,7 +374,7 @@ class Categories extends MY_Controller {
      * @access public
      */
     function edit($id) {
-        cp_check_perm('category_edit');
+        //cp_check_perm('category_edit');
 
         $cat = $this->cms_admin->get_category($id);
 
@@ -500,7 +504,7 @@ class Categories extends MY_Controller {
      * @access public
      */
     function delete() {
-        cp_check_perm('category_delete');
+        //cp_check_perm('category_delete');
 
 
         foreach ($_POST['ids'] as $p) {
