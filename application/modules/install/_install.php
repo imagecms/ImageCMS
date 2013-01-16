@@ -150,7 +150,7 @@ class Install extends MY_Controller {
             $this->form_validation->set_rules('db_user', 'Имя пользователя БД', 'required');
             //$this->form_validation->set_rules('db_pass', 'Пароль БД', 'required');
             $this->form_validation->set_rules('db_name', 'Имя БД', 'required');
-            $this->form_validation->set_rules('admin_login', 'Логин администратора', 'required|min_length[4]');
+//            $this->form_validation->set_rules('admin_login', 'Логин администратора', 'required|min_length[4]');
             $this->form_validation->set_rules('admin_pass', 'Пароль администратора', 'required|min_length[5]');
             $this->form_validation->set_rules('admin_mail', 'Почта администратра', 'required|valid_email');
             $this->form_validation->set_rules('lang_sel', 'Язык', 'required');
@@ -211,7 +211,8 @@ class Install extends MY_Controller {
 
         // Insert sql data
 
-        if ($this->input->post('product_samples') == "on") {
+  //      if ($this->input->post('product_samples') == "on") {
+        if (1){
             $this->useSqlFile = 'sqlShop.sql';
         }
         mysql_query('SET NAMES `utf8`;', $link);
@@ -305,7 +306,7 @@ class Install extends MY_Controller {
         $admin_created = date('Y-m-d H:i:s', time());
 
         $sql = "INSERT INTO `users` (`id`, `role_id`, `username`, `password`, `email`, `banned`, `ban_reason`, `newpass`, `newpass_key`, `newpass_time`, `last_ip`, `last_login`, `created`, `modified`)
-                        VALUES (1, 10, '$admin_login', '$admin_pass', '$admin_mail', 0, NULL, NULL, NULL, NULL, '127.0.0.1', '0000-00-00 00:00:00', '$admin_created', '0000-00-00 00:00:00'); ";
+                        VALUES (1, 10, 'Administrator', '$admin_pass', '$admin_mail', 0, NULL, NULL, NULL, NULL, '127.0.0.1', '0000-00-00 00:00:00', '$admin_created', '0000-00-00 00:00:00'); ";
 
         mysql_query($sql, $link);
 
