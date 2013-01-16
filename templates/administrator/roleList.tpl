@@ -65,7 +65,7 @@
                                         </td>
                                         <td><a class="pjax" href="/admin/rbac/roleEdit/{echo $item->id}">{echo $item->id}</a></td>
                                         <td>
-                                            <a class="pjax" href="/admin/rbac/roleEdit/{echo $item->id}">{echo ShopCore::encode($item->alt_name)}</a>
+                                            <a class="pjax" href="/admin/rbac/roleEdit/{echo $item->id}">{echo $item->alt_name}</a>
                                         </td>
                                         <td>
                                             {echo $item->description}
