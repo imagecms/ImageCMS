@@ -175,6 +175,8 @@ class Admin extends BaseAdminController {
             $user = $this->input->post('username');
             $email = $this->input->post('email');
             $role = $this->input->post('role');
+//            var_dump($role);
+//            exit();
 
             // check user mail
             if ($this->user2->check_email($email)->num_rows() > 0) {
@@ -186,9 +188,9 @@ class Admin extends BaseAdminController {
                 //cp_check_perm('user_create');
             }
 
-            if (!check_perm('user_create_all_roles')) {
-                $role = $this->dx_auth->get_role_id();
-            }
+//            if (!check_perm('user_create_all_roles')) {
+//                $role = $this->dx_auth->get_role_id();
+//            }
 
             $this->load->helper('string');
             if ($val->run() AND $user_info = $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'), '', random_string('alnum', 5), $this->input->post('phone'))) {
