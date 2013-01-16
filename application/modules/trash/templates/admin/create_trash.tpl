@@ -48,18 +48,20 @@
                                                         </span>
                                                         Url 
                                                     </span>
-                                                    <span class="frame_label no_connection m-r_15">
-                                                        <span class="niceRadio b_n">
-                                                            <input type="radio" name="redirect_type" value="product" />
+                                                    {if count($CI->db->get_where('components', array('name' => 'shop'))->row()) > 0}
+                                                        <span class="frame_label no_connection m-r_15">
+                                                            <span class="niceRadio b_n">
+                                                                <input type="radio" name="redirect_type" value="product" />
+                                                            </span>
+                                                            Товар
                                                         </span>
-                                                        Товар
-                                                    </span>
-                                                    <span class="frame_label no_connection m-r_15">
-                                                        <span class="niceRadio b_n">
-                                                            <input type="radio" name="redirect_type" value="category" />
+                                                        <span class="frame_label no_connection m-r_15">
+                                                            <span class="niceRadio b_n">
+                                                                <input type="radio" name="redirect_type" value="category" />
+                                                            </span>
+                                                            Категория
                                                         </span>
-                                                        Категория
-                                                    </span>
+                                                    {/if}
                                                     <span class="frame_label no_connection m-r_15">
                                                         <span class="niceRadio b_n">
                                                             <input type="radio" name="redirect_type" value="basecategory" />
@@ -74,7 +76,7 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="control-group">
                                                 <label class="control-label" for="type">Вид</label>
                                                 <div class="controls">
@@ -99,29 +101,31 @@
                                                     <input type="text" name="redirect_url" id="RedirectUrl" value="" autocomplete="off"/>
                                                 </div>
                                             </div>
-
-                                            <div class="control-group">
-                                                <label class="control-label" for="products">Продукты</label>
-                                                <div class="controls">
-                                                    <select id="inputMainC" value="" name="products">
-                                                        {foreach $products as $item}
-                                                            <option value="{echo $item->id}">{echo $item->name}</option> 
-                                                        {/foreach}
-                                                    </select>
+                                                    
+                                            {if count($CI->db->get_where('components', array('name' => 'shop'))->row()) > 0}
+                                                <div class="control-group">
+                                                    <label class="control-label" for="products">Продукты</label>
+                                                    <div class="controls">
+                                                        <select id="inputMainC" value="" name="products">
+                                                            {foreach $products as $item}
+                                                                <option value="{echo $item->id}">{echo $item->name}</option> 
+                                                            {/foreach}
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="control-group">
-                                                <label class="control-label" for="products">Категории</label>
-                                                <div class="controls">
-                                                    <select id="inputMainC" value="" name="category">
-                                                        {foreach $category as $item}
-                                                            <option value="{echo $item->id}">{echo $item->name}</option> 
-                                                        {/foreach}
-                                                    </select>
+                                                <div class="control-group">
+                                                    <label class="control-label" for="products">Категории</label>
+                                                    <div class="controls">
+                                                        <select id="inputMainC" value="" name="category">
+                                                            {foreach $category as $item}
+                                                                <option value="{echo $item->id}">{echo $item->name}</option> 
+                                                            {/foreach}
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                            </div>
-
+                                            {/if}
+                                            
                                             <div class="control-group">
                                                 <label class="control-label" for="products">Категории Базы</label>
                                                 <div class="controls">
