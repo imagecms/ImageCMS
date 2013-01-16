@@ -173,7 +173,7 @@
                     {else:}
                     <tr>
                         <td colspan="6">
-                            <div class="alert alert-info" style="margin: 18px;">По Вашему запросу ничгео не найдено</div>
+                            <div class="alert alert-info" style="margin: 18px;">По Вашему запросу ничего не найдено</div>
                         </td>
                     </tr>
                     {/if}
