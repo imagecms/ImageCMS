@@ -760,6 +760,7 @@ $(document).ready(function() {
         }
         ;
         var pid = $this.attr('data-pid');
+        var discount = $this.attr('discount');
         var img = $this.attr('data-img');
         var pr = $this.attr('data-pr');
         var spr = $this.attr('data-spr');
@@ -768,15 +769,23 @@ $(document).ready(function() {
         var cs = $this.attr('data-cs');
         var csMain = $this.attr('data-csMain');
         var st = $this.attr('data-st');
-        var pp = $this.attr('data-pp');        
+        var pp = $this.attr('data-pp');  
         if (img != '') {
             $('#mim' + pid).addClass('smallpimagev');
             $('#vim' + pid).attr('src', '/uploads/shop/' + img).removeClass().attr('alt', vname);
             $('#mim' + pid).attr('src', '/uploads/shop/' + pid + '_main.jpg')
             $('#varianBPhoto').attr('href', '/uploads/shop/' + img);
+            
+        }
+        if(discount){
+            $('#pricem' + pid).html((pr-pr/100*discount) + "&nbsp;<sub>" + cs + "</sub>");
+            $('#pricem76').html((pr-pr/100*discount));
+        }else{
+            $('#pricem' + pid).html(pr + "&nbsp;<sub>" + cs + "</sub>");
+            $('#pricem76').html(pr);
         }
         $('#code' + pid).html('Код ' + vnumber);
-        $('#pricem' + pid).html(pr + "&nbsp;<sub>" + cs + "</sub>");
+        
         $('#priceB' + pid).html(pr + ' ' + csMain);
         $('#prices' + pid).html(spr + ' ' + cs);
         $('#buy' + pid).attr('data-varid', vid);
