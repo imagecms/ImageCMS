@@ -63,7 +63,7 @@
                 </div>
 
                 <div class="fancy c_b" style="border: none; display: none;" id="change_user_fields">
-                    <form action="{shop_url('profile')}" method="post" name="editForm" style="padding-left: 0;">
+                    <form action="{shop_url('profile')}" method="post" name="editForms" style="padding-left: 0;">
                         <div id="change_info_edit">
 
                             <h3>{lang('s_edit_personal_information')}</h3>
@@ -145,16 +145,13 @@
                 </span>
                 {if count($goodsinspy)>0}
                     <table cellspacing="0">
-                        <colgroup>
-                            <col span="1" width="100">
-                        </colgroup>
                         <thead>
                             <tr>
                                 <th>{lang('s_to_falitem_number')}</th>
-                                <th style="width:300px;">{lang('s_to_falo_product_name')}</th>
-                                <th style="width:100px;">Разница</th>
-                                <th style="width:100px;">Разница в процентах</th>
-                                <th style="width:100px;">Отписатся</th>
+                                <th>{lang('s_to_falo_product_name')}</th>
+                                <th>Разница</th>
+                                <th>Разница в процентах</th>
+                                <th>Отписатся</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -198,5 +195,3 @@
         });
     </script>
 {/literal}
-
-

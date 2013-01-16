@@ -7,13 +7,14 @@
         <meta name="keywords" content="{$site_keywords}" /> 
         <meta name="generator" content="ImageCMS" />
         {$meta_noindex}
+        {$canonical}
         <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}css/style.css" media="all" />
         <!--
         <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/jquery.fancybox-1.3.4.css" media="all" />
         -->
 
         <link rel="stylesheet" href="{$SHOP_THEME}/js/fancybox/source/jquery.fancybox.css?v=2.1.0" type="text/css" media="screen" />
-        <link rel="stylesheet" href="{$SHOP_THEME}/css/smoothness/jquery-ui-1.9.1.custom.min.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="{$SHOP_THEME}css/smoothness/jquery-ui-1.9.1.custom.min.css" type="text/css" media="screen" />
 
         <link rel="icon" type="image/x-icon" href="{$SHOP_THEME}images/favicon.png"/>
         <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/ie8_7_6.css" /><![endif]-->
@@ -28,13 +29,8 @@
         <!--
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.fancybox-1.3.4.pack.js" ></script>
         -->
-
-
         <script type="text/javascript" src="{$SHOP_THEME}/js/fancybox/source/jquery.fancybox.js?v=2.1.0"></script>
-
-
         <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.form.js"></script>
-        <script type="text/javascript" src="{$SHOP_THEME}/js/imagecms.filter.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/scripts.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/shop.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}js/jquery.validate.js"></script>
@@ -60,7 +56,7 @@
             </div><!-- top -->
             <div class="header center">
                 <a href="{$BASE_URL}" class="logo">
-                    <img src="{$SHOP_THEME}/images/imagecms.png">
+                    <img src="{$SHOP_THEME}images/imagecms.png">
                 </a>
                 <div class="frame_form_search">
                     <form name="search" class="clearfix" action="{shop_url('search')}" method="get" id="autocomlete">
@@ -71,13 +67,13 @@
                 </div>
                         
                 <div class="phone">
-                    <address>(095)<span> 555-55-55</span></address>
+                    <address>(095)<span><span class="d_n">&minus;</span> 555-55-55</span></address>
                     <span class="js showCallback">{lang('s_coll_order')}</span>
                 </div>
                 
                 <ul class="user_menu">
                     <!--    Show callback's form    -->
-                    {if count(get_currencies())>2}
+                    {if !count(get_currencies())}
                         <li class="p-l_0">
                             <form action="" method="post" name="currencyChangeForm" id="currencyChangeForm">
                                 {lang('s_currency')}: <select class="changeCurrency" name="setCurrency" >
@@ -106,13 +102,8 @@
                     <!--    Products in compare list for Header    -->
                 </ul>
             </div><!-- header -->
-
-            <div class="main_menu center">
-                <ul class="clearfix">{echo ShopCore::app()->SCategoryTree->ul()}</ul>
-            </div><!-- main_menu -->
-
+            {echo ShopCore::app()->SCategoryTree->ul()}
             {$shop_content}
-
             <div class="hfooter"></div>
         </div>
         <div class="footer">
@@ -136,7 +127,7 @@
                 <ul class="contacts f_l">
                     <li>
                         <span class="b">{lang('s_tel')}:</span>
-                        <span>(095) 555-55-55</span>
+                        <span>(095) <span class="d_n">&minus; </span>555-55-55</span>
                     </li>
                     <li>
                         <span class="b">{lang('s_email')}:</span>

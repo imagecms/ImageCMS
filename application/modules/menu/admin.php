@@ -6,7 +6,7 @@ if (!defined('BASEPATH'))
 /**
  * Image CMS
  */
-class Admin extends MY_Controller {
+class Admin extends BaseAdminController {
 
     private $root_menu = array();
     private $sub_menu = array();
@@ -76,8 +76,15 @@ class Admin extends MY_Controller {
             $menu = $this->db->where('id', $id)->get('menus')->row_array();
             $cats = $this->lib_category->build();
             $pages = $this->get_pages(0, 0, 'controller');
-            $query = $this->db->get('roles');
-            $this->template->assign('roles', $query->result_array());
+            //$query = $this->db->get('shop_rbac_roles');
+
+            $this->db->select("shop_rbac_roles.*", FALSE);
+            $this->db->select("shop_rbac_roles_i18n.alt_name", FALSE);
+            $this->db->where('locale', BaseAdminController::getCurrentLocale());
+            $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles_i18n.id = shop_rbac_roles.id");
+            $role = $this->db->get('shop_rbac_roles')->result_array();
+
+            $this->template->assign('roles', $role);
             $this->template->assign('modules', $this->_load_module_list());
             $this->template->assign('cats', $cats);
             $this->template->assign('menu', $menu);
@@ -277,7 +284,7 @@ class Admin extends MY_Controller {
      * @return bool
      */
     function delete_item($id = null) {
-        cp_check_perm('menu_edit');
+        //cp_check_perm('menu_edit');
         if ($this->input->post('ids')) {
             $id = $this->input->post('ids');
             foreach ($id as $i) {
@@ -349,15 +356,22 @@ class Admin extends MY_Controller {
      * Display edit item window
      */
     function edit_item($item_id) {
-        cp_check_perm('menu_edit');
+        //cp_check_perm('menu_edit');
         if (empty($_POST)) {
             $item = $this->db->where('id', $item_id)->get('menus_data')->row_array();
             $parents = $this->db->where('menu_id', $item['menu_id'])->get('menus_data')->result_array();
             $menu = $this->db->where('id', $item['menu_id'])->get('menus')->row_array();
             $cats = $this->lib_category->build();
             $pages = $this->get_pages(0, 0, 'controller');
-            $query = $this->db->get('roles');
-            $this->template->assign('roles', $query->result_array());
+
+            $this->db->select("shop_rbac_roles.*", FALSE);
+            $this->db->select("shop_rbac_roles_i18n.alt_name", FALSE);
+            $this->db->where('locale', BaseAdminController::getCurrentLocale());
+            $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles_i18n.id = shop_rbac_roles.id");
+            $role = $this->db->get('shop_rbac_roles')->result_array();
+
+            //$query = $this->db->get('shop_rbac_roles');
+            $this->template->assign('roles', $role);
             $this->template->assign('modules', $this->_load_module_list());
             $this->template->assign('cats', $cats);
             $this->template->assign('menu', $menu);
@@ -543,7 +557,7 @@ class Admin extends MY_Controller {
      */
     function insert_menu_item() {
 
-        cp_check_perm('menu_edit');
+        //cp_check_perm('menu_edit');
 
         $roles = $_POST['roles'];
         if ($roles == NULL) {
@@ -664,7 +678,7 @@ class Admin extends MY_Controller {
     }
 
     function save_positions() {
-        cp_check_perm('menu_edit');
+        //cp_check_perm('menu_edit');
 
         foreach ($_POST['positions'] as $k => $v) {
             $k = $k + 1;
@@ -679,7 +693,7 @@ class Admin extends MY_Controller {
      * @access public
      */
     function create_menu() {
-        cp_check_perm('menu_create');
+        //cp_check_perm('menu_create');
         if ($_POST['menu_name'] == NULL) {
             showMessage(lang('a_menu_field_emp'), '', 'r');
 
@@ -717,15 +731,14 @@ class Admin extends MY_Controller {
     }
 
     function edit_menu($id) {
-        cp_check_perm('menu_edit');
+        //cp_check_perm('menu_edit');
         $menu_data = $this->menu_model->get_menu($id);
         $this->template->add_array($menu_data);
         $this->display_tpl('edit_menu');
     }
 
     function update_menu($id) {
-        cp_check_perm('menu_edit');
-
+        //cp_check_perm('menu_edit');
 //        if ($_POST['menu_name'] == NULL) {
 //            $title = lang('a_fail');
 //            $message = lang('a_menu_field_emp');
@@ -795,7 +808,7 @@ class Admin extends MY_Controller {
     }
 
     function delete_menu($name = null) {
-        cp_check_perm('menu_delete');
+        //cp_check_perm('menu_delete');
         if ($name == null) {
             $name = $this->input->post('ids');
             foreach ($name as $n) {
@@ -837,7 +850,7 @@ class Admin extends MY_Controller {
     }
 
     function create_tpl() {
-        cp_check_perm('menu_create');
+        //cp_check_perm('menu_create');
 
         $this->display_tpl('create_menu');
     }
@@ -1011,7 +1024,7 @@ class Admin extends MY_Controller {
     }
 
     function translate_item($id) {
-        cp_check_perm('menu_edit');
+        //cp_check_perm('menu_edit');
 
         $langs = $this->_get_langs();
 

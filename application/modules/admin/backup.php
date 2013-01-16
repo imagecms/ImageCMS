@@ -9,7 +9,7 @@ if (!defined('BASEPATH'))
  * Backup Class
  *
  */
-class Backup extends MY_Controller {
+class Backup extends BaseAdminController {
 
     public function __construct() {
         parent::__construct();
@@ -20,7 +20,7 @@ class Backup extends MY_Controller {
         $this->load->library('lib_admin');
         $this->lib_admin->init_settings();
 
-        cp_check_perm('backup_create');
+        //cp_check_perm('backup_create');
     }
 
     public function index() {
@@ -33,6 +33,11 @@ class Backup extends MY_Controller {
 
     // Create backup file
     public function create() {
+        if (!file_exists('./application/backups/')) {
+            mkdir('./application/backups/');
+            chmod('./application/backups/', 0777);
+        }
+        
         if (!is_really_writable('./application/backups')) {
             showMessage(lang('ac_msg_dir'), false, 'r');
             exit;

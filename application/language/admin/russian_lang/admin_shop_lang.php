@@ -8,6 +8,8 @@ $lang['a_info_buyer_ch_stat'] = 'Notify the buyer of the status change';
 $lang['a_info_buyer_ch_stat'] = 'Уведомлять покупателя о смене статуса';
 
 $lang['a_s_collback_list_th_s'] = 'Просмотр тем callback\'ов';
+$lang['a_s_discount_roles'] = 'Не существует переведенных пользователей';
+$lang['a_s_image_does_exist_s'] = 'Изображения не существует.';
 $lang['a_s_collback_edit_th_s'] = 'Редактирование темы callback\'а';
 $lang['a_s_dusc_parem_comulativ_fis'] = 'Список накопительных скидок';
 $lang['a_exp_users_systeam_failed'] = 'Вы ничего не выбрали';
@@ -154,7 +156,7 @@ $lang['a_payment_bank_mfi'] = 'МФО банку';
 $lang['a_payment_curen'] = 'Расчетный счет';
 $lang['a_payment_help_3'] = 'Целое число. Максимальная длина 6 символов.';
 $lang['a_payment_help_2'] = 'Целое число. Максимальная длина 14 символов.';
-$lang['a_payment_help_1'] = 'Целое число. Максимальная длина 9 символов.';
+$lang['a_payment_help_1'] = 'Целое число. Максимальная длина 10 символов.';
 $lang['a_payment_recip'] = 'Получатель';
 $lang['a_payment_identif_code'] = 'Идентификационный код';
 $lang['a_payment_delete_3'] = 'Удалить способ оплаты?';

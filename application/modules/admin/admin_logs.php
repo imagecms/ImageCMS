@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Admin_logs extends MY_Controller {
+class Admin_logs extends BaseAdminController {
 
     public $per_page = 25;
 
@@ -17,7 +17,7 @@ class Admin_logs extends MY_Controller {
         $this->load->library('pagination');
         $this->lib_admin->init_settings();
 
-        cp_check_perm('logs_view');
+        //cp_check_perm('logs_view');
     }
 
     public function index($offset = 0) {

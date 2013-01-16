@@ -3,7 +3,8 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Pages extends MY_Controller {
+//class Pages extends MY_Controller {
+class Pages extends BaseAdminController {
 
     public $_Config = array(
         'per_page' => 20 // Show news per one page
@@ -13,7 +14,7 @@ class Pages extends MY_Controller {
         parent::__construct();
 
         $this->load->library('DX_Auth');
-        admin_or_redirect();
+        //admin_or_redirect();
 
         $this->load->library('lib_admin');
         $this->load->library('lib_category');
@@ -23,10 +24,13 @@ class Pages extends MY_Controller {
     }
 
     function index($params = array()) {
-        cp_check_perm('page_create');
-
+        ////cp_check_perm('page_create');
+        
         // Set roles
-        $query = $this->db->get('roles');
+        $locale = $this->cms_admin->get_default_lang();
+        $locale = $locale['identif'];
+        
+        $query = $this->db->query("SELECT * FROM `shop_rbac_roles` JOIN `shop_rbac_roles_i18n` ON shop_rbac_roles.id=shop_rbac_roles_i18n.id WHERE `locale`='".$locale."'");
         $this->template->assign('roles', $query->result_array());
 
         $uri_segs = $this->uri->uri_to_assoc(2);
@@ -106,7 +110,7 @@ class Pages extends MY_Controller {
      */
     public function add() {
 
-        cp_check_perm('page_create');
+        //cp_check_perm('page_create');
 
         $this->form_validation->set_rules('page_title', lang('ac_val_t'), 'trim|required|min_length[1]|max_length[500]');
         $this->form_validation->set_rules('page_url', lang('ac_val_url'), 'alpha_dash');
@@ -119,8 +123,10 @@ class Pages extends MY_Controller {
         $this->form_validation->set_rules('publish_time', lang('ac_val_pub_time'), 'required|valid_time');
 
         $this->form_validation->set_rules('main_tpl', lang('ac_main_tpl'), 'trim|max_length[50]|min_length[2]');
-
-        ($hook = get_hook('admin_page_add_set_rules')) ? eval($hook) : NULL;
+        
+        $groupId = (int)$this->input->post('cfcm_use_group');
+        
+        ($hook = get_hook('cfcm_set_rules')) ? eval($hook) : NULL;
 
         if ($this->form_validation->run($this) == FALSE) {
             ($hook = get_hook('admin_page_add_val_failed')) ? eval($hook) : NULL;
@@ -128,10 +134,7 @@ class Pages extends MY_Controller {
         } else {
             // load site settings
             $settings = $this->cms_admin->get_settings();
-			
-			
-			
-		
+	
             $def_lang = $this->cms_admin->get_default_lang();
 
             if ($this->input->post('page_url') == '' or $this->input->post('page_url') == NULL) {
@@ -223,11 +226,14 @@ class Pages extends MY_Controller {
                 'lang' => $def_lang['id']
             );
 
-            ($hook = get_hook('admin_page_insert')) ? eval($hook) : NULL;
+            
+            //($hook = get_hook('admin_page_insert')) ? eval($hook) : NULL;
 
             $page_id = $this->cms_admin->add_page($data);
 
             $data['id'] = $page_id;
+            
+            $this->load->module('cfcm')->save_item_data($page_id, 'page');
 
             $this->on_page_add($data);
 
@@ -289,7 +295,7 @@ class Pages extends MY_Controller {
      * @access public
      */
     function edit($page_id, $lang = 0) {
-        cp_check_perm('page_edit');
+        //cp_check_perm('page_edit');
 
         if ($this->cms_admin->get_page($page_id) == FALSE) {
             showMessage(lang('ac_page') . $page_id . lang('ac_not_found'), false, 'r');
@@ -333,7 +339,11 @@ class Pages extends MY_Controller {
             $page_roles = $query->row_array();
             $page_roles = unserialize($page_roles['data']);
 
-            $g_query = $this->db->get('roles');
+            // Set roles
+            $locale = $this->cms_admin->get_default_lang();
+            $locale = $locale['identif'];
+        
+            $g_query = $this->db->query("SELECT * FROM `shop_rbac_roles` JOIN `shop_rbac_roles_i18n` ON shop_rbac_roles.id=shop_rbac_roles_i18n.id WHERE `locale`='".$locale."'");
             $roles = $g_query->result_array();
 
             if ($roles != FALSE) {
@@ -432,7 +442,7 @@ class Pages extends MY_Controller {
      */
     function update($page_id) {
 
-        cp_check_perm('page_edit');
+        //cp_check_perm('page_edit');
 
         $this->form_validation->set_rules('page_title', lang('ac_val_t'), 'trim|required|min_length[1]|max_length[500]');
         $this->form_validation->set_rules('page_url', lang('ac_val_url'), 'alpha_dash');
@@ -447,6 +457,10 @@ class Pages extends MY_Controller {
         $this->form_validation->set_rules('publish_time', lang('ac_val_pub_time'), 'required|valid_time');
 
         ($hook = get_hook('admin_page_update_set_rules')) ? eval($hook) : NULL;
+        
+        $groupId = (int)$this->input->post('cfcm_use_group');
+        
+        ($hook = get_hook('cfcm_set_rules')) ? eval($hook) : NULL;
 
         if ($this->form_validation->run($this) == FALSE) {
             ($hook = get_hook('admin_page_update_val_failed')) ? eval($hook) : NULL;
@@ -553,8 +567,10 @@ class Pages extends MY_Controller {
 
             $data['id'] = $page_id;
             $this->on_page_update($data);
+            
+            $this->load->module('cfcm')->save_item_data($page_id, 'page');
 
-            ($hook = get_hook('admin_page_update')) ? eval($hook) : NULL;
+            //($hook = get_hook('admin_page_update')) ? eval($hook) : NULL;
 
             if ($this->cms_admin->update_page($page_id, $data) >= 1) {
                 $this->lib_admin->log(
@@ -584,7 +600,7 @@ class Pages extends MY_Controller {
      * @access public
      */
     function delete($page_id, $show_messages = TRUE) {
-        cp_check_perm('page_delete');
+        //cp_check_perm('page_delete');
 
         $settings = $this->cms_admin->get_settings();
 
@@ -639,7 +655,7 @@ class Pages extends MY_Controller {
     }
 
     function save_positions() {
-        cp_check_perm('page_edit');
+        //cp_check_perm('page_edit');
 
         ($hook = get_hook('admin_update_page_positions')) ? eval($hook) : NULL;
         
@@ -657,7 +673,7 @@ class Pages extends MY_Controller {
     }
 
     function delete_pages() {
-        cp_check_perm('page_delete');
+        //cp_check_perm('page_delete');
 
         $ids = $_POST['pages'];
 
@@ -675,7 +691,7 @@ class Pages extends MY_Controller {
     }
 
     function move_pages($action) {
-        cp_check_perm('page_edit');
+        //cp_check_perm('page_edit');
 
         $ids = $_POST['pages'];
 
@@ -847,7 +863,7 @@ class Pages extends MY_Controller {
      * Change page post_status
      */
     function ajax_change_status($page_id) {
-        cp_check_perm('page_edit');
+        //cp_check_perm('page_edit');
 
         $page = $this->cms_admin->get_page($page_id);
 

@@ -2,8 +2,7 @@
 
 class Lib_init {
 
-	public function Lib_init()
-	{
+	public function __construct() {
         $CI =& get_instance();
 
         log_message('debug', "Lib_init Class Initialized");

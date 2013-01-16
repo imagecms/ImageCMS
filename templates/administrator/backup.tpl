@@ -78,9 +78,9 @@
                                         </span>
                                         <span class="frame_label no_connection">
                                             <span class="niceRadio b_n">
-                                                <input type="radio" name="file_type" value="txt" />
+                                                <input type="radio" name="file_type" value="sql" />
                                             </span>
-                                            txt
+                                            sql
                                         </span>
                                     </div>
                                 </div> 

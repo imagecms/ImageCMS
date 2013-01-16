@@ -1,5 +1,20 @@
 //temporary
+function ChangeBannerActive(el, bannerId)
+{
+    var currentActiveStatus = $(el).attr('rel');
 
+    $.post('/admin/components/run/shop/banners/changeActive/', {bannerId:bannerId,status:currentActiveStatus}, function(data){
+        $('.notifications').append(data)
+        if(currentActiveStatus=='true')
+            {
+                $(el).addClass('disable_tovar').attr('rel',false);
+                    
+        }else{
+                $(el).removeClass('disable_tovar').attr('rel',true);
+            }
+    
+    });
+}
 var shopAdminMenuCache = false;
 var base_url = 'http://p4/';
 
@@ -204,7 +219,9 @@ function initShopSearch() {
 
 function initElRTE()
 {
-
+    elRTE.prototype.options.toolbars.custom = [
+         "copypaste","undoredo","elfinder","style","alignment","direction","colors","format","indent","lists","links","elements","media","tables","fullscreen"
+    ];    
     var opts = {
         //lang         : 'ru',   // set your language
         styleWithCSS: true,
@@ -216,6 +233,46 @@ function initElRTE()
             // create new elFinder
             dialog = $('<div />').dialogelfinder({
                 url: '/admin/elfinder_init',
+                lang: 'ru',
+            commands: [
+                'open', 'reload', 'home', 'up', 'back', 'forward', 'getfile', 'quicklook',
+                'download', 'rm', 'rename', 'mkdir', 'mkfile', 'upload',  'edit', 'preview', 'extract', 'archive', 'search', 'info', 'view', 'help','sort'
+            ],
+            uiOptions: {
+            // toolbar configuration
+            toolbar: [
+                ['back', 'forward'],
+                ['reload'],
+                ['home', 'up'],
+                ['mkdir', 'mkfile', 'upload'],
+                //        		['mkfile', 'upload'],
+                //        		['open', 'download', 'getfile'],
+                ['download'],
+                ['info'],
+                ['quicklook'],
+                ['rm'],
+                //        		['duplicate', 'rename', 'edit', 'resize'],
+                ['duplicate', 'rename', 'edit'],
+                ['extract', 'archive'],
+                ['view', 'sort'],
+                ['help'],
+                ['search']
+            ],
+        
+            },
+                    contextmenu: {
+            // navbarfolder menu
+            //        	navbar : ['open', '|', 'copy', 'cut', 'paste', 'duplicate', '|', 'rm', '|', 'info'],
+
+            // current directory menu
+            //        	cwd    : ['reload', 'back', '|', 'upload', 'mkdir', 'mkfile', 'paste', '|', 'info'],
+
+            // current directory file menu
+            files: [
+                'edit', 'rename', '|', 'download', '|', 
+                'rm', '|',  'archive', 'extract', '|', 'info'
+            ]
+            },
                 commandsOptions: {
                     getfile: {
                         oncomplete: 'destroy' // close/hide elFinder
@@ -223,6 +280,9 @@ function initElRTE()
                 },
                 getFileCallback: function(file) {
                     callback('/' + file.path);
+                },
+                customData : {
+                    cms_token : elfToken
                 }
                 //			        getFileCallback: callback // pass callback to file manager
             });
@@ -231,7 +291,7 @@ function initElRTE()
             //			      dialog.dialogelfinder('open')
             //			    }
         },
-        toolbar: 'maxi'
+        toolbar: 'custom'
     };
     $('textarea.elRTE').each(
             function() {
@@ -243,21 +303,58 @@ function initElRTE()
 }
 
 var dlg = false;
-function elFinderPopup(type, id)
+function elFinderPopup(type, id, path)
 {
+    if (typeof path == 'undefined')
+        path = '';
     //todo: create diferent browsers (check 'type' variable)
     if (!dlg)
     {
         dlg = $('#elFinder').dialogelfinder({
             url: '/admin/elfinder_init',
             lang: 'ru',
+            commands: [
+                'open', 'reload', 'home', 'up', 'back', 'forward', 'getfile', 'quicklook',
+                'download', 'rm', 'rename', 'mkdir', 'mkfile', 'upload',  'edit', 'preview', 'extract', 'archive', 'search', 'info', 'view', 'help','sort'
+            ],
+            uiOptions: {
+            // toolbar configuration
+                toolbar: [
+                    ['back', 'forward'],
+                    ['reload'],
+                    ['home', 'up'],
+                    ['mkdir', 'mkfile', 'upload'],
+                    //        		['mkfile', 'upload'],
+                    //        		['open', 'download', 'getfile'],
+                    ['download'],
+                    ['info'],
+                    ['quicklook'],
+                    ['rm'],
+                    //        		['duplicate', 'rename', 'edit', 'resize'],
+                    ['duplicate', 'rename', 'edit'],
+                    ['extract', 'archive'],
+                    ['view', 'sort'],
+                    ['help'],
+                    ['search']
+                ]
+        
+            },
             commandsOptions: {
                 getfile: {
                     oncomplete: 'close' // close/hide elFinder
                 }
             },
             getFileCallback: function(file) {
-                $('#' + id).val('/' + file.path);
+                if (path != '')
+                {
+                    var str = file.path;
+                    var m = str.match('[\\\\ /]');
+                    console.log(m)
+                    file.path = file.path.substr(m.index+1);
+                    if (path[0] != '/')
+                        path = '/'+path;
+                }
+                $('#' + id).val(path+'/' + file.path);
                 if (type == 'image' && $('#' + id + '-preview').length)
                 {
                     var img = document.createElement('img');
@@ -265,6 +362,23 @@ function elFinderPopup(type, id)
                     img.className = "img-polaroid";
                     $('#' + id + '-preview').html(img);
                 }
+            },
+            contextmenu: {
+            // navbarfolder menu
+            //        	navbar : ['open', '|', 'copy', 'cut', 'paste', 'duplicate', '|', 'rm', '|', 'info'],
+
+            // current directory menu
+            //        	cwd    : ['reload', 'back', '|', 'upload', 'mkdir', 'mkfile', 'paste', '|', 'info'],
+
+            // current directory file menu
+            files: [
+                'edit', 'rename', '|', 'download', '|', 
+                'rm', '|',  'archive', 'extract', '|', 'info'
+            ]
+        },
+        customData : {
+                cms_token : elfToken,
+                path:path
             }
         });
     }
@@ -282,9 +396,7 @@ function elFinderTPLEd()
         lang: 'ru',
         commands : [
             'open', 'reload', 'home', 'up', 'back', 'forward', 'getfile', 'quicklook',
-            'download', 'rm', 'duplicate', 'rename', 'mkdir', 'mkfile', 'upload', 'copy',
-            'cut', 'paste', 'edit', 'extract', 'archive', 'search', 'info', 'view', 'help',
-            'resize', 'sort'
+            'download', 'rm', 'rename', 'mkdir', 'mkfile', 'upload',  'edit', 'preview', 'extract', 'archive', 'search', 'info', 'view', 'help','sort'
         ],
         commandsOptions: {
         },
@@ -300,10 +412,9 @@ function elFinderTPLEd()
                 ['download'],
                 ['info'],
                 //        		['quicklook'],
-                ['copy', 'cut', 'paste'],
                 ['rm'],
                 //        		['duplicate', 'rename', 'edit', 'resize'],
-                ['duplicate', 'rename', 'edit'],
+                ['rename', 'edit'],
                 ['extract', 'archive'],
                 ['view', 'sort'],
                 ['help'],
@@ -342,11 +453,14 @@ function elFinderTPLEd()
 
             // current directory file menu
             files: [
-                'edit', 'rename', 'getfile', '|', 'quicklook', '|', 'download', '|', 'copy', 'cut', 'paste', 'duplicate', '|',
-                'rm', '|', 'resize', '|', 'archive', 'extract', '|', 'info'
+                'edit', 'rename', '|', 'download', '|', 'copy', 'cut', 'paste', '|',
+                'rm', '|',  'archive', 'extract', '|', 'info'
             ]
         },
-        onlyMimes: ['text'],
+        customData : {
+                    cms_token : elfToken
+                }
+        //onlyMimes: ['text'],
     }).elfinder('instance');
 
     eD.bind('get', function(v) {

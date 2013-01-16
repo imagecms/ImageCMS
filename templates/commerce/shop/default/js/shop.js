@@ -1,20 +1,27 @@
 $(document).ready(function() {
-	
-	/** Show/Hide  category description **/
-	$('#cat_desc').hide();
+
+    /** Show/Hide  category description **/
+    $('#cat_desc').hide();
     $('#show').click(function() {
-	if ( jQuery.browser.msie && parseInt(jQuery.browser.version) == 6) {	
-		if ($('#cat_desc').css("display")=="block") {
-			$('#cat_desc').css("display", "none");} 
-			else {$('#cat_desc').css("display", "block");}
-			} else {$('#cat_desc').toggle("slow");}
-			
-			if ($('#show').text()=='Описание катагории>>') {$('#show').text('Скрыть');
-			} else {$('#show').text('Описание катагории>>');
-	}
-	});
-	
-	/**
+        if (jQuery.browser.msie && parseInt(jQuery.browser.version) == 6) {
+            if ($('#cat_desc').css("display") == "block") {
+                $('#cat_desc').css("display", "none");
+            }
+            else {
+                $('#cat_desc').css("display", "block");
+            }
+        } else {
+            $('#cat_desc').toggle("slow");
+        }
+
+        if ($('#show').text() == 'Описание катагории>>') {
+            $('#show').text('Скрыть');
+        } else {
+            $('#show').text('Описание катагории>>');
+        }
+    });
+
+    /**
      * Add product to cart functionality
      * @event ckick
      * @return event
@@ -126,8 +133,8 @@ $(document).ready(function() {
                 $this.removeClass().addClass("goToCart").html('Оформить</br> заказ');
                 $this.parents(".buttons").removeClass("button_gs").addClass("button_middle_blue");
                 console.log($this.parents('.buttons'));
-//                        .attr('href', '/shop/cart')
-//                        .unbind('click');
+                //                        .attr('href', '/shop/cart')
+                //                        .unbind('click');
                 showResponse(msg);
                 $.fancybox.hideActivity();
                 //$this.hide();
@@ -164,7 +171,7 @@ $(document).ready(function() {
                             .removeClass('button_gs')
                             .addClass('button_middle_blue');
                 }
-// $('.in_cart').html('Уже в корзине');
+                // $('.in_cart').html('Уже в корзине');
                 $this.unbind('click');
                 showResponse(msg);
                 $.fancybox.hideActivity();
@@ -210,19 +217,19 @@ $(document).ready(function() {
      */
     $('.addToWList').on('click', function() {
         var $this = $(this);
+        var $thisNext = $(this).next();
         var variantId = $(this).attr('data-varid');
         var productId = $(this).attr('data-prodid');
         var logged_in = $(this).attr('data-logged_in');
         $.fancybox.showActivity();
-        console.log($(this).attr('data-logged_in'));
         if (logged_in == 'true') {
             $.ajax({
                 type: "POST",
                 data: 'productId = ' + productId + '&variantId = ' + variantId,
                 url: "/shop/wish_list/add",
                 success: function() {
-                    $this.html('Уже в списке желаний').removeClass('js').removeClass('gray');
-                    $this.attr('href', '/shop/wish_list');
+                    $this.remove();
+                    $thisNext.show();
                     $this.unbind('click');
                     $("#wishListHolder").load('/shop/ajax/getWishListDataHtml').addClass('is_avail');
                     $.fancybox.hideActivity();
@@ -253,14 +260,13 @@ $(document).ready(function() {
                 $("#compareHolder").load('/shop/ajax/getCompareDataHtml').addClass('is_avail');
                 $.fancybox.hideActivity();
                 $this
-                        .html('Сравнить')
                         .removeClass('js')
                         .removeClass('toCompare')
                         .removeClass('gray')
-                        .addClass('gotoComp')
-                        .css('color', '#3A88CC')
-                        .css('cursor', 'pointer')
-                        .unbind('click');
+                        .addClass('is_avail')
+                        .unbind('click')
+                        .find('span')
+                        .remove().end().find('a').show();
             }
         });
         return false;
@@ -307,9 +313,10 @@ $(document).ready(function() {
         });
     }
     /* End of Event */
-
     $('.lineForm input[type=hidden]').on('change', function() {
-        $(this).parents('form').submit();
+        $('[name="order"]').val($('#sort').val());
+        $('[name="user_per_page"]').val($('#count').val());
+        $(this).closest('form').submit();
     });
     $('.plus_minus button').live('click', function() {
         $this = $(this);
@@ -336,6 +343,8 @@ $(document).ready(function() {
                 else
                     showResponse(msg);
                 $form.find('input[name=makeOrder]').val(1);
+                $('#price1').text($('#allpriceholder').data('summary'));
+                $('#price3').text(parseFloat($('#allpriceholder').data('summary')) + parseFloat($('#price2').text()));
                 $.fancybox.hideActivity();
             }
         });
@@ -362,11 +371,17 @@ $(document).ready(function() {
                     $('.forCartProducts').html(msg);
                 else
                     showResponse(msg);
+                $('#price1').text($('#allpriceholder').data('summary'));
+                $('#price2').text($('#dpholder').data('dp'));
+                $('#price3').text(parseFloat($('#allpriceholder').data('summary')) + parseFloat($('#price2').text()));
                 $.fancybox.hideActivity();
             }
         });
         return false;
     });
+
+
+
     $('.met_del').bind('click', function() {
         var nid = $(this);
         $('#deliveryMethodId').val(nid.val());
@@ -375,6 +390,9 @@ $(document).ready(function() {
             success: function(msg) {
                 $("#paymentMethods").html(msg);
                 $('#paymentMethodId').val($('.met_buy:eq(0)').val());
+                $('#price1').text($('#allpriceholder').data('summary'));
+                $('#price2').text($('#dpholder').data('dp'));
+                $('#price3').text(parseFloat($('#allpriceholder').data('summary')) + parseFloat($('#price2').text()));
             }
         });
     });
@@ -489,7 +507,7 @@ $(document).ready(function() {
                                 .removeClass('button_gs')
                                 .addClass('button_middle_blue');
                     }
-// $('.in_cart').html('Уже в корзине');
+                    // $('.in_cart').html('Уже в корзине');
                     $this
                             //.attr('href', '/shop/cart')
                             .unbind('click');
@@ -742,21 +760,33 @@ $(document).ready(function() {
         }
         ;
         var pid = $this.attr('data-pid');
+        var discount = $this.attr('discount');
         var img = $this.attr('data-img');
         var pr = $this.attr('data-pr');
         var spr = $this.attr('data-spr');
         var vnumber = $this.attr('data-vnumber');
         var vname = $this.attr('data-vname');
         var cs = $this.attr('data-cs');
+        var csMain = $this.attr('data-csMain');
         var st = $this.attr('data-st');
-        var pp = $this.attr('data-pp');
+        var pp = $this.attr('data-pp');  
         if (img != '') {
             $('#mim' + pid).addClass('smallpimagev');
             $('#vim' + pid).attr('src', '/uploads/shop/' + img).removeClass().attr('alt', vname);
             $('#mim' + pid).attr('src', '/uploads/shop/' + pid + '_main.jpg')
+            $('#varianBPhoto').attr('href', '/uploads/shop/' + img);
+            
+        }
+        if(discount){
+            $('#pricem' + pid).html((pr-pr/100*discount) + "&nbsp;<sub>" + cs + "</sub>");
+            $('#pricem76').html((pr-pr/100*discount));
+        }else{
+            $('#pricem' + pid).html(pr + "&nbsp;<sub>" + cs + "</sub>");
+            $('#pricem76').html(pr);
         }
         $('#code' + pid).html('Код ' + vnumber);
-        $('#pricem' + pid).html(pr);
+        
+        $('#priceB' + pid).html(pr + ' ' + csMain);
         $('#prices' + pid).html(spr + ' ' + cs);
         $('#buy' + pid).attr('data-varid', vid);
         $('#buy' + pid).attr('data-prodid', pid);
@@ -788,6 +818,8 @@ $(document).ready(function() {
     });
     $('.giftcertcheck').on('click', function() {
         recount();
+        
+        //$(".cert_fancybox").fancybox();
     });
     $('.addtoSpy').on('click', function() {
         $.fancybox.showActivity();
@@ -801,7 +833,7 @@ $(document).ready(function() {
             data: "uid=" + uid + "&pid=" + pid + "&vid=" + vid + "&pp=" + pp,
             url: "/shop/product_spy/spy",
             success: function() {
-                $this.html('Отписатся от слежения').removeClass('js').removeClass('gray').removeClass('addtoSpy').addClass('deleteFromSpy');
+                $this.html('Отписатся от слежения').removeClass('addtoSpy').addClass('deleteFromSpy');
                 $this.unbind('click');
                 bindeletefromspy();
                 $.fancybox.hideActivity();
@@ -819,7 +851,7 @@ $(document).ready(function() {
                 url: '/shop/product_spy/deletefromspy',
                 data: "uid=" + uid + "&pid=" + pid,
                 success: function() {
-                    $this.html('Добавить в слежение').addClass('js').addClass('gray').removeClass('deleteFromSpy').addClass('addtoSpy');
+                    $this.html('Следить за этим товаром').addClass('js').addClass('gray').removeClass('deleteFromSpy').addClass('addtoSpy');
                     $this.unbind('click');
                     bindaddtoSpy();
                     $.fancybox.hideActivity();
@@ -837,7 +869,7 @@ $(document).ready(function() {
             url: '/shop/product_spy/deletefromspy',
             data: "uid=" + uid + "&pid=" + pid,
             success: function() {
-                $this.html('Добавить в слежение').addClass('js').addClass('gray').removeClass('deleteFromSpy').addClass('addtoSpy');
+                $this.html('Следить за этим товаром').addClass('js').addClass('gray').removeClass('deleteFromSpy').addClass('addtoSpy');
                 $this.unbind('click');
                 bindaddtoSpy();
                 $.fancybox.hideActivity();
@@ -859,7 +891,7 @@ $(document).ready(function() {
                 data: "uid=" + uid + "&pid=" + pid + "&vid=" + vid + "&pp=" + pp,
                 url: "/shop/product_spy/spy",
                 success: function() {
-                    $this.html('Отписатся от слежения').removeClass('js').removeClass('gray').removeClass('addtoSpy').addClass('deleteFromSpy');
+                    $this.html('Отписатся от слежения').removeClass('addtoSpy').addClass('deleteFromSpy');
                     $this.unbind('click');
                     bindeletefromspy();
                     $.fancybox.hideActivity();
@@ -872,11 +904,9 @@ $(document).ready(function() {
         var id = $(this).attr('data-id');
         $('[name="categoryId"]').attr('value', id);
         $('#orderForm').submit();
-        //console.log($('[name="categoryId"]'));
     });
 
     $('.clear_filter').live('click', function() {
-        console.log($(this).attr('data-url'));
         var url = $(this).attr('data-url');
         $(location).attr('href', url);
     });
@@ -904,7 +934,7 @@ $(document).ready(function() {
             }
         },
         submitHandler: function() {
-        var data = $('[name="friendsMail"]').val();
+            var data = $('[name="friendsMail"]').val();
             $.ajax({
                 type: "post",
                 url: "/shop/wish_list/sendWishList",
@@ -914,7 +944,7 @@ $(document).ready(function() {
                 },
                 success: function() {
                     $.fancybox.hideActivity();
-                    $('.notificationWish').text("Ваш список желаний успешно отправлен на "+ data);
+                    $('.notificationWish').text("Ваш список желаний успешно отправлен на " + data);
                     //$('.notificationWish').hide(4000);
                     $("#button_email").trigger('click');
                     $('[name="editForm"]').validate().resetForm();
@@ -929,7 +959,6 @@ $(document).ready(function() {
     });
 
     $('.delete_tovar').live('click', function() {
-        console.log($(this).data('pid'));
         var count_products = $(this).parents('.comparison_tovars').find('.list_desire').length;
         var id = $(this).data('pid');
         $.fancybox.showActivity();
@@ -937,49 +966,52 @@ $(document).ready(function() {
             type: "post",
             url: "/shop/compare/remove/" + id,
             success: function() {
-//                if(count_products === 1){
-//                    $(this).parents('.comparison_slider').remove();
-//                    //console.log($(this).parents('.comparison_slider'));
-//                }else{
+                //                if(count_products === 1){
+                //                    $(this).parents('.comparison_slider').remove();
+                //                    //console.log($(this).parents('.comparison_slider'));
+                //                }else{
                 $('#product_block_' + id).remove();
                 //}
             }
         });
-        if (count_products === 1) {
+        if (count_products === 1)
             $(this).parents('.comparison_slider').remove();
-            //console.log($(this).parents('.comparison_slider'));
-        }
         $.fancybox.hideActivity();
     });
     $('.prod_show_diff').live('click', function() {
-        var rows = $('.todiff');
+        var $this = $(this);
+        if (!$this.is('.disabled')) {
 
-        $.fancybox.showActivity();
-        var keys = new Array();
-        var values = new Array();
-        rows.each(function(index) {
-            keys.push($(this).data('rows'));
-            values.push($(this).html());
-        });
-        $.post("/shop/compare/calculate",
-                {ind: keys, val: values},
-        function(obj) {
-            //console.log(data);
-            if (obj.result) {
-                //{console.log("success")};
-                $(obj.selector).toggle();
-                if ($('.prod_show_diff').text() === 'Только Различия') {
-                    $('.prod_show_diff').text('Сравнить все');
+            var rows = $this.closest('.comparison_slider').find('.todiff');
+
+            $.fancybox.showActivity();
+            var keys = new Array();
+            var values = new Array();
+            rows.each(function(index) {
+                keys.push($(this).data('rows'));
+                values.push($(this).html());
+            });
+            $.post("/shop/compare/calculate",
+                    {
+                        ind: keys,
+                        val: values
+                    },
+            function(obj) {
+                //console.log(data);
+                $this.siblings().toggleClass('disabled').toggleClass('button_compare');
+                $this.toggleClass('disabled').toggleClass('button_compare');
+
+                if (obj.result) {
+                    //{console.log("success")};
+                    $(obj.selector).toggle();
                 } else {
-                    $('.prod_show_diff').text('Только Различия');
+                    $this.add($this.siblings()).hide()
+                    $this.parent().find('.no_differ').show();
                 }
-            } else {
-                $('.prod_show_diff').text('Нет различий');
-            }
-        }, "json"
-                );
-        $.fancybox.hideActivity();
-        //console.log(rows);
+                $.fancybox.hideActivity();
+            }, "json"
+                    );
+        }
     });
 
     $('#orderSubmit').live('click', function(event) {
@@ -1021,6 +1053,22 @@ $(document).ready(function() {
 
     $('.confirmNo').live('click', function() {
         $('#cartForm').submit();
+    });
+
+    $('[name="brand[]"]').live('change', function() {
+        $('#brandsfilter').submit();
+        $('#brandsfilter input[type=checkbox]').attr('disabled', 'disabled');
+    });
+
+    $('[name="pricebutton"]').live('click', function(event) {
+        event.preventDefault();
+        $('#brandsfilter').submit();
+        $('#brandsfilter input[type=checkbox]').attr('disabled', 'disabled');
+    });
+
+    $('.propertyCheck').live('change', function() {
+        $('#brandsfilter').submit();
+        $('#brandsfilter input[type=checkbox]').attr('disabled', 'disabled');
     });
 
 });

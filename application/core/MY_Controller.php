@@ -1,5 +1,4 @@
 <?php
-
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /* The MX_Controller class is autoloaded as required */
@@ -10,7 +9,6 @@
  * @property CI_DB_forge $dbforge                 Database Utility Class
  * @property CI_Benchmark $benchmark              This class enables you to mark points and calculate the time difference between them.<br />  Memory consumption can also be displayed.
  * @property CI_Calendar $calendar                This class enables the creation of calendars
- * @property CI_Cart $cart                        Shopping Cart Class
  * @property CI_Config $config                    This class contains functions that enable config files to be managed
  * @property CI_Controller $controller            This class object is the super class that every library in.<br />CodeIgniter will be assigned to.
  * @property CI_Email $email                      Permits email to be sent using Mail, Sendmail, or SMTP.
@@ -44,17 +42,20 @@
  * @property CI_Xmlrpcs $xmlrpcs                  XML-RPC server class
  * @property CI_Zip $zip                          Zip Compression Class
  * @property CI_Javascript $javascript            Javascript Class
- * @property CI_Jquery $jquery                    Jquery Class
  * @property CI_Utf8 $utf8                        Provides support for UTF-8 environments
  * @property CI_Security $security                Security Class, xss, csrf, etc...
  * @property DX_Auth $dx_auth                     I know about dx_auth and don't need to write abouth them
+ * @property Lib_csrf $lib_csrf
+ * @property Template $template Description
+ * @property Console $console Description
  */
 class MY_Controller extends MX_Controller {
 
+    
     public $pjaxRequest = false;
     public $ajaxRequest = false;
 
-    public function __construct() {
+    public function __construct() {        
         parent::__construct();
         
         if (isset($_SERVER['HTTP_X_PJAX']) && $_SERVER['HTTP_X_PJAX'] == true)
