@@ -6,7 +6,7 @@ if (!defined('BASEPATH'))
 class Install extends MY_Controller {
 
     public $host = '';
-    public $useSqlFile = 'sqlShopClean.sql'; // sqlShop.sql
+    public $useSqlFile = 'sqlShop.sql'; // sqlShop.sql
     private $exts = FALSE;
 
     public function __construct() {
