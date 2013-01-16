@@ -35,6 +35,30 @@
 ]]>
 </hook>
 
+<hook id="cfcm_set_rules">
+    <![CDATA[
+            $fields = $this->db
+                ->where("content_fields.data like '%required%'")
+                ->or_where("content_fields.data like '%validation%'")
+                ->where('group_id', $groupId)
+                ->join('content_fields', 'content_fields.field_name = content_fields_groups_relations.field_name')
+                ->get('content_fields_groups_relations')
+                ->result_array();
+        
+        foreach ($fields as $field)
+        {
+            $data = unserialize ($field['data']);
+            $str = '';
+            if ($data['required'])
+                $str .= 'required|';
+            if ($data['validation'])
+                $str .= $data['validation'];
+                
+            $this->form_validation->set_rules($field['field_name'], $data['label'], $str);
+        }
+    ]]>
+</hook>
+
 <hook id="admin_create_category">
 <![CDATA[
     $data['field_group'] = $this->input->post('field_group');
