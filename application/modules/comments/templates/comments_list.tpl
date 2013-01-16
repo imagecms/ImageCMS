@@ -156,7 +156,8 @@
                                             {if $item.module == 'shop'}
                                                 {if $this->CI->db->where('name','shop')->get('components')->num_rows() > 0}
                                                     {$p_name = encode(SProductsQuery::create()->filterById($item.item_id)->findOne()->name)}
-                                                    <a href="/shop/product/{$item.item_id}" target="_blank">{truncate($p_name,25,'...')}</a>
+                                                    {$p_url = encode(SProductsQuery::create()->filterById($item.item_id)->findOne()->url)}
+                                                    <a href="/shop/product/{$p_url}" target="_blank">{truncate($p_name,25,'...')}</a>
                                                 {/if}
                                             {/if}
                                         </td>
@@ -259,7 +260,8 @@
                                                             {if $item.module == 'shop'}
                                                                 {if $this->CI->db->where('name','shop')->get('components')->num_rows() > 0}
                                                                     {$p_name = encode(SProductsQuery::create()->filterById($item.item_id)->findOne()->name)}
-                                                                    <a href="/shop/product/{$item.item_id}" target="_blank">{truncate($p_name,25,'...')}</a>
+                                                                    {$p_url = encode(SProductsQuery::create()->filterById($item.item_id)->findOne()->url)}
+                                                                    <a href="/shop/product/{$p_url}" target="_blank">{truncate($p_name,25,'...')}</a>
                                                                 {/if}
                                                             {/if}
                                                         </td>
@@ -346,7 +348,8 @@
                                                                             {if $ic.module == 'shop'}
                                                                                 {if $this->CI->db->where('name','shop')->get('components')->num_rows() > 0}
                                                                                     {$p_name = encode(SProductsQuery::create()->filterById($ic.item_id)->findOne()->name)}
-                                                                                    <a href="/shop/product/{$ic.item_id}" target="_blank">{truncate($p_name,25,'...')}</a>
+                                                                                    {$p_url = encode(SProductsQuery::create()->filterById($item.item_id)->findOne()->url)}
+                                                                                    <a href="/shop/product/{$p_url}" target="_blank">{truncate($p_name,25,'...')}</a>
                                                                                 {/if}
                                                                             {/if}
                                                                         </td>
