@@ -23,14 +23,11 @@ if (validation_errors() OR $other_errors) {
     </div>
     <div class="form_overflow"></div>
 
-
-    <!--
     <div class="form_text">Устанавливать примеры продуктов</div>
     <div class="form_input">
         <input type="checkbox" class="checkbox" name="product_samples" checked="checked" value = "on">
     </div>
     <div class="form_overflow"></div>
-    -->
 
     <h2>Подключение к базе данных</h2>
     <div class="form_text"></div>

@@ -211,8 +211,7 @@ class Install extends MY_Controller {
 
         // Insert sql data
 
-  //      if ($this->input->post('product_samples') == "on") {
-        if (1){
+        if ($this->input->post('product_samples') == "on") {
             $this->useSqlFile = 'sqlShop.sql';
         }
         mysql_query('SET NAMES `utf8`;', $link);
