@@ -50,14 +50,13 @@
                                                 <input type="text" name="phone" id="phone" value="{$phone}" autocomplete="off"/>
                                             </div>
                                         </div>
-
                                         <div class="control-group">
                                             <label class="control-label" for="role_id">{lang('amt_group')}</label>
                                             <div class="controls">
                                                 <select name="role_id" id="role_id">
                                                     <option value ="0">Без групы</option>
                                                     {foreach $roles as $role}
-                                                        <option value ="{$role.id}">{$role.alt_name}</option>
+                                                        <option value ="{$role.id}" {if $role_id == $role.id}selected="selected"{/if}>{$role.alt_name}</option>
                                                     {/foreach}
                                                 </select>
                                             </div>
