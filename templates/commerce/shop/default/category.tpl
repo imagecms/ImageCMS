@@ -148,6 +148,18 @@
                     {if isset($_GET['rp'])}
                         <input type="hidden" name="rp" value="{echo $_GET['rp']}">
                     {/if}
+                    {if isset($_GET['brand'])}
+                        {foreach $_GET['brand'] as $br}
+                            <input type="hidden" name="brand[]" value="{$br}"/>
+                        {/foreach}
+                    {/if}
+                    {if isset($_GET['p'])}
+                        {foreach $_GET['p'] as $key => $prop}
+                            {foreach $prop as $p}
+                                <input type="hidden" name="p[{echo $key}][]" value="{echo $p}"/>
+                            {/foreach}
+                        {/foreach}
+                    {/if}
                 </form>
                 <ul>            
                     {if (int)$pageNumber == 1}

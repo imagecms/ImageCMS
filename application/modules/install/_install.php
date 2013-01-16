@@ -306,7 +306,7 @@ class Install extends MY_Controller {
         $admin_created = date('Y-m-d H:i:s', time());
 
         $sql = "INSERT INTO `users` (`id`, `role_id`, `username`, `password`, `email`, `banned`, `ban_reason`, `newpass`, `newpass_key`, `newpass_time`, `last_ip`, `last_login`, `created`, `modified`)
-                        VALUES (1, 10, 'Administrator', '$admin_pass', '$admin_mail', 0, NULL, NULL, NULL, NULL, '127.0.0.1', '0000-00-00 00:00:00', '$admin_created', '0000-00-00 00:00:00'); ";
+                        VALUES (1, 1, 'Administrator', '$admin_pass', '$admin_mail', 0, NULL, NULL, NULL, NULL, '127.0.0.1', '0000-00-00 00:00:00', '$admin_created', '0000-00-00 00:00:00'); ";
 
         mysql_query($sql, $link);
 

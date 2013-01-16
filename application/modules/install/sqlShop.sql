@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.5
+-- version 3.4.10.1deb1
 -- http://www.phpmyadmin.net
 --
--- Хост: localhost
--- Время создания: Янв 15 2013 г., 17:40
--- Версия сервера: 5.5.16
--- Версия PHP: 5.3.8
+-- Host: localhost
+-- Generation Time: Jan 16, 2013 at 11:30 AM
+-- Server version: 5.5.28
+-- PHP Version: 5.3.10-1ubuntu3.4
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- База данных: `demoshop`
+-- Database: `workplace1`
 --
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `category`
+-- Table structure for table `category`
 --
 
 CREATE TABLE IF NOT EXISTS `category` (
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `category` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=69 ;
 
 --
--- Дамп данных таблицы `category`
+-- Dumping data for table `category`
 --
 
 INSERT INTO `category` (`id`, `parent_id`, `position`, `name`, `title`, `short_desc`, `url`, `image`, `keywords`, `description`, `fetch_pages`, `main_tpl`, `tpl`, `page_tpl`, `per_page`, `order_by`, `sort_order`, `comments_default`, `field_group`, `category_field_group`, `settings`) VALUES
@@ -63,7 +63,7 @@ INSERT INTO `category` (`id`, `parent_id`, `position`, `name`, `title`, `short_d
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `category_translate`
+-- Table structure for table `category_translate`
 --
 
 CREATE TABLE IF NOT EXISTS `category_translate` (
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `category_translate` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `comments`
+-- Table structure for table `comments`
 --
 
 CREATE TABLE IF NOT EXISTS `comments` (
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=82 ;
 
 --
--- Дамп данных таблицы `comments`
+-- Dumping data for table `comments`
 --
 
 INSERT INTO `comments` (`id`, `module`, `user_id`, `user_name`, `user_mail`, `user_site`, `item_id`, `text`, `date`, `status`, `agent`, `user_ip`, `rate`, `text_plus`, `text_minus`, `like`, `disslike`, `parent`) VALUES
@@ -132,7 +132,7 @@ INSERT INTO `comments` (`id`, `module`, `user_id`, `user_name`, `user_mail`, `us
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `components`
+-- Table structure for table `components`
 --
 
 CREATE TABLE IF NOT EXISTS `components` (
@@ -152,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `components` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=177 ;
 
 --
--- Дамп данных таблицы `components`
+-- Dumping data for table `components`
 --
 
 INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_menu`, `settings`, `position`) VALUES
@@ -181,7 +181,7 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `content`
+-- Table structure for table `content`
 --
 
 CREATE TABLE IF NOT EXISTS `content` (
@@ -220,7 +220,7 @@ CREATE TABLE IF NOT EXISTS `content` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=90 ;
 
 --
--- Дамп данных таблицы `content`
+-- Dumping data for table `content`
 --
 
 INSERT INTO `content` (`id`, `title`, `meta_title`, `url`, `cat_url`, `keywords`, `description`, `prev_text`, `full_text`, `category`, `full_tpl`, `main_tpl`, `position`, `comments_status`, `comments_count`, `post_status`, `author`, `publish_date`, `created`, `updated`, `showed`, `lang`, `lang_alias`) VALUES
@@ -241,7 +241,7 @@ INSERT INTO `content` (`id`, `title`, `meta_title`, `url`, `cat_url`, `keywords`
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `content_fields`
+-- Table structure for table `content_fields`
 --
 
 CREATE TABLE IF NOT EXISTS `content_fields` (
@@ -258,7 +258,7 @@ CREATE TABLE IF NOT EXISTS `content_fields` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `content_fields`
+-- Dumping data for table `content_fields`
 --
 
 INSERT INTO `content_fields` (`field_name`, `type`, `label`, `data`, `weight`, `in_search`) VALUES
@@ -267,7 +267,7 @@ INSERT INTO `content_fields` (`field_name`, `type`, `label`, `data`, `weight`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `content_fields_data`
+-- Table structure for table `content_fields_data`
 --
 
 CREATE TABLE IF NOT EXISTS `content_fields_data` (
@@ -283,7 +283,7 @@ CREATE TABLE IF NOT EXISTS `content_fields_data` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
 
 --
--- Дамп данных таблицы `content_fields_data`
+-- Dumping data for table `content_fields_data`
 --
 
 INSERT INTO `content_fields_data` (`id`, `item_id`, `item_type`, `field_name`, `data`) VALUES
@@ -292,7 +292,7 @@ INSERT INTO `content_fields_data` (`id`, `item_id`, `item_type`, `field_name`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `content_fields_groups_relations`
+-- Table structure for table `content_fields_groups_relations`
 --
 
 CREATE TABLE IF NOT EXISTS `content_fields_groups_relations` (
@@ -301,7 +301,7 @@ CREATE TABLE IF NOT EXISTS `content_fields_groups_relations` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Дамп данных таблицы `content_fields_groups_relations`
+-- Dumping data for table `content_fields_groups_relations`
 --
 
 INSERT INTO `content_fields_groups_relations` (`field_name`, `group_id`) VALUES
@@ -315,7 +315,7 @@ INSERT INTO `content_fields_groups_relations` (`field_name`, `group_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `content_field_groups`
+-- Table structure for table `content_field_groups`
 --
 
 CREATE TABLE IF NOT EXISTS `content_field_groups` (
@@ -327,7 +327,7 @@ CREATE TABLE IF NOT EXISTS `content_field_groups` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
--- Дамп данных таблицы `content_field_groups`
+-- Dumping data for table `content_field_groups`
 --
 
 INSERT INTO `content_field_groups` (`id`, `name`, `description`) VALUES
@@ -338,7 +338,7 @@ INSERT INTO `content_field_groups` (`id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `content_permissions`
+-- Table structure for table `content_permissions`
 --
 
 CREATE TABLE IF NOT EXISTS `content_permissions` (
@@ -350,7 +350,7 @@ CREATE TABLE IF NOT EXISTS `content_permissions` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
 
 --
--- Дамп данных таблицы `content_permissions`
+-- Dumping data for table `content_permissions`
 --
 
 INSERT INTO `content_permissions` (`id`, `page_id`, `data`) VALUES
@@ -359,7 +359,7 @@ INSERT INTO `content_permissions` (`id`, `page_id`, `data`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `content_tags`
+-- Table structure for table `content_tags`
 --
 
 CREATE TABLE IF NOT EXISTS `content_tags` (
@@ -372,7 +372,7 @@ CREATE TABLE IF NOT EXISTS `content_tags` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `custom_fields`
+-- Table structure for table `custom_fields`
 --
 
 CREATE TABLE IF NOT EXISTS `custom_fields` (
@@ -395,7 +395,7 @@ CREATE TABLE IF NOT EXISTS `custom_fields` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `custom_fields_data`
+-- Table structure for table `custom_fields_data`
 --
 
 CREATE TABLE IF NOT EXISTS `custom_fields_data` (
@@ -407,7 +407,7 @@ CREATE TABLE IF NOT EXISTS `custom_fields_data` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп данных таблицы `custom_fields_data`
+-- Dumping data for table `custom_fields_data`
 --
 
 INSERT INTO `custom_fields_data` (`id`, `field_id`, `entity_id`, `field_data`) VALUES
@@ -418,7 +418,7 @@ INSERT INTO `custom_fields_data` (`id`, `field_id`, `entity_id`, `field_data`) V
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `emails`
+-- Table structure for table `emails`
 --
 
 CREATE TABLE IF NOT EXISTS `emails` (
@@ -430,7 +430,7 @@ CREATE TABLE IF NOT EXISTS `emails` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Дамп данных таблицы `emails`
+-- Dumping data for table `emails`
 --
 
 INSERT INTO `emails` (`name`, `template`, `settings`, `locale`, `description`) VALUES
@@ -456,7 +456,7 @@ INSERT INTO `emails` (`name`, `template`, `settings`, `locale`, `description`) V
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `gallery_albums`
+-- Table structure for table `gallery_albums`
 --
 
 CREATE TABLE IF NOT EXISTS `gallery_albums` (
@@ -474,7 +474,7 @@ CREATE TABLE IF NOT EXISTS `gallery_albums` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `gallery_category`
+-- Table structure for table `gallery_category`
 --
 
 CREATE TABLE IF NOT EXISTS `gallery_category` (
@@ -490,7 +490,7 @@ CREATE TABLE IF NOT EXISTS `gallery_category` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `gallery_images`
+-- Table structure for table `gallery_images`
 --
 
 CREATE TABLE IF NOT EXISTS `gallery_images` (
@@ -511,7 +511,7 @@ CREATE TABLE IF NOT EXISTS `gallery_images` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `languages`
+-- Table structure for table `languages`
 --
 
 CREATE TABLE IF NOT EXISTS `languages` (
@@ -528,7 +528,7 @@ CREATE TABLE IF NOT EXISTS `languages` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
 
 --
--- Дамп данных таблицы `languages`
+-- Dumping data for table `languages`
 --
 
 INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `template`, `default`) VALUES
@@ -537,7 +537,7 @@ INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `templ
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `login_attempts`
+-- Table structure for table `login_attempts`
 --
 
 CREATE TABLE IF NOT EXISTS `login_attempts` (
@@ -552,7 +552,7 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `logs`
+-- Table structure for table `logs`
 --
 
 CREATE TABLE IF NOT EXISTS `logs` (
@@ -566,7 +566,7 @@ CREATE TABLE IF NOT EXISTS `logs` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=741 ;
 
 --
--- Дамп данных таблицы `logs`
+-- Dumping data for table `logs`
 --
 
 INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
@@ -1315,7 +1315,7 @@ INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `mail`
+-- Table structure for table `mail`
 --
 
 CREATE TABLE IF NOT EXISTS `mail` (
@@ -1328,7 +1328,7 @@ CREATE TABLE IF NOT EXISTS `mail` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `menus`
+-- Table structure for table `menus`
 --
 
 CREATE TABLE IF NOT EXISTS `menus` (
@@ -1344,7 +1344,7 @@ CREATE TABLE IF NOT EXISTS `menus` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
--- Дамп данных таблицы `menus`
+-- Dumping data for table `menus`
 --
 
 INSERT INTO `menus` (`id`, `name`, `main_title`, `tpl`, `expand_level`, `description`, `created`) VALUES
@@ -1355,7 +1355,7 @@ INSERT INTO `menus` (`id`, `name`, `main_title`, `tpl`, `expand_level`, `descrip
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `menus_data`
+-- Table structure for table `menus_data`
 --
 
 CREATE TABLE IF NOT EXISTS `menus_data` (
@@ -1377,7 +1377,7 @@ CREATE TABLE IF NOT EXISTS `menus_data` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
 
 --
--- Дамп данных таблицы `menus_data`
+-- Dumping data for table `menus_data`
 --
 
 INSERT INTO `menus_data` (`id`, `menu_id`, `item_id`, `item_type`, `item_image`, `roles`, `hidden`, `title`, `parent_id`, `position`, `description`, `add_data`) VALUES
@@ -1406,7 +1406,7 @@ INSERT INTO `menus_data` (`id`, `menu_id`, `item_id`, `item_type`, `item_image`,
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `menu_translate`
+-- Table structure for table `menu_translate`
 --
 
 CREATE TABLE IF NOT EXISTS `menu_translate` (
@@ -1420,7 +1420,7 @@ CREATE TABLE IF NOT EXISTS `menu_translate` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=52 ;
 
 --
--- Дамп данных таблицы `menu_translate`
+-- Dumping data for table `menu_translate`
 --
 
 INSERT INTO `menu_translate` (`id`, `item_id`, `lang_id`, `title`) VALUES
@@ -1468,7 +1468,7 @@ INSERT INTO `menu_translate` (`id`, `item_id`, `lang_id`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `propel_migration`
+-- Table structure for table `propel_migration`
 --
 
 CREATE TABLE IF NOT EXISTS `propel_migration` (
@@ -1476,7 +1476,7 @@ CREATE TABLE IF NOT EXISTS `propel_migration` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `propel_migration`
+-- Dumping data for table `propel_migration`
 --
 
 INSERT INTO `propel_migration` (`version`) VALUES
@@ -1485,7 +1485,7 @@ INSERT INTO `propel_migration` (`version`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `search`
+-- Table structure for table `search`
 --
 
 CREATE TABLE IF NOT EXISTS `search` (
@@ -1506,7 +1506,7 @@ CREATE TABLE IF NOT EXISTS `search` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `settings`
+-- Table structure for table `settings`
 --
 
 CREATE TABLE IF NOT EXISTS `settings` (
@@ -1542,7 +1542,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Дамп данных таблицы `settings`
+-- Dumping data for table `settings`
 --
 
 INSERT INTO `settings` (`id`, `s_name`, `site_title`, `site_short_title`, `site_description`, `site_keywords`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`) VALUES
@@ -1551,7 +1551,7 @@ INSERT INTO `settings` (`id`, `s_name`, `site_title`, `site_short_title`, `site_
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_banners`
+-- Table structure for table `shop_banners`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_banners` (
@@ -1564,7 +1564,7 @@ CREATE TABLE IF NOT EXISTS `shop_banners` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
--- Дамп данных таблицы `shop_banners`
+-- Dumping data for table `shop_banners`
 --
 
 INSERT INTO `shop_banners` (`id`, `position`, `active`, `categories`) VALUES
@@ -1575,7 +1575,7 @@ INSERT INTO `shop_banners` (`id`, `position`, `active`, `categories`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_banners_i18n`
+-- Table structure for table `shop_banners_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_banners_i18n` (
@@ -1589,7 +1589,7 @@ CREATE TABLE IF NOT EXISTS `shop_banners_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_banners_i18n`
+-- Dumping data for table `shop_banners_i18n`
 --
 
 INSERT INTO `shop_banners_i18n` (`id`, `locale`, `name`, `text`, `url`, `image`) VALUES
@@ -1600,7 +1600,7 @@ INSERT INTO `shop_banners_i18n` (`id`, `locale`, `name`, `text`, `url`, `image`)
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_brands`
+-- Table structure for table `shop_brands`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_brands` (
@@ -1614,7 +1614,7 @@ CREATE TABLE IF NOT EXISTS `shop_brands` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
 
 --
--- Дамп данных таблицы `shop_brands`
+-- Dumping data for table `shop_brands`
 --
 
 INSERT INTO `shop_brands` (`id`, `url`, `image`, `position`) VALUES
@@ -1633,7 +1633,7 @@ INSERT INTO `shop_brands` (`id`, `url`, `image`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_brands_i18n`
+-- Table structure for table `shop_brands_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_brands_i18n` (
@@ -1649,7 +1649,7 @@ CREATE TABLE IF NOT EXISTS `shop_brands_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_brands_i18n`
+-- Dumping data for table `shop_brands_i18n`
 --
 
 INSERT INTO `shop_brands_i18n` (`id`, `locale`, `name`, `description`, `meta_title`, `meta_description`, `meta_keywords`) VALUES
@@ -1673,7 +1673,7 @@ INSERT INTO `shop_brands_i18n` (`id`, `locale`, `name`, `description`, `meta_tit
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_callbacks`
+-- Table structure for table `shop_callbacks`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_callbacks` (
@@ -1695,7 +1695,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_callbacks_statuses`
+-- Table structure for table `shop_callbacks_statuses`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_callbacks_statuses` (
@@ -1705,7 +1705,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_statuses` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
--- Дамп данных таблицы `shop_callbacks_statuses`
+-- Dumping data for table `shop_callbacks_statuses`
 --
 
 INSERT INTO `shop_callbacks_statuses` (`id`, `is_default`) VALUES
@@ -1715,7 +1715,7 @@ INSERT INTO `shop_callbacks_statuses` (`id`, `is_default`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_callbacks_statuses_i18n`
+-- Table structure for table `shop_callbacks_statuses_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_callbacks_statuses_i18n` (
@@ -1727,7 +1727,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_statuses_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_callbacks_statuses_i18n`
+-- Dumping data for table `shop_callbacks_statuses_i18n`
 --
 
 INSERT INTO `shop_callbacks_statuses_i18n` (`id`, `locale`, `text`) VALUES
@@ -1737,7 +1737,7 @@ INSERT INTO `shop_callbacks_statuses_i18n` (`id`, `locale`, `text`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_callbacks_themes`
+-- Table structure for table `shop_callbacks_themes`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_callbacks_themes` (
@@ -1747,7 +1747,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_themes` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
--- Дамп данных таблицы `shop_callbacks_themes`
+-- Dumping data for table `shop_callbacks_themes`
 --
 
 INSERT INTO `shop_callbacks_themes` (`id`, `position`) VALUES
@@ -1756,7 +1756,7 @@ INSERT INTO `shop_callbacks_themes` (`id`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_callbacks_themes_i18n`
+-- Table structure for table `shop_callbacks_themes_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_callbacks_themes_i18n` (
@@ -1768,7 +1768,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_themes_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_callbacks_themes_i18n`
+-- Dumping data for table `shop_callbacks_themes_i18n`
 --
 
 INSERT INTO `shop_callbacks_themes_i18n` (`id`, `locale`, `text`) VALUES
@@ -1778,7 +1778,7 @@ INSERT INTO `shop_callbacks_themes_i18n` (`id`, `locale`, `text`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_category`
+-- Table structure for table `shop_category`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_category` (
@@ -1803,7 +1803,7 @@ CREATE TABLE IF NOT EXISTS `shop_category` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=78 ;
 
 --
--- Дамп данных таблицы `shop_category`
+-- Dumping data for table `shop_category`
 --
 
 INSERT INTO `shop_category` (`id`, `url`, `parent_id`, `position`, `full_path`, `full_path_ids`, `active`, `external_id`, `image`, `tpl`, `order_method`, `showsitetitle`) VALUES
@@ -1832,7 +1832,7 @@ INSERT INTO `shop_category` (`id`, `url`, `parent_id`, `position`, `full_path`, 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_category_i18n`
+-- Table structure for table `shop_category_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_category_i18n` (
@@ -1849,7 +1849,7 @@ CREATE TABLE IF NOT EXISTS `shop_category_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_category_i18n`
+-- Dumping data for table `shop_category_i18n`
 --
 
 INSERT INTO `shop_category_i18n` (`id`, `locale`, `name`, `h1`, `description`, `meta_desc`, `meta_title`, `meta_keywords`) VALUES
@@ -1896,7 +1896,7 @@ INSERT INTO `shop_category_i18n` (`id`, `locale`, `name`, `h1`, `description`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_comulativ_discount`
+-- Table structure for table `shop_comulativ_discount`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_comulativ_discount` (
@@ -1913,7 +1913,7 @@ CREATE TABLE IF NOT EXISTS `shop_comulativ_discount` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_currencies`
+-- Table structure for table `shop_currencies`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_currencies` (
@@ -1931,7 +1931,7 @@ CREATE TABLE IF NOT EXISTS `shop_currencies` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп данных таблицы `shop_currencies`
+-- Dumping data for table `shop_currencies`
 --
 
 INSERT INTO `shop_currencies` (`id`, `name`, `main`, `is_default`, `code`, `symbol`, `rate`) VALUES
@@ -1941,7 +1941,7 @@ INSERT INTO `shop_currencies` (`id`, `name`, `main`, `is_default`, `code`, `symb
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_delivery_methods`
+-- Table structure for table `shop_delivery_methods`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_delivery_methods` (
@@ -1956,7 +1956,7 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
 
 --
--- Дамп данных таблицы `shop_delivery_methods`
+-- Dumping data for table `shop_delivery_methods`
 --
 
 INSERT INTO `shop_delivery_methods` (`id`, `price`, `free_from`, `enabled`, `is_price_in_percent`) VALUES
@@ -1967,7 +1967,7 @@ INSERT INTO `shop_delivery_methods` (`id`, `price`, `free_from`, `enabled`, `is_
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_delivery_methods_i18n`
+-- Table structure for table `shop_delivery_methods_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_delivery_methods_i18n` (
@@ -1981,7 +1981,7 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_delivery_methods_i18n`
+-- Dumping data for table `shop_delivery_methods_i18n`
 --
 
 INSERT INTO `shop_delivery_methods_i18n` (`id`, `locale`, `name`, `description`, `pricedescription`) VALUES
@@ -1993,7 +1993,7 @@ INSERT INTO `shop_delivery_methods_i18n` (`id`, `locale`, `name`, `description`,
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_delivery_methods_systems`
+-- Table structure for table `shop_delivery_methods_systems`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_delivery_methods_systems` (
@@ -2004,7 +2004,7 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods_systems` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_delivery_methods_systems`
+-- Dumping data for table `shop_delivery_methods_systems`
 --
 
 INSERT INTO `shop_delivery_methods_systems` (`delivery_method_id`, `payment_method_id`) VALUES
@@ -2034,7 +2034,7 @@ INSERT INTO `shop_delivery_methods_systems` (`delivery_method_id`, `payment_meth
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_discounts`
+-- Table structure for table `shop_discounts`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_discounts` (
@@ -2056,7 +2056,7 @@ CREATE TABLE IF NOT EXISTS `shop_discounts` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_gifts`
+-- Table structure for table `shop_gifts`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_gifts` (
@@ -2070,7 +2070,7 @@ CREATE TABLE IF NOT EXISTS `shop_gifts` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп данных таблицы `shop_gifts`
+-- Dumping data for table `shop_gifts`
 --
 
 INSERT INTO `shop_gifts` (`id`, `key`, `active`, `price`, `created`, `espdate`) VALUES
@@ -2081,7 +2081,7 @@ INSERT INTO `shop_gifts` (`id`, `key`, `active`, `price`, `created`, `espdate`) 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_kit`
+-- Table structure for table `shop_kit`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_kit` (
@@ -2094,7 +2094,7 @@ CREATE TABLE IF NOT EXISTS `shop_kit` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
--- Дамп данных таблицы `shop_kit`
+-- Dumping data for table `shop_kit`
 --
 
 INSERT INTO `shop_kit` (`id`, `product_id`, `active`, `position`) VALUES
@@ -2105,7 +2105,7 @@ INSERT INTO `shop_kit` (`id`, `product_id`, `active`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_kit_product`
+-- Table structure for table `shop_kit_product`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_kit_product` (
@@ -2117,7 +2117,7 @@ CREATE TABLE IF NOT EXISTS `shop_kit_product` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_kit_product`
+-- Dumping data for table `shop_kit_product`
 --
 
 INSERT INTO `shop_kit_product` (`product_id`, `kit_id`, `discount`) VALUES
@@ -2128,7 +2128,7 @@ INSERT INTO `shop_kit_product` (`product_id`, `kit_id`, `discount`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_notifications`
+-- Table structure for table `shop_notifications`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_notifications` (
@@ -2157,7 +2157,7 @@ CREATE TABLE IF NOT EXISTS `shop_notifications` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_notification_statuses`
+-- Table structure for table `shop_notification_statuses`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_notification_statuses` (
@@ -2169,7 +2169,7 @@ CREATE TABLE IF NOT EXISTS `shop_notification_statuses` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Дамп данных таблицы `shop_notification_statuses`
+-- Dumping data for table `shop_notification_statuses`
 --
 
 INSERT INTO `shop_notification_statuses` (`id`, `position`) VALUES
@@ -2179,7 +2179,7 @@ INSERT INTO `shop_notification_statuses` (`id`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_notification_statuses_i18n`
+-- Table structure for table `shop_notification_statuses_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_notification_statuses_i18n` (
@@ -2191,7 +2191,7 @@ CREATE TABLE IF NOT EXISTS `shop_notification_statuses_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_notification_statuses_i18n`
+-- Dumping data for table `shop_notification_statuses_i18n`
 --
 
 INSERT INTO `shop_notification_statuses_i18n` (`id`, `locale`, `name`) VALUES
@@ -2201,7 +2201,7 @@ INSERT INTO `shop_notification_statuses_i18n` (`id`, `locale`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_orders`
+-- Table structure for table `shop_orders`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_orders` (
@@ -2235,7 +2235,7 @@ CREATE TABLE IF NOT EXISTS `shop_orders` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=49 ;
 
 --
--- Дамп данных таблицы `shop_orders`
+-- Dumping data for table `shop_orders`
 --
 
 INSERT INTO `shop_orders` (`id`, `key`, `delivery_method`, `delivery_price`, `status`, `paid`, `user_full_name`, `user_email`, `user_phone`, `user_deliver_to`, `user_comment`, `date_created`, `date_updated`, `user_ip`, `user_id`, `payment_method`, `total_price`, `external_id`, `gift_cert_key`, `gift_cert_price`, `comulativ`) VALUES
@@ -2264,7 +2264,7 @@ INSERT INTO `shop_orders` (`id`, `key`, `delivery_method`, `delivery_price`, `st
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_orders_products`
+-- Table structure for table `shop_orders_products`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_orders_products` (
@@ -2284,7 +2284,7 @@ CREATE TABLE IF NOT EXISTS `shop_orders_products` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=73 ;
 
 --
--- Дамп данных таблицы `shop_orders_products`
+-- Dumping data for table `shop_orders_products`
 --
 
 INSERT INTO `shop_orders_products` (`id`, `order_id`, `product_id`, `variant_id`, `product_name`, `variant_name`, `price`, `quantity`, `kit_id`, `is_main`) VALUES
@@ -2324,7 +2324,7 @@ INSERT INTO `shop_orders_products` (`id`, `order_id`, `product_id`, `variant_id`
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_orders_status_history`
+-- Table structure for table `shop_orders_status_history`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_orders_status_history` (
@@ -2340,7 +2340,7 @@ CREATE TABLE IF NOT EXISTS `shop_orders_status_history` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
--- Дамп данных таблицы `shop_orders_status_history`
+-- Dumping data for table `shop_orders_status_history`
 --
 
 INSERT INTO `shop_orders_status_history` (`id`, `order_id`, `status_id`, `user_id`, `date_created`, `comment`) VALUES
@@ -2360,7 +2360,7 @@ INSERT INTO `shop_orders_status_history` (`id`, `order_id`, `status_id`, `user_i
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_order_statuses`
+-- Table structure for table `shop_order_statuses`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_order_statuses` (
@@ -2372,7 +2372,7 @@ CREATE TABLE IF NOT EXISTS `shop_order_statuses` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
--- Дамп данных таблицы `shop_order_statuses`
+-- Dumping data for table `shop_order_statuses`
 --
 
 INSERT INTO `shop_order_statuses` (`id`, `position`) VALUES
@@ -2382,7 +2382,7 @@ INSERT INTO `shop_order_statuses` (`id`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_order_statuses_i18n`
+-- Table structure for table `shop_order_statuses_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_order_statuses_i18n` (
@@ -2394,7 +2394,7 @@ CREATE TABLE IF NOT EXISTS `shop_order_statuses_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_order_statuses_i18n`
+-- Dumping data for table `shop_order_statuses_i18n`
 --
 
 INSERT INTO `shop_order_statuses_i18n` (`id`, `locale`, `name`) VALUES
@@ -2404,7 +2404,7 @@ INSERT INTO `shop_order_statuses_i18n` (`id`, `locale`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_payment_methods`
+-- Table structure for table `shop_payment_methods`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_payment_methods` (
@@ -2420,7 +2420,7 @@ CREATE TABLE IF NOT EXISTS `shop_payment_methods` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
--- Дамп данных таблицы `shop_payment_methods`
+-- Dumping data for table `shop_payment_methods`
 --
 
 INSERT INTO `shop_payment_methods` (`id`, `active`, `currency_id`, `position`, `payment_system_name`) VALUES
@@ -2432,7 +2432,7 @@ INSERT INTO `shop_payment_methods` (`id`, `active`, `currency_id`, `position`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_payment_methods_i18n`
+-- Table structure for table `shop_payment_methods_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_payment_methods_i18n` (
@@ -2445,7 +2445,7 @@ CREATE TABLE IF NOT EXISTS `shop_payment_methods_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_payment_methods_i18n`
+-- Dumping data for table `shop_payment_methods_i18n`
 --
 
 INSERT INTO `shop_payment_methods_i18n` (`id`, `locale`, `name`, `description`) VALUES
@@ -2461,7 +2461,7 @@ INSERT INTO `shop_payment_methods_i18n` (`id`, `locale`, `name`, `description`) 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_products`
+-- Table structure for table `shop_products`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_products` (
@@ -2495,7 +2495,7 @@ CREATE TABLE IF NOT EXISTS `shop_products` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=195 ;
 
 --
--- Дамп данных таблицы `shop_products`
+-- Dumping data for table `shop_products`
 --
 
 INSERT INTO `shop_products` (`id`, `url`, `active`, `hit`, `brand_id`, `category_id`, `related_products`, `mainImage`, `smallImage`, `created`, `updated`, `old_price`, `views`, `hot`, `action`, `added_to_cart_count`, `enable_comments`, `external_id`, `mainModImage`, `smallModImage`, `tpl`, `user_id`) VALUES
@@ -2560,7 +2560,7 @@ INSERT INTO `shop_products` (`id`, `url`, `active`, `hit`, `brand_id`, `category
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_products_i18n`
+-- Table structure for table `shop_products_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_products_i18n` (
@@ -2577,7 +2577,7 @@ CREATE TABLE IF NOT EXISTS `shop_products_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_products_i18n`
+-- Dumping data for table `shop_products_i18n`
 --
 
 INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `full_description`, `meta_title`, `meta_description`, `meta_keywords`) VALUES
@@ -2692,7 +2692,7 @@ INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_products_rating`
+-- Table structure for table `shop_products_rating`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_products_rating` (
@@ -2703,7 +2703,7 @@ CREATE TABLE IF NOT EXISTS `shop_products_rating` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_products_rating`
+-- Dumping data for table `shop_products_rating`
 --
 
 INSERT INTO `shop_products_rating` (`product_id`, `votes`, `rating`) VALUES
@@ -2724,7 +2724,7 @@ INSERT INTO `shop_products_rating` (`product_id`, `votes`, `rating`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_product_categories`
+-- Table structure for table `shop_product_categories`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_product_categories` (
@@ -2735,7 +2735,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_categories` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_product_categories`
+-- Dumping data for table `shop_product_categories`
 --
 
 INSERT INTO `shop_product_categories` (`product_id`, `category_id`) VALUES
@@ -2866,7 +2866,7 @@ INSERT INTO `shop_product_categories` (`product_id`, `category_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_product_images`
+-- Table structure for table `shop_product_images`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_product_images` (
@@ -2878,7 +2878,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_images` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_product_images`
+-- Dumping data for table `shop_product_images`
 --
 
 INSERT INTO `shop_product_images` (`product_id`, `image_name`, `position`) VALUES
@@ -2909,7 +2909,7 @@ INSERT INTO `shop_product_images` (`product_id`, `image_name`, `position`) VALUE
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_product_properties`
+-- Table structure for table `shop_product_properties`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_product_properties` (
@@ -2932,7 +2932,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
 
 --
--- Дамп данных таблицы `shop_product_properties`
+-- Dumping data for table `shop_product_properties`
 --
 
 INSERT INTO `shop_product_properties` (`id`, `csv_name`, `active`, `show_in_compare`, `position`, `show_on_site`, `multiple`, `external_id`, `show_in_filter`, `main_property`) VALUES
@@ -2960,7 +2960,7 @@ INSERT INTO `shop_product_properties` (`id`, `csv_name`, `active`, `show_in_comp
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_product_properties_categories`
+-- Table structure for table `shop_product_properties_categories`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_product_properties_categories` (
@@ -2971,7 +2971,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_categories` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_product_properties_categories`
+-- Dumping data for table `shop_product_properties_categories`
 --
 
 INSERT INTO `shop_product_properties_categories` (`property_id`, `category_id`) VALUES
@@ -3077,7 +3077,7 @@ INSERT INTO `shop_product_properties_categories` (`property_id`, `category_id`) 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_product_properties_data`
+-- Table structure for table `shop_product_properties_data`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_product_properties_data` (
@@ -3093,7 +3093,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_data` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5727 ;
 
 --
--- Дамп данных таблицы `shop_product_properties_data`
+-- Dumping data for table `shop_product_properties_data`
 --
 
 INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `value`, `locale`) VALUES
@@ -8337,7 +8337,7 @@ INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_product_properties_data_i18n`
+-- Table structure for table `shop_product_properties_data_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_product_properties_data_i18n` (
@@ -8351,7 +8351,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_data_i18n` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_product_properties_i18n`
+-- Table structure for table `shop_product_properties_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_product_properties_i18n` (
@@ -8365,7 +8365,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_product_properties_i18n`
+-- Dumping data for table `shop_product_properties_i18n`
 --
 
 INSERT INTO `shop_product_properties_i18n` (`id`, `name`, `locale`, `data`) VALUES
@@ -8401,7 +8401,7 @@ INSERT INTO `shop_product_properties_i18n` (`id`, `name`, `locale`, `data`) VALU
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_product_variants`
+-- Table structure for table `shop_product_variants`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_product_variants` (
@@ -8426,7 +8426,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_variants` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=224 ;
 
 --
--- Дамп данных таблицы `shop_product_variants`
+-- Dumping data for table `shop_product_variants`
 --
 
 INSERT INTO `shop_product_variants` (`id`, `product_id`, `price`, `number`, `stock`, `position`, `mainImage`, `smallImage`, `external_id`, `currency`, `price_in_main`) VALUES
@@ -8494,7 +8494,7 @@ INSERT INTO `shop_product_variants` (`id`, `product_id`, `price`, `number`, `sto
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_product_variants_i18n`
+-- Table structure for table `shop_product_variants_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_product_variants_i18n` (
@@ -8506,7 +8506,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_variants_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_product_variants_i18n`
+-- Dumping data for table `shop_product_variants_i18n`
 --
 
 INSERT INTO `shop_product_variants_i18n` (`id`, `locale`, `name`) VALUES
@@ -8593,7 +8593,7 @@ INSERT INTO `shop_product_variants_i18n` (`id`, `locale`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_rbac_group`
+-- Table structure for table `shop_rbac_group`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_rbac_group` (
@@ -8604,7 +8604,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_group` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=60 ;
 
 --
--- Дамп данных таблицы `shop_rbac_group`
+-- Dumping data for table `shop_rbac_group`
 --
 
 INSERT INTO `shop_rbac_group` (`id`, `type`, `name`) VALUES
@@ -8668,7 +8668,7 @@ INSERT INTO `shop_rbac_group` (`id`, `type`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_rbac_group_i18n`
+-- Table structure for table `shop_rbac_group_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_rbac_group_i18n` (
@@ -8679,7 +8679,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_group_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_rbac_group_i18n`
+-- Dumping data for table `shop_rbac_group_i18n`
 --
 
 INSERT INTO `shop_rbac_group_i18n` (`id`, `description`, `locale`) VALUES
@@ -8742,7 +8742,7 @@ INSERT INTO `shop_rbac_group_i18n` (`id`, `description`, `locale`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_rbac_privileges`
+-- Table structure for table `shop_rbac_privileges`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_rbac_privileges` (
@@ -8755,7 +8755,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_privileges` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=485 ;
 
 --
--- Дамп данных таблицы `shop_rbac_privileges`
+-- Dumping data for table `shop_rbac_privileges`
 --
 
 INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`) VALUES
@@ -9170,7 +9170,7 @@ INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_rbac_privileges_i18n`
+-- Table structure for table `shop_rbac_privileges_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_rbac_privileges_i18n` (
@@ -9182,7 +9182,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_privileges_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_rbac_privileges_i18n`
+-- Dumping data for table `shop_rbac_privileges_i18n`
 --
 
 INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`) VALUES
@@ -9598,7 +9598,7 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_rbac_roles`
+-- Table structure for table `shop_rbac_roles`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_rbac_roles` (
@@ -9610,7 +9610,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_roles` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп данных таблицы `shop_rbac_roles`
+-- Dumping data for table `shop_rbac_roles`
 --
 
 INSERT INTO `shop_rbac_roles` (`id`, `name`, `importance`) VALUES
@@ -9621,7 +9621,7 @@ INSERT INTO `shop_rbac_roles` (`id`, `name`, `importance`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_rbac_roles_i18n`
+-- Table structure for table `shop_rbac_roles_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_rbac_roles_i18n` (
@@ -9633,7 +9633,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_roles_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_rbac_roles_i18n`
+-- Dumping data for table `shop_rbac_roles_i18n`
 --
 
 INSERT INTO `shop_rbac_roles_i18n` (`id`, `alt_name`, `locale`, `description`) VALUES
@@ -9644,7 +9644,7 @@ INSERT INTO `shop_rbac_roles_i18n` (`id`, `alt_name`, `locale`, `description`) V
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_rbac_roles_privileges`
+-- Table structure for table `shop_rbac_roles_privileges`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_rbac_roles_privileges` (
@@ -9656,7 +9656,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_roles_privileges` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=612 ;
 
 --
--- Дамп данных таблицы `shop_rbac_roles_privileges`
+-- Dumping data for table `shop_rbac_roles_privileges`
 --
 
 INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUES
@@ -10071,7 +10071,7 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_settings`
+-- Table structure for table `shop_settings`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_settings` (
@@ -10082,7 +10082,7 @@ CREATE TABLE IF NOT EXISTS `shop_settings` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_settings`
+-- Dumping data for table `shop_settings`
 --
 
 INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
@@ -10223,7 +10223,7 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_spy`
+-- Table structure for table `shop_spy`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_spy` (
@@ -10239,7 +10239,7 @@ CREATE TABLE IF NOT EXISTS `shop_spy` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Дамп данных таблицы `shop_spy`
+-- Dumping data for table `shop_spy`
 --
 
 INSERT INTO `shop_spy` (`id`, `user_id`, `product_id`, `price`, `variant_id`, `key`, `email`, `old_price`) VALUES
@@ -10248,7 +10248,7 @@ INSERT INTO `shop_spy` (`id`, `user_id`, `product_id`, `price`, `variant_id`, `k
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_warehouse`
+-- Table structure for table `shop_warehouse`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_warehouse` (
@@ -10262,7 +10262,7 @@ CREATE TABLE IF NOT EXISTS `shop_warehouse` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Дамп данных таблицы `shop_warehouse`
+-- Dumping data for table `shop_warehouse`
 --
 
 INSERT INTO `shop_warehouse` (`id`, `name`, `address`, `phone`, `description`) VALUES
@@ -10272,7 +10272,7 @@ INSERT INTO `shop_warehouse` (`id`, `name`, `address`, `phone`, `description`) V
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_warehouse_data`
+-- Table structure for table `shop_warehouse_data`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_warehouse_data` (
@@ -10286,7 +10286,7 @@ CREATE TABLE IF NOT EXISTS `shop_warehouse_data` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=38 ;
 
 --
--- Дамп данных таблицы `shop_warehouse_data`
+-- Dumping data for table `shop_warehouse_data`
 --
 
 INSERT INTO `shop_warehouse_data` (`id`, `product_id`, `warehouse_id`, `count`) VALUES
@@ -10297,7 +10297,7 @@ INSERT INTO `shop_warehouse_data` (`id`, `product_id`, `warehouse_id`, `count`) 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `support_comments`
+-- Table structure for table `support_comments`
 --
 
 CREATE TABLE IF NOT EXISTS `support_comments` (
@@ -10312,7 +10312,7 @@ CREATE TABLE IF NOT EXISTS `support_comments` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Дамп данных таблицы `support_comments`
+-- Dumping data for table `support_comments`
 --
 
 INSERT INTO `support_comments` (`id`, `ticket_id`, `user_id`, `user_status`, `user_name`, `text`, `date`) VALUES
@@ -10321,7 +10321,7 @@ INSERT INTO `support_comments` (`id`, `ticket_id`, `user_id`, `user_status`, `us
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `support_departments`
+-- Table structure for table `support_departments`
 --
 
 CREATE TABLE IF NOT EXISTS `support_departments` (
@@ -10331,7 +10331,7 @@ CREATE TABLE IF NOT EXISTS `support_departments` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп данных таблицы `support_departments`
+-- Dumping data for table `support_departments`
 --
 
 INSERT INTO `support_departments` (`id`, `name`) VALUES
@@ -10342,7 +10342,7 @@ INSERT INTO `support_departments` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `support_tickets`
+-- Table structure for table `support_tickets`
 --
 
 CREATE TABLE IF NOT EXISTS `support_tickets` (
@@ -10360,7 +10360,7 @@ CREATE TABLE IF NOT EXISTS `support_tickets` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп данных таблицы `support_tickets`
+-- Dumping data for table `support_tickets`
 --
 
 INSERT INTO `support_tickets` (`id`, `user_id`, `last_comment_author`, `text`, `theme`, `department`, `status`, `priority`, `date`, `updated`) VALUES
@@ -10371,7 +10371,7 @@ INSERT INTO `support_tickets` (`id`, `user_id`, `last_comment_author`, `text`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tags`
+-- Table structure for table `tags`
 --
 
 CREATE TABLE IF NOT EXISTS `tags` (
@@ -10384,7 +10384,7 @@ CREATE TABLE IF NOT EXISTS `tags` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
@@ -10414,40 +10414,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   KEY `users_I_1` (`key`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
 
---
--- Дамп данных таблицы `users`
---
-
-INSERT INTO `users` (`id`, `role_id`, `username`, `password`, `email`, `banned`, `ban_reason`, `newpass`, `newpass_key`, `newpass_time`, `last_ip`, `last_login`, `created`, `modified`, `address`, `cart_data`, `wish_list_data`, `key`, `amout`, `discount`, `phone`) VALUES
-(1, 1, 'admin', '$6$17LKhkPw/gb3$3ljfZJYgwWM8Zp7tebTQoCTWJplTO8SJIOmzQUcN190lVURcVWcZIjP51Cto9HGylJL/MUW8cllLjajX6Hv74/', 'ad@min.com', 0, NULL, NULL, NULL, NULL, '127.0.0.1', 2013, 2012, '0000-00-00 00:00:00', NULL, 'a:0:{}', 'a:0:{}', '3', -2173.22, NULL, NULL),
-(2, 2, 'Василий Пупкин', '$6$17LKhkPw/gb3$3ljfZJYgwWM8Zp7tebTQoCTWJplTO8SJIOmzQUcN190lVURcVWcZIjP51Cto9HGylJL/MUW8cllLjajX6Hv74/', 'vasil.pypkin@mail.ru', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2013, 944006400, NULL, 'г. Москва', NULL, NULL, 'Rw9x4', 0.00, NULL, '+38050 123 45 67'),
-(3, 0, 'Оксана', '$1$LjN2NDGo$pm.0w5ad56jcfU7d7lrMP1', 'oksana@mail.ru', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 1116806400, NULL, 'г. Тула', NULL, NULL, 'iZkSk', 0.00, NULL, '+3 098 357 78 54'),
-(4, 0, 'Валентин', '$1$5E22OQfO$LSChb/.1d0am5RWhTVom10', 'valentin@rambler.ru', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 1186963200, NULL, 'м. Львів', NULL, NULL, 'jzgdZ', 0.00, NULL, '+ 067 546 87 54'),
-(5, 0, 'Игор Петрович', '$1$SBeN16qQ$oaDnHR7lNu2RvEygOUpxq.', 'kalmar@gmail.com', 0, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 1300147200, NULL, 'г. Тверь', NULL, NULL, 'BHElK', 0.00, NULL, '054 245 64 34'),
-(6, 0, 'Валентина', '$1$mnMRiwMI$WAjrtxf8CuYzFCNKrgvvH0', 'geg@g.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1336867200, NULL, '', NULL, NULL, 'apgKh', 0.00, NULL, ''),
-(7, 0, 'Юлия', '$1$jpThhaAT$5rhMF1hVH/bU4SUboGAqY.', 'gola@go.go', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 923961600, NULL, '', NULL, NULL, 'PDO2h', 0.00, NULL, ''),
-(8, 0, 'Микола', '$1$LZwk8Zeq$FtEgH7kznQhfM/DYQp5Xt0', 'hi@hello.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1204588800, NULL, '', NULL, NULL, 'v7AL9', 372.00, NULL, ''),
-(9, 0, 'Петр', '$1$rtOiO.Kb$DoOEPmufZ0QoH6ALhIW8K/', 'go@gmail.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1179878400, NULL, '', NULL, NULL, 'DfFay', 2498.18, NULL, ''),
-(10, 0, 'Юрий', '$1$7WY/C71c$yWo/60KT8o1Gpgz8NoR6g0', 'hell@hi.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1080000000, NULL, '', NULL, NULL, 'nnwHi', 1032.00, NULL, ''),
-(11, 0, 'Артур', '$1$fqe/B31z$SCEUoyGht45BD7P7sGntB1', 'joker@g.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1174608000, NULL, '', NULL, NULL, 'ZQMgY', 500.00, NULL, ''),
-(12, 0, 'Роман', '$1$Q5OGVHIL$EdIFtjfNZS0esJhNJBT4S/', 'h@g.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1139097600, NULL, '', NULL, NULL, 'vBYt5', 777.65, NULL, ''),
-(13, 0, 'Иван', '$1$NuYcOL2u$DT9IMVrhso30lkt.KjX3R0', 't@com.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1131148800, NULL, '', NULL, NULL, 'GvaoX', 39.95, NULL, ''),
-(14, 0, 'roman', '$1$O4xM5INE$xXS1VKjNGADRAQ2ECq.fb/', 'hh@f.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1103760000, NULL, '', NULL, NULL, '4vuGR', 60.99, NULL, ''),
-(15, 0, 'Степа', '$1$0URQeiKO$51AjUbMLddI89Q00wxbBd/', 'w@go.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1086307200, NULL, '', NULL, NULL, 'xjWwZ', 42.00, NULL, ''),
-(16, 0, 'Катерина', '$1$K4BWApqA$78xLQXHIxL6MjnGsXHr/40', 'd@com.ua', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1094342400, NULL, '', NULL, NULL, 'L4TGA', 1000.00, NULL, ''),
-(17, 0, 'Валерия', '$1$K7RfsI0I$H51xxHN4K41e3bYNnwkK7/', 'q@w.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 984441600, NULL, '', NULL, NULL, 'MAWZm', 1178.99, NULL, ''),
-(25, 1, 'Админ Админыч', '$1$a32.bm/.$kvIBdmXOcJ0klX0aIR3MK0', 'administrator@ad.loc', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2013, 1358260501, NULL, '', 'a:0:{}', NULL, 'OUNz0', 0.00, NULL, '534534534534'),
-(19, 0, 'fsdfsdfsdfsd', '$1$T/1.ge1.$CrYt6OcY210a/X.FQXSxC/', 'test@admin.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1356711338, NULL, '', NULL, NULL, 'FekhJ', 0.00, NULL, ''),
-(20, 0, 'sdfsdf sdfd sfsd', '$1$NC1.SN2.$oAiLQcr.OMrC.ikcyx9eO/', 'hgfghfghfgh@sdfdfs.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 1356711435, NULL, '', NULL, NULL, '47u3K', 0.00, NULL, ''),
-(21, 0, 'ddd dddd', '$1$J/5.ed4.$twFqihXECoWKULil0uVz..', 'test2@dd.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1356711467, NULL, '', NULL, NULL, 'jfwbR', 0.00, NULL, ''),
-(22, 0, 'asd asd', '$1$Mf2.ls3.$O1eDRzI0zgwVGDlCPXjT91', 'test3@ddd.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2013, 1357136767, NULL, '', NULL, NULL, 'yljyz', 0.00, NULL, ''),
-(23, 0, 'tertretretreter', '$1$tE0.yd5.$w8aCbnVpQXuMttOK.6EhE0', 'test@test.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 1357313097, NULL, '0', NULL, NULL, '', 0.00, NULL, '0'),
-(24, 3, 'tester testerovich', '$1$3R4.Ou0.$v.cLRFpEhtbwVKIJ1HZzB.', 'tester@test.com', 0, '', NULL, NULL, NULL, '127.0.0.1', 2013, 1358244938, NULL, '', NULL, NULL, '5OFaU', 0.00, NULL, '645654645645');
-
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `user_autologin`
+-- Table structure for table `user_autologin`
 --
 
 CREATE TABLE IF NOT EXISTS `user_autologin` (
@@ -10461,7 +10431,7 @@ CREATE TABLE IF NOT EXISTS `user_autologin` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `user_autologin`
+-- Dumping data for table `user_autologin`
 --
 
 INSERT INTO `user_autologin` (`key_id`, `user_id`, `user_agent`, `last_ip`, `last_login`) VALUES
@@ -10474,7 +10444,7 @@ INSERT INTO `user_autologin` (`key_id`, `user_id`, `user_agent`, `last_ip`, `las
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `user_temp`
+-- Table structure for table `user_temp`
 --
 
 CREATE TABLE IF NOT EXISTS `user_temp` (
@@ -10491,7 +10461,7 @@ CREATE TABLE IF NOT EXISTS `user_temp` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `widgets`
+-- Table structure for table `widgets`
 --
 
 CREATE TABLE IF NOT EXISTS `widgets` (
@@ -10509,7 +10479,7 @@ CREATE TABLE IF NOT EXISTS `widgets` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
--- Дамп данных таблицы `widgets`
+-- Dumping data for table `widgets`
 --
 
 INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `description`, `roles`, `created`) VALUES
