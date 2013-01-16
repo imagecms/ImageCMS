@@ -760,6 +760,7 @@ $(document).ready(function() {
         }
         ;
         var pid = $this.attr('data-pid');
+        var discount = $this.attr('discount');
         var img = $this.attr('data-img');
         var pr = $this.attr('data-pr');
         var spr = $this.attr('data-spr');
@@ -774,9 +775,10 @@ $(document).ready(function() {
             $('#vim' + pid).attr('src', '/uploads/shop/' + img).removeClass().attr('alt', vname);
             $('#mim' + pid).attr('src', '/uploads/shop/' + pid + '_main.jpg')
             $('#varianBPhoto').attr('href', '/uploads/shop/' + img);
+            $('#pricem76').html((pr-pr/100*discount));
         }
         $('#code' + pid).html('Код ' + vnumber);
-        $('#pricem' + pid).html(pr + "&nbsp;<sub>" + cs + "</sub>");
+        $('#pricem' + pid).html((pr-pr/100*discount) + "&nbsp;<sub>" + cs + "</sub>");
         $('#priceB' + pid).html(pr + ' ' + csMain);
         $('#prices' + pid).html(spr + ' ' + cs);
         $('#buy' + pid).attr('data-varid', vid);
