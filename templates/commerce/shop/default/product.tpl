@@ -34,7 +34,7 @@
                     {/if}                
                 </div>
                 <div class="photo_block">
-                    <a class="grouped_elements fancybox-thumb" id="varianBPhoto" rel="fancybox-thumb" href="{productImageUrl($model->getMainImage())}" data-title-id="fancyboxAdditionalContent" >
+                    <a class="grouped_elements fancybox-thumb" id="varianBPhoto" rel="fancybox-thumb" href="{productImageUrl($model->getMainImage())}" data-title-id="fancyboxAdditionalContent">
                         <img id="mim{echo $model->getId()}" src="{productImageUrl($model->getMainimage())}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
                         <img id="vim{echo $model->getId()}" class="smallpimagev" src="{productImageUrl($model->getMainimage())}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
                     </a>
@@ -107,16 +107,21 @@
                             {else:}
                                 {$prThree = $model->firstVariant->getPrice()}
                             {/if}
-                            {echo money_format('%i',$prThree)}<sub> {$CS}</sub>
+                            {echo money_format('%i',$prThree)} <sub>{$CS}</sub>
                         </span>
                     </div>
                 </div>
-
+                        
+            <!--Variants block-->
+            
                 <div class="buy clearfix">
                     {if count($model->getProductVariants()) > 1}
                         Выбор варианта:</br>
                         {foreach $model->getProductVariants() as $key => $pv}
                             <input type="radio" class="selectVar" id="sVar{echo $pv->getId()}" name="selectVar" {if $model->firstVariant->getId() == $pv->getId()}checked="checked"{/if}
+                                   {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
+                                   discount="{echo $discount}" 
+                                   {/if}
                                    value="{echo $pv->getId()}" 
                                    data-pp="1" 
                                    data-cs = "{$CS}"

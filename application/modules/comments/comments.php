@@ -112,7 +112,7 @@ class Comments extends MY_Controller {
         } else {
             $comments_count = 0;
         }
-
+        
         $data = array(
             'comments_arr' => $comments,
             'comment_ch' => $comment_ch,
