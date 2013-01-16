@@ -6,7 +6,7 @@ if (!defined('BASEPATH'))
 class Install extends MY_Controller {
 
     public $host = '';
-    public $useSqlFile = 'sqlShopClean.sql'; // sqlShop.sql
+    public $useSqlFile = 'sqlShop.sql'; // sqlShop.sql
     private $exts = FALSE;
 
     public function __construct() {
@@ -209,11 +209,6 @@ class Install extends MY_Controller {
             }
         }
 
-        // Insert sql data
-
-        if ($this->input->post('product_samples') == "on") {
-            $this->useSqlFile = 'sqlShop.sql';
-        }
         mysql_query('SET NAMES `utf8`;', $link);
         $sqlFileData = read_file(dirname(__FILE__) . '/' . $this->useSqlFile);
 
