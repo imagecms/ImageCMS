@@ -84,6 +84,10 @@ class Install extends CI_Model {
                          'type' => 'INT',
                          'constraint' => 11,
                      ),
+            'tpl_file' => array(
+                         'type' => 'VARCHAR',
+                         'constraint' => 200,
+                     ),
                  );
         
         $this->dbforge->add_key('id', TRUE);
