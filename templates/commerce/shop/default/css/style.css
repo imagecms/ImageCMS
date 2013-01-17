@@ -361,7 +361,7 @@ img[align=left]{margin-right:18px;float: left;}
 .ui-tabs-hide {display: none;}
 .nav_tabs li{float: left;border-style:solid;border-color: #ccc;border-width: 1px 1px 0 1px;margin-left: 5px;position: relative;z-index: 2;background-color: #e6e6e6;height: 29px;top: 1px;-moz-border-radius: 3px 3px 0 0;-webkit-border-radius: 3px 3px 0 0;border-radius: 3px 3px 0 0;-webkit-transition: background-color 0.5s ease-in-out;-moz-transition: background-color 0.5s ease-in-out;-o-transition: background-color 0.5s ease-in-out;transition: opacity 0.3s ease-in-out;}
 .nav_tabs li:first-child{margin-left: 0;}
-.nav_tabs li a{color: #666;text-decoration: none;padding: 0 20px;display: block;font-size: 14px;line-height: 28px;height: 100%;}
+.nav_tabs li a{color: #666;text-decoration: none;padding: 0 10px;display: block;font-size: 14px;line-height: 28px;height: 100%;}
 .nav_tabs li:hover{background-color: #fefefe;}
 .nav_tabs li.ui-tabs-selected{background-color: #fff;height: 30px;text-align: center;}
 .nav_tabs li.ui-tabs-selected a{color:#000;}

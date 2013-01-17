@@ -22,7 +22,7 @@
                 		    
 				    {if $f.info.enable_image_browser == 1}
 				    <div class="group_icon pull-right">            
-					<button class="btn btn-small" onclick="elFinderPopup('image', '{$f.name}');return false;"><i class="icon-picture"></i>  {lang('amt_select_image')}</button>
+					<button class="btn btn-small" onclick="elFinderPopup('image', '{$f.name}', 'uploads/images');return false;"><i class="icon-picture"></i>  {lang('amt_select_image')}</button>
 					</div>
 				   	{/if}
 

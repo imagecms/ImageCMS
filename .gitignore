@@ -23,3 +23,4 @@ Thumbs.db
 /application/modules/shop/runtime-conf.xml
 /pma/
 *.*~
+/*.csv
