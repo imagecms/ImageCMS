@@ -468,6 +468,7 @@ CREATE TABLE IF NOT EXISTS `gallery_albums` (
   `position` int(9) NOT NULL DEFAULT '0',
   `created` int(11) NOT NULL,
   `updated` int(11) NOT NULL,
+  `tpl_file` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
