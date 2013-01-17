@@ -70,7 +70,7 @@
                                                             <span class="niceCheck">
                                                                 <input type="checkbox" name="roles[]" value="{$role.id}" />
                                                             </span>
-                                                            {$role.alt_name}
+                                                            {$role.name}
                                                         </div>
                                                     {/foreach}
                                                 </div>
