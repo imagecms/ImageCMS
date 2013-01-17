@@ -19,14 +19,16 @@ class Admin extends BaseAdminController {
     }
 
     function create_trash() {
-        $this->db->order_by("name", "asc");
-        $query = $this->db->get('shop_products_i18n');
-        $this->template->add_array(array('products' => $query->result()));
+        if (count($this->db->get_where('components', array('name' => 'shop'))->row()) > 0) {
+            $this->db->order_by("name", "asc");
+            $query = $this->db->get('shop_products_i18n');
+            $this->template->add_array(array('products' => $query->result()));
 
-        $this->db->order_by("name", "asc");
-        $query = $this->db->get('shop_category_i18n');
-        $this->template->add_array(array('category' => $query->result()));
-
+            $this->db->order_by("name", "asc");
+            $query = $this->db->get('shop_category_i18n');
+            $this->template->add_array(array('category' => $query->result()));
+        }
+        
         $this->db->order_by("name", "asc");
         $query = $this->db->get('category');
         $this->template->add_array(array('category_base' => $query->result()));
@@ -88,7 +90,7 @@ class Admin extends BaseAdminController {
                         'trash_redirect_type' => '404'
                     );
                     break;
-                
+
                 default :
                     $array = array(
                         'trash_url' => $this->input->post('url'),
@@ -112,13 +114,15 @@ class Admin extends BaseAdminController {
         $query = $this->db->get_where('trash', array('id' => $id));
         $this->template->add_array(array('trash' => $query->row()));
 
-        $this->db->order_by("name", "asc");
-        $query = $this->db->get('shop_products_i18n');
-        $this->template->add_array(array('products' => $query->result()));
+        if (count($this->db->get_where('components', array('name' => 'shop'))->row()) > 0) {
+            $this->db->order_by("name", "asc");
+            $query = $this->db->get('shop_products_i18n');
+            $this->template->add_array(array('products' => $query->result()));
 
-        $this->db->order_by("name", "asc");
-        $query = $this->db->get('shop_category_i18n');
-        $this->template->add_array(array('category' => $query->result()));
+            $this->db->order_by("name", "asc");
+            $query = $this->db->get('shop_category_i18n');
+            $this->template->add_array(array('category' => $query->result()));
+        }
 
         $this->db->order_by("name", "asc");
         $query = $this->db->get('category');
@@ -188,7 +192,7 @@ class Admin extends BaseAdminController {
                         'trash_redirect_type' => $this->input->post('redirect_type')
                     );
                     break;
-                
+
                 default :
                     $array = array(
                         'id' => $this->input->post('id'),

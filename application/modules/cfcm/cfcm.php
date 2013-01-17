@@ -17,7 +17,7 @@ class Cfcm extends MY_Controller {
     {
         $this->load->module('forms');
 
-        $group = $_POST['cfcm_use_group'];
+        $group = (int)$this->input->post('cfcm_use_group');
 
         if ($group != '-1' )
         {
@@ -58,30 +58,29 @@ class Cfcm extends MY_Controller {
 
     public function get_group_fields($group_id = -1)
     {
-        if (!$group_id)
-            $group_id = -1;
+//        if (!$group_id)
+//            $group_id = -1;
         
         //Chech if we need fields without group
-        if ($group_id == 0)
-        {
-            $queryStr = "SELECT * 
-                FROM  `content_fields` 
-                WHERE field_name NOT 
-                IN (
-                    SELECT field_name
-                    FROM content_fields_groups_relations
-                )";
-            $query = $this->db->query($queryStr);
-        }
-        else
+//        if ($group_id == 0)
+//        {
+//            $queryStr = "SELECT * 
+//                FROM  `content_fields` 
+//                WHERE field_name NOT 
+//                IN (
+//                    SELECT field_name
+//                    FROM content_fields_groups_relations
+//                )";
+//            $query = $this->db->query($queryStr);
+//        }
+//        else
             // Get all fields in group
-            $query = $this->db->select('*')
-                ->from('content_fields')
-                ->join('content_fields_groups_relations', 'content_fields_groups_relations.field_name = content_fields.field_name')
-                ->where("content_fields_groups_relations.group_id = $group_id")
+            $query = $this->db
+                ->where('group_id', $group_id)
+                ->join('content_fields', 'content_fields_groups_relations.field_name = content_fields.field_name')
                 ->order_by('weight', 'ASC')
-                ->get();        
-
+                ->get('content_fields_groups_relations');        
+            
         if ($query->num_rows() > 0)
         {
             $form_fields = array();

@@ -123,8 +123,10 @@ class Pages extends BaseAdminController {
         $this->form_validation->set_rules('publish_time', lang('ac_val_pub_time'), 'required|valid_time');
 
         $this->form_validation->set_rules('main_tpl', lang('ac_main_tpl'), 'trim|max_length[50]|min_length[2]');
-
-        ($hook = get_hook('admin_page_add_set_rules')) ? eval($hook) : NULL;
+        
+        $groupId = (int)$this->input->post('cfcm_use_group');
+        
+        ($hook = get_hook('cfcm_set_rules')) ? eval($hook) : NULL;
 
         if ($this->form_validation->run($this) == FALSE) {
             ($hook = get_hook('admin_page_add_val_failed')) ? eval($hook) : NULL;
@@ -132,10 +134,7 @@ class Pages extends BaseAdminController {
         } else {
             // load site settings
             $settings = $this->cms_admin->get_settings();
-			
-			
-			
-		
+	
             $def_lang = $this->cms_admin->get_default_lang();
 
             if ($this->input->post('page_url') == '' or $this->input->post('page_url') == NULL) {
@@ -227,11 +226,14 @@ class Pages extends BaseAdminController {
                 'lang' => $def_lang['id']
             );
 
-            ($hook = get_hook('admin_page_insert')) ? eval($hook) : NULL;
+            
+            //($hook = get_hook('admin_page_insert')) ? eval($hook) : NULL;
 
             $page_id = $this->cms_admin->add_page($data);
 
             $data['id'] = $page_id;
+            
+            $this->load->module('cfcm')->save_item_data($page_id, 'page');
 
             $this->on_page_add($data);
 
@@ -455,6 +457,10 @@ class Pages extends BaseAdminController {
         $this->form_validation->set_rules('publish_time', lang('ac_val_pub_time'), 'required|valid_time');
 
         ($hook = get_hook('admin_page_update_set_rules')) ? eval($hook) : NULL;
+        
+        $groupId = (int)$this->input->post('cfcm_use_group');
+        
+        ($hook = get_hook('cfcm_set_rules')) ? eval($hook) : NULL;
 
         if ($this->form_validation->run($this) == FALSE) {
             ($hook = get_hook('admin_page_update_val_failed')) ? eval($hook) : NULL;
@@ -561,8 +567,10 @@ class Pages extends BaseAdminController {
 
             $data['id'] = $page_id;
             $this->on_page_update($data);
+            
+            $this->load->module('cfcm')->save_item_data($page_id, 'page');
 
-            ($hook = get_hook('admin_page_update')) ? eval($hook) : NULL;
+            //($hook = get_hook('admin_page_update')) ? eval($hook) : NULL;
 
             if ($this->cms_admin->update_page($page_id, $data) >= 1) {
                 $this->lib_admin->log(

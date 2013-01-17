@@ -15,7 +15,9 @@
         <div class="filter">
             {if count($incats)>0}
                 <form id="orderForm" method="get">
-                    <input type="hidden" name="categoryId" value=""/>
+                    <input type="hidden" name="user_per_page" value="{echo $_GET['user_per_page']}"/>
+                    <input type="hidden" name="order" value="{echo $_GET['order']}"/>
+                    <input type="hidden" name="categoryId" />
                     <div class="title">{lang('s_found_in_categories')}</div>
                     <div class="padding_filter check_frame">
                         <ul class="menu_fiter">
@@ -24,16 +26,16 @@
                                 {if ShopCore::$_GET['categoryId'] == $item.id}<b class="c_d">{$cat_name = $item.name}{/if}
                                     <span class="{if ShopCore::$_GET['categoryId']!=$item.id}findincats{/if} js gray" data-id="{echo $item.id}">{$item.name} ({echo $incats[$item.id]})</span>
                                 {if ShopCore::$_GET['categoryId'] == $item.id}</b>{/if}
-                        </li>
-                    {/foreach}
-                </ul>
-            </div>
-        {if ShopCore::$_GET['categoryId']}<a href="{site_url($CI->uri->uri_string())}"><span class="icon-reset"></span>{lang('s_cancel')}</a><br/>{/if}
-    </form>
-{else:}
-    <div class="title padding_filter">В категориях ничего не найдено</div>
-{/if}
-</div>
+                                </li>
+                            {/foreach}
+                        </ul>
+                    </div>
+                    {if ShopCore::$_GET['categoryId']}<a href="{site_url($CI->uri->uri_string())}"><span class="icon-reset"></span>{lang('s_cancel')}</a><br/>{/if}
+                </form>
+            {else:}
+                <div class="title padding_filter">В категориях ничего не найдено</div>
+            {/if}
+        </div>
 <div class="catalog_content">
     <!--   Right sidebar     -->
     <div class="nowelty_auction">
@@ -149,11 +151,8 @@
                     </select>
                 </div>
             </div>
-            {if isset($_GET['lp'])}
-                <input type="hidden" name="lp" value="{echo $_GET['lp']}">
-            {/if}
-            {if isset($_GET['rp'])}
-                <input type="hidden" name="rp" value="{echo $_GET['rp']}">
+            {if isset($_GET['categoryId'])}
+                <input type="hidden" name="categoryId" value="{echo $_GET['categoryId']}">
             {/if}
         </form>
         <ul>
