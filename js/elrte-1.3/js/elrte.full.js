@@ -6006,6 +6006,7 @@ elRTE.prototype.ui.prototype.buttons.formatblock = function(rte, name) {
 		tpls     : {'' : '%label'},
 		select   : function(v) { self.formatBlock(v); },
 		src      : {
+                        'p'       : this.rte.i18n('Paragraph'),
 			'span'    : this.rte.i18n('Format'),
 			'h1'      : this.rte.i18n('Heading 1'),
 			'h2'      : this.rte.i18n('Heading 2'),
@@ -6013,7 +6014,6 @@ elRTE.prototype.ui.prototype.buttons.formatblock = function(rte, name) {
 			'h4'      : this.rte.i18n('Heading 4'),
 			'h5'      : this.rte.i18n('Heading 5'),
 			'h6'      : this.rte.i18n('Heading 6'),
-			'p'       : this.rte.i18n('Paragraph'),
 			'address' : this.rte.i18n('Address'),
 			'pre'     : this.rte.i18n('Preformatted'),
 			'div'     : this.rte.i18n('Normal (DIV)')
@@ -6031,7 +6031,7 @@ elRTE.prototype.ui.prototype.buttons.formatblock = function(rte, name) {
 		function format(n, tag) {
 			
 			function replaceChilds(p) {
-				$(p).find('h1,h2,h3,h4,h5,h6,p,address,pre').each(function() {
+				$(p).find('p,h1,h2,h3,h4,h5,h6,address,pre').each(function() {
 					$(this).replaceWith($(this).html());
 				});
 				return p;
@@ -6057,7 +6057,7 @@ elRTE.prototype.ui.prototype.buttons.formatblock = function(rte, name) {
 				blocks    : true,
 				filter    : 'textContainsNodes',
 				wrap      : 'inline',
-				tag       : 'span'
+				tag       : 'p'
 			})
 			l = nodes.length,
 			s = $(nodes[0]).prev(),
@@ -6066,9 +6066,9 @@ elRTE.prototype.ui.prototype.buttons.formatblock = function(rte, name) {
 		while (l--) {
 			n = nodes[l];
 			$n = $(n);
-			if (tag == 'DIV' || tag == 'SPAN') {
+			if (tag == 'DIV' || tag == 'SPAN' || tag == 'P') {
 				if (/^(H[1-6]|P|ADDRESS|PRE)$/.test(n.nodeName)) {
-					$n.replaceWith($(this.rte.dom.create('div')).html($n.html()||''));
+					$n.replaceWith($(this.rte.dom.create('p')).html($n.html()||''));
 				}
 			} else {
 				if (/^(THEAD|TBODY|TFOOT|TR)$/.test(n.nodeName)) {
@@ -6087,7 +6087,7 @@ elRTE.prototype.ui.prototype.buttons.formatblock = function(rte, name) {
 	this.update = function() {
 		this.domElem.removeClass('disabled');
 		var n = this.rte.dom.selfOrParent(this.rte.selection.getNode(), /^(H[1-6]|P|ADDRESS|PRE)$/);
-		this.select.val(n ? n.nodeName.toLowerCase() : 'span');
+		this.select.val(n ? n.nodeName.toLowerCase() : 'p');
 	}
 }
 })(jQuery);
