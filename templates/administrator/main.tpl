@@ -250,7 +250,7 @@
         <script src="{$THEME}/js/functions.js" type="text/javascript"></script>
         <script src="{$THEME}/js/scripts.js" type="text/javascript"></script>
 
-        <script type="text/javascript" src="/js/elrte-1.3/js/elrte.min.js"></script>
+        <script type="text/javascript" src="/js/elrte-1.3/js/elrte.full.js"></script>
         <script type="text/javascript" src="/js/elfinder-2.0/js/elfinder.min.js"></script>
 
 
