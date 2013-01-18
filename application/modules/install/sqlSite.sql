@@ -963,6 +963,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `site_template` varchar(50) NOT NULL,
   `site_offline` varchar(5) NOT NULL,
   `google_analytics_id` varchar(40) DEFAULT NULL,
+  `cat_list` varchar(20) NOT NULL,
   `main_type` varchar(50) NOT NULL,
   `main_page_id` int(11) NOT NULL,
   `main_page_cat` text NOT NULL,
@@ -980,8 +981,8 @@ CREATE TABLE IF NOT EXISTS `settings` (
 -- Dumping data for table `settings`
 --
 
-INSERT INTO `settings` (`id`, `s_name`, `site_title`, `site_short_title`, `site_description`, `site_keywords`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`) VALUES
-(2, 'main', 'imagecmsshop', 'ImageCMS Shop', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники', 'auto', 'auto', '0', '0', 1, 1, '/', 'full', 'commerce', 'no', '', 'module', 69, '56', 'shop', '', '', 'russian_lang');
+INSERT INTO `settings` (`id`, `s_name`, `site_title`, `site_short_title`, `site_description`, `site_keywords`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `cat_list`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`) VALUES
+(2, 'main', 'imagecmsshop', 'ImageCMS Shop', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники', 'auto', 'auto', '0', '0', 1, 1, '/', 'full', 'commerce', 'no', '', 'yes', 'module', 69, '56', 'shop', '', '', 'russian_lang');
 
 -- --------------------------------------------------------
 
