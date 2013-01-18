@@ -55,17 +55,17 @@ class Admin extends BaseAdminController {
 
     public function edit($name, $locale = null) {
         if ($locale == null)
-            $locale = ShopController::getCurrentLocale();
+            $locale = parent::getCurrentLocale();
         if ($name != '') {
             $model = $this->email_model->getMailArray($name, $locale);
             if (empty($model))
-                $model = $this->email_model->getMailArray($name, ShopController::getCurrentLocale());
+                $model = $this->email_model->getMailArray($name, parent::getCurrentLocale());
         }
         $settings = unserialize($model['settings']);
         if (empty($_POST)) {
             $this->render('edit', array('model' => $model,
                 'settings' => $settings,
-                'languages' => ShopCore::$ci->cms_admin->get_langs(),
+                'languages' => $this->cms_admin->get_langs(),
                 'locale' => $locale,
             ));
         } else {
@@ -106,7 +106,7 @@ class Admin extends BaseAdminController {
     }
 
     public function index() {
-        $locale = ShopController::getCurrentLocale();
+        $locale = parent::getCurrentLocale();
         $models = $this->email_model->getList($locale);
         $this->render('list', array('models' => $models, 'locale' => $locale));
     }

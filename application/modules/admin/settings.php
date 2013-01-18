@@ -102,7 +102,6 @@ class Settings extends BaseAdminController {
      */
     function save() {
         //cp_check_perm('cp_site_settings');
-
         switch ($this->input->post('main_type')) {
             case 'category':
                 $data = array(
@@ -149,6 +148,7 @@ class Settings extends BaseAdminController {
             'add_site_name_to_cat' => $this->input->post('add_site_name_to_cat'),
             'delimiter' => $this->input->post('delimiter'),
             'site_template' => $this->input->post('template'),
+            'cat_list' => $this->input->post('cat_list'),
             'editor_theme' => $this->input->post('editor_theme'),
             'site_offline' => $this->input->post('site_offline'),
             'google_analytics_id' => $this->input->post('google_analytics_id'),
