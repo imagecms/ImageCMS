@@ -228,6 +228,8 @@ function initElRTE()
         height: 300,
         fmAllow: true,
         lang: 'ru',
+        allowTextNodes : false,
+//        Format: 'Paragraph',
         fmOpen: function(callback) {
             //			    if (typeof dialog === 'undefined') {
             // create new elFinder
@@ -297,7 +299,7 @@ function initElRTE()
             function() {
                 if ($(this).is(':visible'))
                     if (!$(this).closest('div.workzone').length)
-                        $(this).elrte(opts);
+                        console.log($(this).elrte(opts));
             }
     );
 }
