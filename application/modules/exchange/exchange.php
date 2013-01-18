@@ -8,6 +8,7 @@
  * Класс exchange
  */
 class Exchange {
+
 //class Exchange extends MY_Controller {
 
     private $config = array();
@@ -21,7 +22,6 @@ class Exchange {
     private $settings_table = 'components';
 
     public function __construct() {
-        //parent::__construct();
         $this->ci = &get_instance();
         set_time_limit(0);
         $this->ci->load->helper('translit');
@@ -52,7 +52,6 @@ class Exchange {
             $method .= strtolower(ShopCore::$_GET['type']) . '_' . strtolower(ShopCore::$_GET['mode']);
         if (method_exists($this, $method))
             $this->$method();
-        //exit;
     }
 
     private function get1CSettings() {
@@ -70,14 +69,6 @@ class Exchange {
         }
     }
 
-    public function index() {
-        
-    }
-
-    private function command_catalog_test() {
-        echo "test";
-    }
-
     private function check_password() {
         if (isset(ShopCore::$_GET['password']) && ($this->config['password'] == ShopCore::$_GET['password'])) {
             $this->checkauth();
@@ -92,6 +83,7 @@ class Exchange {
         } else {
             $this->checkauth();
         }
+        exit();
     }
 
     private function checkauth() {
@@ -120,6 +112,7 @@ class Exchange {
             echo "zip=" . $this->config['zip'] . "\n";
             echo "file_limit=" . $this->config['filesize'] . "\n";
         }
+        exit();
     }
 
     private function command_catalog_file() {
@@ -139,6 +132,7 @@ class Exchange {
                 if (write_file($this->tempDir . ShopCore::$_GET['filename'], file_get_contents('php://input'), 'a+'))
                     echo "success";
         }
+        exit();
     }
 
     private function _readXmlFile($filename) {
@@ -148,13 +142,12 @@ class Exchange {
     }
 
     private function command_catalog_import() {
-        $start_time = time();
+
         if ($this->check_perm() === true) {
             echo "start:" . memory_get_usage() . "</br>";
             $this->xml = $this->_readXmlFile(ShopCore::$_GET['filename']);
             if (!$this->xml)
                 return "failure";
-            echo "reading xml file:" . memory_get_usage() . "</br>";
 
             // Import categories
             if (isset($this->xml->Классификатор->Группы)) {
@@ -177,10 +170,8 @@ class Exchange {
             //auto resize images if option is on
             if ($this->config['autoresize'] == 'on')
                 $this->startImagesResize();
-
-            echo "finish:" . memory_get_usage() . "</br>";
-            echo "time:" . date("h:i:s", time() - $start_time);
         }
+        exit();
     }
 
     private function importCategories($data, $parent = null) {
@@ -350,6 +341,15 @@ class Exchange {
     }
 
     private function importProducts() {
+        //property data array for serialize and unserialize
+        $temp_properties = $this->ci->db->select('id, data')->get('shop_product_properties')->result_array();
+        if (is_array($temp_properties)) {
+            foreach ($temp_properties as $key => $item) {
+                $properties_data[$item['id']] = unserialize($item['data']);
+            }
+        }
+        unset($temp_properties);
+
         foreach ($this->xml->Каталог->Товары->Товар as $product) {
             $searchedProduct = array();
 
@@ -397,8 +397,8 @@ class Exchange {
                     $data['smallImage'] = $insert_id . '_small.jpg';
                     $data['mainModImage'] = $insert_id . '_mainMod.jpg';
                     $data['smallModImage'] = $insert_id . '_smallMod.jpg';
-                    $this->ci->db->where('id', $insert_id)->update($this->products_table, $data);
                 }
+                $this->ci->db->where('id', $insert_id)->update($this->products_table, $data);
 
                 //preparing data for shop_products_i18n table
                 $data = array();
@@ -470,23 +470,8 @@ class Exchange {
                             //insert prepared data into shop_product_properties_data
                             $this->ci->db->insert($this->properties_table . "_data", $data);
 
-                            //if property is multiple, add its value to shop_product_properties->data column
-                            if ($searchedProperty['multiple'] == true) {
-                                if (is_array(unserialize($searchedProperty['data']))) {
-                                    $insert_array = array();
-                                    $insert_array = unserialize($searchedProperty['data']);
-                                    if (!in_array($property->Значение . "", $insert_array))
-                                        $insert_array[] = $property->Значение . "";
-                                }else {
-                                    $insert_array = array();
-                                    $insert_array[] = $property->Значение . "";
-                                }
-                                //prepare update data
-                                $data = array();
-                                $data['data'] = serialize($insert_array);
-
-                                //update property data
-                                $this->ci->where(array('id' => $searchedProperty['id'], 'locale' => $this->locale))->update($this->properties_table . "_i18n", $data);
+                            if (!in_array($property->Значение . "", $properties_data[$searchedProperty['id']])) {
+                                $properties_data[$searchedProperty['id']][] = $property->Значение . "";
                             }
 
                             //update shop_product_properties_categories
@@ -526,8 +511,8 @@ class Exchange {
                     $data['smallImage'] = $insert_id . '_small.jpg';
                     $data['mainModImage'] = $insert_id . '_mainMod.jpg';
                     $data['smallModImage'] = $insert_id . '_smallMod.jpg';
-                    $this->ci->db->where('id', $searchedProduct['id'])->update($this->products_table, $data);
                 }
+                $this->ci->db->where('id', $searchedProduct['id'])->update($this->products_table, $data);
 
                 //preparing data for shop_products_i18n table
                 $data = array();
@@ -583,23 +568,8 @@ class Exchange {
                                     'locale' => $this->locale
                                 ));
 
-                            //if property is multiple, add its value to shop_product_properties->data column
-                            if ($searchedProperty['multiple'] == true) {
-                                if (is_array(unserialize($searchedProperty['data']))) {
-                                    $insert_array = array();
-                                    $insert_array = unserialize($searchedProperty['data']);
-                                    if (!in_array($property->Значение . "", $insert_array))
-                                        $insert_array[] = $property->Значение . "";
-                                }else {
-                                    $insert_array = array();
-                                    $insert_array[] = $property->Значение . "";
-                                }
-                                //prepare update data
-                                $data = array();
-                                $data['data'] = serialize($insert_array);
-
-                                //update property data
-                                $this->ci->where(array('id' => $searchedProperty['id'], 'locale' => $this->locale))->update($this->properties_table . "_i18n", $data);
+                            if (!in_array($property->Значение . "", $properties_data[$searchedProperty['id']])) {
+                                $properties_data[$searchedProperty['id']][] = $property->Значение . "";
                             }
 
                             //update shop_product_properties_categories
@@ -613,6 +583,11 @@ class Exchange {
                     }
                 }
             }
+        }
+        foreach ($properties_data as $key => $item) {
+            $data = array();
+            $data = array('data' => serialize($item));
+            $this->ci->db->where('id', $key)->update('shop_product_properties', $data);
         }
     }
 
@@ -637,12 +612,14 @@ class Exchange {
         } else {
             $this->checkauth();
         }
+        exit();
     }
 
     private function command_sale_init() {
         if ($this->check_perm() === true) {
             $this->command_catalog_init();
         }
+        exit();
     }
 
     private function command_sale_file() {
@@ -652,6 +629,7 @@ class Exchange {
                 echo "success";
             $this->command_sale_import();
         }
+        exit();
     }
 
     private function command_sale_import() {
@@ -700,6 +678,7 @@ class Exchange {
             }
             rename($this->tempDir . ShopCore::$_GET['filename'], $this->tempDir . "success_" . ShopCore::$_GET['filename']);
         }
+        exit();
     }
 
     private function command_sale_success() {
@@ -710,6 +689,7 @@ class Exchange {
                 $order->save();
             }
         }
+        exit();
     }
 
     private function command_sale_query() {
@@ -844,6 +824,7 @@ class Exchange {
             $xml_order .= "</КоммерческаяИнформация>";
             echo $xml_order;
         }
+        exit();
     }
 
 }
