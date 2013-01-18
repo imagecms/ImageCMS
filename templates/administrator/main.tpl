@@ -163,7 +163,6 @@
                                     <ul class="dropdown-menu">
                                         <li><a href="/admin/settings" class="pjax">{lang('a_sett_global_sett_menu')}</a></li>
                                         <li><a href="/admin/components/cp/template_editor" class="pjax">Редактор шаблонов</a></li>
-                                        <li><a href="/admin/languages" class="pjax">{lang('a_languages')}</a></li>
                                         <li><a href="/admin/cache_all" class="pjax">{lang('a_cache')}</a></li>
 
                                         <li class="divider"></li>
@@ -251,7 +250,7 @@
         <script src="{$THEME}/js/functions.js" type="text/javascript"></script>
         <script src="{$THEME}/js/scripts.js" type="text/javascript"></script>
 
-        <script type="text/javascript" src="/js/elrte-1.3/js/elrte.min.js"></script>
+        <script type="text/javascript" src="/js/elrte-1.3/js/elrte.full.js"></script>
         <script type="text/javascript" src="/js/elfinder-2.0/js/elfinder.min.js"></script>
 
 
