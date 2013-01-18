@@ -48,7 +48,8 @@
                 </div>
             </div>                            
         </div>
-        <div class="row-fluid">
+        <div class="row-fluid">    
+        {if $show_cat_list == 'yes'}
             <div class="span3">
                 <ul class="nav nav-tabs nav-stacked">
                     <li class="nav-header">All categories</li>
@@ -80,9 +81,9 @@
                     {/if}
                     {/foreach}
                   </ul>
-                
             </div>
-            <table class="table table-striped table-bordered table-hover table-condensed pages-table span9">
+            {/if}
+            <table class="table table-striped table-bordered table-hover table-condensed pages-table span9" {if $show_cat_list != 'yes'} style="width:100%;"{/if}>
                 <thead>
                     <tr>
                         <th class="t-a_c span1">
@@ -95,6 +96,7 @@
                         <th class="span1">ID</th>
                         <th class="span4">{lang('a_title')}</th>
                         <th class="span3">{lang('a_url')}</th>
+                        {if $show_cat_list != 'yes'}<th class="span2">{lang('a_category')}</th>{/if}
                         <th class="span2">{lang('a_date_create')}</th>
                         <th class="span1">{lang('a_status')}</th>
                     </tr>
@@ -110,17 +112,17 @@
                         <td>
                             <input type="text" name="url" value="{$_POST['url']}"/>
                         </td>
+                        {if $show_cat_list != 'yes'}
                         <td>
-                            {/*}
                             <select id="categorySelect" url="{$BASE_URL}admin/pages/GetPagesByCategory/">
                                 <option value="">Все категории</option>
                                 <option value="0" {if $cat_id === "0"}selected="selected"{/if}>Без категории</option>
                                 { $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['cat_id'])); }
                             </select>
-                            {*/}    
+                        </td>{/if}
+                        <td>
                         </td>
                         <td>
-
                         </td>
                     </tr>
                 </thead>
@@ -141,11 +143,8 @@
                             <a href="{$BASE_URL}admin/pages/edit/{$page.id}" class="title pjax" data-rel="tooltip" data-original-title="{lang('a_edit')}">{$page.title}</a>
                         </td>
                         <td><span>{truncate($page.url, 40, '...')}</span></td>
+                        {if $show_cat_list != 'yes'}
                         <td>
-                        
-                        {date('d-m-Y, H:i', $page.publish_date)}
-                        
-                        {/*}
                         <span>{if $category }{$category.name}{else:}
                                 
                                 {if 0 == $page.category}
@@ -159,9 +158,10 @@
                                     {/foreach}
                                     
                                 {/if}
-                                
                                 {/if}</span>
-                                {*/}
+                        </td>{/if}
+                        <td>
+                        {date('d-m-Y, H:i', $page.publish_date)}
                         </td>
                         <td>
                             <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if $page['post_status'] == 'publish'}{lang('a_show')}{else:}{lang('a_dont_show')}{/if}" onclick="change_page_status('{$page.id}');">
@@ -173,7 +173,7 @@
                     {else:}
                     <tr>
                         <td colspan="6">
-                            <div class="alert alert-info" style="margin: 18px;">По Вашему запросу ничгео не найдено</div>
+                            <div class="alert alert-info" style="margin: 18px;">По Вашему запросу ничего не найдено</div>
                         </td>
                     </tr>
                     {/if}

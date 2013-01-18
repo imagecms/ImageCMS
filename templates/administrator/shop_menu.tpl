@@ -37,10 +37,7 @@
             <a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>Пользователи<b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li><a href="{$ADMIN_URL}users/index" class="pjax">Список пользователей</a></li>
-                <!--<li class="nav-header">Разделение прав</li>
-                <li><a href="{$ADMIN_URL}rbac/role_list" class="pjax">Роли</a></li>
-                <li><a href="{$ADMIN_URL}rbac/group_list" class="pjax">Список груп привилегий</a></li>
-                <li><a href="{$ADMIN_URL}rbac/privilege_list" class="pjax">Список привилегий</a></li>-->
+                <li><a href="/admin/rbac/roleList" class="pjax">Управление правами доступа</a></li>
             </ul>
         </li>
         <li class="dropdown">
