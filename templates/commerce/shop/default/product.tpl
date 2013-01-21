@@ -319,21 +319,20 @@
                                         </a>
                                     </div>
                                     <div class="func_description">
-                                        <a href="{shop_url('product/' . $kid->getMainProduct()->getUrl())}">{echo ShopCore::encode($kid->getMainProduct()->getName())}</a>
+                                        <a href="{shop_url('product/' . $kid->getMainProduct()->getUrl())}">{echo htmlspecialchars_decode($kid->getMainProduct()->getName())}</a>
                                         <div class="buy">
-                                            <div class="price f-s_16 f_l">{echo $prices.main.price}
-                                                <sub>{echo $prices.main.symbol}</sub>
+                                            <div class="price f-s_16 f_l">{echo $model->firstvariant->getPrice()}
+                                                <sub>{$CS}</sub>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                {$summa = $prices.main.price}
-                                {$summa_with_discount = $prices.main.price}
+                                {$summa = $model->firstVariant->getPrice()}
+                                {$summa_with_discount = $model->firstVariant->getPrice()}
                                 <div class="plus_eval">+</div>
                                 {$i = 1}
                                 {foreach $kid->getShopKitProducts() as $coompl}
                                     {$ap = $coompl->getSProducts()}
-                                    {$kp = currency_convert($ap->getFirstVariant()->getPrice(), $ap->getFirstVariant()->getCurrency())}
                                     <div class="f_l smallest_item">                                        
                                         <div class="photo_block">
                                             <a href="{shop_url('product/' . $ap->getUrl())}">
@@ -346,12 +345,12 @@
                                             <a href="{shop_url('product/' . $ap->getUrl())}">{echo ShopCore::encode($ap->getName())}</a>
                                             {if $coompl->getDiscount() != 0}
                                                 <del class="d_b price-f-s_12 price-c_red">
-                                                    <span >{echo $kp.main.price} <sub>{$kp.main.symbol}</sub</span>
+                                                    <span >{echo $ap->getFirstVariant()->getPrice()} <sub>{$CS}</sub</span>
                                                 </del>
                                             {/if}
                                             <div class="buy">
                                                 <div class="price f-s_16 f_l">
-                                                    <span>{echo number_format($kp.main.price*(1 - $coompl->getdiscount()/100), 2, '.', '')} <sub>{$kp.main.symbol}</sub></span>
+                                                    <span>{echo number_format($ap->getFirstVariant()->getPrice()*(1 - $coompl->getdiscount()/100), 2, '.', '')} <sub>{$CS}</sub></span>
                                                 </div>
                                             </div>                                        
                                         </div> 
@@ -362,15 +361,15 @@
                                         <div class="plus_eval">+</div>
                                     {/if}
                                     {$i++}
-                                    {$summa += $kp.main.price}
-                                    {$summa_with_discount += number_format($kp.main.price*(1 - $coompl->getdiscount()/100), 2, '.', '')}
+                                    {$summa += $ap->getFirstVariant()->getPrice()}
+                                    {$summa_with_discount += number_format($ap->getFirstVariant()->getPrice()*(1 - $coompl->getdiscount()/100), 2, '.', '')}
                                 {/foreach}
                                 <div class="button_block ">
                                     <div class="buy">
                                         <del class="price f-s_12 price-c_9">
                                             <span>{echo $summa} <span>{$CS}</span>
                                             </span>
-                                        </del>
+                                        </del></br>
                                         <div class="price f-s_18">
                                             <span>{echo $summa_with_discount} {$CS}</span>
                                         </div>
