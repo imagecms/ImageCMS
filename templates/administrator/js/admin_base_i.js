@@ -773,7 +773,7 @@ $(document).ready(function() {
         $('.warehouse_line').clone().removeClass().attr('id', 'warehouse_line' + Math.floor(1000 * Math.random())).appendTo($('.warehouses_container'));
     });
 
-    $('.openDlg').live('click', function() {
+    $('.openDlg').on('click', function() {
         $('#addPictures').trigger('click');
     });
 
