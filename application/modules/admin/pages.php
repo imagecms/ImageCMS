@@ -14,7 +14,7 @@ class Pages extends BaseAdminController {
         parent::__construct();
 
         $this->load->library('DX_Auth');
-        //admin_or_redirect();
+        admin_or_redirect();
 
         $this->load->library('lib_admin');
         $this->load->library('lib_category');
@@ -935,7 +935,8 @@ class Pages extends BaseAdminController {
                 
                 
             }
-
+        $main_settings = $this->cms_base->get_settings();
+              
         ($hook = get_hook('admin_get_pages_by_cat')) ? eval($hook) : NULL;
 
         $offset = $this->uri->segment(5);
@@ -1007,6 +1008,7 @@ class Pages extends BaseAdminController {
                 'category' => $category,
                 'cats' => $allCats,
                 'tree' => $this->lib_category->build(),
+                'show_cat_list' =>$main_settings['cat_list'],
             ));
             $this->template->show('pages', FALSE);
         } else {
@@ -1015,6 +1017,7 @@ class Pages extends BaseAdminController {
                     'category' => $category,
                     'tree' => $this->lib_category->build(),
                     'cat_id' => $cat_id,
+                    'show_cat_list' => $main_settings['cat_list'],  
                 ));
             $this->template->show('pages', FALSE);
         }
