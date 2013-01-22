@@ -172,8 +172,12 @@
                             </li>
                         {/if}
                     {/if}
+
                     <!--  Render produts list   -->
                     {foreach $products as $product}
+
+                        
+
                         {$style = productInCart($cart_data, (int)$product->id, (int)$product->variants[0]->id, (int)$product->variants[0]->stock)}
                         {$discount = ShopCore::app()->SDiscountsManager->productDiscount($product->id)}
                         <li {if $product->variants[0]->stock == 0}class="not_avail"{/if}>
@@ -191,8 +195,8 @@
                                     {if $product->hit == 1}
                                         <div class="promoblock hit">{lang('s_s_hit')}</div>
                                     {/if}
-                                    {$discount = ShopCore::app()->SDiscountsManager->productDiscount($product->id)}
                                 </a>
+
                                 <span class="ajax_refer_marg t-a_c">
                                     <span data-prodid="{echo $product->id}" class="compare
                                           {if $forCompareProducts && in_array($product->id, $forCompareProducts)}
@@ -304,9 +308,9 @@
                                                 <span class="js blue">{lang('s_slw')}</span>
                                             </span>
                                             <a href="/shop/wish_list" class="red" style="display:none;"><span class="icon-wish"></span>{lang('s_ilw')}</a>
-                                            {else:}
+                                        {else:}
                                             <a href="/shop/wish_list" class="red"><span class="icon-wish"></span>{lang('s_ilw')}</a>
-                                            {/if}
+                                        {/if}
                                     </span> 
                                 </div>
 
