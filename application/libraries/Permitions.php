@@ -59,11 +59,12 @@ class Permitions {
                     }
                 }
             } else {
-//                echo "found";
-//                exit();
                 if ($userRole->name != 'Administrator' AND $adminMethod != 'permition_denied')
                     redirect('admin/rbac/permition_denied');
             }
+        }else{
+            if($adminClassName != 'Login')
+                redirect ('admin/login');
         }
     }
 
