@@ -554,7 +554,24 @@ var orders = new Object({
             });
 
             $('#Categories').change(function() {
+                $('#product_name').autocomplete({
+                source: '/admin/components/run/shop/orders/ajaxGetProductList/?categoryId=' + $('#Categories').val(),
+                select: function(event, ui) {
+                    productName = ui.item.label;
+                    $('#product_id').val(ui.item.value);
+                    vKeys = Object.keys(ui.item.variants);
+
+                    for (var i = 0; i < vKeys.length; i++)
+                        $('#product_variant_name').append(new Option(ui.item.variants[ vKeys[i] ].name + ui.item.variants[ vKeys[i] ].price + " " + ui.item.cs, vKeys[i], true, true));
+                },
+                close: function() {
+                    $('#product_name').val(productName);
+                   
+                }
+            });
                 $('#product_name').val('');
+                $('#product_variant_name ').empty();
+                $('#product_quantity').val('');
             });
         });
         $('.modal').modal('show');
