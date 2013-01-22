@@ -122,15 +122,17 @@ class Exchange {
             if (strrchr($st, "/"))
                 $st = strrchr($st, "/");
             $filename = explode('.', $st);
-            if ($filename[1] != 'xml')
-            //saving images to cmlTemp/images folder
-                if (write_file($this->tempDir . "images/" . $st, file_get_contents('php://input'), 'wb'))
-                    echo "this is image";
-
-                else
-                //saving xml files to cmlTemp
-                if (write_file($this->tempDir . ShopCore::$_GET['filename'], file_get_contents('php://input'), 'a+'))
+            if ($filename[1] != 'xml') {
+                //saving images to cmlTemp/images folder
+                if (write_file($this->tempDir . "images/" . $st, file_get_contents('php://input'), 'wb')) {
                     echo "success";
+                }
+            } else {
+                //saving xml files to cmlTemp
+                if (write_file($this->tempDir . ShopCore::$_GET['filename'], file_get_contents('php://input'), 'a+')) {
+                    echo "success";
+                }
+            }
         }
         exit();
     }
