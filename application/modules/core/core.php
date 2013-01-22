@@ -125,7 +125,7 @@ class Core extends MY_Controller {
         // End language detect
 
         if ($this->settings['site_offline'] == 'yes') {
-            if ($this->session->userdata('DX_role_id') != 10) {
+            if ($this->session->userdata('DX_role_id') != 1) {
 
                 ($hook = get_hook('core_goes_offline')) ? eval($hook) : NULL;
                 header('HTTP/1.1 503 Service Unavailable');
