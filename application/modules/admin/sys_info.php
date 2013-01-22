@@ -23,17 +23,7 @@ class Sys_info extends BaseAdminController {
         $this->lib_admin->init_settings();
     }
 
-    public function index() {
-
-        if ($action == 'phpinfo') {
-            ob_start();
-            phpinfo();
-            $contents = ob_get_contents();
-            ob_end_clean();
-            echo $contents;
-            exit;
-        }
-
+    public function index($action = '') {
         $folders = array(
             '/system/cache/' => FALSE,
             '/system/cache/templates_c/' => FALSE,
@@ -77,6 +67,15 @@ class Sys_info extends BaseAdminController {
         }
 
         $this->template->show('sys_info', FALSE);
+    }
+
+    public function phpinfo() {
+        ob_start();
+        phpinfo();
+        $contents = ob_get_contents();
+        ob_end_clean();
+        echo $contents;
+        exit;
     }
 
 }
