@@ -236,6 +236,7 @@ class Install extends MY_Controller {
             mysql_query('TRUNCATE `content`;', $link);
             mysql_query('TRUNCATE `content_fields`;', $link);
             mysql_query('TRUNCATE `content_fields_data`;', $link);
+            mysql_query('TRUNCATE `content_fields_groups_relations`;', $link);
             mysql_query('TRUNCATE `content_field_groups`;', $link);
             mysql_query('TRUNCATE `gallery_albums`;', $link);
             mysql_query('TRUNCATE `gallery_category`;', $link);
@@ -243,6 +244,7 @@ class Install extends MY_Controller {
             mysql_query('TRUNCATE `menus`;', $link);
             mysql_query('TRUNCATE `menus_data`;', $link);
             mysql_query('TRUNCATE `support_comments`;', $link);
+            mysql_query('TRUNCATE `support_departments`;', $link);
             mysql_query('TRUNCATE `support_tickets`;', $link);
             mysql_query('TRUNCATE `tags`;', $link);
             mysql_query('TRUNCATE `content_permissions`;', $link);
@@ -257,6 +259,9 @@ class Install extends MY_Controller {
                 mysql_query('UPDATE `settings` SET `main_type`=\'module\', `main_page_module`=\'shop\';', $link);
                 mysql_query('TRUNCATE `shop_category`;', $link);
                 mysql_query('TRUNCATE `shop_category_i18n`;', $link);
+                mysql_query('TRUNCATE `shop_comulativ_discount`;', $link);
+                mysql_query('TRUNCATE `shop_discounts`;', $link);
+                mysql_query('TRUNCATE `shop_gifts`;', $link);
                 mysql_query('TRUNCATE `shop_kit`;', $link);
                 mysql_query('TRUNCATE `shop_kit_product`;', $link);
                 mysql_query('TRUNCATE `shop_notifications`;', $link);
@@ -265,8 +270,6 @@ class Install extends MY_Controller {
                 mysql_query('TRUNCATE `shop_orders`;', $link);
                 mysql_query('TRUNCATE `shop_orders_products`;', $link);
                 mysql_query('TRUNCATE `shop_orders_status_history`;', $link);
-                mysql_query('TRUNCATE `shop_order_statuses`;', $link);
-                mysql_query('TRUNCATE `shop_order_statuses_i18n`;', $link);
                 mysql_query('TRUNCATE `shop_products`;', $link);
                 mysql_query('TRUNCATE `shop_products_i18n`;', $link);
                 mysql_query('TRUNCATE `shop_product_categories`;', $link);
@@ -283,6 +286,9 @@ class Install extends MY_Controller {
                 mysql_query('TRUNCATE `shop_banners_i18n`;', $link);
                 mysql_query('TRUNCATE `shop_brands`;', $link);
                 mysql_query('TRUNCATE `shop_brands_i18n`;', $link);
+                mysql_query('TRUNCATE `shop_spy`;', $link);
+                mysql_query('TRUNCATE `shop_warehouse`;', $link);
+                mysql_query('TRUNCATE `shop_warehouse_data`;', $link);
             }
 
             delete_files('./uploads/gallery', TRUE);
