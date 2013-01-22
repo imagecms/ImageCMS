@@ -132,6 +132,15 @@
                                                                 </select>
                                                             </div>
                                                         </div>
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="cat_list">Отображать дерево категорий в списке содержимого:</label>
+                                                            <div class="controls">
+                                                                <select name="cat_list" id="cat_list">
+                                                                        <option value="yes" {if $cat_list == 'yse'} selected="selected" {/if} >Да</option>
+                                                                        <option value="no" {if $cat_list == 'no'} selected="selected" {/if} >Нет</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
                                                 </div>
                                             </div>
                                         </div>
