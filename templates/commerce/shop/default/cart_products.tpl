@@ -18,16 +18,10 @@
                         {$variant = $v}
                     {/if}
                 {/foreach}
+                
                 <tr>
+                    
                     <td>
-                    {if $msg == 1}<span class="cert_fancybox"> Ви изпользовали сертификат!</span>{/if}
-                {if $msg == 2}<span class="cert_fancybox"> Не верний ключ сертификата!</span>{/if}  
-                {literal}
-                    <script type="text/javascript">
-                        $(".cert_fancybox").fancybox().click();
-                        $('#giftcertkey').val('');
-                    </script>
-                {/literal}
                 <a href="{shop_url('product/' . $item.model->getUrl())}" class="photo_block">
                     <img src="{if count($variants)>1 && $variant->getSmallImage() != ''}{productImageUrl($variant->getsmallimage())}{else:}{productImageUrl($item.model->getMainModimage())}{/if}" alt="{echo ShopCore::encode($item.model->getName())}{if count($variants)>1} - {echo ShopCore::encode($variant->name)}{/if}"/>
                 </a>
@@ -123,6 +117,7 @@
             <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
         {/if}
     </td>
+    
 </tr>
 {$i++}
 {/foreach}
@@ -167,12 +162,24 @@
                     <span id="allpriceholder" data-summary="{echo $total}"></span>
                 </div>
             </div>
-
+                {$gift_price = (float) $gift_price;}
+                {if (isset($item.gift_cert_price)==false) && $total < $gift_price}
+                    <span class="cert_fancybox">Сумма сертификата превышает сумму заказа!</span>
+                {else:}
+                    {if $msg == 1}<span class="cert_fancybox"> Ви изпользовали сертификат!</span>{/if}
+                    {if $msg == 2}<span class="cert_fancybox"> Не верний ключ сертификата!</span>{/if}  
+                {/if}
+                    {literal}
+                    <script type="text/javascript">
+                        $(".cert_fancybox").fancybox().click();
+                        $('#giftcertkey').val('');
+                    </script>
+                {/literal}
             <div class="f_r sum"><span class="price">{lang('s_summ')}:</span><br/>
             {if isset($item.gift_cert_price)}<span style="font-size:15px;">Подарочный сертификат:{/if}
         </div>
     </div>
-</td>
+</td>     
 </tr>
 </tfoot>
 <input type="hidden" name="forCart" value="1" />
