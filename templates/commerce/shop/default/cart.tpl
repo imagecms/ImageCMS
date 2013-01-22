@@ -254,6 +254,7 @@
                     </div>
                 </div>
             </div>
+                    
             <div class="foot_cleaner c_b result">
                 <span class="v-a_m">
                     <span class="c_9 f-s_16">(Сумма товаров: <span class="b" id="price1">{echo $total}</span> {$CS} +   Доставка: <span class="b" id="price2">{echo (int)$item.delivery_price}</span> {$CS})</span>
