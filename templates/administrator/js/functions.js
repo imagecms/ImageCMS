@@ -336,7 +336,15 @@ function elFinderPopup(type, id, path)
                     ['view', 'sort'],
                     ['help'],
                     ['search']
-                ]
+                ],
+            
+                        // directories tree options
+                tree: {
+                    // expand current root on init
+                    openRootOnLoad: true,
+                    // auto load current dir parents
+                    syncTree: true
+                },
         
             },
             commandsOptions: {
