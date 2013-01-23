@@ -1467,6 +1467,8 @@ elRTE.prototype.updateSource = function() {
 	this.source.val(this.filter.source($(this.doc.body).html()));
 }
 
+elRE.prototype.onInit
+
 /**
  * Return edited text
  *
