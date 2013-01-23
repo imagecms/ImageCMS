@@ -25,7 +25,7 @@ class Auth extends MY_Controller {
 
         $this->load->helper('url');
         $this->load->library('Form_validation');
-        //$this->form_validation->CI = & $this;
+//        $this->form_validation->this = & $this;
     }
 
     public function index() {
@@ -49,7 +49,7 @@ class Auth extends MY_Controller {
     }
 
     function email_check($email) {
-        ($hook = get_hook('auth_email_check')) ? eval($hook) : NULL;
+//        ($hook = get_hook('auth_email_check')) ? eval($hook) : NULL;
 
         $result = $this->dx_auth->is_email_available($email);
         if (!$result) {
@@ -180,15 +180,12 @@ class Auth extends MY_Controller {
     }
 
     function logout() {
-//         ($hook = get_hook('auth_logout')) ? eval($hook) : NULL;
         $this->dx_auth->logout();
-//         ($hook = get_hook('auth_logout_redirect')) ? eval($hook) : NULL;
 
         redirect('', 'location');
     }
 
     public function register() {
-//         ($hook = get_hook('auth_on_register')) ? eval($hook) : NULL;
         $this->core->set_meta_tags(lang('lang_register'));
 
         $this->load->library('Form_validation');
@@ -213,7 +210,7 @@ class Auth extends MY_Controller {
             // Run form validation and register user if it's pass the validation
             $this->load->helper('string');
             $key = random_string('alnum', 5);
-            if ($val->run() AND $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'), '',$key, '')) {
+            if ($val->run($this) AND $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'), '',$key, '')) {
 //                 ($hook = get_hook('auth_register_success')) ? eval($hook) : NULL;
                 // Set success message accordingly
                 if ($this->dx_auth->email_activation) {
