@@ -2,6 +2,7 @@
 /application/logs
 /captcha
 /uploads
+/uploads_site
 /gitpush
 /db.sql
 /application/backups
