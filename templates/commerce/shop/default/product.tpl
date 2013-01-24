@@ -98,8 +98,7 @@
                             </span><br />
                         {/if}
                     {/if}
-                    <span id="pricem{echo $model->getId()}">
-                        <del class="price price-c_red f-s_12 price-c_9" id="priceDell"></del> 
+                    <span id="pricem{echo $model->getId()}">                       
                         {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
                             {$prOne = $model->firstVariant->getPrice()}
                             {$prTwo = $model->firstVariant->getPrice()}

@@ -781,7 +781,6 @@ $(document).ready(function() {
         if (discount) {
             $('#pricem' + pid).html((pr - pr / 100 * discount).toFixed(2) + "&nbsp;<sub>" + cs + "</sub>");
             $('#pricem76').html((pr - pr / 100 * discount).toFixed(2));
-            $(pid + '#priceDell').html(pr);
         } else {
             $('#pricem').html(pr + "&nbsp;<sub>" + cs + "</sub>");
             $('#pricem76').html(pr);
