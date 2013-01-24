@@ -235,7 +235,7 @@
                                                     data-cs = "{$CS}"
                                                     data-pr="{echo number_format($pv->getPrice(), 2 , ".", "")}"
                                                     data-pid="{echo $product->getid()}"
-                                                    data-img="{echo $pv->getsmallimage()}"
+                                                    data-img-small="{echo $pv->getsmallimage()}"
                                                     data-vname="{echo $pv->getname()}"
                                                     data-vnumber="{echo $pv->getnumber()}">
                                                 {if $pv->getname() != ''}
