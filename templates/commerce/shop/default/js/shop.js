@@ -380,8 +380,6 @@ $(document).ready(function() {
         return false;
     });
 
-
-
     $('.met_del').bind('click', function() {
         var nid = $(this);
         $('#deliveryMethodId').val(nid.val());
@@ -453,6 +451,9 @@ $(document).ready(function() {
                     showResponse(msg);
                 $("#cartForm").find('input[name=makeOrder]').val(1);
                 $.fancybox.hideActivity();
+                $('#price1').text($('#allpriceholder').data('summary'));
+                $('#price2').text($('#dpholder').data('dp'));
+                $('#price3').text(parseFloat($('#allpriceholder').data('summary')) + parseFloat($('#price2').text()));
             }
         });
     }
@@ -769,23 +770,23 @@ $(document).ready(function() {
         var cs = $this.attr('data-cs');
         var csMain = $this.attr('data-csMain');
         var st = $this.attr('data-st');
-        var pp = $this.attr('data-pp');  
+        var pp = $this.attr('data-pp');
         if (img != '') {
             $('#mim' + pid).addClass('smallpimagev');
             $('#vim' + pid).attr('src', '/uploads/shop/' + img).removeClass().attr('alt', vname);
             $('#mim' + pid).attr('src', '/uploads/shop/' + pid + '_main.jpg')
             $('#varianBPhoto').attr('href', '/uploads/shop/' + img);
-            
+
         }
-        if(discount){
-            $('#pricem' + pid).html((pr-pr/100*discount) + "&nbsp;<sub>" + cs + "</sub>");
-            $('#pricem76').html((pr-pr/100*discount));
-        }else{
+        if (discount) {
+            $('#pricem' + pid).html((pr - pr / 100 * discount) + "&nbsp;<sub>" + cs + "</sub>");
+            $('#pricem76').html((pr - pr / 100 * discount));
+        } else {
             $('#pricem' + pid).html(pr + "&nbsp;<sub>" + cs + "</sub>");
             $('#pricem76').html(pr);
         }
         $('#code' + pid).html('Код ' + vnumber);
-        
+
         $('#priceB' + pid).html(pr + ' ' + csMain);
         $('#prices' + pid).html(spr + ' ' + cs);
         $('#buy' + pid).attr('data-varid', vid);
@@ -818,7 +819,7 @@ $(document).ready(function() {
     });
     $('.giftcertcheck').on('click', function() {
         recount();
-        
+
         //$(".cert_fancybox").fancybox();
     });
     $('.addtoSpy').on('click', function() {
