@@ -763,6 +763,7 @@ $(document).ready(function() {
         var pid = $this.attr('data-pid');
         var discount = $this.attr('discount');
         var img = $this.attr('data-img');
+        var imgSmall = $this.attr('data-img-small');
         var pr = $this.attr('data-pr');
         var spr = $this.attr('data-spr');
         var vnumber = $this.attr('data-vnumber');
@@ -773,7 +774,7 @@ $(document).ready(function() {
         var pp = $this.attr('data-pp');
         if (img != '') {
             $('#mim' + pid).addClass('smallpimagev');
-            $('#vim' + pid).attr('src', '/uploads/shop/' + img).removeClass().attr('alt', vname);
+            $('#vim' + pid).attr('src', '/uploads/shop/' + imgSmall).removeClass().attr('alt', vname);
             $('#mim' + pid).attr('src', '/uploads/shop/' + pid + '_main.jpg')
             $('#varianBPhoto').attr('href', '/uploads/shop/' + img);
 

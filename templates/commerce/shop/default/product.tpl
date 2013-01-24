@@ -33,7 +33,7 @@
                     {/if}                
                 </div>
                 <div class="photo_block">
-                    <a class="grouped_elements fancybox-thumb" id="varianBPhoto" rel="fancybox-thumb" href="{productImageUrl($model->getMainImage())}" data-title-id="fancyboxAdditionalContent">
+                    <a class="grouped_elements fancybox-thumb" id="varianBPhoto" rel="fancybox-thumb" href="{productImageUrl($model->getMainModImage())}" data-title-id="fancyboxAdditionalContent">
                         <img id="mim{echo $model->getId()}" src="{productImageUrl($model->getMainimage())}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
                         <img id="vim{echo $model->getId()}" class="smallpimagev" src="{productImageUrl($model->getMainimage())}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
                     </a>
@@ -130,6 +130,7 @@
                                data-pr="{echo $pv->getPrice()}" 
                                data-pid="{echo $model->getId()}" 
                                data-img="{echo $pv->getmainimage()}" 
+                               data-img-small="{echo $pv->getsmallimage()}" 
                                data-vname="{echo $pv->getName()}" 
                                data-vnumber="{echo $pv->getNumber()}"/>
                         <label for="sVar{echo $pv->getId()}">
