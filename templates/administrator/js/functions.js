@@ -222,9 +222,10 @@ function initElRTE()
     elRTE.prototype.options.toolbars.custom = [
          "copypaste","undoredo","elfinder","style","alignment","direction","colors","format","indent","lists","links","elements","media","tables","fullscreen"
     ];    
+    elRTE.prototype.options.toolbars.empty = [];
     var opts = {
         //lang         : 'ru',   // set your language
-        styleWithCSS: true,
+        styleWithCSS: false,
         height: 300,
         fmAllow: true,
         lang: 'ru',
@@ -292,14 +293,30 @@ function initElRTE()
             //			    }
         },
         toolbar: 'custom'
+        ,onClose: function(){alert(1)}
     };
-    $('textarea.elRTE').each(
+    $('textarea.elRTE.focusOnClick').each(
             function() {
-                if ($(this).is(':visible'))
-                    if (!$(this).closest('div.workzone').length)
-                        $(this).elrte(opts);
+                var rte  = this;
+                opts.height = 100; 
+                $(rte).on('focus', function(){
+                    $(rte).elrte(opts);
+                    
+                    $(rte).delay(300).closest('.el-rte').find('.workzone, iframe, textarea').animate({'height':'300px'}, 400);
+                });
+                $(rte).on('blur', function(){
+//                    $(this).elrte('updateSource');
+//                    $(this).elrte('destroy');
+                    console.log('aaa');
+                })
             }
     );
+    
+    $('textarea.elRTE').not('.focusOnClick').each(function(){
+            if ($(this).is(':visible'))
+                if (!$(this).closest('div.workzone').length)
+                    $(this).elrte(opts);
+        })
 }
 
 var dlg = false;
@@ -336,7 +353,15 @@ function elFinderPopup(type, id, path)
                     ['view', 'sort'],
                     ['help'],
                     ['search']
-                ]
+                ],
+            
+                        // directories tree options
+                tree: {
+                    // expand current root on init
+                    openRootOnLoad: true,
+                    // auto load current dir parents
+                    syncTree: true
+                },
         
             },
             commandsOptions: {
