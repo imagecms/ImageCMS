@@ -293,22 +293,16 @@ function initElRTE()
             //			    }
         },
         toolbar: 'custom'
-        ,onClose: function(){alert(1)}
     };
     $('textarea.elRTE.focusOnClick').each(
             function() {
                 var rte  = this;
-                opts.height = 100; 
+                opts.height = 300; 
                 $(rte).on('focus', function(){
                     $(rte).elrte(opts);
                     
-                    $(rte).delay(300).closest('.el-rte').find('.workzone, iframe, textarea').animate({'height':'300px'}, 400);
+                    //$(rte).delay(300).closest('.el-rte').find('.workzone, iframe, textarea').animate({'height':'300px'}, 400);
                 });
-                $(rte).on('blur', function(){
-//                    $(this).elrte('updateSource');
-//                    $(this).elrte('destroy');
-                    console.log('aaa');
-                })
             }
     );
     
@@ -316,7 +310,85 @@ function initElRTE()
             if ($(this).is(':visible'))
                 if (!$(this).closest('div.workzone').length)
                     $(this).elrte(opts);
-        })
+        });
+}
+
+function initTinyMCE()
+{
+    var opts = {
+            // Location of TinyMCE script
+            height: 300,
+            script_url : '/js/tiny_mce/tiny_mce.js',
+
+            // General options
+            theme : "advanced",
+            skin: "o2k7",
+            skin_variant: "silver",
+            plugins : "autolink,lists,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,advlist",
+
+            // Theme options
+            theme_advanced_buttons1 : /*"save"+*/"newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect,|,cut,copy,paste,pastetext,pasteword, |, search,replace",
+            theme_advanced_buttons2 : "bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor, |, insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,pagebreak",
+            theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
+//            theme_advanced_buttons4 : "insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,pagebreak",
+            theme_advanced_toolbar_location : "top",
+            theme_advanced_toolbar_align : "left",
+            theme_advanced_statusbar_location : "bottom",
+            theme_advanced_resizing : true,
+
+            // Example content CSS (should be your site CSS)
+            content_css : "css/content.css",
+
+            // Drop lists for link/image/media/template dialogs
+            template_external_list_url : "lists/template_list.js",
+            external_link_list_url : "lists/link_list.js",
+           // external_image_list_url : "lists/image_list.js",
+            media_external_list_url : "lists/media_list.js",
+
+            // Replace values for the template plugin
+            template_replace_values : {
+                    username : "Some User",
+                    staffid : "991234"
+            },
+                
+           file_browser_callback : function(field_name, url, type, win) {
+                $('<div/>').dialogelfinder({
+                    url: '/admin/elfinder_init',
+                    lang: 'ru',
+                    dialog: { width: 900, modal: true, title: 'Files', zIndex: 900001 },
+                    
+                    getFileCallback: function(file) {
+                        win.document.forms[0].elements[field_name].value = '/' + file.path;
+                    },
+                    commandsOptions: {
+                        getfile: {
+                            oncomplete: 'destroy' // close/hide elFinder
+                        }
+                },
+               });
+           }
+    };
+
+    $('textarea.elRTE.focusOnClick').each(
+            function() {
+                opts.height = 200; 
+                $(this).on('focus', function(){
+                    $(this).tinymce(opts);
+                    $(this).delay(300).closest('.controls').find('.mceIframeContainer, .mceIframeContainer iframe').animate({'height':'300px'}, 400);
+                });
+            }
+    );
+
+    $('textarea.elRTE').not('.focusOnClick').each(function(){ 
+        $(this).tinymce(opts);})
+}
+
+function initTextEditor(name)
+{
+    ({
+        'elrte': initElRTE,
+        'tinymce' : initTinyMCE
+    }[name]())
 }
 
 var dlg = false;
