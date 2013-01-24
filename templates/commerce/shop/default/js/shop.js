@@ -782,7 +782,7 @@ $(document).ready(function() {
             $('#pricem' + pid).html((pr - pr / 100 * discount).toFixed(2) + "&nbsp;<sub>" + cs + "</sub>");
             $('#pricem76').html((pr - pr / 100 * discount).toFixed(2));
         } else {
-            $('#pricem').html(pr + "&nbsp;<sub>" + cs + "</sub>");
+            $('#pricem'  + pid).html(pr + "&nbsp;<sub>" + cs + "</sub>");
             $('#pricem76').html(pr);
         }
         $('#code' + pid).html('Код ' + vnumber);

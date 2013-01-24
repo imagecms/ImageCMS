@@ -141,7 +141,6 @@
                     <div class="price f-s_26 f_l">
                         {if count($discountCom)} 
                             <del class="price price-c_red f-s_12 price-c_9">{echo $total} {$CS}</del> 
-                            <span class="price f-s_12 price-c_9" style="font-size: 14px;">Скидка {echo $discountCom->getDiscount()}%</span>
                             {$total -= $total / 100 * $discountCom->getDiscount()}
                             {echo money_format('%i', $total)} {$CS} 
                         {elseif $item.discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
