@@ -127,7 +127,7 @@
                                data-pp="1" 
                                data-cs = "{$CS}"
                                data-st="{echo $pv->getStock()}" 
-                               data-pr="{echo money_format('%i', $pv->getPrice())}" 
+                               data-pr="{echo $pv->getPrice()}" 
                                data-pid="{echo $model->getId()}" 
                                data-img="{echo $pv->getmainimage()}" 
                                data-vname="{echo $pv->getName()}" 
