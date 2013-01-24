@@ -25,7 +25,8 @@ class Exchange {
         $this->ci = &get_instance();
         set_time_limit(0);
         $this->ci->load->helper('translit');
-        $this->locale = getDefaultLanguage();
+        //$this->locale = getDefaultLanguage();
+        $this->locale = BaseAdminController::getCurrentLocale();
         $this->locale = $this->locale['identif'];
 
         if (!$this->get1CSettings()) {
@@ -42,14 +43,14 @@ class Exchange {
 
         $this->tempDir = PUBPATH . 'application/modules/shop/cmlTemp/';
         $method = 'command_';
-        if (ShopCore::$_GET) {
-            foreach (ShopCore::$_GET as $key => $value) {
+        if ($_GET) {
+            foreach ($_GET as $key => $value) {
                 $string .= date('c') . " GET - " . $key . ": " . $value . "\n";
             }
             write_file($this->tempDir . "log.txt", $string, 'ab');
         }
-        if (isset(ShopCore::$_GET['type']) && isset(ShopCore::$_GET['mode']))
-            $method .= strtolower(ShopCore::$_GET['type']) . '_' . strtolower(ShopCore::$_GET['mode']);
+        if (isset($_GET['type']) && isset($_GET['mode']))
+            $method .= strtolower($_GET['type']) . '_' . strtolower($_GET['mode']);
         if (method_exists($this, $method))
             $this->$method();
     }
@@ -68,9 +69,13 @@ class Exchange {
             $this->ci->db->where('identif', 'exchange')->update($this->settings_table, array('settings' => $for_insert));
         }
     }
+    
+    function __autoload(){
+        return;
+    }
 
     private function check_password() {
-        if (isset(ShopCore::$_GET['password']) && ($this->config['password'] == ShopCore::$_GET['password'])) {
+        if (isset($_GET['password']) && ($this->config['password'] == $_GET['password'])) {
             $this->checkauth();
         } else {
             echo "failure. wrong password";
@@ -117,7 +122,7 @@ class Exchange {
 
     private function command_catalog_file() {
         if ($this->check_perm() === true) {
-            $st = ShopCore::$_GET['filename'];
+            $st = $_GET['filename'];
             $st = basename($st);
             if (strrchr($st, "/"))
                 $st = strrchr($st, "/");
@@ -129,7 +134,7 @@ class Exchange {
                 }
             } else {
                 //saving xml files to cmlTemp
-                if (write_file($this->tempDir . ShopCore::$_GET['filename'], file_get_contents('php://input'), 'a+')) {
+                if (write_file($this->tempDir . $_GET['filename'], file_get_contents('php://input'), 'a+')) {
                     echo "success";
                 }
             }
@@ -147,7 +152,7 @@ class Exchange {
 
         if ($this->check_perm() === true) {
             echo "start:" . memory_get_usage() . "</br>";
-            $this->xml = $this->_readXmlFile(ShopCore::$_GET['filename']);
+            $this->xml = $this->_readXmlFile($_GET['filename']);
             if (!$this->xml)
                 return "failure";
 
@@ -605,7 +610,7 @@ class Exchange {
     }
 
     private function startImagesResize() {
-        ShopCore::app()->SWatermark->updateWatermarks(true);
+        app()->SWatermark->updateWatermarks(true);
     }
 
     private function command_sale_checkauth() {
@@ -627,7 +632,7 @@ class Exchange {
     private function command_sale_file() {
         if ($this->check_perm() === true) {
             $this->load->helper('file');
-            if (write_file($this->tempDir . ShopCore::$_GET['filename'], file_get_contents('php://input'), 'a+'))
+            if (write_file($this->tempDir . $_GET['filename'], file_get_contents('php://input'), 'a+'))
                 echo "success";
             $this->command_sale_import();
         }
@@ -636,7 +641,7 @@ class Exchange {
 
     private function command_sale_import() {
         if ($this->check_perm() === true) {
-            $this->xml = $this->_readXmlFile(ShopCore::$_GET['filename']);
+            $this->xml = $this->_readXmlFile($_GET['filename']);
             if (!$this->xml)
                 return "failure";
             foreach ($this->xml->Документ as $order) {
@@ -678,7 +683,7 @@ class Exchange {
                     echo "fail. order not found";
                 }
             }
-            rename($this->tempDir . ShopCore::$_GET['filename'], $this->tempDir . "success_" . ShopCore::$_GET['filename']);
+            rename($this->tempDir . $_GET['filename'], $this->tempDir . "success_" . $_GET['filename']);
         }
         exit();
     }
@@ -712,7 +717,7 @@ class Exchange {
                         "<Дата>" . date('Y-m-d', $order->date_created) . "</Дата>\n" .
                         "<ХозОперация>Заказ товара</ХозОперация>\n" .
                         "<Роль>Продавец</Роль>\n" .
-                        "<Валюта>" . ShopCore::app()->SCurrencyHelper->main->getCode() . "</Валюта>\n" .
+                        "<Валюта>" . app()->SCurrencyHelper->main->getCode() . "</Валюта>\n" .
                         "<Курс>1</Курс>\n" .
                         "<Сумма>" . $order->totalprice . "</Сумма>\n" .
                         "<Контрагенты>\n" .

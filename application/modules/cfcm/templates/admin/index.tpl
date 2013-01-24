@@ -31,7 +31,7 @@
                                     <th class="span1">{lang('a_delete')}</th>
                                 </tr>
                             </thead>
-                            <tbody class="sortable">
+                            <tbody>
                                 {$groupRels = $this->CI->db->get('content_fields_groups_relations')->result_array()}
                                 {foreach $fields as $f}
                                     <tr>
