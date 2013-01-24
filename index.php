@@ -1,4 +1,5 @@
 <?php
+
 /*
  * ---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
@@ -17,9 +18,14 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
- 
-if(strpos($_SERVER['REQUEST_URI'],'index.php')!==false){
-	header("Location:http://".$_SERVER['SERVER_NAME']."/page_not_found"); 
+
+/**
+ * Hard user rebase, if trying to use index.php
+ *
+ * (!strpos($_SERVER['REQUEST_URI'], 'index.php')) OR header("Location:http://" . $_SERVER['SERVER_NAME'] . "/page_not_found");
+ */
+if (strpos($_SERVER['REQUEST_URI'], 'index.php') !== false) {
+    header("Location:http://" . $_SERVER['SERVER_NAME'] . "/page_not_found");
     exit;
 }
 
@@ -188,7 +194,7 @@ if (is_dir($application_folder)) {
 }
 
 
-define('IMAGECMS_NUMBER', '4.0 Premium');
+define('IMAGECMS_NUMBER', '4.2 Beta');
 define('IMAGECMS_VERSION', '20120810');
 define('IMAGECMS_PUBLIC_ID', '51035d2a96a227c54d0dea3ff415ced6d39266c3');
 /*
