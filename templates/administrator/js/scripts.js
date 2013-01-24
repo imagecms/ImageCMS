@@ -986,7 +986,6 @@ function initAdminArea() {
         $('#loading').fadeOut(300);
     });
 
-
     //add arrows to orders list
     if (window.hasOwnProperty('orderField'))
         if (orderField != "")
@@ -996,10 +995,12 @@ function initAdminArea() {
                 $('#order' + orderField).find('a').after('&darr;');
 
     if ($('textarea.elRTE').length > 0)
-        initElRTE();
+//        initElRTE();
+        initTextEditor(textEditor);
 
     if ($('#elFinderTPLEd').length > 0)
-        elFinderTPLEd();
+//        elFinderTPLEd();
+        initTextEditor(textEditor);
 
     //elRTE bugFix for Firefox
 

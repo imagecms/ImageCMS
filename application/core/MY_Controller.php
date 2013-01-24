@@ -46,6 +46,7 @@
  * @property CI_Security $security                Security Class, xss, csrf, etc...
  * @property DX_Auth $dx_auth                     I know about dx_auth and don't need to write abouth them
  * @property Lib_csrf $lib_csrf
+ * @property Lib_admin $lib_admin
  * @property Template $template Description
  * @property Console $console Description
  */

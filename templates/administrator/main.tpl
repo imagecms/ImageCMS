@@ -230,6 +230,8 @@
             </form>
         </div>
         <script>
+            {$settings = $CI->cms_admin->get_settings();}
+            var textEditor = '{$settings.text_editor}';
             {if $CI->dx_auth->is_logged_in()}
                 var userLogined = true;
             {else:}
@@ -271,6 +273,8 @@
         <script src="{$THEME}/js/admin_base_r.js" type="text/javascript"></script>       
         <script src="{$THEME}/js/admin_base_v.js" type="text/javascript"></script>       
         <script src="{$THEME}/js/admin_base_y.js" type="text/javascript"></script>       
+        
+        <script type="text/javascript" src="/js/tiny_mce/jquery.tinymce.js"></script>
 
         <script>
             {if $CI->uri->segment('4') == 'shop'}
@@ -336,9 +340,10 @@
             })
             base_url = '{/literal}{$BASE_URL}{literal}';
             {/literal}
+            
             var elfToken = '{echo $CI->lib_csrf->get_token()}';
             </script>
-        
+            
         <div id="jsOutput" style="display: none;"></div>
     </body>
 </html>
