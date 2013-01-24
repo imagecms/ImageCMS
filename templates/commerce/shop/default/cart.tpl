@@ -48,7 +48,7 @@
                                         <div class="price f-s_18 f_l">{$summary = $variant->getPrice() * $item.quantity}
                                             {echo $summary}
                                             <sub>{$CS}</sub>
-                                            <span id="allpriceholder" data-summary="{echo $summary}"></span>
+                                            
                                         </div>
                                     </td>
                                     <td>
@@ -122,30 +122,12 @@
                             <td colspan="6">
                                 <div class="foot_cleaner">
                                     <div class="f_r">
-                                        {if $NextCS == $CS}
-                                            <div class="price f-s_26_lh_50 f_l">
-                                            {else:}
-                                                <div class="price f-s_26 f_l">
-                                                {/if}
-                                                <div class="price f-s_26 f_l">
-                                                    {if $total < $item.delivery_free_from}
-                                                        {$total += $item.delivery_price}
-                                                    {/if}
-                                                    {if isset($item.gift_cert_price)}
-                                                        {$total -= $item.gift_cert_price}
-                                                    {/if}
-                                                    {echo $total}
-                                                    <sub>{$CS}</sub>
-                                                    {if $item.delivery_price > 0}
-                                                        <span style="font-size:16px;">{lang('s_delivery')}: {echo $item.delivery_price} {$CS}</span>
-                                                    {/if}
-                                                    {if $item.gift_cert_price > 0}
-                                                        <span style="font-size:16px;">{lang('s_do_you_syrp_pr')}: {echo $item.gift_cert_price} {$CS}</span>
-                                                    {/if}
-                                                </div>
-                                            </div>
+                                        <div class="price f-s_26 f_l">
+                                            {//echo $total}
+                                            <sub>{//$CS}</sub>
                                         </div>
                                     </div>
+                                </div>
                             </td>
                         </tr>
                     </tfoot>
@@ -254,7 +236,7 @@
                     </div>
                 </div>
             </div>
-                    
+
             <div class="foot_cleaner c_b result">
                 <span class="v-a_m">
                     <span class="c_9 f-s_16">(Сумма товаров: <span class="b" id="price1">{echo $total}</span> {$CS} +   Доставка: <span class="b" id="price2">{echo (int)$item.delivery_price}</span> {$CS})</span>
