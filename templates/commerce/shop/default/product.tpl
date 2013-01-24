@@ -89,15 +89,17 @@
                 <div class="price f-s_26 d-i_b v-a_m">
                     {if $model->getOldPrice() > 0}
                         {if $model->getOldPrice() > $model->firstVariant->toCurrency()}
+                            <span class="code" style="font-size: 15px;">Старая цена :</span>
                             <span>
                                 <del class="price f-s_12 price-c_9" style="margin-top: 1px;">
                                     {echo $model->getOldPrice()}
                                     <sub> {$CS}</sub>
                                 </del>
-                            </span>
+                            </span><br />
                         {/if}
                     {/if}
-                    <span id="pricem{echo $model->getId()}">   
+                    <span id="pricem{echo $model->getId()}">
+                        <del class="price price-c_red f-s_12 price-c_9" id="priceDell"></del> 
                         {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
                             {$prOne = $model->firstVariant->getPrice()}
                             {$prTwo = $model->firstVariant->getPrice()}
@@ -117,6 +119,7 @@
                 {if count($model->getProductVariants()) > 1}
                     Выбор варианта:</br>
                     {foreach $model->getProductVariants() as $key => $pv}
+                        
                         <input type="radio" class="selectVar" id="sVar{echo $pv->getId()}" name="selectVar" {if $model->firstVariant->getId() == $pv->getId()}checked="checked"{/if}
                                {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
                                    discount="{echo $discount}" 
@@ -125,7 +128,7 @@
                                data-pp="1" 
                                data-cs = "{$CS}"
                                data-st="{echo $pv->getStock()}" 
-                               data-pr="{echo $pv->getPrice()}" 
+                               data-pr="{echo money_format('%i', $pv->getPrice())}" 
                                data-pid="{echo $model->getId()}" 
                                data-img="{echo $pv->getmainimage()}" 
                                data-vname="{echo $pv->getName()}" 
