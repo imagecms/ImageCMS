@@ -80,6 +80,29 @@ function init_2() {
             changeRadioStart($(this));
         });
     }
+    
+    $('#paid_span').on('click', function(){
+        if ($('#Paid').is(':checked') != true){
+             $('#spanPaid2').css('backgroundPosition', '-46px -17px');
+             $('#Paid2').attr('checked',true);
+         }
+         else{
+             $('#spanPaid2').css('backgroundPosition', '-46px 0px');
+             $('#Paid2').removeAttr('checked');
+         }
+    });
+    
+    $('#spanPaid2').on('click', function(){
+       if ($('#Paid2').is(':checked') != true){
+             $('#paid_span').css('backgroundPosition', '-46px -17px');
+             $('#Paid').attr('checked',true);
+         }
+         else{
+             $('#paid_span').css('backgroundPosition', '-46px 0px');
+             $('#Paid').removeAttr('checked');
+         }
+     });
+     
     $(".frame_label:has(.niceCheck)").die('click').live('click', function() {
         var $this = $(this);
         if ($('#show_in_all_cat').attr('checked')) {
@@ -986,7 +1009,6 @@ function initAdminArea() {
         $('#loading').fadeOut(300);
     });
 
-
     //add arrows to orders list
     if (window.hasOwnProperty('orderField'))
         if (orderField != "")
@@ -996,10 +1018,12 @@ function initAdminArea() {
                 $('#order' + orderField).find('a').after('&darr;');
 
     if ($('textarea.elRTE').length > 0)
-        initElRTE();
+//        initElRTE();
+        initTextEditor(textEditor);
 
     if ($('#elFinderTPLEd').length > 0)
-        elFinderTPLEd();
+//        elFinderTPLEd();
+        initTextEditor(textEditor);
 
     //elRTE bugFix for Firefox
 

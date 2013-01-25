@@ -1,4 +1,3 @@
-
 <div class="container">
     <section class="mini-layout">
         <div class="frame_title clearfix">
@@ -136,8 +135,19 @@
                                                             <label class="control-label" for="cat_list">Отображать дерево категорий в списке содержимого:</label>
                                                             <div class="controls">
                                                                 <select name="cat_list" id="cat_list">
-                                                                        <option value="yes" {if $cat_list == 'yse'} selected="selected" {/if} >Да</option>
+                                                                        <option value="yes" {if $cat_list == 'yes'} selected="selected" {/if} >Да</option>
                                                                         <option value="no" {if $cat_list == 'no'} selected="selected" {/if} >Нет</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                                
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="textEditor">Текстовый редактор:</label>
+                                                            <div class="controls">
+                                                                <select name="text_editor" id="textEditor">
+                                                                        <option value="elrte" {if $text_editor == 'elrte'} selected="selected" {/if} >elRTE</option>
+                                                                        <option value="tinymce" {if $text_editor == 'tinymce'} selected="selected" {/if} >TinyMCE</option>
+                                                                        <option value="none" {if $text_editor == 'none'} selected="selected" {/if} >Native textarea</option>
                                                                 </select>
                                                             </div>
                                                         </div>
