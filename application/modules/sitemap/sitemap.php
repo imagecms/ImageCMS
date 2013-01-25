@@ -111,17 +111,19 @@ class Sitemap extends MY_Controller {
         $this->initialize($this->_load_settings());
 
 // Add main page
-        $this->items[] = array(
-            'loc' => site_url(),
-            'changefreq' => $this->main_page_changefreq,
-            'priority' => $this->main_page_priority
-        );
+        if (!$this->robotsCheck(site_url())) {
+            $this->items[] = array(
+                'loc' => site_url(),
+                'changefreq' => $this->main_page_changefreq,
+                'priority' => $this->main_page_priority
+            );
+        }
 
 // Add categories to sitemap urls.
         $categories = $this->lib_category->unsorted();
 
         foreach ($categories as $category) {
-            if (!$this->robotsCheck($category['path_url'])) {
+            if (!$this->robotsCheck(site_url($category['path_url']))) {
                 $this->items[] = array(
                     'loc' => site_url($category['path_url']),
                     'changefreq' => $this->categories_changefreq,
@@ -288,6 +290,9 @@ class Sitemap extends MY_Controller {
     public function robotsCheck($check) {
         $array = $this->robots;
         foreach ($array as $ar) {
+            if ($ar == '/')
+                return true;
+
             if (strstr($check, $ar))
                 return true;
         }
