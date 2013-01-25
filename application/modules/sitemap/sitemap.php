@@ -14,7 +14,7 @@ class Sitemap extends MY_Controller {
     public $cats_priority = '0.8'; // priority for categories
     public $main_page_priority = '1'; // priority for main page
     public $pages_changefreq = 'daily';
-    public $categories_changefreq='weekly';
+    public $categories_changefreq = 'weekly';
     public $main_page_changefreq = 'daily';
     public $changefreq = 'daily';
     public $gzip_level = 0;
@@ -27,9 +27,10 @@ class Sitemap extends MY_Controller {
 
     function __construct() {
         parent::__construct();
+        $this->robots = $this->replace(file('robots.txt'));
         $this->load->module('core');
 
-        // Get langs
+// Get langs
         $this->langs = $this->core->langs;
         $this->default_lang = $this->core->def_lang[0];
         if (uri_string() == 'sitemap.xml') {
@@ -40,11 +41,11 @@ class Sitemap extends MY_Controller {
 
     public function index() {
         $categories = $this->lib_category->build();
-        //echo $this->sitemap_ul($categories);
+//echo $this->sitemap_ul($categories);
 
         $this->template->assign('content', $this->sitemap_ul($categories));
         $this->template->show();
-   }
+    }
 
     public function initialize($settings = array()) {
         if (count($settings) > 0) {
@@ -52,7 +53,7 @@ class Sitemap extends MY_Controller {
             $this->cats_priority = $settings['cats_priority'];
             $this->pages_priority = $settings['pages_priority'];
             $this->main_page_changefreq = $settings['main_page_changefreq'];
-            $this->categories_changefreq =$settings['categories_changefreq'];
+            $this->categories_changefreq = $settings['categories_changefreq'];
             $this->pages_changefreq = $settings['pages_changefreq'];
         }
     }
@@ -72,7 +73,7 @@ class Sitemap extends MY_Controller {
 
             $out .= '<li>' . anchor($url, $item['name']) . '</li>';
 
-            // Get category pages
+// Get category pages
             if (isset($item['path_url'])) {
                 $pages = $this->_cateogry_pages($item['id']);
 
@@ -106,116 +107,126 @@ class Sitemap extends MY_Controller {
 //            $this->result = $data;
 //        } 
 //        else
-        //      {
+//      {
         $this->initialize($this->_load_settings());
 
-        // Add main page
+// Add main page
         $this->items[] = array(
             'loc' => site_url(),
             'changefreq' => $this->main_page_changefreq,
             'priority' => $this->main_page_priority
         );
 
-        // Add categories to sitemap urls.
+// Add categories to sitemap urls.
         $categories = $this->lib_category->unsorted();
 
         foreach ($categories as $category) {
-            $this->items[] = array(
-                'loc' => site_url($category['path_url']),
-                'changefreq' => $this->categories_changefreq,
-                'priority' => $this->cats_priority
-            );
+            if (!$this->robotsCheck($category['path_url'])) {
+                $this->items[] = array(
+                    'loc' => site_url($category['path_url']),
+                    'changefreq' => $this->categories_changefreq,
+                    'priority' => $this->cats_priority
+                );
 
-            // Add links to categories in all langs.
-            foreach ($this->langs as $k => $v) {
-                if ($v['id'] != $this->default_lang['id']) {
-                    $this->items[] = array(
-                        'loc' => site_url($k . '/' . $category['path_url']),
-                        'changefreq' => $this->categories_changefreq,
-                        'priority' => $this->cats_priority
-                    );
+// Add links to categories in all langs.
+                foreach ($this->langs as $k => $v) {
+                    if ($v['id'] != $this->default_lang['id']) {
+                        $this->items[] = array(
+                            'loc' => site_url($k . '/' . $category['path_url']),
+                            'changefreq' => $this->categories_changefreq,
+                            'priority' => $this->cats_priority
+                        );
+                    }
                 }
             }
         }
 
-        // Get all pages
+// Get all pages
         $pages = $this->_get_all_pages();
 
         foreach ($pages->result_array() as $page) {
-            // create page url
-            if ($page['lang'] == $this->default_lang['id']) {
-                $url = site_url($page['full_url']);
-            } else {
-                $prefix = $this->_get_lang_prefix($page['lang']);
-                $url = site_url($prefix . '/' . $page['full_url']);
-            }
+            if (!$this->robotsCheck($page['full_url'])) {
+// create page url
+                if ($page['lang'] == $this->default_lang['id']) {
+                    $url = site_url($page['full_url']);
+                } else {
+                    $prefix = $this->_get_lang_prefix($page['lang']);
+                    $url = site_url($prefix . '/' . $page['full_url']);
+                }
 
-            // create date
-            if ($page['updated'] > 0) {
-                $date = date('Y-m-d', $page['updated']);
-            } else {
-                $date = date('Y-m-d', $page['created']);
-            }
-            $c_priority=$this->cats_priority;
-            if($page['cat_url']==''){
-            $c_priority=$this->cats_priority;}
-            else {$c_priority=$this->pages_priority;}
-            $this->items[] = array(
-                'loc' => $url,
-                'lastmod' => $date,
-                'changefreq' => $this->pages_changefreq,
-                'priority' => $c_priority
-            );
-        }
-
-        $is_shop = $this->db->where('name =','shop')->get('components')->row_array();
-        //var_dump($is_shop);
-        
-        if ($is_shop != NULL){
-               
-            $shop_categories = $this->_shop_category_pages();
-            foreach ($shop_categories as $shopcat) {
-
-                $url = site_url('shop/category/' . $shopcat['full_path']);
+// create date
+                if ($page['updated'] > 0) {
+                    $date = date('Y-m-d', $page['updated']);
+                } else {
+                    $date = date('Y-m-d', $page['created']);
+                }
+                $c_priority = $this->cats_priority;
+                if ($page['cat_url'] == '') {
+                    $c_priority = $this->cats_priority;
+                } else {
+                    $c_priority = $this->pages_priority;
+                }
                 $this->items[] = array(
                     'loc' => $url,
-                    'lastmod' => '',
-                    'changefreq' => 'daily',
-                    'priority' => $this->cats_priority,
+                    'lastmod' => $date,
+                    'changefreq' => $this->pages_changefreq,
+                    'priority' => $c_priority
                 );
+            }
+        }
+
+        $is_shop = $this->db->where('name =', 'shop')->get('components')->row_array();
+
+        if ($is_shop != NULL) {
+
+            $shop_categories = $this->_shop_category_pages();
+            foreach ($shop_categories as $shopcat) {
+                $url = site_url('shop/category/' . $shopcat['full_path']);
+                if (!$this->robotsCheck($url)) {
+                    $this->items[] = array(
+                        'loc' => $url,
+                        'lastmod' => '',
+                        'changefreq' => 'daily',
+                        'priority' => $this->cats_priority,
+                    );
+                }
             }
 
             $shop_brands = $this->_shop_brands_pages();
             foreach ($shop_brands as $shopbr) {
                 $url = site_url('shop/brand/' . $shopbr['url']);
-                $this->items[] = array(
-                    'loc' => $url,
-                    'lastmod' => '',
-                    'changefreq' => 'daily',
-                    'priority' => $this->cats_priority,
-                );
+                if (!$this->robotsCheck($url)) {
+                    $this->items[] = array(
+                        'loc' => $url,
+                        'lastmod' => '',
+                        'changefreq' => 'daily',
+                        'priority' => $this->cats_priority,
+                    );
+                }
             }
 
             $shop_products = $this->_shop_products_pages();
             foreach ($shop_products as $shopprod) {
                 $url = site_url('shop/product/' . $shopprod['url']);
-                if ($shopprod['updated'] > 0) {
-                    $date = date('Y-m-d', $shopprod['updated']);
-                } else {
-                    $date = date('Y-m-d', $shopprod['created']);
+                if (!$this->robotsCheck($url)) {
+                    if ($shopprod['updated'] > 0) {
+                        $date = date('Y-m-d', $shopprod['updated']);
+                    } else {
+                        $date = date('Y-m-d', $shopprod['created']);
+                    }
+                    $this->items[] = array(
+                        'loc' => $url,
+                        'lastmod' => $date,
+                        'changefreq' => 'daily',
+                        'priority' => $this->pages_priority,
+                    );
                 }
-                $this->items[] = array(
-                    'loc' => $url,
-                    'lastmod' => $date,
-                    'changefreq' => 'daily',
-                    'priority' => $this->pages_priority,
-                );
             }
         }
         $this->result = $this->generate_xml($this->items);
 
-        //$this->cache->store($this->sitemap_key, $this->result, $this->sitemap_ttl);
-        // }
+//$this->cache->store($this->sitemap_key, $this->result, $this->sitemap_ttl);
+// }
     }
 
     public function _get_all_pages() {
@@ -265,26 +276,66 @@ class Sitemap extends MY_Controller {
         }
     }
 
-    public function ping_google() {
-        $host = 'http://www.google.com';
-        $sitemap_url = site_url('sitemap.xml.gz');
-
-        $fp = fsockopen($host, 80, $errno, $errstr, 30);
-        if (!$fp) {
-            // $errno $errstr
-        } else {
-            $req = 'GET /ping?sitemap=';
-            $req = urlencode($sitemap_url) . " HTTP/1.1\r\n";
-            $req = "Host: $host\r\n";
-            $req = "User-Agent: Mozilla/5.0 (compatible; " . PHP_OS . ") PHP/" . PHP_VERSION . "\r\n";
-            $req = "Connection: Close\r\n\r\n";
-
-            fwrite($fp, $req);
-            while (!feof($fp)) {
-                //echo fgets($fp, 128);
-            }
-            fclose($fp);
+    public function replace($lines) {
+        $array = array();
+        foreach ($lines as $line) {
+            if ((substr_count($line, 'Disallow:') > 0) && (trim(str_replace('Disallow:', '', $line)) != ''))
+                array_push($array, trim(str_replace('Disallow:', '', $line)));
         }
+        return $array;
+    }
+
+    public function robotsCheck($check) {
+        $array = $this->robots;
+        foreach ($array as $ar) {
+            if (strstr($check, $ar))
+                return true;
+        }
+        return false;
+    }
+
+    /**
+     * send xml to google
+     * return $code if send (200 = ok) else 'false'
+     */
+    public function ping_google() {
+
+        $this->db->select('settings');
+        $a = unserialize(implode(',', $this->db->get_where('components', array('name' => 'sitemap'))->row_array()));
+
+        if ((time() - $a['lastSend']) / (60 * 60) >= 1) {
+            $ch = curl_init();
+
+            curl_setopt($ch, CURLOPT_URL, "http://www.google.com/webmasters/tools/ping?sitemap=" . site_url() . "/sitemap.xml");
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+            $output = curl_exec($ch);
+            $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+            curl_close($ch);
+
+            if ($code == '200') {
+                $XMLDataMap = array(
+                    'main_page_priority' => $a['main_page_priority'],
+                    'cats_priority' => $a['cats_priority'],
+                    'pages_priority' => $a['pages_priority'],
+                    'main_page_changefreq' => $a['main_page_changefreq'],
+                    'categories_changefreq' => $a['categories_changefreq'],
+                    'pages_changefreq' => $a['pages_changefreq'],
+                    'sendXML' => $a['sendXML'],
+                    'lastSend' => time()
+                );
+
+                $this->db->limit(1);
+                $this->db->where('name', 'sitemap');
+                $this->db->update('components', array('settings' => serialize($XMLDataMap)));
+
+                showMessage('Пинг отправлен', 'Google ping');
+            }
+
+            return $code;
+        }
+        return false;
     }
 
     public function gzip() {
@@ -306,7 +357,9 @@ class Sitemap extends MY_Controller {
             'cats_priority' => '0.8',
             'pages_priority' => '0.6',
             'main_page_changefreq' => 'weekly',
-            'pages_changefreq' => 'weekly'
+            'pages_changefreq' => 'weekly',
+            'sendXML' => 'true',
+            'lastSend' => 0
         );
 
         $this->db->where('name', 'sitemap');
@@ -321,7 +374,6 @@ class Sitemap extends MY_Controller {
 
     public function _shop_brands_pages() {
         $this->db->select('url');
-        //$this->db->where('sub_brand_id', 0);
         return $this->db->get('shop_brands')->result_array();
     }
 
