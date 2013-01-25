@@ -24,3 +24,6 @@ Thumbs.db
 /pma/
 *.*~
 /*.csv
+/tests
+codecept.phar
+codeception.yml
