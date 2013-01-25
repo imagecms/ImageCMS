@@ -263,11 +263,11 @@
             <script type="text/javascript" src="/js/elfinder-2.0/js/i18n/elfinder.ru.js"></script>
         {/if}
 
-        
+
         <!--
         <script src="{$THEME}/js/admin_base.min.js" type="text/javascript"></script>       
         -->
-        
+
         <script src="{$THEME}/js/admin_base_i.js" type="text/javascript"></script>       
         <script src="{$THEME}/js/admin_base_m.js" type="text/javascript"></script>       
         <script src="{$THEME}/js/admin_base_r.js" type="text/javascript"></script>       
@@ -319,7 +319,8 @@
                                 $this.parent().attr('data-original-title', show_tovar_text)
                                 $('.tooltip-inner').text(show_tovar_text);
                             }
-                            $this.closest('td').next().children().removeClass('disabled').removeAttr('disabled');
+                            $this.next().attr('checked', true).end().closest('td').next().children().removeClass('disabled').removeAttr('disabled');
+                                if ($this.attr('data-page') != undefined) $('.setHit, .setHot, .setAction').removeClass('disabled').removeAttr('disabled');
                         }
                         else{
                             $this.animate({
@@ -329,7 +330,8 @@
                                 $this.parent().attr('data-original-title', hide_tovar_text)
                                 $('.tooltip-inner').text(hide_tovar_text);
                             }
-                            $this.closest('td').next().children().addClass('disabled').attr('disabled','disabled');
+                            $this.next().attr('checked', false).end().closest('td').next().children().addClass('disabled').attr('disabled','disabled');
+                            if ($this.attr('data-page') != undefined) $('.setHit, .setHot, .setAction').addClass('disabled').attr('disabled','disabled')
                         }
                     }
                 });
@@ -340,10 +342,11 @@
             })
             base_url = '{/literal}{$BASE_URL}{literal}';
             {/literal}
+
             
             var elfToken = '{echo $CI->lib_csrf->get_token()}';
             </script>
-            
+
         <div id="jsOutput" style="display: none;"></div>
     </body>
 </html>

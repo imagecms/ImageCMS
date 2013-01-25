@@ -52,8 +52,8 @@
                                         
                                     <div class="control-group" id="mod_name">
                                         <label class="control-label">{lang('a_module_name')}:</label>
-                                        <div class="controls"  >
-                                            <span class="selmod input-xlarge uneditable-input required" style="height:18px !important;">Выберите тип модуля с таблицы ниже</span>
+                                        <div class="controls">
+                                            <span class="selmod">Выберите тип модуля с таблицы ниже</span>
                                             <input type="hidden" class="required" name="module" value="" id="sw">
                                             <input type="hidden" name="method" value="" id="swm">
                                         </div>
