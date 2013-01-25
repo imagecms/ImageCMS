@@ -177,6 +177,8 @@ class Exchange {
             //auto resize images if option is on
             if ($this->config['autoresize'] == 'on')
                 $this->startImagesResize();
+            
+            echo "success";
         }
         exit();
     }
