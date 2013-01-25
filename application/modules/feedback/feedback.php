@@ -42,10 +42,10 @@ class Feedback extends MY_Controller {
             $this->form_validation->set_rules('email', 'E-Mail', 'trim|required|valid_email|xss_clean');
             $this->form_validation->set_rules('theme', 'Тема', 'trim|required|max_length[' . $this->theme_max_len . ']|xss_clean');
 
-            if ($this->dx_auth->use_recaptcha)
-                $this->form_validation->set_rules('recaptcha_response_field', lang('lang_captcha'), 'trim|xss_clean|required|callback_captcha_check');
-            else
-                $this->form_validation->set_rules('captcha', lang('lang_captcha'), 'trim|required|xss_clean|callback_captcha_check');
+//            if ($this->dx_auth->use_recaptcha)
+//                $this->form_validation->set_rules('recaptcha_response_field', lang('lang_captcha'), 'trim|xss_clean|required|callback_captcha_check');
+//            else
+//                $this->form_validation->set_rules('captcha', lang('lang_captcha'), 'trim|required|xss_clean|callback_captcha_check');
 
             $this->form_validation->set_rules('message', 'Сообщение', 'trim|required|max_length[' . $this->message_max_len . ']|xss_clean');
 
@@ -57,10 +57,10 @@ class Feedback extends MY_Controller {
         }
 
         // Create captcha
-        $this->dx_auth->captcha();
-        $tpl_data['cap_image'] = $this->dx_auth->get_captcha_image();
-
-        $this->template->add_array($tpl_data);
+//        $this->dx_auth->captcha();
+//        $tpl_data['cap_image'] = $this->dx_auth->get_captcha_image();
+//
+//        $this->template->add_array($tpl_data);
 
         $this->display_tpl('feedback');
     }
