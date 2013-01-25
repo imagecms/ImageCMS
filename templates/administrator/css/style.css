@@ -656,6 +656,11 @@ span.check_gg {
     top: 66px;
 }
 
+.mceToolbar td {
+border-left: none !important;
+border-right: none !important;
+}
+
 @media (max-width: 979px) and (min-width: 768px){
     #productsPhoto .controls{margin-left: 0 !important;float: right;}
 }
