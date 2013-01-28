@@ -37,14 +37,29 @@ class Admin extends BaseAdminController {
     }
 
     public function update_settings() {
-        $XMLDataMap = array(
-            'main_page_priority' => $this->input->post('main_page_priority'),
-            'cats_priority' => $this->input->post('cats_priority'),
-            'pages_priority' => $this->input->post('pages_priority'),
-            'main_page_changefreq' => $this->input->post('main_page_changefreq'),
-            'categories_changefreq' => $this->input->post('categories_changefreq'),
-            'pages_changefreq' => $this->input->post('pages_changefreq')
-        );
+        if (!$this->input->post('sendXML'))
+            $XMLDataMap = array(
+                'main_page_priority' => $this->input->post('main_page_priority'),
+                'cats_priority' => $this->input->post('cats_priority'),
+                'pages_priority' => $this->input->post('pages_priority'),
+                'main_page_changefreq' => $this->input->post('main_page_changefreq'),
+                'categories_changefreq' => $this->input->post('categories_changefreq'),
+                'pages_changefreq' => $this->input->post('pages_changefreq'),
+                'sendXML' => 'false',
+                'lastSend' => time()
+            );
+        else
+            $XMLDataMap = array(
+                'main_page_priority' => $this->input->post('main_page_priority'),
+                'cats_priority' => $this->input->post('cats_priority'),
+                'pages_priority' => $this->input->post('pages_priority'),
+                'main_page_changefreq' => $this->input->post('main_page_changefreq'),
+                'categories_changefreq' => $this->input->post('categories_changefreq'),
+                'pages_changefreq' => $this->input->post('pages_changefreq'),
+                'sendXML' => $this->input->post('sendXML'),
+                'lastSend' => time()
+            );
+
         $this->db->limit(1);
         $this->db->where('name', 'sitemap');
         $this->db->update('components', array('settings' => serialize($XMLDataMap)));
