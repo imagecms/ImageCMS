@@ -1,110 +1,118 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 /**
  * Java Script helper
  */
 
-	/**
-	 * Reload window content by windowID
-	 */
-	function updateContent($windowID,$url)
-	{
-		echo "<script type=\"text/javascript\"> MochaUI.updateContent($('".$windowID."'), null, '".$url."'); </script>";
-	}
+/**
+ * Reload window content by windowID
+ */
+function updateContent($windowID, $url) {
+    echo "<script type=\"text/javascript\"> MochaUI.updateContent($('" . $windowID . "'), null, '" . $url . "'); </script>";
+}
 
-	/**
-	 * Show Roar message
-	 */
-	function showMessage( $message, $title = FALSE, $class = '', $ret=false)
-    {
-        $del = array("'",'"');  
+/**
+ * Show Roar message
+ */
+function showMessage($message, $title = FALSE, $class = '', $ret = false) {
+    $del = array("'", '"');
 
-        $message = str_replace($del, '', $message); 
-        $title = str_replace($del, '', $title); 
+    $message = str_replace($del, '', $message);
+    $title = str_replace($del, '', $title);
 
 
-		if ($title == FALSE)
-		{
-			$title = 'Сообщение: ';
-			if ($class == 'r') 
-				{$title = 'Ошибка: ';}
-			if ($class == 'g') 
-				{$title = 'Успех: ';}
-		}
-		$CI =& get_instance();
-		$message .= '<br/><strong>Запросов к базе: '.$CI->db->total_queries().'</strong>';
-		$message = str_replace("\n",'<br/>',$message);
-		$message = str_replace("<p>",'',$message);
-		$message = str_replace("</p>",'',$message);
-                if (!$ret)
-                    echo "<script type=\"text/javascript\"> showMessage('".$title."','".$message."','".$class."'); </script>";
-                else
-                    return "<script type=\"text/javascript\"> showMessage('".$title."','".$message."','".$class."'); </script>";
-	}
-	
-	function pjax($url, $selector='#mainContent')
-	{
-		echo '<script>$.pjax({url: "'.$url.'", container:"'.$selector.'"});</script>';
-	}
+    if ($title == FALSE) {
+        $title = 'Сообщение: ';
+        if ($class == 'r') {
+            $title = 'Ошибка: ';
+        }
+        if ($class == 'g') {
+            $title = 'Успех: ';
+        }
+    }
+    $CI = & get_instance();
+    $message .= '<br/><strong>Запросов к базе: ' . $CI->db->total_queries() . '</strong>';
+    $message = str_replace("\n", '<br/>', $message);
+    $message = str_replace("<p>", '', $message);
+    $message = str_replace("</p>", '', $message);
+    if (!$ret)
+        echo "<script type=\"text/javascript\"> showMessage('" . $title . "','" . $message . "','" . $class . "'); </script>";
+    else
+        return "<script type=\"text/javascript\"> showMessage('" . $title . "','" . $message . "','" . $class . "'); </script>";
+}
 
-	/**
-	 * Build new MochaUI window
-	 */
-	function buildWindow($id,$title,$contentURL,$width,$height,$method = 'iframe')
-	{
-			$w = "
+function pjax($url, $selector = '#mainContent') {
+    echo '<script>$.pjax({url: "' . $url . '", container:"' . $selector . '"});</script>';
+}
+
+/**
+ * Build new MochaUI window
+ */
+function buildWindow($id, $title, $contentURL, $width, $height, $method = 'iframe') {
+    $w = "
 			<script type=\"text/javascript\">
 			new MochaUI.Window({
-				id: '".$id."',
-				title: '".$title."',
-				loadMethod: '".$method."',
-				contentURL: '".$contentURL."',
-				width: ".$width.",
-				height: ".$height."
+				id: '" . $id . "',
+				title: '" . $title . "',
+				loadMethod: '" . $method . "',
+				contentURL: '" . $contentURL . "',
+				width: " . $width . ",
+				height: " . $height . "
 			});
 			</script>";
 
-			echo $w;
-	}
+    echo $w;
+}
 
-	/**
-	 * Close window
-	 */
-	function closeWindow($windowID)
-	{
-		echo "<script type=\"text/javascript\"> MochaUI.closeWindow($('".$windowID."')); </script>";
-	}
+/**
+ * Close window
+ */
+function closeWindow($windowID) {
+    echo "<script type=\"text/javascript\"> MochaUI.closeWindow($('" . $windowID . "')); </script>";
+}
 
+/**
+ * Redirect function
+ */
+function ajax_redirect($location) {
+    echo 'Перенаправляю: <b>' . $location . '</b> ' . "<script type='text/javascript'> setTimeout(\"location.href = '" . $location . "';\",3000); </script>";
+}
 
-	/**
- 	 * Redirect function
- 	 */
- 	function ajax_redirect($location)
- 	{
- 		echo  'Перенаправляю: <b>'.$location.'</b> '."<script type='text/javascript'> setTimeout(\"location.href = '".$location."';\",3000); </script>";
- 	}
+/*
+ * Load content to DIV
+ */
 
-	/*
-	 * Load content to DIV
-	 */
- 	function updateDiv($div_id,$url)
- 	{
-		echo "<script type=\"text/javascript\"> ajax_div('".$div_id."','".$url."'); </script>";
-	}
+function updateDiv($div_id, $url) {
+    echo "<script type=\"text/javascript\"> ajax_div('" . $div_id . "','" . $url . "'); </script>";
+}
 
-	/*
-	 * Same function as above but with other name ;)
-	 */
- 	function ajax_div($div_id,$url)
- 	{
-		echo "<script type=\"text/javascript\"> ajax_div('".$div_id."','".$url."'); </script>";
-	}
+/*
+ * Same function as above but with other name ;)
+ */
 
-	/*
-	 * Execute java script code
-	 */
-	function jsCode($code)
-	{
-		echo "<script type=\"text/javascript\"> ".$code." </script>";
-	}
+function ajax_div($div_id, $url) {
+    echo "<script type=\"text/javascript\"> ajax_div('" . $div_id . "','" . $url . "'); </script>";
+}
+
+/*
+ * Execute java script code
+ */
+
+function jsCode($code) {
+    echo "<script type=\"text/javascript\"> " . $code . " </script>";
+}
+
+if (!function_exists('checkAjaxRequest')) {
+
+    function checkAjaxRequest() {
+        if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest')
+            return false;
+        else
+            return true;
+    }
+
+}
 
 /* End of javascript helper */
