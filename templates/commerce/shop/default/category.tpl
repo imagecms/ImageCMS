@@ -244,14 +244,14 @@
                                         </a>
                                         {if count($product->variants)>1}
                                             <select class="m-l_10" name="selectVar">
-                                                {foreach $product->variants as $pv}
+                                                {foreach $product->variants as $pv}                                                    
                                                     <option class="selectVar"
                                                             value="{echo $pv->id}"
                                                             data-cs = "{$CS}"
                                                             data-st="{echo $pv->stock}"
                                                             data-pr="{echo number_format($pv->price, 2 , ".", "")}"
                                                             data-pid="{echo $product->id}"
-                                                            data-img="{echo $pv->smallimage}"
+                                                            data-img-small="{echo $pv->smallImage}"
                                                             data-vname="{echo $pv->name}"
                                                             data-vnumber="{echo $pv->number}">
                                                         {if $pv->name != ''}
