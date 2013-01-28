@@ -1022,8 +1022,8 @@ function initAdminArea() {
         initTextEditor(textEditor);
 
     if ($('#elFinderTPLEd').length > 0)
-//        elFinderTPLEd();
-        initTextEditor(textEditor);
+        elFinderTPLEd();
+//        initTextEditor(textEditor);
 
     //elRTE bugFix for Firefox
 
