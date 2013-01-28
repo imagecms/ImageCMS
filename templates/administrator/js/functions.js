@@ -385,6 +385,7 @@ function initTinyMCE()
 
 function initTextEditor(name)
 {
+    if (typeof(name) != 'undefined' && name.length != 0)
     ({
         'elrte': initElRTE,
         'tinymce' : initTinyMCE
