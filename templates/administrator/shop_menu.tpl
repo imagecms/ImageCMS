@@ -66,7 +66,7 @@
                 <li><a href="/admin/components/run/shop/currencies" class="pjax">Валюты</a></li>
                 <li><a href="/admin/components/run/shop/deliverymethods/index" class="pjax">Способы доставки</a></li>
                 <li><a href="/admin/components/run/shop/paymentmethods/index" class="pjax">Способы оплаты</a></li>
-                <li><a href="/admin/components/run/shop/system/import" class="pjax">Автоматизация</a></li>
+                <li><a href="/admin/components/run/shop/system/import">Автоматизация</a></li>
             </ul>
         </li>
     </ul>
