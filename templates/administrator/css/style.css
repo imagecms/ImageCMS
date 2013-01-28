@@ -684,4 +684,4 @@ border-right: none !important;
 .albums_list table table th{font-weight: bold;}
 .no-borderd th, .no-borderd td, .no-borderd{border: 0;}
 .albums_list table table th, .albums_list table table td{padding: 4px !important;}
-.active .table-striped > tbody > tr:nth-child(odd) td, .active .table-striped > tbody tr:nth-child(odd) th{background-color: #fff9e0 !important;}
+.albums_list .active .table-striped > tbody > tr:nth-child(odd) td, .albums_list .active .table-striped > tbody tr:nth-child(odd) th{background-color: #fff9e0 !important;}
