@@ -147,10 +147,10 @@ function updateNotificationsTotal()
 
 function loadShopInterface()
 {
-    if ($.browser.opera == true)
-    {
-        window.location = '/admin/components/run/shop/dashboard';
-    }
+//    if ($.browser.opera == true)
+//    {
+//        window.location = '/admin/components/run/shop/dashboard';
+//    }
     if ($('#baseSearch'))
     {
         $('#baseSearch').val('');
@@ -371,8 +371,11 @@ function initTinyMCE()
                     commandsOptions: {
                         getfile: {
                             oncomplete: 'destroy' // close/hide elFinder
-                        }
+                        },
                 },
+                customData : {
+                            cms_token : elfToken,
+                        }
                });
            }
     };
