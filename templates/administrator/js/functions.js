@@ -49,9 +49,10 @@ function translite_title(from, to)
 function create_description(from, to)
 {
     if ( $('.workzone textarea.elRTE').length)
+    {
         $('.workzone textarea.elRTE').elrte('updateSource');
+    }
     
-    $('textarea.elRTE').each(function(){ $(this).text(  $(this).tinymce().getContent());});
     
     $.post(
             base_url + 'admin/pages/ajax_create_description/', {
@@ -66,8 +67,10 @@ function create_description(from, to)
 function retrive_keywords(from, to)
 {
     if ( $('.workzone textarea.elRTE').length)
+    {
         $('.workzone textarea.elRTE').elrte('updateSource');
-$('textarea.elRTE').each(function(){ $(this).text(  $(this).tinymce().getContent());});
+    }
+
     $.post(base_url + 'admin/pages/ajax_create_keywords/', {
         'keys': $(from).val()
     },
@@ -97,9 +100,11 @@ $('.formSubmit').live('click', function() {
     $this = $(this);
 
     if ( $('.workzone textarea.elRTE').length)
+    {
         $('.workzone textarea.elRTE').elrte('updateSource');
+    }
     
-    $('textarea.elRTE').each(function(){ console.log('qq' + $(this).tinymce().getContent() ); $(this).text(  $(this).tinymce().getContent());});
+    delete window.teInited;
     
     var btn = this;
 
@@ -139,7 +144,6 @@ function updateNotificationsTotal()
     //if (isShop)
     $('#topPanelNotifications>div').load('/admin/components/run/shop/notifications/getAvailableNotification');
 }
-
 
 function loadShopInterface()
 {
@@ -384,16 +388,23 @@ function initTinyMCE()
     );
 
     $('textarea.elRTE').not('.focusOnClick').each(function(){ 
-        $(this).tinymce(opts);})
+        opts.elements = $(this).attr('id');
+        $(this).tinymce(opts);
+    });
 }
 
 function initTextEditor(name)
 {
-    if (typeof(name) != 'undefined' && name.length != 0)
-    ({
-        'elrte': initElRTE,
-        'tinymce' : initTinyMCE
-    }[name]())
+    if (!window.hasOwnProperty('teInited'))
+    {
+            if (typeof(name) != 'undefined' && name.length != 0)
+            ({
+                'elrte': initElRTE,
+                'tinymce' : initTinyMCE
+            }[name]());
+        window.teInited = true;
+    }
+        
 }
 
 var dlg = false;
