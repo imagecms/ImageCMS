@@ -51,6 +51,8 @@ function create_description(from, to)
     if ( $('.workzone textarea.elRTE').length)
         $('.workzone textarea.elRTE').elrte('updateSource');
     
+    $('textarea.elRTE').each(function(){ $(this).text(  $(this).tinymce().getContent());});
+    
     $.post(
             base_url + 'admin/pages/ajax_create_description/', {
         'text': $(from).val()
@@ -65,7 +67,7 @@ function retrive_keywords(from, to)
 {
     if ( $('.workzone textarea.elRTE').length)
         $('.workzone textarea.elRTE').elrte('updateSource');
-
+$('textarea.elRTE').each(function(){ $(this).text(  $(this).tinymce().getContent());});
     $.post(base_url + 'admin/pages/ajax_create_keywords/', {
         'keys': $(from).val()
     },
@@ -96,6 +98,8 @@ $('.formSubmit').live('click', function() {
 
     if ( $('.workzone textarea.elRTE').length)
         $('.workzone textarea.elRTE').elrte('updateSource');
+    
+    $('textarea.elRTE').each(function(){ console.log('qq' + $(this).tinymce().getContent() ); $(this).text(  $(this).tinymce().getContent());});
     
     var btn = this;
 
@@ -319,7 +323,7 @@ function initTinyMCE()
             // Location of TinyMCE script
             height: 300,
             script_url : '/js/tiny_mce/tiny_mce.js',
-
+            mode : "textarea",
             // General options
             theme : "advanced",
             skin: "o2k7",
