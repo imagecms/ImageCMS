@@ -69,8 +69,8 @@ class Exchange {
             $this->ci->db->where('identif', 'exchange')->update($this->settings_table, array('settings' => $for_insert));
         }
     }
-    
-    function __autoload(){
+
+    function __autoload() {
         return;
     }
 
@@ -129,7 +129,7 @@ class Exchange {
             $filename = explode('.', $st);
             if ($filename[1] != 'xml') {
                 //saving images to cmlTemp/images folder
-                if (write_file($this->tempDir . "images/" . $st, file_get_contents('php://input'), 'wb')) {
+                if (write_file($this->tempDir . "images/" . basename($st, $filename[1]) . "jpg", file_get_contents('php://input'), 'wb')) {
                     echo "success";
                 }
             } else {
@@ -177,7 +177,7 @@ class Exchange {
             //auto resize images if option is on
             if ($this->config['autoresize'] == 'on')
                 $this->startImagesResize();
-            
+
             echo "success";
         }
         exit();
