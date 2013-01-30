@@ -34,6 +34,7 @@
         <script type="text/javascript" src="{$SHOP_THEME}/js/shop.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}js/jquery.validate.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}js/autocomplete.js"></script>
+        <script type="text/javascript" src="{$SHOP_THEME}js/imagecms.api.js"></script>
         {$gmeta}
 
         {$yameta}

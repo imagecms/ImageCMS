@@ -195,11 +195,11 @@ class Auth extends MY_Controller {
                     $this->template->show();
                 } else {
                     //create json array for ajax request
-                    /*$json = array();
-                    $json['status'] = true;
-                    $json['auth_message'] = "Вы успешно зарегистрированы";
-                    $json['registration_mail'] = $this->dx_auth->email_activation;
-                    echo json_encode($json);*/
+                    /* $json = array();
+                      $json['status'] = true;
+                      $json['auth_message'] = "Вы успешно зарегистрированы";
+                      $json['registration_mail'] = $this->dx_auth->email_activation;
+                      echo json_encode($json); */
                     //$this->template->display('register_popup', array('succes' => TRUE));
                 }
             } else {
@@ -413,6 +413,10 @@ class Auth extends MY_Controller {
         if ($this->ban_reason != NULL) {
             echo '<br/>' . $this->ban_reason;
         }
+    }
+
+    function testfunc() {
+        echo "this is a test function";
     }
 
 }
