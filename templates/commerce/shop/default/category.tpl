@@ -219,25 +219,7 @@
                                         </span>
                                     {/if}
                                     <div>
-                                        <div class="star_rating">
-                                            <div id="{echo $model->id}_star_rating" class="rating_nohover {echo count_star(countRating($product->id))} star_rait" data-id="{echo $model->id}">
-                                                <div id="1" class="rate one">
-                                                    <span title="1">1</span>
-                                                </div>
-                                                <div id="2" class="rate two">
-                                                    <span title="2">2</span>
-                                                </div>
-                                                <div id="3" class="rate three">
-                                                    <span title="3">3</span>
-                                                </div>
-                                                <div id="4" class="rate four">
-                                                    <span title="4">4</span>
-                                                </div>
-                                                <div id="5" class="rate five">
-                                                    <span title="5">5</span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {$CI->load->module('star_rating')->show_star_rating($product)}
                                         <a href="{shop_url('product/'.$product->id.'#four')}" rel="nofollow" class="response">
                                             {totalComments($product->id)}
                                             {echo SStringHelper::Pluralize((int)totalComments($product->id), array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}
