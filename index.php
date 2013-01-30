@@ -193,8 +193,8 @@ if (is_dir($application_folder)) {
 }
 
 
-define('IMAGECMS_NUMBER', '4.2 Beta');
-define('IMAGECMS_VERSION', '20120810');
+define('IMAGECMS_NUMBER', '4.2 Pro');
+define('IMAGECMS_VERSION', '20132801');
 define('IMAGECMS_PUBLIC_ID', '51035d2a96a227c54d0dea3ff415ced6d39266c3');
 /*
  * --------------------------------------------------------------------
