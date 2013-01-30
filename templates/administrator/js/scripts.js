@@ -9,21 +9,11 @@ var notificationsInitialized = false;
 
 $(document).ajaxComplete(function(event, XHR, ajaxOptions) {
     $('.popover').remove();
-    if (ajaxOptions.url != "/admin/components/run/shop/notifications/getAvailableNotification" && !ajaxOptions.url.match(/autocomplete/))
+    if (ajaxOptions.url != "/admin/components/run/shop/notifications/getAvailableNotification")
     {
         if ((XHR.getAllResponseHeaders().match(/X-PJAX/)))
         {
-            
-            
-//            console.log((XHR.getAllResponseHeaders().match(/X-PJAX/)))
-            
-//            if (window.hasOwnProperty('tinymce'))
-//                delete(window.tinymce);
-
-            //delete(window.nota)
-            
             initAdminArea();
-            //initTextEditor();
             number_tooltip_live();
             $('.tooltip').remove();
 
@@ -31,8 +21,6 @@ $(document).ajaxComplete(function(event, XHR, ajaxOptions) {
             autocomplete();
             init_2();
             fixed_frame_title();
-            
-            
         }
         
         if ($.exists('#chart')) brands();            

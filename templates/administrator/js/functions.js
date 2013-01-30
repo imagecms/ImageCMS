@@ -49,10 +49,7 @@ function translite_title(from, to)
 function create_description(from, to)
 {
     if ( $('.workzone textarea.elRTE').length)
-    {
         $('.workzone textarea.elRTE').elrte('updateSource');
-    }
-    
     
     $.post(
             base_url + 'admin/pages/ajax_create_description/', {
@@ -67,9 +64,7 @@ function create_description(from, to)
 function retrive_keywords(from, to)
 {
     if ( $('.workzone textarea.elRTE').length)
-    {
         $('.workzone textarea.elRTE').elrte('updateSource');
-    }
 
     $.post(base_url + 'admin/pages/ajax_create_keywords/', {
         'keys': $(from).val()
@@ -100,11 +95,7 @@ $('.formSubmit').live('click', function() {
     $this = $(this);
 
     if ( $('.workzone textarea.elRTE').length)
-    {
         $('.workzone textarea.elRTE').elrte('updateSource');
-    }
-    
-    delete window.teInited;
     
     var btn = this;
 
@@ -145,12 +136,13 @@ function updateNotificationsTotal()
     $('#topPanelNotifications>div').load('/admin/components/run/shop/notifications/getAvailableNotification');
 }
 
+
 function loadShopInterface()
 {
-//    if ($.browser.opera == true)
-//    {
-//        window.location = '/admin/components/run/shop/dashboard';
-//    }
+    if ($.browser.opera == true)
+    {
+        window.location = '/admin/components/run/shop/dashboard';
+    }
     if ($('#baseSearch'))
     {
         $('#baseSearch').val('');
@@ -327,7 +319,7 @@ function initTinyMCE()
             // Location of TinyMCE script
             height: 300,
             script_url : '/js/tiny_mce/tiny_mce.js',
-            mode : "textarea",
+
             // General options
             theme : "advanced",
             skin: "o2k7",
@@ -371,11 +363,8 @@ function initTinyMCE()
                     commandsOptions: {
                         getfile: {
                             oncomplete: 'destroy' // close/hide elFinder
-                        },
-                },
-                customData : {
-                            cms_token : elfToken,
                         }
+                },
                });
            }
     };
@@ -391,23 +380,16 @@ function initTinyMCE()
     );
 
     $('textarea.elRTE').not('.focusOnClick').each(function(){ 
-        opts.elements = $(this).attr('id');
-        $(this).tinymce(opts);
-    });
+        $(this).tinymce(opts);})
 }
 
 function initTextEditor(name)
 {
-    if (!window.hasOwnProperty('teInited'))
-    {
-            if (typeof(name) != 'undefined' && name.length != 0)
-            ({
-                'elrte': initElRTE,
-                'tinymce' : initTinyMCE
-            }[name]());
-        window.teInited = true;
-    }
-        
+    if (typeof(name) != 'undefined' && name.length != 0)
+    ({
+        'elrte': initElRTE,
+        'tinymce' : initTinyMCE
+    }[name]())
 }
 
 var dlg = false;
