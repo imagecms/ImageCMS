@@ -30,6 +30,10 @@ class Star_rating extends MY_Controller {
         
         $get_settings = $this->db->select('settings')->where('name', 'star_rating')->get('components')->row_array();
         $this->list_for_show = json_decode($get_settings['settings'], true);
+        if ($this->list_for_show == null)
+        {
+            $this->list_for_show = array();
+        }
         
         $id = $this->core->core_data['id'];
         $type = $this->core->core_data['data_type'];
@@ -155,6 +159,49 @@ class Star_rating extends MY_Controller {
         if ($rating == 5)
             $rating = "fivestar";
         return $rating;
+    }
+    
+    
+    
+    
+    public function _install() {
+        $this->load->dbforge();
+        ($this->dx_auth->is_admin()) OR exit;
+        $fields = array(
+            'id' => array(
+                'type' => 'INT',
+                'auto_increment' => TRUE
+            ),
+            'id_type' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '25',
+                'null' => TRUE,
+            ),
+            'type' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '25',
+                'null' => TRUE,
+            ),
+            'votes' => array(
+                'type' => 'INT',
+            ),
+            'rating' => array(
+                'type' => 'INT',
+            ),
+        );
+
+        $this->dbforge->add_field($fields);
+        $this->dbforge->add_key('id', TRUE);
+        $this->dbforge->create_table('rating');
+
+        $this->db->where('name', 'star_rating');
+        $this->db->update('components', array('enabled' => 1));
+    }
+
+    public function _deinstall() {
+        $this->load->dbforge();
+        ($this->dx_auth->is_admin()) OR exit;
+        $this->dbforge->drop_table('rating');
     }
 
 }
