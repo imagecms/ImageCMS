@@ -98,8 +98,8 @@ class Star_rating extends MY_Controller {
                     'votes' => $this->new_votes,
                     'rating' => $this->new_rating
                 );
-                $rating = $this->new_rating / $this->new_votes;
-                $votes = $this->new_votes;
+                $rating_res = $this->new_rating / $this->new_votes;
+                $votes_res = $this->new_votes;
                 $this->db->where('id_type', $id)->where('type', $type)->update('rating', $data);
             } else {
                 $data = array(
@@ -120,6 +120,9 @@ class Star_rating extends MY_Controller {
                             $model = new SProductsRating;
                             $model->setProductId($id);
                         }
+                        $rating_res = ($model->getRating() + $rating) / ($model->getVotes() + 1);
+                        $votes_res = $model->getVotes() + 1;
+                        
                         $model->setVotes($model->getVotes() + 1);
                         $model->setRating($model->getRating() + $rating);
                         $model->save();
@@ -127,11 +130,11 @@ class Star_rating extends MY_Controller {
             }
             $this->session->set_userdata('voted_g' . $id . $type, true);
             
-            $rating = $this->count_stars(round($rating));
+            $rating_res = $this->count_stars(round($rating_res));
 
             if ($this->input->is_ajax_request()) {
-                return json_encode(array("classrate" => "$rating",
-                            "votes" => "$votes"
+                return json_encode(array("classrate" => "$rating_res",
+                            "votes" => "$votes_res"
                         ));
             }
         } else {

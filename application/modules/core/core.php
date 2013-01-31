@@ -586,7 +586,7 @@ class Core extends MY_Controller {
             $this->core->core_data['id'] = $category['id'];
             $this->template->show();
         } else {
-            $this->core->core_data['id'] = '111111';
+            $this->core->core_data['id'] = $category['id'];
             $this->template->display($category['main_tpl']);
         }
     }

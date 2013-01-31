@@ -21,6 +21,7 @@ class Admin extends BaseAdminController {
         $settings = json_decode($get_settings['settings']);
         $this->template->add_array(array(
             'settings' => $settings,
+            'is_shop' => $this->is_shop(),
         ));
         $this->render('settings');
     }
@@ -54,5 +55,14 @@ class Admin extends BaseAdminController {
         else
             return $this->template->fetch('file:' . 'application/modules/star_rating/templates/admin/' . $viewName);
     }
+    
+    
+    
+    private function is_shop()
+    {
+        $res = $this->db->where('name','star_rating')->get('components')->row();
+        return $res; 
+    }
+            
 
 }
