@@ -170,7 +170,7 @@ class Core extends MY_Controller {
         // Are we on main page?
         if (($cat_path == '/' OR $cat_path == FALSE) AND $data_type != 'bridge') {
             $data_type = 'main';
-
+            
             ($hook = get_hook('core_set_type_main')) ? eval($hook) : NULL;
         }
 
@@ -291,8 +291,23 @@ class Core extends MY_Controller {
         // If module than exit from core and load module
         if ($this->is_module($mod_segment) == TRUE)
             return TRUE;
-
+             
+        switch ($this->settings['main_type']) {
+            case 'page':
+                $main_id = $this->settings['main_page_id'];
+                break;
+            case 'category';
+                $main_id = $this->settings['main_page_cat'];
+                break;
+            case 'module':
+                $main_id = $this->settings['main_page_module'];
+                break;
+        
+         break;
+        }
+        
         if ($this->core_data['data_type'] == 'main') {
+            $this->core->core_data['id'] = $main_id;
             $this->_mainpage();
         } elseif ($this->core_data['data_type'] == 'category') {
             $this->_display_category($this->cat_content);
@@ -332,7 +347,7 @@ class Core extends MY_Controller {
                 } else {
                     $this->error(lang('main_page_error'));
                 }
-
+                
                 // Set page template file
                 if ($page['full_tpl'] == NULL) {
                     $page_tpl = 'page_full';
@@ -349,7 +364,7 @@ class Core extends MY_Controller {
                 $this->template->assign('content', $this->template->read($page_tpl, array('page' => $page)));
 
                 ($hook = get_hook('core_set_main_page_meta')) ? eval($hook) : NULL;
-
+                
                 //$this->set_meta_tags($this->settings['site_title'], $this->settings['site_keywords'], $this->settings['site_description']);
                 $this->set_meta_tags($page['meta_title'] == NULL ? $page['title'] : $page['meta_title'], $page['keywords'], $page['description']);
 
@@ -402,6 +417,7 @@ class Core extends MY_Controller {
                 $page_tpl = $category['page_tpl'];
             } else {
                 $page_tpl = $page['full_tpl'];
+               
             }
 
             $tpl_name = $category['main_tpl'];
@@ -432,8 +448,9 @@ class Core extends MY_Controller {
             $tpl_name = $page['main_tpl'];
 
         if (!$tpl_name) {
+            $this->core->core_data['id'] = $page['id'];
             $this->template->show();
-        } else {
+        } else { 
             $this->template->display($tpl_name);
         }
     }
@@ -565,9 +582,11 @@ class Core extends MY_Controller {
 
         ($hook = get_hook('core_dispcat_show_content')) ? eval($hook) : NULL;
 
-        if (!$category['main_tpl']) {
+        if (!$category['main_tpl']) {  
+            $this->core->core_data['id'] = $category['id'];
             $this->template->show();
         } else {
+            $this->core->core_data['id'] = $category['id'];
             $this->template->display($category['main_tpl']);
         }
     }

@@ -53,6 +53,13 @@
             </ul>
         </li>
         <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-statistic"></i>Статистика<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="{$ADMIN_URL}charts/brands" class="pjax">Бренды</a></li>
+                <li><a href="{$ADMIN_URL}charts/orders" class="pjax">Заказы</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i>Настройки<b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li><a href="/admin/components/run/shop/settings" class="pjax">Глобальные настройки</a></li>

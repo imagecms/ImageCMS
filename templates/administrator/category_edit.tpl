@@ -154,7 +154,7 @@
                                                 <div class="control-group">
                                                     <label class="control-label" for="short_desc">{lang('a_desc')}:</label>
                                                     <div class="controls">
-                                                        <textarea name="short_desc"  class="elRTE">{htmlspecialchars($short_desc)}</textarea>
+                                                        <textarea name="short_desc" id="short_desc" class="elRTE">{htmlspecialchars($short_desc)}</textarea>
                                                     </div>
                                                 </div>
 
