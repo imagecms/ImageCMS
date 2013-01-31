@@ -30,7 +30,7 @@ class Star_rating extends MY_Controller {
         
         $get_settings = $this->db->select('settings')->where('name', 'star_rating')->get('components')->row_array();
         $this->list_for_show = json_decode($get_settings['settings'], true);
-
+        
         $id = $this->core->core_data['id'];
         $type = $this->core->core_data['data_type'];
         
@@ -108,11 +108,12 @@ class Star_rating extends MY_Controller {
                     'votes' => 1,
                     'rating' => $rating
                 );
-                $votes = 1;
+                $votes_res = 1;
+                $rating_res=$rating;
                 $this->db->insert('rating', $data);
             }
             
-            if ($type = 'product'){
+            if ($type == 'product'){
             
                 if (SProductsQuery::create()->findPk($id) !== null) {
                         $model = SProductsRatingQuery::create()->findPk($id);
@@ -131,7 +132,7 @@ class Star_rating extends MY_Controller {
             $this->session->set_userdata('voted_g' . $id . $type, true);
             
             $rating_res = $this->count_stars(round($rating_res));
-
+            
             if ($this->input->is_ajax_request()) {
                 return json_encode(array("classrate" => "$rating_res",
                             "votes" => "$votes_res"
