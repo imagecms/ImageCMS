@@ -29,7 +29,7 @@
                 return 'Can\'t run widget <b>'.$name.'</b>';
             }
 
-			if ( ($data = $ci->cache->fetch('widget'.$name, 'widgets')) != FALSE AND $cache != FALSE)
+            if ( ($data = $ci->cache->fetch('widget'.$name, 'widgets')) != FALSE AND $cache != FALSE)
             {
                 return $data;
             }
@@ -40,7 +40,8 @@
                 switch ($widget['type'])
                 {
                     case 'module':
-                        $result = $ci->load->module($widget['data'].'/'.$widget['data'].'_widgets')->$widget['method']($widget); 
+                        $subpath = isset($widget['settings']['subpath'])?$widget['settings']['subpath'].'/':'';
+                        $result = $ci->load->module($widget['data'].'/'.$subpath.$widget['data'].'_widgets')->$widget['method']($widget); 
                     break;
 
                     case 'html':

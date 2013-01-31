@@ -107,21 +107,11 @@
         </div>
         <div class="footer">
             <div class="center">
-                <div class="carusel_frame brand box_title carousel_js">
-                    <div class="carusel clearfix">
-                        <ul>
-                            {foreach ShopCore::app()->SBrandsHelper->mostProductBrands(15, TRUE) as $brand}
-                                <li>
-                                    <a href="{shop_url($brand.full_url)}">
-                                        <img src="{media_url($brand.img_fullpath)}" title="{$brand.name}" />
-                                    </a>
-                                </li>
-                            {/foreach}
-                        </ul>
-                    </div>
-                    <button class="prev"></button>
-                    <button class="next"></button>
-                </div>
+                
+                <!-- brands widget -->
+                {widget('brands')}
+                <!-- *** -->
+                
                 {load_menu('footer_menu')}
                 <ul class="contacts f_l">
                     <li>
