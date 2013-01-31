@@ -102,6 +102,7 @@
                 </ul>
             </div><!-- header -->
             {echo ShopCore::app()->SCategoryTree->ul()}
+            {//\Category\RenderMenu::create()->load('category_menu')}
             {$shop_content}
             <div class="hfooter"></div>
         </div>
