@@ -27,7 +27,7 @@
         <script type="text/javascript" src="{$SHOP_THEME}js/jquery.validate.js"></script>
         {$renderGA}
     </head>
-    <body>
+    <body>        
         <div class="main_body">
             <div class="top">
                 <div class="center">
@@ -147,6 +147,7 @@
                         <span class="b">{lang('s_skype')}:</span>
                         <span>ImageCMS</span>
                     </li>
+                    {$CI->load->module('star_rating')->show_star_rating()}
                 </ul>
                 <div class="footer_info f_r">
                     <div>© ImageCMS, {date('Y')}</div>

@@ -38,29 +38,7 @@
                         <img id="vim{echo $model->getId()}" class="smallpimagev" src="{productImageUrl($model->getMainimage())}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
                     </a>
                 </div>
-                <div class="star_rating">
-                    <div id="star_rating_{echo $model->getId()}" class="rating {echo count_star($model->getRating())} star_rait" data-id="{echo $model->getId()}">
-                        <div id="1" class="rate one">
-                            <span title="1" class="clickrate">1</span>
-                        </div>
-                        <div id="2" class="rate two">
-                            <span title="2" class="clickrate">2</span>
-                        </div>
-                        <div id="3" class="rate three">
-                            <span title="3" class="clickrate">3</span>
-                        </div>
-                        <div id="4" class="rate four">
-                            <span title="4" class="clickrate">4</span>
-                        </div>
-                        <div id="5" class="rate five">
-                            <span title="5" class="clickrate">5</span>
-                        </div>
-                    </div>
-                </div>
-                <span itemscope="" itemtype="http://data-vocabulary.org/Review-aggregate" id="pageRatingData"> 
-                    &nbsp;&nbsp;Рейтинг товара {if $model->firstVariant->getNumber() != ''}«<span itemprop="itemreviewed">{echo $model->firstvariant->getNumber()}</span>»{/if} 
-                    <meta itemprop="rating" content="4"> оставило <span itemprop="count">{echo $model->getVotes()}</span> человек(а).
-                </span>
+                {$CI->load->module('star_rating')->show_star_rating($model)}
                 <div class="m-t_10">{echo $CI->load->module('share')->_make_share_form()}</div>
             </div>
             {$style = productInCartI($cart_data, $model->getId(), $model->firstVariant->getId(), $model->firstVariant->getStock())}

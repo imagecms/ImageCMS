@@ -38,7 +38,7 @@
 
         {$yameta}
         {$renderGA}
-            
+
         {$ymetric}
     </head>
     <body>
@@ -64,12 +64,12 @@
                         <span id="suggestions" style="display: none; width: 0px; right: 0px;"></span>
                     </form>
                 </div>
-                        
+
                 <div class="phone">
                     <address>(095)<span><span class="d_n">&minus;</span> 555-55-55</span></address>
                     <span class="js showCallback">{lang('s_coll_order')}</span>
                 </div>
-                
+
                 <ul class="user_menu">
                     <!--    Show callback's form    -->
                     {if !count(get_currencies())}
@@ -102,7 +102,6 @@
                 </ul>
             </div><!-- header -->
             {echo ShopCore::app()->SCategoryTree->ul()}
-            {//\Category\RenderMenu::create()->load('category_menu')}
             {$shop_content}
             <div class="hfooter"></div>
         </div>
@@ -137,7 +136,9 @@
                         <span class="b">{lang('s_skype')}:</span>
                         <span>ImageCMS</span>
                     </li>
-                </ul>
+                    {$CI->load->module('star_rating')->show_star_rating()}
+                </ul>                    
+
                 <div class="footer_info f_r">
                     <div>© ImageCMS, {date('Y')}</div>
                     <div class="social">
