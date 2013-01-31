@@ -3,10 +3,14 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-/*
- * Image CMS
- * api auth.php
- */
+/**
+ * Implements API methods for Auth class
+ * All methods return json objects in one format
+ * 
+ * @author Avgustus
+ * @copyright ImageCMS (c) 2013, Avgustus <avgustus@yandex.ru>
+ * 
+ **/
 
 class AuthApi extends Auth {
 
@@ -39,11 +43,10 @@ class AuthApi extends Auth {
                 ShopCore::app()->SCart->transferCartData();
                 echo json_encode(
                         array(
-                            'message' => 'User logged in success',
-                            'action' => 'auth/login',
-                            'reload' => true,
-                            'reopen' => false,
-                            'required_fields' => array()
+                            'msg' => 'User logged in success',
+                            'status' => true,
+                            'refresh' => true,
+                            'redirect' => false,
                         )
                 );
             } else {
@@ -69,40 +72,45 @@ class AuthApi extends Auth {
                     //return json data for render login form
                     echo json_encode(
                             array(
-                                'message' => 'Returns array with information concerning login form',
-                                'action' => 'auth/login',
+                                'msg' => validation_errors(),
+                                'status' => false,
                                 'reload' => false,
                                 'reopen' => false,
-                                'required_fields' => array()
                             )
                     );
                 }
             }
         } else {
-            echo json_encode(
-                    array(
-                        'message' => 'You are logged in right now.',
-                        'action' => 'auth/login',
-                        'reload' => false,
-                        'reopen' => false,
-                        'required_fields' => array()
-                    )
-            );
+            $json = array();
+            $json['status'] = 'success';
+            $json['msg'] = 'User is already logged in';
+            $json['refresh'] = false;
+            $json['redirect'] = false;
+            echo json_encode($json);
         }
     }
 
     function logout() {
-        $this->dx_auth->logout();
-        echo json_encode(array('logged_out' => true));
-        echo json_encode(
+        if ($this->dx_auth->is_logged_in()) {
+            $this->dx_auth->logout();
+            echo json_encode(
                     array(
-                        'message' => 'You are logged in right now.',
-                        'action' => 'auth/logout',
+                        'msg' => 'Logout completed',
+                        'status' => true,
                         'reload' => true,
-                        'reopen' => false,
-                        'required_fields' => array()
+                        'redirect' => false,
                     )
             );
+        } else {
+            echo json_encode(
+                    array(
+                        'msg' => 'You are not loggin to make loggout',
+                        'status' => false,
+                        'reload' => false,
+                        'redirect' => false,
+                    )
+            );
+        }
     }
 
     public function register() {
@@ -132,8 +140,9 @@ class AuthApi extends Auth {
                 //create json array for ajax request
                 $json = array();
                 $json['status'] = true;
-                $json['auth_message'] = "Вы успешно зарегистрированы";
-                $json['registration_mail'] = $this->dx_auth->email_activation;
+                $json['msg'] = 'Register success';
+                $json['refresh'] = true;
+                $json['redirect'] = false;
                 echo json_encode($json);
             } else {
                 // Is registration using captcha
@@ -143,58 +152,33 @@ class AuthApi extends Auth {
                 }
                 //create json array for ajax requests
                 $json = array();
-                $json['allow_registration'] = $this->dx_auth->allow_registration;
-                $json['email_activation'] = $this->dx_auth->email_activation;
+//                $json['additional_info']['allow_registration'] = $this->dx_auth->allow_registration;
+//                $json['additional_info']['email_activation'] = $this->dx_auth->email_activation;
                 if ($this->dx_auth->captcha_registration) {
                     $data['captcha_required'] = $this->dx_auth->captcha_registration;
                     $data['captcha_image'] = $this->dx_auth->get_captcha_image();
                 }
-                $json['error_message'] = validation_errors();
-                $json['required_form_fields'] = array(
-                    array(
-                        'field_name' => 'email',
-                        'field_type' => 'text',
-                        'rules' => array('required', 'valid_email')
-                    ),
-                    array(
-                        'field_name' => 'password',
-                        'field_type' => 'text',
-                        'rules' => array('required')
-                    ),
-                    array(
-                        'field_name' => 'confirm_passwords',
-                        'field_type' => 'text',
-                        'rules' => array('required')
-                    ),
-                    array(
-                        'field_name' => 'username',
-                        'field_type' => 'text',
-                        'rules' => array()
-                    )
-                );
-                if ($this->dx_auth->captcha_registration) {
-                    if ($this->dx_auth->use_recaptcha)
-                        $data['required_form_fields'][] = array(
-                            'field_name' => 'recaptcha_response_field',
-                            'field_type' => 'text',
-                            'rules' => array('required')
-                        );
-                    else
-                        $data['required_form_fields'][] = array(
-                            'field_name' => 'captcha',
-                            'field_type' => 'text',
-                            'rules' => array('required')
-                        );
-                }
+                $json['msg'] = validation_errors();
+                $json['validations'] = true;
+                $json['status'] = false;
+                $json['refresh'] = false;
+                $json['redirect'] = false;
                 echo json_encode($json);
             }
         } elseif (!$this->dx_auth->allow_registration) {
             $json = array();
-            $json['allow_registration'] = false;
+            //$json['additional_info']['allow_registration'] = false;
+            $json['msg'] = 'Registration is not allowed';
+            $json['status'] = false;
+            $json['refresh'] = false;
+            $json['redirect'] = false;
             echo json_encode($json);
         } else {
             $json = array();
-            $json['user_logged_in'] = true;
+            $json['msg'] = 'User is logged in';
+            $json['status'] = false;
+            $json['refresh'] = false;
+            $json['redirect'] = false;
             echo json_encode($json);
         }
     }
@@ -204,24 +188,39 @@ class AuthApi extends Auth {
         // Set form validation rules
         $val->set_rules('email', lang('lang_email'), 'trim|required|xss_clean|valid_email');
         // Validate rules and call forgot password function
-        if ($val->run() AND $this->dx_auth->forgot_password($val->set_value('email')))
-            $data['auth_message'] = lang('lang_acc_mail_sent');
-        if ($this->dx_auth->_auth_error != NULL)
-            $data['auth_message'] = $this->dx_auth->_auth_error;
-        echo json_encode($data);
+        if ($val->run($this) AND $this->dx_auth->forgot_password($val->set_value('email'))) {
+            echo json_encode(array(
+                'msg' => 'Email with new password send to you email',
+                'status' => true,
+                'refresh' => false,
+                'redirect' => false,
+            ));
+        } else {
+            echo json_encode(array(
+                'msg' => validation_errors(),
+                'status' => false,
+                'refresh' => false,
+                'redirect' => false,
+            ));
+        }
     }
 
     function reset_password() {
         // Get username and key
-        $email = $this->uri->segment(3);
-        $key = $this->uri->segment(4);
+        $email = $this->input->post('email');
+        $key = $this->input->post('key');
         // Reset password
         if ($this->dx_auth->reset_password($email, $key)) {
-            $data['auth_message'] = lang('lang_pass_restored') . anchor(site_url($this->dx_auth->login_uri), lang('s_login_here'));
+            echo json_encode(array(
+                'msg' => lang('lang_pass_restored') . anchor(site_url($this->dx_auth->login_uri), lang('s_login_here')),
+                'status' => true,
+            ));
         } else {
-            $data['auth_message'] = lang('lang_reset_failed');
+            echo json_encode(array(
+                'msg' => 'Reset password failed',
+                'status' => false,
+            ));
         }
-        echo json_encode($data);
     }
 
     function change_password() {
@@ -236,13 +235,21 @@ class AuthApi extends Auth {
 
             // Validate rules and change password
             if ($val->run($this) AND $this->dx_auth->change_password($val->set_value('old_password'), $val->set_value('new_password'))) {
-                $data['auth_message'] = lang('lang_pass_changed');
-                echo json_encode($data);
+                echo json_encode(array(
+                    'msg' => lang('lang_pass_changed'),
+                    'status' => true,
+                ));
             } else {
-                echo json_encode($data);
+                echo json_encode(array(
+                    'msg' => validation_errors(),
+                    'status' => false,
+                ));
             }
         } else {
-            
+            echo json_encode(array(
+                'msg' => 'You are not logged in to change password',
+                'status' => false,
+            ));
         }
     }
 
@@ -254,17 +261,29 @@ class AuthApi extends Auth {
             $val->set_rules('password', lang('lang_password'), "trim|required|xss_clean");
             // Validate rules and change password
             if ($val->run($this) AND $this->dx_auth->cancel_account($val->set_value('password'))) {
-                
+                echo json_encode(array(
+                    'msg' => 'Deleting account completed',
+                    'status' => true,
+                ));
             } else {
-                
+                echo json_encode(array(
+                    'msg' => validation_errors(),
+                    'status' => false,
+                ));
             }
         } else {
-            
+            echo json_encode(array(
+                'msg' => 'You are not logged in, you dont have any account to delete',
+                'status' => false,
+            ));
         }
     }
 
     function banned() {
-        echo json_encode(array('title' => lang('lang_user_banned'), 'msg' => '<br/>' . $this->ban_reason));
+        echo json_encode(array(
+            'msg' => lang('lang_user_banned') . $this->ban_reason,
+            'status' => true,
+        ));
     }
 
 }
