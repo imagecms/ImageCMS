@@ -48,6 +48,7 @@
                                                             Категории
                                                     </span>
                                                 </div>
+                                                {if $is_shop != null}
                                                 <hr style ='margin:5px'>
                                                 <div class="controls-group" style ='padding:5px'>
                                                     <span class="frame_label">
@@ -69,7 +70,7 @@
                                                             <input type="checkbox" name="sr[brand]" value="1" {if $settings->brand == 1}checked="checked"{/if}/>
                                                         </span> Брендов
                                                     </span>
-                                                </div>
+                                                </div>{/if}
                                         </div>
                                     </div>
                                 </td>
