@@ -418,6 +418,10 @@ class Auth extends MY_Controller {
     function testfunc() {
         echo "this is a test function";
     }
+    
+    function testform(){
+        $this->template->show('apitest');
+    }
 
 }
 
