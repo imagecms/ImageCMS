@@ -3,16 +3,16 @@ function ChangeBannerActive(el, bannerId)
 {
     var currentActiveStatus = $(el).attr('rel');
 
-    $.post('/admin/components/run/shop/banners/changeActive/', {bannerId:bannerId,status:currentActiveStatus}, function(data){
+    $.post('/admin/components/run/shop/banners/changeActive/', {bannerId: bannerId, status: currentActiveStatus}, function(data) {
         $('.notifications').append(data)
-        if(currentActiveStatus=='true')
-            {
-                $(el).addClass('disable_tovar').attr('rel',false);
-                    
-        }else{
-                $(el).removeClass('disable_tovar').attr('rel',true);
-            }
-    
+        if (currentActiveStatus == 'true')
+        {
+            $(el).addClass('disable_tovar').attr('rel', false);
+
+        } else {
+            $(el).removeClass('disable_tovar').attr('rel', true);
+        }
+
     });
 }
 var shopAdminMenuCache = false;
@@ -48,9 +48,9 @@ function translite_title(from, to)
 
 function create_description(from, to)
 {
-    if ( $('.workzone textarea.elRTE').length)
+    if ($('.workzone textarea.elRTE').length)
         $('.workzone textarea.elRTE').elrte('updateSource');
-    
+
     $.post(
             base_url + 'admin/pages/ajax_create_description/', {
         'text': $(from).val()
@@ -63,7 +63,7 @@ function create_description(from, to)
 
 function retrive_keywords(from, to)
 {
-    if ( $('.workzone textarea.elRTE').length)
+    if ($('.workzone textarea.elRTE').length)
         $('.workzone textarea.elRTE').elrte('updateSource');
 
     $.post(base_url + 'admin/pages/ajax_create_keywords/', {
@@ -81,8 +81,8 @@ function ajax_div(target, url)
         headers: {
             'X-PJAX': 'X-PJAX'
         },
-        success: function(data){
-            $('#'+target).append(data);
+        success: function(data) {
+            $('#' + target).append(data);
         }
     });
 }
@@ -94,9 +94,9 @@ $('.formSubmit').live('click', function() {
     //update content in textareas with elRTE 
     $this = $(this);
 
-    if ( $('.workzone textarea.elRTE').length)
+    if ($('.workzone textarea.elRTE').length)
         $('.workzone textarea.elRTE').elrte('updateSource');
-    
+
     var btn = this;
 
     var selector = $(this).data('form');
@@ -220,8 +220,8 @@ function initShopSearch() {
 function initElRTE()
 {
     elRTE.prototype.options.toolbars.custom = [
-         "copypaste","undoredo","elfinder","style","alignment","direction","colors","format","indent","lists","links","elements","media","tables","fullscreen"
-    ];    
+        "copypaste", "undoredo", "elfinder", "style", "alignment", "direction", "colors", "format", "indent", "lists", "links", "elements", "media", "tables", "fullscreen"
+    ];
     elRTE.prototype.options.toolbars.empty = [];
     var opts = {
         //lang         : 'ru',   // set your language
@@ -235,45 +235,44 @@ function initElRTE()
             dialog = $('<div />').dialogelfinder({
                 url: '/admin/elfinder_init',
                 lang: 'ru',
-            commands: [
-                'open', 'reload', 'home', 'up', 'back', 'forward', 'getfile', 'quicklook',
-                'download', 'rm', 'rename', 'mkdir', 'mkfile', 'upload',  'edit', 'preview', 'extract', 'archive', 'search', 'info', 'view', 'help','sort'
-            ],
-            uiOptions: {
-            // toolbar configuration
-            toolbar: [
-                ['back', 'forward'],
-                ['reload'],
-                ['home', 'up'],
-                ['mkdir', 'mkfile', 'upload'],
-                //        		['mkfile', 'upload'],
-                //        		['open', 'download', 'getfile'],
-                ['download'],
-                ['info'],
-                ['quicklook'],
-                ['rm'],
-                //        		['duplicate', 'rename', 'edit', 'resize'],
-                ['duplicate', 'rename', 'edit'],
-                ['extract', 'archive'],
-                ['view', 'sort'],
-                ['help'],
-                ['search']
-            ],
-        
-            },
-                    contextmenu: {
-            // navbarfolder menu
-            //        	navbar : ['open', '|', 'copy', 'cut', 'paste', 'duplicate', '|', 'rm', '|', 'info'],
+                commands: [
+                    'open', 'reload', 'home', 'up', 'back', 'forward', 'getfile', 'quicklook',
+                    'download', 'rm', 'rename', 'mkdir', 'mkfile', 'upload', 'edit', 'preview', 'extract', 'archive', 'search', 'info', 'view', 'help', 'sort'
+                ],
+                uiOptions: {
+                    // toolbar configuration
+                    toolbar: [
+                        ['back', 'forward'],
+                        ['reload'],
+                        ['home', 'up'],
+                        ['mkdir', 'mkfile', 'upload'],
+                        //        		['mkfile', 'upload'],
+                        //        		['open', 'download', 'getfile'],
+                        ['download'],
+                        ['info'],
+                        ['quicklook'],
+                        ['rm'],
+                        //        		['duplicate', 'rename', 'edit', 'resize'],
+                        ['duplicate', 'rename', 'edit'],
+                        ['extract', 'archive'],
+                        ['view', 'sort'],
+                        ['help'],
+                        ['search']
+                    ],
+                },
+                contextmenu: {
+                    // navbarfolder menu
+                    //        	navbar : ['open', '|', 'copy', 'cut', 'paste', 'duplicate', '|', 'rm', '|', 'info'],
 
-            // current directory menu
-            //        	cwd    : ['reload', 'back', '|', 'upload', 'mkdir', 'mkfile', 'paste', '|', 'info'],
+                    // current directory menu
+                    //        	cwd    : ['reload', 'back', '|', 'upload', 'mkdir', 'mkfile', 'paste', '|', 'info'],
 
-            // current directory file menu
-            files: [
-                'edit', 'rename', '|', 'download', '|', 
-                'rm', '|',  'archive', 'extract', '|', 'info'
-            ]
-            },
+                    // current directory file menu
+                    files: [
+                        'edit', 'rename', '|', 'download', '|',
+                        'rm', '|', 'archive', 'extract', '|', 'info'
+                    ]
+                },
                 commandsOptions: {
                     getfile: {
                         oncomplete: 'destroy' // close/hide elFinder
@@ -282,8 +281,8 @@ function initElRTE()
                 getFileCallback: function(file) {
                     callback('/' + file.path);
                 },
-                customData : {
-                    cms_token : elfToken
+                customData: {
+                    cms_token: elfToken
                 }
                 //			        getFileCallback: callback // pass callback to file manager
             });
@@ -296,100 +295,94 @@ function initElRTE()
     };
     $('textarea.elRTE.focusOnClick').each(
             function() {
-                var rte  = this;
-                opts.height = 300; 
-                $(rte).on('focus', function(){
+                var rte = this;
+                opts.height = 300;
+                $(rte).on('focus', function() {
                     $(rte).elrte(opts);
-                    
+
                     //$(rte).delay(300).closest('.el-rte').find('.workzone, iframe, textarea').animate({'height':'300px'}, 400);
                 });
             }
     );
-    
-    $('textarea.elRTE').not('.focusOnClick').each(function(){
-            if ($(this).is(':visible'))
-                if (!$(this).closest('div.workzone').length)
-                    $(this).elrte(opts);
-        });
+
+    $('textarea.elRTE').not('.focusOnClick').each(function() {
+        if ($(this).is(':visible'))
+            if (!$(this).closest('div.workzone').length)
+                $(this).elrte(opts);
+    });
 }
 
 function initTinyMCE()
 {
     var opts = {
-            // Location of TinyMCE script
-            height: 300,
-            script_url : '/js/tiny_mce/tiny_mce.js',
-
-            // General options
-            theme : "advanced",
-            skin: "o2k7",
-            skin_variant: "silver",
-            plugins : "autolink,lists,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,advlist",
-
-            // Theme options
-            theme_advanced_buttons1 : /*"save"+*/"newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect,|,cut,copy,paste,pastetext,pasteword, |, search,replace",
-            theme_advanced_buttons2 : "bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor, |, insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,pagebreak",
-            theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
+        // Location of TinyMCE script
+        height: 300,
+        script_url: '/js/tiny_mce/tiny_mce.js',
+        // General options
+        theme: "advanced",
+        skin: "o2k7",
+        skin_variant: "silver",
+        plugins: "autolink,lists,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,advlist",
+        // Theme options
+        theme_advanced_buttons1: /*"save"+*/"newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect,|,cut,copy,paste,pastetext,pasteword, |, search,replace",
+        theme_advanced_buttons2: "bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor, |, insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,pagebreak",
+        theme_advanced_buttons3: "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
 //            theme_advanced_buttons4 : "insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,pagebreak",
-            theme_advanced_toolbar_location : "top",
-            theme_advanced_toolbar_align : "left",
-            theme_advanced_statusbar_location : "bottom",
-            theme_advanced_resizing : true,
-
-            // Example content CSS (should be your site CSS)
-            content_css : "css/content.css",
-
-            // Drop lists for link/image/media/template dialogs
-            template_external_list_url : "lists/template_list.js",
-            external_link_list_url : "lists/link_list.js",
-           // external_image_list_url : "lists/image_list.js",
-            media_external_list_url : "lists/media_list.js",
-
-            // Replace values for the template plugin
-            template_replace_values : {
-                    username : "Some User",
-                    staffid : "991234"
-            },
-                
-           file_browser_callback : function(field_name, url, type, win) {
-                $('<div/>').dialogelfinder({
-                    url: '/admin/elfinder_init',
-                    lang: 'ru',
-                    dialog: { width: 900, modal: true, title: 'Files', zIndex: 900001 },
-                    
-                    getFileCallback: function(file) {
-                        win.document.forms[0].elements[field_name].value = '/' + file.path;
-                    },
-                    commandsOptions: {
-                        getfile: {
-                            oncomplete: 'destroy' // close/hide elFinder
-                        }
+        theme_advanced_toolbar_location: "top",
+        theme_advanced_toolbar_align: "left",
+        theme_advanced_statusbar_location: "bottom",
+        theme_advanced_resizing: true,
+        // Example content CSS (should be your site CSS)
+        content_css: "css/content.css",
+        // Drop lists for link/image/media/template dialogs
+        template_external_list_url: "lists/template_list.js",
+        external_link_list_url: "lists/link_list.js",
+        // external_image_list_url : "lists/image_list.js",
+        media_external_list_url: "lists/media_list.js",
+        // Replace values for the template plugin
+        template_replace_values: {
+            username: "Some User",
+            staffid: "991234"
+        },
+        file_browser_callback: function(field_name, url, type, win) {
+            $('<div/>').dialogelfinder({
+                url: '/admin/elfinder_init',
+                lang: 'ru',
+                dialog: {width: 900, modal: true, title: 'Files', zIndex: 900001},
+                getFileCallback: function(file) {
+                    win.document.forms[0].elements[field_name].value = '/' + file.path;
                 },
-               });
-           }
+                commandsOptions: {
+                    getfile: {
+                        oncomplete: 'destroy' // close/hide elFinder
+                    }
+                },
+            });
+        }
     };
 
     $('textarea.elRTE.focusOnClick').each(
             function() {
-                opts.height = 200; 
-                $(this).on('focus', function(){
+                opts.height = 200;
+                $(this).on('focus', function() {
                     $(this).tinymce(opts);
-                    $(this).delay(300).closest('.controls').find('.mceIframeContainer, .mceIframeContainer iframe').animate({'height':'300px'}, 400);
+                    $(this).delay(300).closest('.controls').find('.mceIframeContainer, .mceIframeContainer iframe').animate({'height': '300px'}, 400);
                 });
             }
     );
 
-    $('textarea.elRTE').not('.focusOnClick').each(function(){ 
-        $(this).tinymce(opts);})
+    $('textarea.elRTE').not('.focusOnClick').each(function() {
+        $(this).tinymce(opts);
+    })
 }
 
 function initTextEditor(name)
 {
     if (typeof(name) != 'undefined' && name.length != 0)
-    ({
-        'elrte': initElRTE,
-        'tinymce' : initTinyMCE
-    }[name]())
+        ({
+            'elrte': initElRTE,
+            'tinymce': initTinyMCE
+        }[name]())
 }
 
 var dlg = false;
@@ -405,10 +398,10 @@ function elFinderPopup(type, id, path)
             lang: 'ru',
             commands: [
                 'open', 'reload', 'home', 'up', 'back', 'forward', 'getfile', 'quicklook',
-                'download', 'rm', 'rename', 'mkdir', 'mkfile', 'upload',  'edit', 'preview', 'extract', 'archive', 'search', 'info', 'view', 'help','sort'
+                'download', 'rm', 'rename', 'mkdir', 'mkfile', 'upload', 'edit', 'preview', 'extract', 'archive', 'search', 'info', 'view', 'help', 'sort'
             ],
             uiOptions: {
-            // toolbar configuration
+                // toolbar configuration
                 toolbar: [
                     ['back', 'forward'],
                     ['reload'],
@@ -427,15 +420,13 @@ function elFinderPopup(type, id, path)
                     ['help'],
                     ['search']
                 ],
-            
-                        // directories tree options
+                // directories tree options
                 tree: {
                     // expand current root on init
                     openRootOnLoad: true,
                     // auto load current dir parents
                     syncTree: true
                 },
-        
             },
             commandsOptions: {
                 getfile: {
@@ -448,11 +439,11 @@ function elFinderPopup(type, id, path)
                     var str = file.path;
                     var m = str.match('[\\\\ /]');
                     console.log(m)
-                    file.path = file.path.substr(m.index+1);
+                    file.path = file.path.substr(m.index + 1);
                     if (path[0] != '/')
-                        path = '/'+path;
+                        path = '/' + path;
                 }
-                $('#' + id).val(path+'/' + file.path);
+                $('#' + id).val(path + '/' + file.path);
                 if (type == 'image' && $('#' + id + '-preview').length)
                 {
                     var img = document.createElement('img');
@@ -462,21 +453,21 @@ function elFinderPopup(type, id, path)
                 }
             },
             contextmenu: {
-            // navbarfolder menu
-            //        	navbar : ['open', '|', 'copy', 'cut', 'paste', 'duplicate', '|', 'rm', '|', 'info'],
+                // navbarfolder menu
+                //        	navbar : ['open', '|', 'copy', 'cut', 'paste', 'duplicate', '|', 'rm', '|', 'info'],
 
-            // current directory menu
-            //        	cwd    : ['reload', 'back', '|', 'upload', 'mkdir', 'mkfile', 'paste', '|', 'info'],
+                // current directory menu
+                //        	cwd    : ['reload', 'back', '|', 'upload', 'mkdir', 'mkfile', 'paste', '|', 'info'],
 
-            // current directory file menu
-            files: [
-                'edit', 'rename', '|', 'download', '|', 
-                'rm', '|',  'archive', 'extract', '|', 'info'
-            ]
-        },
-        customData : {
-                cms_token : elfToken,
-                path:path
+                // current directory file menu
+                files: [
+                    'edit', 'rename', '|', 'download', '|',
+                    'rm', '|', 'archive', 'extract', '|', 'info'
+                ]
+            },
+            customData: {
+                cms_token: elfToken,
+                path: path
             }
         });
     }
@@ -492,9 +483,9 @@ function elFinderTPLEd()
         url: '/admin/elfinder_init/1',
         height: $(window).height() * 0.6,
         lang: 'ru',
-        commands : [
+        commands: [
             'open', 'reload', 'home', 'up', 'back', 'forward', 'getfile', 'quicklook',
-            'download', 'rm', 'rename', 'mkdir', 'mkfile', 'upload',  'edit', 'preview', 'extract', 'archive', 'search', 'info', 'view', 'help','sort'
+            'download', 'rm', 'rename', 'mkdir', 'mkfile', 'upload', 'edit', 'preview', 'extract', 'archive', 'search', 'info', 'view', 'help', 'sort'
         ],
         commandsOptions: {
         },
@@ -552,12 +543,12 @@ function elFinderTPLEd()
             // current directory file menu
             files: [
                 'edit', 'rename', '|', 'download', '|', 'copy', 'cut', 'paste', '|',
-                'rm', '|',  'archive', 'extract', '|', 'info'
+                'rm', '|', 'archive', 'extract', '|', 'info'
             ]
         },
-        customData : {
-                    cms_token : elfToken
-                }
+        customData: {
+            cms_token: elfToken
+        }
         //onlyMimes: ['text'],
     }).elfinder('instance');
 
@@ -653,20 +644,20 @@ var orders = new Object({
 
             $('#Categories').change(function() {
                 $('#product_name').autocomplete({
-                source: '/admin/components/run/shop/orders/ajaxGetProductList/?categoryId=' + $('#Categories').val(),
-                select: function(event, ui) {
-                    productName = ui.item.label;
-                    $('#product_id').val(ui.item.value);
-                    vKeys = Object.keys(ui.item.variants);
+                    source: '/admin/components/run/shop/orders/ajaxGetProductList/?categoryId=' + $('#Categories').val(),
+                    select: function(event, ui) {
+                        productName = ui.item.label;
+                        $('#product_id').val(ui.item.value);
+                        vKeys = Object.keys(ui.item.variants);
 
-                    for (var i = 0; i < vKeys.length; i++)
-                        $('#product_variant_name').append(new Option(ui.item.variants[ vKeys[i] ].name + ui.item.variants[ vKeys[i] ].price + " " + ui.item.cs, vKeys[i], true, true));
-                },
-                close: function() {
-                    $('#product_name').val(productName);
-                   
-                }
-            });
+                        for (var i = 0; i < vKeys.length; i++)
+                            $('#product_variant_name').append(new Option(ui.item.variants[ vKeys[i] ].name + ui.item.variants[ vKeys[i] ].price + " " + ui.item.cs, vKeys[i], true, true));
+                    },
+                    close: function() {
+                        $('#product_name').val(productName);
+
+                    }
+                });
                 $('#product_name').val('');
                 $('#product_variant_name ').empty();
                 $('#product_quantity').val('');

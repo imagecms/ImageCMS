@@ -1,3 +1,94 @@
+function renderPosts()
+{
+    $.ajax({
+        url: "/comments/api/renderPosts/post",
+        data: "item_id=" + currentProductId,
+        dataType: "json",
+        type: "post",
+        success: function(obj) {
+//                console.log(obj);
+            //$('#four').empty();
+
+//                var tpl = '<div ><input type="text" class="field" name="dynamic[]" /></div>';
+            var tpl = obj.comments;
+
+            $('#four').append(tpl);
+            $('#comment').val('');
+            $('#plus').val('');
+            $('#minus').val('');
+            $('.comment_ajax_refer > a').bind('click', function() {
+                $this = $(this);
+                $this.next().slideToggle(200, function() {
+                    $this.parent().toggleClass('visible');
+                }).end().parent().parent().next().slideToggle(200).end().find('.blue_arrow').toggleClass('up');
+                return false;
+            });
+        }
+    });
+}
+
+function json()
+{
+    var comment; // Переменная для хранения строки,
+    var plus;
+    var minus;
+    var action;
+    var i = $('input').size() + 1;
+
+    $('#comment_text').each(function() { // Получаем строку для шифрования
+        comment = this.value
+    });
+
+    $('#comment_text_plus').each(function() { // Получаем строку для шифрования
+        plus = this.value
+    });
+
+    $('#comment_text_minus').each(function() { // Получаем строку для шифрования
+        minus = this.value
+    });
+
+    if (comment == '') { //Проверка заполнил ли пользователь поле для ввода текста
+        $('#notice').html('Нужно ввести строку!'); // Если нет то выводим предупреждение
+    }
+    else {
+        $('#notice').empty();
+
+        // Отправляем json запрос
+
+        //$.getJSON('json.php', {comment: comment, plus: plus, minus: minus, action: 'newPost'}, function(obj) {
+//                        $('#m').attr('value', obj.orig + '|' + obj.md5);
+
+        $.ajax({
+            url: "/comments/api/newPost/post",
+            data: "comment=" + comment + '&plus=' + plus + '&minus=' + minus + '&action=newPost',
+            dataType: "json",
+            type: "post",
+            success: function(obj) {
+//                console.log(obj);
+
+
+//                var tpl = '<div ><input type="text" class="field" name="dynamic[]" /></div>';
+//                var tpl = '<div>Коментарий<br>'
+//                        + obj.md5 +
+//                        '<br>Плюси<br>'
+//                        + obj.md5 +
+//                        '<br>Минусы<br>'
+//                        + obj.md5 +
+//                        '</div><br><br>';
+
+                $('.inputs').append(tpl);
+                $('#comment_text').val('');
+                $('#comment_text_plus').val('');
+                $('#comment_text_minus').val('');
+                if (obj.answer == 'sucesfull')
+                    $('#notice').html('good');
+                else
+                    $('#notice').empty();
+            }
+        });
+    }
+}
+
 $(document).ready(function() {
 
     /** Show/Hide  category description **/
@@ -783,7 +874,7 @@ $(document).ready(function() {
             $('#pricem' + pid).html((pr - pr / 100 * discount).toFixed(2) + "&nbsp;<sub>" + cs + "</sub>");
             $('#pricem76').html((pr - pr / 100 * discount).toFixed(2));
         } else {
-            $('#pricem'  + pid).html(pr + "&nbsp;<sub>" + cs + "</sub>");
+            $('#pricem' + pid).html(pr + "&nbsp;<sub>" + cs + "</sub>");
             $('#pricem76').html(pr);
         }
         $('#code' + pid).html('Код ' + vnumber);
