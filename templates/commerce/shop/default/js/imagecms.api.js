@@ -1,10 +1,11 @@
 /**
- * Auth Api ajax client
+ * AuthApi ajax client
  * Makes simple request to api controllers and get return data in json
+ * 
  * @author Avgustus
  * @copyright ImageCMS (c) 2013, Avgustus <avgustus@yandex.ru>
  * 
- * Returns JSON object with fields:
+ * Get JSON object with fields list:
  *      'status'    -   true/false - if the operation was successful,
  *      'msg'       -   info message about result,
  *      'refresh'   -   true/false - if true refreshes the page,
@@ -12,14 +13,14 @@
  *    
  * List of api methods:
  *      Auth.php:
- *          '/auth/login',
- *          '/auth/logout',
- *          '/auth/register',
- *          '/auth/forgot_password',
- *          '/auth/reset_password',
- *          '/auth/change_password',
- *          '/auth/cancel_account',
- *          '/auth/banned'
+ *          '/auth/authapi/login',
+ *          '/auth/authapi/logout',
+ *          '/auth/authapi/register',
+ *          '/auth/authapi/forgot_password',
+ *          '/auth/authapi/reset_password',
+ *          '/auth/authapi/change_password',
+ *          '/auth/authapi/cancel_account',
+ *          '/auth/authapi/banned'
  * 
  **/
 
