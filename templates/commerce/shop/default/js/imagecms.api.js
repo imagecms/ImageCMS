@@ -1,4 +1,5 @@
 /**
+ * Auth Api ajax client
  * Makes simple request to api controllers and get return data in json
  * @author Avgustus
  * @copyright ImageCMS (c) 2013, Avgustus <avgustus@yandex.ru>
@@ -47,23 +48,18 @@ var ImageCMSApi = {
                 if (obj !== null) {
                     console.log("[status]:" + obj.status);
                     console.log("[message]: " + obj.msg);
-                    if (obj.refresh == 'true') {
+                    if (obj.refresh === 'true')
                         location.reload();
-                    }
-                    if (obj.redirect !== undefined && obj.redirect !== false) {
+                    if (obj.redirect !== undefined && obj.redirect !== 'false')
                         location.href = obj.redirect;
-                    }
                 }
+                $.fancybox.hideActivity();
                 return this;
             },
         }).done(function() {
             console.log("=== Api request success!!! ===");
-        })
-                .fail(function() {
+        }).fail(function() {
             console.log("=== Api request breake with error!!! ===");
-        })
-                .always(function() {
-            $.fancybox.hideActivity();
         });
         return;
     },
