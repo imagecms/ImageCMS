@@ -70,12 +70,6 @@ class MY_Controller extends MX_Controller {
             $this->ajaxRequest = true;
 
         define('SHOP_INSTALLED', $this->checkForShop());
-
-        //check if it is ajax api request
-        if ($this->input->is_ajax_request() && $this->input->post('apikey') == 'apiRequest') {
-            $this->apiRequest = true;
-            $this->checkApi();
-        }
     }
 
     private function checkForShop() {
@@ -89,43 +83,4 @@ class MY_Controller extends MX_Controller {
         else
             return false;
     }
-
-    /**
-     * Method checks if class has api implementation and redirect request to it
-     * @author Avgustus
-     * @copyright ImageCMS (c) 2013, Avgustus <avgustus@yandex.ru>
-     */
-    private function checkApi() {
-        $apiClasses = array('auth');
-        $apiMethods = array(
-            'auth' => array(
-                'login',
-                'logout',
-                'register',
-                'forgot_password',
-                'reset_password',
-                'change_password',
-                'cancel_account',
-                'banned',
-            )
-        );
-        $request = $this->uri->segment_array();
-        $className = $request[1];
-        $classMethod = $request[2];
-        if (in_array($request[1], $apiClasses)) {
-            require_once 'application/modules/' . $className . '/' . $className . '.php';
-            require_once 'application/modules/' . $className . '/' . $className . '.api.php';
-            $apiClassName = $className . "Api";
-            $apiObject = new $apiClassName();
-            if (method_exists($apiObject, $classMethod) && in_array($classMethod, $apiMethods[$className]))
-                $apiObject::$classMethod();
-            else
-                echo json_encode(array(
-                    'msg' => 'api method not found',
-                    'status' => false
-                ));
-            exit();
-        }
-    }
-
 }

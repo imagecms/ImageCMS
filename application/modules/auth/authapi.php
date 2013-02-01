@@ -10,17 +10,11 @@ if (!defined('BASEPATH'))
  * @author Avgustus
  * @copyright ImageCMS (c) 2013, Avgustus <avgustus@yandex.ru>
  * 
- **/
-
+ * */
 class AuthApi extends Auth {
 
     public function __construct() {
-        $this->min_password = ($this->config->item('DX_login_min_length')) ? $this->config->item('DX_login_min_length') : $this->min_password;
-        $this->max_password = ($this->config->item('DX_login_max_length')) ? $this->config->item('DX_login_max_length') : $this->max_password;
-        $this->load->helper('url');
-        $this->load->library('Form_validation');
-        $this->load->library('DX_auth');
-        $this->load->library('template');
+        parent::__construct();
     }
 
     function login() {
@@ -74,8 +68,13 @@ class AuthApi extends Auth {
                             array(
                                 'msg' => validation_errors(),
                                 'status' => false,
-                                'reload' => false,
+                                'refresh' => false,
                                 'reopen' => false,
+                                'validations' => array(
+                                    'email' => form_error('email'),
+                                    'password' => form_error('password'),
+                                    'remember' => form_error('remember'),
+                                ),
                             )
                     );
                 }
@@ -84,8 +83,6 @@ class AuthApi extends Auth {
             $json = array();
             $json['status'] = 'success';
             $json['msg'] = 'User is already logged in';
-            $json['refresh'] = false;
-            $json['redirect'] = false;
             echo json_encode($json);
         }
     }
@@ -288,4 +285,4 @@ class AuthApi extends Auth {
 
 }
 
-/* End of file auth.php */
+/* End of file authapi.php */
