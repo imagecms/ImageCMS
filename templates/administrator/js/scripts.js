@@ -652,6 +652,8 @@ function fixed_frame_title() {
     fixed_block = $(".frame_title:not(.no_fixed)");
     mini_layout = $('.mini-layout');
     container = $('.container');
+    containerW = container.width()
+    frame_zH_frame_title = $('.frame_zH_frame_title');
 
     if ($.exists_nabir(fixed_block)) {
         var fixed_block_top = mini_layout.offset().top;
@@ -659,13 +661,20 @@ function fixed_frame_title() {
 
         var top = getScrollTop();
 
-        if (top < fixed_block_top)
+        if (top < fixed_block_top){
             fixed_block.css("top", fixed_block_top - top + 20);
-        else
+            frame_zH_frame_title.css("top", fixed_block_top - top + 6);
+        }
+        else{
             fixed_block.css("top", 20);
+            frame_zH_frame_title.css("top", 6);
+        }
 
-        fixed_block.css('width', container.width() - 2);
+        fixed_block.css('width',  containerW - 2);
         mini_layout.css('padding-top', 20 + fixed_block_h)
+        frame_zH_frame_title.css({
+            'right':$(window).width() - containerW - mini_layout.offset().left+10
+        })
     }
 }
 function difTooltip() {
