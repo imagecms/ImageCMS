@@ -118,7 +118,7 @@
                 {if count($model->getProductVariants()) > 1}
                     Выбор варианта:</br>
                     {foreach $model->getProductVariants() as $key => $pv}
-                        
+
                         <input type="radio" class="selectVar" id="sVar{echo $pv->getId()}" name="selectVar" {if $model->firstVariant->getId() == $pv->getId()}checked="checked"{/if}
                                {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
                                    discount="{echo $discount}" 
@@ -172,9 +172,9 @@
                                 <span class="js blue">{lang('s_slw')}</span>
                             </span>
                             <a href="/shop/wish_list" class="red" style="display:none;"><span class="icon-wish"></span>{lang('s_ilw')}</a>
-                        {else:}
+                            {else:}
                             <a href="/shop/wish_list" class="red"><span class="icon-wish"></span>{lang('s_ilw')}</a>
-                        {/if}
+                            {/if}
                     </span>
             </div>
             {if ShopCore::$ci->dx_auth->is_logged_in()===true}
@@ -217,8 +217,8 @@
                     <img src="{$SHOP_THEME}images/buy.png">
                     <div>
                         <div class="title">{lang('s_pay')} <span><a href="/oplata">{lang('s_all_infor_b')}</a></span></div>
-                        {foreach $payment_methods as $methods}
-                        {if $methods.active ==1}<span class="small_marker">{echo $methods.name}</span>{/if}
+                                {foreach $payment_methods as $methods}
+                                {if $methods.active ==1}<span class="small_marker">{echo $methods.name}</span>{/if}
                     {/foreach}
                 </div>
             </li>
@@ -226,8 +226,8 @@
                 <img src="{$SHOP_THEME}images/deliver.png">
                 <div>
                     <div class="title">{lang('s_delivery1')} <span><a href="/dostavka">{lang('s_all_infor_b')}</a></span></div>
-                    {foreach $delivery_methods as $methods}
-                    {if $methods.enabled ==1}<span class="small_marker">{echo $methods.name}</span>{/if}
+                            {foreach $delivery_methods as $methods}
+                            {if $methods.enabled ==1}<span class="small_marker">{echo $methods.name}</span>{/if}
                 {/foreach}
             </div>
         </li>
@@ -236,14 +236,14 @@
         <ul class="nav_tabs">
             {if $model->getFullDescription()}
                 <li><a href="#first">{lang('s_information')}</a></li>
-            {/if}
-            {if ShopCore::app()->SPropertiesRenderer->renderPropertiesTable($model)}
+                {/if}
+                {if ShopCore::app()->SPropertiesRenderer->renderPropertiesTable($model)}
                 <li><a href="#second">{lang('s_properties')}</a></li>
-            {/if}
-            {if $model->getRelatedProductsModels()}
+                {/if}
+                {if $model->getRelatedProductsModels()}
                 <li><a href="#third">{lang('s_accessories')}</a></li>
-            {/if}
-            <li>
+                {/if}
+            <li onclick="renderPosts()">
                 <a href="#four">
             {//echo SStringHelper::Pluralize($data['total_comments'], array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}{if $data['comments_arr']}{echo $data['total_comments']}{else:}Нет комментариев{/if}
         </a>
@@ -263,7 +263,7 @@
 {/if}
 {if $model->getRelatedProductsModels()}
     <div id="third">
-        <ul class="accessories f-s_0">
+        <ul class="accessories f-s_0" >
             {foreach $model->getRelatedProductsModels() as $p}
                 {$discount = ShopCore::app()->SDiscountsManager->productDiscount($p->id)}
                 {$rel_prod = currency_convert($p->firstvariant->getPrice(), $p->firstvariant->getCurrency())}
@@ -300,7 +300,25 @@
 {/if}
 <div id="four">
     <a name="four"></a>
-    {$comments}
+    {//$comments}
+
+    <form>
+        Коментарий:
+
+        <input type="text" class="field" name="comment" id="comment" size="50"> <br/>        
+
+        плюси:
+
+        <input type="text" class="field" name="p" id="plus" size="50"> <br/>
+        минуси:
+
+        <input type="text" class="field" name="m" id="minus" size="50"> <br/>
+        <div id="notice"></div> <br/>
+        <div id="new"></div> <br/>
+        <input name="submit" type="button button_middle_blue f_l" class="submit" value="Пуск" id="button" onclick="json()">
+    </form>
+
+    {//$CI->load->module('comments/api')->test()}
 </div>
 </div>
 </div>
