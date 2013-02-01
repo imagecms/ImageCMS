@@ -6,6 +6,8 @@
         <meta name="description" content="{lang('a_controll_panel')} - Image CMS" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="generator" content="ImageCMS">
+        
+        <link rel="icon" type="image/x-icon" href="{$THEME}/images/favicon.png"/>
 
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap_complete.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/style.css">
