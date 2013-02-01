@@ -4,20 +4,23 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 /**
- * Implements API methods for Auth class
+ * Implements public API methods for Auth class
  * All methods return json objects in one format
  * 
  * @author Avgustus
  * @copyright ImageCMS (c) 2013, Avgustus <avgustus@yandex.ru>
  * 
- * */
+ */
 class AuthApi extends Auth {
 
-    public function __construct() {
-        parent::__construct();
-    }
-
-    function login() {
+    /**
+     * Provides user login
+     * 
+     * requires:
+     * @email
+     * @password
+     */
+    public function login() {
         if (!$this->dx_auth->is_logged_in()) {
             $val = $this->form_validation;
             // Set form validation rules
@@ -87,7 +90,12 @@ class AuthApi extends Auth {
         }
     }
 
-    function logout() {
+    /**
+     * Provides user logout
+     * 
+     * To make logout user has to be loggen in
+     */
+    public function logout() {
         if ($this->dx_auth->is_logged_in()) {
             $this->dx_auth->logout();
             echo json_encode(
@@ -110,6 +118,14 @@ class AuthApi extends Auth {
         }
     }
 
+    /**
+     * Provides user register
+     * 
+     * required:
+     * @email
+     * @password
+     * @confirm_password
+     */
     public function register() {
         if (!$this->dx_auth->is_logged_in() AND $this->dx_auth->allow_registration) {
             $val = $this->form_validation;
@@ -180,7 +196,13 @@ class AuthApi extends Auth {
         }
     }
 
-    function forgot_password() {
+    /**
+     * Provides sending forgotten password to user email
+     * 
+     * require:
+     * @email
+     */
+    public function forgot_password() {
         $val = $this->form_validation;
         // Set form validation rules
         $val->set_rules('email', lang('lang_email'), 'trim|required|xss_clean|valid_email');
@@ -202,7 +224,13 @@ class AuthApi extends Auth {
         }
     }
 
-    function reset_password() {
+    /**
+     * Provides password reset
+     * 
+     * require:
+     * @email
+     */
+    public function reset_password() {
         // Get username and key
         $email = $this->input->post('email');
         $key = $this->input->post('key');
@@ -220,7 +248,15 @@ class AuthApi extends Auth {
         }
     }
 
-    function change_password() {
+    /**
+     * Provides password change
+     * 
+     * required:
+     * @old_password
+     * @new_password
+     * @confirm_new_password
+     */
+    public function change_password() {
         // Check if user logged in or not
         if ($this->dx_auth->is_logged_in()) {
             $val = $this->form_validation;
@@ -250,7 +286,10 @@ class AuthApi extends Auth {
         }
     }
 
-    function cancel_account() {
+    /**
+     * Provides cancelling account if user is logged in
+     */
+    public function cancel_account() {
         // Check if user logged in or not
         if ($this->dx_auth->is_logged_in()) {
             $val = $this->form_validation;
@@ -276,7 +315,10 @@ class AuthApi extends Auth {
         }
     }
 
-    function banned() {
+    /**
+     * Returns ban reason if user is banned
+     */
+    public function banned() {
         echo json_encode(array(
             'msg' => lang('lang_user_banned') . $this->ban_reason,
             'status' => true,
