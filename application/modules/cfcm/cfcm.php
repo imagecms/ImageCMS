@@ -19,7 +19,7 @@ class Cfcm extends MY_Controller {
 
         $group = (int)$this->input->post('cfcm_use_group');
 
-        if ($group != '-1' )
+        if ($group != '0' )
         {
             if (($fields = $this->get_group_fields($group)))
             {
