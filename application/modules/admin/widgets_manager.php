@@ -25,6 +25,7 @@ class Widgets_manager extends BaseAdminController {
      */ 
     public function index()
     {
+        
         if (!$this->_is_wratible())
         {
             $this->template->assign('error',  lang('ac_to_contin_work_set_perm').'<b>'.$this->widgets_path.'</b>');
@@ -42,7 +43,10 @@ class Widgets_manager extends BaseAdminController {
 
             for ($i = 0; $i < $cnt; $i++)
             {
-                $form_file = APPPATH.'modules/'.$widgets[$i]['data'].'/templates/'.$widgets[$i]['method'].'_form.tpl';
+                
+                $moduleInfo = $this->load->module('admin/components')->get_module_info($widgets[$i]['data']); 
+                $subpath = isset($moduleInfo['widgets_subpath'])?$moduleInfo['widgets_subpath'].'/':'';
+                $form_file = APPPATH.'modules/'.$widgets[$i]['data'].'/'.$subpath.'templates/'.$widgets[$i]['method'].'_form.tpl';
 
                 if ( file_exists(realpath($form_file)) )
                 {
@@ -120,7 +124,9 @@ class Widgets_manager extends BaseAdminController {
                 $data['id'] = $this->db->insert_id();
 
                 // Copy widgets template
-                $tpl_file = PUBPATH.'/'.APPPATH.'modules/'.$data['data'].'/templates/'.$data['method'].'.tpl';
+                $moduleInfo = $this->load->module('admin/components')->get_module_info($data['data']); 
+                $subpath = isset($moduleInfo['widgets_subpath'])?$moduleInfo['widgets_subpath'].'/':'';
+                $tpl_file = PUBPATH.'/'.APPPATH.'modules/'.$data['data'].'/'.$subpath.'templates/'.$data['method'].'.tpl';
     
                 if ( file_exists($tpl_file) )
                 {
@@ -138,9 +144,9 @@ class Widgets_manager extends BaseAdminController {
                 }
 
                 // Try to install widget default settings
-                $this->load->module($data['data'].'/'.$data['data'].'_widgets');
+                $this->load->module($data['data'].'/'.$subpath.$data['data'].'_widgets');
                 $m = $data['method'].'_configure'; 
-
+                
                 if ( method_exists($data['data'].'_widgets', $m) )
                 {
                     $module = $data['data'].'_widgets';
@@ -149,9 +155,16 @@ class Widgets_manager extends BaseAdminController {
 
                 $this->lib_admin->log(lang('ac_created_widget').$data['name']);
 
+                $conf_file = PUBPATH.'/'.APPPATH.'modules/'.$data['data'].'/'.$subpath.'templates/'.$data['method'].'_form.tpl';
                 showMessage('Виджет создан.');
-                if($_POST['action'] == 'tomain')
+                
+                if (file_exists($conf_file))
+                    pjax('/admin/widgets_manager/edit/'.$data['id']);
+                else
                     pjax('/admin/widgets_manager/index');
+                    
+//                if($_POST['action'] == 'tomain')
+//                    pjax('/admin/widgets_manager/index');
                 //pjax('/admin/widgets_manager/edit_module_widget/'.$data['id']);
             }
         }elseif ($type == 'html') {
@@ -171,7 +184,6 @@ class Widgets_manager extends BaseAdminController {
                     'type' => $type,
                     'created' => time()
                 );
-
                 
                 $this->lib_admin->log(lang('ac_created_widget').$data['name']);
 
@@ -221,7 +233,9 @@ class Widgets_manager extends BaseAdminController {
             if($widget['type'] == 'module')
             {
                 $widget['settings'] = unserialize($widget['settings']);
-                echo modules::run($widget['data'].'/'.$widget['data'].'_widgets/'.$widget['method'].'_configure' , array('show_settings', $widget));
+                
+                $subpath = isset($widget['settings']['subpath'])?$widget['settings']['subpath'].'/':'';
+                echo modules::run($widget['data'].'/'.$subpath.$widget['data'].'_widgets/'.$widget['method'].'_configure' , array('show_settings', $widget));
 
             }elseif($widget['type'] == 'html'){
             }
@@ -270,7 +284,9 @@ class Widgets_manager extends BaseAdminController {
             if($widget['type'] == 'module')
             {
                 $widget['settings'] = unserialize($widget['settings']);
-                echo modules::run($widget['data'].'/'.$widget['data'].'_widgets/'.$widget['method'].'_configure', array('update_settings', $widget));
+                
+                $subpath = isset($widget['settings']['subpath'])?$widget['settings']['subpath'].'/':'';
+                echo modules::run($widget['data'].'/'.$subpath.$widget['data'].'_widgets/'.$widget['method'].'_configure', array('update_settings', $widget));
 
             }elseif($widget['type'] == 'html'){
 
@@ -396,16 +412,21 @@ class Widgets_manager extends BaseAdminController {
 
                 foreach($modules as $k)
                 {
+                    $moduleInfo = $this->load->module('admin/components')->get_module_info($k['name']); 
                     $xml_file = realpath(PUBPATH.'/'.APPPATH.'modules/'.$k['name'].'/widgets.xml');   
-                    $widgets_file = realpath(PUBPATH.'/'.APPPATH.'modules/'.$k['name'].'/'.$k['name'].'_widgets.php');    
-
-                        if (file_exists($xml_file) AND file_exists($widgets_file))
+                        if (file_exists($xml_file) )
                         {
-                            $widgets[] = array(
-                                'widgets' => $this->parse_widget_xml($k['name']),
-                                'module' => $k['name'],
-                                'module_name' => $this->get_module_name($k['name'])
+                            $tmp = array(
+                                'widgets'           => $this->parse_widget_xml($k['name']),
+                                'module'            => $k['name'],
+                                'module_name'  => $this->get_module_name($k['name']),
                             );
+                            
+                            $subpath = isset($moduleInfo['widgets_subpath'])?$moduleInfo['widgets_subpath'].'/':'';;
+                            $widgets_file = realpath(PUBPATH.'/'.APPPATH.'modules/'.$k['name'].'/'.$subpath.$k['name'].'_widgets.php');    
+                                
+                            if (file_exists($widgets_file))
+                                $widgets[] = $tmp;
                         }
                 }
 
@@ -465,8 +486,6 @@ class Widgets_manager extends BaseAdminController {
         $info = $this->load->module('admin/components')->get_module_info($dir); 
         return $info['menu_name'];
     }
-
-
 }
 
 /* End of widgets.php */
