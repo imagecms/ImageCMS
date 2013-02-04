@@ -43,7 +43,6 @@ class AuthApi extends Auth {
                             'msg' => 'User logged in success',
                             'status' => true,
                             'refresh' => true,
-                            'redirect' => false,
                         )
                 );
             } else {
@@ -84,7 +83,7 @@ class AuthApi extends Auth {
             }
         } else {
             $json = array();
-            $json['status'] = 'success';
+            $json['status'] = false;
             $json['msg'] = 'User is already logged in';
             echo json_encode($json);
         }
@@ -102,7 +101,7 @@ class AuthApi extends Auth {
                     array(
                         'msg' => 'Logout completed',
                         'status' => true,
-                        'reload' => true,
+                        'refresh' => true,
                         'redirect' => false,
                     )
             );
@@ -111,7 +110,7 @@ class AuthApi extends Auth {
                     array(
                         'msg' => 'You are not loggin to make loggout',
                         'status' => false,
-                        'reload' => false,
+                        'refresh' => false,
                         'redirect' => false,
                     )
             );
