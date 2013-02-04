@@ -307,9 +307,9 @@ class DX_Auth {
         }
 
         /* End of Get user and parents permission */
-        if($role_id)
+        if ($role_id)
             $data['role_name'] = Permitions::checkControlPanelAccess($role_id);
-        
+
         // Set return value
         //$data['role_name'] = $role_name;
         $data['parent_roles_id'] = $parent_roles_id;
@@ -858,7 +858,7 @@ class DX_Auth {
 
             // Create temporary user in database which means the user still unactivated.
             $insert = $this->ci->user_temp->create_temp($new_user);
-            
+
             $from = $this->ci->config->item('DX_webmaster_email');
             $subject = sprintf($this->ci->lang->line('auth_activate_subject'), $this->ci->config->item('DX_website_name'));
 
@@ -912,6 +912,13 @@ class DX_Auth {
 
                     // Send email with account details
                     $this->_email($email, $from, $subject, $message);
+                }
+                if ($this->login($email, $password)) {
+                    if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
+                        redirect('', 'location');
+                    } else {
+                        echo json_encode(array('msg' => 'Вы успешно зарегестрированы', 'reload' => 1));
+                    }
                 }
             }
         }
