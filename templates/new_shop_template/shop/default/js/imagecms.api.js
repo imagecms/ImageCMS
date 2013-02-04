@@ -25,6 +25,7 @@
  **/
 
 var ImageCMSApi = {
+    debugMode: true,
     formAction: function(url, selector) {
         //collect data from form
         if (selector !== '')
@@ -39,34 +40,39 @@ var ImageCMSApi = {
             url: url,
             dataType: "json",
             beforeSend: function() {
-                console.log("=== Sending api request to " + url + "... ===");
+                this.returnMsg("=== Sending api request to " + url + "... ===");
             },
             success: function(obj) {
                 if (obj !== null) {
-                    console.log("[status]:" + obj.status);
-                    console.log("[message]: " + obj.msg);
+                    this.returnMsg("[status]:" + obj.status);
+                    this.returnMsg("[message]: " + obj.msg);
                     if (obj.refresh === 'true')
                         location.reload();
-                    if (obj.redirect !== undefined)
-                        if (obj.redirect !== 'false')
+                    if (obj.redirect !== null)
+                        if (obj.redirect !== 'false') {
                             location.href = obj.redirect;
+                        }
                 }
                 return this;
             },
         }).done(function() {
-            console.log("=== Api request success!!! ===");
+            this.returnMsg("=== Api request success!!! ===");
         }).fail(function() {
-            console.log("=== Api request breake with error!!! ===");
+            this.returnMsg("=== Api request breake with error!!! ===");
         });
         return;
     },
     //find form by data-id attr and create serialized string for send
     collectFormData: function(selector) {
-        var findSelector = $('form:[data-id="' + selector + '"]');
+        var findSelector = $('#' + selector);
         var queryString = findSelector.formSerialize();
         return queryString;
-    }
-
+    },
+    returnMsg: function(msg) {
+        if (this.debugMode === true) {
+            console.log(msg);
+        }
+    },
 }
 
 

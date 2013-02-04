@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        <link href='http://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+        <!--[if lt IE 9]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><script src="js/css3-mediaqueries.js"></script><![endif]-->
+        <style>
+            /*!
+                * Bootstrap Responsive v2.1.1
+                *
+                * Copyright 2012 Twitter, Inc
+                * Licensed under the Apache License v2.0
+                * http://www.apache.org/licenses/LICENSE-2.0
+                *
+                * Designed and built with all the love in the world @twitter by @mdo and @fat.
+            */.clearfix{*zoom:1}.clearfix:before,.clearfix:after{display:table;line-height:0;content:""}.clearfix:after{clear:both}.hide-text{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0}.input-block-level{display:block;width:100%;min-height:30px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}.hidden{display:none;visibility:hidden}.visible-phone{display:none!important}.visible-tablet{display:none!important}.hidden-desktop{display:none!important}.visible-desktop{display:inherit!important}@media screen and (max-width:320px){.items_catalog>.span9>.description{margin-left:0;clear:both}}@media screen and (max-width:380px){.frameHeaderMenu{overflow:visible}}@media screen and (min-width:768px) and (max-width:979px){.hidden-desktop{display:inherit!important}.visible-desktop{display:none!important}.visible-tablet{display:inherit!important}.hidden-tablet{display:none!important}}@media screen and (max-width:767px){.hidden-desktop{display:inherit!important}.visible-desktop{display:none!important}.visible-phone{display:inherit!important}.hidden-phone{display:none!important}.items_catalog{margin:0 15px}}@media screen and (min-width:1200px){.row{margin-left:-30px;*zoom:1}.row:before,.row:after{display:table;line-height:0;content:""}.row:after{clear:both}[class*="span"]{float:left;min-height:1px;margin-left:30px}.container,.navbar-static-top .container,.navbar-fixed-top .container,.navbar-fixed-bottom .container{width:1170px}.span12{width:1170px}.span11{width:1070px}.span10{width:970px}.span9{width:870px}.span8{width:770px}.span7{width:670px}.span6{width:570px}.span5{width:470px}.span4{width:370px}.span3{width:270px}.span2{width:170px}.span1{width:70px}.offset12{margin-left:1230px}.offset11{margin-left:1130px}.offset10{margin-left:1030px}.offset9{margin-left:930px}.offset8{margin-left:830px}.offset7{margin-left:730px}.offset6{margin-left:630px}.offset5{margin-left:530px}.offset4{margin-left:430px}.offset3{margin-left:330px}.offset2{margin-left:230px}.offset1{margin-left:130px}.row-fluid{width:100%;*zoom:1}.row-fluid:before,.row-fluid:after{display:table;line-height:0;content:""}.row-fluid:after{clear:both}.row-fluid [class*="span"]{display:block;float:left;width:100%;min-height:30px;margin-left:2.564102564102564%;*margin-left:2.5109110747408616%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}.row-fluid [class*="span"]:first-child{margin-left:0}.row-fluid .span12{width:100%;*width:99.94680851063829%}.row-fluid .span11{width:91.45299145299145%;*width:91.39979996362975%}.row-fluid .span10{width:82.90598290598291%;*width:82.8527914166212%}.row-fluid .span9{width:74.35897435897436%;*width:74.30578286961266%}.row-fluid .span8{width:65.81196581196582%;*width:65.75877432260411%}.row-fluid .span7{width:57.26495726495726%;*width:57.21176577559556%}.row-fluid .span6{width:48.717948717948715%;*width:48.664757228587014%}.row-fluid .span5{width:40.17094017094017%;*width:40.11774868157847%}.row-fluid .span4{width:31.623931623931625%;*width:31.570740134569924%}.row-fluid .span3{width:23.076923076923077%;*width:23.023731587561375%}.row-fluid .span2{width:14.52991452991453%;*width:14.476723040552828%}.row-fluid .span1{width:5.982905982905983%;*width:5.929714493544281%}.row-fluid .offset12{margin-left:105.12820512820512%;*margin-left:105.02182214948171%}.row-fluid .offset12:first-child{margin-left:102.56410256410257%;*margin-left:102.45771958537915%}.row-fluid .offset11{margin-left:96.58119658119658%;*margin-left:96.47481360247316%}.row-fluid .offset11:first-child{margin-left:94.01709401709402%;*margin-left:93.91071103837061%}.row-fluid .offset10{margin-left:88.03418803418803%;*margin-left:87.92780505546462%}.row-fluid .offset10:first-child{margin-left:85.47008547008548%;*margin-left:85.36370249136206%}.row-fluid .offset9{margin-left:79.48717948717949%;*margin-left:79.38079650845607%}.row-fluid .offset9:first-child{margin-left:76.92307692307693%;*margin-left:76.81669394435352%}.row-fluid .offset8{margin-left:70.94017094017094%;*margin-left:70.83378796144753%}.row-fluid .offset8:first-child{margin-left:68.37606837606839%;*margin-left:68.26968539734497%}.row-fluid .offset7{margin-left:62.393162393162385%;*margin-left:62.28677941443899%}.row-fluid .offset7:first-child{margin-left:59.82905982905982%;*margin-left:59.72267685033642%}.row-fluid .offset6{margin-left:53.84615384615384%;*margin-left:53.739770867430444%}.row-fluid .offset6:first-child{margin-left:51.28205128205128%;*margin-left:51.175668303327875%}.row-fluid .offset5{margin-left:45.299145299145295%;*margin-left:45.1927623204219%}.row-fluid .offset5:first-child{margin-left:42.73504273504273%;*margin-left:42.62865975631933%}.row-fluid .offset4{margin-left:36.75213675213675%;*margin-left:36.645753773413354%}.row-fluid .offset4:first-child{margin-left:34.18803418803419%;*margin-left:34.081651209310785%}.row-fluid .offset3{margin-left:28.205128205128204%;*margin-left:28.0987452264048%}.row-fluid .offset3:first-child{margin-left:25.641025641025642%;*margin-left:25.53464266230224%}.row-fluid .offset2{margin-left:19.65811965811966%;*margin-left:19.551736679396257%}.row-fluid .offset2:first-child{margin-left:17.094017094017094%;*margin-left:16.98763411529369%}.row-fluid .offset1{margin-left:11.11111111111111%;*margin-left:11.004728132387708%}.row-fluid .offset1:first-child{margin-left:8.547008547008547%;*margin-left:8.440625568285142%}.thumbnails{margin-left:-30px}.thumbnails>li{margin-left:30px}.row-fluid .thumbnails{margin-left:0}}@media screen and (min-width:768px) and (max-width:979px){.row{margin-left:-20px;*zoom:1}.row:before,.row:after{display:table;line-height:0;content:""}.row:after{clear:both}[class*="span"]{float:left;min-height:1px;margin-left:20px}.container,.navbar-static-top .container,.navbar-fixed-top .container,.navbar-fixed-bottom .container{width:724px}.span12{width:724px}.span11{width:662px}.span10{width:600px}.span9{width:538px}.span8{width:476px}.span7{width:414px}.span6{width:352px}.span5{width:290px}.span4{width:228px}.span3{width:166px}.span2{width:104px}.span1{width:42px}.offset12{margin-left:764px}.offset11{margin-left:702px}.offset10{margin-left:640px}.offset9{margin-left:578px}.offset8{margin-left:516px}.offset7{margin-left:454px}.offset6{margin-left:392px}.offset5{margin-left:330px}.offset4{margin-left:268px}.offset3{margin-left:206px}.offset2{margin-left:144px}.offset1{margin-left:82px}.row-fluid{width:100%;*zoom:1}.row-fluid:before,.row-fluid:after{display:table;line-height:0;content:""}.row-fluid:after{clear:both}.row-fluid [class*="span"]{display:block;float:left;width:100%;min-height:30px;margin-left:2.7624309392265194%;*margin-left:2.709239449864817%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}.row-fluid [class*="span"]:first-child{margin-left:0}.row-fluid .span12{width:100%;*width:99.94680851063829%}.row-fluid .span11{width:91.43646408839778%;*width:91.38327259903608%}.row-fluid .span10{width:82.87292817679558%;*width:82.81973668743387%}.row-fluid .span9{width:74.30939226519337%;*width:74.25620077583166%}.row-fluid .span8{width:65.74585635359117%;*width:65.69266486422946%}.row-fluid .span7{width:57.18232044198895%;*width:57.12912895262725%}.row-fluid .span6{width:48.61878453038674%;*width:48.56559304102504%}.row-fluid .span5{width:40.05524861878453%;*width:40.00205712942283%}.row-fluid .span4{width:31.491712707182323%;*width:31.43852121782062%}.row-fluid .span3{width:22.92817679558011%;*width:22.87498530621841%}.row-fluid .span2{width:14.3646408839779%;*width:14.311449394616199%}.row-fluid .span1{width:5.801104972375691%;*width:5.747913483013988%}.row-fluid .offset12{margin-left:105.52486187845304%;*margin-left:105.41847889972962%}.row-fluid .offset12:first-child{margin-left:102.76243093922652%;*margin-left:102.6560479605031%}.row-fluid .offset11{margin-left:96.96132596685082%;*margin-left:96.8549429881274%}.row-fluid .offset11:first-child{margin-left:94.1988950276243%;*margin-left:94.09251204890089%}.row-fluid .offset10{margin-left:88.39779005524862%;*margin-left:88.2914070765252%}.row-fluid .offset10:first-child{margin-left:85.6353591160221%;*margin-left:85.52897613729868%}.row-fluid .offset9{margin-left:79.8342541436464%;*margin-left:79.72787116492299%}.row-fluid .offset9:first-child{margin-left:77.07182320441989%;*margin-left:76.96544022569647%}.row-fluid .offset8{margin-left:71.2707182320442%;*margin-left:71.16433525332079%}.row-fluid .offset8:first-child{margin-left:68.50828729281768%;*margin-left:68.40190431409427%}.row-fluid .offset7{margin-left:62.70718232044199%;*margin-left:62.600799341718584%}.row-fluid .offset7:first-child{margin-left:59.94475138121547%;*margin-left:59.838368402492065%}.row-fluid .offset6{margin-left:54.14364640883978%;*margin-left:54.037263430116376%}.row-fluid .offset6:first-child{margin-left:51.38121546961326%;*margin-left:51.27483249088986%}.row-fluid .offset5{margin-left:45.58011049723757%;*margin-left:45.47372751851417%}.row-fluid .offset5:first-child{margin-left:42.81767955801105%;*margin-left:42.71129657928765%}.row-fluid .offset4{margin-left:37.01657458563536%;*margin-left:36.91019160691196%}.row-fluid .offset4:first-child{margin-left:34.25414364640884%;*margin-left:34.14776066768544%}.row-fluid .offset3{margin-left:28.45303867403315%;*margin-left:28.346655695309746%}.row-fluid .offset3:first-child{margin-left:25.69060773480663%;*margin-left:25.584224756083227%}.row-fluid .offset2{margin-left:19.88950276243094%;*margin-left:19.783119783707537%}.row-fluid .offset2:first-child{margin-left:17.12707182320442%;*margin-left:17.02068884448102%}.row-fluid .offset1{margin-left:11.32596685082873%;*margin-left:11.219583872105325%}.row-fluid .offset1:first-child{margin-left:8.56353591160221%;*margin-left:8.457152932878806%}}@media screen and (max-width:767px){.navbar-fixed-top,.navbar-fixed-bottom,.navbar-static-top{margin-right:-20px;margin-left:-20px}.container-fluid{padding:0}.dl-horizontal dt{float:none;width:auto;clear:none;text-align:left}.dl-horizontal dd{margin-left:0}.container{width:auto}.row-fluid{width:100%}.row,.thumbnails{margin-left:0}.thumbnails>li{float:none;margin-left:0}[class*="span"],.row-fluid [class*="span"]{display:block;float:none;width:100%;margin-left:0;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}.span12,.row-fluid .span12{width:100%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}}
+        </style>
+    </head>
+    <body>
+        <div class="mainBody">
+            <div class="header">
+                <header>
+                    <div class="container">
+                        <section class="row-fluid">
+                            <div class="f_r m-l_25">
+                                <nav class="f_l">
+                                    <ul class="nav navHorizontal frameEnterReg">
+                                        <li>
+                                            <span class="f-s_0">
+                                                <span class="helper"></span>
+                                                <button type="button" data-drop=".drop-enter" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" data-place="noinherit" data-placement="top right"><span class="icon-enter"></span><span class="d_l_g">Вход</span></button>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="f-s_0">
+                                                <span class="helper"></span>
+                                                <span>
+                                                    <a href="#" class="t-d_u c_5c">Регистрация</a>
+                                                </span>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </nav>
+                                <div class="cleaner f_l f-s_0 isAvail">
+                                    <span class="helper"></span>
+                                    <span class="f-s_0">
+                                        <span class="icon-bask"></span>
+                                        <span class="d_l">Корзина</span>
+                                        <span>&nbsp;(0)</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <nav class="frameHeaderMenu">
+                                <ul class="nav navHorizontal headerMenu">
+                                    <li class="active"><span><span class="helper"></span><span>Главная</span></span></li>
+                                    <li><a href="#"><span class="helper"></span><span>О магазине</span></a></li>
+                                    <li><a href="#"><span class="helper"></span><span>Доставка и оплата</span></a></li>
+                                    <li><a href="#"><span class="helper"></span><span>Помощь</span></a></li>
+                                    <li><a href="#"><span class="helper"></span><span>Контакты</span></a></li>
+                                </ul>
+                            </nav>
+                        </section>
+                    </div>
+                </header>
+                <section class="container">
+                    <section class="headerContent row-fluid">
+                        <div class="span3">
+                            <a href="#" class="logo">
+                                <img src="images/logo.png"/>
+                            </a>
+                        </div>
+                        <div class="span9 f-s_0">
+                            <span class="helper"></span>
+                            <div class="w_100 f-s_0 frameUndef_1">
+                                <div class="span6">
+                                    <div class="frameSearch">
+                                        <form method="post" action="#">
+                                            <input type="submit" value="Найти" class="f_r btn"/>
+                                            <div class="o_h">
+                                                <input type="text" placeholder="Поиск по сайту"/>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="span3">
+                                    <div><a href="#"><span class="icon-comprasion"></span>Список сравнения (12)</a></div>
+                                    <div style="margin-top: 9px;"><a href="#"><span class="icon-wish"></span>Список желаний (5)</a></div>
+                                </div>
+                                <div class="span3">
+                                    <div class="headerPhone"><span class="c_67">+8 (097)</span><span class="d_n">&minus;</span> 572-58-18</div>
+                                    <div style="margin-top: 7px;">
+                                        <ul class="tabs">
+                                            <li>
+                                                <a href="#a" class="d_l_b" data-drop=".drop-order-call" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" data-place="center">Заказать звонок</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+            </div>
+            <section class="container">
+                <div class="row">
+                    <div class="frameMenu span3">
+                        <div class="frame-menu-main">
+                            <div class="nav menu-main not-js vertical">
+                                <nav>
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="frame-item-menu">
+                                                        <div><a href="#" title="Телевизоры" class="title"><span class="helper"></span><span class="title-text">Телевизоры</span></a></div>
+                                                        <ul>
+                                                            <li>
+                                                                <a href="#" title="Телевизоры" class="is-sub">
+                                                                    <span class="helper"></span>
+                                                                    <span>Телефоны 11</span>
+                                                                </a>
+                                                                <div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <span class="title">Телефоны11</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#" title="Телевизоры">Мобильные телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#" title="Телевизоры">Телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#" title="Телевизоры">Мобильные телефоны</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" title="Телевизоры" class="is-sub">
+                                                                    <span class="helper"></span>
+                                                                    <span>Мобильные телефоны</span>
+                                                                </a>
+                                                                <div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <span class="title">Телефоны11</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#" title="Телевизоры">Мобильные телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#" title="Телевизоры">Телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#" title="Телевизоры">Мобильные телефоны</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="is-sub">
+                                                                    <span class="helper"></span>
+                                                                    <span>Телефоны Телефоны Телефоны Телефоны</span>
+                                                                </a>
+                                                                <div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <span class="title">Телефоны11</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#" title="Телевизоры">Мобильные телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#" title="Телевизоры">Телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#" title="Телевизоры">Мобильные телефоны</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="is-sub">
+                                                                    <span class="helper"></span>
+                                                                    <span>Мобильные телефоны</span>
+                                                                </a>
+                                                                <div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <span class="title">Телефоны11</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#" title="Телевизоры">Мобильные телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#" title="Телевизоры">Телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#" title="Телевизоры">Мобильные телефоны</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <span class="helper"></span>
+                                                                    <span>Телефоны</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="is-sub">
+                                                                    <span class="helper"></span>
+                                                                    <span>Мобильные телефоны</span>
+                                                                </a>
+                                                                <div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <span class="title">Телефоны11</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="frame-item-menu">
+                                                        <div><a href="#" class="title"><span class="helper"></span><span class="title-text">Телефоны</span></a></div>
+                                                        <ul>
+                                                            <li>
+                                                                <a href="#" class="is-sub">
+                                                                    <span class="helper"></span>
+                                                                    <span>Телефоны 11</span>
+                                                                </a>
+                                                                <div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <span class="title">Телефоны11</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="is-sub">
+                                                                    <span class="helper"></span>
+                                                                    <span>Мобильные телефоны</span>
+                                                                </a>
+                                                                <div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <span class="title">Телефоны11</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="is-sub">
+                                                                    <span class="helper"></span>
+                                                                    <span>Телефоны Телефоны Телефоны Телефоны</span>
+                                                                </a>
+                                                                <div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <span class="title">Телефоны11</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="is-sub">
+                                                                    <span class="helper"></span>
+                                                                    <span>Мобильные телефоны</span>
+                                                                </a>
+                                                                <div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <span class="title">Телефоны11</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <span class="helper"></span>
+                                                                    <span>Телефоны</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="is-sub">
+                                                                    <span class="helper"></span>
+                                                                    <span>Мобильные телефоны</span>
+                                                                </a>
+                                                                <div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <span class="title">Телефоны11</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="active">
+                                                    <div class="frame-item-menu">
+                                                        <div><a href="#" class="title"><span class="helper"></span><span class="title-text">Телефоны</span></a></div>
+                                                        <ul>
+                                                            <li>
+                                                                <a href="#" class="is-sub">
+                                                                    <span class="helper"></span>
+                                                                    <span>Телефоны 11</span>
+                                                                </a>
+                                                                <div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <span class="title">Телефоны11</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="is-sub">
+                                                                    <span class="helper"></span>
+                                                                    <span>Мобильные телефоны</span>
+                                                                </a>
+                                                                <div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <span class="title">Телефоны11</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="is-sub">
+                                                                    <span class="helper"></span>
+                                                                    <span>Телефоны Телефоны Телефоны Телефоны</span>
+                                                                </a>
+                                                                <div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <span class="title">Телефоны11</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="is-sub">
+                                                                    <span class="helper"></span>
+                                                                    <span>Мобильные телефоны</span>
+                                                                </a>
+                                                                <div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <span class="title">Телефоны11</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <span class="helper"></span>
+                                                                    <span>Телефоны</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="is-sub">
+                                                                    <span class="helper"></span>
+                                                                    <span>Мобильные телефоны</span>
+                                                                </a>
+                                                                <div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <span class="title">Телефоны11</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="frame-item-menu">
+                                                        <div><a href="#" class="title"><span class="helper"></span><span class="title-text">Телефоны</span></a></div>
+                                                        <ul>
+                                                            <li>
+                                                                <a href="#" class="is-sub">
+                                                                    <span class="helper"></span>
+                                                                    <span>Телефоны 11</span>
+                                                                </a>
+                                                                <div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <span class="title">Телефоны11</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="is-sub">
+                                                                    <span class="helper"></span>
+                                                                    <span>Мобильные телефоны</span>
+                                                                </a>
+                                                                <div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <span class="title">Телефоны11</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="is-sub">
+                                                                    <span class="helper"></span>
+                                                                    <span>Телефоны Телефоны Телефоны Телефоны</span>
+                                                                </a>
+                                                                <div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <span class="title">Телефоны11</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="is-sub">
+                                                                    <span class="helper"></span>
+                                                                    <span>Мобильные телефоны</span>
+                                                                </a>
+                                                                <div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <span class="title">Телефоны11</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <span class="helper"></span>
+                                                                    <span>Телефоны</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="is-sub">
+                                                                    <span class="helper"></span>
+                                                                    <span>Мобильные телефоны</span>
+                                                                </a>
+                                                                <div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <span class="title">Телефоны11</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="frame-item-menu">
+                                                        <div><a href="#" class="title"><span class="helper"></span><span class="title-text">Ноутбуки</span></a></div>
+                                                        <ul>
+                                                            <li>
+                                                                <a href="#" class="is-sub">
+                                                                    <span class="helper"></span>
+                                                                    <span>Телефоны 11</span>
+                                                                </a>
+                                                                <div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <span class="title">Телефоны11</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <span class="helper"></span>
+                                                                    <span>Мобильные телефоны</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <span class="helper"></span>
+                                                                    <span>Телефоны Телефоны Телефоны Телефоны</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <span class="helper"></span>
+                                                                    <span>Мобильные телефоны</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <span class="helper"></span>
+                                                                    <span>Телефоны</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <span class="helper"></span>
+                                                                    <span>Мобильные телефоны</span>
+                                                                </a>
+                                                                <div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <span class="title">Телефоны11</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="frame-item-menu">
+                                                        <div><a href="#" class="title"><span class="helper"></span><span class="title-text">Компьютеры</span></a></div>
+                                                        <ul>
+                                                            <li>
+                                                                <a href="#" class="is-sub">
+                                                                    <span class="helper"></span>
+                                                                    <span>Телефоны 11</span>
+                                                                </a>
+                                                                <div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <span class="title">Телефоны11</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <span class="helper"></span>
+                                                                    <span>Мобильные телефоны</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <span class="helper"></span>
+                                                                    <span>Телефоны Телефоны Телефоны Телефоны</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <span class="helper"></span>
+                                                                    <span>Мобильные телефоны</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <span class="helper"></span>
+                                                                    <span>Телефоны</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="is-sub">
+                                                                    <span class="helper"></span>
+                                                                    <span>Мобильные телефоны</span>
+                                                                </a>
+                                                                <div>
+                                                                    <ul>
+                                                                        <li>
+                                                                            <span class="title">Телефоны11</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Телефоны</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#">Мобильные телефоны</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <article class="span9">
+                        <!--                        class="span9"-->
+                        <div class="crumbs" xmlns:v="http://rdf.data-vocabulary.org/#">
+                            <span typeof="v:Breadcrumb">
+                                <a href="#" rel="v:url" property="v:title">Главная</a>
+                            </span>/
+                            <span typeof="v:Breadcrumb">
+                                <a href="#" rel="v:url" property="v:title">Тепловое оборудование</a>
+                            </span>/
+                            <span typeof="v:Breadcrumb">
+                                <span rel="v:url" property="v:title">Плиты индукционные</span>
+                            </span>
+                        </div>
+                        <div class="item_tovar bot_border_grey">
+                            <div class="row">
+                                <div class="photo span3 clearfix">
+                                    <a href="images/temp/item_tovar.png" rel="group">
+                                        <figure>
+                                            <img src="images/temp/item_tovar.png"/>
+                                        </figure>
+                                    </a>
+                                    <ul class="frame_thumbs">
+                                        <li class="active">
+                                            <a href="images/temp/item_tovar.png" rel="group">
+                                                <figure>
+                                                    <img src="images/temp/item_thumb.png">
+                                                </figure>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="images/temp/item_tovar2.png" rel="group">
+                                                <figure>
+                                                    <img src="images/temp/item_thumb_2.png">
+                                                </figure>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="images/temp/item_tovar2.png" rel="group">
+                                                <figure>
+                                                    <img src="images/temp/item_thumb_3.png">
+                                                </figure>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="images/temp/item_tovar2.png" rel="group">
+                                                <figure>
+                                                    <img src="images/temp/item_thumb_4.png">
+                                                </figure>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="images/temp/item_tovar2.png" rel="group">
+                                                <figure>
+                                                    <img src="images/temp/item_thumb_5.png">
+                                                </figure>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="span6">
+                                    <h1 class="d_i">Epson Stylus R1900 Photo Printer</h1><span class="c_97">(Артикул 123455)</span>
+                                    <div class="frame_response">
+                                        <div class="star">
+                                            <img src="images/temp/STAR.png"/>
+                                        </div>
+                                        <a href="#" class="count_response">145 відгуків</a>
+                                    </div>
+                                    <div class="clearfix">
+                                        <div class="d_i-b v-a_b m-b_20">
+                                            <div class=" d_i-b v-a_b m-r_30" id="variantProd">
+                                                <span class="title">Выбор варианта:</span>
+                                                <div class="lineForm w_170">
+                                                    <select id="var" name="var">
+                                                        <option value="1" selected="selected">asdf</option>
+                                                        <option value="2">adsg</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class=" d_i-b v-a_b m-r_45">
+                                                <div class="price price_f-s_24">
+                                                    <span class="d_b old_price"><span class="f-w_b">5000</span> грн.</span>
+                                                    <span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span>
+                                                </div>
+                                                <button class="btn btn_buy" type="button">В корзину</button>
+                                            </div>
+                                        </div>
+                                        <div class="d_i-b v-a_b m-b_20">
+                                            <button class="btn btn_small_p" type="button" title="добавить в список сравнений"><span class="icon-comprasion_2"></span><span>Добавить к сравнению</span></button><br/>
+                                            <button class="btn btn_small_p" type="button" title="добавить в список желаний"><span class="icon-wish_2"></span><span>Добавить в список желаний</span></button>
+                                        </div>
+                                    </div>
+                                    <div class="share_tov">
+                                        <img src="images/temp/share.png"/>
+                                    </div>
+                                    <ul class="tabs clearfix">
+                                        <li><button type="button" data-href="#info">Информация</button></li>
+                                        <li><button type="button" data-href="#characteristic">Характеристики</button></li>
+                                        <li><button type="button" data-href="#accessories">Аксессуары</button></li>
+                                        <li><button type="button" data-href="#comment">Отзывы(5)</button></li>
+                                    </ul>
+                                    <div class="frame_tabs">
+                                        <div id="info">
+                                            <div class="text">
+                                                <h2>Заголовок 2 уровень</h2>
+                                                <h3>Заголовок 3 уровень</h3>
+                                                <p>Ноутбук HP 635 имеет изящный узнаваемый дизайн — гладкая матовая поверхность голубовато-серого цвета придает ему неповторимый внешний вид.</p>
+                                                <h2>Восстановление системы</h2>
+                                                <p>Предварительно установленное приложение HP Recovery Manager позволяет быстро восстановить операционную систему в случае, если она повреждена, и продолжить работу.</p>
+                                                <ul>
+                                                    <li>1</li>
+                                                    <li>2</li>
+                                                    <li>3</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div id="characteristic">
+                                            <table class="characteristic">
+                                                <tbody>
+                                                    <tr>
+                                                        <th>Диагональ экрана</th>
+                                                        <td>3.65"</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Операционная система</th>
+                                                        <td>Android 2.3 (Gingerbread)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Внутренняя память</th>
+                                                        <td>3 Гб</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Поддержка карт памяти</th>
+                                                        <td>microSD до 32 Гб</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Количество SIM-карт</th>
+                                                        <td>1 SIM</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Формат SIM-карты</th>
+                                                        <td>Стандартная</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div id="accessories">
+                                            <ul class="items items_catalog" data-radio-frame>
+                                                <li class="in_cart span3">
+                                                    <a href="#" class="photo">
+                                                        <span class="helper"></span>
+                                                        <figure>
+                                                            <img src="images/temp/item_catalog.png" alt="Apple MacBook Pro A1286"/>
+                                                        </figure>
+                                                    </a>
+                                                    <div class="description">
+                                                        <div class="frame_response">
+                                                            <div class="star">
+                                                                <img src="images/temp/STAR.png"/>
+                                                            </div>
+                                                            <a href="#" class="count_response">145 відгуків</a>
+                                                        </div>
+                                                        <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
+                                                        <div class="price price_f-s_16"><span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span></div>
+                                                        <button class="btn btn_cart" type="button">Уже в корзине</button>
+                                                        <div class="d_i-b">
+                                                            <button class="btn btn_small_p" type="button" title="добавить в список сравнений"><span class="icon-comprasion_2"></span></button>
+                                                            <button class="btn btn_small_p" type="button" title="добавить в список желаний"><span class="icon-wish_2"></span></button>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="span3">
+                                                    <a href="#" class="photo">
+                                                        <span class="helper"></span>
+                                                        <figure>
+                                                            <img src="images/temp/item_catalog.png" alt="Apple MacBook Pro A1286"/>
+                                                        </figure>
+                                                    </a>
+                                                    <div class="description">
+                                                        <div class="frame_response">
+                                                            <div class="star">
+                                                                <img src="images/temp/STAR.png"/>
+                                                            </div>
+                                                            <a href="#" class="count_response">145 відгуків</a>
+                                                        </div>
+                                                        <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
+                                                        <div class="price price_f-s_16"><span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span></div>
+                                                        <button class="btn btn_buy" type="button">В корзину</button>
+                                                        <div class="d_i-b">
+                                                            <button class="btn btn_small_p" type="button" title="добавить в список сравнений"><span class="icon-comprasion_2"></span></button>
+                                                            <button class="btn btn_small_p" type="button" title="добавить в список желаний"><span class="icon-wish_2"></span></button>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="span3">
+                                                    <a href="#" class="photo">
+                                                        <span class="helper"></span>
+                                                        <figure>
+                                                            <img src="images/temp/item_catalog.png" alt="Apple MacBook Pro A1286"/>
+                                                        </figure>
+                                                    </a>
+                                                    <div class="description">
+                                                        <div class="frame_response">
+                                                            <div class="star">
+                                                                <img src="images/temp/STAR.png"/>
+                                                            </div>
+                                                            <a href="#" class="count_response">145 відгуків</a>
+                                                        </div>
+                                                        <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
+                                                        <div class="price price_f-s_16"><span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span></div>
+                                                        <button class="btn btn_buy" type="button">В корзину</button>
+                                                        <div class="d_i-b">
+                                                            <button class="btn btn_small_p" type="button" title="добавить в список сравнений"><span class="icon-comprasion_2"></span></button>
+                                                            <button class="btn btn_small_p" type="button" title="добавить в список желаний"><span class="icon-wish_2"></span></button>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div id="comment">
+                                            <div class="title_h2">Отзывы покупателей</div>
+                                            <ul class="frame-list-comment">
+                                                <li>
+                                                    <div class="frame-comment">Samsung S7500 Galaxy Ace Plus изготовлен в самом актуальном на данный момент форм-факторе – моноблок с сенсорным емкостным экраном. Используемые материалы и качество сборки соответствуют самым высоким мировым стандартам, а его дизайну и эргономике можно только завидовать.</div>
+                                                    <div class="author-data-comment"><span class="author-comment">Владислав</span> <span class="af">26 октября 2012</span></div>
+                                                </li>
+                                                <li>
+                                                    <div class="frame-comment">Samsung S7500 Galaxy Ace Plus изготовлен в самом актуальном на данный момент форм-факторе – моноблок с сенсорным емкостным экраном. Используемые материалы и качество сборки соответствуют самым высоким мировым стандартам, а его дизайну и эргономике можно только завидовать.</div>
+                                                    <div class="author-data-comment"><span class="author-comment">Владислав</span> <span class="af">26 октября 2012</span></div>
+                                                </li>
+                                            </ul>
+                                            <div class="grey-b_r-bord t-a_c">
+                                                <button type="button" class="d_l_b treebuchet f-s_18">Смотреть все отзывы</button>
+                                            </div>
+                                            <div class="grey-b_r-bord">
+                                                <div class="title_h2">Оставте свой отзыв о товаре</div>
+                                                <div class="form-comment">
+                                                    <form method="post">
+                                                        <textarea></textarea>
+                                                        <div class="clearfix">
+                                                            <label class="f_l">
+                                                                <span class="v-a_m c_97">Ваше имя:&nbsp;&nbsp;&nbsp;</span>
+                                                                <span class="d_i-b v-a_m row">
+                                                                    <span class="span4">
+                                                                        <input type="text" required/>
+                                                                    </span>
+                                                                </span>
+                                                            </label>
+                                                            <input type="submit" value="Отправить" class="btn btn_cart f_r"/>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="frame_carousel_product carousel_js c_b frameSet">
+                            <div class="m-b_20">
+                                <div class="title_h1 d_i-b v-a_m promotion_text">Акция в комплекте дешевле!</div>
+                                <div class="d_i-b groupButton v-a_m">
+                                    <button type="button" class="btn btn_prev"><span class="icon prev"></span></button>
+                                    <button type="button" class="btn btn_next"><span class="icon next"></span></button>
+                                </div>
+                            </div>
+                            <div class="carousel">
+                                <div class="row">
+                                    <ul class="items items_catalog">
+                                        <li class="container">
+                                            <ul class="items items_middle">
+                                                <li class="span2">
+                                                    <div class="item_set">
+                                                        <div class="description">
+                                                            <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
+                                                            <div class="price price_f-s_16"><span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span></div>
+                                                        </div>
+                                                        <a href="#" class="photo">
+                                                            <span class="helper"></span>
+                                                            <figure>
+                                                                <img src="images/temp/item_middle.png" alt="Apple MacBook Pro A1286"/>
+                                                            </figure>
+                                                        </a>
+                                                    </div>
+                                                    <div class="d_i-b">+</div>
+                                                </li>
+                                                <li class="span2">
+                                                    <div class="item_set">
+                                                        <div class="description">
+                                                            <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
+                                                            <div class="price price_f-s_16">
+                                                                <span class="d_b old_price"><span class="f-w_b">5000</span> грн.</span>
+                                                                <span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span>
+                                                            </div>
+                                                        </div>
+                                                        <a href="#" class="photo">
+                                                            <span class="helper"></span>
+                                                            <figure>
+                                                                <img src="images/temp/item_middle.png" alt="Apple MacBook Pro A1286"/>
+                                                            </figure>
+                                                        </a>
+                                                        <span class="top_tovar discount">-5%</span>
+                                                    </div>
+                                                    <div class="d_i-b">+</div>
+                                                </li>
+                                                <li class="span2">
+                                                    <div class="item_set">
+                                                        <div class="description">
+                                                            <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
+                                                            <div class="price price_f-s_16">
+                                                                <span class="d_b old_price"><span class="f-w_b">5000</span> грн.</span>
+                                                                <span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span>
+                                                            </div>
+                                                        </div>
+                                                        <a href="#" class="photo">
+                                                            <span class="helper"></span>
+                                                            <figure>
+                                                                <img src="images/temp/item_middle.png" alt="Apple MacBook Pro A1286"/>
+                                                            </figure>
+                                                        </a>
+                                                        <span class="top_tovar discount">-5%</span>
+                                                    </div>
+                                                    <div class="d_i-b">=</div>
+                                                </li>
+                                                <li class="span2 p-t_40">
+                                                    <div class="price price_f-s_24">
+                                                        <span class="d_b old_price"><span class="f-w_b">28799.68</span> руб.</span>
+                                                        <span class="f-w_b">28799.68</span> руб.
+                                                    </div>
+                                                    <button type="button" class="btn btn_buy">Купить комплект</button>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="container">
+                                            <ul class="items items_middle">
+                                                <li class="span2">
+                                                    <div class="item_set">
+                                                        <div class="description">
+                                                            <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
+                                                            <div class="price price_f-s_16"><span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span></div>
+                                                        </div>
+                                                        <a href="#" class="photo">
+                                                            <span class="helper"></span>
+                                                            <figure>
+                                                                <img src="images/temp/item_middle.png" alt="Apple MacBook Pro A1286"/>
+                                                            </figure>
+                                                        </a>
+                                                    </div>
+                                                    <div class="d_i-b">+</div>
+                                                </li>
+                                                <li class="span2">
+                                                    <div class="item_set">
+                                                        <div class="description">
+                                                            <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
+                                                            <div class="price price_f-s_16">
+                                                                <span class="d_b old_price"><span class="f-w_b">5000</span> грн.</span>
+                                                                <span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span>
+                                                            </div>
+                                                        </div>
+                                                        <a href="#" class="photo">
+                                                            <span class="helper"></span>
+                                                            <figure>
+                                                                <img src="images/temp/item_middle.png" alt="Apple MacBook Pro A1286"/>
+                                                            </figure>
+                                                        </a>
+                                                    </div>
+                                                    <div class="d_i-b">+</div>
+                                                </li>
+                                                <li class="span2">
+                                                    <div class="item_set">
+                                                        <div class="description">
+                                                            <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
+                                                            <div class="price price_f-s_16">
+                                                                <span class="d_b old_price"><span class="f-w_b">5000</span> грн.</span>
+                                                                <span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span>
+                                                            </div>
+                                                        </div>
+                                                        <a href="#" class="photo">
+                                                            <span class="helper"></span>
+                                                            <figure>
+                                                                <img src="images/temp/item_middle.png" alt="Apple MacBook Pro A1286"/>
+                                                            </figure>
+                                                        </a>
+                                                    </div>
+                                                    <div class="d_i-b">=</div>
+                                                </li>
+                                                <li class="span2 p-t_40">
+                                                    <div class="price price_f-s_24">
+                                                        <span class="d_b old_price"><span class="f-w_b">28799.68</span> руб.</span>
+                                                        <span class="f-w_b">28799.68</span> руб.
+                                                    </div>
+                                                    <button type="button" class="btn btn_buy">Купить комплект</button>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="frame_carousel_product carousel_js c_b">
+                            <div class="m-b_20">
+                                <div class="title_h1 d_i-b v-a_m">Похожие товары</div>
+                                <div class="d_i-b groupButton v-a_m">
+                                    <button type="button" class="btn btn_prev"><span class="icon prev"></span></button>
+                                    <button type="button" class="btn btn_next"><span class="icon next"></span></button>
+                                </div>
+                            </div>
+                            <div class="carousel">
+                                <ul class="items items_catalog">
+                                    <li class="span3 in_cart">
+                                        <a href="#" class="photo">
+                                            <span class="helper"></span>
+                                            <figure>
+                                                <img src="images/temp/item_catalog.png" alt="Apple MacBook Pro A1286"/>
+                                            </figure>
+                                        </a>
+                                        <div class="description">
+                                            <div class="frame_response">
+                                                <div class="star">
+                                                    <img src="images/temp/STAR.png"/>
+                                                </div>
+                                            </div>
+                                            <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
+                                            <div class="price price_f-s_16"><span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span></div>
+                                            <button class="btn btn_cart" type="button">Уже в корзине</button>
+                                        </div>
+                                    </li>
+                                    <li class="span3">
+                                        <a href="#" class="photo">
+                                            <span class="helper"></span>
+                                            <figure>
+                                                <img src="images/temp/item_catalog.png" alt="Apple MacBook Pro A1286"/>
+                                            </figure>
+                                        </a>
+                                        <div class="description">
+                                            <div class="frame_response">
+                                                <div class="star">
+                                                    <img src="images/temp/STAR.png"/>
+                                                </div>
+                                            </div>
+                                            <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
+                                            <div class="price price_f-s_16"><span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span></div>
+                                            <button class="btn btn_buy" type="button">В корзину</button>
+                                        </div>
+                                    </li>
+                                    <li class="span3">
+                                        <a href="#" class="photo">
+                                            <span class="helper"></span>
+                                            <figure>
+                                                <img src="images/temp/item_catalog.png" alt="Apple MacBook Pro A1286"/>
+                                            </figure>
+                                        </a>
+                                        <div class="description">
+                                            <div class="frame_response">
+                                                <div class="star">
+                                                    <img src="images/temp/STAR.png"/>
+                                                </div>
+                                            </div>
+                                            <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
+                                            <div class="price price_f-s_16"><span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span></div>
+                                            <button class="btn btn_buy" type="button">В корзину</button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            <div class="frame_brand carousel_js">
+                <div class="container p_r">
+                    <div class="carousel">
+                        <ul class="items">
+                            <li>
+                                <a href="#">
+                                    <img src="images/temp/brand1.png">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="images/temp/brand2.png">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="images/temp/brand3.png">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="images/temp/brand4.png">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="images/temp/brand5.png">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="images/temp/brand6.png" >
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <button class="btn_brand btn_prev"></button>
+                    <button class="btn_brand btn_next"></button>
+                </div>
+            </div>
+            <div class="hFooter"></div>
+        </div>
+        <footer>
+            <div class="container">
+                <div class="row-fluid">
+                    <div class="span5">
+                        <nav>
+                            <ul class="footer_menu">
+                                <li><a href="#">Главная</a></li>
+                                <li><a href="#">Видео</a></li>
+                                <li><a href="#">О магазине</a></li>
+                                <li><a href="#">Домашнее  аудио</a></li>
+                                <li><a href="#">Доставка и оплата</a></li>
+                                <li><a href="#">Фото и камеры</a></li>
+                                <li><a href="#">Помощь</a></li>
+                                <li><a href="#">Домашняя электроника</a></li>
+                                <li><a href="#">Контакты</a></li>
+                                <li><a href="#">Авто музыка и видео</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="span4">
+                        <ul class="contacts_info">
+                            <li><span class="f-w_b">Телефоны:</span> +8 (067)<span class="d_n">&minus;</span> 572-58-18, +8 (067)<span class="d_n">&minus;</span> 572-58-18</li>
+                            <li><span class="f-w_b">Email:</span> SiteImageCMS@gmail.com</li>
+                            <li><span class="f-w_b">Skype:</span> SiteImageCMS</li>
+                        </ul>
+                    </div>
+                    <div class="span3 t-a_r">
+                        <div class="copy_right">© SiteImage CMS, 2012</div>
+                        <div class="footer_social">
+                            <img src="images/temp/social_footer.png"/>
+                        </div>
+                        <a href="#">Создание интернет магазина</a><br/>
+                        SEO оптимизация сайта
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <div class="drop-enter drop">
+            <div class="icon-times-enter" data-closed="closed-js"></div>
+            <div class="drop-content">
+                <div class="header_title">
+                    Вход для клиентов
+                </div>
+                <div class="inside_padd">
+                    <div class="horizontal_form standart_form">
+                        <form method="post">
+                            <label>
+                                <span class="title">E-mail</span>
+                                <span class="frame_form_field">
+                                    <span class="icon-email"></span>
+                                    <input type="text"/>
+                                </span>
+                            </label>
+                            <label>
+                                <span class="title">Пароль</span>
+                                <span class="frame_form_field">
+                                    <span class="icon-password"></span>
+                                    <input type="password"/>
+                                </span>
+                            </label>
+                            <div class="frameLabel">
+                                <span class="title">&nbsp;</span>
+                                <span class="frame_form_field c_n">
+                                    <a href="#" class="f_l neigh_btn">Забыли пароль?</a>
+                                    <input type="submit" value="Войти" class="btn btn_cart f_r"/>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="drop-footer"></div>
+        </div>
+        <div class="drop-order-call drop" id="a">
+            <div class="icon-times-enter" data-closed="closed-js"></div>
+            <div class="drop-content">
+                <div class="header_title">
+                    Заказ звонка
+                </div>
+                <div class="inside_padd">
+                    <div class="horizontal_form standart_form">
+                        <form method="post">
+                            <label>
+                                <span class="title">Ваше имя</span>
+                                <span class="frame_form_field">
+                                    <span class="icon-person"></span>
+                                    <input type="text"/>
+                                </span>
+                            </label>
+                            <label>
+                                <span class="title">Номер телефона</span>
+                                <span class="frame_form_field">
+                                    <span class="icon-phone"></span>
+                                    <input type="text"/>
+                                </span>
+                            </label>
+                            <label>
+                                <span class="title">Примерное время</span>
+                                <span class="frame_form_field">
+                                    <input type="text"/>
+                                    <span class="icon-clock"></span>
+                                </span>
+                            </label>
+                            <label>
+                                <span class="title">Комментарий</span>
+                                <span class="frame_form_field">
+                                    <textarea></textarea>
+                                </span>
+                            </label>
+                            <div class="frameLabel">
+                                <span class="title">&nbsp;</span>
+                                <span class="frame_form_field c_n">
+                                    <input type="submit" value="Позвоните мне" class="btn btn_cart f_r"/>
+                                </span>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="drop-footer"></div>
+        </div>
+        <div class="headerFon inside"></div>
+        <script src="js/jquery-1.8.2.min.js" type="text/javascript"></script>
+        <script src="js/jquery.cycle.all.js" type="text/javascript"></script>
+        <script src="js/jquery.jcarousel.min.js" type="text/javascript"></script>
+        <script src="js/jquery.ui-slider.js" type="text/javascript"></script>
+        <script src="js/cusel-min-2.5.js" type="text/javascript"></script>
+        <script src="js/scripts.js" type="text/javascript"></script>
+    </body>
+</html>
