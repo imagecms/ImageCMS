@@ -78,8 +78,8 @@ class Star_rating extends MY_Controller {
                 $this->template->display('star_rating');
                 }
             }
-        
-       $this->template->set_config_value('tpl_path', set_realpath('templates/commerce'));     
+       $template = $this->db->select('site_template')->get('settings')->row();
+       $this->template->set_config_value('tpl_path', set_realpath('templates/'. $template->site_template));     
     }
 
     private function get_rating($id_g = null, $type_g = null) {
