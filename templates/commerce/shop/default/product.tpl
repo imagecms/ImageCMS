@@ -300,7 +300,7 @@
 </div>
 </div>
 </div>
-</div>
+</div>    
 {if $model->getShopKits()->count() > 0}
     <div class="f-s_18 c_6 center">{lang('s_spec_promotion')}</div>
     <div class="promotion carusel_frame carousel_js">

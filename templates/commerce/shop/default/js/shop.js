@@ -1,13 +1,13 @@
 function renderPosts()
 {
     $.ajax({
-        url: "/comments/api/renderPosts/post",
+        url: "/comments/api/renderPosts",
         data: "item_id=" + currentProductId,
         dataType: "json",
         type: "post",
         success: function(obj) {
 //                console.log(obj);
-            //$('#four').empty();
+            $('#four').empty();
 
 //                var tpl = '<div ><input type="text" class="field" name="dynamic[]" /></div>';
             var tpl = obj.comments;
@@ -76,7 +76,7 @@ function json()
 //                        + obj.md5 +
 //                        '</div><br><br>';
 
-                $('.inputs').append(tpl);
+//                $('.inputs').append(tpl);
                 $('#comment_text').val('');
                 $('#comment_text_plus').val('');
                 $('#comment_text_minus').val('');
