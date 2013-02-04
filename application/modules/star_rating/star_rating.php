@@ -23,11 +23,10 @@ class Star_rating extends MY_Controller {
         parent::__construct();
         $this->load->library('template');
         $this->load->helper('path');
-        $this->template->set_config_value('tpl_path', set_realpath('application/modules/star_rating/templates/'));
     }
 
     public function show_star_rating($item = null) {
-        
+        $this->template->set_config_value('tpl_path', set_realpath('application/modules/star_rating/templates/'));
         $get_settings = $this->db->select('settings')->where('name', 'star_rating')->get('components')->row_array();
         $this->list_for_show = json_decode($get_settings['settings'], true);
         if ($this->list_for_show == null)
@@ -80,6 +79,7 @@ class Star_rating extends MY_Controller {
                 }
             }
         
+       $this->template->set_config_value('tpl_path', set_realpath('templates/commerce'));     
     }
 
     private function get_rating($id_g = null, $type_g = null) {
