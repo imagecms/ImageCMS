@@ -70,8 +70,6 @@ class AuthApi extends Auth {
                             array(
                                 'msg' => validation_errors(),
                                 'status' => false,
-                                'refresh' => false,
-                                'reopen' => false,
                                 'validations' => array(
                                     'email' => form_error('email'),
                                     'password' => form_error('password'),
@@ -102,7 +100,6 @@ class AuthApi extends Auth {
                         'msg' => 'Logout completed',
                         'status' => true,
                         'refresh' => true,
-                        'redirect' => false,
                     )
             );
         } else {
@@ -110,8 +107,6 @@ class AuthApi extends Auth {
                     array(
                         'msg' => 'You are not loggin to make loggout',
                         'status' => false,
-                        'refresh' => false,
-                        'redirect' => false,
                     )
             );
         }
@@ -154,7 +149,6 @@ class AuthApi extends Auth {
                 $json['status'] = true;
                 $json['msg'] = 'Register success';
                 $json['refresh'] = true;
-                $json['redirect'] = false;
                 echo json_encode($json);
             } else {
                 // Is registration using captcha
@@ -173,8 +167,6 @@ class AuthApi extends Auth {
                 $json['msg'] = validation_errors();
                 $json['validations'] = true;
                 $json['status'] = false;
-                $json['refresh'] = false;
-                $json['redirect'] = false;
                 echo json_encode($json);
             }
         } elseif (!$this->dx_auth->allow_registration) {
@@ -182,15 +174,11 @@ class AuthApi extends Auth {
             //$json['additional_info']['allow_registration'] = false;
             $json['msg'] = 'Registration is not allowed';
             $json['status'] = false;
-            $json['refresh'] = false;
-            $json['redirect'] = false;
             echo json_encode($json);
         } else {
             $json = array();
             $json['msg'] = 'User is logged in';
             $json['status'] = false;
-            $json['refresh'] = false;
-            $json['redirect'] = false;
             echo json_encode($json);
         }
     }
@@ -210,15 +198,11 @@ class AuthApi extends Auth {
             echo json_encode(array(
                 'msg' => 'Email with new password send to you email',
                 'status' => true,
-                'refresh' => false,
-                'redirect' => false,
             ));
         } else {
             echo json_encode(array(
                 'msg' => validation_errors(),
                 'status' => false,
-                'refresh' => false,
-                'redirect' => false,
             ));
         }
     }
