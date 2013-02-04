@@ -1140,7 +1140,7 @@
                             <div class="frameLabel">
                                 <span class="title">&nbsp;</span>
                                 <span class="frame_form_field c_n">
-                                    <a href="#" class="f_l neigh_btn">Забыли пароль?</a>
+                                    <a href="#" class="f_l neigh_btn" onclick="ImageCMSApi.formAction('auth/authapi/forgot_password', '')">Забыли пароль?</a>
                                     <input type="button" value="Войти" class="btn btn_cart f_r" onclick="ImageCMSApi.formAction('auth/authapi/login', 'login_form'); return false;"/>
                                 </span>
                             </div>

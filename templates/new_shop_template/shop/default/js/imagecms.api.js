@@ -26,6 +26,11 @@
 
 var ImageCMSApi = {
     debugMode: true,
+    returnMsg: function(msg) {
+        if (this.debugMode === true) {
+            console.log(msg);
+        }
+    },
     formAction: function(url, selector) {
         //collect data from form
         if (selector !== '')
@@ -40,25 +45,26 @@ var ImageCMSApi = {
             url: url,
             dataType: "json",
             beforeSend: function() {
-                this.returnMsg("=== Sending api request to " + url + "... ===");
+                ImageCMSApi.returnMsg("=== Sending api request to " + url + "... ===");
             },
             success: function(obj) {
                 if (obj !== null) {
-                    this.returnMsg("[status]:" + obj.status);
-                    this.returnMsg("[message]: " + obj.msg);
-                    if (obj.refresh === 'true')
+                    ImageCMSApi.returnMsg("[status]:" + obj.status);
+                    ImageCMSApi.returnMsg("[message]: " + obj.msg);
+                    if (obj.refresh == true)
                         location.reload();
                     if (obj.redirect !== null)
-                        if (obj.redirect !== 'false') {
-                            location.href = obj.redirect;
-                        }
+                        if (typeof obj.redirect !== 'undefined')
+                            if (obj.redirect !== false) {
+                                location.href = obj.redirect;
+                            }
                 }
                 return this;
             },
         }).done(function() {
-            this.returnMsg("=== Api request success!!! ===");
+            ImageCMSApi.returnMsg("=== Api request success!!! ===");
         }).fail(function() {
-            this.returnMsg("=== Api request breake with error!!! ===");
+            ImageCMSApi.returnMsg("=== Api request breake with error!!! ===");
         });
         return;
     },
@@ -67,11 +73,6 @@ var ImageCMSApi = {
         var findSelector = $('#' + selector);
         var queryString = findSelector.formSerialize();
         return queryString;
-    },
-    returnMsg: function(msg) {
-        if (this.debugMode === true) {
-            console.log(msg);
-        }
     },
 }
 
