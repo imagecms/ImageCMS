@@ -39,7 +39,7 @@
 
         {$yameta}
         {$renderGA}
-            
+
         {$ymetric}
     </head>
     <body>
@@ -102,17 +102,18 @@
                     <!--    Products in compare list for Header    -->
                 </ul>
             </div><!-- header -->
-            {echo ShopCore::app()->SCategoryTree->ul()}
+            {//echo ShopCore::app()->SCategoryTree->ul()}
+            {\Category\RenderMenu::create()->load('category_menu')}
             {$shop_content}
             <div class="hfooter"></div>
         </div>
         <div class="footer">
             <div class="center">
-                
+
                 <!-- brands widget -->
                 {widget('brands')}
                 <!-- *** -->
-                
+
                 {load_menu('footer_menu')}
                 <ul class="contacts f_l">
                     <li>
