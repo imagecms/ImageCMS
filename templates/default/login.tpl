@@ -9,28 +9,34 @@
 
 <form action="" method="post" class="form">
 
-	<div class="comment_form_info">
-   
-	<div class="textbox">
-		<label for="username" class="left">{lang('s_email')}</label>
-        <input type="text" id="username" size="30" name="email" value="{lang('lang_email_form')}" onfocus="if(this.value=='{lang('lang_email_form')}') this.value='';" onblur="if(this.value=='') this.value='{lang('lang_email_form')}';" />
-    </div>
-	
-	<div class="textbox_spacer"></div>
+    <div class="comment_form_info">
 
-    <div class="textbox">
-        <label for="password" class="left">{lang('lang_password')}</label> 
-        <input type="password" size="30" name="password" id="password" value="{lang('lang_password')}" onfocus="if(this.value=='{lang('lang_password')}') this.value='';" onblur="if(this.value=='') this.value='{lang('lang_password')}';"/>
+        <div class="textbox">
+            <label for="username" class="left">{lang('s_email')}</label>
+            <input type="text" id="username" size="30" name="email" value="{lang('lang_email_form')}" onfocus="if (this.value == '{lang('lang_email_form')}')
+                    this.value = '';" onblur="if (this.value == '')
+                    this.value = '{lang('lang_email_form')}';" />
+        </div>
+
+        <div class="textbox_spacer"></div>
+
+        <div class="textbox">
+            <label for="password" class="left">{lang('lang_password')}</label> 
+            <input type="password" size="30" name="password" id="password" value="{lang('lang_password')}" onfocus="if (this.value == '{lang('lang_password')}')
+                    this.value = '';" onblur="if (this.value == '')
+                    this.value = '{lang('lang_password')}';"/>
+        </div>
     </div>
-	</div>
 
     {if $cap_image}
-    <div class="comment_form_info">
-    <div class="textbox captcha">
-        <input type="text" name="captcha" id="captcha" value="Код протекции" onfocus="if(this.value=='Код протекции') this.value='';" onblur="if(this.value=='') this.value='Код протекции';"/>
-   	</div>
-    {$cap_image}
-    </div>
+        <div class="comment_form_info">
+            <div class="textbox captcha">
+                <input type="text" name="captcha" id="captcha" value="Код протекции" onfocus="if (this.value == 'Код протекции')
+                    this.value = '';" onblur="if (this.value == '')
+                    this.value = 'Код протекции';"/>
+            </div>
+            {$cap_image}
+        </div>
     {/if}
 
     <p class="clear">
@@ -39,8 +45,8 @@
     </p>
 
     <input type="submit" id="submit" class="submit" value="{lang('lang_submit')}" /> 
-	
-	
+
+
     <br /><br />
 
     <label class="left">&nbsp;</label> 
@@ -48,5 +54,5 @@
     &nbsp;
     <a href="{site_url($modules.auth . '/register')}">{lang('lang_register')}</a>
 
-{form_csrf()}
+    {form_csrf()}
 </form>

@@ -26,6 +26,7 @@
         <script type="text/javascript" src="{$SHOP_THEME}/js/scripts.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}/js/shop.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}js/jquery.validate.js"></script>
+        <script type="text/javascript" src="{$SHOP_THEME}js/imagecms.api.js"></script>
         {$renderGA}
     </head>
     <body>        

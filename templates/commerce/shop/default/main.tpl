@@ -15,7 +15,6 @@
 
         <link rel="stylesheet" href="{$SHOP_THEME}/js/fancybox/source/jquery.fancybox.css?v=2.1.0" type="text/css" media="screen" />
 
-        <link rel="stylesheet" href="{$SHOP_THEME}css/smoothness/jquery-ui-1.9.1.custom.min.css" type="text/css" media="screen" />
         <link rel="icon" type="image/x-icon" href="{$SHOP_THEME}images/favicon.png"/>
         <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/ie8_7_6.css" /><![endif]-->
         <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/ie_7.css" /><![endif]-->
@@ -35,6 +34,7 @@
         <script type="text/javascript" src="{$SHOP_THEME}/js/shop.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}js/jquery.validate.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}js/autocomplete.js"></script>
+        <script type="text/javascript" src="{$SHOP_THEME}js/imagecms.api.js"></script>
         {$gmeta}
 
         {$yameta}
@@ -65,12 +65,12 @@
                         <span id="suggestions" style="display: none; width: 0px; right: 0px;"></span>
                     </form>
                 </div>
-
+                        
                 <div class="phone">
                     <address>(095)<span><span class="d_n">&minus;</span> 555-55-55</span></address>
                     <span class="js showCallback">{lang('s_coll_order')}</span>
                 </div>
-
+                
                 <ul class="user_menu">
                     <!--    Show callback's form    -->
                     {if !count(get_currencies())}
@@ -108,11 +108,21 @@
         </div>
         <div class="footer">
             <div class="center">
-                
-                <!-- brands widget -->
-                {widget('brands')}
-                <!-- *** -->
-                
+                <div class="carusel_frame brand box_title carousel_js">
+                    <div class="carusel clearfix">
+                        <ul>
+                            {foreach ShopCore::app()->SBrandsHelper->mostProductBrands(15, TRUE) as $brand}
+                                <li>
+                                    <a href="{shop_url($brand.full_url)}">
+                                        <img src="{media_url($brand.img_fullpath)}" title="{$brand.name}" />
+                                    </a>
+                                </li>
+                            {/foreach}
+                        </ul>
+                    </div>
+                    <button class="prev"></button>
+                    <button class="next"></button>
+                </div>
                 {load_menu('footer_menu')}
                 <ul class="contacts f_l">
                     <li>
@@ -127,9 +137,7 @@
                         <span class="b">{lang('s_skype')}:</span>
                         <span>ImageCMS</span>
                     </li>
-                    {$CI->load->module('star_rating')->show_star_rating()}
-                </ul>                    
-
+                </ul>
                 <div class="footer_info f_r">
                     <div>© ImageCMS, {date('Y')}</div>
                     <div class="social">
@@ -147,4 +155,3 @@
         </div><!-- footer -->
         <div class="h_bg_{whereami()}"></div>
     </body>
-</html>
