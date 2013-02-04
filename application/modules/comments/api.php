@@ -4,7 +4,7 @@
 
 class Api extends Comments {
 
-    public $tpl_name = 'comments';
+    public $tpl_name = 'comments_api';
 
     public function __construct() {
         parent::__construct();
@@ -27,8 +27,7 @@ class Api extends Comments {
     }
 
     public function renderPosts() {
-        var_dump($this->core->core_data);
-                exit();
+//        var_dump($_SERVER['HTTP_REFERER']);
         $comments = array();
         ($hook = get_hook('comments_on_build_comments')) ? eval($hook) : NULL;
 
