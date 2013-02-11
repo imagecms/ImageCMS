@@ -10,7 +10,7 @@ RewriteEngine on
 # RewriteRule ^(.*)$ http://site.com/$1 [L,R=301]
 
 
-RewriteCond $1 !^(index\.php|test.php|user_guide|uploads/.*|favicon\.ico|favicon\.png|captcha/.*|application/modules/.*/templates|templates|js|robots\.txt|application/controllers/install/images/.*)
+RewriteCond $1 !^(index\.php|test.php|user_guide|uploads/.*|favicon\.ico|favicon\.png|captcha/.*|application/modules/.*/templates|application/modules/.*/assets/js|application/modules/.*/assets/css|templates|js|robots\.txt|application/controllers/install/images/.*)
 RewriteRule ^(.*)$ /index.php/$1 [L]
 
 ####################################
