@@ -13,10 +13,11 @@ class Admin extends BaseAdminController {
     }
 
     public function index() {
-        \CMSFactory\assetManager::create()
-                ->registerScript('jstest')
-                ->registerStyle('csstest')
-                ->renderAdmin('index');
+        $template = \CMSFactory\assetManager::create();
+        $template->fetchData(array('debug' => 'DEBUG VARIABLE'));
+        $template->registerScript('jstest');
+        $template->registerStyle('csstest');
+        $template->renderAdmin('index');
     }
 
 }

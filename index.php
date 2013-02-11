@@ -1,4 +1,5 @@
 <?php
+
 /*
  * ---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
@@ -27,8 +28,6 @@ if (strpos($_SERVER['REQUEST_URI'], 'index.php') !== false) {
     header("Location:http://" . $_SERVER['SERVER_NAME'] . "/page_not_found");
     exit;
 }
-
-ini_set('display_errors', true);
 define('ENVIRONMENT', 'development');
 /*
  * ---------------------------------------------------------------
@@ -42,17 +41,19 @@ define('ENVIRONMENT', 'development');
 switch (ENVIRONMENT) {
     case 'development':
         error_reporting(E_ALL ^ E_NOTICE);
+        ini_set('display_errors', 1);
         break;
 
     case 'testing':
     case 'production':
-        error_reporting(0);
+        error_reporting(E_ALL ^ E_NOTICE ^ E_DEPRECATED ^ E_STRICT);
+        ini_set('display_errors', 0);
         break;
 
     default:
+        header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
         exit('The application environment is not set correctly.');
 }
-
 /*
  * ---------------------------------------------------------------
  * SYSTEM FOLDER NAME

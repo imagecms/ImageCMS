@@ -29,7 +29,6 @@
     </head>
     <body>
         <div class="main_body">
-
             <!-- Here be notifications -->
             <div class="notifications top-right"></div>
 
@@ -274,8 +273,7 @@
         <script src="{$THEME}/js/admin_base_m.js" type="text/javascript"></script>       
         <script src="{$THEME}/js/admin_base_r.js" type="text/javascript"></script>       
         <script src="{$THEME}/js/admin_base_v.js" type="text/javascript"></script>       
-        <script src="{$THEME}/js/admin_base_y.js" type="text/javascript"></script>       
-        
+        <script src="{$THEME}/js/admin_base_y.js" type="text/javascript"></script>               
         <script type="text/javascript" src="/js/tiny_mce/jquery.tinymce.js"></script>
 
         <script>
@@ -348,7 +346,6 @@
             
             var elfToken = '{echo $CI->lib_csrf->get_token()}';
             </script>
-
-        <div id="jsOutput" style="display: none;"></div>
+        <div id="jsOutput" style="display: none;"></div>    
     </body>
 </html>
