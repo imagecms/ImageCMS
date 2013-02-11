@@ -69,7 +69,7 @@ class MY_Controller extends MX_Controller {
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
             $this->ajaxRequest = true;
 
-        define('SHOP_INSTALLED', $this->checkForShop());
+        defined('SHOP_INSTALLED') OR define('SHOP_INSTALLED', $this->checkForShop());
     }
 
     private function checkForShop() {
@@ -83,4 +83,5 @@ class MY_Controller extends MX_Controller {
         else
             return false;
     }
+
 }

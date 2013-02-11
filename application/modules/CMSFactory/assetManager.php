@@ -68,7 +68,35 @@ class assetManager {
         $trace = debug_backtrace();
         $paths = explode('/', $trace[0]['file']);
         $paths = $paths[count($paths) - 2];
-        \CI_Controller::get_instance()->template->show('file:' . 'application/modules/' . $paths . '/assets/admin/' . $tpl);
+        try {
+            $tplPath = 'application/modules/' . $paths . '/assets/admin/' . $tpl;
+            file_exists($tplPath . '.tpl') OR throwException('Can\'t load template file: <i>' . $paths . '/assets/admin/' . $tpl . '.tpl</i>');
+            \CI_Controller::get_instance()->template->show('file:' . $tplPath);
+        } catch (\Exception $exc) {
+            log_message('error', $exc->getMessage());
+            show_error($exc->getMessage(), 500, 'An Template Error Was Encountered');
+        }
+    }
+
+    /** Render public view
+     * @param string $tpl Template file name
+     * @return void
+     * @access public
+     * @author Kaero
+     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     */
+    public function render($tpl) {
+        $trace = debug_backtrace();
+        $paths = explode('/', $trace[0]['file']);
+        $paths = $paths[count($paths) - 2];
+        try {
+            $tplPath = 'application/modules/' . $paths . '/' . $tpl;
+            file_exists($tplPath . '.tpl') OR throwException('Can\'t load template file: <i>' . $paths . '/' . $tpl . '.tpl</i>');
+            $test = \CI_Controller::get_instance()->template->show('file:' . $tplPath);
+        } catch (\Exception $exc) {
+            log_message('error', $exc->getMessage());
+            show_error($exc->getMessage(), 500, 'An Template Error Was Encountered');
+        }
     }
 
     /**
