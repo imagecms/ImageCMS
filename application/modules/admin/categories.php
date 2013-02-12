@@ -16,7 +16,6 @@ class Categories extends BaseAdminController {
 
         $this->load->library('DX_Auth');
         admin_or_redirect();
-
         $this->load->library('lib_admin');
         $this->load->library('lib_category');
         $this->lib_admin->init_settings();
@@ -207,6 +206,10 @@ class Categories extends BaseAdminController {
                             '<a href="' . $BASE_URL . '/admin/categories/edit/' . $id . '"> ' . $data['name'] . '</a>'
                     );
 
+                    /** Init Event. Create new Page */
+                    \CMSFactory\Events::create()->registerEvent(array('categoryId' => $id));
+                    /** End init Event. Create new Page */
+
                     showMessage(lang('ac_cat') . ' ' . $data['name'] . ' ' . lang('ac_created'));
 
                     //showMessage(lang('a_categ_translate_upda'));
@@ -247,11 +250,10 @@ class Categories extends BaseAdminController {
                             lang('ac_changed_cat') .
                             '<a href="' . $BASE_URL . '/admin/categories/edit/' . $cat_id . '"> ' . $data['name'] . '</a>'
                     );
-
-                    showMessage(lang('ac_cat_updated'));
-
+                    /**
+                     * 
+                     */
                     $CI = &get_instance();
-
                     if ($CI->db->get_where('components', array('name' => 'sitemap'))->row())
                         $CI->load->module('sitemap')->ping_google($this);
 
