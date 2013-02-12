@@ -221,84 +221,90 @@
                 {if $model->getRelatedProductsModels()}
                 <li><a href="#third">{lang('s_accessories')}</a></li>
                 {/if}
-            <li onclick="renderPosts()">
+            <li onclick="renderPosts(this)">
                 <a href="#four">
-            {//echo SStringHelper::Pluralize($data['total_comments'], array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}{if $data['comments_arr']}{echo $data['total_comments']}{else:}Нет комментариев{/if}
-        </a>
-    </li>
-</ul> 
-{if $model->getFullDescription()}
-    <div id="first">
-        <div class="info_text">
-            {echo $model->getFullDescription()}
+                    <div id="cc">
+                        {if $data['comments_arr']}
+                            {echo $data['total_comments']}
+                        {else:}
+                            Нет комментариев
+                        {/if}
+                    </div>
+                </a>
+            </li>
+        </ul> 
+        {if $model->getFullDescription()}
+            <div id="first">
+                <div class="info_text">
+                    {echo $model->getFullDescription()}
+                </div>
+            </div>
+        {/if}
+        {if ShopCore::app()->SPropertiesRenderer->renderPropertiesTable($model)}
+            <div id="second">
+                {echo ShopCore::app()->SPropertiesRenderer->renderPropertiesTable($model)}
+            </div>
+        {/if}
+        {if $model->getRelatedProductsModels()}
+            <div id="third">
+                <ul class="accessories f-s_0" >
+                    {foreach $model->getRelatedProductsModels() as $p}
+                        {$discount = ShopCore::app()->SDiscountsManager->productDiscount($p->id)}
+                        {$rel_prod = currency_convert($p->firstvariant->getPrice(), $p->firstvariant->getCurrency())}
+                        {$style = productInCart($cart_data, $p->getId(), $p->firstVariant->getId(), $p->firstVariant->getStock())}
+                        <li>
+                            <div class="small_item">
+                                <a class="img" href="{shop_url('product/' . $p->getUrl())}">
+                                    <span><img src="{productImageUrl($p->getSmallModImage())}" /></span>
+                                </a>
+                                <div class="info">
+                                    <a href="{shop_url('product/'.$p->getUrl())}" class="title">{echo ShopCore::encode($p->getName())}</a>
+                                    <div class="buy">
+                                        <div class="price f-s_16 f_l">
+
+                                            {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
+                                                {$prOne = $p->firstvariant->getPrice()}
+                                                {$prTwo = $p->firstvariant->getPrice()}
+                                                {$prThree = $prOne - $prTwo / 100 * $discount}
+                                                <del class="price price-c_red f-s_12 price-c_9">{echo $p->firstvariant->getPrice()} {$CS}</del><br /> 
+                                            {else:}
+                                                {$prThree = $p->firstvariant->getPrice()}
+                                            {/if}
+                                            {echo $prThree} 
+                                            <sub>{$CS}</sub>
+                                        </div>
+                                        <div class="{$style.class} buttons"><a class="{$style.identif}" href="{$style.link}" data-varid="{echo $p->firstVariant->getId()}" data-prodid="{echo $p->getId()}" >{$style.message}</a></div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    {/foreach}    
+                </ul>
+            </div>
+        {/if}
+        <div id="four">
+            <a name="four"></a>
+            {//$comments}
+            {/*}
+            <form>
+                Коментарий:
+
+                <input type="text" class="field" name="comment" id="comment" size="50"> <br/>        
+
+                плюси:
+
+                <input type="text" class="field" name="p" id="plus" size="50"> <br/>
+                минуси:
+
+                <input type="text" class="field" name="m" id="minus" size="50"> <br/>
+                <div id="notice"></div> <br/>
+                <div id="new"></div> <br/>
+                <input name="submit" type="button button_middle_blue f_l" class="submit" value="Пуск" id="button" onclick="json()">
+            </form>
+            { */}
+            {//$CI->load->module('comments/api')->test()}
         </div>
     </div>
-{/if}
-{if ShopCore::app()->SPropertiesRenderer->renderPropertiesTable($model)}
-    <div id="second">
-        {echo ShopCore::app()->SPropertiesRenderer->renderPropertiesTable($model)}
-    </div>
-{/if}
-{if $model->getRelatedProductsModels()}
-    <div id="third">
-        <ul class="accessories f-s_0" >
-            {foreach $model->getRelatedProductsModels() as $p}
-                {$discount = ShopCore::app()->SDiscountsManager->productDiscount($p->id)}
-                {$rel_prod = currency_convert($p->firstvariant->getPrice(), $p->firstvariant->getCurrency())}
-                {$style = productInCart($cart_data, $p->getId(), $p->firstVariant->getId(), $p->firstVariant->getStock())}
-                <li>
-                    <div class="small_item">
-                        <a class="img" href="{shop_url('product/' . $p->getUrl())}">
-                            <span><img src="{productImageUrl($p->getSmallModImage())}" /></span>
-                        </a>
-                        <div class="info">
-                            <a href="{shop_url('product/'.$p->getUrl())}" class="title">{echo ShopCore::encode($p->getName())}</a>
-                            <div class="buy">
-                                <div class="price f-s_16 f_l">
-
-                                    {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                        {$prOne = $p->firstvariant->getPrice()}
-                                        {$prTwo = $p->firstvariant->getPrice()}
-                                        {$prThree = $prOne - $prTwo / 100 * $discount}
-                                        <del class="price price-c_red f-s_12 price-c_9">{echo $p->firstvariant->getPrice()} {$CS}</del><br /> 
-                                    {else:}
-                                        {$prThree = $p->firstvariant->getPrice()}
-                                    {/if}
-                                    {echo $prThree} 
-                                    <sub>{$CS}</sub>
-                                </div>
-                                <div class="{$style.class} buttons"><a class="{$style.identif}" href="{$style.link}" data-varid="{echo $p->firstVariant->getId()}" data-prodid="{echo $p->getId()}" >{$style.message}</a></div> 
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            {/foreach}    
-        </ul>
-    </div>
-{/if}
-<div id="four">
-    <a name="four"></a>
-    {//$comments}
-
-    <form>
-        Коментарий:
-
-        <input type="text" class="field" name="comment" id="comment" size="50"> <br/>        
-
-        плюси:
-
-        <input type="text" class="field" name="p" id="plus" size="50"> <br/>
-        минуси:
-
-        <input type="text" class="field" name="m" id="minus" size="50"> <br/>
-        <div id="notice"></div> <br/>
-        <div id="new"></div> <br/>
-        <input name="submit" type="button button_middle_blue f_l" class="submit" value="Пуск" id="button" onclick="json()">
-    </form>
-
-    {//$CI->load->module('comments/api')->test()}
-</div>
-</div>
 </div>
 </div>    
 {if $model->getShopKits()->count() > 0}
