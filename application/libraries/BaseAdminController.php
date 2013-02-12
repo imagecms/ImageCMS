@@ -8,6 +8,7 @@ class BaseAdminController extends MY_Controller {
         parent::__construct();
         $this->load->library('Permitions');
         Permitions::checkPermitions();
+        $this->autoloadModules();
     }
 
     public static function getCurrentLocale() {
@@ -43,6 +44,18 @@ class BaseAdminController extends MY_Controller {
         }
 
 //        return self::$currentLocale;
+    }
+
+    private function autoloadModules() {
+        $query = $this->db->select('id, name, identif, autoload, enabled')->where('autoload', 1)->get('components')->result_array();        
+        foreach ($query as $module) {
+            if ($module['autoload'] == 1) {
+                $mod_name = $module['name'];
+                $this->load->module($mod_name);
+                if (method_exists($mod_name, 'autoload') === TRUE)
+                    $this->$mod_name->autoload();
+            }
+        }
     }
 
 }

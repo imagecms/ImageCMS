@@ -22,7 +22,11 @@ class Sample_Module extends MY_Controller {
     }
 
     public function autoload() {
-        
+        \CMSFactory\Events::create()->onShopCategoryEdit()->addСorrelation('read');
+    }
+
+    public function read($id) {
+        var_dump($id);
     }
 
     public function _install() {
