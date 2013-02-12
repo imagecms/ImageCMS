@@ -35,7 +35,7 @@ if (!function_exists('cp_check_perm')) {
             } else {
                 $perms = get_permissions_array();
 
-                if (isset($perms[$perm])) {
+                if (!isset($perms[$perm])) {
                     $err_text = lang('a_acc_per_40') . ': <b>' . $perms[$perm] . '</b>.';
 
                     echo '<script type="text/javascript">
