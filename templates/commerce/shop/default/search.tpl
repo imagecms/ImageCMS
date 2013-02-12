@@ -131,7 +131,17 @@
                                         <select class="m-l_10" name="selectVar">
                                             {foreach $p->getProductVariants() as $pv}
                                                 {$variant_prices = currency_convert($pv->getPrice(), $pv->getCurrency())}
-                                                <option class="selectVar" value="{echo $pv->getId()}" data-cs="{$CS}" data-st="{echo $pv->getStock()}" data-cs="{echo $variant_prices.second.symbol}" data-spr="{echo $variant_prices.second.price}" data-pr="{echo $variant_prices.main.price}" data-pid="{echo $p->getId()}" data-img="{echo $pv->getsmallimage()}" data-vname="{echo $pv->getName()}" data-vnumber="{echo $pv->getNumber()}">
+                                                <option class="selectVar" 
+                                                        value="{echo $pv->getId()}" 
+                                                        data-cs="{$CS}" 
+                                                        data-st="{echo $pv->getStock()}" 
+                                                        data-cs="{echo $variant_prices.second.symbol}" 
+                                                        data-spr="{echo $variant_prices.second.price}" 
+                                                        data-pr="{echo $variant_prices.main.price}" 
+                                                        data-pid="{echo $p->getId()}" 
+                                                        data-img-small="{echo $pv->getSmallImage()}" 
+                                                        data-vname="{echo $pv->getName()}" 
+                                                        data-vnumber="{echo $pv->getNumber()}">
                                                     {if $pv->getName() != ''}
                                                         {echo $pv->getName()}
                                                     {else:}
@@ -153,7 +163,7 @@
                                                     </div>
                                                 {/if}
                                             {/if}
-                                            <div id="pricem{echo $product->id}">
+                                            <div id="pricem{echo $p->getId()}">
                                                 {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
                                                     {$prOne = $p->firstvariant->getPrice()}
                                                     {$prTwo = $p->firstvariant->getPrice()}

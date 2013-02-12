@@ -30,14 +30,14 @@
         <textarea cols="45" rows="10" name="message" id="message" onfocus="if(this.value=='Текст Сообщения') this.value='';" onblur="if(this.value=='') this.value='Текст Сообщения';">{if $_POST.message}{$_POST.message}{else:}Текст Сообщения{/if}</textarea>
     </div>
     
-   	<div class="comment_form_info">
+   	<!--<div class="comment_form_info">
 	{if $captcha_type =='captcha'}    
     	<div class="textbox captcha">
 	    <input type="text" name="captcha" id="recaptcha_response_field" value="Код протекции" onfocus="if(this.value=='Код протекции') this.value='';" onblur="if(this.value=='') this.value='Код протекции';"/>
    	</div>
 	{/if}
-    {$cap_image}
-    </div>
+    {//$cap_image}
+    </div>-->
     
     <input type="submit" class="submit" value="{lang('lang_comment_button')}" />
 
@@ -46,8 +46,8 @@
 </div>
 <div class="right">
 <div id="detail">
-<h2 id="title">Контакты</h2>
-{widget('contacts')}
+<!--<h2 id="title">Контакты</h2>-->
+{//widget('contacts')}
 </div>
 </div>
 </div>

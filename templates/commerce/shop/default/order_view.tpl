@@ -152,12 +152,17 @@
                             <div class="f_r">
                                 <div class="price f-s_26 f_l">
                                     {if $model->getgiftcertprice()>0}
+                                        {$giftPrice = $model->getgiftcertprice()}
                                         {$total -= $model->getgiftcertprice()}
                                     {/if}
-                                    {if $total >= $deliveryMethod->getFreeFrom()}
+                                    {if $total >= $deliveryMethod->getFreeFrom() AND $deliveryMethod->getFreeFrom() > 0}
                                         {$total} {$CS}
                                     {else:}
-                                        {echo $total + $model->getDeliveryPrice()} {$CS}
+                                        {echo $total + $model->getDeliveryPrice()} {$CS} 
+                                        <div class="price f-s_12">Доставка: +{echo $model->getDeliveryPrice()} {$CS}</div>
+                                        {if $giftPrice}
+                                            <div class="price f-s_12">Сертификат: -{echo $giftPrice} {$CS}</div>
+                                        {/if}
                                     {/if}</div>
                             </div>
                             <div class="sum f_r">

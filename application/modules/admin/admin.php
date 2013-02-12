@@ -24,15 +24,14 @@ class Admin extends MY_Controller {
         $this->load->library('lib_category');
         $this->lib_admin->init_settings();
 
-
 // 		$this->output->enable_profiler(true);
     }
 
-    public function init(){
+    public function init() {
         if (SHOP_INSTALLED)
-            redirect ('/admin/components/run/shop/dashboard');
+            redirect('/admin/components/run/shop/dashboard');
         else
-            $this->index ();
+            $this->index();
     }
 
     public function index() {
@@ -41,61 +40,6 @@ class Admin extends MY_Controller {
         $this->load->module('admin/dashboard');
         $this->dashboard->index();
         exit;
-    }
-
-    public function sys_info($action = '') {
-        if ($action == 'phpinfo') {
-            ob_start();
-            phpinfo();
-            $contents = ob_get_contents();
-            ob_end_clean();
-            echo $contents;
-            exit;
-        }
-
-        $folders = array(
-            '/system/cache/' => FALSE,
-            '/system/cache/templates_c/' => FALSE,
-            '/uploads/' => FALSE,
-            '/uploads/images' => FALSE,
-            '/uploads/files' => FALSE,
-            '/uploads/media' => FALSE,
-            '/captcha/' => FALSE,
-        );
-
-        foreach ($folders as $k => $v) {
-            $folders[$k] = is_really_writable(PUBPATH . $k);
-        }
-
-        $this->template->assign('folders', $folders);
-
-        if ($this->db->dbdriver == 'mysql') {
-            $this->load->helper('number');
-
-            $sql = "SHOW TABLE STATUS FROM `" . $this->db->database . "`";
-            $query = $this->db->query($sql)->result_array();
-
-            // Get total DB size
-            $total_size = 0;
-            $total_rows = 0;
-            foreach ($query as $k => $v) {
-                $total_size += $v['Data_length'] + $v['Index_length'];
-                $total_rows += $v['Rows'];
-            }
-
-            $sql = "SELECT VERSION()";
-            $query = $this->db->query($sql);
-
-            $version = $query->row_array();
-
-            $this->template->add_array(array(
-                'db_version' => $version['VERSION()'],
-                'db_size' => byte_format($total_size),
-                'db_rows' => $total_rows,
-            ));
-        }
-
-        $this->template->show('sys_info', FALSE);
     }
 
     /**
@@ -143,15 +87,15 @@ class Admin extends MY_Controller {
     //initialyze elFinder
     public function elfinder_init($edMode = false) {
         $this->load->helper('path');
-        
+
         if (!$edMode)
-        	$path = 'uploads';
+            $path = 'uploads';
         else
-        	$path = 'templates';
-        
+            $path = 'templates';
+
         if ($this->input->get('path'))
-            $path = $this->input->get ('path');
-        
+            $path = $this->input->get('path');
+
         $opts = array(
             // 'debug' => true,
             'roots' => array(
@@ -159,13 +103,13 @@ class Admin extends MY_Controller {
                     'driver' => 'LocalFileSystem',
                     'path' => set_realpath($path),
                     'URL' => site_url() . $path,
-                	'accessControl' => 'access',
+                    'accessControl' => 'access',
                     'attributes' => array(
                         array(
                             'pattern' => '/administrator/', //You can also set permissions for file types by adding, for example, .jpg inside pattern.
-                            'read'    => false,
-                            'write'   => false,
-                            'locked'  => true
+                            'read' => false,
+                            'write' => false,
+                            'locked' => true
                         ),
 //                        array(
 //                            'pattern' => '/commerce/', //You can also set permissions for file types by adding, for example, .jpg inside pattern.
@@ -180,10 +124,9 @@ class Admin extends MY_Controller {
         );
         $this->load->library('elfinder_lib', $opts);
     }
-    
-    public function get_csrf()
-    {
-    	echo form_csrf();
+
+    public function get_csrf() {
+        echo form_csrf();
     }
 
     public function sidebar_cats() {
@@ -230,7 +173,7 @@ class Admin extends MY_Controller {
         $this->email->from('bugs@imagecms.net', 'Admin Robot');
         $this->email->to('report@imagecms.net');
         $this->email->bcc('dev@imagecms.net');
-        $this->email->subject('Admin report from "'. trim(strip_tags($_GET['hostname'])). '"');
+        $this->email->subject('Admin report from "' . trim(strip_tags($_GET['hostname'])) . '"');
         $this->email->message(stripslashes($message));
         $this->email->send();
 

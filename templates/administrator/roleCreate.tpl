@@ -13,102 +13,91 @@
         </div>
 
     </div>
-    <div class="row-fluid">
-
-        <div class="tab-content clearfix">
-            <form method="post" action="{$ADMIN_URL}roleCreate" class="form-horizontal" id="role_cr_form">
-
-                <div class="tab-pane active">
-                    <div class="tab-pane active">
-                        <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
-                            <thead>
-                                <tr>
-                                    <th colspan="6">
-                                        {lang('a_param')}
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td colspan="6">
-                                        <div class="inside_padd">
-                                            <div class="row-fluid">
-                                                <div class="control-group m-t_10">
-                                                    <label class="control-label" for="Name">{lang('a_name')}:</label>
-                                                    <div class="controls">
-                                                        <input type="text" name="Name" id="Name" value="" required/>
-                                                    </div>
-                                                </div>
-                                                <div class="control-group">
-                                                    <label class="control-label" for="Description">{lang('a_desc')}:</label>
-                                                    <div class="controls">
-                                                        <input type="text" name="Description" id="Description" value=""/>
-                                                    </div>
-                                                </div>
-                                                <div class="control-group">
-                                                    <label class="control-label" for="Description">{lang('a_imp_rbak')}:</label>
-                                                    <div class="controls">
-                                                        <input type="text" name="Importance" id="Description" value=""/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="tab-content clearfix">
-                        <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
-                            <a href="#shop" class="btn btn-small">Shop</a>
-                            <a href="#base" class="btn btn-small active">Base</a>
-                            <a href="#module" class="btn btn-small">Modules</a>
-                        </div> 
-                    </div>
-
-                    <div class="tab-content">
-                        {foreach $types as $key => $type} 
-                            <div class="tab-pane {if $key == 'base'}active{/if}" id="{echo $key}">
-                                {foreach $type as $k => $groups} 
-                                    <div class="span3">
-                                        <table class="table table-striped table-bordered table-hover table-condensed">
-                                            <thead>
-                                                <tr>
-                                                    <th class="t-a_c span1">
-                                                        <span class="frame_label">
-                                                            <span class="niceCheck b_n">
-                                                                <input type="checkbox" />
-                                                            </span>
-                                                        </span>
-                                                    </th>                           
-                                                    <th>{echo $groups['description']}</th>
-                                                </tr>                        
-                                            </thead>
-                                            <tbody class="sortable">
-                                                {foreach $groups['privileges'] as $privilege}
-                                                    <tr>       
-                                                        <td class="t-a_c">
-                                                            <span class="frame_label">
-                                                                <span class="niceCheck b_n">  
-                                                                    <input type="checkbox" class="chldcheck"  value="{echo $privilege['id']}" name="Privileges[]"/>
-                                                                </span>
-                                                            </span>
-                                                        </td>
-                                                        <td style="word-wrap : break-word;">
-                                                            <p title="{echo $privilege['description']}">{echo $privilege['title']}</p>
-                                                        </td>                              
-                                                    </tr>
-                                                {/foreach}
-                                            </tbody>
-                                        </table>
+    <form method="post" action="{$ADMIN_URL}roleCreate" class="form-horizontal" id="role_cr_form">
+        <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+            <thead>
+                <tr>
+                    <th colspan="6">
+                        {lang('a_param')}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="6">
+                        <div class="inside_padd">
+                            <div class="row-fluid">
+                                <div class="control-group m-t_10">
+                                    <label class="control-label" for="Name">{lang('a_name')}:</label>
+                                    <div class="controls">
+                                        <input type="text" name="Name" id="Name" value="" required/>
                                     </div>
-                                {/foreach}
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="Description">{lang('a_desc')}:</label>
+                                    <div class="controls">
+                                        <input type="text" name="Description" id="Description" value=""/>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="Description">{lang('a_imp_rbak')}:</label>
+                                    <div class="controls">
+                                        <input type="text" name="Importance" id="Description" value=""/>
+                                    </div>
+                                </div>
                             </div>
-                        {/foreach}
-                    </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="btn-group myTab m-t_20" data-toggle="buttons-radio">
+            <a href="#shop" class="btn btn-small">Shop</a>
+            <a href="#base" class="btn btn-small active">Base</a>
+            <a href="#module" class="btn btn-small">Modules</a>
+        </div> 
+
+        <div class="tab-content">
+            {foreach $types as $key => $type} 
+                <div class="tab-pane row {if $key == 'base'}active{/if}" id="{echo $key}">
+                    {foreach $type as $k => $groups} 
+                        <div class="span3">
+                            <table class="table table-striped table-bordered table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th class="t-a_c span1">
+                                            <span class="frame_label">
+                                                <span class="niceCheck b_n">
+                                                    <input type="checkbox" />
+                                                </span>
+                                            </span>
+                                        </th>                           
+                                        <th>{echo $groups['description']}</th>
+                                    </tr>                        
+                                </thead>
+                                <tbody class="sortable">
+                                    {foreach $groups['privileges'] as $privilege}
+                                        <tr>       
+                                            <td class="t-a_c">
+                                                <span class="frame_label">
+                                                    <span class="niceCheck b_n">  
+                                                        <input type="checkbox" class="chldcheck"  value="{echo $privilege['id']}" name="Privileges[]"/>
+                                                    </span>
+                                                </span>
+                                            </td>
+                                            <td style="word-wrap : break-word;">
+                                                <p title="{echo $privilege['description']}">{echo $privilege['title']}</p>
+                                            </td>                              
+                                        </tr>
+                                    {/foreach}
+                                </tbody>
+                            </table>
+                        </div>
+                    {/foreach}
                 </div>
-                {form_csrf()}
-            </form>
+            {/foreach}
         </div>
-    </div>
+        {form_csrf()}
+    </form>
 </section>
