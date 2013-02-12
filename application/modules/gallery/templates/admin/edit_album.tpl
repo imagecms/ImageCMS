@@ -7,7 +7,7 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="/admin/components/cp/gallery/category/{$album['category_id']}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
-                <label for="addPictures" style="display:inline;">
+                <label style="display:inline;">
                     <button type="button" class="btn btn-small btn-success openDlg"><i class="icon-white icon-plus"></i>{lang('a_add_pictures')}</button>
                 </label>
                 <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#addPics" data-submit><i class="icon-white icon-ok"></i>{lang('amt_save')}</button>
@@ -76,7 +76,7 @@
     {/if}
 
     <div>
-        <form action="/admin/components/cp/gallery/upload_image/{$album.id}" id="addPics" method="post"  enctype="multipart/form-data" style="display:none;">
+        <form action="/admin/components/cp/gallery/upload_image/{$album.id}" id="addPics" method="post"  enctype="multipart/form-data" style="visibility: hidden;height: 0px;">
             <input type="file" multiple="multiple"  name="newPic[]" id="addPictures" class="multiPic" data-previewdiv="#picsToUpload">
         </form>
     </div>

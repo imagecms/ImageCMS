@@ -35,15 +35,14 @@ class Admin extends BaseAdminController {
         $query = $this->db->get('mail');
         $row = $query->result_array();
         $this->template->assign('all', $row);
-        
-        
-        if (!$this->ajaxRequest)           
-        $this->display_tpl('form');
-    
+
+
+        if (!$this->ajaxRequest)
+            $this->display_tpl('form');
     }
 
     public function send_email() {
-        
+
         // Load form validation class
         $this->load->library('form_validation');
 
@@ -98,31 +97,27 @@ class Admin extends BaseAdminController {
                     $class = 'r';
                 }
                 if ($class !== 'r') {
-                    showMessage(lang('amt_message_send') . ': ' . $counter['true'] . lang('amt_count_from') . $counter['all'] . 'шт.'. $class);
+                    showMessage(lang('amt_message_send') . ': ' . $counter['true'] . lang('amt_count_from') . $counter['all'] . 'шт.' . $class);
                 } else {
-                    showMessage(lang('amt_not_any_message_from') . $counter['all'] . lang('amt_count_not_send'),  $class);
+                    showMessage(lang('amt_not_any_message_from') . $counter['all'] . lang('amt_count_not_send'), $class);
                 }
-
-                //updateDiv('page', site_url('admin/components/cp/mailer/index'));
             }
         }
     }
 
-    public function delete() {
-        $this->load->model('dx_auth/users', 'users');
-        //cp_check_perm('user_delete');
+    public function deleteUsers() {
 
-        ($hook = get_hook('users_delete')) ? eval($hook) : NULL;
 
-        $user = $this->users->get_user_by_id((int) $_POST['userId'])->row();
-        $this->users->delete_user((int) $_POST['userId']);
+        if (!empty($_POST['ids'])) {
 
-        $model = SUserProfileQuery::create()->filterByUserId((int) $_POST['userId'])->findOne();
+            foreach ($_POST['ids'] as $id) {
+                $this->db->delete('mail', array('id' => $id));
+            }
 
-        if ($model !== null)
-            $model->delete();
-        ShopCore::$ci->lib_admin->log('Удалил пользователя ' . $user->username);
-        showMessage('Пользователь удален.');
+            showMessage(lang('a_base_mailer_del_1'));
+        } else {
+            showMessage(lang('a_base_mailer_del_2', '', 'r'));
+        }
     }
 
     /**

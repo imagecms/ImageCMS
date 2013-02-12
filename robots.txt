@@ -2,5 +2,5 @@ User-agent: *
 Disallow:
 
 User-agent: Yandex
-Disallow:
+Disallow: /
 #Host: site.com

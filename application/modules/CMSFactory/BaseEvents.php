@@ -4,8 +4,10 @@ namespace CMSFactory;
 
 abstract class BaseEvents {
 
+    public $holder = array();
+
     /**
-     * Returns or creates and returns an BaseEvents instance. 
+     * Returns or creates and returns an BaseEvents instance.
      * Is a static method. Chaining method allows you to simplify your syntax by connecting multiple functions.
      * @return Events
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
@@ -23,6 +25,7 @@ abstract class BaseEvents {
         $key = sprintf('%s:%s', $trace[1]['class'], $trace[1]['function']);
         $this->storage[$key]['run'] = TRUE;
         $this->storage[$key]['params'] = $data;
+        return $this;
     }
 
     /**
@@ -42,8 +45,23 @@ abstract class BaseEvents {
         return $this;
     }
 
+    public function onСategoryCreate() {
+        $this->key = 'Categories:сreate';
+        return $this;
+    }
+
     public function onRemoveFromCart() {
         $this->key = 'SCart:removeOne';
+        return $this;
+    }
+
+    public function onShopCategoryCreate() {
+        $this->key = 'ShopAdminCategories:create';
+        return $this;
+    }
+
+    public function onShopCategoryEdit() {
+        $this->key = 'ShopAdminCategories:edit';
         return $this;
     }
 
@@ -53,7 +71,7 @@ abstract class BaseEvents {
      * public function autoload() {<br/>
      * &emsp;&emsp;\CMSFactory\Events::create()->addСorrelation('myMethod', 'Comments::add');<br/>
      * }
-     * </code>            
+     * </code>
      * @param string $methodName Indicates the name of the method that will be called in response to a trigger-event. The method will be matched in the class from which the requested binding.
      * @param string $alias <b>[optional]</b> The second parameter is optional if you make a call type was given an expected event.
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
@@ -65,7 +83,10 @@ abstract class BaseEvents {
         if ($alias == null)
             throw new \Exception("Bind value can't not be null .");
         $trace = debug_backtrace();
-        $this->storage[$alias]['collable'][] = array('collMethod' => $methodName, 'collClass' => $trace[1]['class']);
+        if ($this->holder[$methodName] != $trace[1]['class']) {
+            $this->holder[$methodName] = $trace[1]['class'];
+            $this->storage[$alias]['collable'][] = array('collMethod' => $methodName, 'collClass' => $trace[1]['class']);
+        }
     }
 
     /**
@@ -82,7 +103,7 @@ abstract class BaseEvents {
                 foreach ($value['collable'] as $run)
                     call_user_func(array($run['collClass'], $run['collMethod']), $value['params']);
         }
-//        \CMSFactory\Events::create()->get();
+        \CMSFactory\Events::create()->get();
     }
 
     public function get() {

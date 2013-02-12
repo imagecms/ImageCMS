@@ -16,7 +16,6 @@ class Categories extends BaseAdminController {
 
         $this->load->library('DX_Auth');
         admin_or_redirect();
-
         $this->load->library('lib_admin');
         $this->load->library('lib_category');
         $this->lib_admin->init_settings();
@@ -56,7 +55,7 @@ class Categories extends BaseAdminController {
                 $query = "UPDATE `category` SET `position`='" . $pos . "' WHERE `id`='" . (int) $id . "';";
                 $this->db->query($query);
             }
-            
+
             showMessage('Позиция успешно сохранена');
         }
     }
@@ -137,8 +136,8 @@ class Categories extends BaseAdminController {
         $this->form_validation->set_rules('page_tpl', lang('ac_val_page_tpl'), 'trim|max_length[50]');
         $this->form_validation->set_rules('main_tpl', lang('ac_val_main_tpl'), 'trim|max_length[50]');
         $this->form_validation->set_rules('per_page', lang('ac_val_per_page'), 'required|trim|integer|max_length[9]|min_length[1]|is_natural_no_zero');
-        
-        $groupId = (int)$this->input->post('category_field_group');
+
+        $groupId = (int) $this->input->post('category_field_group');
         ($hook = get_hook('cfcm_set_rules')) ? eval($hook) : NULL;
 
         if ($this->form_validation->run($this) == FALSE) {
@@ -160,8 +159,8 @@ class Categories extends BaseAdminController {
                 $fetch_pages = serialize($fetch_pages);
             }
             $settings = array(
-                'category_apply_for_subcats'=>$this->input->post('category_apply_for_subcats'),
-                'apply_for_subcats'=>$this->input->post('apply_for_subcats'),
+                'category_apply_for_subcats' => $this->input->post('category_apply_for_subcats'),
+                'apply_for_subcats' => $this->input->post('apply_for_subcats'),
             );
             $data = array(
                 'name' => $this->input->post('name'),
@@ -183,7 +182,7 @@ class Categories extends BaseAdminController {
                 'fetch_pages' => $fetch_pages,
                 'settings' => serialize($settings),
             );
-            
+
             $parent = $this->lib_category->get_category($data['parent_id']);
 
             if ($parent != 'NULL') {
@@ -207,11 +206,19 @@ class Categories extends BaseAdminController {
                             '<a href="' . $BASE_URL . '/admin/categories/edit/' . $id . '"> ' . $data['name'] . '</a>'
                     );
 
+                    /** Init Event. Create new Page */
+                    \CMSFactory\Events::create()->registerEvent(array('categoryId' => $id));
+                    /** End init Event. Create new Page */
+
                     showMessage(lang('ac_cat') . ' ' . $data['name'] . ' ' . lang('ac_created'));
 
                     //showMessage(lang('a_categ_translate_upda'));
-                    $act = $_POST['action'];
+                    $CI = &get_instance();
 
+                    if ($CI->db->get_where('components', array('name' => 'sitemap'))->row())
+                        $CI->load->module('sitemap')->ping_google($this);
+
+                    $act = $_POST['action'];
                     if ($act == 'close') {
                         pjax('/admin/categories/cat_list');
                     } else {
@@ -223,7 +230,7 @@ class Categories extends BaseAdminController {
                 case 'update':
                     ($hook = get_hook('admin_update_category')) ? eval($hook) : NULL;
                     $this->cms_admin->update_category($data, $cat_id);
-                    
+
                     $this->load->module('cfcm')->save_item_data($cat_id, 'category');
 
                     $this->lib_category->clear_cache();
@@ -243,8 +250,12 @@ class Categories extends BaseAdminController {
                             lang('ac_changed_cat') .
                             '<a href="' . $BASE_URL . '/admin/categories/edit/' . $cat_id . '"> ' . $data['name'] . '</a>'
                     );
-
-                    showMessage(lang('ac_cat_updated'));
+                    /**
+                     * 
+                     */
+                    $CI = &get_instance();
+                    if ($CI->db->get_where('components', array('name' => 'sitemap'))->row())
+                        $CI->load->module('sitemap')->ping_google($this);
 
                     $act = $_POST['action'];
                     if ($act == 'close')
@@ -384,7 +395,7 @@ class Categories extends BaseAdminController {
             // Get langs
             $langs = $this->cms_base->get_langs();
             $this->template->assign('langs', $langs);
-            $settings=unserialize($cat['settings']);
+            $settings = unserialize($cat['settings']);
             $cat['fetch_pages'] = unserialize($cat['fetch_pages']);
             $this->template->add_array($cat);
             $this->template->assign('tree', $this->lib_category->build());
@@ -575,6 +586,12 @@ class Categories extends BaseAdminController {
                 }
             }
         }
+
+        $CI = &get_instance();
+
+        if ($CI->db->get_where('components', array('name' => 'sitemap'))->row())
+            $CI->load->module('sitemap')->ping_google($this);
+
         $this->lib_category->clear_cache();
         showMessage(lang('ac_cat_deleted'));
 

@@ -159,14 +159,14 @@
                                                 <div class="control-group">
                                                     <label class="control-label" for="order_by">{lang('a_sort')}:</label>
                                                     <div class="controls">
-                                                        <div class="pull-left span6">
+                                                        <div class="pull-left span6 p-r_10">
                                                             <select name="order_by" id="order_by">
                                                                 <option value="publish_date" selected="selected">{lang('a_by_date')}</option>    
                                                                 <option value="title">{lang('a_by_abc')}</option>    
                                                                 <option value="position">{lang('a_by_pos')}</option>    
                                                             </select>
                                                         </div>
-                                                        <div class="pull-left span6">
+                                                        <div class="pull-left span6 p-l_10">
                                                             <select name="sort_order">
                                                                 <option value="desc" selected="selected">{lang('a_desc_order')}</option> 
                                                                 <option value="asc">{lang('a_asc_order')}</option>    

@@ -254,6 +254,7 @@ class Menu extends MY_Controller {
                 $wrapper .= $this->arranged_menu_array[$i]['html'] . "\n";
             }
         }
+        
         $this->_prepare_item_tpl($stack_item, $wrapper);
 
         $this->cur_level--;
@@ -304,7 +305,7 @@ class Menu extends MY_Controller {
         if ($index == -1) {
             $this->arranged_menu_array[$index]['html'] = $wrapper;
         } else {
-            $tpl_path = $this->_get_real_tpl($index);
+            $tpl_path = $this->_get_real_tpl($index);         
             if ($tpl_path)
                 $this->arranged_menu_array[$index]['html'] = $this->fetch_tpl($tpl_path, $data);
         }
@@ -400,6 +401,7 @@ class Menu extends MY_Controller {
                 }
             }
         }
+
 
         if ($is_good) {
             return $tpl;

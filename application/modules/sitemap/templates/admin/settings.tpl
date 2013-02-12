@@ -39,6 +39,12 @@
                                         <input type="text" id="sppri" name="pages_priority" value="{$settings.pages_priority}" />
                                     </div>
                                 </div>    
+                                <div class="control-group">
+                                    <label class="control-label" for="sppri">Отправлять ХМL:</label>
+                                    <div class="controls">
+                                        <input type="checkbox" id="sendXML" name="sendXML" value="true"/>
+                                    </div>
+                                </div>    
                             </div>
                         </td>
                     </tr>

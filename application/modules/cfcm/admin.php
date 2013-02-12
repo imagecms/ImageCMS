@@ -65,6 +65,11 @@ class Admin extends BaseAdminController {
         $this->template->add_array(array(
             'fields' => $this->db->order_by('weight', 'ASC')->get('content_fields')->result_array(),
             'groups' => $this->load->module('cfcm/cfcm_forms')->prepare_groups_select(),
+            'groupRels' => $this->db
+                ->select('*')
+                ->join('content_field_groups', 'content_field_groups.id = content_fields_groups_relations.group_id OR content_fields_groups_relations.group_id = -1')
+                ->get('content_fields_groups_relations')
+                ->result_array()
         ));
         
         $groups = $this->db->get('content_field_groups');
@@ -269,7 +274,8 @@ class Admin extends BaseAdminController {
             echo lang('amt_field_not_found');
     }
 
-    public function create_group() {
+    public function create_group() 
+    {
         $form = $this->get_form('create_group_form');
         $form->action = $this->get_url('create_group');
         $form->title = lang('a_create_group_m');
@@ -284,7 +290,7 @@ class Admin extends BaseAdminController {
                 $this->db->insert('content_field_groups', $form->getData());
                 showMessage(lang('amt_group_created'));
 
-                pjax('/admin/components/cp/cfcm');
+                pjax('/admin/components/cp/cfcm#fields_groups');
             } else {
                 showMessage($form->_validation_errors(), false, 'r');
             }
@@ -338,6 +344,7 @@ class Admin extends BaseAdminController {
         ));
 
 //         $this->display_tpl('_form');
+        
         $this->render('_form');
     }
 
@@ -356,19 +363,20 @@ class Admin extends BaseAdminController {
                 ->update('category', array('category_field_group' => '-1'));
         
         showMessage(lang('a_group_deleted_success'));
-        pjax($this->get_url('index'));
+            pjax('/admin/components/cp/cfcm#fields_groups');
     }
 
     // Create form from category field group
     // on add/edit page tpl.
-    public function form_from_category_group($category_id = FALSE, $item_id = FALSE, $item_type = FALSE) {
-        if ($category_id == 'page') {
+    public function form_from_category_group($category_id = FALSE, $item_id = FALSE, $item_type = FALSE) 
+    {
+        if ('page' === $category_id ) {
             $item_type = 'page';
             $item_id = 0;
             $category_id = 0;
         }
 
-        if ($item_id == 'page') {
+        if ($item_id === 'page') {
             $item_type = 'page';
             $item_id = $category_id;
             $category_id = 0;
@@ -380,10 +388,9 @@ class Admin extends BaseAdminController {
             $category->field_group = $category->category_field_group;
 
         if ($category_id == '0')
-            $category->field_group = 0;
+            $category->field_group = -1;
 
-
-        if ($category->field_group != '-1') {
+        if ($category->field_group != '0') {
             // Get group
             $group = $this->db->get_where('content_field_groups', array('id' => $category->field_group))->row();
 
@@ -395,7 +402,7 @@ class Admin extends BaseAdminController {
                 ->where("content_fields_groups_relations.group_id = $category->field_group")
                 ->order_by('weight', 'ASC')
                 ->get();
-
+            
             if ($query->num_rows() > 0) {
                 $form_fields = array();
                 $fields = $query->result_array();
@@ -404,7 +411,7 @@ class Admin extends BaseAdminController {
                     $f_data = unserialize($field['data']);
                     if ($f_data == FALSE)
                         $f_data = array();
-
+                    
                     $form_fields[$field['field_name']] = array(
                         'type' => $field['type'],
                         'label' => encode($field['label']),
@@ -417,6 +424,7 @@ class Admin extends BaseAdminController {
 
                 // Set form attributes
                 if ($item_id != FALSE AND $item_type != FALSE) {
+                    
                     $attributes = $this->get_form_attributes($fields, $item_id, $item_type);
 
                     if (count($attributes) > 0 AND is_array($attributes)) {
@@ -425,7 +433,9 @@ class Admin extends BaseAdminController {
                 }
                 $form->title = $group->name;
 
-                $hiddenField = '<input type="hidden" name="cfcm_use_group" value="' . $group->id . '" />';
+                $gid = isset($group->id)?$group->id:-1;
+                
+                $hiddenField = '<input type="hidden" name="cfcm_use_group" value="' . $gid . '" />';
                 $this->template->add_array(array(
                     'form'  => $form,
                     'hf'    => $hiddenField  
@@ -481,7 +491,7 @@ class Admin extends BaseAdminController {
     }
     
 //     render template
-    public function render($viewName, array $data = array(), $return = false) {
+    public function render($viewName, $data = array(), $return = false) {
     	if (!empty($data))
     		$this->template->add_array($data);
     

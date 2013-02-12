@@ -8,19 +8,8 @@ class BaseAdminController extends MY_Controller {
         parent::__construct();
         $this->load->library('Permitions');
         Permitions::checkPermitions();
+        $this->autoloadModules();
     }
-
-//    public function render($viewName, array $data = array(), $return = false) {
-//        if (!empty($data))
-//            $this->template->add_array($data);
-//
-//        if ($this->ajaxRequest)
-//            echo $this->template->fetch('file:' . 'application/modules/cfcm/templates/admin/' . $viewName);
-//        else
-//            $this->template->show('file:' . 'application/modules/cfcm/templates/admin/' . $viewName);
-////     	$this->template->fetch('file:' . 'application/modules/cfcm/templates/admin/' . $viewName);
-//        exit;
-//    }
 
     public static function getCurrentLocale() {
 //        if (self::$currentLocale)
@@ -28,7 +17,6 @@ class BaseAdminController extends MY_Controller {
 
         $ci = get_instance();
 //        $lang_id = $ci->config->item('cur_lang');
-
 //        if ($lang_id) {
 //            $ci->db->select('identif');
 //            $query = $ci->db->get_where('languages', array('id' => $lang_id))->result();
@@ -48,14 +36,26 @@ class BaseAdminController extends MY_Controller {
 //        }
 
         $sqlLangSel = 'SELECT lang_sel FROM settings';
-        $lang = $ci->db->query($sqlLangSel)->row();        
-        if($lang->lang_sel == 'russian_lang'){
+        $lang = $ci->db->query($sqlLangSel)->row();
+        if ($lang->lang_sel == 'russian_lang') {
             return 'ru';
-        }else{
+        } else {
             return 'en';
         }
 
 //        return self::$currentLocale;
+    }
+
+    private function autoloadModules() {
+        $query = $this->db->select('id, name, identif, autoload, enabled')->where('autoload', 1)->get('components')->result_array();        
+        foreach ($query as $module) {
+            if ($module['autoload'] == 1) {
+                $mod_name = $module['name'];
+                $this->load->module($mod_name);
+                if (method_exists($mod_name, 'autoload') === TRUE)
+                    $this->$mod_name->autoload();
+            }
+        }
     }
 
 }

@@ -14,49 +14,51 @@
         </div>
     </div>
     {if $categories}
-    <table id="cats_table" class="table table-striped table-bordered table-hover table-condensed content_big_td">
-        <thead>
-        <th class="t-a_c span1">
-            <span class="frame_label">
-                <span class="niceCheck">
-                    <input type="checkbox">
-                </span>
-            </span>
-        </th>
-        <th>{lang('amt_id')}</th>
-        <th>{lang('amt_name')}</th>
-        <th>{lang('amt_albums')}</th>
-        <th>{lang('amt_description')}</th>
-        <th>{lang('amt_crea')}</th>
-        </thead>
-        <tbody class="sortable save_positions" data-url="/admin/components/cp/gallery/update_positions">
-            {foreach $categories as $category}
-            <tr>
-                <td class="t-a_c">
-                    <span class="frame_label">
-                        <span class="niceCheck">
-                            <input type="checkbox" name="ids" value="{$category.id}">
-                        </span>
+        <table id="cats_table" class="table table-striped table-bordered table-hover table-condensed content_big_td">
+            <thead>
+            <th class="t-a_c span1">
+                <span class="frame_label">
+                    <span class="niceCheck">
+                        <input type="checkbox">
                     </span>
-                </td>
-                <td>{$category.id}</td>
-                <td class="share_alt">
-                    {if $category.albums_count}
-                    <a href="/admin/components/init_window/gallery/category/{$category.id}" class="go_to_site pull-right btn btn-mini" data-rel="tooltip" data-placement="top" data-original-title="{lang('a_show_album')}" style="visibility: hidden; "><i class="icon-share-alt"></i></a>
-                    {/if}
-                    <a class="pjax" href="/admin/components/init_window/gallery/edit_category/{$category.id}" data-rel="tooltip" data-placement="top" data-original-title="{lang('amt_category_edit')}">{$category.name}</a>
-                </td>
-                <td>{$category.albums_count}</td>
-                <td>{truncate(htmlspecialchars($category.description), 75)}</td>
-                <td>{date('Y-d-m H:i', $category.created)}</td>
-            </tr>
-            {/foreach}
-        </tbody>
-    </table>
+                </span>
+            </th>
+            <th>{lang('amt_id')}</th>
+            <th>{lang('amt_name')}</th>
+            <th>{lang('amt_albums')}</th>
+            <th>{lang('amt_description')}</th>
+            <th>{lang('amt_crea')}</th>
+            </thead>
+            <tbody class="sortable save_positions" data-url="/admin/components/cp/gallery/update_positions">
+                {foreach $categories as $category}
+                    <tr>
+                        <td class="t-a_c">
+                            <span class="frame_label">
+                                <span class="niceCheck">
+                                    <input type="checkbox" name="ids" value="{$category.id}">
+                                </span>
+                            </span>
+                        </td>
+                        <td>{$category.id}</td>
+                        <td class="share_alt">
+                            <a class="pjax" href="/admin/components/init_window/gallery/edit_category/{$category.id}" data-rel="tooltip" data-placement="top" data-original-title="{lang('amt_category_edit')}">{$category.name}</a>
+                        </td>
+                        <td>
+                            {if $category.albums_count}
+                                <a href="/admin/components/init_window/gallery/category/{$category.id}" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="{lang('a_show_album')}" >(Просмотр альбомов)</a>
+                            {/if}
+                            {$category.albums_count}
+                        </td>
+                        <td>{truncate(htmlspecialchars($category.description), 75)}</td>
+                        <td>{date('Y-d-m H:i', $category.created)}</td>
+                    </tr>
+                {/foreach}
+            </tbody>
+        </table>
     {else:}
-    <div class="alert alert-info m-t_20">
-        {lang('a_empty_category_list')}
-    </div>
+        <div class="alert alert-info m-t_20">
+            {lang('a_empty_category_list')}
+        </div>
     {/if}
 </section>
 <div class="modal hide fade products_delete_dialog">

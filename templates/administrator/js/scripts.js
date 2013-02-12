@@ -80,6 +80,29 @@ function init_2() {
             changeRadioStart($(this));
         });
     }
+    
+    $('#paid_span').on('click', function(){
+        if ($('#Paid').is(':checked') != true){
+             $('#spanPaid2').css('backgroundPosition', '-46px -17px');
+             $('#Paid2').attr('checked',true);
+         }
+         else{
+             $('#spanPaid2').css('backgroundPosition', '-46px 0px');
+             $('#Paid2').removeAttr('checked');
+         }
+    });
+    
+    $('#spanPaid2').on('click', function(){
+       if ($('#Paid2').is(':checked') != true){
+             $('#paid_span').css('backgroundPosition', '-46px -17px');
+             $('#Paid').attr('checked',true);
+         }
+         else{
+             $('#paid_span').css('backgroundPosition', '-46px 0px');
+             $('#Paid').removeAttr('checked');
+         }
+     });
+     
     $(".frame_label:has(.niceCheck)").die('click').live('click', function() {
         var $this = $(this);
         if ($('#show_in_all_cat').attr('checked')) {
@@ -629,6 +652,8 @@ function fixed_frame_title() {
     fixed_block = $(".frame_title:not(.no_fixed)");
     mini_layout = $('.mini-layout');
     container = $('.container');
+    containerW = container.width()
+    frame_zH_frame_title = $('.frame_zH_frame_title');
 
     if ($.exists_nabir(fixed_block)) {
         var fixed_block_top = mini_layout.offset().top;
@@ -636,13 +661,20 @@ function fixed_frame_title() {
 
         var top = getScrollTop();
 
-        if (top < fixed_block_top)
+        if (top < fixed_block_top){
             fixed_block.css("top", fixed_block_top - top + 20);
-        else
+            frame_zH_frame_title.css("top", fixed_block_top - top + 6);
+        }
+        else{
             fixed_block.css("top", 20);
+            frame_zH_frame_title.css("top", 6);
+        }
 
-        fixed_block.css('width', container.width() - 2);
+        fixed_block.css('width',  containerW - 2);
         mini_layout.css('padding-top', 20 + fixed_block_h)
+        frame_zH_frame_title.css({
+            'right':$(window).width() - containerW - mini_layout.offset().left+10
+        })
     }
 }
 function difTooltip() {
@@ -986,7 +1018,6 @@ function initAdminArea() {
         $('#loading').fadeOut(300);
     });
 
-
     //add arrows to orders list
     if (window.hasOwnProperty('orderField'))
         if (orderField != "")
@@ -996,10 +1027,12 @@ function initAdminArea() {
                 $('#order' + orderField).find('a').after('&darr;');
 
     if ($('textarea.elRTE').length > 0)
-        initElRTE();
+//        initElRTE();
+        initTextEditor(textEditor);
 
     if ($('#elFinderTPLEd').length > 0)
         elFinderTPLEd();
+//        initTextEditor(textEditor);
 
     //elRTE bugFix for Firefox
 

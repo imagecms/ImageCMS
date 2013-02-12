@@ -11,6 +11,10 @@ $lang['a_acc_per_43'] = 'Удаление фотографий';
 
 // RULES HELPER-------------------------------------------STAR
 $lang['a_acc_per_42'] = 'Магазин';
+$lang['a_base_mailer_del_user_1'] = 'Удаление подписчиков';
+$lang['a_base_mailer_del_user_2'] = 'Удалить всех отмеченных?';
+$lang['a_base_mailer_del_1'] = 'Подписчики удалены';
+$lang['a_base_mailer_del_2'] = 'Не передан идентификатор';
 $lang['a_editing_group_ba_s'] = 'Редактирование группи';
 $lang['a_editing_page'] = 'Редактирование страницы';
 $lang['a_editing_user_ba_s'] = 'Редактирование пользователя';

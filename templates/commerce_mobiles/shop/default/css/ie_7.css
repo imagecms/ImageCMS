@@ -1,0 +1,24 @@
+.d_i-b,.icon,.add-to,.add-to > span,.lang,.namecat,.button > span,.button,.lang li,.menu > ul > li,.refer_slider li,blockquote,.prev-b, .next-b,.icon_bq1,.icon_bq2,.bread li,.cent_bl dt,.cent_bl dd,.foto_g li,.pages_list li,.galery-cont1 dt,.galery-cont1 dd,.map,.doisd .cont_vidst dt,.doisd .cont_vidst dd,.err404 p,.zabr dt, .zabr dd{display: inline !important;zoom: 1;}
+.err404 > div{z-index: expression(runtimeStyle.zIndex = 1, insertAdjacentHTML('beforeEnd', '<b class="icon-top"></b>'),runtimeStyle.zIndex = 1, insertAdjacentHTML('beforeEnd', '<b class="icon-bott"></b>'));}
+.menu_t > li{z-index: expression(runtimeStyle.zIndex = 1, insertAdjacentHTML('beforeEnd', '<b class="icon-m"></b>'));}
+.menu > ul > li > *:first-child{height:39px;line-height:39px;disblay:block;}
+.under ul li{z-index: expression(runtimeStyle.zIndex = 1, insertAdjacentHTML('beforeEnd', '<b class="icon_l"></b>'));}
+.refer_slider li.active_p{z-index: expression(runtimeStyle.zIndex = 1, insertAdjacentHTML('beforeEnd', '<b class="icon_act"></b>'));}
+.content h2{z-index: expression(runtimeStyle.zIndex = 1, insertAdjacentHTML('beforeEnd', '<b class="icon-h2"></b>'));}
+blockquote{z-index: expression(runtimeStyle.zIndex = 1, insertAdjacentHTML('beforeEnd', '<b class="icon_bq1"></b>'),runtimeStyle.zIndex = 1, insertAdjacentHTML('beforeEnd', '<b class="icon_bq2"></b>'));}
+blockquote{position: relative;}
+
+.clearfix,.under ul > li,#fancybox-content{zoom: 1;}
+.icon_bq1{top: 0;left: 0;position: absolute;}
+.triangl{left: 5px;}
+.content .disc.f_r{z-index: expression(runtimeStyle.zIndex = 1, insertAdjacentHTML('beforeEnd', '<b class="icon_leaf"></b>'));}
+.with_l{z-index: expression(runtimeStyle.zIndex = 1, insertAdjacentHTML('beforeEnd', '<b class="ic_l1"></b>'),runtimeStyle.zIndex = 1, insertAdjacentHTML('beforeEnd', '<b class="ic_l2"></b>'));}
+.special{z-index: expression(runtimeStyle.zIndex = 1, insertAdjacentHTML('beforeEnd', '<b class="ie_2"></b>'),runtimeStyle.zIndex = 1, insertAdjacentHTML('beforeEnd', '<b class="ie_1"></b>'));}
+.opus li{z-index: expression(runtimeStyle.zIndex = 1, insertAdjacentHTML('beforeEnd', '<b class="icon-4"></b>'));}
+.doisd{z-index: expression(runtimeStyle.zIndex = 1, insertAdjacentHTML('beforeEnd', '<b class="block_dwn"></b>'));}
+.spec-gal{zoom: 1;}
+.icon-4{top: 5px;}
+.t_body td{border-top: 1px solid #CCCFBA;}
+.zabr textarea{width: 263px !important;}
+.refer_slider li{position: relative;}
+.first_line .icon_l{display: none!important;}

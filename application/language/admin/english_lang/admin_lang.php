@@ -11,6 +11,10 @@ $lang['a_english'] = 'English';
 // RULES HELPER-------------------------------------------START
 $lang['a_editing_page'] = 'Редактирование страницы';
 $lang['a_delete_group'] = 'Remove group';
+$lang['a_base_mailer_del_user_1'] = 'Removing subscribers';
+$lang['a_base_mailer_del_user_2'] = 'Delete all checked?';
+$lang['a_base_mailer_del_1'] = 'Subscribers removal';
+$lang['a_base_mailer_del_2'] = 'ID is not';
 $lang['a_editing_user_ba_s'] = 'Editing by';
 $lang['a_editing_group_ba_s'] = 'Editing Groups';
 $lang['a_create_group'] = 'Create privilege';
