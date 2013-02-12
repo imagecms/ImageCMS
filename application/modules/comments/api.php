@@ -27,7 +27,7 @@ class Api extends Comments {
     }
 
     public function renderPosts() {
-//        var_dump($_SERVER['HTTP_REFERER']);
+//        var_dump($_POST);
         $comments = array();
         ($hook = get_hook('comments_on_build_comments')) ? eval($hook) : NULL;
 
@@ -100,33 +100,49 @@ class Api extends Comments {
         echo json_encode(array('comments' => $comments));
     }
 
-    public function newPost() {
-        if ($this->input->post('action') == 'newPost') {
+    /**
+     * Determinate commented page.
+     * 
+     * if product - return id
+     */
+    public function parsUrl($url) {
+        if (strstr($url, 'product')) {
+            $url = parse_url($url);
+            $search = array('shop', 'product', '/');
+            $replace = array('', '', '');
+            $url = str_replace($search, $replace, $url['path']);
+            $id = $this->db->select('id')->where('url', $url)->get('shop_products')->row();
+            return $id->id;
+        }
+    }
 
+    public function newPost() {
+        $this->load->library('user_agent');
+
+        if ($this->input->post('action') == 'newPost') {
             $email = $this->db->select('email')->get_where('users', array('username' => $this->dx_auth->get_username()), 1)->row();
 
             if ($this->dx_auth->is_logged_in())
                 $comment_data = array(
-                    'module' => $this->module,
+                    'module' => 'shop',//$this->module,
                     'user_id' => $this->dx_auth->get_user_id(), // 0 if unregistered
                     'user_name' => $this->dx_auth->get_username(),
                     'user_mail' => $email->email,
                     'user_site' => htmlspecialchars($this->input->post(comment_site)),
-                    'text' => $this->input->post('comment'),
-                    'text_plus' => '$comment_text_plus',
-                    'text_minus' => '$comment_text_minus',
-                    'item_id' => '$item_id',
-                    'status' => '$this->_comment_status()',
-                    'agent' => '$this->agent->agent_string()',
-                    'user_ip' => '$this->input->ip_address()',
+                    'text' => $this->input->post('comment_text'),
+                    'text_plus' => $this->input->post('comment_text_plus'),
+                    'text_minus' => $this->input->post('comment_text_minus'),
+                    'item_id' => $this->parsUrl($_SERVER['HTTP_REFERER']),
+                    'status' => $this->_comment_status(),
+                    'agent' => $this->agent->agent_string(),
+                    'user_ip' => $this->input->ip_address(),
                     'date' => time(),
-                    'rate' => '$rate',
-                    'parent' => '$parent'
+                    'rate' => $this->input->post('ratec'),
+                    'parent' => $this->input->post('parent')
                 );
 //            else 
 
-
-            $this->db->insert('comments_api', $comment_data);
+            $this->db->insert('comments', $comment_data);
             //return JSON
             echo json_encode(array('answer' => 'sucesfull'));
 
@@ -134,6 +150,70 @@ class Api extends Comments {
         }
         else
             parent::test();
+    }
+
+    /**
+     * Determinate comment status.
+     *
+     *  Comment statuses
+     *  0 - Normal(approved) comment.
+     *  1 - Waiting for moderation(pending).
+     *  2 - Spam.
+     */
+    private function _comment_status() {
+        ($hook = get_hook('comments_on_get_status')) ? eval($hook) : NULL;
+
+        $status = 0;
+
+        if ($this->dx_auth->is_admin() == TRUE) {
+            return 0;
+        }
+
+        if ($this->use_moderation == TRUE) {
+            $status = 1;
+        } elseif ($this->use_moderation == FALSE) {
+            $status = 0;
+        }
+
+        return $status;
+    }
+
+    public function setyes() {
+        $comid = $this->input->post('comid');
+        if ($this->session->userdata('commentl' . $comid) != 1) {
+            $row = $this->db->where('id', $comid)->get('comments')->row();
+            $like = $row->like;
+            $like = $like + 1;
+            $data = array('like' => $like);
+            $this->db->where('id', $comid);
+            $this->db->update('comments', $data);
+            $this->session->set_userdata('commentl' . $comid, 1);
+            if ($this->input->is_ajax_request()) {
+                return json_encode(array("y_count" => "$like"));
+            } else {
+                $like--;
+                return json_encode(array("y_count" => "$like"));
+            }
+        }
+    }
+
+    public function setno() {
+        $comid = $this->input->post('comid');
+        if ($this->session->userdata('commentl' . $comid) != 1) {
+            $row = $this->db->where('id', $comid)->get('comments')->row();
+            $disslike = $row->disslike;
+            $disslike = $disslike + 1;
+            $data = array('disslike' => $disslike);
+            $this->db->where('id', $comid);
+            $this->db->update('comments', $data);
+            $this->session->set_userdata('commentl' . $comid, 1);
+            if ($this->input->is_ajax_request()) {
+                return json_encode(array("n_count" => "$disslike"));
+            } else {
+                $disslike--;
+                return json_encode(array("n_count" => "$disslike"));
+            }
+        }
     }
 
 }

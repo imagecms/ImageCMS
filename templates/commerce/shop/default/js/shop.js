@@ -1,4 +1,4 @@
-function renderPosts()
+function renderPosts($this)
 {
     $.ajax({
         url: "/comments/api/renderPosts",
@@ -23,47 +23,57 @@ function renderPosts()
                 }).end().parent().parent().next().slideToggle(200).end().find('.blue_arrow').toggleClass('up');
                 return false;
             });
+            $('#cc').html('');
+            $('#cc').append("Всего комментариев: " + obj.total_comments);
         }
     });
 }
 
-function json()
+function post($this)
 {
     var comment; // Переменная для хранения строки,
     var plus;
     var minus;
+    var parent;
     var action;
+    var ratec;
     var i = $('input').size() + 1;
 
-    $('#comment_text').each(function() { // Получаем строку для шифрования
-        comment = this.value
-    });
+//    $('#comment_text').each(function() { 
+//        comment = this.value
+//    });
+//
+//    $('#comment_plus').each(function() { 
+//        plus = this.value
+//    });
+//
+//    $('#comment_minus').each(function() { 
+//        minus = this.value
+//    });
+//    
+//    $('#ratec').each(function() { 
+//        ratec = this.value
+//    });
+//
+//    $('#parent').each(function() { 
+//        parent = this.value
+//    });
 
-    $('#comment_text_plus').each(function() { // Получаем строку для шифрования
-        plus = this.value
-    });
+//    if (comment == '') { //Проверка заполнил ли пользователь поле для ввода текста
+//        $('#notice').html('Нужно ввести строку!'); // Если нет то выводим предупреждение
+//        alert('Нужно ввести строку!');
+//    }
+//    else {
+//        $('#notice').empty();
 
-    $('#comment_text_minus').each(function() { // Получаем строку для шифрования
-        minus = this.value
-    });
-
-    if (comment == '') { //Проверка заполнил ли пользователь поле для ввода текста
-        $('#notice').html('Нужно ввести строку!'); // Если нет то выводим предупреждение
-    }
-    else {
-        $('#notice').empty();
-
-        // Отправляем json запрос
-
-        //$.getJSON('json.php', {comment: comment, plus: plus, minus: minus, action: 'newPost'}, function(obj) {
-//                        $('#m').attr('value', obj.orig + '|' + obj.md5);
-
-        $.ajax({
-            url: "/comments/api/newPost/post",
-            data: "comment=" + comment + '&plus=' + plus + '&minus=' + minus + '&action=newPost',
-            dataType: "json",
-            type: "post",
-            success: function(obj) {
+    // Отправляем json запрос
+    $.ajax({
+        url: "/comments/api/newPost",
+        data: $($this).closest('form').serialize() +
+                '&action=newPost',
+        dataType: "json",
+        type: "post",
+        success: function(obj) {
 //                console.log(obj);
 
 
@@ -77,16 +87,19 @@ function json()
 //                        '</div><br><br>';
 
 //                $('.inputs').append(tpl);
-                $('#comment_text').val('');
-                $('#comment_text_plus').val('');
-                $('#comment_text_minus').val('');
-                if (obj.answer == 'sucesfull')
-                    $('#notice').html('good');
-                else
-                    $('#notice').empty();
+            $('#comment_text').val('');
+            $('#comment_plus').val('');
+            $('#comment_minus').val('');
+
+            if (obj.answer == 'sucesfull') {
+                $('#notice').html('good');
             }
-        });
-    }
+            else
+                $('#notice').empty();
+        }
+    });
+//    }
+    renderPosts();
 }
 
 $(document).ready(function() {
