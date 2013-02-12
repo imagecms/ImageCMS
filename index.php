@@ -195,7 +195,11 @@ if (is_dir($application_folder)) {
 
 
 define('IMAGECMS_NUMBER', '4.2 Pro');
+<<<<<<< HEAD
+define('IMAGECMS_VERSION', '20130116');
+=======
 define('IMAGECMS_VERSION', '20132801');
+>>>>>>> efb012c16d66dccad6fc77c1871609369ac44ea4
 define('IMAGECMS_PUBLIC_ID', '51035d2a96a227c54d0dea3ff415ced6d39266c3');
 /*
  * --------------------------------------------------------------------

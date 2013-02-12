@@ -41,7 +41,7 @@
             <div class="header center">
 
                 <a href="{$BASE_URL}" class="logo">
-                    <img src="{$SHOP_THEME}/images/imagecms.png">
+                    <img src="{$SHOP_THEME}images/imagecms.png">
                 </a>
                 {$CI->load->module('mailer')}
                 <div class="frame_form_search">
