@@ -229,6 +229,8 @@ function initElRTE()
         height: 300,
         fmAllow: true,
         lang: 'ru',
+        allowTextNodes : false,
+//        Format: 'Paragraph',
         fmOpen: function(callback) {
             //			    if (typeof dialog === 'undefined') {
             // create new elFinder
@@ -296,6 +298,11 @@ function initElRTE()
     };
     $('textarea.elRTE.focusOnClick').each(
             function() {
+<<<<<<< HEAD
+                if ($(this).is(':visible'))
+                    if (!$(this).closest('div.workzone').length)
+                        console.log($(this).elrte(opts));
+=======
                 var rte  = this;
                 opts.height = 300; 
                 $(rte).on('focus', function(){
@@ -376,6 +383,7 @@ function initTinyMCE()
                     $(this).tinymce(opts);
                     $(this).delay(300).closest('.controls').find('.mceIframeContainer, .mceIframeContainer iframe').animate({'height':'300px'}, 400);
                 });
+>>>>>>> efb012c16d66dccad6fc77c1871609369ac44ea4
             }
     );
 
