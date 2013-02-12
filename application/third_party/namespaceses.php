@@ -18,6 +18,11 @@ function modules_namespaces_autoload($name) {
     }
 }
 
+spl_autoload_register(function ($class) {
+            var_dump($class);
+//                return false;
+        }, null, null, false);
+
 function runFactory() {
     \CMSFactory\Events::runFactory();
 }
