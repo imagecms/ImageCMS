@@ -36,22 +36,39 @@
                         <section class="row-fluid">
                             <div class="f_r m-l_25">
                                 <nav class="f_l">
-                                    <ul class="nav navHorizontal frameEnterReg">
-                                        <li>
-                                            <span class="f-s_0">
-                                                <span class="helper"></span>
-                                                <button type="button" data-drop=".drop-enter" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" data-place="noinherit" data-placement="top right"><span class="icon-enter"></span><span class="d_l_g">Вход</span></button>
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span class="f-s_0">
-                                                <span class="helper"></span>
-                                                <span>
-                                                    <a href="#" class="t-d_u c_5c"><span class="icon-registration"></span><span class="text-el">Регистрация</span></a>
-                                                </span>
-                                            </span>
-                                        </li>
-                                    </ul>
+                                        <ul class="nav navHorizontal frameEnterReg">
+                                            {if !$CI->dx_auth->is_logged_in()}
+                                                <li>
+                                                    <span class="f-s_0">
+                                                        <span class="helper"></span>
+                                                        <button type="button" data-drop=".drop-enter" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" data-place="noinherit" data-placement="top right"><span class="icon-enter"></span><span class="d_l_g">Вход</span></button>
+                                                    </span>
+                                                </li>
+                                                <li>
+                                                    <span class="f-s_0">
+                                                        <span class="helper"></span>
+                                                        <span>
+                                                            <a href="auth/register" class="t-d_u c_5c"><span class="icon-registration"></span><span class="text-el">Регистрация</span></a>
+                                                        </span>
+                                                    </span>
+                                                </li>
+                                            {else:}
+                                                <li>
+                                                    <span class="f-s_0">
+                                                        <span class="helper"></span>
+                                                        <a href="#" onclick="ImageCMSApi.formAction('auth/authapi/logout', '')">Выход</a>
+                                                    </span>
+                                                </li>
+                                                <li>
+                                                    <span class="f-s_0">
+                                                        <span class="helper"></span>
+                                                        <span>
+                                                            <a href="shop/profile" class="t-d_u c_5c"><span class="text-el">Личный кабинет</span></a>
+                                                        </span>
+                                                    </span>
+                                                </li>
+                                            {/if}
+                                        </ul>
                                 </nav>
                                 <div class="cleaner f_l f-s_0 isAvail">
                                     <span class="helper"></span>
@@ -146,243 +163,17 @@
 
                 <!-- Start. Render Category Tree. Menu frame -->
                 <div class="mainFrameMenu">
-                    {\Category\RenderMenu::create()->load('category_menu')}
+                    <section class="container">
+                        {\Category\RenderMenu::create()->load('category_menu')}
+                    </section>
                 </div>
                 <!-- End. Render Category Tree. Menu frame -->
 
                 <div class="">
-                    <!--                     class="span9"-->
-                    <div class="mainFrameBaner">
-                        <!--фрейм на банер-->
-                        <section class="container">
-                            <div class="frame_baner">
-                                <ul class="cycle">
-                                    <li>
-                                        <a href="#">
-                                            <img src="{$SHOP_THEME}images/temp/baner.jpg">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <img src="{$SHOP_THEME}images/temp/baner.jpg">
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="pager"></div>
-                                <button class="next" type="button"></button>
-                                <button class="prev" type="button"></button>
-                            </div>
-                        </section>
-                    </div>
-                    <div class="mainFrameCarousel1">
-                        <!--фрейм на елемент-->
-                        <section class="container">
-                            <div class="frame_carousel_product carousel_js">
-                                <div class="m-b_20">
-                                    <div class="title_h1 d_i-b v-a_m">Популярные товары</div>
-                                    <div class="d_i-b groupButton v-a_m">
-                                        <button type="button" class="btn btn_prev"><span class="icon prev"></span><span class="text-el"></span></button>
-                                        <button type="button" class="btn btn_next"><span class="icon next"></span><span class="text-el"></span></button>
-                                    </div>
-                                </div>
-                                <div class="carousel bot_border_grey">
-                                    <ul class="items items_catalog">
-                                        <li class="span3 in_cart">
-                                            <div class="description">
-                                                <div class="frame_response">
-                                                    <div class="star">
-                                                        <img src="{$SHOP_THEME}images/temp/STAR.png"/>
-                                                    </div>
-                                                </div>
-                                                <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
-                                                <div class="price price_f-s_16"><span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span></div>
-                                                <button class="btn btn_cart" type="button"><span class="icon-but"></span>Уже в корзине</button>
-                                            </div>
-                                            <a href="#" class="photo">
-                                                <span class="helper"></span>
-                                                <figure>
-                                                    <img src="{$SHOP_THEME}images/temp/item_catalog.png" alt="Apple MacBook Pro A1286"/>
-                                                </figure>
-                                            </a>
-                                        </li>
-                                        <li class="span3">
-                                            <div class="description">
-                                                <div class="frame_response">
-                                                    <div class="star">
-                                                        <img src="{$SHOP_THEME}images/temp/STAR.png"/>
-                                                    </div>
-                                                </div>
-                                                <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
-                                                <div class="price price_f-s_16"><span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span></div>
-                                                <button class="btn btn_buy" type="button"><span class="icon-but"></span>В корзину</button>
-                                            </div>
-                                            <a href="#" class="photo">
-                                                <span class="helper"></span>
-                                                <figure>
-                                                    <img src="{$SHOP_THEME}images/temp/item_catalog.png" alt="Apple MacBook Pro A1286"/>
-                                                </figure>
-                                            </a>
-                                        </li>
-                                        <li class="span3">
-                                            <div class="description">
-                                                <div class="frame_response">
-                                                    <div class="star">
-                                                        <img src="{$SHOP_THEME}images/temp/STAR.png"/>
-                                                    </div>
-                                                </div>
-                                                <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
-                                                <div class="price price_f-s_16"><span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span></div>
-                                                <button class="btn btn_buy" type="button"><span class="icon-but"></span>В корзину</button>
-                                            </div>
-                                            <a href="#" class="photo">
-                                                <span class="helper"></span>
-                                                <figure>
-                                                    <img src="{$SHOP_THEME}images/temp/item_catalog.png" alt="Apple MacBook Pro A1286"/>
-                                                </figure>
-                                            </a>
-                                        </li>
-                                        <li class="not-avail span3">
-                                            <div class="description">
-                                                <div class="frame_response">
-                                                    <div class="star">
-                                                        <img src="{$SHOP_THEME}images/temp/STAR.png"/>
-                                                    </div>
-                                                </div>
-                                                <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
-                                                <div class="price price_f-s_16"><span class="f-w_b">99999</span> грн.</div>
-                                                <button class="btn btn_not_avail" type="button" data-drop=".drop-report" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="500" data-place="noinherit" data-placement="bottom right"><span class="icon-but"></span>Сообщить о появлении</button>
-                                            </div>
-                                            <a href="#" class="photo">
-                                                <span class="helper"></span>
-                                                <figure>
-                                                    <img src="{$SHOP_THEME}images/temp/item_catalog.png" alt="Apple MacBook Pro A1286"/>
-                                                </figure>
-                                            </a>
-                                        </li>
-                                        <li class="not-avail span3">
-                                            <div class="description">
-                                                <div class="frame_response">
-                                                    <div class="star">
-                                                        <img src="{$SHOP_THEME}images/temp/STAR.png"/>
-                                                    </div>
-                                                </div>
-                                                <a href="#">Apple MacBook</a>
-                                                <div class="price price_f-s_16"><span class="f-w_b">99999</span> грн.</div>
-                                                <button class="btn btn_not_avail" type="button" data-drop=".drop-report" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="500" data-place="noinherit" data-placement="bottom right"><span class="icon-but"></span>Сообщить о появлении</button>
-                                            </div>
-                                            <a href="#" class="photo">
-                                                <span class="helper"></span>
-                                                <figure>
-                                                    <img src="{$SHOP_THEME}images/temp/item_catalog.png" alt="Apple MacBook Pro A1286"/>
-                                                </figure>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                    <div class="mainFrameCarousel2">
-                        <!--фрейм на елемент-->
-                        <section class="container">
-                            <div class="frame_carousel_product carousel_js">
-                                <div class="m-b_20">
-                                    <div class="title_h1 d_i-b v-a_m">Популярные товары</div>
-                                    <div class="d_i-b groupButton v-a_m">
-                                        <button type="button" class="btn btn_prev"><span class="icon prev"></span><span class="text-el"></span></button>
-                                        <button type="button" class="btn btn_next"><span class="icon next"></span><span class="text-el"></span></button>
-                                    </div>
-                                </div>
-                                <div class="carousel bot_border_grey">
-                                    <ul class="items items_catalog">
-                                        <li class="in_cart span3">
-                                            <div class="description">
-                                                <div class="frame_response">
-                                                    <div class="star">
-                                                        <img src="{$SHOP_THEME}images/temp/STAR.png"/>
-                                                    </div>
-                                                </div>
-                                                <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
-                                                <div class="price price_f-s_16"><span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span></div>
-                                                <button class="btn btn_cart" type="button"><span class="icon-but"></span>Уже в корзине</button>
-                                            </div>
-                                            <a href="#" class="photo">
-                                                <span class="helper"></span>
-                                                <figure>
-                                                    <img src="{$SHOP_THEME}images/temp/item_catalog.png" alt="Apple MacBook Pro A1286"/>
-                                                </figure>
-                                            </a>
-                                            <span class="top_tovar nowelty">New</span>
-                                            <span class="top_tovar promotion">Акция</span>
-                                        </li>
-                                        <li class="span3">
-                                            <div class="description">
-                                                <div class="frame_response">
-                                                    <div class="star">
-                                                        <img src="{$SHOP_THEME}images/temp/STAR.png"/>
-                                                    </div>
-                                                </div>
-                                                <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
-                                                <div class="price price_f-s_16"><span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span></div>
-                                                <button class="btn btn_buy" type="button"><span class="icon-but"></span>В корзину</button>
-                                            </div>
-                                            <a href="#" class="photo">
-                                                <span class="helper"></span>
-                                                <figure>
-                                                    <img src="{$SHOP_THEME}images/temp/item_catalog.png" alt="Apple MacBook Pro A1286"/>
-                                                </figure>
-                                            </a>
-                                            <span class="top_tovar promotion">Акция</span>
-                                        </li>
-                                        <li class="span3">
-                                            <div class="description">
-                                                <div class="frame_response">
-                                                    <div class="star">
-                                                        <img src="{$SHOP_THEME}images/temp/STAR.png"/>
-                                                    </div>
-                                                </div>
-                                                <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
-                                                <div class="price price_f-s_16"><span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span></div>
-                                                <button class="btn btn_buy" type="button"><span class="icon-but"></span>В корзину</button>
-                                            </div>
-                                            <a href="#" class="photo">
-                                                <span class="helper"></span>
-                                                <figure>
-                                                    <img src="{$SHOP_THEME}images/temp/item_catalog.png" alt="Apple MacBook Pro A1286"/>
-                                                </figure>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                    <div class="mainFrameNews">
-                        <!--фрейм на елемент-->
-                        <section class="container">
-                            <div class="title_h1">Новости</div>
-                            <div class="news_start_page">
-                                <ul class="row-fluid">
-                                    <li class="span4">
-                                        <time><span class="day">05</span><span class="month">/08</span><span class="year">/12</span></time>
-                                        <a href="#">Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!</a>
-                                        <p>ОС Windows отримує в подарунок сумку для ноутбука! Кожен покупець акційних ноутбуків з передвстановленою ОС Windows отримує в подарунок сумку для ноутбука!</p>
-                                    </li>
-                                    <li class="span4">
-                                        <time><span class="day">05</span><span class="month">/08</span><span class="year">/12</span></time>
-                                        <a href="#">Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!</a>
-                                        <p>ОС Windows отримує в подарунок сумку для ноутбука! Кожен покупець акційних ноутбуків з передвстановленою ОС Windows отримує в подарунок сумку для ноутбука!</p>
-                                    </li>
-                                    <li class="span4">
-                                        <time><span class="day">05</span><span class="month">/08</span><span class="year">/12</span></time>
-                                        <a href="#">Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!</a>
-                                        <p>ОС Windows отримує в подарунок сумку для ноутбука! Кожен покупець акційних ноутбуків з передвстановленою ОС Windows отримує в подарунок сумку для ноутбука!</p>
-                                    </li>
-                                </ul>
-                                <a href="#" class="c_97"><span class="icon-archive"></span>Архив новостей</a>
-                            </div>
-                        </section>
-                    </div>
+                    <section class="container">
+                        <!--                     class="span9"-->
+                        {$shop_content}
+                    </section>
                 </div>
             </div>
             <div class="frame_brand carousel_js">
