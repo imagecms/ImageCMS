@@ -63,7 +63,7 @@
                                                     <span class="f-s_0">
                                                         <span class="helper"></span>
                                                         <span>
-                                                            <a href="shop/profile" class="t-d_u c_5c"><span class="text-el">Личный кабинет</span></a>
+                                                            <a href="shop/profile" class="t-d_u c_5c"><span class="icon-person"></span><span class="text-el">Личный кабинет</span></a>
                                                         </span>
                                                     </span>
                                                 </li>
@@ -288,11 +288,43 @@
                             <div class="frameLabel">
                                 <span class="title">&nbsp;</span>
                                 <span class="frame_form_field c_n">
-                                    <a href="#" class="f_l neigh_btn" onclick="ImageCMSApi.formAction('auth/authapi/forgot_password', '')">Забыли пароль?</a>
+                                    <a href="auth/forgot_password" class="f_l neigh_btn">Забыли пароль?</a>
                                     <input type="button" value="Войти" class="btn btn_cart f_r" onclick="ImageCMSApi.formAction('auth/authapi/login', 'login_form');
                                             return false;"/>
                                 </span>
                             </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="drop-footer"></div>
+        </div>
+        <div class="drop-forgot-password drop">
+            <div class="icon-times-enter" data-closed="closed-js"></div>
+            <div class="drop-content">
+                <div class="header_title">
+                    Забыли пароль
+                </div>
+                <div class="inside_padd">
+                    <div class="horizontal_form standart_form">
+                        <form method="post">
+                            <div class="groups_form">
+                                <label>
+                                    <span class="title">{lang('s_email')}</span>
+                                    <span class="frame_form_field">
+                                        <span class="icon-email"></span>
+                                        <input type="text" name="email" id="login" />
+                                        <span class="help_inline">Введите e-mail указаный при регистрации</span>
+                                    </span>
+                                </label>
+                                <div class="frameLabel c_t">
+                                    <span class="title">&nbsp;</span>
+                                    <span class="frame_form_field">
+                                        <input type="submit" class="btn btn_cart" value="{lang('lang_submit')}"/>
+                                    </span>
+                                </div>
+                            </div>
+                            {form_csrf()}
                         </form>
                     </div>
                 </div>
