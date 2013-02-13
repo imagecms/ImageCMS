@@ -48,7 +48,7 @@
                                                     <span class="f-s_0">
                                                         <span class="helper"></span>
                                                         <span>
-                                                            <a href="auth/register" class="t-d_u c_5c"><span class="icon-registration"></span><span class="text-el">Регистрация</span></a>
+                                                            <a href="/auth/register" class="t-d_u c_5c"><span class="icon-registration"></span><span class="text-el">Регистрация</span></a>
                                                         </span>
                                                     </span>
                                                 </li>
@@ -270,6 +270,7 @@
                                 <span class="frame_form_field">
                                     <span class="icon-email"></span>
                                     <input type="text" name="email"/>
+                                    <div id="for_email" class="for_validations"></div>
                                 </span>
                             </label>
                             <label>
@@ -277,13 +278,14 @@
                                 <span class="frame_form_field">
                                     <span class="icon-password"></span>
                                     <input type="password" name="password"/>
+                                    <div id="for_password" class="for_validations"></div>
                                 </span>
                             </label>
                             <div class="frameLabel">
                                 <span class="title">&nbsp;</span>
                                 <span class="frame_form_field c_n">
-                                    <a href="#" class="f_l neigh_btn" onclick="ImageCMSApi.formAction('auth/authapi/forgot_password', '')">Забыли пароль?</a>
-                                    <input type="button" value="Войти" class="btn btn_cart f_r" onclick="ImageCMSApi.formAction('auth/authapi/login', 'login_form');
+                                    <a href="/auth/forgot_password" class="f_l neigh_btn">Забыли пароль?</a>
+                                    <input type="button" value="Войти" class="btn btn_cart f_r" onclick="ImageCMSApi.formAction('/auth/authapi/login', 'login_form');
                                             return false;"/>
                                 </span>
                             </div>
