@@ -232,7 +232,10 @@
                         <textarea{if $isRequired['userInfo[commentText]']} class="required"{/if} name="userInfo[commentText]"></textarea> 
                     </label>
                     <div>
-                        {echo ShopCore::app()->CustomFieldsWidgetHelper->renderPartOfFormWithCustomFields(-1, 'order', 'cartCustomData')}
+                        {echo ShopCore::app()->CustomFieldsHelper->renderForm(-1, 'order', 'cartCustomData')}
+                        
+                        {var_dump( ShopCore::app()->CustomFieldsHelper->getCustomFields('order')->asArray() )}
+                        {var_dump( ShopCore::app()->CustomFieldsHelper->getCustomFields('order')->asHtml() )}
                     </div>
                 </div>
             </div>
