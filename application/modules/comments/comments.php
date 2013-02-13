@@ -342,7 +342,7 @@ class Comments extends MY_Controller {
             'value' => $site,
             'expire' => '30000000',
         );
-
+        
 
         set_cookie($cookie_name);
         set_cookie($cookie_email);

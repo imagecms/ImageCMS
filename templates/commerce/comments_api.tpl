@@ -1,5 +1,7 @@
 {# Comments form for product}
 
+<div id="error_text"></div>
+
 {if $can_comment == 1 AND !$is_logged_in}
     <p class="m-l_10">
         {sprintf(lang('login_for_comments'), site_url($modules.auth))}
@@ -26,6 +28,7 @@
         </span>
     </div>
 {/if}
+
 
 {if $can_comment == 0 OR $is_logged_in}
     <form action="" method="post" class="comment_form clearfix">
@@ -107,7 +110,7 @@
             </div>
         {/if}
         <label class="buttons button_middle_blue f_l">
-            <input name="submit" type="button" class="submit" value="Пуск" id="button" onclick="post(this)">
+            <input name="submit" type="submit" class="submit" value="Оставить отзыв" id="button" onclick="post(this)">
         </label>
 
         {form_csrf()}
@@ -187,7 +190,7 @@
                         </label>
                         <input type="hidden" id="parent" name="parent" value="{echo $comment.id}">
                         <label class="buttons button_middle_blue f_l">
-                            <input name="submit" type="button" class="submit" value="Пуск child" id="button" onclick="post(this)">
+                            <input name="submit" type="submit" class="submit" value="Ответить" id="button" onclick="post(this)">
                         </label>
 
                         {form_csrf()}
@@ -216,7 +219,6 @@
     {literal}
         <script>
                 $('form').submit(function() {
-                    alert($(this).serialize());
                     return false;
                 });
                 $('span.clickrate').on('click', function() {

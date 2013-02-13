@@ -10,12 +10,11 @@
 {$cart_data= ShopCore::app()->SCart->getData();}
 
 <script type="text/javascript">
-    var currentProductId = '{echo $model->getId()}';
 </script>
 
 <link rel="stylesheet" href="{$SHOP_THEME}/js/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.6" type="text/css" media="screen" />
 <script type="text/javascript" src="{$SHOP_THEME}/js/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.6"></script>
-<div class="content">   
+<div class="content" >   
     <div class="center">
         <div class="tovar_frame clearfix{if $model->firstvariant->getstock()== 0} not_avail{/if}">
             <div class="left-tovar_frame">
@@ -224,8 +223,8 @@
             <li onclick="renderPosts(this)">
                 <a href="#four">
                     <div id="cc">
-                        {if $data['comments_arr']}
-                            {echo $data['total_comments']}
+                        {if $total_comments > 0}
+                            {echo lang('lang_total_comments') . $total_comments}
                         {else:}
                             Нет комментариев
                         {/if}
