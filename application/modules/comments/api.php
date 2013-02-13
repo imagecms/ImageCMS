@@ -164,7 +164,7 @@ class Api extends Comments {
         $item_id = $this->parsUrl($_SERVER['HTTP_REFERER']);
 
         // Check if page comments status.
-        if ($this->module == 'core') {
+        if ($this->getModule($_SERVER['HTTP_REFERER']) == 'core') {
             if ($this->base->get_item_comments_status($item_id) == FALSE) {
                 ($hook = get_hook('comments_page_comments_disabled')) ? eval($hook) : NULL;
                 $this->core->error(lang('error_comments_diabled'));
