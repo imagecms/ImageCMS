@@ -304,7 +304,9 @@ class Sitemap extends MY_Controller {
      * return $code if send (200 = ok) else 'false'
      */
     public function ping_google() {
-
+        if (strstr($_SERVER['SERVER_NAME'], '.loc')) 
+            return false;
+        
         $this->db->select('settings');
         $a = unserialize(implode(',', $this->db->get_where('components', array('name' => 'sitemap'))->row_array()));
 

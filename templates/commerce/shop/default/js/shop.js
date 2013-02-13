@@ -2,14 +2,11 @@ function renderPosts($this)
 {
     $.ajax({
         url: "/comments/api/renderPosts",
-        data: "item_id=" + currentProductId,
         dataType: "json",
         type: "post",
         success: function(obj) {
-//                console.log(obj);
             $('#four').empty();
 
-//                var tpl = '<div ><input type="text" class="field" name="dynamic[]" /></div>';
             var tpl = obj.comments;
 
             $('#four').append(tpl);
@@ -23,50 +20,17 @@ function renderPosts($this)
                 }).end().parent().parent().next().slideToggle(200).end().find('.blue_arrow').toggleClass('up');
                 return false;
             });
-            $('#cc').html('');
-            $('#cc').append("Всего комментариев: " + obj.total_comments);
+            
+            if (obj.total_comments !== 0) {
+                $('#cc').html('');
+                $('#cc').append("Всего комментариев: " + obj.total_comments);
+            }
         }
     });
 }
 
 function post($this)
 {
-    var comment; // Переменная для хранения строки,
-    var plus;
-    var minus;
-    var parent;
-    var action;
-    var ratec;
-    var i = $('input').size() + 1;
-
-//    $('#comment_text').each(function() { 
-//        comment = this.value
-//    });
-//
-//    $('#comment_plus').each(function() { 
-//        plus = this.value
-//    });
-//
-//    $('#comment_minus').each(function() { 
-//        minus = this.value
-//    });
-//    
-//    $('#ratec').each(function() { 
-//        ratec = this.value
-//    });
-//
-//    $('#parent').each(function() { 
-//        parent = this.value
-//    });
-
-//    if (comment == '') { //Проверка заполнил ли пользователь поле для ввода текста
-//        $('#notice').html('Нужно ввести строку!'); // Если нет то выводим предупреждение
-//        alert('Нужно ввести строку!');
-//    }
-//    else {
-//        $('#notice').empty();
-
-    // Отправляем json запрос
     $.ajax({
         url: "/comments/api/newPost",
         data: $($this).closest('form').serialize() +
@@ -74,32 +38,20 @@ function post($this)
         dataType: "json",
         type: "post",
         success: function(obj) {
-//                console.log(obj);
 
-
-//                var tpl = '<div ><input type="text" class="field" name="dynamic[]" /></div>';
-//                var tpl = '<div>Коментарий<br>'
-//                        + obj.md5 +
-//                        '<br>Плюси<br>'
-//                        + obj.md5 +
-//                        '<br>Минусы<br>'
-//                        + obj.md5 +
-//                        '</div><br><br>';
-
-//                $('.inputs').append(tpl);
             $('#comment_text').val('');
             $('#comment_plus').val('');
             $('#comment_minus').val('');
 
             if (obj.answer == 'sucesfull') {
-                $('#notice').html('good');
+                renderPosts();
             }
-            else
-                $('#notice').empty();
+            else {
+                $('#error_text').html('');
+                $('#error_text').append(obj.validation_errors);
+            }
         }
     });
-//    }
-    renderPosts();
 }
 
 $(document).ready(function() {
