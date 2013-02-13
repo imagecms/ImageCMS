@@ -103,7 +103,7 @@ abstract class BaseEvents {
                 foreach ($value['collable'] as $run)
                     call_user_func(array($run['collClass'], $run['collMethod']), $value['params']);
         }
-        \CMSFactory\Events::create()->get();
+        //\CMSFactory\Events::create()->get();
     }
 
     public function get() {

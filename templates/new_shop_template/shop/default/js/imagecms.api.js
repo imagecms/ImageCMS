@@ -71,7 +71,7 @@ var ImageCMSApi = {
     //find form by data-id attr and create serialized string for send
     collectFormData: function(selector) {
         var findSelector = $('#' + selector);
-        var queryString = findSelector.formSerialize();
+        var queryString = findSelector.serialize();
         return queryString;
     },
 }
