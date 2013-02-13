@@ -10,7 +10,7 @@
     <div class="t-a_c">
         <div class="row d_i-b t-a_l">
             <div class="span6">
-                <div class="frameGroupsForm">
+                <div class="frameGroupsForm"> 
                     <div class="header_title">Регистрация</div>
                     <div class="standart_form horizontal_form">
                         <form method="post" data-id="register_form">
