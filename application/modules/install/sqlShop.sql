@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.11.1deb1
+-- version 3.4.10.1deb1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Jan 16, 2013 at 11:30 AM
--- Server version: 5.5.28
--- PHP Version: 5.3.10-1ubuntu3.4
+-- Хост: localhost
+-- Время создания: Янв 28 2013 г., 14:02
+-- Версия сервера: 5.5.28
+-- Версия PHP: 5.3.10-1ubuntu3.4
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,15 +17,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- БД: `imagecms`
+-- База данных: `reliz`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category`
+-- Структура таблицы `category`
 --
 
+DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL DEFAULT '0',
@@ -54,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `category` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=69 ;
 
 --
--- Dumping data for table `category`
+-- Дамп данных таблицы `category`
 --
 
 INSERT INTO `category` (`id`, `parent_id`, `position`, `name`, `title`, `short_desc`, `url`, `image`, `keywords`, `description`, `fetch_pages`, `main_tpl`, `tpl`, `page_tpl`, `per_page`, `order_by`, `sort_order`, `comments_default`, `field_group`, `category_field_group`, `settings`) VALUES
@@ -63,9 +64,10 @@ INSERT INTO `category` (`id`, `parent_id`, `position`, `name`, `title`, `short_d
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category_translate`
+-- Структура таблицы `category_translate`
 --
 
+DROP TABLE IF EXISTS `category_translate`;
 CREATE TABLE IF NOT EXISTS `category_translate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `alias` int(11) NOT NULL,
@@ -83,9 +85,10 @@ CREATE TABLE IF NOT EXISTS `category_translate` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comments`
+-- Структура таблицы `comments`
 --
 
+DROP TABLE IF EXISTS `comments`;
 CREATE TABLE IF NOT EXISTS `comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `module` varchar(25) NOT NULL DEFAULT 'core',
@@ -112,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=82 ;
 
 --
--- Dumping data for table `comments`
+-- Дамп данных таблицы `comments`
 --
 
 INSERT INTO `comments` (`id`, `module`, `user_id`, `user_name`, `user_mail`, `user_site`, `item_id`, `text`, `date`, `status`, `agent`, `user_ip`, `rate`, `text_plus`, `text_minus`, `like`, `disslike`, `parent`) VALUES
@@ -132,9 +135,10 @@ INSERT INTO `comments` (`id`, `module`, `user_id`, `user_name`, `user_mail`, `us
 -- --------------------------------------------------------
 
 --
--- Table structure for table `components`
+-- Структура таблицы `components`
 --
 
+DROP TABLE IF EXISTS `components`;
 CREATE TABLE IF NOT EXISTS `components` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -152,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `components` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=177 ;
 
 --
--- Dumping data for table `components`
+-- Дамп данных таблицы `components`
 --
 
 INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_menu`, `settings`, `position`) VALUES
@@ -180,9 +184,10 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content`
+-- Структура таблицы `content`
 --
 
+DROP TABLE IF EXISTS `content`;
 CREATE TABLE IF NOT EXISTS `content` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(500) NOT NULL,
@@ -219,7 +224,7 @@ CREATE TABLE IF NOT EXISTS `content` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=90 ;
 
 --
--- Dumping data for table `content`
+-- Дамп данных таблицы `content`
 --
 
 INSERT INTO `content` (`id`, `title`, `meta_title`, `url`, `cat_url`, `keywords`, `description`, `prev_text`, `full_text`, `category`, `full_tpl`, `main_tpl`, `position`, `comments_status`, `comments_count`, `post_status`, `author`, `publish_date`, `created`, `updated`, `showed`, `lang`, `lang_alias`) VALUES
@@ -239,9 +244,10 @@ INSERT INTO `content` (`id`, `title`, `meta_title`, `url`, `cat_url`, `keywords`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content_fields`
+-- Структура таблицы `content_fields`
 --
 
+DROP TABLE IF EXISTS `content_fields`;
 CREATE TABLE IF NOT EXISTS `content_fields` (
   `field_name` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
@@ -256,7 +262,7 @@ CREATE TABLE IF NOT EXISTS `content_fields` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `content_fields`
+-- Дамп данных таблицы `content_fields`
 --
 
 INSERT INTO `content_fields` (`field_name`, `type`, `label`, `data`, `weight`, `in_search`) VALUES
@@ -265,9 +271,10 @@ INSERT INTO `content_fields` (`field_name`, `type`, `label`, `data`, `weight`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content_fields_data`
+-- Структура таблицы `content_fields_data`
 --
 
+DROP TABLE IF EXISTS `content_fields_data`;
 CREATE TABLE IF NOT EXISTS `content_fields_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `item_id` int(11) NOT NULL,
@@ -281,7 +288,7 @@ CREATE TABLE IF NOT EXISTS `content_fields_data` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
 
 --
--- Dumping data for table `content_fields_data`
+-- Дамп данных таблицы `content_fields_data`
 --
 
 INSERT INTO `content_fields_data` (`id`, `item_id`, `item_type`, `field_name`, `data`) VALUES
@@ -290,16 +297,17 @@ INSERT INTO `content_fields_data` (`id`, `item_id`, `item_type`, `field_name`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content_fields_groups_relations`
+-- Структура таблицы `content_fields_groups_relations`
 --
 
+DROP TABLE IF EXISTS `content_fields_groups_relations`;
 CREATE TABLE IF NOT EXISTS `content_fields_groups_relations` (
   `field_name` varchar(64) NOT NULL,
   `group_id` int(3) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `content_fields_groups_relations`
+-- Дамп данных таблицы `content_fields_groups_relations`
 --
 
 INSERT INTO `content_fields_groups_relations` (`field_name`, `group_id`) VALUES
@@ -313,9 +321,10 @@ INSERT INTO `content_fields_groups_relations` (`field_name`, `group_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content_field_groups`
+-- Структура таблицы `content_field_groups`
 --
 
+DROP TABLE IF EXISTS `content_field_groups`;
 CREATE TABLE IF NOT EXISTS `content_field_groups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -325,7 +334,7 @@ CREATE TABLE IF NOT EXISTS `content_field_groups` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
--- Dumping data for table `content_field_groups`
+-- Дамп данных таблицы `content_field_groups`
 --
 
 INSERT INTO `content_field_groups` (`id`, `name`, `description`) VALUES
@@ -336,9 +345,10 @@ INSERT INTO `content_field_groups` (`id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content_permissions`
+-- Структура таблицы `content_permissions`
 --
 
+DROP TABLE IF EXISTS `content_permissions`;
 CREATE TABLE IF NOT EXISTS `content_permissions` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `page_id` bigint(11) NOT NULL,
@@ -348,7 +358,7 @@ CREATE TABLE IF NOT EXISTS `content_permissions` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
 
 --
--- Dumping data for table `content_permissions`
+-- Дамп данных таблицы `content_permissions`
 --
 
 INSERT INTO `content_permissions` (`id`, `page_id`, `data`) VALUES
@@ -357,9 +367,10 @@ INSERT INTO `content_permissions` (`id`, `page_id`, `data`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content_tags`
+-- Структура таблицы `content_tags`
 --
 
+DROP TABLE IF EXISTS `content_tags`;
 CREATE TABLE IF NOT EXISTS `content_tags` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `page_id` int(11) NOT NULL,
@@ -372,9 +383,10 @@ CREATE TABLE IF NOT EXISTS `content_tags` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `custom_fields`
+-- Структура таблицы `custom_fields`
 --
 
+DROP TABLE IF EXISTS `custom_fields`;
 CREATE TABLE IF NOT EXISTS `custom_fields` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `field_type_id` int(11) NOT NULL,
@@ -395,9 +407,10 @@ CREATE TABLE IF NOT EXISTS `custom_fields` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `custom_fields_data`
+-- Структура таблицы `custom_fields_data`
 --
 
+DROP TABLE IF EXISTS `custom_fields_data`;
 CREATE TABLE IF NOT EXISTS `custom_fields_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `field_id` int(11) NOT NULL,
@@ -407,7 +420,7 @@ CREATE TABLE IF NOT EXISTS `custom_fields_data` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `custom_fields_data`
+-- Дамп данных таблицы `custom_fields_data`
 --
 
 INSERT INTO `custom_fields_data` (`id`, `field_id`, `entity_id`, `field_data`) VALUES
@@ -418,9 +431,10 @@ INSERT INTO `custom_fields_data` (`id`, `field_id`, `entity_id`, `field_data`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `emails`
+-- Структура таблицы `emails`
 --
 
+DROP TABLE IF EXISTS `emails`;
 CREATE TABLE IF NOT EXISTS `emails` (
   `name` varchar(50) CHARACTER SET utf8 NOT NULL,
   `template` text CHARACTER SET utf8 NOT NULL,
@@ -430,7 +444,7 @@ CREATE TABLE IF NOT EXISTS `emails` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `emails`
+-- Дамп данных таблицы `emails`
 --
 
 INSERT INTO `emails` (`name`, `template`, `settings`, `locale`, `description`) VALUES
@@ -456,9 +470,10 @@ INSERT INTO `emails` (`name`, `template`, `settings`, `locale`, `description`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gallery_albums`
+-- Структура таблицы `gallery_albums`
 --
 
+DROP TABLE IF EXISTS `gallery_albums`;
 CREATE TABLE IF NOT EXISTS `gallery_albums` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) NOT NULL,
@@ -472,14 +487,15 @@ CREATE TABLE IF NOT EXISTS `gallery_albums` (
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`),
   KEY `created` (`created`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gallery_category`
+-- Структура таблицы `gallery_category`
 --
 
+DROP TABLE IF EXISTS `gallery_category`;
 CREATE TABLE IF NOT EXISTS `gallery_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) NOT NULL,
@@ -488,16 +504,15 @@ CREATE TABLE IF NOT EXISTS `gallery_category` (
   `position` int(9) NOT NULL DEFAULT '0',
   `created` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
-
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gallery_images`
+-- Структура таблицы `gallery_images`
 --
 
+DROP TABLE IF EXISTS `gallery_images`;
 CREATE TABLE IF NOT EXISTS `gallery_images` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `album_id` int(11) NOT NULL,
@@ -511,15 +526,15 @@ CREATE TABLE IF NOT EXISTS `gallery_images` (
   `uploaded` int(11) NOT NULL,
   `views` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `languages`
+-- Структура таблицы `languages`
 --
 
+DROP TABLE IF EXISTS `languages`;
 CREATE TABLE IF NOT EXISTS `languages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lang_name` varchar(100) NOT NULL,
@@ -534,7 +549,7 @@ CREATE TABLE IF NOT EXISTS `languages` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
 
 --
--- Dumping data for table `languages`
+-- Дамп данных таблицы `languages`
 --
 
 INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `template`, `default`) VALUES
@@ -543,9 +558,10 @@ INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `templ
 -- --------------------------------------------------------
 
 --
--- Table structure for table `login_attempts`
+-- Структура таблицы `login_attempts`
 --
 
+DROP TABLE IF EXISTS `login_attempts`;
 CREATE TABLE IF NOT EXISTS `login_attempts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ip_address` varchar(40) NOT NULL,
@@ -558,9 +574,10 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `logs`
+-- Структура таблицы `logs`
 --
 
+DROP TABLE IF EXISTS `logs`;
 CREATE TABLE IF NOT EXISTS `logs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -574,9 +591,10 @@ CREATE TABLE IF NOT EXISTS `logs` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mail`
+-- Структура таблицы `mail`
 --
 
+DROP TABLE IF EXISTS `mail`;
 CREATE TABLE IF NOT EXISTS `mail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) DEFAULT NULL,
@@ -587,9 +605,10 @@ CREATE TABLE IF NOT EXISTS `mail` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menus`
+-- Структура таблицы `menus`
 --
 
+DROP TABLE IF EXISTS `menus`;
 CREATE TABLE IF NOT EXISTS `menus` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) NOT NULL,
@@ -603,7 +622,7 @@ CREATE TABLE IF NOT EXISTS `menus` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
--- Dumping data for table `menus`
+-- Дамп данных таблицы `menus`
 --
 
 INSERT INTO `menus` (`id`, `name`, `main_title`, `tpl`, `expand_level`, `description`, `created`) VALUES
@@ -614,9 +633,10 @@ INSERT INTO `menus` (`id`, `name`, `main_title`, `tpl`, `expand_level`, `descrip
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menus_data`
+-- Структура таблицы `menus_data`
 --
 
+DROP TABLE IF EXISTS `menus_data`;
 CREATE TABLE IF NOT EXISTS `menus_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `menu_id` int(9) NOT NULL,
@@ -636,7 +656,7 @@ CREATE TABLE IF NOT EXISTS `menus_data` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
 
 --
--- Dumping data for table `menus_data`
+-- Дамп данных таблицы `menus_data`
 --
 
 INSERT INTO `menus_data` (`id`, `menu_id`, `item_id`, `item_type`, `item_image`, `roles`, `hidden`, `title`, `parent_id`, `position`, `description`, `add_data`) VALUES
@@ -665,9 +685,10 @@ INSERT INTO `menus_data` (`id`, `menu_id`, `item_id`, `item_type`, `item_image`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menu_translate`
+-- Структура таблицы `menu_translate`
 --
 
+DROP TABLE IF EXISTS `menu_translate`;
 CREATE TABLE IF NOT EXISTS `menu_translate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `item_id` int(11) NOT NULL,
@@ -679,7 +700,7 @@ CREATE TABLE IF NOT EXISTS `menu_translate` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=52 ;
 
 --
--- Dumping data for table `menu_translate`
+-- Дамп данных таблицы `menu_translate`
 --
 
 INSERT INTO `menu_translate` (`id`, `item_id`, `lang_id`, `title`) VALUES
@@ -727,15 +748,16 @@ INSERT INTO `menu_translate` (`id`, `item_id`, `lang_id`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `propel_migration`
+-- Структура таблицы `propel_migration`
 --
 
+DROP TABLE IF EXISTS `propel_migration`;
 CREATE TABLE IF NOT EXISTS `propel_migration` (
   `version` int(11) DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `propel_migration`
+-- Дамп данных таблицы `propel_migration`
 --
 
 INSERT INTO `propel_migration` (`version`) VALUES
@@ -744,9 +766,10 @@ INSERT INTO `propel_migration` (`version`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `search`
+-- Структура таблицы `search`
 --
 
+DROP TABLE IF EXISTS `search`;
 CREATE TABLE IF NOT EXISTS `search` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `hash` varchar(264) NOT NULL,
@@ -764,14 +787,13 @@ CREATE TABLE IF NOT EXISTS `search` (
   KEY `datetime` (`datetime`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
-
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `settings`
+-- Структура таблицы `settings`
 --
 
+DROP TABLE IF EXISTS `settings`;
 CREATE TABLE IF NOT EXISTS `settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `s_name` varchar(50) NOT NULL,
@@ -800,25 +822,36 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `google_webmaster` varchar(200) DEFAULT NULL,
   `yandex_webmaster` varchar(200) DEFAULT NULL,
   `yandex_metric` varchar(11) NOT NULL,
+<<<<<<< HEAD
+  `cat_list` varchar(20) NOT NULL,
+=======
   `ss` varchar(255) NOT NULL,
   `cat_list` varchar(10) NOT NULL,
+  `text_editor` varchar(30) NOT NULL,
+>>>>>>> efb012c16d66dccad6fc77c1871609369ac44ea4
   PRIMARY KEY (`id`),
   KEY `s_name` (`s_name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `settings`
+-- Дамп данных таблицы `settings`
 --
 
-INSERT INTO `settings` (`id`, `s_name`, `site_title`, `site_short_title`, `site_description`, `site_keywords`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`) VALUES
-(2, 'main', 'ImageCMS DemoShop', 'ImageCMS', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'commerce', 'no', '', 'module', 69, '63', 'shop', '', '', 'russian_lang', '', '', '');
+<<<<<<< HEAD
+INSERT INTO `settings` (`id`, `s_name`, `site_title`, `site_short_title`, `site_description`, `site_keywords`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `cat_list`) VALUES
+(2, 'main', 'ImageCMS DemoShop', 'ImageCMS', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'commerce', 'no', '', 'module', 69, '63', 'shop', '', '', 'russian_lang', '', '', '', 'yes');
+=======
+INSERT INTO `settings` (`id`, `s_name`, `site_title`, `site_short_title`, `site_description`, `site_keywords`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `ss`, `cat_list`, `text_editor`) VALUES
+(2, 'main', 'premium', 'ImageCMS', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'commerce', 'no', '', 'module', 69, '63', 'shop', '', '', 'russian_lang', '', '', '', '', 'yes', 'elrte');
+>>>>>>> efb012c16d66dccad6fc77c1871609369ac44ea4
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_banners`
+-- Структура таблицы `shop_banners`
 --
 
+DROP TABLE IF EXISTS `shop_banners`;
 CREATE TABLE IF NOT EXISTS `shop_banners` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `position` smallint(6) DEFAULT NULL,
@@ -829,7 +862,7 @@ CREATE TABLE IF NOT EXISTS `shop_banners` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
--- Dumping data for table `shop_banners`
+-- Дамп данных таблицы `shop_banners`
 --
 
 INSERT INTO `shop_banners` (`id`, `position`, `active`, `categories`) VALUES
@@ -840,9 +873,10 @@ INSERT INTO `shop_banners` (`id`, `position`, `active`, `categories`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_banners_i18n`
+-- Структура таблицы `shop_banners_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_banners_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_banners_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -854,7 +888,7 @@ CREATE TABLE IF NOT EXISTS `shop_banners_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_banners_i18n`
+-- Дамп данных таблицы `shop_banners_i18n`
 --
 
 INSERT INTO `shop_banners_i18n` (`id`, `locale`, `name`, `text`, `url`, `image`) VALUES
@@ -865,9 +899,10 @@ INSERT INTO `shop_banners_i18n` (`id`, `locale`, `name`, `text`, `url`, `image`)
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_brands`
+-- Структура таблицы `shop_brands`
 --
 
+DROP TABLE IF EXISTS `shop_brands`;
 CREATE TABLE IF NOT EXISTS `shop_brands` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(255) NOT NULL,
@@ -879,7 +914,7 @@ CREATE TABLE IF NOT EXISTS `shop_brands` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
 
 --
--- Dumping data for table `shop_brands`
+-- Дамп данных таблицы `shop_brands`
 --
 
 INSERT INTO `shop_brands` (`id`, `url`, `image`, `position`) VALUES
@@ -898,9 +933,10 @@ INSERT INTO `shop_brands` (`id`, `url`, `image`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_brands_i18n`
+-- Структура таблицы `shop_brands_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_brands_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_brands_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -914,7 +950,7 @@ CREATE TABLE IF NOT EXISTS `shop_brands_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_brands_i18n`
+-- Дамп данных таблицы `shop_brands_i18n`
 --
 
 INSERT INTO `shop_brands_i18n` (`id`, `locale`, `name`, `description`, `meta_title`, `meta_description`, `meta_keywords`) VALUES
@@ -938,9 +974,10 @@ INSERT INTO `shop_brands_i18n` (`id`, `locale`, `name`, `description`, `meta_tit
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_callbacks`
+-- Структура таблицы `shop_callbacks`
 --
 
+DROP TABLE IF EXISTS `shop_callbacks`;
 CREATE TABLE IF NOT EXISTS `shop_callbacks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -960,9 +997,10 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_callbacks_statuses`
+-- Структура таблицы `shop_callbacks_statuses`
 --
 
+DROP TABLE IF EXISTS `shop_callbacks_statuses`;
 CREATE TABLE IF NOT EXISTS `shop_callbacks_statuses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `is_default` tinyint(1) DEFAULT NULL,
@@ -970,7 +1008,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_statuses` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
--- Dumping data for table `shop_callbacks_statuses`
+-- Дамп данных таблицы `shop_callbacks_statuses`
 --
 
 INSERT INTO `shop_callbacks_statuses` (`id`, `is_default`) VALUES
@@ -980,9 +1018,10 @@ INSERT INTO `shop_callbacks_statuses` (`id`, `is_default`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_callbacks_statuses_i18n`
+-- Структура таблицы `shop_callbacks_statuses_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_callbacks_statuses_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_callbacks_statuses_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -992,7 +1031,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_statuses_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_callbacks_statuses_i18n`
+-- Дамп данных таблицы `shop_callbacks_statuses_i18n`
 --
 
 INSERT INTO `shop_callbacks_statuses_i18n` (`id`, `locale`, `text`) VALUES
@@ -1002,9 +1041,10 @@ INSERT INTO `shop_callbacks_statuses_i18n` (`id`, `locale`, `text`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_callbacks_themes`
+-- Структура таблицы `shop_callbacks_themes`
 --
 
+DROP TABLE IF EXISTS `shop_callbacks_themes`;
 CREATE TABLE IF NOT EXISTS `shop_callbacks_themes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `position` int(11) DEFAULT NULL,
@@ -1012,7 +1052,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_themes` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
--- Dumping data for table `shop_callbacks_themes`
+-- Дамп данных таблицы `shop_callbacks_themes`
 --
 
 INSERT INTO `shop_callbacks_themes` (`id`, `position`) VALUES
@@ -1021,9 +1061,10 @@ INSERT INTO `shop_callbacks_themes` (`id`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_callbacks_themes_i18n`
+-- Структура таблицы `shop_callbacks_themes_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_callbacks_themes_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_callbacks_themes_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1033,7 +1074,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_themes_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_callbacks_themes_i18n`
+-- Дамп данных таблицы `shop_callbacks_themes_i18n`
 --
 
 INSERT INTO `shop_callbacks_themes_i18n` (`id`, `locale`, `text`) VALUES
@@ -1043,9 +1084,10 @@ INSERT INTO `shop_callbacks_themes_i18n` (`id`, `locale`, `text`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_category`
+-- Структура таблицы `shop_category`
 --
 
+DROP TABLE IF EXISTS `shop_category`;
 CREATE TABLE IF NOT EXISTS `shop_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(255) NOT NULL,
@@ -1068,7 +1110,7 @@ CREATE TABLE IF NOT EXISTS `shop_category` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=78 ;
 
 --
--- Dumping data for table `shop_category`
+-- Дамп данных таблицы `shop_category`
 --
 
 INSERT INTO `shop_category` (`id`, `url`, `parent_id`, `position`, `full_path`, `full_path_ids`, `active`, `external_id`, `image`, `tpl`, `order_method`, `showsitetitle`) VALUES
@@ -1097,9 +1139,10 @@ INSERT INTO `shop_category` (`id`, `url`, `parent_id`, `position`, `full_path`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_category_i18n`
+-- Структура таблицы `shop_category_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_category_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_category_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1114,7 +1157,7 @@ CREATE TABLE IF NOT EXISTS `shop_category_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_category_i18n`
+-- Дамп данных таблицы `shop_category_i18n`
 --
 
 INSERT INTO `shop_category_i18n` (`id`, `locale`, `name`, `h1`, `description`, `meta_desc`, `meta_title`, `meta_keywords`) VALUES
@@ -1161,9 +1204,10 @@ INSERT INTO `shop_category_i18n` (`id`, `locale`, `name`, `h1`, `description`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_comulativ_discount`
+-- Структура таблицы `shop_comulativ_discount`
 --
 
+DROP TABLE IF EXISTS `shop_comulativ_discount`;
 CREATE TABLE IF NOT EXISTS `shop_comulativ_discount` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(255) DEFAULT NULL,
@@ -1178,9 +1222,10 @@ CREATE TABLE IF NOT EXISTS `shop_comulativ_discount` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_currencies`
+-- Структура таблицы `shop_currencies`
 --
 
+DROP TABLE IF EXISTS `shop_currencies`;
 CREATE TABLE IF NOT EXISTS `shop_currencies` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -1196,7 +1241,7 @@ CREATE TABLE IF NOT EXISTS `shop_currencies` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `shop_currencies`
+-- Дамп данных таблицы `shop_currencies`
 --
 
 INSERT INTO `shop_currencies` (`id`, `name`, `main`, `is_default`, `code`, `symbol`, `rate`) VALUES
@@ -1206,9 +1251,10 @@ INSERT INTO `shop_currencies` (`id`, `name`, `main`, `is_default`, `code`, `symb
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_delivery_methods`
+-- Структура таблицы `shop_delivery_methods`
 --
 
+DROP TABLE IF EXISTS `shop_delivery_methods`;
 CREATE TABLE IF NOT EXISTS `shop_delivery_methods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `price` float(10,2) NOT NULL,
@@ -1221,7 +1267,7 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
 
 --
--- Dumping data for table `shop_delivery_methods`
+-- Дамп данных таблицы `shop_delivery_methods`
 --
 
 INSERT INTO `shop_delivery_methods` (`id`, `price`, `free_from`, `enabled`, `is_price_in_percent`) VALUES
@@ -1232,9 +1278,10 @@ INSERT INTO `shop_delivery_methods` (`id`, `price`, `free_from`, `enabled`, `is_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_delivery_methods_i18n`
+-- Структура таблицы `shop_delivery_methods_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_delivery_methods_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_delivery_methods_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1246,7 +1293,7 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_delivery_methods_i18n`
+-- Дамп данных таблицы `shop_delivery_methods_i18n`
 --
 
 INSERT INTO `shop_delivery_methods_i18n` (`id`, `locale`, `name`, `description`, `pricedescription`) VALUES
@@ -1258,9 +1305,10 @@ INSERT INTO `shop_delivery_methods_i18n` (`id`, `locale`, `name`, `description`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_delivery_methods_systems`
+-- Структура таблицы `shop_delivery_methods_systems`
 --
 
+DROP TABLE IF EXISTS `shop_delivery_methods_systems`;
 CREATE TABLE IF NOT EXISTS `shop_delivery_methods_systems` (
   `delivery_method_id` int(11) NOT NULL,
   `payment_method_id` int(11) NOT NULL,
@@ -1269,7 +1317,7 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods_systems` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_delivery_methods_systems`
+-- Дамп данных таблицы `shop_delivery_methods_systems`
 --
 
 INSERT INTO `shop_delivery_methods_systems` (`delivery_method_id`, `payment_method_id`) VALUES
@@ -1299,9 +1347,10 @@ INSERT INTO `shop_delivery_methods_systems` (`delivery_method_id`, `payment_meth
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_discounts`
+-- Структура таблицы `shop_discounts`
 --
 
+DROP TABLE IF EXISTS `shop_discounts`;
 CREATE TABLE IF NOT EXISTS `shop_discounts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -1321,9 +1370,10 @@ CREATE TABLE IF NOT EXISTS `shop_discounts` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_gifts`
+-- Структура таблицы `shop_gifts`
 --
 
+DROP TABLE IF EXISTS `shop_gifts`;
 CREATE TABLE IF NOT EXISTS `shop_gifts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `key` varchar(255) DEFAULT NULL,
@@ -1335,7 +1385,7 @@ CREATE TABLE IF NOT EXISTS `shop_gifts` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `shop_gifts`
+-- Дамп данных таблицы `shop_gifts`
 --
 
 INSERT INTO `shop_gifts` (`id`, `key`, `active`, `price`, `created`, `espdate`) VALUES
@@ -1346,9 +1396,10 @@ INSERT INTO `shop_gifts` (`id`, `key`, `active`, `price`, `created`, `espdate`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_kit`
+-- Структура таблицы `shop_kit`
 --
 
+DROP TABLE IF EXISTS `shop_kit`;
 CREATE TABLE IF NOT EXISTS `shop_kit` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) DEFAULT NULL,
@@ -1359,7 +1410,7 @@ CREATE TABLE IF NOT EXISTS `shop_kit` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
--- Dumping data for table `shop_kit`
+-- Дамп данных таблицы `shop_kit`
 --
 
 INSERT INTO `shop_kit` (`id`, `product_id`, `active`, `position`) VALUES
@@ -1370,9 +1421,10 @@ INSERT INTO `shop_kit` (`id`, `product_id`, `active`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_kit_product`
+-- Структура таблицы `shop_kit_product`
 --
 
+DROP TABLE IF EXISTS `shop_kit_product`;
 CREATE TABLE IF NOT EXISTS `shop_kit_product` (
   `product_id` int(11) NOT NULL,
   `kit_id` int(11) NOT NULL,
@@ -1382,7 +1434,7 @@ CREATE TABLE IF NOT EXISTS `shop_kit_product` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_kit_product`
+-- Дамп данных таблицы `shop_kit_product`
 --
 
 INSERT INTO `shop_kit_product` (`product_id`, `kit_id`, `discount`) VALUES
@@ -1393,9 +1445,10 @@ INSERT INTO `shop_kit_product` (`product_id`, `kit_id`, `discount`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_notifications`
+-- Структура таблицы `shop_notifications`
 --
 
+DROP TABLE IF EXISTS `shop_notifications`;
 CREATE TABLE IF NOT EXISTS `shop_notifications` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
@@ -1422,9 +1475,10 @@ CREATE TABLE IF NOT EXISTS `shop_notifications` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_notification_statuses`
+-- Структура таблицы `shop_notification_statuses`
 --
 
+DROP TABLE IF EXISTS `shop_notification_statuses`;
 CREATE TABLE IF NOT EXISTS `shop_notification_statuses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `position` smallint(6) DEFAULT NULL,
@@ -1434,7 +1488,7 @@ CREATE TABLE IF NOT EXISTS `shop_notification_statuses` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `shop_notification_statuses`
+-- Дамп данных таблицы `shop_notification_statuses`
 --
 
 INSERT INTO `shop_notification_statuses` (`id`, `position`) VALUES
@@ -1444,9 +1498,10 @@ INSERT INTO `shop_notification_statuses` (`id`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_notification_statuses_i18n`
+-- Структура таблицы `shop_notification_statuses_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_notification_statuses_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_notification_statuses_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1456,7 +1511,7 @@ CREATE TABLE IF NOT EXISTS `shop_notification_statuses_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_notification_statuses_i18n`
+-- Дамп данных таблицы `shop_notification_statuses_i18n`
 --
 
 INSERT INTO `shop_notification_statuses_i18n` (`id`, `locale`, `name`) VALUES
@@ -1466,9 +1521,10 @@ INSERT INTO `shop_notification_statuses_i18n` (`id`, `locale`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_orders`
+-- Структура таблицы `shop_orders`
 --
 
+DROP TABLE IF EXISTS `shop_orders`;
 CREATE TABLE IF NOT EXISTS `shop_orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `key` varchar(255) NOT NULL,
@@ -1500,7 +1556,7 @@ CREATE TABLE IF NOT EXISTS `shop_orders` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=49 ;
 
 --
--- Dumping data for table `shop_orders`
+-- Дамп данных таблицы `shop_orders`
 --
 
 INSERT INTO `shop_orders` (`id`, `key`, `delivery_method`, `delivery_price`, `status`, `paid`, `user_full_name`, `user_email`, `user_phone`, `user_deliver_to`, `user_comment`, `date_created`, `date_updated`, `user_ip`, `user_id`, `payment_method`, `total_price`, `external_id`, `gift_cert_key`, `gift_cert_price`, `comulativ`) VALUES
@@ -1529,9 +1585,10 @@ INSERT INTO `shop_orders` (`id`, `key`, `delivery_method`, `delivery_price`, `st
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_orders_products`
+-- Структура таблицы `shop_orders_products`
 --
 
+DROP TABLE IF EXISTS `shop_orders_products`;
 CREATE TABLE IF NOT EXISTS `shop_orders_products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
@@ -1549,7 +1606,7 @@ CREATE TABLE IF NOT EXISTS `shop_orders_products` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=73 ;
 
 --
--- Dumping data for table `shop_orders_products`
+-- Дамп данных таблицы `shop_orders_products`
 --
 
 INSERT INTO `shop_orders_products` (`id`, `order_id`, `product_id`, `variant_id`, `product_name`, `variant_name`, `price`, `quantity`, `kit_id`, `is_main`) VALUES
@@ -1589,9 +1646,10 @@ INSERT INTO `shop_orders_products` (`id`, `order_id`, `product_id`, `variant_id`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_orders_status_history`
+-- Структура таблицы `shop_orders_status_history`
 --
 
+DROP TABLE IF EXISTS `shop_orders_status_history`;
 CREATE TABLE IF NOT EXISTS `shop_orders_status_history` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
@@ -1605,7 +1663,7 @@ CREATE TABLE IF NOT EXISTS `shop_orders_status_history` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
--- Dumping data for table `shop_orders_status_history`
+-- Дамп данных таблицы `shop_orders_status_history`
 --
 
 INSERT INTO `shop_orders_status_history` (`id`, `order_id`, `status_id`, `user_id`, `date_created`, `comment`) VALUES
@@ -1625,9 +1683,10 @@ INSERT INTO `shop_orders_status_history` (`id`, `order_id`, `status_id`, `user_i
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_order_statuses`
+-- Структура таблицы `shop_order_statuses`
 --
 
+DROP TABLE IF EXISTS `shop_order_statuses`;
 CREATE TABLE IF NOT EXISTS `shop_order_statuses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `position` smallint(6) DEFAULT NULL,
@@ -1637,7 +1696,7 @@ CREATE TABLE IF NOT EXISTS `shop_order_statuses` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
--- Dumping data for table `shop_order_statuses`
+-- Дамп данных таблицы `shop_order_statuses`
 --
 
 INSERT INTO `shop_order_statuses` (`id`, `position`) VALUES
@@ -1647,9 +1706,10 @@ INSERT INTO `shop_order_statuses` (`id`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_order_statuses_i18n`
+-- Структура таблицы `shop_order_statuses_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_order_statuses_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_order_statuses_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1659,7 +1719,7 @@ CREATE TABLE IF NOT EXISTS `shop_order_statuses_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_order_statuses_i18n`
+-- Дамп данных таблицы `shop_order_statuses_i18n`
 --
 
 INSERT INTO `shop_order_statuses_i18n` (`id`, `locale`, `name`) VALUES
@@ -1669,9 +1729,10 @@ INSERT INTO `shop_order_statuses_i18n` (`id`, `locale`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_payment_methods`
+-- Структура таблицы `shop_payment_methods`
 --
 
+DROP TABLE IF EXISTS `shop_payment_methods`;
 CREATE TABLE IF NOT EXISTS `shop_payment_methods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `active` tinyint(1) DEFAULT NULL,
@@ -1685,7 +1746,7 @@ CREATE TABLE IF NOT EXISTS `shop_payment_methods` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
--- Dumping data for table `shop_payment_methods`
+-- Дамп данных таблицы `shop_payment_methods`
 --
 
 INSERT INTO `shop_payment_methods` (`id`, `active`, `currency_id`, `position`, `payment_system_name`) VALUES
@@ -1697,9 +1758,10 @@ INSERT INTO `shop_payment_methods` (`id`, `active`, `currency_id`, `position`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_payment_methods_i18n`
+-- Структура таблицы `shop_payment_methods_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_payment_methods_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_payment_methods_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1710,7 +1772,7 @@ CREATE TABLE IF NOT EXISTS `shop_payment_methods_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_payment_methods_i18n`
+-- Дамп данных таблицы `shop_payment_methods_i18n`
 --
 
 INSERT INTO `shop_payment_methods_i18n` (`id`, `locale`, `name`, `description`) VALUES
@@ -1726,9 +1788,10 @@ INSERT INTO `shop_payment_methods_i18n` (`id`, `locale`, `name`, `description`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_products`
+-- Структура таблицы `shop_products`
 --
 
+DROP TABLE IF EXISTS `shop_products`;
 CREATE TABLE IF NOT EXISTS `shop_products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(255) NOT NULL,
@@ -1760,14 +1823,14 @@ CREATE TABLE IF NOT EXISTS `shop_products` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=195 ;
 
 --
--- Dumping data for table `shop_products`
+-- Дамп данных таблицы `shop_products`
 --
 
 INSERT INTO `shop_products` (`id`, `url`, `active`, `hit`, `brand_id`, `category_id`, `related_products`, `mainImage`, `smallImage`, `created`, `updated`, `old_price`, `views`, `hot`, `action`, `added_to_cart_count`, `enable_comments`, `external_id`, `mainModImage`, `smallModImage`, `tpl`, `user_id`) VALUES
 (71, '71', 1, 1, 26, 74, '96', '71_main.jpg', '71_mainMod.jpg', 1307542725, 1355746808, 1150.00, 189, 1, 1, 1, 1, NULL, '71_mainMod.jpg', '71_smallMod.jpg', '', NULL),
 (96, '96', 1, 1, 0, 45, '100', '96_vM107.jpg', '96_vS107.jpg', 1307542081, 1356345896, 0.00, 6, NULL, NULL, NULL, 1, NULL, '96_mainMod.jpg', '96_smallMod.jpg', '', NULL),
 (78, '78', 1, 0, 29, 75, '', '191_vM219.jpg', '191_vS219.jpg', 1307543572, 1356345897, 0.00, 11, NULL, NULL, 2, 1, NULL, '191_mainMod.jpg', '191_smallMod.jpg', '', NULL),
-(79, '79', 1, NULL, 29, 38, '', '79_main.jpg', '79_mainMod.jpg', 1307544450, 1355746249, 0.00, 9, 1, NULL, 1, 1, NULL, '79_mainMod.jpg', '79_smallMod.jpg', '', NULL),
+(79, '79', 1, NULL, 29, 38, '', '79_main.jpg', '79_mainMod.jpg', 1307544450, 1359364970, 0.00, 10, 1, NULL, 1, 1, NULL, '79_mainMod.jpg', '79_smallMod.jpg', '', NULL),
 (81, '81', 1, 1, 28, 77, '', '81_vM92.jpg', '81_vS92.jpg', 1307544442, 1356345897, 0.00, 24, 1, 1, 17, 1, NULL, '81_mainMod.jpg', '81_smallMod.jpg', '', NULL),
 (82, '82', 1, NULL, 28, 39, '', '82_main.jpg', '82_small.jpg', 1307542064, 1355495998, 0.00, 10, NULL, 1, NULL, 1, NULL, '82_mainMod.jpg', '82_smallMod.jpg', '', NULL),
 (83, '83', 1, NULL, 26, 39, '', '83_main.jpg', '83_small.jpg', 1307545378, 1355496017, 0.00, 7, NULL, 1, 2, 1, NULL, '83_mainMod.jpg', '83_smallMod.jpg', '', NULL),
@@ -1812,7 +1875,7 @@ INSERT INTO `shop_products` (`id`, `url`, `active`, `hit`, `brand_id`, `category
 (123, '123', 1, NULL, 0, 54, '', '123_main.jpg', '123_small.jpg', 1307543925, 1355497060, 0.00, 25, NULL, NULL, 1, 1, NULL, '123_mainMod.jpg', '123_smallMod.jpg', '', NULL),
 (124, '124', 1, NULL, 0, 54, '', '124_main.jpg', '124_small.jpg', 1307542680, 1355497269, 0.00, NULL, NULL, NULL, 1, 1, NULL, '124_mainMod.jpg', '124_smallMod.jpg', '', NULL),
 (185, 'apple-iphone-5-16gb-black-slate', 1, 0, 27, 50, '108,111,107', '', '', 1355428800, 1356345896, 0.00, 16, NULL, NULL, 3, 1, NULL, '185_mainMod.jpg', '185_smallMod.jpg', '', NULL),
-(186, 'samsung-ue32eh4030wxua', 1, NULL, 0, 74, '', '186_main.jpg', '186_mainMod.jpg', 1355688000, 1355745194, 0.00, 22, NULL, NULL, 1, 1, NULL, '186_mainMod.jpg', '186_smallMod.jpg', '', NULL),
+(186, 'samsung-ue32eh4030wxua', 1, NULL, 0, 74, '', '186_main.jpg', '186_mainMod.jpg', 1355688000, 1355745194, 0.00, 23, NULL, NULL, 1, 1, NULL, '186_mainMod.jpg', '186_smallMod.jpg', '', NULL),
 (187, 'samsung-ue40es6307uxua', 1, NULL, 28, 74, '', '187_main.jpg', '187_mainMod.jpg', 1355688000, 1355745685, 0.00, 1, NULL, NULL, NULL, 1, NULL, '187_mainMod.jpg', '187_smallMod.jpg', '', NULL),
 (188, 'lg-32ls359t', 1, NULL, 29, 74, '', '188_main.jpg', '188_mainMod.jpg', 1355688000, 1355746100, 0.00, 9, NULL, NULL, 2, 1, NULL, '188_mainMod.jpg', '188_smallMod.jpg', '', NULL),
 (189, 'lg-47lm580t', 1, 1, 35, 75, '', '189_main.jpg', '189_mainMod.jpg', 1355688000, 1355750041, 0.00, 4, 1, 1, 1, 1, NULL, '189_mainMod.jpg', '189_smallMod.jpg', '', NULL),
@@ -1825,9 +1888,10 @@ INSERT INTO `shop_products` (`id`, `url`, `active`, `hit`, `brand_id`, `category
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_products_i18n`
+-- Структура таблицы `shop_products_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_products_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_products_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1842,7 +1906,7 @@ CREATE TABLE IF NOT EXISTS `shop_products_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_products_i18n`
+-- Дамп данных таблицы `shop_products_i18n`
 --
 
 INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `full_description`, `meta_title`, `meta_description`, `meta_keywords`) VALUES
@@ -1957,9 +2021,10 @@ INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_products_rating`
+-- Структура таблицы `shop_products_rating`
 --
 
+DROP TABLE IF EXISTS `shop_products_rating`;
 CREATE TABLE IF NOT EXISTS `shop_products_rating` (
   `product_id` int(11) NOT NULL,
   `votes` int(11) DEFAULT NULL,
@@ -1968,7 +2033,7 @@ CREATE TABLE IF NOT EXISTS `shop_products_rating` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_products_rating`
+-- Дамп данных таблицы `shop_products_rating`
 --
 
 INSERT INTO `shop_products_rating` (`product_id`, `votes`, `rating`) VALUES
@@ -1984,14 +2049,16 @@ INSERT INTO `shop_products_rating` (`product_id`, `votes`, `rating`) VALUES
 (74, 2, 8),
 (75, 2, 9),
 (94, 1, 4),
-(87, 1, 5);
+(87, 1, 5),
+(79, 1, 5);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_product_categories`
+-- Структура таблицы `shop_product_categories`
 --
 
+DROP TABLE IF EXISTS `shop_product_categories`;
 CREATE TABLE IF NOT EXISTS `shop_product_categories` (
   `product_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
@@ -2000,7 +2067,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_categories` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_product_categories`
+-- Дамп данных таблицы `shop_product_categories`
 --
 
 INSERT INTO `shop_product_categories` (`product_id`, `category_id`) VALUES
@@ -2131,9 +2198,10 @@ INSERT INTO `shop_product_categories` (`product_id`, `category_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_product_images`
+-- Структура таблицы `shop_product_images`
 --
 
+DROP TABLE IF EXISTS `shop_product_images`;
 CREATE TABLE IF NOT EXISTS `shop_product_images` (
   `product_id` int(11) NOT NULL,
   `image_name` varchar(255) NOT NULL,
@@ -2143,7 +2211,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_images` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_product_images`
+-- Дамп данных таблицы `shop_product_images`
 --
 
 INSERT INTO `shop_product_images` (`product_id`, `image_name`, `position`) VALUES
@@ -2174,9 +2242,10 @@ INSERT INTO `shop_product_images` (`product_id`, `image_name`, `position`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_product_properties`
+-- Структура таблицы `shop_product_properties`
 --
 
+DROP TABLE IF EXISTS `shop_product_properties`;
 CREATE TABLE IF NOT EXISTS `shop_product_properties` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `csv_name` varchar(50) NOT NULL,
@@ -2197,7 +2266,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
 
 --
--- Dumping data for table `shop_product_properties`
+-- Дамп данных таблицы `shop_product_properties`
 --
 
 INSERT INTO `shop_product_properties` (`id`, `csv_name`, `active`, `show_in_compare`, `position`, `show_on_site`, `multiple`, `external_id`, `show_in_filter`, `main_property`) VALUES
@@ -2225,9 +2294,10 @@ INSERT INTO `shop_product_properties` (`id`, `csv_name`, `active`, `show_in_comp
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_product_properties_categories`
+-- Структура таблицы `shop_product_properties_categories`
 --
 
+DROP TABLE IF EXISTS `shop_product_properties_categories`;
 CREATE TABLE IF NOT EXISTS `shop_product_properties_categories` (
   `property_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
@@ -2236,7 +2306,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_categories` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_product_properties_categories`
+-- Дамп данных таблицы `shop_product_properties_categories`
 --
 
 INSERT INTO `shop_product_properties_categories` (`property_id`, `category_id`) VALUES
@@ -2342,9 +2412,10 @@ INSERT INTO `shop_product_properties_categories` (`property_id`, `category_id`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_product_properties_data`
+-- Структура таблицы `shop_product_properties_data`
 --
 
+DROP TABLE IF EXISTS `shop_product_properties_data`;
 CREATE TABLE IF NOT EXISTS `shop_product_properties_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `property_id` int(11) DEFAULT NULL,
@@ -2355,10 +2426,10 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_data` (
   KEY `shop_product_properties_data_I_1` (`value`(333)),
   KEY `shop_product_properties_data_FI_2` (`product_id`),
   KEY `shop_product_properties_data_FI_1` (`property_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5727 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5957 ;
 
 --
--- Dumping data for table `shop_product_properties_data`
+-- Дамп данных таблицы `shop_product_properties_data`
 --
 
 INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `value`, `locale`) VALUES
@@ -3819,7 +3890,8 @@ INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `
 (1948, 30, NULL, '12 месяцев', 'ru'),
 (1949, 35, NULL, 'Лазерная печать', 'ru'),
 (1950, 36, NULL, 'A3', 'ru'),
-(1951, 37, NULL, 'Bluetooth', 'ru'),
+(1951, 37, NULL, 'Bluetooth', 'ru');
+INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `value`, `locale`) VALUES
 (1953, 35, NULL, 'Лазерная печать', 'ru'),
 (1954, 36, NULL, 'A3', 'ru'),
 (1955, 30, NULL, '36 месяцев', 'ru'),
@@ -5210,7 +5282,8 @@ INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `
 (3341, 40, NULL, '5 м', 'ru'),
 (3343, 40, NULL, '2 м', 'ru'),
 (3344, 30, NULL, '12 месяцев', 'ru'),
-(3345, 40, NULL, '5 м', 'ru'),
+(3345, 40, NULL, '5 м', 'ru');
+INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `value`, `locale`) VALUES
 (3346, 23, NULL, '40 Вт', 'ru'),
 (3347, 30, NULL, '12 месяцев', 'ru'),
 (3348, 39, NULL, 'Дерево', 'ru'),
@@ -6600,11 +6673,11 @@ INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `
 (4732, 30, NULL, '24 месяца', 'ru'),
 (4733, 20, NULL, 'LED', 'ru'),
 (4734, 21, NULL, '32', 'ru'),
-(4735, 22, NULL, 'Да', 'ru');
-INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `value`, `locale`) VALUES
+(4735, 22, NULL, 'Да', 'ru'),
 (4736, 30, NULL, '24 месяца', 'ru'),
 (4737, 20, NULL, 'LED', 'ru'),
-(4738, 21, NULL, '40', 'ru'),
+(4738, 21, NULL, '40', 'ru');
+INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `value`, `locale`) VALUES
 (4739, 22, NULL, 'Да', 'ru'),
 (4740, 30, NULL, '24 месяца', 'ru'),
 (4741, 20, NULL, 'LED', 'ru'),
@@ -7661,9 +7734,10 @@ INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_product_properties_data_i18n`
+-- Структура таблицы `shop_product_properties_data_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_product_properties_data_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_product_properties_data_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -7675,9 +7749,10 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_data_i18n` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_product_properties_i18n`
+-- Структура таблицы `shop_product_properties_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_product_properties_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_product_properties_i18n` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
@@ -7689,7 +7764,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_product_properties_i18n`
+-- Дамп данных таблицы `shop_product_properties_i18n`
 --
 
 INSERT INTO `shop_product_properties_i18n` (`id`, `name`, `locale`, `data`) VALUES
@@ -7725,16 +7800,17 @@ INSERT INTO `shop_product_properties_i18n` (`id`, `name`, `locale`, `data`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_product_variants`
+-- Структура таблицы `shop_product_variants`
 --
 
+DROP TABLE IF EXISTS `shop_product_variants`;
 CREATE TABLE IF NOT EXISTS `shop_product_variants` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `price` float(15,5) NOT NULL,
   `number` varchar(255) DEFAULT NULL,
   `stock` int(11) DEFAULT NULL,
-  `position` int(11) DEFAULT NULL,
+  `position` int(11) DEFAULT '0',
   `mainImage` varchar(255) DEFAULT NULL,
   `smallImage` varchar(255) DEFAULT NULL,
   `external_id` varchar(255) DEFAULT NULL,
@@ -7750,7 +7826,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_variants` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=224 ;
 
 --
--- Dumping data for table `shop_product_variants`
+-- Дамп данных таблицы `shop_product_variants`
 --
 
 INSERT INTO `shop_product_variants` (`id`, `product_id`, `price`, `number`, `stock`, `position`, `mainImage`, `smallImage`, `external_id`, `currency`, `price_in_main`) VALUES
@@ -7818,9 +7894,10 @@ INSERT INTO `shop_product_variants` (`id`, `product_id`, `price`, `number`, `sto
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_product_variants_i18n`
+-- Структура таблицы `shop_product_variants_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_product_variants_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_product_variants_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -7830,7 +7907,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_variants_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_product_variants_i18n`
+-- Дамп данных таблицы `shop_product_variants_i18n`
 --
 
 INSERT INTO `shop_product_variants_i18n` (`id`, `locale`, `name`) VALUES
@@ -7916,8 +7993,14 @@ INSERT INTO `shop_product_variants_i18n` (`id`, `locale`, `name`) VALUES
 
 -- --------------------------------------------------------
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> efb012c16d66dccad6fc77c1871609369ac44ea4
+-- --------------------------------------------------------
+
 --
--- Table structure for table `shop_rbac_group`
+-- Структура таблицы `shop_rbac_group`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_rbac_group` (
@@ -7928,37 +8011,10 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_group` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=60 ;
 
 --
--- Dumping data for table `shop_rbac_group`
+-- Дамп данных таблицы `shop_rbac_group`
 --
 
 INSERT INTO `shop_rbac_group` (`id`, `type`, `name`) VALUES
-(1, 'shop', 'ShopAdminBanners'),
-(2, 'shop', 'ShopAdminBrands'),
-(3, 'shop', 'ShopAdminCallbacks'),
-(4, 'shop', 'ShopAdminCategories'),
-(5, 'shop', 'ShopAdminCharts'),
-(6, 'shop', 'ShopAdminComulativ'),
-(7, 'shop', 'ShopAdminCurrencies'),
-(8, 'shop', 'ShopAdminCustomfields'),
-(9, 'shop', 'ShopAdminDashboard'),
-(10, 'shop', 'ShopAdminDeliverymethods'),
-(11, 'shop', 'ShopAdminDiscounts'),
-(12, 'shop', 'ShopAdminGifts'),
-(13, 'shop', 'ShopAdminKits'),
-(14, 'shop', 'ShopAdminNotifications'),
-(15, 'shop', 'ShopAdminNotificationstatuses'),
-(16, 'shop', 'ShopAdminOrders'),
-(17, 'shop', 'ShopAdminOrderstatuses'),
-(18, 'shop', 'ShopAdminPaymentmethods'),
-(19, 'shop', 'ShopAdminProducts'),
-(20, 'shop', 'ShopAdminProductspy'),
-(21, 'shop', 'ShopAdminProperties'),
-(22, 'shop', 'ShopAdminRbac'),
-(23, 'shop', 'ShopAdminSearch'),
-(24, 'shop', 'ShopAdminSettings'),
-(25, 'shop', 'ShopAdminSystem'),
-(26, 'shop', 'ShopAdminUsers'),
-(27, 'shop', 'ShopAdminWarehouses'),
 (28, 'base', 'Admin'),
 (29, 'base', 'Admin_logs'),
 (30, 'base', 'Admin_search'),
@@ -7969,11 +8025,9 @@ INSERT INTO `shop_rbac_group` (`id`, `type`, `name`) VALUES
 (35, 'base', 'Dashboard'),
 (36, 'base', 'Languages'),
 (37, 'base', 'Login'),
-(38, 'base', 'Mod_search'),
 (39, 'base', 'Pages'),
 (40, 'base', 'Rbac'),
 (41, 'base', 'Settings'),
-(42, 'base', 'Sys_upgrade'),
 (43, 'module', 'Cfcm'),
 (44, 'module', 'Comments'),
 (45, 'module', 'Feedback'),
@@ -7983,7 +8037,6 @@ INSERT INTO `shop_rbac_group` (`id`, `type`, `name`) VALUES
 (49, 'module', 'Menu'),
 (50, 'module', 'Rss'),
 (51, 'module', 'Sample_mail'),
-(52, 'module', 'Sample_module'),
 (53, 'module', 'Share'),
 (54, 'module', 'Sitemap'),
 (55, 'module', 'Social_servises'),
@@ -7995,7 +8048,7 @@ INSERT INTO `shop_rbac_group` (`id`, `type`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_rbac_group_i18n`
+-- Структура таблицы `shop_rbac_group_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_rbac_group_i18n` (
@@ -8006,36 +8059,10 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_group_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_rbac_group_i18n`
+-- Дамп данных таблицы `shop_rbac_group_i18n`
 --
 
 INSERT INTO `shop_rbac_group_i18n` (`id`, `description`, `locale`) VALUES
-(1, 'Управление баннерами', 'ru'),
-(2, 'Управление брендами', 'ru'),
-(3, 'Управление колбеками', 'ru'),
-(4, 'Управление категориями товаров в магазине', 'ru'),
-(5, 'Управление статистикой', 'ru'),
-(6, 'Управление накопительными скидками', 'ru'),
-(7, 'Управление валютами', 'ru'),
-(8, 'Управление дополнительными полями для магазина', 'ru'),
-(9, 'Главная страница панели управления магазином', 'ru'),
-(10, 'Управление способами доставки', 'ru'),
-(11, 'Управление скидками', 'ru'),
-(12, 'Управление подарочными сертификатами', 'ru'),
-(13, 'Управление наборами товаров', 'ru'),
-(14, 'Управление уведомлениями', 'ru'),
-(15, 'Управление статусами уведомлений', 'ru'),
-(16, 'Управление заказами', 'ru'),
-(17, 'Управление статусами заказов', 'ru'),
-(18, 'Управление методами оплаты', 'ru'),
-(19, 'Управление товарами', 'ru'),
-(20, 'Управление слежением за товарами', 'ru'),
-(21, 'Управление свойствами товаров', 'ru'),
-(23, 'Управление поиском', 'ru'),
-(24, 'Управление настройками магазина', 'ru'),
-(25, 'Управление системой магазина (импорт\\экспорт)', 'ru'),
-(26, 'Управление юзерами магазина', 'ru'),
-(27, 'Управление складами', 'ru'),
 (28, 'Доступ к админ панели', 'ru'),
 (29, 'История событий', 'ru'),
 (30, 'Управление поиском в базовой админ панели', 'ru'),
@@ -8046,11 +8073,9 @@ INSERT INTO `shop_rbac_group_i18n` (`id`, `description`, `locale`) VALUES
 (35, 'Управление главной станицой базовой админ панели', 'ru'),
 (36, 'Управление языками', 'ru'),
 (37, 'Вход в админ панель', 'ru'),
-(38, 'Поиск модулей для установки', 'ru'),
 (39, 'Управление страницами', 'ru'),
 (40, 'Управление правами доступа', 'ru'),
 (41, 'Управление базовыми настройками', 'ru'),
-(42, 'Управление обновлением системы', 'ru'),
 (43, 'Управление констуктором полей', 'ru'),
 (44, 'Управление комментариями', 'ru'),
 (45, 'Управление обратной связью', 'ru'),
@@ -8060,7 +8085,6 @@ INSERT INTO `shop_rbac_group_i18n` (`id`, `description`, `locale`) VALUES
 (49, 'Управление меню', 'ru'),
 (50, 'Управление модулем RSS', 'ru'),
 (51, 'Управление шаблонами писем', 'ru'),
-(52, 'Шаблон модуля', 'ru'),
 (53, 'Управление модулем кнопок соцсетей', 'ru'),
 (54, 'Управление модулем карта сайта', 'ru'),
 (55, 'Управление модулем интеграции с соцсетями', 'ru'),
@@ -8072,7 +8096,7 @@ INSERT INTO `shop_rbac_group_i18n` (`id`, `description`, `locale`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_rbac_privileges`
+-- Структура таблицы `shop_rbac_privileges`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_rbac_privileges` (
@@ -8085,205 +8109,10 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_privileges` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=485 ;
 
 --
--- Dumping data for table `shop_rbac_privileges`
+-- Дамп данных таблицы `shop_rbac_privileges`
 --
 
 INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`) VALUES
-(1, 'ShopAdminBanners::index', 1),
-(2, 'ShopAdminBanners::create', 1),
-(3, 'ShopAdminBanners::edit', 1),
-(4, 'ShopAdminBanners::deleteAll', 1),
-(5, 'ShopAdminBanners::translate', 1),
-(6, 'ShopAdminBanners::changeActive', 1),
-(7, 'ShopAdminBrands::index', 2),
-(8, 'ShopAdminBrands::create', 2),
-(9, 'ShopAdminBrands::edit', 2),
-(10, 'ShopAdminBrands::delete', 2),
-(11, 'ShopAdminBrands::c_list', 2),
-(12, 'ShopAdminBrands::translate', 2),
-(13, 'ShopAdminCallbacks::index', 3),
-(14, 'ShopAdminCallbacks::update', 3),
-(15, 'ShopAdminCallbacks::statuses', 3),
-(16, 'ShopAdminCallbacks::createStatus', 3),
-(17, 'ShopAdminCallbacks::updateStatus', 3),
-(18, 'ShopAdminCallbacks::setDefaultStatus', 3),
-(19, 'ShopAdminCallbacks::changeStatus', 3),
-(20, 'ShopAdminCallbacks::reorderThemes', 3),
-(21, 'ShopAdminCallbacks::changeTheme', 3),
-(22, 'ShopAdminCallbacks::deleteCallback', 3),
-(23, 'ShopAdminCallbacks::deleteStatus', 3),
-(24, 'ShopAdminCallbacks::themes', 3),
-(25, 'ShopAdminCallbacks::createTheme', 3),
-(26, 'ShopAdminCallbacks::updateTheme', 3),
-(27, 'ShopAdminCallbacks::deleteTheme', 3),
-(28, 'ShopAdminCallbacks::search', 3),
-(29, 'ShopAdminCategories::index', 4),
-(30, 'ShopAdminCategories::create', 4),
-(31, 'ShopAdminCategories::edit', 4),
-(32, 'ShopAdminCategories::delete', 4),
-(33, 'ShopAdminCategories::c_list', 4),
-(34, 'ShopAdminCategories::save_positions', 4),
-(35, 'ShopAdminCategories::ajax_translit', 4),
-(36, 'ShopAdminCategories::translate', 4),
-(37, 'ShopAdminCategories::changeActive', 4),
-(38, 'ShopAdminCategories::create_tpl', 4),
-(39, 'ShopAdminCategories::get_tpl_names', 4),
-(40, 'ShopAdminCharts::orders', 5),
-(41, 'ShopAdminCharts::byDate', 5),
-(42, 'ShopAdminCharts::_createDatesDropDown', 5),
-(43, 'ShopAdminComulativ::index', 6),
-(44, 'ShopAdminComulativ::create', 6),
-(45, 'ShopAdminComulativ::edit', 6),
-(46, 'ShopAdminComulativ::allUsers', 6),
-(47, 'ShopAdminComulativ::user', 6),
-(48, 'ShopAdminComulativ::deleteAll', 6),
-(49, 'ShopAdminComulativ::change_comulativ_dis_status', 6),
-(50, 'ShopAdminCurrencies::index', 7),
-(51, 'ShopAdminCurrencies::create', 7),
-(52, 'ShopAdminCurrencies::edit', 7),
-(53, 'ShopAdminCurrencies::makeCurrencyDefault', 7),
-(54, 'ShopAdminCurrencies::makeCurrencyMain', 7),
-(55, 'ShopAdminCurrencies::delete', 7),
-(56, 'ShopAdminCurrencies::recount', 7),
-(57, 'ShopAdminCurrencies::checkPrices', 7),
-(58, 'ShopAdminCustomfields::index', 8),
-(59, 'ShopAdminCustomfields::create', 8),
-(60, 'ShopAdminCustomfields::edit', 8),
-(61, 'ShopAdminCustomfields::deleteAll', 8),
-(62, 'ShopAdminCustomfields::change_status_activ', 8),
-(63, 'ShopAdminCustomfields::change_status_private', 8),
-(64, 'ShopAdminCustomfields::change_status_required', 8),
-(65, 'ShopAdminDashboard::index', 9),
-(66, 'ShopAdminDeliverymethods::index', 10),
-(67, 'ShopAdminDeliverymethods::create', 10),
-(68, 'ShopAdminDeliverymethods::change_delivery_status', 10),
-(69, 'ShopAdminDeliverymethods::edit', 10),
-(70, 'ShopAdminDeliverymethods::deleteAll', 10),
-(71, 'ShopAdminDeliverymethods::c_list', 10),
-(72, 'ShopAdminDiscounts::index', 11),
-(73, 'ShopAdminDiscounts::create', 11),
-(74, 'ShopAdminDiscounts::change_discount_status', 11),
-(75, 'ShopAdminDiscounts::edit', 11),
-(76, 'ShopAdminDiscounts::deleteAll', 11),
-(77, 'ShopAdminGifts::index', 12),
-(78, 'ShopAdminGifts::create', 12),
-(79, 'ShopAdminGifts::generateKey', 12),
-(80, 'ShopAdminGifts::delete', 12),
-(81, 'ShopAdminGifts::edit', 12),
-(82, 'ShopAdminGifts::ChangeActive', 12),
-(83, 'ShopAdminGifts::settings', 12),
-(84, 'ShopAdminGifts::save_settings', 12),
-(85, 'ShopAdminKits::index', 13),
-(86, 'ShopAdminKits::kit_create', 13),
-(87, 'ShopAdminKits::kit_edit', 13),
-(88, 'ShopAdminKits::kit_save_positions', 13),
-(89, 'ShopAdminKits::kit_change_active', 13),
-(90, 'ShopAdminKits::kit_list', 13),
-(91, 'ShopAdminKits::kit_delete', 13),
-(92, 'ShopAdminKits::get_products_list', 13),
-(93, 'ShopAdminNotifications::index', 14),
-(94, 'ShopAdminNotifications::edit', 14),
-(95, 'ShopAdminNotifications::changeStatus', 14),
-(96, 'ShopAdminNotifications::notifyByEmail', 14),
-(97, 'ShopAdminNotifications::deleteAll', 14),
-(98, 'ShopAdminNotifications::ajaxDeleteNotifications', 14),
-(99, 'ShopAdminNotifications::ajaxChangeNotificationsStatus', 14),
-(100, 'ShopAdminNotifications::search', 14),
-(101, 'ShopAdminNotifications::getAvailableNotification', 14),
-(102, 'ShopAdminNotificationstatuses::index', 15),
-(103, 'ShopAdminNotificationstatuses::create', 15),
-(104, 'ShopAdminNotificationstatuses::edit', 15),
-(105, 'ShopAdminNotificationstatuses::deleteAll', 15),
-(106, 'ShopAdminNotificationstatuses::savePositions', 15),
-(107, 'ShopAdminOrders::index', 16),
-(108, 'ShopAdminOrders::edit', 16),
-(109, 'ShopAdminOrders::changeStatus', 16),
-(110, 'ShopAdminOrders::changePaid', 16),
-(111, 'ShopAdminOrders::delete', 16),
-(112, 'ShopAdminOrders::ajaxDeleteOrders', 16),
-(113, 'ShopAdminOrders::ajaxChangeOrdersStatus', 16),
-(114, 'ShopAdminOrders::ajaxChangeOrdersPaid', 16),
-(115, 'ShopAdminOrders::ajaxEditWindow', 16),
-(116, 'ShopAdminOrders::editKit', 16),
-(117, 'ShopAdminOrders::ajaxEditAddToCartWindow', 16),
-(118, 'ShopAdminOrders::ajaxDeleteProduct', 16),
-(119, 'ShopAdminOrders::ajaxGetProductList', 16),
-(120, 'ShopAdminOrders::ajaxEditOrderCart', 16),
-(121, 'ShopAdminOrders::ajaxEditOrderAddToCart', 16),
-(122, 'ShopAdminOrders::ajaxGetOrderCart', 16),
-(123, 'ShopAdminOrders::search', 16),
-(124, 'ShopAdminOrders::printChecks', 16),
-(125, 'ShopAdminOrders::createPDFPage', 16),
-(126, 'ShopAdminOrders::createPdf', 16),
-(127, 'ShopAdminOrders::create', 16),
-(128, 'ShopAdminOrderstatuses::index', 17),
-(129, 'ShopAdminOrderstatuses::create', 17),
-(130, 'ShopAdminOrderstatuses::edit', 17),
-(131, 'ShopAdminOrderstatuses::delete', 17),
-(132, 'ShopAdminOrderstatuses::ajaxDeleteWindow', 17),
-(133, 'ShopAdminOrderstatuses::savePositions', 17),
-(134, 'ShopAdminPaymentmethods::index', 18),
-(135, 'ShopAdminPaymentmethods::create', 18),
-(136, 'ShopAdminPaymentmethods::change_payment_status', 18),
-(137, 'ShopAdminPaymentmethods::edit', 18),
-(138, 'ShopAdminPaymentmethods::deleteAll', 18),
-(139, 'ShopAdminPaymentmethods::savePositions', 18),
-(140, 'ShopAdminPaymentmethods::getAdminForm', 18),
-(141, 'ShopAdminProducts::index', 19),
-(142, 'ShopAdminProducts::create', 19),
-(143, 'ShopAdminProducts::edit', 19),
-(144, 'ShopAdminProducts::saveAdditionalImages', 19),
-(145, 'ShopAdminProducts::delete', 19),
-(146, 'ShopAdminProducts::processImage', 19),
-(147, 'ShopAdminProducts::deleteAddImage', 19),
-(148, 'ShopAdminProducts::ajaxChangeActive', 19),
-(149, 'ShopAdminProducts::ajaxChangeHit', 19),
-(150, 'ShopAdminProducts::ajaxChangeHot', 19),
-(151, 'ShopAdminProducts::ajaxChangeAction', 19),
-(152, 'ShopAdminProducts::ajaxUpdatePrice', 19),
-(153, 'ShopAdminProducts::ajaxCloneProducts', 19),
-(154, 'ShopAdminProducts::ajaxDeleteProducts', 19),
-(155, 'ShopAdminProducts::ajaxMoveWindow', 19),
-(156, 'ShopAdminProducts::ajaxMoveProducts', 19),
-(157, 'ShopAdminProducts::translate', 19),
-(158, 'ShopAdminProducts::get_ids', 19),
-(159, 'ShopAdminProducts::prev_next', 19),
-(160, 'ShopAdminProductspy::index', 20),
-(161, 'ShopAdminProductspy::delete', 20),
-(162, 'ShopAdminProductspy::settings', 20),
-(163, 'ShopAdminProperties::index', 21),
-(164, 'ShopAdminProperties::create', 21),
-(165, 'ShopAdminProperties::edit', 21),
-(166, 'ShopAdminProperties::renderForm', 21),
-(167, 'ShopAdminProperties::save_positions', 21),
-(168, 'ShopAdminProperties::delete', 21),
-(169, 'ShopAdminProperties::changeActive', 21),
-(184, 'ShopAdminSearch::index', 23),
-(185, 'ShopAdminSearch::save_positions_variant', 23),
-(186, 'ShopAdminSearch::autocomplete', 23),
-(187, 'ShopAdminSearch::advanced', 23),
-(188, 'ShopAdminSearch::renderCustomFields', 23),
-(189, 'ShopAdminSettings::index', 24),
-(190, 'ShopAdminSettings::update', 24),
-(191, 'ShopAdminSettings::get_fsettings', 24),
-(192, 'ShopAdminSettings::get_vsettings', 24),
-(193, 'ShopAdminSettings::_get_templates', 24),
-(194, 'ShopAdminSettings::_load_settings', 24),
-(195, 'ShopAdminSettings::runResize', 24),
-(196, 'ShopAdminSystem::import', 25),
-(197, 'ShopAdminSystem::export', 25),
-(198, 'ShopAdminSystem::getAttributes', 25),
-(199, 'ShopAdminSystem::exportUsers', 25),
-(200, 'ShopAdminUsers::index', 26),
-(201, 'ShopAdminUsers::search', 26),
-(202, 'ShopAdminUsers::create', 26),
-(203, 'ShopAdminUsers::edit', 26),
-(204, 'ShopAdminUsers::deleteAll', 26),
-(205, 'ShopAdminUsers::auto_complite', 26),
-(206, 'ShopAdminWarehouses::index', 27),
-(207, 'ShopAdminWarehouses::create', 27),
-(208, 'ShopAdminWarehouses::edit', 27),
-(209, 'ShopAdminWarehouses::deleteAll', 27),
 (210, 'Admin::__construct', 28),
 (211, 'Admin::init', 28),
 (212, 'Admin::index', 28),
@@ -8291,17 +8120,14 @@ INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`) VALUES
 (214, 'Admin::delete_cache', 28),
 (215, 'Admin::elfinder_init', 28),
 (216, 'Admin::get_csrf', 28),
-(217, 'Admin::sidebar_cats', 28),
 (218, 'Admin::logout', 28),
 (219, 'Admin::report_bug', 28),
 (220, 'Admin_logs::__construct', 29),
 (221, 'Admin_logs::index', 29),
 (222, 'Admin_search::__construct', 30),
-(223, 'Admin_search::index', 30),
 (224, 'Admin_search::advanced_search', 30),
 (225, 'Admin_search::do_advanced_search', 30),
 (226, 'Admin_search::validate_advanced_search', 30),
-(227, 'Admin_search::form_from_group', 30),
 (228, 'Admin_search::_filter_pages', 30),
 (229, 'Admin_search::autocomplete', 30),
 (230, 'Backup::__construct', 31),
@@ -8313,10 +8139,8 @@ INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`) VALUES
 (236, 'Categories::__construct', 33),
 (237, 'Categories::index', 33),
 (238, 'Categories::create_form', 33),
-(239, 'Categories::update_block', 33),
 (240, 'Categories::save_positions', 33),
 (241, 'Categories::cat_list', 33),
-(242, 'Categories::sub_cats', 33),
 (243, 'Categories::create', 33),
 (244, 'Categories::update_urls', 33),
 (245, 'Categories::category_exists', 33),
@@ -8362,15 +8186,9 @@ INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`) VALUES
 (285, 'Login::forgot_password', 37),
 (286, 'Login::update_captcha', 37),
 (287, 'Login::captcha_check', 37),
-(288, 'Mod_search::__construct', 38),
-(289, 'Mod_search::index', 38),
-(290, 'Mod_search::category', 38),
-(291, 'Mod_search::display_install_window', 38),
-(292, 'Mod_search::connect_ftp', 38),
 (293, 'Pages::__construct', 39),
 (294, 'Pages::index', 39),
 (295, 'Pages::add', 39),
-(296, 'Pages::_set_page_roles', 39),
 (297, 'Pages::edit', 39),
 (298, 'Pages::update', 39),
 (299, 'Pages::delete', 39),
@@ -8387,15 +8205,9 @@ INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`) VALUES
 (310, 'Rbac::__construct', 40),
 (311, 'Settings::__construct', 41),
 (312, 'Settings::index', 41),
-(313, 'Settings::main_page', 41),
 (314, 'Settings::_get_templates', 41),
 (315, 'Settings::save', 41),
 (316, 'Settings::switch_admin_lang', 41),
-(317, 'Settings::save_main', 41),
-(318, 'Sys_upgrade::__construct', 42),
-(319, 'Sys_upgrade::index', 42),
-(320, 'Sys_upgrade::make_upgrade', 42),
-(321, 'Sys_upgrade::_check_status', 42),
 (322, 'cfcm::__construct', 43),
 (323, 'cfcm::_set_forms_config', 43),
 (324, 'cfcm::index', 43),
@@ -8406,7 +8218,6 @@ INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`) VALUES
 (329, 'cfcm::create_group', 43),
 (330, 'cfcm::edit_group', 43),
 (331, 'cfcm::delete_group', 43),
-(332, 'cfcm::form_from_category_group', 43),
 (333, 'cfcm::get_form_attributes', 43),
 (334, 'cfcm::save_weight', 43),
 (335, 'cfcm::render', 43),
@@ -8415,7 +8226,6 @@ INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`) VALUES
 (338, 'comments::__construct', 44),
 (339, 'comments::index', 44),
 (340, 'comments::proccess_child_comments', 44),
-(341, 'comments::render', 44),
 (342, 'comments::edit', 44),
 (343, 'comments::update', 44),
 (344, 'comments::update_status', 44),
@@ -8460,14 +8270,9 @@ INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`) VALUES
 (383, 'menu::__construct', 49),
 (384, 'menu::index', 49),
 (385, 'menu::menu_item', 49),
-(386, 'menu::list_menu_items', 49),
 (387, 'menu::create_item', 49),
-(388, 'menu::display_selector', 49),
-(389, 'menu::get_name_by_id', 49),
 (390, 'menu::delete_item', 49),
 (391, 'menu::edit_item', 49),
-(392, 'menu::process_root', 49),
-(393, 'menu::insert_menu_item', 49),
 (394, 'menu::save_positions', 49),
 (395, 'menu::create_menu', 49),
 (396, 'menu::edit_menu', 49),
@@ -8477,50 +8282,29 @@ INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`) VALUES
 (400, 'menu::create_tpl', 49),
 (401, 'menu::get_pages', 49),
 (402, 'menu::search_pages', 49),
-(403, 'menu::get_item', 49),
-(404, 'menu::display_tpl', 49),
-(405, 'menu::fetch_tpl', 49),
 (406, 'menu::translate_window', 49),
 (407, 'menu::translate_item', 49),
 (408, 'menu::_get_langs', 49),
-(409, 'menu::render', 49),
 (410, 'menu::change_hidden', 49),
 (411, 'menu::get_children_items', 49),
 (412, 'rss::__construct', 50),
 (413, 'rss::index', 50),
-(414, 'rss::render', 50),
-(415, 'rss::settings_update', 50),
-(416, 'rss::display_tpl', 50),
-(417, 'rss::fetch_tpl', 50),
 (418, 'sample_mail::__construct', 51),
 (419, 'sample_mail::create', 51),
 (420, 'sample_mail::edit', 51),
-(421, 'sample_mail::render', 51),
 (422, 'sample_mail::index', 51),
 (423, 'sample_mail::delete', 51),
-(424, 'sample_module::__construct', 52),
-(425, 'sample_module::index', 52),
 (426, 'share::__construct', 53),
 (427, 'share::index', 53),
 (428, 'share::update_settings', 53),
 (429, 'share::get_settings', 53),
-(430, 'share::render', 53),
 (431, 'sitemap::__construct', 54),
 (432, 'sitemap::index', 54),
-(433, 'sitemap::_load_settings', 54),
 (434, 'sitemap::update_settings', 54),
-(435, 'sitemap::display_tpl', 54),
-(436, 'sitemap::fetch_tpl', 54),
-(437, 'sitemap::render', 54),
 (438, 'social_servises::__construct', 55),
 (439, 'social_servises::index', 55),
 (440, 'social_servises::update_settings', 55),
-(441, 'social_servises::get_fsettings', 55),
-(442, 'social_servises::get_vsettings', 55),
-(443, 'social_servises::_get_templates', 55),
-(444, 'social_servises::render', 55),
 (445, 'template_editor::index', 56),
-(446, 'template_editor::render', 56),
 (447, 'trash::__construct', 57),
 (448, 'trash::index', 57),
 (449, 'trash::create_trash', 57),
@@ -8528,43 +8312,26 @@ INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`) VALUES
 (451, 'trash::delete_trash', 57),
 (452, 'user_manager::__construct', 58),
 (453, 'user_manager::index', 58),
-(454, 'user_manager::set_tpl_roles', 58),
-(455, 'user_manager::getRolesTable', 58),
 (456, 'user_manager::genre_user_table', 58),
-(457, 'user_manager::auto_complit', 58),
 (458, 'user_manager::create_user', 58),
-(459, 'user_manager::actions', 58),
 (460, 'user_manager::search', 58),
 (461, 'user_manager::edit_user', 58),
 (462, 'user_manager::update_user', 58),
-(463, 'user_manager::groups_index', 58),
-(464, 'user_manager::create', 58),
-(465, 'user_manager::edit', 58),
-(466, 'user_manager::save', 58),
-(467, 'user_manager::delete', 58),
 (468, 'user_manager::deleteAll', 58),
-(469, 'user_manager::update_role_perms', 58),
-(470, 'user_manager::show_edit_prems_tpl', 58),
-(471, 'user_manager::get_permissions_table', 58),
-(472, 'user_manager::get_group_names', 58),
 (473, 'Widgets_manager::__construct', 59),
 (474, 'Widgets_manager::index', 59),
 (475, 'Widgets_manager::create', 59),
 (476, 'Widgets_manager::create_tpl', 59),
-(477, 'Widgets_manager::edit', 59),
 (478, 'Widgets_manager::update_widget', 59),
 (479, 'Widgets_manager::update_config', 59),
 (480, 'Widgets_manager::delete', 59),
-(481, 'Widgets_manager::get', 59),
 (482, 'Widgets_manager::edit_html_widget', 59),
-(483, 'Widgets_manager::edit_module_widget', 59),
-(484, 'Widgets_manager::display_create_tpl', 59);
-
+(483, 'Widgets_manager::edit_module_widget', 59);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_rbac_privileges_i18n`
+-- Структура таблицы `shop_rbac_privileges_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_rbac_privileges_i18n` (
@@ -8576,210 +8343,11 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_privileges_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_rbac_privileges_i18n`
+-- Дамп данных таблицы `shop_rbac_privileges_i18n`
 --
 
 INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`) VALUES
 (473, 'Управление виджетами', 'Доступ к управлению виджетами', 'ru'),
-(1, 'Список баннеров', 'Доступ к списку баннеров', 'ru'),
-(2, 'Создание баннера', 'Доступ к созданию баннера', 'ru'),
-(3, 'Редактирование баннера', 'Доступ к редактированию баннера', 'ru'),
-(4, 'Удаление баннера', 'Доступ к удалению баннера', 'ru'),
-(5, 'Перевод баннера', 'Доступ к переводу баннера', 'ru'),
-(6, 'Активность баннера', 'Управление активностью баннера', 'ru'),
-(7, 'Список брендов', 'Доступ к списку брендов', 'ru'),
-(8, 'Создание бренда', 'Доступ к созданию бренда', 'ru'),
-(9, 'Редактирование бренда', 'Доступ к редактированию бренда', 'ru'),
-(10, 'Удаление бренда', 'Доступ к удалению бренда', 'ru'),
-(11, 'Список брендов', 'Доступ к списку брендов', 'ru'),
-(12, 'Перевод бренда', 'Доступ к переводу бренда', 'ru'),
-(13, 'Список колбеков', 'Доступ к просмотру колбеков', 'ru'),
-(14, 'Редактирование колбека', 'Доступ к редактированию колбеков', 'ru'),
-(15, 'Статусы колбеков', 'Просмотр статусов колбеков', 'ru'),
-(16, 'Создание статуса колбеков', 'Доступ к созданию статусов колбеков', 'ru'),
-(17, 'Редактирование статуса колбека', 'Доступ к редактированию статуса колбека', 'ru'),
-(18, 'Установка статуса колбека по-умолчанию', 'Доступ к установке статуса колбека по-умолчанию', 'ru'),
-(19, 'Изменение статуса колбека', 'Доступ к изменению статуса колбека', 'ru'),
-(20, 'Смена порядка статусов колбеков', 'Доступ к изменению порядка статусов колбеков', 'ru'),
-(21, 'Изменение темы колбека', 'Доступ к изменению статуса колбека', 'ru'),
-(22, 'Удаление колбека', 'Доступ к удалению колбека', 'ru'),
-(23, 'Удаление статуса', 'Доступ к удалению статуса колбека', 'ru'),
-(24, 'Просмотр тем колбеков', 'Доступ к просмотру тем колбеков', 'ru'),
-(25, 'Создание тем колбеков', 'Доступ к созданию тем колбеков', 'ru'),
-(26, 'Редактирование темы колбека', 'Доступ к редактированию темы колбека', 'ru'),
-(27, 'Удаление темы колбека', 'Доступ к удалению темы колбека', 'ru'),
-(28, 'Поиск колбеков', 'Доступ к поиску колбеков', 'ru'),
-(29, 'Просмотр категорий магазина', 'Доступ к просмотру категорий магазина', 'ru'),
-(30, 'Создание категории магазина', 'Доступ к созданию категории магазина', 'ru'),
-(31, 'Редактирование категории магазина', 'Доступ к редактированию категории магазина', 'ru'),
-(32, 'Удаление категории магазина', 'Доступ к удалению категории магазина', 'ru'),
-(33, 'Просмотр списка категорий магазина', 'Доступ к просмотру списка категорий магазина', 'ru'),
-(34, 'Изменение порядка категорий магазина', 'Доступ к изменению порядка категорий магазина', 'ru'),
-(35, 'Транслитерация строки', 'Доступ к транслитерации строки', 'ru'),
-(36, 'Перевод категории магазина', 'Доступ к переводу категории магазина', 'ru'),
-(37, 'Смена активности категории магазина', 'Доступ к изменению активности категории магазина', 'ru'),
-(38, 'Создание шаблона категории', 'Доступ к созданию шаблона категории магазина', 'ru'),
-(39, 'Список доступных шаблонов для категорий магаз', 'Доступ к списку доступных шаблонов для категорий магазина', 'ru'),
-(40, 'Просмотр статистики заказов', 'Доступ к просмотру статистики заказов', 'ru'),
-(41, 'Фильтр заказов по дате', 'Доступ к фильтру заказов по дате', 'ru'),
-(42, 'ShopAdminCharts::_createDatesDropDown', '', 'ru'),
-(43, 'Просмотр списка накопительных скидок', 'Доступ к просмотру списка накопительных скидок', 'ru'),
-(44, 'Создание накопительной скидки', 'Доступ к созданию накопительной скидки', 'ru'),
-(45, 'Редактирование накопительной скидки', 'Доступ к редактированию накопительной скидки', 'ru'),
-(46, 'Просмотр списка пользовательских скидок', 'Доступ к просмотру списка пользовательских скидок', 'ru'),
-(47, 'Просмотр скидки пользователя', 'Доступ к просмотру скидки пользователя', 'ru'),
-(48, 'Удаление всех скидок', 'Доступ к удалению всех скидок', 'ru'),
-(49, 'Смена статуса скидки', 'Доступ к смене статуса скидки', 'ru'),
-(50, 'Просмотр списка валют', 'Доступ к просмотру списка валют', 'ru'),
-(51, 'Создание валюты', 'Доступ к созданию валюты', 'ru'),
-(52, 'Редактирование валюты', 'Доступ к редактированию валюты', 'ru'),
-(53, 'Установка валюты по-умолчанию', 'Доступ к установке валюты по-умолчанию', 'ru'),
-(54, 'Установка главной валюты', 'Доступ к установке главной валюты', 'ru'),
-(55, 'Удаление валюты', 'Доступ к удалению валюты', 'ru'),
-(56, 'Пересчет цен', 'Доступ к пересчету цен', 'ru'),
-(57, 'Проверка цен в базе данных', 'Доступ к проверке цен в базе данных и их исправление', 'ru'),
-(58, 'Просмотр списка дополнительных полей для мага', 'Доступ к просмотру списка дополнительных полей магазина', 'ru'),
-(59, 'Создание дополнительного поля для магазина', 'Доступ к созданию дополнительного поля для магазина', 'ru'),
-(60, 'Редактирование дополнительного поля для магаз', 'Доступ к редактированию дополнительного поля для магазина', 'ru'),
-(61, 'Удаление всех дополнительных полей для магази', 'Доступ к удалению всех дополнительных полей для магазина', 'ru'),
-(62, 'Смена активности дополнительного поля для маг', 'Доступ к смене активности дополнительного поля для магазина', 'ru'),
-(63, 'Смена приватности дополнительного полю', 'Доступ к изменению приватности дополнительного поля', 'ru'),
-(64, 'Смена необходимости дополнительного поля для ', 'Доступ к изменению необходимости дополнительного поля для магазина', 'ru'),
-(65, 'Просмотр дашборда админ панели магазина', 'Доступ к просмотру дашборда админ панели магазина', 'ru'),
-(66, 'Просмотр списка способов доставки', 'Доступ к просмотру списка способов доставки', 'ru'),
-(67, 'Создание способа доставки', 'Доступ к созданию способа доставки', 'ru'),
-(68, 'Смена статуса способа доставки', 'Доступ к смене статуса способа доставки', 'ru'),
-(69, 'Редактирование способа доставки', 'Доступ к редактированию способа доставки', 'ru'),
-(70, 'Удаление способа доставки', 'Доступ к удалению способа доставки', 'ru'),
-(71, 'ShopAdminDeliverymethods::c_list', '', 'ru'),
-(72, 'Просмотр списка постоянных скидок', 'Доступ к просмотру списка постоянных скидок', 'ru'),
-(73, 'Создание постоянной скидки', 'Доступ к созданию постоянной скидки', 'ru'),
-(74, 'Смена статуса постоянной скидки', 'Доступ к смене статуса постоянной скидки', 'ru'),
-(75, 'Редактирование постоянной скидки', 'Доступ к редактированию постоянной скидки', 'ru'),
-(76, 'Удаление постоянной скидки', 'Доступ к удалению постоянной скидки', 'ru'),
-(77, 'Просмотр списка подарочных сертификатов', 'Доступ к просмотру списка подарочных сертификатов', 'ru'),
-(78, 'Создание подарочного сертификата', 'Доступ к созданию подарочного сертификата', 'ru'),
-(79, 'Создание кода для подарочного сертификата', 'Доступ к соданию кода для подарочного сертификата', 'ru'),
-(80, 'Удаление подарочного сертификата', 'Доступ к удалению подарочного сертификата', 'ru'),
-(81, 'Редактирование подарочного сертификата', 'Доступ к редактированию подарочного сертификата', 'ru'),
-(82, 'Смена активности подарочного сертификата', 'Доступ к смене активности подарочного сертификата', 'ru'),
-(83, 'Настройки подарочных сертификатов', 'Доступ к настройкам подарочных сертификатов', 'ru'),
-(84, 'Сохранение настроек подарочных сертификатов', 'Доступ к сохранению настроек подарочных сертификатов', 'ru'),
-(85, 'Просмотр списка наборов товаров', 'Доступ к просмотру списка наборов товаров', 'ru'),
-(86, 'Создание набора товаров', 'Доступ к созданию набора товаров', 'ru'),
-(87, 'Редактирование набора товаров', 'Доступ к редактированию набора товаров', 'ru'),
-(88, 'Смена порядка наборов товаров', 'Доступ к смене порядка наборо товаров', 'ru'),
-(89, 'Смена активности набора товаров', 'Доступ к смене активности набора товаров', 'ru'),
-(90, 'ShopAdminKits::kit_list', '', 'ru'),
-(91, 'Удаление набора товаров', 'Доступ к удалению набора товаров', 'ru'),
-(92, 'Получение списка товаров', 'Доступ к получению списка товаров', 'ru'),
-(93, 'Просмотр списка уведовлений', 'Доступ к просмотру списка уведомлений', 'ru'),
-(94, 'Редактирование уведомления', 'Доступ к редактированию уведомления', 'ru'),
-(95, 'Смена статуса уведомления', 'Доступ к смене статуса уведомления', 'ru'),
-(96, 'Уведомление по почте', 'Доступ к уведомлению по почте', 'ru'),
-(97, 'Удаление уведомления', 'Доступ к удалению уведомления', 'ru'),
-(98, 'Удаление уведомления', 'Доступ к удалению уведомления', 'ru'),
-(99, 'Смена статуса уведомления', 'Доступ к смене статуса уведомления', 'ru'),
-(100, 'Поиск уведомления', 'Доступ к поиску уведомления', 'ru'),
-(101, 'Поиск новых событий', 'Доступ к поиску новых событий', 'ru'),
-(102, 'Просмотр статусов уведомлений', 'Доступ к просмотру статусов уведомлений', 'ru'),
-(103, 'Создание статуса уведомления', 'Доступ к созданию статуса уведомления', 'ru'),
-(104, 'Редактирование статуса уведомления', 'Доступ к редактированию статуса увдеомления', 'ru'),
-(105, 'Удаление статуса уведомления', 'Доступ к удалению статуса уведомления', 'ru'),
-(106, 'Смена порядка статусов уведомлений', 'Доступ к смене порядка статусов уведомлений', 'ru'),
-(107, 'Просмотр списка заказов', 'Доступ к просмотру списка заказов', 'ru'),
-(108, 'Редактирование заказа', 'Доступ к редактированию заказа', 'ru'),
-(109, 'Смена статуса заказа', 'Доступ к смене статуса заказа', 'ru'),
-(110, 'Смена статуса оплаты заказа', 'Доступ к смене  статуса оплаты заказа', 'ru'),
-(111, 'Удаление заказа', 'Доступ к удалению статуса заказа', 'ru'),
-(112, 'Удаление статуса заказа', 'Доступ к удалению статуса заказа', 'ru'),
-(113, 'Смена статусов заказов', 'Доступ к смене статусов заказов', 'ru'),
-(114, 'Смена статуса оплаты заказов', 'Доступ к смене статусов оплаты заказов', 'ru'),
-(115, 'Отображение окна редактирования', 'Доступ к окну редактирования', 'ru'),
-(116, 'Окно редактирования набора товаров', 'Доступ к окну редактирования набора товаров', 'ru'),
-(117, 'Окно добавления товара к заказу', 'Доступ к окну добавления товаров к заказу', 'ru'),
-(118, 'Удаление товара из заказа', 'Доступ к удалению товара из заказа', 'ru'),
-(119, 'Получение списка товаров', 'Доступ к получению списка товаров', 'ru'),
-(120, 'Редактирование товара в заказе', 'Доступ к редактированию товара в заказе', 'ru'),
-(121, 'Добавление товара к заказу', 'Доступ к добавлению товара к заказу', 'ru'),
-(122, 'Получение списка товаров в заказе', 'Доступ к получению списка товаров в заказе', 'ru'),
-(123, 'Поиск заказа', 'Доступ к поиску заказа', 'ru'),
-(124, 'Создание чеков', 'Доступ созданию чека', 'ru'),
-(125, 'Создание pdf чека', 'Доступ созданию pdf чека', 'ru'),
-(126, 'Создание чека', 'Доступ к созданию чека', 'ru'),
-(127, 'Создание заказа', 'Доступ к созданию заказа', 'ru'),
-(128, 'Просмотр списка статусов заказов', 'Доступ к просмотру списка статусов заказов', 'ru'),
-(129, 'Создание статуса заказа', 'Доступ к созданию статуса заказа', 'ru'),
-(130, 'Редактирование статуса заказа', 'Доступ к редактированию статуса заказа', 'ru'),
-(131, 'Удаление статуса заказа', 'Доступ к удалению статуса заказа', 'ru'),
-(132, 'Отображение окна удаления', 'Доступ к отображению окна удаления', 'ru'),
-(133, 'Смена порядка статусов заказов', 'Доступ к смене порядка статусов заказов', 'ru'),
-(134, 'Просмотр списка методов оплаты', 'Доступ к просмотру списка методов оплаты', 'ru'),
-(135, 'Создание метода оплаты', 'Доступ к созданию метода оплаты', 'ru'),
-(136, 'Смена статуса способа оплаты', 'Доступ к смене статуса способа оплаты', 'ru'),
-(137, 'Редактирование способа оплаты', 'Доступ к редактированию способа оплаты', 'ru'),
-(138, 'Удаление способа оплаты', 'Доступ к удалению способа оплаты', 'ru'),
-(139, 'Смена порядка способов оплаты', 'Доступ к смене порядка способов оплаты', 'ru'),
-(140, 'Отображение настроек способа оплаты', 'Доступ к отображению настроек способа оплаты', 'ru'),
-(141, 'ShopAdminProducts::index', '', 'ru'),
-(142, 'Создание продукта', 'Доступ к созданию продукта', 'ru'),
-(143, 'Редактирование товара', 'Доступ к редактированию товара', 'ru'),
-(144, 'Сохранение дополнительных изображений', 'Доступ к сохренению дополнительных изображений', 'ru'),
-(145, 'Удаление товара', 'Доступ к удалению товара', 'ru'),
-(146, 'Обработка изображений', 'Доступ к обработке изображений', 'ru'),
-(147, 'Удаление дополнительных изображений', 'Доступ к удалению дополнительных изображений', 'ru'),
-(148, 'Смена активности товара', 'Доступ к смене активности товара', 'ru'),
-(149, 'Смена пункта "Хит" для товара', 'Доступ к смене пункта "Хит" для товара', 'ru'),
-(150, 'Смена пункта "Новинка" для товара', 'Доступ к смене пункта "Новинка" для товара', 'ru'),
-(151, 'Смена пункта "Акция" для товара', 'Доступ к смене пункта "Акция" для товара', 'ru'),
-(152, 'Обновление цены', 'Доступ к обновлению цены товара', 'ru'),
-(153, 'Копирование товаров', 'Доступ к копированию товаров', 'ru'),
-(154, 'Удаление товаров', 'Доступ к удалению товаров', 'ru'),
-(155, 'Просмотр окна перемещения товаров', 'Доступ к окну перемещения товаров', 'ru'),
-(156, 'Перемещение товаров', 'Доступ к перемещению товаров', 'ru'),
-(157, 'Перевод товара', 'Доступ к переводу товара', 'ru'),
-(158, 'Получение списка id товаров', 'Доступ к получению списка id товаров', 'ru'),
-(159, 'Переключение товаров', 'Доступ к переключению товаров', 'ru'),
-(160, 'Просмотр списка слежения', 'Доступ к просмотру списка слежения', 'ru'),
-(161, 'Удаления слежения', 'Доступ к удалению слежения', 'ru'),
-(162, 'Настройки слежения за товарами', 'Доступ к настройкам слежения за товаром', 'ru'),
-(163, 'Просмотр списка свойств', 'Доступ к просмотру списка свойств', 'ru'),
-(164, 'Создание свойства товара', 'Доступ к созданию свойства товара', 'ru'),
-(165, 'Редактирование свойства товара', 'Доступ к редактированию свойства товара', 'ru'),
-(166, 'ShopAdminProperties::renderForm', '', 'ru'),
-(167, 'Смена порядка свойств', 'Доступ к смене порядка свойств', 'ru'),
-(168, 'Удаление свойств', 'Доступ к удалению свойств', 'ru'),
-(169, 'Смена активности свойства', 'Доступ к смене активности свойства', 'ru'),
-(180, 'ShopAdminRbac::group_create', '', 'ru'),
-(181, 'ShopAdminRbac::group_edit', '', 'ru'),
-(182, 'ShopAdminRbac::group_list', '', 'ru'),
-(183, 'ShopAdminRbac::group_delete', '', 'ru'),
-(184, 'Просмотр списка товаров', 'Доступ к просмотру списка товаров', 'ru'),
-(185, 'Смена порядка вариантов товаров', 'Доступ к смене порядка вариантов товаров', 'ru'),
-(186, 'Автодополнение к поиску', 'Доступ к автодополнению к поиску', 'ru'),
-(187, 'Продвинутый поиск', 'Доступ к продвинутому поиску', 'ru'),
-(188, 'ShopAdminSearch::renderCustomFields', '', 'ru'),
-(189, 'Свойства магазина', 'Доступ к свойствам магазина', 'ru'),
-(190, 'Изменение свойств магазина', 'Доступ к изменению свойств магазина', 'ru'),
-(191, 'Получение настроек для интеграции с фейсбуком', 'Доступ к настройкам интеграции с фейсбуком', 'ru'),
-(192, 'Получение настроек интеграции с вк', 'Доступ к настройкам интеграции с вк', 'ru'),
-(193, 'Получение списка шаблонов', 'Доступ к получению списка шаблонов', 'ru'),
-(194, 'Загрузка настроек', 'Доступ к загрузке настроек', 'ru'),
-(195, 'Запуск ресайза изображений', 'Доступ к запуску ресайза изображений', 'ru'),
-(196, 'Импорт товаров', 'Доступ к импорту товаров', 'ru'),
-(197, 'Экспорт товаров', 'Доступ к экспорту товаров', 'ru'),
-(198, 'Получение атрибутов', 'Доступ к получению атрибутов', 'ru'),
-(199, 'Экспорт пользователей', 'Доступ к экспорту пользователей', 'ru'),
-(200, 'Просмотр списка пользователей', 'Доступ к просмотру списка пользователей', 'ru'),
-(201, 'Поиск пользователей', 'Доступ к поиску пользователей', 'ru'),
-(202, 'Создание пользователя', 'Доступ к созданию пользователя', 'ru'),
-(203, 'Редактирование пользователя', 'Доступ к редактированию пользователя', 'ru'),
-(204, 'Удаление пользователя', 'Доступ к удалению пользователя', 'ru'),
-(205, 'Автодополнение списка пользователей', 'Достпу к автодополнению списка пользователей', 'ru'),
-(206, 'Просмотр списка складов', 'Доступ к просмотру списка складов', 'ru'),
-(207, 'Создание склада', 'Доступ к созданию склада', 'ru'),
-(208, 'Редактирование склада', 'Доступ к редактированию склада', 'ru'),
-(209, 'Удаление склада', 'Доступ к удалению склада', 'ru'),
 (210, 'Доступ к админ панели', 'Доступ к админ панели', 'ru'),
 (211, 'Инициализация настроек', 'Доступ к инициализации настроек', 'ru'),
 (212, 'Просмотр дашборда базовой админки', 'Доступ к просмотру дашборда базовой админки', 'ru'),
@@ -8787,17 +8355,14 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 (214, 'Очистка кеша', 'Доступ к очистке кеша', 'ru'),
 (215, 'Инициализация elfinder', 'Доступ к инициализации elfinder', 'ru'),
 (216, 'Получение защитного токена', 'Доступ к получению токена', 'ru'),
-(217, 'Admin::sidebar_cats', '', 'ru'),
 (218, 'Выход с админки', 'Доступ к выходу с админки', 'ru'),
 (219, 'Сообщить о ошибке', 'Доступ к сообщению о ошибке', 'ru'),
 (220, 'История событий', 'Доступ к истории событий', 'ru'),
 (221, 'Просмотр истории событий', 'Доступ к просмотру истории событий', 'ru'),
 (222, 'Поиск в базовой версии', 'Доступ к поиску в базовой версии', 'ru'),
-(223, 'Admin_search::index', '', 'ru'),
 (224, 'Продвинутый поиск в базовой версии', 'Доступ к продвинутому поиску в базовой версии', 'ru'),
 (225, 'Произвести поиск в базовой версии', 'Произвести поиск в базовой версии', 'ru'),
 (226, 'Валидация поиска в базовой версии', 'Доступ к валидации поиска в базовой версии', 'ru'),
-(227, 'Admin_search::form_from_group', '', 'ru'),
 (228, 'Фильтрация страниц', 'Доступ к фильтрации страниц', 'ru'),
 (229, 'Автодополнение поиска', 'Доступ к автодополнению поиска', 'ru'),
 (230, 'Управление бекапами', 'Доступ к управлению бекапами', 'ru'),
@@ -8809,10 +8374,8 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 (236, 'Управление категориями сайта', 'Доступ к управлению категориями сайта', 'ru'),
 (237, 'Просмотр списка категорий сайта', 'Доступ к просмотру списка категорий сайта', 'ru'),
 (238, 'Отображение формы создания категории', 'Доступ к отображению формы создания категории', 'ru'),
-(239, 'Categories::update_block', '', 'ru'),
 (240, 'Смена порядка категорий сайта', 'Доступ к смене порядка категорий сайта', 'ru'),
 (241, 'Просмотр списка категорий сайта', 'Доступ к просмотру списка категорий сайта', 'ru'),
-(242, 'Categories::sub_cats', '', 'ru'),
 (243, 'Создание категории сайта', 'Доступ к категории сайта', 'ru'),
 (244, 'Обновление урлов', 'Доступ к обновлению урлов', 'ru'),
 (245, 'Проверка сушествования категории сайта', 'Доступ к проверке сушествования категории сайта', 'ru'),
@@ -8858,15 +8421,9 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 (285, 'Восстановление пароля', 'Восстановление пароля', 'ru'),
 (286, 'Обновление капчи', 'Доступ к обновлению капчи', 'ru'),
 (287, 'Проверка капчи', 'Доступ к проверке капчи', 'ru'),
-(288, 'Mod_search::__construct', '', 'ru'),
-(289, 'Mod_search::index', '', 'ru'),
-(290, 'Mod_search::category', '', 'ru'),
-(291, 'Mod_search::display_install_window', '', 'ru'),
-(292, 'Mod_search::connect_ftp', '', 'ru'),
 (293, 'Управление страницами', 'Доступ к управлению страницами', 'ru'),
 (294, 'Просмотр списка страниц', 'Доступ к просмотру списка страниц', 'ru'),
 (295, 'Добавление страницы', 'Доступ к добавлению страницы', 'ru'),
-(296, 'Pages::_set_page_roles', '', 'ru'),
 (297, 'Редактирование страницы', 'Доступ к редактированию страницы', 'ru'),
 (298, 'Обновление страницы', 'Доступ к редактированию страницы', 'ru'),
 (299, 'Удаление страницы', 'Доступ к удалению страницы', 'ru'),
@@ -8883,15 +8440,9 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 (310, 'Управление доступом', 'Управление доступом', 'ru'),
 (311, 'Настройки сайта', 'Доступ к настройкам сайта', 'ru'),
 (312, 'Настройки сайта', 'Доступ к настройкам сайта', 'ru'),
-(313, 'Settings::main_page', '', 'ru'),
 (314, 'Список папок с шаблонами', 'Список папок с шаблонами', 'ru'),
 (315, 'Сохранение настроек', 'Доступ к сохранению настроек сайта', 'ru'),
 (316, 'Переключение языка в админке', 'Доступ к переключению языка в админке', 'ru'),
-(317, 'Settings::save_main', '', 'ru'),
-(318, 'Обновление системы', 'Доступ к обновлению системы', 'ru'),
-(319, 'Обновление системы', 'Доступ к обновлению системы', 'ru'),
-(320, 'Запуск обновления системы', 'Доступ к запуску обновления системы', 'ru'),
-(321, 'Проверка статуса обновления системы', 'Доступ к проверке статуса обновления системы', 'ru'),
 (322, 'Управление дополнительными полями', 'Доступ к управлению дополнительными полями', 'ru'),
 (323, 'Настройки форм', 'Доступ к настройкам форм', 'ru'),
 (324, 'Управление дополнительными полями', 'Доступ к управлению дополнительными полями', 'ru'),
@@ -8902,7 +8453,6 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 (329, 'Создание групы полей', 'Доступ к созданию групы полей', 'ru'),
 (330, 'Редактирование групы полей', 'Доступ к редактированию групы полей', 'ru'),
 (331, 'Удаление групы полей', 'Доступ к удалению групы полей', 'ru'),
-(332, 'cfcm::form_from_category_group', '', 'ru'),
 (333, 'Получение атрибутов формы', 'Доступ к получению атрибутов формы', 'ru'),
 (334, 'Сохранение важности', 'Доступ к сохранению важности', 'ru'),
 (335, 'Отображение поля', 'Доступ к отображению поля', 'ru'),
@@ -8911,7 +8461,6 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 (338, 'Управление комментариями', 'Доступ к управлению комментариями', 'ru'),
 (339, 'Отображения списка комментариев', 'Доступ к отображению списка комментариев', 'ru'),
 (340, 'Обработка подкомментариев', 'Доступ к обработке подкомментариев', 'ru'),
-(341, 'comments::render', '', 'ru'),
 (342, 'Редактирование комментария', 'Доступ к редактированию комментария', 'ru'),
 (343, 'Обновление комментария', 'Доступ к обновлению комментария', 'ru'),
 (344, 'Обновление статуса комментария', 'Доступ к обновлению статуса комментария', 'ru'),
@@ -8956,14 +8505,9 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 (383, 'Управление меню', 'Доступ к управлению меню', 'ru'),
 (384, 'Список меню сайта', 'Доступ к списку меню сайта', 'ru'),
 (385, 'Отображение меню', 'Доступ к отображению меню', 'ru'),
-(386, 'menu::list_menu_items', '', 'ru'),
 (387, 'Создание пункта меню', 'Доступ к созданию пункта меню', 'ru'),
-(388, 'menu::display_selector', '', 'ru'),
-(389, 'menu::get_name_by_id', '', 'ru'),
 (390, 'Удаление пункта меню', 'Доступ к удалению пункта меню', 'ru'),
 (391, 'Редактирование пункта меню', 'Доступ к редактированию пункта меню', 'ru'),
-(392, 'menu::process_root', '', 'ru'),
-(393, 'menu::insert_menu_item', '', 'ru'),
 (394, 'Смена порядка меню', 'Доступ к смене порядка меню', 'ru'),
 (395, 'Создание меню', 'Доступ к созданию меню', 'ru'),
 (396, 'Редактирование меню', 'Доступ к редактированию меню', 'ru'),
@@ -8973,51 +8517,29 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 (400, 'Отображение формы создания меню', 'Доступ к отображению формы создания меню', 'ru'),
 (401, 'Получение списка страниц', 'Доступ к получению списка страниц', 'ru'),
 (402, 'Поиск страниц', 'Доступ к поиску страниц', 'ru'),
-(403, 'menu::get_item', '', 'ru'),
-(404, 'menu::display_tpl', '', 'ru'),
-(405, 'menu::fetch_tpl', '', 'ru'),
 (406, 'Отображение окна перевода пункта меню', 'Доступ к отображению окна перевода пункта меню', 'ru'),
 (407, 'Перевод пункта меню', 'Доступ к переводу пункта меню', 'ru'),
 (408, 'Получение списка языков', 'Доступ к получению списка языков', 'ru'),
-(409, 'menu::render', '', 'ru'),
 (410, 'Смена активности меню', 'Доступ к смене активности меню', 'ru'),
 (411, 'Получение дочерних елементов', 'Доступ к получению дочерних елементов', 'ru'),
 (412, 'Управление rss', 'Управление rss', 'ru'),
 (413, 'Управление rss', 'Управление rss', 'ru'),
-(414, 'rss::render', '', 'ru'),
-(415, 'rss::settings_update', '', 'ru'),
-(416, 'rss::display_tpl', '', 'ru'),
-(417, 'rss::fetch_tpl', '', 'ru'),
 (418, 'Управление шаблонами писем', 'Доступ к управлению шаблонами писем', 'ru'),
 (419, 'Создание шаблона письма', 'Доступ к созданию шаблона письма', 'ru'),
 (420, 'Редактирование шаблона письма', 'Доступ к редактированию шаблона письма', 'ru'),
-(421, 'sample_mail::render', '', 'ru'),
 (422, 'Список шаблонов писем', 'Доступ к списку шаблонов писем', 'ru'),
 (423, 'Удаление шаблона письма', 'Доступ к удалению шаблона письма', 'ru'),
-(424, 'sample_module::__construct', '', 'ru'),
-(425, 'sample_module::index', '', 'ru'),
-(426, 'Управление кнопками соцсетей', 'Доступ к управлению кнопками соцсетей', 'ru');
-INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`) VALUES
+(426, 'Управление кнопками соцсетей', 'Доступ к управлению кнопками соцсетей', 'ru'),
 (427, 'Управление кнопками соцсетей', 'Доступ к управлению кнопками соцсетей', 'ru'),
 (428, 'Обновление настроек модуля кнопок соцсетей', 'Доступ к обновлению настроек модуля кнопок соцсетей', 'ru'),
 (429, 'Получение настроек модуля кнопок соцсетей', 'Доступ к настройкам модуля кнопок соцсетей', 'ru'),
-(430, 'share::render', '', 'ru'),
 (431, 'Управление картой сайта', 'Доступ к управлению картой сайта', 'ru'),
 (432, 'Настройки карты сайта', 'Доступ к настройкам карты сайта', 'ru'),
-(433, 'sitemap::_load_settings', '', 'ru'),
 (434, 'Обновление настроек катры сайта', 'Доступ к обновлению настроек карты сайта', 'ru'),
-(435, 'sitemap::display_tpl', '', 'ru'),
-(436, 'sitemap::fetch_tpl', '', 'ru'),
-(437, 'sitemap::render', '', 'ru'),
 (438, 'Управление интеграцией с соцсетями', 'Доступ к управлению интеграцией с соцсетями', 'ru'),
 (439, 'Настройки модуля интеграции с соцсетями', 'Достпу к настройкам модуля интеграции с соцсетями', 'ru'),
 (440, 'Обновление настроек модуля', 'Доступ к обновлению настроек модуля', 'ru'),
-(441, 'social_servises::get_fsettings', '', 'ru'),
-(442, 'social_servises::get_vsettings', '', 'ru'),
-(443, 'social_servises::_get_templates', '', 'ru'),
-(444, 'social_servises::render', '', 'ru'),
 (445, 'Редактор шаблонов', 'Доступ к редактору шаблонов', 'ru'),
-(446, 'template_editor::render', '', 'ru'),
 (447, 'Управление редиректами с удаленнных товаров', 'Управление редиректами с удаленнных товаров', 'ru'),
 (448, 'Список редиректов', 'Доступ к списку редиректов', 'ru'),
 (449, 'Создание редиректа', 'Доступ к созданию редиректа', 'ru'),
@@ -9025,25 +8547,12 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 (451, 'Удаление редаректа', 'Доступ к удалению редиректа', 'ru'),
 (452, 'Управление пользователями', 'Доступ к управлению пользователями', 'ru'),
 (453, 'Список пользователей', 'Доступ к списку пользователей', 'ru'),
-(454, 'user_manager::set_tpl_roles', '', 'ru'),
-(455, 'user_manager::getRolesTable', '', 'ru'),
 (456, 'Создание списка юзеров', 'Доступ к созданию списка юзеров', 'ru'),
-(457, 'user_manager::auto_complit', '', 'ru'),
 (458, 'Создание юзера', 'Доступ к созданию юзера', 'ru'),
-(459, 'user_manager::actions', '', 'ru'),
 (460, 'Поиск пользователей', 'Доступ к поиску пользователей', 'ru'),
 (461, 'Редактирование юзера', 'Доступ к редактированию юзера', 'ru'),
 (462, 'Обновление информации о пользователе', 'Доступ к обновлению информации о пользователе', 'ru'),
-(463, 'user_manager::groups_index', '', 'ru'),
-(464, 'user_manager::create', '', 'ru'),
-(465, 'user_manager::edit', '', 'ru'),
-(466, 'user_manager::save', '', 'ru'),
-(467, 'user_manager::delete', '', 'ru'),
 (468, 'Удаление пользователя', 'Доступ к удалению пользвателя', 'ru'),
-(469, 'user_manager::update_role_perms', '', 'ru'),
-(470, 'user_manager::show_edit_prems_tpl', '', 'ru'),
-(471, 'user_manager::get_permissions_table', '', 'ru'),
-(472, 'user_manager::get_group_names', '', 'ru'),
 (474, 'Список виджетов', 'Доступ к списку виджетов', 'ru'),
 (475, 'Создание виджета', 'Доступ к созданию виджета', 'ru'),
 (476, 'Отображение формы создания виджета', 'Доступ к отображению формы создания виджета', 'ru'),
@@ -9056,7 +8565,7 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_rbac_roles`
+-- Структура таблицы `shop_rbac_roles`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_rbac_roles` (
@@ -9068,7 +8577,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_roles` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `shop_rbac_roles`
+-- Дамп данных таблицы `shop_rbac_roles`
 --
 
 INSERT INTO `shop_rbac_roles` (`id`, `name`, `importance`) VALUES
@@ -9079,7 +8588,7 @@ INSERT INTO `shop_rbac_roles` (`id`, `name`, `importance`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_rbac_roles_i18n`
+-- Структура таблицы `shop_rbac_roles_i18n`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_rbac_roles_i18n` (
@@ -9091,7 +8600,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_roles_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_rbac_roles_i18n`
+-- Дамп данных таблицы `shop_rbac_roles_i18n`
 --
 
 INSERT INTO `shop_rbac_roles_i18n` (`id`, `alt_name`, `locale`, `description`) VALUES
@@ -9102,7 +8611,7 @@ INSERT INTO `shop_rbac_roles_i18n` (`id`, `alt_name`, `locale`, `description`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_rbac_roles_privileges`
+-- Структура таблицы `shop_rbac_roles_privileges`
 --
 
 CREATE TABLE IF NOT EXISTS `shop_rbac_roles_privileges` (
@@ -9114,219 +8623,10 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_roles_privileges` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=612 ;
 
 --
--- Dumping data for table `shop_rbac_roles_privileges`
+-- Дамп данных таблицы `shop_rbac_roles_privileges`
 --
 
 INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUES
-(1, 1, 1),
-(2, 1, 2),
-(3, 1, 3),
-(4, 1, 4),
-(5, 1, 5),
-(6, 1, 6),
-(7, 1, 7),
-(8, 1, 8),
-(9, 1, 9),
-(10, 1, 10),
-(11, 1, 11),
-(12, 1, 12),
-(13, 1, 13),
-(14, 1, 14),
-(15, 1, 15),
-(16, 1, 16),
-(17, 1, 17),
-(18, 1, 18),
-(19, 1, 19),
-(20, 1, 20),
-(21, 1, 21),
-(22, 1, 22),
-(23, 1, 23),
-(24, 1, 24),
-(25, 1, 25),
-(26, 1, 26),
-(27, 1, 27),
-(28, 1, 28),
-(29, 1, 29),
-(30, 1, 30),
-(31, 1, 31),
-(32, 1, 32),
-(33, 1, 33),
-(34, 1, 34),
-(35, 1, 35),
-(36, 1, 36),
-(37, 1, 37),
-(38, 1, 38),
-(39, 1, 39),
-(40, 1, 40),
-(41, 1, 41),
-(42, 1, 42),
-(43, 1, 43),
-(44, 1, 44),
-(45, 1, 45),
-(46, 1, 46),
-(47, 1, 47),
-(48, 1, 48),
-(49, 1, 49),
-(50, 1, 50),
-(51, 1, 51),
-(52, 1, 52),
-(53, 1, 53),
-(54, 1, 54),
-(55, 1, 55),
-(56, 1, 56),
-(57, 1, 57),
-(58, 1, 58),
-(59, 1, 59),
-(60, 1, 60),
-(61, 1, 61),
-(62, 1, 62),
-(63, 1, 63),
-(64, 1, 64),
-(65, 1, 65),
-(66, 1, 66),
-(67, 1, 67),
-(68, 1, 68),
-(69, 1, 69),
-(70, 1, 70),
-(71, 1, 71),
-(72, 1, 72),
-(73, 1, 73),
-(74, 1, 74),
-(75, 1, 75),
-(76, 1, 76),
-(77, 1, 77),
-(78, 1, 78),
-(79, 1, 79),
-(80, 1, 80),
-(81, 1, 81),
-(82, 1, 82),
-(83, 1, 83),
-(84, 1, 84),
-(85, 1, 85),
-(86, 1, 86),
-(87, 1, 87),
-(88, 1, 88),
-(89, 1, 89),
-(90, 1, 90),
-(91, 1, 91),
-(92, 1, 92),
-(93, 1, 93),
-(94, 1, 94),
-(95, 1, 95),
-(96, 1, 96),
-(97, 1, 97),
-(98, 1, 98),
-(99, 1, 99),
-(100, 1, 100),
-(101, 1, 101),
-(102, 1, 102),
-(103, 1, 103),
-(104, 1, 104),
-(105, 1, 105),
-(106, 1, 106),
-(107, 1, 107),
-(108, 1, 108),
-(109, 1, 109),
-(110, 1, 110),
-(111, 1, 111),
-(112, 1, 112),
-(113, 1, 113),
-(114, 1, 114),
-(115, 1, 115),
-(116, 1, 116),
-(117, 1, 117),
-(118, 1, 118),
-(119, 1, 119),
-(120, 1, 120),
-(121, 1, 121),
-(122, 1, 122),
-(123, 1, 123),
-(124, 1, 124),
-(125, 1, 125),
-(126, 1, 126),
-(127, 1, 127),
-(128, 1, 128),
-(129, 1, 129),
-(130, 1, 130),
-(131, 1, 131),
-(132, 1, 132),
-(133, 1, 133),
-(134, 1, 134),
-(135, 1, 135),
-(136, 1, 136),
-(137, 1, 137),
-(138, 1, 138),
-(139, 1, 139),
-(140, 1, 140),
-(141, 1, 141),
-(142, 1, 142),
-(143, 1, 143),
-(144, 1, 144),
-(145, 1, 145),
-(146, 1, 146),
-(147, 1, 147),
-(148, 1, 148),
-(149, 1, 149),
-(150, 1, 150),
-(151, 1, 151),
-(152, 1, 152),
-(153, 1, 153),
-(154, 1, 154),
-(155, 1, 155),
-(156, 1, 156),
-(157, 1, 157),
-(158, 1, 158),
-(159, 1, 159),
-(160, 1, 160),
-(161, 1, 161),
-(162, 1, 162),
-(163, 1, 163),
-(164, 1, 164),
-(165, 1, 165),
-(166, 1, 166),
-(167, 1, 167),
-(168, 1, 168),
-(169, 1, 169),
-(170, 1, 170),
-(171, 1, 171),
-(172, 1, 172),
-(173, 1, 173),
-(174, 1, 174),
-(175, 1, 175),
-(176, 1, 176),
-(177, 1, 177),
-(178, 1, 178),
-(179, 1, 179),
-(180, 1, 180),
-(181, 1, 181),
-(182, 1, 182),
-(183, 1, 183),
-(184, 1, 184),
-(185, 1, 185),
-(186, 1, 186),
-(187, 1, 187),
-(188, 1, 188),
-(189, 1, 189),
-(190, 1, 190),
-(191, 1, 191),
-(192, 1, 192),
-(193, 1, 193),
-(194, 1, 194),
-(195, 1, 195),
-(196, 1, 196),
-(197, 1, 197),
-(198, 1, 198),
-(199, 1, 199),
-(200, 1, 200),
-(201, 1, 201),
-(202, 1, 202),
-(203, 1, 203),
-(204, 1, 204),
-(205, 1, 205),
-(206, 1, 206),
-(207, 1, 207),
-(208, 1, 208),
-(209, 1, 209),
 (210, 1, 210),
 (211, 1, 211),
 (212, 1, 212),
@@ -9334,17 +8634,14 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (214, 1, 214),
 (215, 1, 215),
 (216, 1, 216),
-(217, 1, 217),
 (218, 1, 218),
 (219, 1, 219),
 (220, 1, 220),
 (221, 1, 221),
 (222, 1, 222),
-(223, 1, 223),
 (224, 1, 224),
 (225, 1, 225),
 (226, 1, 226),
-(227, 1, 227),
 (228, 1, 228),
 (229, 1, 229),
 (230, 1, 230),
@@ -9356,10 +8653,8 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (236, 1, 236),
 (237, 1, 237),
 (238, 1, 238),
-(239, 1, 239),
 (240, 1, 240),
 (241, 1, 241),
-(242, 1, 242),
 (243, 1, 243),
 (244, 1, 244),
 (245, 1, 245),
@@ -9405,15 +8700,9 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (285, 1, 285),
 (286, 1, 286),
 (287, 1, 287),
-(288, 1, 288),
-(289, 1, 289),
-(290, 1, 290),
-(291, 1, 291),
-(292, 1, 292),
 (293, 1, 293),
 (294, 1, 294),
 (295, 1, 295),
-(296, 1, 296),
 (297, 1, 297),
 (298, 1, 298),
 (299, 1, 299),
@@ -9430,15 +8719,9 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (310, 1, 310),
 (311, 1, 311),
 (312, 1, 312),
-(313, 1, 313),
 (314, 1, 314),
 (315, 1, 315),
 (316, 1, 316),
-(317, 1, 317),
-(318, 1, 318),
-(319, 1, 319),
-(320, 1, 320),
-(321, 1, 321),
 (322, 1, 322),
 (323, 1, 323),
 (324, 1, 324),
@@ -9449,7 +8732,6 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (329, 1, 329),
 (330, 1, 330),
 (331, 1, 331),
-(332, 1, 332),
 (333, 1, 333),
 (334, 1, 334),
 (335, 1, 335),
@@ -9458,7 +8740,6 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (338, 1, 338),
 (339, 1, 339),
 (340, 1, 340),
-(341, 1, 341),
 (342, 1, 342),
 (343, 1, 343),
 (344, 1, 344),
@@ -9503,14 +8784,9 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (383, 1, 383),
 (384, 1, 384),
 (385, 1, 385),
-(386, 1, 386),
 (387, 1, 387),
-(388, 1, 388),
-(389, 1, 389),
 (390, 1, 390),
 (391, 1, 391),
-(392, 1, 392),
-(393, 1, 393),
 (394, 1, 394),
 (395, 1, 395),
 (396, 1, 396),
@@ -9520,50 +8796,29 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (400, 1, 400),
 (401, 1, 401),
 (402, 1, 402),
-(403, 1, 403),
-(404, 1, 404),
-(405, 1, 405),
 (406, 1, 406),
 (407, 1, 407),
 (408, 1, 408),
-(409, 1, 409),
 (410, 1, 410),
 (411, 1, 411),
 (412, 1, 412),
 (413, 1, 413),
-(414, 1, 414),
-(415, 1, 415),
-(416, 1, 416),
-(417, 1, 417),
 (418, 1, 418),
 (419, 1, 419),
 (420, 1, 420),
-(421, 1, 421),
 (422, 1, 422),
 (423, 1, 423),
-(424, 1, 424),
-(425, 1, 425),
 (426, 1, 426),
 (427, 1, 427),
 (428, 1, 428),
 (429, 1, 429),
-(430, 1, 430),
 (431, 1, 431),
 (432, 1, 432),
-(433, 1, 433),
 (434, 1, 434),
-(435, 1, 435),
-(436, 1, 436),
-(437, 1, 437),
 (438, 1, 438),
 (439, 1, 439),
 (440, 1, 440),
-(441, 1, 441),
-(442, 1, 442),
-(443, 1, 443),
-(444, 1, 444),
 (445, 1, 445),
-(446, 1, 446),
 (447, 1, 447),
 (448, 1, 448),
 (449, 1, 449),
@@ -9571,25 +8826,12 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (451, 1, 451),
 (452, 1, 452),
 (453, 1, 453),
-(454, 1, 454),
-(455, 1, 455),
 (456, 1, 456),
-(457, 1, 457),
 (458, 1, 458),
-(459, 1, 459),
 (460, 1, 460),
 (461, 1, 461),
 (462, 1, 462),
-(463, 1, 463),
-(464, 1, 464),
-(465, 1, 465),
-(466, 1, 466),
-(467, 1, 467),
 (468, 1, 468),
-(469, 1, 469),
-(470, 1, 470),
-(471, 1, 471),
-(472, 1, 472),
 (473, 1, 473),
 (474, 1, 474),
 (475, 1, 475),
@@ -9602,33 +8844,6 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (482, 1, 482),
 (483, 1, 483),
 (484, 1, 484),
-(485, 2, 200),
-(486, 2, 201),
-(487, 2, 202),
-(488, 2, 203),
-(489, 2, 204),
-(490, 2, 205),
-(491, 2, 107),
-(492, 2, 108),
-(493, 2, 109),
-(494, 2, 110),
-(495, 2, 111),
-(496, 2, 112),
-(497, 2, 113),
-(498, 2, 114),
-(499, 2, 115),
-(500, 2, 116),
-(501, 2, 117),
-(502, 2, 118),
-(503, 2, 119),
-(504, 2, 120),
-(505, 2, 121),
-(506, 2, 122),
-(507, 2, 123),
-(508, 2, 124),
-(509, 2, 125),
-(510, 2, 126),
-(511, 2, 127),
 (512, 2, 281),
 (513, 2, 282),
 (514, 2, 283),
@@ -9643,73 +8858,8 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (523, 2, 214),
 (524, 2, 215),
 (525, 2, 216),
-(526, 2, 217),
 (527, 2, 218),
 (528, 2, 219),
-(529, 2, 65),
-(530, 3, 65),
-(531, 3, 184),
-(532, 3, 185),
-(533, 3, 186),
-(534, 3, 187),
-(535, 3, 188),
-(536, 3, 1),
-(537, 3, 2),
-(538, 3, 3),
-(539, 3, 4),
-(540, 3, 5),
-(541, 3, 6),
-(542, 3, 7),
-(543, 3, 8),
-(544, 3, 9),
-(545, 3, 10),
-(546, 3, 11),
-(547, 3, 12),
-(548, 3, 163),
-(549, 3, 164),
-(550, 3, 165),
-(551, 3, 166),
-(552, 3, 167),
-(553, 3, 168),
-(554, 3, 169),
-(555, 3, 85),
-(556, 3, 86),
-(557, 3, 87),
-(558, 3, 88),
-(559, 3, 89),
-(560, 3, 90),
-(561, 3, 91),
-(562, 3, 92),
-(563, 3, 29),
-(564, 3, 30),
-(565, 3, 31),
-(566, 3, 32),
-(567, 3, 33),
-(568, 3, 34),
-(569, 3, 35),
-(570, 3, 36),
-(571, 3, 37),
-(572, 3, 38),
-(573, 3, 39),
-(574, 3, 141),
-(575, 3, 142),
-(576, 3, 143),
-(577, 3, 144),
-(578, 3, 145),
-(579, 3, 146),
-(580, 3, 147),
-(581, 3, 148),
-(582, 3, 149),
-(583, 3, 150),
-(584, 3, 151),
-(585, 3, 152),
-(586, 3, 153),
-(587, 3, 154),
-(588, 3, 155),
-(589, 3, 156),
-(590, 3, 157),
-(591, 3, 158),
-(592, 3, 159),
 (593, 3, 271),
 (594, 3, 272),
 (595, 3, 281),
@@ -9726,16 +8876,13 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (606, 3, 214),
 (607, 3, 215),
 (608, 3, 216),
-(609, 3, 217),
 (610, 3, 218),
 (611, 3, 219);
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `shop_settings`
---
 
+DROP TABLE IF EXISTS `shop_settings`;
 CREATE TABLE IF NOT EXISTS `shop_settings` (
   `name` varchar(255) NOT NULL,
   `value` text,
@@ -9744,7 +8891,7 @@ CREATE TABLE IF NOT EXISTS `shop_settings` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `shop_settings`
+-- Дамп данных таблицы `shop_settings`
 --
 
 INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
@@ -9800,7 +8947,7 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 ('userInfoSenderName', '', ''),
 ('userInfoMessageTheme', '', ''),
 ('topSalesBlockFormulaCoef', '1', ''),
-('pricePrecision', '5', ''),
+('pricePrecision', '2', ''),
 ('smallAddImageWidth', '90', ''),
 ('smallAddImageHeight', '90', ''),
 ('forgotPasswordMessageText', 'Здравствуйте!\n\nНа сайте %webSiteName% создан запрос на восстановление пароля для Вашего аккаунта.\n\nДля завершения процедуры восстановления пароля перейдите по ссылке %resetPasswordUri% \n\nВаш новый пароль для входа: %password%\n\nЕсли это письмо попало к Вам по ошибке просто проигнорируйте его.\n\n\nПри возникновении любых вопросов, обращайтесь по телефонам:  \n(012)  345-67-89 , (012)  345-67-89 \n---\n\nС уважением, \nсотрудники службы продаж %webSiteName%', ''),
@@ -9887,9 +9034,10 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_spy`
+-- Структура таблицы `shop_spy`
 --
 
+DROP TABLE IF EXISTS `shop_spy`;
 CREATE TABLE IF NOT EXISTS `shop_spy` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -9903,7 +9051,7 @@ CREATE TABLE IF NOT EXISTS `shop_spy` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `shop_spy`
+-- Дамп данных таблицы `shop_spy`
 --
 
 INSERT INTO `shop_spy` (`id`, `user_id`, `product_id`, `price`, `variant_id`, `key`, `email`, `old_price`) VALUES
@@ -9912,9 +9060,10 @@ INSERT INTO `shop_spy` (`id`, `user_id`, `product_id`, `price`, `variant_id`, `k
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_warehouse`
+-- Структура таблицы `shop_warehouse`
 --
 
+DROP TABLE IF EXISTS `shop_warehouse`;
 CREATE TABLE IF NOT EXISTS `shop_warehouse` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -9926,7 +9075,7 @@ CREATE TABLE IF NOT EXISTS `shop_warehouse` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `shop_warehouse`
+-- Дамп данных таблицы `shop_warehouse`
 --
 
 INSERT INTO `shop_warehouse` (`id`, `name`, `address`, `phone`, `description`) VALUES
@@ -9936,9 +9085,10 @@ INSERT INTO `shop_warehouse` (`id`, `name`, `address`, `phone`, `description`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shop_warehouse_data`
+-- Структура таблицы `shop_warehouse_data`
 --
 
+DROP TABLE IF EXISTS `shop_warehouse_data`;
 CREATE TABLE IF NOT EXISTS `shop_warehouse_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
@@ -9947,10 +9097,10 @@ CREATE TABLE IF NOT EXISTS `shop_warehouse_data` (
   PRIMARY KEY (`id`),
   KEY `shop_warehouse_data_FI_1` (`product_id`),
   KEY `shop_warehouse_data_FI_2` (`warehouse_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=38 ;
 
 --
--- Dumping data for table `shop_warehouse_data`
+-- Дамп данных таблицы `shop_warehouse_data`
 --
 
 INSERT INTO `shop_warehouse_data` (`id`, `product_id`, `warehouse_id`, `count`) VALUES
@@ -9961,9 +9111,10 @@ INSERT INTO `shop_warehouse_data` (`id`, `product_id`, `warehouse_id`, `count`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `support_comments`
+-- Структура таблицы `support_comments`
 --
 
+DROP TABLE IF EXISTS `support_comments`;
 CREATE TABLE IF NOT EXISTS `support_comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ticket_id` int(11) NOT NULL,
@@ -9976,7 +9127,7 @@ CREATE TABLE IF NOT EXISTS `support_comments` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `support_comments`
+-- Дамп данных таблицы `support_comments`
 --
 
 INSERT INTO `support_comments` (`id`, `ticket_id`, `user_id`, `user_status`, `user_name`, `text`, `date`) VALUES
@@ -9985,9 +9136,10 @@ INSERT INTO `support_comments` (`id`, `ticket_id`, `user_id`, `user_status`, `us
 -- --------------------------------------------------------
 
 --
--- Table structure for table `support_departments`
+-- Структура таблицы `support_departments`
 --
 
+DROP TABLE IF EXISTS `support_departments`;
 CREATE TABLE IF NOT EXISTS `support_departments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
@@ -9995,7 +9147,7 @@ CREATE TABLE IF NOT EXISTS `support_departments` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `support_departments`
+-- Дамп данных таблицы `support_departments`
 --
 
 INSERT INTO `support_departments` (`id`, `name`) VALUES
@@ -10006,9 +9158,10 @@ INSERT INTO `support_departments` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `support_tickets`
+-- Структура таблицы `support_tickets`
 --
 
+DROP TABLE IF EXISTS `support_tickets`;
 CREATE TABLE IF NOT EXISTS `support_tickets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -10024,7 +9177,7 @@ CREATE TABLE IF NOT EXISTS `support_tickets` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `support_tickets`
+-- Дамп данных таблицы `support_tickets`
 --
 
 INSERT INTO `support_tickets` (`id`, `user_id`, `last_comment_author`, `text`, `theme`, `department`, `status`, `priority`, `date`, `updated`) VALUES
@@ -10035,9 +9188,10 @@ INSERT INTO `support_tickets` (`id`, `user_id`, `last_comment_author`, `text`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tags`
+-- Структура таблицы `tags`
 --
 
+DROP TABLE IF EXISTS `tags`;
 CREATE TABLE IF NOT EXISTS `tags` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `value` varchar(255) NOT NULL,
@@ -10048,9 +9202,10 @@ CREATE TABLE IF NOT EXISTS `tags` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Структура таблицы `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) DEFAULT NULL,
@@ -10076,45 +9231,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`),
   KEY `role_id` (`role_id`),
   KEY `users_I_1` (`key`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `role_id`, `username`, `password`, `email`, `banned`, `ban_reason`, `newpass`, `newpass_key`, `newpass_time`, `last_ip`, `last_login`, `created`, `modified`, `address`, `cart_data`, `wish_list_data`, `key`, `amout`, `discount`, `phone`) VALUES
-(1, 1, 'admin', '$6$mrC3adBXpFT7$05G2OTF2S27ONS2ngZ2JsqGAjjpLsWsfgIaxd09hL6saPqsI0cq0a9HOYle7i.RvnHiNZR0cBRDZ3rPHljGI41', 'ad@min.com', 0, NULL, NULL, NULL, NULL, '127.0.0.1', 2013, 2012, '0000-00-00 00:00:00', NULL, 'a:2:{s:16:"SProducts_96_107";a:8:{s:8:"instance";s:9:"SProducts";s:9:"productId";i:96;s:9:"variantId";i:107;s:8:"quantity";i:3;s:5:"price";d:54.609380000000002;s:11:"variantName";s:0:"";s:14:"delivery_price";s:6:"400.00";s:18:"delivery_free_from";s:6:"500.00";}s:17:"SProducts_196_225";a:8:{s:8:"instance";s:9:"SProducts";s:9:"productId";i:196;s:9:"variantId";i:225;s:8:"quantity";i:1;s:5:"price";d:750;s:11:"variantName";s:0:"";s:14:"delivery_price";s:6:"400.00";s:18:"delivery_free_from";s:6:"500.00";}}', 'a:0:{}', '3', -2173.22, NULL, NULL),
-(25, 1, 'fsdfsdfs', '$6$xdDo4YvNAZEc$/lPxGY/H3lLOVGj/76rU3BxAULdlBHkzAH1edQICmozh9tDAonTmOPrXo5ZgdHdSbXTz7tEEIixyoJKjdklek1', 'jdfig@sdf.sdf', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 1358776333, NULL, '345', NULL, NULL, '7aP2h', 0.00, NULL, '345'),
-(26, 0, 'dfssdf', '$6$tUVK6ODd8P.0$i8o0AKRn9fWx2c09ij4OTVaTmEwkdeY2vRYU44wrs4ndoiJaJxx6x7lRUyrfvwCLyswluHOjQl.U8gwXSAqoZ.', 'dfgdfg@sfd.sdf', 1, '', NULL, NULL, NULL, '127.0.0.1', NULL, 1358776473, NULL, '', NULL, NULL, '0kQML', 0.00, NULL, 'sd'),
-(2, 2, 'Василий Пупкин', '$6$17LKhkPw/gb3$3ljfZJYgwWM8Zp7tebTQoCTWJplTO8SJIOmzQUcN190lVURcVWcZIjP51Cto9HGylJL/MUW8cllLjajX6Hv74/', 'vasil.pypkin@mail.ru', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2013, 944006400, NULL, 'г. Москва', NULL, NULL, 'Rw9x4', 0.00, NULL, '+38050 123 45 67'),
-(3, NULL, 'Оксана', '$1$LjN2NDGo$pm.0w5ad56jcfU7d7lrMP1', 'oksana@mail.ru', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 1116806400, NULL, 'г. Тула', NULL, NULL, 'iZkSk', 0.00, NULL, '+3 098 357 78 54'),
-(4, NULL, 'Валентин', '$1$5E22OQfO$LSChb/.1d0am5RWhTVom10', 'valentin@rambler.ru', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 1186963200, NULL, 'м. Львів', NULL, NULL, 'jzgdZ', 0.00, NULL, '+ 067 546 87 54'),
-(5, NULL, 'Игор Петрович', '$1$SBeN16qQ$oaDnHR7lNu2RvEygOUpxq.', 'kalmar@gmail.com', 0, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 1300147200, NULL, 'г. Тверь', NULL, NULL, 'BHElK', 0.00, NULL, '054 245 64 34'),
-(6, NULL, 'Валентина', '$1$mnMRiwMI$WAjrtxf8CuYzFCNKrgvvH0', 'geg@g.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1336867200, NULL, '', NULL, NULL, 'apgKh', 0.00, NULL, ''),
-(7, NULL, 'Юлия', '$1$jpThhaAT$5rhMF1hVH/bU4SUboGAqY.', 'gola@go.go', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 923961600, NULL, '', NULL, NULL, 'PDO2h', 0.00, NULL, ''),
-(8, NULL, 'Микола', '$1$LZwk8Zeq$FtEgH7kznQhfM/DYQp5Xt0', 'hi@hello.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1204588800, NULL, '', NULL, NULL, 'v7AL9', 372.00, NULL, ''),
-(9, NULL, 'Петр', '$1$rtOiO.Kb$DoOEPmufZ0QoH6ALhIW8K/', 'go@gmail.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1179878400, NULL, '', NULL, NULL, 'DfFay', 2498.18, NULL, ''),
-(10, NULL, 'Юрий', '$1$7WY/C71c$yWo/60KT8o1Gpgz8NoR6g0', 'hell@hi.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1080000000, NULL, '', NULL, NULL, 'nnwHi', 1032.00, NULL, ''),
-(11, NULL, 'Артур', '$1$fqe/B31z$SCEUoyGht45BD7P7sGntB1', 'joker@g.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1174608000, NULL, '', NULL, NULL, 'ZQMgY', 500.00, NULL, ''),
-(12, NULL, 'Роман', '$1$Q5OGVHIL$EdIFtjfNZS0esJhNJBT4S/', 'h@g.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1139097600, NULL, '', NULL, NULL, 'vBYt5', 777.65, NULL, ''),
-(13, NULL, 'Иван', '$1$NuYcOL2u$DT9IMVrhso30lkt.KjX3R0', 't@com.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1131148800, NULL, '', NULL, NULL, 'GvaoX', 39.95, NULL, ''),
-(14, NULL, 'roman', '$1$O4xM5INE$xXS1VKjNGADRAQ2ECq.fb/', 'hh@f.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1103760000, NULL, '', NULL, NULL, '4vuGR', 60.99, NULL, ''),
-(15, NULL, 'Степа', '$1$0URQeiKO$51AjUbMLddI89Q00wxbBd/', 'w@go.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1086307200, NULL, '', NULL, NULL, 'xjWwZ', 42.00, NULL, ''),
-(16, NULL, 'Катерина', '$1$K4BWApqA$78xLQXHIxL6MjnGsXHr/40', 'd@com.ua', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1094342400, NULL, '', NULL, NULL, 'L4TGA', 1000.00, NULL, ''),
-(17, NULL, 'Валерия', '$1$K7RfsI0I$H51xxHN4K41e3bYNnwkK7/', 'q@w.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 984441600, NULL, '', NULL, NULL, 'MAWZm', 1178.99, NULL, ''),
-(19, NULL, 'fsdfsdfsdfsd', '$1$T/1.ge1.$CrYt6OcY210a/X.FQXSxC/', 'test@admin.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1356711338, NULL, '', NULL, NULL, 'FekhJ', 0.00, NULL, ''),
-(20, NULL, 'sdfsdf sdfd sfsd', '$1$NC1.SN2.$oAiLQcr.OMrC.ikcyx9eO/', 'hgfghfghfgh@sdfdfs.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 1356711435, NULL, '', NULL, NULL, '47u3K', 0.00, NULL, ''),
-(21, NULL, 'ddd dddd', '$1$J/5.ed4.$twFqihXECoWKULil0uVz..', 'test2@dd.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1356711467, NULL, '', NULL, NULL, 'jfwbR', 0.00, NULL, ''),
-(22, NULL, 'asd asd', '$1$Mf2.ls3.$O1eDRzI0zgwVGDlCPXjT91', 'test3@ddd.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2013, 1357136767, NULL, '', NULL, NULL, 'yljyz', 0.00, NULL, ''),
-(23, NULL, '0', '$1$tE0.yd5.$w8aCbnVpQXuMttOK.6EhE0', 'test@test.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 1357313097, NULL, '0', NULL, NULL, '', 0.00, NULL, '0'),
-(24, NULL, '0', '$6$9fDMhrEpszn5$dA5rvCzz2EoN7j82grSE8BBaSLLz6e9ny61UE0wXXyxrPcQIFIlOuBaUwgbPDXgVLa6R1mX4BYJ0FjBgq3fIV.', 'asd@sd.ss', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 1358163524, NULL, '0', NULL, NULL, '', 0.00, NULL, '0');
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_autologin`
+-- Структура таблицы `user_autologin`
 --
 
+DROP TABLE IF EXISTS `user_autologin`;
 CREATE TABLE IF NOT EXISTS `user_autologin` (
   `key_id` char(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `user_id` mediumint(8) NOT NULL DEFAULT '0',
@@ -10125,11 +9250,13 @@ CREATE TABLE IF NOT EXISTS `user_autologin` (
   KEY `last_ip` (`last_ip`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `user_temp`
 --
 
--- Table structure for table `user_temp`
---
-
+DROP TABLE IF EXISTS `user_temp`;
 CREATE TABLE IF NOT EXISTS `user_temp` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
@@ -10144,9 +9271,10 @@ CREATE TABLE IF NOT EXISTS `user_temp` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `widgets`
+-- Структура таблицы `widgets`
 --
 
+DROP TABLE IF EXISTS `widgets`;
 CREATE TABLE IF NOT EXISTS `widgets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -10162,7 +9290,7 @@ CREATE TABLE IF NOT EXISTS `widgets` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
--- Dumping data for table `widgets`
+-- Дамп данных таблицы `widgets`
 --
 
 INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `description`, `roles`, `created`) VALUES

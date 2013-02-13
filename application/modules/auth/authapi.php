@@ -11,7 +11,7 @@ if (!defined('BASEPATH'))
  * @copyright ImageCMS (c) 2013, Avgustus <avgustus@yandex.ru>
  * 
  */
-class AuthApi extends Auth {
+class Authapi extends Auth {
 
     /**
      * Provides user login

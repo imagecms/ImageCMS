@@ -1,4 +1,5 @@
 <?php
+
 /*
  * ---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
@@ -17,13 +18,16 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
-  
-if(strpos($_SERVER['REQUEST_URI'],'index.php')!==false){
-	header("Location:http://".$_SERVER['SERVER_NAME']."/page_not_found"); 
+
+/**
+ * Hard user rebase, if trying to use index.php
+ *
+ * (!strpos($_SERVER['REQUEST_URI'], 'index.php')) OR header("Location:http://" . $_SERVER['SERVER_NAME'] . "/page_not_found");
+ */
+if (strpos($_SERVER['REQUEST_URI'], 'index.php') !== false) {
+    header("Location:http://" . $_SERVER['SERVER_NAME'] . "/page_not_found");
     exit;
 }
-
-ini_set('display_errors', true);
 define('ENVIRONMENT', 'development');
 /*
  * ---------------------------------------------------------------
@@ -37,17 +41,19 @@ define('ENVIRONMENT', 'development');
 switch (ENVIRONMENT) {
     case 'development':
         error_reporting(E_ALL ^ E_NOTICE);
+        ini_set('display_errors', 1);
         break;
 
     case 'testing':
     case 'production':
-        error_reporting(0);
+        error_reporting(E_ALL ^ E_NOTICE ^ E_DEPRECATED ^ E_STRICT);
+        ini_set('display_errors', 0);
         break;
 
     default:
+        header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
         exit('The application environment is not set correctly.');
 }
-
 /*
  * ---------------------------------------------------------------
  * SYSTEM FOLDER NAME
@@ -188,8 +194,12 @@ if (is_dir($application_folder)) {
 }
 
 
-define('IMAGECMS_NUMBER', '4.0 Premium');
-define('IMAGECMS_VERSION', '20120810');
+define('IMAGECMS_NUMBER', '4.2 Pro');
+<<<<<<< HEAD
+define('IMAGECMS_VERSION', '20130116');
+=======
+define('IMAGECMS_VERSION', '20132801');
+>>>>>>> efb012c16d66dccad6fc77c1871609369ac44ea4
 define('IMAGECMS_PUBLIC_ID', '51035d2a96a227c54d0dea3ff415ced6d39266c3');
 /*
  * --------------------------------------------------------------------

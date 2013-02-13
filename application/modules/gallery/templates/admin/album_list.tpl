@@ -13,45 +13,68 @@
     </div>
     <div id="gallery_main_block">
         {if $albums}
-        <ul class="sortable2 f-s_0 save_positions albums_list" data-url="/admin/components/cp/gallery/update_album_positions">
-            {foreach $albums as $item}
-            <li>
-                <table  class="table table-striped table-bordered">
-                    <tr>
-                        <td>
-                            <div class="t-a_c photo_album">
-                                {if $item.cover_url != 'empty'}
-                                <a href="/admin/components/cp/gallery/edit_album/{$item.id}" class="pjax">
-                                    <img src="{$item.cover_url}"/>
-                                </a>
-                                {else:}
-                                <img src="{$THEME}/img/no_image.png"/>
-                                {/if}
-                                <div class="btn-group f-s_0">
-                                    <button type="button" class="btn" data-rel="tooltip" onclick="$('.modal').modal();GalleryAlbums.whatDelete(this);" data-title="{lang('a_delete')}" data-remove=""><i class="icon-remove"></i></button>
-                                    <a href="/admin/components/init_window/gallery/edit_album_params/{$item.id}" class="btn" data-rel="tooltip" data-title="{lang('a_to_edit')}"><i class="icon-edit"></i></a>
-                                    <a href="/admin/components/init_window/gallery/edit_album/{$item.id}" class="btn" data-rel="tooltip" data-title="{lang('imgs_view')}"><i class="icon-fullscreen"></i></a>
-                                </div>
-                                <div class="fon"></div>
-                            </div>
-                        </td>
-                        <td>
-                            {lang('amt_name')}: {$item.name}<br/>
-                            {lang('amt_description')}: {truncate(strip_tags($item.description), 55, '...')}<br/>
-                            {lang('amt_cr')}: {date('Y-m-d H:i', $item.created)}<br/>
-                            {lang('amt_up')}: {if $item.updated != NULL} {date('Y-m-d H:i', $item.updated)}  {else:} 0000-00-00 00:00 {/if}<br/>
-                            {lang('amt_views')}: {$item.views}<br />
-                            <input type="hidden" name="ids" value="{$item.id}">
-                        </td>
-                    </tr>
-                </table>
-            </li>
-            {/foreach}
-        </ul>
+            <ul class="sortable2 f-s_0 save_positions albums_list" data-url="/admin/components/cp/gallery/update_album_positions">
+                {foreach $albums as $item}
+                    <li>
+                        <table  class="table table-striped table-bordered">
+                            <tr>
+                                <td class="span2" style="border-top: 0;">
+                                    <div class="t-a_c">
+                                        {if $item.cover_url != 'empty'}
+                                            <a href="/admin/components/cp/gallery/edit_album/{$item.id}" class="pjax t-d_n">
+                                                <img src="{$item.cover_url}"/>
+                                            </a>
+                                        {else:}
+                                            <img src="{$THEME}/img/no_image.png"/>
+                                        {/if}
+                                        <div class="m-t_10">
+                                            <a href="/admin/components/init_window/gallery/edit_album/{$item.id}" class="btn btn-small" data-rel="tooltip" data-title="{lang('imgs_view')}"><i class="icon-fullscreen"></i> Просмотр фото</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="span10" style="border-top: 0;border-left: 0;">
+                                    <table class="no-borderd">
+                                        <tbody>
+                                            <tr>
+                                                <th>{lang('amt_name')}:</th>
+                                                <td>{$item.name}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>{lang('amt_cr')}:</th>
+                                                <td>{date('Y-m-d H:i', $item.created)}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>{lang('amt_up')}:</th>
+                                                <td>{if $item.updated != NULL} {date('Y-m-d H:i', $item.updated)}  {else:} 0000-00-00 00:00 {/if}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>{lang('amt_views')}:</th>
+                                                <td>{$item.views}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>{lang('amt_description')}:</th>
+                                                <td> {truncate(strip_tags($item.description), 55, '...')}</td>
+                                            </tr>
+                                            <tr>
+                                                <th></th>
+                                                <td>
+                                                    <a href="/admin/components/init_window/gallery/edit_album_params/{$item.id}" class="btn btn-small   " data-rel="tooltip" data-title="{lang('a_to_edit')}"><i class="icon-edit"></i> Редактировать альбом</a>
+                                                    <button type="button" class="btn btn-danger btn-small" data-rel="tooltip" onclick="$('.modal').modal();GalleryAlbums.whatDelete(this);" data-title="{lang('a_delete')}" data-remove=""><i class="icon-trash icon-white"></i> Удалить альбом</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <input type="hidden" name="ids" value="{$item.id}">
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </li>
+                {/foreach}
+            </ul>
         {else:}
-        <div class="alert alert-info m-t_20">
-            {lang('amt_no_albums')}
-        </div>
+            <div class="alert alert-info m-t_20">
+                {lang('amt_no_albums')}
+            </div>
         {/if}
 </section>
 <div class="modal hide fade products_delete_dialog">

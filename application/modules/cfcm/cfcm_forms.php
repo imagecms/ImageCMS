@@ -49,7 +49,8 @@ class Cfcm_forms extends MY_Controller {
                 'type'       => 'select',
                 'label'      => 'Группа',
                 'initial'    => self::prepare_groups_select(),
-                'multiple'   => true
+                'multiple'   => true,
+                'class'     => 'required'
             ), 
 			'data' => array(
                 'type'       => 'hidden',
@@ -147,7 +148,9 @@ class Cfcm_forms extends MY_Controller {
                 'type'       => 'select',
                 'label'      => 'Группа',
                 'initial'    => self::prepare_groups_select(),
-                'multiple'   => true,);
+                'multiple'   => true,
+                'class'     => 'required'
+            );
         return $this->forms->add_fields($f);
     
     }
@@ -159,6 +162,7 @@ class Cfcm_forms extends MY_Controller {
                 'type'  => 'text',
                 'label' => 'Имя',
                 'validation' => 'max_length[255]',
+                'class'     => 'required'
             ),
             'description' => array(
                 'type'  => 'textarea',
@@ -173,7 +177,7 @@ class Cfcm_forms extends MY_Controller {
         $this->db->select('id, name');
         $groups = $this->db->get('content_field_groups');
 
-        $list = array('0' => 'Без группы');
+        $list = array('-1' => 'Без группы');
         if ($groups->num_rows() > 0)
         { 
             foreach ($groups->result_array() as $group)
