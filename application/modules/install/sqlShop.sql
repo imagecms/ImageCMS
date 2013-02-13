@@ -822,13 +822,10 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `google_webmaster` varchar(200) DEFAULT NULL,
   `yandex_webmaster` varchar(200) DEFAULT NULL,
   `yandex_metric` varchar(11) NOT NULL,
-<<<<<<< HEAD
-  `cat_list` varchar(20) NOT NULL,
-=======
   `ss` varchar(255) NOT NULL,
   `cat_list` varchar(10) NOT NULL,
   `text_editor` varchar(30) NOT NULL,
->>>>>>> efb012c16d66dccad6fc77c1871609369ac44ea4
+
   PRIMARY KEY (`id`),
   KEY `s_name` (`s_name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
@@ -836,14 +833,9 @@ CREATE TABLE IF NOT EXISTS `settings` (
 --
 -- Дамп данных таблицы `settings`
 --
-
-<<<<<<< HEAD
-INSERT INTO `settings` (`id`, `s_name`, `site_title`, `site_short_title`, `site_description`, `site_keywords`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `cat_list`) VALUES
-(2, 'main', 'ImageCMS DemoShop', 'ImageCMS', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'commerce', 'no', '', 'module', 69, '63', 'shop', '', '', 'russian_lang', '', '', '', 'yes');
-=======
 INSERT INTO `settings` (`id`, `s_name`, `site_title`, `site_short_title`, `site_description`, `site_keywords`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `ss`, `cat_list`, `text_editor`) VALUES
 (2, 'main', 'premium', 'ImageCMS', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'commerce', 'no', '', 'module', 69, '63', 'shop', '', '', 'russian_lang', '', '', '', '', 'yes', 'elrte');
->>>>>>> efb012c16d66dccad6fc77c1871609369ac44ea4
+
 
 -- --------------------------------------------------------
 
@@ -7991,12 +7983,6 @@ INSERT INTO `shop_product_variants_i18n` (`id`, `locale`, `name`) VALUES
 (221, 'ru', ''),
 (223, 'ru', '');
 
--- --------------------------------------------------------
-
-<<<<<<< HEAD
-
-=======
->>>>>>> efb012c16d66dccad6fc77c1871609369ac44ea4
 -- --------------------------------------------------------
 
 --
