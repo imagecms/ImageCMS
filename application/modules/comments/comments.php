@@ -32,6 +32,10 @@ class Comments extends MY_Controller {
         return FALSE;
     }
 
+    public function test() {
+        echo 'debugParent';
+    }
+
     /**
      * Autoload function. Load language and comments.
      */
@@ -112,7 +116,7 @@ class Comments extends MY_Controller {
         } else {
             $comments_count = 0;
         }
-        
+
         $data = array(
             'comments_arr' => $comments,
             'comment_ch' => $comment_ch,
@@ -338,7 +342,7 @@ class Comments extends MY_Controller {
             'value' => $site,
             'expire' => '30000000',
         );
-
+        
 
         set_cookie($cookie_name);
         set_cookie($cookie_email);
@@ -519,6 +523,12 @@ class Comments extends MY_Controller {
         // Enable module autoload
         $this->db->where('name', 'comments');
         $this->db->update('components', array('autoload' => '1'));
+    }
+
+    public function _deinstall() {
+        $this->load->dbforge();
+        ($this->dx_auth->is_admin()) OR exit;
+        $this->dbforge->drop_table('comments');
     }
 
 }
