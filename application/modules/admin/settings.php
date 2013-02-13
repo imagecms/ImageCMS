@@ -156,6 +156,7 @@ class Settings extends BaseAdminController {
             'yandex_webmaster' => $this->input->post('yandex_webmaster'),
             'yandex_metric' => $this->input->post('yandex_metric'),
             'lang_sel' => $this->input->post('lang_sel'),
+            'text_editor' => $this->input->post('text_editor'),
         );
 
         ($hook = get_hook('admin_save_settings')) ? eval($hook) : NULL;
@@ -166,6 +167,7 @@ class Settings extends BaseAdminController {
 
         $this->lib_admin->log(lang('ac_changed_site_sett'));
 
+        echo "<script>var textEditor = '{$data_m['text_editor']}';</script>";
         showMessage(lang('ac_sett_saved'));
     }
     

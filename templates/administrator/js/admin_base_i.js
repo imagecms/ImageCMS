@@ -631,10 +631,8 @@ $(document).ready(function() {
         $('#item_page_id').attr('value', $(this).attr('data-id'));
     });
 
-    $('.link_type').live('change', function() {
-        var identif = $(this).val();
-        $('.edit_holder').hide();
-        $('#' + identif).show();
+    $('.link_type a').live('click', function() {
+        var identif = $(this).attr('href').substr(1, $(this).attr('href').length);
         $('.submit_link').each(function() {
             $(this).attr('data-form', '#' + identif + '_form')
             $('input[name=item_type]').attr('value', identif);
@@ -722,10 +720,11 @@ $(document).ready(function() {
 
         clonedVarTr.attr('id', 'ProductVariantRow_' + countVarRows);
         $('#variantHolder').append(clonedVarTr);
+        $(window).scrollTop($(window).scrollTop()+59)
     });
 
     $('.delete_image').live('click', function() {
-        var container = $(this).parent('td');
+        var container = $(this).closest('td');
         //container.find('[name="variants[MainImageForDel][]"]');
         if (container.find('[name="variants[MainImageForDel][]"]').length) {
             container.find('[name="variants[MainImageForDel][]"]').attr('value', 1);
@@ -737,6 +736,10 @@ $(document).ready(function() {
         }
         container.find('img').attr('src', "/templates/administrator/images/select-picture.png");
     });
+    $('.change_image').live('click', function() {
+        $(this).closest('td').find('[type="file"]').click();
+    })
+    
 
     $("button.deleteMainImages").die("click").live("click", function(event) {
         event.preventDefault();
@@ -773,7 +776,7 @@ $(document).ready(function() {
         $('.warehouse_line').clone().removeClass().attr('id', 'warehouse_line' + Math.floor(1000 * Math.random())).appendTo($('.warehouses_container'));
     });
 
-    $('.openDlg').on('click', function() {
+    $('.openDlg').live('click', function() {
         $('#addPictures').trigger('click');
     });
 

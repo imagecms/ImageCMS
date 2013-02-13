@@ -13,7 +13,7 @@
         <div class="tab-pane active" id="additional_fields">
             <div class="row-fluid">
                 <div>
-                    <div class="pull-right">
+                    <div class="pull-right frame_zH_frame_title">
                         <span class="help-inline"></span>
                         <div class="d-i_b">
                             <a href="/admin/components/cp/cfcm/create_field" class="btn btn-small btn-success pjax" ><i class=" icon-plus-sign icon-white"></i>{lang('a_add_field')}</a>
@@ -27,12 +27,11 @@
                                     <th class="span2">{lang('a_label')}</th>
                                     <th class="span2">{lang('a_name')}</th>
                                     <th class="span1">{lang('a_type')}</th>
-                                    <th class="span1">{lang('a_category')}</th>
+                                    <th class="span3">{lang('a_category')}</th>
                                     <th class="span1">{lang('a_delete')}</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {$groupRels = $this->CI->db->get('content_fields_groups_relations')->result_array()}
                                 {foreach $fields as $f}
                                     <tr>
                                         <td>
@@ -45,7 +44,8 @@
                                             {$arr = array()}
                                             {foreach $groupRels as $gr}
                                                 {if $gr['field_name'] == $f.field_name}
-                                                    {if $arr[] = $gr['group_id']}
+                                                    {if $gr.group_id == -1}{$arr[] = 'Без категории'}{/if}
+                                                    {if $arr[] = $gr['name']}
                                                         {$i++}
                                                     {/if}
                                                 {/if}
@@ -75,7 +75,7 @@
         <div class="tab-pane" id="fields_groups">
             <div class="row-fluid">
                 <div>
-                    <div class="pull-right">
+                    <div class="pull-right frame_zH_frame_title">
                         <span class="help-inline"></span>
                         <div class="d-i_b">
                             <a href="/admin/components/cp/cfcm/create_group" class="btn btn-small btn-success pjax" ><i class=" icon-plus-sign icon-white"></i>{lang('a_create_group_')}</a>				

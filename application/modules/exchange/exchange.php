@@ -55,6 +55,17 @@ class Exchange {
             $this->$method();
     }
 
+    /**
+     * Use this function to make backup before import starts
+     */
+    protected function makeDBBackup() {
+        if (is_really_writable('./application/backups')) {
+            $this->load->dbutil();
+            $backup = & $this->dbutil->backup(array('format' => 'zip'));
+            write_file('./application/backups/' . "sql_" . date("d-m-Y_H.i.s.") . 'zip', $backup);
+        }
+    }
+
     private function get1CSettings() {
         $config = $this->ci->db->where('identif', 'exchange')->get('components')->row_array();
         if (empty($config))
@@ -69,8 +80,8 @@ class Exchange {
             $this->ci->db->where('identif', 'exchange')->update($this->settings_table, array('settings' => $for_insert));
         }
     }
-    
-    function __autoload(){
+
+    function __autoload() {
         return;
     }
 
@@ -129,7 +140,7 @@ class Exchange {
             $filename = explode('.', $st);
             if ($filename[1] != 'xml') {
                 //saving images to cmlTemp/images folder
-                if (write_file($this->tempDir . "images/" . $st, file_get_contents('php://input'), 'wb')) {
+                if (write_file($this->tempDir . "images/" . basename($st, $filename[1]) . "jpg", file_get_contents('php://input'), 'wb')) {
                     echo "success";
                 }
             } else {
@@ -178,6 +189,11 @@ class Exchange {
             if ($this->config['autoresize'] == 'on')
                 $this->startImagesResize();
             
+            if (file_exists($this->tempDir . "success_" . ShopCore::$_GET['filename'])) {
+                unlink($this->tempDir . "success_" . ShopCore::$_GET['filename']);
+            }
+            rename($this->tempDir . ShopCore::$_GET['filename'], $this->tempDir . "success_" . ShopCore::$_GET['filename']);
+
             echo "success";
         }
         exit();
@@ -216,9 +232,9 @@ class Exchange {
                 if ($parent) {
                     $data['full_path_ids'] = unserialize($parent['full_path_ids']);
                     if (empty($data['full_path_ids']))
-                        $data['full_path_ids'] = array($insert_id);
+                        $data['full_path_ids'] = array((int)$parent['id']);
                     else {
-                        $data['full_path_ids'][] = $insert_id;
+                        $data['full_path_ids'][] = (int)$parent['id'];
                     }
                     $this->ci->db->where('id', $insert_id)->update('shop_category', array('full_path_ids' => serialize($data['full_path_ids'])));
                 }

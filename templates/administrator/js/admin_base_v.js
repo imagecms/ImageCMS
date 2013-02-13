@@ -82,8 +82,7 @@ $(document).ready(function() {
          */
     });
 
-
-    $('.products_table').find('span.prod-on_off').live('click', function() {
+    $('.products_table').find('span.prod-on_off').add($('[data-page="tovar"]')).on('click', function() {
         var page_id = $(this).attr('data-id');
         $.ajax({
             type: 'POST',
@@ -93,7 +92,7 @@ $(document).ready(function() {
         });
     });
 
-    $('.products_table').find('button.setHit').live('click', function() {
+    $('button.setHit').live('click', function() {
         var btn = $(this);
 
         $.ajax({
@@ -106,7 +105,7 @@ $(document).ready(function() {
         btn.toggleClass('btn-primary active');
     });
 
-    $('.products_table').find('button.setHot').live('click', function() {
+    $('button.setHot').live('click', function() {
         var btn = $(this);
 
         $.ajax({
@@ -119,7 +118,7 @@ $(document).ready(function() {
         btn.toggleClass('btn-primary active');
     });
 
-    $('.products_table').find('button.setAction').live('click', function() {
+    $('button.setAction').live('click', function() {
         var btn = $(this);
 
         $.ajax({
