@@ -231,11 +231,8 @@
                         {lang('s_comment')}
                         <textarea{if $isRequired['userInfo[commentText]']} class="required"{/if} name="userInfo[commentText]"></textarea> 
                     </label>
-                    <div>
-                        {echo ShopCore::app()->CustomFieldsHelper->renderForm(-1, 'order', 'cartCustomData')}
-                        
-                        {var_dump( ShopCore::app()->CustomFieldsHelper->getCustomFields('order')->asArray() )}
-                        {var_dump( ShopCore::app()->CustomFieldsHelper->getCustomFields('order')->asHtml() )}
+                    <div class="label_block">
+                        {echo ShopCore::app()->CustomFieldsHelper->setPattern($pattern)->getCustomFields('order')->asHtml() }
                     </div>
                 </div>
             </div>
