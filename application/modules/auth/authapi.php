@@ -13,6 +13,11 @@ if (!defined('BASEPATH'))
  */
 class Authapi extends Auth {
 
+    public function __construct() {
+        parent::__construct();
+        $this->form_validation->set_error_delimiters(FALSE, FALSE);
+    }
+
     /**
      * Provides user login
      * 
@@ -23,6 +28,7 @@ class Authapi extends Auth {
     public function login() {
         if (!$this->dx_auth->is_logged_in()) {
             $val = $this->form_validation;
+            //$val->set_error_delimiters(FALSE);
             // Set form validation rules
             $val->set_rules('email', lang('lang_email'), 'trim|required|min_length[3]|xss_clean|valid_email');
             $val->set_rules('password', lang('lang_password'), 'trim|required|min_length[3]|max_length[30]|xss_clean');
@@ -165,7 +171,14 @@ class Authapi extends Auth {
                     $data['captcha_image'] = $this->dx_auth->get_captcha_image();
                 }
                 $json['msg'] = validation_errors();
-                $json['validations'] = true;
+                $json['validations'] = array(
+                    'email' => form_error('email'),
+                    'username' => form_error('username'),
+                    'password' => form_error('password'),
+                    'confirm_password' => form_error('confirm_password'),
+                    'captcha' => form_error('captcha'),
+                    'recaptcha_response_field' => form_error('recaptcha_response_field'),
+                );
                 $json['status'] = false;
                 echo json_encode($json);
             }
@@ -202,6 +215,9 @@ class Authapi extends Auth {
         } else {
             echo json_encode(array(
                 'msg' => validation_errors(),
+                'validations' => array(
+                    'email' => form_error('email'),
+                ),
                 'status' => false,
             ));
         }
@@ -258,6 +274,11 @@ class Authapi extends Auth {
             } else {
                 echo json_encode(array(
                     'msg' => validation_errors(),
+                    'validations' => array(
+                        'old_password' => form_error('old_password'),
+                        'new_password' => form_error('new_password'),
+                        'confirm_new_password' => form_error('confirm_new_password'),
+                    ),
                     'status' => false,
                 ));
             }
@@ -287,6 +308,9 @@ class Authapi extends Auth {
             } else {
                 echo json_encode(array(
                     'msg' => validation_errors(),
+                    'validations' => array(
+                        'password' => form_error('password'),
+                    ),
                     'status' => false,
                 ));
             }

@@ -51,6 +51,9 @@ var ImageCMSApi = {
                 if (obj !== null) {
                     ImageCMSApi.returnMsg("[status]:" + obj.status);
                     ImageCMSApi.returnMsg("[message]: " + obj.msg);
+                    if (obj.validations !== 'undefined') {
+                        ImageCMSApi.sendValidations(obj.validations, selector);
+                    }
                     if (obj.refresh == true)
                         location.reload();
                     if (obj.redirect !== null)
@@ -73,6 +76,27 @@ var ImageCMSApi = {
         var findSelector = $('#' + selector);
         var queryString = findSelector.serialize();
         return queryString;
+    },
+    /**
+     * for displaying validation messages 
+     * add <div id="for_{input_name}" class="for_validations"></div>
+     * in the form, which needs validation, for each validate input
+     * 
+     * */
+    sendValidations: function(validations, selector) {
+        if (typeof validations === 'object') {
+            for (var key in validations) {
+                //console.log($('#' + selector).find('#for_' + key));
+                $('#' + selector).find('div#for_' + key).show(1500);
+                $('#' + selector).find('div#for_' + key).html(validations[key]);
+                $('#' + selector).find('div#for_' + key).css('color', 'red');
+            }
+            setTimeout((function() {
+                $('div .for_validations').hide(1500);
+            }), 6000);
+        } else {
+            return false;
+        }
     },
 }
 

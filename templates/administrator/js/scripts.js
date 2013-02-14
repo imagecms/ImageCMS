@@ -820,6 +820,7 @@ function initAdminArea() {
     if ($.exists('.datepicker')) {
         $(".datepicker").datepicker({
             dateFormat: 'yy-mm-dd',
+            minDate: new Date(2013, 1 - 1, 1),
             showOtherMonths: true,
             selectOtherMonths: true,
             prevText: '',
