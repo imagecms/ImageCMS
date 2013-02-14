@@ -519,8 +519,14 @@ span.code{color: #999;font-size: 11px;margin-right: 9px;}
 .pagination{color: #156082;margin-top: 26px;clear: both;}
 .pagination a{color: #156082;}
 .pagination span a{font-size: 11px;}
-.pagination .t-a_c a{margin: 0 11px;font-size: 14px;}
+.pagination .t-a_c a{font-size: 14px;}
 .pagination .t-a_c a.active{color: #dd160f;text-decoration: none;}
+.pagination{text-align: center;}
+.pagination li{display: inline-block;font-size: 14px;}
+.pagination li a, .pagination li > span{min-width: 24px;height: 24px;line-height: 24px;display: block;}
+.pagination li > span{background-color: #3a88cc;color: #fff;-moz-border-radius: 3px;-webkit-border-radius: 3px; border-radius: 3px;cursor: default;}
+.pagination .f_l, .pagination .f_r{font-size: 12px;margin: 0 -1px 10px;position: relative;top: 4px;}
+
 .nowelty_auction{width: 200px;float: right;margin-left: 30px;}
 .nowelty_auction ul{padding-top: 9px;}
 .nowelty_auction li{margin-bottom: 32px;overflow: hidden;}
