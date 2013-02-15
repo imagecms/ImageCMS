@@ -130,11 +130,11 @@
                     <li class="span3{if $product->getFirstVariant()->getStock() == 0} not-avail{/if}">
                         <div class="description">
                             <div class="frame_response">
-                                <!--    Start reiting    -->
+                                <!--    Star reiting    -->
                                 <div class="star">
                                     <img src="/templates/new_shop_template/shop/default/images/temp/STAR.png"/>
                                 </div>
-                                <!--    Start reiting    -->
+                                <!--    Star reiting    -->
                                 <a href="{shop_url('product/'.$product->id.'#four')}" class="count_response">                                    
                                     {totalComments($product->getid())}
                                     {echo SStringHelper::Pluralize((int)totalComments($product->getid()), array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}
@@ -159,11 +159,7 @@
                 <!--  End of rendering produts list   -->
             </ul>
             <!--    Pagination    -->
-            <div class="pagination">
-                <ul class="f-s_0">
-                    {$pagination}
-                </ul>
-            </div>
+            {$pagination}
             <!--    Pagination    -->
         </div>
     </div>
