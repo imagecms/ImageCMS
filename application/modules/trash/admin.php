@@ -80,7 +80,7 @@ class Admin extends BaseAdminController {
                         'trash_url' => $this->input->post('url'),
                         'trash_redirect_type' => $this->input->post('redirect_type'),
                         'trash_type' => $this->input->post('type'),
-                        'trash_redirect' => site_url() . $url->name
+                        'trash_redirect' => site_url() . $url->url
                     );
                     break;
 
@@ -181,7 +181,7 @@ class Admin extends BaseAdminController {
                         'trash_url' => $this->input->post('old_url'),
                         'trash_redirect_type' => $this->input->post('redirect_type'),
                         'trash_type' => $this->input->post('type'),
-                        'trash_redirect' => site_url() . $url->name
+                        'trash_redirect' => site_url() . $url->url
                     );
                     break;
 
