@@ -11,7 +11,7 @@
 {$forCompareProducts = $CI->session->userdata('shopForCompare')}
 <div class="content">
     <!-- Show Brands in circle -->
-    {$banners = getBannersCat(3,$model->id);}
+    {$banners = ShopCore::app()->SBannerHelper->getBannersCat(3,$model->id);}
     {if count($banners)}
         <div class="cycle center">
             <ul> 
