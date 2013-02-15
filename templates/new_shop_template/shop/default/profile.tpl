@@ -12,7 +12,7 @@
             <li><button type="button" data-href="#my_data"><span class="icon-mydata"></span><span class="text-el">{lang('s_profile_me')}</span></button></li>
             <li><button type="button" data-href="#change_pass"><span class="icon-chgpass"></span><span class="text-el">{lang('s_profile_me_change_password')}</span></button></li>
             <li><button type="button" data-href="#history_order"><span class="icon-historyorder"></span><span class="text-el">{lang('s_order_history')}</span></button></li>
-            <li><button type="button" data-href="#wait_tov"><span class="icon-waitexists"></span><span class="text-el">Жду появление товара</span></button></li>
+            <li><button type="button" data-href="#wait_tov"><span class="icon-waitexists"></span><span class="text-el">{lang('s_to_fal_do')}</span></button></li>
         </ul>
         <div class="frame_tabs">
             <div id="my_data">
