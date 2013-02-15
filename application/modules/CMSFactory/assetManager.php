@@ -21,7 +21,7 @@ class assetManager {
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
-    public function fetchData(array $data) {
+    public function setData(array $data) {
         (empty($data)) OR \CI_Controller::get_instance()->template->add_array($data);
         return $this;
     }
@@ -90,9 +90,30 @@ class assetManager {
         $paths = explode('/', $trace[0]['file']);
         $paths = $paths[count($paths) - 2];
         try {
-            $tplPath = 'application/modules/' . $paths . '/' . $tpl;
+            $tplPath = 'application/modules/' . $paths . '/assets/' . $tpl;
             file_exists($tplPath . '.tpl') OR throwException('Can\'t load template file: <i>' . $paths . '/' . $tpl . '.tpl</i>');
-            $test = \CI_Controller::get_instance()->template->show('file:' . $tplPath);
+            \CI_Controller::get_instance()->template->display('file:' . $tplPath);
+        } catch (\Exception $exc) {
+            log_message('error', $exc->getMessage());
+            show_error($exc->getMessage(), 500, 'An Template Error Was Encountered');
+        }
+    }
+
+    /** Render public view
+     * @param string $tpl Template file name
+     * @return void
+     * @access public
+     * @author Kaero
+     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     */
+    public function fetchTemplate($tpl) {
+        $trace = debug_backtrace();
+        $paths = explode('/', $trace[0]['file']);
+        $paths = $paths[count($paths) - 2];
+        try {
+            $tplPath = APPPATH . '/modules/' . $paths . '/assets/' . $tpl;
+            file_exists($tplPath . '.tpl') OR throwException('Can\'t load template file: <i>' . $paths . '/' . $tpl . '.tpl</i>');
+            return \CI_Controller::get_instance()->template->fetch('file:' . $tplPath);
         } catch (\Exception $exc) {
             log_message('error', $exc->getMessage());
             show_error($exc->getMessage(), 500, 'An Template Error Was Encountered');

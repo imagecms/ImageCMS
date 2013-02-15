@@ -50,6 +50,11 @@ abstract class BaseEvents {
         return $this;
     }
 
+    public function onCommentCreate() {
+        $this->key = 'Api:newPost';
+        return $this;
+    }
+
     public function onRemoveFromCart() {
         $this->key = 'SCart:removeOne';
         return $this;
@@ -83,6 +88,8 @@ abstract class BaseEvents {
         if ($alias == null)
             throw new \Exception("Bind value can't not be null .");
         $trace = debug_backtrace();
+        if (!array_key_exists($methodName, $this->holder))
+            $this->holder[$methodName] = null;
         if ($this->holder[$methodName] != $trace[1]['class']) {
             $this->holder[$methodName] = $trace[1]['class'];
             $this->storage[$alias]['collable'][] = array('collMethod' => $methodName, 'collClass' => $trace[1]['class']);
@@ -99,11 +106,15 @@ abstract class BaseEvents {
     public function runFactory() {
         (defined('BASEPATH')) OR exit('No direct script access allowed');
         foreach (Events::create()->storage as $key => $value) {
+            if (!array_key_exists('run', $value))
+                $value['run'] = null;
+            if (!array_key_exists('collable', $value))
+                $value['collable'] = null;
             if ($value['run'] === TRUE && count($value['collable']))
                 foreach ($value['collable'] as $run)
                     call_user_func(array($run['collClass'], $run['collMethod']), $value['params']);
         }
-        \CMSFactory\Events::create()->get();
+//        \CMSFactory\Events::create()->get();
     }
 
     public function get() {
