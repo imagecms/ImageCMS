@@ -77,7 +77,7 @@
                     </div>
                 {/if}
                 <div class="check_frame">
-                    {foreach $propertiesInCat as $p}
+                {foreach $propertiesInCat as $p}
                     {if empty($p->possibleValues)}{$show[] = "1"}{/if}
                 {/foreach}
                 {if count($show) != count($propertiesInCat)}
