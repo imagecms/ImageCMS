@@ -310,7 +310,11 @@
             <!--  Render produts list   -->
         </ul>
         <!--    Pagination    -->
-        <div class="pagination"><div class="t-a_c">{$pagination}</div></div>
+        <div class="pagination">
+            <div class="t-a_c">
+                {$pagination}
+            </div>
+        </div>
         <!--    Pagination    -->
     </div>
 
