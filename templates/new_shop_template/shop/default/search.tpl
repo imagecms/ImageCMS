@@ -119,7 +119,7 @@
                                    <div class="price price_f-s_16">
                                         {if (float)$p->getOldPrice() > 0}
                                                 {if $p->getOldPrice() > $p->firstvariant->getPrice()}
-                                                    <span class="f-w_b">{echo number_format($p->getOldPrice(), 2, ".", "")}</span> {$CS}
+                                                    <span class="f-w_b">{echo number_format($p->getOldPrice(), ShopCore::app()->SSettings->pricePrecision, ".", "")}</span> {$CS}
                                                     <span class="second_cash"></span>
                                                 {/if}
                                          {/if}
@@ -127,11 +127,11 @@
                                                     {$prOne = $p->firstvariant->getPrice()}
                                                     {$prTwo = $p->firstvariant->getPrice()}
                                                     {$prThree = $prOne - $prTwo / 100 * $discount}
-                                                    <del class="price price-c_red f-s_12 price-c_9">{echo number_format($p->firstvariant->getPrice(), 2, ".", "")} {$CS}</del>
+                                                    <del class="price price-c_red f-s_12 price-c_9">{echo number_format($p->firstvariant->getPrice(), ShopCore::app()->SSettings->pricePrecision, ".", "")} {$CS}</del>
                                                 {else:}
                                                     {$prThree = $p->firstvariant->getPrice()}
                                                 {/if}
-                                                <span class="f-w_b">{echo number_format($prThree, 2, ".", "")}</span> {$CS}
+                                                <span class="f-w_b">{echo number_format($prThree, ShopCore::app()->SSettings->pricePrecision, ".", "")}</span> {$CS}
                                                 <span class="second_cash"></span>
                                     </div>
                                   <button class="btn btn_buy" type="button">В корзину</button>
