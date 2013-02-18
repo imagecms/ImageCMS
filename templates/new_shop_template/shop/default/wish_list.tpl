@@ -4,118 +4,94 @@
 # @var profile
 #}
 {$this->registerMeta('<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">')}
-<div class="content">
-    <div class="center">
-        <h1>{lang('s_WL')}</h1>
-        {if $items}
-            <h2 class="notificationWish"></h2>
-            {if ShopCore::$ci->dx_auth->is_logged_in()===true}
-                <a href="#" class="f_l w-s_n-w" id="button_email">{lang('s_s_wish_list')}</a>
-                <div class="fancy c_b f_l" style="border: none; display: none;" id="send_email">
-                    <form action="" method="post" name="editForm" style="padding-left: 0; padding-right: 0px;">
-                        <div id="change_info_edit" class="f_r">
-                            <label class="f_r">{lang('s_form_input_wl')}:
-                                <input type="text" name="friendsMail"/>
-                            </label>
-                            <div id="buttons">
-                                <div class="p-t_19 c_b clearfix"  style="width: 191px;">
-                                    <div class="buttons button_middle_blue f_l">
-                                        <input type="submit" name="sendwish" value="{lang('s_send')}"/>
-                                    </div>
-                                </div>
-                            </div>                                    
-                        </div>
-                         {form_csrf()}
-                    </form>
-                </div>
-            {else:}
-                {lang('s_to_sen_wish_auth')}
-            {/if}
-            {/if}
+<article>
+    <h1>{lang('s_WL')}</h1>
+    <div class="row">
+        <div class="text span8">
+            <p>«Список желаний» представляет собой список желаний человека. С его помощью можно не только озвучить свои желания миру, но и облегчить жизнь родственникам, знакомым и друзьям, ищущим подарок.</p>
+            <p>Все, кто хочет сделать вам подарок, но не может определиться с выбором. «Список желаний» – это самый простой ответ на вопрос "Что тебе подарить?". Обычно вишлист заполняется перед праздниками, а после уже пополняется не так часто, с появлением новых желаний.</p>
+        </div>
+    </div>
+    <div class="frame_carousel_product">
+        <!--If empty list show message -->
         {if !$items}
             <div class="comparison_slider">
                 <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t(lang('s_list_wish_empty'))}</div>
             </div>
         {else:}
-            <table class="cleaner_table forCartProducts" cellspacing="0">
-                <colgroup>
-                    <col width="140" span="1">
-                    <col width="371" span="1">
-                    <col width="130" span="1">
-                    <col width="224" span="1">
-                    <col width="138" span="1">
-                    <col width="28" span="1">
-                </colgroup>
-                <tbody>
-                    {foreach $items as $key=>$item}
+            <!--If not empty list show list of products -->
+            <div class="bot_border_grey">
+                <ul class="items items_catalog itemsFrameNS">
+                
+                {foreach $items as $key=>$item}
                         {$discount = ShopCore::app()->SDiscountsManager->productDiscount($item->id)}
                         {$style = productInCart($cart_data, $item.model->getId(), $item.model->firstVariant->getId(), $item.model->firstVariant->getStock())}
-                        <tr>
-                            <td>
-                                <a href="{shop_url('product/' . $item.model->getUrl())}" class="photo_block">
+                        <li class="span3 in_cart">
+                            {if ShopCore::$ci->dx_auth->is_logged_in()===true}
+                                <button class="btn btn_small btn_small_p">
+                                    {//shop_url('wish_list/delete/' . $key)}
+                                    <span class="icon-remove_comprasion"></span>
+                                </button>    
+                            {/if}
+                            <!-- Photo block-->
+                            <a href="{shop_url('product/' . $item.model->getUrl())}" class="photo">
+                                <span class="helper"></span>
+                                <figure class="w_150">
                                     <img src="{productImageUrl($item.model->getMainModimage())}" alt="{echo ShopCore::encode($item.model->getName())}"/>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}</a>
-                            </td>
-                            <td>
-                                <div class="price f-s_16 f_l">{echo $item.model->firstvariant->getPrice()}
-                                    <sub>{$CS}</sub>
-
-                                </div>
-                            </td>
-                            <td>    
-                                <div class="buy">
-                                    <div id="p{echo $item.model->getId()}" class="{$style.class} buttons">
-                                        <span id="buy{echo $item.model->getId()}" class="{$style.identif}" data-varid="{echo $item.model->firstVariant->getId()}" data-prodid="{echo $item.model->getId()}" >
-                                            {$style.message}
-                                        </span>
+                                </figure>
+                            </a>
+                            <!-- Descritpion block -->
+                            <div class="description">
+                                <div class="frame_response">
+                                    <div class="star">
+                                        {$CI->load->module('star_rating')->show_star_rating($item.model)}
                                     </div>
                                 </div>
-                            </td>
-                            <td>
-                                <div class="price f-s_18 f_l">
-                                    {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                        {$prOne = $item.model->firstvariant->getPrice() * 1}
-                                        {$prTwo = $item.model->firstvariant->getPrice() * 1}
-                                        {$summary = $prOne - $prTwo / 100 * $discount}
-                                        <del class="price price-c_red f-s_12 price-c_9">{echo $item.model->firstvariant->getPrice() * 1} {$CS}</del> <br />
-                                    {else:}
-                                        {$summary = $item.model->firstvariant->getPrice()}
-                                    {/if}
-                                    {echo $summary} 
-                                    {$CS}
+                                <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}</a>
+                                <div class="price price_f-s_16">
+                                    <span class="f-w_b">{echo $item.model->firstvariant->getPrice()}</span> {$CS}
+                                    <span class="second_cash"></span>
                                 </div>
-                            </td>
-                            <td>
-                                {if $rkey}
-                                    {if ShopCore::$ci->dx_auth->is_logged_in()===true&&$rkey==$profile.key}
-                                        <a href="{shop_url('wish_list/delete/' . $key)}" class="delete_plus">&times;</a>
-                                    {/if}
+                                {if $style.identif == 'goToCart'}    
+                                    <button class="btn btn_cart" type="button">{lang('already_in_basket')}</button>
                                 {else:}
-                                    {if ShopCore::$ci->dx_auth->is_logged_in()===true}
-                                        <a href="{shop_url('wish_list/delete/' . $key)}" class="delete_plus">&times;</a>
-                                    {/if}
+                                    <button class="btn btn_buy" type="button">{lang('add_to_basket')}</button>
                                 {/if}
-                            </td>
-                        </tr>
-                        {$total     += $summary}
-                    {/foreach}
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="6">
-                            <div class="foot_cleaner">
-                                <div class="price f-s_26 f_r">{$total} <sub>{$CS}</sub></div>
-                                <div class="f_r sum">{lang('s_summ')}:</div>
                             </div>
-                        </td>
-                    </tr>
-                </tfoot>
-                <input type="hidden" name="forCart" />
-            </table>
+                        </li>
+                        <!--Calculate total price-->
+                        {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
+                            {$prOne = $item.model->firstvariant->getPrice() * 1}
+                            {$prTwo = $item.model->firstvariant->getPrice() * 1}
+                            {$summary = $prOne - $prTwo / 100 * $discount}
+                            <del class="price price-c_red f-s_12 price-c_9">{echo $item.model->firstvariant->getPrice() * 1} {$CS}</del> <br />
+                        {else:}
+                            {$summary = $item.model->firstvariant->getPrice()}
+                        {/if}
+                        {$total     += $summary}
+                {/foreach}
+                </ul>
+            </div>
+         {/if}
+         <!--Show block with total price and send email form, if count products >0  -->
+        {if count($items)>0}
+            <div class="row footer_wish-list">
+                <div class="span6">
+                    <div class="d_i-b title">{lang('s_summ')}:</div>
+                    <div class="price price_f-s_24 d_i-b">
+                        <span class="first_cash"><span class="f-w_b">{echo $total}</span> {$CS}</span>
+                    </div>
+                </div>
+                <div class="span6">
+                    <div class="standart_form horizontal_form t-a_r">
+                        <input type="submit" value="Отправить страницу" class="btn btn_cart f_r m-l_10"/>
+                        <div class="o_h">
+                            <input type="text" placeholder="E-mail получателя"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {/if}
-        {widget('latest_news')}
     </div>
-</div>
+</article>
+  

@@ -1,6 +1,7 @@
 <div class="row">
     <div class="span9 item_tovar">
         <h1>{lang('s_private_office')}</h1>
+        <!-- Start errors block -->
         <div  class="msg_form_edit">
             {if $errors}
                 <div class="msg_form_edit_prof">
@@ -8,12 +9,16 @@
                 </div>
             {/if}
         </div>
+        <!-- End errors block -->
+        <!-- Start tabs block -->
         <ul class="tabs clearfix">
             <li><button type="button" data-href="#my_data"><span class="icon-mydata"></span><span class="text-el">{lang('s_profile_me')}</span></button></li>
             <li><button type="button" data-href="#change_pass"><span class="icon-chgpass"></span><span class="text-el">{lang('s_profile_me_change_password')}</span></button></li>
             <li><button type="button" data-href="#history_order"><span class="icon-historyorder"></span><span class="text-el">{lang('s_order_history')}</span></button></li>
-            <li><button type="button" data-href="#wait_tov"><span class="icon-waitexists"></span><span class="text-el">Жду появление товара</span></button></li>
+            <li><button type="button" data-href="#wait_tov"><span class="icon-waitexists"></span><span class="text-el">{lang('s_to_fal_do')}</span></button></li>
         </ul>
+        <!-- End tabs block -->
+        <!-- Start user tab block -->
         <div class="frame_tabs">
             <div id="my_data">
                 <div class="standart_form horizontal_form">
@@ -23,7 +28,7 @@
                             <span class="row">
                                 <span class="frame_form_field">
                                     <input type="text" value="{echo encode($profile->getName())}" />
-                                    <span class="help_inline">Не меньше 4-х символов</span>
+                                    <span class="help_inline">{lang('s_email_4_sumbls')}</span>
                                 </span>
                             </span>
                         </label>
@@ -31,7 +36,7 @@
                             <span class="title">{lang('s_c_uoy_user_el')}:</span>
                             <span class="frame_form_field">
                                 <input type="text" value="{echo encode($profile->getUserEmail())}"/>
-                                <span class="help_inline">E-mail являеться логином</span>
+                                <span class="help_inline">{lang('s_email_is_login')}</span>
                             </span>
                         </label>
                         <label>
@@ -45,12 +50,14 @@
                         <div class="frameLabel">
                             <span class="title">&nbsp;</span>
                             <span class="frame_form_field">
-                                <input type="submit" value="Редактировать" class="btn"/>
+                                <input type="submit" value="{lang('s_edit')}" class="btn"/>
                             </span>
                         </div>
                     </form>
                 </div>
             </div>
+            <!-- End user tab block -->
+            <!-- Start registration data tab block -->
             <div id="change_pass">
                 <div class="standart_form horizontal_form">
                     <form method="post">
@@ -71,12 +78,14 @@
                         <div class="frameLabel">
                             <span class="title">&nbsp;</span>
                             <span class="frame_form_field">
-                                <input type="submit" value="Сохранить" class="btn"/>
+                                <input type="submit" value="{lang('s_save')}" class="btn"/>
                             </span>
                         </div>
                     </form>
                 </div>
             </div>
+            <!-- End registration data tab block -->
+            <!-- Start orders history tab block -->
             <div id="history_order">
                 <span style="font-weight: bold;">
                     {echo ShopCore::app()->SCart->totalItems()}
@@ -86,7 +95,7 @@
                     <thead>
                         <tr>
                             <th>№</th>
-                            <th>Дата заказа</th>
+                            <th>{lang('s_order_date')}</th>
                             <th>{lang('s_refresh')}</th>
                             <th>{lang('s_summ')}</th>
                             <th>{lang('s_status')}</th>
@@ -107,6 +116,8 @@
                     </tbody>
                 </table>
             </div>
+            <!-- End orders history tab block -->
+            <!-- Start waiting block -->
             <div id="wait_tov">
                 <div class="row">
                     <div class="span6">
@@ -120,9 +131,9 @@
                                     <th></th>
                                     <th>№</th>
                                     <th></th>
-                                    <th>Название</th>
-                                    <th>Разница</th>
-                                    <th>Разница в процентах</th>
+                                    <th>{lang('s_naz')}</th>
+                                    <th>{lang('s_to_falitem_difference')}</th>
+                                    <th>{lang('s_to_falitem_difference_percents')}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -152,6 +163,7 @@
                     </div>
                 </div>
             </div>
+            <!-- End waiting block -->
         </div>
     </div>
 </div>
