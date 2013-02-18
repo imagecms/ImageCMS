@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Image CMS
  * main_lang.php
@@ -16,10 +17,10 @@ $lang['lang_email_form'] = 'Enter email';
 $lang['lang_login'] = 'Login';
 $lang['lang_password'] = 'Password';
 $lang['orderind_shop_sg'] = 'Ordering';
-$lang['s_close_form_wl']  = 'Close form';
+$lang['s_close_form_wl'] = 'Close form';
 $lang['s_form_input_wl'] = 'Friends email';
-$lang['s_remark_fron_title']                       =               'Error message';
-$lang['s_remark_fron']                       =               'Your remark';
+$lang['s_remark_fron_title'] = 'Error message';
+$lang['s_remark_fron'] = 'Your remark';
 $lang['lang_confirm_password'] = 'Repeat Password';
 $lang['lang_confirm_new_pass'] = 'Repeat new password';
 $lang['lang_submit'] = 'Send';
@@ -32,17 +33,17 @@ $lang['lang_user_logged_in'] = 'You are already logged.';
 $lang['lang_user_logged_out'] = 'The session is completed.';
 $lang['lang_check_mail_acc'] = 'You have successfully registered. Please check your email to activate your account.';
 $lang['lang_reg_success'] = 'You have successfully registered. ';
-$lang['lang_register_off'] =  'Registration is prohibited.';
-$lang['lang_logout_to_reg'] =  'You are already registered ;)';
-$lang['lang_acc_activated'] =  'Your account has been successfully activated. ';
-$lang['lang_resend_acc_code'] =  'You have provided an incorrect activation code sent to the e-mail the new code.';
-$lang['lang_username_or_mail'] =  'Username or Email';
-$lang['lang_acc_mail_sent'] =  'Please check your email for instructions on how to activate the new password.';
-$lang['lang_pass_restored'] =  'You have successfully zeroed my password. ';
-$lang['lang_reset_failed'] =  'Reset failed. Not a valid user name and / or password. Check your email and follow the instructions.';
-$lang['lang_old_password'] =  'Old Password';
-$lang['lang_new_password'] =  'The new password';
-$lang['lang_pass_changed'] =  'Your password was successfully changed.';
+$lang['lang_register_off'] = 'Registration is prohibited.';
+$lang['lang_logout_to_reg'] = 'You are already registered ;)';
+$lang['lang_acc_activated'] = 'Your account has been successfully activated. ';
+$lang['lang_resend_acc_code'] = 'You have provided an incorrect activation code sent to the e-mail the new code.';
+$lang['lang_username_or_mail'] = 'Username or Email';
+$lang['lang_acc_mail_sent'] = 'Please check your email for instructions on how to activate the new password.';
+$lang['lang_pass_restored'] = 'You have successfully zeroed my password. ';
+$lang['lang_reset_failed'] = 'Reset failed. Not a valid user name and / or password. Check your email and follow the instructions.';
+$lang['lang_old_password'] = 'Old Password';
+$lang['lang_new_password'] = 'The new password';
+$lang['lang_pass_changed'] = 'Your password was successfully changed.';
 $lang['lang_access_deny'] = 'You are not allowed to view the page.';
 $lang['lang_user_banned'] = 'Your account has been blocked.';
 
@@ -61,10 +62,10 @@ $lang['full_article'] = 'Read more → ';
 $lang['history_back'] = '←  Back';
 
 //errors
-$lang['error_login']     = 'User with the username and password are not found.';
-$lang['error_category']  = 'Category was not found.';
-$lang['error_page_h']      = 'Page not found';
-$lang['error_page_404']  = 'Page not found.';
+$lang['error_login'] = 'User with the username and password are not found.';
+$lang['error_category'] = 'Category was not found.';
+$lang['error_page_h'] = 'Page not found';
+$lang['error_page_404'] = 'Page not found.';
 $lang['no_pages_in_cat'] = 'In the category has no pages.';
 $lang['uri_access_deny'] = 'Access is denied.';
 
@@ -77,8 +78,8 @@ $lang['last_link'] = 'Last';
 $lang['first_link'] = 'The first';
 
 // Search 
-$lang['no_pages_found'] ='Nothing was found';
-$lang['search_title']   ='Search';
+$lang['no_pages_found'] = 'Nothing was found';
+$lang['search_title'] = 'Search';
 
 $lang ['s_log_out'] = 'Log in';
 $lang ['s_manufacturer'] = 'Manufacturer';
@@ -190,13 +191,13 @@ $lang ['s_main_home'] = 'Home';
 $lang ['s_order_form'] = 'Contents <br/> order';
 $lang ['s_message_o_report'] = 'Report  <br/> the appearance of';
 $lang ['s_last_comment'] = 'Last comment';
-$lang ['s_leave_comment']   = 'leave a comment';
+$lang ['s_leave_comment'] = 'leave a comment';
 $lang ['s_when'] = 'when';
-$lang['s_lang_logged']                  =               'You are logged in as';
-$lang['s_plus']                  =               'Plus';
-$lang['s_cons']                  =               'Cons';
-$lang['s_review_comment']                  =               'Review was helpful?';
-$lang['s_comment_answer']                  =               'Answer';
+$lang['s_lang_logged'] = 'You are logged in as';
+$lang['s_plus'] = 'Plus';
+$lang['s_cons'] = 'Cons';
+$lang['s_review_comment'] = 'Review was helpful?';
+$lang['s_comment_answer'] = 'Answer';
 $lang ['s_text_comment_one'] = 'Text comments';
 $lang ['s_you_raiting'] = 'You rating';
 $lang ['s_on_comment'] = 'On';
@@ -214,11 +215,20 @@ $lang ['s_brand'] = 'Brands';
 $lang ['s_magazine'] = 'store';
 $lang ['s_send'] = 'Send';
 $lang ['s_friend'] = 'friend';
-$lang ['s_registration_sends'] = 'If you want to send WishList friend, you must avtorizirovatsya';
+$lang ['s_registration_sends'] = 'If you want to send WishList friend, you must login';
 $lang ['s_foto'] = 'Photo';
 $lang ['s_naz'] = 'Name';
 $lang ['s_price'] = 'Price';
 $lang ['s_finish'] = 'Total';
+$lang ['s_edit'] = 'Edit';
+$lang ['s_email_is_login'] = 'E-mail is login';
+$lang ['s_email_4_sumbls'] = 'At least 4 characters long';
+$lang ['s_order_date'] = 'Order date';
+$lang ['s_order_data'] = 'Order data';
+$lang ['s_go_profile'] = 'Go to profile';
+$lang ['s_discount'] = 'Discount';
+$lang ['s_product_amount'] = 'The amount of goods';
+$lang ['s_order_view'] = 'View orders';
 
 $lang ['s_sdm'] = 'Select a delivery method';
 $lang ['s_spm'] = 'Select a payment method';
@@ -318,6 +328,9 @@ $lang['s_order_history'] = 'Order History';
 $lang['s_to_fal_do'] = 'Do you follow the following goods';
 $lang['s_to_fal_mo_ti'] = 'Goods in order to monitor';
 $lang['s_to_falitem_number'] = 'Item Number';
+$lang['s_to_falitem_difference'] = 'Difference';
+$lang['s_to_falitem_difference_perc'] = 'Differencein percents';
+$lang['s_to_unsubscribe'] = 'Unsubscribe';
 $lang['s_to_falo_product_name'] = 'Product Name';
 $lang['s_to_additional_information'] = 'Additional information';
 $lang['s_to_call_me'] = 'Call me';
