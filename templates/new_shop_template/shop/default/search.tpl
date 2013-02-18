@@ -112,7 +112,7 @@
                                 <div class="description">
                                     <div class="frame_response">
                                         <div class="star">
-                                           {$CI->load->module('star_rating')->show_star_rating($product)}
+                                           {$CI->load->module('star_rating')->show_star_rating($p)}
                                         </div>
                                     </div>
                                    <a href="{shop_url('product/'.$p->getUrl())}">{echo ShopCore::encode($p->getName())}</a>
@@ -151,7 +151,7 @@
                     </ul>
                     <!-- Pagination -->
                     {if $pagination}
-                        <div class="pagination"><div class="t-a_c">{$pagination}</div></div>
+                        {$pagination}
                     {/if}
                 {else:}
                     <p>
