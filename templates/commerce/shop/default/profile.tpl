@@ -149,9 +149,9 @@
                             <tr>
                                 <th>{lang('s_to_falitem_number')}</th>
                                 <th>{lang('s_to_falo_product_name')}</th>
-                                <th>Разница</th>
-                                <th>Разница в процентах</th>
-                                <th>Отписатся</th>
+                                <th>{lang('s_to_falitem_difference')}</th>
+                                <th>{lang('s_to_falitem_difference_percents')}</th>
+                                <th>{lang('s_to_unsubscribe')}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -159,7 +159,7 @@
                                 {$product = $good->getProduct()}
                                 <tr>
                                     <td>{echo $product[0]->getId()}</td>
-                                    <td><a href="{$BASE_URL}shop/product/{echo $product[0]->getId()}">{echo $product[0]->getName()}</td>
+                                    <td><a href="{$BASE_URL}shop/product/{echo $product[0]->getUrl()}">{echo $product[0]->getName()}</td>
                                     <td>
                                         {echo $good->getdist()}
                                     </td>
@@ -167,7 +167,7 @@
                                         {echo $good->getpercentdist()}
                                     </td>
                                     <td>
-                                        <a href="{echo $good->getLink()}">Отписатся</a>
+                                        <a href="{echo $good->getLink()}">{lang('s_to_unsubscribe')}</a>
                                     </td>
                                 </tr>
                             {/foreach}

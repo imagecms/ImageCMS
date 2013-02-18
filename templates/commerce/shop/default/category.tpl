@@ -55,11 +55,11 @@
                                                 {$prOne = $hotProduct->firstVariant->getPrice()}
                                                 {$prTwo = $hotProduct->firstVariant->getPrice()}
                                                 {$prThree = $prOne - $prTwo / 100 * $discount}
-                                                <del class="price price-c_red f-s_12 price-c_9">{echo number_format($hotProduct->firstVariant->getPrice(), 2, ".", "")} {$CS}</del><br /> 
+                                                <del class="price price-c_red f-s_12 price-c_9">{echo number_format($hotProduct->firstVariant->getPrice(), ShopCore::app()->SSettings->pricePrecision, ".", "")} {$CS}</del><br /> 
                                             {else:}
-                                                <div class="price f-s_14">{$prThree = number_format($hotProduct->firstVariant->getPrice(), 2, ".", "")}
+                                                <div class="price f-s_14">{$prThree = number_format($hotProduct->firstVariant->getPrice(), ShopCore::app()->SSettings->pricePrecision, ".", "")}
                                                 {/if}
-                                                {echo number_format($prThree, 2, ".", "")} 
+                                                {echo number_format($prThree, ShopCore::app()->SSettings->pricePrecision, ".", "")} 
                                                 <sub>{$CS}</sub>
                                             </div>
                                         </div>
@@ -92,11 +92,11 @@
                                                 {$prOne = $hotProduct->firstVariant->getPrice()}
                                                 {$prTwo = $hotProduct->firstVariant->getPrice()}
                                                 {$prThree = $prOne - $prTwo / 100 * $discount}
-                                                <del class="price price-c_red f-s_12 price-c_9">{echo number_format($hotProduct->firstVariant->getPrice(), 2, ".", "")} {$CS}</del><br /> 
+                                                <del class="price price-c_red f-s_12 price-c_9">{echo number_format($hotProduct->firstVariant->getPrice(), ShopCore::app()->SSettings->pricePrecision, ".", "")} {$CS}</del><br /> 
                                             {else:}
-                                                <div class="price f-s_14">{$prThree = number_format($hotProduct->firstVariant->getPrice(), 2, ".", "")}
+                                                <div class="price f-s_14">{$prThree = number_format($hotProduct->firstVariant->getPrice(), ShopCore::app()->SSettings->pricePrecision, ".", "")}
                                                 {/if}
-                                                {echo number_format($prThree, 2, ".", "")} 
+                                                {echo number_format($prThree, ShopCore::app()->SSettings->pricePrecision, ".", "")} 
                                                 <sub>{$CS}</sub>
                                             </div>
                                         </div>
@@ -231,7 +231,7 @@
                                                             value="{echo $pv->id}"
                                                             data-cs = "{$CS}"
                                                             data-st="{echo $pv->stock}"
-                                                            data-pr="{echo number_format($pv->price, 2 , ".", "")}"
+                                                            data-pr="{echo number_format($pv->price, ShopCore::app()->SSettings->pricePrecision, ".", "")}"
                                                             data-pid="{echo $product->id}"
                                                             data-img-small="{echo $pv->smallImage}"
                                                             data-vname="{echo $pv->name}"
@@ -253,7 +253,7 @@
                                             {if $product->old_price > $product->price}
                                                 <div>
                                                     <del class="price f-s_12 price-c_9" style="margin-top: 1px;">
-                                                        {echo number_format($product->old_price, 2, ".", "")}
+                                                        {echo number_format($product->old_price, ShopCore::app()->SSettings->pricePrecision, ".", "")}
                                                         <sub> {$CS}</sub>
                                                     </del>
                                                 </div>
@@ -264,11 +264,11 @@
                                                 {$prOne = $product->variants[0]->price}
                                                 {$prTwo = $product->variants[0]->price}
                                                 {$prThree = $prOne - $prTwo / 100 * $discount}
-                                                <del class="price price-c_red f-s_12 price-c_9">{echo number_format($product->variants[0]->price, 2, ".", "")} {$CS}</del>
+                                                <del class="price price-c_red f-s_12 price-c_9">{echo number_format($product->variants[0]->price, ShopCore::app()->SSettings->pricePrecision, ".", "")} {$CS}</del>
                                             {else:}
                                                 {$prThree = $product->variants[0]->price}
                                             {/if}
-                                            {echo number_format($prThree, 2, ".", "")} 
+                                            {echo number_format($prThree, ShopCore::app()->SSettings->pricePrecision, ".", "")} 
                                             <sub>{$CS}</sub>
                                         </div>
                                     </div>
