@@ -220,8 +220,9 @@ $lang['s_foto']                         =               'Фото';
 $lang['s_naz']                          =               'Название';
 $lang['s_price']                        =               'Цена';
 $lang['s_finish']                       =               'Итог';
-$lang['s_WL_PV']                      =               'товаров';
-$lang['s_сomments_contact']                      =               'Коментарии';
+$lang['s_WL_PV']                        =               'товаров';
+$lang['s_сomments_contact']             =               'Коментарии';
+$lang['s_category']                     = 'Категория';
 
 $lang ['s_sdm'] = 'Выберите способ доставки';
 $lang ['s_spm'] = 'Выберите способ оплаты';
