@@ -11,7 +11,7 @@
         <div class="span6">
         {if $CI->session->flashdata('makeOrder') === true}<h1 class="d_i v-a_m m-r_45">{lang('s_thank_order')}</h1>{/if}
         <div class="frameGroupsForm">
-            <div class="header_title">Данные заказа<a href="#" class="btn btn_cart v-a_m">Перейти в личный кабинет</a></div>
+            <div class="header_title">Данные заказа<a href="{site_url()}shop/cart/view/shop/profile" class="btn btn_cart v-a_m">Перейти в личный кабинет</a></div>
             <div class="inside_padd">
                 <table class="tableOrderData">
                     <tr>
