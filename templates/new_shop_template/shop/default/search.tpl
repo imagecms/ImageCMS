@@ -134,11 +134,26 @@
                                                 <span class="f-w_b">{echo number_format($prThree, 2, ".", "")}</span> {$CS}
                                                 <span class="second_cash"></span>
                                     </div>
-                                  <button class="btn btn_buy" type="button">В корзину</button>
+                                    <!-- check is product in cart -->
+                                    {if $style.identif == 'goToCart'}    
+                                        <button class="btn btn_cart" type="button">{lang('already_in_basket')}</button>
+                                    {else:}
+                                        <button class="btn btn_buy" type="button">{lang('add_to_basket')}</button>
+                                    {/if}
                                     <div class="d_i-b">
-                                        <button class="btn btn_small_p" type="button" title="добавить в список сравнений"><span class="icon-comprasion_2"></span></button>
-                                        <button class="btn btn_small_p" type="button" title="добавить в список желаний"><span class="icon-wish_2"></span></button>
-                                    </div>
+                                    <!-- check is product in compare list -->
+                                    {if $forCompareProducts && in_array($p->id, $forCompareProducts)}
+                                        <button class="btn btn_small_p" type="button" title="{echo lang('s_list_in_comp')}"><span class="icon-comprasion"></span></button>
+                                    {else:}
+                                        <button class="btn btn_small_p" type="button" title="{echo lang('s_list_add_comp')}"><span class="icon-comprasion_2"></span></button>
+                                    {/if}
+                                    <!-- check is product in wish list -->
+                                    {if is_in_wish($p->id)}
+                                        <button class="btn btn_small_p" type="button" title="{echo lang ('s_ilw')}"><span class="icon-wish"></span></button>
+                                    {else:}
+                                        <button class="btn btn_small_p" type="button" title="{echo lang('s_save_W_L')}"><span class="icon-wish_2"></span></button>
+                                    {/if}     
+                                   </div>
                                 </div>
                                 <a class="photo" href="{shop_url('product/' . $p->getUrl())}">
                                     <span class="helper"></span>
