@@ -26,16 +26,16 @@
                                 {if ShopCore::$_GET['categoryId'] == $item.id}<b class="c_d">{$cat_name = $item.name}{/if}
                                     <span class="{if ShopCore::$_GET['categoryId']!=$item.id}findincats{/if} js gray" data-id="{echo $item.id}">{$item.name} ({echo $incats[$item.id]})</span>
                                 {if ShopCore::$_GET['categoryId'] == $item.id}</b>{/if}
-                                </li>
-                            {/foreach}
-                        </ul>
-                    </div>
-                    {if ShopCore::$_GET['categoryId']}<a href="{site_url($CI->uri->uri_string())}"><span class="icon-reset"></span>{lang('s_cancel')}</a><br/>{/if}
-                </form>
-            {else:}
-                <div class="title padding_filter">В категориях ничего не найдено</div>
-            {/if}
-        </div>
+                        </li>
+                    {/foreach}
+                </ul>
+            </div>
+        {if ShopCore::$_GET['categoryId']}<a href="{site_url($CI->uri->uri_string())}"><span class="icon-reset"></span>{lang('s_cancel')}</a><br/>{/if}
+    </form>
+{else:}
+    <div class="title padding_filter">В категориях ничего не найдено</div>
+{/if}
+</div>
 <div class="catalog_content">
     <!--   Right sidebar     -->
     <div class="nowelty_auction">
@@ -233,7 +233,7 @@
                                                     data-cs="{$CS}"
                                                     data-st="{echo $pv->getstock()}"
                                                     data-cs = "{$CS}"
-                                                    data-pr="{echo number_format($pv->getPrice(), 2 , ".", "")}"
+                                                    data-pr="{echo number_format($pv->getPrice(), ShopCore::app()->SSettings->pricePrecision , ".", "")}"
                                                     data-pid="{echo $product->getid()}"
                                                     data-img-small="{echo $pv->getsmallimage()}"
                                                     data-vname="{echo $pv->getname()}"
@@ -255,7 +255,7 @@
                                     {if $product->getOldPrice() > $product->firstVariant->getPrice()}
                                         <div>
                                             <del class="price f-s_12 price-c_9" style="margin-top: 1px;">
-                                                {echo number_format($product->getOldPrice(), 2, ".", "")}
+                                                {echo number_format($product->getOldPrice(), ShopCore::app()->SSettings->pricePrecision, ".", "")}
                                                 <sub> {$CS}</sub>
                                             </del>
                                         </div>
@@ -266,11 +266,11 @@
                                         {$prOne = $product->firstVariant->getPrice()}
                                         {$prTwo = $product->firstVariant->getPrice()}
                                         {$prThree = $prOne - $prTwo / 100 * $discount}
-                                        <del class="price price-c_red f-s_12 price-c_9">{echo number_format($product->firstVariant->getPrice(), 2, ".", "")} {$CS}</del>
+                                        <del class="price price-c_red f-s_12 price-c_9">{echo number_format($product->firstVariant->getPrice(), ShopCore::app()->SSettings->pricePrecision, ".", "")} {$CS}</del>
                                     {else:}
                                         {$prThree = $product->firstVariant->getPrice()}
                                     {/if}
-                                    {echo number_format($prThree, 2, ".", "")} 
+                                    {echo number_format($prThree, ShopCore::app()->SSettings->pricePrecision, ".", "")} 
                                     <sub>{$CS}</sub>
                                 </div>
                             </div>
@@ -310,11 +310,7 @@
             <!--  Render produts list   -->
         </ul>
         <!--    Pagination    -->
-        <div class="pagination">
-            <div class="t-a_c">
-                {$pagination}
-            </div>
-        </div>
+        {$pagination}
         <!--    Pagination    -->
     </div>
 

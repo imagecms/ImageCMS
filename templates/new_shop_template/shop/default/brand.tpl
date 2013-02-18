@@ -141,7 +141,7 @@
                                 </a>
                             </div>
                             <a href="{shop_url('product/' . $product->geturl())}">{echo ShopCore::encode($product->getname())}</a>
-                            <div class="price price_f-s_16"><span class="f-w_b">{echo $product->firstVariant->getPrice()}</span> {$CS}&nbsp;&nbsp;</div>
+                            <div class="price price_f-s_16"><span class="f-w_b">{echo number_format($product->firstVariant->getPrice(), ShopCore::app()->SSettings->pricePrecision, ".", "")}</span> {$CS}&nbsp;&nbsp;</div>
                             <button class="btn btn_buy" type="button">Уже в корзине</button>
                             <div class="d_i-b">
                                 <button class="btn btn_small_p" type="button" title="добавить в список сравнений"><span class="icon-comprasion_2"></span></button>
