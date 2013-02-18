@@ -332,4 +332,10 @@ $lang['s_s_hit'] = 'Хит';
 
 $lang['s_found_in_categories'] = 'Найдено в категориях:';
 $lang['s_not_found_in_categories'] = 'В категориях ничего не найдено';
+
+
+// Wish list
+$lang['add_to_basket'] = 'В корзину';
+$lang['already_in_basket'] = 'Уже в корзине';
+
 /* End of file main_lang.php */
