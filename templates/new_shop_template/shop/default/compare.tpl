@@ -1,138 +1,131 @@
-<div id="has"  >
-    <div class="content" >
-        {$CI->load->helper('translit')}
-        <div class="center">
-            <h1>{lang('s_compare_tovars')}</h1>
-            {if count($products) > 0}
-                <!--<a class="active" style="cursor: pointer; display:none;">{lang('s_all_par')}</a>-->
-                <!--<a class="prod_dif" id="all" style="cursor:pointer;">{lang('s_only_diff')}</a>-->
-
-                {$cnt = 1}
-                {$cnc = 1}
-                {foreach $categorys as $category}
-                    <div class="comparison_slider">
-                        <div class="frame_button_compare">
-                            <div class="prod_show_diff button_compare disabled"><span class="js blue">{lang('s_all_par')}</span></div>
-                            <div class="prod_show_diff"><span class="js blue">{lang('s_only_diff')}</span></div>
-                            <div class="no_differ">Нет различий</div>
-                        </div>
-                        <div class="parameters_compr">
-                            <div class="title">{lang('lang_categories')}: {echo $category.Name}</div>
-                        </div>
-                        <div class="comparison_slider_left">
-                            {$data = ShopCore::app()->SPropertiesRenderer->renderCategoryPropertiesArray($category['Id'])}
-                            {foreach $data as $d}                                    
-                                <span data-row="{echo translit($d)}{echo $category['Id']}">
-                                    <script> var den = {$cnt}</script>
-                                    <span class="todifff{echo $cnt++}">{$d}</span>
-                                </span>
-                            {/foreach}
-                        </div>                                
-                        <div class="comparison_tovars" >                               
-                            <script> var bar = {$cnc}</script>
-                            <ul class="comparison_slider_right{echo $cnc++}">                                   
-                                {foreach $products as $product}
-                                    {$discount = ShopCore::app()->SDiscountsManager->productDiscount($product->id)}
-                                    {$style = productInCart($cart_data, $product->getId(), $product->firstVariant->getId(), $product->firstVariant->getStock())}
-                                    {if $product->category_id == $category['Id']}
-                                        <li class="list_desire" id="product_block_{echo $product->getId()}">
-                                            <div class="frame_porivnjanja_tovar smallest_item">
-                                                <div class="photo_block">
-                                                    <a href="{shop_url('product/' . $product->getUrl())}">
-                                                        <img src="{productImageUrl($product->getSmallModimage())}" alt="{echo ShopCore::encode($product->name)}" />
-                                                    </a>
-                                                    <div class="clearfix">
-                                                    </div>
-                                                    <span class="delete_tovar img" data-pid="{echo $product->getId()}" style="width: 20px; height: 20px;"></span>
-                                                </div>
-                                                <div class="func_description">
-                                                    <a href="{shop_url('product/' . $product->getUrl())}" class="title">{echo $product->getName()}{echo $product->getName()}</a>
-                                                    <div class="buy">
-                                                        <div class="price f-s_14">
-                                                            {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                                                {$prOne = $product->firstvariant->getPrice()}
-                                                                {$prTwo = $product->firstvariant->getPrice()}
-                                                                {$prThree = $prOne - $prTwo / 100 * $discount}
-                                                                <del class="price price-c_red f-s_12 price-c_9">{echo $product->firstvariant->getPrice()} {$CS}</del><br /> 
-                                                            {else:}
-                                                                {$prThree = $product->firstvariant->getPrice()}
-                                                            {/if}
-                                                            {echo $prThree} 
-                                                            <sub>{$CS}</sub>
-                                                        </div>
-                                                        <div id="p{echo $product->getId()}" class="{$style.class} buttons">
-                                                            <span id="buy{echo $product->getId()}" class="{$style.identif}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" >
-                                                                {$style.message}
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="field_container_character">
-                                                {$pdata = ShopCore::app()->SPropertiesRenderer->renderPropertiesCompareArray($product)}
-                                                {$cnt = 1}   
-                                                {foreach $data as $d}
-                                                    {$cval = ShopCore::encode($d)}
-                                                    <span data-row="{echo translit($d)}{echo $category['Id']}">
-                                                        <span class="todiff" data-rows="{echo translit($d)}{echo $category['Id']}">
-                                                            {if count($pdata[$cval])>1}
-                                                                {$i = 0}
-                                                                {foreach $pdata[$cval] as $ms}
-                                                                    {echo $ms}
-                                                                {if $i<(count($pdata[$cval])-1)},{/if}
-                                                                {$i++}
-                                                            {/foreach}
-                                                        {else:}
-                                                    {if $pdata[$cval]} {echo $pdata[$cval]} {else:} - {/if}
-                                                {/if}
-                                            </span>
-                                        </span>   
-
-                                    {/foreach}
-                                </div>
-                            </li>
-                        {/if}
-                    {/foreach}
-                </ul>
-            </div>
-        </div> 
-    {/foreach}           
-{else:}
-    <div class="comparison_slider">
-        <div class="f-s_18 m-t_29 t-a_c">{lang('s_compare_list_em')}</div>
+<article>
+    <div class="crumbs" xmlns:v="http://rdf.data-vocabulary.org/#">
+        <span typeof="v:Breadcrumb">
+            <a href="#" rel="v:url" property="v:title"></a>
+        </span>
     </div>
-{/if}
+        {$CI->load->helper('translit')}
+            <h1>{lang('s_compare_tovars')}</h1>
+            <div class="p_r">
+            <!-- Show compare list if count products >0 -->
+            {if count($products) > 0}
+                <!-- Show categories of products which are in list -->
+                <div class="comprasion_head">
+                    <div class="title_h2">{lang('s_category')}:</div>
+                    <ul class="tabs">
+                        {foreach $categorys as $category}
+                            <li><span data-href="#{$category.Url}"><span class="d_l_b">{echo $category.Name}</span></span></li>
+                        {/foreach}
+                    </ul>
+                </div>
+                <div class="frame_tabsc">
+                    <!-- Show blocks of products and properties grouped by category of products -->
+                    {foreach $categorys as $category}
+                        <div id="{echo $category.Url}" data-refresh>
+                             <ul class="leftDescription characteristic"> 
+                                 <li></li>
+                                 {$data = ShopCore::app()->SPropertiesRenderer->renderCategoryPropertiesArray($category['Id'])}
+                                 <!-- Properties for current group -->
+                                 {foreach $data as $d}                                    
+                                 <li>
+                                    <span class="helper"></span>
+                                    <span>{echo $d} </span>
+                                 </li>
+                                 {/foreach}
+                             </ul>
+                             <div class="rightDescription">
+                             <ul class="comprasion_tovars_frame row itemsFrameNS">
+                                 {foreach $products as $product}
+                                 {if $product->category_id == $category['Id']}
+                                 {$discount = ShopCore::app()->SDiscountsManager->productDiscount($product->id)}
+                                 {$style = productInCart($cart_data, $product->getId(), $product->firstVariant->getId(), $product->firstVariant->getStock())}
+                                 <li class="span3">
+                                    <!-- Photo,name and price -->
+                                    <ul class="items items_catalog">
+                                        <li>
+                                            <button class="btn btn_small btn_small_p">
+                                                <span class="icon-remove_comprasion"></span>
+                                            </button>
+                                            <a href="{shop_url('product/' . $product->getUrl())}" class="photo">
+                                                <span class="helper"></span>
+                                                <figure>
+                                                    <img src="{productImageUrl($product->getSmallModimage())}" alt=""/>
+                                                </figure>
+                                            </a>
+                                            <div class="description">
+                                                <div class="frame_response">
+                                                    <div class="star">
+                                                        {$CI->load->module('star_rating')->show_star_rating($product)}
+                                                    </div>
+                                                </div>
+                                                <a href="{shop_url('product/' . $product->getUrl())}">{echo $product->getName()}</a>
+                                                <div class="price price_f-s_16">
+                                                    {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
+                                                        {$prOne = $product->firstvariant->getPrice()}
+                                                        {$prThree = $prOne - $prOne / 100 * $discount}
+                                                    {else:}
+                                                        {$prThree = $product->firstvariant->getPrice()}
+                                                    {/if}
+                                                    <span class="f-w_b">{echo $prThree}</span> {$CS}
+                                                    <span class="second_cash"></span>
+                                                </div>
+                                                {if $style.identif == 'goToCart'}    
+                                                    <button class="btn btn_cart" type="button">{lang('already_in_basket')}</button>
+                                                {else:}
+                                                    <button class="btn btn_buy" type="button">{lang('add_to_basket')}</button>
+                                                {/if}
+                                                {if is_in_wish($product->id)}
+                                                    <button class="btn btn_small_p" type="button" title="{echo lang ('s_ilw')}"><span class="icon-wish"></span></button>
+                                                {else:}
+                                                    <button class="btn btn_small_p" type="button" title="{echo lang('s_save_W_L')}"><span class="icon-wish_2"></span></button>
+                                                {/if}
+                                           </div>
+                                        </li>
+                                    </ul>
+                                    <!-- Product characteristics  -->       
+                                    <ul class="characteristic">
+                                        {$pdata = ShopCore::app()->SPropertiesRenderer->renderPropertiesCompareArray($product)}
+                                        {foreach $data as $d}
+                                           {$cval = ShopCore::encode($d)}
+                                           {if is_array($pdata[$cval])}
+                                                <li>
+                                                    <span class="helper"></span>
+                                                    <span>
+                                                {$i = 0}
+                                                {foreach $pdata[$cval] as $ms}
+                                                        {echo $ms}
+                                                    {if $i<(count($pdata[$cval])-1)},{/if}
+                                                    {$i++}
+                                                {/foreach}
+                                                </span>
+                                                </li>
+                                            {else:}
+                                                {if $pdata[$cval]}
+                                                <li>
+                                                    <span class="helper"></span>
+                                                    <span>{echo $pdata[$cval]}</span>
+                                                </li> 
+                                                {else:}
+                                                <li><span class="helper"></span><span>-</span></li> 
+                                                {/if}
+                                            {/if}
+                                        {/foreach}
+                                    </ul>
+                                </li>
+                                {/if}
+                                {/foreach}
+                            </ul>
+                            </div>
+                        </div> 
+                    {/foreach}
+            </div>    
+            {else:}
+                <!-- Show message if compare list is empty -->
+                <div class="comparison_slider">
+                    <div class="f-s_18 m-t_29 t-a_c">{lang('s_compare_list_em')}</div>
+                </div>
+            {/if}
+        
+        </div>
 {widget('latest_news')}
-</div>
-</div>
-</div>
-{literal}
-    <script>
-
-                                        for (var i = 1; i <= bar; i++) {
-                                            width = 0;
-                                            $('.comparison_slider_right' + i + ' li').each(function() {
-                                                return width += $(this).outerWidth();
-                                            });
-
-                                            $('.comparison_slider_right' + i).css('width', width);
-
-                                            $(function() {
-                                                $('.comparison_tovars').jScrollPane({
-                                                    'showArrows': true
-                                                });
-                                            });
-                                        }
-                                        $("#all").live('click', function() {
-                                            $(".active").show();
-                                            $("#all").hide();
-                                        });
-                                        $(".active").live('click', function() {
-                                            $("#all").show();
-                                            $(".active").hide();
-                                        });
-
-
-
-    </script>
-{/literal}
+</article>
