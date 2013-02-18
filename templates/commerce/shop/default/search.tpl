@@ -157,7 +157,7 @@
                                                 {if $p->getOldPrice() > $p->firstvariant->getPrice()}
                                                     <div>
                                                         <del class="price f-s_12 price-c_9" style="margin-top: 1px;">
-                                                            {echo number_format($p->getOldPrice(), 2, ".", "")}
+                                                            {echo number_format($p->getOldPrice(), ShopCore::app()->SSettings->pricePrecision, ".", "")}
                                                             <sub> {$CS}</sub>
                                                         </del>
                                                     </div>
@@ -168,11 +168,11 @@
                                                     {$prOne = $p->firstvariant->getPrice()}
                                                     {$prTwo = $p->firstvariant->getPrice()}
                                                     {$prThree = $prOne - $prTwo / 100 * $discount}
-                                                    <del class="price price-c_red f-s_12 price-c_9">{echo number_format($p->firstvariant->getPrice(), 2, ".", "")} {$CS}</del>
+                                                    <del class="price price-c_red f-s_12 price-c_9">{echo number_format($p->firstvariant->getPrice(), ShopCore::app()->SSettings->pricePrecision, ".", "")} {$CS}</del>
                                                 {else:}
                                                     {$prThree = $p->firstvariant->getPrice()}
                                                 {/if}
-                                                {echo number_format($prThree, 2, ".", "")} 
+                                                {echo number_format($prThree, ShopCore::app()->SSettings->pricePrecision, ".", "")} 
                                                 <sub>{$CS}</sub>
                                             </div>
                                         </div>
