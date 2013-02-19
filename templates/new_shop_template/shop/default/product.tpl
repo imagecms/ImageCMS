@@ -353,7 +353,7 @@
                                     {/if}
                                     <div class="buy">
                                         <div class="price f-s_16 f_l">
-                                            <span>{echo number_format($kp.main.price*(1 - $coompl->getdiscount()/100), 2, '.', '')} <sub>{$kp.main.symbol}</sub></span>
+                                            <span>{echo number_format($kp.main.price*(1 - $coompl->getdiscount()/100), ShopCore::app()->SSettings->pricePrecision, '.', '')} <sub>{$kp.main.symbol}</sub></span>
                                         </div>
                                     </div>                                        
                                 </div> 
@@ -365,7 +365,7 @@
                             {/if}
                             {$i++}
                             {$summa += $kp.main.price}
-                            {$summa_with_discount += number_format($kp.main.price*(1 - $coompl->getdiscount()/100), 2, '.', '')}
+                            {$summa_with_discount += number_format($kp.main.price*(1 - $coompl->getdiscount()/100), ShopCore::app()->SSettings->pricePrecision, '.', '')}
                         {/foreach}
                         <div class="button_block ">
                             <div class="buy">

@@ -11,7 +11,7 @@
         <div class="span6">
         {if $CI->session->flashdata('makeOrder') === true}<h1 class="d_i v-a_m m-r_45">{lang('s_thank_order')}</h1>{/if}
         <div class="frameGroupsForm">
-            <div class="header_title">Данные заказа<a href="{site_url()}shop/cart/view/shop/profile" class="btn btn_cart v-a_m">Перейти в личный кабинет</a></div>
+            <div class="header_title">{lang('s_order_data')}<a href="{site_url()}shop/profile" class="btn btn_cart v-a_m">{lang('s_go_profile')}</a></div>
             <div class="inside_padd">
                 <table class="tableOrderData">
                     <tr>
@@ -30,7 +30,7 @@
                     {/if}
                     {if count($discountCom)}
                         <tr>
-                            <th>Скидка: </th>
+                            <th>{lang('s_discount')}: </th>
                             <td>(-{echo $model->getComulativ()}%)</td>
                         </tr>
                     {/if}
@@ -177,14 +177,14 @@
                                         {$total -= $model->getgiftcertprice()}
                                     {/if}
                                     {if $total >= $deliveryMethod->getFreeFrom() AND $deliveryMethod->getFreeFrom() > 0}
-                                        <div class="c_97" style="margin-bottom: 4px;">(Сумма товаров: <span class="f-w_b">{echo $total}</span> ({$CS})</div>
+                                        <div class="c_97" style="margin-bottom: 4px;">({lang('s_product_amount')}: <span class="f-w_b">{echo $total}</span> ({$CS})</div>
                                         {if $giftPrice}
-                                            <div class="price f-s_12">Сертификат: -{echo $giftPrice} {$CS}</div>
+                                            <div class="price f-s_12">{lang('s_do_you_cer_tif')}: -{echo $giftPrice} {$CS}</div>
                                         {/if}
                                     {else:}
-                                        <div class="c_97" style="margin-bottom: 4px;">(Сумма товаров: <span class="f-w_b">{echo $total + $model->getDeliveryPrice()}</span> {$CS} + Доставка: <span class="f-w_b">{echo $model->getDeliveryPrice()}</span> {$CS})</div>
+                                        <div class="c_97" style="margin-bottom: 4px;">({lang('s_product_amount')}: <span class="f-w_b">{echo $total + $model->getDeliveryPrice()}</span> {$CS} + {lang('s_dostavka')}: <span class="f-w_b">{echo $model->getDeliveryPrice()}</span> {$CS})</div>
                                         {if $giftPrice}
-                                            <div class="price f-s_12">Сертификат: -{echo $giftPrice} {$CS}</div>
+                                            <div class="price f-s_12">{lang('s_do_you_cer_tif')}: -{echo $giftPrice} {$CS}</div>
                                         {/if}
                                     {/if}
                                     <span class="f-s_18">{lang('s_summ')}:</span> <span class="f-s_24">{echo $total + $model->getDeliveryPrice()}</span> <span class="f-s_14">{$CS}.</span>
