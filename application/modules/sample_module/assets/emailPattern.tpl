@@ -228,9 +228,9 @@
                                     <tr>
                                         <td style="font-weight: bold;padding-right: 20px; padding-top: 10px;">Manipulate :</td>
                                         <td style=" padding-top: 10px;">
-                                            <a style="float: left; margin-right: 20px;text-decoration: underline;" href="{site_url("sample_module/precess/$comment->id/accept")}">Accept</a>
-                                            <a style="float: left; margin-right: 20px;text-decoration: underline;" href="{site_url("sample_module/precess/$comment->id/decline")}">Decline</a>
-                                            <a style="float: left; margin-right: 20px;text-decoration: underline;" href="{site_url("sample_module/precess/$comment->id/spam")}">to Spam</a>
+                                            <a style="float: left; margin-right: 20px;text-decoration: underline;" href="{site_url("sample_module/changeStatus/$comment->id/0")}">Accept</a>
+                                            <a style="float: left; margin-right: 20px;text-decoration: underline;" href="{site_url("sample_module/changeStatus/$comment->id/1")}">Decline</a>
+                                            <a style="float: left; margin-right: 20px;text-decoration: underline;" href="{site_url("sample_module/changeStatus/$comment->id/2")}">to Spam</a>
                                         </td>
                                     </tr>
                                 </table>

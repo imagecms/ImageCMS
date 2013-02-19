@@ -21,7 +21,11 @@ class assetManager {
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
-    public function setData(array $data) {
+    public function setData($item, $value = null) {
+        if ($value != null AND !is_array($item))
+            $data[$item] = $value;
+        else
+            $data = $item;
         (empty($data)) OR \CI_Controller::get_instance()->template->add_array($data);
         return $this;
     }
@@ -85,14 +89,17 @@ class assetManager {
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
-    public function render($tpl) {
+    public function render($tpl, $ignoreWrap = FALSE) {
         $trace = debug_backtrace();
         $paths = explode('/', $trace[0]['file']);
         $paths = $paths[count($paths) - 2];
         try {
             $tplPath = 'application/modules/' . $paths . '/assets/' . $tpl;
             file_exists($tplPath . '.tpl') OR throwException('Can\'t load template file: <i>' . $paths . '/' . $tpl . '.tpl</i>');
-            \CI_Controller::get_instance()->template->display('file:' . $tplPath);
+            if (!$ignoreWrap)
+                \CI_Controller::get_instance()->template->show('file:' . $tplPath);
+            else
+                \CI_Controller::get_instance()->template->display('file:' . $tplPath);
         } catch (\Exception $exc) {
             log_message('error', $exc->getMessage());
             show_error($exc->getMessage(), 500, 'An Template Error Was Encountered');
