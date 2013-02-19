@@ -89,7 +89,7 @@ aside{margin-top: 13px;}
 .bot_border_grey{border-bottom: 1px dashed #c5c5c5;}
 
 .w_100{width: 100%;}
-.w_150{width: 150px;}
+.w_150{width: 150px !important;}
 .m-t_10{margin-top: 10px;}
 .m-l_50{margin-left: 50px !important;}
 .m-l_25{margin-left: 25px !important;}
@@ -138,8 +138,8 @@ aside{margin-top: 13px;}
 .icon-comprasion_2 + span{margin-left: 7px;}
 .icon-return{width: 9px;height: 7px;background-position: -336px 0;margin-right: 5px;}
 .icon-remove_comprasion{width: 11px;height: 11px;background-position: -346px 0;top: 1px;}
-.icon-paid{width: 8px;height: 8px;background-position: -358px 0;}
-.icon-paid_not{width: 12px;height: 9px;background-position: -367px 0;}
+.icon-paid_not{width: 8px;height: 8px;background-position: -358px 0;}
+.icon-paid{width: 12px;height: 9px;background-position: -367px 0;}
 .icon-plus, .icon-minus{width: 8px;height: 5px;display: block;}
 .icon-plus{background-position: -380px 0;}
 .icon-minus{background-position: -389px 0;}
@@ -380,6 +380,7 @@ header .helper{height: 32px;}
 
 .frame-menu-main{position: relative;z-index: 2;margin-bottom: 20px;}
 .frame-menu-main:after, .ie_9{content: "";position: absolute;bottom: -6px;height: 8px;width: 100%;background-position: 0 -17px;}
+.menu-main table{table-layout: auto;}
 .menu-main td{vertical-align: middle;text-align: center;word-break: break-word;word-wrap: break-word;}
 .menu-main td > .frame-item-menu{height: 100%;border-width: 0 1px;border-style: solid;border-right-color: #b5b5b5;border-left-color: #515151;}
 .menu-main td.active > .frame-item-menu{border-width: 0;}
