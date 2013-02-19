@@ -232,6 +232,7 @@ $lang['s_go_profile'] = 'Перейти в личный кабинет';
 $lang['s_discount'] = 'Скидка';
 $lang['s_product_amount'] = 'Сумма товаров';
 $lang['s_order_view'] = 'Просмотр заказа';
+$lang['s_profile'] = 'Профиль';
 
 $lang ['s_sdm'] = 'Выберите способ доставки';
 $lang ['s_spm'] = 'Выберите способ оплаты';
@@ -249,6 +250,8 @@ $lang ['s_soob'] = 'Объявить';
 $lang ['s_compare_list_em'] = 'Список сравнений пуст';
 $lang ['s_added_PR'] = 'Добавлено ​​продуктов';
 $lang ['s_list_comp'] = 'Список сравнения';
+$lang ['s_list_add_comp'] = 'Додать в список сравнений';
+$lang ['s_list_in_comp'] = 'Уже в списке сравнений';
 $lang ['s_se_thi_sit'] = 'Поиск по сайту';
 $lang ['s_pcs1'] = 'шт';
 $lang ['s_pcs'] = 'Мои заказы';
