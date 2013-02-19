@@ -66,7 +66,7 @@
                                                     {else:}
                                                         {$prThree = $product->firstvariant->getPrice()}
                                                     {/if}
-                                                    <span class="f-w_b">{echo $prThree}</span> {$CS}
+                                                    <span class="f-w_b">{number_format($prThree, ShopCore::app()->SSettings->pricePrecision, ".", "")}</span> {$CS}
                                                     <span class="second_cash"></span>
                                                 </div>
                                                 {if $style.identif == 'goToCart'}    

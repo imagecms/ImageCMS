@@ -37,6 +37,7 @@ class Exchange {
             $this->config['password'] = '';
             $this->config['usepassword'] = false;
             $this->config['userstatuses'] = array();
+            $this->config['autoresize'] = 'On';
         } else {
             $this->config = $this->get1CSettings();
         }
@@ -188,7 +189,7 @@ class Exchange {
             //auto resize images if option is on
             if ($this->config['autoresize'] == 'on')
                 $this->startImagesResize();
-            
+
             if (file_exists($this->tempDir . "success_" . ShopCore::$_GET['filename'])) {
                 unlink($this->tempDir . "success_" . ShopCore::$_GET['filename']);
             }
@@ -232,9 +233,9 @@ class Exchange {
                 if ($parent) {
                     $data['full_path_ids'] = unserialize($parent['full_path_ids']);
                     if (empty($data['full_path_ids']))
-                        $data['full_path_ids'] = array((int)$parent['id']);
+                        $data['full_path_ids'] = array((int) $parent['id']);
                     else {
-                        $data['full_path_ids'][] = (int)$parent['id'];
+                        $data['full_path_ids'][] = (int) $parent['id'];
                     }
                     $this->ci->db->where('id', $insert_id)->update('shop_category', array('full_path_ids' => serialize($data['full_path_ids'])));
                 }
@@ -367,7 +368,7 @@ class Exchange {
 
     private function importProducts() {
         //property data array for serialize and unserialize
-        $temp_properties = $this->ci->db->select('id, data')->get('shop_product_properties')->result_array();
+        $temp_properties = $this->ci->db->select('id, data')->where('locale', $this->locale)->get('shop_product_properties_i18n')->result_array();
         if (is_array($temp_properties)) {
             foreach ($temp_properties as $key => $item) {
                 $properties_data[$item['id']] = unserialize($item['data']);
@@ -612,7 +613,7 @@ class Exchange {
         foreach ($properties_data as $key => $item) {
             $data = array();
             $data = array('data' => serialize($item));
-            $this->ci->db->where('id', $key)->update('shop_product_properties', $data);
+            $this->ci->db->where(array('id' => $key, 'locale' => $this->locale))->update('shop_product_properties_i18n', $data);
         }
     }
 
@@ -628,7 +629,7 @@ class Exchange {
     }
 
     private function startImagesResize() {
-        app()->SWatermark->updateWatermarks(true);
+        ShopCore::app()->SWatermark->updateWatermarks(true);
     }
 
     private function command_sale_checkauth() {
