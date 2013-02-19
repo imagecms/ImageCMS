@@ -12,7 +12,7 @@
 <script type="text/javascript">
     var currentProductId = '{echo $model->getId()}';
 </script>
-
+{//var_dumps($model)}
 <link rel="stylesheet" href="{$SHOP_THEME}/js/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.6" type="text/css" media="screen" />
 <script type="text/javascript" src="{$SHOP_THEME}/js/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.6"></script>
 <div class="content">   
@@ -76,7 +76,8 @@
                             </span><br />
                         {/if}
                     {/if}
-                    <span id="pricem{echo $model->getId()}">                       
+                    <span id="pricem{echo $model->getId()}">     
+                        {echo $model->firstVariant->getEconomy()}
                         {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
                             {$prOne = $model->firstVariant->getPrice()}
                             {$prTwo = $model->firstVariant->getPrice()}
