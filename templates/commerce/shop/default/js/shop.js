@@ -1,3 +1,80 @@
+//var Shop = function(){};
+var Shop = {
+    //var Cart = new Object();
+    Cart :{
+        add : function(cartItem){
+            console.log('added');
+            
+            //save item to storage
+            var currentItem = this.load(cartItem.storageId());
+            if (currentItem)
+                currentItem.count += cartItem.count;
+            else
+                currentItem = cartItem;
+            
+            return this.save(currentItem);
+        },
+        rm : function(cartItem){
+            localStorage.removeItem(cartItem.storageId());
+            return this.totalRecount();
+        },
+        count : function(cartItem){
+    
+            var currentItem = this.load(cartItem.storageId());
+            if (currentItem)
+            {
+                currentItem.count = cartItem.count;
+                return this.save(currentItem);
+            }
+            else
+                return this;
+        },
+    
+        //work with storage
+        load : function(id)
+        {
+            try {
+                return new Shop.cartItem( JSON.parse(localStorage.getItem(id)) );            
+            } catch (e){
+                return false;
+            }
+        },
+        
+        save : function(cartItem)
+        {
+            localStorage.setItem(cartItem.storageId(), JSON.stringify(cartItem));
+            return this.totalRecount();
+        },
+            
+        totalRecount : function()
+        {
+            return this;
+        }
+    
+    },
+    cartItem :function(obj) {
+        if (typeof obj == 'undefined' || obj == false)
+            obj = {
+                id : false,
+                vId : false,
+                name : false, 
+                count: false
+            };
+
+        return prototype = {
+            id : obj.id?obj.id:0,
+            vId : obj.vId?obj.vId:0,
+            price : obj.price?obj.price:0,
+            name : obj.name?obj.name:'',
+            count : obj.count?obj.count:1,
+            storageId : function(){
+                return 'cartItem_'+this.id+'_'+this.vId;
+            }
+        };
+    }
+};
+
+
 function renderPosts($this)
 {
     $.ajax({
@@ -195,7 +272,7 @@ $(document).ready(function() {
                 $.fancybox.hideActivity();
                 //$this.hide();
             }
-        })
+        });
         return false;
     });
     $('.buy .goBuy').live('click', function() {
@@ -466,7 +543,7 @@ $(document).ready(function() {
             }
         });
         return false;
-    })
+    });
 
     $('.showCallback').on('click', function() {
 
@@ -481,7 +558,7 @@ $(document).ready(function() {
             }
         });
         return false;
-    })
+    });
 
 
     //$("#cartForm").validate();
