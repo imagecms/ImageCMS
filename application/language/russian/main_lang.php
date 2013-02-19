@@ -232,6 +232,7 @@ $lang['s_go_profile'] = 'Перейти в личный кабинет';
 $lang['s_discount'] = 'Скидка';
 $lang['s_product_amount'] = 'Сумма товаров';
 $lang['s_order_view'] = 'Просмотр заказа';
+$lang['s_profile'] = 'Профиль';
 
 $lang ['s_sdm'] = 'Выберите способ доставки';
 $lang ['s_spm'] = 'Выберите способ оплаты';

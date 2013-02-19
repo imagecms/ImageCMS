@@ -229,6 +229,7 @@ $lang ['s_go_profile'] = 'Go to profile';
 $lang ['s_discount'] = 'Discount';
 $lang ['s_product_amount'] = 'The amount of goods';
 $lang ['s_order_view'] = 'View orders';
+$lang ['s_profile'] = 'Profile';
 
 $lang ['s_sdm'] = 'Select a delivery method';
 $lang ['s_spm'] = 'Select a payment method';
