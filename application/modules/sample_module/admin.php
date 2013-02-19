@@ -13,11 +13,18 @@ class Admin extends BaseAdminController {
     }
 
     public function index() {
-        $template = \CMSFactory\assetManager::create();
-        $template->fetchData(array('debug' => 'DEBUG VARIABLE'));
-        $template->registerScript('jstest');
-        $template->registerStyle('csstest');
-        $template->renderAdmin('index');
+        $settings = $this->db->get('mod_sample_settings')->result();
+        foreach ($settings as $item)
+            $data[$item->name] = $item->value;
+        $template = \CMSFactory\assetManager::create()
+                ->setData($data)
+                ->renderAdmin('index');
+    }
+
+    public function settings() {
+        $this->db->update('mod_sample_settings', array('value' => $this->input->post('mailTo')), array('name' => 'mailTo'));
+        $this->db->update('mod_sample_settings', array('value' => $this->input->post('useEmailNotification')), array('name' => 'useEmailNotification'));
+        $this->db->update('mod_sample_settings', array('value' => $this->input->post('key')), array('name' => 'key'));
     }
 
 }

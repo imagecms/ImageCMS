@@ -49,13 +49,37 @@ class Sample_Module extends MY_Controller {
         
     }
 
+    public function changeStatus($commentId, $status, $key) {
+        /** Проверим входные данные */
+        ($commentId AND in_array($status, array(0, 1, 2)) AND $key) OR $this->core->error_404();
+
+        /** Обновим статус */
+        $this->db
+                ->where('id', intval($commentId))
+                ->set('status', intval($status))
+                ->update('comments');
+
+        $comment = $this->db->where('id', $commentId)->get('comments')->row();
+        if ($comment->module == 'core')
+        /** Используем помощник get_page($id) который аргументом принимает ID страницы.
+         *  Помощник включен по умолчанию. Больше о функция помощника 
+         *  читайте здесь http://ellislab.com/codeigniter/user-guide/general/helpers.html */
+            $comment->source = get_page($comment->item_id);
+
+
+        /** Сообщаем пользователю что статус обновлён успешно */
+        \CMSFactory\assetManager::create()
+                ->setData('comment', $comment)
+                ->render('successful');
+    }
+
     /**
      * Метод обработчик
      * @param type $commentId <p>ID коментария который был только что создан.</p>
      */
     public static function handler(array $param) {
         $instance = new Sample_Module();
-        $instance->composeAndSendEmail($param);
+//        $instance->composeAndSendEmail($param);
     }
 
     private function composeAndSendEmail($arg) {
@@ -68,7 +92,7 @@ class Sample_Module extends MY_Controller {
 
         /** Теперь переменная содержит HTML тело нашего письма */
         $message = \CMSFactory\assetManager::create()->setData(array('comment' => $comment))->fetchTemplate('emailPattern');
-echo $message;
+        echo $message;
         /** Настроявием отправку Email http://ellislab.com/codeigniter/user-guide/libraries/email.html */
         $this->mailTo = 'grooteam@gmail.com';
         $this->load->library('email');
