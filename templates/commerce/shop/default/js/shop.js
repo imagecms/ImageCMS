@@ -1,24 +1,50 @@
-//var Shop = function(){};
 var Shop = {
     //var Cart = new Object();
     Cart :{
+        totalPrice : 0,
+        popupCartSelector : 'script#cartPopupTemplate',
+        
         add : function(cartItem){
-            console.log('added');
+            Shop.currentItem = cartItem;
+            $.post('/shop/cart/add', {
+                'quantity': cartItem.count,
+                'productId': cartItem.id,
+                'variantId': cartItem.vId},
+                function(data){
+                    try {
+                        
+                        responseObj = JSON.parse(data);
+                        console.log(responseObj);
+                        
+                        //save item to storage
+                        Shop.Cart._add(Shop.currentItem);
+                    } catch (e){
+                        return this;
+                    }
+                });
+
+        },
+        _add: function(cartItem){
+            console.log('adding');
+            console.log(cartItem);
             
-            //save item to storage
             var currentItem = this.load(cartItem.storageId());
             if (currentItem)
                 currentItem.count += cartItem.count;
             else
                 currentItem = cartItem;
-            
+
+            console.log(cartItem);
             return this.save(currentItem);
         },
         rm : function(cartItem){
-            localStorage.removeItem(cartItem.storageId());
+            if (typeof cartItem == 'Object')
+                localStorage.removeItem(cartItem.storageId());
+            else
+                localStorage.removeItem(cartItem);
             return this.totalRecount();
-        },
-        count : function(cartItem){
+        },        
+        chCount : function(cartItem){
     
             var currentItem = this.load(cartItem.storageId());
             if (currentItem)
@@ -29,12 +55,20 @@ var Shop = {
             else
                 return this;
         },
+           
+        clear: function(){
+            var items = this.getAllItems();
+            for (var i=0; i<items.length; i++)
+                localStorage.removeItem(items[i].storageId());
+            
+            return this;
+        },
     
         //work with storage
-        load : function(id)
+        load : function(key)
         {
             try {
-                return new Shop.cartItem( JSON.parse(localStorage.getItem(id)) );            
+                return new Shop.cartItem( JSON.parse(localStorage.getItem(key)) );            
             } catch (e){
                 return false;
             }
@@ -46,11 +80,61 @@ var Shop = {
             return this.totalRecount();
         },
             
+        getAllItems : function()
+        {
+            var pattern = /cartItem_*/;
+            
+            var items = [];
+            for (var i=0; i<localStorage.length; i++)
+            {
+                
+                var key = localStorage.key(i);
+                
+                console.log(key);
+                
+                if (key.match(pattern))
+                    items.push(this.load(key));
+            }
+            return items;
+        },
+            
         totalRecount : function()
         {
+            var items = this.getAllItems();
+            
+            this.totalPrice = 0;
+            for (var i=0; i<items.length; i++)
+                this.totalPrice += items[i].price * items[i].count;
+            
             return this;
-        }
+        },
+        
+        getTotalPrice : function() 
+        {
+            if (this.totalPrice == 0)
+                return this.totalRecount().totalPrice;
+            else
+                return this.totalPrice;
+        },
     
+        renderPopupCart : function(selector)
+        {
+            if (typeof selector == 'undefined' || selector == '')
+                var selector = this.popupCartSelector;
+            
+            _.templateSettings.variable = "cart";
+            var template = _.template($(selector).html());
+            return template(Shop.Cart);
+        },
+    
+        showPopupCart : function()
+        {
+            console.log('start rendering')
+            var start = Date.now();
+            $.fancybox(this.renderPopupCart());
+            var delta = Date.now() - start;
+            console.log('stop rendering, elapsed time: ' + delta);
+        }
     },
     cartItem :function(obj) {
         if (typeof obj == 'undefined' || obj == false)
