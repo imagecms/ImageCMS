@@ -63,7 +63,7 @@
                                                     <span class="f-s_0">
                                                         <span class="helper"></span>
                                                         <span>
-                                                            <a href="shop/profile" class="t-d_u c_5c"><span class="text-el">Личный кабинет</span></a>
+                                                            <a href="/shop/profile" class="t-d_u c_5c"><span class="text-el">Личный кабинет</span></a>
                                                         </span>
                                                     </span>
                                                 </li>

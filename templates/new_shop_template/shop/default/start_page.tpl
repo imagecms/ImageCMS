@@ -1,7 +1,7 @@
 <div class="content">
 
     <!-- Show Brands in circle -->
-    {$banners = getBanners()}
+    {$banners = ShopCore::app()->SBannerHelper->getBanners()}
     {if count($banners)}
         <div class="cycle center">
             <ul>
