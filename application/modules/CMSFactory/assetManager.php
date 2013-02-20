@@ -38,9 +38,9 @@ class assetManager {
      */
     public function registerScript($name) {
         $trace = debug_backtrace();
-        $paths = explode('/', $trace[0]['file']);
+        $paths = explode(DS, $trace[0]['file']);
         $paths = $paths[count($paths) - 2];
-        $paths = APPPATH . implode('/', array_slice(explode('/', $trace[0]['file']), 5, 2));
+        $paths = APPPATH . implode(DS, array_slice(explode(DS, $trace[0]['file']), 5, 2));
         \CI_Controller::get_instance()->template->registerJsFile($paths . '/assets/js/' . $name . '.js', 'after');
         return $this;
     }
@@ -53,9 +53,9 @@ class assetManager {
      */
     public function registerStyle($name) {
         $trace = debug_backtrace();
-        $paths = explode('/', $trace[0]['file']);
+        $paths = explode(DS, $trace[0]['file']);
         $paths = $paths[count($paths) - 2];
-        $paths = APPPATH . implode('/', array_slice(explode('/', $trace[0]['file']), 5, 2));
+        $paths = APPPATH . implode(DS, array_slice(explode(DS, $trace[0]['file']), 5, 2));
         \CI_Controller::get_instance()->template->registerCssFile($paths . '/assets/css/' . $name . '.css', 'before');
         return $this;
     }
@@ -70,7 +70,7 @@ class assetManager {
      */
     public function renderAdmin($tpl) {
         $trace = debug_backtrace();
-        $paths = explode('/', $trace[0]['file']);
+        $paths = explode(DS, $trace[0]['file']);
         $paths = $paths[count($paths) - 2];
         try {
             $tplPath = 'application/modules/' . $paths . '/assets/admin/' . $tpl;
@@ -91,11 +91,11 @@ class assetManager {
      */
     public function render($tpl, $ignoreWrap = FALSE) {
         $trace = debug_backtrace();
-        $paths = explode('/', $trace[0]['file']);
+        $paths = explode(DS, $trace[0]['file']);
         $paths = $paths[count($paths) - 2];
         try {
             $tplPath = 'application/modules/' . $paths . '/assets/' . $tpl;
-            file_exists($tplPath . '.tpl') OR throwException('Can\'t load template file: <i>' . $paths . '/' . $tpl . '.tpl</i>');
+            file_exists($tplPath . '.tpl') OR throwException('Can\'t load template file: <i>' . $paths . DS . $tpl . '.tpl</i>');
             if (!$ignoreWrap)
                 \CI_Controller::get_instance()->template->show('file:' . $tplPath);
             else
@@ -115,11 +115,11 @@ class assetManager {
      */
     public function fetchTemplate($tpl) {
         $trace = debug_backtrace();
-        $paths = explode('/', $trace[0]['file']);
+        $paths = explode(DS, $trace[0]['file']);
         $paths = $paths[count($paths) - 2];
         try {
             $tplPath = APPPATH . '/modules/' . $paths . '/assets/' . $tpl;
-            file_exists($tplPath . '.tpl') OR throwException('Can\'t load template file: <i>' . $paths . '/' . $tpl . '.tpl</i>');
+            file_exists($tplPath . '.tpl') OR throwException('Can\'t load template file: <i>' . $paths . DS . $tpl . '.tpl</i>');
             return \CI_Controller::get_instance()->template->fetch('file:' . $tplPath);
         } catch (\Exception $exc) {
             log_message('error', $exc->getMessage());
