@@ -54,7 +54,6 @@ class Api extends Comments {
             ($hook = get_hook('comments_store_cache')) ? eval($hook) : NULL;
             $this->cache->store('comments_' . $this->parsUrl($_SERVER['HTTP_REFERER']) . $this->module, $comments, $this->cache_ttl, 'comments');
         }
-        //}
 
         if ($comments != null) {
             $comments_count = count($comments);
@@ -72,16 +71,6 @@ class Api extends Comments {
                 $i++;
             }
         }
-//        $this->load->library('pagination');
-//
-//        $config['base_url'] = '';
-//        $config['total_rows'] = '200';
-//        $config['per_page'] = '20';
-//
-//        $this->pagination->initialize($config);
-//
-//        echo $this->pagination->create_links();
-
 
         $data = array(
             'comments_arr' => $comments,
@@ -89,21 +78,21 @@ class Api extends Comments {
             'comment_controller' => $this->comment_controller,
             'total_comments' => lang('lang_total_comments') . count($comments),
             'can_comment' => $this->can_comment,
-            'use_captcha' => $this->use_captcha,
-//            'item_id' => $this->input->post(item_id)
+            'use_captcha' => $this->use_captcha
         );
 
         if ($this->use_captcha == TRUE) {
             $this->dx_auth->captcha();
             $data['cap_image'] = $this->dx_auth->get_captcha_image();
         }
-
         ($hook = get_hook('comments_read_com_tpl')) ? eval($hook) : NULL;
 
-        $comments = $this->template->read($this->tpl_name, $data);
+        $comments = \CMSFactory\assetManager::create()
+                ->setData($data)
+                ->registerStyle('comments')
+                ->fetchTemplate($this->tpl_name);
 
         ($hook = get_hook('comments_assign_tpl_data')) ? eval($hook) : NULL;
-        //$this->render('comments_list', array('comments'=>$comments));
 
         echo json_encode(array(
             'comments' => $comments,
@@ -427,6 +416,15 @@ class Api extends Comments {
         set_cookie($cookie_site);
 
         return TRUE;
+    }
+
+    public function getTotalCommentsForProduct($id, $status = 0) {
+        $this->db->where($id, $this->model->getId());
+        $this->db->where('status', $status);
+        $query = $this->db->get('comments')->result();
+
+//        return json_encode(array("products_count" => $query));
+        return count($query);
     }
 
 }
