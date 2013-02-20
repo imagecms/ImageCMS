@@ -26,7 +26,7 @@
                 {foreach $items as $key=>$item}
                         {$discount = ShopCore::app()->SDiscountsManager->productDiscount($item->id)}
                         {$style = productInCart($cart_data, $item.model->getId(), $item.model->firstVariant->getId(), $item.model->firstVariant->getStock())}
-                        <li class="span3 in_cart">
+                        <li class="span3">
                             {if ShopCore::$ci->dx_auth->is_logged_in()===true}
                                 <button class="btn btn_small btn_small_p">
                                     {//shop_url('wish_list/delete/' . $key)}
