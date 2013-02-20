@@ -264,6 +264,7 @@ class Api extends Comments {
                 );
 
                 $this->db->insert('comments', $comment_data);
+                \CMSFactory\Events::create()->registerEvent(array('commentId' => $this->db->insert_id()));
                 $this->validation_errors = '';
 
                 //return sucesfull JSON answer
