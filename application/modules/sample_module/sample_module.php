@@ -10,6 +10,7 @@ class Sample_Module extends MY_Controller {
 
     private $useEmailNotification = FALSE;
     private $mailTo = FALSE;
+    private $key = FALSE;
 
     public function __construct() {
         parent::__construct();
@@ -51,7 +52,7 @@ class Sample_Module extends MY_Controller {
 
     public function changeStatus($commentId, $status, $key) {
         /** Проверим входные данные */
-        ($commentId AND in_array($status, array(0, 1, 2)) AND $key) OR $this->core->error_404();
+        ($commentId AND in_array($status, array(0, 1, 2)) AND $key == $this->key) OR $this->core->error_404();
 
         /** Обновим статус */
         $this->db
@@ -70,7 +71,7 @@ class Sample_Module extends MY_Controller {
         /** Сообщаем пользователю что статус обновлён успешно */
         \CMSFactory\assetManager::create()
                 ->setData('comment', $comment)
-                ->render('successful');
+                ->render('successful1');
     }
 
     /**
@@ -91,7 +92,7 @@ class Sample_Module extends MY_Controller {
             $comment->source = get_page($comment->item_id);
 
         /** Теперь переменная содержит HTML тело нашего письма */
-        $message = \CMSFactory\assetManager::create()->setData(array('comment' => $comment))->fetchTemplate('emailPattern');
+        $message = \CMSFactory\assetManager::create()->setData(array('comment' => $comment, 'key' => $this->key))->fetchTemplate('emailPattern');
         echo $message;
         /** Настроявием отправку Email http://ellislab.com/codeigniter/user-guide/libraries/email.html */
         $this->mailTo = 'grooteam@gmail.com';
