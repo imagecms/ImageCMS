@@ -170,46 +170,9 @@
                                 </ul>
                             </div>
                         {/if}
-<<<<<<< HEAD
                         <div id="comment">
-                            <div id="four" name="four"></div><!--
-                            <div class="title_h2">Отзывы покупателей</div>
-                            <ul class="frame-list-comment">
-                                <li>
-                                    <div class="frame-comment">Samsung S7500 Galaxy Ace Plus изготовлен в самом актуальном на данный момент форм-факторе – моноблок с сенсорным емкостным экраном. Используемые материалы и качество сборки соответствуют самым высоким мировым стандартам, а его дизайну и эргономике можно только завидовать.</div>
-                                    <div class="author-data-comment"><span class="author-comment">Владислав</span> <span class="af">26 октября 2012</span></div>
-                                </li>
-                                <li>
-                                    <div class="frame-comment">Samsung S7500 Galaxy Ace Plus изготовлен в самом актуальном на данный момент форм-факторе – моноблок с сенсорным емкостным экраном. Используемые материалы и качество сборки соответствуют самым высоким мировым стандартам, а его дизайну и эргономике можно только завидовать.</div>
-                                    <div class="author-data-comment"><span class="author-comment">Владислав</span> <span class="af">26 октября 2012</span></div>
-                                </li>
-                            </ul>
-                            <div class="grey-b_r-bord t-a_c">
-                                <button type="button" class="d_l_b treebuchet f-s_18">Смотреть все отзывы</button>
-                            </div>
-                            <div class="grey-b_r-bord">
-                                <div class="title_h2">Оставте свой отзыв о товаре</div>
-                                <div class="form-comment">
-                                    <form method="post">
-                                        <textarea></textarea>
-                                        <div class="clearfix">
-                                            <label class="f_l">
-                                                <span class="v-a_m c_97">Ваше имя:&nbsp;&nbsp;&nbsp;</span>
-                                                <span class="d_i-b v-a_m row">
-                                                    <span class="span4">
-                                                        <input type="text" required/>
-                                                    </span>
-                                                </span>
-                                            </label>
-                                            <input type="submit" value="Отправить" class="btn btn_cart f_r"/>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>-->
+                            <div id="four" name="four"></div>
                         </div>
-=======
-
->>>>>>> 3b4881a4843923cd468bb8078d623111896949f7
                     </div>
                 </div>
             </div>
