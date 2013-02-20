@@ -806,6 +806,7 @@ $lang['a_mobile_version_template'] = 'Шаблон';
 $lang['a_count_rates'] = 'Пересчитать цены?';
 $lang['a_count_rates'] = 'Пользователь';
 $lang['a_count_rates_users'] = 'Пользователь';
+$lang['a_one_user'] = 'Пользователь';
 $lang['a_helper_user'] = 'выберите дату';
 $lang['a_products_del_title'] = 'Удаление товаров';
 $lang['a_orders_del_title'] = 'Удаление заказов';
