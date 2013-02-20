@@ -136,9 +136,9 @@
                                     </div>
                                     <!-- check is product in cart -->
                                     {if $style.identif == 'goToCart'}    
-                                        <button class="btn btn_cart" type="button">{lang('already_in_basket')}</button>
+                                        <button class="btn btn_cart" type="button" data-prodId="{echo $p->getId()}" data-varId="{echo $p->firstVariant->getId()}" data-price="{$prThree}" data-name="{echo $p->getName()}" >{lang('already_in_basket')}</button>
                                     {else:}
-                                        <button class="btn btn_buy" type="button">{lang('add_to_basket')}</button>
+                                        <button class="btn btn_buy" type="button" data-prodId="{echo $p->getId()}" data-varId="{echo $p->firstVariant->getId()}" data-price="{$prThree}" data-name="{echo $p->getName()}">{lang('add_to_basket')}</button>
                                     {/if}
                                     <div class="d_i-b">
                                     <!-- check is product in compare list -->
