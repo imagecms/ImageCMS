@@ -47,13 +47,13 @@ class Admin extends BaseAdminController {
         if (!empty($data))
             $this->template->add_array($data);
 
-        $this->template->show('file:' . 'application/modules/star_rating/templates/admin/' . $viewName);
+        $this->template->show('file:' . 'application/modules/star_rating/assets/admin/' . $viewName);
         exit;
 
-        if ($return === false)
-            $this->template->show('file:' . 'application/modules/star_rating/templates/admin/' . $viewName);
-        else
-            return $this->template->fetch('file:' . 'application/modules/star_rating/templates/admin/' . $viewName);
+//        if ($return === false)
+//            $this->template->show('file:' . 'application/modules/star_rating/templates/admin/' . $viewName);
+//        else
+//            return $this->template->fetch('file:' . 'application/modules/star_rating/templates/admin/' . $viewName);
     }
     
     
