@@ -1,18 +1,7 @@
 {$CI->load->module('comments')->init()}
 <div>
-    <article>
-        <!--                        class="span9"-->
-        <div class="crumbs" xmlns:v="http://rdf.data-vocabulary.org/#">
-            <span typeof="v:Breadcrumb">
-                <a href="#" rel="v:url" property="v:title">Главная</a>
-            </span>/
-            <span typeof="v:Breadcrumb">
-                <a href="#" rel="v:url" property="v:title">Тепловое оборудование</a>
-            </span>/
-            <span typeof="v:Breadcrumb">
-                <span rel="v:url" property="v:title">Плиты индукционные</span>
-            </span>
-        </div>
+    <article>       
+        {renderCategoryPath($model->getMainCategory())}
         <div class="item_tovar bot_border_grey">
             <div class="row">
                 <div class="photo span5 clearfix">
@@ -78,7 +67,8 @@
                                     {/if}
                                     <span class="f-w_b">{echo money_format('%i',$model->firstVariant->getPrice())}</span>{$CS}
                                 </div>
-                                <button class="btn btn_buy" type="button">В корзину</button>
+                                <button class="btn btn_buy" type="button" data-prodid="{echo $model->getId()}" data-varid="{echo $model->firstVariant->getId()}" data-price="{echo $model->firstVariant->getPrice()}" data-name="{echo $model->getName()}">В корзину</button>
+                                <!--<button class="btn btn_buy" type="button">В корзину</button>-->
                             </div>
                         </div>
                         <div class="d_i-b v-a_b m-b_20">
@@ -180,6 +170,7 @@
                                 </ul>
                             </div>
                         {/if}
+<<<<<<< HEAD
                         <div id="comment">
                             <div id="four" name="four"></div><!--
                             <div class="title_h2">Отзывы покупателей</div>
@@ -216,6 +207,9 @@
                                 </div>
                             </div>-->
                         </div>
+=======
+
+>>>>>>> 3b4881a4843923cd468bb8078d623111896949f7
                     </div>
                 </div>
             </div>
@@ -250,7 +244,7 @@
                                                         {echo ShopCore::encode($kid->getMainProduct()->getName())}
                                                     </a>
                                                     <div class="price price_f-s_16">
-                                                        <span class="f-w_b">{echo $kid->getProductPrice()}</span>
+                                                        <span class="f-w_b">{echo $kid->getMainProductPrice()}</span>
                                                         {$CS}
                                                     </div>
                                                 </div>
@@ -264,43 +258,42 @@
                                             <div class="d_i-b">+</div>
                                         </li>
 
-                                        {foreach $kid->getShopKitProducts() as $coompl}
-                                            {$ap = $coompl->getSProducts()}
-                                            {$kp = currency_convert($ap->getFirstVariant()->getPrice(), $ap->getFirstVariant()->getCurrency())}                                       
+                                        {foreach $kid->getShopKitProducts() as $kitProduct}
+                                            {$sProducts = $kitProduct->getSProducts()}                                            
                                             <li class="span3">
                                                 <div class="item_set">
                                                     <div class="description">
-                                                        <a href="{shop_url('product/' . $ap->getUrl())}">
-                                                            {echo ShopCore::encode($ap->getName())}
+                                                        <a href="{shop_url('product/' . $sProducts->getUrl())}">
+                                                            {echo ShopCore::encode($sProducts->getName())}
                                                         </a>
                                                         <div class="price price_f-s_16">
-                                                            {if $coompl->getDiscount() != 0}
+                                                            {if $kitProduct->getDiscount() != 0}
                                                                 <span class="d_b old_price">
-                                                                    <span class="f-w_b">
-                                                                        {echo number_format($kid->getPriceBefore(), ShopCore::app()->SSettings->pricePrecision, '.', '')}                                                         </span>
-                                                                        {$kp.main.symbol}
+                                                                    <span class="f-w_b">{echo $kitProduct->getBeforePrice()}</span>
+                                                                    {$CS}
                                                                 </span>
                                                             {/if}
-                                                            <span class="f-w_b">
-                                                                {echo number_format($kid->getPriceBefore(), ShopCore::app()->SSettings->pricePrecision, '.', '')}                                                               
-                                                            </span>{$kp.main.symbol}
+                                                            <span class="f-w_b">{echo $kitProduct->getDiscountProductPrice()}</span>
+                                                            {$CS}
                                                         </div>
                                                     </div>
-                                                    <a href="{shop_url('product/' . $ap->getUrl())}" class="photo">
+                                                    <a href="{shop_url('product/' . $sProducts->getUrl())}" class="photo">
                                                         <span class="helper"></span>
                                                         <figure>
-                                                            <img src="{productImageUrl($ap->getSmallModImage())}"/>
+                                                            <img src="{productImageUrl($sProducts->getSmallModImage())}"/>
                                                         </figure>
                                                     </a>
-                                                    <span class="top_tovar discount">-{echo $coompl->getDiscount()}%</span>
+                                                    <span class="top_tovar discount">-{echo $kitProduct->getDiscount()}%</span>
                                                 </div>
                                                 <div class="d_i-b">+</div>
                                             </li>                                            
                                         {/foreach}
                                         <li class="span3 p-t_40">
                                             <div class="price price_f-s_24">
-                                                <span class="d_b old_price"><span class="f-w_b">{echo $kid->getAllPriceBefore()}</span>{$CS}</span>
-                                                <span class="f-w_b">{echo $kid->getTotalPrice()}</span>{$CS}
+                                                <span class="d_b old_price">
+                                                    <span class="f-w_b">{echo $kid->getAllPriceBefore()}</span> {$CS}
+                                                </span>
+                                                <span class="f-w_b">{echo $kid->getTotalPrice()}</span> {$CS}
                                             </div>
                                             <button type="button" class="btn btn_buy ">{lang('s_buy')}</button>
                                         </li>
@@ -316,7 +309,7 @@
 
         <div class="frame_carousel_product carousel_js c_b">
             <div class="m-b_20">
-                <div class="title_h1 d_i-b v-a_m">Похожие товары</div>
+                <div class="title_h1 d_i-b v-a_m">{lang('s_similar_product')}</div>
                 <div class="d_i-b groupButton v-a_m">
                     <button type="button" class="btn btn_prev">
                         <span class="icon prev"></span>
@@ -330,60 +323,33 @@
             </div>
             <div class="carousel">
                 <ul class="items items_catalog">
-                    <li class="span3 in_cart">
-                        <a href="#" class="photo">
-                            <span class="helper"></span>
-                            <figure>
-                                <img src="images/temp/item_catalog.png" alt="Apple MacBook Pro A1286"/>
-                            </figure>
-                        </a>
-                        <div class="description">
-                            <div class="frame_response">
-                                <div class="star">
-                                    <img src="images/temp/STAR.png"/>
+                    {$simprod = getSimilarProduct($model)}
+                    {foreach $simprod as $sp}
+                        {$sim_prod = currency_convert($sp['price'], $sp['currency'])}
+                        {$style = productInCart($cart_data, $sp['ProductId'], $sp['ProductId'], $sp['stock'])}
+                        <li class="span3 in_cart {if $sp['stock']== 0}not-avail{/if}">
+                            <a href="{site_url('shop/product/'.$sp['url'])}" class="photo">
+                                <span class="helper"></span>
+                                <figure>
+                                    <img src="{productImageUrl($sp['mainImage'])}" alt="{echo ShopCore::encode($sp['name'])}"/>
+                                </figure>
+                            </a>
+                            <div class="description">
+                                <div class="frame_response">
+                                    <div class="star">
+                                        <img src="images/temp/STAR.png"/>
+                                    </div>
                                 </div>
-                            </div>
-                            <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
-                            <div class="price price_f-s_16"><span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span></div>
-                            <button class="btn btn_cart" type="button">Уже в корзине</button>
-                        </div>
-                    </li>
-                    <li class="span3">
-                        <a href="#" class="photo">
-                            <span class="helper"></span>
-                            <figure>
-                                <img src="images/temp/item_catalog.png" alt="Apple MacBook Pro A1286"/>
-                            </figure>
-                        </a>
-                        <div class="description">
-                            <div class="frame_response">
-                                <div class="star">
-                                    <img src="images/temp/STAR.png"/>
+                                <a href="{site_url('shop/product/'.$sp['url'])}">{echo ShopCore::encode($sp['name'])}</a>
+                                <div class="price price_f-s_16">
+                                    <span class="f-w_b">{echo money_format('%i', $sim_prod.main.price)}</span> 
+                                    {$sim_prod.main.symbol}
                                 </div>
+                                <button class="btn btn_buy" type="button" data-prodid="{echo $sp['ProductId']}" data-varid="{echo $sp['VariandId']}" data-price="{echo $sim_prod.main.price}" data-name="{echo $sp['name']}">В корзину</button>
                             </div>
-                            <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
-                            <div class="price price_f-s_16"><span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span></div>
-                            <button class="btn btn_buy" type="button">В корзину</button>
-                        </div>
-                    </li>
-                    <li class="span3">
-                        <a href="#" class="photo">
-                            <span class="helper"></span>
-                            <figure>
-                                <img src="images/temp/item_catalog.png" alt="Apple MacBook Pro A1286"/>
-                            </figure>
-                        </a>
-                        <div class="description">
-                            <div class="frame_response">
-                                <div class="star">
-                                    <img src="images/temp/STAR.png"/>
-                                </div>
-                            </div>
-                            <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
-                            <div class="price price_f-s_16"><span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span></div>
-                            <button class="btn btn_buy" type="button">В корзину</button>
-                        </div>
-                    </li>
+                        </li>
+                    {/foreach}
+
                 </ul>
             </div>
         </div>
