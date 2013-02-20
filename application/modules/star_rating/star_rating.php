@@ -26,7 +26,6 @@ class Star_rating extends MY_Controller {
     }
 
     public function show_star_rating($item = null) {
-        $this->template->set_config_value('tpl_path', set_realpath('application/modules/star_rating/templates/'));
         $get_settings = $this->db->select('settings')->where('name', 'star_rating')->get('components')->row_array();
         $this->list_for_show = json_decode($get_settings['settings'], true);
         if ($this->list_for_show == null)
@@ -39,48 +38,46 @@ class Star_rating extends MY_Controller {
         
         // product rating
         if ($item != null && $item instanceof SProducts){
-            $star_rating = array (
+            $data = array (
                 'id_type' => $item->getId(),
                 'type' => 'product',
                 'votes' => $item->getVotes(),
                 'rating' => $item->getRating()*$item->getVotes()
                 
             );
-            $this->template->add_array(array(
-                    'star_rating' => $star_rating
-                ));
-            $this->template->display('product_star_rating');
-        
+            $template = 'product_star_rating';
         //product rating in shop category    
         }else if ($item != null && $item instanceof stdClass){
-            $star_rating = array (
+            $data = array (
                 'id_type' => $item->id,
                 'type' => 'cat_product',
                 'votes' => $item->votes,
                 'rating' => $item->rating
                     );
-            
-              $this->template->add_array(array(
-                    'star_rating' => $star_rating
-                ));
-            $this->template->display('product_star_rating');   
-            
-            
-       
-        }else{
+             $template = 'product_star_rating';
+       }else{
               if (in_array($type, array_keys($this->list_for_show))) {
-                $star_rating = $this->get_rating($id, $type);
-                $this->template->add_array(array(
-                    'star_rating' => $star_rating
+                $rating = $this->get_rating($id, $type);
+                $data = (array (
+                                'id' => $rating->id,
+                                'type' => $rating->type,
+                                'votes' => $rating->votes,
+                                'rating' => $rating->rating
                 ));
                 
-                
-                $this->template->display('star_rating');
+                $template='star_rating';
+                }
+                else {
+                    $template=null;
                 }
             }
-       $template = $this->db->select('site_template')->get('settings')->row();
-       $this->template->set_config_value('tpl_path', set_realpath('templates/'. $template->site_template));     
-    }
+            if ($template !== null)
+            CMSFactory\assetManager::create()
+                    ->setData($data)
+                    ->registerStyle('style')
+                    ->registerScript('scripts')
+                    ->render($template, true);
+ }
 
     private function get_rating($id_g = null, $type_g = null) {
         $res = $this->db->where('id_type', $id_g)->where('type', $type_g)->get('rating')->row();

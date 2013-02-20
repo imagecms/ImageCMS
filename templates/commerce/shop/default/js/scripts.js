@@ -1,3 +1,8 @@
+var ie = jQuery.browser.msie,
+    ieV = jQuery.browser.version,
+    ltie7 = ie && (ieV <= 7),
+    ltie8 = ie && (ieV <= 8);
+    
 $(document).ready(function() {
     jQuery.exists = function(selector) {
         return ($(selector).length > 0);
@@ -5,11 +10,6 @@ $(document).ready(function() {
     jQuery.exists_nabir = function(nabir) {
         return (nabir.length > 0);
     }
-    var ie = jQuery.browser.msie,
-    ieV = jQuery.browser.version,
-    ltie7 = ie && (ieV <= 7),
-    ltie8 = ie && (ieV <= 8);
-
 
     nav_tabs_li = $('.nav_tabs li');
     tabs_div = $('.tabs > div');

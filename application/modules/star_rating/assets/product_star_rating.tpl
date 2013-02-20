@@ -1,6 +1,7 @@
-{if $star_rating != null}
+<link rel="stylesheet" type="text/css" href="/application/modules/star_rating/assets/css/style.css">
+{if $data['id_type'] != null}
 <div class="star_rating">
-    <div id="star_rating_{echo $star_rating['id_type']}" class="rating_nohover {if $star_rating['votes'] != null}{echo count_star(round($star_rating['rating']/$star_rating['votes']))}{/if} star_rait">
+    <div id="star_rating_{echo $data['id_type']}" class="rating_nohover {if $data['votes'] != null}{echo count_star(round($data['rating']/$data['votes']))}{/if} star_rait">
         <div id="1" class="rate one">
             <span title="1" class="">1</span>
         </div>
@@ -20,8 +21,8 @@
 </div>
 {if $star_rating['type'] == 'product'}
 <span itemscope="" itemtype="http://data-vocabulary.org/Review-aggregate" id="pageRatingData"> 
-<meta itemprop="rating" content="4"> Оставило <span id="count_votes" itemprop="count">{if $star_rating['votes'] != null}{echo $star_rating['votes']}{else:} 0 {/if}</span> человек(а).
+<meta itemprop="rating" content="4"> Оставило <span id="count_votes" itemprop="count">{if $data['votes'] != null}{echo $data['votes']}{else:} 0 {/if}</span> человек(а).
 </span>
 {/if}
 {/if}
-<script type="text/javascript" src="/application/modules/star_rating/templates/js/scripts.js"></script>
+<script type="text/javascript" src="/application/modules/star_rating/assets/js/scripts.js"></script>

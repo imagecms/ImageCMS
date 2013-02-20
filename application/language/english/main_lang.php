@@ -230,6 +230,10 @@ $lang ['s_discount'] = 'Discount';
 $lang ['s_product_amount'] = 'The amount of goods';
 $lang ['s_order_view'] = 'View orders';
 $lang ['s_profile'] = 'Profile';
+$lang ['s_leave_your_comment'] = 'Write a review on this product';
+$lang['s_clients_comment'] = 'Customer Reviews';
+$lang['s_like'] = 'Like this review';
+$lang['s_dislike'] = 'Dislike this review';
 
 $lang ['s_sdm'] = 'Select a delivery method';
 $lang ['s_spm'] = 'Select a payment method';
