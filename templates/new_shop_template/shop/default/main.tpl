@@ -29,6 +29,7 @@
         {$canonical}
         
         <script src="{$SHOP_THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
+        <script src="{$SHOP_THEME}js/underscore-min.js" type="text/javascript"></script>
     </head>
     <body>
         <div class="mainBody">
@@ -377,6 +378,7 @@
             </form>
         </div>
         
+        
         <script src="{$SHOP_THEME}js/jquery.cycle.all.js" type="text/javascript"></script>
         <script src="{$SHOP_THEME}js/jquery.jcarousel.min.js" type="text/javascript"></script>
         <script src="{$SHOP_THEME}js/jquery.ui-slider.js" type="text/javascript"></script>
@@ -387,6 +389,12 @@
         <!-- Dev. scripts -->
         <script src="{$SHOP_THEME}js/imagecms.api.js" type="text/javascript"></script>
         
+
+        {include_tpl('js_templates')}
         
+        
+        <!-- floating elements-->
+        <div id="popupCart" style="display: none;" class="drop"></div>
+        <a href="#" data-drop="#popupCart" data-place="center" id="showCart" style="display: none;">Show cart</a>
     </body>
 </html>
