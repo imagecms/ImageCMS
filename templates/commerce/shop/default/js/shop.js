@@ -1,3 +1,220 @@
+var Shop = {
+    //var Cart = new Object();
+    Cart :{
+        totalPrice : 0,
+        popupCartSelector : 'script#cartPopupTemplate',
+        
+        add : function(cartItem){
+            Shop.currentItem = cartItem;
+            $.post('/shop/cart/add', {
+                'quantity': cartItem.count,
+                'productId': cartItem.id,
+                'variantId': cartItem.vId},
+                function(data){
+                    try {
+                        
+                        responseObj = JSON.parse(data);
+                        console.log(responseObj);
+                        
+                        //save item to storage
+                        Shop.Cart._add(Shop.currentItem);
+                    } catch (e){
+                        return this;
+                    }
+                });
+
+        },
+        _add: function(cartItem){
+            console.log('adding');
+            console.log(cartItem);
+            
+            var currentItem = this.load(cartItem.storageId());
+            if (currentItem)
+                currentItem.count += cartItem.count;
+            else
+                currentItem = cartItem;
+
+            console.log(cartItem);
+            return this.save(currentItem);
+        },
+        rm : function(cartItem){
+            if (typeof cartItem == 'Object')
+                localStorage.removeItem(cartItem.storageId());
+            else
+                localStorage.removeItem(cartItem);
+            return this.totalRecount();
+        },        
+        chCount : function(cartItem){
+    
+            var currentItem = this.load(cartItem.storageId());
+            if (currentItem)
+            {
+                currentItem.count = cartItem.count;
+                return this.save(currentItem);
+            }
+            else
+                return this;
+        },
+           
+        clear: function(){
+            var items = this.getAllItems();
+            for (var i=0; i<items.length; i++)
+                localStorage.removeItem(items[i].storageId());
+            
+            return this;
+        },
+    
+        //work with storage
+        load : function(key)
+        {
+            try {
+                return new Shop.cartItem( JSON.parse(localStorage.getItem(key)) );            
+            } catch (e){
+                return false;
+            }
+        },
+        
+        save : function(cartItem)
+        {
+            localStorage.setItem(cartItem.storageId(), JSON.stringify(cartItem));
+            return this.totalRecount();
+        },
+            
+        getAllItems : function()
+        {
+            var pattern = /cartItem_*/;
+            
+            var items = [];
+            for (var i=0; i<localStorage.length; i++)
+            {
+                
+                var key = localStorage.key(i);
+                
+                console.log(key);
+                
+                if (key.match(pattern))
+                    items.push(this.load(key));
+            }
+            return items;
+        },
+            
+        totalRecount : function()
+        {
+            var items = this.getAllItems();
+            
+            this.totalPrice = 0;
+            for (var i=0; i<items.length; i++)
+                this.totalPrice += items[i].price * items[i].count;
+            
+            return this;
+        },
+        
+        getTotalPrice : function() 
+        {
+            if (this.totalPrice == 0)
+                return this.totalRecount().totalPrice;
+            else
+                return this.totalPrice;
+        },
+    
+        renderPopupCart : function(selector)
+        {
+            if (typeof selector == 'undefined' || selector == '')
+                var selector = this.popupCartSelector;
+            
+            _.templateSettings.variable = "cart";
+            var template = _.template($(selector).html());
+            return template(Shop.Cart);
+        },
+    
+        showPopupCart : function()
+        {
+            console.log('start rendering')
+            var start = Date.now();
+            $.fancybox(this.renderPopupCart());
+            var delta = Date.now() - start;
+            console.log('stop rendering, elapsed time: ' + delta);
+        }
+    },
+    cartItem :function(obj) {
+        if (typeof obj == 'undefined' || obj == false)
+            obj = {
+                id : false,
+                vId : false,
+                name : false, 
+                count: false
+            };
+
+        return prototype = {
+            id : obj.id?obj.id:0,
+            vId : obj.vId?obj.vId:0,
+            price : obj.price?obj.price:0,
+            name : obj.name?obj.name:'',
+            count : obj.count?obj.count:1,
+            storageId : function(){
+                return 'cartItem_'+this.id+'_'+this.vId;
+            }
+        };
+    }
+};
+
+
+function renderPosts($this)
+{
+    $.ajax({
+        url: "/comments/api/renderPosts",
+        dataType: "json",
+        type: "post",
+        success: function(obj) {
+            $('#four').empty();
+
+            var tpl = obj.comments;
+
+            $('#four').append(tpl);
+            $('#comment').val('');
+            $('#plus').val('');
+            $('#minus').val('');
+            $('.comment_ajax_refer > a').bind('click', function() {
+                $this = $(this);
+                $this.next().slideToggle(200, function() {
+                    $this.parent().toggleClass('visible');
+                }).end().parent().parent().next().slideToggle(200).end().find('.blue_arrow').toggleClass('up');
+                return false;
+            });
+            
+            if (obj.total_comments !== 0) {
+                $('#cc').html('');
+                $('#cc').append("Всего комментариев: " + obj.total_comments);
+            }
+        }
+    });
+}
+
+function post($this)
+{
+    $.ajax({
+        url: "/comments/api/newPost",
+        data: $($this).closest('form').serialize() +
+                '&action=newPost',
+        dataType: "json",
+        type: "post",
+        success: function(obj) {
+
+            $('#comment_text').val('');
+            $('#comment_plus').val('');
+            $('#comment_minus').val('');
+
+            if (obj.answer == 'sucesfull') {
+                renderPosts();
+            }
+            else {
+                $('#error_text').html('');
+                $('#error_text').append(obj.validation_errors);
+            }
+        }
+    });
+}
+
 $(document).ready(function() {
 
     /** Show/Hide  category description **/
@@ -139,7 +356,7 @@ $(document).ready(function() {
                 $.fancybox.hideActivity();
                 //$this.hide();
             }
-        })
+        });
         return false;
     });
     $('.buy .goBuy').live('click', function() {
@@ -410,7 +627,7 @@ $(document).ready(function() {
             }
         });
         return false;
-    })
+    });
 
     $('.showCallback').on('click', function() {
 
@@ -425,7 +642,7 @@ $(document).ready(function() {
             }
         });
         return false;
-    })
+    });
 
 
     //$("#cartForm").validate();
@@ -783,7 +1000,7 @@ $(document).ready(function() {
             $('#pricem' + pid).html((pr - pr / 100 * discount).toFixed(2) + "&nbsp;<sub>" + cs + "</sub>");
             $('#pricem76').html((pr - pr / 100 * discount).toFixed(2));
         } else {
-            $('#pricem'  + pid).html(pr + "&nbsp;<sub>" + cs + "</sub>");
+            $('#pricem' + pid).html(pr + "&nbsp;<sub>" + cs + "</sub>");
             $('#pricem76').html(pr);
         }
         $('#code' + pid).html('Код ' + vnumber);
