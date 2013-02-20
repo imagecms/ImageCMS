@@ -8,9 +8,10 @@
  */
 class Sample_Module extends MY_Controller {
 
-    private $useEmailNotification = FALSE;
-    private $mailTo = FALSE;
+    /** Подготовим необходимые свойства для класса */
     private $key = FALSE;
+    private $mailTo = FALSE;
+    private $useEmailNotification = FALSE;
 
     public function __construct() {
         parent::__construct();
@@ -23,16 +24,7 @@ class Sample_Module extends MY_Controller {
     }
 
     public function index() {
-        /** CMSFactory\assetManager */
-        /** добавляем массив данных к шаблону */
-        /** подключим свой, собстенный CSS */
-        /** подключим свой, собстенный JavaScript файл */
-        /** запустим отображение шаблона. */
-//        \CMSFactory\assetManager::create()
-//                ->fetchData(array('debug' => 'DEBUG VARIABLE'))
-//                ->registerStyle('csstest')
-//                ->registerScript('jstest')
-//                ->render('index');
+        $this->core->error_404();
     }
 
     /**
@@ -71,7 +63,7 @@ class Sample_Module extends MY_Controller {
         /** Сообщаем пользователю что статус обновлён успешно */
         \CMSFactory\assetManager::create()
                 ->setData('comment', $comment)
-                ->render('successful1');
+                ->render('successful');
     }
 
     /**
