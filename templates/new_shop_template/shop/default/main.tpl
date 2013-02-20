@@ -27,6 +27,8 @@
         {/literal}
         {$meta_noindex}
         {$canonical}
+        
+        <script src="{$SHOP_THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
     </head>
     <body>
         <div class="mainBody">
@@ -374,14 +376,17 @@
                 </div>
             </form>
         </div>
-        <script src="{$SHOP_THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
+        
         <script src="{$SHOP_THEME}js/jquery.cycle.all.js" type="text/javascript"></script>
         <script src="{$SHOP_THEME}js/jquery.jcarousel.min.js" type="text/javascript"></script>
         <script src="{$SHOP_THEME}js/jquery.ui-slider.js" type="text/javascript"></script>
         <script src="{$SHOP_THEME}js/cusel-min-2.5.js" type="text/javascript"></script>
         <script src="{$SHOP_THEME}js/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
         <script src="{$SHOP_THEME}js/scripts.js" type="text/javascript"></script>
+        <script src="{$SHOP_THEME}js/shop.js" type="text/javascript"></script>
         <!-- Dev. scripts -->
         <script src="{$SHOP_THEME}js/imagecms.api.js" type="text/javascript"></script>
+        
+        
     </body>
 </html>
