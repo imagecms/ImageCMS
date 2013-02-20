@@ -66,7 +66,8 @@
                                     {/if}
                                     <span class="f-w_b">{echo money_format('%i',$model->firstVariant->getPrice())}</span>{$CS}
                                 </div>
-                                <button class="btn btn_buy" type="button">В корзину</button>
+                                <button class="btn btn_buy" type="button" data-prodid="{echo $model->getId()}" data-varid="{echo $model->firstVariant->getId()}" data-price="{echo $model->firstVariant->getPrice()}" data-name="{echo $model->getName()}">В корзину</button>
+                                <!--<button class="btn btn_buy" type="button">В корзину</button>-->
                             </div>
                         </div>
                         <div class="d_i-b v-a_b m-b_20">
@@ -304,7 +305,7 @@
                                     <span class="f-w_b">{echo money_format('%i', $sim_prod.main.price)}</span> 
                                     {$sim_prod.main.symbol}
                                 </div>
-                                <button class="btn btn_cart" type="button">Уже в корзине</button>
+                                <button class="btn btn_buy" type="button" data-prodid="{echo $sp['ProductId']}" data-varid="{echo $sp['VariandId']}" data-price="{echo $sim_prod.main.price}" data-name="{echo $sp['name']}">В корзину</button>
                             </div>
                         </li>
                     {/foreach}
