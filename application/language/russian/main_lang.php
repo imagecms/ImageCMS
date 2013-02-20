@@ -162,7 +162,7 @@ $lang['s_list_wish_empty'] = 'Список желаний пуст';
 $lang['s_message_not_found'] = 'Сообщить о появлении';
 $lang['s_main_home'] = 'Главная страница';
 $lang['s_order_form'] = 'Оформить <br/> заказ';
-$lang['s_message_o_report'] = 'Сообщить <br/> о появлении';
+$lang['s_message_o_report'] = 'Сообщить о появлении';
 $lang['s_last_comment'] = 'Последние отзывы';
 $lang['s_leave_comment'] = 'Оставить отзыв';
 $lang['s_on_comment'] = 'оставлен';
@@ -357,5 +357,8 @@ $lang['s_not_found_in_categories'] = 'В категориях ничего не 
 // Wish list
 $lang['add_to_basket'] = 'В корзину';
 $lang['already_in_basket'] = 'Уже в корзине';
+
+//Compare
+$lang['s_category'] = 'Категория';
 
 /* End of file main_lang.php */
