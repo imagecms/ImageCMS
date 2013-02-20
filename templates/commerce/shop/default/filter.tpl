@@ -5,7 +5,7 @@
 
 {$aurl = urldecode(site_url($_SERVER['REQUEST_URI']))}
 <div class="filter">
-    <form name="brandsfilter" id="brandsfilter" method="get" action="{shop_url('category/'.$model->full_path)}">
+    <form name="brandsfilter" id="brandsfilter" method="get" action="{shop_url('category_new/'.$category->getFullPath())}">
         <input type="hidden" name="order" value="{echo ShopCore::$_GET['order']}">
         <input type="hidden" name="user_per_page" value="{echo ShopCore::$_GET['user_per_page']}">
         {if ($_GET['lp'] and $_GET['lp'] > $priceRange.minCost) or ($_GET['rp'] and $_GET['rp'] < $priceRange.maxCost) or $_GET['p'] or $_GET['brand']}
@@ -94,6 +94,7 @@
                                         <input {if $item.count == 0}disabled="disabled"{/if} class="propertyCheck" name="p[{echo $prop->property_id}][]" value="{echo $item.value}" type="checkbox" {if is_array(ShopCore::$_GET['p'][$prop->property_id]) && in_array(htmlspecialchars_decode($item.value), ShopCore::$_GET['p'][$prop->property_id]) && $item.count != 0}checked="checked"{/if}/>
                                         <span class="name_model">{echo $item.value}<span>&nbsp;({if $item.count != 0 && is_array(ShopCore::$_GET['p'][$prop->property_id]) && !in_array($item.value, ShopCore::$_GET['p'][$prop->property_id])}+{/if}{echo $item.count}) </span></span>
                                     </label>
+                                    {//var_dump($item.obj)}
                                 {/foreach}
                             </div>
                         </div>
