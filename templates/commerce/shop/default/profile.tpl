@@ -141,21 +141,21 @@
 
                 {lang('s_to_fal_mo_ti')}:
                 <span style="font-weight: bold;">
-                    {echo count($goodsinspy)}
+                    {echo count($goodsInSpy)}
                 </span>
-                {if count($goodsinspy)>0}
+                {if count($goodsInSpy)>0}
                     <table cellspacing="0">
                         <thead>
                             <tr>
                                 <th>{lang('s_to_falitem_number')}</th>
                                 <th>{lang('s_to_falo_product_name')}</th>
                                 <th>{lang('s_to_falitem_difference')}</th>
-                                <th>{lang('s_to_falitem_difference_percents')}</th>
+                                <th>{lang('s_to_falitem_difference_perc')}</th>
                                 <th>{lang('s_to_unsubscribe')}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {foreach $goodsinspy as $good}
+                            {foreach $goodsInSpy as $good}
                                 {$product = $good->getProduct()}
                                 <tr>
                                     <td>{echo $product[0]->getId()}</td>
