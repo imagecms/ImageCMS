@@ -35,6 +35,10 @@ class Comments extends MY_Controller {
     public function test() {
         echo 'debugParent';
     }
+    
+    public function init(){
+        \CMSFactory\assetManager::create()->registerScript('comments');
+    }
 
     /**
      * Autoload function. Load language and comments.
