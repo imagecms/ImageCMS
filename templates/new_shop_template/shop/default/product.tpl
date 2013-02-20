@@ -166,8 +166,7 @@
                                                     <span class="f-w_b">{echo $p->firstvariant->getPrice()}</span> {$CS}
                                                 </div>
                                                 <button class="btn btn_buy" data-varid="{echo $p->firstVariant->getId()}" data-prodid="{echo $p->getId()}" type="button">{$style.message}</button>
-                                                
-<!--                                                <button class="btn btn_not_avail" type="button" data-drop=".drop-report" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="500" data-place="noinherit" data-placement="bottom right" data-varid="{echo $p->firstVariant->getId()}" data-prodid="{echo $p->getId()}">{$style.message}</button>-->
+
 
                                                 <div class="d_i-b">                                                    
                                                     <button class="btn btn_small_p" type="button" title="добавить в список сравнений"><span class="icon-comprasion_2"></span></button>
@@ -219,153 +218,100 @@
                 </div>
             </div>
         </div>
-        <div class="frame_carousel_product carousel_js c_b frameSet">
-            <div class="m-b_20">
-                <div class="title_h1 d_i-b v-a_m promotion_text">Акция в комплекте дешевле!</div>
-                <div class="d_i-b groupButton v-a_m">
-                    <button type="button" class="btn btn_prev">
-                        <span class="icon prev"></span>
-                        <span class="text-el"></span>
-                    </button>
-                    <button type="button" class="btn btn_next">
-                        <span class="text-el"></span>
-                        <span class="icon next"></span>
-                    </button>
+        <!--Kit start-->
+        {if $model->getShopKits()->count() > 0}
+            <div class="frame_carousel_product carousel_js c_b frameSet">
+                <div class="m-b_20">
+                    <div class="title_h1 d_i-b v-a_m promotion_text">{lang('s_spec_promotion')}</div>
+                    <div class="d_i-b groupButton v-a_m">
+                        <button type="button" class="btn btn_prev">
+                            <span class="icon prev"></span>
+                            <span class="text-el"></span>
+                        </button>
+                        <button type="button" class="btn btn_next">
+                            <span class="text-el"></span>
+                            <span class="icon next"></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="carousel">
+                    <div class="row">
+                        <ul class="items items_catalog">
+                            {foreach $model->getShopKits() as $kid}                                     
+                                <li class="container">
+                                    <ul class="items items_middle">
+                                        <li class="span3">
+                                            <div class="item_set">
+                                                <!--Photo, price, name for parent product-->
+                                                <div class="description">
+                                                    <a href="{shop_url('product/' . $kid->getMainProduct()->getUrl())}">
+                                                        {echo ShopCore::encode($kid->getMainProduct()->getName())}
+                                                    </a>
+                                                    <div class="price price_f-s_16">
+                                                        <span class="f-w_b">{echo $kid->getProductPrice()}</span>
+                                                        {$CS}
+                                                    </div>
+                                                </div>
+                                                <a href="{shop_url('product/' . $kid->getMainProduct()->getUrl())}" class="photo">
+                                                    <span class="helper"></span>
+                                                    <figure>
+                                                        <img src="{productImageUrl($kid->getMainProduct()->getSmallModImage())}" alt="{echo ShopCore::encode($kid->getMainProduct()->getName())}"/>
+                                                    </figure>
+                                                </a>
+                                            </div>
+                                            <div class="d_i-b">+</div>
+                                        </li>
+
+                                        {foreach $kid->getShopKitProducts() as $coompl}
+                                            {$ap = $coompl->getSProducts()}
+                                            {$kp = currency_convert($ap->getFirstVariant()->getPrice(), $ap->getFirstVariant()->getCurrency())}                                       
+                                            <li class="span3">
+                                                <div class="item_set">
+                                                    <div class="description">
+                                                        <a href="{shop_url('product/' . $ap->getUrl())}">
+                                                            {echo ShopCore::encode($ap->getName())}
+                                                        </a>
+                                                        <div class="price price_f-s_16">
+                                                            {if $coompl->getDiscount() != 0}
+                                                                <span class="d_b old_price">
+                                                                    <span class="f-w_b">
+                                                                        {echo number_format($kid->getPriceBefore(), ShopCore::app()->SSettings->pricePrecision, '.', '')}                                                         </span>
+                                                                        {$kp.main.symbol}
+                                                                </span>
+                                                            {/if}
+                                                            <span class="f-w_b">
+                                                                {echo number_format($kid->getPriceBefore(), ShopCore::app()->SSettings->pricePrecision, '.', '')}                                                               
+                                                            </span>{$kp.main.symbol}
+                                                        </div>
+                                                    </div>
+                                                    <a href="{shop_url('product/' . $ap->getUrl())}" class="photo">
+                                                        <span class="helper"></span>
+                                                        <figure>
+                                                            <img src="{productImageUrl($ap->getSmallModImage())}"/>
+                                                        </figure>
+                                                    </a>
+                                                    <span class="top_tovar discount">-{echo $coompl->getDiscount()}%</span>
+                                                </div>
+                                                <div class="d_i-b">+</div>
+                                            </li>                                            
+                                        {/foreach}
+                                        <li class="span3 p-t_40">
+                                            <div class="price price_f-s_24">
+                                                <span class="d_b old_price"><span class="f-w_b">{echo $kid->getAllPriceBefore()}</span>{$CS}</span>
+                                                <span class="f-w_b">{echo $kid->getTotalPrice()}</span>{$CS}
+                                            </div>
+                                            <button type="button" class="btn btn_buy ">{lang('s_buy')}</button>
+                                        </li>
+                                    </ul>
+                                </li>
+                            {/foreach}                            
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="carousel">
-                <div class="row">
-                    <ul class="items items_catalog">
-                        <li class="container">
-                            <ul class="items items_middle">
-                                <li class="span3">
-                                    <div class="item_set">
-                                        <div class="description">
-                                            <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
-                                            <div class="price price_f-s_16"><span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span></div>
-                                        </div>
-                                        <a href="#" class="photo">
-                                            <span class="helper"></span>
-                                            <figure>
-                                                <img src="images/temp/item_middle.png" alt="Apple MacBook Pro A1286"/>
-                                            </figure>
-                                        </a>
-                                    </div>
-                                    <div class="d_i-b">+</div>
-                                </li>
-                                <li class="span3">
-                                    <div class="item_set">
-                                        <div class="description">
-                                            <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
-                                            <div class="price price_f-s_16">
-                                                <span class="d_b old_price"><span class="f-w_b">5000</span> грн.</span>
-                                                <span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span>
-                                            </div>
-                                        </div>
-                                        <a href="#" class="photo">
-                                            <span class="helper"></span>
-                                            <figure>
-                                                <img src="images/temp/item_middle.png" alt="Apple MacBook Pro A1286"/>
-                                            </figure>
-                                        </a>
-                                        <span class="top_tovar discount">-5%</span>
-                                    </div>
-                                    <div class="d_i-b">+</div>
-                                </li>
-                                <li class="span3">
-                                    <div class="item_set">
-                                        <div class="description">
-                                            <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
-                                            <div class="price price_f-s_16">
-                                                <span class="d_b old_price"><span class="f-w_b">5000</span> грн.</span>
-                                                <span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span>
-                                            </div>
-                                        </div>
-                                        <a href="#" class="photo">
-                                            <span class="helper"></span>
-                                            <figure>
-                                                <img src="images/temp/item_middle.png" alt="Apple MacBook Pro A1286"/>
-                                            </figure>
-                                        </a>
-                                        <span class="top_tovar discount">-5%</span>
-                                    </div>
-                                    <div class="d_i-b">=</div>
-                                </li>
-                                <li class="span3 p-t_40">
-                                    <div class="price price_f-s_24">
-                                        <span class="d_b old_price"><span class="f-w_b">28799.68</span> руб.</span>
-                                        <span class="f-w_b">28799.68</span> руб.
-                                    </div>
-                                    <button type="button" class="btn btn_buy">Купить комплект</button>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="container">
-                            <ul class="items items_middle">
-                                <li class="span3">
-                                    <div class="item_set">
-                                        <div class="description">
-                                            <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
-                                            <div class="price price_f-s_16"><span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span></div>
-                                        </div>
-                                        <a href="#" class="photo">
-                                            <span class="helper"></span>
-                                            <figure>
-                                                <img src="images/temp/item_middle.png" alt="Apple MacBook Pro A1286"/>
-                                            </figure>
-                                        </a>
-                                    </div>
-                                    <div class="d_i-b">+</div>
-                                </li>
-                                <li class="span3">
-                                    <div class="item_set">
-                                        <div class="description">
-                                            <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
-                                            <div class="price price_f-s_16">
-                                                <span class="d_b old_price"><span class="f-w_b">5000</span> грн.</span>
-                                                <span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span>
-                                            </div>
-                                        </div>
-                                        <a href="#" class="photo">
-                                            <span class="helper"></span>
-                                            <figure>
-                                                <img src="images/temp/item_middle.png" alt="Apple MacBook Pro A1286"/>
-                                            </figure>
-                                        </a>
-                                    </div>
-                                    <div class="d_i-b">+</div>
-                                </li>
-                                <li class="span3">
-                                    <div class="item_set">
-                                        <div class="description">
-                                            <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
-                                            <div class="price price_f-s_16">
-                                                <span class="d_b old_price"><span class="f-w_b">5000</span> грн.</span>
-                                                <span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span>
-                                            </div>
-                                        </div>
-                                        <a href="#" class="photo">
-                                            <span class="helper"></span>
-                                            <figure>
-                                                <img src="images/temp/item_middle.png" alt="Apple MacBook Pro A1286"/>
-                                            </figure>
-                                        </a>
-                                    </div>
-                                    <div class="d_i-b">=</div>
-                                </li>
-                                <li class="span3 p-t_40">
-                                    <div class="price price_f-s_24">
-                                        <span class="d_b old_price"><span class="f-w_b">28799.68</span> руб.</span>
-                                        <span class="f-w_b">28799.68</span> руб.
-                                    </div>
-                                    <button type="button" class="btn btn_buy">Купить комплект</button>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        {/if}
+        <!--Kit end-->
+
         <div class="frame_carousel_product carousel_js c_b">
             <div class="m-b_20">
                 <div class="title_h1 d_i-b v-a_m">Похожие товары</div>

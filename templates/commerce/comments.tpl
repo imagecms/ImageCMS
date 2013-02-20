@@ -88,7 +88,7 @@
         </div>
     {/if}
     <label class="buttons button_middle_blue f_l">
-        <input type="submit" value="{lang('s_leave_comment')}"/>
+        <input type="submit" value="{lang('s_leave_comment')}" onclick="json()"/>
     </label>
 
     {form_csrf()}
@@ -168,7 +168,7 @@
                     </label>
                     <input type="hidden" name="parent" value="{echo $comment.id}">
                     <label class="buttons button_middle_blue f_l">
-                        <input type="submit" value="{lang('s_leave_comment')}"/>
+                        <input type="submit" value="{lang('s_leave_comment')}" onclick="json()"/>
                     </label>
 
                     {form_csrf()}
