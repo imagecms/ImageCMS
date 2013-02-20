@@ -1,3 +1,4 @@
+{$CI->load->module('comments')->init()}
 <div>
     <article>
         <!--                        class="span9"-->
@@ -125,7 +126,7 @@
                                 </button>
                             </li>
                         {/if}
-                        <li><button type="button" data-href="#comment"><span class="icon-comment-tab"></span><span class="text-el">Отзывы(5)</span></button></li>
+                        <li><button type="button" data-href="#comment" onclick="renderPosts(this)"><span class="icon-comment-tab"></span><span class="text-el">Отзывы(5)</span></button></li>
                     </ul>
                     <div class="frame_tabs">
                         <div id="info">
@@ -180,6 +181,7 @@
                             </div>
                         {/if}
                         <div id="comment">
+                            <div id="four" name="four"></div><!--
                             <div class="title_h2">Отзывы покупателей</div>
                             <ul class="frame-list-comment">
                                 <li>
@@ -212,7 +214,7 @@
                                         </div>
                                     </form>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>
