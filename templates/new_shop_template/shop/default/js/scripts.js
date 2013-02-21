@@ -369,7 +369,7 @@ jQuery(document).ready(function() {
                 time_dur_m = duration;
                 drop.hide();
                 menuItemCltd.removeClass('hover')
-                $('.first_h, .last_h').removeAttr('class');
+                $('.first_h, .last_h').removeClass('first_h').removeClass('last_h');
             }
         };
         $.fn.menuPacket2 = function(method) {
@@ -774,18 +774,18 @@ jQuery(document).ready(function() {
                 var body = $('body'),
                         mainBody = $('.mainBody'),
                         settings = $.extend({
-                    cloned: '.cloned',
-                    activeClass: 'active',
-                    exit: '[data-closed = "closed-js"]',
-                    effon: 'show',
-                    effoff: 'hide',
-                    effdur: 500,
-                    before: function() {
-                        return true;
-                    },
-                    after: function() {
-                        return true;
-                    }
+                cloned: '.cloned',
+                        activeClass: 'active',
+                        exit: '[data-closed = "closed-js"]',
+                        effon: 'show',
+                        effoff: 'hide',
+                        effdur: 500,
+                        before: function() {
+                    return true;
+                },
+                        after: function() {
+                    return true;
+                }
                 }, options);
 
                 var $thisD = this,
@@ -1101,6 +1101,11 @@ jQuery(document).ready(function() {
                 var elWrap = $(el).closest('li').clone().removeAttr('style'),
                         dropEl = $(dropEl).find('.drop-content');
 
+                //adding product info into form
+                var formCont = $('#data-report');
+                var productId = el.getAttribute('data-prodid');
+                formCont.find('input[name="ProductId"]').val(productId)
+
                 elWrap.find('.photo').prependTo(elWrap)
 
                 if (!dropEl.parent().hasClass('active')) {
@@ -1108,7 +1113,8 @@ jQuery(document).ready(function() {
                         dropEl.append('<ul class="frame-search-thumbail items"></ul>');
                     dropEl.find('.frame-search-thumbail').append(elWrap).find('.prod_status, .btn, .frame_response').remove().end().parent().find('[data-clone="data-report"]').remove().end().append($('[data-clone="data-report"]').clone().removeClass('d_n'));
                 }
-            };
+            }
+            ;
         }
     });
     $('.tabs').tabs({

@@ -26,7 +26,7 @@
                 {foreach $items as $key=>$item}
                         {$discount = ShopCore::app()->SDiscountsManager->productDiscount($item->id)}
                         {$style = productInCart($cart_data, $item.model->getId(), $item.model->firstVariant->getId(), $item.model->firstVariant->getStock())}
-                        <li class="span3">
+                        <li class="span3 {if $item.model->firstvariant->stock == 0} not-avail{/if}">
                             {if ShopCore::$ci->dx_auth->is_logged_in()===true}
                                 <button class="btn btn_small btn_small_p">
                                     {//shop_url('wish_list/delete/' . $key)}
@@ -55,7 +55,11 @@
                                 {if $style.identif == 'goToCart'}    
                                     <button class="btn btn_cart" type="button">{lang('already_in_basket')}</button>
                                 {else:}
-                                    <button class="btn btn_buy" type="button">{lang('add_to_basket')}</button>
+                                    {if $item.model->firstvariant->stock != 0}
+                                        <button class="btn btn_buy" type="button">{lang('add_to_basket')}</button>
+                                    {else:}
+                                        <button class="btn btn_not_avail" type="button">{lang('s_message_o_report')}</button>
+                                    {/if}
                                 {/if}
                             </div>
                         </li>
