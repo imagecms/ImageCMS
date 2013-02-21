@@ -992,6 +992,9 @@ $(document).ready(function() {
         }
     }
 
+
+
+
     $('[name="selectVar"]').live('change', function() {
         $.fancybox.showActivity();
         var vid = $(this).val();
@@ -1059,6 +1062,11 @@ $(document).ready(function() {
         })
         return false;
     });
+    
+    
+    
+    
+    
     $('.giftcertcheck').on('click', function() {
         recount();
 

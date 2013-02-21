@@ -6,9 +6,9 @@
             <div class="row">
                 <div class="photo span5 clearfix">
 
-                    <a rel="group" href="{productImageUrl($model->getMainModImage())}">
+                    <a rel="group" id="photoGroup" href="{productImageUrl($model->getMainModImage())}">
                         <figure>
-                            <img src="{productImageUrl($model->getMainimage())}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
+                            <img id="imageGroup" src="{productImageUrl($model->getMainImage())}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
                         </figure>                        
                     </a>              
                     <ul class="frame_thumbs">                   
@@ -38,7 +38,7 @@
                 <div class="span7">
                     <h1 class="d_i">{echo ShopCore::encode($model->getName())}</h1>
                     {if $model->firstVariant->getNumber() != ''}
-                        <span class="c_97">(Артикул {echo $model->firstVariant->getNumber()})</span>
+                        <span class="c_97" id="number">(Артикул {echo $model->firstVariant->getNumber()})</span>
                     {/if}
                     <div class="frame_response">
                         <div class="star">
@@ -52,28 +52,44 @@
                             {if count($model->getProductVariants()) > 1}
                                 <div class=" d_i-b v-a_b m-r_30" id="variantProd">
                                     <span class="title">Выбор варианта:</span>
-
                                     <div class="lineForm w_170">
-                                        <select id="var" name="var">
+                                        <select id="var" name="variant">
                                             {foreach $model->getProductVariants() as $key => $pv}
-                                                <option value="1" selected="selected">{echo $pv->getName()}</option>
-                                                <!--<option value="2">adsg</option>-->
+                                                <option value="{echo $pv->getId()}">{if $pv->getName()}{echo $pv->getName()}{else:}{echo $model->getName()}{/if}</option>
                                             {/foreach}
                                         </select>
                                     </div>
                                 </div>
+                                {foreach $model->getProductVariants() as $key => $pv}
+                                    {if $model->hasDiscounts()}{$origPrice = $pv->getOrigPrice()}{/if}
+                                    {if $pv->getMainImage()}{$mainImage = $pv->getMainImage()}{else:}{$mainImage = $model->getMainimage()}{/if}
+                                    <span class="variant_{echo $pv->getId()}" 
+                                          data-id="{echo $pv->getId()}"
+                                          data-name="{echo $pv->getName()}"
+                                          data-price="{echo money_format('%i',$pv->getPrice())}"
+                                          data-number="{echo $pv->getNumber()}"
+                                          data-origPrice="{echo money_format('%i',$origPrice)}"
+                                          data-mainImage="{echo $mainImage}"
+                                          data-smallImage="{echo $pv->getSmallImage()}"
+                                          data-stock="{echo $pv->getStock()}"
+                                          style="display: none;"></span>
+                                {/foreach}
                             {/if}
                             <div class=" d_i-b v-a_b m-r_45">
                                 <div class="price price_f-s_24">
                                     {if $model->hasDiscounts()}
                                         <span class="d_b old_price">
-                                            <span class="f-w_b">{echo money_format('%i',$model->firstVariant->getOrigPrice())}</span>
+                                            <span class="f-w_b" id="priceOrigVariant">{echo money_format('%i',$model->firstVariant->getOrigPrice())}</span>
                                             {$CS}
                                         </span>                           
                                     {/if}
-                                    <span class="f-w_b">{echo money_format('%i',$model->firstVariant->getPrice())}</span>{$CS}
-                                </div>
-                                <button class="btn btn_buy" type="button" data-prodid="{echo $model->getId()}" data-varid="{echo $model->firstVariant->getId()}" data-price="{echo $model->firstVariant->getPrice()}" data-name="{echo $model->getName()}">В корзину</button>
+                                    <span class="f-w_b" id="priceVariant">{echo money_format('%i',$model->firstVariant->getPrice())}</span>{$CS}
+                                </div>                             
+                                <button  class="btn btn_buy variant" type="button" data-prodid="{echo $model->getId()}" data-varid="{echo $model->firstVariant->getId()}" data-price="{echo $model->firstVariant->getPrice()}" data-name="{echo $model->getName()}">{lang('s_buy')}</button>
+
+                                {foreach $model->getProductVariants() as $key => $pv}
+                                    <button style="display: none;" class="btn btn_buy variant_{echo $pv->getId()} variant" type="button" data-prodid="{echo $pv->getId()}" data-varid="{echo $pv->getId()}" data-price="{echo $pv->getPrice()}" data-name="{echo $pv->getName()}">{lang('s_buy')}</button>
+                                {/foreach}
                             </div>
                         </div>
                         <div class="d_i-b v-a_b m-b_20">

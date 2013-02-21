@@ -12,9 +12,24 @@
         <!-- End errors block -->
         <!-- Start tabs block -->
         <ul class="tabs clearfix">
-            <li><button type="button" data-href="#my_data"><span class="icon-mydata"></span><span class="text-el">{lang('s_profile_me')}</span></button></li>
-            <li><button type="button" data-href="#change_pass"><span class="icon-chgpass"></span><span class="text-el">{lang('s_profile_me_change_password')}</span></button></li>
-            <li><button type="button" data-href="#history_order"><span class="icon-historyorder"></span><span class="text-el">{lang('s_order_history')}</span></button></li>
+            <li>
+                <button type="button" data-href="#my_data">
+                    <span class="icon-mydata"></span>
+                    <span class="text-el">{lang('s_profile_me')}</span>
+                </button>
+            </li>
+            <li>
+                <button type="button" data-href="#change_pass">
+                    <span class="icon-chgpass"></span>
+                    <span class="text-el">{lang('s_profile_me_change_password')}</span>
+                </button>
+            </li>
+            <li>
+                <button type="button" data-href="#history_order">
+                    <span class="icon-historyorder"></span>
+                    <span class="text-el">{lang('s_order_history')}</span>
+                </button>
+            </li>
             {if count($goodsInSpy) != 0}
                 <li>
                     <button type="button" data-href="#wait_tov">
@@ -43,7 +58,8 @@
                         <label>
                             <span class="title">{lang('s_c_uoy_user_el')}:</span>
                             <span class="frame_form_field">
-                                <input type="text" value="{echo encode($profile->getUserEmail())}" name="email"/>
+                                <input type="text" disabled value="{echo encode($profile->getUserEmail())}" name="email"/>
+                                <input type="hidden" value="{echo encode($profile->getUserEmail())}" name="email"/>
                                 <div id="for_email" class="for_validations"></div>
                                 <span class="help_inline">{lang('s_email_is_login')}</span>
                             </span>

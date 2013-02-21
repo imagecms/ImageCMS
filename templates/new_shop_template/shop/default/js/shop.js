@@ -21,24 +21,25 @@ var Shop = {
             $.post('/shop/cart/add', {
                 'quantity': cartItem.count,
                 'productId': cartItem.id,
-                'variantId': cartItem.vId},
-                function(data){
-                    try {
+                'variantId': cartItem.vId
+            },
+            function(data){
+                try {
                         
-                        responseObj = JSON.parse(data);
-                        console.log(responseObj);
+                    responseObj = JSON.parse(data);
+                    console.log(responseObj);
                         
-                        //save item to storage
-                        Shop.Cart._add(Shop.currentItem);
-                    } catch (e){
-                        return this;
-                    }
-                });
+                    //save item to storage
+                    Shop.Cart._add(Shop.currentItem);
+                } catch (e){
+                    return this;
+                }
+            });
 
         },
         _add: function(cartItem){
-//            console.log('adding');
-//            console.log(cartItem);
+            //            console.log('adding');
+            //            console.log(cartItem);
             
             var currentItem = this.load(cartItem.storageId());
             if (currentItem)
@@ -46,7 +47,7 @@ var Shop = {
             else
                 currentItem = cartItem;
             
-//            console.log(cartItem);
+            //            console.log(cartItem);
             this.save(currentItem);
             
             
@@ -111,7 +112,7 @@ var Shop = {
                 
                     Shop.Cart.totalRecount();
                 }
-            );
+                );
         },
     
         //work with storage
@@ -274,28 +275,29 @@ var Shop = {
 
 
 $(
-function(){
+    function(){
   
-    //global listeners
+        //global listeners
     
-    //click 'add to cart'
-    $('button.btn_buy').on('click', function(){
-        var cartItem = Shop.composeCartItem($(this));
-        Shop.Cart.add(cartItem);
-        return true;
-    });
+        //click 'add to cart'
+        $('button.btn_buy').on('click', function(){
+            var cartItem = Shop.composeCartItem($(this));
+            Shop.Cart.add(cartItem);
+            return true;
+        });
 
-    //click 'go to cart'
-//    $('button.btn_cart').on('click', function(){
-//        var cartItem = Shop.Cart.showPopupCart();
-//        return true;
-//    });
+        //click 'go to cart'
+        //    $('button.btn_cart').on('click', function(){
+        //        var cartItem = Shop.Cart.showPopupCart();
+        //        return true;
+        //    });
 
     
     
-    //cart content changed
-    $(document).live('cart_changed', function(){
-        //update page content
+        //cart content changed
+        $(document).live('cart_changed', function(){
+            
+            //update page content
             //update products count
             $('div.cleaner>span>span:nth-child(3)').html(' ('+Shop.Cart.totalCount+')');
         
@@ -328,9 +330,9 @@ function(){
         
     });
 
-    $(document).on('before_add_to_cart', function(event){
-        console.log(event);
-    });
+        $(document).on('before_add_to_cart', function(event){
+            console.log(event);
+        });
 
     $(document).on('after_add_to_cart', function(event){
         initShopPage();
@@ -400,6 +402,32 @@ function rmFromPopupCart(context)
     
     Shop.Cart.totalRecount();
     tr.remove();
-    
 }
 
+
+
+$('[name="variant"]').live('change', function() {  
+    
+    
+    var productId = $(this).attr('value');
+    
+    var vId = $('span.variant_'+productId).attr('data-id');
+    var vName = $('span.variant_'+productId).attr('data-name');
+    var vPrice = $('span.variant_'+productId).attr('data-price');
+    var vOrigPrice = $('span.variant_'+productId).attr('data-origPrice');
+    var vNumber = $('span.variant_'+productId).attr('data-number');
+    var vMainImage = $('span.variant_'+productId).attr('data-mainImage');
+    var vSmallImage = $('span.variant_'+productId).attr('data-smallImage');
+    var vStock = $('span.variant_'+productId).attr('data-stock');
+    
+    
+    $('#photoGroup').attr('href', '/uploads/shop/' + vMainImage);
+    $('#imageGroup').attr('src', '/uploads/shop/' + vMainImage).removeClass().attr('alt', vName);
+    $('#priceOrigVariant').html(vOrigPrice);
+    $('#priceVariant').html(vPrice);
+    $('#number').html('(Артикул ' + vNumber + ')');
+    
+    var productId = $(this).attr('value');
+    $('.variant').hide();
+    $('.variant_'+productId).show();    
+});
