@@ -2,6 +2,7 @@
 <div class="container p_r">
     <div class="carousel">
         <ul class="items">
+            {$brands = array_slice($brands,0,6)}
             {foreach $brands as $brand}
                 <li>
                     <a href="{shop_url($brand.full_url)}">
