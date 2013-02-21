@@ -58,7 +58,8 @@ var Shop = {
         },
         rm : function(cartItem){
             Shop.currentItem = cartItem;
-            $.getJSON('/shop/cart_api/delete/'+cartItem.id, function(data){
+            var sp = 'SProducts_';
+            $.getJSON('/shop/cart_api/delete/'+sp+cartItem.id+'_'+cartItem.vId, function(data){
                 
                 localStorage.removeItem(Shop.currentItem.storageId());
                 
@@ -300,6 +301,12 @@ function(){
         Shop.Cart.totalRecount();
         
         $('#popupCart').html(Shop.Cart.renderPopupCart()).hide();
+        
+        $('[data-rel="plusminus"]').plusminus({
+        prev: 'prev.children(:eq(1))',
+        next: 'prev.children(:eq(0))'
+    })
+        
         $('#showCart').click();
     });
 }
