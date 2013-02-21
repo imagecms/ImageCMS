@@ -25,4 +25,3 @@
 </span>
 {/if}
 {/if}
-<script type="text/javascript" src="/application/modules/star_rating/assets/js/scripts.js"></script>
