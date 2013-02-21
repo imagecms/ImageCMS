@@ -1,1 +1,1 @@
-<ul class="info_menu">{$wrapper}</ul>
+<ul class="nav navHorizontal headerMenu">{$wrapper}</ul>

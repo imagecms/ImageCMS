@@ -25,9 +25,8 @@ class Exchange {
         $this->ci = &get_instance();
         set_time_limit(0);
         $this->ci->load->helper('translit');
-        //$this->locale = getDefaultLanguage();
+
         $this->locale = BaseAdminController::getCurrentLocale();
-        $this->locale = $this->locale['identif'];
 
         if (!$this->get1CSettings()) {
             //default settings
@@ -37,7 +36,6 @@ class Exchange {
             $this->config['password'] = '';
             $this->config['usepassword'] = false;
             $this->config['userstatuses'] = array();
-            $this->config['autoresize'] = 'On';
         } else {
             $this->config = $this->get1CSettings();
         }
@@ -163,7 +161,6 @@ class Exchange {
     private function command_catalog_import() {
 
         if ($this->check_perm() === true) {
-            echo "start:" . memory_get_usage() . "</br>";
             $this->xml = $this->_readXmlFile($_GET['filename']);
             if (!$this->xml)
                 return "failure";
@@ -621,10 +618,10 @@ class Exchange {
         foreach ($this->xml->ПакетПредложений->Предложения->Предложение as $offer) {
             //prepare update data
             $data = array();
-            $data['price'] = $offer->Цены->Цена->ЦенаЗаЕдиницу;
-            $data['price_in_main'] = $offer->Цены->Цена->ЦенаЗаЕдиницу;
-            $data['stock'] = $offer->Количество;
-            $this->ci->db->where('external_id', $offer->Ид . "")->or_where('number', $offer->Артикул . "")->update($this->product_variants_table, $data);
+            $data['price'] = (float)$offer->Цены->Цена->ЦенаЗаЕдиницу;
+            $data['price_in_main'] = (float)$offer->Цены->Цена->ЦенаЗаЕдиницу;
+            $data['stock'] = (int)$offer->Количество;
+            $this->ci->db->where('external_id', $offer->Ид . "")->update($this->product_variants_table, $data);
         }
     }
 

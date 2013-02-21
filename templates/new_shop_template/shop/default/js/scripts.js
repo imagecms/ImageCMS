@@ -1095,6 +1095,7 @@ jQuery(document).ready(function() {
         overlayColor: '#000',
         overlayOpacity: '0.6',
         before: function(el, dropEl) {
+            //check for drop-report
             if ($(dropEl).hasClass('drop-report')) {
                 $(dropEl).find('li').remove();
                 var elWrap = $(el).closest('li').clone().removeAttr('style'),
@@ -1107,7 +1108,7 @@ jQuery(document).ready(function() {
                         dropEl.append('<ul class="frame-search-thumbail items"></ul>');
                     dropEl.find('.frame-search-thumbail').append(elWrap).find('.prod_status, .btn, .frame_response').remove().end().parent().find('[data-clone="data-report"]').remove().end().append($('[data-clone="data-report"]').clone().removeClass('d_n'));
                 }
-            }
+            };
         }
     });
     $('.tabs').tabs({
