@@ -5,11 +5,11 @@ function renderPosts($this)
         dataType: "json",
         type: "post",
         success: function(obj) {
-            $('#four').empty();
+            $('#for_comments').empty();
 
             var tpl = obj.comments;
 
-            $('#four').append(tpl);
+            $('#for_comments').append(tpl);
             $('#comment').val('');
             $('#plus').val('');
             $('#minus').val('');
