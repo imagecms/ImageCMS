@@ -6,9 +6,9 @@
             <div class="row">
                 <div class="photo span5 clearfix">
 
-                    <a rel="group" href="{productImageUrl($model->getMainModImage())}">
+                    <a rel="group" id="photoGroup" href="{productImageUrl($model->getMainModImage())}">
                         <figure>
-                            <img src="{productImageUrl($model->getMainimage())}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
+                            <img id="imageGroup" src="{productImageUrl($model->getMainimage())}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
                         </figure>                        
                     </a>              
                     <ul class="frame_thumbs">                   
@@ -38,7 +38,7 @@
                 <div class="span7">
                     <h1 class="d_i">{echo ShopCore::encode($model->getName())}</h1>
                     {if $model->firstVariant->getNumber() != ''}
-                        <span class="c_97">(Артикул {echo $model->firstVariant->getNumber()})</span>
+                        <span class="c_97" id="number">(Артикул {echo $model->firstVariant->getNumber()})</span>
                     {/if}
                     <div class="frame_response">
                         <div class="star">
@@ -46,29 +46,49 @@
                         </div>
                         <a href="#" class="count_response"><span class="icon-comment"></span>145 відгуків</a>
                     </div>
+
                     <div class="clearfix">
                         <div class="d_i-b v-a_b m-b_20">
-                            <div class=" d_i-b v-a_b m-r_30" id="variantProd">
-                                <span class="title">Выбор варианта:</span>
-                                <div class="lineForm w_170">
-                                    <select id="var" name="var">
-                                        <option value="1" selected="selected">asdf</option>
-                                        <option value="2">adsg</option>
-                                    </select>
+                            {if count($model->getProductVariants()) > 1}
+                                <div class=" d_i-b v-a_b m-r_30" id="variantProd">
+                                    <span class="title">Выбор варианта:</span>
+                                    <div class="lineForm w_170">
+                                        <select id="var" name="variant">
+                                            {foreach $model->getProductVariants() as $key => $pv}
+                                                <option value="{echo $pv->getId()}">{if $pv->getName()}{echo $pv->getName()}{else:}{echo $model->getName()}{/if}</option>
+                                            {/foreach}
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
+                                {foreach $model->getProductVariants() as $key => $pv}
+                                    {if $model->hasDiscounts()}{$origPrice = $pv->getOrigPrice()}{/if}
+                                    <span class="variant_{echo $pv->getId()}" 
+                                          data-id="{echo $pv->getId()}"
+                                          data-name="{echo $pv->getName()}"
+                                          data-price="{echo money_format('%i',$pv->getPrice())}"
+                                          data-number="{echo $pv->getNumber()}"
+                                          data-origPrice="{echo money_format('%i',$origPrice)}"
+                                          data-mainImage="{echo $pv->getMainImage()}"
+                                          data-smallImage="{echo $pv->getSmallImage()}"
+                                          data-stock="{echo $pv->getStock()}"
+                                          ></span>
+                                {/foreach}
+                            {/if}
                             <div class=" d_i-b v-a_b m-r_45">
                                 <div class="price price_f-s_24">
                                     {if $model->hasDiscounts()}
                                         <span class="d_b old_price">
-                                            <span class="f-w_b">{echo money_format('%i',$model->firstVariant->getOrigPrice())}</span>
+                                            <span class="f-w_b" id="priceOrigVariant">{echo money_format('%i',$model->firstVariant->getOrigPrice())}</span>
                                             {$CS}
                                         </span>                           
                                     {/if}
-                                    <span class="f-w_b">{echo money_format('%i',$model->firstVariant->getPrice())}</span>{$CS}
-                                </div>
-                                <button class="btn btn_buy" type="button" data-prodid="{echo $model->getId()}" data-varid="{echo $model->firstVariant->getId()}" data-price="{echo $model->firstVariant->getPrice()}" data-name="{echo $model->getName()}">В корзину</button>
-                                <!--<button class="btn btn_buy" type="button">В корзину</button>-->
+                                    <span class="f-w_b" id="priceVariant">{echo money_format('%i',$model->firstVariant->getPrice())}</span>{$CS}
+                                </div>                             
+                                <button  class="btn btn_buy variant" type="button" data-prodid="{echo $model->getId()}" data-varid="{echo $model->firstVariant->getId()}" data-price="{echo $model->firstVariant->getPrice()}" data-name="{echo $model->getName()}">{lang('s_buy')}</button>
+
+                                {foreach $model->getProductVariants() as $key => $pv}
+                                    <button style="display: none;" class="btn btn_buy variant_{echo $pv->getId()} variant" type="button" data-prodid="{echo $pv->getId()}" data-varid="{echo $pv->getId()}" data-price="{echo $pv->getPrice()}" data-name="{echo $pv->getName()}">{lang('s_buy')}</button>
+                                {/foreach}
                             </div>
                         </div>
                         <div class="d_i-b v-a_b m-b_20">
@@ -142,7 +162,7 @@
                                             <a href="{shop_url('product/' . $p->getUrl())}" class="photo">
                                                 <span class="helper"></span>
                                                 <figure>
-                                                    <img src="{productImageUrl($p->getSmallModImage())}" alt="Apple MacBook Pro A1286"/>
+                                                    <img src="{productImageUrl($p->getMainImage())}" alt="{echo ShopCore::encode($p->getName())}"/>
                                                 </figure>
                                             </a>            
                                             <div class="description">
@@ -221,7 +241,7 @@
                                             <div class="d_i-b">+</div>
                                         </li>
 
-                                        {foreach $kid->getShopKitProducts() as $kitProduct}
+                                        {foreach $kid->getShopKitProducts() as  $key => $kitProduct}
                                             {$sProducts = $kitProduct->getSProducts()}                                            
                                             <li class="span3">
                                                 <div class="item_set">
@@ -248,73 +268,83 @@
                                                     </a>
                                                     <span class="top_tovar discount">-{echo $kitProduct->getDiscount()}%</span>
                                                 </div>
-                                                <div class="d_i-b">+</div>
-                                            </li>                                            
-                                        {/foreach}
-                                        <li class="span3 p-t_40">
-                                            <div class="price price_f-s_24">
-                                                <span class="d_b old_price">
-                                                    <span class="f-w_b">{echo $kid->getAllPriceBefore()}</span> {$CS}
-                                                </span>
-                                                <span class="f-w_b">{echo $kid->getTotalPrice()}</span> {$CS}
-                                            </div>
-                                            <button type="button" class="btn btn_buy ">{lang('s_buy')}</button>
-                                        </li>
-                                    </ul>
+                                                <div class="d_i-b">
+                                            {if $kid->countProducts() == $key}={else:}+{/if}
+                                        </div>
+                                    </li>                                            
+                                {/foreach}
+                                <li class="span3 p-t_40">
+                                    <div class="price price_f-s_24">
+                                        <span class="d_b old_price">
+                                            <span class="f-w_b">{echo $kid->getAllPriceBefore()}</span> {$CS}
+                                        </span>
+                                        <span class="f-w_b">{echo $kid->getTotalPrice()}</span> {$CS}
+                                    </div>                                    
+                                    <button class="btn btn_buy" type="button" data-prodid="{echo $kid->getMainProduct()->getId()}" data-varid="{echo $kid->getMainProduct()->firstVariant->getId()}" data-price="{echo $kid->getMainProductPrice()}" data-name="{echo $kid->getMainProduct()->getName()}">{lang('s_buy')}</button>
+
                                 </li>
-                            {/foreach}                            
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        {/if}
-        <!--Kit end-->
-
-        <div class="frame_carousel_product carousel_js c_b">
-            <div class="m-b_20">
-                <div class="title_h1 d_i-b v-a_m">{lang('s_similar_product')}</div>
-                <div class="d_i-b groupButton v-a_m">
-                    <button type="button" class="btn btn_prev">
-                        <span class="icon prev"></span>
-                        <span class="icon-info"></span>
-                    </button>
-                    <button type="button" class="btn btn_next">
-                        <span class="icon-info"></span>
-                        <span class="icon next"></span>
-                    </button>
-                </div>
-            </div>
-            <div class="carousel">
-                <ul class="items items_catalog">
-                    {$simprod = getSimilarProduct($model)}
-                    {foreach $simprod as $sp}
-                        {$sim_prod = currency_convert($sp['price'], $sp['currency'])}
-                        {$style = productInCart($cart_data, $sp['ProductId'], $sp['ProductId'], $sp['stock'])}
-                        <li class="span3 in_cart {if $sp['stock']== 0}not-avail{/if}">
-                            <a href="{site_url('shop/product/'.$sp['url'])}" class="photo">
-                                <span class="helper"></span>
-                                <figure>
-                                    <img src="{productImageUrl($sp['mainImage'])}" alt="{echo ShopCore::encode($sp['name'])}"/>
-                                </figure>
-                            </a>
-                            <div class="description">
-                                <div class="frame_response">
-                                    <div class="star">
-                                        <img src="images/temp/STAR.png"/>
-                                    </div>
-                                </div>
-                                <a href="{site_url('shop/product/'.$sp['url'])}">{echo ShopCore::encode($sp['name'])}</a>
-                                <div class="price price_f-s_16">
-                                    <span class="f-w_b">{echo money_format('%i', $sim_prod.main.price)}</span> 
-                                    {$sim_prod.main.symbol}
-                                </div>
-                                <button class="btn btn_buy" type="button" data-prodid="{echo $sp['ProductId']}" data-varid="{echo $sp['VariandId']}" data-price="{echo $sim_prod.main.price}" data-name="{echo $sp['name']}">В корзину</button>
-                            </div>
+                            </ul>
                         </li>
-                    {/foreach}
-
+                    {/foreach}                            
                 </ul>
             </div>
         </div>
-    </article>
+    </div>
+{/if}
+<!--Kit end-->
+
+
+{if count(getSimilarProduct($model)) > 1}
+    <div class="frame_carousel_product carousel_js c_b">
+        <div class="m-b_20">
+            <div class="title_h1 d_i-b v-a_m">{lang('s_similar_product')}</div>
+            <div class="d_i-b groupButton v-a_m">
+                <button type="button" class="btn btn_prev">
+                    <span class="icon prev"></span>
+                    <span class="icon-info"></span>
+                </button>
+                <button type="button" class="btn btn_next">
+                    <span class="icon-info"></span>
+                    <span class="icon next"></span>
+                </button>
+            </div>
+        </div>
+        <div class="carousel">
+            <ul class="items items_catalog">
+                {$simProduct = getSimilarProduct($model)}
+                {foreach $simProduct as $product}
+                    <li class="span3 {if $product->firstVariant->getStock() == 0}not-avail{/if}">
+                        <a href="{site_url('shop/product/'.$product->getUrl())}" class="photo">
+                            <span class="helper"></span>
+                            <figure>
+                                <img src="{productImageUrl($product->getMainImage())}" alt="{echo ShopCore::encode($product->getName())}"/>
+                            </figure>
+                        </a>
+                        <div class="description">
+                            <div class="frame_response">
+                                <div class="star">
+                                    <img src="images/temp/STAR.png"/>
+                                </div>
+                            </div>
+                            <a href="{site_url('shop/product/'.$product->getUrl())}">{echo ShopCore::encode($product->getName())}</a>
+                            <div class="price price_f-s_16">
+                                {if $product->hasDiscounts()}
+                                    <span class="d_b old_price">
+                                        <span class="f-w_b">{echo money_format('%i',$product->firstVariant->getOrigPrice())}</span>
+                                        {$CS}
+                                    </span>                           
+                                {/if}
+                                <span class="f-w_b">{echo money_format('%i', $product->firstVariant->getPrice())}</span> 
+                                {$CS}
+                            </div>
+                            <button class="btn btn_buy" type="button" data-prodid="{echo $product->getId()}" data-varid="{echo $product->firstVariant->getId()}" data-price="{echo $product->firstVariant->getPrice()}" data-name="{echo $product->getName()}">{lang('s_buy')}</button>
+                        </div>
+                    </li>
+                {/foreach}
+
+            </ul>
+        </div>
+    </div>
+{/if}
+</article>
 </div>
