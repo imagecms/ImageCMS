@@ -352,19 +352,39 @@
             <div class="drop-footer"></div>
         </div>
         <div class="d_n" data-clone="data-report">
-            <form method="post" action="#">
+            <form method="post" action="" id="data-report">
                 <div class="standart_form">
+                    <label>
+                        <span class="title">Ваше имя</span>
+                        <span class="frame_form_field">
+                            <input type="text" id="" name="UserName"/>
+                            <div id="for_UserName" class="for_validations"></div>
+                            <span class="must">*</span>
+                        </span>
+                    </label>
                     <label>
                         <span class="title">E-mail</span>
                         <span class="frame_form_field">
-                            <input type="text" id="email"/>
+                            <input type="text" id="" name="UserEmail"/>
+                            <div id="for_UserEmail" class="for_validations"></div>
+                            <input type="hidden" name="ProductId" value=""/>
+                            <input type="hidden" name="notifme" value="true"/>
                             <span class="must">*</span>
                             <span class="help_inline">На почту придет уведомление о появлении данного товара</span>
                         </span>
                     </label>
+                    <label>
+                        <span class="title">Телефон</span>
+                        <span class="frame_form_field">
+                            <input type="text" id="" name="UserPhone"/>
+                            <div id="for_UserPhone" class="for_validations"></div>
+                            <span class="must">*</span>
+                        </span>
+                    </label>
                 </div>
                 <div class="t-a_r">
-                    <input type="submit" value="Отправить" class="btn btn_cart"/>
+                    <input type="submit" value="Отправить" onclick="ImageCMSApi.formAction('/shop/ajax/getApiNotifyingRequest', 'data-report');
+                                                                return false;" class="btn btn_cart"/>
                 </div>
             </form>
         </div>
