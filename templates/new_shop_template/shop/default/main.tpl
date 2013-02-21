@@ -11,6 +11,10 @@
         <link rel="icon" type="image/x-icon" href="{$SHOP_THEME}images/favicon.png"/>
         <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}css/style.css"/>
         <link href='http://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+        <script src="{$SHOP_THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
+        <script src="{$SHOP_THEME}js/jquery.cycle.all.js" type="text/javascript"></script>
+        <script src="{$SHOP_THEME}js/jquery.jcarousel.min.js" type="text/javascript"></script>
+        <script src="{$SHOP_THEME}js/jquery.ui-slider.js" type="text/javascript"></script>
         <!--[if lt IE 9]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><script src="js/css3-mediaqueries.js"></script><![endif]-->
         {literal}
             <style>
@@ -80,13 +84,7 @@
                                 </div>
                             </div>
                             <nav class="frameHeaderMenu">
-                                <ul class="nav navHorizontal headerMenu">
-                                    <li class="active"><span><span class="helper"></span><span>Главная</span></span></li>
-                                    <li><a href="#"><span class="helper"></span><span>О магазине</span></a></li>
-                                    <li><a href="#"><span class="helper"></span><span>Доставка и оплата</span></a></li>
-                                    <li><a href="#"><span class="helper"></span><span>Помощь</span></a></li>
-                                    <li><a href="#"><span class="helper"></span><span>Контакты</span></a></li>
-                                </ul>
+                                {load_menu('top_menu')}
                             </nav>
                         </section>
                     </div>
@@ -103,24 +101,14 @@
                             <div class="w_100 f-s_0 frameUndef_1">
                                 <div class="span6">
                                     <div class="frameSearch">
-                                        <form method="post" action="#">
-                                            <button class="f_r btn" type="submit"><span class="icon-search"></span><span class="text-el">Найти</span></button>
+                                        <form name="search" class="clearfix" action="{shop_url('search')}" method="get" id="autocomlete">
+                                            <button class="f_r btn" type="submit"><span class="icon-search"></span><span class="text-el">{lang('search_find')}</span></button>
                                             <div class="o_h">
-                                                <input type="text" placeholder="Поиск по сайту"/>
+                                                <input type="text" name="text" placeholder="Поиск по сайту"/>
                                             </div>
                                             <div id="suggestions" class="drop-search d_n">
                                                 <div class="inside-padd">
                                                     <ul class="frame-search-thumbail">
-                                                        <li>
-                                                            <a href="#">
-                                                                <span class="photo">
-                                                                    <span class="helper"></span>
-                                                                    <img src="{$SHOP_THEME}images/temp/item_thumb.png">
-                                                                </span>
-                                                                <span>Оригинальный Phone 4S Black</span>
-                                                            </a>
-                                                            <div class="price price_f-s_16"><span class="f-w_b">99999</span> грн.</div>
-                                                        </li>
                                                         <li>
                                                             <a href="#">
                                                                 <span class="photo">
@@ -141,15 +129,15 @@
                                     </div>
                                 </div>
                                 <div class="span3">
-                                    <div><a href="#"><span class="icon-comprasion"></span>Список сравнения (12)</a></div>
-                                    <div style="margin-top: 9px;"><a href="#"><span class="icon-wish"></span>Список желаний (5)</a></div>
+                                    {include_tpl('compare_data')}
+                                    {include_tpl('wish_list_data')}
                                 </div>
                                 <div class="span3">
                                     <div class="headerPhone"><span class="c_67">+8 (097)</span><span class="d_n">&minus;</span> 572-58-18</div>
                                     <div style="margin-top: 7px;">
                                         <ul class="tabs">
                                             <li>
-                                                <a class="t-d_n f-s_0" href="#a" data-drop=".drop-order-call" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" data-place="center"><span class="icon-order-call"></span><span class="d_l_b">Заказать звонок</span></a>
+                                                <a class="t-d_n f-s_0" href="#a" data-drop=".drop-order-call" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" data-place="center"><span class="icon-order-call"></span><span class="d_l_b">{lang('s_coll_order')}</span></a>
                                             </li>
                                         </ul>
                                     </div>
@@ -176,52 +164,9 @@
                     </section>
                 </div>
             </div>
-            <div class="frame_brand carousel_js">
-                <div class="container p_r">
-                    <div class="carousel">
-                        <ul class="items">
-                            <li>
-                                <a href="#">
-                                    <span class="helper"></span>
-                                    <img src="{$SHOP_THEME}images/temp/brand1.png">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="helper"></span>
-                                    <img src="{$SHOP_THEME}images/temp/brand2.png">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="helper"></span>
-                                    <img src="{$SHOP_THEME}images/temp/brand3.png">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="helper"></span>
-                                    <img src="{$SHOP_THEME}images/temp/brand4.png">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="helper"></span>
-                                    <img src="{$SHOP_THEME}images/temp/brand5.png">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="helper"></span>
-                                    <img src="{$SHOP_THEME}images/temp/brand6.png" >
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <button class="btn_brand btn_prev"></button>
-                    <button class="btn_brand btn_next"></button>
-                </div>
-            </div>
+            <!-- brands widget -->
+                {widget('brands')}
+                <!-- *** -->
             <div class="hFooter"></div>
         </div>
         <footer>
@@ -229,25 +174,15 @@
                 <div class="row-fluid">
                     <div class="span5">
                         <nav>
-                            <ul class="footer_menu">
-                                <li><a href="#">Главная</a></li>
-                                <li><a href="#">Видео</a></li>
-                                <li><a href="#">О магазине</a></li>
-                                <li><a href="#">Домашнее  аудио</a></li>
-                                <li><a href="#">Доставка и оплата</a></li>
-                                <li><a href="#">Фото и камеры</a></li>
-                                <li><a href="#">Помощь</a></li>
-                                <li><a href="#">Домашняя электроника</a></li>
-                                <li><a href="#">Контакты</a></li>
-                                <li><a href="#">Авто музыка и видео</a></li>
-                            </ul>
+                            {load_menu('footer_menu')}
                         </nav>
                     </div>
                     <div class="span4">
                         <ul class="contacts_info">
-                            <li><span class="icon-foot-phone"></span><span class="f-w_b">Телефоны:</span> +8 (067)<span class="d_n">&minus;</span> 572-58-18, +8 (067)<span class="d_n">&minus;</span> 572-58-18</li>
-                            <li><span class="icon-foot-email"></span><span class="f-w_b">Email:</span> SiteImageCMS@gmail.com</li>
-                            <li><span class="icon-foot-skype"></span><span class="f-w_b">Skype:</span> SiteImageCMS</li>
+                            <li><span class="icon-foot-phone"></span><span class="f-w_b">{lang('s_tel')}:</span> +8 (067)<span class="d_n">&minus;</span> 572-58-18, +8 (067)<span class="d_n">&minus;</span> 572-58-18</li>
+                            <li><span class="icon-foot-email"></span><span class="f-w_b">{lang('s_email')}:</span> SiteImageCMS@gmail.com</li>
+                            <li><span class="icon-foot-skype"></span><span class="f-w_b">{lang('s_skype')}:</span> SiteImageCMS</li>
+                            {$CI->load->module('star_rating')->show_star_rating()}
                         </ul>
                     </div>
                     <div class="span3 t-a_r">
@@ -255,8 +190,8 @@
                         <div class="footer_social">
                             <img src="{$SHOP_THEME}images/temp/social_footer.png"/>
                         </div>
-                        <a href="#">Создание интернет магазина</a><br/>
-                        SEO оптимизация сайта
+                        <a href="http://siteimage.com.ua">{lang('s_footer_create')}</a><br/>
+                        {lang('s_footer_seo')}
                     </div>
                 </div>
             </div>
@@ -374,10 +309,6 @@
                 </div>
             </form>
         </div>
-        <script src="{$SHOP_THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
-        <script src="{$SHOP_THEME}js/jquery.cycle.all.js" type="text/javascript"></script>
-        <script src="{$SHOP_THEME}js/jquery.jcarousel.min.js" type="text/javascript"></script>
-        <script src="{$SHOP_THEME}js/jquery.ui-slider.js" type="text/javascript"></script>
         <script src="{$SHOP_THEME}js/cusel-min-2.5.js" type="text/javascript"></script>
         <script src="{$SHOP_THEME}js/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
         <script src="{$SHOP_THEME}js/scripts.js" type="text/javascript"></script>
