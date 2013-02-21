@@ -223,7 +223,7 @@
                             {lang('s_addresrec')}
                             <input type="text"{if $isRequired['userInfo[deliverTo]']} class="required"{/if} name="userInfo[deliverTo]" value="{echo $profile.address}">
                         </label>
-                    </div>
+                    </div>  
                     <label class="c_b d_b">
                         {if $isRequired['userInfo[commentText]']}
                             <span class="red">*</span>
@@ -231,9 +231,9 @@
                         {lang('s_comment')}
                         <textarea{if $isRequired['userInfo[commentText]']} class="required"{/if} name="userInfo[commentText]"></textarea> 
                     </label>
-                    <div>
-                        {echo ShopCore::app()->CustomFieldsWidgetHelper->renderPartOfFormWithCustomFields(-1, 'order', 'cartCustomData')}
-                    </div>
+                    <div class="label_block">
+                        {echo ShopCore::app()->CustomFieldsHelper->setPattern($pattern)->getCustomFields('order')->asHtml() }
+                    </div>  
                 </div>
             </div>
 
