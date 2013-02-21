@@ -1100,7 +1100,12 @@ jQuery(document).ready(function() {
                 $(dropEl).find('li').remove();
                 var elWrap = $(el).closest('li').clone().removeAttr('style'),
                         dropEl = $(dropEl).find('.drop-content');
-
+                
+                //adding product info into form
+                var formCont = $('#data-report');
+                var productId = el.getAttribute('data-prodid');
+                formCont.find('input[name="ProductId"]').val(productId)
+                
                 elWrap.find('.photo').prependTo(elWrap)
 
                 if (!dropEl.parent().hasClass('active')) {
