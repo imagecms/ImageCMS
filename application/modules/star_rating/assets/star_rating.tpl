@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>
-        <span itemscope="" itemtype="http://data-vocabulary.org/Review-aggregate" id="pageRatingData"> 
+        <span itemscope="" itemtype="" id="pageRatingData"> 
         <meta itemprop="rating" content="4"> Оставило <span id="count_votes_g" itemprop="count">{if $model->getVotes() != null}{echo $model->getVotes()}{else:} 0 {/if}</span> человек(а).
         </span>
     {else:}    
@@ -46,7 +46,7 @@
                 </div>
             </div>
         </div>
-        <span itemscope="" itemtype="http://data-vocabulary.org/Review-aggregate" id="pageRatingData"> 
+        <span itemscope="" itemtype="" id="pageRatingData"> 
         <meta itemprop="rating" content="4"> Оставило <span id="count_votes_g" itemprop="count">{if $data['votes'] != null}{echo $data['votes']}{else:} 0 {/if}</span> человек(а).
         </span>
     {/if}
