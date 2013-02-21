@@ -31,10 +31,10 @@
                        <td>
                            <div class="frame_count number d_i-b v-a_m">
                                <div class="frame_change_count">
-                                   <button type="button" class="d_b btn_small btn" id="plus">
+                                   <button type="button" class="d_b btn_small btn">
                                        <span class="icon-plus"></span>
                                    </button>
-                                   <button type="button" class="d_b btn_small btn" id="minus">
+                                   <button type="button" class="d_b btn_small btn">
                                        <span class="icon-minus"></span>
                                    </button>
                                </div>
