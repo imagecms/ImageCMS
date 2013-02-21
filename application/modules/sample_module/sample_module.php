@@ -38,10 +38,6 @@ class Sample_Module extends MY_Controller {
             \CMSFactory\Events::create()->addСorrelation('handler', 'Sample_Module:__construct');
     }
 
-    public function run($commentId = null) {
-        
-    }
-
     public function changeStatus($commentId, $status, $key) {
         /** Проверим входные данные */
         ($commentId AND in_array($status, array(0, 1, 2)) AND $key == $this->key) OR $this->core->error_404();
@@ -99,14 +95,17 @@ class Sample_Module extends MY_Controller {
     }
 
     private function initSettings() {
-        $DBSettings = $this->db->get('mod_sample_settings')->result_array();
-        foreach ($DBSettings as $record)
-            $this->$record['name'] = $record['value'];
+        $request = $this->db->get('mod_sample_settings');
+        if ($request) {
+            $DBSettings = $request->result_array();
+            foreach ($DBSettings as $record)
+                $this->$record['name'] = $record['value'];
+        }
     }
 
     /**
-     * Метод отночится  к стандартным методам ImageCMS.
-     * Будет вызван при установке модуля
+     * Метод относиться  к стандартным методам ImageCMS.
+     * Будет вызван при установке модуля пользователем
      */
     public function _install() {
         /** Подключаем класс Database Forge содержащий функции,
@@ -120,22 +119,30 @@ class Sample_Module extends MY_Controller {
             'name' => array('type' => 'VARCHAR', 'constraint' => 50,),
             'value' => array('type' => 'VARCHAR', 'constraint' => 100,));
 
-        /** Указываем на поле, которое будет с ключем Primary */
+        /** Указываем на поле, которое будет с ключом Primary */
         $this->dbforge->add_key('id', TRUE);
-        /** Указываем необходимые поля */
+        /** Добавим поля в таблицу */
         $this->dbforge->add_field($fields);
         /** Запускаем запрос к базе данных на создание таблицы */
         $this->dbforge->create_table('mod_sample_settings', TRUE);
 
+        /** Заполним поля таблицы временными данными */
+        $data = array(
+            array('name' => 'mailTo', 'value' => 'admin@site.com'),
+            array('name' => 'useEmailNotification', 'value' => 'TRUE'),
+            array('name' => 'key', 'value' => 'UUUsssTTTeee'));
+        /** ...и добавим их в Базу Данных */
+        $this->db->insert_batch('mod_sample_settings', $data);
 
-        /** Обновим метаданные модуля, включим модулю автозагрузку и доступ по URL */
+
+        /** Обновим метаданные модуля, включим автозагрузку модуля и доступ по URL */
         $this->db->where('name', 'sample_module')
                 ->update('components', array('autoload' => '1', 'enabled' => '1'));
     }
 
     /**
-     * Метод отночится  к стандартным методам ImageCMS.
-     * Будет вызван при деинстале модуля
+     * Метод относиться  к стандартным методам ImageCMS.
+     * Будет вызван при удалении модуля пользователем
      */
     public function _deinstall() {
         $this->load->dbforge();
