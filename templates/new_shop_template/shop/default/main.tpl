@@ -28,7 +28,7 @@
         {/literal}
         {$meta_noindex}
         {$canonical}
-        
+
         <script src="{$SHOP_THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
         <script src="{$SHOP_THEME}js/underscore-min.js" type="text/javascript"></script>
     </head>
@@ -40,39 +40,40 @@
                         <section class="row-fluid">
                             <div class="f_r m-l_25">
                                 <nav class="f_l">
-                                        <ul class="nav navHorizontal frameEnterReg">
-                                            {if !$CI->dx_auth->is_logged_in()}
-                                                <li>
-                                                    <span class="f-s_0">
-                                                        <span class="helper"></span>
-                                                        <button type="button" data-drop=".drop-enter" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" data-place="noinherit" data-placement="top right"><span class="icon-enter"></span><span class="d_l_g">Вход</span></button>
+                                    <ul class="nav navHorizontal frameEnterReg">
+                                        {if !$CI->dx_auth->is_logged_in()}
+                                            <li>
+                                                <span class="f-s_0">
+                                                    <span class="helper"></span>
+                                                    <button type="button" data-drop=".drop-enter" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" data-place="noinherit" data-placement="top right"><span class="icon-enter"></span><span class="d_l_g">Вход</span></button>
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="f-s_0">
+                                                    <span class="helper"></span>
+                                                    <span>
+                                                        <a href="/auth/register" class="t-d_u c_5c"><span class="icon-registration"></span><span class="text-el">Регистрация</span></a>
                                                     </span>
-                                                </li>
-                                                <li>
-                                                    <span class="f-s_0">
-                                                        <span class="helper"></span>
-                                                        <span>
-                                                            <a href="/auth/register" class="t-d_u c_5c"><span class="icon-registration"></span><span class="text-el">Регистрация</span></a>
-                                                        </span>
+                                                </span>
+                                            </li>
+                                        {else:}
+                                            <li>
+                                                <span class="f-s_0">
+                                                    <span class="helper"></span>
+                                                    <a href="#" onclick="ImageCMSApi.formAction('/auth/authapi/logout', '');
+                                                                return false;">Выход</a>
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="f-s_0">
+                                                    <span class="helper"></span>
+                                                    <span>
+                                                        <a href="/shop/profile" class="t-d_u c_5c"><span class="text-el">Личный кабинет</span></a>
                                                     </span>
-                                                </li>
-                                            {else:}
-                                                <li>
-                                                    <span class="f-s_0">
-                                                        <span class="helper"></span>
-                                                        <a href="#" onclick="ImageCMSApi.formAction('/auth/authapi/logout', ''); return false;">Выход</a>
-                                                    </span>
-                                                </li>
-                                                <li>
-                                                    <span class="f-s_0">
-                                                        <span class="helper"></span>
-                                                        <span>
-                                                            <a href="/shop/profile" class="t-d_u c_5c"><span class="text-el">Личный кабинет</span></a>
-                                                        </span>
-                                                    </span>
-                                                </li>
-                                            {/if}
-                                        </ul>
+                                                </span>
+                                            </li>
+                                        {/if}
+                                    </ul>
                                 </nav>
                                         <div class="cleaner f_l f-s_0 isAvail" onclick="window.location='/shop/cart'">
                                     <span class="helper"></span>
@@ -227,7 +228,7 @@
                                 <span class="frame_form_field c_n">
                                     <a href="/auth/forgot_password" class="f_l neigh_btn">Забыли пароль?</a>
                                     <input type="button" value="Войти" class="btn btn_cart f_r" onclick="ImageCMSApi.formAction('/auth/authapi/login', 'login_form');
-                                            return false;"/>
+                                                                return false;"/>
                                 </span>
                             </div>
                         </form>
@@ -293,19 +294,39 @@
             <div class="drop-footer"></div>
         </div>
         <div class="d_n" data-clone="data-report">
-            <form method="post" action="#">
+            <form method="post" action="" id="data-report">
                 <div class="standart_form">
+                    <label>
+                        <span class="title">Ваше имя</span>
+                        <span class="frame_form_field">
+                            <input type="text" id="" name="UserName"/>
+                            <div id="for_UserName" class="for_validations"></div>
+                            <span class="must">*</span>
+                        </span>
+                    </label>
                     <label>
                         <span class="title">E-mail</span>
                         <span class="frame_form_field">
-                            <input type="text" id="email"/>
+                            <input type="text" id="" name="UserEmail"/>
+                            <div id="for_UserEmail" class="for_validations"></div>
+                            <input type="hidden" name="ProductId" value=""/>
+                            <input type="hidden" name="notifme" value="true"/>
                             <span class="must">*</span>
                             <span class="help_inline">На почту придет уведомление о появлении данного товара</span>
                         </span>
                     </label>
+                    <label>
+                        <span class="title">Телефон</span>
+                        <span class="frame_form_field">
+                            <input type="text" id="" name="UserPhone"/>
+                            <div id="for_UserPhone" class="for_validations"></div>
+                            <span class="must">*</span>
+                        </span>
+                    </label>
                 </div>
                 <div class="t-a_r">
-                    <input type="submit" value="Отправить" class="btn btn_cart"/>
+                    <input type="submit" value="Отправить" onclick="ImageCMSApi.formAction('/shop/ajax/getApiNotifyingRequest', 'data-report');
+                                                                return false;" class="btn btn_cart"/>
                 </div>
             </form>
         </div>
@@ -318,11 +339,11 @@
         <script src="{$SHOP_THEME}js/shop.js" type="text/javascript"></script>
         <!-- Dev. scripts -->
         <script src="{$SHOP_THEME}js/imagecms.api.js" type="text/javascript"></script>
-        
+
 
         {include_tpl('js_templates')}
-        
-        
+
+
         <!-- floating elements-->
         <div id="popupCart" style="display: none;" class="drop"></div>
         <a href="#" data-drop="#popupCart" data-place="center" id="showCart" style="display: none;">Show cart</a>
