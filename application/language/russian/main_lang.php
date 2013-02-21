@@ -75,6 +75,7 @@ $lang['first_link'] = 'Первая';
 $lang['no_pages_found'] = 'Ничего не найдено';
 $lang['search_title'] = 'Поиск';
 $lang['search_all_categories'] = 'Все категории';
+$lang['search_find'] = 'Найти';
 
 
 $lang['s_log_out'] = 'Вход';

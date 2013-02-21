@@ -59,7 +59,8 @@ var Shop = {
         },
         rm : function(cartItem){
             Shop.currentItem = cartItem;
-            $.getJSON('/shop/cart_api/delete/'+cartItem.id, function(data){
+            var sp = 'SProducts_';
+            $.getJSON('/shop/cart_api/delete/'+sp+cartItem.id+'_'+cartItem.vId, function(data){
                 
                 localStorage.removeItem(Shop.currentItem.storageId());
                 
@@ -301,13 +302,37 @@ $(
         $(document).on('after_add_to_cart', function(event){
             Shop.Cart.totalRecount();
         
+        
+        
+        
+
             $('#popupCart').html(Shop.Cart.renderPopupCart()).hide();
+        
+            $('[data-rel="plusminus"]').plusminus({
+                prev: 'prev.children(:eq(1))',
+                next: 'prev.children(:eq(0))'
+            })
+        
             $('#showCart').click();
         });
     }
     );
-        
-        
+
+function rmFromPopupCart(context)
+{
+    var tr = $(context).closest('tr');
+    var cartItem = new Shop.cartItem();
+    cartItem.id = tr.data('prodid');
+    cartItem.vId = tr.data('varid');
+    
+    Shop.Cart.rm(cartItem);
+    
+    console.log(cartItem);
+    
+    tr.remove();
+}
+
+
 
 $('[name="variant"]').live('change', function() {  
     
@@ -334,25 +359,3 @@ $('[name="variant"]').live('change', function() {
     $('.variant').hide();
     $('.variant_'+productId).show();    
 });
-
-
-
-
-
-
-
-//
-
-function rmFromPopupCart(context)
-{
-    var tr = $(context).closest('tr');
-    var cartItem = new Shop.cartItem();
-    cartItem.id = tr.data('prodid');
-    cartItem.vId = tr.data('varid');
-    
-    Shop.Cart.rm(cartItem);
-    
-    console.log(cartItem);
-    
-    tr.remove();
-}

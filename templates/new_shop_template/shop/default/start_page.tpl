@@ -3,11 +3,10 @@
     <!-- Show Banners in circle -->
     <div class="mainFrameBaner">
         <section class="container">
-            <div class="frame_baner">
-                {$banners = ShopCore::app()->SBannerHelper->getBanners()}
-                {if count($banners)}
-                    <div class="cycle">
-                        <ul>
+            {$banners = ShopCore::app()->SBannerHelper->getBanners()}
+            {if count($banners)}
+                    <div class="frame_baner">
+                        <ul class="cycle">
                             {foreach $banners as $banner}
                                 <li>
                                     <a href="{echo $banner->getUrl()}">
@@ -20,8 +19,7 @@
                         <button class="next" type="button"></button>
                         <button class="prev" type="button"></button>
                     </div>
-                {/if}
-            </div>
+            {/if}
         </section>
     </div>
     <!-- Show banners in circle -->
@@ -34,8 +32,5 @@
     {widget('popular_products')}
     {widget('new_products')}
     {widget('action_products')}
-    {widget('latest_news')}
-    
-    
     
 </div>

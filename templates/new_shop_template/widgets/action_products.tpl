@@ -11,7 +11,7 @@
                         <button type="button" class="btn btn_next"><span class="icon next"></span><span class="text-el"></span></button>
                     </div>
                 </div>
-                <div class="carousel bot_border_grey">
+                <div class="carousel">
                     <ul class="items items_catalog">
                         {foreach $products as $hotProduct}
                         {$discount = ShopCore::app()->SDiscountsManager->productDiscount($hotProduct->id)}
