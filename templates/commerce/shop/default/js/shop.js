@@ -155,8 +155,32 @@ var Shop = {
                 return 'cartItem_'+this.id+'_'+this.vId;
             }
         };
+    },
+        
+    composeCartItem : function($context){
+        var cartItem = new Shop.cartItem();
+
+        cartItem.id = $context.data('prodid');
+        cartItem.vId = $context.data('varid');
+        cartItem.price = $context.data('price');
+        cartItem.price = $context.data('prodName');
+
+        return cartItem;
     }
 };
+
+//global listener
+$(function(){
+    $('span.goBuy').on('click', function(){
+        var cartItem = Shop.composeCartItem($(this));
+        Shop.Cart.add(cartItem);
+        
+        
+        //$(this).removeClass('goBuy').addClass('goToCart');
+        //Shop.Cart.showPopupCart();
+        return false;
+    });
+});
 
 
 function renderPosts($this)
