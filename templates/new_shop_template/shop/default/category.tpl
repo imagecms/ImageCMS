@@ -115,7 +115,7 @@
                                 </div>
                                 <a href="{shop_url('product/'.$product->getUrl())}">{echo $product->getName()}</a>
                                 <div class="price price_f-s_16"><span class="f-w_b">{echo $product->firstVariant->getPrice()}</span> {$CS}&nbsp;&nbsp;<span class="second_cash">(859 $)</span></div>
-                                <button class="btn btn_cart" type="button">Уже в корзине</button>
+                                <button class="btn btn_buy" type="button">В корзине</button>
                                 <div class="d_i-b">
                                     <button class="btn btn_small_p" type="button" title="добавить в список сравнений"><span class="icon-comprasion_2"></span></button>
                                     <button class="btn btn_small_p" type="button" title="добавить в список желаний"><span class="icon-wish_2"></span></button>
