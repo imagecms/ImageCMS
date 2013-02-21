@@ -1,3 +1,4 @@
+{$CI->load->module('comments')->init()}
 <div>
     <article>       
         {renderCategoryPath($model->getMainCategory())}
@@ -115,7 +116,7 @@
                                 </button>
                             </li>
                         {/if}
-                        <li><button type="button" data-href="#comment"><span class="icon-comment-tab"></span><span class="text-el">Отзывы(5)</span></button></li>
+                        <li><button type="button" data-href="#comment" onclick="renderPosts(this)"><span class="icon-comment-tab"></span><span class="text-el">Отзывы(5)</span></button></li>
                     </ul>
                     <div class="frame_tabs">
                         <div id="info">
@@ -169,7 +170,9 @@
                                 </ul>
                             </div>
                         {/if}
-
+                        <div id="comment">
+                            <div id="four" name="four"></div>
+                        </div>
                     </div>
                 </div>
             </div>
