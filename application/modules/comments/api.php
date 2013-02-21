@@ -143,12 +143,14 @@ class Api extends Comments {
     }
 
     public function newPost() {
+        $this->load->model('base');
+        $this->init_settings();
+
         ($hook = get_hook('comments_on_add')) ? eval($hook) : NULL;
 
         $this->load->library('user_agent');
         $this->load->library('form_validation');
         $this->load->model('base');
-
 
         $item_id = $this->parsUrl($_SERVER['HTTP_REFERER']);
 
@@ -159,11 +161,16 @@ class Api extends Comments {
                 $this->core->error(lang('error_comments_diabled'));
             }
         }
-
+        
         if ($this->period > 0)
             if ($this->check_comment_period() == FALSE) {
-                ($hook = get_hook('comments_period_error')) ? eval($hook) : NULL;
-                $this->core->error(sprintf(lang('error_comments_period'), $this->period));
+                echo json_encode(
+                        array(
+                            'answer' => 'error',
+                            'validation_errors' => "Время для оставления нового коментария еще не пришло"
+                        )
+                );
+                return;
             }
 
         // Validate email and nickname from unregistered users.
@@ -184,8 +191,11 @@ class Api extends Comments {
                 $this->form_validation->set_rules('captcha', lang('lang_captcha'), 'trim|required|xss_clean|callback_captcha_check');
         }
 
-        $this->form_validation->set_rules('comment_text', 'lang:lang_comment_text', 'trim|required|xss_clean|max_length[' . $this->max_comment_length . ']');
-
+        if ($this->max_comment_length != 0)
+            $this->form_validation->set_rules('comment_text', 'lang:lang_comment_text', 'trim|required|xss_clean|max_length[' . $this->max_comment_length . ']');
+        else 
+            $this->form_validation->set_rules('comment_text', 'lang:lang_comment_text', 'trim|required|xss_clean');
+                  
         if ($this->form_validation->run($this) == FALSE) {
             ($hook = get_hook('comments_validation_failed')) ? eval($hook) : NULL;
             //$this->core->error( validation_errors() );
@@ -227,7 +237,6 @@ class Api extends Comments {
                 }
             }
         }
-
         if ($this->input->post('action') == 'newPost') {
             $email = $this->db->select('email')
                     ->get_where('users', array('username' => $this->dx_auth->get_username()), 1)
@@ -237,8 +246,8 @@ class Api extends Comments {
                 $comment_data = array(
                     'module' => $this->getModule($_SERVER['HTTP_REFERER']),
                     'user_id' => $this->dx_auth->get_user_id(), // 0 if unregistered
-                    'user_name' => $this->dx_auth->get_username(),
-                    'user_mail' => $email->email,
+                    'user_name' => $this->dx_auth->is_logged_in() ? $this->dx_auth->get_username() : trim(htmlspecialchars($this->input->post('comment_author'))),
+                    'user_mail' => $this->dx_auth->is_logged_in() ? $email->email : trim(htmlspecialchars($this->input->post('comment_email'))),
                     'user_site' => htmlspecialchars($this->input->post(comment_site)),
                     'text' => $comment_text,
                     'text_plus' => $comment_text_plus,
@@ -249,7 +258,7 @@ class Api extends Comments {
                     'user_ip' => $this->input->ip_address(),
                     'date' => time(),
                     'rate' => $this->input->post('ratec'),
-                    'parent' => $this->input->post('parent')
+                    'parent' => $this->input->post('comment_parent')
                 );
 
                 $this->db->insert('comments', $comment_data);
@@ -270,8 +279,6 @@ class Api extends Comments {
                 );
             }
         }
-//        else
-//            parent::add();
     }
 
     /**
