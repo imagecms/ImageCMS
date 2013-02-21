@@ -72,7 +72,11 @@
                                                 {if $style.identif == 'goToCart'}    
                                                     <button class="btn btn_cart" type="button">{lang('already_in_basket')}</button>
                                                 {else:}
-                                                    <button class="btn btn_buy" type="button">{lang('add_to_basket')}</button>
+                                                    {if $item.model->firstvariant->stock != 0}
+                                                        <button class="btn btn_buy" type="button">{lang('add_to_basket')}</button>
+                                                    {else:}
+                                                        <button class="btn btn_not_avail" type="button">{lang('s_message_o_report')}</button>
+                                                    {/if}
                                                 {/if}
                                                 {if is_in_wish($product->id)}
                                                     <button class="btn btn_small_p" type="button" title="{echo lang ('s_ilw')}"><span class="icon-wish"></span></button>
