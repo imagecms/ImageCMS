@@ -353,7 +353,7 @@ $('[name="variant"]').live('change', function() {
     $('#imageGroup').attr('src', '/uploads/shop/' + vMainImage).removeClass().attr('alt', vName);
     $('#priceOrigVariant').html(vOrigPrice);
     $('#priceVariant').html(vPrice);
-    $('#number').html('(Артикул' + vNumber + ')');
+    $('#number').html('(Артикул ' + vNumber + ')');
     
     var productId = $(this).attr('value');
     $('.variant').hide();
