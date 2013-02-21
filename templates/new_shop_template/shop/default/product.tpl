@@ -218,7 +218,7 @@
                                             <div class="d_i-b">+</div>
                                         </li>
 
-                                        {foreach $kid->getShopKitProducts() as $kitProduct}
+                                        {foreach $kid->getShopKitProducts() as  $key => $kitProduct}
                                             {$sProducts = $kitProduct->getSProducts()}                                            
                                             <li class="span3">
                                                 <div class="item_set">
@@ -245,73 +245,75 @@
                                                     </a>
                                                     <span class="top_tovar discount">-{echo $kitProduct->getDiscount()}%</span>
                                                 </div>
-                                                <div class="d_i-b">+</div>
-                                            </li>                                            
-                                        {/foreach}
-                                        <li class="span3 p-t_40">
-                                            <div class="price price_f-s_24">
-                                                <span class="d_b old_price">
-                                                    <span class="f-w_b">{echo $kid->getAllPriceBefore()}</span> {$CS}
-                                                </span>
-                                                <span class="f-w_b">{echo $kid->getTotalPrice()}</span> {$CS}
-                                            </div>
-                                            <button type="button" class="btn btn_buy ">{lang('s_buy')}</button>
-                                        </li>
-                                    </ul>
-                                </li>
-                            {/foreach}                            
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        {/if}
-        <!--Kit end-->
-
-        <div class="frame_carousel_product carousel_js c_b">
-            <div class="m-b_20">
-                <div class="title_h1 d_i-b v-a_m">{lang('s_similar_product')}</div>
-                <div class="d_i-b groupButton v-a_m">
-                    <button type="button" class="btn btn_prev">
-                        <span class="icon prev"></span>
-                        <span class="icon-info"></span>
-                    </button>
-                    <button type="button" class="btn btn_next">
-                        <span class="icon-info"></span>
-                        <span class="icon next"></span>
-                    </button>
-                </div>
-            </div>
-            <div class="carousel">
-                <ul class="items items_catalog">
-                    {$simprod = getSimilarProduct($model)}
-                    {foreach $simprod as $sp}
-                        {$sim_prod = currency_convert($sp['price'], $sp['currency'])}
-                        {$style = productInCart($cart_data, $sp['ProductId'], $sp['ProductId'], $sp['stock'])}
-                        <li class="span3 in_cart {if $sp['stock']== 0}not-avail{/if}">
-                            <a href="{site_url('shop/product/'.$sp['url'])}" class="photo">
-                                <span class="helper"></span>
-                                <figure>
-                                    <img src="{productImageUrl($sp['mainImage'])}" alt="{echo ShopCore::encode($sp['name'])}"/>
-                                </figure>
-                            </a>
-                            <div class="description">
-                                <div class="frame_response">
-                                    <div class="star">
-                                        <img src="images/temp/STAR.png"/>
+                                                <div class="d_i-b">
+                                            {if $kid->countProducts() == $key}={else:}+{/if}
+                                        </div>
+                                    </li>                                            
+                                {/foreach}
+                                <li class="span3 p-t_40">
+                                    <div class="price price_f-s_24">
+                                        <span class="d_b old_price">
+                                            <span class="f-w_b">{echo $kid->getAllPriceBefore()}</span> {$CS}
+                                        </span>
+                                        <span class="f-w_b">{echo $kid->getTotalPrice()}</span> {$CS}
                                     </div>
-                                </div>
-                                <a href="{site_url('shop/product/'.$sp['url'])}">{echo ShopCore::encode($sp['name'])}</a>
-                                <div class="price price_f-s_16">
-                                    <span class="f-w_b">{echo money_format('%i', $sim_prod.main.price)}</span> 
-                                    {$sim_prod.main.symbol}
-                                </div>
-                                <button class="btn btn_buy" type="button" data-prodid="{echo $sp['ProductId']}" data-varid="{echo $sp['VariandId']}" data-price="{echo $sim_prod.main.price}" data-name="{echo $sp['name']}">В корзину</button>
-                            </div>
+                                    <button type="button" class="btn btn_buy ">{lang('s_buy')}</button>
+                                </li>
+                            </ul>
                         </li>
-                    {/foreach}
-
+                    {/foreach}                            
                 </ul>
             </div>
         </div>
-    </article>
+    </div>
+{/if}
+<!--Kit end-->
+
+<div class="frame_carousel_product carousel_js c_b">
+    <div class="m-b_20">
+        <div class="title_h1 d_i-b v-a_m">{lang('s_similar_product')}</div>
+        <div class="d_i-b groupButton v-a_m">
+            <button type="button" class="btn btn_prev">
+                <span class="icon prev"></span>
+                <span class="icon-info"></span>
+            </button>
+            <button type="button" class="btn btn_next">
+                <span class="icon-info"></span>
+                <span class="icon next"></span>
+            </button>
+        </div>
+    </div>
+    <div class="carousel">
+        <ul class="items items_catalog">
+            {$simprod = getSimilarProduct($model)}
+            {foreach $simprod as $sp}
+                {$sim_prod = currency_convert($sp['price'], $sp['currency'])}
+                {$style = productInCart($cart_data, $sp['ProductId'], $sp['ProductId'], $sp['stock'])}
+                <li class="span3 in_cart {if $sp['stock']== 0}not-avail{/if}">
+                    <a href="{site_url('shop/product/'.$sp['url'])}" class="photo">
+                        <span class="helper"></span>
+                        <figure>
+                            <img src="{productImageUrl($sp['mainImage'])}" alt="{echo ShopCore::encode($sp['name'])}"/>
+                        </figure>
+                    </a>
+                    <div class="description">
+                        <div class="frame_response">
+                            <div class="star">
+                                <img src="images/temp/STAR.png"/>
+                            </div>
+                        </div>
+                        <a href="{site_url('shop/product/'.$sp['url'])}">{echo ShopCore::encode($sp['name'])}</a>
+                        <div class="price price_f-s_16">
+                            <span class="f-w_b">{echo money_format('%i', $sim_prod.main.price)}</span> 
+                            {$sim_prod.main.symbol}
+                        </div>
+                        <button class="btn btn_buy" type="button" data-prodid="{echo $sp['ProductId']}" data-varid="{echo $sp['VariandId']}" data-price="{echo $sim_prod.main.price}" data-name="{echo $sp['name']}">В корзину</button>
+                    </div>
+                </li>
+            {/foreach}
+
+        </ul>
+    </div>
+</div>
+</article>
 </div>
