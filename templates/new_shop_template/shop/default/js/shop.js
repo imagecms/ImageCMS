@@ -1,11 +1,14 @@
 var inCart = 'Уже в корзине';
 var toCart = 'В корзину';
+var pcs = 'шт.';
 
 var Shop = {
     //var Cart = new Object();
     Cart :{
         totalPrice : 0,
+        totalCount : 0,
         popupCartSelector : 'script#cartPopupTemplate',
+        countChanged : false,
         
         add : function(cartItem){
             //trigger before_add_to_cart
@@ -63,6 +66,8 @@ var Shop = {
                 
                 localStorage.removeItem(Shop.currentItem.storageId());
                 
+                Shop.Cart.totalRecount();
+                
                 $(document).trigger({
                     type: 'cart_changed'
                 });
@@ -77,8 +82,17 @@ var Shop = {
             var currentItem = this.load(cartItem.storageId());
             if (currentItem)
             {
-                currentItem.count = cartItem.count;
-                return this.save(currentItem);
+                currentItem.count = cartItem.count - currentItem.count;
+                
+                this.countChanged = true;
+                this.add(currentItem);
+                
+                $(document).trigger({
+                    type: 'count_changed',
+                    cartItem: _.clone(cartItem)
+                });
+                
+                return this.totalRecount();
             }
             else
                 return this;
@@ -158,8 +172,12 @@ var Shop = {
             var items = this.getAllItems();
             
             this.totalPrice = 0;
+            this.totalCount = 0;
             for (var i=0; i<items.length; i++)
+            {
                 this.totalPrice += items[i].price * items[i].count;
+                this.totalCount += parseInt(items[i].count);
+            }
             
             return this;
         },
@@ -222,7 +240,7 @@ var Shop = {
 
         cartItem.id = $context.data('prodid');
         cartItem.vId = $context.data('varid');
-        cartItem.price = $context.data('price');
+        cartItem.price = parseFloat( $context.data('price') ).toFixed(2);
         cartItem.name = $context.data('name');
 
         return cartItem;
@@ -237,7 +255,21 @@ var Shop = {
             localStorage.set(key, value);
             return this;
         }
+    },
+    
+    WishList: {
+        items: [],
+        add: function(key){
+            this.items = JSON.parse( localStorage.getItem('shopSettings'))?JSON.parse( localStorage.getItem('shopSettings')):[];
+            console.log(this.items);
+            //if (this.items)
+                if ((key in this.items) ){
+                    this.items.push(key)
+                    localStorage.setItem('shopSettings', JSON.stringify(this.items));
+                }
+        }
     }
+    
 };
 
 
@@ -265,7 +297,7 @@ function(){
     $(document).live('cart_changed', function(){
         //update page content
             //update products count
-            $('div.cleaner>span>span:nth-child(3)').html(' ('+Shop.Cart.length()+')');
+            $('div.cleaner>span>span:nth-child(3)').html(' ('+Shop.Cart.totalCount+')');
         
             var keys = [];
             _.each(Shop.Cart.getAllItems(), function(item){
@@ -291,6 +323,9 @@ function(){
                 }
             });
         
+            //update popup cart
+            $('table.table_order td:last-child span:last-child').last().html(Shop.Cart.totalPrice.toFixed(2));
+        
     });
 
     $(document).on('before_add_to_cart', function(event){
@@ -298,21 +333,59 @@ function(){
     });
 
     $(document).on('after_add_to_cart', function(event){
-        Shop.Cart.totalRecount();
-        
-        $('#popupCart').html(Shop.Cart.renderPopupCart()).hide();
-        
-        $('[data-rel="plusminus"]').plusminus({
-        prev: 'prev.children(:eq(1))',
-        next: 'prev.children(:eq(0))'
-    })
-        
-        $('#showCart').click();
+        initShopPage();
+        Shop.Cart.countChanged = false;
     });
+
 }
 );
 
 //
+
+function initShopPage(){
+    if (Shop.Cart.countChanged == false){
+        
+        Shop.Cart.totalRecount();
+
+        $('#popupCart').html(Shop.Cart.renderPopupCart()).hide();
+
+        $('[data-rel="plusminus"]').plusminus({
+            prev: 'prev.children(:eq(1))',
+            next: 'prev.children(:eq(0))'
+        });
+
+
+        // change count 
+        $('div.frame_change_count>button').click(function(){
+            var pd = $(this).closest('div');
+            var cartItem = new Shop.cartItem({
+                id: pd.data('prodid'),
+                vId: pd.data('varid'),
+                price: pd.data('price')
+            });
+
+            cartItem.count = pd.closest('div.frame_count').find('input').val();
+            pd.closest('div.frame_count').next('span').html(cartItem.count + ' '+pcs);
+
+            Shop.Cart.chCount(cartItem);
+
+            //
+
+            $('div.cleaner>span>span:nth-child(3)').html(' ('+Shop.Cart.totalCount+')');
+
+            console.log(cartItem);
+
+            var totalPrice = cartItem.count*cartItem.price;
+            pd.closest('tr').find('span.first_cash>span').last().html(totalPrice.toFixed(2));
+
+            $('table.table_order td:last-child span:last-child').last().html(Shop.Cart.totalPrice.toFixed(2));
+
+        });
+
+        $('#showCart').click();
+
+     }
+ }
 
 function rmFromPopupCart(context)
 {
@@ -325,5 +398,8 @@ function rmFromPopupCart(context)
     
     console.log(cartItem);
     
+    Shop.Cart.totalRecount();
     tr.remove();
+    
 }
+
