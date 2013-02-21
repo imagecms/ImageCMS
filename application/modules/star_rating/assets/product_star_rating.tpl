@@ -1,4 +1,3 @@
-<link rel="stylesheet" type="text/css" href="/application/modules/star_rating/assets/css/style.css">
 {if $data['id_type'] != null}
 <div class="star_rating">
     <div id="star_rating_{echo $data['id_type']}" class="rating_nohover {if $data['votes'] != null}{echo count_star(round($data['rating']/$data['votes']))}{/if} star_rait">
@@ -20,9 +19,8 @@
     </div>
 </div>
 {if $star_rating['type'] == 'product'}
-<span itemscope="" itemtype="http://data-vocabulary.org/Review-aggregate" id="pageRatingData"> 
+<span itemscope="" itemtype="" id="pageRatingData"> 
 <meta itemprop="rating" content="4"> Оставило <span id="count_votes" itemprop="count">{if $data['votes'] != null}{echo $data['votes']}{else:} 0 {/if}</span> человек(а).
 </span>
 {/if}
 {/if}
-<script type="text/javascript" src="/application/modules/star_rating/assets/js/scripts.js"></script>

@@ -28,6 +28,7 @@
         <a href="#" rel="v:url" property="v:title"></a>
     </span>
 </div>
+{if $totalProducts > 0}
 <div class="row">
     <aside class="span3">
         <div class="filter">
@@ -102,13 +103,13 @@
                                         <button type="button" class="btn"><span class="icon-cat_list"></span>Списком</button>
                                     </div>
                                 </div>
-                {if $totalProducts > 0}
+                
                     <!-- Product block -->
                     <ul class="items items_catalog" data-radio-frame>
                         {foreach $products as $p}
                             {$discount = ShopCore::app()->SDiscountsManager->productDiscount($p->id)}
                             {$style = productInCart($cart_data, $p->getId(), $p->firstVariant->getId(), $p->firstVariant->getStock())}
-                            <li class="in_cart span3">
+                            <li class="span3 {if $p->firstvariant->getstock()==0} not-avail{/if}">
                                 <div class="description">
                                     <div class="frame_response">
                                         <div class="star">
@@ -138,7 +139,11 @@
                                     {if $style.identif == 'goToCart'}    
                                         <button class="btn btn_cart" type="button" data-prodId="{echo $p->getId()}" data-varId="{echo $p->firstVariant->getId()}" data-price="{$prThree}" data-name="{echo $p->getName()}" >{lang('already_in_basket')}</button>
                                     {else:}
-                                        <button class="btn btn_buy" type="button" data-prodId="{echo $p->getId()}" data-varId="{echo $p->firstVariant->getId()}" data-price="{$prThree}" data-name="{echo $p->getName()}">{lang('add_to_basket')}</button>
+                                        {if $p->firstvariant->getstock()!=0}
+                                            <button class="btn btn_buy" type="button" data-prodId="{echo $p->getId()}" data-varId="{echo $p->firstVariant->getId()}" data-price="{$prThree}" data-name="{echo $p->getName()}">{lang('add_to_basket')}</button>
+                                        {else:}
+                                            <button class="btn btn_not_avail" type="button" data-prodId="{echo $p->getId()}" data-varId="{echo $p->firstVariant->getId()}" data-price="{$prThree}" data-name="{echo $p->getName()}">{lang('s_message_o_report')}</button>
+                                        {/if}   
                                     {/if}
                                     <div class="d_i-b">
                                     <!-- check is product in compare list -->
@@ -168,11 +173,13 @@
                     {if $pagination}
                         {$pagination}
                     {/if}
-                {else:}
-                    <p>
-                        {echo ShopCore::t(lang('s_not_found'))}.
-                    </p>
-                {/if}
+{else:}
+    <div class="row">
+        <div class="span9 right">
+                {echo ShopCore::t(lang('s_not_found'))}.
+        </div>
+    </div>
+{/if}
             </div>
         </div>
 </div>
