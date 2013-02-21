@@ -8,7 +8,7 @@
 
                     <a rel="group" id="photoGroup" href="{productImageUrl($model->getMainModImage())}">
                         <figure>
-                            <img id="imageGroup" src="{productImageUrl($model->getMainimage())}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
+                            <img id="imageGroup" src="{productImageUrl($model->getMainImage())}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
                         </figure>                        
                     </a>              
                     <ul class="frame_thumbs">                   
@@ -62,16 +62,17 @@
                                 </div>
                                 {foreach $model->getProductVariants() as $key => $pv}
                                     {if $model->hasDiscounts()}{$origPrice = $pv->getOrigPrice()}{/if}
+                                    {if $pv->getMainImage()}{$mainImage = $pv->getMainImage()}{else:}{$mainImage = $model->getMainimage()}{/if}
                                     <span class="variant_{echo $pv->getId()}" 
                                           data-id="{echo $pv->getId()}"
                                           data-name="{echo $pv->getName()}"
                                           data-price="{echo money_format('%i',$pv->getPrice())}"
                                           data-number="{echo $pv->getNumber()}"
                                           data-origPrice="{echo money_format('%i',$origPrice)}"
-                                          data-mainImage="{echo $pv->getMainImage()}"
+                                          data-mainImage="{echo $mainImage}"
                                           data-smallImage="{echo $pv->getSmallImage()}"
                                           data-stock="{echo $pv->getStock()}"
-                                          ></span>
+                                          style="display: none;"></span>
                                 {/foreach}
                             {/if}
                             <div class=" d_i-b v-a_b m-r_45">
