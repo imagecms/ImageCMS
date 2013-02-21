@@ -61,12 +61,13 @@
                                     </div>
                                 </div>
                                 {foreach $model->getProductVariants() as $key => $pv}
+                                    {if $model->hasDiscounts()}{$origPrice = $pv->getOrigPrice()}{/if}
                                     <span class="variant_{echo $pv->getId()}" 
                                           data-id="{echo $pv->getId()}"
                                           data-name="{echo $pv->getName()}"
                                           data-price="{echo money_format('%i',$pv->getPrice())}"
                                           data-number="{echo $pv->getNumber()}"
-                                          data-origPrice="{echo money_format('%i',$pv->getOrigPrice())}"
+                                          data-origPrice="{echo money_format('%i',$origPrice)}"
                                           data-mainImage="{echo $pv->getMainImage()}"
                                           data-smallImage="{echo $pv->getSmallImage()}"
                                           data-stock="{echo $pv->getStock()}"
