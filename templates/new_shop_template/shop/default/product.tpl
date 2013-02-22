@@ -72,7 +72,8 @@
                                           data-mainImage="{echo $mainImage}"
                                           data-smallImage="{echo $pv->getSmallImage()}"
                                           data-stock="{echo $pv->getStock()}"
-                                          style="display: none;"></span>
+                                          style="display: none;">
+                                    </span>
                                 {/foreach}
                             {/if}
                             <div class=" d_i-b v-a_b m-r_45">
