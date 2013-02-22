@@ -30,7 +30,7 @@
                        </td>
                        <td>
                            <div class="frame_count number d_i-b v-a_m">
-                               <div class="frame_change_count">
+                               <div class="frame_change_count" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" >
                                    <button type="button" class="d_b btn_small btn">
                                        <span class="icon-plus"></span>
                                    </button>
