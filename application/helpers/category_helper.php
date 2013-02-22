@@ -1,31 +1,30 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
 
-if (!function_exists('get_sub_categories'))
-{
-    function get_sub_categories($category_id = 0)
-    {
-        $ci =& get_instance();
+(defined('BASEPATH')) OR exit('No direct script access allowed');
+
+if (!function_exists('get_sub_categories')) {
+
+    function get_sub_categories($category_id = 0) {
+        $ci = & get_instance();
         $categories = $ci->lib_category->unsorted();
 
         $result = array();
 
-        foreach($categories as $category)
-        {
-            if ($category['parent_id'] == $category_id)
-            {
+        foreach ($categories as $category) {
+            if ($category['parent_id'] == $category_id) {
                 $result[] = $category;
             }
         }
 
         return $result;
     }
+
 }
 
-if (!function_exists('category_list'))
-{
-    function category_list($exclude_cats = '')
-    {
-        $ci =& get_instance();
+if (!function_exists('category_list')) {
+
+    function category_list($exclude_cats = '') {
+        $ci = & get_instance();
         $ci->load->helper('html');
         $ci->load->module('core');
         $categories = $ci->lib_category->unsorted();
@@ -34,80 +33,62 @@ if (!function_exists('category_list'))
 
         $result = array();
 
-        foreach($categories as $row)
-        {
-            if (!in_array($row['id'], $exclude_cats))
-            {
+        foreach ($categories as $row) {
+            if (!in_array($row['id'], $exclude_cats)) {
                 $row['fetch_pages'] = unserialize($row['fetch_pages']);
 
                 $total_pages = $ci->core->_get_category_pages($row, 0, 0, TRUE);
-                $result[] = '<a href="'.site_url($row['path_url']).'">'.$row['name'].' ('.$total_pages.')</a>';
+                $result[] = '<a href="' . site_url($row['path_url']) . '">' . $row['name'] . ' (' . $total_pages . ')</a>';
             }
         }
 
         return ul($result);
     }
+
 }
 
-if (!function_exists('sub_category_list'))
-{
-    function sub_category_list($category_id = 0)
-    {
-        $ci =& get_instance();
+if (!function_exists('sub_category_list')) {
+
+    function sub_category_list($category_id = 0) {
+        $ci = & get_instance();
         $ci->load->helper('html');
         $ci->load->module('core');
 
-        if ($category_id > 0)
-        {
+        if ($category_id > 0) {
             $categories = get_sub_categories($category_id);
 
-            if (count($categories) > 0)
-            {
-                foreach($categories as $row)
-                {
+            if (count($categories) > 0) {
+                foreach ($categories as $row) {
                     $row['fetch_pages'] = unserialize($row['fetch_pages']);
 
                     $total_pages = $ci->core->_get_category_pages($row, 0, 0, TRUE);
-                    $result[] = '<a href="'.site_url($row['path_url']).'">'.$row['name'].' ('.$total_pages.')</a>';
+                    $result[] = '<a href="' . site_url($row['path_url']) . '">' . $row['name'] . ' (' . $total_pages . ')</a>';
                 }
 
                 return ul($result);
-            }
-            else
-            {
+            } else {
                 return FALSE;
             }
-        }
-        else
-        {
+        } else {
             return FALSE;
         }
     }
+
 }
 
-if (!function_exists('get_category_name'))
-{
-    function get_category_name($id)
-    {
-        $ci =& get_instance();
+if (!function_exists('get_category_name')) {
+
+    function get_category_name($id) {
+        $ci = & get_instance();
         $c = $ci->lib_category->get_category($id);
 
-        if ($c['name'] == '')
-        {
+        if ($c['name'] == '') {
             $c['name'] = lang('a_dasboard_no_category');
         }
 
         return $c['name'];
     }
-}
 
-function sub_categories_admin($mas)
-    {
-        
-        foreach($mas as $k=>$v){
-            
-        }
-        
-    }
+}
 
 /* End of file category_helper.php */
