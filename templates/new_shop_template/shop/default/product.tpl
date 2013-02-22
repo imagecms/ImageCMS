@@ -1,4 +1,4 @@
-{$CI->load->module('comments')->init($model)}
+{$Comments = $CI->load->module('comments')->init($model)}
 <div>
     <article>       
         {renderCategoryPath($model->getMainCategory())}
@@ -44,7 +44,12 @@
                         <div class="star">
                             <img src="images/temp/STAR.png"/>
                         </div>
-                        <a href="#" class="count_response"><span class="icon-comment"></span>145 відгуків</a>
+                        <a href="#" class="count_response">
+                            <span class="icon-comment"></span>
+                            <span id="cc">
+                                {echo $Comments[$model->getId()]}
+                            </span>
+                        </a>
                     </div>
 
                     <div class="clearfix">
@@ -55,14 +60,26 @@
                                     <div class="lineForm w_170">
                                         <select id="var" name="variant">
                                             {foreach $model->getProductVariants() as $key => $pv}
-                                                <option value="{echo $pv->getId()}">{if $pv->getName()}{echo $pv->getName()}{else:}{echo $model->getName()}{/if}</option>
+                                                <option value="{echo $pv->getId()}">
+                                                    {if $pv->getName()}
+                                                        {echo $pv->getName()}
+                                                    {else:}
+                                                        {echo $model->getName()}
+                                                    {/if}
+                                                </option>
                                             {/foreach}
                                         </select>
                                     </div>
                                 </div>
                                 {foreach $model->getProductVariants() as $key => $pv}
-                                    {if $model->hasDiscounts()}{$origPrice = $pv->getOrigPrice()}{/if}
-                                    {if $pv->getMainImage()}{$mainImage = $pv->getMainImage()}{else:}{$mainImage = $model->getMainimage()}{/if}
+                                    {if $model->hasDiscounts()}
+                                        {$origPrice = $pv->getOrigPrice()}
+                                    {/if}
+                                    {if $pv->getMainImage()}
+                                        {$mainImage = $pv->getMainImage()}
+                                    {else:}
+                                        {$mainImage = $model->getMainimage()}
+                                    {/if}
                                     <span class="variant_{echo $pv->getId()}" 
                                           data-id="{echo $pv->getId()}"
                                           data-name="{echo $pv->getName()}"
@@ -110,8 +127,11 @@
                                         <span class="js blue">{lang('s_slw')}</span>
                                     </span>
                                 {else:}
-                                    <a href="/shop/wish_list" class="red"><span class="icon-wish"></span>{lang('s_ilw')}</a>
-                                    {/if}
+                                    <a href="/shop/wish_list" class="red">
+                                        <span class="icon-wish"></span>
+                                        {lang('s_ilw')}
+                                    </a>
+                                {/if}
                             </button>
 
                         </div>
@@ -138,10 +158,10 @@
                             </li>
                         {/if}
                         <li>
-                            <button type="button" data-href="#comment" onclick="renderPosts(this)">
+                            <button type="button" data-href="#comment" onclick="renderPosts(this)" name="comment">
                                 <span class="icon-comment-tab"></span>
-                                <span class="text-el">                    
-                                    <div id="cc">{if $total_comments > 0}{echo lang('lang_total_comments') . $total_comments}{else:}Нет комментариев{/if}</div>
+                                <span class="text-el" id="cc">  
+                                    {echo $Comments[$model->getId()]}
                                 </span>
                             </button>
                         </li>
@@ -178,7 +198,9 @@
                                                     <div class="star">
                                                         <img src="images/temp/STAR.png"/>
                                                     </div>
-                                                    <a href="#" class="count_response"><span class="icon-comment"></span>145 відгуків</a>
+                                                    <a href="#" class="count_response">
+                                                        <span class="icon-comment"></span>145 відгуків
+                                                    </a>
                                                 </div>
                                                 <a href="{shop_url('product/'.$p->getUrl())}">{echo ShopCore::encode($p->getName())}</a>
                                                 <div class="price price_f-s_16">

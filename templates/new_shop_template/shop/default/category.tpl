@@ -1,5 +1,6 @@
+{$Comments = $CI->load->module('comments')->init($products)}
 <article>
-    {$banners = ShopCore::app()->SBannerHelper->getBannersCat(3,$model->id);}
+    {$banners = ShopCore::app()->SBannerHelper->getBannersCat(3, $model->id);}
     {if count($banners)}
         <div class="cycle center">
             <ul> 
@@ -63,8 +64,7 @@
                                         <img src="{$SHOP_THEME}images/temp/STAR.png"/>
                                     </div>
                                     <a href="#" class="count_response"><span class="icon-comment"></span>
-                                        {totalComments($product->getId())}
-                                        {echo SStringHelper::Pluralize((int)totalComments($product->getId()), array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}</a>
+                                        {echo $Comments[$product->getId()]}</a>
                                 </div>
                                 <a href="{shop_url('product/'.$product->getUrl())}">{echo $product->getName()}</a>
                                 <div class="price price_f-s_16"><span class="f-w_b">{echo $product->firstVariant->getPrice()}</span> {$CS}&nbsp;&nbsp;<span class="second_cash"></span></div>
