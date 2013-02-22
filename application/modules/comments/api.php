@@ -432,18 +432,20 @@ class Api extends Comments {
         $this->db->where_in('item_id', $ids);
         $this->db->where('status', $status);
         $this->db->where('module = ', 'shop');
-        $query = $this->db->get('comments')->result_array();
+        $query = $this->db->get('comments');
+        if ($query) {
+            $query = $query->result_array();
+            $result = array();
 
-        $result = array();
+            foreach ($query as $q)
+                $result[$q['item_id']] = $q['count'] . ' ' . SStringHelper::Pluralize((int) $q['count'], array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')));
 
-        foreach ($query as $q)
-            $result[$q['item_id']] = $q['count'] . ' ' . SStringHelper::Pluralize((int) $q['count'], array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')));
+            foreach ((array) $ids as $id)
+                if (!$result[$id])
+                    $result[$id] = 0 . ' ' . SStringHelper::Pluralize('0', array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')));
 
-        foreach ((array)$ids as $id)
-            if (!$result[$id])
-                $result[$id] = 0 . ' ' . SStringHelper::Pluralize('0', array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')));
-
-        return $result;
+            return $result;
+        }
     }
 
 }

@@ -80,7 +80,7 @@
             </div>
 
             {//displaying category description if page number is 1}
-            {if $page_number == 1 && $category->getDescription() != ''}
+            {if $page_number == 1 && !$category->getDescription()}
                 <div class="grey-b_r-bord">
                     <p><span style="font-weight:bold">{echo $category->getName()}</span> &mdash; {echo $category->getDescription()}</p>
                 </div>
