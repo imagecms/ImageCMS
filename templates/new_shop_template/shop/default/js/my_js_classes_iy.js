@@ -118,7 +118,8 @@ $(document).ready(function() {
         FilterManipulation.filterSubmit();
     });
 
-    $(FilterManipulation.OnClickSublitSelectors).on('click', function() {
+    $(FilterManipulation.OnClickSublitSelectors).on('click', function(event) {
+        event.preventDefault();
         FilterManipulation.filterSubmit();
     });
 

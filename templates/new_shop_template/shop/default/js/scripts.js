@@ -161,13 +161,13 @@ jQuery(document).ready(function() {
             'z-index': fr_lab_l - index
         })
     });
-    $('.frameLabel').has('.niceCheck.b_n').on('click', function() {
-        var input = $(this).find('input').not('[disabled=disabled]');
-        if (input.is(':checked'))
-            input.attr('checked', false);
-        else
-            input.attr('checked', true);
-    })
+//    $('.frameLabel').has('.niceCheck.b_n').on('click', function() {
+//        var input = $(this).find('input').not('[disabled=disabled]');
+//        if (input.is(':checked'))
+//            input.attr('checked', false);
+//        else
+//            input.attr('checked', true);
+//    })
     $('#suggestions').autocomlete();
 });
 wnd.load(function() {
