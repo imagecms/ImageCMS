@@ -49,7 +49,6 @@
                         </div>
                         <a href="#" class="count_response"><span class="icon-comment"></span>145 відгуків</a>
                     </div>
-
                     <div class="clearfix">
                         <div class="d_i-b v-a_b m-b_20">
                             <!--Output of all the options-->
@@ -293,8 +292,8 @@
                                     <div class="d_i-b">+</div>
                                 </li>
                                 <!--Output of goods subsidiaries set-->
-                                {foreach $kid->getShopKitProducts() as  $key => $kitProduct}                                        
-                                    <li class="span3">
+                                {foreach $kid->getShopKitProducts() as  $key => $kitProduct}  
+                                    <li class="{if $kid->countProducts() >= 2}span2{else:}span3{/if}">
                                         <div class="item_set">
                                             <div class="description">
                                                 <a href="{shop_url('product/' . $kitProduct->getSProducts()->getUrl())}">
@@ -413,6 +412,6 @@
         </div>
     </div>
 {/if}
-<!--similar Products END-->
+<!--Similar Products END-->
 </article>
 </div>
