@@ -101,31 +101,14 @@
                             <span class="helper"></span>
                             <div class="w_100 f-s_0 frameUndef_1">
                                 <div class="span6">
+                                    {literal}<style>.selected{background-color:red;}</style>{/literal}
                                     <div class="frameSearch">
                                         <form name="search" class="clearfix" action="{shop_url('search')}" method="get" id="autocomlete">
                                             <button class="f_r btn" type="submit"><span class="icon-search"></span><span class="text-el">{lang('search_find')}</span></button>
                                             <div class="o_h">
-                                                <input type="text" name="text" placeholder="Поиск по сайту"/>
+                                                <input type="text" name="text" value="{lang('s_se_thi_sit')}"  onfocus="if(this.value=='{lang('s_se_thi_sit')}') this.value='';" onblur="if(this.value=='') this.value='{lang('s_se_thi_sit')}';"  autocomplete="off" class="place_hold" id="inputString"/>
                                             </div>
-                                            <div id="suggestions" class="drop-search d_n">
-                                                <div class="inside-padd">
-                                                    <ul class="frame-search-thumbail">
-                                                        <li>
-                                                            <a href="#">
-                                                                <span class="photo">
-                                                                    <span class="helper"></span>
-                                                                    <img src="{$SHOP_THEME}images/temp/item_thumb.png">
-                                                                </span>
-                                                                <span>Оригинальный Phone 4S Black</span>
-                                                            </a>
-                                                            <div class="price price_f-s_16"><span class="f-w_b">99999</span> грн.</div>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="btn-form">
-                                                        <a href="#" class="f-s_0"><span class="icon-show-all"></span><span class="text-el">Показать все результаты</span></a>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <div id="suggestions" class="drop-search"></div>
                                         </form>
                                     </div>
                                 </div>
