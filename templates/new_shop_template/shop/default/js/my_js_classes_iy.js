@@ -96,5 +96,42 @@ var NotitficationApi = {
             return false;
         }
     },
-}
+};
+
+/**
+ * js object for filter handling
+ * @type type
+ */
+
+var FilterManipulation = {
+    formId: "#filter",
+    OnChangeSubmitSelectors: "[name='brand[]'], .propertyCheck",
+    OnClickSublitSelectors: ".filterSubmit",
+    filterSubmit: function() {
+        $(FilterManipulation.formId).submit();
+        $(FilterManipulation.OnChangeSubmitSelectors).attr('disabled', 'disabled');
+    },
+};
+
+$(document).ready(function() {
+    $(FilterManipulation.OnChangeSubmitSelectors).on('change', function() {
+        FilterManipulation.filterSubmit();
+    });
+
+    $(FilterManipulation.OnClickSublitSelectors).on('click', function() {
+        FilterManipulation.filterSubmit();
+    });
+
+    $('.frameLabel').has('.niceCheck.b_n').on('click', function() {
+        var input = $(this).find('input').not('[disabled=disabled]');
+        if (input.is(':checked')){
+            input.attr('checked', '');
+            input.trigger('change');
+        }
+        else{
+            input.attr('checked', 'checked');
+            input.trigger('change');
+        }
+    })
+});
 
