@@ -1,6 +1,172 @@
+{foreach $items as $cartItem}
+    {/*}
+    {var_dumps($cartItem)}
+    {exit;}
+    { */ } 
+
+{/foreach}
+<div>
+    <!--                    class="row"-->
+    <div class="frameMenu">
+    </div>
+    <article>
+        <h1>Оформление заказа</h1>
+        <div class="row">
+            <div class="span6">
+                <div class="frameGroupsForm">
+                    <div class="header_title">Данные заказа</div>
+                    <div class="standart_form horizontal_form">
+                        <form method="post">
+                            <div class="groups_form">
+                                <label>
+                                    <span class="title">Ваше имя</span>
+                                    <span class="frame_form_field">
+                                        <span class="icon-person"></span>
+                                        <input type="text"/>
+                                    </span>
+                                </label>
+                                <label>
+                                    <span class="title">E-mail</span>
+                                    <span class="frame_form_field">
+                                        <span class="icon-email"></span>
+                                        <input type="text"/>
+                                    </span>
+                                </label>
+                                <label>
+                                    <span class="title">Телефон</span>
+                                    <span class="frame_form_field">
+                                        <span class="icon-phone"></span>
+                                        <input type="text"/>
+                                    </span>
+                                </label>
+                                <label>
+                                    <span class="title">Адрес</span>
+                                    <span class="frame_form_field"><input type="text"/></span>
+                                </label>
+                                <label>
+                                    <span class="title">Адрес получателя</span>
+                                    <span class="frame_form_field"><textarea></textarea></span>
+                                                </label>
+                                            </div>
+                                            <div class="groups_form">
+                                                <div class="frameLabel">
+                                                    <span class="title">Способ доставки</span>
+                                                    <div class="frame_form_field">
+                                                        <div class="row-fluid">
+                                                            <div class="lineForm span4">
+                                                                <select id="method_deliv" name="method_deliv">
+                                                                    <option selected="selected" value="1">asdf</option>
+                                                                    <option value="1">asdf</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="frameLabel">
+                                                    <span class="title">Способ оплаты</span>
+                                                    <div class="frame_form_field">
+                                                        <div class="row-fluid">
+                                                            <div class="lineForm span4">
+                                                                <select id="method_buy" name="method_buy">
+                                                                    <option selected="selected" value="1">asdf</option>
+                                                                    <option value="1">asdf</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="groups_form">
+                                                <label>
+                                                    <span class="title">Комментарий к заказу</span>
+                                                    <span class="frame_form_field"><textarea></textarea>
+                                                </label>
+                                                <div class="frameLabel c_t">
+                                                    <span class="title">&nbsp;</span>
+                                                    <div class="frame_form_field">
+                                                        <div class="form_alert">
+                                                            <div class="c_97" style="margin-bottom: 4px;">(Сумма товаров: <span class="f-w_b">27000</span> руб + Доставка: <span class="f-w_b">100</span> руб)</div>
+                                                            <span class="f-s_18">Сумма:</span> <span class="f-s_24">28799.68</span> <span class="f-s_14">руб.</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="frameLabel">
+                                                    <span class="title">&nbsp;</span>
+                                                    <span class="frame_form_field">
+                                                        <input type="submit" value="Подтверждаю заказ" class="btn btn_cart"/>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="span6">
+                                <div class="frame_head_content">
+                                    <div class="header_title">Ваш заказ</div>
+                                    <table class="table v-a_bas table_order">
+                                        <thead class="v_h">
+                                            <tr>
+                                                <td class="span1"></td>
+                                                <td class="span3"></td>
+                                                <td class="span1"></td>
+                                                <td class="span1"></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                            {foreach $items as $cartItem}
+                                            <tr>
+                                                <td class="v-a_m">
+                                                    <a href="#" class="photo">
+                                                        <figure>
+                                                            <img src="images/temp/item_middle.png"/>
+                                                        </figure>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="#" class="c_97">{echo ShopCore::encode($cartItem.model->getName())} {echo ShopCore::encode($cartItem.VariantName)}</a>
+                                                    <div class="price price_f-s_16">
+                                                        <span class="first_cash"><span class="f-w_b">{echo ShopCore::encode($cartItem.price)}</span>&nbsp;{$CS}</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span class="c_8a">х</span> <span class="f-w_b f-s_16">{echo ShopCore::encode($cartItem.quantity)}</span>&nbsp;шт. =
+                                                </td>
+                                                <td>
+                                                    <div class="price price_f-s_16">
+                                                        <span class="first_cash"><span class="f-w_b">{echo ShopCore::encode($cartItem.totalAmount)}</span>&nbsp;{$CS}</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                            {/foreach}
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="4">
+                                                    <div class="f_l">
+                                                        <span class="helper" style="height: 36px;"></span>
+                                                        <button type="button" class="d_l_b">Редактировать</button>
+                                                    </div>
+                                                    <div class="f_r">
+                                                        <span class="v-a_m">Итого:&nbsp;&nbsp;</span>
+                                                        <span class="price price_f-s_24 v-a_m d_i-b">
+                                                            <span class="first_cash"><span class="f-w_b">{$cartItem.orderAmount}</span>&nbsp;{$CS}</span>
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+<!--
+{/*}
 <div class="center content">
     <h1>{lang('orderind_shop_sg')}</h1>
-    {if count($items) > 0}
+{if count($items) > 0}
         <form method="post" action="{site_url(uri_string())}" id="cartForm">
             <div class="order-cleaner">
                 <table class="cleaner_table forCartProducts" cellspacing="0">
@@ -14,14 +180,14 @@
                         <col span="1" width="25">
                     </colgroup>
                     <tbody>
-                        {foreach $items as $key=>$item}
-                            {if $item.model instanceof SProducts}
-                                {$variants = $item.model->getProductVariants()}
-                                {foreach $variants as $v}
-                                    {if $v->getId() == $item.variantId}
-                                        {$variant = $v}
-                                    {/if}
-                                {/foreach}
+        {foreach $items as $key=>$item}
+            {if $item.model instanceof SProducts}
+                {$variants = $item.model->getProductVariants()}
+                {foreach $variants as $v}
+                    {if $v->getId() == $item.variantId}
+                        {$variant = $v}
+                    {/if}
+                {/foreach}
                                 <tr>
                                     <td>
                                         <a href="{shop_url('product/' . $item.model->getUrl())}" class="photo_block">
@@ -46,7 +212,7 @@
                                     </td>
                                     <td>
                                         <div class="price f-s_18 f_l">{$summary = $variant->getPrice() * $item.quantity}
-                                            {echo $summary}
+                            {echo $summary}
                                             <sub>{$CS}</sub>
                                             
                                         </div>
@@ -55,23 +221,23 @@
                                         <a href="{shop_url('cart/delete/'.$key)}" class="delete_text inCartProducts">&times;</a>
                                     </td>
                                 </tr>
-                            {elseif($item.model instanceof ShopKit):}
+            {elseif($item.model instanceof ShopKit):}
                                 <tr>
                                     <td style="width:90px;padding:2px;">
 
-                                        {if $item.model->getMainProduct()->getMainImage()}
+                        {if $item.model->getMainProduct()->getMainImage()}
                                             <a href="{shop_url('product/' . $item.model->getProductId())}" class="photo_block">
                                                 <img src="{productImageUrl($item.model->getMainProduct()->getId() . '_main.jpg')}" border="0"  width="100" />
                                             </a>                                        
-                                        {/if}                                   
+                        {/if}                                   
                                     </td>
                                     <td>
                                         <a href="{shop_url('product/' . $item.model->getMainProduct()->getUrl())}">{echo ShopCore::encode($item.model->getMainProduct()->getName())}</a> {echo ShopCore::encode($item.model->getMainProduct()->firstVariant->getName())}
                                         <br /><span style="font-size:16px;">{echo $item.model->getMainProduct()->firstVariant->toCurrency()} {$CS}</span>
                                     </td>
                                     <td rowspan="{echo $item.model->countProducts()}">
-                                        {//echo ShopCore::app()->SCurrencyHelper->convert($item.price)} {//$CS}                              
-                                        {echo $item.price} {$CS}                              
+                        {//echo ShopCore::app()->SCurrencyHelper->convert($item.price)} {//$CS}                              
+                        {echo $item.price} {$CS}                              
                                     </td>
                                     <td rowspan="{echo $item.model->countProducts()}">
                                         <div class="count">
@@ -83,39 +249,39 @@
                                         </div>
                                     </td>
                                     <td rowspan="{echo $item.model->countProducts()}">
-                                        {echo $summary = ShopCore::app()->SCurrencyHelper->convert($item.totalAmount)} {$CS}
+                        {echo $summary = ShopCore::app()->SCurrencyHelper->convert($item.totalAmount)} {$CS}
                                     </td>
                                     <td rowspan="{echo $item.model->countProducts()}"><a href="{shop_url('cart/delete/' . $key)}" rel="nofollow" class="delete_text inCartProducts">&times;</a></td>
                                 </tr>
-                                {foreach $item.model->getShopKitProducts() as $shopKitProduct}
-                                    {$ap = $shopKitProduct->getSProducts()}
-                                    {$ap->setLocale(ShopController::getCurrentLocale())}
-                                    {$kitFirstVariant = $ap->getKitFirstVariant($shopKitProduct)}
+                {foreach $item.model->getShopKitProducts() as $shopKitProduct}
+                    {$ap = $shopKitProduct->getSProducts()}
+                    {$ap->setLocale(ShopController::getCurrentLocale())}
+                    {$kitFirstVariant = $ap->getKitFirstVariant($shopKitProduct)}
                                     <tr>
                                         <td style="width:90px;padding:2px;">
-                                            {if $ap->getMainImage()}
+                            {if $ap->getMainImage()}
                                                 <a href="{shop_url('product/' . $ap->getId())}" class="photo_block">
                                                     <img src="{productImageUrl($ap->getId() . '_main.jpg')}" border="0" width="100" alt="{echo ShopCore::encode($ap->getName())}" />                                                
                                                 </a>
-                                            {/if}                      
+                            {/if}                      
                                         </td>
                                         <td>
                                             <a href="{shop_url('product/' . $ap->getUrl())}">{echo ShopCore::encode($ap->getName())}</a> 
-                                            {echo ShopCore::encode($kitFirstVariant->getName())}
-                                            {if $kitFirstVariant->getEconomy() > 0}
+                            {echo ShopCore::encode($kitFirstVariant->getName())}
+                            {if $kitFirstVariant->getEconomy() > 0}
                                     <br /><s style="font-size:14px;">{echo $kitFirstVariant->toCurrency('origPrice')} {$CS}</s>
                                     <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
-                                {else:}
+                {else:}
                                     <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
-                                {/if}
+                {/if}
                                 </td>
                                 </tr>
-                                {$i++}
-                            {/foreach}
-                        {/if}
-                        {$total += $summary}
-                        {$total_nc += $summary_nextc}
-                    {/foreach}
+        {$i++}
+    {/foreach}
+{/if}
+{$total += $summary}
+{$total_nc += $summary_nextc}
+{/foreach}
                     </tbody>
                     <tfoot>
                         <tr>
@@ -123,7 +289,7 @@
                                 <div class="foot_cleaner">
                                     <div class="f_r">
                                         <div class="price f-s_26 f_l">
-                                            {//echo $total}
+                        {//echo $total}
                                             <sub>{//$CS}</sub>
                                         </div>
                                     </div>
@@ -137,102 +303,102 @@
             </div>
             <div class="order-cleaner clearfix">
                 <div class="f_l method_deliver_buy">
-                    {if ShopCore::app()->SSettings->__get('usegifts') == 1}
+        {if ShopCore::app()->SSettings->__get('usegifts') == 1}
                         <div class="block_title_18"><span class="title_18">{lang('s_do_you_have')}</span></div>
                         <label>
                             <input type="text" name="giftcert" id="giftcertkey"/>
                             <input type="button" name="giftcert" value="{lang('s_apply_sertif')}" class="giftcertcheck"/>
                         </label>
-                    {/if}
+        {/if}
                     <div class="block_title_18"><span class="title_18">{lang('s_sdm')}</span></div>
-                        {$counter = true}
-                        {foreach $deliveryMethods as $deliveryMethod}
-                            {$del_id = $deliveryMethod->getId()}
+            {$counter = true}
+            {foreach $deliveryMethods as $deliveryMethod}
+                {$del_id = $deliveryMethod->getId()}
                         <label>
                             <input type="radio" 
-                                   {if $counter} checked="checked" 
-                                       {$del_id = $deliveryMethod->getId()} 
-                                       {$counter = false}
-                                       {$del_price = ceil($deliveryMethod->getPrice())}
-                                       {$del_freefrom = ceil($deliveryMethod->getFreeFrom())}
-                                   {/if} 
+                {if $counter} checked="checked" 
+                           {$del_id = $deliveryMethod->getId()} 
+                           {$counter = false}
+                           {$del_price = ceil($deliveryMethod->getPrice())}
+                           {$del_freefrom = ceil($deliveryMethod->getFreeFrom())}
+                       {/if} 
                                    name="met_del" 
                                    class="met_del" 
                                    value="{echo $del_id}" 
                                    data-price="{echo ceil($deliveryMethod->getPrice())}" 
                                    data-freefrom="{echo ceil($deliveryMethod->getFreeFrom())}"/>
-                            {echo $deliveryMethod->getName()}
+                {echo $deliveryMethod->getName()}
                         </label>
-                    {/foreach}
+        {/foreach}
 
                     <!--    Show payment methods    -->
-                    {if sizeof($paymentMethods) > 0}
+        {if sizeof($paymentMethods) > 0}
                         <div class="block_title_18"><span class="title_18">{lang('s_spm')}</span></div>
                         <div id="paymentMethods">
-                            {$counter = true}
-                            {foreach $paymentMethods as $paymentMethod}
+                {$counter = true}
+                {foreach $paymentMethods as $paymentMethod}
                                 <label>
                                     <input type="radio"
-                                           {if $counter} checked="checked"
-                                               {$counter = false}
-                                               {$pay_id = $paymentMethod->getId()}
-                                           {/if} 
+                        {if $counter} checked="checked"
+                                   {$counter = false}
+                                   {$pay_id = $paymentMethod->getId()}
+                               {/if} 
                                            name="met_buy" 
                                            class="met_buy" 
                                            value="{echo $pay_id}" />
-                                    {echo $paymentMethod->getName()}
+                        {echo $paymentMethod->getName()}
                                 </label>                        
-                            {/foreach}
+                {/foreach}
                         </div>
-                    {/if}            
+        {/if}            
                     <!--    Show payment methods    -->
                 </div>
                 <div class="addres_recip f_r">
                     <div class="block_title_18">
-                        {if validation_errors()}
+            {if validation_errors()}
                             <div class="foot_cleaner red" style="background-color: #FFBFBF;border: 1px solid #FF0400;padding: 0 7px">{validation_errors()}</div>
-                        {/if}
+            {/if}
                         <span class="title_18">{lang('s_addresrec')}</span>
                     </div>
                     <div class="label_block">
                         <label class="f_l">
-                            {if $isRequired['userInfo[fullName]']}
+                {if $isRequired['userInfo[fullName]']}
                                 <span class="red">*</span>
-                            {/if}
-                            {lang('s_c_uoy_name_u')}
+                {/if}
+                {lang('s_c_uoy_name_u')}
                             <input type="text"{if $isRequired['userInfo[fullName]']} class="required"{/if} name="userInfo[fullName]" value="{$profile.name}">
                         </label>
                         <label class="f_l">
-                            {if $isRequired['userInfo[email]']}
+                {if $isRequired['userInfo[email]']}
                                 <span class="red">*</span>
-                            {/if}
-                            {lang('s_c_uoy_user_el')}
+                {/if}
+                {lang('s_c_uoy_user_el')}
                             <input type="text" {if $isRequired['userInfo[email]']} class="required email"{/if} name="userInfo[email]" value="{$profile.email}">
                         </label>
                         <label class="f_l">
-                            {if $isRequired['userInfo[phone]']}
+                {if $isRequired['userInfo[phone]']}
                                 <span class="red">*</span>
-                            {/if}
-                            {lang('s_phone')}
+                {/if}
+                {lang('s_phone')}
                             <input type="text"{if $isRequired['userInfo[phone]']} class="required"{/if} name="userInfo[phone]" value="{$profile.phone}">
                         </label>
                         <label class="f_l">
-                            {if $isRequired['userInfo[deliverTo]']}
+                {if $isRequired['userInfo[deliverTo]']}
                                 <span class="red">*</span>
-                            {/if}
-                            {lang('s_addresrec')}
+                {/if}
+                {lang('s_addresrec')}
                             <input type="text"{if $isRequired['userInfo[deliverTo]']} class="required"{/if} name="userInfo[deliverTo]" value="{echo $profile.address}">
                         </label>
                     </div>  
                     <label class="c_b d_b">
-                        {if $isRequired['userInfo[commentText]']}
+            {if $isRequired['userInfo[commentText]']}
                             <span class="red">*</span>
-                        {/if}
-                        {lang('s_comment')}
+            {/if}
+            {lang('s_comment')}
                         <textarea{if $isRequired['userInfo[commentText]']} class="required"{/if} name="userInfo[commentText]"></textarea> 
-                    </label>
-                    <div class="label_block">
-                        {echo ShopCore::app()->CustomFieldsHelper->setPattern($pattern)->getCustomFields('order')->asHtml() }
+        </label>
+        <div class="label_block">
+            {echo ShopCore::app()->CustomFieldsHelper->setPattern($pattern)->getCustomFields('order')->asHtml() }
                     </div>  
                 </div>
             </div>
@@ -253,9 +419,11 @@
             <input type="hidden" name="makeOrder" value="1" />
             {form_csrf()}
         </form>
-    {else:}
+            {else:}
         <div class="comparison_slider">
             <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t(lang('s_cart_empty'))}</div>
         </div>
-    {/if}
+                {/if}
 </div>
+                    {*/}
+                    -->
