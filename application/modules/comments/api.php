@@ -427,11 +427,29 @@ class Api extends Comments {
     }
 
     public function getTotalCommentsForProduct($id, $status = 0) {
-        $this->db->where($id, $this->model->getId());
+        var_dump($id);  
+//        $this->db->get_where('comments', array('item_id' => $id));
+        $this->db->where_in('item_id', $id);
         $this->db->where('status', $status);
         $query = $this->db->get('comments')->result();
-
 //        return json_encode(array("products_count" => $query));
+        
+        $result = $this->db->select('`shop_products`.`id`, COUNT( `comments`.`id` ) as count')
+                ->where_in('comments.item_id', $id)
+                ->join('comments', 'comments.item_id = shop_products.id')
+                ->get('shop_products')
+                ->result_array();
+        
+        /*SELECT *
+FROM `shop_products`
+JOIN `comments` ON `comments`.`item_id` = `shop_products`.`id`
+WHERE `comments`.`item_id`
+GROUP BY shop_products.id
+IN ( 1, 81 )
+LIMIT 0 , 30*/
+        
+        var_dump($result);
+        
         return count($query);
     }
 

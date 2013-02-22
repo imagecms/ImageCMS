@@ -1,4 +1,4 @@
-{$CI->load->module('comments')->init()}
+{$CI->load->module('comments')->init($model)}
 <div>
     <article>       
         {renderCategoryPath($model->getMainCategory())}
@@ -72,7 +72,8 @@
                                           data-mainImage="{echo $mainImage}"
                                           data-smallImage="{echo $pv->getSmallImage()}"
                                           data-stock="{echo $pv->getStock()}"
-                                          style="display: none;"></span>
+                                          style="display: none;">
+                                    </span>
                                 {/foreach}
                             {/if}
                             <div class=" d_i-b v-a_b m-r_45">
@@ -111,7 +112,7 @@
                                     </span>
                                 {else:}
                                     <a href="/shop/wish_list" class="red"><span class="icon-wish"></span>{lang('s_ilw')}</a>
-                                {/if}
+                                    {/if}
                             </button>
 
                         </div>
@@ -121,7 +122,7 @@
                     </div>
                     <ul class="tabs clearfix">
                         <li><button type="button" data-href="#info"><span class="icon-info"></span><span class="text-el">Информация</span></button></li>
-                        {if ShopCore::app()->SPropertiesRenderer->renderPropertiesTable($model)}
+                                    {if ShopCore::app()->SPropertiesRenderer->renderPropertiesTable($model)}
                             <li>
                                 <button type="button" data-href="#characteristic">
                                     <span class="icon-charack"></span>
@@ -137,7 +138,14 @@
                                 </button>
                             </li>
                         {/if}
-                        <li><button type="button" data-href="#comment" onclick="renderPosts(this)"><span class="icon-comment-tab"></span><span class="text-el">Отзывы(5)</span></button></li>
+                        <li>
+                            <button type="button" data-href="#comment" onclick="renderPosts(this)">
+                                <span class="icon-comment-tab"></span>
+                                <span class="text-el">                    
+                                    <div id="cc">{if $total_comments > 0}{echo lang('lang_total_comments') . $total_comments}{else:}Нет комментариев{/if}</div>
+                                </span>
+                            </button>
+                        </li>
                     </ul>
                     <div class="frame_tabs">
                         <div id="info">
@@ -192,7 +200,7 @@
                             </div>
                         {/if}
                         <div id="comment">
-                            <div id="four" name="four"></div>
+                            <div id="for_comments" name="for_comments"></div>
                         </div>
                     </div>
                 </div>
