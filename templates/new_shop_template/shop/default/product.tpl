@@ -117,7 +117,7 @@
                         <button  class="btn btn_buy variant" type="button" data-prodid="{echo $model->getId()}" data-varid="{echo $model->firstVariant->getId()}" data-price="{echo $model->firstVariant->getPrice()}" data-name="{echo $model->getName()}">{lang('s_buy')}</button>
 
                         {foreach $model->getProductVariants() as $key => $pv}
-                            <button style="display: none;" class="btn btn_buy variant_{echo $pv->getId()} variant" type="button" data-prodid="{echo $pv->getId()}" data-varid="{echo $pv->getId()}" data-price="{echo $pv->getPrice()}" data-name="{echo $pv->getName()}">{lang('s_buy')}</button>
+                            <button style="display: none;" class="btn btn_buy variant_{echo $pv->getId()} variant" type="button" data-prodid="{echo $pv->getId()}" data-varid="{echo $pv->getId()}" data-price="{echo $pv->getPrice()}" data-name="{if $pv->getName()}{echo $pv->getName()}{else:}{echo $model->getName()}{/if}">{lang('s_buy')}</button>
                         {/foreach}
                     </div>
                 </div>
@@ -292,6 +292,7 @@
                                     </div>
                                     <div class="d_i-b">+</div>
                                 </li>
+                                <!--Output of goods subsidiaries set-->
                                 {foreach $kid->getShopKitProducts() as  $key => $kitProduct}                                        
                                     <li class="span3">
                                         <div class="item_set">
@@ -326,6 +327,7 @@
                                 </div>
                             </li>                                            
                         {/foreach}
+                        <!--Output of goods subsidiaries set END-->
                         <li class="span3 p-t_40">
                             <div class="price price_f-s_24">
                                 <span class="d_b old_price">
@@ -368,23 +370,38 @@
         </div>
         <div class="carousel">
             <ul class="items items_catalog">
+                <!--Output set of similar products-->
                 {foreach $simProduct as $product}
+                    <!--
+                    Check whether there is product available.
+                    If no show it a little lighter.
+                    -->
                     <li class="span3 {if $product->firstVariant->getStock() == 0}not-avail{/if}">
+                        <!-- $product->getUrl() - the path to the product-->
                         <a href="{site_url('shop/product/'.$product->getUrl())}" class="photo">
                             <span class="helper"></span>
                             <figure>
+                                <!--$product->getMainImage() - product image-->
                                 <img src="{productImageUrl($product->getMainImage())}" alt="{echo ShopCore::encode($product->getName())}"/>
                             </figure>
                         </a>
                         <div class="description">                            
                             <a href="{site_url('shop/product/'.$product->getUrl())}">{echo ShopCore::encode($product->getName())}</a>
                             <div class="price price_f-s_16">
+                                <!--
+                                    "$model->firstVariant->toCurrency('OrigPrice')" or $model->firstVariant->getOrigPrice()
+                                    output price without discount
+                                -->
                                 {if $product->hasDiscounts()}
                                     <span class="d_b old_price">
                                         <span class="f-w_b">{echo $product->firstVariant->toCurrency('OrigPrice')}</span>
                                         {$CS}
                                     </span>                           
                                 {/if}
+                                <!--
+                           If there is a discount of "$model->firstVariant->toCurrency()" or "$model->firstVariant->getPrice"
+                           will display the price already discounted
+                                -->
                                 <span class="f-w_b">{echo $product->firstVariant->toCurrency()}</span> 
                                 {$CS}
                             </div>
