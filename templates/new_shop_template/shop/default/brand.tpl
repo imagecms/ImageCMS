@@ -136,7 +136,7 @@
                                     <img src="/templates/new_shop_template/shop/default/images/temp/STAR.png"/>
                                 </div>
                                 <!--    Star reiting    -->
-                                <a href="{shop_url('product/'.$product->id.'#cc')}" class="count_response">                                    
+                                <a href="{shop_url('product/'.$product->url.'#cc')}" class="count_response">                                    
                                     {echo $Comments[$product->getId()]}
                                 </a>
                             </div>
