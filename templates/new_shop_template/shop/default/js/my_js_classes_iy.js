@@ -122,13 +122,13 @@ $(document).ready(function() {
         FilterManipulation.filterSubmit();
     });
 
-    $('.frameLabel').has('.niceCheck.b_n').on('click', function() {
-        var input = $(this).find('input').not('[disabled=disabled]');
-        if (input.is(':checked')){
-            input.attr('checked', '');
+    $('span.filterLable').on('click', function() {
+        var input = $(this).prev('span.niceCheck.b_n').find('input').not('[disabled=disabled]');
+        if (input.is(':checked')) {
+            input.attr('checked', false);
             input.trigger('change');
         }
-        else{
+        else {
             input.attr('checked', 'checked');
             input.trigger('change');
         }
