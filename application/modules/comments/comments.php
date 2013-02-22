@@ -33,21 +33,19 @@ class Comments extends MY_Controller {
     }
 
     public function init($model) {
-//        $this->load->module('comments/api')->getTotalCommentsForProduct($model->getId());
-//        $ids = array();
-
-//        if ($model instanceof SProducts)
-//            $model = $model->toArray();
-//            for ($index = 0; $index < count($model); $index++) {
-//                $ids[$index] = ;
-//                        var_dump($model->getId());
-//            }
-//        foreach ($model as $id) {
-//            $ids[] = $id->getId();
-//        }
-//        var_dump($this->load->module('comments/api')->getTotalCommentsForProduct($ids));
-//        $this->db->get
         \CMSFactory\assetManager::create()->registerScript('comments');
+        
+        if ($model instanceof SProducts) {
+            $productsCount = $this->load->module('comments/api')->getTotalCommentsForProducts($model->getId());
+        } else {
+            $ids = array();
+
+            foreach ($model as $id)
+                $ids[] = $id->getId();
+
+            $productsCount = $this->load->module('comments/api')->getTotalCommentsForProducts($ids);
+        }
+        return $productsCount;
     }
 
     /**
