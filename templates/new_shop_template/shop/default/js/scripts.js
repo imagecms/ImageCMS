@@ -254,7 +254,7 @@ wnd.load(function() {
         $('.menu-main').menuPacket2('refresh');
     })
 });
-/*початкові зміні для слайдера*/
+/*РїРѕС‡Р°С‚РєРѕРІС– Р·РјС–РЅС– РґР»СЏ СЃР»Р°Р№РґРµСЂР°*/
 def_min = $('span#opt1').data('def_min');
 def_max = $('span#opt2').data('def_max');
 cur_min = $('span#opt3').data('cur_min');
