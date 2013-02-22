@@ -1,4 +1,4 @@
-{$CI->load->module('comments')->init($model)}
+{$Comments = $CI->load->module('comments')->init($model)}
 <div>
     <article>       
         <!--renderCategoryPath() - generation of breadcrumbs-->
@@ -47,7 +47,6 @@
                         <div class="star">
                             {$CI->load->module('star_rating')->show_star_rating($model)}
                         </div>
-                        <a href="#" class="count_response"><span class="icon-comment"></span>145 відгуків</a>
                     </div>
                     <div class="clearfix">
                         <div class="d_i-b v-a_b m-b_20">
@@ -58,7 +57,13 @@
                                     <div class="lineForm w_170">
                                         <select id="var" name="variant">
                                             {foreach $model->getProductVariants() as $key => $pv}
-                                                <option value="{echo $pv->getId()}">{if $pv->getName()}{echo $pv->getName()}{else:}{echo $model->getName()}{/if}</option>
+                                                <option value="{echo $pv->getId()}">
+                                                    {if $pv->getName()}
+                                                        {echo $pv->getName()}
+                                                    {else:}
+                                                        {echo $model->getName()}
+                                                    {/if}
+                                                </option>
                                             {/foreach}
                                         </select>
                                     </div>
@@ -139,7 +144,7 @@
                             </span>
                         {else:}
                             <a href="/shop/wish_list" class="red"><span class="icon-wish"></span>{lang('s_ilw')}</a>
-                        {/if}
+                            {/if}
                     </button>
 
                 </div>
@@ -183,7 +188,9 @@
                     <button type="button" data-href="#comment" onclick="renderPosts(this)">
                         <span class="icon-comment-tab"></span>
                         <span class="text-el">                    
-                            <div id="cc">{if $total_comments > 0}{echo lang('lang_total_comments') . $total_comments}{else:}Нет комментариев{/if}</div>
+                            <span id="cc">
+                                {echo $Comments[$model->getId()]}
+                            </span>
                         </span>
                     </button>
                 </li>
@@ -219,7 +226,7 @@
                                             <div class="star">
                                                 <img src="images/temp/STAR.png"/>
                                             </div>
-                                            <a href="#" class="count_response"><span class="icon-comment"></span>145 відгуків</a>
+                                            <a href="#" class="count_response">1453 відгуків</a>
                                         </div>
                                         <a href="{shop_url('product/'.$p->getUrl())}">{echo ShopCore::encode($p->getName())}</a>
                                         <div class="price price_f-s_16">
