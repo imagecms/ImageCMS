@@ -32,11 +32,21 @@ class Comments extends MY_Controller {
         return FALSE;
     }
 
-    public function test() {
-        echo 'debugParent';
-    }
-    
-    public function init(){
+    public function init($model) {
+//        $this->load->module('comments/api')->getTotalCommentsForProduct($model->getId());
+//        $ids = array();
+
+//        if ($model instanceof SProducts)
+//            $model = $model->toArray();
+//            for ($index = 0; $index < count($model); $index++) {
+//                $ids[$index] = ;
+//                        var_dump($model->getId());
+//            }
+//        foreach ($model as $id) {
+//            $ids[] = $id->getId();
+//        }
+//        var_dump($this->load->module('comments/api')->getTotalCommentsForProduct($ids));
+//        $this->db->get
         \CMSFactory\assetManager::create()->registerScript('comments');
     }
 
@@ -346,7 +356,7 @@ class Comments extends MY_Controller {
             'value' => $site,
             'expire' => '30000000',
         );
-        
+
 
         set_cookie($cookie_name);
         set_cookie($cookie_email);
