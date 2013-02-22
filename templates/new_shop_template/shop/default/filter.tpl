@@ -176,7 +176,7 @@
                 
                 {//loop for properties array}
                 {foreach $propertiesInCat as $prop}
-                    
+                    {//var_dump($prop->productsCount)}
                     {//checke if property has not empty possible values}
                     {if empty($prop->possibleValues)}{continue}{/if}
                     
@@ -200,7 +200,7 @@
                                         <span class="filterLable">{echo $item.value}&nbsp;
                                             
                                             {//displaying possible value products count}
-                                            <span>({if $item.count != 0 && is_array(ShopCore::$_GET['p'][$prop->property_id]) && !in_array($item.value, ShopCore::$_GET['p'][$prop->property_id])}+{/if}{echo $item.count})</span>
+                                            <span>({//if $item.count != 0 && is_array(ShopCore::$_GET['p'][$prop->property_id]) && !in_array($item.value, ShopCore::$_GET['p'][$prop->property_id])}{///if}{echo $item.count})</span>
                                         </span>
                                     </div>
                                 {/foreach}
