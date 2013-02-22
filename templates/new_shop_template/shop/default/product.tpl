@@ -47,12 +47,6 @@
                         <div class="star">
                             {$CI->load->module('star_rating')->show_star_rating($model)}
                         </div>
-                        <a href="#" class="count_response">
-                            <span class="icon-comment"></span>
-                            <span id="cc">
-                                {echo $Comments[$model->getId()]}
-                            </span>
-                        </a>
                     </div>
 
                     <div class="clearfix">
@@ -233,7 +227,7 @@
                                             <div class="star">
                                                 <img src="images/temp/STAR.png"/>
                                             </div>
-                                            <a href="#" class="count_response"><span class="icon-comment"></span>1453 відгуків</a>
+                                            <a href="#" class="count_response">1453 відгуків</a>
                                         </div>
                                         <a href="{shop_url('product/'.$p->getUrl())}">{echo ShopCore::encode($p->getName())}</a>
                                         <div class="price price_f-s_16">

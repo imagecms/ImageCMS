@@ -110,7 +110,6 @@
 
                                     {//displaying comments count}
                                     <a href="{shop_url('product/'.$product->url.'#cc')}" class="count_response">
-                                        <span class="icon-comment"></span>
                                         {echo $Comments[$product->getId()]}
                                     </a>
                                 </div>
