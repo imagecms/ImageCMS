@@ -106,7 +106,118 @@ jQuery(document).ready(function() {
         scrollNSP: true,
         scrollNSPT: '.items_catalog'
     };
+    (function($){
+        var methods = {
+            init : function(options) {
+                var settings = $.extend({
+                    item : 'ul > li',
+                    duration: 300,
+                    searchPath: "/shop/search/ac",
+                    inputString: $('#inputString')
+                }, options);
+                
+                $thisS = $(this);
+                itemA = settings.item;
+                durationA = settings.duration;
+                searchPath = settings.searchPath;
+                selectorPosition = -1;
+                inputString = settings.inputString.keyup(function(event){
+                    methods.lookup(event);
+                }).blur(function(){
+                    $thisS.fadeOut(durationA);
+                });
+            },
+            lookup: function(event){
+                try{
+                    var code = event.keyCode;
 
+                    if(code == 38 || code == 40)
+                    {
+                        if(code == 38)
+                        {
+                            selectorPosition -= 1;
+                        }
+                        if(code == 40)
+                        {
+                            selectorPosition += 1;
+                        }
+
+                        if(selectorPosition < 0)
+                        {
+                            selectorPosition = itemserch.length-1;
+                        }
+                        if(selectorPosition > itemserch.length-1)
+                        {
+                            selectorPosition = 0;
+                        }
+
+                        itemserch.each(function(i, el) {
+                            $(el).removeClass('selected');
+                            if(i == selectorPosition)
+                            {
+                                $(el).addClass('selected');
+                            }
+                        });
+
+                        return false;
+                    }
+
+                    // Enter pressed
+                    if (code == 13)
+                    {
+                        itemserch.each(function(i, el) {
+                            if($(el).hasClass('selected'))
+                            {
+                                window.location = $(el).attr('href');
+                                window.location = $(el).find('a').attr('href');
+                            }
+                        });
+                    }
+                }
+                catch(err){}
+                
+                if(inputString.val().length == 0)
+                {
+                    $thisS.fadeOut(durationA);
+                }
+                else
+                {
+                    $.post(searchPath, {
+                        queryString: inputString.val()
+                    }, function(data) {
+                        $thisS.fadeIn(durationA);
+                        try {
+                            var dataObj = JSON.parse(data);
+                            var html = _.template($('#searchResultsTemplate').html(), {'items' : dataObj});
+                        } catch (e){
+                            var html = e.toString();
+                            
+                        }
+                        $thisS.html(html);
+                        selectorPosition = -1;
+
+                        itemserch = $thisS.find(itemA);
+                        itemserch.each(function(i, el) {
+                            $(el).mouseover(function(){
+                                itemserch.removeClass('selected');
+                                $(this).addClass('selected');
+                                selectorPosition = i;
+                            });
+                        });
+                    });
+                }
+            }
+        }
+        $.fn.autocomlete = function( method ) {
+            if ( methods[method] ) {
+                return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ));
+            } else if ( typeof method === 'object' || ! method ) {
+                return methods.init.apply( this, arguments );
+            } else {
+                $.error( 'Method ' +  method + ' does not exist on jQuery.autocomlete');
+            }
+        };
+    })(jQuery);
     (function($) {
         var methods = {
             init: function(options) {
@@ -1194,6 +1305,7 @@ jQuery(document).ready(function() {
         else
             input.attr('checked', true);
     })
+    $('#suggestions').autocomlete();
 });
 wnd.load(function() {
     if ($('.cycle li').length > 1) {

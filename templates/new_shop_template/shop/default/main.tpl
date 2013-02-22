@@ -100,31 +100,14 @@
                             <span class="helper"></span>
                             <div class="w_100 f-s_0 frameUndef_1">
                                 <div class="span6">
+                                    {literal}<style>.selected{background-color:red;}</style>{/literal}
                                     <div class="frameSearch">
                                         <form name="search" class="clearfix" action="{shop_url('search')}" method="get" id="autocomlete">
                                             <button class="f_r btn" type="submit"><span class="icon-search"></span><span class="text-el">{lang('search_find')}</span></button>
                                             <div class="o_h">
-                                                <input type="text" name="text" placeholder="Поиск по сайту"/>
+                                                <input type="text" name="text" value="{lang('s_se_thi_sit')}"  onfocus="if(this.value=='{lang('s_se_thi_sit')}') this.value='';" onblur="if(this.value=='') this.value='{lang('s_se_thi_sit')}';"  autocomplete="off" class="place_hold" id="inputString"/>
                                             </div>
-                                            <div id="suggestions" class="drop-search d_n">
-                                                <div class="inside-padd">
-                                                    <ul class="frame-search-thumbail">
-                                                        <li>
-                                                            <a href="#">
-                                                                <span class="photo">
-                                                                    <span class="helper"></span>
-                                                                    <img src="{$SHOP_THEME}images/temp/item_thumb.png">
-                                                                </span>
-                                                                <span>Оригинальный Phone 4S Black</span>
-                                                            </a>
-                                                            <div class="price price_f-s_16"><span class="f-w_b">99999</span> грн.</div>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="btn-form">
-                                                        <a href="#" class="f-s_0"><span class="icon-show-all"></span><span class="text-el">Показать все результаты</span></a>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <div id="suggestions" class="drop-search"></div>
                                         </form>
                                     </div>
                                 </div>
@@ -326,5 +309,35 @@
         <!-- floating elements-->
         <div id="popupCart" style="display: none;" class="drop"></div>
         <a href="#" data-drop="#popupCart" data-place="center" id="showCart" style="display: none;">Show cart</a>
+        
+        {literal}
+        <script type="text/template" id="searchResultsTemplate">
+            <div class="inside-padd">
+                <ul class="frame-search-thumbail">
+                    <% _.each(items, function(item){
+                    if (item.name != null){%>
+                    <li>{/literal}
+                        <a href="{shop_url('product')}/{literal}<%- item.url %>">
+                            <span class="photo">
+                                <span class="helper"></span>
+                                {/literal}<img src="{base_url()}uploads/shop/{literal}<%- item.smallModImage %>">
+                            </span>
+                            <span><%- item.name %></span>
+                        </a>
+                        <div class="price price_f-s_16"><span class="f-w_b"><%- Math.round(item.price) %></span>{/literal}{$CS}{literal}</div>
+                    </li>
+                    <% }
+                    }) %>
+                </ul>
+                <% if (_.keys(items).length > 1) { %>
+                <div class="btn-form">{/literal}
+                    <a href="{shop_url('search')}?text={literal}<%- items.queryString %>" {/literal} class="f-s_0">
+                        <span class="icon-show-all"></span><span class="text-el">{lang('s_all_result')}</span>
+                    </a>
+                </div>{literal}
+                <% } %>    
+            </div>
+         </script>
+         {/literal}
     </body>
 </html>
