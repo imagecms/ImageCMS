@@ -325,7 +325,7 @@
                     </label>
                 </div>
                 <div class="t-a_r">
-                    <input type="submit" value="Отправить" onclick="ImageCMSApi.formAction('/shop/ajax/getApiNotifyingRequest', 'data-report');
+                    <input type="submit" value="Отправить" onclick="NotitficationApi.formAction('/shop/ajax/getApiNotifyingRequest', 'data-report');
                                                                 return false;" class="btn btn_cart"/>
                 </div>
             </form>
@@ -339,6 +339,7 @@
         <script src="{$SHOP_THEME}js/shop.js" type="text/javascript"></script>
         <!-- Dev. scripts -->
         <script src="{$SHOP_THEME}js/imagecms.api.js" type="text/javascript"></script>
+        <script src="{$SHOP_THEME}js/my_js_classes_iy.js" type="text/javascript"></script>
 
 
         {include_tpl('js_templates')}

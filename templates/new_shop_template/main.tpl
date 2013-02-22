@@ -397,5 +397,6 @@
         <script src="{$SHOP_THEME}js/scripts.js" type="text/javascript"></script>
         <!-- Dev. scripts -->
         <script src="{$SHOP_THEME}js/imagecms.api.js" type="text/javascript"></script>
+        <script src="{$SHOP_THEME}js/my_js_classes_iy.js" type="text/javascript"></script>
     </body>
 </html>

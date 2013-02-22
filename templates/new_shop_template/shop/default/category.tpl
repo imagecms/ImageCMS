@@ -95,9 +95,8 @@
                                     <button class="btn btn_small_p" type="button" title="добавить в список желаний"><span class="icon-wish_2"></span></button>
                                 </div>
                             </div>
-                            <a href="#" class="photo">
+                            <a href="{shop_url('product/'.$product->getUrl())}" class="photo">
                                 <span class="helper"></span>
-                                
                                 <figure>
                                     <img src="{productImageUrl($product->getMainModImage())}" alt="{echo ShopCore::encode($product->getName())} - {echo $product->getId()}"/>
                                 </figure>
