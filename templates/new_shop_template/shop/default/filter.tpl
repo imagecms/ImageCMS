@@ -96,7 +96,7 @@
     <div class="filter">
         
         {//form for submiting checked filters}
-        <form name="brandsfilter" id="brandsfilter" method="get" action="{shop_url('category/'.$category->getFullPath())}">
+        <form id="filter" method="get" action="{shop_url('category/'.$category->getFullPath())}">
             
             {//hidden input for saving users order method}
             <input type="hidden" name="order" value="{echo ShopCore::$_GET['order']}">
@@ -111,7 +111,7 @@
                 {//meet slider}
                 <div class="sliderCont">
                     <div id="slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content">
-                        <img src="images/slider.png"/>
+                        <img src="{$SHOP_THEME}images/slider.png"/>
                         <div class="ui-slider-range ui-widget-header"></div>
                         <a href="#" class="ui-slider-handle" id="left_slider"></a>
                         <a href="#" class="ui-slider-handle" id="right_slider"></a>
@@ -123,17 +123,17 @@
                     <label>
                         
                         {//left price value}
-                        <input type="text" id="minCost" value="{if ShopCore::$_GET['lp'] && (int)ShopCore::$_GET['lp']>0 && (int)ShopCore::$_GET['lp']>(int)$priceRange.minCost}{echo ShopCore::$_GET['lp']}{else:}{echo (int)$priceRange.minCost}{/if}" data-title="только цифры"/>
+                        <input type="text" name="lp" id="minCost" value="{if ShopCore::$_GET['lp'] && (int)ShopCore::$_GET['lp']>0 && (int)ShopCore::$_GET['lp']>(int)$priceRange.minCost}{echo ShopCore::$_GET['lp']}{else:}{echo (int)$priceRange.minCost}{/if}" data-title="только цифры"/>
                     </label>
                     <span class="f-s_12">&ndash;</span>
                     <label>
                         
                         {//rigth price value}
-                        <input type="text" id="maxCost" value="{if ShopCore::$_GET['rp'] && (int)ShopCore::$_GET['rp']>0}{echo ShopCore::$_GET['rp']}{else:}{echo (int)$priceRange.maxCost}{/if}" data-title="только цифры"/>
+                        <input type="text" name="rp" id="maxCost" value="{if ShopCore::$_GET['rp'] && (int)ShopCore::$_GET['rp']>0}{echo ShopCore::$_GET['rp']}{else:}{echo (int)$priceRange.maxCost}{/if}" data-title="только цифры"/>
                     </label>
                     
                     {//button for submiting filter}
-                    <button type="submit" class="btn f-s_0"><span class="icon-filter"></span><span class="text-el">Подобрать</span></button>
+                    <button type="submit" class="btn f-s_0 filterSubmit"><span class="icon-filter"></span><span class="text-el">Подобрать</span></button>
                 </div>
             </div>
                     
@@ -142,7 +142,6 @@
                 <div class="boxFilter">
                     <div class="title">Бренды в категории</div>
                     <div class="clearfix check_form">
-                        
                         {//loop for which outputs all brands}
                         {foreach $brands as $br}
                             <div class="frameLabel">
@@ -151,7 +150,7 @@
                                     {//one brand checkbox input}
                                     <input type="checkbox" {if $br->countProducts == 0}disabled="disabled"{/if} id="brand_{echo $br->id}" name="brand[]" value="{echo $br->id}" type="checkbox" {if $br->countProducts !=0 && is_array(ShopCore::$_GET['brand']) && in_array($br->id, ShopCore::$_GET['brand'])}checked="checked"{/if}/>
                                 </span>
-                                <span>
+                                <span class="filterLable">
                                     
                                     {//displaying brand name}
                                     {echo $br->name}&nbsp;
@@ -198,7 +197,7 @@
                                         </span>
                                         
                                         {//displaying possible value}
-                                        <span>{echo $item.value}&nbsp;
+                                        <span class="filterLable">{echo $item.value}&nbsp;
                                             
                                             {//displaying possible value products count}
                                             <span>({if $item.count != 0 && is_array(ShopCore::$_GET['p'][$prop->property_id]) && !in_array($item.value, ShopCore::$_GET['p'][$prop->property_id])}+{/if}{echo $item.count})</span>
