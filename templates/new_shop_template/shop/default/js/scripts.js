@@ -106,7 +106,118 @@ jQuery(document).ready(function() {
         scrollNSP: true,
         scrollNSPT: '.items_catalog'
     };
+    (function($){
+        var methods = {
+            init : function(options) {
+                var settings = $.extend({
+                    item : 'ul > li',
+                    duration: 300,
+                    searchPath: "/shop/search/ac",
+                    inputString: $('#inputString')
+                }, options);
+                
+                $thisS = $(this);
+                itemA = settings.item;
+                durationA = settings.duration;
+                searchPath = settings.searchPath;
+                selectorPosition = -1;
+                inputString = settings.inputString.keyup(function(event){
+                    methods.lookup(event);
+                }).blur(function(){
+                    $thisS.fadeOut(durationA);
+                });
+            },
+            lookup: function(event){
+                try{
+                    var code = event.keyCode;
 
+                    if(code == 38 || code == 40)
+                    {
+                        if(code == 38)
+                        {
+                            selectorPosition -= 1;
+                        }
+                        if(code == 40)
+                        {
+                            selectorPosition += 1;
+                        }
+
+                        if(selectorPosition < 0)
+                        {
+                            selectorPosition = itemserch.length-1;
+                        }
+                        if(selectorPosition > itemserch.length-1)
+                        {
+                            selectorPosition = 0;
+                        }
+
+                        itemserch.each(function(i, el) {
+                            $(el).removeClass('selected');
+                            if(i == selectorPosition)
+                            {
+                                $(el).addClass('selected');
+                            }
+                        });
+
+                        return false;
+                    }
+
+                    // Enter pressed
+                    if (code == 13)
+                    {
+                        itemserch.each(function(i, el) {
+                            if($(el).hasClass('selected'))
+                            {
+                                window.location = $(el).attr('href');
+                                window.location = $(el).find('a').attr('href');
+                            }
+                        });
+                    }
+                }
+                catch(err){}
+                
+                if(inputString.val().length == 0)
+                {
+                    $thisS.fadeOut(durationA);
+                }
+                else
+                {
+                    $.post(searchPath, {
+                        queryString: inputString.val()
+                    }, function(data) {
+                        $thisS.fadeIn(durationA);
+                        try {
+                            var dataObj = JSON.parse(data);
+                            var html = _.template($('#searchResultsTemplate').html(), {'items' : dataObj});
+                        } catch (e){
+                            var html = e.toString();
+                            
+                        }
+                        $thisS.html(html);
+                        selectorPosition = -1;
+
+                        itemserch = $thisS.find(itemA);
+                        itemserch.each(function(i, el) {
+                            $(el).mouseover(function(){
+                                itemserch.removeClass('selected');
+                                $(this).addClass('selected');
+                                selectorPosition = i;
+                            });
+                        });
+                    });
+                }
+            }
+        }
+        $.fn.autocomlete = function( method ) {
+            if ( methods[method] ) {
+                return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ));
+            } else if ( typeof method === 'object' || ! method ) {
+                return methods.init.apply( this, arguments );
+            } else {
+                $.error( 'Method ' +  method + ' does not exist on jQuery.autocomlete');
+            }
+        };
+    })(jQuery);
     (function($) {
         var methods = {
             init: function(options) {
@@ -1193,13 +1304,14 @@ jQuery(document).ready(function() {
             'z-index': fr_lab_l - index
         })
     });
-    $('.frameLabel').has('.niceCheck.b_n').on('click', function() {
-        var input = $(this).find('input').not('[disabled=disabled]');
-        if (input.is(':checked'))
-            input.attr('checked', false);
-        else
-            input.attr('checked', true);
-    })
+//    $('.frameLabel').has('.niceCheck.b_n').on('click', function() {
+//        var input = $(this).find('input').not('[disabled=disabled]');
+//        if (input.is(':checked'))
+//            input.attr('checked', '');
+//        else
+//            input.attr('checked', 'checked');
+//    })
+    $('#suggestions').autocomlete();
 });
 wnd.load(function() {
     if ($('.cycle li').length > 1) {
@@ -1286,8 +1398,12 @@ wnd.load(function() {
     })
 });
 /*початкові зміні для слайдера*/
-def_min = 0;
-def_max = 10000;
-cur_min = 0;
-cur_max = 8000;
+//def_min = 0;
+//def_max = 10000;
+//cur_min = 0;
+//cur_max = 8000;
+def_min = $('span#opt1').data('def_min');
+def_max = $('span#opt2').data('def_max');
+cur_min = $('span#opt3').data('cur_min');
+cur_max = $('span#opt4').data('cur_max');
 /**/
