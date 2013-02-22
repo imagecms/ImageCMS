@@ -1,5 +1,6 @@
 {$forCompareProducts = $CI->session->userdata('shopForCompare')}
 {$cart_data = ShopCore::app()->SCart->getData()}
+{$Comments = $CI->load->module('comments')->init($products)}
 <article>
     <div class="crumbs" xmlns:v="http://rdf.data-vocabulary.org/#">
         <span typeof="v:Breadcrumb">
@@ -135,9 +136,8 @@
                                     <img src="/templates/new_shop_template/shop/default/images/temp/STAR.png"/>
                                 </div>
                                 <!--    Star reiting    -->
-                                <a href="{shop_url('product/'.$product->id.'#four')}" class="count_response">                                    
-                                    {totalComments($product->getid())}
-                                    {echo SStringHelper::Pluralize((int)totalComments($product->getid()), array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}
+                                <a href="{shop_url('product/'.$product->id.'#cc')}" class="count_response">                                    
+                                    {echo $Comments[$product->getId()]}
                                 </a>
                             </div>
                             <a href="{shop_url('product/' . $product->geturl())}">{echo ShopCore::encode($product->getname())}</a>

@@ -4,8 +4,6 @@
     </label>
 {/if}
 
-<div id="error_text" name="error_text"></div>
-
 {if $can_comment == 0 OR $is_logged_in}
     <div id="comment__icsi-css">
         <div class="frame-comments__icsi-css">
@@ -17,13 +15,13 @@
                         <label>
                             <span class="title__icsi-css">{lang('lang_comment_author')}</span>
                             <span class="frame_form_field__icsi-css">
-                                <input type="text" required name="comment_author" id="comment_author" value="{get_cookie('comment_author')}"/>
+                                <input type="text" name="comment_author" id="comment_author" value="{get_cookie('comment_author')}"/>
                             </span>
                         </label>
                         <label>
                             <span class="title__icsi-css">{lang('lang_comment_email')}</span>
                             <span class="frame_form_field__icsi-css">
-                                <input type="text" required name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
+                                <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
                             </span>
                         </label>
                         <label>
@@ -62,7 +60,7 @@
                     <label>
                         <span class="title__icsi-css">{lang('s_text_comment_one')}</span>
                         <span class="frame_form_field__icsi-css">
-                            <textarea name="comment_text" id="comment_text" required>{$_POST.comment_text}</textarea>
+                            <textarea name="comment_text" id="comment_text">{$_POST.comment_text}</textarea>
                         </span>
                     </label>
                     <!-- If you want get plus and minus for products - uncoment it
@@ -82,13 +80,15 @@
                     {if $use_captcha}
                         <label>
                             <span class="title__icsi-css">{lang('lang_captcha')}</span>
-                        {$cap_image}
+                            {$cap_image}
                             <span class="frame_form_field__icsi-css">
-                                <input type="text" required name="captcha" id="captcha"/>
+                                <input type="text" name="captcha" id="captcha"/>
                             </span>
                         </label>
                     {/if}
 
+                    <div class="frameLabel__icsi-css" id="error_text" name="error_text"></div>
+                    
                     <div class="frameLabel__icsi-css">
                         <span class="title__icsi-css">&nbsp;</span>
                         <span class="frame_form_field__icsi-css">
@@ -301,7 +301,7 @@
                         el.parent().toggleClass('active');
                     },
                     after: function(el, elInserted) {
-                        $(elInserted).find('input[name=comment_parent]').val( el.data('parid'));
+                        $(elInserted).find('input[name=comment_parent]').val(el.data('parid'));
                         $('form').submit(function() {
                             return false;
                         });
