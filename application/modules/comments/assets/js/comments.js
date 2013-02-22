@@ -23,7 +23,7 @@ function renderPosts($this)
             
             if (obj.total_comments !== 0) {
                 $('#cc').html('');
-                $('#cc').append("Всего комментариев: " + obj.total_comments);
+                $('#cc').append(obj.total_comments);
             }
         }
     });
