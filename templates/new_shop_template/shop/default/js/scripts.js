@@ -161,13 +161,13 @@ jQuery(document).ready(function() {
             'z-index': fr_lab_l - index
         })
     });
-    $('.frameLabel').has('.niceCheck.b_n').on('click', function() {
-        var input = $(this).find('input').not('[disabled=disabled]');
-        if (input.is(':checked'))
-            input.attr('checked', false);
-        else
-            input.attr('checked', true);
-    })
+//    $('.frameLabel').has('.niceCheck.b_n').on('click', function() {
+//        var input = $(this).find('input').not('[disabled=disabled]');
+//        if (input.is(':checked'))
+//            input.attr('checked', false);
+//        else
+//            input.attr('checked', true);
+//    })
     $('#suggestions').autocomlete();
 });
 wnd.load(function() {
@@ -254,7 +254,7 @@ wnd.load(function() {
         $('.menu-main').menuPacket2('refresh');
     })
 });
-/*початкові зміні для слайдера*/
+/*РїРѕС‡Р°С‚РєРѕРІС– Р·РјС–РЅС– РґР»СЏ СЃР»Р°Р№РґРµСЂР°*/
 def_min = $('span#opt1').data('def_min');
 def_max = $('span#opt2').data('def_max');
 cur_min = $('span#opt3').data('cur_min');

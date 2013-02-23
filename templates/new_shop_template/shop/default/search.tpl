@@ -56,8 +56,14 @@
                                         {$count_item = $categorys[$subItem->getId()];}
                                         {if $count_item}
                                             <li{if $_GET['category'] && $_GET['category'] == $subItem->getId()} class="active"{/if}>
-                                                <a href="{shop_url('search?text='.$_GET['text'].'&category='.$subItem->getId())}">{echo $subItem->getName()}</a> 
-                                                <span class="count">({echo $count_item})</span>
+                                                <span>
+                                                    {if $_GET['category'] && $_GET['category'] == $subItem->getId()}
+                                                        {echo $subItem->getName()}
+                                                    {else:}
+                                                        <a href="{shop_url('search?text='.$_GET['text'].'&category='.$subItem->getId())}">{echo $subItem->getName()}</a>     
+                                                    {/if}
+                                                    <span class="count">({echo $count_item})</span>
+                                                </span>
                                             </li>
                                         {/if}
                                     {/foreach}
@@ -103,10 +109,11 @@
                                         <button type="button" class="btn"><span class="icon-cat_list"></span>Списком</button>
                                     </div>
                                 </div>
-                
+                                
                     <!-- Product block -->
                     <ul class="items items_catalog" data-radio-frame>
-                        {foreach $products as $p}
+                            {$Comments = $CI->load->module('comments')->init($products)}
+                            {foreach $products as $p}
                             {$discount = ShopCore::app()->SDiscountsManager->productDiscount($p->id)}
                             {$style = productInCart($cart_data, $p->getId(), $p->firstVariant->getId(), $p->firstVariant->getStock())}
                             <li class="span3 {if $p->firstvariant->getstock()==0} not-avail{/if}">
@@ -114,6 +121,7 @@
                                     <div class="frame_response">
                                         <div class="star">
                                            {$CI->load->module('star_rating')->show_star_rating($p)}
+                                           {echo $Comments[$p->getId()]}
                                         </div>
                                     </div>
                                    <a href="{shop_url('product/'.$p->getUrl())}">{echo ShopCore::encode($p->getName())}</a>
