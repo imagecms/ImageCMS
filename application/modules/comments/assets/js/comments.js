@@ -1,7 +1,7 @@
 function renderPosts($this)
 {
     $.ajax({
-        url: "/comments/api/renderPosts",
+        url: "/comments/commentsapi/renderPosts",
         dataType: "json",
         type: "post",
         success: function(obj) {
@@ -32,7 +32,7 @@ function renderPosts($this)
 function post($this)
 {
     $.ajax({
-        url: "/comments/api/newPost",
+        url: "/comments/commentsapi/newPost",
         data: $($this).closest('form').serialize() +
                 '&action=newPost',
         dataType: "json",

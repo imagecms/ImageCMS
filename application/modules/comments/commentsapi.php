@@ -2,7 +2,7 @@
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
-class Api extends Comments {
+class Commentsapi extends Comments {
 
     public $tpl_name = 'comments_api';
     public $period = 5;      // Post comment period in minutes. If user is unregistered, check will be made by ip address. 0 - To disable this method.
@@ -17,10 +17,6 @@ class Api extends Comments {
     public function __construct() {
         parent::__construct();
         $this->load->module('core');
-    }
-
-    public function index() {
-//        return FALSE;
     }
 
     private function init_settings() {

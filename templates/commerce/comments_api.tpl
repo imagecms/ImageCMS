@@ -256,7 +256,7 @@
                         type: "POST",
                         data: "comid=" + comid,
                         dataType: "json",
-                        url: '/comments/api/setyes',
+                        url: '/comments/commentsapi/setyes',
                         success: function(obj) {
                             $('#yesholder' + comid).html("(" + obj.y_count + ")");
                         }
@@ -268,7 +268,7 @@
                         type: "POST",
                         data: "comid=" + comid,
                         dataType: "json",
-                        url: '/comments/api/setno',
+                        url: '/comments/commentsapi/setno',
                         success: function(obj) {
                             $('#noholder' + comid).html("(" + obj.n_count + ")");
                         }
