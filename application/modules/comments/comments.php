@@ -36,14 +36,14 @@ class Comments extends MY_Controller {
         \CMSFactory\assetManager::create()->registerScript('comments');
         
         if ($model instanceof SProducts) {
-            $productsCount = $this->load->module('comments/api')->getTotalCommentsForProducts($model->getId());
+            $productsCount = $this->load->module('comments/commentsapi')->getTotalCommentsForProducts($model->getId());
         } else {
             $ids = array();
 
             foreach ($model as $id)
                 $ids[] = $id->getId();
 
-            $productsCount = $this->load->module('comments/api')->getTotalCommentsForProducts($ids);
+            $productsCount = $this->load->module('comments/commentsapi')->getTotalCommentsForProducts($ids);
         }
         return $productsCount;
     }

@@ -11,7 +11,12 @@
         <div class="span6">
         {if $CI->session->flashdata('makeOrder') === true}<h1 class="d_i v-a_m m-r_45">{lang('s_thank_order')}</h1>{/if}
         <div class="frameGroupsForm">
-            <div class="header_title">{lang('s_order_data')}<a href="{site_url()}shop/profile" class="btn btn_cart v-a_m">{lang('s_go_profile')}</a></div>
+            <div class="header_title">
+                {lang('s_order_data')}
+                <a href="{site_url()}shop/profile" class="btn btn_cart v-a_m">
+                    {lang('s_go_profile')}
+                </a>
+            </div>
             <div class="inside_padd">
                 <table class="tableOrderData">
                     <tr>
@@ -20,7 +25,7 @@
                     </tr>
                     <tr>
                         <th>{lang('s_status')}:</th>
-                        <td>{echo SOrders::getStatusName('Id',$model->getStatus())} {if $model->getDeliveryMethod() > 0}</td>
+                        <td>{echo SOrders::getStatusName('Id', $model->getStatus())} {if $model->getDeliveryMethod() > 0}</td>
                     </tr>
                     {if $model->getGiftCertKey() != null}
                         <tr>
