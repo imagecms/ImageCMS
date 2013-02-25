@@ -263,11 +263,19 @@ var Shop = {
         add: function(key){
             this.items = JSON.parse( localStorage.getItem('shopSettings'))?JSON.parse( localStorage.getItem('shopSettings')):[];
             console.log(this.items);
-            //if (this.items)
-                if ((key in this.items) ){
-                    this.items.push(key)
-                    localStorage.setItem('shopSettings', JSON.stringify(this.items));
-                }
+            if ( (key in this.items) ){
+                this.items.push(key);
+                localStorage.setItem('shopSettings', JSON.stringify(this.items));
+            }
+        },
+        
+         rm: function(key){
+            this.items = JSON.parse( localStorage.getItem('shopSettings'))?JSON.parse( localStorage.getItem('shopSettings')):[];
+            console.log(this.items);
+            if ((key in this.items) ){
+                this.items = _.without(this.items, key);
+                localStorage.setItem('shopSettings', JSON.stringify(this.items));
+            }
         }
     }
     
