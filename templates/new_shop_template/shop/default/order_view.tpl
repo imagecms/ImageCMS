@@ -1,22 +1,13 @@
-
 <article>
-    <div class="crumbs" xmlns:v="http://rdf.data-vocabulary.org/#">
-        <span typeof="v:Breadcrumb">
-            <a href="#" rel="v:url" property="v:title">Главная</a>
-        </span>/
-        <span typeof="v:Breadcrumb">
-            <span rel="v:url" property="v:title">Сравнение товаров</span>
-        </span>
-    </div>
     <div class="">
         {if $CI->session->flashdata('makeOrder') === true}
             <h1 class="d_i v-a_m m-r_45">
                 {lang('s_thank_order')}
             </h1>
-            <a href="{site_url()}shop/profile" class="btn btn_cart v-a_m">
-                {lang('s_go_profile')}
-            </a>
         {/if}
+        <a href="{site_url()}shop/profile" class="btn btn_cart v-a_m">
+            {lang('s_go_profile')}
+        </a>
         <div class="row-fluid">
             <div class="frameGroupsForm span5">
                 <div class="header_title">{lang('s_order_data')}</div>
@@ -46,15 +37,22 @@
                             <th>{lang('s_dostavka')}:</th>
                             <td>{echo $model->getSDeliveryMethods()->getName()}{/if}</td>
                         </tr>
-                        <tr class="b_n">
-                            <th></th>
+                        {if $model->getPaid() != true}
+                            <tr class="b_n">
+                                <th>
+                                </th>
                                 {foreach $paymentMethods as $pm}
-                                <td>
-                                    <button type="button" class="btn btn_buy">{lang('s_pay')}</button>
-                                    <p class="m-t_10"><em class="c_97">{echo $pm->getDescription()}</em></p>
-                                </td>
-                            {/foreach}
-                        </tr>
+                                    <td>
+                                        <button type="button" class="btn btn_buys">
+                                            {lang('s_pay')}
+                                        </button>
+                                        <p class="m-t_10">
+                                            <em class="c_97">{echo $pm->getDescription()}</em>
+                                        </p>
+                                    </td>
+                                {/foreach}
+                            </tr>
+                        {/if}
                     </table>
                 </div>
             </div>
@@ -81,7 +79,62 @@
                                     {$variant = $v}
                                 {/if}
                             {/foreach}
+                            <!-- Start. Render kit -->
+                            {//if $item->getKitId() > 0}
+                            <tr>
+                                <td colspan="4">
+                                    <ul class="items items_catalog">
+                                        <li>
+                                            <ul class="items items_middle">
+                                                <!-- Start. Main product -->
+                                                <li class="span4">
+                                                    <div class="item_set">
+                                                        <div class="description">
+                                                            <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
+                                                            <div class="price price_f-s_16"><span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span></div>
+                                                        </div>
+                                                        <a href="#" class="photo">
+                                                            <span class="helper"></span>
+                                                            <figure>
+                                                                <img src="images/temp/item_middle.png" alt="Apple MacBook Pro A1286"/>
+                                                            </figure>
+                                                        </a>
+                                                    </div>
+                                                    <div class="d_i-b">+</div>
+                                                </li>
+                                                <!-- End. Main product -->
 
+                                                <!-- Start. Kit product -->
+                                                <li class="span4">
+                                                    <div class="item_set">
+                                                        <div class="description">
+                                                            <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
+                                                            <div class="price price_f-s_16">
+                                                                <span class="d_b old_price"><span class="f-w_b">5000</span> грн.</span>
+                                                                <span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span>
+                                                            </div>
+                                                        </div>
+                                                        <a href="#" class="photo">
+                                                            <span class="helper"></span>
+                                                            <figure>
+                                                                <img src="images/temp/item_middle.png" alt="Apple MacBook Pro A1286"/>
+                                                            </figure>
+                                                        </a>
+                                                        <span class="top_tovar discount">-5%</span>
+                                                    </div>
+                                                    <div class="d_i-b">+</div>
+                                                </li>
+                                                <!-- End. Kit product -->
+                                            </ul>
+                                            <img src="/templates/new_shop_template/shop/default/images/gen_sum.png"/>
+                                            <div class="c_97">(Количество комплектов - 1)</div>
+                                            <div class="price price_f-s_18"><span class="f-w_b">30000</span> грн.</div>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            {//if}
+                        <!-- End. Render kit -->
                             <tr>
                                 <td class="v-a_m">
                                     <a href="{shop_url('product/' . $product->getUrl())}" class="photo">
@@ -127,63 +180,8 @@
                                     </div>
                                 </td>
                             </tr>
-                            <!-- Start. Render kit -->
-                            {//if $item->getKitId() > 0}
-                            <tr>
-                                <td colspan="4">
-                                    <ul class="items items_catalog">
-                                        <li>
-                                            <ul class="items items_middle">
-                                                <!-- Start. Main product -->
-                                                <li class="span4">
-                                                    <div class="item_set">
-                                                        <div class="description">
-                                                            <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
-                                                            <div class="price price_f-s_16"><span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span></div>
-                                                        </div>
-                                                        <a href="#" class="photo">
-                                                            <span class="helper"></span>
-                                                            <figure>
-                                                                <img src="images/temp/item_middle.png" alt="Apple MacBook Pro A1286"/>
-                                                            </figure>
-                                                        </a>
-                                                    </div>
-                                                    <div class="d_i-b">+</div>
-                                                </li>
-                                                <!-- End. Main product -->
-                                                
-                                                <!-- Start. Kit product -->
-                                                <li class="span4">
-                                                    <div class="item_set">
-                                                        <div class="description">
-                                                            <a href="#">Apple MacBook Pro A1286 Apple MacBook Pro A1286 Apple MacBook Pro A1286</a>
-                                                            <div class="price price_f-s_16">
-                                                                <span class="d_b old_price"><span class="f-w_b">5000</span> грн.</span>
-                                                                <span class="f-w_b">99999</span> грн.&nbsp;&nbsp;<span class="second_cash">(859 $)</span>
-                                                            </div>
-                                                        </div>
-                                                        <a href="#" class="photo">
-                                                            <span class="helper"></span>
-                                                            <figure>
-                                                                <img src="images/temp/item_middle.png" alt="Apple MacBook Pro A1286"/>
-                                                            </figure>
-                                                        </a>
-                                                        <span class="top_tovar discount">-5%</span>
-                                                    </div>
-                                                    <div class="d_i-b">+</div>
-                                                </li>
-                                                <!-- End. Kit product -->
-                                            </ul>
-                                            <img src="/templates/new_shop_template/shop/default/images/gen_sum.png"/>
-                                            <div class="c_97">(Количество комплектов - 1)</div>
-                                            <div class="price price_f-s_18"><span class="f-w_b">30000</span> грн.</div>
-                                        </li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            {//if}
+
                         {/foreach}
-                        <!-- End. Render kit -->
                         <!-- End. Rendering produts list   -->
                     </tbody>
                     <tfoot>
