@@ -104,7 +104,7 @@
     <div class="filter">
         
         {//form for submiting checked filters}
-        <form id="filter" method="get" action="{shop_url('category/'.$category->getFullPath())}">
+        <form id="filter" method="get" action="">
             
             {//hidden input for saving users order method}
             <input type="hidden" name="order" value="{echo ShopCore::$_GET['order']}">
