@@ -99,15 +99,13 @@
                         {/if}
                     {/if}
                     <span id="pricem{echo $model->getId()}">                       
-                        {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                            {$prOne = $model->firstVariant->getPrice()}
-                            {$prTwo = $model->firstVariant->getPrice()}
-                            {$prThree = $prOne - $prTwo / 100 * $discount}
-                            <del class="price price-c_red f-s_12 price-c_9">{echo $model->firstVariant->getPrice()} {$CS}</del> 
-                        {else:}
-                            {$prThree = $model->firstVariant->getPrice()}
+                        {if $model->hasDiscounts()}
+                            <del class="price price-c_red f-s_12 price-c_9">
+                                {echo $model->firstVariant->toCurrency('OrigPrice')} {$CS}
+                            </del> 
+                            <br />
                         {/if}
-                        {echo money_format('%i',$prThree)} <sub>{$CS}</sub>
+                        {echo $model->firstVariant->toCurrency()} <sub>{$CS}</sub>
                     </span>
                 </div>
             </div>
@@ -118,10 +116,10 @@
                 {if count($model->getProductVariants()) > 1}
                     Выбор варианта:</br>
                     {foreach $model->getProductVariants() as $key => $pv}
-                        
+
                         <input type="radio" class="selectVar" id="sVar{echo $pv->getId()}" name="selectVar" {if $model->firstVariant->getId() == $pv->getId()}checked="checked"{/if}
-                               {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                   discount="{echo $discount}" 
+                               {if $model->hasDiscounts()}
+                                   discount="{echo $model->firstvariant->toCurrency('OrigPrice')}" 
                                {/if}
                                value="{echo $pv->getId()}" 
                                data-pp="1" 
@@ -217,18 +215,22 @@
                     <img src="{$SHOP_THEME}images/buy.png">
                     <div>
                         <div class="title">{lang('s_pay')} <span><a href="/oplata">{lang('s_all_infor_b')}</a></span></div>
-                        {foreach $payment_methods as $methods}
-                        {if $methods.active ==1}<span class="small_marker">{echo $methods.name}</span>{/if}
-                    {/foreach}
+                        {if is_array($paymentMethod = getPaymentMethodsList())}
+                            {foreach $paymentMethod as $methods}
+                            {if $methods.active ==1}<span class="small_marker">{echo $methods.name}</span>{/if}
+                        {/foreach}
+                    {/if}
                 </div>
             </li>
             <li>
                 <img src="{$SHOP_THEME}images/deliver.png">
                 <div>
                     <div class="title">{lang('s_delivery1')} <span><a href="/dostavka">{lang('s_all_infor_b')}</a></span></div>
-                    {foreach $delivery_methods as $methods}
-                    {if $methods.enabled ==1}<span class="small_marker">{echo $methods.name}</span>{/if}
-                {/foreach}
+                    {if is_array($deliveryMethod = getDeliveryMethodsList())}
+                        {foreach $deliveryMethod as $methods}
+                        {if $methods.enabled ==1}<span class="small_marker">{echo $methods.name}</span>{/if}
+                    {/foreach}
+                {/if}
             </div>
         </li>
     </ul>
@@ -403,42 +405,37 @@
     </div>
 {/if}   
 
-{if count(getSimilarProduct($model)) > 1}
+{if count($simprod = getSimilarProduct($model)) > 1}
     <div class="featured carusel_frame carousel_js">
         <div class="f-s_18 c_6 center">{lang('s_similar_product')}</div>
         <div class="carusel">
             <ul>
-                {$simprod = getSimilarProduct($model)}
                 {foreach $simprod as $sp}
-                    {$discount = ShopCore::app()->SDiscountsManager->productDiscount($sp['ProductId'])}
-                    {$sim_prod = currency_convert($sp['price'], $sp['currency'])}
-                    {$style = productInCart($cart_data, $sp['ProductId'], $sp['ProductId'], $sp['stock'])}
+                    {$style = productInCart($cart_data, $sp->getId(), $sp->getId(), $sp->firstVariant->getStock())}
                     <li>
-                        <div class="smallest_item {if $sp['stock']==0}not_avail{/if}">
+                        <div class="smallest_item {if $sp->firstVariant->getStock()==0}not_avail{/if}">
                             <div class="photo_block">
-                                <a href="{site_url('shop/product/'.$sp['url'])}">
-                                    <img src="{productImageUrl($sp['smallModImage'])}"/>
+                                <a href="{site_url('shop/product/'.$sp->getUrl())}">
+                                    <img src="{productImageUrl($sp->getSmallModImage())}"/>
                                 </a>
                             </div>
                             <div class="func_description">
-                                <a href="{site_url('shop/product/'.$sp['url'])}" class="title">{echo ShopCore::encode($sp['name'])}</a>
+                                <a href="{site_url('shop/product/'.$sp->getUrl())}" class="title">{echo ShopCore::encode($sp->getName())}</a>
                                 <div class="buy">
                                     <div class="price f-s_14">
-                                        {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                            {$prOne = $sim_prod.main.price}
-                                            {$prTwo = $sim_prod.main.price}
-                                            {$prThree = $prOne - $prTwo / 100 * $discount}
-                                            <del class="price price-c_red f-s_12 price-c_9">{echo money_format('%i', $sim_prod.main.price)} {$sim_prod.main.symbol}</del><br /> 
-                                        {else:}
-                                            {$prThree = $sim_prod.main.price}
+                                        {if $sp->hasDiscounts()}
+                                            <del class="price price-c_red f-s_12 price-c_9">
+                                                {echo $sp->firstVariant->toCurrency('OrigPrice')} {$CS}
+                                            </del>
+                                            <br /> 
                                         {/if}
 
-                                        {echo money_format('%i', $prThree)}
-                                        <sub>{$sim_prod.main.symbol}</sub>
+                                        {echo $sp->firstVariant->toCurrency()}
+                                        <sub>{$CS}</sub>
 
                                     </div>                                                                             
                                     <div class="{$style.class} buttons">                                            
-                                        <a class="{$style.identif}" href="{$style.link}" data-varid="{echo $sp['VariandId']}"  data-prodid="{echo $sp['ProductId']}" >{$style.message}</a>
+                                        <a class="{$style.identif}" href="{$style.link}" data-varid="{echo $sp->firstVariant->getId()}"  data-prodid="{echo $sp->getId()}" >{$style.message}</a>
                                     </div>
                                 </div>
                             </div>
