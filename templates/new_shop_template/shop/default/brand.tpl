@@ -3,74 +3,7 @@
 {$Comments = $CI->load->module('comments')->init($products)}
 <article>
     <div class="row">
-        <aside class="span3">
-            <div class="checked_filter">
-                <div class="title">245 товаров с фильтрами:</div>
-                <ul>
-                    <li><span class="times">&times;</span><div class="o_h">Apple Apple Apple AppleApple Apple Apple</div></li>
-                    <li><span class="times">&times;</span><div class="o_h">Samsung</div></li>
-                    <li><span class="times">&times;</span><div class="o_h">Dell</div></li>
-                </ul>
-                <a href="#"><span class="icon-return"></span>Сбросить все фильтры</a>
-            </div>
-            <div class="filter">
-                <form method="post" action="">
-                    <div class="boxFilter">
-                        <div class="title">Цена</div>
-                        <div class="sliderCont">
-                            <div id="slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content">
-                                <img src="images/slider.png"/>
-                                <div class="ui-slider-range ui-widget-header"></div>
-                                <a href="#" class="ui-slider-handle" id="left_slider"></a>
-                                <a href="#" class="ui-slider-handle" id="right_slider"></a>
-                            </div>
-                        </div>
-                        <div class="formCost t-a_j">
-                            <label><input type="text" id="minCost" value="0" data-title="только цифры"/></label>
-                            <span class="f-s_12">&ndash;</span>
-                            <label><input type="text" id="maxCost" value="8000" data-title="только цифры"/></label>
-                            <input type="submit" value="Подобрать" class="btn"/>
-                        </div>
-                    </div>
-                    <div class="boxFilter">
-                        <div class="title">Производитель</div>
-                        <div class="clearfix check_form">
-                            <label class="disabled"><input type="checkbox" disabled="disabled"/><span>Philips <span>(14)</span></span></label>
-                            <label><input type="checkbox"/><span>Dex <span>(15)</span></span></label>
-                            <label><input type="checkbox"/><span>Hyundai <span>(15)</span></span></label>
-                            <label><input type="checkbox"/><span>LG <span>(15)</span></span></label>
-                            <label><input type="checkbox"/><span>Panasonic <span>(15)</span></span></label>
-                            <label><input type="checkbox"/><span>Philips <span>(15)</span></span></label>
-                            <label><input type="checkbox"/><span>Samsung <span>(15)</span></span></label>
-                            <label><input type="checkbox"/><span>Sanyo <span>(15)</span></span></label>
-                            <label><input type="checkbox"/><span>Sharp <span>(15)</span></span></label>
-                            <label><input type="checkbox"/><span>Sony <span>(15)</span></span></label>
-                            <label><input type="checkbox"/><span>Supra <span>(15)</span></span></label>
-                            <label><input type="checkbox"/><span>Thompson <span>(15)</span></span></label>
-                            <label><input type="checkbox"/><span>Toshiba <span>(15)</span></span></label>
-                        </div>
-                    </div>
-                    <div class="boxFilter">
-                        <div class="title">Производитель</div>
-                        <div class="clearfix check_form">
-                            <label class="disabled"><input type="checkbox" disabled="disabled"/><span>Philips <span>(14)</span></span></label>
-                            <label><input type="checkbox"/><span>Dex <span>(15)</span></span></label>
-                            <label><input type="checkbox"/><span>Hyundai <span>(15)</span></span></label>
-                            <label><input type="checkbox"/><span>LG <span>(15)</span></span></label>
-                            <label><input type="checkbox"/><span>Panasonic <span>(15)</span></span></label>
-                            <label><input type="checkbox"/><span>Philips <span>(15)</span></span></label>
-                            <label><input type="checkbox"/><span>Samsung <span>(15)</span></span></label>
-                            <label><input type="checkbox"/><span>Sanyo <span>(15)</span></span></label>
-                            <label><input type="checkbox"/><span>Sharp <span>(15)</span></span></label>
-                            <label><input type="checkbox"/><span>Sony <span>(15)</span></span></label>
-                            <label><input type="checkbox"/><span>Supra <span>(15)</span></span></label>
-                            <label><input type="checkbox"/><span>Thompson <span>(15)</span></span></label>
-                            <label><input type="checkbox"/><span>Toshiba <span>(15)</span></span></label>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </aside>
+        {include_tpl('filter')}
         <div class="span9 right">
             <h1 class="d_i">{echo ShopCore::encode($model->getName())}
                 {if ShopCore::$_GET['categoryId'] != ''}
