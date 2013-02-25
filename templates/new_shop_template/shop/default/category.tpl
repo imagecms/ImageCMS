@@ -5,12 +5,13 @@
 *   $category: (object) instance of SCategory
 *       $category->getDescription(): method which returns category description 
 *       $category->getNmae(): method which returns category name according to currenct locale
-*   $products - PropelObjectCollection of (object)s instance of SProducts 
+*   $products: PropelObjectCollection of (object)s instance of SProducts 
 *       $product->firstVariant: variable which contains the first variant of product
 *       $product->firstVariant->toCurrency(): method which returns price according to current currencya and format    
-*   $totalProducts - integer contains products count
-*   $pagination - string variable contains html code for displaying pagination
-*   $pageNumber - integer variable contains the current page number
+*   $totalProducts: integer contains products count
+*   $pagination: string variable contains html code for displaying pagination
+*   $pageNumber: integer variable contains the current page number
+*   $banners: array of (object)s of SBanners which have to be displayed in current page
 */
 #}
 

@@ -360,4 +360,6 @@ $lang['s_add_to_compare'] = 'add to compare';
 $lang['s_add_to_wish_list'] = 'add to wish list';
 $lang['s_brands_in_cat'] = 'Brands in category';
 $lang['s_just_numeric'] = 'only numbers';
+$lang['s_description'] = 'Description';
+$lang['s_properties_in_cat'] = 'Properties';
 /* End of file main_lang.php */
