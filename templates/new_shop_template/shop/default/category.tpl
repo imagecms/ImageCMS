@@ -34,9 +34,9 @@
 
     {widget('path')}
     {//Block for bread crumbs with a call of shop_helper function to create it according to category model}
-    <div class="crumbs" xmlns:v="http://rdf.data-vocabulary.org/#">
+    {/*}<div class="crumbs" xmlns:v="http://rdf.data-vocabulary.org/#">
         {//echo makeBreadCrumbs($category)}
-    </div>
+    </div>{ */}
 
     {//main category page content}
     <div class="row">
