@@ -429,9 +429,12 @@ class Commentsapi extends Comments {
         $this->db->where('status', $status);
         $this->db->where('module = ', 'shop');
         $query = $this->db->get('comments');
-        if ($query) {
-            $query = $query->result_array();
-            $result = array();
+        if($query)
+                $query = $query->result_array();
+        else
+            $query = array();
+
+        $result = array();
 
             foreach ($query as $q)
                 $result[$q['item_id']] = $q['count'] . ' ' . SStringHelper::Pluralize((int) $q['count'], array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')));
