@@ -423,16 +423,15 @@ class Commentsapi extends Comments {
     }
 
     public function getTotalCommentsForProducts($ids, $status = 0) {
+        if ($ids == null)
+            return;
+
         $this->db->select('item_id, COUNT(comments.id) AS `count`');
         $this->db->group_by('item_id');
         $this->db->where_in('item_id', $ids);
         $this->db->where('status', $status);
         $this->db->where('module = ', 'shop');
         $query = $this->db->get('comments');
-        if ($query)
-            $query = $query->result_array();
-        else
-            $query = array();
 
         $result = array();
 
