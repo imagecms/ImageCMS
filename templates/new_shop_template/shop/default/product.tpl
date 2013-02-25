@@ -23,12 +23,12 @@
                             </a>                                
                         </li>                   
                         <!--block additional images-->
-                        {if sizeof($model->getSProductImagess()) > 0}
-                            {foreach $model->getSProductImagess() as $key => $image}
+                        {if sizeof($productImages = $model->getSProductImagess()) > 0}
+                            {foreach $productImages as $key => $image}
                                 <li>
                                     <a rel="group" href="{echo $image->getThumbUrl()}">   
                                         <figure>
-                                            <img src="{echo $image->getThumbUrl()}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
+                                            <img src="{productImageUrl($image->getImageName())}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
                                         </figure>
                                     </a>                                
                                 </li>
@@ -59,9 +59,9 @@
                                             {foreach $model->getProductVariants() as $key => $pv}
                                                 <option value="{echo $pv->getId()}">
                                                     {if $pv->getName()}
-                                                        {echo $pv->getName()}
+                                                        {echo ShopCore::encode($pv->getName())}
                                                     {else:}
-                                                        {echo $model->getName()}
+                                                        {echo ShopCore::encode($model->getName())}
                                                     {/if}
                                                 </option>
                                             {/foreach}
@@ -75,7 +75,7 @@
                             {if $pv->getMainImage()}{$mainImage = $pv->getMainImage()}{else:}{$mainImage = $model->getMainimage()}{/if}
                             <span class="variant_{echo $pv->getId()}" 
                                   data-id="{echo $pv->getId()}"
-                                  data-name="{echo $pv->getName()}"
+                                  data-name="{echo ShopCore::encode($pv->getName())}"
                                   data-price="{echo $pv->toCurrency()}"
                                   data-number="{echo $pv->getNumber()}"
                                   data-origPrice="{if $model->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
@@ -118,10 +118,10 @@
                         data-name - name product
                         these are the main four options for the button to "buy"
                         -->
-                        <button  class="btn btn_buy variant" type="button" data-prodid="{echo $model->getId()}" data-varid="{echo $model->firstVariant->getId()}" data-price="{echo $model->firstVariant->getPrice()}" data-name="{echo $model->getName()}">{lang('s_buy')}</button>
+                        <button  class="btn btn_buy variant" type="button" data-prodid="{echo $model->getId()}" data-varid="{echo $model->firstVariant->getId()}" data-price="{echo $model->firstVariant->getPrice()}" data-name="{echo ShopCore::encode($model->getName())}">{lang('s_buy')}</button>
 
                         {foreach $model->getProductVariants() as $key => $pv}
-                            <button style="display: none;" class="btn btn_buy variant_{echo $pv->getId()} variant" type="button" data-prodid="{echo $pv->getId()}" data-varid="{echo $pv->getId()}" data-price="{echo $pv->getPrice()}" data-name="{if $pv->getName()}{echo $pv->getName()}{else:}{echo $model->getName()}{/if}">{lang('s_buy')}</button>
+                            <button style="display: none;" class="btn btn_buy variant_{echo $pv->getId()} variant" type="button" data-prodid="{echo $pv->getId()}" data-varid="{echo $pv->getId()}" data-price="{echo $pv->getPrice()}" data-name="{if $pv->getName()}{echo ShopCore::encode($pv->getName())}{else:}{echo ShopCore::encode($model->getName())}{/if}">{lang('s_buy')}</button>
                         {/foreach}
                     </div>
                 </div>
@@ -222,17 +222,11 @@
                                         </figure>
                                     </a>            
                                     <div class="description">
-                                        <div class="frame_response">
-                                            <div class="star">
-                                                <img src="images/temp/STAR.png"/>
-                                            </div>
-                                            <a href="#" class="count_response">1453 відгуків</a>
-                                        </div>
                                         <a href="{shop_url('product/'.$p->getUrl())}">{echo ShopCore::encode($p->getName())}</a>
                                         <div class="price price_f-s_16">
                                             <span class="f-w_b">{echo $p->firstvariant->toCurrency()}</span> {$CS}
                                         </div>
-                                        <button class="btn btn_buy" data-varid="{echo $p->firstVariant->getId()}" data-prodid="{echo $p->getId()}" data-price="{echo $p->firstvariant->toCurrency()}" data-name="{echo $p->getName()}" type="button">{lang('s_buy')}</button>
+                                        <button class="btn btn_buy" data-varid="{echo $p->firstVariant->getId()}" data-prodid="{echo $p->getId()}" data-price="{echo $p->firstvariant->toCurrency()}" data-name="{echo ShopCore::encode($p->getName())}" type="button">{lang('s_buy')}</button>
 
 
                                         <div class="d_i-b">                                                    
@@ -343,7 +337,7 @@
                                 <!-- $kid->getTotalPrice() - the entire set of output price with discount-->
                                 <span class="f-w_b">{echo $kid->getTotalPrice()}</span> {$CS}
                             </div>                                    
-                            <button class="btn btn_buy" type="button" data-prodid="{echo $kid->getMainProduct()->getId()}" data-varid="{echo $kid->getMainProduct()->firstVariant->getId()}" data-price="{echo $kid->getMainProductPrice()}" data-name="{echo $kid->getMainProduct()->getName()}">{lang('s_buy')}</button>
+                            <button class="btn btn_buy" type="button" data-prodid="{echo $kid->getMainProduct()->getId()}" data-varid="{echo $kid->getMainProduct()->firstVariant->getId()}" data-price="{echo $kid->getMainProductPrice()}" data-name="{echo ShopCore::encode($kid->getMainProduct()->getName())}">{lang('s_buy')}</button>
 
                         </li>
                     </ul>
@@ -411,7 +405,7 @@
                                 <span class="f-w_b">{echo $product->firstVariant->toCurrency()}</span> 
                                 {$CS}
                             </div>
-                            <button class="btn btn_buy" type="button" data-prodid="{echo $product->getId()}" data-varid="{echo $product->firstVariant->getId()}" data-price="{echo $product->firstVariant->getPrice()}" data-name="{echo $product->getName()}">{lang('s_buy')}</button>
+                            <button class="btn btn_buy" type="button" data-prodid="{echo $product->getId()}" data-varid="{echo $product->firstVariant->getId()}" data-price="{echo $product->firstVariant->getPrice()}" data-name="{echo ShopCore::encode($product->getName())}">{lang('s_buy')}</button>
                         </div>
                     </li>
                 {/foreach}
