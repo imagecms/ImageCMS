@@ -1,10 +1,20 @@
 {# Variables
-# @var category
-# @var priceRange
-# @var propertiesInCat
-# @var brands
+/**
+* @file - template for displaying shop filter
+* Variables
+*   $category: (object) instance of SCategory
+*   $priceRange: array which contains price range values
+*       $priceRange['minCost']: integer variable which contains the minimum left price range
+*       $priceRange['maxCost']: integer variable which contains the maximum right price range
+*   $propertiesInCat - array of (object)s of stdClass which contains data conserning properties in current category
+*       $propertiesInCat[$key]->name: contains property name according to current locale
+*       $propertiesInCat[$key]->possibleValues: array which contains all possible values of property according to current category and products number which have such properties
+*   $brands - array of (object)s of stdClass which contains all brands according to current category
+*       $brands[$key]->name: returns brands name
+*       $brands[$key]->countProducts: returns products number with current brand
+*
+*/
 #}
-
 
 {//define default values for price slider}
 <span id="opt1" data-def_min = "{echo (int)$priceRange.minCost}"></span>
@@ -34,10 +44,9 @@
                         {foreach $_GET['brand'] as $id}
                             {if $id == $brand->id}
                                 <li>
-                                    <span class="times">&times;</span>
                                     <div class="o_h">
                                         {//link to uncheck current filter}
-                                        <a href="{echo str_replace('brand[]=' . $brand->id, '', $aurl)}" style="text-decoration: none;">{echo $brand->name}</a>
+                                        <a href="{echo str_replace('brand[]=' . $brand->id, '', $aurl)}" style="text-decoration: none;"><span class="times">&times;</span>{echo ShopCore::encode($brand->name)}</a>
                                     </div>
                                 </li>
                             {/if}
@@ -53,10 +62,9 @@
                                 {foreach $_GET['p'][$prop->property_id] as $id}
                                     {if ShopCore::encode($id) == $key.value}
                                         <li>
-                                            <span class="times">&times;</span>
                                             <div class="o_h">
                                                 {//link to unckeck current filter}
-                                                <a href="{echo str_replace('&p[' . $prop->property_id . '][]=' . htmlspecialchars_decode($key.value),'',$aurl)}" style="text-decoration: none;">{echo $prop->name.": ".$key.value}</a>
+                                                <a href="{echo str_replace('&p[' . $prop->property_id . '][]=' . htmlspecialchars_decode($key.value),'',$aurl)}" style="text-decoration: none;"><span class="times">&times;</span>{echo ShopCore::encode($prop->name).": ".$key.value}</a>
                                             </div>
                                         </li>
                                     {/if}
@@ -88,7 +96,7 @@
             </ul>
             
             {//link to remove all checked filters}
-            <a href="{site_url($CI->uri->uri_string())}" class="reset"><span class="icon-reset"></span>{lang('s_filter_all_reset')}</a>
+            <a href="{site_url($CI->uri->uri_string())}"><span class="icon-return"></span>{lang('s_filter_all_reset')}</a>
         </div>
     {/if}
     
@@ -140,7 +148,7 @@
             {//displaying all possible brands in current category}        
             {if count($brands)>0}
                 <div class="boxFilter">
-                    <div class="title">Бренды в категории</div>
+                    <div class="title">{lang('s_brands_in_cat')}</div>
                     <div class="clearfix check_form">
                         {//loop for which outputs all brands}
                         {foreach $brands as $br}
@@ -153,7 +161,7 @@
                                 <span class="filterLable">
                                     
                                     {//displaying brand name}
-                                    {echo $br->name}&nbsp;
+                                    {echo ShopCore::encode($br->name)}&nbsp;
                                      
                                     {//displaying products number with this brand in current category}
                                     <span>({if $br->countProducts !=0 && is_array(ShopCore::$_GET['brand']) && !in_array($br->id, ShopCore::$_GET['brand'])}+{/if}{echo $br->countProducts})</span>
@@ -176,15 +184,14 @@
                 
                 {//loop for properties array}
                 {foreach $propertiesInCat as $prop}
-                    {//var_dump($prop->productsCount)}
-                    {//checke if property has not empty possible values}
+                    {//check if property has not empty possible values}
                     {if empty($prop->possibleValues)}{continue}{/if}
                     
                         {//property possible values container}
                         <div class="boxFilter">
                             
                             {//displaying property name}
-                            <div class="title">{echo $prop->name}</div>
+                            <div class="title">{echo ShopCore::encode($prop->name)}</div>
                             
                             <div class="clearfix check_form">
                                 
