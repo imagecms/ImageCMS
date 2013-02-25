@@ -351,4 +351,15 @@ $lang['s_s_hit'] = 'Hit';
 $lang['s_found_in_categories'] = 'Found in categories:';
 $lang['s_not_found_in_categories'] = 'Not found in categories';
 $lang['lang_forgot_pass'] = 'Forgot password';
+$lang['s_order_by'] = 'Order by';
+$lang['s_order_by_rate'] = 'By rate';
+$lang['s_products_per_page'] = 'Products per page';
+$lang['s_in_images'] = 'Image view';
+$lang['s_in_list'] = 'List view';
+$lang['s_add_to_compare'] = 'add to compare';
+$lang['s_add_to_wish_list'] = 'add to wish list';
+$lang['s_brands_in_cat'] = 'Brands in category';
+$lang['s_just_numeric'] = 'only numbers';
+$lang['s_description'] = 'Description';
+$lang['s_properties_in_cat'] = 'Properties';
 /* End of file main_lang.php */
