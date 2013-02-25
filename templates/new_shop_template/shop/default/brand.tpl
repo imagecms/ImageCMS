@@ -2,17 +2,6 @@
 {$cart_data = ShopCore::app()->SCart->getData()}
 {$Comments = $CI->load->module('comments')->init($products)}
 <article>
-    <div class="crumbs" xmlns:v="http://rdf.data-vocabulary.org/#">
-        <span typeof="v:Breadcrumb">
-            <a href="#" rel="v:url" property="v:title">Главная</a>
-        </span>/
-        <span typeof="v:Breadcrumb">
-            <a href="#" rel="v:url" property="v:title">Тепловое оборудование</a>
-        </span>/
-        <span typeof="v:Breadcrumb">
-            <span rel="v:url" property="v:title">Плиты индукционные</span>
-        </span>
-    </div>
     <div class="row">
         <aside class="span3">
             <div class="checked_filter">
@@ -117,12 +106,14 @@
                     <button type="button" class="btn"><span class="icon-cat_list"></span>Списком</button>
                 </div>
             </div>
-            <div class="grey-b_r-bord">
-                <figure class="f_l m-t_10 w_150">
-                    <img src="/uploads/shop/brands/{echo $model->getImage()}"/>
-                </figure>
-                <p>{echo $model->getDescription()}</p>
-            </div>
+            {if str_replace(' ', '', $model->getDescription()) != ''}
+                <div class="grey-b_r-bord">
+                    <figure class="f_l m-t_10 w_150">
+                        <img src="/uploads/shop/brands/{echo $model->getImage()}"/>
+                    </figure>
+                    <p>{echo $model->getDescription()}</p>
+                </div>
+            {/if}
             <ul class="items items_catalog" data-radio-frame>
                 <!-- Start of rendering produts list   -->
                 {foreach $products as $product}
