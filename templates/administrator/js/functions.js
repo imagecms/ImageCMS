@@ -445,6 +445,7 @@ function elFinderPopup(type, id, path)
                     if (path[0] != '/')
                         path = '/' + path;
                 }
+                file.path = file.path.replace(/\134/g, '/');
                 $('#' + id).val(path + '/' + file.path);
                 if (type == 'image' && $('#' + id + '-preview').length)
                 {
