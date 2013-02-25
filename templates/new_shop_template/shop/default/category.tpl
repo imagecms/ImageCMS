@@ -1,37 +1,48 @@
 {# Variables
-# @var category
-# @var products
-# @var totalProducts
-# @var pagination
-# @var pageNumber
+/**
+* @file - template for displaying shop category page
+* Variables
+*   $category: (object) instance of SCategory
+*       $category->getDescription(): method which returns category description 
+*       $category->getNmae(): method which returns category name according to currenct locale
+*   $products: PropelObjectCollection of (object)s instance of SProducts 
+*       $product->firstVariant: variable which contains the first variant of product
+*       $product->firstVariant->toCurrency(): method which returns price according to current currencya and format    
+*   $totalProducts: integer contains products count
+*   $pagination: string variable contains html code for displaying pagination
+*   $pageNumber: integer variable contains the current page number
+*   $banners: array of (object)s of SBanners which have to be displayed in current page
+*/
 #}
 
 {$Comments = $CI->load->module('comments')->init($products)}
 <article>
-    {//Block for banners}
-    {$banners = ShopCore::app()->SBannerHelper->getBannersCat(3,$model->id);}
-    {if count($banners)}
-        <div class="cycle center">
-            <ul> 
-                {foreach $banners as $banner}
-                    <li>
-                        <a href="{echo $banner->getUrl()}">
-                            <img src="/uploads/shop/banners/{echo $banner->getImage()}" alt="{echo ShopCore::encode($banner->getName())}" />
-                        </a>
-                    </li>
-                {/foreach}
-            </ul>
-            <span class="nav"></span>
-            <button class="prev"></button>
-            <button class="next"></button>
-        </div>
-    {/if}
-
-    {widget('path')}
-    {//Block for bread crumbs with a call of shop_helper function to create it according to category model}
-    <div class="crumbs" xmlns:v="http://rdf.data-vocabulary.org/#">
-        {//echo makeBreadCrumbs($category)}
+        <!-- Show Banners in circle -->
+    <div class="mainFrameBaner">
+        <section class="container">
+            {$banners = ShopCore::app()->SBannerHelper->getBannersCat(3,$category->id)}
+            {if count($banners)}
+                    <div class="frame_baner">
+                        <ul class="cycle">
+                            {foreach $banners as $banner}
+                                <li>
+                                    <a href="{echo $banner['url']}">
+                                        <img src="/uploads/shop/banners/{echo $banner['image']}" />
+                                    </a>
+                                </li>
+                            {/foreach}
+                        </ul>
+                        <div class="pager"></div>
+                        <button class="next" type="button"></button>
+                        <button class="prev" type="button"></button>
+                    </div>
+            {/if}
+        </section>
     </div>
+    <!-- Show banners in circle -->
+
+    {//Block for bread crumbs with a call of shop_helper function to create it according to category model}
+    {widget('path')}
 
     {//main category page content}
     <div class="row">
@@ -42,27 +53,27 @@
         <div class="span9 right">
 
             {//category title and products count output}
-            <h1 class="d_i">{echo $category->getName()}</h1><span class="c_97">Найдено {echo $totalProducts} {echo SStringHelper::Pluralize($totalProducts, array("товар", "товара", "товаров"))}</span>
+            <h1 class="d_i">{echo ShopCore::encode($category->getName())}</h1><span class="c_97">{lang('s_found')} {echo $totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}</span>
             <div class="clearfix t-a_c frame_func_catalog">
 
                 {//sort block}
                 <div class="f_l">
-                    <span class="v-a_m">Сортировать по:</span>
+                    <span class="v-a_m">{lang('s_order_by')}:</span>
                     <div class="lineForm w_170">
                         <select class="sort" id="sort" name="order">
-                            <option selected="selected" value="1">по Рейтингу</option>
-                            <option value="2">От дешевых к дорогим</option>
-                            <option value="3">От дорогих к дешевым</option>
-                            <option value="4">Популярные</option>
-                            <option value="5">Новинки</option>
-                            <option value="6">Акции</option>
+                            <option selected="selected" value="1">{lang('s_order_by_rate')}</option>
+                            <option value="2">{lang('s_dewevye')}</option>
+                            <option value="3">{lang('s_dor')}</option>
+                            <option value="4">{lang('s_popular')}</option>
+                            <option value="5">{lang('s_new')}</option>
+                            <option value="6">{lang('s_action')}</option>
                         </select>
                     </div>
                 </div>
 
                 {//products on page count}
                 <div class="f_r">
-                    <span class="v-a_m">Товаров на странице:</span>
+                    <span class="v-a_m">{lang('s_products_per_page')}:</span>
                     <div class="lineForm w_70">
                         <select class="sort" id="sort2" name="user_per_page">
                             <option selected="selected" value="1">12</option>
@@ -75,15 +86,15 @@
 
                 {//selecting product list type}
                 <div class="groupButton list_pic_btn" data-toggle="buttons-radio">
-                    <button type="button" class="btn active"><span class="icon-cat_pic"></span><span class="text-el">Картинками</span></button>
-                    <button type="button" class="btn"><span class="icon-cat_list"></span><span class="text-el">Списком</span></button>
+                    <button type="button" class="btn active"><span class="icon-cat_pic"></span><span class="text-el">{lang('s_in_images')}</span></button>
+                    <button type="button" class="btn"><span class="icon-cat_list"></span><span class="text-el">{lang('s_in_list')}</span></button>
                 </div>
             </div>
 
             {//displaying category description if page number is 1}
-            {if $page_number == 1 && !$category->getDescription()}
+            {if $page_number == 1 && $category->getDescription() != '' && $category->getDescription() != ' ' && $category->getDescription() != null}
                 <div class="grey-b_r-bord">
-                    <p><span style="font-weight:bold">{echo $category->getName()}</span> &mdash; {echo $category->getDescription()}</p>
+                    <p><span style="font-weight:bold">{echo ShopCore::encode($category->getName())}</span> &mdash; {echo ShopCore::encode($category->getDescription())}</p>
                 </div>
             {/if}
 
@@ -110,16 +121,16 @@
                                     </div>
 
                                     {//displaying comments count}
-                                    <a href="{shop_url('product/'.$product->url.'#cc')}" class="count_response">
+                                    <a href="{shop_url('product/'.$product->url.'#cc')}" class="count_response"><span class="icon-comment"></span>
                                         {echo $Comments[$product->getId()]}
                                     </a>
                                 </div>
 
                                 {//displaying product name}
-                                <a href="{shop_url('product/'.$product->getUrl())}">{echo $product->getName()}</a>
+                                <a href="{shop_url('product/'.$product->getUrl())}">{echo ShopCore::encode($product->getName())}</a>
 
                                 {//displaying products first variant price and currency symbol}
-                                <div class="price price_f-s_16"><span class="f-w_b">{echo $product->firstVariant->getPrice()}</span> {$CS}&nbsp;&nbsp;<span class="second_cash"></span></div>
+                                <div class="price price_f-s_16"><span class="f-w_b">{echo $product->firstVariant->toCurrency()}</span> {$CS}&nbsp;&nbsp;<span class="second_cash"></span></div>
 
                                 {//displaying buy button according to its availability in stock}
 
@@ -136,7 +147,7 @@
                                             type="button" 
                                             class="btn btn_not_avail">
                                         <span class="icon-but"></span>
-                                        Сообщить о появлении
+                                        {lang('s_message_o_report')}
                                     </button>
                                 {else:}
 
@@ -144,19 +155,19 @@
                                     <button class="btn btn_buy" type="button" 
                                             data-prodid="{echo $product->getId()}" 
                                             data-varid="{echo $product->firstVariant->getId()}"
-                                            data-price="{echo $product->firstVariant->getPrice()}"
-                                            data-name="{echo $product->firstVariant->getName()}">
-                                        Купить
+                                            data-price="{echo $product->firstVariant->toCurrency()}"
+                                            data-name="{echo ShopCore::encode($product->firstVariant->getName())}">
+                                        {lang('s_buy')}
                                     </button>
                                 {/if}
 
                                 <div class="d_i-b">
 
                                     {//to compare button}
-                                    <button class="btn btn_small_p" type="button" title="добавить в список сравнений"><span class="icon-comprasion_2"></span></button>
+                                    <button class="btn btn_small_p" type="button" title="{lang('s_add_to_compare')}"><span class="icon-comprasion_2"></span></button>
 
                                     {//to wish list button}
-                                    <button class="btn btn_small_p" type="button" title="добавить в список желаний"><span class="icon-wish_2"></span></button>
+                                    <button class="btn btn_small_p" type="button" title="{lang('s_add_to_wish_list')}"><span class="icon-wish_2"></span></button>
                                 </div>
                             </div>
 
@@ -187,12 +198,9 @@
                 </ul>
             {/if}
 
-            {//pagination container}
-            <div class="pagination">
+            {//pagination variable from category.php controller}
+            {$pagination}
 
-                {//pagination variable from category.php controller}
-                {$pagination}
-            </div>
         </div>
     </div>
 </article>
