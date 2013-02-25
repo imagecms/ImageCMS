@@ -370,5 +370,7 @@ $lang['s_add_to_compare'] = 'добавить в список сравнений
 $lang['s_add_to_wish_list'] = 'добавить в список желаний';
 $lang['s_brands_in_cat'] = 'Бренды в категории';
 $lang['s_just_numeric'] = 'только цифры';
+$lang['s_description'] = 'Описание';
+$lang['s_properties_in_cat'] = 'Свойства';
 
 /* End of file main_lang.php */
