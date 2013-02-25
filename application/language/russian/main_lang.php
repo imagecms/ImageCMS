@@ -361,5 +361,16 @@ $lang['already_in_basket'] = 'Уже в корзине';
 
 //Compare
 $lang['s_category'] = 'Категория';
+$lang['s_order_by'] = 'Сортировать по';
+$lang['s_order_by_rate'] = 'По Рейтингу';
+$lang['s_products_per_page'] = 'Товаров на странице';
+$lang['s_in_images'] = 'Картинками';
+$lang['s_in_list'] = 'Списком';
+$lang['s_add_to_compare'] = 'добавить в список сравнений';
+$lang['s_add_to_wish_list'] = 'добавить в список желаний';
+$lang['s_brands_in_cat'] = 'Бренды в категории';
+$lang['s_just_numeric'] = 'только цифры';
+$lang['s_description'] = 'Описание';
+$lang['s_properties_in_cat'] = 'Свойства';
 
 /* End of file main_lang.php */

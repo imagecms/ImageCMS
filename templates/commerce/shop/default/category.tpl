@@ -1,11 +1,20 @@
 {# Variables
-# @var model
-# @var jsCode
-# @var products
-# @var totalProducts
-# @var brandsInCategory
-# @var pagination
-# @var cart_data
+/**
+* @file - template for displaying shop category page
+* Variables
+*   $category: (object) instance of SCategory
+*       $category->getDescription(): method which returns category description 
+*       $category->getNmae(): method which returns category name according to currenct locale
+*   $products: PropelObjectCollection of (object)s instance of SProducts 
+*       $product->firstVariant: variable which contains the first variant of product
+*       $product->firstVariant->toCurrency(): method which returns price according to current currencya and format    
+*   $totalProducts: integer contains products count
+*   $pagination: string variable contains html code for displaying pagination
+*   $pageNumber: integer variable contains the current page number
+*   $cart_data: array which contains added to cart products
+*   $forCompareProducts: array which contains added to compare products
+*   $banners: array of (object)s of SBanners which have to be displayed in current page
+*/
 #}
 
 {$forCompareProducts = $CI->session->userdata('shopForCompare')}
@@ -64,6 +73,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                             </li>
                         {/foreach}
                     </ul>
@@ -101,6 +111,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                             </li>
                         {/foreach}
                     </ul>
@@ -110,7 +121,7 @@
             </div>
             <!--   Right sidebar     -->
             <div class="catalog_frame">
-                <div class="crumbs">{echo makeBreadCrumbs($category)}</div>
+                {widget('path')}
                 <div class="box_title clearfix">
                     <div class="f-s_24">
                         {echo ShopCore::encode($category->getName())}
@@ -119,10 +130,10 @@
                 </div>
                 <form method="GET">
                     <div class="f_l">
-                        <span class="v-a_m">Сортировать:&nbsp;</span>
+                        <span class="v-a_m">{lang('s_order_by')}:&nbsp;</span>
                         <div class="lineForm w_145 v-a_m">
                             <select id="sort" name="order">
-                                <option value="" {if !ShopCore::$_GET['order']}selected="selected"{/if}>-Нет-</option>
+                                <option value="" {if !ShopCore::$_GET['order']}selected="selected"{/if}>-{lang('s_no')}-</option>
                                 <option value="rating" {if ShopCore::$_GET['order']=='rating'}selected="selected"{/if}>{lang('s_po')} {lang('s_rating')}</option>
                                 <option value="price" {if ShopCore::$_GET['order']=='price'}selected="selected"{/if}>{lang('s_dewevye')}</option>
                                 <option value="price_desc" {if ShopCore::$_GET['order']=='price_desc'}selected="selected"{/if} >{lang('s_dor')}</option>
@@ -133,7 +144,7 @@
                         </div>
                     </div>
                     <div class="f_r">
-                        <span class="v-a_m">Товаров на странице:&nbsp;</span>
+                        <span class="v-a_m">{lang('s_products_per_page')}:&nbsp;</span>
                         <div class="lineForm w_50 v-a_m">
                             <select id="count" name="user_per_page">
                                 <option value="12" {if ShopCore::$_GET['user_per_page']=='12'}selected="selected"{/if} >12</option>
@@ -166,9 +177,9 @@
                         {if trim($category->getDescription())}
                             <li>
                                 <div class="box_title">
-                                    <span class="f-s_18">Описание</span>
+                                    <span class="f-s_18">{lang('s_description')}</span>
                                 </div>
-                                {echo $category->getDescription()}
+                                {echo ShopCore::encode($category->getDescription())}
                             </li>
                         {/if}
                     {/if}
@@ -228,7 +239,7 @@
                                                             value="{echo $pv->getId()}"
                                                             data-cs = "{$CS}"
                                                             data-st="{echo $pv->getStock()}"
-                                                            data-pr="{echo number_format($pv->getPrice(), 2 , ".", "")}"
+                                                            data-pr="{echo $pv->toCurrency()}"
                                                             data-pid="{echo $product->getId()}"
                                                             data-img-small="{echo $pv->getSmallImage()}"
                                                             data-vname="{echo $pv->getName()}"
@@ -236,7 +247,7 @@
                                                         {if $pv->name != ''}
                                                             {echo $pv->geName()}
                                                         {else:}
-                                                            {echo $product->getName()}
+                                                            {echo ShopCore::encode($product->getName())}
                                                         {/if}
                                                     </option>
                                                 {/foreach}
@@ -247,10 +258,10 @@
                                 <div class="buy">{//var_dump($product)}
                                     <div class="price f-s_18 d_b">
                                         {if (float)$product->getOldPrice() > 0}
-                                            {if $product->getOldPrice() > $product->firstVariant->getPrice()}
+                                            {if $product->getOldPrice() > $product->firstVariant->toCurrency()}
                                                 <div>
                                                     <del class="price f-s_12 price-c_9" style="margin-top: 1px;">
-                                                        {echo number_format($product->getOldPrice(), 2, ".", "")}
+                                                        {echo $product->getOldPrice()}
                                                         <sub> {$CS}</sub>
                                                     </del>
                                                 </div>
@@ -258,14 +269,14 @@
                                         {/if}
                                         <div id="pricem{echo $product->getId()}">
                                             {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                                {$prOne = $product->firstVariant->getPrice()}
-                                                {$prTwo = $product->firstVariant->getPrice()}
+                                                {$prOne = $product->firstVariant->toCurrency()}
+                                                {$prTwo = $product->firstVariant->toCurrency()}
                                                 {$prThree = $prOne - $prTwo / 100 * $discount}
                                                 <del class="price price-c_red f-s_12 price-c_9">{echo $product->firstVariant->getId()} {$CS}</del>
                                             {else:}
                                                 {$prThree = $product->firstVariant->getId()}
                                             {/if}
-                                            {echo number_format($prThree, 2, ".", "")} 
+                                            {echo $prThree} 
                                             <sub>{$CS}</sub>
                                         </div>
                                     </div>
@@ -311,4 +322,3 @@
         </div>
     </div>
 </div>
-
