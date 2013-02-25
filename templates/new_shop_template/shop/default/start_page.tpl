@@ -9,8 +9,8 @@
                         <ul class="cycle">
                             {foreach $banners as $banner}
                                 <li>
-                                    <a href="{echo $banner->getUrl()}">
-                                        <img src="/uploads/shop/banners/{echo $banner->getImage()}" />
+                                    <a href="{echo $banner['url']}">
+                                        <img src="/uploads/shop/banners/{echo $banner['image']}" />
                                     </a>
                                 </li>
                             {/foreach}
