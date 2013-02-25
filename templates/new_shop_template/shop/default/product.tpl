@@ -1,8 +1,8 @@
 {$Comments = $CI->load->module('comments')->init($model)}
 <div>
     <article>       
-        <!--renderCategoryPath() - generation of breadcrumbs-->
-        {renderCategoryPath($model->getMainCategory())}
+        {//making bread crumbs}
+        {widget('path')}
         <div class="item_tovar bot_border_grey">
             <div class="row">
                 <!--Photo block for main product-->
