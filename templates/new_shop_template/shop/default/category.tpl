@@ -16,24 +16,29 @@
 
 {$Comments = $CI->load->module('comments')->init($products)}
 <article>
-    {//Block for banners}
-    {$banners = ShopCore::app()->SBannerHelper->getBannersCat(3,$model->id);}
-    {if count($banners)}
-        <div class="cycle center">
-            <ul> 
-                {foreach $banners as $banner}
-                    <li>
-                        <a href="{echo $banner->getUrl()}">
-                            <img src="/uploads/shop/banners/{echo $banner->getImage()}" alt="{echo ShopCore::encode($banner->getName())}" />
-                        </a>
-                    </li>
-                {/foreach}
-            </ul>
-            <span class="nav"></span>
-            <button class="prev"></button>
-            <button class="next"></button>
-        </div>
-    {/if}
+        <!-- Show Banners in circle -->
+    <div class="mainFrameBaner">
+        <section class="container">
+            {$banners = ShopCore::app()->SBannerHelper->getBannersCat(3,$category->id)}
+            {if count($banners)}
+                    <div class="frame_baner">
+                        <ul class="cycle">
+                            {foreach $banners as $banner}
+                                <li>
+                                    <a href="{echo $banner['url']}">
+                                        <img src="/uploads/shop/banners/{echo $banner['image']}" />
+                                    </a>
+                                </li>
+                            {/foreach}
+                        </ul>
+                        <div class="pager"></div>
+                        <button class="next" type="button"></button>
+                        <button class="prev" type="button"></button>
+                    </div>
+            {/if}
+        </section>
+    </div>
+    <!-- Show banners in circle -->
 
     {//Block for bread crumbs with a call of shop_helper function to create it according to category model}
     {widget('path')}
