@@ -1,7 +1,7 @@
 var inCart = 'Уже в корзине';
 var toCart = 'В корзину';
 var pcs = 'шт.';
-var curr = 'грн.';
+//var curr = 'грн.';
 
 var Shop = {
     //var Cart = new Object();
@@ -10,6 +10,8 @@ var Shop = {
         totalCount : 0,
         popupCartSelector : 'script#cartPopupTemplate',
         countChanged : false,
+        shipping: 0,
+        shipFreeFrom: 0,
         
         add : function(cartItem){
             //trigger before_add_to_cart
@@ -193,6 +195,14 @@ var Shop = {
             else
                 return this.totalPrice;
         },
+            
+        getFinalAmount: function(){
+            if (this.shipFreeFrom>0)
+                if (this.shipFreeFrom<this.getTotalPrice())
+                    this.shipping = 0.0;
+            
+            return this.getTotalPrice() + this.shipping;
+        },
     
         renderPopupCart : function(selector)
         {
@@ -325,6 +335,8 @@ $(
         processPage();
         //global listeners
         processWish();
+        
+        recountCartPage();
         //click 'add to cart'
         $('button.btn_buy').on('click', function(){
             var cartItem = Shop.composeCartItem($(this));
@@ -334,65 +346,26 @@ $(
     
         if ($('#orderDetails'))
             renderOrderDetails();
+        
+        //shipping changing, re-render cart page
+        if ($('#method_deliv'))
+            $('#method_deliv').on('change',function(){
+                recountCartPage();
+            });
 
         //click 'go to cart'
         //    $('button.btn_cart').on('click', function(){
         //        var cartItem = Shop.Cart.showPopupCart();
         //        return true;
         //    });
-
-    
-    function processWish(){
-         
-     //wishlist checking
-     var wishlist = Shop.WishList.all();
-     $('button.toWishlist').each(function(){
-         if( wishlist.indexOf( $(this).data('prodid') ) !== -1 )
-             $(this).removeClass('toWishlist').addClass('inWishlist btn_cart');
-     });
- 
-     //comparelist checking
-     var comparelist = Shop.CompareList.all();
-     $('button.toCompare').each(function(){
-         if( comparelist.indexOf( $(this).data('prodid') ) !== -1 )
-             $(this).removeClass('toCompare').addClass('inCompare btn_cart');
-     });
-    }
-    
-    function processPage(){
-        //update page content
-            //update products count
-            $('div.cleaner>span>span:nth-child(3)').html(' ('+Shop.Cart.totalCount+')');
-        
-            var keys = [];
-            _.each(Shop.Cart.getAllItems(), function(item){
-                keys.push(item.id+'_'+item.vId);
-            });
-        
-            //update all product buttons
-            $('button.btn_buy').each(function(){
-                var key = $(this).data('prodid')+'_'+$(this).data('varid');
-                if (keys.indexOf(key) != -1)
-                {
-                    console.log($(this));
-                    $(this).removeClass('btn_buy').addClass('btn_cart').html(inCart);
-                }
-            });
-        
-            $('button.btn_cart').not('.toCompare, .inCompare, .toWishlist, .inWishlist').each(function(){
-                var key = $(this).data('prodid')+'_'+$(this).data('varid');
-                if (keys.indexOf(key) == -1)
-                {
-                    console.log($(this));
-                    $(this).removeClass('btn_cart').addClass('btn_buy').html(toCart);
-                }
-            });
-    }
     
         //cart content changed
         $(document).live('cart_changed', function(){
             
             processPage();
+            renderOrderDetails();
+            if ($('#method_deliv'))
+                recountCartPage();
             //update popup cart
             $('table.table_order td:last-child span:last-child').last().html(Shop.Cart.totalPrice.toFixed(2));
         
@@ -427,6 +400,55 @@ $(
 );
 
 //
+
+   
+    function processWish(){
+         
+     //wishlist checking
+     var wishlist = Shop.WishList.all();
+     $('button.toWishlist').each(function(){
+         if( wishlist.indexOf( $(this).data('prodid') ) !== -1 )
+             $(this).removeClass('toWishlist').addClass('inWishlist btn_cart');
+     });
+ 
+     //comparelist checking
+     var comparelist = Shop.CompareList.all();
+     $('button.toCompare').each(function(){
+         if( comparelist.indexOf( $(this).data('prodid') ) !== -1 )
+             $(this).removeClass('toCompare').addClass('inCompare btn_cart');
+     });
+    }
+    
+    function processPage(){
+        //update page content
+            //update products count
+            Shop.Cart.totalRecount();
+            $('#topCartCount').html(' ('+Shop.Cart.totalCount+')');
+        
+            var keys = [];
+            _.each(Shop.Cart.getAllItems(), function(item){
+                keys.push(item.id+'_'+item.vId);
+            });
+        
+            //update all product buttons
+            $('button.btn_buy').each(function(){
+                var key = $(this).data('prodid')+'_'+$(this).data('varid');
+                if (keys.indexOf(key) != -1)
+                {
+                    console.log($(this));
+                    $(this).removeClass('btn_buy').addClass('btn_cart').html(inCart);
+                }
+            });
+        
+            $('button.btn_cart').not('.toCompare, .inCompare, .toWishlist, .inWishlist').each(function(){
+                var key = $(this).data('prodid')+'_'+$(this).data('varid');
+                if (keys.indexOf(key) == -1)
+                {
+                    console.log($(this));
+                    $(this).removeClass('btn_cart').addClass('btn_buy').html(toCart);
+                }
+            });
+    }
 
 function initShopPage(){
     if (Shop.Cart.countChanged == false){
@@ -499,8 +521,20 @@ function renderOrderDetails()
     $('#orderDetails').html(_.template($('#orderDetailsTemplate').html(), {cart:Shop.Cart}));
 }
 
+function recountCartPage(){
+    Shop.Cart.shipping = parseFloat($('span.cuselActive').data('price'));
+    Shop.Cart.shipFreeFrom = parseFloat($('span.cuselActive').data('freefrom'));
+    
+    $('span#totalPrice').html(parseFloat(Shop.Cart.getTotalPrice()).toFixed(2) );
+    $('span#finalAmount').html(parseFloat(Shop.Cart.getFinalAmount()).toFixed(2) );
+    $('span#shipping').html(parseFloat(Shop.Cart.shipping).toFixed(2) );
+    
+    $('span.curr').html(curr);
+}
 
 
+
+//variants
 $('[name="variant"]').live('change', function() {  
     
     
@@ -516,11 +550,15 @@ $('[name="variant"]').live('change', function() {
     var vStock = $('span.variant_'+productId).attr('data-stock');
     
     
-    $('#photoGroup').attr('href', '/uploads/shop/' + vMainImage);
-    $('#imageGroup').attr('src', '/uploads/shop/' + vMainImage).removeClass().attr('alt', vName);
+    $('#photoGroup').attr('href', vMainImage);
+    $('#imageGroup').attr('src', vMainImage).removeClass().attr('alt', vName);
     $('#priceOrigVariant').html(vOrigPrice);
     $('#priceVariant').html(vPrice);
-    $('#number').html('(Артикул ' + vNumber + ')');
+    if($.trim(vNumber) != ''){
+        $('#number').html('(Артикул ' + vNumber + ')');
+    }else{
+        $('#number').html(' ');
+    }
     
     var productId = $(this).attr('value');
     $('.variant').hide();
