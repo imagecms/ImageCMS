@@ -564,11 +564,15 @@ $('[name="variant"]').live('change', function() {
     var vStock = $('span.variant_'+productId).attr('data-stock');
     
     
-    $('#photoGroup').attr('href', '/uploads/shop/' + vMainImage);
-    $('#imageGroup').attr('src', '/uploads/shop/' + vMainImage).removeClass().attr('alt', vName);
+    $('#photoGroup').attr('href', vMainImage);
+    $('#imageGroup').attr('src', vMainImage).removeClass().attr('alt', vName);
     $('#priceOrigVariant').html(vOrigPrice);
     $('#priceVariant').html(vPrice);
-    $('#number').html('(Артикул ' + vNumber + ')');
+    if($.trim(vNumber) != ''){
+        $('#number').html('(Артикул ' + vNumber + ')');
+    }else{
+        $('#number').html(' ');
+    }
     
     var productId = $(this).attr('value');
     $('.variant').hide();

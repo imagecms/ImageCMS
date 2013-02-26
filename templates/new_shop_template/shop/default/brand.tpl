@@ -1,14 +1,32 @@
-{$forCompareProducts = $CI->session->userdata('shopForCompare')}
-{$cart_data = ShopCore::app()->SCart->getData()}
+{# Variables
+/**
+* @brand.tpl - template for displaying shop brand page
+* Variables
+*   $products: (object) instance of SProduct
+*       $product->firstVariant: variable which contains the first variant of product
+*       $product->getStock(): method which returns product availability 
+*       $product->url(): method which return product url
+*       $product->name(): method which return product name
+*       $product->getmainimage(): method which return product main image
+*       $product->getId(): method which return product id
+*        
+*   $pagination: variale which contains HTML code of page pagination
+*
+*   $totalProducts: variale which contains total count of products in brand category
+*
+*   $model: (object) instance of SBrands
+*/
+#}
+
 {$Comments = $CI->load->module('comments')->init($products)}
 <article>
     <div class="row">
         {include_tpl('filter')}
         <div class="span9 right">
-            <h1 class="d_i">{echo ShopCore::encode($model->getName())}
-                {if ShopCore::$_GET['categoryId'] != ''}
-                    - {echo $cat_name}
-                {/if}</h1><span class="c_97">Найдено {$totalProducts} товара</span>
+            <h1 class="d_i">{echo ShopCore::encode($model->getName())}</h1>
+                <span class="c_97">
+                    {$totalProducts}
+                </span>
             <div class="clearfix t-a_c frame_func_catalog">
                 <div class="f_l">
                     <span class="v-a_m">Фильтровать по:</span>
@@ -44,14 +62,12 @@
                     <figure class="f_l m-t_10 w_150">
                         <img src="/uploads/shop/brands/{echo $model->getImage()}"/>
                     </figure>
-                    <p>{echo $model->getDescription()}</p>
+                    <p>{echo echo ShopCore::encode($model->getDescription())}</p>
                 </div>
             {/if}
             <ul class="items items_catalog" data-radio-frame>
                 <!-- Start of rendering produts list   -->
                 {foreach $products as $product}
-                    {$discount = ShopCore::app()->SDiscountsManager->productDiscount($product->getId())}
-                    {$style = productInCart($cart_data, $product->getId(), $product->firstVariant->getId(), $product->firstVariant->getStock())}
                     <li class="span3{if $product->getFirstVariant()->getStock() == 0} not-avail{/if}">
                         <div class="description">
                             <div class="frame_response">
@@ -65,8 +81,19 @@
                                 </a>
                             </div>
                             <a href="{shop_url('product/' . $product->geturl())}">{echo ShopCore::encode($product->getname())}</a>
-                            <div class="price price_f-s_16"><span class="f-w_b">{echo number_format($product->firstVariant->getPrice(), ShopCore::app()->SSettings->pricePrecision, ".", "")}</span> {$CS}&nbsp;&nbsp;</div>
-                            <button class="btn btn_buy" type="button">Уже в корзине</button>
+                            <div class="price price_f-s_16">
+                                <span class="f-w_b">
+                                    {echo $product->firstVariant->toCurrency()}
+                                </span> 
+                                {$CS}&nbsp;&nbsp;
+                            </div>
+                            <button class="btn btn_buy" type="button" 
+                                    data-prodid="{echo $product->getId()}" 
+                                    data-varid="{echo $product->firstVariant->getId()}"
+                                    data-price="{echo $product->firstVariant->toCurrency()}"
+                                    data-name="{echo ShopCore::encode($product->firstVariant->getName())}">
+                                {lang('s_buy')}
+                            </button>
                             <div class="d_i-b">
                                 <button class="btn btn_small_p" type="button" title="добавить в список сравнений"><span class="icon-comprasion_2"></span></button>
                                 <button class="btn btn_small_p" type="button" title="добавить в список желаний"><span class="icon-wish_2"></span></button>

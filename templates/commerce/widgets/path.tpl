@@ -4,7 +4,6 @@
         <a rel="v:url" property="v:title" href="{site_url()}">На главную</a> 
     </span> /
     {foreach $navi_cats as $item} 
-        {//var_dump($item)}
         {$i++}
         {if $i < count($navi_cats)}
             <span typeof="v:Breadcrumb">

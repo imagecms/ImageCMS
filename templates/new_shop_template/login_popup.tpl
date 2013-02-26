@@ -28,12 +28,16 @@
                             <div id="for_password" class="for_validations"></div>
                         </span>
                     </label>
+                    <!-- captcha block -->
+                    <lable id="captcha_block">
+                        
+                    </lable>
                     <div class="frameLabel">
                         <span class="title">&nbsp;</span>
                         <span class="frame_form_field c_n">
                             <a href="/auth/forgot_password" class="f_l neigh_btn">{lang('lang_forgot_password')}</a>
                             <input type="button" value="Войти" class="btn btn_cart f_r" onclick="ImageCMSApi.formAction('/auth/authapi/login', 'login_form');
-                                    return false;"/>
+                                        return false;"/>
                         </span>
                     </div>
                 </form>
