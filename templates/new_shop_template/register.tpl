@@ -1,12 +1,4 @@
 <article>
-    <div class="crumbs" xmlns:v="http://rdf.data-vocabulary.org/#">
-        <span typeof="v:Breadcrumb">
-            <a href="{site_url()}" rel="v:url" property="v:title">Главная</a>
-        </span>/
-        <span typeof="v:Breadcrumb">
-            <span rel="v:url" property="v:title">{lang('lang_register')}</span>
-        </span>
-    </div>
     {if validation_errors() OR $info_message}
         <div class="errors">
             {validation_errors()}

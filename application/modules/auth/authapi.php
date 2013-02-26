@@ -18,6 +18,16 @@ class Authapi extends Auth {
         $this->form_validation->set_error_delimiters(FALSE, FALSE);
     }
 
+    function email_check_for_login($email) {
+        $result = $this->dx_auth->is_email_available($email);
+        if ($result) {
+            $this->form_validation->set_message('email_check_for_login', "Пользователь с такой почтой не найден в базе");
+            return false;
+        }else{
+            return true;
+        }
+    }
+
     /**
      * Provides user login
      * 
@@ -30,7 +40,7 @@ class Authapi extends Auth {
             $val = $this->form_validation;
             //$val->set_error_delimiters(FALSE);
             // Set form validation rules
-            $val->set_rules('email', lang('lang_email'), 'trim|required|min_length[3]|xss_clean|valid_email');
+            $val->set_rules('email', lang('lang_email'), 'trim|required|min_length[3]|xss_clean|valid_email|callback_email_check_for_login');
             $val->set_rules('password', lang('lang_password'), 'trim|required|min_length[3]|max_length[30]|xss_clean');
             $val->set_rules('remember', 'Remember me', 'integer');
             // Set captcha rules if login attempts exceed max attempts in config           
@@ -67,19 +77,18 @@ class Authapi extends Auth {
                     if ($this->dx_auth->is_max_login_attempts_exceeded()) {
                         // Create catpcha
                         $this->dx_auth->captcha();
-                        $this->template->assign('cap_image', $this->dx_auth->get_captcha_image());
-                        // Set view data to show captcha on view file
-                        $data['show_captcha'] = TRUE;
                     }
                     //return json data for render login form
                     echo json_encode(
                             array(
                                 'msg' => validation_errors(),
                                 'status' => false,
+                                'cap_image' => $this->dx_auth->get_captcha_image(),
                                 'validations' => array(
                                     'email' => form_error('email'),
                                     'password' => form_error('password'),
                                     'remember' => form_error('remember'),
+                                    'captcha' => form_error('captcha')
                                 ),
                             )
                     );
@@ -205,7 +214,7 @@ class Authapi extends Auth {
     public function forgot_password() {
         $val = $this->form_validation;
         // Set form validation rules
-        $val->set_rules('email', lang('lang_email'), 'trim|required|xss_clean|valid_email');
+        $val->set_rules('email', lang('lang_email'), 'trim|required|xss_clean|valid_email|callback_email_check_for_login');
         // Validate rules and call forgot password function
         if ($val->run($this) AND $this->dx_auth->forgot_password($val->set_value('email'))) {
             echo json_encode(array(

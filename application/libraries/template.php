@@ -42,7 +42,6 @@ class Template extends Mabilis {
         $this->assign('THEME', base_url() . 'templates/' . $tpl); //URL to template folder
         // Assign CI instance
         $this->assign('CI', $this->CI);
-
     }
 
     public function assign($key, $value) {
@@ -74,7 +73,7 @@ class Template extends Mabilis {
 
         $CI = &get_instance();
         if ($CI->uri->segment(1) == 'admin') {
-            $load_main = (!$CI->input->is_ajax_request()) ? TRUE : FALSE;            
+            $load_main = (!$CI->input->is_ajax_request()) ? TRUE : FALSE;
         }
 
         $this->assign('BASE_URL', site_url()); //Base URL
@@ -106,13 +105,15 @@ class Template extends Mabilis {
 
     public function run_info() {
         /*         * ********************* */
-        echo '<!--';
+//        echo '<!--';
+        echo '<div align="center">';
         echo 'Total Time:' . $this->CI->benchmark->elapsed_time('total_execution_time_start', 'total_execution_time_end') . ', ';
         echo 'Queries: ' . $this->CI->db->total_queries();
         echo ', Cache get: ' . $this->CI->cache->get;
         echo ', Cache set: ' . $this->CI->cache->set;
         echo ', Memory Usage: ' . round(memory_get_usage() / 1024 / 1024, 4) . ' Mb';
-        echo ' -->';
+        echo '</div>';
+//        echo ' -->';
         /*         * ********************* */
     }
 
@@ -146,7 +147,7 @@ class Template extends Mabilis {
         else
             echo $result;
     }
-    
+
     public function view($file, $data = array(), $return = FALSE) {
         return $this->splitTplFiles(parent::view($file, $data, $return));
     }
@@ -175,7 +176,6 @@ class Template extends Mabilis {
 //        $this->_js_code[$name] = $code;
 //        $this->_js_code_pos[$name] = $position;
 //    }
-
     // $position possible values: before, after
     public function registerCssFile($url, $position = 'before') {
         $position = $this->_check_postion($position);
@@ -208,7 +208,6 @@ class Template extends Mabilis {
 //        $result_css_after = '';
 //        $result_js_before = '';
 //        $result_js_after = '';
-
         // split css files
         if (sizeof($this->_css_files) > 0) {
             foreach ($this->_css_files as $url => $pos) {
@@ -276,7 +275,7 @@ class Template extends Mabilis {
 
         if ($result_before)
             if ($this->CI->input->is_ajax_request())
-                $tpl = $result_before.$tpl;
+                $tpl = $result_before . $tpl;
             else
                 $tpl = preg_replace('/\<\/head\>/', $result_before . '</head>' . "\n", $tpl, 1);
 
@@ -284,7 +283,7 @@ class Template extends Mabilis {
             if ($this->CI->input->is_ajax_request())
                 $tpl .= $result_after;
             else
-                $tpl = preg_replace('/\<\/body\>/', "$result_after</body>\n" , $tpl, 1);
+                $tpl = preg_replace('/\<\/body\>/', "$result_after</body>\n", $tpl, 1);
 
 //
 //        if ($result_js_before) {
@@ -313,3 +312,4 @@ class Template extends Mabilis {
 }
 
 /* End of template.php */
+
