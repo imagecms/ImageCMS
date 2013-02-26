@@ -56,10 +56,12 @@
                                 <!-- End. Price -->
                                     
                                 <!-- Start. Check is product available -->
-                                {if $item.model->firstvariant->stock != 0}
-                                    <button class="btn btn_buy" type="button" data-prodId="{echo $item.model->getId()}" data-varId="{echo $item.model->firstVariant->getId()}" data-price="{echo $item.model->firstVariant->toCurrency()}" data-name="{echo $item.model->getName()}">{lang('add_to_basket')}</button>
-                                {else:}
-                                    <button class="btn btn_not_avail" type="button" data-prodId="{echo $item.model->getId()}" data-varId="{echo $item.model->firstVariant->getId()}" data-price="{echo $item.model->firstVariant->toCurrency()}" data-name="{echo $item.model->getName()}"> {lang('s_message_o_report')} </button>
+                                {if ShopCore::$ci->dx_auth->is_logged_in()===true}
+                                    {if $item.model->firstvariant->stock != 0}
+                                        <button class="btn btn_buy" type="button" data-prodId="{echo $item.model->getId()}" data-varId="{echo $item.model->firstVariant->getId()}" data-price="{echo $item.model->firstVariant->toCurrency()}" data-name="{echo $item.model->getName()}">{lang('add_to_basket')}</button>
+                                    {else:}
+                                        <button class="btn btn_not_avail" type="button" data-prodId="{echo $item.model->getId()}" data-varId="{echo $item.model->firstVariant->getId()}" data-price="{echo $item.model->firstVariant->toCurrency()}" data-name="{echo $item.model->getName()}"> {lang('s_message_o_report')} </button>
+                                    {/if}
                                 {/if}
                                 <!-- End. Check is product available -->
                             </div>
