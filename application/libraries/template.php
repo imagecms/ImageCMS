@@ -113,7 +113,6 @@ class Template extends Mabilis {
         echo ', Cache set: ' . $this->CI->cache->set;
         echo ', Memory Usage: ' . round(memory_get_usage() / 1024 / 1024, 4) . ' Mb';
         echo '</div>';
-
 //        echo ' -->';
         /*         * ********************* */
     }
@@ -313,3 +312,4 @@ class Template extends Mabilis {
 }
 
 /* End of template.php */
+
