@@ -12,7 +12,7 @@
                    <col width="140px"/>
                </colgroup>
                <tbody>
-                   <% _.each(cart.getAllItems(), function(item){ %>
+                   <% _.each(Shop.Cart.getAllItems(), function(item){ %>
                    <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>"> 
                        <td><span class="times d_i-b" onclick="rmFromPopupCart(this);">&times;</span></td>
                        <td>
@@ -53,7 +53,15 @@
                </tbody>
                <tfoot>
                    <tr>
+                       <% if ( Shop.Cart.totalCount  == 0 ) { %>
+                            <td colspan="5"><div class="form_alert">
+                                <p>Ваша корзина пуста</p>
+                            </div></td></tr><tr>
+                       <% } %>
                        <% if ( document.getElementById('orderDetails')) { %>
+                       <% if ( Shop.Cart.totalCount  == 0 ) { %>
+                       <% setTimeout("location.href = '/';", 2000); %>
+                       <% } %>
                        <td colspan="4" class="t-a_r">
                            <a href="#"  onclick="renderOrderDetails(); togglePopupCart(); return false;" class="btn btn_cart v-a_m m-r_30">Закрыть</a>
                        </td>
@@ -70,7 +78,7 @@
                            <div class="t-a_l d_i-b v-a_m">
                                <span>Итого:</span>
                                <div class="price price_f-s_24">
-                                   <span class="first_cash"><span class="f-w_b"><%- parseFloat(cart.getTotalPrice()).toFixed(2) %></span> руб.</span>
+                                   <span class="first_cash"><span class="f-w_b"><%- parseFloat(Shop.Cart.getTotalPrice()).toFixed(2) %></span> руб.</span>
                                </div>
                            </div>
                        </td>
