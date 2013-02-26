@@ -337,7 +337,7 @@
                                 <!-- $kid->getTotalPrice() - the entire set of output price with discount-->
                                 <span class="f-w_b">{echo $kid->getTotalPrice()}</span> {$CS}
                             </div>                                    
-                            <button class="btn btn_buy" type="button" data-prodid="{echo $kid->getMainProduct()->getId()}" data-varid="{echo $kid->getMainProduct()->firstVariant->getId()}" data-price="{echo $kid->getMainProductPrice()}" data-name="{echo ShopCore::encode($kid->getMainProduct()->getName())}">{lang('s_buy')}</button>
+                            <button class="btn btn_buy" type="button" data-prodid="{echo $kid->getMainProduct()->getId()}" data-varid="{echo $kid->getMainProduct()->firstVariant->getId()}" data-price="{echo $kid->getTotalPrice()}" data-name="{echo ShopCore::encode($kid->getMainProduct()->getName())}">{lang('s_buy')}</button>
 
                         </li>
                     </ul>

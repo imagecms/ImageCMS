@@ -55,7 +55,7 @@
                    <tr>
                        <% if ( document.getElementById('orderDetails')) { %>
                        <td colspan="4" class="t-a_r">
-                           <a href="#"  onclick="renderOrderDetails(); togglePopupCart(); return false;" class="btn btn_cart v-a_m m-r_30">Подтвердить</a>
+                           <a href="#"  onclick="renderOrderDetails(); togglePopupCart(); return false;" class="btn btn_cart v-a_m m-r_30">Закрыть</a>
                        </td>
                        <% } else { %>
                        <td colspan="2">
@@ -143,4 +143,8 @@
         </table>
     </div>
     {/literal}
+</script>
+
+<script>
+    var curr = '{$CS}';
 </script>
