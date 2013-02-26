@@ -1,6 +1,7 @@
 var inCart = 'Уже в корзине';
 var toCart = 'В корзину';
 var pcs = 'шт.';
+var curr = 'грн.';
 
 var Shop = {
     //var Cart = new Object();
@@ -127,15 +128,17 @@ var Shop = {
         
         save : function(cartItem)
         {
-            localStorage.setItem(cartItem.storageId(), JSON.stringify(cartItem));
-            this.totalRecount();
-            
-            ////trigger cart_changed
-            $(document).trigger({
-                type: 'cart_changed'
-            });
-            //
-            
+            if (! cartItem.storageId().match(/undefined/) )
+            {
+                localStorage.setItem(cartItem.storageId(), JSON.stringify(cartItem));
+                this.totalRecount();
+
+                ////trigger cart_changed
+                $(document).trigger({
+                    type: 'cart_changed'
+                });
+                //
+            }
             return this;
         },
             
@@ -260,39 +263,77 @@ var Shop = {
     
     WishList: {
         items: [],
-        add: function(key){
-            this.items = JSON.parse( localStorage.getItem('shopSettings'))?JSON.parse( localStorage.getItem('shopSettings')):[];
-            console.log(this.items);
-            if ( (key in this.items) ){
+        all: function(){
+            return JSON.parse( localStorage.getItem('wishList'))? _.compact( JSON.parse( localStorage.getItem('wishList')) ):[];
+        },
+        add: function(key, vid){
+            this.items = this.all();
+            //console.log(this.items);
+            if (  this.items.indexOf(key) == -1 ){
                 this.items.push(key);
-                localStorage.setItem('shopSettings', JSON.stringify(this.items));
+                localStorage.setItem('wishList', JSON.stringify(this.items));
+                $.post('/shop/wish_list/add/', {
+                    productId: key, 
+                    variantId: vid
+                }, function(data){
+                    console.log(data);
+                });
             }
         },
         
          rm: function(key){
-            this.items = JSON.parse( localStorage.getItem('shopSettings'))?JSON.parse( localStorage.getItem('shopSettings')):[];
-            console.log(this.items);
-            if ((key in this.items) ){
+            this.items = JSON.parse( localStorage.getItem('wishList'))?JSON.parse( localStorage.getItem('wishList')):[];
+            //console.log(this.items);
+            if (this.items.indexOf(key) !== -1 ) {
                 this.items = _.without(this.items, key);
-                localStorage.setItem('shopSettings', JSON.stringify(this.items));
+                localStorage.setItem('wishList', JSON.stringify(this.items));
             }
         }
-    }
+    },
+        
+    CompareList: {
+        items: [],        
+        all: function(){
+            return JSON.parse( localStorage.getItem('compareList'))? _.compact( JSON.parse( localStorage.getItem('compareList')) ):[];
+        },        
+        add: function(key){
+            this.items = this.all();
+            console.log(this.items);
+            if (  this.items.indexOf(key) == -1 ){
+                this.items.push(key);
+                localStorage.setItem('compareList', JSON.stringify(this.items));
+                $.get('/shop/compare/add/'+key);
+            }
+        },
+
+         rm: function(key){
+            this.items = JSON.parse( localStorage.getItem('compareList'))?JSON.parse( localStorage.getItem('compareList')):[];
+            console.log(this.items);
+            if (this.items.indexOf(key) !== -1 ) {
+                this.items = _.without(this.items, key);
+                localStorage.setItem('compareList', JSON.stringify(this.items));
+            }
+        }
+    },
+        
     
 };
 
 
 $(
     function(){
-  
+        processPage();
         //global listeners
-    
+        processWish();
         //click 'add to cart'
         $('button.btn_buy').on('click', function(){
             var cartItem = Shop.composeCartItem($(this));
             Shop.Cart.add(cartItem);
             return true;
         });
+    
+        if ($('#orderDetails'))
+            renderOrderDetails();
 
         //click 'go to cart'
         //    $('button.btn_cart').on('click', function(){
@@ -301,11 +342,25 @@ $(
         //    });
 
     
+    function processWish(){
+         
+     //wishlist checking
+     var wishlist = Shop.WishList.all();
+     $('button.toWishlist').each(function(){
+         if( wishlist.indexOf( $(this).data('prodid') ) !== -1 )
+             $(this).removeClass('toWishlist').addClass('inWishlist btn_cart');
+     });
+ 
+     //comparelist checking
+     var comparelist = Shop.CompareList.all();
+     $('button.toCompare').each(function(){
+         if( comparelist.indexOf( $(this).data('prodid') ) !== -1 )
+             $(this).removeClass('toCompare').addClass('inCompare btn_cart');
+     });
+    }
     
-        //cart content changed
-        $(document).live('cart_changed', function(){
-            
-            //update page content
+    function processPage(){
+        //update page content
             //update products count
             $('div.cleaner>span>span:nth-child(3)').html(' ('+Shop.Cart.totalCount+')');
         
@@ -324,7 +379,7 @@ $(
                 }
             });
         
-            $('button.btn_cart').each(function(){
+            $('button.btn_cart').not('.toCompare, .inCompare, .toWishlist, .inWishlist').each(function(){
                 var key = $(this).data('prodid')+'_'+$(this).data('varid');
                 if (keys.indexOf(key) == -1)
                 {
@@ -332,19 +387,40 @@ $(
                     $(this).removeClass('btn_cart').addClass('btn_buy').html(toCart);
                 }
             });
-        
+    }
+    
+        //cart content changed
+        $(document).live('cart_changed', function(){
+            
+            processPage();
             //update popup cart
             $('table.table_order td:last-child span:last-child').last().html(Shop.Cart.totalPrice.toFixed(2));
         
     });
 
-        $(document).on('before_add_to_cart', function(event){
-            console.log(event);
-        });
+
 
     $(document).on('after_add_to_cart', function(event){
         initShopPage();
         Shop.Cart.countChanged = false;
+    });
+
+
+    $('button.toCompare').on('click', function(){
+        var id = $(this).data('prodid');
+        Shop.CompareList.add(id);
+        
+        $(this).removeClass('toCompare').addClass('inCompare btn_cart');
+    });
+
+    $('button.toWishlist').on('click', function()
+    {
+        console.log($(this).closest('div.description').find('button').first());
+        var id = $(this).data('prodid');
+        var vid = $(this).data('varid');
+        Shop.WishList.add(id, vid);
+        
+        $(this).removeClass('toWishlist').addClass('inWishlist btn_cart');
     });
 
 }
@@ -395,7 +471,8 @@ function initShopPage(){
         $('#showCart').click();
 
      }
- }
+
+ };
 
 function rmFromPopupCart(context)
 {
@@ -410,6 +487,16 @@ function rmFromPopupCart(context)
     
     Shop.Cart.totalRecount();
     tr.remove();
+};
+
+function togglePopupCart()
+{
+    $('#showCart').click();
+}
+
+function renderOrderDetails()
+{
+    $('#orderDetails').html(_.template($('#orderDetailsTemplate').html(), {cart:Shop.Cart}));
 }
 
 
