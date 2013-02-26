@@ -2,7 +2,7 @@
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
-class Api extends Comments {
+class Commentsapi extends Comments {
 
     public $tpl_name = 'comments_api';
     public $period = 5;      // Post comment period in minutes. If user is unregistered, check will be made by ip address. 0 - To disable this method.
@@ -17,10 +17,6 @@ class Api extends Comments {
     public function __construct() {
         parent::__construct();
         $this->load->module('core');
-    }
-
-    public function index() {
-//        return FALSE;
     }
 
     private function init_settings() {
@@ -96,7 +92,7 @@ class Api extends Comments {
 
         echo json_encode(array(
             'comments' => $comments,
-            'total_comments' => $comments_count,
+            'total_comments' => $comments_count . ' ' . SStringHelper::Pluralize('0', array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre'))),
             'validation_errors' => $this->validation_errors
         ));
     }
@@ -161,7 +157,7 @@ class Api extends Comments {
                 $this->core->error(lang('error_comments_diabled'));
             }
         }
-        
+
         if ($this->period > 0)
             if ($this->check_comment_period() == FALSE) {
                 echo json_encode(
@@ -193,9 +189,9 @@ class Api extends Comments {
 
         if ($this->max_comment_length != 0)
             $this->form_validation->set_rules('comment_text', 'lang:lang_comment_text', 'trim|required|xss_clean|max_length[' . $this->max_comment_length . ']');
-        else 
+        else
             $this->form_validation->set_rules('comment_text', 'lang:lang_comment_text', 'trim|required|xss_clean');
-                  
+
         if ($this->form_validation->run($this) == FALSE) {
             ($hook = get_hook('comments_validation_failed')) ? eval($hook) : NULL;
             //$this->core->error( validation_errors() );
@@ -426,13 +422,27 @@ class Api extends Comments {
         return TRUE;
     }
 
-    public function getTotalCommentsForProduct($id, $status = 0) {
-        $this->db->where($id, $this->model->getId());
-        $this->db->where('status', $status);
-        $query = $this->db->get('comments')->result();
+    public function getTotalCommentsForProducts($ids, $status = 0) {
+        if ($ids == null)
+            return;
 
-//        return json_encode(array("products_count" => $query));
-        return count($query);
+        $this->db->select('item_id, COUNT(comments.id) AS `count`');
+        $this->db->group_by('item_id');
+        $this->db->where_in('item_id', $ids);
+        $this->db->where('status', $status);
+        $this->db->where('module = ', 'shop');
+        $query = $this->db->get('comments')->result_array();
+
+        $result = array();
+
+        foreach ($query as $q)
+            $result[$q['item_id']] = $q['count'] . ' ' . SStringHelper::Pluralize((int) $q['count'], array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')));
+
+        foreach ((array) $ids as $id)
+            if (!$result[$id])
+                $result[$id] = 0 . ' ' . SStringHelper::Pluralize('0', array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')));
+
+        return $result;
     }
 
 }

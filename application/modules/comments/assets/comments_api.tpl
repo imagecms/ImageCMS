@@ -4,7 +4,87 @@
     </label>
 {/if}
 
-<div id="error_text" name="error_text"></div>
+<div class="title_h2__icsi-css">{lang('s_clients_comment')}</div>
+<ul class="frame-list-comment__icsi-css">
+    {foreach $comments_arr as $key => $comment}
+        <input type="hidden" id="comment_item_id" name="comment_item_id" value="{$comment['id']}"/>
+        <li>
+            <div class="author-data-comment__icsi-css">
+                <span class="author-comment__icsi-css">{$comment.user_name}
+                    {if $comment.rate != 0}
+                        <div class="star_rating">
+                            <div id="{echo $comment.item_id}_star_rating" class="rating_nohover {echo count_star($comment.rate)} star_rait" data-id="{echo $comment.item_id}">
+                            </div>
+                        </div>
+                    {/if}
+                </span> 
+                <span class="date-comment__icsi-css"> {date('d-m-Y H:i', $comment.date)}</span>
+            </div>
+            <div class="frame-comment__icsi-css">
+                <p>{$comment.text}</p>
+                {if $comment.text_plus != Null}
+                    <p>
+                        <b>{lang('s_plus')}</b><br>
+                        {$comment.text_plus}
+                    </p>
+                {/if}
+                {if $comment.text_minus != Null}
+                    <p>
+                        <b>{lang('s_cons')}</b><br>
+                        {$comment.text_minus}
+                    </p>
+                {/if}
+            </div>      
+            <div class="func-button-comment__icsi-css">
+                {if $can_comment == 0 OR $is_logged_in}
+                    <div class="btn__icsi-css f_l__icsi-css">
+                        <button type="button" data-rel="cloneAddPaste" data-parid="{$comment['id']}">
+                            <span class="icon-comment__icsi-css">
+                            </span>
+                            {lang('s_comment_answer')}
+                        </button>
+                    </div>
+                {/if}
+
+                <div class="f_r__icsi-css">
+                    <span class="helper__icsi-css" style="height: 35px;"></span>
+                    <span>
+                        <span class="btn__icsi-css like__icsi-css">
+                            <button type="button" class="usefullyes" data-comid="{echo $comment.id}">
+                                {lang('s_like')}
+                            </button> 
+                            <span id="yesholder{$comment.id}">({echo $comment.like})</span>
+                        </span>
+                        <span class="divider_l_dl__icsi-css">|</span>
+                        <span class="btn__icsi-css dis-like__icsi-css">
+                            <button type="button" class="usefullno" data-comid="{echo $comment.id}">
+                                {lang('s_dislike')}
+                            </button> 
+                            <span id="noholder{$comment.id}">({echo $comment.disslike})</span>
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <ul class="frame-list-comment__icsi-css">
+                {foreach $comment_ch as $com_ch}
+                    {if $com_ch.parent == $comment.id}
+                        <li>
+                            <div class="author-data-comment__icsi-css">
+                                <span class="author-comment__icsi-css">{$com_ch.user_name}</span> 
+                                <span class="date-comment__icsi-css">{date('d-m-Y H:i', $com_ch.date)}</span>
+                            </div>
+                            <div class="frame-comment__icsi-css">
+                                <p>
+                                    {$com_ch.text}
+                                </p>
+                            </div>
+                        </li>
+                    {/if}
+                {/foreach}
+            </ul>
+        </li>
+    {/foreach}
+</ul>
 
 {if $can_comment == 0 OR $is_logged_in}
     <div id="comment__icsi-css">
@@ -17,13 +97,13 @@
                         <label>
                             <span class="title__icsi-css">{lang('lang_comment_author')}</span>
                             <span class="frame_form_field__icsi-css">
-                                <input type="text" required name="comment_author" id="comment_author" value="{get_cookie('comment_author')}"/>
+                                <input type="text" name="comment_author" id="comment_author" value="{get_cookie('comment_author')}"/>
                             </span>
                         </label>
                         <label>
                             <span class="title__icsi-css">{lang('lang_comment_email')}</span>
                             <span class="frame_form_field__icsi-css">
-                                <input type="text" required name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
+                                <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
                             </span>
                         </label>
                         <label>
@@ -62,7 +142,7 @@
                     <label>
                         <span class="title__icsi-css">{lang('s_text_comment_one')}</span>
                         <span class="frame_form_field__icsi-css">
-                            <textarea name="comment_text" id="comment_text" required>{$_POST.comment_text}</textarea>
+                            <textarea name="comment_text" id="comment_text">{$_POST.comment_text}</textarea>
                         </span>
                     </label>
                     <!-- If you want get plus and minus for products - uncoment it
@@ -82,12 +162,14 @@
                     {if $use_captcha}
                         <label>
                             <span class="title__icsi-css">{lang('lang_captcha')}</span>
-                        {$cap_image}
+                            {$cap_image}
                             <span class="frame_form_field__icsi-css">
-                                <input type="text" required name="captcha" id="captcha"/>
+                                <input type="text" name="captcha" id="captcha"/>
                             </span>
                         </label>
                     {/if}
+
+                    <div class="frameLabel__icsi-css" id="error_text" name="error_text"></div>
 
                     <div class="frameLabel__icsi-css">
                         <span class="title__icsi-css">&nbsp;</span>
@@ -100,80 +182,7 @@
             <!-- End of new comment fild -->
         </div>
     {/if}
-    <div class="title_h2__icsi-css">{lang('s_clients_comment')}</div>
-    <ul class="frame-list-comment__icsi-css">
-        {foreach $comments_arr as $key => $comment}
-            <input type="hidden" id="comment_item_id" name="comment_item_id" value="{$comment['id']}"/>
-            <li>
-                <div class="author-data-comment__icsi-css">
-                    <span class="author-comment__icsi-css">{$comment.user_name}</span> 
-                    <span class="date-comment__icsi-css"> {date('d-m-Y H:i', $comment.date)}</span>
-                </div>
-                <div class="frame-comment__icsi-css">
-                    <p>{$comment.text}</p>
-                    {if $comment.text_plus != Null}
-                        <p>
-                            <b>{lang('s_plus')}</b><br>
-                            {$comment.text_plus}
-                        </p>
-                    {/if}
-                    {if $comment.text_minus != Null}
-                        <p>
-                            <b>{lang('s_cons')}</b><br>
-                            {$comment.text_minus}
-                        </p>
-                    {/if}
-                </div>      
-                <div class="func-button-comment__icsi-css">
-                    {if $can_comment == 0 OR $is_logged_in}
-                        <div class="btn__icsi-css f_l__icsi-css">
-                            <button type="button" data-rel="cloneAddPaste" data-parid="{$comment['id']}">
-                                <span class="icon-comment__icsi-css">
-                                </span>
-                                {lang('s_comment_answer')}
-                            </button>
-                        </div>
-                    {/if}
 
-                    <div class="f_r__icsi-css">
-                        <span class="helper__icsi-css" style="height: 35px;"></span>
-                        <span>
-                            <span class="btn__icsi-css like__icsi-css">
-                                <button type="button" class="usefullyes" data-comid="{echo $comment.id}">
-                                    {lang('s_like')}
-                                </button> 
-                                <span id="yesholder{$comment.id}">({echo $comment.like})</span>
-                            </span>
-                            <span class="divider_l_dl__icsi-css">|</span>
-                            <span class="btn__icsi-css dis-like__icsi-css">
-                                <button type="button" class="usefullno" data-comid="{echo $comment.id}">
-                                    {lang('s_dislike')}
-                                </button> 
-                                <span id="noholder{$comment.id}">({echo $comment.disslike})</span>
-                            </span>
-                        </span>
-                    </div>
-                </div>
-                <ul class="frame-list-comment__icsi-css">
-                    {foreach $comment_ch as $com_ch}
-                        {if $com_ch.parent == $comment.id}
-                            <li>
-                                <div class="author-data-comment__icsi-css">
-                                    <span class="author-comment__icsi-css">{$com_ch.user_name}</span> 
-                                    <span class="date-comment__icsi-css">{date('d-m-Y H:i', $com_ch.date)}</span>
-                                </div>
-                                <div class="frame-comment__icsi-css">
-                                    <p>
-                                        {$com_ch.text}
-                                    </p>
-                                </div>
-                            </li>
-                        {/if}
-                    {/foreach}
-                </ul>
-            </li>
-        {/foreach}
-    </ul>
     <div class="frame-drop-comment__icsi-css" data-rel="whoCloneAddPaste">
         <div class="form-comment__icsi-css horizontal_form__icsi-css">
             <form>
@@ -209,6 +218,7 @@
             </form>
         </div>
     </div>
+
     <script>
         {literal}
             $('form').submit(function() {
@@ -301,7 +311,7 @@
                         el.parent().toggleClass('active');
                     },
                     after: function(el, elInserted) {
-                        $(elInserted).find('input[name=comment_parent]').val( el.data('parid'));
+                        $(elInserted).find('input[name=comment_parent]').val(el.data('parid'));
                         $('form').submit(function() {
                             return false;
                         });
@@ -330,7 +340,7 @@
                     type: "POST",
                     data: "comid=" + comid,
                     dataType: "json",
-                    url: '/comments/api/setyes',
+                    url: '/comments/commentsapi/setyes',
                     success: function(obj) {
                         $('#yesholder' + comid).html("(" + obj.y_count + ")");
                     }
@@ -342,7 +352,7 @@
                     type: "POST",
                     data: "comid=" + comid,
                     dataType: "json",
-                    url: '/comments/api/setno',
+                    url: '/comments/commentsapi/setno',
                     success: function(obj) {
                         $('#noholder' + comid).html("(" + obj.n_count + ")");
                     }

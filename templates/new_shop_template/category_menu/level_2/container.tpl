@@ -1,7 +1,7 @@
 <div>
     <ul>
         <li>
-            <span class="title">TV & DVD (TODO)</span>
+            <span class="title">(TODO)</span>
         </li>
         {$wrapper}
     </ul>

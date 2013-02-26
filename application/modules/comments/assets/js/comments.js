@@ -1,15 +1,15 @@
 function renderPosts($this)
 {
     $.ajax({
-        url: "/comments/api/renderPosts",
+        url: "/comments/commentsapi/renderPosts",
         dataType: "json",
         type: "post",
         success: function(obj) {
-            $('#four').empty();
+            $('#for_comments').empty();
 
             var tpl = obj.comments;
 
-            $('#four').append(tpl);
+            $('#for_comments').append(tpl);
             $('#comment').val('');
             $('#plus').val('');
             $('#minus').val('');
@@ -23,7 +23,7 @@ function renderPosts($this)
             
             if (obj.total_comments !== 0) {
                 $('#cc').html('');
-                $('#cc').append("Всего комментариев: " + obj.total_comments);
+                $('#cc').append(obj.total_comments);
             }
         }
     });
@@ -32,7 +32,7 @@ function renderPosts($this)
 function post($this)
 {
     $.ajax({
-        url: "/comments/api/newPost",
+        url: "/comments/commentsapi/newPost",
         data: $($this).closest('form').serialize() +
                 '&action=newPost',
         dataType: "json",

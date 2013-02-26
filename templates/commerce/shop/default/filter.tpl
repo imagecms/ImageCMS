@@ -1,3 +1,21 @@
+{# Variables
+/**
+* @file - template for displaying shop filter
+* Variables
+*   $category: (object) instance of SCategory
+*   $priceRange: array which contains price range values
+*       $priceRange['minCost']: integer variable which contains the minimum left price range
+*       $priceRange['maxCost']: integer variable which contains the maximum right price range
+*   $propertiesInCat - array of (object)s of stdClass which contains data conserning properties in current category
+*       $propertiesInCat[$key]->name: contains property name according to current locale
+*       $propertiesInCat[$key]->possibleValues: array which contains all possible values of property according to current category and products number which have such properties
+*   $brands - array of (object)s of stdClass which contains all brands according to current category
+*       $brands[$key]->name: returns brands name
+*       $brands[$key]->countProducts: returns products number with current brand
+*
+*/
+#}
+
 <span id="opt1" data-def_min = "{echo (int)$priceRange.minCost}"></span>
 <span id="opt2" data-def_max = "{echo (int)$priceRange.maxCost}"></span>
 <span id="opt3" data-cur_min = "{if isset(ShopCore::$_GET['lp'])}{echo ShopCore::$_GET['lp']}{else:}{echo (int)$priceRange.minCost}{/if}"></span>
@@ -16,7 +34,7 @@
                         {foreach $brands as $brand}
                             {foreach $_GET['brand'] as $id}
                                 {if $id == $brand->id}
-                                    <li><a href="{echo str_replace('&brand[]=' . $brand->id, '', $aurl)}"><i class="icon-times-red"></i>{echo $brand->name}</a></li>
+                                    <li><a href="{echo str_replace('&brand[]=' . $brand->id, '', $aurl)}"><i class="icon-times-red"></i>{echo ShopCore::encode($brand->name)}</a></li>
                                         {/if}
                                     {/foreach}
                                 {/foreach}
@@ -26,7 +44,6 @@
                                     {if count(ShopCore::$_GET['p'][$prop->property_id])>0}
                                         {foreach $prop->possibleValues as $key}
                                             {foreach $_GET['p'][$prop->property_id] as $id}
-
                                                 {if ShopCore::encode($id) == $key.value}
                                             <li><a href="{echo str_replace('&p[' . $prop->property_id . '][]=' . htmlspecialchars_decode($key.value),'',$aurl)}"><i class="icon-times-red"></i>{echo $prop->name.": ".$key.value}</a></li>
                                                 {/if}
@@ -65,7 +82,7 @@
             <div class="padding_filter">
                 {if count($brands)>0}
                     <div class="check_frame">
-                        <div class="title">Бренды в категории</div>
+                        <div class="title">{lang('s_brands_in_cat')}</div>
                         <div class="clearfix check_form">
                             {foreach $brands as $br}
                                 <label>
@@ -77,32 +94,30 @@
                     </div>
                 {/if}
                 <div class="check_frame">
-                {foreach $propertiesInCat as $p}
-                    {if empty($p->possibleValues)}{$show[] = "1"}{/if}
-                {/foreach}
-                {if count($show) != count($propertiesInCat)}
-                    <div class="title">Свойства</div>
-                    <div class="clearfix check_form">
-                        {foreach $propertiesInCat as $prop}
-                        {if empty($prop->possibleValues)}{continue}{/if}
-                        <div class="padding_filter">
-                            <div class="title2">{echo $prop->name}</div>
-                            <div class="clearfix">
-                                {foreach $prop->possibleValues as $item}
-                                    <label>
-
-                                        <input {if $item.count == 0}disabled="disabled"{/if} class="propertyCheck" name="p[{echo $prop->property_id}][]" value="{echo $item.value}" type="checkbox" {if is_array(ShopCore::$_GET['p'][$prop->property_id]) && in_array($item.value, ShopCore::$_GET['p'][$prop->property_id]) && $item.count != 0}checked="checked"{/if}/>
-                                        <span class="name_model">{echo $item.value}<span>&nbsp;({if $item.count != 0 && is_array(ShopCore::$_GET['p'][$prop->property_id]) && !in_array($item.value, ShopCore::$_GET['p'][$prop->property_id])}+{/if}{echo $item.count}) </span></span>
-                                    </label>
-                                    {//var_dump($item.obj)}
-                                {/foreach}
-                            </div>
-                        </div>
+                    {foreach $propertiesInCat as $p}
+                        {if empty($p->possibleValues)}{$show[] = "1"}{/if}
                     {/foreach}
+                    {if count($show) != count($propertiesInCat)}
+                        <div class="title">{lang('s_properties_in_cat')}</div>
+                        <div class="clearfix check_form">
+                            {foreach $propertiesInCat as $prop}
+                                {if empty($prop->possibleValues)}{continue}{/if}
+                                <div class="padding_filter">
+                                    <div class="title2">{echo $prop->name}</div>
+                                    <div class="clearfix">
+                                        {foreach $prop->possibleValues as $item}
+                                            <label>
+                                                <input {if $item.count == 0}disabled="disabled"{/if} class="propertyCheck" name="p[{echo $prop->property_id}][]" value="{echo $item.value}" type="checkbox" {if is_array(ShopCore::$_GET['p'][$prop->property_id]) && in_array($item.value, ShopCore::$_GET['p'][$prop->property_id]) && $item.count != 0}checked="checked"{/if}/>
+                                                <span class="name_model">{echo $item.value}<span>&nbsp;({if $item.count != 0 && is_array(ShopCore::$_GET['p'][$prop->property_id]) && !in_array($item.value, ShopCore::$_GET['p'][$prop->property_id])}+{/if}{echo $item.count}) </span></span>
+                                            </label>
+                                        {/foreach}
+                                    </div>
+                                </div>
+                            {/foreach}
+                        </div>
+                    {/if}
                 </div>
-            {/if}
+            </div>
         </div>
-    </div>
-</div>
-</form>
+    </form>
 </div>

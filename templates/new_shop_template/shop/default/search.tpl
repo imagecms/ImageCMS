@@ -9,25 +9,10 @@
 # @var jsCode
 # @var current_cat
 #}
-{# Display sidebar.tpl #}
-{$jsCode}
-{$forCompareProducts = $CI->session->userdata('shopForCompare')}
 
-<!-- BEGIN STAR RATING -->
-<link rel="stylesheet" type="text/css" href="{$SHOP_THEME}js/rating/jquery.rating-min.css" />
-<script src="{$SHOP_THEME}js/rating/jquery.rating-min.js" type="text/javascript"></script>
-<script src="{$SHOP_THEME}js/rating/jquery.MetaData-min.js" type="text/javascript"></script>
-<script src="{$SHOP_THEME}js/search.js" type="text/javascript"></script>
-<!-- END STAR RATING -->
-<!--
-{include_tpl('sidebar')}
--->
+<!-- Get category tree -->
+{ShopCore::app()->SCategoryTree->getTree(SCategoryTree::MODE_MULTI);}
 
-<div class="crumbs" xmlns:v="http://rdf.data-vocabulary.org/#">
-    <span typeof="v:Breadcrumb">
-        <a href="#" rel="v:url" property="v:title"></a>
-    </span>
-</div>
 {if $totalProducts > 0}
 <div class="row">
     <aside class="span3">
@@ -37,10 +22,6 @@
             <div class="title">{lang('s_sea_found_in_categories')}:</div>
                 <nav>
                     <ul>
-                        <input type="hidden" name="text" value="{echo ShopCore::$_GET['text']}">
-                        <input type="hidden" name="order" id="h_order" value="{echo ShopCore::$_GET['order']}">
-                        <input type="hidden" name="category" id="h_category" value="{echo ShopCore::$_GET['category']}">
-                        <input type="hidden" name="user_per_page" id="h_user_per_page" value="{echo ShopCore::$_GET['user_per_page']}" />
                         {foreach $tree as $item}
                             {if $item->getLevel() == 0}
                                 <ul>
@@ -56,8 +37,14 @@
                                         {$count_item = $categorys[$subItem->getId()];}
                                         {if $count_item}
                                             <li{if $_GET['category'] && $_GET['category'] == $subItem->getId()} class="active"{/if}>
-                                                <a href="{shop_url('search?text='.$_GET['text'].'&category='.$subItem->getId())}">{echo $subItem->getName()}</a> 
-                                                <span class="count">({echo $count_item})</span>
+                                                <span>
+                                                    {if $_GET['category'] && $_GET['category'] == $subItem->getId()}
+                                                        {echo $subItem->getName()}
+                                                    {else:}
+                                                        <a href="{shop_url('search?text='.$_GET['text'].'&category='.$subItem->getId())}">{echo $subItem->getName()}</a>     
+                                                    {/if}
+                                                    <span class="count">({echo $count_item})</span>
+                                                </span>
                                             </li>
                                         {/if}
                                     {/foreach}
@@ -71,7 +58,12 @@
         </div>
         </aside>
         <div class="span9 right">
-            <h1 class="d_i">{if $current_cat != 0}{echo $current_cat->getName()}{else:}{lang('search_all_categories')} {/if}</h1><span class="c_97">{lang('s_found')} {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}</span>
+            {if !empty(ShopCore::$_GET['text'])}
+                          <h1 class="d_i">  {lang('s_sea_search_for')}:"{encode($_GET['text'])}" </h1>
+                        {/if}
+                        <span class="c_97">
+                            ({$totalProducts}) {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}
+                        </span>
             <div class=" clearfix t-a_ccatalog_frame">
                 <div class="clearfix t-a_c frame_func_catalog">
                                     <div class="f_l">
@@ -103,10 +95,11 @@
                                         <button type="button" class="btn"><span class="icon-cat_list"></span>Списком</button>
                                     </div>
                                 </div>
-                
+                                
                     <!-- Product block -->
                     <ul class="items items_catalog" data-radio-frame>
-                        {foreach $products as $p}
+                            {$Comments = $CI->load->module('comments')->init($products)}
+                            {foreach $products as $p}
                             {$discount = ShopCore::app()->SDiscountsManager->productDiscount($p->id)}
                             {$style = productInCart($cart_data, $p->getId(), $p->firstVariant->getId(), $p->firstVariant->getStock())}
                             <li class="span3 {if $p->firstvariant->getstock()==0} not-avail{/if}">
@@ -114,50 +107,37 @@
                                     <div class="frame_response">
                                         <div class="star">
                                            {$CI->load->module('star_rating')->show_star_rating($p)}
+                                           {echo $Comments[$p->getId()]}
                                         </div>
                                     </div>
                                    <a href="{shop_url('product/'.$p->getUrl())}">{echo ShopCore::encode($p->getName())}</a>
                                    <div class="price price_f-s_16">
-                                        {if (float)$p->getOldPrice() > 0}
-                                                {if $p->getOldPrice() > $p->firstvariant->getPrice()}
-                                                    <span class="f-w_b">{echo number_format($p->getOldPrice(), ShopCore::app()->SSettings->pricePrecision, ".", "")}</span> {$CS}
-                                                    <span class="second_cash"></span>
-                                                {/if}
-                                         {/if}
-                                         {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                                    {$prOne = $p->firstvariant->getPrice()}
-                                                    {$prTwo = $p->firstvariant->getPrice()}
-                                                    {$prThree = $prOne - $prTwo / 100 * $discount}
-                                                    <del class="price price-c_red f-s_12 price-c_9">{echo number_format($p->firstvariant->getPrice(), ShopCore::app()->SSettings->pricePrecision, ".", "")} {$CS}</del>
-                                                {else:}
-                                                    {$prThree = $p->firstvariant->getPrice()}
-                                                {/if}
-                                                <span class="f-w_b">{echo number_format($prThree, ShopCore::app()->SSettings->pricePrecision, ".", "")}</span> {$CS}
-                                                <span class="second_cash"></span>
-                                    </div>
-                                    <!-- check is product in cart -->
-                                    {if $style.identif == 'goToCart'}    
-                                        <button class="btn btn_cart" type="button" data-prodId="{echo $p->getId()}" data-varId="{echo $p->firstVariant->getId()}" data-price="{$prThree}" data-name="{echo $p->getName()}" >{lang('already_in_basket')}</button>
-                                    {else:}
+                                       <!--$model->hasDiscounts() - checking for the existence of discounts. 
+                                            If there is a discount price without discount C-->
+                                            {if $p->hasDiscounts()}
+                                                <span class="d_b old_price">
+                                                    <!--
+                                                    "$model->firstVariant->toCurrency('OrigPrice')" or $model->firstVariant->getOrigPrice()
+                                                    output price without discount
+                                                    -->
+                                                    <span class="f-w_b">{echo number_format($p->firstVariant->toCurrency('OrigPrice'), ShopCore::app()->SSettings->pricePrecision, ".", "")}</span>
+                                                    {$CS}
+                                                </span>                           
+                                            {/if}
+                                            <!--If there is a discount of "$model->firstVariant->toCurrency()" or "$model->firstVariant->getPrice"
+                                            will display the price already discounted-->
+                                            <span class="f-w_b" >{echo number_format($p->firstVariant->toCurrency(), ShopCore::app()->SSettings->pricePrecision, ".", "")}</span>{$CS}
+                                            <!--To display the amount of discounts you can use $model->firstVariant->getNumDiscount()-->
+                                   </div>
+                                    <!-- Check amount of goods -->
                                         {if $p->firstvariant->getstock()!=0}
                                             <button class="btn btn_buy" type="button" data-prodId="{echo $p->getId()}" data-varId="{echo $p->firstVariant->getId()}" data-price="{$prThree}" data-name="{echo $p->getName()}">{lang('add_to_basket')}</button>
                                         {else:}
                                             <button class="btn btn_not_avail" type="button" data-prodId="{echo $p->getId()}" data-varId="{echo $p->firstVariant->getId()}" data-price="{$prThree}" data-name="{echo $p->getName()}">{lang('s_message_o_report')}</button>
                                         {/if}   
-                                    {/if}
                                     <div class="d_i-b">
-                                    <!-- check is product in compare list -->
-                                    {if $forCompareProducts && in_array($p->id, $forCompareProducts)}
-                                        <button class="btn btn_small_p" type="button" title="{echo lang('s_list_in_comp')}"><span class="icon-comprasion"></span></button>
-                                    {else:}
-                                        <button class="btn btn_small_p" type="button" title="{echo lang('s_list_add_comp')}"><span class="icon-comprasion_2"></span></button>
-                                    {/if}
-                                    <!-- check is product in wish list -->
-                                    {if is_in_wish($p->id)}
-                                        <button class="btn btn_small_p" type="button" title="{echo lang ('s_ilw')}"><span class="icon-wish"></span></button>
-                                    {else:}
-                                        <button class="btn btn_small_p" type="button" title="{echo lang('s_save_W_L')}"><span class="icon-wish_2"></span></button>
-                                    {/if}     
+                                        <button class="btn btn_small_p" type="button" title="{echo lang('s_list_add_comp')}" data-prodId="{echo $p->getId()}" data-varId="{echo $p->firstVariant->getId()}" data-price="{$prThree}" data-name="{echo $p->getName()}"><span class="icon-comprasion_2"></span></button>
+                                        <button class="btn btn_small_p" type="button" title="{echo lang('s_save_W_L')}" data-prodId="{echo $p->getId()}" data-varId="{echo $p->firstVariant->getId()}" data-price="{$prThree}" data-name="{echo $p->getName()}"><span class="icon-wish_2"></span></button>
                                    </div>
                                 </div>
                                 <a class="photo" href="{shop_url('product/' . $p->getUrl())}">
@@ -174,11 +154,29 @@
                         {$pagination}
                     {/if}
 {else:}
-    <div class="row">
-        <div class="span9 right">
-                {echo ShopCore::t(lang('s_not_found'))}.
-        </div>
-    </div>
+    <!-- if products not found show message-->
+    <div class="row" >
+        <aside class="span3">
+            <div class="filter">
+                <div class="boxFilter">
+                    <div class="title">{lang('s_sea_found_in_categories')}:</div>
+                </div>
+             </div>
+        </aside>
+        <div class="span9 right" style="padding-top:15px;">
+           <div class="bot_border_grey">     
+                {if !empty(ShopCore::$_GET['text'])}
+                    <h1 class="d_i">  {lang('s_sea_search_for')}:"{encode($_GET['text'])}" </h1>
+                {/if}
+                <span class="c_97 ">
+                    ({$totalProducts}) {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}
+                </span>
+            </div>    
+                <div class="span9 right" style="padding-top:15px;">
+                    {echo ShopCore::t(lang('s_not_found'))}</li>
+                </div>
+          </div>
+     </div>
 {/if}
             </div>
         </div>

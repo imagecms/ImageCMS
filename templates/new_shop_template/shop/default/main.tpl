@@ -28,9 +28,9 @@
         {/literal}
         {$meta_noindex}
         {$canonical}
-
-        <script src="{$SHOP_THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
-        <script src="{$SHOP_THEME}js/underscore-min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="{$SHOP_THEME}js/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" src="{$SHOP_THEME}js/jquery.imagecms.min.js"></script>
+        <script type="text/javascript" src="{$SHOP_THEME}js/underscore-min.js"></script>
     </head>
     <body>
         <div class="mainBody">
@@ -61,7 +61,7 @@
                                                 <span class="f-s_0">
                                                     <span class="helper"></span>
                                                     <a href="#" onclick="ImageCMSApi.formAction('/auth/authapi/logout', '');
-                                                                return false;">Выход</a>
+                                                            return false;">Выход</a>
                                                 </span>
                                             </li>
                                             <li>
@@ -75,7 +75,7 @@
                                         {/if}
                                     </ul>
                                 </nav>
-                                        <div class="cleaner f_l f-s_0 isAvail" onclick="window.location='/shop/cart'">
+                                <div class="cleaner f_l f-s_0 isAvail" onclick="window.location = '/shop/cart'">
                                     <span class="helper"></span>
                                     <span class="f-s_0">
                                         <span class="icon-bask"></span>
@@ -101,251 +101,237 @@
                             <span class="helper"></span>
                             <div class="w_100 f-s_0 frameUndef_1">
                                 <div class="span6">
-                                    <div class="frameSearch">
-                                        <form name="search" class="clearfix" action="{shop_url('search')}" method="get" id="autocomlete">
-                                            <button class="f_r btn" type="submit"><span class="icon-search"></span><span class="text-el">{lang('search_find')}</span></button>
-                                            <div class="o_h">
-                                                <input type="text" name="text" placeholder="Поиск по сайту"/>
-                                            </div>
-                                            <div id="suggestions" class="drop-search d_n">
-                                                <div class="inside-padd">
-                                                    <ul class="frame-search-thumbail">
-                                                        <li>
-                                                            <a href="#">
-                                                                <span class="photo">
-                                                                    <span class="helper"></span>
-                                                                    <img src="{$SHOP_THEME}images/temp/item_thumb.png">
-                                                                </span>
-                                                                <span>Оригинальный Phone 4S Black</span>
-                                                            </a>
-                                                            <div class="price price_f-s_16"><span class="f-w_b">99999</span> грн.</div>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="btn-form">
-                                                        <a href="#" class="f-s_0"><span class="icon-show-all"></span><span class="text-el">Показать все результаты</span></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
+                                {literal}<style>.selected{background-color:red;}</style>{/literal}
+                                <div class="frameSearch">
+                                    <form name="search" class="clearfix" action="{shop_url('search')}" method="get" id="autocomlete">
+                                        <button class="f_r btn" type="submit"><span class="icon-search"></span><span class="text-el">{lang('search_find')}</span></button>
+                                        <div class="o_h">
+                                            <input type="text" name="text" value=""  placeholder="{lang('s_se_thi_sit')}"  autocomplete="off" class="place_hold" id="inputString"/>
+                                        </div>
+                                        <div id="suggestions" class="drop-search"></div>
+                                    </form>
                                 </div>
-                                <div class="span3">
-                                    {include_tpl('compare_data')}
-                                    {include_tpl('wish_list_data')}
-                                </div>
-                                <div class="span3">
-                                    <div class="headerPhone"><span class="c_67">+8 (097)</span><span class="d_n">&minus;</span> 572-58-18</div>
-                                    <div style="margin-top: 7px;">
-                                        <ul class="tabs">
-                                            <li>
-                                                <a class="t-d_n f-s_0" href="#a" data-drop=".drop-order-call" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" data-place="center"><span class="icon-order-call"></span><span class="d_l_b">{lang('s_coll_order')}</span></a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                            </div>
+                            <div class="span3">
+                                {include_tpl('compare_data')}
+                                {include_tpl('wish_list_data')}
+                            </div>
+                            <div class="span3">
+                                <div class="headerPhone"><span class="c_67">+8 (097)</span><span class="d_n">&minus;</span> 572-58-18</div>
+                                <div style="margin-top: 7px;">
+                                    <ul class="tabs">
+                                        <li>
+                                            <a class="t-d_n f-s_0" href="#a" data-drop=".drop-order-call" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" data-place="center"><span class="icon-order-call"></span><span class="d_l_b">{lang('s_coll_order')}</span></a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
-                    </section>
+                    </div>
+                </section>
+            </section>
+        </div>
+        <div class="">
+
+            <!-- Start. Render Category Tree. Menu frame -->
+            <div class="mainFrameMenu">
+                <section class="container">
+                    {\Category\RenderMenu::create()->load('category_menu')}
                 </section>
             </div>
+            <!-- End. Render Category Tree. Menu frame -->
+
             <div class="">
-
-                <!-- Start. Render Category Tree. Menu frame -->
-                <div class="mainFrameMenu">
-                    <section class="container">
-                        {\Category\RenderMenu::create()->load('category_menu')}
-                    </section>
+                <section class="container">
+                    <!--                     class="span9"-->
+                    {$shop_content}
+                </section>
+            </div>
+        </div>
+        <!-- brands widget -->
+        {widget('brands')}
+        <!-- *** -->
+        <div class="hFooter"></div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row-fluid">
+                <div class="span5">
+                    <nav>
+                        {load_menu('footer_menu')}
+                    </nav>
                 </div>
-                <!-- End. Render Category Tree. Menu frame -->
-
-                <div class="">
-                    <section class="container">
-                        <!--                     class="span9"-->
-                        {$shop_content}
-                    </section>
+                <div class="span4">
+                    <ul class="contacts_info">
+                        <li><span class="icon-foot-phone"></span><span class="f-w_b">{lang('s_tel')}:</span> +8 (067)<span class="d_n">&minus;</span> 572-58-18, +8 (067)<span class="d_n">&minus;</span> 572-58-18</li>
+                        <li><span class="icon-foot-email"></span><span class="f-w_b">{lang('s_email')}:</span> SiteImageCMS@gmail.com</li>
+                        <li><span class="icon-foot-skype"></span><span class="f-w_b">{lang('s_skype')}:</span> SiteImageCMS</li>
+                                {$CI->load->module('star_rating')->show_star_rating()}
+                    </ul>
+                </div>
+                <div class="span3 t-a_r">
+                    <div class="copy_right">© SiteImage CMS, 2012</div>
+                    <div class="footer_social">
+                        <img src="{$SHOP_THEME}images/temp/social_footer.png"/>
+                    </div>
+                    <a href="http://siteimage.com.ua">{lang('s_footer_create')}</a><br/>
+                    {lang('s_footer_seo')}
                 </div>
             </div>
-            <!-- brands widget -->
-                {widget('brands')}
-                <!-- *** -->
-            <div class="hFooter"></div>
         </div>
-        <footer>
-            <div class="container">
-                <div class="row-fluid">
-                    <div class="span5">
-                        <nav>
-                            {load_menu('footer_menu')}
-                        </nav>
-                    </div>
-                    <div class="span4">
-                        <ul class="contacts_info">
-                            <li><span class="icon-foot-phone"></span><span class="f-w_b">{lang('s_tel')}:</span> +8 (067)<span class="d_n">&minus;</span> 572-58-18, +8 (067)<span class="d_n">&minus;</span> 572-58-18</li>
-                            <li><span class="icon-foot-email"></span><span class="f-w_b">{lang('s_email')}:</span> SiteImageCMS@gmail.com</li>
-                            <li><span class="icon-foot-skype"></span><span class="f-w_b">{lang('s_skype')}:</span> SiteImageCMS</li>
-                            {$CI->load->module('star_rating')->show_star_rating()}
-                        </ul>
-                    </div>
-                    <div class="span3 t-a_r">
-                        <div class="copy_right">© SiteImage CMS, 2012</div>
-                        <div class="footer_social">
-                            <img src="{$SHOP_THEME}images/temp/social_footer.png"/>
+    </footer>
+    <div class="headerFon"></div>
+    <div class="drop-enter drop">
+        <div class="icon-times-enter" data-closed="closed-js"></div>
+        <div class="drop-content">
+            <div class="header_title">
+                Вход для клиентов
+            </div>
+            <div class="inside_padd">
+                <div class="horizontal_form standart_form">
+                    <form method="post" id="login_form">
+                        <label>
+                            <span class="title">E-mail</span>
+                            <span class="frame_form_field">
+                                <span class="icon-email"></span>
+                                <input type="text" name="email"/>
+                                <div id="for_email" class="for_validations"></div>
+                            </span>
+                        </label>
+                        <label>
+                            <span class="title">Пароль</span>
+                            <span class="frame_form_field">
+                                <span class="icon-password"></span>
+                                <input type="password" name="password"/>
+                                <div id="for_password" class="for_validations"></div>
+                            </span>
+                        </label>
+                        <div class="frameLabel">
+                            <span class="title">&nbsp;</span>
+                            <span class="frame_form_field c_n">
+                                <a href="/auth/forgot_password" class="f_l neigh_btn">Забыли пароль?</a>
+                                <input type="button" value="Войти" class="btn btn_cart f_r" onclick="ImageCMSApi.formAction('/auth/authapi/login', 'login_form');
+                                                            return false;"/>
+                            </span>
                         </div>
-                        <a href="http://siteimage.com.ua">{lang('s_footer_create')}</a><br/>
-                        {lang('s_footer_seo')}
-                    </div>
+                    </form>
                 </div>
             </div>
-        </footer>
-        <div class="headerFon"></div>
-        <div class="drop-enter drop">
+        </div>
+        <div class="drop-footer"></div>
+    </div>
+    <div class="drop-order-call drop" id="a">
+        <div class="icon-times-enter" data-closed="closed-js"></div>
+        <div class="drop-content">
+            <div class="header_title">
+                Заказ звонка
+            </div>
+            <div class="inside_padd">
+                <div class="horizontal_form standart_form">
+                    <form method="post">
+                        <label>
+                            <span class="title">Ваше имя</span>
+                            <span class="frame_form_field">
+                                <span class="icon-person"></span>
+                                <input type="text"/>
+                            </span>
+                        </label>
+                        <label>
+                            <span class="title">Номер телефона</span>
+                            <span class="frame_form_field">
+                                <span class="icon-phone"></span>
+                                <input type="text"/>
+                            </span>
+                        </label>
+                        <label>
+                            <span class="title">Примерное время</span>
+                            <span class="frame_form_field">
+                                <input type="text"/>
+                                <span class="icon-clock"></span>
+                            </span>
+                        </label>
+                        <label>
+                            <span class="title">Комментарий</span>
+                            <span class="frame_form_field">
+                                <textarea></textarea>
+                            </span>
+                        </label>
+                        <div class="frameLabel">
+                            <span class="title">&nbsp;</span>
+                            <span class="frame_form_field c_n">
+                                <input type="submit" value="Позвоните мне" class="btn btn_cart f_r"/>
+                            </span>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="drop-footer"></div>
+    </div>
+    <div class="drop drop-report">
+        <div class="drop-content">
+            <div class="title_h2">Сообщить когда появится</div>
             <div class="icon-times-enter" data-closed="closed-js"></div>
-            <div class="drop-content">
-                <div class="header_title">
-                    Вход для клиентов
-                </div>
-                <div class="inside_padd">
-                    <div class="horizontal_form standart_form">
-                        <form method="post" id="login_form">
-                            <label>
-                                <span class="title">E-mail</span>
-                                <span class="frame_form_field">
-                                    <span class="icon-email"></span>
-                                    <input type="text" name="email"/>
-                                    <div id="for_email" class="for_validations"></div>
-                                </span>
-                            </label>
-                            <label>
-                                <span class="title">Пароль</span>
-                                <span class="frame_form_field">
-                                    <span class="icon-password"></span>
-                                    <input type="password" name="password"/>
-                                    <div id="for_password" class="for_validations"></div>
-                                </span>
-                            </label>
-                            <div class="frameLabel">
-                                <span class="title">&nbsp;</span>
-                                <span class="frame_form_field c_n">
-                                    <a href="/auth/forgot_password" class="f_l neigh_btn">Забыли пароль?</a>
-                                    <input type="button" value="Войти" class="btn btn_cart f_r" onclick="ImageCMSApi.formAction('/auth/authapi/login', 'login_form');
-                                                                return false;"/>
-                                </span>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+        </div>
+        <div class="drop-footer"></div>
+    </div>
+    <div class="d_n" data-clone="data-report">
+        <form method="post" action="" id="data-report">
+            <div class="standart_form">
+                <label>
+                    <span class="title">Ваше имя</span>
+                    <span class="frame_form_field">
+                        <input type="text" id="" name="UserName"/>
+                        <div id="for_UserName" class="for_validations"></div>
+                        <span class="must">*</span>
+                    </span>
+                </label>
+                <label>
+                    <span class="title">E-mail</span>
+                    <span class="frame_form_field">
+                        <input type="text" id="" name="UserEmail"/>
+                        <div id="for_UserEmail" class="for_validations"></div>
+                        <input type="hidden" name="ProductId" value=""/>
+                        <input type="hidden" name="notifme" value="true"/>
+                        <span class="must">*</span>
+                        <span class="help_inline">На почту придет уведомление о появлении данного товара</span>
+                    </span>
+                </label>
+                <label>
+                    <span class="title">Телефон</span>
+                    <span class="frame_form_field">
+                        <input type="text" id="" name="UserPhone"/>
+                        <div id="for_UserPhone" class="for_validations"></div>
+                        <span class="must">*</span>
+                    </span>
+                </label>
             </div>
-            <div class="drop-footer"></div>
-        </div>
-        <div class="drop-order-call drop" id="a">
-            <div class="icon-times-enter" data-closed="closed-js"></div>
-            <div class="drop-content">
-                <div class="header_title">
-                    Заказ звонка
-                </div>
-                <div class="inside_padd">
-                    <div class="horizontal_form standart_form">
-                        <form method="post">
-                            <label>
-                                <span class="title">Ваше имя</span>
-                                <span class="frame_form_field">
-                                    <span class="icon-person"></span>
-                                    <input type="text"/>
-                                </span>
-                            </label>
-                            <label>
-                                <span class="title">Номер телефона</span>
-                                <span class="frame_form_field">
-                                    <span class="icon-phone"></span>
-                                    <input type="text"/>
-                                </span>
-                            </label>
-                            <label>
-                                <span class="title">Примерное время</span>
-                                <span class="frame_form_field">
-                                    <input type="text"/>
-                                    <span class="icon-clock"></span>
-                                </span>
-                            </label>
-                            <label>
-                                <span class="title">Комментарий</span>
-                                <span class="frame_form_field">
-                                    <textarea></textarea>
-                                </span>
-                            </label>
-                            <div class="frameLabel">
-                                <span class="title">&nbsp;</span>
-                                <span class="frame_form_field c_n">
-                                    <input type="submit" value="Позвоните мне" class="btn btn_cart f_r"/>
-                                </span>
-
-                            </div>
-                        </form>
-                    </div>
-                </div>
+            <div class="t-a_r">
+                <input type="submit" value="Отправить" onclick="NotitficationApi.formAction('/shop/ajax/getApiNotifyingRequest', 'data-report');
+                                                            return false;" class="btn btn_cart"/>
             </div>
-            <div class="drop-footer"></div>
-        </div>
-        <div class="drop drop-report">
-            <div class="drop-content">
-                <div class="title_h2">Сообщить когда появится</div>
-                <div class="icon-times-enter" data-closed="closed-js"></div>
-            </div>
-            <div class="drop-footer"></div>
-        </div>
-        <div class="d_n" data-clone="data-report">
-            <form method="post" action="" id="data-report">
-                <div class="standart_form">
-                    <label>
-                        <span class="title">Ваше имя</span>
-                        <span class="frame_form_field">
-                            <input type="text" id="" name="UserName"/>
-                            <div id="for_UserName" class="for_validations"></div>
-                            <span class="must">*</span>
-                        </span>
-                    </label>
-                    <label>
-                        <span class="title">E-mail</span>
-                        <span class="frame_form_field">
-                            <input type="text" id="" name="UserEmail"/>
-                            <div id="for_UserEmail" class="for_validations"></div>
-                            <input type="hidden" name="ProductId" value=""/>
-                            <input type="hidden" name="notifme" value="true"/>
-                            <span class="must">*</span>
-                            <span class="help_inline">На почту придет уведомление о появлении данного товара</span>
-                        </span>
-                    </label>
-                    <label>
-                        <span class="title">Телефон</span>
-                        <span class="frame_form_field">
-                            <input type="text" id="" name="UserPhone"/>
-                            <div id="for_UserPhone" class="for_validations"></div>
-                            <span class="must">*</span>
-                        </span>
-                    </label>
-                </div>
-                <div class="t-a_r">
-                    <input type="submit" value="Отправить" onclick="ImageCMSApi.formAction('/shop/ajax/getApiNotifyingRequest', 'data-report');
-                                                                return false;" class="btn btn_cart"/>
-                </div>
-            </form>
-        </div>
-        <script src="{$SHOP_THEME}js/jquery.cycle.all.js" type="text/javascript"></script>
-        <script src="{$SHOP_THEME}js/jquery.jcarousel.min.js" type="text/javascript"></script>
-        <script src="{$SHOP_THEME}js/jquery.ui-slider.js" type="text/javascript"></script>
-        <script src="{$SHOP_THEME}js/cusel-min-2.5.js" type="text/javascript"></script>
-        <script src="{$SHOP_THEME}js/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
-        <script src="{$SHOP_THEME}js/scripts.js" type="text/javascript"></script>
-        <script src="{$SHOP_THEME}js/shop.js" type="text/javascript"></script>
-        <!-- Dev. scripts -->
-        <script src="{$SHOP_THEME}js/imagecms.api.js" type="text/javascript"></script>
+        </form>
+    </div>
+    <script src="{$SHOP_THEME}js/jquery.cycle.all.js" type="text/javascript"></script>
+    <script src="{$SHOP_THEME}js/jquery.jcarousel.min.js" type="text/javascript"></script>
+    <script src="{$SHOP_THEME}js/jquery.ui-slider.js" type="text/javascript"></script>
+    <script src="{$SHOP_THEME}js/cusel-min-2.5.js" type="text/javascript"></script>
+    <script src="{$SHOP_THEME}js/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+    <script src="{$SHOP_THEME}js/scripts.js" type="text/javascript"></script>
+    <script src="{$SHOP_THEME}js/shop.js" type="text/javascript"></script>
+    <!-- Dev. scripts -->
+    <script src="{$SHOP_THEME}js/imagecms.api.js" type="text/javascript"></script>
+    <script src="{$SHOP_THEME}js/my_js_classes_iy.js" type="text/javascript"></script>
 
 
-        {include_tpl('js_templates')}
+    {include_tpl('js_templates')}
 
 
         <!-- floating elements-->
         <div id="popupCart" style="display: none;" class="drop"></div>
         <a href="#" data-drop="#popupCart" data-place="center" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" id="showCart" style="display: none;"   >Show cart</a>
+        {include_tpl('search_autocomplete')}
     </body>
+
 </html>
