@@ -30,7 +30,7 @@
 <aside class="span3">
     
     {//displaying checked filters and count of found products}
-    {if ($_GET['lp'] and $_GET['lp'] > $priceRange.minCost) or ($_GET['rp'] and $_GET['rp'] < $priceRange.maxCost) or $_GET['p'] or $_GET['brand']}
+    {if ($_GET['lp'] and $_GET['lp'] > $priceRange.minCost) or ($_GET['rp'] and $_GET['rp'] < $priceRange.maxCost) or $_GET['p'] or $_GET['brand'] or $_GET['category']}
         <div class="checked_filter">
             
             {//displaying count of found products}
@@ -47,6 +47,22 @@
                                     <div class="o_h">
                                         {//link to uncheck current filter}
                                         <a href="{echo str_replace('brand[]=' . $brand->id, '', $aurl)}" style="text-decoration: none;"><span class="times">&times;</span>{echo ShopCore::encode($brand->name)}</a>
+                                    </div>
+                                </li>
+                            {/if}
+                        {/foreach}
+                    {/foreach}
+                {/if}
+                
+                {//displaying checked category filters}
+                {if count($categoriesInBrand) > 0}
+                    {foreach $categoriesInBrand as $category}
+                        {foreach $_GET['category'] as $id}
+                            {if $id == $category->category_id}
+                                <li>
+                                    <div class="o_h">
+                                        {//link to uncheck current filter}
+                                        <a href="{echo str_replace('category[]=' . $category->category_id, '', $aurl)}" style="text-decoration: none;"><span class="times">&times;</span>{echo ShopCore::encode($category->name)}</a>
                                     </div>
                                 </li>
                             {/if}
@@ -104,7 +120,7 @@
     <div class="filter">
         
         {//form for submiting checked filters}
-        <form id="filter" method="get" action="{shop_url('category/'.$category->getFullPath())}">
+        <form id="filter" method="get" action="">
             
             {//hidden input for saving users order method}
             <input type="hidden" name="order" value="{echo ShopCore::$_GET['order']}">
@@ -214,6 +230,33 @@
                             </div>
                         </div>
                 {/foreach}
+            {/if}
+            
+            {//displaying all possible categories in current brand}        
+            {if count($categoriesInBrand)>0}
+                <div class="boxFilter">
+                    <div class="title">Категории</div>
+                    <div class="clearfix check_form">
+                        {//loop which outputs all brands}
+                        {foreach $categoriesInBrand as $category}
+                            <div class="frameLabel">
+                                <span class="niceCheck b_n">
+                                    
+                                    {//one category checkbox input}
+                                    <input type="checkbox" {if $category->countProducts == 0}disabled="disabled"{/if} name="category[]" value="{echo $category->category_id}" type="checkbox" {if $category->countProducts !=0 && is_array(ShopCore::$_GET['category']) && in_array($category->category_id, ShopCore::$_GET['category'])}checked="checked"{/if}/>
+                                </span>
+                                <span class="filterLable">
+                                    
+                                    {//displaying category name}
+                                    {echo ShopCore::encode($category->name)}&nbsp;
+                                     
+                                    {//displaying products number with this category in current brand}
+                                    <span>({if $category->countProducts !=0 && is_array(ShopCore::$_GET['category']) && !in_array($category->category_id, ShopCore::$_GET['category'])}+{/if}{echo $category->countProducts})</span>
+                                </span>
+                            </div>
+                        {/foreach}
+                    </div>
+                </div>
             {/if}
         </form>
     </div>
