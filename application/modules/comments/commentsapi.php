@@ -431,7 +431,7 @@ class Commentsapi extends Comments {
         $this->db->where_in('item_id', $ids);
         $this->db->where('status', $status);
         $this->db->where('module = ', 'shop');
-        $query = $this->db->get('comments');
+        $query = $this->db->get('comments')->result_array();
 
         $result = array();
 
