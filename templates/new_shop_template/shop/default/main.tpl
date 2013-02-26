@@ -181,45 +181,10 @@
         </div>
     </footer>
     <div class="headerFon"></div>
-    <div class="drop-enter drop">
-        <div class="icon-times-enter" data-closed="closed-js"></div>
-        <div class="drop-content">
-            <div class="header_title">
-                Вход для клиентов
-            </div>
-            <div class="inside_padd">
-                <div class="horizontal_form standart_form">
-                    <form method="post" id="login_form">
-                        <label>
-                            <span class="title">E-mail</span>
-                            <span class="frame_form_field">
-                                <span class="icon-email"></span>
-                                <input type="text" name="email"/>
-                                <div id="for_email" class="for_validations"></div>
-                            </span>
-                        </label>
-                        <label>
-                            <span class="title">Пароль</span>
-                            <span class="frame_form_field">
-                                <span class="icon-password"></span>
-                                <input type="password" name="password"/>
-                                <div id="for_password" class="for_validations"></div>
-                            </span>
-                        </label>
-                        <div class="frameLabel">
-                            <span class="title">&nbsp;</span>
-                            <span class="frame_form_field c_n">
-                                <a href="/auth/forgot_password" class="f_l neigh_btn">Забыли пароль?</a>
-                                <input type="button" value="Войти" class="btn btn_cart f_r" onclick="ImageCMSApi.formAction('/auth/authapi/login', 'login_form');
-                                                            return false;"/>
-                            </span>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="drop-footer"></div>
-    </div>
+    <!-- Including template file for displaying drop-down login form is user is not logged in -->
+    {if !$CI->dx_auth->is_logged_in()}
+        {include_tpl('../../login_popup')}
+    {/if}
     <div class="drop-order-call drop" id="a">
         <div class="icon-times-enter" data-closed="closed-js"></div>
         <div class="drop-content">
