@@ -293,9 +293,10 @@
     {include_tpl('js_templates')}
 
 
-    <!-- floating elements-->
-    <div id="popupCart" style="display: none;" class="drop"></div>
-    <a href="#" data-drop="#popupCart" data-place="center" id="showCart" style="display: none;">Show cart</a>
-    {include_tpl('search_autocomplete')}
-</body>
+        <!-- floating elements-->
+        <div id="popupCart" style="display: none;" class="drop"></div>
+        <a href="#" data-drop="#popupCart" data-place="center" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" id="showCart" style="display: none;"   >Show cart</a>
+        {include_tpl('search_autocomplete')}
+    </body>
+
 </html>
