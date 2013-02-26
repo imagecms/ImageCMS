@@ -9,12 +9,6 @@
  * $model->hasDiscounts() : Check whether the discount on the product.
  * $model->firstVariant : The sample from the first product.
  * $model->firstVariant->toCurrency() : Formatting prices if nothing will pass "getPrice", but if you pass the "toCurrency ('OrigPrice')" will be transferred to the original price.
- * 
- *
- *
- *
- *
- *
  *
  * */
 #}
