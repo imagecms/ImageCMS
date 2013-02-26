@@ -264,10 +264,10 @@ var Shop = {
             this.items = JSON.parse( localStorage.getItem('shopSettings'))?JSON.parse( localStorage.getItem('shopSettings')):[];
             console.log(this.items);
             //if (this.items)
-                if ((key in this.items) ){
-                    this.items.push(key)
-                    localStorage.setItem('shopSettings', JSON.stringify(this.items));
-                }
+            if ((key in this.items) ){
+                this.items.push(key)
+                localStorage.setItem('shopSettings', JSON.stringify(this.items));
+            }
         }
     }
     
@@ -328,19 +328,19 @@ $(
             //update popup cart
             $('table.table_order td:last-child span:last-child').last().html(Shop.Cart.totalPrice.toFixed(2));
         
-    });
+        });
 
         $(document).on('before_add_to_cart', function(event){
             console.log(event);
         });
 
-    $(document).on('after_add_to_cart', function(event){
-        initShopPage();
-        Shop.Cart.countChanged = false;
-    });
+        $(document).on('after_add_to_cart', function(event){
+            initShopPage();
+            Shop.Cart.countChanged = false;
+        });
 
-}
-);
+    }
+    );
 
 //
 
@@ -386,8 +386,8 @@ function initShopPage(){
 
         $('#showCart').click();
 
-     }
- }
+    }
+}
 
 function rmFromPopupCart(context)
 {
@@ -421,11 +421,15 @@ $('[name="variant"]').live('change', function() {
     var vStock = $('span.variant_'+productId).attr('data-stock');
     
     
-    $('#photoGroup').attr('href', '/uploads/shop/' + vMainImage);
-    $('#imageGroup').attr('src', '/uploads/shop/' + vMainImage).removeClass().attr('alt', vName);
+    $('#photoGroup').attr('href', vMainImage);
+    $('#imageGroup').attr('src', vMainImage).removeClass().attr('alt', vName);
     $('#priceOrigVariant').html(vOrigPrice);
     $('#priceVariant').html(vPrice);
-    $('#number').html('(Артикул ' + vNumber + ')');
+    if($.trim(vNumber) != ''){
+        $('#number').html('(Артикул ' + vNumber + ')');
+    }else{
+        $('#number').html(' ');
+    }
     
     var productId = $(this).attr('value');
     $('.variant').hide();
