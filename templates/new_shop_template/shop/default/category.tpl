@@ -82,17 +82,17 @@
                                         Сообщить о появлении
                                     </button>
                                 {else:}
-                                    <button class="btn btn_buy" type="button" 
+                                    <button class="btn btn_buy toCart" type="button" 
                                             data-prodid="{echo $product->getId()}" 
                                             data-varid="{echo $product->firstVariant->getId()}"
                                             data-price="{echo $product->firstVariant->getPrice()}"
-                                            data-name="{echo $product->firstVariant->getName()}">
+                                            data-name="{echo $product->getName()}">
                                         Купить
                                     </button>
                                 {/if}
                                 <div class="d_i-b">
-                                    <button class="btn btn_small_p" type="button" title="добавить в список сравнений"><span class="icon-comprasion_2"></span></button>
-                                    <button class="btn btn_small_p" type="button" title="добавить в список желаний"><span class="icon-wish_2"></span></button>
+                                    <button class="btn btn_small_p toCompare"  data-prodid="{echo $product->getId()}"  type="button" title="добавить в список сравнений"><span class="icon-comprasion_2"></span></button>
+                                    <button class="btn btn_small_p toWishlist" data-prodid="{echo $product->getId()}" data-varid="{echo $product->firstVariant->getId()}"  type="button" title="добавить в список желаний"><span class="icon-wish_2"></span></button>
                                 </div>
                             </div>
                             <a href="#" class="photo">
