@@ -186,6 +186,7 @@ jQuery(document).ready(function() {
             $this.next().slideToggle(500);
         }
     });
+/*
     $(".star-big").starRating({
         width: 26,
         afterClick: function(el, value) {
@@ -193,6 +194,7 @@ jQuery(document).ready(function() {
             console.log(el)
         }
     });
+*/
     /* Refresh when remove item from Compare */
     $('.frame_tabsc > div').equalHorizCell('refresh');
     /* End. Refresh when remove item from Compare */

@@ -286,7 +286,9 @@ var Shop = {
                     productId: key, 
                     variantId: vid
                 }, function(data){
-                    console.log(data);
+                    //console.log(data);
+                    
+                    $('#wishListCount').html('('+Shop.WishList.all().length+')');
                 });
             }
         },
@@ -297,6 +299,8 @@ var Shop = {
             if (this.items.indexOf(key) !== -1 ) {
                 this.items = _.without(this.items, key);
                 localStorage.setItem('wishList', JSON.stringify(this.items));
+                
+                $('#wishListCount').html('('+Shop.WishList.all().length+')');
             }
         }
     },
@@ -313,6 +317,8 @@ var Shop = {
                 this.items.push(key);
                 localStorage.setItem('compareList', JSON.stringify(this.items));
                 $.get('/shop/compare/add/'+key);
+                
+                $('#compareCount').html('('+Shop.CompareList.all().length+')');
             }
         },
 
@@ -322,6 +328,8 @@ var Shop = {
             if (this.items.indexOf(key) !== -1 ) {
                 this.items = _.without(this.items, key);
                 localStorage.setItem('compareList', JSON.stringify(this.items));
+                
+                $('#compareCount').html('('+Shop.CompareList.all().length+')');
             }
         }
     },
