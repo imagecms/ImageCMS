@@ -1,3 +1,26 @@
+var optionsMenu = {
+    item: $('.menu-main td > .frame-item-menu > div'),
+    duration: 200,
+    drop: 'ul',
+    itemSub: '.frame-item-menu > ul > li',
+    frameSub: '.frame-item-menu > ul > li > div',
+    effecton: 'fadeIn',
+    effectoff: 'fadeOut'
+};
+var optionCompare = {
+    left: '.leftDescription li',
+    right: '.comprasion_tovars_frame > li',
+    elEven: 'li',
+    frameScroll: '.comprasion_tovars_frame',
+    mouseWhell: false,
+    scrollNSP: true,
+    scrollNSPT: '.items_catalog',
+    onlyDif: $('[data-href="#only-dif"]'),
+    allParams: $('[data-href="#all-params"]'),
+    hoverParent: '.characteristic'
+};
+
+
 jQuery(document).ready(function() {
     $('.formCost input[type="text"], .number input').live('keypress', function(event) {
         var key, keyChar;
@@ -24,26 +47,6 @@ jQuery(document).ready(function() {
         ieInput()
     }
 
-    var optionsMenu = {
-        item: $('.menu-main td > .frame-item-menu > div'),
-        duration: 200,
-        drop: 'ul',
-        itemSub: '.frame-item-menu > ul > li',
-        frameSub: '.frame-item-menu > ul > li > div',
-        effecton: 'fadeIn',
-        effectoff: 'fadeOut'
-    };
-    var optionCompare = {
-        left: '.leftDescription > li',
-        right: '.comprasion_tovars_frame > li',
-        rightel: 'li',
-        frameScroll: '.comprasion_tovars_frame',
-        mouseWhell: false,
-        scrollNSP: true,
-        scrollNSPT: '.items_catalog'
-    };
-    
-
     $('#slider').sliderInit({
         minCost: $('#minCost'),
         maxCost: $('#maxCost')
@@ -67,7 +70,7 @@ jQuery(document).ready(function() {
             if ($(dropEl).hasClass('drop-report')) {
                 $(dropEl).find('li').remove();
                 var elWrap = $(el).closest('li').clone().removeAttr('style'),
-                dropEl = $(dropEl).find('.drop-content');
+                        dropEl = $(dropEl).find('.drop-content');
 
                 //adding product info into form
                 var formCont = $('#data-report');
@@ -82,16 +85,22 @@ jQuery(document).ready(function() {
                     dropEl.find('.frame-search-thumbail').append(elWrap).find('.prod_status, .btn, .frame_response').remove().end().parent().find('[data-clone="data-report"]').remove().end().append($('[data-clone="data-report"]').clone().removeClass('d_n'));
                 }
             }
-        ;
+            ;
         }
     });
     $('.tabs').tabs({
-        after: function() {
-            $('.frame_tabsc > div').equalHorizCell(optionCompare);
+        after: function(el) {
+            if (el.parent().hasClass('comprasion_head')) {
+                $('.frame_tabsc > div').equalHorizCell(optionCompare);
+                if (optionCompare.onlyDif.parent().hasClass('active'))
+                    optionCompare.onlyDif.click();
+                else
+                    optionCompare.allParams.click();
+            }
         }
     });
-    $('.frame_tabsc > div').equalHorizCell(optionCompare);
 
+    $('.frame_tabsc > div').equalHorizCell(optionCompare);
     $('[data-rel="plusminus"]').plusminus({
         prev: 'prev.children(:eq(1))',
         next: 'prev.children(:eq(0))'
@@ -161,14 +170,39 @@ jQuery(document).ready(function() {
             'z-index': fr_lab_l - index
         })
     });
-//    $('.frameLabel').has('.niceCheck.b_n').on('click', function() {
-//        var input = $(this).find('input').not('[disabled=disabled]');
-//        if (input.is(':checked'))
-//            input.attr('checked', false);
-//        else
-//            input.attr('checked', true);
-//    })
     $('#suggestions').autocomlete();
+    $('.btn-navbar').click(function() {
+        var frameNavBar = $('.frame-navbar');
+        if (!frameNavBar.hasClass('in'))
+            frameNavBar.addClass('in').show();
+        else
+            frameNavBar.removeClass('in').hide();
+    });
+    $('.navStaticPages > ul > li > a').click(function(event) {
+        $this = $(this);
+        if ($this.next().length > 0) {
+            event.preventDefault();
+            $this.toggleClass('active');
+            $this.next().slideToggle(500);
+        }
+    });
+    $(".star-big").starRating({
+        width: 26,
+        afterClick: function(el, value) {
+            alert(value)
+            console.log(el)
+        }
+    });
+    /* Refresh when remove item from Compare */
+    $('.frame_tabsc > div').equalHorizCell('refresh');
+    /* End. Refresh when remove item from Compare */
+
+    /* REMOVE LATER */
+    $('.btn.btn_small.btn_small_p').unbind('click').click(function() {
+        $(this).parents('li').remove();
+        $('.frame_tabsc > div').equalHorizCell('refresh');
+    });
+
 });
 wnd.load(function() {
     if ($('.cycle li').length > 1) {
@@ -182,7 +216,7 @@ wnd.load(function() {
             next: '.frame_baner .next',
             prev: '.frame_baner .prev',
             pager:      '.pager',
-            pagerAnchorBuilder: function(idx, slide) {
+                    pagerAnchorBuilder: function(idx, slide) {
                 return '<a href="#"></a>';
             }
         }).hover(function() {
@@ -194,7 +228,7 @@ wnd.load(function() {
 
 
     var $js_carousel = $('.carousel_js'),
-    $frame_button = new Array();
+            $frame_button = new Array();
     $item = new Array();
     $item_l = new Array();
     $item_w = new Array();
@@ -204,7 +238,7 @@ wnd.load(function() {
 
     $js_carousel.each(function(index) {
         var index = index,
-        $this = $(this);
+                $this = $(this);
 
         $frame_button[index] = $this.find('.groupButton')
         $item[index] = $this.find('.items:first > li');
@@ -218,7 +252,7 @@ wnd.load(function() {
         var cont_width = $('.container').width();
         $js_carousel.each(function(index) {
             var index = index,
-            $count_visible = (cont_width / ($item_w[index])).toFixed(1);
+                    $count_visible = (cont_width / ($item_w[index])).toFixed(1);
             if ($item_w[index] * $item_l[index] - ($item_w[index] - $item[index].width()) > cont_width) {
                 $this_carousel[index].jcarousel({
                     buttonNextHTML: $this_next[index],
@@ -254,9 +288,7 @@ wnd.load(function() {
         $('.menu-main').menuPacket2('refresh');
     })
 });
-/*початкові зміні для слайдера*/
 def_min = $('span#opt1').data('def_min');
 def_max = $('span#opt2').data('def_max');
 cur_min = $('span#opt3').data('cur_min');
 cur_max = $('span#opt4').data('cur_max');
-/**/

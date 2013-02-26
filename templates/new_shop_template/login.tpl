@@ -7,15 +7,6 @@
 <!-- Adds meta tag for this page -->
 {$this->registerMeta('<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">')}
 <article>
-    <!-- bread crumbs container -->
-    <div class="crumbs" xmlns:v="http://rdf.data-vocabulary.org/#">
-        <span typeof="v:Breadcrumb">
-            <a href="{site_url()}" rel="v:url" property="v:title">{lang('s_main_home')}</a>
-        </span>/
-        <span typeof="v:Breadcrumb">
-            <span rel="v:url" property="v:title">{lang('lang_login_page')}</span>
-        </span>
-    </div>
     <div class="t-a_c">
         <div class="row d_i-b t-a_l">
             <div class="span6">
@@ -52,18 +43,20 @@
                                     </span>
                                 </label>
                                 <!-- captcha block -->
-                                {if $cap_image}
-                                    <lable>
-                                        <span class="title">{$cap_image}</span>
-                                        <span class="frame_form_field">
-                                            {if $captcha_type == 'captcha'}
-                                                <input type="text" name="captcha" id="captcha" value="{lang('lang_captcha')}" onfocus="if (this.value == '{lang('lang_captcha')}')
-                                                    this.value = '';" onblur="if (this.value == '')
-                                                    this.value = '{lang('lang_captcha')}';"/>
-                                            {/if}
-                                        </span>
-                                    </lable>
-                                {/if}
+                                <lable id="captcha_block">
+                                    {if $cap_image}
+                                            <span class="title">{lang('lang_captcha')}</span>
+                                            <span class="frame_form_field">
+                                                {if $captcha_type == 'captcha'}
+                                                    <input type="text" name="captcha" value="{lang('lang_captcha')}" onfocus="if (this.value == '{lang('lang_captcha')}')
+                                                        this.value = '';" onblur="if (this.value == '')
+                                                        this.value = '{lang('lang_captcha')}';"/>
+                                                    <span class="help_inline">{$cap_image}</span>
+                                                    <div id="for_captcha" class="for_validations"></div>
+                                                {/if}
+                                            </span>
+                                    {/if}
+                                </lable>
                                 <label>
                                     <span class="title">{lang('lang_remember_me')}</span>
                                     <span class="frame_form_field">
