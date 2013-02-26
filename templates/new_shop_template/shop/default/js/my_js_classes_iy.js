@@ -105,7 +105,7 @@ var NotitficationApi = {
 
 var FilterManipulation = {
     formId: "#filter",
-    OnChangeSubmitSelectors: "[name='brand[]'], .propertyCheck",
+    OnChangeSubmitSelectors: "[name='brand[]'], .propertyCheck, [name='category[]']",
     OnClickSublitSelectors: ".filterSubmit",
     filterSubmit: function() {
         $(FilterManipulation.formId).submit();

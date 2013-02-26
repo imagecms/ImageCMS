@@ -106,9 +106,7 @@
                                     <form name="search" class="clearfix" action="{shop_url('search')}" method="get" id="autocomlete">
                                         <button class="f_r btn" type="submit"><span class="icon-search"></span><span class="text-el">{lang('search_find')}</span></button>
                                         <div class="o_h">
-                                            <input type="text" name="text" value="{lang('s_se_thi_sit')}"  onfocus="if (this.value == '{lang('s_se_thi_sit')}')
-                                                                this.value = '';" onblur="if (this.value == '')
-                                                                this.value = '{lang('s_se_thi_sit')}';"  autocomplete="off" class="place_hold" id="inputString"/>
+                                            <input type="text" name="text" value="" placeholder="{lang('s_se_thi_sit')}" autocomplete="off" class="place_hold" id="inputString"/>
                                         </div>
                                         <div id="suggestions" class="drop-search"></div>
                                     </form>
@@ -183,45 +181,10 @@
         </div>
     </footer>
     <div class="headerFon"></div>
-    <div class="drop-enter drop">
-        <div class="icon-times-enter" data-closed="closed-js"></div>
-        <div class="drop-content">
-            <div class="header_title">
-                Вход для клиентов
-            </div>
-            <div class="inside_padd">
-                <div class="horizontal_form standart_form">
-                    <form method="post" id="login_form">
-                        <label>
-                            <span class="title">E-mail</span>
-                            <span class="frame_form_field">
-                                <span class="icon-email"></span>
-                                <input type="text" name="email"/>
-                                <div id="for_email" class="for_validations"></div>
-                            </span>
-                        </label>
-                        <label>
-                            <span class="title">Пароль</span>
-                            <span class="frame_form_field">
-                                <span class="icon-password"></span>
-                                <input type="password" name="password"/>
-                                <div id="for_password" class="for_validations"></div>
-                            </span>
-                        </label>
-                        <div class="frameLabel">
-                            <span class="title">&nbsp;</span>
-                            <span class="frame_form_field c_n">
-                                <a href="/auth/forgot_password" class="f_l neigh_btn">Забыли пароль?</a>
-                                <input type="button" value="Войти" class="btn btn_cart f_r" onclick="ImageCMSApi.formAction('/auth/authapi/login', 'login_form');
-                                                            return false;"/>
-                            </span>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="drop-footer"></div>
-    </div>
+    <!-- Including template file for displaying drop-down login form is user is not logged in -->
+    {if !$CI->dx_auth->is_logged_in()}
+        {include_tpl('login_popup')}
+    {/if}
     <div class="drop-order-call drop" id="a">
         <div class="icon-times-enter" data-closed="closed-js"></div>
         <div class="drop-content">
@@ -333,37 +296,6 @@
     <!-- floating elements-->
     <div id="popupCart" style="display: none;" class="drop"></div>
     <a href="#" data-drop="#popupCart" data-place="center" id="showCart" style="display: none;">Show cart</a>
-{literal}
-        <script type="text/template" id="searchResultsTemplate">
-           <div class="inside-padd">
-              <ul class="frame-search-thumbail">
-                   <% _.each(items, function(item){
-                   if (item.name != null){%>
-                   <li>{/literal}
-                       <a href="{shop_url('product')}/{literal}<%- item.url %>">
-                         <span class="photo">
-                               <span class="helper"></span>
-                              {/literal}<img src="{base_url()}uploads/shop/{literal}<%- item.smallModImage %>">
-                           </span>
-                           <span><%- item.name %></span>
-                      </a>
-                       <div class="price price_f-s_16"><span class="f-w_b"><%- Math.round(item.price) %></span>{/literal}{$CS}{literal}</div>
-                   </li>
-                   <% }
-                   }) %>
-               </ul>
-               <% if (_.keys(items).length > 1) { %>
-               <div class="btn-form">{/literal}
-                    <a href="{shop_url('search')}?text={literal}<%- items.queryString %>" {/literal} class="f-s_0">
-                        <span class="icon-show-all"></span><span class="text-el">{lang('s_all_result')}</span>
-                   </a>
-                </div>{literal}
-                <% } %>    
-            </div>
-        </script>
-        {/literal}
-
-
-
+    {include_tpl('shop/default/search_autocomplete')}
 </body>
 </html>
