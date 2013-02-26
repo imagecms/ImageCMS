@@ -255,7 +255,7 @@
                                         {/if}
                                     </div>
                                 </div>
-                                <div class="buy">{//var_dump($product)}
+                                <div class="buy">
                                     <div class="price f-s_18 d_b">
                                         {if (float)$product->getOldPrice() > 0}
                                             {if $product->getOldPrice() > $product->firstVariant->toCurrency()}
