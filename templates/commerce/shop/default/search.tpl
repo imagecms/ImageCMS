@@ -38,7 +38,7 @@
                             {if $item->getLevel() == 0}
                                 <div class="sub_title">
                                     {foreach $item->getSubtree() as $subItem}
-                                        {$count_item = $categorys[$subItem->getId()];}
+                                        {$count_item = $categories[$subItem->getId()];}
                                         {if $count_item}
                                             {echo $item->getName()}{break;}
                                         {/if}
@@ -46,7 +46,7 @@
                                 </div>
                                 <ul class="menu_fiter">
                                     {foreach $item->getSubtree() as $subItem}
-                                        {$count_item = $categorys[$subItem->getId()];}
+                                        {$count_item = $categories[$subItem->getId()];}
                                         {if $count_item}
                                             <li{if $_GET['category'] && $_GET['category'] == $subItem->getId()} class="active"{/if}>
                                                 <a href="{echo $subItem->getId()}">{echo $subItem->getName()}</a> 

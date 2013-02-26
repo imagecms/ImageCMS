@@ -1,3 +1,4 @@
+{#
 /**
 * @file Render autocomplete results
 * @partof main.tpl
@@ -5,6 +6,7 @@
 * Variables
 *   items : (object javascript) Contain found products
 */
+#}
 {literal}
 <script type="text/template" id="searchResultsTemplate">
    <div class="inside-padd">
