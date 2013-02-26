@@ -1,34 +1,44 @@
-<div class="fancy enter_form">
-    <h1>{lang('s_log_out')}</h1>        
-    <form method="post" action="{site_url('auth/login')}" id="enter">
-        {if validation_errors() OR $info_message}<div class="errors">{validation_errors()}{$info_message}</div>{/if}        
-        <label>
-            {lang('s_email')}
-            <input type="text" name="email"/>
-        </label>
-        <label>
-            {lang('lang_password')}
-            <input type="password" id="password" name="password"/>
-        </label>
-
-        {if $cap_image}
-        <label>
-            <div class="fieldName">{$cap_image}</div>
-            {if $captcha_type == 'captcha'}
-            <input type="text" name="captcha" id="captcha" value="{lang('lang_captcha')}" onfocus="if(this.value=='{lang('lang_captcha')}') this.value='';" onblur="if(this.value=='') this.value='{lang('lang_captcha')}';"/>
-            {/if}		
-        </label>
-        {/if}                
-        <div class="p-t_19 clearfix">
-            <div class="f_l">
-                <a href="{$BASE_URL}auth/register" class="button_middle_blue_neigh f_l reg_me">
-                    {lang('lang_register')}
-                </a>
-            </div>
-            <div class="f_r buttons button_middle_blue">
-                <input type="submit" value="{lang('s_enter')}">
+{#
+/**
+* @file template file for creating drop-down login form uses imagecms.api.js for submiting and appending validation errors
+*/
+#}
+<div class="drop-enter drop">
+    <div class="icon-times-enter" data-closed="closed-js"></div>
+    <div class="drop-content">
+        <div class="header_title">
+            {lang('lang_login_page')}
+        </div>
+        <div class="inside_padd">
+            <div class="horizontal_form standart_form">
+                <form method="post" id="login_form">
+                    <label>
+                        <span class="title">{lang('lang_email')}</span>
+                        <span class="frame_form_field">
+                            <span class="icon-email"></span>
+                            <input type="text" name="email"/>
+                            <div id="for_email" class="for_validations"></div>
+                        </span>
+                    </label>
+                    <label>
+                        <span class="title">{lang('lang_password')}</span>
+                        <span class="frame_form_field">
+                            <span class="icon-password"></span>
+                            <input type="password" name="password"/>
+                            <div id="for_password" class="for_validations"></div>
+                        </span>
+                    </label>
+                    <div class="frameLabel">
+                        <span class="title">&nbsp;</span>
+                        <span class="frame_form_field c_n">
+                            <a href="/auth/forgot_password" class="f_l neigh_btn">{lang('lang_forgot_password')}</a>
+                            <input type="button" value="Войти" class="btn btn_cart f_r" onclick="ImageCMSApi.formAction('/auth/authapi/login', 'login_form');
+                                    return false;"/>
+                        </span>
+                    </div>
+                </form>
             </div>
         </div>
-        {form_csrf()}
-    </form>  
+    </div>
+    <div class="drop-footer"></div>
 </div>
