@@ -448,12 +448,11 @@ function rmFromPopupCart(context)
     cartItem.id = tr.data('prodid');
     cartItem.vId = tr.data('varid');
     
-    Shop.Cart.rm(cartItem);
-    
-    console.log(cartItem);
-    
-    Shop.Cart.totalRecount();
+    Shop.Cart.rm(cartItem).totalRecount()
     tr.remove();
+//    if ($('#popupCart tbody tr').length == 0)
+//        $('#popupCart').html(_.template( $('#cartPopupTemplate').html() , {cart:Shop.Cart}));
+    
 };
 
 function togglePopupCart()

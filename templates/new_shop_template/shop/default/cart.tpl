@@ -266,6 +266,14 @@
 
 
 <article>
+    {if count($items) > 0}
+    <div class="form_alert">
+        <p>
+            Ваша корзина пуста
+        </p>
+        {literal}<script>setTimeout("window.location.href='/'");</script>{/literal}
+    </div>
+    {else:}
                         <h1>Оформление заказа</h1>
                         <div class="row">
                             <div class="span6">
@@ -394,3 +402,4 @@
                             </div>
                         </div>
                     </article>
+{/if}                                                    
