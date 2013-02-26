@@ -168,6 +168,7 @@ class Auth extends MY_Controller {
             }
         } else {
 //             ($hook = get_hook('auth_user_is_logged')) ? eval($hook) : NULL;
+            redirect(site_url(), 301);
 
             $this->template->assign('content', lang('lang_user_logged_in'));
             $this->template->show();
@@ -254,11 +255,12 @@ class Auth extends MY_Controller {
             $this->template->show();
         } else {
 //             ($hook = get_hook('auth_logout_to_reg')) ? eval($hook) : NULL;
-
-            $data['auth_message'] = lang('lang_logout_to_reg');
-
-            $this->template->assign('content', $data['auth_message']);
-            $this->template->show();
+            redirect(site_url(), 301);
+//            
+//            $data['auth_message'] = lang('lang_logout_to_reg');
+//
+//            $this->template->assign('content', $data['auth_message']);
+//            $this->template->show();
         }
     }
 

@@ -1,14 +1,14 @@
 <div class="content">
 
-    <!-- Show Brands in circle -->
+    <!-- Show Banners in circle -->
     {$banners = ShopCore::app()->SBannerHelper->getBanners()}
     {if count($banners)}
         <div class="cycle center">
             <ul>
                 {foreach $banners as $banner}
                     <li>
-                        <a href="{echo $banner->getUrl()}">
-                            <img src="/uploads/shop/banners/{echo $banner->getImage()}" alt="{echo ShopCore::encode($banner->getName())}" />
+                        <a href="{echo $banner['url']}">
+                            <img src="/uploads/shop/banners/{echo $banner['image']}" />
                         </a>
                     </li>
                 {/foreach}

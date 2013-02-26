@@ -1,65 +1,96 @@
+{#
+/**
+* @file template for displaying login page
+*/
+#}
+
+<!-- Adds meta tag for this page -->
 {$this->registerMeta('<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">')}
-
-<div id="titleExt"><span class="ext">{lang('lang_login_page')}</span></h5></div>
-
-{if validation_errors() OR $info_message}
-    <div class="errors">
-        {validation_errors()}
-        {$info_message}
+<article>
+    <!-- bread crumbs container -->
+    <div class="crumbs" xmlns:v="http://rdf.data-vocabulary.org/#">
+        <span typeof="v:Breadcrumb">
+            <a href="{site_url()}" rel="v:url" property="v:title">{lang('s_main_home')}</a>
+        </span>/
+        <span typeof="v:Breadcrumb">
+            <span rel="v:url" property="v:title">{lang('lang_login_page')}</span>
+        </span>
     </div>
-{/if}
-
-<br/>
-
-<form action="" method="post" class="form">
-
-    <div class="fieldName">{lang('lang_email')}</div>
-    <div class="field">
-        <input type="text" id="username" size="30" name="email" value="Введите Ваш логин" onfocus="if (this.value == 'Введите Ваш логин')
-                            this.value = '';" onblur="if (this.value == '')
-                            this.value = 'Введите Ваш логин';" />
-    </div>
-    <div class="clear"></div>
-
-    <div class="fieldName">{lang('lang_password')}</div>
-    <div class="field">
-        <input type="password" size="30" name="password" id="password" value="{lang('lang_password')}" onfocus="if (this.value == '{lang('lang_password')}')
-                            this.value = '';" onblur="if (this.value == '')
-                            this.value = '{lang('lang_password')}';"/>
-    </div>
-    <div class="clear"></div>
-
-    {if $cap_image}
-        <div class="fieldName">{$cap_image}</div>
-        {if $captcha_type == 'captcha'}
-            <div class="field">
-                <input type="text" name="captcha" id="captcha" value="{lang('lang_captcha')}" onfocus="if (this.value == '{lang('lang_captcha')}')
-                            this.value = '';" onblur="if (this.value == '')
-                            this.value = '{lang('lang_captcha')}';"/>
+    <div class="t-a_c">
+        <div class="row d_i-b t-a_l">
+            <div class="span6">
+                <div class="frameGroupsForm">
+                    <div class="header_title">
+                        {lang('lang_login_page')}
+                    </div>
+                    <div class="inside_padd">
+                        <div class="horizontal_form standart_form">
+                            <!-- login form -->
+                            <form method="post" id="login_form">
+                                <label>
+                                    <span class="title">{lang('lang_email')}</span>
+                                    <span class="frame_form_field">
+                                        <span class="icon-email"></span>
+                                        <!-- input for email -->
+                                        <input value="Введите Ваш логин" type="text" name="email" onfocus="if (this.value == 'Введите Ваш логин')
+                                                    this.value = '';" onblur="if (this.value == '')
+                                                    this.value = 'Введите Ваш логин';"/>
+                                        <!-- validation error container -->
+                                        <div id="for_email" class="for_validations"></div>
+                                    </span>
+                                </label>
+                                <label>
+                                    <span class="title">{lang('lang_password')}</span>
+                                    <span class="frame_form_field">
+                                        <span class="icon-password"></span>
+                                        <!-- input for password -->
+                                        <input type="password" name="password" value="{lang('lang_password')}" onfocus="if (this.value == '{lang('lang_password')}')
+                                                    this.value = '';" onblur="if (this.value == '')
+                                                    this.value = '{lang('lang_password')}';"/>
+                                        <!-- validation error container -->
+                                        <div id="for_password" class="for_validations"></div>
+                                    </span>
+                                </label>
+                                <!-- captcha block -->
+                                {if $cap_image}
+                                    <lable>
+                                        <span class="title">{$cap_image}</span>
+                                        <span class="frame_form_field">
+                                            {if $captcha_type == 'captcha'}
+                                                <input type="text" name="captcha" id="captcha" value="{lang('lang_captcha')}" onfocus="if (this.value == '{lang('lang_captcha')}')
+                                                    this.value = '';" onblur="if (this.value == '')
+                                                    this.value = '{lang('lang_captcha')}';"/>
+                                            {/if}
+                                        </span>
+                                    </lable>
+                                {/if}
+                                <label>
+                                    <span class="title">{lang('lang_remember_me')}</span>
+                                    <span class="frame_form_field">
+                                        <!--input for remember me option-->
+                                        <input type="checkbox" name="remember" value="1" id="remember" class="d_i v-a_b"/>
+                                        <div id="for_password" class="for_validations"></div>
+                                    </span>
+                                </label>
+                                <div class="frameLabel">
+                                    <span class="title">&nbsp;</span>
+                                    <span class="frame_form_field c_n">
+                                        <!--forgot password link-->
+                                        <a href="/auth/forgot_password" class="d_i v-a_m neigh_btn m-r_45">{lang('lang_forgot_password')}</a>
+                                        <!--registration link-->
+                                        <a href="{site_url($modules.auth . '/register')}" class="d_i v-a_m neigh_btn m-r_45">{lang('lang_register')}</a>
+                                        <!--submit button-->
+                                        <input type="button" value="Войти" class="btn btn_cart f_r" onclick="ImageCMSApi.formAction('/auth/authapi/login', 'login_form');
+                                                return false;"/>
+                                    </span>
+                                </div>
+                                <!--security token-->
+                                {form_csrf()}
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-        {/if}
-        <div class="clear"></div>
-    {/if}
-
-    <div class="fieldName"></div>
-    <div class="field">
-        <label><input type="checkbox" name="remember" value="1" id="remember" /> {lang('lang_remember_me')}</label>
+        </div>
     </div>
-    <div class="clear"></div>
-
-    <div class="fieldName"></div>
-    <div class="field">
-        <input type="submit" id="submit" class="submit" value="{lang('lang_submit')}" />
-    </div>
-    <div class="clear"></div>
-
-    <div class="fieldName"></div>
-    <div class="field">
-        <a href="{site_url($modules.auth . '/forgot_password')}">{lang('lang_forgot_password')}</a>
-        &nbsp;
-        <a href="{site_url($modules.auth . '/register')}">{lang('lang_register')}</a>
-    </div>
-    <div class="clear"></div>
-
-    {form_csrf()}
-</form>
+</article>
