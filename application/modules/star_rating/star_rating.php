@@ -42,11 +42,9 @@ class Star_rating extends MY_Controller {
             $this->list_for_show = array();
         }
         
-        
         $id = $this->core->core_data['id'];
         $type = $this->core->core_data['data_type'];
-        
-        
+         
         // product rating
         if ($item != null && $item instanceof SProducts){
             
@@ -112,7 +110,6 @@ class Star_rating extends MY_Controller {
         $type = $_POST['type'];
         $rating = (int) $_POST['val'];
         
-        // If 
         if ($id != null && $type != null && !$this->session->userdata('voted_g' . $id . $type) == true) {
             //Check if rating exists 
             $check = $this->get_rating($id, $type);
