@@ -1,16 +1,18 @@
-{# Variables
-# @var items
-# @var capImage
-# @var profile
+{#
+/**
+* @file - template for displaying wish list
+* @updated 26 February 2013;
+* Variables
+* $items : Array of products in wish list
+* $profile : (array) Info about user
+* $total_price : (string) Total price of all products
+*/
 #}
-{$this->registerMeta('<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">')}
+
 <article>
     <h1>{lang('s_WL')}</h1>
     <div class="row">
-        <div class="text span8">
-            <p>«Список желаний» представляет собой список желаний человека. С его помощью можно не только озвучить свои желания миру, но и облегчить жизнь родственникам, знакомым и друзьям, ищущим подарок.</p>
-            <p>Все, кто хочет сделать вам подарок, но не может определиться с выбором. «Список желаний» – это самый простой ответ на вопрос "Что тебе подарить?". Обычно вишлист заполняется перед праздниками, а после уже пополняется не так часто, с появлением новых желаний.</p>
-        </div>
+        <div class="text span8"><!-- Some text --></div>
     </div>
     <div class="frame_carousel_product">
         <!--If empty list show message -->
@@ -22,14 +24,10 @@
             <!--If not empty list show list of products -->
             <div class="bot_border_grey">
                 <ul class="items items_catalog itemsFrameNS">
-                
                 {foreach $items as $key=>$item}
-                        {$discount = ShopCore::app()->SDiscountsManager->productDiscount($item->id)}
-                        {$style = productInCart($cart_data, $item.model->getId(), $item.model->firstVariant->getId(), $item.model->firstVariant->getStock())}
                         <li class="span3 {if $item.model->firstvariant->stock == 0} not-avail{/if}">
                             {if ShopCore::$ci->dx_auth->is_logged_in()===true}
                                 <button class="btn btn_small btn_small_p">
-                                    {//shop_url('wish_list/delete/' . $key)}
                                     <span class="icon-remove_comprasion"></span>
                                 </button>    
                             {/if}
@@ -48,31 +46,31 @@
                                     </div>
                                 </div>
                                 <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}</a>
+                                <!-- Start. Price -->
                                 <div class="price price_f-s_16">
-                                    <span class="f-w_b">{echo $item.model->firstvariant->getPrice()}</span> {$CS}
-                                    <span class="second_cash"></span>
+                                    <!--$model->hasDiscounts() - checking for the existence of discounts. 
+                                         If there is a discount price without discount C-->
+                                         {if $item.model->hasDiscounts()}
+                                             <span class="d_b old_price">
+                                                 <span class="f-w_b">{echo $item.model->firstVariant->toCurrency('OrigPrice')}</span>
+                                                 {$CS}
+                                             </span>                           
+                                         {/if}
+                                         <!--If there is a discount of "$item.model->firstVariant->toCurrency()" or "$item.model->firstVariant->getPrice"
+                                         will display the price already discounted-->
+                                         <span class="f-w_b" >{echo $item.model->firstVariant->toCurrency()} </span>{$CS}
                                 </div>
-                                {if $style.identif == 'goToCart'}    
-                                    <button class="btn btn_cart" type="button">{lang('already_in_basket')}</button>
+                                <!-- End. Price -->
+                                    
+                                <!-- Start. Check is product available -->
+                                {if $item.model->firstvariant->stock != 0}
+                                    <button class="btn btn_buy" type="button" data-prodId="{echo $item.model->getId()}" data-varId="{echo $item.model->firstVariant->getId()}" data-price="{echo $item.model->firstVariant->toCurrency()}" data-name="{echo $item.model->getName()}">{lang('add_to_basket')}</button>
                                 {else:}
-                                    {if $item.model->firstvariant->stock != 0}
-                                        <button class="btn btn_buy" type="button">{lang('add_to_basket')}</button>
-                                    {else:}
-                                        <button class="btn btn_not_avail" type="button">{lang('s_message_o_report')}</button>
-                                    {/if}
+                                    <button class="btn btn_not_avail" type="button" data-prodId="{echo $item.model->getId()}" data-varId="{echo $item.model->firstVariant->getId()}" data-price="{echo $item.model->firstVariant->toCurrency()}" data-name="{echo $item.model->getName()}"> {lang('s_message_o_report')} </button>
                                 {/if}
+                                <!-- End. Check is product available -->
                             </div>
                         </li>
-                        <!--Calculate total price-->
-                        {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                            {$prOne = $item.model->firstvariant->getPrice() * 1}
-                            {$prTwo = $item.model->firstvariant->getPrice() * 1}
-                            {$summary = $prOne - $prTwo / 100 * $discount}
-                            <del class="price price-c_red f-s_12 price-c_9">{echo $item.model->firstvariant->getPrice() * 1} {$CS}</del> <br />
-                        {else:}
-                            {$summary = $item.model->firstvariant->getPrice()}
-                        {/if}
-                        {$total     += $summary}
                 {/foreach}
                 </ul>
             </div>
@@ -83,7 +81,7 @@
                 <div class="span6">
                     <div class="d_i-b title">{lang('s_summ')}:</div>
                     <div class="price price_f-s_24 d_i-b">
-                        <span class="first_cash"><span class="f-w_b">{echo $total}</span> {$CS}</span>
+                        <span class="first_cash"><span class="f-w_b">{echo $total_price}</span> {$CS}</span>
                     </div>
                 </div>
                 <div class="span6">

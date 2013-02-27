@@ -4,13 +4,12 @@
 * @updated 26 February 2013;
 * Variables
 * $products:(оbject) instance of SProducts
-* $cart_data: (array). List of products in cart  
-* $totalProducts: (int). Products amount 
+* $cart_data: Array of products in cart  
+* $totalProducts: (int) Products amount 
 * $brandsInSearchResult: (object) instance of SBrands 
-* $pagination: (string). Show pagination
-* $tree : (array). Categories tree. 
+* $pagination: (string) Show pagination
+* $tree : (array) All Categories tree. 
 * $categories: (array). Categories in search results with amount of found products
-* $canonical: (string). Canonical
 * 
 */
 #}
@@ -59,7 +58,7 @@
                     </ul>
                     {widget('latest_news')}
               </nav>
-            </div>
+          </div>
          <!-- End. Categories tree with navigation -->
         </div>
         </aside>
@@ -89,7 +88,7 @@
                                     <!-- End. Sort by block -->
                                     <!-- Start. Per page block -->
                                     <div class="f_r">
-                                        <span class="v-a_m">Товаров на странице:</span>
+                                        <span class="v-a_m">{lang('s_products_per_page')}:</span>
                                         <div class="lineForm w_70">
                                             <select class="sort" id="sort2" name="order2">
                                                 <option selected="selected" value="1">20</option>
@@ -102,8 +101,8 @@
                                     <!-- End. Per page block -->
                                     <!-- Start. Buttons for change view mode (list/images) -->
                                     <div class="groupButton list_pic_btn" data-toggle="buttons-radio">
-                                        <button type="button" class="btn active"><span class="icon-cat_pic"></span>Картинками</button>
-                                        <button type="button" class="btn"><span class="icon-cat_list"></span>Списком</button>
+                                        <button type="button" class="btn active"><span class="icon-cat_pic"></span>{lang('s_in_images')}</button>
+                                        <button type="button" class="btn"><span class="icon-cat_list"></span>{lang('s_in_list')}</button>
                                     </div>
                                     <!-- End. Buttons for change view mode (list/images) -->
                                 </div>
@@ -112,16 +111,12 @@
                     <ul class="items items_catalog" data-radio-frame>
                             {$Comments = $CI->load->module('comments')->init($products)}
                             {foreach $products as $p}
-                            {$discount = ShopCore::app()->SDiscountsManager->productDiscount($p->id)}
-                            {$style = productInCart($cart_data, $p->getId(), $p->firstVariant->getId(), $p->firstVariant->getStock())}
                             <li class="span3 {if $p->firstvariant->getstock()==0} not-avail{/if}">
                                 <div class="description">
                                     <div class="frame_response">
                                         <!-- Start. Star rating and comments count -->
-                                        <div class="star">
                                            {$CI->load->module('star_rating')->show_star_rating($p)}
                                            {echo $Comments[$p->getId()]}
-                                        </div>
                                         <!-- End. Star rating and comments count --> 
                                     </div>
                                    <a href="{shop_url('product/'.$p->getUrl())}">{echo ShopCore::encode($p->getName())}</a>
@@ -131,26 +126,26 @@
                                             If there is a discount price without discount C-->
                                             {if $p->hasDiscounts()}
                                                 <span class="d_b old_price">
-                                                    <span class="f-w_b">{echo number_format($p->firstVariant->toCurrency('OrigPrice'), ShopCore::app()->SSettings->pricePrecision, ".", "")}</span>
+                                                    <span class="f-w_b">{echo $p->firstVariant->toCurrency('OrigPrice')}</span>
                                                     {$CS}
                                                 </span>                           
                                             {/if}
                                             <!--If there is a discount of "$model->firstVariant->toCurrency()" or "$model->firstVariant->getPrice"
                                             will display the price already discounted-->
-                                            <span class="f-w_b" >{echo number_format($p->firstVariant->toCurrency(), ShopCore::app()->SSettings->pricePrecision, ".", "")}</span>{$CS}
+                                            <span class="f-w_b" >{echo $p->firstVariant->toCurrency()}</span>{$CS}
                                    </div>
                                    <!-- End. Price -->
                                     <!--Start. Check amount of goods -->
                                         {if $p->firstvariant->getstock()!=0}
-                                            <button class="btn btn_buy" type="button" data-prodId="{echo $p->getId()}" data-varId="{echo $p->firstVariant->getId()}" data-price="{$prThree}" data-name="{echo $p->getName()}">{lang('add_to_basket')}</button>
+                                            <button class="btn btn_buy" type="button" data-prodId="{echo $p->getId()}" data-varId="{echo $p->firstVariant->getId()}" data-price="{echo $p->firstVariant->toCurrency()}" data-name="{echo $p->getName()}">{lang('add_to_basket')}</button>
                                         {else:}
-                                            <button class="btn btn_not_avail" type="button" data-prodId="{echo $p->getId()}" data-varId="{echo $p->firstVariant->getId()}" data-price="{$prThree}" data-name="{echo $p->getName()}">{lang('s_message_o_report')}</button>
+                                            <button class="btn btn_not_avail" type="button" data-prodId="{echo $p->getId()}" data-varId="{echo $p->firstVariant->getId()}" data-price="{$p->firstVariant->toCurrency()}" data-name="{echo $p->getName()}">{lang('s_message_o_report')}</button>
                                         {/if} 
                                      <!-- End. Check amount of goods -->   
                                      <!-- Start. Buttons "Add to wish list" and "add to compare" -->
                                      <div class="d_i-b">
-                                        <button class="btn btn_small_p" type="button" title="{echo lang('s_list_add_comp')}" data-prodId="{echo $p->getId()}" data-varId="{echo $p->firstVariant->getId()}" data-price="{$prThree}" data-name="{echo $p->getName()}"><span class="icon-comprasion_2"></span></button>
-                                        <button class="btn btn_small_p" type="button" title="{echo lang('s_save_W_L')}" data-prodId="{echo $p->getId()}" data-varId="{echo $p->firstVariant->getId()}" data-price="{$prThree}" data-name="{echo $p->getName()}"><span class="icon-wish_2"></span></button>
+                                        <button class="btn btn_small_p" type="button" title="{echo lang('s_list_add_comp')}" data-prodId="{echo $p->getId()}" data-varId="{echo $p->firstVariant->getId()}" data-price="{echo $p->firstVariant->toCurrency()}" data-name="{echo $p->getName()}"><span class="icon-comprasion_2"></span></button>
+                                        <button class="btn btn_small_p" type="button" title="{echo lang('s_save_W_L')}" data-prodId="{echo $p->getId()}" data-varId="{echo $p->firstVariant->getId()}" data-price="{echo $p->firstVariant->toCurrency()}" data-name="{echo $p->getName()}"><span class="icon-wish_2"></span></button>
                                      </div>
                                      <!-- End. Buttons -->
                                 </div>
@@ -171,7 +166,7 @@
                         {$pagination}
                     {/if}
                     <!-- End pagination -->
-<!-- End. Search results block ->>
+<!-- End. Search results block -->
 {else:}
     <!-- Start.If products not found show message-->
     <div class="row" >
@@ -198,6 +193,6 @@
      </div>
     <!-- End. Show message -->
 {/if}
-            </div>
-        </div>
+    </div>
+</div>
 </div>

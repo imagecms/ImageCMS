@@ -312,3 +312,4 @@ class Template extends Mabilis {
 }
 
 /* End of template.php */
+
