@@ -16,6 +16,9 @@
         {$CI->load->helper('translit')}
             
             <h1 class="f_l">{lang('s_compare_tovars')}</h1>
+            <!--Start. Show compare list if count products >0 -->
+            {if count($products) > 0}
+                
             <!-- Start. Buttons for change to show different or all  properties -->
             <div class="f_l">
                 <ul class="tabs tabs-dif-all_par groupButton">
@@ -26,8 +29,6 @@
             <!-- End.  Buttons for change to show different or all  properties -->
             
             <div class="p_r c_b">
-            <!--Start. Show compare list if count products >0 -->
-            {if count($products) > 0}
                 <!--Start. Show categories of products which are in list -->
                 <div class="comprasion_head">
                     <div class="title_h2">{lang('s_category')}:</div>
@@ -67,7 +68,7 @@
                                  <li class="span3">
                                     <ul class="items items_catalog">
                                         <li>
-                                            <button class="btn btn_small btn_small_p">
+                                            <button class="btn btn_small btn_small_p" onclick="{literal}$.ajax({ type: 'post', url: '/shop/compare/remove/{/literal}{echo $product->getId}',{literal} success: function() { }});{/literal} Shop.CompareList.rm({echo $product->getId})">
                                                 <span class="icon-remove_comprasion"></span>
                                             </button>
                                             <a href="{shop_url('product/' . $product->getUrl())}" class="photo">
@@ -152,7 +153,8 @@
             
             {else:}
                 <!--Start. Show message if compare list is empty -->
-                <div class="comparison_slider">
+                <div class="row"></div>
+                <div class="comparison_slider" >
                     <div class="f-s_18 m-t_29 t-a_c">{lang('s_compare_list_em')}</div>
                 </div>
                 <!--End. Show message if compare list is empty -->
