@@ -1207,7 +1207,12 @@ $(document).ready(
 
             /**/
             $('#baseSearch, #shopSearch').focus();
+            $('[data-remove]').live('click', function() {
+                $(this).closest('tr').remove();
+            })
+            
             $('.btn').live('click', function() {
+                
                 $('.tooltip').remove();
             })
             $('#settings_form .control-label').live('click', function() {

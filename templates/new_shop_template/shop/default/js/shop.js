@@ -208,7 +208,6 @@ var Shop = {
     
         renderPopupCart : function(selector)
         {
-            alert(1)
             if (typeof selector == 'undefined' || selector == '')
                 var selector = this.popupCartSelector;
             console.log(selector);
@@ -286,17 +285,17 @@ var Shop = {
             return JSON.parse( localStorage.getItem('wishList'))? _.compact( JSON.parse( localStorage.getItem('wishList')) ):[];
         },
         add: function(key, vid){
+    
             this.items = this.all();
-            //console.log(this.items);
+            
             if (  this.items.indexOf(key) == -1 ){
                 this.items.push(key);
                 localStorage.setItem('wishList', JSON.stringify(this.items));
-                $.post('/shop/wish_list/add/', {
-                    productId: key, 
-                    variantId: vid
+                
+                $.post('/shop/wish_list_api/add/', {
+                    productId_: key, 
+                    variantId_: vid
                 }, function(data){
-                    //console.log(data);
-                    
                     $('#wishListCount').html('('+Shop.WishList.all().length+')');
                 });
             }
@@ -466,8 +465,8 @@ function rmFromPopupCart(context, isKit)
     
     Shop.Cart.rm(cartItem).totalRecount()
     tr.remove();
-//    if ($('#popupCart tbody tr').length == 0)
-//        $('#popupCart').html(_.template( $('#cartPopupTemplate').html() , {cart:Shop.Cart}));
+    if ($('#popupCart tbody tr').length == 0)
+        $('#popupCart').html(_.template( $('#cartPopupTemplate').html() , {cart:Shop.Cart}));
     
 };
 

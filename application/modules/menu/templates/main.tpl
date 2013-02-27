@@ -50,9 +50,7 @@
                         </div>
                         <div class=" body_category frame_level">
                             <div class="sortable save_positions" data-url="/admin/components/cp/menu/save_positions">
-
                                 {$tree}
-
                             </div>
                         </div>
                     </div>
