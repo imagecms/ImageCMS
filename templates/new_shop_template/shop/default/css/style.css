@@ -823,6 +823,7 @@ a.activeSlide{background-position: -66px 0;}
 .item_tovar .tabs > .active > button{cursor: default;}
 .item_tovar .frame_tabs{border: 1px solid #dedede;padding: 15px 25px;-moz-border-radius: 0 4px 4px 4px;-webkit-border-radius: 0 4px 4px 4px;border-radius: 0 4px 4px 4px;}
 .frame_tabs > div, .frame_tabsc > div{display: none;}
+.frame_tabsc{min-height: 200px;}
 
 .comprasion{margin-bottom: 60px;}
 .comprasion_tovars_frame > .span3{width: 270px !important;float: left!important;margin-left: 0!important;}

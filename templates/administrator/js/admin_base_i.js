@@ -625,13 +625,15 @@ $(document).ready(function() {
         $('#category_sel').trigger('change');
     });
 
-    $('.page_title').live('click', function() {
+    $('.page_title').live('click', function(event) {
+        event.preventDefault();
         $('#page_id_holder').html($(this).attr('data-id'));
         $('#item_title').attr('value', $(this).attr('data-title'));
         $('#item_page_id').attr('value', $(this).attr('data-id'));
     });
 
-    $('.link_type a').live('click', function() {
+    $('.link_type a').live('click', function(event) {
+        event.preventDefault();
         var identif = $(this).attr('href').substr(1, $(this).attr('href').length);
         $('.submit_link').each(function() {
             $(this).attr('data-form', '#' + identif + '_form')
@@ -639,7 +641,18 @@ $(document).ready(function() {
         });
     });
 
-    $('.category_item').live('click', function() {
+    $('.link_type').live('change', function() {
+        var identif = $(this).val();
+        $('.edit_holder').hide();
+        $('#' + identif).show();
+        $('.submit_link').each(function() {
+            $(this).attr('data-form', '#' + identif + '_form')
+            $('input[name=item_type]').attr('value', identif);
+        });
+    });
+
+    $('.category_item').live('click', function(event) {
+        event.preventDefault();
         var id = $(this).attr('data-id');
         var title = $(this).attr('data-title');
         $('#cat_input').attr('value', id);
@@ -720,7 +733,7 @@ $(document).ready(function() {
 
         clonedVarTr.attr('id', 'ProductVariantRow_' + countVarRows);
         $('#variantHolder').append(clonedVarTr);
-        $(window).scrollTop($(window).scrollTop()+59)
+        $(window).scrollTop($(window).scrollTop() + 59)
     });
 
     $('.delete_image').live('click', function() {
@@ -735,11 +748,12 @@ $(document).ready(function() {
             container.find('[name="variants[smallPhoto][]"]').attr('value', '');
         }
         container.find('img').attr('src', "/templates/administrator/images/select-picture.png");
+        container.find('img').css('width','50px');
     });
     $('.change_image').live('click', function() {
         $(this).closest('td').find('[type="file"]').click();
     })
-    
+
 
     $("button.deleteMainImages").die("click").live("click", function(event) {
         event.preventDefault();
