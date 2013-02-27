@@ -1,7 +1,7 @@
 <div>
     <ul>
         <li>
-            <span class="title">(TODO)</span>
+            <span class="title"></span>
         </li>
         {$wrapper}
     </ul>

@@ -113,6 +113,25 @@ var FilterManipulation = {
     },
 };
 
+/**
+ * handle products list order and per page event
+ * @type type
+ */
+
+var orderSelect = {
+    mainSelector: ".sort",
+    orderSelector: "#sort",
+    perPageSelector: "#sort2",
+    filterForm: "form#filter",
+    addHiddenFields: function() {
+        $(orderSelect.filterForm + ' input[name="order"]').val($(orderSelect.orderSelector).val());
+        $(orderSelect.filterForm + ' input[name="user_per_page"]').val($(orderSelect.perPageSelector).val());
+        $(orderSelect.filterForm).submit();
+
+    }
+
+}
+
 $(document).ready(function() {
     $(FilterManipulation.OnChangeSubmitSelectors).on('change', function() {
         FilterManipulation.filterSubmit();
@@ -133,6 +152,10 @@ $(document).ready(function() {
             input.attr('checked', 'checked');
             input.trigger('change');
         }
-    })
+    });
+
+    $(orderSelect.mainSelector + '.lineForm input[type="hidden"]').on('change', function() {
+        orderSelect.addHiddenFields();
+    });
 });
 
