@@ -266,7 +266,8 @@
 
 
 <article>
-    {if count($items) > 0}
+    
+    {if count($items) <= 0}
     <div class="form_alert">
         <p>
             Ваша корзина пуста
