@@ -1,4 +1,5 @@
 <article>
+    <div class="m-t_10"></div>
     <div class="">
         {if $CI->session->flashdata('makeOrder') === true}
             <h1 class="d_i v-a_m m-r_45">
@@ -13,49 +14,58 @@
                 <div class="header_title">{lang('s_order_data')}</div>
                 <div class="inside_padd">
                     <table class="tableOrderData">
+                        <!-- Start. Render Order number -->
+                        <tr>
+                            <th>{lang('s_order')} #:</th>
+                            <td>{echo ShopCore::encode($model->getId())}</td>
+                        </tr>
+                        <!-- End. Render Order number -->
+
+                        <!-- Start. Display Paid status -->
                         <tr>
                             <th>{lang('s_paid')}:</th>
                             <td>{if $model->getPaid() == true} {lang('s_yes')}{else:}{lang('s_no')}{/if}</td>
                         </tr>
+                        <!-- End. Display Paid status -->
+
+                        <!-- Start. Show Order status name -->
                         <tr>
                             <th>{lang('s_status')}:</th>
-                            <td>{echo SOrders::getStatusName('Id',$model->getStatus())} {if $model->getDeliveryMethod() > 0}</td>
+                            <td>{echo SOrders::getStatusName('Id',$model->getStatus())}</td>
                         </tr>
+                        <!-- End. Show Order status name -->
+
+                        <!-- Start. Render certificate -->
                         {if $model->getGiftCertKey() != null}
                             <tr>
                                 <th>{lang('s_do_you_cer_tif')}: </th>
                                 <td>-{echo $model->getgiftCertPrice()} {$CS}</td>
                             </tr>
                         {/if}
-                        {if count($discountCom)}
+                        <!-- End. Render certificate -->
+
+                        <!-- Start. Delivery Method name -->
+                        {if $model->getDeliveryMethod() > 0}
                             <tr>
-                                <th>{lang('s_discount')}: </th>
-                                <td>(-{echo $model->getComulativ()}%)</td>
+                                <th>{lang('s_dostavka')}:</th>
+                                <td>{echo $model->getSDeliveryMethods()->getName()}</td>
                             </tr>
                         {/if}
-                        <tr>
-                            <th>{lang('s_dostavka')}:</th>
-                            <td>{echo $model->getSDeliveryMethods()->getName()}{/if}</td>
-                        </tr>
+                        <!-- End. Delivery Method name -->
+
+                        <!-- Start. Render payment button and payment description -->
                         {if $model->getPaid() != true}
                             <tr class="b_n">
-                                <th>
-                                </th>
-                                {foreach $paymentMethods as $pm}
-                                    <td>
-                                        <button type="button" class="btn btn_buys">
-                                            {lang('s_pay')}
-                                        </button>
-                                        <p class="m-t_10">
-                                            <em class="c_97">{echo $pm->getDescription()}</em>
-                                        </p>
-                                    </td>
-                                {/foreach}
+                                <th></th>
+                                <td>{echo $paymentMethods['0']->getPaymentForm($model)}{if $paymentMethods['0']->getDescription()}<div class="m-t_10 infoOrder" style="font-style: italic">{echo ShopCore::t($paymentMethods['0']->getDescription())}</div>{/if}</td>
                             </tr>
                         {/if}
+                        <!-- End. Render payment button and payment description -->
                     </table>
                 </div>
             </div>
+
+            {/*}
             <div class="frameGroupsForm span7">
                 <div class="header_title">{lang('s_order')} №{echo $model->getId()}</div>
                 <table class="table v-a_bas table_order">
@@ -125,7 +135,7 @@
                                                                         <span class="d_b old_price">
                                                                             <span class="f-w_b">
                                                                                 {echo $variant->getPrice()}
-                                                                            </span> 
+                                                                            </span>
                                                                             {$CS}.
                                                                         </span>
                                                                         <span class="f-w_b">99999</span> грн.&nbsp;&nbsp;
@@ -177,8 +187,8 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <span class="c_8a">х</span> 
-                                        <span class="f-w_b f-s_16">{echo $item->getQuantity()}</span> 
+                                        <span class="c_8a">х</span>
+                                        <span class="f-w_b f-s_16">{echo $item->getQuantity()}</span>
                                         {lang('s_pcs1')}. =
                                     </td>
                                     <td>
@@ -189,7 +199,7 @@
                                                 <span class="first_cash">
                                                     <span class="f-w_b">
                                                         {echo $variant->getPrice() * $item->getQuantity()}
-                                                    </span> 
+                                                    </span>
                                                     {$CS}.
                                                 </span>
                                             {else:}
@@ -197,7 +207,7 @@
                                                 <span class="first_cash">
                                                     <span class="f-w_b">
                                                         {echo $prThree}
-                                                    </span> 
+                                                    </span>
                                                     {$CS}.
                                                 </span>
                                             {/if}
@@ -237,6 +247,7 @@
                         <!-- End. Rendering totals   -->
                     </table>
                 </div>
+                { */ }
             </div>
         </div>
     </article>
