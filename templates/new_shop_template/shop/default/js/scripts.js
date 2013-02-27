@@ -192,8 +192,13 @@ jQuery(document).ready(function() {
 
     /* REMOVE LATER */
     $('.btn.btn_small.btn_small_p').unbind('click').click(function() {
-        $(this).parents('li').remove();
-        $('.frame_tabsc > div').equalHorizCell('refresh');
+        var $this = $(this),
+        compTov = $this.closest('.comprasion_tovars_frame'),
+        left = $this.closest('.rightDescription').prev()
+        
+        $this.parents('li').remove();
+        if (compTov.children().length == 0) left.remove();
+        else $('.frame_tabsc > div').equalHorizCell('refresh');
     });
 
 });
@@ -293,4 +298,4 @@ cur_max = $('span#opt4').data('cur_max');
             console.log(el)
         }
     });*/
-    
+

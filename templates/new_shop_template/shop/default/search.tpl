@@ -1,6 +1,6 @@
 {#
 /**
-* @file Render search results
+* @file Template for search results
 * @updated 26 February 2013;
 * Variables
 * $products:(оbject) instance of SProducts
