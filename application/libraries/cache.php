@@ -13,8 +13,8 @@ class Cache {
     public $get = 0;
     public $set = 0;
     public $disableCache = 0;
-    //Cache config
-    // TODO: Rewrite auto_clean to fetch date from DB
+//Cache config
+// TODO: Rewrite auto_clean to fetch date from DB
     public $_Config = array('store' => 'cache',
         'auto_clean' => 500, //Random number to run _Clean();
         'auto_clean_life' => 3600,
@@ -32,12 +32,12 @@ class Cache {
 
         $this->disableCache = (boolean) $this->CI->config->item('disable_cache');
 
-        // Is cache folder wratible?
+// Is cache folder wratible?
         if (!is_writable($this->_Config['store'])) {
             $this->log_cache_error('Constructor :: Store ' . $this->_Config['store'] . ' is not writable');
         }
 
-        // autoclean if random is 1
+// autoclean if random is 1
         if (($this->_Config['auto_clean'] !== false) && (rand(1, $this->_Config['auto_clean']) === 1)) {
             $this->Clean();
         }
@@ -75,14 +75,14 @@ class Cache {
             return FALSE;
         }
 
-        // Only reading
+// Only reading
         flock($fp, LOCK_SH);
 
-        // Cache data
+// Cache data
         $data = unserialize(file_get_contents($file));
         fclose($fp);
 
-        // if cache not expried return cache file
+// if cache not expried return cache file
         if (time() < $data['expire']) {
             $this->get++;
             return $data['cache'];
@@ -194,7 +194,7 @@ class Cache {
 
         $arguments = func_get_args();
 
-        //class_name::function
+//class_name::function
         $key = get_class($arguments[0][0]) . '::' . $arguments[0][1] . '::' . serialize($args);
 
         if (($cache = $this->fetch($key)) !== false) {
@@ -233,7 +233,7 @@ class Cache {
                     $files_all = opendir("./system/cache/" . $file);
                     while (false !== ($fileT = readdir($files_all))) {
                         $stat = stat($this->_Config['store']);
-                        // echo $stat['mtime'];
+// echo $stat['mtime'];
                         if ($fileT != "." && $fileT != ".." && $fileT != "/" && (time() - @$stat['mtime']) > $this->_Config['auto_clean_life']) {
                             @unlink("./system/cache/" . $file . "/" . $fileT);
                             $n++;
@@ -338,6 +338,27 @@ class Cache {
         $this->log_cache_error('All cache files deleted');
 
         return $n;
+    }
+
+    public function clearCacheFolder($folder = NULL) {
+
+        if ($folder !== NULL) {
+
+            if ($files_all = opendir("./system/cache/" . $folder . "/") !== false) {
+                while (false !== ($fileT = readdir($files_all))) {
+
+                    if ($fileT != "." && $fileT != ".." && $fileT != "/" && substr($fileT, 0, 6) == 'cache_' || $fileT != 'hooks.php') {
+                        @unlink("./system/cache/" . $folder . "/" . $fileT);
+                    }
+                }
+            } else {
+                log_message('error', 'Library cache, Function clearCacheFolder , opendir Patch:' . "./system/cache/" . $folder . "/" . ' RETURN FALSE');
+                return false;
+            }
+        } else {
+            log_message('error', 'Library cache, Function clearCacheFolder. Do not get the name of the directory to delete cache');
+            return false;
+        }
     }
 
     public function cache_file() {

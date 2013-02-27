@@ -44,7 +44,7 @@ class Menu extends MY_Controller {
         $this->load->module('core');
         $this->cache_key = 'menu_data_';
         $this->cache_key = $this->cache_key . $this->dx_auth->get_role_id();
-        
+
 
         $this->load->helper('string');
     }
@@ -213,7 +213,7 @@ class Menu extends MY_Controller {
                 $this->arranged_menu_array[$arranged_items_count]['id'] = $item['id'];
                 $this->arranged_menu_array[$arranged_items_count]['title'] = $item['title'];
                 $this->arranged_menu_array[$arranged_items_count]['image'] = $item['image'];
-                if (!is_array($item['add_data'])){
+                if (!is_array($item['add_data'])) {
                     $item['add_data'] = unserialize($item['add_data']);
                     $item['add_data']['newpage'] == '1' ? $this->arranged_menu_array[$arranged_items_count]['target'] = 'target="_blank"' : $this->arranged_menu_array[$arranged_items_count]['target'] = 'target="_self"';
                 }
@@ -255,7 +255,7 @@ class Menu extends MY_Controller {
                 $wrapper .= $this->arranged_menu_array[$i]['html'] . "\n";
             }
         }
-        
+
         $this->_prepare_item_tpl($stack_item, $wrapper);
 
         $this->cur_level--;
@@ -306,7 +306,7 @@ class Menu extends MY_Controller {
         if ($index == -1) {
             $this->arranged_menu_array[$index]['html'] = $wrapper;
         } else {
-            $tpl_path = $this->_get_real_tpl($index);         
+            $tpl_path = $this->_get_real_tpl($index);
             if ($tpl_path)
                 $this->arranged_menu_array[$index]['html'] = $this->fetch_tpl($tpl_path, $data);
         }
@@ -472,7 +472,7 @@ class Menu extends MY_Controller {
      */
     public function prepare_menu_array($menu) {
         if (($menu_data = $this->cache->fetch($this->cache_key . $menu, 'menus')) !== FALSE) {
-            
+
             $this->menu_array = $menu_data['menu_array'];
             $this->sub_menu_array = $menu_data['sub_menu_array'];
         } else {
@@ -598,7 +598,6 @@ class Menu extends MY_Controller {
                 'menu_array' => $this->menu_array,
                 'sub_menu_array' => $this->sub_menu_array
             );
-
 
             $this->cache->store($this->cache_key . $menu, $data, FALSE, 'menus');
         }
