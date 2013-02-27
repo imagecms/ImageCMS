@@ -343,8 +343,7 @@ class Cache {
     public function clearCacheFolder($folder = NULL) {
 
         if ($folder !== NULL) {
-
-            if ($files_all = opendir("./system/cache/" . $folder . "/") !== false) {
+            if ($files_all = opendir("./system/cache/" . $folder . "/")) {
                 while (false !== ($fileT = readdir($files_all))) {
 
                     if ($fileT != "." && $fileT != ".." && $fileT != "/" && substr($fileT, 0, 6) == 'cache_' || $fileT != 'hooks.php') {
