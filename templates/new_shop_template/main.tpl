@@ -29,7 +29,7 @@
         {$meta_noindex}
         {$canonical}
         <script type="text/javascript" src="{$SHOP_THEME}js/jquery-1.8.2.min.js"></script>
-        <script type="text/javascript" src="{$SHOP_THEME}js/jquery.imagecms.min.js"></script>
+        <script type="text/javascript" src="{$SHOP_THEME}js/jquery.imagecms.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}js/underscore-min.js"></script>
     </head>
     <body>

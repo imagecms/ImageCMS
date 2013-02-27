@@ -291,15 +291,13 @@ class Commentsapi extends Comments {
 
         $status = 0;
 
-        if ($this->dx_auth->is_admin() == TRUE) {
+        if ($this->dx_auth->is_admin() == TRUE)
             return 0;
-        }
 
-        if ($this->use_moderation == TRUE) {
+        if ($this->use_moderation == TRUE)
             $status = 1;
-        } elseif ($this->use_moderation == FALSE) {
+        elseif ($this->use_moderation == FALSE)
             $status = 0;
-        }
 
         return $status;
     }
@@ -345,18 +343,16 @@ class Commentsapi extends Comments {
     private function check_comment_period() {
         ($hook = get_hook('comments_on_check_period')) ? eval($hook) : NULL;
 
-        if ($this->dx_auth->is_admin() == TRUE) {
+        if ($this->dx_auth->is_admin() == TRUE)
             return TRUE;
-        }
 
         $this->db->select('id, date');
         $this->db->order_by('date', 'desc');
 
-        if ($this->dx_auth->is_logged_in() == TRUE) {
+        if ($this->dx_auth->is_logged_in() == TRUE)
             $this->db->where('user_id', $this->dx_auth->get_user_id());
-        } else {
+        else
             $this->db->where('user_ip', $this->input->ip_address());
-        }
 
         $query = $this->db->get('comments', 1);
 
@@ -366,14 +362,13 @@ class Commentsapi extends Comments {
             $latest_comment = $query['date'];
             $allow_time = $latest_comment + ($this->period * 60);
 
-            if ($allow_time > time()) {
+            if ($allow_time > time())
                 return FALSE;
-            } else {
+            else
                 return TRUE;
-            }
-        } else {
-            return TRUE;
         }
+        else
+            return TRUE;
     }
 
     public function captcha_check($code) {
