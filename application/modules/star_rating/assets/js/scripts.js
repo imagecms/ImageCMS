@@ -81,10 +81,6 @@ $(document).ready(function(){
                         el.children().css('width',obj.rate+'%');
                         $('#count_votes_g').text(obj.votes);
                     }
-                        /*$('#' + 'star_rating_g_' + currentId).removeClass().addClass('rating ' + obj.classrate + ' star_rait');
-                        $('#count_votes_g').text(obj.votes);
-                        $('#' + 'star_rating_' + currentId).removeClass().addClass('rating_nohover ' + obj.classrate + ' star_rait');
-                        $('#count_votes').text(obj.votes);*/
                 }
             );
         }
