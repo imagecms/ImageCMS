@@ -290,7 +290,7 @@
     <script src="{$SHOP_THEME}js/my_js_classes_iy.js" type="text/javascript"></script>
 
 
-    {include_tpl('js_templates')}
+    {include_tpl('shop/default/js_templates')}
 
 
     <!-- floating elements-->
