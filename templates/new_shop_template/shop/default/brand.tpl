@@ -30,7 +30,7 @@
             <div class="clearfix t-a_c frame_func_catalog">
                 <div class="f_l">
                     <span class="v-a_m">Фильтровать по:</span>
-                    <div class="lineForm w_170">
+                    <div class="lineForm w_170 sort">
                         <select id="sort" name="order">
                             <option value="" {if !ShopCore::$_GET['order']}selected="selected"{/if}>-Нет-</option>
                             <option value="rating" {if ShopCore::$_GET['order']=='rating'}selected="selected"{/if}>{lang('s_po')} {lang('s_rating')}</option>
@@ -44,7 +44,7 @@
                 </div>
                 <div class="f_r">
                     <span class="v-a_m">Товаров на странице:</span>
-                    <div class="lineForm w_70">
+                    <div class="lineForm w_70 sort">
                         <select class="sort" id="sort2" name="order2">
                             <option value="12" {if ShopCore::$_GET['user_per_page']=='12'}selected="selected"{/if} >12</option>
                             <option value="24" {if ShopCore::$_GET['user_per_page']=='24'}selected="selected"{/if} >24</option>
@@ -62,7 +62,7 @@
                     <figure class="f_l m-t_10 w_150">
                         <img src="/uploads/shop/brands/{echo $model->getImage()}"/>
                     </figure>
-                    <p>{echo echo ShopCore::encode($model->getDescription())}</p>
+                    <p>{echo ShopCore::encode($model->getDescription())}</p>
                 </div>
             {/if}
             <ul class="items items_catalog" data-radio-frame>
