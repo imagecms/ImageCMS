@@ -95,7 +95,6 @@ var ImageCMSApi = {
 
             for (var key in validations) {
                 if (validations[key].length > 0) {
-                    console.log($('#' + selector).find('div#for_' + key));
                     $('#' + selector).find('div#for_' + key).css('color', 'red');
                     $('#' + selector).find('div#for_' + key).show(1000);
                     $('#' + selector).find('div#for_' + key).html(validations[key]);

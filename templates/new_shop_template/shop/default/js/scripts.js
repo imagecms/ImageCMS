@@ -186,7 +186,6 @@ jQuery(document).ready(function() {
             $this.next().slideToggle(500);
         }
     });
-    
     /* Refresh when remove item from Compare */
     $('.frame_tabsc > div').equalHorizCell('refresh');
     /* End. Refresh when remove item from Compare */
