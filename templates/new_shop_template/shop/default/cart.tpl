@@ -266,7 +266,6 @@
 
 
 <article>
-    
     {if count($items) <= 0}
     <div class="form_alert">
         <p>
@@ -281,7 +280,7 @@
                                 <div class="frameGroupsForm">
                                     <div class="header_title">Данные заказа</div>
                                     <div class="standart_form horizontal_form">
-                                        <form method="post">
+                                        <form method="post" action="{$BASE_URL}/shop/cart">
                                             <div class="groups_form">
                                                 <label>
                                                     <span class="title">{lang('s_c_uoy_name_u')}</span>
@@ -320,7 +319,7 @@
                                                     <div class="frame_form_field">
                                                         <div class="row-fluid">
                                                             <div class="lineForm span4">
-                                                                <select id="method_deliv" name="met_del">
+                                                                <select id="method_deliv" name="deliveryMethodId">
                                                                     
                                                                     {foreach $deliveryMethods as $deliveryMethod}
                                                                         {$del_id = $deliveryMethod->getId()}
@@ -352,7 +351,7 @@
                                                     <div class="frame_form_field">
                                                         <div class="row-fluid">
                                                             <div class="lineForm span4">
-                                                                <select name="met_buy" >
+                                                                <select name="paymentMethodId" >
                                                                     
                                                                 {$counter = true}
                                                                 {foreach $paymentMethods as $paymentMethod}
@@ -394,6 +393,8 @@
                                                     </span>
                                                 </div>
                                             </div>
+                                                    <input type="hidden" name="makeOrder" value="1">
+                                           {form_csrf()}
                                         </form>
                                     </div>
                                 </div>
