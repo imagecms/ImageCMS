@@ -29,16 +29,6 @@
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label" for="tpl_file">{lang('amt_template_file')}:</label>
-                        <div class="controls">
-                            <div class="pull-right help-block">.tpl</div>
-                            <div class="o_h">
-                                <input type="text" name="tpl_file" id="tpl_file" value="{$album.tpl_file}"/>
-                                <span class="help-block">{lang('amt_by_default')}: album.tpl</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="control-group">
                         <label class="control-label" for="position">{lang('amt_position')}:</label>
                         <div class="controls number">
                             <input type="text" name="position" id="position" value=""/>
