@@ -55,11 +55,11 @@ var ImageCMSApi = {
                     if (obj.status == true) {
                         $('#' + selector).html('<div>' + obj.msg + '</div>');
                     }
-                    if (obj.validations !== 'undefined') {
-                        ImageCMSApi.sendValidations(obj.validations, selector);
-                    }
                     if (obj.cap_image != 'undefined' && obj.cap_image != null) {
                         ImageCMSApi.addCaptcha(obj.cap_image);
+                    }
+                    if (obj.validations != 'undefined' && obj.validations != null) {
+                        ImageCMSApi.sendValidations(obj.validations, selector);
                     }
                     if (obj.refresh == true)
                         location.reload();
@@ -92,18 +92,19 @@ var ImageCMSApi = {
      * */
     sendValidations: function(validations, selector) {
         if (typeof validations === 'object') {
-            console.log($('div .for_validations').css('display'));
-            if ($('div .for_validations').css('display') === 'block') {
-                for (var key in validations) {
-                    //console.log($('#' + selector).find('#for_' + key));
-                    $('#' + selector).find('div#for_' + key).show(1500);
-                    $('#' + selector).find('div#for_' + key).html(validations[key]);
+
+            for (var key in validations) {
+                if (validations[key].length > 0) {
+                    console.log($('#' + selector).find('div#for_' + key));
                     $('#' + selector).find('div#for_' + key).css('color', 'red');
+                    $('#' + selector).find('div#for_' + key).show(1000);
+                    $('#' + selector).find('div#for_' + key).html(validations[key]);
                 }
-                setTimeout((function() {
-                    $('div .for_validations').hide(1500);
-                }), 6000);
             }
+//                setTimeout((function() {
+//                    $('div .for_validations').hide();
+//                }), 3000);
+
         } else {
             return false;
         }
@@ -115,14 +116,28 @@ var ImageCMSApi = {
      */
     addCaptcha: function(captcha_image) {
         var html = '<span class="title">Код протекции</span>\n\
-                <span class="frame_form_field">\n\
-                <input type="text" name="captcha" value="Код протекции" \n\
-                <span class="help_inline" id="for_captcha_image">' + captcha_image + '</span>\n\
-                <div id="for_captcha" class="for_validations"></div></span>';
+                        <span class="frame_form_field">\n\
+                            <input type="text" name="captcha" value="Код протекции"/> \n\
+                            <span class="help_inline" id="for_captcha_image">' + captcha_image + '</span>\n\
+                            <div id="for_captcha" class="for_validations"></div>\n\
+                        </span>';
         $('#captcha_block').html(html);
         return false;
     }
 
 }
+/**
+ * to make form submit using ImafeCMSApi
+ * you sould give to the form class "submit_enter"
+ * and there have to be an input of type button 
+ * which have on click function formAction
+ */
+$(document).ready(function() {
+    $('form.submit_enter input').on('keypress', function(e) {
+        if (e.which == 13) {
+            $('form.submit_enter input[type="button"]').trigger('click');
+        }
+    });
+});
 
 
