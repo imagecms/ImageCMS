@@ -207,8 +207,7 @@ var Shop = {
         },
     
         renderPopupCart : function(selector)
-        {
-            alert(1)
+        {            
             if (typeof selector == 'undefined' || selector == '')
                 var selector = this.popupCartSelector;
             console.log(selector);
