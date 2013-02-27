@@ -200,7 +200,7 @@ h3, .title_h3{font-size: 12px;font-weight: bold;}
 h1.d_i{margin-right: 8px;}
 
 [class*="d_l"]{line-height: 1;text-decoration: none;}
-.d_l_g, .cleaner .d_l{border-bottom: 1px dotted #5c5c5c;color: #5c5c5c;}
+.d_l_g, .cleaner .d_l{border-bottom: 1px dotted #5c5c5c;color: #5c5c5c;line-height: 2}
 .d_l_w, .cleaner.isAvail .d_l{border-bottom: 1px dotted #fff;color: #fff;}
 .d_l_b{border-bottom: 1px dotted #3a88cc;color: #3a88cc;}
 button:hover .d_l_g, .d_l_g:hover, .d_l_b:hover{border-bottom: 1px dotted #cc0000;color: #cc0000;}

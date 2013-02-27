@@ -117,9 +117,7 @@
                                 <div class="frame_response">
 
                                     <!-- displaying product's rate -->
-                                    <div class="star">
-                                        <img src="{$SHOP_THEME}images/temp/STAR.png"/>
-                                    </div>
+                                    {$CI->load->module('star_rating')->show_star_rating($product)}
 
                                     <!-- displaying comments count -->
                                     <a href="{shop_url('product/'.$product->url.'#cc')}" class="count_response"><span class="icon-comment"></span>
