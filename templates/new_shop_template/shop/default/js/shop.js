@@ -1,7 +1,7 @@
 var inCart = 'Уже в корзине';
 var toCart = 'В корзину';
 var pcs = 'шт.';
-//var curr = 'грн.';
+var curr = 'грн.';
 
 var Shop = {
     //var Cart = new Object();

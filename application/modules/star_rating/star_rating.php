@@ -6,10 +6,15 @@ if (!defined('BASEPATH'))
 /**
  * Image CMS
  *
- * Для подключения, нужно прописать в шаблоне:
+ * In oder to show "Star rating" type in template:
   {$CI->load->module('star_rating')->show_star_rating()}
-
- * Также, включить автозагрузку и доступ по url.
+ * 
+ * If you want to show "Star rating" for product 
+ * {$CI->load->module('star_rating')->show_star_rating(SProducts $product)}
+ 
+ * 
+ * More turn on autoload and url access.
+ * 
  * Star rating module
  *
  */
@@ -24,45 +29,53 @@ class Star_rating extends MY_Controller {
         $this->load->library('template');
         $this->load->helper('path');
     }
-
+    /**
+     * Show star_rating
+     * @param SProducts $item
+     */
     public function show_star_rating($item = null) {
         $get_settings = $this->db->select('settings')->where('name', 'star_rating')->get('components')->row_array();
+        //prepare array with pages which can display "Star rating"
         $this->list_for_show = json_decode($get_settings['settings'], true);
         if ($this->list_for_show == null)
         {
             $this->list_for_show = array();
         }
         
+        
         $id = $this->core->core_data['id'];
         $type = $this->core->core_data['data_type'];
         
+        
         // product rating
         if ($item != null && $item instanceof SProducts){
+            
+            if ($item->getRating() != null)
+                $rating_s = (int)$item->getRating()*20;// rating in percent
+            else 
+                $rating_s = 0;
+                
             $data = array (
                 'id_type' => $item->getId(),
                 'type' => 'product',
                 'votes' => $item->getVotes(),
-                'rating' => $item->getRating()*$item->getVotes()
+                'rating' => $rating_s
                 
             );
             $template = 'product_star_rating';
-        //product rating in shop category    
-        }else if ($item != null && $item instanceof stdClass){
-            $data = array (
-                'id_type' => $item->id,
-                'type' => 'cat_product',
-                'votes' => $item->votes,
-                'rating' => $item->rating
-                    );
-             $template = 'product_star_rating';
        }else{
               if (in_array($type, array_keys($this->list_for_show))) {
                 $rating = $this->get_rating($id, $type);
+                if ($rating->votes != 0){
+                    $rating_s = $rating->rating/$rating->votes*20;//rating in percent
+                }else{
+                    $rating_s = 0; 
+                }
                 $data = (array (
                                 'id' => $rating->id,
                                 'type' => $rating->type,
                                 'votes' => $rating->votes,
-                                'rating' => $rating->rating
+                                'rating' => $rating_s
                 ));
                 
                 $template='star_rating';
@@ -71,6 +84,7 @@ class Star_rating extends MY_Controller {
                     $template=null;
                 }
             }
+            //Show template with prepared parametrs
             if ($template !== null)
             CMSFactory\assetManager::create()
                     ->setData($data)
@@ -78,19 +92,29 @@ class Star_rating extends MY_Controller {
                     ->registerScript('scripts')
                     ->render($template, true);
  }
-
+    /**
+     * Get rating rom database
+     * @param type $id_g
+     * @param type $type_g
+     * @return array
+     */
     private function get_rating($id_g = null, $type_g = null) {
         $res = $this->db->where('id_type', $id_g)->where('type', $type_g)->get('rating')->row();
         return $res;
     }
-
+    
+    /**
+     * Change rating for pages / product 
+     * @return type
+     */
     public function ajax_rate() {
         $id = $_POST['cid'];
         $type = $_POST['type'];
         $rating = (int) $_POST['val'];
-
+        
+        // If 
         if ($id != null && $type != null && !$this->session->userdata('voted_g' . $id . $type) == true) {
-            //check if rating exists 
+            //Check if rating exists 
             $check = $this->get_rating($id, $type);
             if ($check != null) {
                 $this->new_votes = $check->votes + 1;
@@ -99,7 +123,7 @@ class Star_rating extends MY_Controller {
                     'votes' => $this->new_votes,
                     'rating' => $this->new_rating
                 );
-                $rating_res = $this->new_rating / $this->new_votes;
+                $rating_res = $this->new_rating / $this->new_votes*20;
                 $votes_res = $this->new_votes;
                 $this->db->where('id_type', $id)->where('type', $type)->update('rating', $data);
             } else {
@@ -110,10 +134,10 @@ class Star_rating extends MY_Controller {
                     'rating' => $rating
                 );
                 $votes_res = 1;
-                $rating_res=$rating;
+                $rating_res=$rating*20;
                 $this->db->insert('rating', $data);
             }
-            
+            //Change rating for product
             if ($type == 'product'){
             
                 if (SProductsQuery::create()->findPk($id) !== null) {
@@ -122,7 +146,7 @@ class Star_rating extends MY_Controller {
                             $model = new SProductsRating;
                             $model->setProductId($id);
                         }
-                        $rating_res = ($model->getRating() + $rating) / ($model->getVotes() + 1);
+                        $rating_res = (($model->getRating() + $rating)/($model->getVotes() + 1))*20;
                         $votes_res = $model->getVotes() + 1;
                         
                         $model->setVotes($model->getVotes() + 1);
@@ -130,37 +154,23 @@ class Star_rating extends MY_Controller {
                         $model->save();
                     }
             }
+            //Save in session user's info
             $this->session->set_userdata('voted_g' . $id . $type, true);
             
-            $rating_res = $this->count_stars(round($rating_res));
-            
+            //If ajax request than return data for with new rating and votes
             if ($this->input->is_ajax_request()) {
-                return json_encode(array("classrate" => "$rating_res",
+                return json_encode(array("rate" => "$rating_res",
                             "votes" => "$votes_res"
                         ));
             }
         } else {
-            return json_encode(array("classrate" => null));
+            return json_encode(array("rate" => null));
         }
     }
-
-    private function count_stars($rating = null) {
-        if ($rating == 1)
-            $rating = "onestar";
-        if ($rating == 2)
-            $rating = "twostar";
-        if ($rating == 3)
-            $rating = "threestar";
-        if ($rating == 4)
-            $rating = "fourstar";
-        if ($rating == 5)
-            $rating = "fivestar";
-        return $rating;
-    }
     
-    
-    
-    
+    /**
+     * Install module
+     */
     public function _install() {
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
@@ -194,7 +204,9 @@ class Star_rating extends MY_Controller {
         $this->db->where('name', 'star_rating');
         $this->db->update('components', array('enabled' => 1));
     }
-
+    /**
+     * Deinstall module
+     */
     public function _deinstall() {
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
