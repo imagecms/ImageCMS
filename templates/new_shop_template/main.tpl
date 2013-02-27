@@ -170,11 +170,18 @@
                     </ul>
                 </div>
                 <div class="span3 t-a_r">
-                    <div class="copy_right">© SiteImage CMS, 2012</div>
+                    <div class="copy_right">© ImageCMS, 2013</div>
                     <div class="footer_social">
-                        <img src="{$SHOP_THEME}images/temp/social_footer.png"/>
+                        <div class="social">
+                            <a href="#" class="mail"></a>
+                            <a href="#" class="g_plus"></a>
+                            <a href="#" class="facebook"></a>
+                            <a href="#" class="vkontakte"></a>
+                            <a href="#" class="twitter"></a>
+                            <a href="#" class="odnoklasniki"></a>
+                        </div>
                     </div>
-                    <a href="http://siteimage.com.ua">{lang('s_footer_create')}</a><br/>
+                    <a href="http://imagecms.net">{lang('s_footer_create')}</a><br/>
                     {lang('s_footer_seo')}
                 </div>
             </div>
@@ -206,13 +213,6 @@
                             <span class="frame_form_field">
                                 <span class="icon-phone"></span>
                                 <input type="text"/>
-                            </span>
-                        </label>
-                        <label>
-                            <span class="title">Примерное время</span>
-                            <span class="frame_form_field">
-                                <input type="text"/>
-                                <span class="icon-clock"></span>
                             </span>
                         </label>
                         <label>

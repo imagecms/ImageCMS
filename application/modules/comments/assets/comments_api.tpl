@@ -3,7 +3,7 @@
         <span class="title__icsi-css">{sprintf(lang('login_for_comments'), site_url($modules.auth))}</span>
     </label>
 {/if}
-
+   <div id="comment__icsi-css">
 <div class="title_h2__icsi-css">{lang('s_clients_comment')}</div>
 <ul class="frame-list-comment__icsi-css">
     {foreach $comments_arr as $key => $comment}
@@ -11,12 +11,14 @@
         <li>
             <div class="author-data-comment__icsi-css">
                 <span class="author-comment__icsi-css">{$comment.user_name}
+                    <!--
                     {if $comment.rate != 0}
                         <div class="star_rating">
                             <div id="{echo $comment.item_id}_star_rating" class="rating_nohover {echo count_star($comment.rate)} star_rait" data-id="{echo $comment.item_id}">
                             </div>
                         </div>
                     {/if}
+                    -->
                 </span> 
                 <span class="date-comment__icsi-css"> {date('d-m-Y H:i', $comment.date)}</span>
             </div>
@@ -87,7 +89,7 @@
 </ul>
 
 {if $can_comment == 0 OR $is_logged_in}
-    <div id="comment__icsi-css">
+ 
         <div class="frame-comments__icsi-css">
             <div class="title_h2__icsi-css">{lang('s_leave_your_comment')}</div>
             <!-- Start of new comment fild -->
@@ -113,7 +115,7 @@
                             </span>
                         </label>                
                     {/if}
-                    <!-- Start star reiting -->
+                    <!-- Start star reiting --><!--
                     <label>
                         {lang('s_you_raiting')}
                         <div class="star_rating">
@@ -136,7 +138,7 @@
                             </div>
                         </div>
                         <input id="ratec" name="ratec" type="hidden" value=""/>
-                    </label>
+                    </label>-->
                     <!-- End star reiting -->
 
                     <label>
@@ -180,8 +182,8 @@
                 </form>
             </div>
             <!-- End of new comment fild -->
-        </div>
     {/if}
+        </div>
 
     <div class="frame-drop-comment__icsi-css" data-rel="whoCloneAddPaste">
         <div class="form-comment__icsi-css horizontal_form__icsi-css">
