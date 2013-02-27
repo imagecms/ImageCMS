@@ -1,3 +1,14 @@
+{# Variables
+/**
+* @main.tpl - template for displaying shop main page
+* Variables
+*   $site_title: variable for insert site title
+*   $meta_noindex: variable for insert meta noindex
+*   $canonical: variable for insert canonical
+*   $site_description: variable for insert site description
+*   $SHOP_THEME: variable for shop template path
+*/
+#}
 <!DOCTYPE html>
 <html>
     <head>
@@ -45,14 +56,26 @@
                                             <li>
                                                 <span class="f-s_0">
                                                     <span class="helper"></span>
-                                                    <button type="button" data-drop=".drop-enter" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" data-place="noinherit" data-placement="top right"><span class="icon-enter"></span><span class="d_l_g">Вход</span></button>
+                                                    <button type="button" 
+                                                            data-drop=".drop-enter" 
+                                                            data-effect-on="fadeIn" 
+                                                            data-effect-off="fadeOut" 
+                                                            data-duration="300" 
+                                                            data-place="noinherit" 
+                                                            data-placement="top right">
+                                                        <span class="icon-enter"></span>
+                                                        <span class="d_l_g">Вход</span>
+                                                    </button>
                                                 </span>
                                             </li>
                                             <li>
                                                 <span class="f-s_0">
                                                     <span class="helper"></span>
                                                     <span>
-                                                        <a href="/auth/register" class="t-d_u c_5c"><span class="icon-registration"></span><span class="text-el">Регистрация</span></a>
+                                                        <a href="/auth/register" class="t-d_u c_5c">
+                                                            <span class="icon-registration"></span>
+                                                            <span class="text-el">Регистрация</span>
+                                                        </a>
                                                     </span>
                                                 </span>
                                             </li>
@@ -61,21 +84,26 @@
                                                 <span class="f-s_0">
                                                     <span class="helper"></span>
                                                     <a href="#" onclick="ImageCMSApi.formAction('/auth/authapi/logout', '');
-                                                            return false;">Выход</a>
+                                                            return false;">
+                                                        <span class="icon-exit"></span>
+                                                        <span class="d_l_g">Выход</span>
+                                                    </a>
                                                 </span>
                                             </li>
                                             <li>
                                                 <span class="f-s_0">
                                                     <span class="helper"></span>
                                                     <span>
-                                                        <a href="/shop/profile" class="t-d_u c_5c"><span class="text-el">Личный кабинет</span></a>
+                                                        <a href="/shop/profile" class="t-d_u c_5c">
+                                                            <span class="text-el">Личный кабинет</span>
+                                                        </a>
                                                     </span>
                                                 </span>
                                             </li>
                                         {/if}
                                     </ul>
                                 </nav>
-                                <div class="cleaner f_l f-s_0 isAvail" onclick="window.location = '/shop/cart'">
+                                <div class="cleaner f_l f-s_0 isAvail" >
                                     <span class="helper"></span>
                                     <span class="f-s_0">
                                         <span class="icon-bask"></span>
@@ -104,7 +132,10 @@
                                 {literal}<style>.selected{background-color:red;}</style>{/literal}
                                 <div class="frameSearch">
                                     <form name="search" class="clearfix" action="{shop_url('search')}" method="get" id="autocomlete">
-                                        <button class="f_r btn" type="submit"><span class="icon-search"></span><span class="text-el">{lang('search_find')}</span></button>
+                                        <button class="f_r btn" type="submit">
+                                            <span class="icon-search"></span>
+                                            <span class="text-el">{lang('search_find')}</span>
+                                        </button>
                                         <div class="o_h">
                                             <input type="text" name="text" value=""  placeholder="{lang('s_se_thi_sit')}"  autocomplete="off" class="place_hold" id="inputString"/>
                                         </div>
@@ -117,11 +148,17 @@
                                 {include_tpl('wish_list_data')}
                             </div>
                             <div class="span3">
-                                <div class="headerPhone"><span class="c_67">+8 (097)</span><span class="d_n">&minus;</span> 572-58-18</div>
+                                <div class="headerPhone">
+                                    <span class="c_67">+8 (097)</span>
+                                    <span class="d_n">&minus;</span> 572-58-18
+                                </div>
                                 <div style="margin-top: 7px;">
                                     <ul class="tabs">
                                         <li>
-                                            <a class="t-d_n f-s_0" href="#a" data-drop=".drop-order-call" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" data-place="center"><span class="icon-order-call"></span><span class="d_l_b">{lang('s_coll_order')}</span></a>
+                                            <a class="t-d_n f-s_0" href="#a" data-drop=".drop-order-call" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" data-place="center">
+                                                <span class="icon-order-call"></span>
+                                                <span class="d_l_b">{lang('s_coll_order')}</span>
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -163,18 +200,29 @@
                 </div>
                 <div class="span4">
                     <ul class="contacts_info">
-                        <li><span class="icon-foot-phone"></span><span class="f-w_b">{lang('s_tel')}:</span> +8 (067)<span class="d_n">&minus;</span> 572-58-18, +8 (067)<span class="d_n">&minus;</span> 572-58-18</li>
-                        <li><span class="icon-foot-email"></span><span class="f-w_b">{lang('s_email')}:</span> SiteImageCMS@gmail.com</li>
-                        <li><span class="icon-foot-skype"></span><span class="f-w_b">{lang('s_skype')}:</span> SiteImageCMS</li>
-                                {$CI->load->module('star_rating')->show_star_rating()}
+                        <li>
+                            <span class="icon-foot-phone"></span>
+                            <span class="f-w_b">{lang('s_tel')}:</span> +8 (067)
+                            <span class="d_n">&minus;</span> 572-58-18, +8 (067)
+                            <span class="d_n">&minus;</span> 572-58-18
+                        </li>
+                        <li>
+                            <span class="icon-foot-email"></span>
+                            <span class="f-w_b">{lang('s_email')}:</span> Info@imagecms.net
+                        </li>
+                        <li>
+                            <span class="icon-foot-skype"></span>
+                            <span class="f-w_b">{lang('s_skype')}:</span> SiteImageCMS
+                        </li>
+                        {$CI->load->module('star_rating')->show_star_rating()}
                     </ul>
                 </div>
                 <div class="span3 t-a_r">
-                    <div class="copy_right">© SiteImage CMS, 2012</div>
+                    <div class="copy_right">© SiteImage CMS, 2013</div>
                     <div class="footer_social">
                         <img src="{$SHOP_THEME}images/temp/social_footer.png"/>
                     </div>
-                    <a href="http://siteimage.com.ua">{lang('s_footer_create')}</a><br/>
+                    <a href="http://imagecms.net">{lang('s_footer_create')}</a><br/>
                     {lang('s_footer_seo')}
                 </div>
             </div>
@@ -211,8 +259,8 @@
                         <label>
                             <span class="title">Примерное время</span>
                             <span class="frame_form_field">
-                                <input type="text"/>
                                 <span class="icon-clock"></span>
+                                <input type="text"/>
                             </span>
                         </label>
                         <label>
@@ -293,10 +341,10 @@
     {include_tpl('js_templates')}
 
 
-        <!-- floating elements-->
-        <div id="popupCart" style="display: none;" class="drop"></div>
-        <a href="#" data-drop="#popupCart" data-place="center" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" id="showCart" style="display: none;"   >Show cart</a>
-        {include_tpl('search_autocomplete')}
-    </body>
+    <!-- floating elements-->
+    <div id="popupCart" style="display: none;" class="drop"></div>
+    <a href="#" data-drop="#popupCart" data-place="center" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" id="showCart" style="display: none;"   >Show cart</a>
+    {include_tpl('search_autocomplete')}
+</body>
 
 </html>
