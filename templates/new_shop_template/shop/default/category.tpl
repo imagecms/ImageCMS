@@ -59,14 +59,15 @@
                 <!-- sort block -->
                 <div class="f_l">
                     <span class="v-a_m">{lang('s_order_by')}:</span>
-                    <div class="lineForm w_170">
+                    <div class="lineForm w_170 sort">
                         <select class="sort" id="sort" name="order">
-                            <option selected="selected" value="1">{lang('s_order_by_rate')}</option>
-                            <option value="2">{lang('s_dewevye')}</option>
-                            <option value="3">{lang('s_dor')}</option>
-                            <option value="4">{lang('s_popular')}</option>
-                            <option value="5">{lang('s_new')}</option>
-                            <option value="6">{lang('s_action')}</option>
+                            <option value="" {if !ShopCore::$_GET['order']}selected="selected"{/if}>-{lang('s_no')}-</option>
+                            <option value="rating" {if ShopCore::$_GET['order']=='rating'}selected="selected"{/if}>{lang('s_po')} {lang('s_rating')}</option>
+                            <option value="price" {if ShopCore::$_GET['order']=='price'}selected="selected"{/if}>{lang('s_dewevye')}</option>
+                            <option value="price_desc" {if ShopCore::$_GET['order']=='price_desc'}selected="selected"{/if} >{lang('s_dor')}</option>
+                            <option value="hit" {if ShopCore::$_GET['order']=='hit'}selected="selected"{/if}>{lang('s_popular')}</option>
+                            <option value="hot" {if ShopCore::$_GET['order']=='hot'}selected="selected"{/if}>{lang('s_new')}</option>
+                            <option value="action" {if ShopCore::$_GET['order']=='action'}selected="selected"{/if}>{lang('s_action')}</option>
                         </select>
                     </div>
                 </div>
@@ -74,12 +75,12 @@
                 <!-- products on page count -->
                 <div class="f_r">
                     <span class="v-a_m">{lang('s_products_per_page')}:</span>
-                    <div class="lineForm w_70">
+                    <div class="lineForm w_70 sort">
                         <select class="sort" id="sort2" name="user_per_page">
-                            <option selected="selected" value="1">12</option>
-                            <option value="2">24</option>
-                            <option value="3">36</option>
-                            <option value="4">48</option>
+                            <option value="12" {if ShopCore::$_GET['user_per_page']=='12'}selected="selected"{/if} >12</option>
+                            <option value="24" {if ShopCore::$_GET['user_per_page']=='24'}selected="selected"{/if} >24</option>
+                            <option value="36" {if ShopCore::$_GET['user_per_page']=='36'}selected="selected"{/if} >36</option>
+                            <option value="48" {if ShopCore::$_GET['user_per_page']=='48'}selected="selected"{/if} >48</option>
                         </select>
                     </div>
                 </div>
@@ -116,9 +117,7 @@
                                 <div class="frame_response">
 
                                     <!-- displaying product's rate -->
-                                    <div class="star">
-                                        <img src="{$SHOP_THEME}images/temp/STAR.png"/>
-                                    </div>
+                                    {$CI->load->module('star_rating')->show_star_rating($product)}
 
                                     <!-- displaying comments count -->
                                     <a href="{shop_url('product/'.$product->url.'#cc')}" class="count_response"><span class="icon-comment"></span>

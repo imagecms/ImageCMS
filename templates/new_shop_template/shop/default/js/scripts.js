@@ -192,8 +192,13 @@ jQuery(document).ready(function() {
 
     /* REMOVE LATER */
     $('.btn.btn_small.btn_small_p').unbind('click').click(function() {
-        $(this).parents('li').remove();
-        $('.frame_tabsc > div').equalHorizCell('refresh');
+        var $this = $(this),
+        compTov = $this.closest('.comprasion_tovars_frame'),
+        left = $this.closest('.rightDescription').prev()
+        
+        $this.parents('li').remove();
+        if (compTov.children().length == 0) left.remove();
+        else $('.frame_tabsc > div').equalHorizCell('refresh');
     });
 
 });
@@ -285,3 +290,12 @@ def_min = $('span#opt1').data('def_min');
 def_max = $('span#opt2').data('def_max');
 cur_min = $('span#opt3').data('cur_min');
 cur_max = $('span#opt4').data('cur_max');
+
+/*$(".star-big").starRating({
+        width: 26,
+        afterClick: function(el, value) {
+            alert(value)
+            console.log(el)
+        }
+    });*/
+
