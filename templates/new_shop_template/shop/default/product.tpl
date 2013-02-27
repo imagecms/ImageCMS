@@ -163,7 +163,9 @@
                             <span class="js blue">{lang('s_slw')}</span>
                         </span>
                     {else:}
-                        <a href="/shop/wish_list" class="red"><span class="icon-wish"></span>{lang('s_ilw')}</a>
+                        <a href="/shop/wish_list" class="red">
+                            <span class="icon-wish"></span>{lang('s_ilw')}
+                        </a>
                     {/if}
                 </button>
                 <!--Block Wishlist End-->
@@ -208,16 +210,18 @@
             {/if}
             <!--Output of the block if there is one accessory END-->
             <!--Output of the block comments-->
-            <li>
-                <button type="button" data-href="#comment" onclick="renderPosts(this)">
-                    <span class="icon-comment-tab"></span>
-                    <span class="text-el">                    
-                        <span id="cc">
-                            {echo $Comments[$model->getId()]}
+            {if $Comments}
+                <li>
+                    <button type="button" data-href="#comment" onclick="renderPosts(this)">
+                        <span class="icon-comment-tab"></span>
+                        <span class="text-el">                    
+                            <span id="cc">
+                                {echo $Comments[$model->getId()]}
+                            </span>
                         </span>
-                    </span>
-                </button>
-            </li>
+                    </button>
+                </li>
+            {/if}
             <!--Output of the block comments END-->
         </ul>
 
