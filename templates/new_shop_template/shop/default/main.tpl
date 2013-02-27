@@ -103,7 +103,7 @@
                                         {/if}
                                     </ul>
                                 </nav>
-                                <div class="cleaner f_l f-s_0 isAvail" onclick="window.location = '/shop/cart'">
+                                <div class="cleaner f_l f-s_0 isAvail" >
                                     <span class="helper"></span>
                                     <span class="f-s_0">
                                         <span class="icon-bask"></span>
