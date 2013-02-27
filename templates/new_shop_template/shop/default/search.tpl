@@ -115,10 +115,8 @@
                                 <div class="description">
                                     <div class="frame_response">
                                         <!-- Start. Star rating and comments count -->
-                                        <div class="star">
                                            {$CI->load->module('star_rating')->show_star_rating($p)}
                                            {echo $Comments[$p->getId()]}
-                                        </div>
                                         <!-- End. Star rating and comments count --> 
                                     </div>
                                    <a href="{shop_url('product/'.$p->getUrl())}">{echo ShopCore::encode($p->getName())}</a>

@@ -38,31 +38,42 @@ class Star_rating extends MY_Controller {
         
         // product rating
         if ($item != null && $item instanceof SProducts){
+            
+            if ($item->getRating() != null)
+                $rating_s = (int)$item->getRating()*20;// rating in percent
+            else 
+                $rating_s = 0;
+                
             $data = array (
                 'id_type' => $item->getId(),
                 'type' => 'product',
                 'votes' => $item->getVotes(),
-                'rating' => $item->getRating()*$item->getVotes()
+                'rating' => $rating_s
                 
             );
             $template = 'product_star_rating';
         //product rating in shop category    
-        }else if ($item != null && $item instanceof stdClass){
+        /*}else if ($item != null && $item instanceof stdClass){
             $data = array (
                 'id_type' => $item->id,
                 'type' => 'cat_product',
                 'votes' => $item->votes,
-                'rating' => $item->rating
+                'rating' => $item->rating*$item->votes
                     );
-             $template = 'product_star_rating';
+             $template = 'product_star_rating';*/
        }else{
               if (in_array($type, array_keys($this->list_for_show))) {
                 $rating = $this->get_rating($id, $type);
+                if ($rating->votes != 0){
+                    $rating_s = $rating->rating/$rating->votes*20;
+                }else{
+                    $rating_s = 0; 
+                }
                 $data = (array (
                                 'id' => $rating->id,
                                 'type' => $rating->type,
                                 'votes' => $rating->votes,
-                                'rating' => $rating->rating
+                                'rating' => $rating_s
                 ));
                 
                 $template='star_rating';
@@ -88,7 +99,7 @@ class Star_rating extends MY_Controller {
         $id = $_POST['cid'];
         $type = $_POST['type'];
         $rating = (int) $_POST['val'];
-
+        
         if ($id != null && $type != null && !$this->session->userdata('voted_g' . $id . $type) == true) {
             //check if rating exists 
             $check = $this->get_rating($id, $type);
@@ -99,7 +110,7 @@ class Star_rating extends MY_Controller {
                     'votes' => $this->new_votes,
                     'rating' => $this->new_rating
                 );
-                $rating_res = $this->new_rating / $this->new_votes;
+                $rating_res = $this->new_rating / $this->new_votes*20;
                 $votes_res = $this->new_votes;
                 $this->db->where('id_type', $id)->where('type', $type)->update('rating', $data);
             } else {
@@ -110,7 +121,7 @@ class Star_rating extends MY_Controller {
                     'rating' => $rating
                 );
                 $votes_res = 1;
-                $rating_res=$rating;
+                $rating_res=$rating*20;
                 $this->db->insert('rating', $data);
             }
             
@@ -122,7 +133,7 @@ class Star_rating extends MY_Controller {
                             $model = new SProductsRating;
                             $model->setProductId($id);
                         }
-                        $rating_res = ($model->getRating() + $rating) / ($model->getVotes() + 1);
+                        $rating_res = (($model->getRating() + $rating)/($model->getVotes() + 1))*20;
                         $votes_res = $model->getVotes() + 1;
                         
                         $model->setVotes($model->getVotes() + 1);
@@ -132,19 +143,17 @@ class Star_rating extends MY_Controller {
             }
             $this->session->set_userdata('voted_g' . $id . $type, true);
             
-            $rating_res = $this->count_stars(round($rating_res));
-            
             if ($this->input->is_ajax_request()) {
-                return json_encode(array("classrate" => "$rating_res",
+                return json_encode(array("rate" => "$rating_res",
                             "votes" => "$votes_res"
                         ));
             }
         } else {
-            return json_encode(array("classrate" => null));
+            return json_encode(array("rate" => null));
         }
     }
 
-    private function count_stars($rating = null) {
+    /*private function count_stars($rating = null) {
         if ($rating == 1)
             $rating = "onestar";
         if ($rating == 2)
@@ -156,7 +165,7 @@ class Star_rating extends MY_Controller {
         if ($rating == 5)
             $rating = "fivestar";
         return $rating;
-    }
+    }*/
     
     
     

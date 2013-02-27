@@ -186,13 +186,7 @@ jQuery(document).ready(function() {
             $this.next().slideToggle(500);
         }
     });
-    $(".star-big").starRating({
-        width: 26,
-        afterClick: function(el, value) {
-            alert(value)
-            console.log(el)
-        }
-    });
+    
     /* Refresh when remove item from Compare */
     $('.frame_tabsc > div').equalHorizCell('refresh');
     /* End. Refresh when remove item from Compare */
@@ -292,3 +286,12 @@ def_min = $('span#opt1').data('def_min');
 def_max = $('span#opt2').data('def_max');
 cur_min = $('span#opt3').data('cur_min');
 cur_max = $('span#opt4').data('cur_max');
+
+/*$(".star-big").starRating({
+        width: 26,
+        afterClick: function(el, value) {
+            alert(value)
+            console.log(el)
+        }
+    });*/
+    

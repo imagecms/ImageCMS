@@ -72,9 +72,7 @@
                         <div class="description">
                             <div class="frame_response">
                                 <!--    Star reiting    -->
-                                <div class="star">
-                                    <img src="/templates/new_shop_template/shop/default/images/temp/STAR.png"/>
-                                </div>
+                                {$CI->load->module('star_rating')->show_star_rating($product)}
                                 <!--    Star reiting    -->
                                 <a href="{shop_url('product/'.$product->url.'#cc')}" class="count_response">                                    
                                     {echo $Comments[$product->getId()]}
