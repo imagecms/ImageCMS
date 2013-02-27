@@ -1,13 +1,13 @@
-{# Variables
+{#
 /**
 * @file - template for displaying shop category page
 * Variables
 *   $category: (object) instance of SCategory
-*       $category->getDescription(): method which returns category description 
+*       $category->getDescription(): method which returns category description
 *       $category->getNmae(): method which returns category name according to currenct locale
-*   $products: PropelObjectCollection of (object)s instance of SProducts 
+*   $products: PropelObjectCollection of (object)s instance of SProducts
 *       $product->firstVariant: variable which contains the first variant of product
-*       $product->firstVariant->toCurrency(): method which returns price according to current currencya and format    
+*       $product->firstVariant->toCurrency(): method which returns price according to current currencya and format
 *   $totalProducts: integer contains products count
 *   $pagination: string variable contains html code for displaying pagination
 *   $pageNumber: integer variable contains the current page number
@@ -17,25 +17,25 @@
 
 {$Comments = $CI->load->module('comments')->init($products)}
 <article>
-        <!-- Show Banners in circle -->
+    <!-- Show Banners in circle -->
     <div class="mainFrameBaner">
         <section class="container">
             {$banners = ShopCore::app()->SBannerHelper->getBannersCat(3,$category->id)}
             {if count($banners)}
-                    <div class="frame_baner">
-                        <ul class="cycle">
-                            {foreach $banners as $banner}
-                                <li>
-                                    <a href="{echo $banner['url']}">
-                                        <img src="/uploads/shop/banners/{echo $banner['image']}" />
-                                    </a>
-                                </li>
-                            {/foreach}
-                        </ul>
-                        <div class="pager"></div>
-                        <button class="next" type="button"></button>
-                        <button class="prev" type="button"></button>
-                    </div>
+                <div class="frame_baner">
+                    <ul class="cycle">
+                        {foreach $banners as $banner}
+                            <li>
+                                <a href="{echo $banner['url']}">
+                                    <img src="/uploads/shop/banners/{echo $banner['image']}" />
+                                </a>
+                            </li>
+                        {/foreach}
+                    </ul>
+                    <div class="pager"></div>
+                    <button class="next" type="button"></button>
+                    <button class="prev" type="button"></button>
+                </div>
             {/if}
         </section>
     </div>
@@ -137,14 +137,14 @@
                                 {if (int)$product->getallstock() == 0}
 
                                     <!-- displaying notify button -->
-                                    <button data-placement="bottom right" 
-                                            data-place="noinherit" 
-                                            data-duration="500" 
-                                            data-effect-off="fadeOut" 
-                                            data-effect-on="fadeIn" 
+                                    <button data-placement="bottom right"
+                                            data-place="noinherit"
+                                            data-duration="500"
+                                            data-effect-off="fadeOut"
+                                            data-effect-on="fadeIn"
                                             data-drop=".drop-report"
                                             data-prodid="{echo $product->getId()}"
-                                            type="button" 
+                                            type="button"
                                             class="btn btn_not_avail">
                                         <span class="icon-but"></span>
                                         {lang('s_message_o_report')}
@@ -152,8 +152,8 @@
                                 {else:}
 
                                     <!-- displaying buy or in cart button -->
-                                    <button class="btn btn_buy" type="button" 
-                                            data-prodid="{echo $product->getId()}" 
+                                    <button class="btn btn_buy" type="button"
+                                            data-prodid="{echo $product->getId()}"
                                             data-varid="{echo $product->firstVariant->getId()}"
                                             data-price="{echo $product->firstVariant->toCurrency()}"
                                             data-name="{echo ShopCore::encode($product->getName())}">

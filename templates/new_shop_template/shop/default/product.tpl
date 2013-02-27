@@ -1,16 +1,16 @@
 {#
 /**
- * @Template product;
+ * @file Render shop product; 
  * @partof product.tpl;
  * @updated 26 February 2013;
  * Variables
- * $Comments : Mostly all the comments on the product page.
- * $model : Principal variable in which all information about the product.
- * $model->hasDiscounts() : Check whether the discount on the product.
- * $model->firstVariant : The sample from the first product.
- * $model->firstVariant->toCurrency() : Formatting prices if nothing will pass "getPrice", but if you pass the "toCurrency ('OrigPrice')" will be transferred to the original price.
+ *  $Comments : Mostly all the comments on the product page.
+ *  $model : PropelObjectCollection of (object) instance of SProducts
+ *   $model->hasDiscounts() : Check whether the discount on the product.
+ *   $model->firstVariant : variable which contains the first variant of product;
+ *   $model->firstVariant->toCurrency() : variable which contains the first variant of product;
  *
- * */
+ */
 #}
 {$Comments = $CI->load->module('comments')->init($model)}
 <div>
@@ -58,13 +58,13 @@
                     {if $model->firstVariant->getNumber() != ''}(Артикул {echo $model->firstVariant->getNumber()}) {/if}
                 </span>
 
-                <!--Output rating for the old product Start-->
+                <!-- Output rating for the old product Start -->
                 <div class="frame_response">
                     <div class="star">
                         {$CI->load->module('star_rating')->show_star_rating($model)}
                     </div>
                 </div>
-                <!--Output rating for the old product End-->
+                <!-- Output rating for the old product End -->
                 <div class="clearfix">
                     <div class="d_i-b v-a_b m-b_20">
                         <!--Output of all the options-->
