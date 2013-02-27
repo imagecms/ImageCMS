@@ -40,7 +40,7 @@
         {$meta_noindex}
         {$canonical}
         <script type="text/javascript" src="{$SHOP_THEME}js/jquery-1.8.2.min.js"></script>
-        <script type="text/javascript" src="{$SHOP_THEME}js/jquery.imagecms.min.js"></script>
+        <script type="text/javascript" src="{$SHOP_THEME}js/jquery.imagecms.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}js/underscore-min.js"></script>
     </head>
     <body>
@@ -173,6 +173,7 @@
             <!-- Start. Render Category Tree. Menu frame -->
             <div class="mainFrameMenu">
                 <section class="container">
+                    {//echo ShopCore::app()->SCategoryTree->ul()}
                     {\Category\RenderMenu::create()->load('category_menu')}
                 </section>
             </div>
