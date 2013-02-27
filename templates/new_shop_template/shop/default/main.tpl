@@ -137,7 +137,13 @@
                                             <span class="text-el">{lang('search_find')}</span>
                                         </button>
                                         <div class="o_h">
-                                            <input type="text" name="text" value=""  placeholder="{lang('s_se_thi_sit')}"  autocomplete="off" class="place_hold" id="inputString"/>
+                                            <input type="text" 
+                                                   name="text" 
+                                                   value=""  
+                                                   placeholder="{lang('s_se_thi_sit')}"  
+                                                   autocomplete="off" 
+                                                   class="place_hold" 
+                                                   id="inputString"/>
                                         </div>
                                         <div id="suggestions" class="drop-search"></div>
                                     </form>
@@ -155,7 +161,13 @@
                                 <div style="margin-top: 7px;">
                                     <ul class="tabs">
                                         <li>
-                                            <a class="t-d_n f-s_0" href="#a" data-drop=".drop-order-call" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" data-place="center">
+                                            <a class="t-d_n f-s_0" 
+                                               href="#a" 
+                                               data-drop=".drop-order-call" 
+                                               data-effect-on="fadeIn" 
+                                               data-effect-off="fadeOut" 
+                                               data-duration="300" 
+                                               data-place="center">
                                                 <span class="icon-order-call"></span>
                                                 <span class="d_l_b">{lang('s_coll_order')}</span>
                                             </a>
@@ -262,13 +274,6 @@
                             <span class="title">Номер телефона</span>
                             <span class="frame_form_field">
                                 <span class="icon-phone"></span>
-                                <input type="text"/>
-                            </span>
-                        </label>
-                        <label>
-                            <span class="title">Примерное время</span>
-                            <span class="frame_form_field">
-                                <span class="icon-clock"></span>
                                 <input type="text"/>
                             </span>
                         </label>
