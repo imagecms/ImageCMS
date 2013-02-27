@@ -11,7 +11,7 @@
         </div>
         <div class="inside_padd">
             <div class="horizontal_form standart_form">
-                <form method="post" id="login_form">
+                <form method="post" id="login_form" class="submit_enter">
                     <label>
                         <span class="title">{lang('lang_email')}</span>
                         <span class="frame_form_field">
