@@ -1,7 +1,9 @@
 var inCart = 'Уже в корзине';
 var toCart = 'В корзину';
 var pcs = 'шт.';
+var kits = 'компл.';
 var curr = 'грн.';
+
 
 var Shop = {
     //var Cart = new Object();
@@ -421,11 +423,14 @@ function initShopPage(){
             var cartItem = new Shop.cartItem({
                 id: pd.data('prodid'),
                 vId: pd.data('varid'),
-                price: pd.data('price')
+                price: pd.data('price'),
+                kit: pd.data('kit')
             });
 
             cartItem.count = pd.closest('div.frame_count').find('input').val();
-            pd.closest('div.frame_count').next('span').html(cartItem.count + ' '+pcs);
+            var word = cartItem.kit?kits:pcs;
+            pd.closest('div.frame_count').next('span').html(cartItem.count + ' '+ word);
+            
 
             Shop.Cart.chCount(cartItem);
 

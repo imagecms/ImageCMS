@@ -193,6 +193,8 @@ table th{text-align: left;}
 .table_order .items_middle > li{display: inline-block;float: none;}
 .table_order .items_catalog{margin-left: 30px;margin-top: 30px;}
 
+tr.cartKit table td {border: 0;}
+
 h1, .title_h1{font-size: 24px;font-weight: normal;}
 h1{padding-top: 10px;}
 h2, .title_h2{font-size: 18px;font-weight: normal;margin-bottom: 4px;}
