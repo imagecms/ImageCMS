@@ -1,3 +1,9 @@
+{if $CI->session->flashdata('makeOrder')}
+    <script>{literal}
+        $(document).ready(function(){Shop.Cart.clear();})
+            {/literal}
+    </script>
+{/if}
 <article>
     <div class="">
         {if $CI->session->flashdata('makeOrder') === true}
