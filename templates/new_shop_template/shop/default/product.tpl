@@ -160,8 +160,10 @@
                             <span class="js blue">{lang('s_slw')}</span>
                         </span>
                     {else:}
-                        <a href="/shop/wish_list" class="red"><span class="icon-wish"></span>{lang('s_ilw')}</a>
-                        {/if}
+                        <a href="/shop/wish_list" class="red">
+                            <span class="icon-wish"></span>{lang('s_ilw')}
+                        </a>
+                    {/if}
                 </button>
                 <!-- Stop. Block "Add to Wishlist" -->
 
@@ -208,16 +210,18 @@
             {/if}
             <!--Output of the block if there is one accessory END-->
             <!--Output of the block comments-->
-            <li>
-                <button type="button" data-href="#comment" onclick="renderPosts(this)">
-                    <span class="icon-comment-tab"></span>
-                    <span class="text-el">                    
-                        <span id="cc">
-                            {echo $Comments[$model->getId()]}
+            {if $Comments}
+                <li>
+                    <button type="button" data-href="#comment" onclick="renderPosts(this)">
+                        <span class="icon-comment-tab"></span>
+                        <span class="text-el">                    
+                            <span id="cc">
+                                {echo $Comments[$model->getId()]}
+                            </span>
                         </span>
-                    </span>
-                </button>
-            </li>
+                    </button>
+                </li>
+            {/if}
             <!--Output of the block comments END-->
         </ul>
 
@@ -343,7 +347,11 @@
                                     <div class="d_i-b">+</div>
                                 </li>
                                 <!--Output of goods subsidiaries set-->
+                                {$data = array('names'=>array(), 'ids'=>array(), 'prices'=>array())}
                                 {foreach $kitProducts->getShopKitProducts() as  $key => $kitProduct}  
+                                    {array_push($data['names'], $kitProduct->getSProducts()->getName())}
+                                    {array_push($data['ids'], $kitProduct->getSProducts()->getId())}
+                                    {array_push($data['prices'], (float)trim($kitProduct->getDiscountProductPrice()))}
                                     <li class="{if $kitProducts->countProducts() >= 2}span2{else:}span3{/if}">
                                         <div class="item_set">
                                             <div class="description">
@@ -373,25 +381,28 @@
                                             <span class="top_tovar discount">-{echo $kitProduct->getDiscount()}%</span>
                                         </div>
                                         <div class="d_i-b">
-                                    {if $kitProducts->countProducts() == $key}={else:}+{/if}
-                                </div>
-                            </li>                                            
-                        {/foreach}
-                        <!--Output of goods subsidiaries set END-->
-                        <li class="span3 p-t_40">
-                            <div class="price price_f-s_24">
-                                <span class="d_b old_price">
-                                    <!--$kitProducts->getAllPriceBefore() - The entire set of output price without discount-->
-                                    <span class="f-w_b">{echo $kitProducts->getAllPriceBefore()}</span> {$CS}
-                                </span>
-                                <!-- $kitProducts->getTotalPrice() - the entire set of output price with discount-->
-                                <span class="f-w_b">{echo $kitProducts->getTotalPrice()}</span> {$CS}
-                            </div>                                   
-
-                            <button class="btn btn_buy" type="button" data-prodid="{echo $kitProducts->getMainProduct()->getId()}" data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}" data-price="{echo $kitProducts->getTotalPrice()}" data-name="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}">{lang('s_buy')}</button>
-
-
-                        </li>
+                                            {if $kitProducts->countProducts() == $key}={else:}+{/if}
+                                        </div>
+                                    </li>                                            
+                                {/foreach}
+                                <!--Output of goods subsidiaries set END-->
+                                <li class="span3 p-t_40">
+                                    <div class="price price_f-s_24">
+                                        <span class="d_b old_price">
+                                            <!--$kitProducts->getAllPriceBefore() - The entire set of output price without discount-->
+                                            <span class="f-w_b">{echo $kitProducts->getAllPriceBefore()}</span> {$CS}
+                                        </span>
+                                        <!-- $kitProducts->getTotalPrice() - the entire set of output price with discount-->
+                                        <span class="f-w_b">{echo $kitProducts->getTotalPrice()}</span> {$CS}
+                                    </div>                                   
+                                    <button class="btn btn_buy" type="button" 
+                                            data-prodid="{$data['ids'][] =  $kitProducts->getMainProduct()->getId(); echo json_encode(array_merge($data['ids']))}" 
+                                            data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}" 
+                                            data-price="{echo $kitProducts->getTotalPrice()}" 
+                                            data-prices ="{$data['prices'][] = (float)$kitProducts->getMainProductPrice(); echo json_encode($data['prices'])}"
+                                            data-name="{$data['names'][] =  $kitProducts->getMainProduct()->getName(); echo ShopCore::encode(json_encode($data['names']))}" 
+                                            data-kit="true">{lang('s_buy')}</button>
+                                </li>
                     </ul>
                 </li>
             {/foreach}                            

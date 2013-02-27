@@ -1,7 +1,9 @@
 var inCart = 'Уже в корзине';
 var toCart = 'В корзину';
 var pcs = 'шт.';
-//var curr = 'грн.';
+var kits = 'компл.';
+var curr = 'грн.';
+
 
 var Shop = {
     //var Cart = new Object();
@@ -30,7 +32,7 @@ var Shop = {
                 try {
                         
                     responseObj = JSON.parse(data);
-                    console.log(responseObj);
+                    //console.log(responseObj);
                         
                     //save item to storage
                     Shop.Cart._add(Shop.currentItem);
@@ -154,7 +156,7 @@ var Shop = {
                 
                 var key = localStorage.key(i);
                 
-                console.log(key);
+                //console.log(key);
                 
                 if (key.match(pattern))
                     items.push(this.load(key));
@@ -206,12 +208,14 @@ var Shop = {
     
         renderPopupCart : function(selector)
         {
+            alert(1)
             if (typeof selector == 'undefined' || selector == '')
                 var selector = this.popupCartSelector;
+            console.log(selector);
             
-            _.templateSettings.variable = "cart";
-            var template = _.template($(selector).html());
-            return template(Shop.Cart);
+            var template = _.template($(selector).html(), Shop.Cart);
+            //console.log(template(Shop.Cart));
+            return template;
         },
     
         showPopupCart : function()
@@ -234,7 +238,8 @@ var Shop = {
                 id : false,
                 vId : false,
                 name : false, 
-                count: false
+                count: false,
+                kit: false
             };
 
         return prototype = {
@@ -243,6 +248,8 @@ var Shop = {
             price : obj.price?obj.price:0,
             name : obj.name?obj.name:'',
             count : obj.count?obj.count:1,
+            kit: obj.kit?obj.kit:false,
+            prices: obj.prices?obj.prices:0,
             storageId : function(){
                 return 'cartItem_'+this.id+'_'+this.vId;
             }
@@ -256,7 +263,9 @@ var Shop = {
         cartItem.vId = $context.data('varid');
         cartItem.price = parseFloat( $context.data('price') ).toFixed(2);
         cartItem.name = $context.data('name');
-
+        cartItem.kit = $context.data('kit');
+        cartItem.prices = $context.data('prices');
+        
         return cartItem;
     },
         
@@ -286,7 +295,9 @@ var Shop = {
                     productId: key, 
                     variantId: vid
                 }, function(data){
-                    console.log(data);
+                    //console.log(data);
+                    
+                    $('#wishListCount').html('('+Shop.WishList.all().length+')');
                 });
             }
         },
@@ -297,6 +308,8 @@ var Shop = {
             if (this.items.indexOf(key) !== -1 ) {
                 this.items = _.without(this.items, key);
                 localStorage.setItem('wishList', JSON.stringify(this.items));
+                
+                $('#wishListCount').html('('+Shop.WishList.all().length+')');
             }
         }
     },
@@ -308,20 +321,24 @@ var Shop = {
         },        
         add: function(key){
             this.items = this.all();
-            console.log(this.items);
+            //console.log(this.items);
             if (  this.items.indexOf(key) == -1 ){
                 this.items.push(key);
                 localStorage.setItem('compareList', JSON.stringify(this.items));
                 $.get('/shop/compare/add/'+key);
+                
+                $('#compareCount').html('('+Shop.CompareList.all().length+')');
             }
         },
 
          rm: function(key){
             this.items = JSON.parse( localStorage.getItem('compareList'))?JSON.parse( localStorage.getItem('compareList')):[];
-            console.log(this.items);
+            //console.log(this.items);
             if (this.items.indexOf(key) !== -1 ) {
                 this.items = _.without(this.items, key);
                 localStorage.setItem('compareList', JSON.stringify(this.items));
+                
+                $('#compareCount').html('('+Shop.CompareList.all().length+')');
             }
         }
     },
@@ -372,7 +389,7 @@ var Shop = {
                 var key = $(this).data('prodid')+'_'+$(this).data('varid');
                 if (keys.indexOf(key) != -1)
                 {
-                    console.log($(this));
+                    //console.log($(this));
                     $(this).removeClass('btn_buy').addClass('btn_cart').html(inCart);
                 }
             });
@@ -381,7 +398,7 @@ var Shop = {
                 var key = $(this).data('prodid')+'_'+$(this).data('varid');
                 if (keys.indexOf(key) == -1)
                 {
-                    console.log($(this));
+                    //console.log($(this));
                     $(this).removeClass('btn_cart').addClass('btn_buy').html(toCart);
                 }
             });
@@ -406,11 +423,14 @@ function initShopPage(){
             var cartItem = new Shop.cartItem({
                 id: pd.data('prodid'),
                 vId: pd.data('varid'),
-                price: pd.data('price')
+                price: pd.data('price'),
+                kit: pd.data('kit')
             });
 
             cartItem.count = pd.closest('div.frame_count').find('input').val();
-            pd.closest('div.frame_count').next('span').html(cartItem.count + ' '+pcs);
+            var word = cartItem.kit?kits:pcs;
+            pd.closest('div.frame_count').next('span').html(cartItem.count + ' '+ word);
+            
 
             Shop.Cart.chCount(cartItem);
 
@@ -418,7 +438,7 @@ function initShopPage(){
 
             $('div.cleaner>span>span:nth-child(3)').html(' ('+Shop.Cart.totalCount+')');
 
-            console.log(cartItem);
+            //console.log(cartItem);
 
             var totalPrice = cartItem.count*cartItem.price;
             pd.closest('tr').find('span.first_cash>span').last().html(totalPrice.toFixed(2));
@@ -433,19 +453,22 @@ function initShopPage(){
 
  };
 
-function rmFromPopupCart(context)
+function rmFromPopupCart(context, isKit)
 {
-    var tr = $(context).closest('tr');
+    if (typeof isKit != 'undefined' && isKit == true)
+        var tr = $(context).closest('tr.cartKit');
+    else
+        var tr = $(context).closest('tr');
+    
     var cartItem = new Shop.cartItem();
     cartItem.id = tr.data('prodid');
     cartItem.vId = tr.data('varid');
     
-    Shop.Cart.rm(cartItem);
-    
-    console.log(cartItem);
-    
-    Shop.Cart.totalRecount();
+    Shop.Cart.rm(cartItem).totalRecount()
     tr.remove();
+//    if ($('#popupCart tbody tr').length == 0)
+//        $('#popupCart').html(_.template( $('#cartPopupTemplate').html() , {cart:Shop.Cart}));
+    
 };
 
 function togglePopupCart()
@@ -535,7 +558,7 @@ $(
 
     $('button.toWishlist').on('click', function()
     {
-        console.log($(this).closest('div.description').find('button').first());
+        //console.log($(this).closest('div.description').find('button').first());
         var id = $(this).data('prodid');
         var vid = $(this).data('varid');
         Shop.WishList.add(id, vid);
