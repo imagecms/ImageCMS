@@ -15,6 +15,8 @@
 *   $totalProducts: variale which contains total count of products in brand category
 *
 *   $model: (object) instance of SBrands
+*
+*   $Comments: array which contains count of comments for each product
 */
 #}
 
@@ -25,14 +27,14 @@
         <div class="span9 right">
             <h1 class="d_i">{echo ShopCore::encode($model->getName())}</h1>
                 <span class="c_97">
-                    {$totalProducts}
+                    {lang('s_found')} {echo $totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}
                 </span>
             <div class="clearfix t-a_c frame_func_catalog">
                 <div class="f_l">
-                    <span class="v-a_m">Фильтровать по:</span>
+                    <span class="v-a_m">{lang('s_order_by')}:</span>
                     <div class="lineForm w_170">
                         <select id="sort" name="order">
-                            <option value="" {if !ShopCore::$_GET['order']}selected="selected"{/if}>-Нет-</option>
+                            <option value="" {if !ShopCore::$_GET['order']}selected="selected"{/if}>-{lang('s_no')}-</option>
                             <option value="rating" {if ShopCore::$_GET['order']=='rating'}selected="selected"{/if}>{lang('s_po')} {lang('s_rating')}</option>
                             <option value="price" {if ShopCore::$_GET['order']=='price'}selected="selected"{/if}>{lang('s_dewevye')}</option>
                             <option value="price_desc" {if ShopCore::$_GET['order']=='price_desc'}selected="selected"{/if} >{lang('s_dor')}</option>
@@ -43,7 +45,7 @@
                     </div>
                 </div>
                 <div class="f_r">
-                    <span class="v-a_m">Товаров на странице:</span>
+                    <span class="v-a_m">{lang('s_products_per_page')}:</span>
                     <div class="lineForm w_70">
                         <select class="sort" id="sort2" name="order2">
                             <option value="12" {if ShopCore::$_GET['user_per_page']=='12'}selected="selected"{/if} >12</option>
@@ -53,8 +55,8 @@
                     </div>
                 </div>
                 <div class="groupButton list_pic_btn" data-toggle="buttons-radio">
-                    <button type="button" class="btn active"><span class="icon-cat_pic"></span>Картинками</button>
-                    <button type="button" class="btn"><span class="icon-cat_list"></span>Списком</button>
+                    <button type="button" class="btn active"><span class="icon-cat_pic"></span>{lang('s_in_images')}</button>
+                    <button type="button" class="btn"><span class="icon-cat_list"></span>{lang('s_in_list')}</button>
                 </div>
             </div>
             {if str_replace(' ', '', $model->getDescription()) != ''}
@@ -62,7 +64,7 @@
                     <figure class="f_l m-t_10 w_150">
                         <img src="/uploads/shop/brands/{echo $model->getImage()}"/>
                     </figure>
-                    <p>{echo echo ShopCore::encode($model->getDescription())}</p>
+                    <p>{echo ShopCore::encode($model->getDescription())}</p>
                 </div>
             {/if}
             <ul class="items items_catalog" data-radio-frame>
