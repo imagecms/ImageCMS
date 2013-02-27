@@ -1004,9 +1004,16 @@ footer{
 footer [class*="span"]{padding-top: 47px;}
 footer a{color: #adadad;margin-bottom: 3px;display: inline-block;}
 footer a:hover{color: #fff;}
+.social a{background:url('../images/social.png') no-repeat;display: inline-block;width: 20px;height: 20px;margin-left: 6px;}
 .contacts_info > li{margin-bottom: 6px;}
 .copy_right{margin-bottom: 25px;}
 .footer_social{margin-bottom: 14px;}
+.social .mail{background-position: 0 0;}
+.social .g_plus{background-position: -26px 0;}
+.social .facebook{background-position: -52px 0;}
+.social .vkontakte{background-position: -78px 0;}
+.social .twitter{background-position: -104px 0;}
+.social .odnoklasniki{background-position: -130px 0;}
 
 .row {margin-left: -20px;}
 [class*="span"] {float: left;min-height: 1px;margin-left: 20px;}

@@ -212,15 +212,23 @@
                         </li>
                         <li>
                             <span class="icon-foot-skype"></span>
-                            <span class="f-w_b">{lang('s_skype')}:</span> SiteImageCMS
+                            <span class="f-w_b">{lang('s_skype')}:</span> ImageCMS
                         </li>
                         {$CI->load->module('star_rating')->show_star_rating()}
                     </ul>
                 </div>
+
                 <div class="span3 t-a_r">
-                    <div class="copy_right">© SiteImage CMS, 2013</div>
+                    <div class="copy_right">© ImageCMS, 2013</div>
                     <div class="footer_social">
-                        <img src="{$SHOP_THEME}images/temp/social_footer.png"/>
+                        <div class="social">
+                            <a href="#" class="mail"></a>
+                            <a href="#" class="g_plus"></a>
+                            <a href="#" class="facebook"></a>
+                            <a href="#" class="vkontakte"></a>
+                            <a href="#" class="twitter"></a>
+                            <a href="#" class="odnoklasniki"></a>
+                        </div>
                     </div>
                     <a href="http://imagecms.net">{lang('s_footer_create')}</a><br/>
                     {lang('s_footer_seo')}
