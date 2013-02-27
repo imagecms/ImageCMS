@@ -21,7 +21,7 @@
                             <select name="category_id" id="category_id">
                                 <!-- <option value="0">Нет</option> -->
                                 {foreach $categories as $item}
-                                <option value="{$item.id}">{$item.name}</option>
+                                    <option value="{$item.id}">{$item.name}</option>
                                 {/foreach}
                             </select>
                         </div>
@@ -36,6 +36,16 @@
                         <label class="control-label" for="description">{lang('amt_description')}:</label>
                         <div class="controls">
                             <textarea name="description" id="description" class="elRTE"></textarea>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="tpl_file">{lang('amt_template_file')}:</label>
+                        <div class="controls">
+                            <div class="pull-right help-block">.tpl</div>
+                            <div class="o_h">
+                                <input type="text" name="tpl_file" id="tpl_file" value=""/>
+                                <span class="help-block">{lang('amt_by_default')}: album.tpl</span>
+                            </div>
                         </div>
                     </div>
                     {form_csrf()}
