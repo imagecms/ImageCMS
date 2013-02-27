@@ -88,7 +88,7 @@
                                     <!-- End. Sort by block -->
                                     <!-- Start. Per page block -->
                                     <div class="f_r">
-                                        <span class="v-a_m">Товаров на странице:</span>
+                                        <span class="v-a_m">{lang('s_products_per_page')}:</span>
                                         <div class="lineForm w_70">
                                             <select class="sort" id="sort2" name="order2">
                                                 <option selected="selected" value="1">20</option>
@@ -101,8 +101,8 @@
                                     <!-- End. Per page block -->
                                     <!-- Start. Buttons for change view mode (list/images) -->
                                     <div class="groupButton list_pic_btn" data-toggle="buttons-radio">
-                                        <button type="button" class="btn active"><span class="icon-cat_pic"></span>Картинками</button>
-                                        <button type="button" class="btn"><span class="icon-cat_list"></span>Списком</button>
+                                        <button type="button" class="btn active"><span class="icon-cat_pic"></span>{lang('s_in_images')}</button>
+                                        <button type="button" class="btn"><span class="icon-cat_list"></span>{lang('s_in_list')}</button>
                                     </div>
                                     <!-- End. Buttons for change view mode (list/images) -->
                                 </div>
