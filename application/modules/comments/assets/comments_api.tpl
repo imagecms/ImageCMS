@@ -342,7 +342,8 @@
                     dataType: "json",
                     url: '/comments/commentsapi/setyes',
                     success: function(obj) {
-                        $('#yesholder' + comid).html("(" + obj.y_count + ")");
+                        if (obj !== null)
+                            $('#yesholder' + comid).html("(" + obj.y_count + ")");
                     }
                 });
             });
@@ -354,7 +355,8 @@
                     dataType: "json",
                     url: '/comments/commentsapi/setno',
                     success: function(obj) {
-                        $('#noholder' + comid).html("(" + obj.n_count + ")");
+                        if (obj !== null)
+                            $('#noholder' + comid).html("(" + obj.n_count + ")");
                     }
                 });
             });
