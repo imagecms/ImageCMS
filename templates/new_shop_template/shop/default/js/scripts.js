@@ -298,4 +298,4 @@ cur_max = $('span#opt4').data('cur_max');
             console.log(el)
         }
     });*/
-    
+
