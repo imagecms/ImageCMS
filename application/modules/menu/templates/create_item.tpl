@@ -194,8 +194,13 @@
                 </table>
             </form>
         </div>
+<<<<<<< HEAD
         <div id="category" class="tab-pane {if $item.item_type == 'category'}active{/if}">
             <form method="post" action="/admin/components/cp/menu/create_item/{$item.id}" id="category_form" >
+=======
+        <div id="category" class="tab-pane">
+            <form method="post" action="/admin/components/cp/menu/edit_item/{$item.id}" id="category_form" >
+>>>>>>> b29e39d3aac3d3ab047379c887f3ddb1e8aa5ff6
                 {$data = unserialize($item.add_data)}
                 <input type="hidden" name="menu_id" value="{$menu.id}"/>
                 <input type="hidden" name="item_id" value="{$item.item_id}" id="cat_input"/>
