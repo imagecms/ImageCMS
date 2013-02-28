@@ -94,11 +94,9 @@ var ImageCMSApi = {
         if (typeof validations === 'object') {
 
             for (var key in validations) {
-                if (validations[key].length > 0) {
-                    $('#' + selector).find('div#for_' + key).css('color', 'red');
-                    $('#' + selector).find('div#for_' + key).show(1000);
-                    $('#' + selector).find('div#for_' + key).html(validations[key]);
-                }
+                $('#' + selector).find('div#for_' + key).css('color', 'red');
+                $('#' + selector).find('div#for_' + key).show(1000);
+                $('#' + selector).find('div#for_' + key).html(validations[key]);
             }
 //                setTimeout((function() {
 //                    $('div .for_validations').hide();

@@ -17,7 +17,8 @@
                     <div class="inside_padd">
                         <div class="horizontal_form standart_form">
                             <!-- login form -->
-                            <form method="post" id="login_form">
+                            <form method="post" id="login_form" onsubmit="ImageCMSApi.formAction('/auth/authapi/login', 'login_form');
+                                                return false;">
                                 <label>
                                     <span class="title">{lang('lang_email')}</span>
                                     <span class="frame_form_field">
@@ -62,7 +63,6 @@
                                     <span class="frame_form_field">
                                         <!--input for remember me option-->
                                         <input type="checkbox" name="remember" value="1" id="remember" class="d_i v-a_b"/>
-                                        <div id="for_password" class="for_validations"></div>
                                     </span>
                                 </label>
                                 <div class="frameLabel">
@@ -73,8 +73,7 @@
                                         <!--registration link-->
                                         <a href="{site_url($modules.auth . '/register')}" class="d_i v-a_m neigh_btn m-r_45">{lang('lang_register')}</a>
                                         <!--submit button-->
-                                        <input type="button" value="Войти" class="btn btn_cart f_r" onclick="ImageCMSApi.formAction('/auth/authapi/login', 'login_form');
-                                                return false;"/>
+                                        <input type="submit" value="Войти" class="btn btn_cart f_r" />
                                     </span>
                                 </div>
                                 <!--security token-->
