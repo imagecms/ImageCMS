@@ -40,14 +40,14 @@ var NotitficationApi = {
             url: url,
             dataType: "json",
             beforeSend: function() {
-                ImageCMSApi.returnMsg("=== Sending api request to " + url + "... ===");
+                NotitficationApi.returnMsg("=== Sending api request to " + url + "... ===");
             },
             success: function(obj) {
                 if (obj !== null) {
-                    ImageCMSApi.returnMsg("[status]:" + obj.status);
-                    ImageCMSApi.returnMsg("[message]: " + obj.msg);
+                    NotitficationApi.returnMsg("[status]:" + obj.status);
+                    NotitficationApi.returnMsg("[message]: " + obj.msg);
                     if (obj.validations !== 'undefined') {
-                        ImageCMSApi.sendValidations(obj.validations, selector);
+                        NotitficationApi.sendValidations(obj.validations, selector);
                     }
                     if (obj.status === true) {
                         $(NotitficationApi.formClass).html(obj.msg);
@@ -60,12 +60,14 @@ var NotitficationApi = {
                         }
                     }
                 }
+                $('.btn_not_avail.active').drop('positionDrop');
+
                 return this;
             },
         }).done(function() {
-            ImageCMSApi.returnMsg("=== Api request success!!! ===");
+            NotitficationApi.returnMsg("=== Api request success!!! ===");
         }).fail(function() {
-            ImageCMSApi.returnMsg("=== Api request breake with error!!! ===");
+            NotitficationApi.returnMsg("=== Api request breake with error!!! ===");
         });
         return;
     },
@@ -90,7 +92,9 @@ var NotitficationApi = {
                 $('#' + selector).find('div#for_' + key).css('color', 'red');
             }
             setTimeout((function() {
-                $('div .for_validations').hide(1500);
+                $('div .for_validations').hide(0, function() {
+                    $('.btn_not_avail.active').drop('positionDrop')
+                });
             }), 6000);
         } else {
             return false;

@@ -1136,3 +1136,5 @@ label.error{margin-top: 7px;padding: 2px 11px;}
 
 .tabs-dif-all_par{margin: 4px 0 0 50px !important;}
 .tabs-dif-all_par > li > button{top: 5px;position: relative;}
+
+.infoOrder > *{font-style: italic; color: #979797;}

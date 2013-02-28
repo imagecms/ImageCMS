@@ -4,7 +4,7 @@
 * Variables
 *   $category: (object) instance of SCategory
 *       $category->getDescription(): method which returns category description
-*       $category->getNmae(): method which returns category name according to currenct locale
+*       $category->getName(): method which returns category name according to currenct locale
 *   $products: PropelObjectCollection of (object)s instance of SProducts
 *       $product->firstVariant: variable which contains the first variant of product
 *       $product->firstVariant->toCurrency(): method which returns price according to current currencya and format
