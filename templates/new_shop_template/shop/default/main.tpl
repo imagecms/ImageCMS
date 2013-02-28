@@ -83,11 +83,17 @@
                                             <li>
                                                 <span class="f-s_0">
                                                     <span class="helper"></span>
-                                                    <a href="#" onclick="ImageCMSApi.formAction('/auth/authapi/logout', '');
-                                                            return false;">
+                                                    <button type="button" 
+                                                            data-drop=".drop-enter" 
+                                                            data-effect-on="fadeIn" 
+                                                            data-effect-off="fadeOut" 
+                                                            data-duration="300" 
+                                                            data-place="noinherit" 
+                                                            data-placement="top right"
+                                                            onclick="ImageCMSApi.formAction('/auth/authapi/logout', '')">
                                                         <span class="icon-exit"></span>
                                                         <span class="d_l_g">Выход</span>
-                                                    </a>
+                                                    </button>
                                                 </span>
                                             </li>
                                             <li>
@@ -103,17 +109,26 @@
                                         {/if}
                                     </ul>
                                 </nav>
-                                <div class="cleaner f_l f-s_0 isAvail" >
+                                <div class="cleaner f_l f-s_0 isAvail">
                                     <span class="helper"></span>
                                     <span class="f-s_0">
                                         <span class="icon-bask"></span>
                                         <span class="d_l">Корзина</span>
-                                        <span id="topCartCount">&nbsp;(0)</span>
+                                        <span>&nbsp;(0)</span>
                                     </span>
                                 </div>
                             </div>
                             <nav class="frameHeaderMenu">
-                                {load_menu('top_menu')}
+                                <button type="button" class="btn btn-navbar f_l">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <div class="f_l">
+                                    <div class="frame-navbar">
+                                        {load_menu('top_menu')}
+                                    </div>
+                                </div>
                             </nav>
                         </section>
                     </div>
