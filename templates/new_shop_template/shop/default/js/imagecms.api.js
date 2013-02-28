@@ -94,9 +94,11 @@ var ImageCMSApi = {
         if (typeof validations === 'object') {
 
             for (var key in validations) {
-                $('#' + selector).find('div#for_' + key).css('color', 'red');
-                $('#' + selector).find('div#for_' + key).show(1000);
-                $('#' + selector).find('div#for_' + key).html(validations[key]);
+                if (validations[key] != "") {
+                    $('#' + selector).find('lable#for_' + key).addClass('error');
+                    $('#' + selector).find('lable#for_' + key).html(validations[key]);
+                    $('#' + selector).find('lable#for_' + key).show();
+                }
             }
 //                setTimeout((function() {
 //                    $('div .for_validations').hide();
@@ -116,7 +118,7 @@ var ImageCMSApi = {
                         <span class="frame_form_field">\n\
                             <input type="text" name="captcha" value="Код протекции"/> \n\
                             <span class="help_inline" id="for_captcha_image">' + captcha_image + '</span>\n\
-                            <div id="for_captcha" class="for_validations"></div>\n\
+                            <lable id="for_captcha" class="for_validations"></lable>\n\
                         </span>';
         $('#captcha_block').html(html);
         return false;
@@ -133,6 +135,12 @@ $(document).ready(function() {
     $('form.submit_enter input').on('keypress', function(e) {
         if (e.which == 13) {
             $('form.submit_enter input[type="button"]').trigger('click');
+        }
+    });
+
+    $('form input').live('input', function() {
+        if($.exists($('lable#for_'+$(this).attr('name')))){
+            $('lable#for_'+$(this).attr('name')).hide(500);
         }
     });
 });
