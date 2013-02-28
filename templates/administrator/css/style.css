@@ -685,3 +685,4 @@ border-right: none !important;
 .no-borderd th, .no-borderd td, .no-borderd{border: 0;}
 .albums_list table table th, .albums_list table table td{padding: 4px !important;}
 .albums_list .active .table-striped > tbody > tr:nth-child(odd) td, .albums_list .active .table-striped > tbody tr:nth-child(odd) th{background-color: #fff9e0 !important;}
+.bootstrapSkin table.mceLayout tr.mceFirst td {border: none !important;}
