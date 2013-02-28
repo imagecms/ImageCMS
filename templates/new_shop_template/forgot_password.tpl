@@ -11,7 +11,8 @@
                 <div class="frameGroupsForm">
                     <div class="header_title">{lang('lang_forgot_password')}</div>
                     <div class="standart_form horizontal_form">
-                        <form method="post" id="forgot_password_form">
+                        <form method="post" id="forgot_password_form" onsubmit="ImageCMSApi.formAction('/auth/authapi/forgot_password', 'forgot_password_form');
+                                            return false;">
                             <div class="groups_form">
                                 <label>
                                     <span class="title">{lang('s_email')}</span>
@@ -25,8 +26,7 @@
                                 <div class="frameLabel c_t">
                                     <span class="title">&nbsp;</span>
                                     <span class="frame_form_field">
-                                        <input type="submit" class="btn btn_cart" value="{lang('lang_submit')}" onclick="ImageCMSApi.formAction('/auth/authapi/forgot_password', 'forgot_password_form');
-                                            return false;"/>
+                                        <input type="submit" class="btn btn_cart" value="{lang('lang_submit')}" />
                                     </span>
                                 </div>
                             </div>
