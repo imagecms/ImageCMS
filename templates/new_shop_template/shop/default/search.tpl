@@ -162,8 +162,22 @@
                                 <!-- End. Check amount of goods -->   
                                 <!-- Start. Buttons "Add to wish list" and "add to compare" -->
                                 <div class="d_i-b">
-                                    <button class="btn btn_small_p" type="button" title="{echo lang('s_list_add_comp')}" data-prodId="{echo $p->getId()}" data-varId="{echo $p->firstVariant->getId()}" data-price="{echo $p->firstVariant->toCurrency()}" data-name="{echo $p->getName()}"><span class="icon-comprasion_2"></span></button>
-                                    <button class="btn btn_small_p" type="button" title="{echo lang('s_save_W_L')}" data-prodId="{echo $p->getId()}" data-varId="{echo $p->firstVariant->getId()}" data-price="{echo $p->firstVariant->toCurrency()}" data-name="{echo $p->getName()}"><span class="icon-wish_2"></span></button>
+                                    <!-- to compare button -->
+                                    <button class="btn btn_small_p toCompare"  
+                                            data-prodid="{echo $p->getId()}"  
+                                            type="button" 
+                                            title="{lang('s_add_to_compare')}">
+                                        <span class="icon-comprasion_2"></span>
+                                    </button>
+
+                                    <!-- to wish list button -->
+                                    <button class="btn btn_small_p toWishlist" 
+                                            data-prodid="{echo $p->getId()}" 
+                                            data-varid="{echo $p->firstVariant->getId()}"  
+                                            type="button" 
+                                            title="{lang('s_add_to_wish_list')}">
+                                        <span class="icon-wish_2"></span>
+                                    </button>
                                 </div>
                                 <!-- End. Buttons -->
                             </div>
