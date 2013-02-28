@@ -319,7 +319,8 @@
         <div class="drop-footer"></div>
     </div>
     <div class="d_n" data-clone="data-report">
-        <form method="post" action="" id="data-report">
+        <form method="post" action="" id="data-report" onsubmit="NotitficationApi.formAction('/shop/ajax/getApiNotifyingRequest', 'data-report');
+                                                            return false;" >
             <div class="standart_form">
                 <label>
                     <span class="title">Ваше имя</span>
@@ -350,8 +351,7 @@
                 </label>
             </div>
             <div class="t-a_r">
-                <input type="submit" value="Отправить" onclick="NotitficationApi.formAction('/shop/ajax/getApiNotifyingRequest', 'data-report');
-                                                            return false;" class="btn btn_cart"/>
+                <input type="submit" value="Отправить" class="btn btn_cart"/>
             </div>
         </form>
     </div>

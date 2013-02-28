@@ -87,15 +87,14 @@ var NotitficationApi = {
         if (typeof validations === 'object') {
             for (var key in validations) {
                 //console.log($('#' + selector).find('#for_' + key));
-                $('#' + selector).find('div#for_' + key).show(1500);
+                $('#' + selector).find('div#for_' + key).show();
                 $('#' + selector).find('div#for_' + key).html(validations[key]);
                 $('#' + selector).find('div#for_' + key).css('color', 'red');
             }
-            setTimeout((function() {
-                $('div .for_validations').hide(0, function() {
-                    $('.btn_not_avail.active').drop('positionDrop')
-                });
-            }), 6000);
+            $('.btn_not_avail.active').drop('positionDrop');
+//            setTimeout((function() {
+//                $('div .for_validations').hide();
+//            }), 6000);
         } else {
             return false;
         }
