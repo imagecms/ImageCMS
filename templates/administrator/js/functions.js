@@ -1,3 +1,4 @@
+var editorsEnabled = false;
 //temporary
 function ChangeBannerActive(el, bannerId)
 {
@@ -316,7 +317,9 @@ function initElRTE()
 
 function initTinyMCE()
 {
+    
     var opts = {
+        //mode : "textareas",
         // Location of TinyMCE script
         height: 300,
         script_url: '/js/tiny_mce/tiny_mce.js',
@@ -384,9 +387,26 @@ function initTinyMCE()
             }
     );
 
+//if (!editorsEnabled)
+//{
+    //$('#prev_text').tinymce(opts);
+    
     $('textarea.elRTE').not('.focusOnClick').each(function() {
-        $(this).tinymce(opts);
-    })
+        var id = $(this).attr('id');
+        if ($(this).hasClass('inited') == false)
+        {
+            opts.selector = id;
+            $(this).addClass('inited').tinymce(opts);
+            
+        }
+        
+    });
+    
+//    editorsEnabled = true;
+//}
+
+
+
 }
 
 function initTextEditor(name)
