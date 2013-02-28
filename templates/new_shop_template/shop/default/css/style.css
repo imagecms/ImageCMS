@@ -193,6 +193,8 @@ table th{text-align: left;}
 .table_order .items_middle > li{display: inline-block;float: none;}
 .table_order .items_catalog{margin-left: 30px;margin-top: 30px;}
 
+tr.cartKit table td {border: 0;}
+
 h1, .title_h1{font-size: 24px;font-weight: normal;}
 h1{padding-top: 10px;}
 h2, .title_h2{font-size: 18px;font-weight: normal;margin-bottom: 4px;}
@@ -821,6 +823,7 @@ a.activeSlide{background-position: -66px 0;}
 .item_tovar .tabs > .active > button{cursor: default;}
 .item_tovar .frame_tabs{border: 1px solid #dedede;padding: 15px 25px;-moz-border-radius: 0 4px 4px 4px;-webkit-border-radius: 0 4px 4px 4px;border-radius: 0 4px 4px 4px;}
 .frame_tabs > div, .frame_tabsc > div{display: none;}
+.frame_tabsc{min-height: 200px;}
 
 .comprasion{margin-bottom: 60px;}
 .comprasion_tovars_frame > .span3{width: 270px !important;float: left!important;margin-left: 0!important;}
@@ -1004,9 +1007,16 @@ footer{
 footer [class*="span"]{padding-top: 47px;}
 footer a{color: #adadad;margin-bottom: 3px;display: inline-block;}
 footer a:hover{color: #fff;}
+.social a{background:url('../images/social.png') no-repeat;display: inline-block;width: 20px;height: 20px;margin-left: 6px;}
 .contacts_info > li{margin-bottom: 6px;}
 .copy_right{margin-bottom: 25px;}
 .footer_social{margin-bottom: 14px;}
+.social .mail{background-position: 0 0;}
+.social .g_plus{background-position: -26px 0;}
+.social .facebook{background-position: -52px 0;}
+.social .vkontakte{background-position: -78px 0;}
+.social .twitter{background-position: -104px 0;}
+.social .odnoklasniki{background-position: -130px 0;}
 
 .row {margin-left: -20px;}
 [class*="span"] {float: left;min-height: 1px;margin-left: 20px;}
@@ -1121,8 +1131,10 @@ footer{background-color: #303030\0/;*background-color: #303030;}
 .success, .success *{color: #5fa335;}
 label.success{margin-top: 7px;padding: 2px 11px;}
 label.error{margin-top: 7px;padding: 2px 11px;}
-.error, .error *{color: #e42e2e;}
+.error, .error *{color: #e42e2e; display: block;margin-top: 7px;margin-bottom: 7px;}
 /************************************************/
 
 .tabs-dif-all_par{margin: 4px 0 0 50px !important;}
 .tabs-dif-all_par > li > button{top: 5px;position: relative;}
+
+.infoOrder > *{font-style: italic; color: #979797;}

@@ -215,10 +215,8 @@
                                         <div class="control-group">
                                             <label class="control-label">{lang('amt_select_category')}:</label>
                                             <div class="controls">
-                                                <ul class="nav myTab nav-tabs nav-stacked span3">
-                                                    {foreach $cats as $c}
-                                                        <li><a href="#" class="category_item" data-id="{$c.id}" data-title="{$c.name}">{$c.name}</a></li>
-                                                    {/foreach}   
+                                                <ul>
+                                                   {build_cats_tree_ul_li($cats)}  
                                                 </ul>
                                             </div>
                                         </div>

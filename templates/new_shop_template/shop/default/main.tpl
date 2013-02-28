@@ -40,7 +40,7 @@
         {$meta_noindex}
         {$canonical}
         <script type="text/javascript" src="{$SHOP_THEME}js/jquery-1.8.2.min.js"></script>
-        <script type="text/javascript" src="{$SHOP_THEME}js/jquery.imagecms.min.js"></script>
+        <script type="text/javascript" src="{$SHOP_THEME}js/jquery.imagecms.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}js/underscore-min.js"></script>
     </head>
     <body>
@@ -83,11 +83,17 @@
                                             <li>
                                                 <span class="f-s_0">
                                                     <span class="helper"></span>
-                                                    <a href="#" onclick="ImageCMSApi.formAction('/auth/authapi/logout', '');
-                                                            return false;">
+                                                    <button type="button" 
+                                                            data-drop=".drop-enter" 
+                                                            data-effect-on="fadeIn" 
+                                                            data-effect-off="fadeOut" 
+                                                            data-duration="300" 
+                                                            data-place="noinherit" 
+                                                            data-placement="top right"
+                                                            onclick="ImageCMSApi.formAction('/auth/authapi/logout', '')">
                                                         <span class="icon-exit"></span>
                                                         <span class="d_l_g">Выход</span>
-                                                    </a>
+                                                    </button>
                                                 </span>
                                             </li>
                                             <li>
@@ -103,17 +109,26 @@
                                         {/if}
                                     </ul>
                                 </nav>
-                                <div class="cleaner f_l f-s_0 isAvail" >
+                                <div class="cleaner f_l f-s_0 isAvail">
                                     <span class="helper"></span>
                                     <span class="f-s_0">
                                         <span class="icon-bask"></span>
                                         <span class="d_l">Корзина</span>
-                                        <span id="topCartCount">&nbsp;(0)</span>
+                                        <span>&nbsp;(0)</span>
                                     </span>
                                 </div>
                             </div>
                             <nav class="frameHeaderMenu">
-                                {load_menu('top_menu')}
+                                <button type="button" class="btn btn-navbar f_l">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <div class="f_l">
+                                    <div class="frame-navbar">
+                                        {load_menu('top_menu')}
+                                    </div>
+                                </div>
                             </nav>
                         </section>
                     </div>
@@ -137,7 +152,13 @@
                                             <span class="text-el">{lang('search_find')}</span>
                                         </button>
                                         <div class="o_h">
-                                            <input type="text" name="text" value=""  placeholder="{lang('s_se_thi_sit')}"  autocomplete="off" class="place_hold" id="inputString"/>
+                                            <input type="text" 
+                                                   name="text" 
+                                                   value=""  
+                                                   placeholder="{lang('s_se_thi_sit')}"  
+                                                   autocomplete="off" 
+                                                   class="place_hold" 
+                                                   id="inputString"/>
                                         </div>
                                         <div id="suggestions" class="drop-search"></div>
                                     </form>
@@ -155,7 +176,13 @@
                                 <div style="margin-top: 7px;">
                                     <ul class="tabs">
                                         <li>
-                                            <a class="t-d_n f-s_0" href="#a" data-drop=".drop-order-call" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" data-place="center">
+                                            <a class="t-d_n f-s_0" 
+                                               href="#a" 
+                                               data-drop=".drop-order-call" 
+                                               data-effect-on="fadeIn" 
+                                               data-effect-off="fadeOut" 
+                                               data-duration="300" 
+                                               data-place="center">
                                                 <span class="icon-order-call"></span>
                                                 <span class="d_l_b">{lang('s_coll_order')}</span>
                                             </a>
@@ -212,15 +239,23 @@
                         </li>
                         <li>
                             <span class="icon-foot-skype"></span>
-                            <span class="f-w_b">{lang('s_skype')}:</span> SiteImageCMS
+                            <span class="f-w_b">{lang('s_skype')}:</span> ImageCMS
                         </li>
                         {$CI->load->module('star_rating')->show_star_rating()}
                     </ul>
                 </div>
+
                 <div class="span3 t-a_r">
-                    <div class="copy_right">© SiteImage CMS, 2013</div>
+                    <div class="copy_right">© ImageCMS, 2013</div>
                     <div class="footer_social">
-                        <img src="{$SHOP_THEME}images/temp/social_footer.png"/>
+                        <div class="social">
+                            <a href="#" class="mail"></a>
+                            <a href="#" class="g_plus"></a>
+                            <a href="#" class="facebook"></a>
+                            <a href="#" class="vkontakte"></a>
+                            <a href="#" class="twitter"></a>
+                            <a href="#" class="odnoklasniki"></a>
+                        </div>
                     </div>
                     <a href="http://imagecms.net">{lang('s_footer_create')}</a><br/>
                     {lang('s_footer_seo')}
@@ -241,32 +276,29 @@
             </div>
             <div class="inside_padd">
                 <div class="horizontal_form standart_form">
-                    <form method="post">
+                    <form method="post" id="data-callback" onsubmit="NotitficationApi.formAction('/shop/callbackApi', 'data-callback');
+                                                            return false;">
                         <label>
                             <span class="title">Ваше имя</span>
                             <span class="frame_form_field">
                                 <span class="icon-person"></span>
-                                <input type="text"/>
+                                <input type="text" name="Name"/>
+                                <label id="for_Name" class="for_validations"></label>
                             </span>
                         </label>
                         <label>
                             <span class="title">Номер телефона</span>
                             <span class="frame_form_field">
                                 <span class="icon-phone"></span>
-                                <input type="text"/>
-                            </span>
-                        </label>
-                        <label>
-                            <span class="title">Примерное время</span>
-                            <span class="frame_form_field">
-                                <span class="icon-clock"></span>
-                                <input type="text"/>
+                                <input type="text" name="Phone"/>
+                                <label id="for_Phone" class="for_validations"></label>
                             </span>
                         </label>
                         <label>
                             <span class="title">Комментарий</span>
                             <span class="frame_form_field">
-                                <textarea></textarea>
+                                <textarea name="Comment"></textarea>
+                                <label id="for_Comment" class="for_validations"></label>
                             </span>
                         </label>
                         <div class="frameLabel">
@@ -290,13 +322,14 @@
         <div class="drop-footer"></div>
     </div>
     <div class="d_n" data-clone="data-report">
-        <form method="post" action="" id="data-report">
+        <form method="post" action="" id="data-report" onsubmit="NotitficationApi.formAction('/shop/ajax/getApiNotifyingRequest', 'data-report');
+                                                            return false;" >
             <div class="standart_form">
                 <label>
                     <span class="title">Ваше имя</span>
                     <span class="frame_form_field">
                         <input type="text" id="" name="UserName"/>
-                        <div id="for_UserName" class="for_validations"></div>
+                        <label id="for_UserName" class="for_validations"></label>
                         <span class="must">*</span>
                     </span>
                 </label>
@@ -304,7 +337,7 @@
                     <span class="title">E-mail</span>
                     <span class="frame_form_field">
                         <input type="text" id="" name="UserEmail"/>
-                        <div id="for_UserEmail" class="for_validations"></div>
+                        <label id="for_UserEmail" class="for_validations"></label>
                         <input type="hidden" name="ProductId" value=""/>
                         <input type="hidden" name="notifme" value="true"/>
                         <span class="must">*</span>
@@ -315,14 +348,13 @@
                     <span class="title">Телефон</span>
                     <span class="frame_form_field">
                         <input type="text" id="" name="UserPhone"/>
-                        <div id="for_UserPhone" class="for_validations"></div>
+                        <label id="for_UserPhone" class="for_validations"></label>
                         <span class="must">*</span>
                     </span>
                 </label>
             </div>
             <div class="t-a_r">
-                <input type="submit" value="Отправить" onclick="NotitficationApi.formAction('/shop/ajax/getApiNotifyingRequest', 'data-report');
-                                                            return false;" class="btn btn_cart"/>
+                <input type="submit" value="Отправить" class="btn btn_cart"/>
             </div>
         </form>
     </div>

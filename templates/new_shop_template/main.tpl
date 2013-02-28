@@ -29,7 +29,7 @@
         {$meta_noindex}
         {$canonical}
         <script type="text/javascript" src="{$SHOP_THEME}js/jquery-1.8.2.min.js"></script>
-        <script type="text/javascript" src="{$SHOP_THEME}js/jquery.imagecms.min.js"></script>
+        <script type="text/javascript" src="{$SHOP_THEME}js/jquery.imagecms.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}js/underscore-min.js"></script>
     </head>
     <body>
@@ -45,14 +45,26 @@
                                             <li>
                                                 <span class="f-s_0">
                                                     <span class="helper"></span>
-                                                    <button type="button" data-drop=".drop-enter" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" data-place="noinherit" data-placement="top right"><span class="icon-enter"></span><span class="d_l_g">Вход</span></button>
+                                                    <button type="button" 
+                                                            data-drop=".drop-enter" 
+                                                            data-effect-on="fadeIn" 
+                                                            data-effect-off="fadeOut" 
+                                                            data-duration="300" 
+                                                            data-place="noinherit" 
+                                                            data-placement="top right">
+                                                        <span class="icon-enter"></span>
+                                                        <span class="d_l_g">Вход</span>
+                                                    </button>
                                                 </span>
                                             </li>
                                             <li>
                                                 <span class="f-s_0">
                                                     <span class="helper"></span>
                                                     <span>
-                                                        <a href="/auth/register" class="t-d_u c_5c"><span class="icon-registration"></span><span class="text-el">Регистрация</span></a>
+                                                        <a href="/auth/register" class="t-d_u c_5c">
+                                                            <span class="icon-registration"></span>
+                                                            <span class="text-el">Регистрация</span>
+                                                        </a>
                                                     </span>
                                                 </span>
                                             </li>
@@ -60,22 +72,33 @@
                                             <li>
                                                 <span class="f-s_0">
                                                     <span class="helper"></span>
-                                                    <a href="#" onclick="ImageCMSApi.formAction('/auth/authapi/logout', '');
-                                                            return false;">Выход</a>
+                                                    <button type="button" 
+                                                            data-drop=".drop-enter" 
+                                                            data-effect-on="fadeIn" 
+                                                            data-effect-off="fadeOut" 
+                                                            data-duration="300" 
+                                                            data-place="noinherit" 
+                                                            data-placement="top right"
+                                                            onclick="ImageCMSApi.formAction('/auth/authapi/logout', '')">
+                                                        <span class="icon-exit"></span>
+                                                        <span class="d_l_g">Выход</span>
+                                                    </button>
                                                 </span>
                                             </li>
                                             <li>
                                                 <span class="f-s_0">
                                                     <span class="helper"></span>
                                                     <span>
-                                                        <a href="/shop/profile" class="t-d_u c_5c"><span class="text-el">Личный кабинет</span></a>
+                                                        <a href="/shop/profile" class="t-d_u c_5c">
+                                                            <span class="text-el">Личный кабинет</span>
+                                                        </a>
                                                     </span>
                                                 </span>
                                             </li>
                                         {/if}
                                     </ul>
                                 </nav>
-                                <div class="cleaner f_l f-s_0 isAvail" onclick="window.location = '/shop/cart'">
+                                <div class="cleaner f_l f-s_0 isAvail">
                                     <span class="helper"></span>
                                     <span class="f-s_0">
                                         <span class="icon-bask"></span>
@@ -85,7 +108,16 @@
                                 </div>
                             </div>
                             <nav class="frameHeaderMenu">
-                                {load_menu('top_menu')}
+                                <button type="button" class="btn btn-navbar f_l">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <div class="f_l">
+                                    <div class="frame-navbar">
+                                        {load_menu('top_menu')}
+                                    </div>
+                                </div>
                             </nav>
                         </section>
                     </div>
@@ -170,11 +202,18 @@
                     </ul>
                 </div>
                 <div class="span3 t-a_r">
-                    <div class="copy_right">© SiteImage CMS, 2012</div>
+                    <div class="copy_right">© ImageCMS, 2013</div>
                     <div class="footer_social">
-                        <img src="{$SHOP_THEME}images/temp/social_footer.png"/>
+                        <div class="social">
+                            <a href="#" class="mail"></a>
+                            <a href="#" class="g_plus"></a>
+                            <a href="#" class="facebook"></a>
+                            <a href="#" class="vkontakte"></a>
+                            <a href="#" class="twitter"></a>
+                            <a href="#" class="odnoklasniki"></a>
+                        </div>
                     </div>
-                    <a href="http://siteimage.com.ua">{lang('s_footer_create')}</a><br/>
+                    <a href="http://imagecms.net">{lang('s_footer_create')}</a><br/>
                     {lang('s_footer_seo')}
                 </div>
             </div>
@@ -206,13 +245,6 @@
                             <span class="frame_form_field">
                                 <span class="icon-phone"></span>
                                 <input type="text"/>
-                            </span>
-                        </label>
-                        <label>
-                            <span class="title">Примерное время</span>
-                            <span class="frame_form_field">
-                                <input type="text"/>
-                                <span class="icon-clock"></span>
                             </span>
                         </label>
                         <label>
@@ -274,7 +306,7 @@
             </div>
             <div class="t-a_r">
                 <input type="submit" value="Отправить" onclick="NotitficationApi.formAction('/shop/ajax/getApiNotifyingRequest', 'data-report');
-                                                            return false;" class="btn btn_cart"/>
+                                                                    return false;" class="btn btn_cart"/>
             </div>
         </form>
     </div>

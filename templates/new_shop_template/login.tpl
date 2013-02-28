@@ -17,7 +17,8 @@
                     <div class="inside_padd">
                         <div class="horizontal_form standart_form">
                             <!-- login form -->
-                            <form method="post" id="login_form">
+                            <form method="post" id="login_form" onsubmit="ImageCMSApi.formAction('/auth/authapi/login', 'login_form');
+                                                return false;">
                                 <label>
                                     <span class="title">{lang('lang_email')}</span>
                                     <span class="frame_form_field">
@@ -27,7 +28,7 @@
                                                     this.value = '';" onblur="if (this.value == '')
                                                     this.value = 'Введите Ваш логин';"/>
                                         <!-- validation error container -->
-                                        <div id="for_email" class="for_validations"></div>
+                                        <label id="for_email" class="for_validations"></label>
                                     </span>
                                 </label>
                                 <label>
@@ -39,22 +40,22 @@
                                                     this.value = '';" onblur="if (this.value == '')
                                                     this.value = '{lang('lang_password')}';"/>
                                         <!-- validation error container -->
-                                        <div id="for_password" class="for_validations"></div>
+                                        <label id="for_password" class="for_validations"></label>
                                     </span>
                                 </label>
                                 <!-- captcha block -->
                                 <lable id="captcha_block">
                                     {if $cap_image}
-                                            <span class="title">{lang('lang_captcha')}</span>
-                                            <span class="frame_form_field">
-                                                {if $captcha_type == 'captcha'}
-                                                    <input type="text" name="captcha" value="{lang('lang_captcha')}" onfocus="if (this.value == '{lang('lang_captcha')}')
-                                                        this.value = '';" onblur="if (this.value == '')
-                                                        this.value = '{lang('lang_captcha')}';"/>
-                                                    <span class="help_inline">{$cap_image}</span>
-                                                    <div id="for_captcha" class="for_validations"></div>
-                                                {/if}
-                                            </span>
+                                        <span class="title">{lang('lang_captcha')}</span>
+                                        <span class="frame_form_field">
+                                            {if $captcha_type == 'captcha'}
+                                                <input type="text" name="captcha" value="{lang('lang_captcha')}" onfocus="if (this.value == '{lang('lang_captcha')}')
+                                                    this.value = '';" onblur="if (this.value == '')
+                                                    this.value = '{lang('lang_captcha')}';"/>
+                                                <span class="help_inline">{$cap_image}</span>
+                                                <label id="for_captcha" class="for_validations"></label>
+                                            {/if}
+                                        </span>
                                     {/if}
                                 </lable>
                                 <label>
@@ -62,7 +63,6 @@
                                     <span class="frame_form_field">
                                         <!--input for remember me option-->
                                         <input type="checkbox" name="remember" value="1" id="remember" class="d_i v-a_b"/>
-                                        <div id="for_password" class="for_validations"></div>
                                     </span>
                                 </label>
                                 <div class="frameLabel">
@@ -73,8 +73,7 @@
                                         <!--registration link-->
                                         <a href="{site_url($modules.auth . '/register')}" class="d_i v-a_m neigh_btn m-r_45">{lang('lang_register')}</a>
                                         <!--submit button-->
-                                        <input type="button" value="Войти" class="btn btn_cart f_r" onclick="ImageCMSApi.formAction('/auth/authapi/login', 'login_form');
-                                                return false;"/>
+                                        <input type="submit" value="Войти" class="btn btn_cart f_r" />
                                     </span>
                                 </div>
                                 <!--security token-->

@@ -26,7 +26,8 @@
             {else:}
                 <span class="simple_tree">↳</span>
             {/if}
-            <a href="/admin/components/cp/menu/edit_item/{$item.id}" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="редактировать меню">{truncate($item.title, 100)}</a>
+            <a href="/admin/components/cp/menu/edit_item/{$item.id}" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="редактировать пункт меню">{truncate($item.title, 100)}</a>
+            <a href="/admin/components/cp/menu/translate_window/{$item.id}" class="pjax f_r" data-rel="tooltip" data-placement="top" data-original-title="перевод пункта меню"><i class="icon-text-width"></i></a>
         </div>
     </div>
     <div>
