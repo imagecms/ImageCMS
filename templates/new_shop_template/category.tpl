@@ -1,42 +1,38 @@
+{load_menu('footer_menu')}
+
 <div class="mainBody">
     <section class="container">
         <div class="row">
             <div class="span3">
                 <nav class="navStaticPages b-r_5">
                     <ul class="nav navVertical">
-                        <li>
-                            <a href="#"><span class="icon-arrow-stPg"></span><span class="text-el">О магазине</span></a>
-                            <ul>
-                                <li><a href="#">Новости компании</a></li>
-                                <li><a href="#">История компании</a></li>
-                                <li><a href="#">Акции компании</a></li>
-                                <li><a href="#">Спецпредложения</a></li>
-                                <li><a href="#">Услуги</a></li>
-                                <li><a href="#">Аукционы</a></li>
-                                <li><a href="#">А также</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#"><span class="icon-arrow-stPg"></span><span class="text-el">Доставка и оплата</span></a>
-                            <ul>
-                                <li><a href="#">Новости компании</a></li>
-                                <li><a href="#">История компании</a></li>
-                                <li><a href="#">Акции компании</a></li>
-                                <li><a href="#">Спецпредложения</a></li>
-                                <li><a href="#">Услуги</a></li>
-                                <li><a href="#">Аукционы</a></li>
-                                <li><a href="#">А также</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#"><span class="icon-arrow-stPg"></span><span class="text-el">Помощь</span></a></li>
-                        <li><a href="#"><span class="icon-arrow-stPg"></span><span class="text-el">Вторая помощь</span></a></li>
-                        <li><a href="#"><span class="icon-arrow-stPg"></span><span class="text-el">О компании</span></a></li>
+                        {foreach $category['fetch_pages'] as $cats}
+                            <li>
+                                <a href="#">
+                                    <span class="icon-arrow-stPg"></span>
+                                    <span class="text-el">{echo $CI->db->select('name')->get_where('category',array('id' => $cats))->row()->name}</span>
+                                </a>
+                                <ul>
+
+                                    {foreach $CI->db->get_where('content', array('category' => $cats))->result_array() as $c}
+                                        <li><a href="#">Новости компании</a></li>
+
+                                    {/foreach}
+                                    <li><a href="#">История компании</a></li>
+                                    <li><a href="#">Акции компании</a></li>
+                                    <li><a href="#">Спецпредложения</a></li>
+                                    <li><a href="#">Услуги</a></li>
+                                    <li><a href="#">Аукционы</a></li>
+                                    <li><a href="#">А также</a></li>
+                                </ul>
+                            </li>
+                        {/foreach}
                     </ul>
                 </nav>
             </div>
             <div class="span6">
                 <div class="text">
-                    {var_dump($no_pages)}
+                    {var_dump($category['fetch_pages'])}
                     <h1>Новости</h1>
                     <h2>Заголовок 2 уровень</h2>
                     <h3>Заголовок 3 уровень</h3>
