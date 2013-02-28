@@ -200,7 +200,6 @@
             <!-- Start. Render Category Tree. Menu frame -->
             <div class="mainFrameMenu">
                 <section class="container">
-                    {//echo ShopCore::app()->SCategoryTree->ul()}
                     {\Category\RenderMenu::create()->load('category_menu')}
                 </section>
             </div>
@@ -277,25 +276,29 @@
             </div>
             <div class="inside_padd">
                 <div class="horizontal_form standart_form">
-                    <form method="post">
+                    <form method="post" id="data-callback" onsubmit="NotitficationApi.formAction('/shop/callbackApi', 'data-callback');
+                                                            return false;">
                         <label>
                             <span class="title">Ваше имя</span>
                             <span class="frame_form_field">
                                 <span class="icon-person"></span>
-                                <input type="text"/>
+                                <input type="text" name="Name"/>
+                                <label id="for_Name" class="for_validations"></label>
                             </span>
                         </label>
                         <label>
                             <span class="title">Номер телефона</span>
                             <span class="frame_form_field">
                                 <span class="icon-phone"></span>
-                                <input type="text"/>
+                                <input type="text" name="Phone"/>
+                                <label id="for_Phone" class="for_validations"></label>
                             </span>
                         </label>
                         <label>
                             <span class="title">Комментарий</span>
                             <span class="frame_form_field">
-                                <textarea></textarea>
+                                <textarea name="Comment"></textarea>
+                                <label id="for_Comment" class="for_validations"></label>
                             </span>
                         </label>
                         <div class="frameLabel">
@@ -326,7 +329,7 @@
                     <span class="title">Ваше имя</span>
                     <span class="frame_form_field">
                         <input type="text" id="" name="UserName"/>
-                        <div id="for_UserName" class="for_validations"></div>
+                        <label id="for_UserName" class="for_validations"></label>
                         <span class="must">*</span>
                     </span>
                 </label>
@@ -334,7 +337,7 @@
                     <span class="title">E-mail</span>
                     <span class="frame_form_field">
                         <input type="text" id="" name="UserEmail"/>
-                        <div id="for_UserEmail" class="for_validations"></div>
+                        <label id="for_UserEmail" class="for_validations"></label>
                         <input type="hidden" name="ProductId" value=""/>
                         <input type="hidden" name="notifme" value="true"/>
                         <span class="must">*</span>
@@ -345,7 +348,7 @@
                     <span class="title">Телефон</span>
                     <span class="frame_form_field">
                         <input type="text" id="" name="UserPhone"/>
-                        <div id="for_UserPhone" class="for_validations"></div>
+                        <label id="for_UserPhone" class="for_validations"></label>
                         <span class="must">*</span>
                     </span>
                 </label>

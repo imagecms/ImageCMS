@@ -15,6 +15,7 @@
  * List of api methods:
  *      ajax.php:
  *          '/shop/ajax/getApiNotifyingRequest',
+ *          '/shop/callbackApi'
  * 
  **/
 
@@ -50,17 +51,21 @@ var NotitficationApi = {
                         NotitficationApi.sendValidations(obj.validations, selector);
                     }
                     if (obj.status === true) {
-                        $(NotitficationApi.formClass).html(obj.msg);
+//                        console.log($(NotitficationApi.formClass).has('form#' + selector));
+//                        var tempHtml = $(NotitficationApi.formClass).has('form#' + selector).html();
+                        $(NotitficationApi.formClass).has('form#' + selector).html('<div class="msg"><div class="success">' + obj.msg + '</div></div>');
+                        $('.btn_not_avail.active').drop('positionDrop');
                         //closing modal
                         if (obj.close === true) {
                             setTimeout((function() {
                                 $('body').trigger('click', function() {
                                 });
+                                //$(NotitficationApi.formClass).has('form#' + selector).html(tempHtml);
                             }), 3000);
                         }
                     }
                 }
-                $('.btn_not_avail.active').drop('positionDrop');
+                //$('.btn_not_avail.active').drop('positionDrop');
 
                 return this;
             },
@@ -86,15 +91,13 @@ var NotitficationApi = {
     sendValidations: function(validations, selector) {
         if (typeof validations === 'object') {
             for (var key in validations) {
-                //console.log($('#' + selector).find('#for_' + key));
-                $('#' + selector).find('div#for_' + key).show();
-                $('#' + selector).find('div#for_' + key).html(validations[key]);
-                $('#' + selector).find('div#for_' + key).css('color', 'red');
+                if (validations[key] != "") {
+                    $('#' + selector).find('label#for_' + key).addClass('error');
+                    $('#' + selector).find('label#for_' + key).html(validations[key]);
+                    $('#' + selector).find('label#for_' + key).show();
+                }
             }
             $('.btn_not_avail.active').drop('positionDrop');
-//            setTimeout((function() {
-//                $('div .for_validations').hide();
-//            }), 6000);
         } else {
             return false;
         }

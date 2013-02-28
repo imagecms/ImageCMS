@@ -20,7 +20,7 @@
                                         <span class="icon-password"></span>
                                         <input type="text" name="old_password" id="login" />
                                         <span class="help_inline"></span>
-                                        <div id="for_old_password" class="for_validations"></div>
+                                        <label id="for_old_password" class="for_validations"></label>
                                     </span>
                                 </label>
                                 <label>
@@ -29,7 +29,7 @@
                                         <span class="icon-password"></span>
                                         <input type="text" name="new_password" id="login" />
                                         <span class="help_inline"></span>
-                                        <div id="for_new_password" class="for_validations"></div>
+                                        <label id="for_new_password" class="for_validations"></label>
                                     </span>
                                 </label>
                                 <label>
@@ -38,7 +38,7 @@
                                         <span class="icon-password"></span>
                                         <input type="text" name="confirm_new_password" id="login" />
                                         <span class="help_inline"></span>
-                                        <div id="for_confirm_new_password" class="for_validations"></div>
+                                        <label id="for_confirm_new_password" class="for_validations"></label>
                                     </span>
                                 </label>
                                 <div class="frameLabel c_t">
