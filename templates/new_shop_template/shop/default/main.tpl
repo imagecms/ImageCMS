@@ -173,7 +173,6 @@
             <!-- Start. Render Category Tree. Menu frame -->
             <div class="mainFrameMenu">
                 <section class="container">
-                    {//echo ShopCore::app()->SCategoryTree->ul()}
                     {\Category\RenderMenu::create()->load('category_menu')}
                 </section>
             </div>
