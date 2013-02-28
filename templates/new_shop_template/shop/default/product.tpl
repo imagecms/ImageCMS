@@ -529,6 +529,6 @@
         </div>
     </div>
 {/if}
-<!--Similar Products END-->
+<!--Similar Products END-->{widget('view_product')}
 </article>
 </div>
