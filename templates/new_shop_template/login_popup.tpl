@@ -11,7 +11,8 @@
         </div>
         <div class="inside_padd">
             <div class="horizontal_form standart_form">
-                <form method="post" id="login_form" class="submit_enter">
+                <form method="post" id="login_form" onsubmit="ImageCMSApi.formAction('/auth/authapi/login', 'login_form');
+                                        return false;">
                     <label>
                         <span class="title">{lang('lang_email')}</span>
                         <span class="frame_form_field">
@@ -36,8 +37,7 @@
                         <span class="title">&nbsp;</span>
                         <span class="frame_form_field c_n">
                             <a href="/auth/forgot_password" class="f_l neigh_btn">{lang('lang_forgot_password')}</a>
-                            <input type="button" value="Войти" class="btn btn_cart f_r" onclick="ImageCMSApi.formAction('/auth/authapi/login', 'login_form');
-                                        return false;"/>
+                            <input type="submit" value="Войти" class="btn btn_cart f_r" />
                         </span>
                     </div>
                 </form>
