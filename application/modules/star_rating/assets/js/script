@@ -67,3 +67,13 @@
         }
     }
 })(jQuery);
+
+
+
+//    $(".star-big").starRating({
+//        width: 26,
+//        afterClick: function(el, value) {
+//            alert(value)
+//            console.log(el)
+//        }
+//    });
