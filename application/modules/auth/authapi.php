@@ -18,12 +18,12 @@ class Authapi extends Auth {
         $this->form_validation->set_error_delimiters(FALSE, FALSE);
     }
 
-    function email_check_for_login($email) {
+    public function email_check_for_login($email) {
         $result = $this->dx_auth->is_email_available($email);
         if ($result) {
             $this->form_validation->set_message('email_check_for_login', "Пользователь с такой почтой не найден в базе");
             return false;
-        }else{
+        } else {
             return true;
         }
     }
@@ -78,18 +78,26 @@ class Authapi extends Auth {
                         // Create catpcha
                         $this->dx_auth->captcha();
                     }
+                    if (validation_errors() == "") {
+                        $msg = 'User with this email or password not found';
+                        $validations = array('email' => $msg);
+                    } else {
+                        $msg = validation_errors();
+                        $validations = array(
+                            'email' => form_error('email'),
+                            'password' => form_error('password'),
+                            'remember' => form_error('remember'),
+                            'captcha' => form_error('captcha')
+                        );
+                    }
+
                     //return json data for render login form
                     echo json_encode(
                             array(
-                                'msg' => validation_errors(),
+                                'msg' => $msg,
                                 'status' => false,
                                 'cap_image' => $this->dx_auth->get_captcha_image(),
-                                'validations' => array(
-                                    'email' => form_error('email'),
-                                    'password' => form_error('password'),
-                                    'remember' => form_error('remember'),
-                                    'captcha' => form_error('captcha')
-                                ),
+                                'validations' => $validations,
                             )
                     );
                 }
@@ -243,16 +251,23 @@ class Authapi extends Auth {
         $email = $this->input->post('email');
         $key = $this->input->post('key');
         // Reset password
-        if ($this->dx_auth->reset_password($email, $key)) {
-            echo json_encode(array(
-                'msg' => lang('lang_pass_restored') . anchor(site_url($this->dx_auth->login_uri), lang('s_login_here')),
-                'status' => true,
-            ));
+        if ($this->dx_auth->is_logged_in()) {
+            if ($this->dx_auth->reset_password($email, $key)) {
+                echo json_encode(array(
+                    'msg' => lang('lang_pass_restored') . anchor(site_url($this->dx_auth->login_uri), lang('s_login_here')),
+                    'status' => true,
+                ));
+            } else {
+                echo json_encode(array(
+                    'msg' => 'Reset password failed',
+                    'status' => false,
+                ));
+            }
         } else {
             echo json_encode(array(
-                'msg' => 'Reset password failed',
-                'status' => false,
-            ));
+                    'msg' => 'You have to be logged in to reset password',
+                    'status' => false,
+                ));
         }
     }
 
