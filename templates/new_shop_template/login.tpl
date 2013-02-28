@@ -28,7 +28,7 @@
                                                     this.value = '';" onblur="if (this.value == '')
                                                     this.value = 'Введите Ваш логин';"/>
                                         <!-- validation error container -->
-                                        <div id="for_email" class="for_validations"></div>
+                                        <label id="for_email" class="for_validations"></label>
                                     </span>
                                 </label>
                                 <label>
@@ -40,22 +40,22 @@
                                                     this.value = '';" onblur="if (this.value == '')
                                                     this.value = '{lang('lang_password')}';"/>
                                         <!-- validation error container -->
-                                        <div id="for_password" class="for_validations"></div>
+                                        <label id="for_password" class="for_validations"></label>
                                     </span>
                                 </label>
                                 <!-- captcha block -->
                                 <lable id="captcha_block">
                                     {if $cap_image}
-                                            <span class="title">{lang('lang_captcha')}</span>
-                                            <span class="frame_form_field">
-                                                {if $captcha_type == 'captcha'}
-                                                    <input type="text" name="captcha" value="{lang('lang_captcha')}" onfocus="if (this.value == '{lang('lang_captcha')}')
-                                                        this.value = '';" onblur="if (this.value == '')
-                                                        this.value = '{lang('lang_captcha')}';"/>
-                                                    <span class="help_inline">{$cap_image}</span>
-                                                    <div id="for_captcha" class="for_validations"></div>
-                                                {/if}
-                                            </span>
+                                        <span class="title">{lang('lang_captcha')}</span>
+                                        <span class="frame_form_field">
+                                            {if $captcha_type == 'captcha'}
+                                                <input type="text" name="captcha" value="{lang('lang_captcha')}" onfocus="if (this.value == '{lang('lang_captcha')}')
+                                                    this.value = '';" onblur="if (this.value == '')
+                                                    this.value = '{lang('lang_captcha')}';"/>
+                                                <span class="help_inline">{$cap_image}</span>
+                                                <label id="for_captcha" class="for_validations"></label>
+                                            {/if}
+                                        </span>
                                     {/if}
                                 </lable>
                                 <label>
