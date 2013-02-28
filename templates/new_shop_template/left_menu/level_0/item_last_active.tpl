@@ -1,0 +1,1 @@
+<li class="active"><span><span class="helper"></span><span>{$title}</span></span>{$wrapper}</li>

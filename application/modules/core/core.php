@@ -432,7 +432,7 @@ class Core extends MY_Controller {
 
         $this->template->add_array(array(
             'page' => $page,
-            'category' => $category,
+            'category' => $category
         ));
 
         $this->template->assign('content', $this->template->read($page_tpl));
