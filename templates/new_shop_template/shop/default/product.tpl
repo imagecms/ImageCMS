@@ -132,7 +132,33 @@
                     data-name - name product
                     these are the main four options for the "buy" - button
                     -->
-                    <button  class="btn btn_buy variant" type="button" data-prodid="{echo $model->getId()}" data-varid="{echo $model->firstVariant->getId()}" data-price="{echo $model->firstVariant->getPrice()}" data-name="{echo ShopCore::encode($model->getName())}">{lang('s_buy')}</button>
+                    {if (int)$model->firstvariant->getstock() == 0}
+
+                        <!-- displaying notify button -->
+                        <button data-placement="bottom right"
+                                data-place="noinherit"
+                                data-duration="500"
+                                data-effect-off="fadeOut"
+                                data-effect-on="fadeIn"
+                                data-drop=".drop-report"
+                                data-prodid="{echo $model->getId()}"
+                                type="button"
+                                class="btn btn_not_avail">
+                            <span class="icon-but"></span>
+                            {lang('s_message_o_report')}
+                        </button>
+                    {else:}
+
+                        <!-- displaying buy or in cart button -->
+                        <button class="btn btn_buy" 
+                                type="button"
+                                data-prodid="{echo $model->getId()}"
+                                data-varid="{echo $model->firstVariant->getId()}"
+                                data-price="{echo $model->firstVariant->toCurrency()}"
+                                data-name="{echo ShopCore::encode($model->getName())}">
+                            {lang('s_buy')}
+                        </button>
+                    {/if}
 
                     {foreach $model->getProductVariants() as $key => $pv}
                         <button style="display: none;" class="btn btn_buy variant_{echo $pv->getId()} variant" type="button" data-prodid="{echo $pv->getId()}" data-varid="{echo $pv->getId()}" data-price="{echo $pv->toCurrency()}" data-name="{if $pv->getName()}{echo ShopCore::encode($pv->getName())}{else:}{echo ShopCore::encode($model->getName())}{/if}">{lang('s_buy')}</button>
@@ -381,28 +407,28 @@
                                             <span class="top_tovar discount">-{echo $kitProduct->getDiscount()}%</span>
                                         </div>
                                         <div class="d_i-b">
-                                            {if $kitProducts->countProducts() == $key}={else:}+{/if}
-                                        </div>
-                                    </li>                                            
-                                {/foreach}
-                                <!--Output of goods subsidiaries set END-->
-                                <li class="span3 p-t_40">
-                                    <div class="price price_f-s_24">
-                                        <span class="d_b old_price">
-                                            <!--$kitProducts->getAllPriceBefore() - The entire set of output price without discount-->
-                                            <span class="f-w_b">{echo $kitProducts->getAllPriceBefore()}</span> {$CS}
-                                        </span>
-                                        <!-- $kitProducts->getTotalPrice() - the entire set of output price with discount-->
-                                        <span class="f-w_b">{echo $kitProducts->getTotalPrice()}</span> {$CS}
-                                    </div>                                   
-                                    <button class="btn btn_buy" type="button" 
-                                            data-prodid="{$data['ids'][] =  $kitProducts->getMainProduct()->getId(); echo json_encode(array_merge($data['ids']))}" 
-                                            data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}" 
-                                            data-price="{echo $kitProducts->getTotalPrice()}" 
-                                            data-prices ="{$data['prices'][] = (float)$kitProducts->getMainProductPrice(); echo json_encode($data['prices'])}"
-                                            data-name="{$data['names'][] =  $kitProducts->getMainProduct()->getName(); echo ShopCore::encode(json_encode($data['names']))}" 
-                                            data-kit="true">{lang('s_buy')}</button>
-                                </li>
+                                    {if $kitProducts->countProducts() == $key}={else:}+{/if}
+                                </div>
+                            </li>                                            
+                        {/foreach}
+                        <!--Output of goods subsidiaries set END-->
+                        <li class="span3 p-t_40">
+                            <div class="price price_f-s_24">
+                                <span class="d_b old_price">
+                                    <!--$kitProducts->getAllPriceBefore() - The entire set of output price without discount-->
+                                    <span class="f-w_b">{echo $kitProducts->getAllPriceBefore()}</span> {$CS}
+                                </span>
+                                <!-- $kitProducts->getTotalPrice() - the entire set of output price with discount-->
+                                <span class="f-w_b">{echo $kitProducts->getTotalPrice()}</span> {$CS}
+                            </div>                                   
+                            <button class="btn btn_buy" type="button" 
+                                    data-prodid="{$data['ids'][] =  $kitProducts->getMainProduct()->getId(); echo json_encode(array_merge($data['ids']))}" 
+                                    data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}" 
+                                    data-price="{echo $kitProducts->getTotalPrice()}" 
+                                    data-prices ="{$data['prices'][] = (float)$kitProducts->getMainProductPrice(); echo json_encode($data['prices'])}"
+                                    data-name="{$data['names'][] =  $kitProducts->getMainProduct()->getName(); echo ShopCore::encode(json_encode($data['names']))}" 
+                                    data-kit="true">{lang('s_buy')}</button>
+                        </li>
                     </ul>
                 </li>
             {/foreach}                            

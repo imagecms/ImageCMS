@@ -1,12 +1,4 @@
 <article>
-    <div class="crumbs" xmlns:v="http://rdf.data-vocabulary.org/#">
-        <span typeof="v:Breadcrumb">
-            <a href="{site_url()}" rel="v:url" property="v:title">Главная</a>
-        </span>/
-        <span typeof="v:Breadcrumb">
-            <span rel="v:url" property="v:title">Смена пароля</span>
-        </span>
-    </div>
     {if validation_errors() OR $info_message}
         <div class="errors">
             {validation_errors()}
@@ -19,7 +11,8 @@
                 <div class="frameGroupsForm">
                     <div class="header_title">Смена пароля</div>
                     <div class="standart_form horizontal_form">
-                        <form method="post" id="forgot_password_form">
+                        <form method="post" id="forgot_password_form" onsubmit="ImageCMSApi.formAction('/auth/authapi/change_password', 'forgot_password_form');
+                                            return false;">
                             <div class="groups_form">
                                 <label>
                                     <span class="title">Старый пароль</span>
@@ -51,8 +44,7 @@
                                 <div class="frameLabel c_t">
                                     <span class="title">&nbsp;</span>
                                     <span class="frame_form_field">
-                                        <input type="submit" class="btn btn_cart" value="{lang('lang_submit')}" onclick="ImageCMSApi.formAction('/auth/authapi/change_password', 'forgot_password_form');
-                                            return false;"/>
+                                        <input type="submit" class="btn btn_cart" value="{lang('lang_submit')}" />
                                     </span>
                                 </div>
                             </div>
