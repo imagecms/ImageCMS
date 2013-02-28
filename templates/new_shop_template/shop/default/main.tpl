@@ -83,11 +83,17 @@
                                             <li>
                                                 <span class="f-s_0">
                                                     <span class="helper"></span>
-                                                    <a href="#" onclick="ImageCMSApi.formAction('/auth/authapi/logout', '');
-                                                            return false;">
+                                                    <button type="button" 
+                                                            data-drop=".drop-enter" 
+                                                            data-effect-on="fadeIn" 
+                                                            data-effect-off="fadeOut" 
+                                                            data-duration="300" 
+                                                            data-place="noinherit" 
+                                                            data-placement="top right"
+                                                            onclick="ImageCMSApi.formAction('/auth/authapi/logout', '')">
                                                         <span class="icon-exit"></span>
                                                         <span class="d_l_g">Выход</span>
-                                                    </a>
+                                                    </button>
                                                 </span>
                                             </li>
                                             <li>
@@ -103,17 +109,26 @@
                                         {/if}
                                     </ul>
                                 </nav>
-                                <div class="cleaner f_l f-s_0 isAvail" >
+                                <div class="cleaner f_l f-s_0 isAvail">
                                     <span class="helper"></span>
                                     <span class="f-s_0">
                                         <span class="icon-bask"></span>
                                         <span class="d_l">Корзина</span>
-                                        <span id="topCartCount">&nbsp;(0)</span>
+                                        <span>&nbsp;(0)</span>
                                     </span>
                                 </div>
                             </div>
                             <nav class="frameHeaderMenu">
-                                {load_menu('top_menu')}
+                                <button type="button" class="btn btn-navbar f_l">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <div class="f_l">
+                                    <div class="frame-navbar">
+                                        {load_menu('top_menu')}
+                                    </div>
+                                </div>
                             </nav>
                         </section>
                     </div>
@@ -137,7 +152,13 @@
                                             <span class="text-el">{lang('search_find')}</span>
                                         </button>
                                         <div class="o_h">
-                                            <input type="text" name="text" value=""  placeholder="{lang('s_se_thi_sit')}"  autocomplete="off" class="place_hold" id="inputString"/>
+                                            <input type="text" 
+                                                   name="text" 
+                                                   value=""  
+                                                   placeholder="{lang('s_se_thi_sit')}"  
+                                                   autocomplete="off" 
+                                                   class="place_hold" 
+                                                   id="inputString"/>
                                         </div>
                                         <div id="suggestions" class="drop-search"></div>
                                     </form>
@@ -155,7 +176,13 @@
                                 <div style="margin-top: 7px;">
                                     <ul class="tabs">
                                         <li>
-                                            <a class="t-d_n f-s_0" href="#a" data-drop=".drop-order-call" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" data-place="center">
+                                            <a class="t-d_n f-s_0" 
+                                               href="#a" 
+                                               data-drop=".drop-order-call" 
+                                               data-effect-on="fadeIn" 
+                                               data-effect-off="fadeOut" 
+                                               data-duration="300" 
+                                               data-place="center">
                                                 <span class="icon-order-call"></span>
                                                 <span class="d_l_b">{lang('s_coll_order')}</span>
                                             </a>
@@ -262,13 +289,6 @@
                             <span class="title">Номер телефона</span>
                             <span class="frame_form_field">
                                 <span class="icon-phone"></span>
-                                <input type="text"/>
-                            </span>
-                        </label>
-                        <label>
-                            <span class="title">Примерное время</span>
-                            <span class="frame_form_field">
-                                <span class="icon-clock"></span>
                                 <input type="text"/>
                             </span>
                         </label>
