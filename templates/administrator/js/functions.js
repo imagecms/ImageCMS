@@ -359,6 +359,9 @@ function initTinyMCE()
                         oncomplete: 'destroy' // close/hide elFinder
                     }
                 },
+                customData: {
+                   cms_token: elfToken,
+            }
             });
         }
     };
