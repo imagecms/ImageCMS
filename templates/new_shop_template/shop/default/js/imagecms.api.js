@@ -53,7 +53,7 @@ var ImageCMSApi = {
                     ImageCMSApi.returnMsg("[status]:" + obj.status);
                     ImageCMSApi.returnMsg("[message]: " + obj.msg);
                     if (obj.status == true) {
-                        $('#' + selector).html('<div>' + obj.msg + '</div>');
+                        $('#' + selector).html('<div class="msg"><div class="success">' + obj.msg + '</div></div>');
                     }
                     if (obj.cap_image != 'undefined' && obj.cap_image != null) {
                         ImageCMSApi.addCaptcha(obj.cap_image);
@@ -95,15 +95,11 @@ var ImageCMSApi = {
 
             for (var key in validations) {
                 if (validations[key] != "") {
-                    $('#' + selector).find('lable#for_' + key).addClass('error');
-                    $('#' + selector).find('lable#for_' + key).html(validations[key]);
-                    $('#' + selector).find('lable#for_' + key).show();
+                    $('#' + selector).find('label#for_' + key).addClass('error');
+                    $('#' + selector).find('label#for_' + key).html(validations[key]);
+                    $('#' + selector).find('label#for_' + key).show();
                 }
             }
-//                setTimeout((function() {
-//                    $('div .for_validations').hide();
-//                }), 3000);
-
         } else {
             return false;
         }
@@ -118,7 +114,7 @@ var ImageCMSApi = {
                         <span class="frame_form_field">\n\
                             <input type="text" name="captcha" value="Код протекции"/> \n\
                             <span class="help_inline" id="for_captcha_image">' + captcha_image + '</span>\n\
-                            <lable id="for_captcha" class="for_validations"></lable>\n\
+                            <label id="for_captcha" class="for_validations"></label>\n\
                         </span>';
         $('#captcha_block').html(html);
         return false;
@@ -138,9 +134,15 @@ $(document).ready(function() {
         }
     });
 
-    $('form input').live('input', function() {
-        if($.exists($('lable#for_'+$(this).attr('name')))){
-            $('lable#for_'+$(this).attr('name')).hide(500);
+    /**
+     * code for hidding validation errors blocks oninput
+     */
+
+    $('form input, textarea').live('input', function() {
+        if ($.exists($('label#for_' + $(this).attr('name')))) {
+            $('label#for_' + $(this).attr('name')).hide(100, function() {
+                $('.btn_not_avail.active').drop('positionDrop');
+            });
         }
     });
 });

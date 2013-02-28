@@ -20,7 +20,7 @@
                                         <span class="icon-email"></span>
                                         <input type="text" name="email" id="login" />
                                         <span class="help_inline">Введите e-mail указаный при регистрации</span>
-                                        <div id="for_email" class="for_validations"></div>
+                                        <label id="for_email" class="for_validations"></label>
                                     </span>
                                 </label>
                                 <div class="frameLabel c_t">
