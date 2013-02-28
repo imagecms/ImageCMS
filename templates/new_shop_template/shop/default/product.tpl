@@ -1,10 +1,9 @@
 {#
 /**
  * @file Render shop product; 
- * @partof product.tpl;
+ * @partof main.tpl;
  * @updated 26 February 2013;
- * Variables
- *  $Comments : Mostly all the comments on the product page.
+ * Variables 
  *  $model : PropelObjectCollection of (object) instance of SProducts
  *   $model->hasDiscounts() : Check whether the discount on the product.
  *   $model->firstVariant : variable which contains the first variant of product;
@@ -15,16 +14,16 @@
 {$Comments = $CI->load->module('comments')->init($model)}
 <div>
     <article>       
-        {//making bread crumbs}
+        <!-- Making bread crumbs -->
         {widget('path')}
         <div class="item_tovar">
             <div class="row">
                 <!--Photo block for main product-->
                 <div class="photo span5 clearfix">
-                    <!--productImageUrl($model->getMainModImage()) - Link to product-->
+                    <!-- productImageUrl($model->getMainModImage()) - Link to product -->
                     <a rel="group" id="photoGroup" href="{productImageUrl($model->getMainModImage())}">
                         <figure>
-                            <!--productImageUrl($model->getMainImage()) - Way before the photo to attribute img-->
+                            <!-- productImageUrl($model->getMainImage()) - Way before the photo to attribute img -->
                             <img id="imageGroup" src="{productImageUrl($model->getMainImage())}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
                         </figure>                        
                     </a>              
@@ -36,7 +35,7 @@
                                 </figure>
                             </a>                                
                         </li>                   
-                        <!--block additional images-->
+                        <!-- Start. Show additional images -->
                         {if sizeof($productImages = $model->getSProductImagess()) > 0}
                             {foreach $productImages as $key => $image}
                                 <li>
@@ -48,7 +47,7 @@
                                 </li>
                             {/foreach}
                         {/if}        
-                        <!--block additional images End--> 
+                        <!-- End. Show additional images -->
                     </ul>
                 </div>
                 <!--Photo block for main product end-->
@@ -67,7 +66,7 @@
                 <!-- Output rating for the old product End -->
                 <div class="clearfix">
                     <div class="d_i-b v-a_b m-b_20">
-                        <!--Output of all the options-->
+                        <!-- Start. Output of all the options -->
                         {if count($model->getProductVariants()) > 1}
                             <div class=" d_i-b v-a_b m-r_30" id="variantProd">
                                 <span class="title">Выбор варианта:</span>
@@ -85,8 +84,9 @@
                                     </select>
                                 </div>
                             </div>
-                            <!--Output of all the options END -->
-                            <!--transmission of information on the JS to select an option-->
+                            <!-- End. Output of all the options -->
+
+                            <!-- Start. Collect information about Variants, for future processing -->
                             {foreach $model->getProductVariants() as $key => $pv}
                         {if $pv->getMainImage()}{$mainImage = productImageUrl($pv->getMainImage())}{else:}{$mainImage = productImageUrl($model->getMainimage())}{/if}
 
@@ -102,14 +102,11 @@
                               style="display: none;">
                         </span>
                     {/foreach}
-                    <!--Transmission of information on the ESA to select an option END--> 
+                    <!-- End. Collect information about Variants, for future processing -->
                 {/if}
                 <div class=" d_i-b v-a_b m-r_45">
                     <div class="price price_f-s_24">
-                        <!--
-                        $model->hasDiscounts() - checking for the existence of discounts. 
-                        If there is a discount price without discount deduce
-                        -->
+                        <!-- $model->hasDiscounts() - check for a discount. -->
                         {if $model->hasDiscounts()}
                             <span class="d_b old_price">
                                 <!--
@@ -133,7 +130,7 @@
                     data-varid - variant ID
                     data-price - price Product
                     data-name - name product
-                    these are the main four options for the button to "buy"
+                    these are the main four options for the "buy" - button
                     -->
                     {if (int)$model->firstvariant->getstock() == 0}
 
@@ -177,7 +174,7 @@
             </div>
             <div class="d_i-b v-a_b m-b_20">
 
-                <!--The comparator Start-->
+                <!-- Start. Block "Add to Compare" -->
                 <button class="btn btn_small_p toCompare"  
                         data-prodid="{echo $model->getId()}"  
                         type="button" 
@@ -185,7 +182,7 @@
                     <span class="icon-comprasion_2"></span>
                     <span>{lang('s_add_to_compare')}</span>
                 </button>
-                <!--The comparator End-->
+                <!-- End. Block "Add to Compare" -->
 
                 <br/>
                 <!--Block Wishlist Start-->
@@ -197,18 +194,18 @@
                     <span class="icon-wish_2"></span>
                     <span class="js blue">{lang('s_slw')}</span>
                 </button>
-                <!--Block Wishlist End-->
-
+                <!-- Stop. Block "Add to Wishlist" -->
             </div>
         </div>
-        <!--Withdraw button to "share" Start-->
+
+        <!-- Start. Withdraw button to "share" -->
         <div class="share_tov">
             {echo $CI->load->module('share')->_make_share_form()}
         </div>
-        <!--Withdraw button to "share" End-->
+        <!-- End. Withdraw button to "share" -->
 
         <ul class="tabs clearfix">
-            <!--Output of the block information if available-->
+            <!-- Start. Show the block information if available -->
             {if $model->getShortDescription() != ''}
                 <li>
                     <button type="button" data-href="#info">
@@ -217,8 +214,9 @@
                     </button>
                 </li>
             {/if}
-            <!--Output of the block informationEND-->
-            <!--Characteristics of the output of the block if you have one-->
+            <!-- End. Show the block information if available -->
+            
+            <!-- Start. Display characteristics block if you have one -->
             {if $renderProperties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTableNew($model->getId())}
                 <li>
                     <button type="button" data-href="#characteristic">
@@ -227,7 +225,8 @@
                     </button>
                 </li>
             {/if}
-            <!--Characteristics of the output of the block END-->
+            <!-- End. Display characteristics block if you have one -->
+            
             <!--Output of the block if there is one accessory-->
             {if $accessories = $model->getRelatedProductsModels()}            
                 <li>

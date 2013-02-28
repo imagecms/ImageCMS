@@ -11,7 +11,8 @@
                 <div class="frameGroupsForm">
                     <div class="header_title">{lang('lang_register')}</div>
                     <div class="standart_form horizontal_form">
-                        <form method="post" id="register-form">
+                        <form method="post" id="register-form" onsubmit="ImageCMSApi.formAction('/auth/authapi/register', 'register-form');
+                                                return false;">
                             <div class="groups_form">
                                 <label>
                                     <span class="title">E-mail</span>
@@ -62,8 +63,7 @@
                                 <div class="frameLabel c_t">
                                     <span class="title">&nbsp;</span>
                                     <span class="frame_form_field">
-                                        <input type="submit" class="btn btn_cart" value="{lang('lang_submit')}" onclick="ImageCMSApi.formAction('/auth/authapi/register', 'register-form');
-                                                return false;"/>
+                                        <input type="submit" class="btn btn_cart" value="{lang('lang_submit')}" />
                                     </span>
                                 </div>
                             </div>
