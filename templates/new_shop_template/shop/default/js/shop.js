@@ -1,7 +1,9 @@
 var inCart = 'Уже в корзине';
 var toCart = 'В корзину';
 var pcs = 'шт.';
+var kits = 'компл.';
 var curr = 'грн.';
+
 
 var Shop = {
     //var Cart = new Object();
@@ -20,17 +22,29 @@ var Shop = {
                 cartItem: _.clone(cartItem)
             });
             //
-            Shop.currentItem = cartItem;
-            $.post('/shop/cart/add', {
+            var data = {
                 'quantity': cartItem.count,
                 'productId': cartItem.id,
                 'variantId': cartItem.vId
-            },
+            };
+            var url = '/shop/cart/add';
+            
+            if (cartItem.kit)
+            {
+                data = {
+                    'quantity': cartItem.count,
+                    'kitId': cartItem.kitId
+                };
+            
+                url += '/ShopKit';
+            }
+            
+            Shop.currentItem = cartItem;
+            $.post(url, data,
             function(data){
                 try {
-                        
                     responseObj = JSON.parse(data);
-                    //console.log(responseObj);
+                    console.log(responseObj);
                         
                     //save item to storage
                     Shop.Cart._add(Shop.currentItem);
@@ -64,9 +78,16 @@ var Shop = {
             return this;
         },
         rm : function(cartItem){
+            cartItem = this.load('cartItem_'+cartItem.id+'_'+cartItem.vId);
+            console.log(cartItem);
+            
+            if (cartItem.kit)
+                var key = 'ShopKit_'+cartItem.kitId;
+            else
+                var key = 'SProducts_'+cartItem.storageId();
+            
             Shop.currentItem = cartItem;
-            var sp = 'SProducts_';
-            $.getJSON('/shop/cart_api/delete/'+sp+cartItem.id+'_'+cartItem.vId, function(data){
+            $.getJSON('/shop/cart_api/delete/'+key, function(data){
                 
                 localStorage.removeItem(Shop.currentItem.storageId());
                 
@@ -206,7 +227,6 @@ var Shop = {
     
         renderPopupCart : function(selector)
         {
-            alert(1)
             if (typeof selector == 'undefined' || selector == '')
                 var selector = this.popupCartSelector;
             console.log(selector);
@@ -237,7 +257,7 @@ var Shop = {
                 vId : false,
                 name : false, 
                 count: false,
-                kit: false
+                kit: false,
             };
 
         return prototype = {
@@ -248,6 +268,7 @@ var Shop = {
             count : obj.count?obj.count:1,
             kit: obj.kit?obj.kit:false,
             prices: obj.prices?obj.prices:0,
+            kitId: obj.kitId?obj.kitId:0,
             storageId : function(){
                 return 'cartItem_'+this.id+'_'+this.vId;
             }
@@ -263,6 +284,7 @@ var Shop = {
         cartItem.name = $context.data('name');
         cartItem.kit = $context.data('kit');
         cartItem.prices = $context.data('prices');
+        cartItem.kitId = $context.data('kitid');
         
         return cartItem;
     },
@@ -284,17 +306,17 @@ var Shop = {
             return JSON.parse( localStorage.getItem('wishList'))? _.compact( JSON.parse( localStorage.getItem('wishList')) ):[];
         },
         add: function(key, vid){
+    
             this.items = this.all();
-            //console.log(this.items);
+            
             if (  this.items.indexOf(key) == -1 ){
                 this.items.push(key);
                 localStorage.setItem('wishList', JSON.stringify(this.items));
-                $.post('/shop/wish_list/add/', {
-                    productId: key, 
-                    variantId: vid
+                
+                $.post('/shop/wish_list_api/add/', {
+                    productId_: key, 
+                    variantId_: vid
                 }, function(data){
-                    //console.log(data);
-                    
                     $('#wishListCount').html('('+Shop.WishList.all().length+')');
                 });
             }
@@ -421,11 +443,14 @@ function initShopPage(){
             var cartItem = new Shop.cartItem({
                 id: pd.data('prodid'),
                 vId: pd.data('varid'),
-                price: pd.data('price')
+                price: pd.data('price'),
+                kit: pd.data('kit')
             });
 
             cartItem.count = pd.closest('div.frame_count').find('input').val();
-            pd.closest('div.frame_count').next('span').html(cartItem.count + ' '+pcs);
+            var word = cartItem.kit?kits:pcs;
+            pd.closest('div.frame_count').next('span').html(cartItem.count + ' '+ word);
+            
 
             Shop.Cart.chCount(cartItem);
 

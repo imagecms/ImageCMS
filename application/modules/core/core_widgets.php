@@ -26,7 +26,8 @@ class Core_Widgets extends MY_Controller {
             $settings = $widget['settings'];
         }
 
-        $this->db->select('CONCAT_WS("", cat_url, url) as full_url, id, title, prev_text, publish_date, author', FALSE);
+        $this->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url, content.id, content.title, prev_text, publish_date, showed, comments_count, author, category.name as cat_name', FALSE);
+        $this->db->join('category', 'category.id=content.category');
         $this->db->where('post_status', 'publish');
         $this->db->where('prev_text !=', 'null');
         $this->db->where('publish_date <=', time());

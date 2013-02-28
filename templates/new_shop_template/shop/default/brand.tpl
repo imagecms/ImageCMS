@@ -26,9 +26,9 @@
         {include_tpl('filter')}
         <div class="span9 right">
             <h1 class="d_i">{echo ShopCore::encode($model->getName())}</h1>
-                <span class="c_97">
-                    {lang('s_found')} {echo $totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}
-                </span>
+            <span class="c_97">
+                {lang('s_found')} {echo $totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}
+            </span>
             <div class="clearfix t-a_c frame_func_catalog">
                 <div class="f_l">
                     <span class="v-a_m">{lang('s_order_by')}:</span>
@@ -56,8 +56,14 @@
                     </div>
                 </div>
                 <div class="groupButton list_pic_btn" data-toggle="buttons-radio">
-                    <button type="button" class="btn active"><span class="icon-cat_pic"></span>{lang('s_in_images')}</button>
-                    <button type="button" class="btn"><span class="icon-cat_list"></span>{lang('s_in_list')}</button>
+                    <button type="button" class="btn active">
+                        <span class="icon-cat_pic"></span>
+                        {lang('s_in_images')}
+                    </button>
+                    <button type="button" class="btn">
+                        <span class="icon-cat_list"></span>
+                        {lang('s_in_list')}
+                    </button>
                 </div>
             </div>
             {if str_replace(' ', '', $model->getDescription()) != ''}
@@ -69,7 +75,7 @@
                 </div>
             {/if}
             <ul class="items items_catalog" data-radio-frame>
-                <!-- Start of rendering produts list   -->
+                <!-- Start. Rendering produts list   -->
                 {foreach $products as $product}
                     <li class="span3{if $product->getFirstVariant()->getStock() == 0} not-avail{/if}">
                         <div class="description">
@@ -88,16 +94,50 @@
                                 </span> 
                                 {$CS}&nbsp;&nbsp;
                             </div>
-                            <button class="btn btn_buy" type="button" 
-                                    data-prodid="{echo $product->getId()}" 
-                                    data-varid="{echo $product->firstVariant->getId()}"
-                                    data-price="{echo $product->firstVariant->toCurrency()}"
-                                    data-name="{echo ShopCore::encode($product->firstVariant->getName())}">
-                                {lang('s_buy')}
-                            </button>
+                            {if (int)$product->getallstock() == 0}
+
+                                <!-- displaying notify button -->
+                                <button data-placement="bottom right"
+                                        data-place="noinherit"
+                                        data-duration="500"
+                                        data-effect-off="fadeOut"
+                                        data-effect-on="fadeIn"
+                                        data-drop=".drop-report"
+                                        data-prodid="{echo $product->getId()}"
+                                        type="button"
+                                        class="btn btn_not_avail">
+                                    <span class="icon-but"></span>
+                                    {lang('s_message_o_report')}
+                                </button>
+                            {else:}
+
+                                <!-- displaying buy or in cart button -->
+                                <button class="btn btn_buy" 
+                                        type="button"
+                                        data-prodid="{echo $product->getId()}"
+                                        data-varid="{echo $product->firstVariant->getId()}"
+                                        data-price="{echo $product->firstVariant->toCurrency()}"
+                                        data-name="{echo ShopCore::encode($product->getName())}">
+                                    {lang('s_buy')}
+                                </button>
+                            {/if}
                             <div class="d_i-b">
-                                <button class="btn btn_small_p" type="button" title="добавить в список сравнений"><span class="icon-comprasion_2"></span></button>
-                                <button class="btn btn_small_p" type="button" title="добавить в список желаний"><span class="icon-wish_2"></span></button>
+                                <!-- to compare button -->
+                                <button class="btn btn_small_p toCompare"  
+                                        data-prodid="{echo $product->getId()}"  
+                                        type="button" 
+                                        title="{lang('s_add_to_compare')}">
+                                    <span class="icon-comprasion_2"></span>
+                                </button>
+
+                                <!-- to wish list button -->
+                                <button class="btn btn_small_p toWishlist" 
+                                        data-prodid="{echo $product->getId()}" 
+                                        data-varid="{echo $product->firstVariant->getId()}"  
+                                        type="button" 
+                                        title="{lang('s_add_to_wish_list')}">
+                                    <span class="icon-wish_2"></span>
+                                </button>
                             </div>
                         </div>
                         <a href="{shop_url('product/' . $product->getUrl())}" class="photo">
@@ -108,11 +148,11 @@
                         </a>
                     </li>
                 {/foreach}
-                <!--  End of rendering produts list   -->
+                <!--  End. Rendering produts list   -->
             </ul>
-            <!--    Pagination    -->
+            <!--  Start pagination    -->
             {$pagination}
-            <!--    Pagination    -->
+            <!--  End pagination    -->
         </div>
     </div>
 </article>

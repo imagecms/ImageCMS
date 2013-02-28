@@ -633,6 +633,7 @@ $(document).ready(function() {
 
     $('.link_type').live('change', function() {
         var identif = $(this).val();
+        console.log(identif);
         $('.edit_holder').hide();
         $('#' + identif).show();
         $('.submit_link').each(function() {

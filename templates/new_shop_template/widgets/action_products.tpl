@@ -1,4 +1,4 @@
-{if count($products) > 0}    
+{if count($products) > 0} 
     <div class="mainFrameCarousel1">
         <!--фрейм на елемент-->
         <section class="container">
@@ -13,7 +13,7 @@
                 <div class="carousel bot_border_grey">
                     <ul class="items items_catalog">
                         {foreach $products as $hotProduct}
-                            <li class="span3 {if $hotProduct->firstvariant->getStock()==0} not-avail{/if}">
+                            <li class="span3 {if $hotProduct->firstvariant->getstock()==0} not-avail{/if}">
                                 <div class="description">
                                     <div class="frame_response">
                                         <div class="star">
@@ -47,7 +47,7 @@
                                         <button class="btn btn_buy" type="button" data-prodId="{echo $hotProduct->getId()}" data-varId="{echo $hotProduct->firstVariant->getId()}" data-price="{$prThree}" data-name="{echo $hotProduct->getName()}">{lang('add_to_basket')}</button>
                                     {else:}
                                         <button class="btn btn_not_avail" type="button">{lang('s_message_o_report')}</button>
-                                    {/if} 
+                                    {/if}   
                                 </div>
                                 <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="photo">
                                     <span class="helper"></span>
