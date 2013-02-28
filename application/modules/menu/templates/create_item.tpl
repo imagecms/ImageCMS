@@ -13,18 +13,18 @@
         </div>                            
     </div>
     <div class="row">
-        {$item.item_type = 'page'}
+        {//$item.item_type = 'page'}
         <div class="span5">
             <ul class="btn-group myTab m-t_10 nav-tabs horiz link_type">
-                <li class="btn btn-small {if $item.item_type == 'page'} active{/if}"><a href="#page">{lang('a_page')}</a></li>
-                <li class="btn btn-small {if $item.item_type == 'category'}active{/if}"><a href="#category">{lang('a_category')}</a></li>
-                <li class="btn btn-small {if $item.item_type == 'module'}active{/if}"><a href="#module">{lang('a_module')}</a></li>
-                <li class="btn btn-small {if $item.item_type == 'url'}active{/if}"><a href="#url">{lang('amt_link')}</a></li>
+                <li class="btn btn-small active"><a href="#page">{lang('a_page')}</a></li>
+                <li class="btn btn-small"><a href="#category">{lang('a_category')}</a></li>
+                <li class="btn btn-small"><a href="#module">{lang('a_module')}</a></li>
+                <li class="btn btn-small"><a href="#url">{lang('amt_link')}</a></li>
             </ul>
         </div>
     </div>
     <div class="tab-content content_big_td form-horizontal">
-        <div id="page" class="tab-pane {if $item.item_type == 'page'}active{/if}">
+        <div id="page" class="tab-pane active">
             <form method="post" action="/admin/components/cp/menu/create_item/" id="page_form">
                 {$data = unserialize($item.add_data)}
                 <input type="hidden" name="menu_id" value="{$menu.id}"/>
@@ -194,7 +194,7 @@
                 </table>
             </form>
         </div>
-        <div id="category" class="tab-pane {if $item.item_type == 'category'}active{/if}">
+        <div id="category" class="tab-pane">
             <form method="post" action="/admin/components/cp/menu/edit_item/{$item.id}" id="category_form" >
                 {$data = unserialize($item.add_data)}
                 <input type="hidden" name="menu_id" value="{$menu.id}"/>
@@ -349,7 +349,7 @@
                 </table>
             </form>
         </div>
-        <div id="module" class="tab-pane {if $item.item_type == 'module'}active{/if}">
+        <div id="module" class="tab-pane">
             <form method="post" action="/admin/components/cp/menu/edit_item/{$item.id}" id="module_form">
                 <div class="m-t_20"><h4>{lang('amt_select_module')}:</h4></div>
                 <div class="row-fluid">
@@ -500,7 +500,7 @@
                 </div>
             </form>
         </div>
-        <div id="url" class="tab-pane {if $item.item_type == 'url'}active{/if}">
+        <div id="url" class="tab-pane">
             <form method="post" action="/admin/components/cp/menu/edit_item/{$item.id}" id="url_form" >
                 <input type="hidden" name="menu_id" value="{$menu.id}">
                 <input type="hidden" name="item_id" value="0"/>
