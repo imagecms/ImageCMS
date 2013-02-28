@@ -450,7 +450,10 @@
                                     data-price="{echo $kitProducts->getTotalPrice()}" 
                                     data-prices ="{$data['prices'][] = (float)$kitProducts->getMainProductPrice(); echo json_encode($data['prices'])}"
                                     data-name="{$data['names'][] =  $kitProducts->getMainProduct()->getName(); echo ShopCore::encode(json_encode($data['names']))}" 
-                                    data-kit="true">{lang('s_buy')}</button>
+                                    data-kit="true"
+                                    data-kitId="{echo $kitProducts->getId()}">
+                                {lang('s_buy')}
+                            </button>
                         </li>
                     </ul>
                 </li>
