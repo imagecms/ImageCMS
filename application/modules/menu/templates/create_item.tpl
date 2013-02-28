@@ -194,13 +194,8 @@
                 </table>
             </form>
         </div>
-<<<<<<< HEAD
-        <div id="category" class="tab-pane {if $item.item_type == 'category'}active{/if}">
-            <form method="post" action="/admin/components/cp/menu/create_item/{$item.id}" id="category_form" >
-=======
         <div id="category" class="tab-pane">
-            <form method="post" action="/admin/components/cp/menu/edit_item/{$item.id}" id="category_form" >
->>>>>>> b29e39d3aac3d3ab047379c887f3ddb1e8aa5ff6
+            <form method="post" action="/admin/components/cp/menu/create_item/" id="category_form" >
                 {$data = unserialize($item.add_data)}
                 <input type="hidden" name="menu_id" value="{$menu.id}"/>
                 <input type="hidden" name="item_id" value="{$item.item_id}" id="cat_input"/>
@@ -355,7 +350,7 @@
             </form>
         </div>
         <div id="module" class="tab-pane">
-            <form method="post" action="/admin/components/cp/menu/edit_item/{$item.id}" id="module_form">
+            <form method="post" action="/admin/components/cp/menu/create_item/" id="module_form">
                 <div class="m-t_20"><h4>{lang('amt_select_module')}:</h4></div>
                 <div class="row-fluid">
                     <div class="span3">
@@ -506,7 +501,7 @@
             </form>
         </div>
         <div id="url" class="tab-pane">
-            <form method="post" action="/admin/components/cp/menu/edit_item/{$item.id}" id="url_form" >
+            <form method="post" action="/admin/components/cp/menu/create_item/{$item.id}" id="url_form" >
                 <input type="hidden" name="menu_id" value="{$menu.id}">
                 <input type="hidden" name="item_id" value="0"/>
                 <input type="hidden" name="item_type" value="url"/>
