@@ -56,8 +56,14 @@
                     </div>
                 </div>
                 <div class="groupButton list_pic_btn" data-toggle="buttons-radio">
-                    <button type="button" class="btn active"><span class="icon-cat_pic"></span>{lang('s_in_images')}</button>
-                    <button type="button" class="btn"><span class="icon-cat_list"></span>{lang('s_in_list')}</button>
+                    <button type="button" class="btn active">
+                        <span class="icon-cat_pic"></span>
+                        {lang('s_in_images')}
+                    </button>
+                    <button type="button" class="btn">
+                        <span class="icon-cat_list"></span>
+                        {lang('s_in_list')}
+                    </button>
                 </div>
             </div>
             {if str_replace(' ', '', $model->getDescription()) != ''}
@@ -69,7 +75,7 @@
                 </div>
             {/if}
             <ul class="items items_catalog" data-radio-frame>
-                <!-- Start of rendering produts list   -->
+                <!-- Start. Rendering produts list   -->
                 {foreach $products as $product}
                     <li class="span3{if $product->getFirstVariant()->getStock() == 0} not-avail{/if}">
                         <div class="description">
@@ -116,12 +122,18 @@
                                 </button>
                             {/if}
                             <div class="d_i-b">
-                                <button class="btn btn_small_p" 
+                                <!-- to compare button -->
+                                <button class="btn btn_small_p toCompare"  
+                                        data-prodid="{echo $product->getId()}"  
                                         type="button" 
                                         title="{lang('s_add_to_compare')}">
                                     <span class="icon-comprasion_2"></span>
                                 </button>
-                                <button class="btn btn_small_p" 
+
+                                <!-- to wish list button -->
+                                <button class="btn btn_small_p toWishlist" 
+                                        data-prodid="{echo $product->getId()}" 
+                                        data-varid="{echo $product->firstVariant->getId()}"  
                                         type="button" 
                                         title="{lang('s_add_to_wish_list')}">
                                     <span class="icon-wish_2"></span>
@@ -131,17 +143,16 @@
                         <a href="{shop_url('product/' . $product->getUrl())}" class="photo">
                             <span class="helper"></span>
                             <figure>
-                                <img src="{productImageUrl($product->getmainimage())}" 
-                                     alt="{echo ShopCore::encode($product->getName())} - {echo $product->getid()}"/>
+                                <img src="{productImageUrl($product->getmainimage())}" alt="{echo ShopCore::encode($product->getName())} - {echo $product->getid()}"/>
                             </figure>
                         </a>
                     </li>
                 {/foreach}
-                <!--  End of rendering produts list   -->
+                <!--  End. Rendering produts list   -->
             </ul>
-            <!--    Pagination    -->
+            <!--  Start pagination    -->
             {$pagination}
-            <!--    Pagination    -->
+            <!--  End pagination    -->
         </div>
     </div>
 </article>
