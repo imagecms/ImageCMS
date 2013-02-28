@@ -51,14 +51,16 @@ var NotitficationApi = {
                         NotitficationApi.sendValidations(obj.validations, selector);
                     }
                     if (obj.status === true) {
-                        $(NotitficationApi.formClass).html('<div class="msg"><div class="success">' + obj.msg + '</div></div>');
+//                        console.log($(NotitficationApi.formClass).has('form#' + selector));
+//                        var tempHtml = $(NotitficationApi.formClass).has('form#' + selector).html();
+                        $(NotitficationApi.formClass).has('form#' + selector).html('<div class="msg"><div class="success">' + obj.msg + '</div></div>');
                         $('.btn_not_avail.active').drop('positionDrop');
                         //closing modal
                         if (obj.close === true) {
                             setTimeout((function() {
                                 $('body').trigger('click', function() {
                                 });
-                                $('.msg').html('');
+                                //$(NotitficationApi.formClass).has('form#' + selector).html(tempHtml);
                             }), 3000);
                         }
                     }
