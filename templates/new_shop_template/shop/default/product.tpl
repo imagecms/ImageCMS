@@ -60,7 +60,7 @@
                 <!-- Output rating for the old product Start -->
                 <div class="frame_response">
                     <div class="star">
-                        {$CI->load->module('star_rating')->show_star_rating($model)}
+                        {$CI->load->module('star_rating')->show_star_rating()}
                     </div>
                 </div>
                 <!-- Output rating for the old product End -->
@@ -161,38 +161,40 @@
                     {/if}
 
                     {foreach $model->getProductVariants() as $key => $pv}
-                        <button style="display: none;" class="btn btn_buy variant_{echo $pv->getId()} variant" type="button" data-prodid="{echo $pv->getId()}" data-varid="{echo $pv->getId()}" data-price="{echo $pv->toCurrency()}" data-name="{if $pv->getName()}{echo ShopCore::encode($pv->getName())}{else:}{echo ShopCore::encode($model->getName())}{/if}">{lang('s_buy')}</button>
+                        <button style="display: none;" 
+                                class="btn btn_buy variant_{echo $pv->getId()} variant" 
+                                type="button" data-prodid="{echo $pv->getId()}" 
+                                data-varid="{echo $pv->getId()}" 
+                                data-price="{echo $pv->toCurrency()}" 
+                                data-name="{if $pv->getName()}{echo ShopCore::encode($pv->getName())}{else:}{echo ShopCore::encode($model->getName())}{/if}">
+                            {lang('s_buy')}
+                        </button>
                     {/foreach}
                 </div>
             </div>
             <div class="d_i-b v-a_b m-b_20">
 
                 <!-- Start. Block "Add to Compare" -->
-                <button data-prodid="{echo $model->id}" class="btn btn_small_p" type="button" title="добавить в список сравнений">
+                <button class="btn btn_small_p toCompare"  
+                        data-prodid="{echo $model->getId()}"  
+                        type="button" 
+                        title="{lang('s_add_to_compare')}">
                     <span class="icon-comprasion_2"></span>
-                    <span>Добавить к сравнению</span>
+                    <span>{lang('s_add_to_compare')}</span>
                 </button>
                 <!-- End. Block "Add to Compare" -->
 
                 <br/>
-                <!-- Start. Block "Add to Wishlist" -->
-                <button class="btn btn_small_p" type="button" title="добавить в список желаний">
-                    {if !is_in_wish($model->getId())}
-                        <span data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" 
-                              data-varid="{echo $model->firstVariant->getId()}" 
-                              data-prodid="{echo $model->getId()}" 
-                              class="addToWList">
-                            <span class="icon-wish_2"></span>
-                            <span class="js blue">{lang('s_slw')}</span>
-                        </span>
-                    {else:}
-                        <a href="/shop/wish_list" class="red">
-                            <span class="icon-wish"></span>{lang('s_ilw')}
-                        </a>
-                    {/if}
+                <!--Block Wishlist Start-->
+                <button class="btn btn_small_p toWishlist" 
+                        data-prodid="{echo $model->getId()}" 
+                        data-varid="{echo $model->firstVariant->getId()}"  
+                        type="button" 
+                        title="{lang('s_add_to_wish_list')}">
+                    <span class="icon-wish_2"></span>
+                    <span class="js blue">{lang('s_slw')}</span>
                 </button>
                 <!-- Stop. Block "Add to Wishlist" -->
-
             </div>
         </div>
 
@@ -305,12 +307,33 @@
                                                 data-name - name product
                                                 these are the main four options for the button to "buy"
                                     -->
-                                    <button class="btn btn_buy" data-varid="{echo $p->firstVariant->getId()}" data-prodid="{echo $p->getId()}" data-price="{echo $p->firstvariant->toCurrency()}" data-name="{echo ShopCore::encode($p->getName())}" type="button">{lang('s_buy')}</button>
+                                    <button class="btn btn_buy" 
+                                            data-varid="{echo $p->firstVariant->getId()}" 
+                                            data-prodid="{echo $p->getId()}" 
+                                            data-price="{echo $p->firstvariant->toCurrency()}" 
+                                            data-name="{echo ShopCore::encode($p->getName())}" 
+                                            type="button">
+                                        {lang('s_buy')}
+                                    </button>
 
 
-                                    <div class="d_i-b">                                                    
-                                        <button class="btn btn_small_p" type="button" title="добавить в список сравнений"><span class="icon-comprasion_2"></span></button>
-                                        <button class="btn btn_small_p" type="button" title="добавить в список желаний"><span class="icon-wish_2"></span></button>
+                                    <div class="d_i-b"> 
+                                        <!-- to compare button -->
+                                        <button class="btn btn_small_p toCompare"
+                                                data-prodid="{echo $p->getId()}"  
+                                                type="button" 
+                                                title="{lang('s_add_to_compare')}">
+                                            <span class="icon-comprasion_2"></span>
+                                        </button>
+
+                                        <!-- to wish list button -->
+                                        <button class="btn btn_small_p toWishlist" 
+                                                data-prodid="{echo $p->getId()}" 
+                                                data-varid="{echo $p->firstVariant->getId()}"  
+                                                type="button" 
+                                                title="{lang('s_add_to_wish_list')}">
+                                            <span class="icon-wish_2"></span>
+                                        </button>
                                     </div>
                                 </div>
                             </li>
