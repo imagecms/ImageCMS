@@ -60,7 +60,7 @@
                 <!-- Output rating for the old product Start -->
                 <div class="frame_response">
                     <div class="star">
-                        {$CI->load->module('star_rating')->show_star_rating($model)}
+                        {$CI->load->module('star_rating')->show_star_rating()}
                     </div>
                 </div>
                 <!-- Output rating for the old product End -->

@@ -190,18 +190,16 @@
             <form>
                 {if !$is_logged_in}
                     <label>
-                        <span class="title__icsi-css">{lang('lang_comment_author')} </span>
+                        <span class="title__icsi-css">{lang('lang_comment_author')}</span>
                         <span class="frame_form_field__icsi-css">
-                            <textarea></textarea>
+                            <input type="text" name="comment_author" id="comment_author" value="{get_cookie('comment_author')}"/>
                         </span>
                     </label>
-                    <label>{lang('lang_comment_author')} 
-                        <span style="color:red;">*</span>
-                        <input type="text" name="comment_author" id="comment_author" value="{get_cookie('comment_author')}"/>
-                    </label>
-                    <label>{lang('lang_comment_email')} 
-                        <span style="color:red;">*</span>
-                        <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
+                    <label>
+                        <span class="title__icsi-css">{lang('lang_comment_email')} </span>
+                        <span class="frame_form_field__icsi-css">
+                            <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
+                        </span>
                     </label>
                 {/if}
                 <label>
