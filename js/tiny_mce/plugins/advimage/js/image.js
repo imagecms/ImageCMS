@@ -89,6 +89,7 @@ var ImageDialog = {
 	},
 
 	insert : function(file, title) {
+    
 		var ed = tinyMCEPopup.editor, t = this, f = document.forms[0];
 
 		if (f.src.value === '') {
@@ -150,7 +151,7 @@ var ImageDialog = {
 			'class' : getSelectValue(f, 'class_list'),
 			style : nl.style.value,
 			id : nl.id.value,
-			dir : nl.dir.value,
+			dir : '/',//nl.dir.value,
 			lang : nl.lang.value,
 			usemap : nl.usemap.value,
 			longdesc : nl.longdesc.value
