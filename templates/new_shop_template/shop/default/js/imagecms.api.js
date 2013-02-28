@@ -134,9 +134,15 @@ $(document).ready(function() {
         }
     });
 
-    $('form input').live('input', function() {
+    /**
+     * code for hidding validation errors blocks oninput
+     */
+
+    $('form input, textarea').live('input', function() {
         if ($.exists($('label#for_' + $(this).attr('name')))) {
-            $('label#for_' + $(this).attr('name')).hide(500);
+            $('label#for_' + $(this).attr('name')).hide(100, function() {
+                $('.btn_not_avail.active').drop('positionDrop');
+            });
         }
     });
 });
