@@ -352,7 +352,15 @@ function initTinyMCE()
                 lang: 'ru',
                 dialog: {width: 900, modal: true, title: 'Files', zIndex: 900001},
                 getFileCallback: function(file) {
-                    win.document.forms[0].elements[field_name].value = '/' + file.path;
+                    
+                    file.path = '/'+file.path;
+                    
+                    var field = win.document.forms[0].elements[field_name];
+                    field.value = file.path;
+                    
+                    $(field).change();
+                    
+                    //ImageDialog.showPreviewImage('/' + file.path);
                 },
                 commandsOptions: {
                     getfile: {
