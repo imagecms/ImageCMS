@@ -748,6 +748,7 @@ $(document).ready(function() {
             container.find('[name="variants[smallPhoto][]"]').attr('value', '');
         }
         container.find('img').attr('src', "/templates/administrator/images/select-picture.png");
+        container.find('img').css('width','50px');
     });
     $('.change_image').live('click', function() {
         $(this).closest('td').find('[type="file"]').click();
