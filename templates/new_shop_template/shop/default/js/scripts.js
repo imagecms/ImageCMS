@@ -200,6 +200,9 @@ jQuery(document).ready(function() {
         else $('.frame_tabsc > div').equalHorizCell('refresh');
     });
 
+    /*fancybox-based imagebox initialization*/
+    $('a.fancybox').fancybox();
+
 });
 wnd.load(function() {
     if ($('.cycle li').length > 1) {
