@@ -187,6 +187,11 @@ class Template extends Mabilis {
         $this->_js_files[media_url($url)] = $position;
     }
 
+    public function registerJsScript($script, $position = 'before') {
+        $position = $this->_check_postion($position);
+        $this->_js_script_files[$script] = $position;
+    }
+
     /**
      * Place custom code before /head
      * @param $code
@@ -231,6 +236,22 @@ class Template extends Mabilis {
                         break;
                     case 'after':
                         $result_after .= "<script type=\"text/javascript\" src=\"$url\"></script>\n";
+                        break;
+                }
+            }
+        }
+
+        if (sizeof($this->_js_script_files) > 0) {
+            foreach ($this->_js_script_files as $script => $pos) {
+                switch ($pos) {
+                    case 'before':
+                        $result_before .= $script;
+                        break;
+                    case 'after':
+                        $result_after .= $script;
+                        break;
+                    default :
+                        $result_before .= $script;
                         break;
                 }
             }
