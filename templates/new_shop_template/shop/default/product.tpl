@@ -113,7 +113,7 @@
                                 "$model->firstVariant->toCurrency('OrigPrice')" or $model->firstVariant->getOrigPrice()
                                 output price without discount
                                 -->
-                                <span class="f-w_b" id="priceOrigVariant">{echo $model->firstVariant->toCurrency('OrigPrice')}</span>
+                                <span class="f-w_b" id="priceOrigVariant">{echo $model->firstVariant->getNumDiscount()} {echo $model->firstVariant->toCurrency('OrigPrice')}</span>
                                 {$CS}
                             </span>                           
                         {/if}
