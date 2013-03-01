@@ -123,6 +123,10 @@ class CI_DB_driver {
 			{
 				$this->display_error('db_unable_to_connect');
 			}
+//                        else{
+//                            show_error("Unable to connect to data base", 500, "DB_ERROR");
+//                            exit();
+//                        }
 			return FALSE;
 		}
 
