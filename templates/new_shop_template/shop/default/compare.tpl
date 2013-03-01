@@ -100,7 +100,9 @@
                                                                     data-prodId="{echo $product->getId()}" 
                                                                     data-varId="{echo $product->firstVariant->getId()}" 
                                                                     data-price="{echo $product->firstVariant->toCurrency()}" 
-                                                                    data-name="{echo $product->getName()}">
+                                                                    data-name="{echo $product->getName()}"
+                                                                    data-number="{echo $product->firstVariant->getnumber()}"
+                                                                    data-maxcount="{echo $product->firstVariant->getstock()}">
                                                                 {lang('add_to_basket')}
                                                             </button>
                                                         {else:}
@@ -158,9 +160,9 @@
                                                             <span class="helper"></span>
                                                             <span>-</span>
                                                         </li>
-                                                            {/if}
-                                                        {/if}
-                                                    {/foreach}
+                                                    {/if}
+                                                {/if}
+                                            {/foreach}
                                         </ul>
                                         <!--End. Product characteristics -->
                                     </li>

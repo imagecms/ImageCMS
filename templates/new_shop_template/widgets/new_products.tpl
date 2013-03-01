@@ -41,7 +41,9 @@
                                                 data-prodId="{echo $hotProduct->getId()}" 
                                                 data-varId="{echo $hotProduct->firstVariant->getId()}" 
                                                 data-price="{$prThree}" 
-                                                data-name="{echo $hotProduct->getName()}">
+                                                data-name="{echo $hotProduct->getName()}"
+                                                data-number="{echo $hotProduct->firstVariant->getnumber()}"
+                                                data-maxcount="{echo $hotProduct->firstVariant->getstock()}">
                                             {lang('add_to_basket')}
                                         </button>
                                     {else:}

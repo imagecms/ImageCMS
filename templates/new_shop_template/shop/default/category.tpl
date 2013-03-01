@@ -155,7 +155,9 @@
                                             data-prodid="{echo $product->getId()}"
                                             data-varid="{echo $product->firstVariant->getId()}"
                                             data-price="{echo $product->firstVariant->toCurrency()}"
-                                            data-name="{echo ShopCore::encode($product->getName())}">
+                                            data-name="{echo ShopCore::encode($product->getName())}"
+                                            data-number="{echo $product->firstVariant->getnumber()}"
+                                            data-maxcount="{echo $product->firstVariant->getstock()}">
                                         {lang('s_buy')}
                                     </button>
                                 {/if}
