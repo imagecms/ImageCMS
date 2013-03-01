@@ -19,7 +19,7 @@
  * 
  **/
 
-var NotitficationApi = {
+var Notification = {
     debugMode: true,
     formClass: ".drop-content",
     returnMsg: function(msg) {
@@ -41,38 +41,32 @@ var NotitficationApi = {
             url: url,
             dataType: "json",
             beforeSend: function() {
-                NotitficationApi.returnMsg("=== Sending api request to " + url + "... ===");
+                Notification.returnMsg("=== Sending api request to " + url + "... ===");
             },
             success: function(obj) {
                 if (obj !== null) {
-                    NotitficationApi.returnMsg("[status]:" + obj.status);
-                    NotitficationApi.returnMsg("[message]: " + obj.msg);
+                    Notification.returnMsg("[status]:" + obj.status);
+                    Notification.returnMsg("[message]: " + obj.msg);
                     if (obj.validations !== 'undefined') {
-                        NotitficationApi.sendValidations(obj.validations, selector);
+                        Notification.sendValidations(obj.validations, selector);
                     }
                     if (obj.status === true) {
-//                        console.log($(NotitficationApi.formClass).has('form#' + selector));
-//                        var tempHtml = $(NotitficationApi.formClass).has('form#' + selector).html();
-                        $(NotitficationApi.formClass).has('form#' + selector).html('<div class="msg"><div class="success">' + obj.msg + '</div></div>');
-                        $('.btn_not_avail.active').drop('positionDrop');
-                        //closing modal
+                        $(Notification.formClass + ' form#' + selector).html('<div class="msg"><div class="success">' + obj.msg + '</div></div>');
+                        if ($('.btn_not_avail.active').length != 0)
+                            $('.btn_not_avail.active').drop('positionDrop');
                         if (obj.close === true) {
                             setTimeout((function() {
-                                $('body').trigger('click', function() {
-                                });
-                                //$(NotitficationApi.formClass).has('form#' + selector).html(tempHtml);
+                                $('body').trigger('click');
                             }), 3000);
                         }
                     }
                 }
-                //$('.btn_not_avail.active').drop('positionDrop');
-
                 return this;
             },
         }).done(function() {
-            NotitficationApi.returnMsg("=== Api request success!!! ===");
+            Notification.returnMsg("=== Api request success!!! ===");
         }).fail(function() {
-            NotitficationApi.returnMsg("=== Api request breake with error!!! ===");
+            Notification.returnMsg("=== Api request breake with error!!! ===");
         });
         return;
     },
@@ -97,7 +91,8 @@ var NotitficationApi = {
                     $('#' + selector).find('label#for_' + key).show();
                 }
             }
-            $('.btn_not_avail.active').drop('positionDrop');
+            if ($('.btn_not_avail.active').length != 0)
+                $('.btn_not_avail.active').drop('positionDrop');
         } else {
             return false;
         }
