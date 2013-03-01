@@ -48,7 +48,7 @@ function post($this)
             }
             else {
                 $('#error_text').html('');
-                $('#error_text').append(obj.validation_errors);
+                $('#error_text').append('<div class="msg"><div class="error">'+obj.validation_errors+'</div></div>');
             }
         }
     });
