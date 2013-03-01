@@ -280,7 +280,15 @@
                                 <div class="frameGroupsForm">
                                     <div class="header_title">Данные заказа</div>
                                     <div class="standart_form horizontal_form">
-                                        <form method="post" action="{$BASE_URL}/shop/cart">
+                                        <form method="post" action="{$BASE_URL}shop/cart">
+                                            {if $errors}
+                                                <div class="groups_form">
+                                                    <div class="msg">
+                                                        <div class="error">{echo $errors}</div>
+                                                    </div>
+                                                </div>
+                                                {}
+                                            {/if}
                                             <div class="groups_form">
                                                 <label>
                                                     <span class="title">{lang('s_c_uoy_name_u')}</span>
