@@ -44,15 +44,13 @@ class Permitions {
             $userProfile = $ci->db->where('id', $ci->dx_auth->get_user_id())->get('users')->row();
             $locale = 'ru';
             $priv_title = $ci->db->select("title")->where(array('id' => $privilege->id, 'locale' => $locale))->get(self::$rbac_privileges_table . "_i18n")->row();
-            if ($userProfile)
+            if (!empty($userProfile))
                 $userRole = $ci->db->where('id', $userProfile->role_id)->get(self::$rbac_roles_table)->row();
-//            var_dump($userRole->name);
-//            exit();
             if (!empty($privilege)) {
                 //check if user has as role
                 if ($userRole) {
                     $userPrivilege = $ci->db->where(array('role_id' => (int) $userRole->id, 'privilege_id' => (int) $privilege->id))->get(self::$rbac_roles_privileges_table)->result();
-                    if (!empty($userPrivilege) > 0) {
+                    if (!empty($userPrivilege)) {
                         return TRUE;
                     } else {
                         redirect('admin/rbac/permition_denied');

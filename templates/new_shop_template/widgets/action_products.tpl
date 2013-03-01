@@ -10,7 +10,8 @@
                         <button type="button" class="btn btn_next"><span class="icon next"></span><span class="text-el"></span></button>
                     </div>
                 </div>
-                <div class="carousel bot_border_grey">
+
+                <div class="carousel">
                     <ul class="items items_catalog">
                         {foreach $products as $hotProduct}
                             <li class="span3 {if $hotProduct->firstvariant->getstock()==0} not-avail{/if}">
@@ -22,6 +23,7 @@
                                     </div>
                                     <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                                     <div class="price price_f-s_16">
+
                                         <!--
                                         $hotProduct->hasDiscounts() - checking for the existence of discounts. 
                                         If there is a discount price without discount deduce
@@ -44,9 +46,29 @@
                                         <!--To display the amount of discounts you can use $hotProduct->firstVariant->getNumDiscount()-->
                                     </div>  
                                     {if $hotProduct->firstvariant->getstock()!=0}
-                                        <button class="btn btn_buy" type="button" data-prodId="{echo $hotProduct->getId()}" data-varId="{echo $hotProduct->firstVariant->getId()}" data-price="{$prThree}" data-name="{echo $hotProduct->getName()}">{lang('add_to_basket')}</button>
+                                        <button class="btn btn_buy" 
+                                                type="button" 
+                                                data-prodId="{echo $hotProduct->getId()}" 
+                                                data-varId="{echo $hotProduct->firstVariant->getId()}" 
+                                                data-price="{$prThree}" 
+                                                data-name="{echo $hotProduct->getName()}"
+                                                data-number="{echo $hotProduct->firstVariant->getnumber()}"
+                                                data-maxcount="{echo $hotProduct->firstVariant->getstock()}">
+                                            {lang('add_to_basket')}
+                                        </button>
                                     {else:}
-                                        <button class="btn btn_not_avail" type="button">{lang('s_message_o_report')}</button>
+                                        <button data-placement="bottom right"
+                                                data-place="noinherit"
+                                                data-duration="500"
+                                                data-effect-off="fadeOut"
+                                                data-effect-on="fadeIn"
+                                                data-drop=".drop-report"
+                                                data-prodid="{echo $hotProduct->firstVariant->getId()}"
+                                                type="button"
+                                                class="btn btn_not_avail">
+                                            <span class="icon-but"></span>
+                                            {lang('s_message_o_report')}
+                                        </button> 
                                     {/if}   
                                 </div>
                                 <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="photo">

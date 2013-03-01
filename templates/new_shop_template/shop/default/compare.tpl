@@ -63,9 +63,7 @@
                                         <li class="span3">
                                             <ul class="items items_catalog">
                                                 <li>
-                                                    <button class="btn btn_small btn_small_p" onclick="{literal}$.ajax({type: 'post', url: '/shop/compare/remove/{/literal}{echo $product->getId}',{literal} success: function() {
-                                                                }});{/literal}
-                                                            Shop.CompareList.rm({echo $product->getId})">
+                                                    <button class="btn btn_small btn_small_p" onclick="Shop.CompareList.rm({echo $product->getId})">
                                                         <span class="icon-remove_comprasion"></span>
                                                     </button>
                                                     <a href="{shop_url('product/' . $product->getUrl())}" class="photo">
@@ -100,7 +98,9 @@
                                                                     data-prodId="{echo $product->getId()}" 
                                                                     data-varId="{echo $product->firstVariant->getId()}" 
                                                                     data-price="{echo $product->firstVariant->toCurrency()}" 
-                                                                    data-name="{echo $product->getName()}">
+                                                                    data-name="{echo $product->getName()}"
+                                                                    data-number="{echo $product->firstVariant->getnumber()}"
+                                                                    data-maxcount="{echo $product->firstVariant->getstock()}">
                                                                 {lang('add_to_basket')}
                                                             </button>
                                                         {else:}
@@ -158,9 +158,9 @@
                                                             <span class="helper"></span>
                                                             <span>-</span>
                                                         </li>
-                                                            {/if}
-                                                        {/if}
-                                                    {/foreach}
+                                                    {/if}
+                                                {/if}
+                                            {/foreach}
                                         </ul>
                                         <!--End. Product characteristics -->
                                     </li>
