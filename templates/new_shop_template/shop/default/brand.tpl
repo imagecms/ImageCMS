@@ -71,7 +71,7 @@
                     <figure class="f_l m-t_10 w_150">
                         <img src="/uploads/shop/brands/{echo $model->getImage()}"/>
                     </figure>
-                    <p>{echo ShopCore::encode($model->getDescription())}</p>
+                    {echo $model->getDescription()}
                 </div>
             {/if}
             <ul class="items items_catalog" data-radio-frame>
