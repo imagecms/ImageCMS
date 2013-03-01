@@ -38,7 +38,7 @@ class Lib_category {
             return $this->CI->cache->call(array($this, '_build'));
         }
     }
-    
+
     function buildForAdmin() {
         // check cache file
         return $this->CI->cache->call(array($this, '_build'));
@@ -148,26 +148,28 @@ class Lib_category {
      */
     function _build() {
         $this->categories = $this->CI->cms_base->get_categories();
-        $this->create_path();
+        if ($this->categories)
+            $this->create_path();
 
         $new_cats = array();
+        
+        if ($this->categories)
+            foreach ($this->categories as $cats) {
+                if ($cats['parent_id'] == 0) {
+                    # Category Level
+                    $cats['level'] = $this->level;
 
-        foreach ($this->categories as $cats) {
-            if ($cats['parent_id'] == 0) {
-                # Category Level
-                $cats['level'] = $this->level;
+                    $cats = $this->translate($cats);
 
-                $cats = $this->translate($cats);
+                    # Build subcategories
+                    //$cats['subtree'] = $this->_get_sub_cats($cats['id']);
+                    $sub = $this->_get_sub_cats($cats['id']);
+                    if (count($sub))
+                        $cats['subtree'] = $sub;
 
-                # Build subcategories
-                //$cats['subtree'] = $this->_get_sub_cats($cats['id']);
-                $sub = $this->_get_sub_cats($cats['id']);
-                if (count($sub))
-                    $cats['subtree'] = $sub;
-
-                array_push($new_cats, $cats);
+                    array_push($new_cats, $cats);
+                }
             }
-        }
 
         unset($this->categories);
         return $new_cats;
