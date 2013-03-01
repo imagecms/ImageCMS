@@ -215,7 +215,7 @@
                 </li>
             {/if}
             <!-- End. Show the block information if available -->
-            
+
             <!-- Start. Display characteristics block if you have one -->
             {if $renderProperties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTableNew($model->getId())}
                 <li>
@@ -226,7 +226,7 @@
                 </li>
             {/if}
             <!-- End. Display characteristics block if you have one -->
-            
+
             <!--Output of the block if there is one accessory-->
             {if $accessories = $model->getRelatedProductsModels()}            
                 <li>
@@ -396,11 +396,7 @@
                                     <div class="d_i-b">+</div>
                                 </li>
                                 <!--Output of goods subsidiaries set-->
-                                {$data = array('names'=>array(), 'ids'=>array(), 'prices'=>array())}
-                                {foreach $kitProducts->getShopKitProducts() as  $key => $kitProduct}  
-                                    {array_push($data['names'], $kitProduct->getSProducts()->getName())}
-                                    {array_push($data['ids'], $kitProduct->getSProducts()->getId())}
-                                    {array_push($data['prices'], (float)trim($kitProduct->getDiscountProductPrice()))}
+                                {foreach $kitProducts->getShopKitProducts() as  $key => $kitProduct}
                                     <li class="{if $kitProducts->countProducts() >= 2}span2{else:}span3{/if}">
                                         <div class="item_set">
                                             <div class="description">
@@ -444,13 +440,12 @@
                                 <!-- $kitProducts->getTotalPrice() - the entire set of output price with discount-->
                                 <span class="f-w_b">{echo $kitProducts->getTotalPrice()}</span> {$CS}
                             </div>                                   
-                            <button class="btn btn_buy" type="button" 
-                                    data-prodid="{$data['ids'][] =  $kitProducts->getMainProduct()->getId(); echo json_encode(array_merge($data['ids']))}" 
-                                    data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}" 
+                            <button class="btn btn_buy" type="button"                                    
                                     data-price="{echo $kitProducts->getTotalPrice()}" 
-                                    data-prices ="{$data['prices'][] = (float)$kitProducts->getMainProductPrice(); echo json_encode($data['prices'])}"
-                                    data-name="{$data['names'][] =  $kitProducts->getMainProduct()->getName(); echo ShopCore::encode(json_encode($data['names']))}" 
-
+                                    data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}" 
+                                    data-prodid="{echo json_encode(array_merge($kitProducts->getProductIdCart()))}" 
+                                    data-prices ="{echo json_encode($kitProducts->getPriceCart())}"
+                                    data-name="{echo ShopCore::encode(json_encode($kitProducts->getNamesCart()))}" 
                                     data-kit="true"
                                     data-kitId="{echo $kitProducts->getId()}">
                                 {lang('s_buy')}
