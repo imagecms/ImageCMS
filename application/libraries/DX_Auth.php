@@ -917,7 +917,7 @@ class DX_Auth {
                     if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
                         redirect('', 'location');
                     } else {
-                        echo json_encode(array('msg' => 'Вы успешно зарегестрированы', 'reload' => 1));
+                        //echo json_encode(array('msg' => 'Вы успешно зарегестрированы', 'reload' => 1));
                     }
                 }
             }

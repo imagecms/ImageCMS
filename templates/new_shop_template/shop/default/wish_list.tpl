@@ -69,7 +69,9 @@
                                             data-prodId="{echo $item.model->getId()}" 
                                             data-varId="{echo $item.model->firstVariant->getId()}" 
                                             data-price="{echo $item.model->firstVariant->toCurrency()}" 
-                                            data-name="{echo $item.model->getName()}">
+                                            data-name="{echo $item.model->getName()}"
+                                            data-number="{echo $item.model->firstVariant->getnumber()}"
+                                            data-maxcount="{echo $item.model->firstVariant->getstock()}">
                                         {lang('add_to_basket')}
                                     </button>
                                 {else:}

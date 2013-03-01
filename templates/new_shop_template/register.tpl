@@ -20,7 +20,7 @@
                                         <span class="icon-email"></span>
                                         <input type="text" name="email" id="email" value="{set_value('email')}" />
                                         <span class="help_inline">E-mail являеться логином</span>
-                                        <div id="for_email" class="for_validations"></div>
+                                        <label id="for_email" class="for_validations"></label>
                                     </span>
                                 </label>
                                 <label>
@@ -28,7 +28,7 @@
                                     <span class="frame_form_field">
                                         <span class="icon-person"></span>
                                         <input type="text" name="username" value="{set_value('userInfo[fullName]')}" />
-                                        <div id="for_username" class="for_validations"></div>
+                                        <label id="for_username" class="for_validations"></label>
                                     </span>
                                 </label>
                                 <label>
@@ -37,7 +37,7 @@
                                         <span class="icon-password"></span>
                                         <input type="password" name="password" id="password" value="{set_value('password')}" />
                                         <span class="help_inline">От 6 до 24 символов. Должен включать латинские буквы и цифры.</span>
-                                        <div id="for_password" class="for_validations"></div>
+                                        <label id="for_password" class="for_validations"></label>
                                     </span>
                                 </label>
                                 <label>
@@ -45,7 +45,7 @@
                                     <span class="frame_form_field">
                                         <span class="icon-replay"></span>
                                         <input type="password" class="text" name="confirm_password" id="confirm_password" />
-                                        <div id="for_confirm_password" class="for_validations"></div>
+                                        <label id="for_confirm_password" class="for_validations"></label>
                                     </span>
                                 </label>
                                 {if $cap_image}
@@ -55,7 +55,7 @@
                                             <span class="icon-replay"></span>
                                             {if $captcha_type == 'captcha'}
                                                 <input type="text" name="captcha" id="captcha" />
-                                                <div id="for_captcha" class="for_validations"></div>
+                                                <label id="for_captcha" class="for_validations"></label>
                                             {/if}
                                         </span>
                                     </label>

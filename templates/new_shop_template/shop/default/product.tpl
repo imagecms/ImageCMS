@@ -60,7 +60,7 @@
                 <!-- Output rating for the old product Start -->
                 <div class="frame_response">
                     <div class="star">
-                        {$CI->load->module('star_rating')->show_star_rating($model)}
+                        {$CI->load->module('star_rating')->show_star_rating()}
                     </div>
                 </div>
                 <!-- Output rating for the old product End -->
@@ -155,44 +155,49 @@
                                 data-prodid="{echo $model->getId()}"
                                 data-varid="{echo $model->firstVariant->getId()}"
                                 data-price="{echo $model->firstVariant->toCurrency()}"
-                                data-name="{echo ShopCore::encode($model->getName())}">
+                                data-name="{echo ShopCore::encode($model->getName())}"
+                                data-number="{echo $model->firstVariant->getnumber()}"
+                                data-maxcount="{echo $model->firstVariant->getstock()}">
                             {lang('s_buy')}
                         </button>
                     {/if}
 
                     {foreach $model->getProductVariants() as $key => $pv}
-                        <button style="display: none;" class="btn btn_buy variant_{echo $pv->getId()} variant" type="button" data-prodid="{echo $pv->getId()}" data-varid="{echo $pv->getId()}" data-price="{echo $pv->toCurrency()}" data-name="{if $pv->getName()}{echo ShopCore::encode($pv->getName())}{else:}{echo ShopCore::encode($model->getName())}{/if}">{lang('s_buy')}</button>
+                        <button style="display: none;" 
+                                class="btn btn_buy variant_{echo $pv->getId()} variant" 
+                                type="button" 
+                                data-prodid="{echo $pv->getId()}" 
+                                data-varid="{echo $pv->getId()}" 
+                                data-price="{echo $pv->toCurrency()}" 
+                                data-name="{if $pv->getName()}{echo ShopCore::encode($pv->getName())}{else:}{echo ShopCore::encode($model->getName())}{/if}">
+                            {lang('s_buy')}
+                        </button>
                     {/foreach}
                 </div>
             </div>
             <div class="d_i-b v-a_b m-b_20">
 
                 <!-- Start. Block "Add to Compare" -->
-                <button data-prodid="{echo $model->id}" class="btn btn_small_p" type="button" title="добавить в список сравнений">
+                <button class="btn btn_small_p toCompare"  
+                        data-prodid="{echo $model->getId()}"  
+                        type="button" 
+                        title="{lang('s_add_to_compare')}">
                     <span class="icon-comprasion_2"></span>
-                    <span>Добавить к сравнению</span>
+                    <span>{lang('s_add_to_compare')}</span>
                 </button>
                 <!-- End. Block "Add to Compare" -->
 
                 <br/>
-                <!-- Start. Block "Add to Wishlist" -->
-                <button class="btn btn_small_p" type="button" title="добавить в список желаний">
-                    {if !is_in_wish($model->getId())}
-                        <span data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" 
-                              data-varid="{echo $model->firstVariant->getId()}" 
-                              data-prodid="{echo $model->getId()}" 
-                              class="addToWList">
-                            <span class="icon-wish_2"></span>
-                            <span class="js blue">{lang('s_slw')}</span>
-                        </span>
-                    {else:}
-                        <a href="/shop/wish_list" class="red">
-                            <span class="icon-wish"></span>{lang('s_ilw')}
-                        </a>
-                    {/if}
+                <!--Block Wishlist Start-->
+                <button class="btn btn_small_p toWishlist" 
+                        data-prodid="{echo $model->getId()}" 
+                        data-varid="{echo $model->firstVariant->getId()}"  
+                        type="button" 
+                        title="{lang('s_add_to_wish_list')}">
+                    <span class="icon-wish_2"></span>
+                    <span class="js blue">{lang('s_slw')}</span>
                 </button>
                 <!-- Stop. Block "Add to Wishlist" -->
-
             </div>
         </div>
 
@@ -213,7 +218,7 @@
                 </li>
             {/if}
             <!-- End. Show the block information if available -->
-            
+
             <!-- Start. Display characteristics block if you have one -->
             {if $renderProperties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTableNew($model->getId())}
                 <li>
@@ -224,7 +229,7 @@
                 </li>
             {/if}
             <!-- End. Display characteristics block if you have one -->
-            
+
             <!--Output of the block if there is one accessory-->
             {if $accessories = $model->getRelatedProductsModels()}            
                 <li>
@@ -305,12 +310,35 @@
                                                 data-name - name product
                                                 these are the main four options for the button to "buy"
                                     -->
-                                    <button class="btn btn_buy" data-varid="{echo $p->firstVariant->getId()}" data-prodid="{echo $p->getId()}" data-price="{echo $p->firstvariant->toCurrency()}" data-name="{echo ShopCore::encode($p->getName())}" type="button">{lang('s_buy')}</button>
+                                    <button class="btn btn_buy" 
+                                            data-varid="{echo $p->firstVariant->getId()}" 
+                                            data-prodid="{echo $p->getId()}" 
+                                            data-price="{echo $p->firstvariant->toCurrency()}" 
+                                            data-name="{echo ShopCore::encode($p->getName())}" 
+                                            type="button"
+                                            data-number="{echo $p->firstVariant->getnumber()}"
+                                            data-maxcount="{echo $p->firstVariant->getstock()}">
+                                        {lang('s_buy')}
+                                    </button>
 
 
-                                    <div class="d_i-b">                                                    
-                                        <button class="btn btn_small_p" type="button" title="добавить в список сравнений"><span class="icon-comprasion_2"></span></button>
-                                        <button class="btn btn_small_p" type="button" title="добавить в список желаний"><span class="icon-wish_2"></span></button>
+                                    <div class="d_i-b"> 
+                                        <!-- to compare button -->
+                                        <button class="btn btn_small_p toCompare"
+                                                data-prodid="{echo $p->getId()}"  
+                                                type="button" 
+                                                title="{lang('s_add_to_compare')}">
+                                            <span class="icon-comprasion_2"></span>
+                                        </button>
+
+                                        <!-- to wish list button -->
+                                        <button class="btn btn_small_p toWishlist" 
+                                                data-prodid="{echo $p->getId()}" 
+                                                data-varid="{echo $p->firstVariant->getId()}"  
+                                                type="button" 
+                                                title="{lang('s_add_to_wish_list')}">
+                                            <span class="icon-wish_2"></span>
+                                        </button>
                                     </div>
                                 </div>
                             </li>
@@ -373,11 +401,7 @@
                                     <div class="d_i-b">+</div>
                                 </li>
                                 <!--Output of goods subsidiaries set-->
-                                {$data = array('names'=>array(), 'ids'=>array(), 'prices'=>array())}
-                                {foreach $kitProducts->getShopKitProducts() as  $key => $kitProduct}  
-                                    {array_push($data['names'], $kitProduct->getSProducts()->getName())}
-                                    {array_push($data['ids'], $kitProduct->getSProducts()->getId())}
-                                    {array_push($data['prices'], (float)trim($kitProduct->getDiscountProductPrice()))}
+                                {foreach $kitProducts->getShopKitProducts() as  $key => $kitProduct}
                                     <li class="{if $kitProducts->countProducts() >= 2}span2{else:}span3{/if}">
                                         <div class="item_set">
                                             <div class="description">
@@ -421,13 +445,18 @@
                                 <!-- $kitProducts->getTotalPrice() - the entire set of output price with discount-->
                                 <span class="f-w_b">{echo $kitProducts->getTotalPrice()}</span> {$CS}
                             </div>                                   
-                            <button class="btn btn_buy" type="button" 
-                                    data-prodid="{$data['ids'][] =  $kitProducts->getMainProduct()->getId(); echo json_encode(array_merge($data['ids']))}" 
-                                    data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}" 
+                            <button class="btn btn_buy" type="button"                                    
                                     data-price="{echo $kitProducts->getTotalPrice()}" 
-                                    data-prices ="{$data['prices'][] = (float)$kitProducts->getMainProductPrice(); echo json_encode($data['prices'])}"
-                                    data-name="{$data['names'][] =  $kitProducts->getMainProduct()->getName(); echo ShopCore::encode(json_encode($data['names']))}" 
-                                    data-kit="true">{lang('s_buy')}</button>
+                                    data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}" 
+                                    data-prodid="{echo json_encode(array_merge($kitProducts->getProductIdCart()))}" 
+                                    data-prices ="{echo json_encode($kitProducts->getPriceCart())}"
+                                    data-name="{echo ShopCore::encode(json_encode($kitProducts->getNamesCart()))}" 
+                                    data-kit="true"
+                                    data-kitId="{echo $kitProducts->getId()}"
+                                    data-number="{echo $model->firstVariant->getnumber()}"
+                                    data-maxcount="{echo $model->firstVariant->getstock()}">
+                                {lang('s_buy')}
+                            </button>
                         </li>
                     </ul>
                 </li>
@@ -494,7 +523,17 @@
                                 <span class="f-w_b">{echo $product->firstVariant->toCurrency()}</span> 
                                 {$CS}
                             </div>
-                            <button class="btn btn_buy" type="button" data-prodid="{echo $product->getId()}" data-varid="{echo $product->firstVariant->getId()}" data-price="{echo $product->firstVariant->getPrice()}" data-name="{echo ShopCore::encode($product->getName())}">{lang('s_buy')}</button>
+
+                            <button class="btn btn_buy" 
+                                    type="button" 
+                                    data-prodid="{echo $product->getId()}" 
+                                    data-varid="{echo $product->firstVariant->getId()}" 
+                                    data-price="{echo $product->firstVariant->toCurrency()}"  
+                                    data-name="{echo ShopCore::encode($product->getName())}"
+                                    data-number="{echo $product->firstVariant->getnumber()}"
+                                    data-maxcount="{echo $product->firstVariant->getstock()}">
+                                {lang('s_buy')}
+                            </button>
                         </div>
                     </li>
                 {/foreach}
@@ -502,6 +541,6 @@
         </div>
     </div>
 {/if}
-<!--Similar Products END-->
+<!--Similar Products END-->{widget('view_product')}
 </article>
 </div>

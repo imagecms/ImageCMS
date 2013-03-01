@@ -368,9 +368,14 @@ class Exchange {
         $temp_properties = $this->ci->db->select('id, data')->where('locale', $this->locale)->get('shop_product_properties_i18n')->result_array();
         if (is_array($temp_properties)) {
             foreach ($temp_properties as $key => $item) {
-                $properties_data[$item['id']] = unserialize($item['data']);
+                if (unserialize($item['data']) == false)
+                    $properties_data[$item['id']] = array();
+                else
+                    $properties_data[$item['id']] = unserialize($item['data']);
             }
         }
+//        var_dump($properties_data);
+//        exit();
         unset($temp_properties);
 
         foreach ($this->xml->Каталог->Товары->Товар as $product) {
@@ -618,9 +623,9 @@ class Exchange {
         foreach ($this->xml->ПакетПредложений->Предложения->Предложение as $offer) {
             //prepare update data
             $data = array();
-            $data['price'] = (float)$offer->Цены->Цена->ЦенаЗаЕдиницу;
-            $data['price_in_main'] = (float)$offer->Цены->Цена->ЦенаЗаЕдиницу;
-            $data['stock'] = (int)$offer->Количество;
+            $data['price'] = (float) $offer->Цены->Цена->ЦенаЗаЕдиницу;
+            $data['price_in_main'] = (float) $offer->Цены->Цена->ЦенаЗаЕдиницу;
+            $data['stock'] = (int) $offer->Количество;
             $this->ci->db->where('external_id', $offer->Ид . "")->update($this->product_variants_table, $data);
         }
     }

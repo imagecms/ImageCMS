@@ -18,7 +18,7 @@
                         <span class="frame_form_field">
                             <span class="icon-email"></span>
                             <input type="text" name="email"/>
-                            <div id="for_email" class="for_validations"></div>
+                            <label id="for_email" class="for_validations"></label>
                         </span>
                     </label>
                     <label>
@@ -26,7 +26,7 @@
                         <span class="frame_form_field">
                             <span class="icon-password"></span>
                             <input type="password" name="password"/>
-                            <div id="for_password" class="for_validations"></div>
+                            <label id="for_password" class="for_validations"></label>
                         </span>
                     </label>
                     <!-- captcha block -->

@@ -1131,7 +1131,7 @@ footer{background-color: #303030\0/;*background-color: #303030;}
 .success, .success *{color: #5fa335;}
 label.success{margin-top: 7px;padding: 2px 11px;}
 label.error{margin-top: 7px;padding: 2px 11px;}
-.error, .error *{color: #e42e2e;}
+.error, .error *{color: #e42e2e; display: block;margin-top: 7px;margin-bottom: 7px;}
 /************************************************/
 
 .tabs-dif-all_par{margin: 4px 0 0 50px !important;}

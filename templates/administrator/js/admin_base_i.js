@@ -613,7 +613,7 @@ $(document).ready(function() {
                     $.each(obj.pages_list, function(index, value) {
                         st += '<li><a href="#" class="page_title" data-title="' + this.title + '" data-id="' + this.id + '">' + this.title + '</a></li>';
                     });
-                    $('#pages_list_holder').html('<ul>' + st + '</ul>');
+                    $('#pages_list_holder').html('<ul class="nav myTab nav-tabs nav-stacked">' + st + '</ul>');
                 } else {
                     $('#pages_list_holder').html('В категории нет страниц');
                 }

@@ -120,7 +120,7 @@
                                     {$CI->load->module('star_rating')->show_star_rating($product)}
 
                                     <!-- displaying comments count -->
-                                    <a href="{shop_url('product/'.$product->url.'#cc')}" class="count_response"><span class="icon-comment"></span>
+                                    <a href="{shop_url('product/'.$product->url.'#cc')}" class="count_response">
                                         {echo $Comments[$product->getId()]}
                                     </a>
                                 </div>
@@ -155,7 +155,9 @@
                                             data-prodid="{echo $product->getId()}"
                                             data-varid="{echo $product->firstVariant->getId()}"
                                             data-price="{echo $product->firstVariant->toCurrency()}"
-                                            data-name="{echo ShopCore::encode($product->getName())}">
+                                            data-name="{echo ShopCore::encode($product->getName())}"
+                                            data-number="{echo $product->firstVariant->getnumber()}"
+                                            data-maxcount="{echo $product->firstVariant->getstock()}">
                                         {lang('s_buy')}
                                     </button>
                                 {/if}
@@ -163,10 +165,21 @@
                                 <div class="d_i-b">
 
                                     <!-- to compare button -->
-                                    <button class="btn btn_small_p toCompare"  data-prodid="{echo $product->getId()}"  type="button" title="{lang('s_add_to_compare')}"><span class="icon-comprasion_2"></span></button>
+                                    <button class="btn btn_small_p toCompare"  
+                                            data-prodid="{echo $product->getId()}"  
+                                            type="button" 
+                                            title="{lang('s_add_to_compare')}">
+                                        <span class="icon-comprasion_2"></span>
+                                    </button>
 
                                     <!-- to wish list button -->
-                                    <button class="btn btn_small_p toWishlist" data-prodid="{echo $product->getId()}" data-varid="{echo $product->firstVariant->getId()}"  type="button" title="{lang('s_add_to_wish_list')}"><span class="icon-wish_2"></span></button>
+                                    <button class="btn btn_small_p toWishlist" 
+                                            data-prodid="{echo $product->getId()}" 
+                                            data-varid="{echo $product->firstVariant->getId()}"  
+                                            type="button" 
+                                            title="{lang('s_add_to_wish_list')}">
+                                        <span class="icon-wish_2"></span>
+                                    </button>
                                 </div>
                             </div>
 
@@ -199,7 +212,7 @@
 
             <!-- pagination variable from category.php controller -->
             {$pagination}
-
         </div>
     </div>
+
 </article>
