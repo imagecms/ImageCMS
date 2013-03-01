@@ -8,10 +8,14 @@
             </div>
             <div class="span6">
                 <div class="text">
-                    <h1>Новости</h1>
+                    <h1>{$category[name]}</h1>
                     {foreach $pages as $p}
-                        <h2>{$p['title']}</h2>
-                        <p>{$p['full_text']}</p>
+                        <h2>
+                            <a href="{site_url($p['full_url'])}">
+                                {$p['title']}
+                            </a>
+                        </h2>
+                        <p>{$p['prev_text']}</p>
                     {/foreach}
                 </div>
             </div>
