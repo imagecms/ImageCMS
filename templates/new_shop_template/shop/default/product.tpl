@@ -450,6 +450,7 @@
                                     data-price="{echo $kitProducts->getTotalPrice()}" 
                                     data-prices ="{$data['prices'][] = (float)$kitProducts->getMainProductPrice(); echo json_encode($data['prices'])}"
                                     data-name="{$data['names'][] =  $kitProducts->getMainProduct()->getName(); echo ShopCore::encode(json_encode($data['names']))}" 
+
                                     data-kit="true"
                                     data-kitId="{echo $kitProducts->getId()}">
                                 {lang('s_buy')}
@@ -520,7 +521,7 @@
                                 <span class="f-w_b">{echo $product->firstVariant->toCurrency()}</span> 
                                 {$CS}
                             </div>
-                            <button class="btn btn_buy" type="button" data-prodid="{echo $product->getId()}" data-varid="{echo $product->firstVariant->getId()}" data-price="{echo $product->firstVariant->getPrice()}" data-name="{echo ShopCore::encode($product->getName())}">{lang('s_buy')}</button>
+                            <button class="btn btn_buy" type="button" data-prodid="{echo $product->getId()}" data-varid="{echo $product->firstVariant->getId()}" data-price="{echo $product->firstVariant->toCurrency()}" data-name="{echo ShopCore::encode($product->getName())}">{lang('s_buy')}</button>
                         </div>
                     </li>
                 {/foreach}
@@ -528,6 +529,6 @@
         </div>
     </div>
 {/if}
-<!--Similar Products END-->
+<!--Similar Products END-->{widget('view_product')}
 </article>
 </div>

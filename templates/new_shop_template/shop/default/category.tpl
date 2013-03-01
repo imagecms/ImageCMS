@@ -210,7 +210,7 @@
 
             <!-- pagination variable from category.php controller -->
             {$pagination}
-
         </div>
     </div>
+
 </article>
