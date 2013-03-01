@@ -31,14 +31,14 @@
                                     <ul>
                                         <div class="title">
                                             {foreach $item->getSubtree() as $subItem}
-                                                {$count_item = $categorys[$subItem->getId()];}
+                                                {$count_item = $categories[$subItem->getId()];}
                                                 {if $count_item}
                                                     {echo $item->getName()}{break;}
                                                 {/if}
                                             {/foreach}
                                         </div>
                                         {foreach $item->getSubtree() as $subItem}
-                                            {$count_item = $categorys[$subItem->getId()];}
+                                            {$count_item = $categories[$subItem->getId()];}
                                             {if $count_item}
                                                 <li{if $_GET['category'] && $_GET['category'] == $subItem->getId()} class="active"{/if}>
                                                     <span>
