@@ -48,12 +48,12 @@ var ImageCMSApi = {
                 ImageCMSApi.returnMsg("=== Sending api request to " + url + "... ===");
             },
             success: function(obj) {
-                //console.log($('#'+selector).parent());
                 if (obj !== null) {
                     ImageCMSApi.returnMsg("[status]:" + obj.status);
                     ImageCMSApi.returnMsg("[message]: " + obj.msg);
                     if (obj.status == true) {
-                        $('#' + selector).html('<div class="msg"><div class="success">' + obj.msg + '</div></div>');
+                        $('#' + selector).hide();
+                        $('<div class="msg"><div class="success">' + obj.msg + '</div></div>').appendTo($('#' + selector).parent());
                     }
                     if (obj.cap_image != 'undefined' && obj.cap_image != null) {
                         ImageCMSApi.addCaptcha(obj.cap_image);
@@ -68,6 +68,13 @@ var ImageCMSApi = {
                             if (obj.redirect !== false) {
                                 location.href = obj.redirect;
                             }
+                    if (obj.refresh != true && obj.redirect !== 'undefined') {
+                        setTimeout((function() {
+                            $('.msg').hide();
+                            $('#' + selector).show();
+
+                        }), 3000);
+                    }
                 }
                 return this;
             },
@@ -92,7 +99,6 @@ var ImageCMSApi = {
      * */
     sendValidations: function(validations, selector) {
         if (typeof validations === 'object') {
-
             for (var key in validations) {
                 if (validations[key] != "") {
                     $('#' + selector).find('label#for_' + key).addClass('error');
@@ -140,9 +146,8 @@ $(document).ready(function() {
 
     $('form input, textarea').live('input', function() {
         if ($.exists($('label#for_' + $(this).attr('name')))) {
-            $('label#for_' + $(this).attr('name')).hide(100, function() {
-                $('.btn_not_avail.active').drop('positionDrop');
-            });
+            $('label#for_' + $(this).attr('name')).hide();
+            $('.btn_not_avail.active').drop('positionDrop');
         }
     });
 });

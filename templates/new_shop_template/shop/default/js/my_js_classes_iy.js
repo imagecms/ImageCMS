@@ -53,7 +53,7 @@ var NotitficationApi = {
                     if (obj.status === true) {
 //                        console.log($(NotitficationApi.formClass).has('form#' + selector));
 //                        var tempHtml = $(NotitficationApi.formClass).has('form#' + selector).html();
-                        $(NotitficationApi.formClass).has('form#' + selector).html('<div class="msg"><div class="success">' + obj.msg + '</div></div>');
+                        $(NotitficationApi.formClass + ' form#' + selector).html('<div class="msg"><div class="success">' + obj.msg + '</div></div>');
                         $('.btn_not_avail.active').drop('positionDrop');
                         //closing modal
                         if (obj.close === true) {
