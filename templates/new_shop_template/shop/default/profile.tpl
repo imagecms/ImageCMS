@@ -44,13 +44,14 @@
         <div class="frame_tabs">
             <div id="my_data">
                 <div class="standart_form horizontal_form">
-                    <form method="post" id="form_change_info">
+                    <form method="post" id="form_change_info" onsubmit="ImageCMSApi.formAction('/shop/profileapi/changeInfo', 'form_change_info');
+                                        return false;">
                         <label>
                             <span class="title">{lang('s_c_uoy_name_u')}:</span>
                             <span class="row">
                                 <span class="frame_form_field">
                                     <input type="text" value="{echo encode($profile->getName())}" name="name"/>
-                                    <div id="for_name" class="for_validations"></div>
+                                    <label id="for_name" class="for_validations"></label>
                                     <span class="help_inline">{lang('s_email_4_sumbls')}</span>
                                 </span>
                             </span>
@@ -58,31 +59,30 @@
                         <label>
                             <span class="title">{lang('s_c_uoy_user_el')}:</span>
                             <span class="frame_form_field">
-                                <input type="text" disabled value="{echo encode($profile->getUserEmail())}" name="email"/>
+                                <input type="text" disabled="disabled" value="{echo encode($profile->getUserEmail())}" name="email"/>
                                 <input type="hidden" value="{echo encode($profile->getUserEmail())}" name="email"/>
-                                <div id="for_email" class="for_validations"></div>
                                 <span class="help_inline">{lang('s_email_is_login')}</span>
+                                <label id="for_email" class="for_validations"></label>
                             </span>
                         </label>
                         <label>
                             <span class="title">{lang('s_phone')}:</span>
                             <span class="frame_form_field">
                                 <input type="text" value="{echo encode($profile->getPhone())}" name="phone"/>
-                                <div id="for_phone" class="for_validations"></div>
+                                <label id="for_phone" class="for_validations"></label>
                             </span>
                         </label>
                         <label>
                             <span class="title">{lang('s_profile_me_address')}:</span>
                             <span class="frame_form_field">
                                 <input type="text" value="{echo encode($profile->getAddress())}" name="address"/>
-                                <div id="for_address" class="for_validations"></div>
+                                <label id="for_address" class="for_validations"></label>
                             </span>
                         </label>
                         <div class="frameLabel">
                             <span class="title">&nbsp;</span>
                             <span class="frame_form_field">
-                                <input type="submit" value="{lang('s_edit')}" class="btn" onclick="ImageCMSApi.formAction('/shop/profileapi/changeInfo', 'form_change_info');
-                                        return false;"/>
+                                <input type="submit" value="{lang('s_edit')}" class="btn"/>
                             </span>
                         </div>
                         {form_csrf()}
@@ -98,21 +98,21 @@
                             <span class="title">{lang('lang_old_password')}:</span>
                             <span class="frame_form_field">
                                 <input type="password" name="old_password"/>
-                                <div id="for_old_password" class="for_validations"></div>
+                                <label id="for_old_password" class="for_validations"></label>
                             </span>
                         </label>
                         <label>
                             <span class="title">{lang('lang_new_password')}:</span>
                             <span class="frame_form_field">
                                 <input type="password" name="new_password"/>
-                                <div id="for_new_password" class="for_validations"></div>
+                                <label id="for_new_password" class="for_validations"></label>
                             </span>
                         </label>
                         <label>
                             <span class="title">{lang('s_newpassword')}:</span>
                             <span class="frame_form_field">
                                 <input type="password" name="confirm_new_password"/>
-                                <div id="for_confirm_new_password" class="for_validations"></div>
+                                <label id="for_confirm_new_password" class="for_validations"></label>
                             </span>
                         </label>
                         <div class="frameLabel">
