@@ -190,7 +190,7 @@
     {literal}
     <div class="frame_head_content">
         <div class="header_title">Ваш заказ</div>
-        <table class="table v-a_bas table_order">
+        <table class="table v-a_bas table_order preview_order">
             <thead class="v_h">
                 <tr>
                     <td class="span1"></td>

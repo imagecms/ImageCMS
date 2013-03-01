@@ -46,7 +46,6 @@
             </div>               
             <ul>
                 {foreach getPromoBlock('hot', 3, '', $model->getId()) as $hotProduct}
-                    {$discount = ShopCore::app()->SDiscountsManager->productDiscount($hotProduct->id)}
                     <li class="smallest_item">
                         <div class="photo_block">
                             <a href="{shop_url('product/' . $hotProduct->getUrl())}">
