@@ -276,8 +276,7 @@
             </div>
             <div class="inside_padd">
                 <div class="horizontal_form standart_form">
-                    <form method="post" id="data-callback" onsubmit="NotitficationApi.formAction('/shop/callbackApi', 'data-callback');
-                                                            return false;">
+                    <form method="post" id="data-callback" onsubmit="Notification.formAction('/shop/callbackApi', 'data-callback');return false;">
                         <label>
                             <span class="title">Ваше имя</span>
                             <span class="frame_form_field">
@@ -322,8 +321,8 @@
         <div class="drop-footer"></div>
     </div>
     <div class="d_n" data-clone="data-report">
-        <form method="post" action="" id="data-report" onsubmit="NotitficationApi.formAction('/shop/ajax/getApiNotifyingRequest', 'data-report');
-                                                            return false;" >
+        <form method="post" action="" id="data-report" onsubmit="Notification.formAction('/shop/ajax/getApiNotifyingRequest', 'data-report');
+                                                                    return false;" >
             <div class="standart_form">
                 <label>
                     <span class="title">Ваше имя</span>

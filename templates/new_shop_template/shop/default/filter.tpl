@@ -46,7 +46,7 @@
                                 <li>
                                     <div class="o_h">
                                         {//link to uncheck current filter}
-                                        <a href="{echo str_replace('brand[]=' . $brand->id, '', $aurl)}" style="text-decoration: none;"><span class="times">&times;</span>{echo ShopCore::encode($brand->name)}</a>
+                                        <a href="{echo str_replace(array('&brand[]=' . $brand->id, '?brand[]=' . $brand->id), '', $aurl)}" style="text-decoration: none;"><span class="times">&times;</span>{echo ShopCore::encode($brand->name)}</a>
                                     </div>
                                 </li>
                             {/if}
@@ -62,7 +62,7 @@
                                 <li>
                                     <div class="o_h">
                                         {//link to uncheck current filter}
-                                        <a href="{echo str_replace('category[]=' . $category->category_id, '', $aurl)}" style="text-decoration: none;"><span class="times">&times;</span>{echo ShopCore::encode($category->name)}</a>
+                                        <a href="{echo str_replace(array('&category[]=' . $category->category_id, '?category[]=' . $category->category_id), '', $aurl)}" style="text-decoration: none;"><span class="times">&times;</span>{echo ShopCore::encode($category->name)}</a>
                                     </div>
                                 </li>
                             {/if}
@@ -80,7 +80,7 @@
                                         <li>
                                             <div class="o_h">
                                                 {//link to unckeck current filter}
-                                                <a href="{echo str_replace('&p[' . $prop->property_id . '][]=' . htmlspecialchars_decode($key.value),'',$aurl)}" style="text-decoration: none;"><span class="times">&times;</span>{echo ShopCore::encode($prop->name).": ".$key.value}</a>
+                                                <a href="{echo str_replace(array('&p[' . $prop->property_id . '][]=' . htmlspecialchars_decode($key.value), '?p[' . $prop->property_id . '][]=' . htmlspecialchars_decode($key.value)),'',$aurl)}" style="text-decoration: none;"><span class="times">&times;</span>{echo ShopCore::encode($prop->name).": ".$key.value}</a>
                                             </div>
                                         </li>
                                     {/if}
@@ -93,15 +93,16 @@
                 {//displaying price range filter}
                 {if isset(ShopCore::$_GET['lp']) OR isset(ShopCore::$_GET['rp'])}
                     <li>
-                        <span class="times">&times;</span>
+                        
                         <div class="o_h">
                             {//link to uncheck filter by price}
-                            <a href="{echo str_replace('&lps=' . ShopCore::$_GET['lp'] . '&rp=' . ShopCore::$_GET['rp'], "", ShopCore::encode($aurl))}">
-                                {if isset(ShopCore::$_GET['lp'])}
+                            <a href="{echo str_replace(array('&lp=' . ShopCore::$_GET['lp'], '&rp=' . ShopCore::$_GET['rp'], '?rp=' . ShopCore::$_GET['rp'], '?lp=' . ShopCore::$_GET['lp']), "", $aurl)}">
+                                <span class="times">&times;</span>
+                                {if isset(ShopCore::$_GET['lp']) && ShopCore::$_GET['lp'] != (int)$priceRange.minCost}
                                     {lang('s_from')} 
                                     {echo ShopCore::$_GET['lp']} {$CS}
                                 {/if}
-                                {if isset(ShopCore::$_GET['rp'])} 
+                                {if isset(ShopCore::$_GET['rp']) && ShopCore::$_GET['rp'] != (int)$priceRange.maxCost} 
                                     {lang('s_do')} 
                                     {echo ShopCore::$_GET['rp']} {$CS}
                                 {/if}

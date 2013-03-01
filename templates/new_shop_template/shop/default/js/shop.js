@@ -557,7 +557,7 @@ $(
             if ($('#method_deliv'))
                 recountCartPage();
             //update popup cart
-            $('table.table_order td:last-child span:last-child').last().html(Shop.Cart.totalPrice.toFixed(2));
+            $('table.table_order.preview_order td:last-child span:last-child').last().html(Shop.Cart.totalPrice.toFixed(2));
         
     });
 
