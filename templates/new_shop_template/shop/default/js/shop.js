@@ -258,6 +258,8 @@ var Shop = {
                 name : false, 
                 count: false,
                 kit: false,
+                maxcount:0,
+                number:''
             };
 
         return prototype = {
@@ -269,6 +271,8 @@ var Shop = {
             kit: obj.kit?obj.kit:false,
             prices: obj.prices?obj.prices:0,
             kitId: obj.kitId?obj.kitId:0,
+            maxcount: obj.maxcount?obj.maxcount:0,
+            number: obj.number?obj.number:0,
             storageId : function(){
                 return 'cartItem_'+this.id+'_'+this.vId;
             }
@@ -285,6 +289,8 @@ var Shop = {
         cartItem.kit = $context.data('kit');
         cartItem.prices = $context.data('prices');
         cartItem.kitId = $context.data('kitid');
+        cartItem.maxcount = $context.data('maxcount');
+        cartItem.number = $context.data('number');
         
         return cartItem;
     },

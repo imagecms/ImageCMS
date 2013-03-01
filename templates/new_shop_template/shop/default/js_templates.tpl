@@ -26,7 +26,7 @@
                                 </a>
                             </td>
                             <td>
-                                <a href="#"><%- item.name %></a>
+                                <a href="#"><%- item.name %></a><span class="c_97"><% if (item.number) { %> (<%- item.number %>) <% } %></span>
                                 <div class="price price_f-s_16">
                                     <span class="first_cash"><span class="f-w_b"><%- parseFloat(item.price).toFixed(2) %></span> грн.</span>
                                 </div>
@@ -211,7 +211,7 @@
                                 </a>
                             </td>
                             <td>
-                                <a class="c_97" href="#"><%- item.name %></a>
+                                <a href="#"><%- item.name %></a><span class="c_97"><% if (item.number) { %> (<%-item.number %>) <% } %></span>
                                 <div class="price price_f-s_16">
                                     <span class="first_cash"><span class="f-w_b"><%- parseFloat(item.price).toFixed(2) %></span> <%- curr %>.</span>
                                 </div>
