@@ -151,13 +151,16 @@ var ImageDialog = {
 			};
 		}
 
+                var cls = '';
+                if (fancy == true)
+                    cls = 'fancybox';
 		tinymce.extend(args, {
 			src : nl.src.value.replace(/ /g, '%20'),
 			width : nl.width.value,
 			height : nl.height.value,
 			alt : nl.alt.value,
 			title : nl.title.value,
-			'class' : getSelectValue(f, 'class_list') + fancy?' fancybox':'',
+			'class' : getSelectValue(f, 'class_list') + cls,
 			style : nl.style.value,
 			id : nl.id.value,
 			dir : '/',//nl.dir.value,
