@@ -147,7 +147,8 @@ $(document).ready(function() {
     $('form input, textarea').live('input', function() {
         if ($.exists($('label#for_' + $(this).attr('name')))) {
             $('label#for_' + $(this).attr('name')).hide();
-            $('.btn_not_avail.active').drop('positionDrop');
+            if ($('.btn_not_avail.active').length != 0)
+                $('.btn_not_avail.active').drop('positionDrop');
         }
     });
 });
