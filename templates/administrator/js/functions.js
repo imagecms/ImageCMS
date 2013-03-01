@@ -1,3 +1,4 @@
+var editorsEnabled = false;
 //temporary
 function ChangeBannerActive(el, bannerId)
 {
@@ -316,19 +317,22 @@ function initElRTE()
 
 function initTinyMCE()
 {
+    
     var opts = {
+        //mode : "textareas",
         // Location of TinyMCE script
         height: 300,
         script_url: '/js/tiny_mce/tiny_mce.js',
         // General options
         theme: "advanced",
-        skin: "o2k7",
-        skin_variant: "silver",
+        //skin: "o2k7",
+        skin: 'bootstrap',
+        //skin_variant: "silver",
         plugins: "autolink,lists,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,advlist",
         // Theme options
         theme_advanced_buttons1: /*"save"+*/"newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect,|,cut,copy,paste,pastetext,pasteword, |, search,replace",
-        theme_advanced_buttons2: "bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor, |, insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,pagebreak",
-        theme_advanced_buttons3: "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
+        theme_advanced_buttons2: "bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,",
+        theme_advanced_buttons3: "visualchars,nonbreaking,template,pagebreak,|,tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
 //            theme_advanced_buttons4 : "insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,pagebreak",
         theme_advanced_toolbar_location: "top",
         theme_advanced_toolbar_align: "left",
@@ -352,7 +356,15 @@ function initTinyMCE()
                 lang: 'ru',
                 dialog: {width: 900, modal: true, title: 'Files', zIndex: 900001},
                 getFileCallback: function(file) {
-                    win.document.forms[0].elements[field_name].value = '/' + file.path;
+                    
+                    file.path = '/'+file.path;
+                    
+                    var field = win.document.forms[0].elements[field_name];
+                    field.value = file.path;
+                    
+                    $(field).change();
+                    
+                    //ImageDialog.showPreviewImage('/' + file.path);
                 },
                 commandsOptions: {
                     getfile: {
@@ -376,9 +388,26 @@ function initTinyMCE()
             }
     );
 
+//if (!editorsEnabled)
+//{
+    //$('#prev_text').tinymce(opts);
+    
     $('textarea.elRTE').not('.focusOnClick').each(function() {
-        $(this).tinymce(opts);
-    })
+        var id = $(this).attr('id');
+        if ($(this).hasClass('inited') == false)
+        {
+            opts.selector = id;
+            $(this).addClass('inited').tinymce(opts);
+            
+        }
+        
+    });
+    
+//    editorsEnabled = true;
+//}
+
+
+
 }
 
 function initTextEditor(name)

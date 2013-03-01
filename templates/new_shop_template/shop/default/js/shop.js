@@ -22,17 +22,29 @@ var Shop = {
                 cartItem: _.clone(cartItem)
             });
             //
-            Shop.currentItem = cartItem;
-            $.post('/shop/cart/add', {
+            var data = {
                 'quantity': cartItem.count,
                 'productId': cartItem.id,
                 'variantId': cartItem.vId
-            },
+            };
+            var url = '/shop/cart/add';
+            
+            if (cartItem.kit)
+            {
+                data = {
+                    'quantity': cartItem.count,
+                    'kitId': cartItem.kitId
+                };
+            
+                url += '/ShopKit';
+            }
+            
+            Shop.currentItem = cartItem;
+            $.post(url, data,
             function(data){
                 try {
-                        
                     responseObj = JSON.parse(data);
-                    //console.log(responseObj);
+                    console.log(responseObj);
                         
                     //save item to storage
                     Shop.Cart._add(Shop.currentItem);
@@ -66,9 +78,16 @@ var Shop = {
             return this;
         },
         rm : function(cartItem){
+            cartItem = this.load('cartItem_'+cartItem.id+'_'+cartItem.vId);
+            console.log(cartItem);
+            
+            if (cartItem.kit)
+                var key = 'ShopKit_'+cartItem.kitId;
+            else
+                var key = 'SProducts_'+cartItem.storageId();
+            
             Shop.currentItem = cartItem;
-            var sp = 'SProducts_';
-            $.getJSON('/shop/cart_api/delete/'+sp+cartItem.id+'_'+cartItem.vId, function(data){
+            $.getJSON('/shop/cart_api/delete/'+key, function(data){
                 
                 localStorage.removeItem(Shop.currentItem.storageId());
                 
@@ -238,7 +257,7 @@ var Shop = {
                 vId : false,
                 name : false, 
                 count: false,
-                kit: false
+                kit: false,
             };
 
         return prototype = {
@@ -249,6 +268,7 @@ var Shop = {
             count : obj.count?obj.count:1,
             kit: obj.kit?obj.kit:false,
             prices: obj.prices?obj.prices:0,
+            kitId: obj.kitId?obj.kitId:0,
             storageId : function(){
                 return 'cartItem_'+this.id+'_'+this.vId;
             }
@@ -264,6 +284,7 @@ var Shop = {
         cartItem.name = $context.data('name');
         cartItem.kit = $context.data('kit');
         cartItem.prices = $context.data('prices');
+        cartItem.kitId = $context.data('kitid');
         
         return cartItem;
     },
@@ -465,8 +486,8 @@ function rmFromPopupCart(context, isKit)
     
     Shop.Cart.rm(cartItem).totalRecount()
     tr.remove();
-    if ($('#popupCart tbody tr').length == 0)
-        $('#popupCart').html(_.template( $('#cartPopupTemplate').html() , {cart:Shop.Cart}));
+//    if ($('#popupCart tbody tr').length == 0)
+//        $('#popupCart').html(_.template( $('#cartPopupTemplate').html() , {cart:Shop.Cart}));
     
 };
 

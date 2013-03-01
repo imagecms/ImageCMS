@@ -19,6 +19,13 @@ var ImageDialog = {
 		TinyMCE_EditableSelects.init();
 
 		if (n.nodeName == 'IMG') {
+                    
+                        if (n.className.match('fancybox')){
+                            nl[0].elements[3].checked = 'checked';
+                            nl.fancy.checked = 'checked';
+                            nl.fancy.disabled = 'disabled';
+                        }
+                        
 			nl.src.value = dom.getAttrib(n, 'src');
 			nl.width.value = dom.getAttrib(n, 'width');
 			nl.height.value = dom.getAttrib(n, 'height');
@@ -89,6 +96,7 @@ var ImageDialog = {
 	},
 
 	insert : function(file, title) {
+    
 		var ed = tinyMCEPopup.editor, t = this, f = document.forms[0];
 
 		if (f.src.value === '') {
@@ -119,6 +127,8 @@ var ImageDialog = {
 		var ed = tinyMCEPopup.editor, f = document.forms[0], nl = f.elements, v, args = {}, el;
 
 		tinyMCEPopup.restoreSelection();
+                
+                var fancy = nl[0].elements[3].checked;
 
 		// Fixes crash in Safari
 		if (tinymce.isWebKit)
@@ -147,10 +157,10 @@ var ImageDialog = {
 			height : nl.height.value,
 			alt : nl.alt.value,
 			title : nl.title.value,
-			'class' : getSelectValue(f, 'class_list'),
+			'class' : getSelectValue(f, 'class_list') + fancy?' fancybox':'',
 			style : nl.style.value,
 			id : nl.id.value,
-			dir : nl.dir.value,
+			dir : '/',//nl.dir.value,
 			lang : nl.lang.value,
 			usemap : nl.usemap.value,
 			longdesc : nl.longdesc.value
@@ -169,7 +179,22 @@ var ImageDialog = {
 		el = ed.selection.getNode();
 
 		if (el && el.nodeName == 'IMG') {
-			ed.dom.setAttribs(el, args);
+
+                    ed.dom.setAttribs(el, args);
+                    var updateEl = el;
+                      //if fancybox
+                    if (fancy == true)
+                    {
+                        var a = document.createElement('a');
+                        a.appendChild(el);
+                        a.className += 'fancybox';
+                        a.setAttribute('href', args.src);
+                        
+                        updateEl = a.outerHTML;
+                    }
+                  
+                    ed.execCommand('mceReplaceContent', false, updateEl);
+                        
 		} else {
 			tinymce.each(args, function(value, name) {
 				if (value === "") {
@@ -177,7 +202,12 @@ var ImageDialog = {
 				}
 			});
 
-			ed.execCommand('mceInsertContent', false, tinyMCEPopup.editor.dom.createHTML('img', args), {skip_undo : 1});
+                        if (fancy == true)
+                            var insertHtml = '<a href="'+args.src+'" class="fancybox">'+tinyMCEPopup.editor.dom.createHTML('img', args)+'</a>';
+                        else
+                            var insertHtml = tinyMCEPopup.editor.dom.createHTML('img', args);
+                        
+			ed.execCommand('mceInsertContent', false, insertHtml, {skip_undo : 1});
 			ed.undoManager.add();
 		}
 
