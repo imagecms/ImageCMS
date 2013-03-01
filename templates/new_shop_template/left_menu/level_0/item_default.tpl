@@ -1,1 +1,7 @@
-<li><a href="{$link}" {$target}><span class="helper"></span><span>{$title}</span></a>{$wrapper}</li>
+<li>
+    <a href="#" class="">
+        <span class="icon-arrow-stPg"></span>
+        <span class="text-el">О магазине</span>
+    </a>
+    {$wrapper}
+</li>
