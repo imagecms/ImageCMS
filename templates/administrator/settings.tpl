@@ -96,8 +96,8 @@
                                                             <label class="control-label" for="textEditor">Текстовый редактор:</label>
                                                             <div class="controls">
                                                                 <select name="text_editor" id="textEditor">
-                                                                    <option value="elrte" {if $text_editor == 'elrte'} selected="selected" {/if} >elRTE</option>
                                                                     <option value="tinymce" {if $text_editor == 'tinymce'} selected="selected" {/if} >TinyMCE</option>
+                                                                    <option value="elrte" {if $text_editor == 'elrte'} selected="selected" {/if} >elRTE</option>
                                                                     <option value="none" {if $text_editor == 'none'} selected="selected" {/if} >Native textarea</option>
                                                                 </select>
                                                             </div>
