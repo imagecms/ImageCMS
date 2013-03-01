@@ -44,15 +44,13 @@ class Permitions {
             $userProfile = $ci->db->where('id', $ci->dx_auth->get_user_id())->get('users')->row();
             $locale = 'ru';
             $priv_title = $ci->db->select("title")->where(array('id' => $privilege->id, 'locale' => $locale))->get(self::$rbac_privileges_table . "_i18n")->row();
-            if ($userProfile)
+            if (!empty($userProfile))
                 $userRole = $ci->db->where('id', $userProfile->role_id)->get(self::$rbac_roles_table)->row();
-//            var_dump($userRole->name);
-//            exit();
-            if ($privilege) {
+            if (!empty($privilege)) {
                 //check if user has as role
                 if ($userRole) {
                     $userPrivilege = $ci->db->where(array('role_id' => (int) $userRole->id, 'privilege_id' => (int) $privilege->id))->get(self::$rbac_roles_privileges_table)->result();
-                    if (!empty($userPrivilege) > 0) {
+                    if (!empty($userPrivilege)) {
                         return TRUE;
                     } else {
                         redirect('admin/rbac/permition_denied');
@@ -62,9 +60,9 @@ class Permitions {
                 if ($userRole->name != 'Administrator' AND $adminMethod != 'permition_denied')
                     redirect('admin/rbac/permition_denied');
             }
-        }else{
-            if($adminClassName != 'Login')
-                redirect ('admin/login');
+        }else {
+            if ($adminClassName != 'Login')
+                redirect('admin/login');
         }
     }
 
@@ -837,12 +835,12 @@ class Permitions {
         else
             return '';
     }
-    
-    public function deletePermition($id = null){
-        if(!$id)
+
+    public function deletePermition($id = null) {
+        if (!$id)
             return false;
-        else{
-            $this->db->where('id', $id)->delete(self::$rbac_privileges_table."_i18n");
+        else {
+            $this->db->where('id', $id)->delete(self::$rbac_privileges_table . "_i18n");
             $this->db->where('id', $id)->delete(self::$rbac_privileges_table);
             showMessage("Привилегия удалена");
             pjax('/admin/rbac/roleEdit/1');
