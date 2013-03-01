@@ -63,9 +63,7 @@
                                         <li class="span3">
                                             <ul class="items items_catalog">
                                                 <li>
-                                                    <button class="btn btn_small btn_small_p" onclick="{literal}$.ajax({type: 'post', url: '/shop/compare/remove/{/literal}{echo $product->getId}',{literal} success: function() {
-                                                                }});{/literal}
-                                                            Shop.CompareList.rm({echo $product->getId})">
+                                                    <button class="btn btn_small btn_small_p"  data-drop=".drop-enter" onclick="window.location = '{echo base_url()}shop/compare/remove/{echo $product->id}'; Shop.CompareList.rm({echo $product->id})">
                                                         <span class="icon-remove_comprasion"></span>
                                                     </button>
                                                     <a href="{shop_url('product/' . $product->getUrl())}" class="photo">
