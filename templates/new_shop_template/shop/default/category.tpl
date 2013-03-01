@@ -120,7 +120,7 @@
                                     {$CI->load->module('star_rating')->show_star_rating($product)}
 
                                     <!-- displaying comments count -->
-                                    <a href="{shop_url('product/'.$product->url.'#cc')}" class="count_response"><span class="icon-comment"></span>
+                                    <a href="{shop_url('product/'.$product->url.'#cc')}" class="count_response">
                                         {echo $Comments[$product->getId()]}
                                     </a>
                                 </div>
@@ -155,7 +155,9 @@
                                             data-prodid="{echo $product->getId()}"
                                             data-varid="{echo $product->firstVariant->getId()}"
                                             data-price="{echo $product->firstVariant->toCurrency()}"
-                                            data-name="{echo ShopCore::encode($product->getName())}">
+                                            data-name="{echo ShopCore::encode($product->getName())}"
+                                            data-number="{echo $product->firstVariant->getnumber()}"
+                                            data-maxcount="{echo $product->firstVariant->getstock()}">
                                         {lang('s_buy')}
                                     </button>
                                 {/if}
