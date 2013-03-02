@@ -1,1 +1,7 @@
-<li><a href="{$link}">{$title}</a></li>
+<li>
+    <a class="">
+        <span class="icon-arrow-stPg"></span>
+        <span class="text-el">{$title}</span>
+    </a>
+    {$wrapper}
+</li>
