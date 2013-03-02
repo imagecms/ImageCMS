@@ -1,3 +1,14 @@
+{# Variables
+/**
+* @main.tpl - template for displaying shop main page
+* Variables
+*   $site_title: variable for insert site title
+*   $meta_noindex: variable for insert meta noindex
+*   $canonical: variable for insert canonical
+*   $site_description: variable for insert site description
+*   $SHOP_THEME: variable for shop template path
+*/
+#}
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,10 +19,10 @@
         <meta name="description" content="{$site_description}" />
         <meta name="keywords" content="{$site_keywords}" />
         <meta name="generator" content="ImageCMS" />
-        <link rel="icon" type="image/x-icon" href="{$SHOP_THEME}images/favicon.png"/>
-        <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}css/style.css"/>
+        <link rel="icon" type="image/x-icon" href="{$THEME}images/favicon.png"/>
+        <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css"/>
         <link href='http://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-        <script src="{$SHOP_THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
+        <script src="{$THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
         <!--[if lt IE 9]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><script src="js/css3-mediaqueries.js"></script><![endif]-->
         {literal}
             <style>
@@ -28,9 +39,9 @@
         {/literal}
         {$meta_noindex}
         {$canonical}
-        <script type="text/javascript" src="{$SHOP_THEME}js/jquery-1.8.2.min.js"></script>
-        <script type="text/javascript" src="{$SHOP_THEME}js/jquery.imagecms.js"></script>
-        <script type="text/javascript" src="{$SHOP_THEME}js/underscore-min.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery.imagecms.js"></script>
+        <script type="text/javascript" src="{$THEME}js/underscore-min.js"></script>
     </head>
     <body>
         <div class="mainBody">
@@ -126,7 +137,7 @@
                     <section class="headerContent row-fluid">
                         <div class="span3">
                             <a href="{site_url()}" class="logo">
-                                <img src="{$SHOP_THEME}images/logo.png" />
+                                <img src="{$THEME}images/logo.png" />
                             </a>
                         </div>
                         <div class="span9 f-s_0">
@@ -136,24 +147,45 @@
                                 {literal}<style>.selected{background-color:red;}</style>{/literal}
                                 <div class="frameSearch">
                                     <form name="search" class="clearfix" action="{shop_url('search')}" method="get" id="autocomlete">
-                                        <button class="f_r btn" type="submit"><span class="icon-search"></span><span class="text-el">{lang('search_find')}</span></button>
+                                        <button class="f_r btn" type="submit">
+                                            <span class="icon-search"></span>
+                                            <span class="text-el">{lang('search_find')}</span>
+                                        </button>
                                         <div class="o_h">
-                                            <input type="text" name="text" value="" placeholder="{lang('s_se_thi_sit')}" autocomplete="off" class="place_hold" id="inputString"/>
+                                            <input type="text" 
+                                                   name="text" 
+                                                   value=""  
+                                                   placeholder="{lang('s_se_thi_sit')}"  
+                                                   autocomplete="off" 
+                                                   class="place_hold" 
+                                                   id="inputString"/>
                                         </div>
                                         <div id="suggestions" class="drop-search"></div>
                                     </form>
                                 </div>
                             </div>
                             <div class="span3">
-                                {include_tpl('shop/default/compare_data')}
-                                {include_tpl('shop/default/wish_list_data')}
+                                {include_shop_tpl('compare_data')}
+                                {include_shop_tpl('wish_list_data')}
                             </div>
                             <div class="span3">
-                                <div class="headerPhone"><span class="c_67">+8 (097)</span><span class="d_n">&minus;</span> 572-58-18</div>
+                                <div class="headerPhone">
+                                    <span class="c_67">+8 (097)</span>
+                                    <span class="d_n">&minus;</span> 572-58-18
+                                </div>
                                 <div style="margin-top: 7px;">
                                     <ul class="tabs">
                                         <li>
-                                            <a class="t-d_n f-s_0" href="#a" data-drop=".drop-order-call" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" data-place="center"><span class="icon-order-call"></span><span class="d_l_b">{lang('s_coll_order')}</span></a>
+                                            <a class="t-d_n f-s_0" 
+                                               href="#a" 
+                                               data-drop=".drop-order-call" 
+                                               data-effect-on="fadeIn" 
+                                               data-effect-off="fadeOut" 
+                                               data-duration="300" 
+                                               data-place="center">
+                                                <span class="icon-order-call"></span>
+                                                <span class="d_l_b">{lang('s_coll_order')}</span>
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -195,12 +227,24 @@
                 </div>
                 <div class="span4">
                     <ul class="contacts_info">
-                        <li><span class="icon-foot-phone"></span><span class="f-w_b">{lang('s_tel')}:</span> +8 (067)<span class="d_n">&minus;</span> 572-58-18, +8 (067)<span class="d_n">&minus;</span> 572-58-18</li>
-                        <li><span class="icon-foot-email"></span><span class="f-w_b">{lang('s_email')}:</span> SiteImageCMS@gmail.com</li>
-                        <li><span class="icon-foot-skype"></span><span class="f-w_b">{lang('s_skype')}:</span> SiteImageCMS</li>
-                                {$CI->load->module('star_rating')->show_star_rating()}
+                        <li>
+                            <span class="icon-foot-phone"></span>
+                            <span class="f-w_b">{lang('s_tel')}:</span> +8 (067)
+                            <span class="d_n">&minus;</span> 572-58-18, +8 (067)
+                            <span class="d_n">&minus;</span> 572-58-18
+                        </li>
+                        <li>
+                            <span class="icon-foot-email"></span>
+                            <span class="f-w_b">{lang('s_email')}:</span> Info@imagecms.net
+                        </li>
+                        <li>
+                            <span class="icon-foot-skype"></span>
+                            <span class="f-w_b">{lang('s_skype')}:</span> ImageCMS
+                        </li>
+                        {$CI->load->module('star_rating')->show_star_rating()}
                     </ul>
                 </div>
+
                 <div class="span3 t-a_r">
                     <div class="copy_right">© ImageCMS, 2013</div>
                     <div class="footer_social">
@@ -232,26 +276,28 @@
             </div>
             <div class="inside_padd">
                 <div class="horizontal_form standart_form">
-                    <form method="post" id="data-callback" onsubmit="Notification.formAction('/shop/callbackApi', 'data-callback');
-                                                                    return false;">
+                    <form method="post" id="data-callback" onsubmit="Notification.formAction('/shop/callbackApi', 'data-callback');return false;">
                         <label>
                             <span class="title">Ваше имя</span>
                             <span class="frame_form_field">
                                 <span class="icon-person"></span>
-                                <input type="text"/>
+                                <input type="text" name="Name"/>
+                                <label id="for_Name" class="for_validations"></label>
                             </span>
                         </label>
                         <label>
                             <span class="title">Номер телефона</span>
                             <span class="frame_form_field">
                                 <span class="icon-phone"></span>
-                                <input type="text"/>
+                                <input type="text" name="Phone"/>
+                                <label id="for_Phone" class="for_validations"></label>
                             </span>
                         </label>
                         <label>
                             <span class="title">Комментарий</span>
                             <span class="frame_form_field">
-                                <textarea></textarea>
+                                <textarea name="Comment"></textarea>
+                                <label id="for_Comment" class="for_validations"></label>
                             </span>
                         </label>
                         <div class="frameLabel">
@@ -276,13 +322,13 @@
     </div>
     <div class="d_n" data-clone="data-report">
         <form method="post" action="" id="data-report" onsubmit="Notification.formAction('/shop/ajax/getApiNotifyingRequest', 'data-report');
-                                                                    return false;">
+                                                                    return false;" >
             <div class="standart_form">
                 <label>
                     <span class="title">Ваше имя</span>
                     <span class="frame_form_field">
                         <input type="text" id="" name="UserName"/>
-                        <div id="for_UserName" class="for_validations"></div>
+                        <label id="for_UserName" class="for_validations"></label>
                         <span class="must">*</span>
                     </span>
                 </label>
@@ -290,7 +336,7 @@
                     <span class="title">E-mail</span>
                     <span class="frame_form_field">
                         <input type="text" id="" name="UserEmail"/>
-                        <div id="for_UserEmail" class="for_validations"></div>
+                        <label id="for_UserEmail" class="for_validations"></label>
                         <input type="hidden" name="ProductId" value=""/>
                         <input type="hidden" name="notifme" value="true"/>
                         <span class="must">*</span>
@@ -301,34 +347,35 @@
                     <span class="title">Телефон</span>
                     <span class="frame_form_field">
                         <input type="text" id="" name="UserPhone"/>
-                        <div id="for_UserPhone" class="for_validations"></div>
+                        <label id="for_UserPhone" class="for_validations"></label>
                         <span class="must">*</span>
                     </span>
                 </label>
             </div>
             <div class="t-a_r">
-                <input type="submit" value="Отправить"  class="btn btn_cart"/>
+                <input type="submit" value="Отправить" class="btn btn_cart"/>
             </div>
         </form>
     </div>
-    <script src="{$SHOP_THEME}js/jquery.cycle.all.js" type="text/javascript"></script>
-    <script src="{$SHOP_THEME}js/jquery.jcarousel.min.js" type="text/javascript"></script>
-    <script src="{$SHOP_THEME}js/jquery.ui-slider.js" type="text/javascript"></script>
-    <script src="{$SHOP_THEME}js/cusel-min-2.5.js" type="text/javascript"></script>
-    <script src="{$SHOP_THEME}js/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
-    <script src="{$SHOP_THEME}js/scripts.js" type="text/javascript"></script>
-    <script src="{$SHOP_THEME}js/shop.js" type="text/javascript"></script>
+    <script src="{$THEME}js/jquery.cycle.all.js" type="text/javascript"></script>
+    <script src="{$THEME}js/jquery.jcarousel.min.js" type="text/javascript"></script>
+    <script src="{$THEME}js/jquery.ui-slider.js" type="text/javascript"></script>
+    <script src="{$THEME}js/cusel-min-2.5.js" type="text/javascript"></script>
+    <script src="{$THEME}js/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+    <script src="{$THEME}js/scripts.js" type="text/javascript"></script>
+    <script src="{$THEME}js/shop.js" type="text/javascript"></script>
     <!-- Dev. scripts -->
-    <script src="{$SHOP_THEME}js/imagecms.api.js" type="text/javascript"></script>
-    <script src="{$SHOP_THEME}js/my_js_classes_iy.js" type="text/javascript"></script>
+    <script src="{$THEME}js/imagecms.api.js" type="text/javascript"></script>
+    <script src="{$THEME}js/my_js_classes_iy.js" type="text/javascript"></script>
 
 
-    {include_tpl('shop/default/js_templates')}
+    {include_shop_tpl('js_templates')}
 
 
     <!-- floating elements-->
     <div id="popupCart" style="display: none;" class="drop"></div>
-    <a href="#" data-drop="#popupCart" data-place="center" id="showCart" style="display: none;">Show cart</a>
-    {include_tpl('shop/default/search_autocomplete')}
+    <a href="#" data-drop="#popupCart" data-place="center" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" id="showCart" style="display: none;"   >Show cart</a>
+    {include_shop_tpl('search_autocomplete')}
 </body>
+
 </html>
