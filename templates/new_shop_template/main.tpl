@@ -135,10 +135,23 @@
                                 <div class="span6">
                                 {literal}<style>.selected{background-color:red;}</style>{/literal}
                                 <div class="frameSearch">
-                                    <form name="search" class="clearfix" action="{shop_url('search')}" method="get" id="autocomlete">
-                                        <button class="f_r btn" type="submit"><span class="icon-search"></span><span class="text-el">{lang('search_find')}</span></button>
+                                    <form name="search" 
+                                          class="clearfix" 
+                                          action="{shop_url('search')}" 
+                                          method="get" 
+                                          id="autocomlete">
+                                        <button class="f_r btn" type="submit">
+                                            <span class="icon-search"></span>
+                                            <span class="text-el">{lang('search_find')}</span>
+                                        </button>
                                         <div class="o_h">
-                                            <input type="text" name="text" value="" placeholder="{lang('s_se_thi_sit')}" autocomplete="off" class="place_hold" id="inputString"/>
+                                            <input type="text" 
+                                                   name="text" 
+                                                   value="" 
+                                                   placeholder="{lang('s_se_thi_sit')}" 
+                                                   autocomplete="off" 
+                                                   class="place_hold" 
+                                                   id="inputString"/>
                                         </div>
                                         <div id="suggestions" class="drop-search"></div>
                                     </form>
@@ -149,11 +162,25 @@
                                 {include_tpl('shop/default/wish_list_data')}
                             </div>
                             <div class="span3">
-                                <div class="headerPhone"><span class="c_67">+8 (097)</span><span class="d_n">&minus;</span> 572-58-18</div>
+                                <div class="headerPhone">
+                                    <span class="c_67">+8 (097)</span>
+                                    <span class="d_n">&minus;</span> 572-58-18
+                                </div>
                                 <div style="margin-top: 7px;">
                                     <ul class="tabs">
                                         <li>
-                                            <a class="t-d_n f-s_0" href="#a" data-drop=".drop-order-call" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" data-place="center"><span class="icon-order-call"></span><span class="d_l_b">{lang('s_coll_order')}</span></a>
+                                            <a class="t-d_n f-s_0" 
+                                               href="#a" 
+                                               data-drop=".drop-order-call" 
+                                               data-effect-on="fadeIn" 
+                                               data-effect-off="fadeOut" 
+                                               data-duration="300" 
+                                               data-place="center">
+                                                <span class="icon-order-call"></span>
+                                                <span class="d_l_b">
+                                                    {lang('s_coll_order')}
+                                                </span>
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -178,7 +205,9 @@
                     <!--                     class="span9"-->
                     {$content}
                 </section>
+            </div>
         </div>
+
         <!-- brands widget -->
         {widget('brands')}
         <!-- *** -->
@@ -194,10 +223,21 @@
                 </div>
                 <div class="span4">
                     <ul class="contacts_info">
-                        <li><span class="icon-foot-phone"></span><span class="f-w_b">{lang('s_tel')}:</span> +8 (067)<span class="d_n">&minus;</span> 572-58-18, +8 (067)<span class="d_n">&minus;</span> 572-58-18</li>
-                        <li><span class="icon-foot-email"></span><span class="f-w_b">{lang('s_email')}:</span> SiteImageCMS@gmail.com</li>
-                        <li><span class="icon-foot-skype"></span><span class="f-w_b">{lang('s_skype')}:</span> SiteImageCMS</li>
-                                {$CI->load->module('star_rating')->show_star_rating()}
+                        <li>
+                            <span class="icon-foot-phone"></span>
+                            <span class="f-w_b">{lang('s_tel')}:</span> +8 (067)
+                            <span class="d_n">&minus;</span> 572-58-18, +8 (067)
+                            <span class="d_n">&minus;</span> 572-58-18
+                        </li>
+                        <li>
+                            <span class="icon-foot-email"></span>
+                            <span class="f-w_b">{lang('s_email')}:</span> Info@imagecms.net
+                        </li>
+                        <li>
+                            <span class="icon-foot-skype"></span>
+                            <span class="f-w_b">{lang('s_skype')}:</span> ImageCMS
+                        </li>
+                        {$CI->load->module('star_rating')->show_star_rating()}
                     </ul>
                 </div>
                 <div class="span3 t-a_r">
@@ -237,20 +277,23 @@
                             <span class="title">Ваше имя</span>
                             <span class="frame_form_field">
                                 <span class="icon-person"></span>
-                                <input type="text"/>
+                                <input type="text" name="Name"/>
+                                <label id="for_Name" class="for_validations"></label>
                             </span>
                         </label>
                         <label>
                             <span class="title">Номер телефона</span>
                             <span class="frame_form_field">
                                 <span class="icon-phone"></span>
-                                <input type="text"/>
+                                <input type="text" name="Phone"/>
+                                <label id="for_Phone" class="for_validations"></label>
                             </span>
                         </label>
                         <label>
                             <span class="title">Комментарий</span>
                             <span class="frame_form_field">
-                                <textarea></textarea>
+                                <textarea name="Comment"></textarea>
+                                <label id="for_Comment" class="for_validations"></label>
                             </span>
                         </label>
                         <div class="frameLabel">
@@ -258,7 +301,6 @@
                             <span class="frame_form_field c_n">
                                 <input type="submit" value="Позвоните мне" class="btn btn_cart f_r"/>
                             </span>
-
                         </div>
                     </form>
                 </div>
@@ -266,6 +308,7 @@
         </div>
         <div class="drop-footer"></div>
     </div>
+
     <div class="drop drop-report">
         <div class="drop-content">
             <div class="title_h2">Сообщить когда появится</div>
@@ -327,7 +370,16 @@
 
     <!-- floating elements-->
     <div id="popupCart" style="display: none;" class="drop"></div>
-    <a href="#" data-drop="#popupCart" data-place="center" id="showCart" style="display: none;">Show cart</a>
+    <a href="#" 
+       data-drop="#popupCart" 
+       data-place="center"
+       data-effect-on="fadeIn" 
+       data-effect-off="fadeOut" 
+       data-duration="300" 
+       id="showCart" 
+       style="display: none;">
+        Show cart
+    </a>
     {include_tpl('shop/default/search_autocomplete')}
 </body>
 </html>
