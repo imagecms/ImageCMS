@@ -178,7 +178,6 @@
                     <!--                     class="span9"-->
                     {$content}
                 </section>
-            </div>
         </div>
         <!-- brands widget -->
         {widget('brands')}
