@@ -34,27 +34,45 @@
                         {foreach $brands as $brand}
                             {foreach $_GET['brand'] as $id}
                                 {if $id == $brand->id}
-                                    <li><a href="{echo str_replace('&brand[]=' . $brand->id, '', $aurl)}"><i class="icon-times-red"></i>{echo ShopCore::encode($brand->name)}</a></li>
+                                    <li>
+                                        <a href="{echo str_replace('&brand[]=' . $brand->id, '', $aurl)}"><i class="icon-times-red"></i>{echo ShopCore::encode($brand->name)}</a>
+                                    </li>
+                                {/if}
+                            {/foreach}
+                        {/foreach}
+                    {/if}
+                    {if count($propertiesInCat) > 0}
+                        {foreach $propertiesInCat as $prop}
+                            {if count(ShopCore::$_GET['p'][$prop->property_id])>0}
+                                {foreach $prop->possibleValues as $key}
+                                    {foreach $_GET['p'][$prop->property_id] as $id}
+                                        {if ShopCore::encode($id) == $key.value}
+                                            <li>
+                                                <a href="{echo str_replace('&p[' . $prop->property_id . '][]=' . htmlspecialchars_decode($key.value),'',$aurl)}"><i class="icon-times-red"></i>{echo $prop->name.": ".$key.value}</a>
+                                            </li>
                                         {/if}
                                     {/foreach}
                                 {/foreach}
                             {/if}
-                            {if count($propertiesInCat) > 0}
-                                {foreach $propertiesInCat as $prop}
-                                    {if count(ShopCore::$_GET['p'][$prop->property_id])>0}
-                                        {foreach $prop->possibleValues as $key}
-                                            {foreach $_GET['p'][$prop->property_id] as $id}
-                                                {if ShopCore::encode($id) == $key.value}
-                                            <li><a href="{echo str_replace('&p[' . $prop->property_id . '][]=' . htmlspecialchars_decode($key.value),'',$aurl)}"><i class="icon-times-red"></i>{echo $prop->name.": ".$key.value}</a></li>
-                                                {/if}
-                                            {/foreach}
-                                        {/foreach}
+                        {/foreach}
+                    {/if}
+                    {if isset(ShopCore::$_GET['lp']) OR isset(ShopCore::$_GET['rp'])}
+                        {if ShopCore::$_GET['lp'] > (int)$priceRange.minCost or ShopCore::$_GET['rp'] < (int)$priceRange.maxCost}
+                            <li>
+                                <a href="{echo str_replace(array('&lp=' . ShopCore::$_GET['lp'], '&rp=' . ShopCore::$_GET['rp'], '?rp=' . ShopCore::$_GET['rp'], '?lp=' . ShopCore::$_GET['lp']), "", $aurl)}">
+                                    <i class="icon-times-red"></i>
+                                    {if isset(ShopCore::$_GET['lp']) && ShopCore::$_GET['lp'] != (int)$priceRange.minCost}
+                                        {lang('s_from')} 
+                                        {echo ShopCore::$_GET['lp']} {$CS}
                                     {/if}
-                                {/foreach}
-                            {/if}
-                            {if isset(ShopCore::$_GET['lp']) OR isset(ShopCore::$_GET['rp'])}
-                        <li><a href="{echo str_replace('&lps=' . ShopCore::$_GET['lp'] . '&rp=' . ShopCore::$_GET['rp'], "", ShopCore::encode($aurl))}"><i class="icon-times-red"></i>{if isset(ShopCore::$_GET['lp'])}{lang('s_from')} {echo ShopCore::$_GET['lp']} {$CS}{/if}{if isset(ShopCore::$_GET['rp'])} {lang('s_do')} {echo ShopCore::$_GET['rp']} {$CS}{/if}</a></li>
+                                    {if isset(ShopCore::$_GET['rp']) && ShopCore::$_GET['rp'] != (int)$priceRange.maxCost} 
+                                        {lang('s_do')} 
+                                        {echo ShopCore::$_GET['rp']} {$CS}
+                                    {/if}
+                                </a>
+                            </li>
                         {/if}
+                    {/if}
                 </ul>
                 <a href="{site_url($CI->uri->uri_string())}" class="reset"><span class="icon-reset"></span>{lang('s_filter_all_reset')}</a>
             </div>
