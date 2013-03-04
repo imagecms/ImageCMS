@@ -1,192 +1,7 @@
-var Shop = {
-    //var Cart = new Object();
-    Cart :{
-        totalPrice : 0,
-        popupCartSelector : 'script#cartPopupTemplate',
-        
-        add : function(cartItem){
-            Shop.currentItem = cartItem;
-            $.post('/shop/cart/add', {
-                'quantity': cartItem.count,
-                'productId': cartItem.id,
-                'variantId': cartItem.vId},
-                function(data){
-                    try {
-                        
-                        responseObj = JSON.parse(data);
-                        console.log(responseObj);
-                        
-                        //save item to storage
-                        Shop.Cart._add(Shop.currentItem);
-                    } catch (e){
-                        return this;
-                    }
-                });
-
-        },
-        _add: function(cartItem){
-            console.log('adding');
-            console.log(cartItem);
-            
-            var currentItem = this.load(cartItem.storageId());
-            if (currentItem)
-                currentItem.count += cartItem.count;
-            else
-                currentItem = cartItem;
-
-            console.log(cartItem);
-            return this.save(currentItem);
-        },
-        rm : function(cartItem){
-            if (typeof cartItem == 'Object')
-                localStorage.removeItem(cartItem.storageId());
-            else
-                localStorage.removeItem(cartItem);
-            return this.totalRecount();
-        },        
-        chCount : function(cartItem){
-    
-            var currentItem = this.load(cartItem.storageId());
-            if (currentItem)
-            {
-                currentItem.count = cartItem.count;
-                return this.save(currentItem);
-            }
-            else
-                return this;
-        },
-           
-        clear: function(){
-            var items = this.getAllItems();
-            for (var i=0; i<items.length; i++)
-                localStorage.removeItem(items[i].storageId());
-            
-            return this;
-        },
-    
-        //work with storage
-        load : function(key)
-        {
-            try {
-                return new Shop.cartItem( JSON.parse(localStorage.getItem(key)) );            
-            } catch (e){
-                return false;
-            }
-        },
-        
-        save : function(cartItem)
-        {
-            localStorage.setItem(cartItem.storageId(), JSON.stringify(cartItem));
-            return this.totalRecount();
-        },
-            
-        getAllItems : function()
-        {
-            var pattern = /cartItem_*/;
-            
-            var items = [];
-            for (var i=0; i<localStorage.length; i++)
-            {
-                
-                var key = localStorage.key(i);
-                
-                console.log(key);
-                
-                if (key.match(pattern))
-                    items.push(this.load(key));
-            }
-            return items;
-        },
-            
-        totalRecount : function()
-        {
-            var items = this.getAllItems();
-            
-            this.totalPrice = 0;
-            for (var i=0; i<items.length; i++)
-                this.totalPrice += items[i].price * items[i].count;
-            
-            return this;
-        },
-        
-        getTotalPrice : function() 
-        {
-            if (this.totalPrice == 0)
-                return this.totalRecount().totalPrice;
-            else
-                return this.totalPrice;
-        },
-    
-        renderPopupCart : function(selector)
-        {
-            if (typeof selector == 'undefined' || selector == '')
-                var selector = this.popupCartSelector;
-            
-            _.templateSettings.variable = "cart";
-            var template = _.template($(selector).html());
-            return template(Shop.Cart);
-        },
-    
-        showPopupCart : function()
-        {
-            console.log('start rendering')
-            var start = Date.now();
-            $.fancybox(this.renderPopupCart());
-            var delta = Date.now() - start;
-            console.log('stop rendering, elapsed time: ' + delta);
-        }
-    },
-    cartItem :function(obj) {
-        if (typeof obj == 'undefined' || obj == false)
-            obj = {
-                id : false,
-                vId : false,
-                name : false, 
-                count: false
-            };
-
-        return prototype = {
-            id : obj.id?obj.id:0,
-            vId : obj.vId?obj.vId:0,
-            price : obj.price?obj.price:0,
-            name : obj.name?obj.name:'',
-            count : obj.count?obj.count:1,
-            storageId : function(){
-                return 'cartItem_'+this.id+'_'+this.vId;
-            }
-        };
-    },
-        
-    composeCartItem : function($context){
-        var cartItem = new Shop.cartItem();
-
-        cartItem.id = $context.data('prodid');
-        cartItem.vId = $context.data('varid');
-        cartItem.price = $context.data('price');
-        cartItem.price = $context.data('prodName');
-
-        return cartItem;
-    }
-};
-
-//global listener
-$(function(){
-    $('span.goBuy').on('click', function(){
-        var cartItem = Shop.composeCartItem($(this));
-        Shop.Cart.add(cartItem);
-        
-        
-        //$(this).removeClass('goBuy').addClass('goToCart');
-        //Shop.Cart.showPopupCart();
-        return false;
-    });
-});
-
-
 function renderPosts($this)
 {
     $.ajax({
-        url: "/comments/commentsapi/renderPosts",
+        url: "/comments/api/renderPosts",
         dataType: "json",
         type: "post",
         success: function(obj) {
@@ -217,7 +32,7 @@ function renderPosts($this)
 function post($this)
 {
     $.ajax({
-        url: "/comments/commentsapi/newPost",
+        url: "/comments/api/newPost",
         data: $($this).closest('form').serialize() +
                 '&action=newPost',
         dataType: "json",
@@ -365,7 +180,7 @@ $(document).ready(function() {
         $.ajax({
             type: 'post',
             data: "quantity=" + 1 + "&kitId=" + id,
-            url: '/shop/cart/add/ShopKit',
+            url: '/shop/cart_api/add/ShopKit',
             beforeSend: function() {
                 $('#kitBuy').show();
             },
@@ -374,13 +189,13 @@ $(document).ready(function() {
                 $this.removeClass().addClass("goToCart").html('Оформить</br> заказ');
                 $this.parents(".buttons").removeClass("button_gs").addClass("button_middle_blue");
                 console.log($this.parents('.buttons'));
-                //                        .attr('href', '/shop/cart')
+                //                        .attr('href', '/shop/cart_api')
                 //                        .unbind('click');
                 showResponse(msg);
                 $.fancybox.hideActivity();
                 //$this.hide();
             }
-        });
+        })
         return false;
     });
     $('.buy .goBuy').live('click', function() {
@@ -391,7 +206,7 @@ $(document).ready(function() {
         $.ajax({
             type: 'post',
             data: "quantity=" + 1 + "&productId=" + id + "&variantId=" + id_var,
-            url: '/shop/cart/add',
+            url: '/shop/cart_api/add',
             success: function(msg) {
                 $('.cart_data_holder').load('/shop/ajax/getCartDataHtml');
                 if ($this.parent().hasClass('button_big_green'))
@@ -445,7 +260,7 @@ $(document).ready(function() {
         $.fancybox.showActivity();
         $.ajax({
             type: 'post',
-            url: '/shop/cart/add',
+            url: '/shop/cart_api/index',
             success: function(msg) {
                 showResponse(msg);
                 $.fancybox.hideActivity();
@@ -576,7 +391,7 @@ $(document).ready(function() {
         $.ajax({
             type: 'post',
             data: $form.serialize() + '&recount=1',
-            url: '/shop/cart',
+            url: '/shop/cart_api',
             success: function(msg) {
                 $('.cart_data_holder').load('/shop/ajax/getCartDataHtml');
                 if ($this.hasClass('inCartProducts'))
@@ -625,7 +440,7 @@ $(document).ready(function() {
         var nid = $(this);
         $('#deliveryMethodId').val(nid.val());
         $.ajax({
-            url: "/shop/cart/getPaymentsMethods/" + nid.val(),
+            url: "/shop/cart_api/getPaymentsMethods/" + nid.val(),
             success: function(msg) {
                 $("#paymentMethods").html(msg);
                 $('#paymentMethodId').val($('.met_buy:eq(0)').val());
@@ -651,7 +466,7 @@ $(document).ready(function() {
             }
         });
         return false;
-    });
+    })
 
     $('.showCallback').on('click', function() {
 
@@ -666,7 +481,7 @@ $(document).ready(function() {
             }
         });
         return false;
-    });
+    })
 
 
     //$("#cartForm").validate();
@@ -683,7 +498,7 @@ $(document).ready(function() {
         $.ajax({
             type: 'post',
             data: $("#cartForm").serialize() + '&recount=1',
-            url: '/shop/cart',
+            url: '/shop/cart_api',
             success: function(msg) {
                 $('.cart_data_holder').load('/shop/ajax/getCartDataHtml');
                 if ($('.plus_minus button').hasClass('inCartProducts'))
@@ -730,7 +545,7 @@ $(document).ready(function() {
             $.ajax({
                 type: 'post',
                 data: "quantity=" + 1 + "&productId=" + id + "&variantId=" + id_var,
-                url: '/shop/cart/add',
+                url: '/shop/cart_api/add',
                 success: function(msg) {
                     $('.cart_data_holder').load('/shop/ajax/getCartDataHtml');
                     if ($this.parent().hasClass('button_big_green'))
@@ -751,7 +566,7 @@ $(document).ready(function() {
                     }
                     // $('.in_cart').html('Уже в корзине');
                     $this
-                            //.attr('href', '/shop/cart')
+                            //.attr('href', '/shop/cart_api')
                             .unbind('click');
                     showResponse(msg);
                     $.fancybox.hideActivity();
@@ -762,7 +577,7 @@ $(document).ready(function() {
     }
 
     $('.goToCart').live('click', function() {
-        $(location).attr('href', '/shop/cart');
+        $(location).attr('href', '/shop/cart_api');
     });
     function bindLoginForm() {
         $('.enter_form form').bind('submit', function() {
@@ -992,9 +807,6 @@ $(document).ready(function() {
         }
     }
 
-
-
-
     $('[name="selectVar"]').live('change', function() {
         $.fancybox.showActivity();
         var vid = $(this).val();
@@ -1062,11 +874,6 @@ $(document).ready(function() {
         })
         return false;
     });
-    
-    
-    
-    
-    
     $('.giftcertcheck').on('click', function() {
         recount();
 
@@ -1282,7 +1089,7 @@ $(document).ready(function() {
                         if (obj.result === false) {
                             $.ajax({
                                 type: "post",
-                                url: "/shop/cart/displayPopupConfirm",
+                                url: "/shop/cart_api/displayPopupConfirm",
                                 success: function(msg) {
                                     showResponse(msg);
                                 }

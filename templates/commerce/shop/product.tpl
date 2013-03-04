@@ -250,8 +250,7 @@
 {if $model->getRelatedProductsModels()}
     <div id="third">
         <ul class="accessories f-s_0">
-            {foreach $model->getRelatedProductsModels() as $p}
-                {$discount = ShopCore::app()->SDiscountsManager->productDiscount($p->id)}
+            {foreach $model->getRelatedProductsModels() as $p}                
                 {$rel_prod = currency_convert($p->firstvariant->getPrice(), $p->firstvariant->getCurrency())}
                 {$style = productInCart($cart_data, $p->getId(), $p->firstVariant->getId(), $p->firstVariant->getStock())}
                 <li>
@@ -264,15 +263,10 @@
                             <div class="buy">
                                 <div class="price f-s_16 f_l">
 
-                                    {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                        {$prOne = $p->firstvariant->getPrice()}
-                                        {$prTwo = $p->firstvariant->getPrice()}
-                                        {$prThree = $prOne - $prTwo / 100 * $discount}
-                                        <del class="price price-c_red f-s_12 price-c_9">{echo $p->firstvariant->getPrice()} {$CS}</del><br /> 
-                                    {else:}
-                                        {$prThree = $p->firstvariant->getPrice()}
+                                    {if $p->hasDiscounts()}
+                                        <del class="price price-c_red f-s_12 price-c_9">{echo $p->firstvariant->toCurrency('OrigPrice')} {$CS}</del><br /> 
                                     {/if}
-                                    {echo $prThree} 
+                                    {echo $p->firstvariant->toCurrency()} 
                                     <sub>{$CS}</sub>
                                 </div>
                                 <div class="{$style.class} buttons"><a class="{$style.identif}" href="{$style.link}" data-varid="{echo $p->firstVariant->getId()}" data-prodid="{echo $p->getId()}" >{$style.message}</a></div> 
@@ -438,8 +432,7 @@
         <div class="featured carusel_frame carousel_js">
             <div class="carusel">
                 <ul>
-                    {foreach getPromoBlock('hot', 10) as $hotProduct}
-                        {$discount = ShopCore::app()->SDiscountsManager->productDiscount($hotProduct->id)}
+                    {foreach getPromoBlock('hot', 10) as $hotProduct}                       
                         {$style = productInCart($cart_data, $hotProduct->getId(), $hotProduct->firstVariant->getId(), $hotProduct->firstVariant->getStock())}
                         <li {if $hotProduct->firstvariant->getstock()==0}class="not_avail"{/if}>
                             <div class="small_item">
@@ -452,10 +445,7 @@
                                     <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                                     <div class="buy">
                                         <div class="price f-s_16">
-                                            {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                                {$prOne = $hotProduct->firstvariant->getPrice()}
-                                                {$prTwo = $hotProduct->firstvariant->getPrice()}
-                                                {$prThree = $prOne - $prTwo / 100 * $discount}
+                                            {if $hotProduct->hasDiscounts()}
                                                 <del class="price price-c_red f-s_12 price-c_9">{echo $hotProduct->firstvariant->getPrice()} {$CS}</del><br /> 
                                             {else:}
                                                 {$prThree = $hotProduct->firstvariant->getPrice()}
