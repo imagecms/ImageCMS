@@ -134,7 +134,7 @@
 
                                         <!--<del class="price price-c_red f-s_12 price-c_9">{echo $variant->toCurrency() * $item->getQuantity()} {$CS}</del><br />--> 
                                     {/if}
-                                    
+
                                     {echo $item->toCurrency() * $item->getQuantity()}
                                     <sub>{$CS}</sub>
                                 </div>
@@ -153,15 +153,17 @@
                                         {$giftPrice = $model->getgiftcertprice()}
                                         {$total -= $model->getgiftcertprice()}
                                     {/if}
-                                        {if $total}
-                                            {$total} {$CS}
-                                        {else:}
-                                            {echo $total + $model->getDeliveryPrice()} {$CS} 
-                                            <div class="price f-s_12">Доставка: +{echo $model->getDeliveryPrice()} {$CS}</div>
-                                            {if $giftPrice}
-                                                <div class="price f-s_12">Сертификат: -{echo $giftPrice} {$CS}</div>
-                                            {/if}
+                                    {if $total AND $model->getDeliveryPrice()}
+                                        {echo $total + $model->getDeliveryPrice()} {$CS}
+                                    {elseif !$model->getDeliveryPrice()}
+                                        {echo $total}
+                                    {else :}
+                                        {echo $total + $model->getDeliveryPrice()} {$CS} 
+                                        <div class="price f-s_12">Доставка: +{echo $model->getDeliveryPrice()} {$CS}</div>
+                                        {if $giftPrice}
+                                            <div class="price f-s_12">Сертификат: -{echo $giftPrice} {$CS}</div>
                                         {/if}
+                                    {/if}
                                 </div>
                             </div>
                             <div class="sum f_r">
