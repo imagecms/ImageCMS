@@ -41,7 +41,7 @@ class assetManager {
         $trace = debug_backtrace();
         $paths = explode(DS, $trace[0]['file']);
         $paths = $paths[count($paths) - 2];
-        \CI_Controller::get_instance()->template->registerJsFile(APPPATH . 'modules/' . $name . '/assets/js/' . $name . '.js', 'after');
+        \CI_Controller::get_instance()->template->registerJsFile(APPPATH . 'modules/' . $paths . '/assets/js/' . $name . '.js', 'after');
         return $this;
     }
 
