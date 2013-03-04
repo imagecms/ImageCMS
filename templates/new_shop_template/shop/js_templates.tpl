@@ -172,7 +172,7 @@
                            <div class="t-a_l d_i-b v-a_m">
                                <span>Итого:</span>
                                <div class="price price_f-s_24">
-                                   <span class="first_cash"><span class="f-w_b"><%- parseFloat(Shop.Cart.getTotalPrice()).toFixed(2) %></span> руб.</span>
+                                   <span class="first_cash"><span class="f-w_b" id="popupCartTotal"><%- parseFloat(Shop.Cart.getTotalPrice()).toFixed(2) %></span> руб.</span>
                                </div>
                            </div>
                        </td>

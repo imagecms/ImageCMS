@@ -73,6 +73,10 @@ var Shop = {
                 type: 'after_add_to_cart',
                 cartItem: _.clone(cartItem)
             });
+        
+            $(document).trigger({
+                type: 'cart_changed'
+            });
             //
             
             return this;
@@ -96,9 +100,7 @@ var Shop = {
                 $(document).trigger({
                     type: 'cart_changed'
                 });
-            })
-            
-            
+            });
             
             return this;
         },        
@@ -115,6 +117,10 @@ var Shop = {
                 $(document).trigger({
                     type: 'count_changed',
                     cartItem: _.clone(cartItem)
+                });
+            
+                $(document).trigger({
+                    type: 'cart_changed'
                 });
                 
                 return this.totalRecount();
@@ -422,7 +428,8 @@ var Shop = {
         //update page content
             //update products count
             Shop.Cart.totalRecount();
-            $('#topCartCount').html(' ('+Shop.Cart.totalCount+')');
+            console.log(Shop.Cart.totalCount);
+        $('#topCartCount').html(' ('+Shop.Cart.totalCount+')');
             if (!Shop.Cart.totalCount)
                 $('div.cleaner.isAvail').removeClass('isAvail');
             else
@@ -569,10 +576,12 @@ $(
                 recountCartPage();
             });
         
+        $('div.cleaner>span>span:nth-child(3)').html(' ('+Shop.Cart.totalCount+')');
+        
         
         $('div.cleaner.isAvail').on('click', function(){
             window.location.href = '/shop/cart';
-        })
+        });
         
 
         //click 'go to cart'
@@ -589,8 +598,9 @@ $(
             if ($('#method_deliv'))
                 recountCartPage();
             //update popup cart
-            $('table.table_order.preview_order td:last-child span:last-child').last().html(Shop.Cart.totalPrice.toFixed(2));
-        
+            //$('table.table_order.preview_order td:last-child span:last-child').last().html(Shop.Cart.totalPrice.toFixed(2));
+            //
+            $('#popupCartTotal').html(Shop.Cart.totalPrice.toFixed(2));
     });
 
 
