@@ -3,8 +3,7 @@
         <div class="featured carusel_frame carousel_js">
             <div class="carusel">
                 <ul>
-                    {foreach $products as $hotProduct}
-                        {$discount = ShopCore::app()->SDiscountsManager->productDiscount($hotProduct->id)}
+                    {foreach $products as $hotProduct}                        
                         {$style = productInCart($cart_data, $hotProduct->getId(), $hotProduct->firstVariant->getId(), $hotProduct->firstVariant->getStock())}
                         <li {if $hotProduct->firstvariant->getstock()==0}class="not_avail"{/if}>
                             <div class="small_item">
