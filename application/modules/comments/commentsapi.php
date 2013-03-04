@@ -92,7 +92,7 @@ class Commentsapi extends Comments {
 
         echo json_encode(array(
             'comments' => $comments,
-            'total_comments' => $comments_count . ' ' . SStringHelper::Pluralize('0', array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre'))),
+            'total_comments' => $comments_count . ' ' . $this->Pluralize('0', array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre'))),
             'validation_errors' => $this->validation_errors
         ));
     }
@@ -103,6 +103,8 @@ class Commentsapi extends Comments {
      * if product - return id
      */
     public function parsUrl($url) {
+        defined('DS') OR define('DS', '/');
+
         if (strstr($url, '/product/')) {
             $url = parse_url($url);
             $search = array('shop', 'product', '/');
@@ -116,12 +118,11 @@ class Commentsapi extends Comments {
         }
 
         if (strstr($url, '/bloh/')) {
-            $url = parse_url($url);
-            $search = array('bloh', '/');
-            $replace = array('', '');
-            $url = str_replace($search, $replace, $url['path']);
+            $paths = explode(DS, $url);
+            $paths = $paths[count($paths)-1];
+
             $id = $this->db->select('id')
-                    ->where('url', $url)
+                    ->where('url', $paths)
                     ->get('content')
                     ->row();
             return $id->id;
@@ -151,12 +152,13 @@ class Commentsapi extends Comments {
         $item_id = $this->parsUrl($_SERVER['HTTP_REFERER']);
 
         // Check if page comments status.
-        if ($this->getModule($_SERVER['HTTP_REFERER']) == 'core') {
-            if ($this->base->get_item_comments_status($item_id) == FALSE) {
-                ($hook = get_hook('comments_page_comments_disabled')) ? eval($hook) : NULL;
-                $this->core->error(lang('error_comments_diabled'));
-            }
-        }
+//        if ($this->getModule($_SERVER['HTTP_REFERER']) == 'core') {
+//            var_dump($item_id);
+//            if ($this->base->get_item_comments_status($item_id) == FALSE) {
+//                ($hook = get_hook('comments_page_comments_disabled')) ? eval($hook) : NULL;
+//                $this->core->error(lang('error_comments_diabled'));
+//            }
+//        }
 
         if ($this->period > 0)
             if ($this->check_comment_period() == FALSE) {
@@ -431,13 +433,29 @@ class Commentsapi extends Comments {
         $result = array();
 
         foreach ($query as $q)
-            $result[$q['item_id']] = $q['count'] . ' ' . SStringHelper::Pluralize((int) $q['count'], array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')));
+            $result[$q['item_id']] = $q['count'] . ' ' . $this->Pluralize((int) $q['count'], array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')));
 
         foreach ((array) $ids as $id)
             if (!$result[$id])
-                $result[$id] = 0 . ' ' . SStringHelper::Pluralize('0', array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')));
+                $result[$id] = 0 . ' ' . $this->Pluralize('0', array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')));
 
         return $result;
+    }
+
+    public static function Pluralize($count = 0, array $words = array()) {
+        if (empty($words))
+            $words = array(' ', ' ', ' ');
+
+        $numeric = (int) abs($count);
+        if ($numeric % 100 == 1 || ($numeric % 100 > 20) && ( $numeric % 10 == 1 ))
+            return $words[0];
+        if ($numeric % 100 == 2 || ($numeric % 100 > 20) && ( $numeric % 10 == 2 ))
+            return $words[1];
+        if ($numeric % 100 == 3 || ($numeric % 100 > 20) && ( $numeric % 10 == 3 ))
+            return $words[1];
+        if ($numeric % 100 == 4 || ($numeric % 100 > 20) && ( $numeric % 10 == 4 ))
+            return $words[1];
+        return $words[2];
     }
 
 }

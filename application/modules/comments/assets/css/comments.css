@@ -74,3 +74,17 @@
 #comment__icsi-css textarea, #comment__icsi-css input[type="text"]{height: 30px;border-color: #ababab;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;-moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);}
 #comment__icsi-css textarea{height: 134px; padding-top: 5px}
 #comment__icsi-css a:focus, #comment__icsi-css input:focus, #comment__icsi-css button:focus, #comment__icsi-css textarea:focus{outline: 2px solid #f1ca7f;outline-offset: -1px;}
+.msg .success, .msg .error {border-radius: 5px 5px 5px 5px;margin-bottom: 15px;padding: 8px;}
+.error {background-color: #FFE8E8;border: 1px solid #F27676;}
+.success {background-color: #ECFFE8;border: 1px solid #80C232;}
+.error, .success {border-radius: 3px 3px 3px 3px;}
+.msg .success *, .msg .notice {font-size: 13px;}
+.msg .error *, .msg .error {font-size: 13px;}
+.msg h1, .msg h2, .msg h3 {font-size: 16px !important;font-weight: bold;margin-top: 5px !important;}
+.msg h1 {font-size: 20px !important;}
+.msg h2 {font-size: 18px !important;}
+.msg p {margin-bottom: 5px !important;}
+.success, .success * {color: #5FA335;}
+label.success {margin-top: 7px;padding: 2px 11px;}
+label.error {margin-top: 7px;padding: 2px 11px;}
+.error, .error * {color: #E42E2E;}
