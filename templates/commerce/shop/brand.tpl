@@ -13,29 +13,29 @@
 <div class="content">
     <div class="center">
         <div class="filter">
-            {if count($incats)>0}
+            {if count($categoriesInBrand)>0}
                 <form id="orderForm" method="get">
                     <input type="hidden" name="user_per_page" value="{echo $_GET['user_per_page']}"/>
                     <input type="hidden" name="order" value="{echo $_GET['order']}"/>
-                    <input type="hidden" name="categoryId" />
+                    <input type="hidden" name="category" />
                     <div class="title">{lang('s_found_in_categories')}</div>
                     <div class="padding_filter check_frame">
                         <ul class="menu_fiter">
-                            {foreach $categories_names as $item}
+                            {foreach $categoriesInBrand as $item}
                                 <li>
-                                {if ShopCore::$_GET['categoryId'] == $item.id}<b class="c_d">{$cat_name = $item.name}{/if}
-                                    <span class="{if ShopCore::$_GET['categoryId']!=$item.id}findincats{/if} js gray" data-id="{echo $item.id}">{$item.name} ({echo $incats[$item.id]})</span>
-                                {if ShopCore::$_GET['categoryId'] == $item.id}</b>{/if}
-                        </li>
-                    {/foreach}
-                </ul>
-            </div>
-        {if ShopCore::$_GET['categoryId']}<a href="{site_url($CI->uri->uri_string())}"><span class="icon-reset"></span>{lang('s_cancel')}</a><br/>{/if}
-    </form>
-{else:}
-    <div class="title padding_filter">В категориях ничего не найдено</div>
-{/if}
-</div>
+                                    {if ShopCore::$_GET['category'] == $item->category_id}<b class="c_d">{$cat_name = $item->name}{/if}
+                                    <span class="{if ShopCore::$_GET['category']!=$item->category_id}findincats{/if} js gray" data-id="{echo $item->category_id}">{echo $item->name} ({echo $item->countProducts})</span>
+                                    {if ShopCore::$_GET['category'] == $item->category_id}</b>{/if}
+                                </li>
+                            {/foreach}
+                        </ul>
+                    </div>
+                    {if ShopCore::$_GET['category']}<a href="{site_url($CI->uri->uri_string())}"><span class="icon-reset"></span>{lang('s_cancel')}</a><br/>{/if}
+                </form>
+            {else:}
+                <div class="title padding_filter">В категориях ничего не найдено</div>
+            {/if}
+        </div>
 <div class="catalog_content">
     <!--   Right sidebar     -->
     <div class="nowelty_auction">
@@ -109,7 +109,7 @@
         <div class="box_title clearfix">
             <div class="f-s_24">
                 <h1 class="d_i">{echo ShopCore::encode($model->getName())} 
-                    {if ShopCore::$_GET['categoryId'] != ''}
+                    {if ShopCore::$_GET['category'] != ''}
                         - {echo $cat_name}
                     {/if}</h1>
                 <span class="count_search">({$totalProducts})</span>
@@ -140,8 +140,8 @@
                     </select>
                 </div>
             </div>
-            {if isset($_GET['categoryId'])}
-                <input type="hidden" name="categoryId" value="{echo $_GET['categoryId']}">
+            {if isset($_GET['category'])}
+                <input type="hidden" name="category" value="{echo $_GET['category']}">
             {/if}
         </form>
         <ul>

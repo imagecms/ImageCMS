@@ -26,7 +26,7 @@
                                 </a>
                             </td>
                             <td>
-                                <a href="#"><%- item.name %></a>
+                                <a href="#"><%- item.name %></a><span class="c_97"><% if (item.number) { %> (<%- item.number %>) <% } %></span>
                                 <div class="price price_f-s_16">
                                     <span class="first_cash"><span class="f-w_b"><%- parseFloat(item.price).toFixed(2) %></span> грн.</span>
                                 </div>
@@ -41,7 +41,7 @@
                                             <span class="icon-minus"></span>
                                         </button>
                                     </div>
-                                    <input type="text" value="<%- item.count %>" data-rel="plusminus" data-title="только цифры" data-min="1"/>
+                                    <input type="text" value="<%- item.count %>" data-rel="plusminus" data-title="только цифры" data-min="1" <% if (item.maxcount) { %> data-max="<%-item.maxcount%>" <% } %> />
                                 </div>
                                 <span class="v-a_m"><%- item.count %> шт.</span>
                             </td>
@@ -172,7 +172,7 @@
                            <div class="t-a_l d_i-b v-a_m">
                                <span>Итого:</span>
                                <div class="price price_f-s_24">
-                                   <span class="first_cash"><span class="f-w_b"><%- parseFloat(Shop.Cart.getTotalPrice()).toFixed(2) %></span> руб.</span>
+                                   <span class="first_cash"><span class="f-w_b" id="popupCartTotal"><%- parseFloat(Shop.Cart.getTotalPrice()).toFixed(2) %></span> руб.</span>
                                </div>
                            </div>
                        </td>
@@ -211,7 +211,7 @@
                                 </a>
                             </td>
                             <td>
-                                <a class="c_97" href="#"><%- item.name %></a>
+                                <a href="#"><%- item.name %></a><span class="c_97"><% if (item.number) { %> (<%-item.number %>) <% } %></span>
                                 <div class="price price_f-s_16">
                                     <span class="first_cash"><span class="f-w_b"><%- parseFloat(item.price).toFixed(2) %></span> <%- curr %>.</span>
                                 </div>

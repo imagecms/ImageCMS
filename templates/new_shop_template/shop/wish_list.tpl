@@ -27,7 +27,11 @@
                     {foreach $items as $key=>$item}
                         <li class="span3 {if $item.model->firstvariant->stock == 0} not-avail{/if}">
                             {if ShopCore::$ci->dx_auth->is_logged_in()===true}
+<<<<<<< HEAD:templates/new_shop_template/shop/default/wish_list.tpl
+                                <button class="btn btn_small btn_small_p" onclick=" Shop.WishList.rm({echo $item.model->getId()});">
+=======
                                 <button class="btn btn_small btn_small_p" data-drop=".drop-enter" onclick="window.location = '{echo base_url()}shop/wish_list/delete/{echo $key}'; Shop.WishList.rm({echo $item.model->getId()})">
+>>>>>>> dbb6ada9e04886849c0fb3df0ff98ee062ec9ff1:templates/new_shop_template/shop/wish_list.tpl
                                     <span class="icon-remove_comprasion"></span>
                                 </button>    
                             {/if}

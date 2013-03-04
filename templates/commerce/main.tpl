@@ -10,6 +10,7 @@
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/style.css" media="all" />
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery.fancybox-1.3.4.css" media="all" />
         <link rel="icon" type="image/x-icon" href="{$THEME}images/favicon.png"/> 
+        <link rel="stylesheet" href="{$THEME}css/smoothness/jquery-ui-1.9.1.custom.min.css" type="text/css" media="screen" />
 
         
         <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{$THEME}/css/ie8_7_6.css" /><![endif]-->
@@ -27,6 +28,8 @@
         <script type="text/javascript" src="{$THEME}/js/shop.js"></script>
         <script type="text/javascript" src="{$THEME}js/jquery.validate.js"></script>
         <script type="text/javascript" src="{$THEME}js/imagecms.api.js"></script>
+        <script type="text/javascript" src="{$THEME}/js/jquery-ui-1.8.15.custom.min.js"></script>
+        <script type="text/javascript" src="{$THEME}js/autocomplete.js"></script>
         {$renderGA}
     </head>
     <body>        
@@ -45,52 +48,10 @@
                 </a>
                 {$CI->load->module('mailer')}
                 <div class="frame_form_search">
-                    <form action="{shop_url('search')}" method="get" class="clearfix">
-                        <!--                        <input type="text" value="Поиск по сайту" name="text" />-->
-                        <input type="text" size="30" name="text" value="{lang('s_search')} {lang('s_po')} {lang('s_site')}" onfocus="if (this.value == '{lang('s_search')} {lang('s_po')} {lang('s_site')}')
-                                    this.value = '';" onblur="if (this.value == '')
-                                    this.value = '{lang('s_search')} {lang('s_po')} {lang('s_site')}';" />
-                        <input type="submit" class="submit"  value="{lang('s_search')}" />
-                        <div class="search_drop d_n">
-                            <ul>
-                                <li class="smallest_item">
-                                    <a href="#" class="photo_block">
-                                        <img src="{$THEME}/images/temp/small_img.jpg"/>
-                                    </a>
-                                    <div class="func_description">
-                                        <a href="#" class="title">Asus X54C (X54C-SX006D) Black</a>
-                                        <div class="buy">
-                                            <div class="price f-s_14">4528 <sub>грн.</sub><span>859 $</span></div>
-                                        </div>
-                                    </div>
-                                </li>
-
-
-                                <li class="smallest_item">
-                                    <a href="#" class="photo_block">
-                                        <img src="{$THEME}/images/temp/small_img.jpg"/>
-                                    </a>
-                                    <div class="func_description">
-                                        <a href="#" class="title">Asus X54C (X54C-SX006D) Black</a>
-                                        <div class="buy">
-                                            <div class="price f-s_14">4528 <sub>грн.</sub><span>859 $</span></div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="smallest_item">
-                                    <a href="#" class="photo_block">
-                                        <img src="{$THEME}/images/temp/small_img.jpg"/>
-                                    </a>
-                                    <div class="func_description">
-                                        <a href="#" class="title">Asus X54C (X54C-SX006D) Black</a>
-                                        <div class="buy">
-                                            <div class="price f-s_14">4528 <sub>грн.</sub><span>859 $</span></div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                            <a href="#" class="all_result">Показать все результаты</a>
-                        </div>
+                    <form name="search" class="clearfix" action="{shop_url('search')}" method="get" id="autocomlete">
+                        <input type="text" name="text" value="{lang('s_se_thi_sit')}"  onfocus="if(this.value=='{lang('s_se_thi_sit')}') this.value='';" onblur="if(this.value=='') this.value='{lang('s_se_thi_sit')}';"  id="inputString" autocomplete="off" onkeyup="lookup(event);" class="place_hold"/>
+                        <input type="submit" id="search_submit"  value="{lang('s_search')}" class="icon"/>
+                        <span id="suggestions" style="display: none; width: 0px; right: 0px;"></span>
                     </form>
                 </div>
                 <div class="phone">
