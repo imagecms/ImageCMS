@@ -173,10 +173,10 @@
                             </li>
                         {/if}
                     {/if}
-
+                    {$cart_data= ShopCore::app()->SCart->getData();}
                     <!--  Render produts list   -->
                     {foreach $products as $product}
-                        {$style = productInCart($cart_data, (int)$product->id, (int)$product->variants[0]->id, (int)$product->firstVariant->getStock())}
+                        {$style = productInCart($cart_data, (int)$product->getId(), (int)$product->firstVariant->getId(), (int)$product->firstVariant->getStock())}
                         <li {if (int)$product->getallstock() == 0}class="not_avail"{/if}>
                             <div class="photo_block">
                                 <a href="{shop_url('product/' . $product->getUrl())}">
