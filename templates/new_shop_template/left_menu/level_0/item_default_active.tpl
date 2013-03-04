@@ -1,5 +1,5 @@
 <li>
-    <a href="#" class="">
+    <a class="">
         <span class="icon-arrow-stPg"></span>
         <span class="text-el">{$title}</span>
     </a>

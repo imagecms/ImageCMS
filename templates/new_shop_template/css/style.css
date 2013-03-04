@@ -161,7 +161,7 @@ a:hover .icon-archive{background-position: -197px -13px;}
 .icon-clock{width: 12px;height: 12px;background-position: -459px 0;position: absolute;top: 8px;left:11px;margin-right: 5px;}
 .icon-replay{width: 11px;height: 12px;background-position: -472px 0;position: absolute;top: 8px;left:11px;margin-right: 5px;}
 .icon-person + input, .icon-phone + input, .icon-clock + input, .icon-email + input, .icon-password + input, .icon-replay + input{padding-left: 25px;}
-.icon-arrow-stPg{width: 10px;height: 16px;background-position: -483px 0;position: absolute;left: 12px;top: 50%;margin-top: -8px;}
+.icon-arrow-stPg{width: 10px;height: 16px;background-position: -494px 0;position: absolute;left: 12px;top: 50%;margin-top: -8px;}
 a:hover > .icon-arrow-stPg, .navStaticPages > ul > li > a.active > .icon-arrow-stPg{width: 10px;height: 6px;background-position: -483px -17px;margin-top: -3px;}
 .icon-count-view{width: 17px;height: 12px;background-position: -505px 0;top: 1px;margin-right: 7px;}
 .icon-refer{width: 12px;height: 12px;background-position: -523px 0;top: 1px;margin-right: 5px;}
@@ -1138,3 +1138,4 @@ label.error{margin-top: 7px;padding: 2px 11px;}
 .tabs-dif-all_par > li > button{top: 5px;position: relative;}
 
 .infoOrder > *{font-style: italic; color: #979797;}
+.for_validations {display: none;}

@@ -92,8 +92,8 @@
                 
                 {//displaying price range filter}
                 {if isset(ShopCore::$_GET['lp']) OR isset(ShopCore::$_GET['rp'])}
+                    {if ShopCore::$_GET['lp'] > (int)$priceRange.minCost or ShopCore::$_GET['rp'] < (int)$priceRange.maxCost}
                     <li>
-                        
                         <div class="o_h">
                             {//link to uncheck filter by price}
                             <a href="{echo str_replace(array('&lp=' . ShopCore::$_GET['lp'], '&rp=' . ShopCore::$_GET['rp'], '?rp=' . ShopCore::$_GET['rp'], '?lp=' . ShopCore::$_GET['lp']), "", $aurl)}">
@@ -109,6 +109,7 @@
                             </a>
                         </div>
                     </li>
+                    {/if}
                 {/if}
             </ul>
             
@@ -136,7 +137,7 @@
                 {//meet slider}
                 <div class="sliderCont">
                     <div id="slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content">
-                        <img src="{$SHOP_THEME}images/slider.png"/>
+                        <img src="{$THEME}images/slider.png"/>
                         <div class="ui-slider-range ui-widget-header"></div>
                         <a href="#" class="ui-slider-handle" id="left_slider"></a>
                         <a href="#" class="ui-slider-handle" id="right_slider"></a>
