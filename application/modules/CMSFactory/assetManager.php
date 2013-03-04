@@ -7,7 +7,8 @@ class assetManager {
     protected static $_BehaviorInstance;
 
     private function __construct() {
-        
+
+        defined('DS') OR define('DS', '/');
     }
 
     private function __clone() {
@@ -40,7 +41,7 @@ class assetManager {
         $trace = debug_backtrace();
         $paths = explode(DS, $trace[0]['file']);
         $paths = $paths[count($paths) - 2];
-        \CI_Controller::get_instance()->template->registerJsFile(APPPATH . 'modules/' . $paths . '/assets/js/' . $name . '.js', 'after');
+        \CI_Controller::get_instance()->template->registerJsFile(APPPATH . 'modules/' . $name . '/assets/js/' . $name . '.js', 'after');
         return $this;
     }
 
@@ -114,7 +115,7 @@ class assetManager {
     public function fetchTemplate($tpl) {
         $trace = debug_backtrace();
         $paths = explode(DS, $trace[0]['file']);
-        $paths = $paths[count($paths) - 2];
+        $paths = $paths[count($paths) - 2];        
         try {
             $tplPath = APPPATH . '/modules/' . $paths . '/assets/' . $tpl;
             file_exists($tplPath . '.tpl') OR throwException('Can\'t load template file: <i>' . $paths . DS . $tpl . '.tpl</i>');

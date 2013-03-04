@@ -87,8 +87,8 @@
 
                 <!-- selecting product list type -->
                 <div class="groupButton list_pic_btn" data-toggle="buttons-radio">
-                    <button type="button" class="btn active"><span class="icon-cat_pic"></span><span class="text-el">{lang('s_in_images')}</span></button>
-                    <button type="button" class="btn"><span class="icon-cat_list"></span><span class="text-el">{lang('s_in_list')}</span></button>
+                    <button type="button" class="btn active showAsTable"><span class="icon-cat_pic"></span><span class="text-el">{lang('s_in_images')}</span></button>
+                    <button type="button" class="btn showAsList"><span class="icon-cat_list"></span><span class="text-el">{lang('s_in_list')}</span></button>
                 </div>
             </div>
 
