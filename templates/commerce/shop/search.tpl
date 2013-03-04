@@ -13,10 +13,10 @@
 {$forCompareProducts = $CI->session->userdata('shopForCompare')}
 
 <!-- BEGIN STAR RATING -->
-<link rel="stylesheet" type="text/css" href="{$SHOP_THEME}js/rating/jquery.rating-min.css" />
-<script src="{$SHOP_THEME}js/rating/jquery.rating-min.js" type="text/javascript"></script>
-<script src="{$SHOP_THEME}js/rating/jquery.MetaData-min.js" type="text/javascript"></script>
-<script src="{$SHOP_THEME}js/search.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="{$THEME}js/rating/jquery.rating-min.css" />
+<script src="{$THEME}js/rating/jquery.rating-min.js" type="text/javascript"></script>
+<script src="{$THEME}js/rating/jquery.MetaData-min.js" type="text/javascript"></script>
+<script src="{$THEME}js/search.js" type="text/javascript"></script>
 <!-- END STAR RATING -->
 <!--
 {include_tpl('sidebar')}
@@ -106,23 +106,7 @@
                                             <span id="code{echo $p->getId()}" class="code">{lang('s_kod')} {echo ShopCore::encode($p->firstVariant->getNumber())}</span>
                                         {/if}
                                         <div class="star_rating">
-                                            <div id="{echo $p->getId()}_star_rating" class="rating_nohover {echo count_star($p->getRating())} star_rait" data-id="{echo $p->getId()}">
-                                                <div id="1" class="rate one">
-                                                    <span title="1">1</a>
-                                                </div>
-                                                <div id="2" class="rate two">
-                                                    <span title="2">2</a>
-                                                </div>
-                                                <div id="3" class="rate three">
-                                                    <span title="3">3</a>
-                                                </div>
-                                                <div id="4" class="rate four">
-                                                    <span title="4">4</a>
-                                                </div>
-                                                <div id="5" class="rate five">
-                                                    <span title="5">5</a>
-                                                </div>
-                                            </div>
+                                            {$CI->load->module('star_rating')->show_star_rating($p)}
                                         </div>
                                         <a href="#" class="response">{echo $p->totalComments()} {echo SStringHelper::Pluralize($p->totalComments(), array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}</a>
                                     </div>

@@ -307,7 +307,7 @@ var Shop = {
             return localStorage.getItem(key);
         },
         set: function(key, value){
-            localStorage.set(key, value);
+            localStorage.setItem(key, value);
             return this;
         }
     },
@@ -639,6 +639,24 @@ $(
         /* if i am in a wishList page */
         console.log(data);
     });
+
+    /*  list-table buttons  */
+    $('.showAsTable').on('click',function(){
+        var asList = Shop.Settings.get('products_as_list');
+        if (asList == true || asList == 'true')
+            Shop.Settings.set('products_as_list', false);
+    });
+
+    $('.showAsList').on('click',function(){
+        var asList = Shop.Settings.get('products_as_list');
+        if (asList == false || asList == 'false')
+            Shop.Settings.set('products_as_list', true);
+    });
+
+    if (Shop.Settings.get('products_as_list') == 'true')
+        $('.showAsList').click();
+    
+    console.log(Shop.Settings.get('products_as_list'));
 }
 );
 

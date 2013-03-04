@@ -56,11 +56,11 @@
                     </div>
                 </div>
                 <div class="groupButton list_pic_btn" data-toggle="buttons-radio">
-                    <button type="button" class="btn active">
+                    <button type="button" class="btn active showAsTable">
                         <span class="icon-cat_pic"></span>
                         {lang('s_in_images')}
                     </button>
-                    <button type="button" class="btn">
+                    <button type="button" class="btn showAsList">
                         <span class="icon-cat_list"></span>
                         {lang('s_in_list')}
                     </button>
