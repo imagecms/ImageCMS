@@ -32,7 +32,12 @@
                                     <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}{if count($variants)>1} - {echo ShopCore::encode($variant->name)}{/if}</a>
                                 </td>
                                 <td>
-                                    <div class="price f-s_16 f_l">{echo $variant->getPrice()} <sub>{$CS}</sub>
+                                    {if $item.model->hasDiscounts()}
+                                        <del class="price price-c_red f-s_12 price-c_9">
+                                            {echo $item.model->firstVariant->toCurrency('OrigPrice')} {$CS}
+                                        </del> <br />
+                                    {/if}
+                                    <div class="price f-s_16 f_l">{echo $variant->toCurrency()} <sub>{$CS}</sub>
                                     </div>
                                 </td>
                                 <td>
@@ -111,7 +116,7 @@
                                         <a href="{shop_url('product/' . $ap->getUrl())}">{echo ShopCore::encode($ap->getName())}</a> 
                                         {echo ShopCore::encode($kitFirstVariant->getName())}
                                         {if $kitFirstVariant->getEconomy() > 0}
-                                <br/><s style="font-size:14px;">{echo $kitFirstVariant->toCurrency('origPrice')} {$CS}</s>
+                                
                                 <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
                             {else:}
                                 <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>

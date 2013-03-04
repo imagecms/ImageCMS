@@ -18,9 +18,7 @@
                         {$variant = $v}
                     {/if}
                 {/foreach}
-
                 <tr>
-
                     <td>
                         <a href="{shop_url('product/' . $item.model->getUrl())}" class="photo_block">
                             <img src="{if count($variants)>1 && $variant->getSmallImage() != ''}{productImageUrl($variant->getsmallimage())}{else:}{productImageUrl($item.model->getMainModimage())}{/if}" alt="{echo ShopCore::encode($item.model->getName())}{if count($variants)>1} - {echo ShopCore::encode($variant->name)}{/if}"/>
@@ -30,7 +28,12 @@
                         <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}{if count($variants)>1} - {echo ShopCore::encode($variant->name)}{/if}</a>
                     </td>
                     <td>
-                        <div class="price f-s_16 f_l">{echo $variant->getPrice()} <sub>{$CS}</sub>
+                        {if $item.model->hasDiscounts()}
+                            <del class="price price-c_red f-s_12 price-c_9">
+                                {echo $variant->toCurrency('OrigPrice')} {$CS}
+                            </del> <br />
+                        {/if}
+                        <div class="price f-s_16 f_l">{echo $variant->toCurrency()} <sub>{$CS}</sub>
                         </div>
                     </td>
                     <td>
@@ -103,75 +106,74 @@
                         </td>
                         <td>
                             <a href="{shop_url('product/' . $ap->getUrl())}">{echo ShopCore::encode($ap->getName())}</a> {echo ShopCore::encode($kitFirstVariant->getName())}
-                            {if $kitFirstVariant->getEconomy() > 0}
-                    <br /><s style="font-size:14px;">{echo $kitFirstVariant->toCurrency()} {$CS}</s>
-                    <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
-                {else:}
-                    <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
-                {/if}
-            </td>
+                            {if $kitFirstVariant->getEconomy() > 0}                               
+                                <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
+                            {else:}
+                                <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
+                            {/if}
+                        </td>
 
-        </tr>
-        {$i++}
-    {/foreach}
-{/if}
-{$total     += $summary}
-{$total_nc  += $summary_nextc}
-{/foreach}
-</tbody>
-<tfoot>
-    <tr>
-        <td colspan="6">
-            <div class="foot_cleaner">
-                <div class="f_r">
-                    <div class="price f-s_26 f_l">
+                    </tr>
+                    {$i++}
+                {/foreach}
+            {/if}
+            {$total     += $summary}
+            {$total_nc  += $summary_nextc}
+        {/foreach}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="6">
+                <div class="foot_cleaner">
+                    <div class="f_r">
                         <div class="price f-s_26 f_l">
-                            {echo $total} {$CS}
+                            <div class="price f-s_26 f_l">
+                                {echo $total} {$CS}
+                            </div>
+                            <div class="price f-s_12 f_l p-t_19">
+                                {if isset($item.delivery_price)}
+                                    +{echo $item.delivery_price} {$CS}<br/><br/>
+                                {/if}
+                                {if isset($item.gift_cert_price)}
+                                    -{echo $item.gift_cert_price} {$CS}
+                                {/if}
+                            </div>
+                            <span id="dpholder" data-dp="{if $total >= $item.delivery_free_from AND $item.delivery_free_from > 0} 0 {else:}{echo $item.delivery_price}{/if}"></span>
+                            <span id="allpriceholder" data-summary="{echo $total - $item.gift_cert_price}"></span>
                         </div>
-                        <div class="price f-s_12 f_l p-t_19">
-                            {if isset($item.delivery_price)}
-                                +{echo $item.delivery_price} {$CS}<br/><br/>
-                            {/if}
-                            {if isset($item.gift_cert_price)}
-                                -{echo $item.gift_cert_price} {$CS}
-                            {/if}
-                        </div>
-                        <span id="dpholder" data-dp="{if $total >= $item.delivery_free_from AND $item.delivery_free_from > 0} 0 {else:}{echo $item.delivery_price}{/if}"></span>
-                        <span id="allpriceholder" data-summary="{echo $total - $item.gift_cert_price}"></span>
+                    </div>
+                    {$gift_price = (float) $gift_price;}
+                    {if (isset($item.gift_cert_price)==false) && $total < $gift_price}
+                        <span class="cert_fancybox">Сумма сертификата превышает сумму заказа!</span>
+                    {else:}
+                    {if $msg == 1}<span class="cert_fancybox"> Вы использовали сертификат!</span>{/if}
+                {if $msg == 2}<span class="cert_fancybox"> Не верный ключ сертификата!</span>{/if}  
+            {/if}
+            {literal}
+                <script type="text/javascript">
+                    $(".cert_fancybox").fancybox().click();
+                    $('#giftcertkey').val('');
+                </script>
+            {/literal}
+            <div class="f_r sum"><span class="price">{lang('s_summ')}:</span><br/>
+                {if isset($item.delivery_price)}
+                    <div class="f_r price f-s_12 p-t_19">Доставка:<br/><br/>
+                    {/if}
+
+                    {if isset($item.gift_cert_price)}
+                        <div class="f_r price f-s_12">Подарочный сертификат:<br/>
+                        {/if}
                     </div>
                 </div>
-                {$gift_price = (float) $gift_price;}
-                {if (isset($item.gift_cert_price)==false) && $total < $gift_price}
-                    <span class="cert_fancybox">Сумма сертификата превышает сумму заказа!</span>
-                {else:}
-                {if $msg == 1}<span class="cert_fancybox"> Вы использовали сертификат!</span>{/if}
-            {if $msg == 2}<span class="cert_fancybox"> Не верный ключ сертификата!</span>{/if}  
-        {/if}
-        {literal}
-            <script type="text/javascript">
-                $(".cert_fancybox").fancybox().click();
-                $('#giftcertkey').val('');
-            </script>
-        {/literal}
-        <div class="f_r sum"><span class="price">{lang('s_summ')}:</span><br/>
-            {if isset($item.delivery_price)}
-                <div class="f_r price f-s_12 p-t_19">Доставка:<br/><br/>
-                {/if}
-
-                {if isset($item.gift_cert_price)}
-                    <div class="f_r price f-s_12">Подарочный сертификат:<br/>
-                    {/if}
+                </td>     
+                </tr>
+                </tfoot>
+                <input type="hidden" name="forCart" value="1" />
+            {else:}
+                {echo $script}
+                <div class="comparison_slider">
+                    <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t(lang('s_cart_empty'))}</div>
                 </div>
-            </div>
-            </td>     
-            </tr>
-            </tfoot>
-            <input type="hidden" name="forCart" value="1" />
-        {else:}
-            {echo $script}
-            <div class="comparison_slider">
-                <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t(lang('s_cart_empty'))}</div>
-            </div>
-        {/if}
+            {/if}
 
 

@@ -9,7 +9,7 @@
 
                 {$cnt = 1}
                 {$cnc = 1}
-                {foreach $categorys as $category}
+                {foreach $categories as $category}
                     <div class="comparison_slider">
                         <div class="frame_button_compare">
                             <div class="prod_show_diff button_compare disabled"><span class="js blue">{lang('s_all_par')}</span></div>
@@ -32,7 +32,6 @@
                             <script> var bar = {$cnc}</script>
                             <ul class="comparison_slider_right{echo $cnc++}">                                   
                                 {foreach $products as $product}
-                                    {$discount = ShopCore::app()->SDiscountsManager->productDiscount($product->id)}
                                     {$style = productInCart($cart_data, $product->getId(), $product->firstVariant->getId(), $product->firstVariant->getStock())}
                                     {if $product->category_id == $category['Id']}
                                         <li class="list_desire" id="product_block_{echo $product->getId()}">
@@ -49,16 +48,13 @@
                                                     <a href="{shop_url('product/' . $product->getUrl())}" class="title">{echo $product->getName()}{echo $product->getName()}</a>
                                                     <div class="buy">
                                                         <div class="price f-s_14">
-                                                            {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                                                {$prOne = $product->firstvariant->getPrice()}
-                                                                {$prTwo = $product->firstvariant->getPrice()}
-                                                                {$prThree = $prOne - $prTwo / 100 * $discount}
-                                                                <del class="price price-c_red f-s_12 price-c_9">{echo $product->firstvariant->getPrice()} {$CS}</del><br /> 
-                                                            {else:}
-                                                                {$prThree = $product->firstvariant->getPrice()}
+                                                            {if $product->hasDiscounts()}
+                                                                <del class="price price-c_red f-s_12 price-c_9">
+                                                                    {echo $product->firstVariant->toCurrency('OrigPrice')} {$CS}
+                                                                </del> 
+                                                                <br />
                                                             {/if}
-                                                            {echo $prThree} 
-                                                            <sub>{$CS}</sub>
+                                                            {echo $product->firstVariant->toCurrency()} <sub>{$CS}</sub>
                                                         </div>
                                                         <div id="p{echo $product->getId()}" class="{$style.class} buttons">
                                                             <span id="buy{echo $product->getId()}" class="{$style.identif}" data-varid="{echo $product->firstVariant->getId()}" data-prodid="{echo $product->getId()}" >
