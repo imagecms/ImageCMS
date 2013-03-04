@@ -41,7 +41,7 @@
                                             <span class="icon-minus"></span>
                                         </button>
                                     </div>
-                                    <input type="text" value="<%- item.count %>" data-rel="plusminus" data-title="только цифры" data-min="1"/>
+                                    <input type="text" value="<%- item.count %>" data-rel="plusminus" data-title="только цифры" data-min="1" <% if (item.maxcount) { %> data-max="<%-item.maxcount%>" <% } %> />
                                 </div>
                                 <span class="v-a_m"><%- item.count %> шт.</span>
                             </td>
