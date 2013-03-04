@@ -64,7 +64,7 @@ class Categories extends BaseAdminController {
         $cats = array();
 
         //$tree = $this->lib_category->build();
-        $tree = $this->lib_category->buildForAdmin();
+        $tree = $this->lib_category->_build();
 
         $cats = $this->sub_cats($tree);
 
