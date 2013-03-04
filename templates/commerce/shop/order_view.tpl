@@ -67,7 +67,6 @@
                 {foreach $model->getSOrderProductss() as $item}
                     {$total = $total + $item->getQuantity() * $item->toCurrency()}
                     {$product = $item->getSProducts()}
-                    {$discount = ShopCore::app()->SDiscountsManager->productDiscount($product->getid())}
                     {$variants = $item->getSProducts()->getProductVariants()}
                     {foreach $variants as $v}
                         {if $v->getId() == $item->getVariantId()}
@@ -131,14 +130,13 @@
                             </td>
                             <td> {//echo $summary = ShopCore::app()->SCurrencyHelper->convert($item.totalAmount)}
                                 <div class="price f-s_18 f_l">
-                                    {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                        {$prOne = $variant->getPrice() * $item->getQuantity()}
-                                        {$prThree = $prOne - $prOne / 100 * $discount}
-                                        <del class="price price-c_red f-s_12 price-c_9">{echo $variant->getPrice() * $item->getQuantity()} {$CS}</del><br /> 
-                                    {else:}
-                                        {$prThree = $variant->getPrice() * $item->getQuantity()}
+                                    {if true}
+
+                                        <!--<del class="price price-c_red f-s_12 price-c_9">{echo $variant->toCurrency() * $item->getQuantity()} {$CS}</del><br />--> 
                                     {/if}
-                                    {echo $prThree} <sub>{$CS}</sub>
+                                    
+                                    {echo $item->toCurrency() * $item->getQuantity()}
+                                    <sub>{$CS}</sub>
                                 </div>
                             </td>
                         </tr>
@@ -155,15 +153,16 @@
                                         {$giftPrice = $model->getgiftcertprice()}
                                         {$total -= $model->getgiftcertprice()}
                                     {/if}
-                                    {if $total >= $deliveryMethod->getFreeFrom() AND $deliveryMethod->getFreeFrom() > 0}
-                                        {$total} {$CS}
-                                    {else:}
-                                        {echo $total + $model->getDeliveryPrice()} {$CS} 
-                                        <div class="price f-s_12">Доставка: +{echo $model->getDeliveryPrice()} {$CS}</div>
-                                        {if $giftPrice}
-                                            <div class="price f-s_12">Сертификат: -{echo $giftPrice} {$CS}</div>
+                                        {if $total}
+                                            {$total} {$CS}
+                                        {else:}
+                                            {echo $total + $model->getDeliveryPrice()} {$CS} 
+                                            <div class="price f-s_12">Доставка: +{echo $model->getDeliveryPrice()} {$CS}</div>
+                                            {if $giftPrice}
+                                                <div class="price f-s_12">Сертификат: -{echo $giftPrice} {$CS}</div>
+                                            {/if}
                                         {/if}
-                                    {/if}</div>
+                                </div>
                             </div>
                             <div class="sum f_r">
                                 {lang('s_summ')}: 
