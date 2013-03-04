@@ -904,7 +904,7 @@ var GalleryAlbums = new Object({
         var mini_layout = $(el).closest('.mini-layout');
 
         if (closest_tr[0] != undefined) {
-            this.id = $(el).closest('tr').find("[type = hidden]").val();
+            this.id = $(el).closest('table').find("[type = hidden]").val();
         }
         else if (mini_layout[0] != undefined) {
             this.id = mini_layout.find('[name = album_id]').val();

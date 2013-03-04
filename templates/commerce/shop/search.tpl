@@ -78,7 +78,6 @@
                 {if $totalProducts > 0}
                     <ul class="products">
                         {foreach $products as $p}
-                            {$discount = ShopCore::app()->SDiscountsManager->productDiscount($p->id)}
                             {$style = productInCart($cart_data, $p->getId(), $p->firstVariant->getId(), $p->firstVariant->getStock())}
                             <li>
                                 <div class="photo_block">
@@ -164,15 +163,10 @@
                                                 {/if}
                                             {/if}
                                             <div id="pricem{echo $p->getId()}">
-                                                {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                                    {$prOne = $p->firstvariant->getPrice()}
-                                                    {$prTwo = $p->firstvariant->getPrice()}
-                                                    {$prThree = $prOne - $prTwo / 100 * $discount}
-                                                    <del class="price price-c_red f-s_12 price-c_9">{echo number_format($p->firstvariant->getPrice(), ShopCore::app()->SSettings->pricePrecision, ".", "")} {$CS}</del>
-                                                {else:}
-                                                    {$prThree = $p->firstvariant->getPrice()}
+                                                {if $p->hasDiscounts()}                                                   
+                                                    <del class="price price-c_red f-s_12 price-c_9">{echo $p->firstvariant->toCurrency('OrigPrice')} {$CS}</del>
                                                 {/if}
-                                                {echo number_format($prThree, ShopCore::app()->SSettings->pricePrecision, ".", "")} 
+                                                {echo $p->firstvariant->toCurrency()} 
                                                 <sub>{$CS}</sub>
                                             </div>
                                         </div>
