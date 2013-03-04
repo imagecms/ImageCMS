@@ -966,7 +966,7 @@ $(document).ready(function() {
 
     $('.findincats').live('click', function() {
         var id = $(this).attr('data-id');
-        $('[name="categoryId"]').attr('value', id);
+        $('[name="category"]').attr('value', id);
         $('#orderForm').submit();
     });
 
