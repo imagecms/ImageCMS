@@ -49,7 +49,6 @@
                     </div>
                     <ul>
                         {foreach getPromoBlock('hot', 3, $product->category_id) as $hotProduct}
-                            {$discount = ShopCore::app()->SDiscountsManager->productDiscount($hotProduct->id)}
                             <li class="smallest_item">
                                 <div class="photo_block">
                                     <a href="{shop_url('product/' . $hotProduct->getUrl())}">
@@ -60,15 +59,11 @@
                                     <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                                     <div class="buy">
                                         <div class="price f-s_14">
-                                            {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                                {$prOne = $hotProduct->firstVariant->getPrice()}
-                                                {$prTwo = $hotProduct->firstVariant->getPrice()}
-                                                {$prThree = $prOne - $prTwo / 100 * $discount}
-                                                <del class="price price-c_red f-s_12 price-c_9">{echo number_format($hotProduct->firstVariant->getPrice(), 2, ".", "")} {$CS}</del><br /> 
-                                            {else:}
-                                                <div class="price f-s_14">{$prThree = number_format($hotProduct->firstVariant->getPrice(), 2, ".", "")}
-                                                {/if}
-                                                {echo number_format($prThree, 2, ".", "")} 
+                                            {if $hotProduct->hasDiscounts() AND ShopCore::$ci->dx_auth->is_logged_in() === true}
+                                                <del class="price price-c_red f-s_12 price-c_9">{echo $hotProduct->firstVariant->toCurrency('OrigPrice')} {$CS}</del><br /> 
+                                            {/if}
+                                            <div class="price f-s_14">
+                                                {echo $hotProduct->firstVariant->toCurrency()}
                                                 <sub>{$CS}</sub>
                                             </div>
                                         </div>
@@ -87,7 +82,6 @@
                     </div>
                     <ul>
                         {foreach getPromoBlock('action', 3, $product->category_id) as $hotProduct}
-                            {$discount = ShopCore::app()->SDiscountsManager->productDiscount($hotProduct->id)}
                             <li class="smallest_item">
                                 <div class="photo_block">
                                     <a href="{shop_url('product/' . $hotProduct->getUrl())}">
@@ -98,15 +92,11 @@
                                     <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
                                     <div class="buy">
                                         <div class="price f-s_14">
-                                            {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                                {$prOne = $hotProduct->firstVariant->getPrice()}
-                                                {$prTwo = $hotProduct->firstVariant->getPrice()}
-                                                {$prThree = $prOne - $prTwo / 100 * $discount}
-                                                <del class="price price-c_red f-s_12 price-c_9">{echo number_format($hotProduct->firstVariant->getPrice(), 2, ".", "")} {$CS}</del><br /> 
-                                            {else:}
-                                                <div class="price f-s_14">{$prThree = number_format($hotProduct->firstVariant->getPrice(), 2, ".", "")}
-                                                {/if}
-                                                {echo number_format($prThree, 2, ".", "")} 
+                                            {if $hotProduct->hasDiscounts() AND ShopCore::$ci->dx_auth->is_logged_in() === true}
+                                                <del class="price price-c_red f-s_12 price-c_9">{echo $hotProduct->firstVariant->toCurrency('OrigPrice')} {$CS}</del><br /> 
+                                            {/if}
+                                            <div class="price f-s_14">
+                                                {echo $hotProduct->firstVariant->toCurrency()}
                                                 <sub>{$CS}</sub>
                                             </div>
                                         </div>
@@ -187,7 +177,6 @@
                     <!--  Render produts list   -->
                     {foreach $products as $product}
                         {$style = productInCart($cart_data, (int)$product->id, (int)$product->variants[0]->id, (int)$product->firstVariant->getStock())}
-                        {$discount = ShopCore::app()->SDiscountsManager->productDiscount($product->id)}
                         <li {if (int)$product->getallstock() == 0}class="not_avail"{/if}>
                             <div class="photo_block">
                                 <a href="{shop_url('product/' . $product->getUrl())}">
@@ -245,7 +234,7 @@
                                                             data-vname="{echo $pv->getName()}"
                                                             data-vnumber="{echo $pv->getNumber()}">
                                                         {if $pv->name != ''}
-                                                            {echo $pv->geName()}
+                                                            {echo $pv->getName()}
                                                         {else:}
                                                             {echo ShopCore::encode($product->getName())}
                                                         {/if}
@@ -268,15 +257,10 @@
                                             {/if}
                                         {/if}
                                         <div id="pricem{echo $product->getId()}">
-                                            {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                                {$prOne = $product->firstVariant->toCurrency()}
-                                                {$prTwo = $product->firstVariant->toCurrency()}
-                                                {$prThree = $prOne - $prTwo / 100 * $discount}
-                                                <del class="price price-c_red f-s_12 price-c_9">{echo $product->firstVariant->getId()} {$CS}</del>
-                                            {else:}
-                                                {$prThree = $product->firstVariant->getId()}
+                                            {if $product->hasDiscounts() AND ShopCore::$ci->dx_auth->is_logged_in() === true}
+                                                <del class="price price-c_red f-s_12 price-c_9">{echo $product->firstVariant->toCurrency('OrigPrice')} {$CS}</del>
                                             {/if}
-                                            {echo $prThree} 
+                                            {echo $product->firstVariant->toCurrency()} 
                                             <sub>{$CS}</sub>
                                         </div>
                                     </div>
