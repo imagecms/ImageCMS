@@ -20,7 +20,7 @@ function renderPosts($this)
                 }).end().parent().parent().next().slideToggle(200).end().find('.blue_arrow').toggleClass('up');
                 return false;
             });
-            
+
             if (obj.total_comments !== 0) {
                 $('#cc').html('');
                 $('#cc').append("Всего комментариев: " + obj.total_comments);
@@ -501,10 +501,16 @@ $(document).ready(function() {
             url: '/shop/cart_api',
             success: function(msg) {
                 $('.cart_data_holder').load('/shop/ajax/getCartDataHtml');
-                if ($('.plus_minus button').hasClass('inCartProducts'))
+                if ($.exists('.inCartProducts')){
+                //if ($('.plus_minus button').hasClass('inCartProducts')){
+                    console.log("appending");
                     $('.forCartProducts').html(msg);
-                else
+                }
+                else{
+                    console.log("show response");
                     showResponse(msg);
+                }
+
                 $("#cartForm").find('input[name=makeOrder]').val(1);
                 $.fancybox.hideActivity();
                 $('#price1').text($('#allpriceholder').data('summary'));
