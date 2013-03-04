@@ -44,17 +44,10 @@
                     </td>
                     <td>
                         <div class="price f-s_18 f_l">
-                            {if $item.discount}
-                                <div class="price f-s_12 f_l">Скидка {echo $item.discount}%</div><br /> 
-                                {$summary = $variant->getPrice() * $item.quantity}
-                                {echo $summary - $summary / 100 *$item.discount}
-                                <sub>{$CS}</sub>      <br />       
-                                <del class="price price-c_red f-s_12 price-c_9">{echo $summary} {$CS}</del> 
-                            {else:}
-                                {$summary = $variant->getPrice() * $item.quantity}
-                                {echo $summary}
-                                <sub>{$CS}</sub>
-                            {/if}
+
+                            {$summary = $variant->toCurrency() * $item.quantity}
+                            {echo $summary}
+                            <sub>{$CS}</sub>
 
                         </div>
                     </td>
@@ -84,8 +77,8 @@
                         <div class="count">
                             <input type="text" name="products[{$key}]" value="{$item.quantity}">
                             <span class="plus_minus">
-                                <button class="count_up inCartProducts">&#9650;</button>
-                                <button class="count_down inCartProducts">&#9660;</button>
+                                <button class="count_up">&#9650;</button>
+                                <button class="count_down">&#9660;</button>
                             </span>
                         </div>
                     </td>
@@ -111,7 +104,7 @@
                         <td>
                             <a href="{shop_url('product/' . $ap->getUrl())}">{echo ShopCore::encode($ap->getName())}</a> {echo ShopCore::encode($kitFirstVariant->getName())}
                             {if $kitFirstVariant->getEconomy() > 0}
-                    <br /><s style="font-size:14px;">{echo $kitFirstVariant->toCurrency('origPrice')} {$CS}</s>
+                    <br /><s style="font-size:14px;">{echo $kitFirstVariant->toCurrency()} {$CS}</s>
                     <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
                 {else:}
                     <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
@@ -130,30 +123,12 @@
     <tr>
         <td colspan="6">
             <div class="foot_cleaner">
-                <div class="f_l f-s_26" style="width: 268px;">                    
-                    {if count($discountCom)} 
-                        <span class="price f-s_12 price-c_9" style="font-size: 14px;">
-                            Накопительная скидка {echo $discountCom->getDiscount()}%
-                        </span>
-                    {/if}
-                </div>
                 <div class="f_r">
                     <div class="price f-s_26 f_l">
-                        {if count($discountCom)} 
-                            <del class="price price-c_red f-s_12 price-c_9">{echo $total} {$CS}</del> 
-                            {$total -= $total / 100 * $discountCom->getDiscount()}
-                            {echo money_format('%i', $total)} {$CS} 
-                        {elseif $item.discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                            <div class="price f-s_26 f_l">
-                                {$total -= $total / 100 * $item.discount}
-                                {echo $total} {$CS}
-                            </div>
-                        {else:}
-                            <div class="price f-s_26 f_l">
-                                {echo $total} {$CS}
-                            </div>
-                        {/if}                    
-                        <br/><div class="price f-s_12 f_l p-t_19">
+                        <div class="price f-s_26 f_l">
+                            {echo $total} {$CS}
+                        </div>
+                        <div class="price f-s_12 f_l p-t_19">
                             {if isset($item.delivery_price)}
                                 +{echo $item.delivery_price} {$CS}<br/><br/>
                             {/if}
