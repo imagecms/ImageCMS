@@ -503,11 +503,11 @@ $(document).ready(function() {
                 $('.cart_data_holder').load('/shop/ajax/getCartDataHtml');
                 if ($.exists('.inCartProducts')){
                 //if ($('.plus_minus button').hasClass('inCartProducts')){
-                    console.log("appending");
+                    //console.log("appending");
                     $('.forCartProducts').html(msg);
                 }
                 else{
-                    console.log("show response");
+                    //console.log("show response");
                     showResponse(msg);
                 }
 
