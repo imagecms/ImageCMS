@@ -1200,6 +1200,8 @@ function ieInput(els) {
                             $thisPrev.removeAttr('disabled');
                         else
                             $thisPrev.attr('disabled', 'disabled');
+                        
+                        input.maxValue();
                     })
                     $thisPrev.click(function() {
                         var input = $this.focus();
@@ -1234,6 +1236,7 @@ function ieInput(els) {
         init: function(options) {
             var $this = $(this);
             var $min = $(this).attr('data-min');
+            var $max = parseInt( $(this).attr('data-max'));
 
             $thisVal = $this.val();
             if ($thisVal == '') {
@@ -1254,8 +1257,13 @@ function ieInput(els) {
             }
             else if ($thisVal < $min)
                 $this.val($min);
+            
+           if (typeof $max == 'integer' && $max != 0)  
+               if ($thisVal > $max)
+                   $thisVal = $max;
         }
     };
+
     $.fn.minValue = function(method) {
         if (methods[method]) {
             return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
@@ -1269,6 +1277,32 @@ function ieInput(els) {
         $(this).minValue();
     })
 })(jQuery);
+
+
+ (function($) {
+    var methods = {
+        init: function(options) {
+            var $this = $(this),
+            $max = $(this).attr('data-max');
+
+            $thisVal = $this.val();
+            if ($thisVal > $max) $this.val($max);
+        }
+    };
+    $.fn.maxValue = function(method) {
+        if (methods[method]) {
+            return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
+        } else if (typeof method === 'object' || !method) {
+            return methods.init.apply(this, arguments);
+        } else {
+            $.error('Method ' + method + ' does not exist on jQuery.maxValue');
+        }
+    };
+    $('[data-max]').live('keyup', function() {
+        $(this).maxValue();
+    })
+})(jQuery);
+
 
 (function($){
     var methods = {
