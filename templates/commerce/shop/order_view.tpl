@@ -72,7 +72,7 @@
                         {if $v->getId() == $item->getVariantId()}
                             {$variant = $v}
                         {/if}
-                    {/foreach}
+                    {/foreach}                   
                     {if $item->getKitId() > 0}
                         {if $item->getIsMain()}
                             <tr>
@@ -90,7 +90,9 @@
                                 <td rowspan="{echo $kits[$item->getKitId()]['total']}">
                                     {echo $item->getQuantity()} {lang('s_pcs1')}.
                                 </td>
-                                <td rowspan="{echo $kits[$item->getKitId()]['total']}">{echo $item->getQuantity() * $kits[$item->getKitId()]['price']} {$CS}</td>
+                                <td rowspan="{echo $kits[$item->getKitId()]['total']}">
+                                    {echo $item->getQuantity() * $item->toCurrency()} {$CS}  
+                                </td>
                             </tr>
                         {else:}
                             <tr>
@@ -107,8 +109,9 @@
                                 </td>
                                 <td>{echo $item->toCurrency()} {$CS}</td>
                             </tr>
+                        {$summm += $item->toCurrency()}
                         {/if}
-                    {else:}
+                    {else:}                         
                         <tr>
                             <td>
                                 <a href="{shop_url('product/' . $product->getUrl())}" class="photo_block">
@@ -129,11 +132,7 @@
                                 </div>
                             </td>
                             <td> {//echo $summary = ShopCore::app()->SCurrencyHelper->convert($item.totalAmount)}
-                                <div class="price f-s_18 f_l">
-                                    {if true}
-
-                                        <!--<del class="price price-c_red f-s_12 price-c_9">{echo $variant->toCurrency() * $item->getQuantity()} {$CS}</del><br />--> 
-                                    {/if}
+                                <div class="price f-s_18 f_l">                                  
 
                                     {echo $item->toCurrency() * $item->getQuantity()}
                                     <sub>{$CS}</sub>
@@ -163,9 +162,15 @@
                                         {if $giftPrice}
                                             <div class="price f-s_12">Сертификат: -{echo $giftPrice} {$CS}</div>
                                         {/if}
-                                    {/if}
+                                    {/if}                                    
                                 </div>
                             </div>
+                            <div class="f_l" style="width: 250px;">
+                                {if $model->getComulativ()}
+                                    <div class="sum f_l">
+                                        Скидка: 
+                                        {echo $model->getComulativ()} %</div>
+                                {/if}</div>
                             <div class="sum f_r">
                                 {lang('s_summ')}: 
                             </div>

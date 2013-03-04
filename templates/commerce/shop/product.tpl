@@ -350,11 +350,11 @@
                         <div class="button_block ">
                             <div class="buy">
                                 <del class="price f-s_12 price-c_9">
-                                    <span>{echo $summa} <span>{$CS}</span>
+                                    <span>{echo $kid->getAllPriceBefore()} <span>{$CS}</span>
                                     </span>
                                 </del>
                                 <div class="price f-s_18">
-                                    <span>{echo $summa_with_discount} {$CS}</span>
+                                    <span>{echo $kid->getTotalPrice()} {$CS}</span>
                                 </div>
                                 {$inCart = ShopCore::app()->SCart->getData()}
                                 {$prod_in_cart = false}
