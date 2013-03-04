@@ -22,12 +22,13 @@
                       {/literal}<img src="{base_url()}uploads/shop/{literal}<%- item.smallModImage %>">
                    </span>
                    <span><% print( item.name)  %></span>
-              </a>
-              <!-- End. Photo Block and name -->
+                    <!-- End. Photo Block and name -->
+
+                    <!-- Start. Product price  -->
+                      <div class="price price_f-s_16"><span class="f-w_b"><%- Math.round(item.price) %></span>{/literal}{$CS}{literal}</div>
+                    <!-- End. Product price  -->
+               </a>
               
-              <!-- Start. Product price  -->
-                <div class="price price_f-s_16"><span class="f-w_b"><%- Math.round(item.price) %></span>{/literal}{$CS}{literal}</div>
-              <!-- End. Product price  -->
            </li>
            <% }
            }) %>

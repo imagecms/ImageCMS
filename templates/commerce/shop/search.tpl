@@ -13,10 +13,10 @@
 {$forCompareProducts = $CI->session->userdata('shopForCompare')}
 
 <!-- BEGIN STAR RATING -->
-<link rel="stylesheet" type="text/css" href="{$SHOP_THEME}js/rating/jquery.rating-min.css" />
-<script src="{$SHOP_THEME}js/rating/jquery.rating-min.js" type="text/javascript"></script>
-<script src="{$SHOP_THEME}js/rating/jquery.MetaData-min.js" type="text/javascript"></script>
-<script src="{$SHOP_THEME}js/search.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="{$THEME}js/rating/jquery.rating-min.css" />
+<script src="{$THEME}js/rating/jquery.rating-min.js" type="text/javascript"></script>
+<script src="{$THEME}js/rating/jquery.MetaData-min.js" type="text/javascript"></script>
+<script src="{$THEME}js/search.js" type="text/javascript"></script>
 <!-- END STAR RATING -->
 <!--
 {include_tpl('sidebar')}

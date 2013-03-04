@@ -199,32 +199,23 @@
                 {/if}
                 <!-- End pagination -->
                 <!-- End. Search results block -->
+                </div>
+            </div>
+        </div>
             {else:}
-                <!-- Start.If products not found show message-->
-                <div class="row" >
-                    <aside class="span3">
-                        <div class="filter">
-                            <div class="boxFilter">
-                                <div class="title">{lang('s_sea_found_in_categories')}:</div>
-                            </div>
-                        </div>
-                    </aside>
-                    <div class="span9 right" style="padding-top:15px;">
-                        <div class="bot_border_grey">     
-                            {if !empty(ShopCore::$_GET['text'])}
-                                <h1 class="d_i">  {lang('s_sea_search_for')}:"{encode($_GET['text'])}" </h1>
-                            {/if}
-                            <span class="c_97 ">
-                                ({$totalProducts}) {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}
-                            </span>
-                        </div>    
-                        <div class="span9 right" style="padding-top:15px;">
-                            {echo ShopCore::t(lang('s_not_found'))}</li>
+            <!--Start. Show message not found-->
+                <article>
+                  <div class="bot_border_grey">     
+                   {if !empty(ShopCore::$_GET['text'])}
+                        <h1>  {lang('s_sea_search_for')}:"{encode($_GET['text'])}" </h1>
+                    {/if}
+                    </div>
+                    <div class="frame_carousel_product">
+                        <div class="comparison_slider">
+                            <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t(lang('s_not_found'))}</div>
                         </div>
                     </div>
-                </div>
-                <!-- End. Show message -->
+                </article>
+               <!-- End. Show message -->
             {/if}
-        </div>
-    </div>
-</div>
+ 
