@@ -25,30 +25,31 @@
                                 <tr>
                                     <td>
                                         <a href="{shop_url('product/' . $item.model->getUrl())}" class="photo_block">
-                                            <img src="{if count($variants)>1 && $variant->getSmallImage() != ''}{productImageUrl($variant->getsmallimage())}{else:}{productImageUrl($item.model->getMainModimage())}{/if}" alt="{echo ShopCore::encode($item.model->getName())}{if count($variants)>1} - {echo ShopCore::encode($variant->name)}{/if}"/>
+                                            <img src="{if count($variants)>1 && $variant->getSmallImage() != ''}{productImageUrl($variant->getsmallimage())}{else:}{productImageUrl($item.model->getMainModimage())}{/if}"
+                                                 alt="{echo ShopCore::encode($item.model->getName())}{if count($variants)>1} - {echo ShopCore::encode($variant->name)}{/if}"/>
                                         </a>
                                     </td>
                                     <td>
                                         <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}{if count($variants)>1} - {echo ShopCore::encode($variant->name)}{/if}</a>
                                     </td>
                                     <td>
-                                        <div class="price f-s_16 f_l">{echo $variant->getPrice()} <sub>{$CS}</sub>
+                                        <div class="price f-s_16 f_l">{echo $variant->toCurrency()} <sub>{$CS}</sub>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="count">
                                             <input name="products[{$key}]" type="text" value="{$item.quantity}"/>
                                             <span class="plus_minus">
-                                                <button class="count_up inCartProducts">&#9650;</button>
-                                                <button class="count_down inCartProducts">&#9660;</button>
+                                                <button class="count_up">&#9650;</button>
+                                                <button class="count_down">&#9660;</button>
                                             </span>
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="price f-s_18 f_l">{$summary = $variant->getPrice() * $item.quantity}
+                                        <div class="price f-s_18 f_l">{$summary = $variant->toCurrency() * $item.quantity}
                                             {echo $summary}
                                             <sub>{$CS}</sub>
-                                            
+
                                         </div>
                                     </td>
                                     <td>
@@ -103,7 +104,7 @@
                                             <a href="{shop_url('product/' . $ap->getUrl())}">{echo ShopCore::encode($ap->getName())}</a> 
                                             {echo ShopCore::encode($kitFirstVariant->getName())}
                                             {if $kitFirstVariant->getEconomy() > 0}
-                                    <br /><s style="font-size:14px;">{echo $kitFirstVariant->toCurrency('origPrice')} {$CS}</s>
+                                    <br /><s style="font-size:14px;">{//echo $kitFirstVariant->toCurrency()} {$CS}</s>
                                     <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
                                 {else:}
                                     <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
@@ -145,9 +146,9 @@
                         </label>
                     {/if}
                     <div class="block_title_18"><span class="title_18">{lang('s_sdm')}</span></div>
-                        {$counter = true}
-                        {foreach $deliveryMethods as $deliveryMethod}
-                            {$del_id = $deliveryMethod->getId()}
+                    {$counter = true}
+                    {foreach $deliveryMethods as $deliveryMethod}
+                        {$del_id = $deliveryMethod->getId()}
                         <label>
                             <input type="radio" 
                                    {if $counter} checked="checked" 

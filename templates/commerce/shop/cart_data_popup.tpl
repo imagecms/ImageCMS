@@ -111,13 +111,13 @@
                                         <a href="{shop_url('product/' . $ap->getUrl())}">{echo ShopCore::encode($ap->getName())}</a> 
                                         {echo ShopCore::encode($kitFirstVariant->getName())}
                                         {if $kitFirstVariant->getEconomy() > 0}
-                                            <br/><s style="font-size:14px;">{echo $kitFirstVariant->toCurrency('origPrice')} {$CS}</s>
-                                            <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
-                                        {else:}
-                                            <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
-                                        {/if}
-                                    </td>
-                                </tr>
+                                <br/><s style="font-size:14px;">{echo $kitFirstVariant->toCurrency('origPrice')} {$CS}</s>
+                                <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
+                            {else:}
+                                <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
+                            {/if}
+                            </td>
+                            </tr>
                             {$i++}
                         {/foreach}
                     {/if}
@@ -153,8 +153,8 @@
                                                     <div class="price f-s_26 f_l">
                                                         {echo $total - $total / 100 * $item.discount} {$CS}
                                                     </div>
-                                                    {else:}
-                                                          <div class="price f-s_26 f_l">
+                                                {else:}
+                                                    <div class="price f-s_26 f_l">
                                                         {echo $total} {$CS}
                                                     </div>
                                                 {/if}
