@@ -40,8 +40,7 @@ class assetManager {
         $trace = debug_backtrace();
         $paths = explode(DS, $trace[0]['file']);
         $paths = $paths[count($paths) - 2];
-        $paths = APPPATH . implode('/', array_slice(explode(DS, $trace[0]['file']), 5, 2));
-        \CI_Controller::get_instance()->template->registerJsFile($paths . '/assets/js/' . $name . '.js', 'after');
+        \CI_Controller::get_instance()->template->registerJsFile(APPPATH . 'modules/' . $paths . '/assets/js/' . $name . '.js', 'after');
         return $this;
     }
 
@@ -54,9 +53,8 @@ class assetManager {
     public function registerStyle($name) {
         $trace = debug_backtrace();
         $paths = explode(DS, $trace[0]['file']);
-        $paths = $paths[count($paths) - 2];        
-        $paths = APPPATH . implode('/', array_slice(explode(DS, $trace[0]['file']), 5, 2));
-        \CI_Controller::get_instance()->template->registerCssFile($paths . '/assets/css/' . $name . '.css', 'before');
+        $paths = $paths[count($paths) - 2];
+        \CI_Controller::get_instance()->template->registerCssFile(APPPATH . 'modules/' . $paths . '/assets/css/' . $name . '.css', 'before');
         return $this;
     }
 
