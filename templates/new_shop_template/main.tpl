@@ -103,7 +103,7 @@
                                     <span class="f-s_0">
                                         <span class="icon-bask"></span>
                                         <span class="d_l">Корзина</span>
-                                        <span>&nbsp;(0)</span>
+                                        <span id="topCartCount">&nbsp;(0)</span>
                                     </span>
                                 </div>
                             </div>
@@ -324,7 +324,7 @@
                     <span class="title">Ваше имя</span>
                     <span class="frame_form_field">
                         <input type="text" id="" name="UserName"/>
-                        <div id="for_UserName" class="for_validations"></div>
+                        <label id="for_UserName" class="for_validations"></label>
                         <span class="must">*</span>
                     </span>
                 </label>
@@ -332,7 +332,7 @@
                     <span class="title">E-mail</span>
                     <span class="frame_form_field">
                         <input type="text" id="" name="UserEmail"/>
-                        <div id="for_UserEmail" class="for_validations"></div>
+                        <label id="for_UserEmail" class="for_validations"></label>
                         <input type="hidden" name="ProductId" value=""/>
                         <input type="hidden" name="notifme" value="true"/>
                         <span class="must">*</span>
@@ -343,7 +343,7 @@
                     <span class="title">Телефон</span>
                     <span class="frame_form_field">
                         <input type="text" id="" name="UserPhone"/>
-                        <div id="for_UserPhone" class="for_validations"></div>
+                        <label id="for_UserPhone" class="for_validations"></label>
                         <span class="must">*</span>
                     </span>
                 </label>
