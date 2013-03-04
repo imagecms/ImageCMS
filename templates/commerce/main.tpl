@@ -7,26 +7,26 @@
         <meta name="keywords" content="{$site_keywords}" />
         <meta name="generator" content="ImageCMS" />
         {$meta_noindex}
-        <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/style.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/jquery.fancybox-1.3.4.css" media="all" />
-        <link rel="icon" type="image/x-icon" href="{$SHOP_THEME}images/favicon.png"/> 
+        <link rel="stylesheet" type="text/css" href="{$THEME}/css/style.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery.fancybox-1.3.4.css" media="all" />
+        <link rel="icon" type="image/x-icon" href="{$THEME}images/favicon.png"/> 
 
         
-        <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/ie8_7_6.css" /><![endif]-->
-        <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/ie_7.css" /><![endif]-->
-        <script type="text/javascript" src="{$SHOP_THEME}/js/jquery-1.7.2.min.js"></script>
-        <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.cycle.all.js"></script>
-        <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.jcarousel.min.js"></script>
-        <script type="text/javascript" src="{$SHOP_THEME}/js/jquery-ui-personalized-1.5.2.packed.js"></script>
-        <script type="text/javascript" src="{$SHOP_THEME}/js/jScrollPane.min.js"></script>
-        <script type="text/javascript" src="{$SHOP_THEME}/js/cusel-min-2.4.1.js"></script>
-        <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.ui-slider.js" ></script>
-        <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.fancybox-1.3.4.pack.js" ></script>
-        <script type="text/javascript" src="{$SHOP_THEME}/js/jquery.form.js"></script>
-        <script type="text/javascript" src="{$SHOP_THEME}/js/scripts.js"></script>
-        <script type="text/javascript" src="{$SHOP_THEME}/js/shop.js"></script>
-        <script type="text/javascript" src="{$SHOP_THEME}js/jquery.validate.js"></script>
-        <script type="text/javascript" src="{$SHOP_THEME}js/imagecms.api.js"></script>
+        <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{$THEME}/css/ie8_7_6.css" /><![endif]-->
+        <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{$THEME}/css/ie_7.css" /><![endif]-->
+        <script type="text/javascript" src="{$THEME}/js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="{$THEME}/js/jquery.cycle.all.js"></script>
+        <script type="text/javascript" src="{$THEME}/js/jquery.jcarousel.min.js"></script>
+        <script type="text/javascript" src="{$THEME}/js/jquery-ui-personalized-1.5.2.packed.js"></script>
+        <script type="text/javascript" src="{$THEME}/js/jScrollPane.min.js"></script>
+        <script type="text/javascript" src="{$THEME}/js/cusel-min-2.4.1.js"></script>
+        <script type="text/javascript" src="{$THEME}/js/jquery.ui-slider.js" ></script>
+        <script type="text/javascript" src="{$THEME}/js/jquery.fancybox-1.3.4.pack.js" ></script>
+        <script type="text/javascript" src="{$THEME}/js/jquery.form.js"></script>
+        <script type="text/javascript" src="{$THEME}/js/scripts.js"></script>
+        <script type="text/javascript" src="{$THEME}/js/shop.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery.validate.js"></script>
+        <script type="text/javascript" src="{$THEME}js/imagecms.api.js"></script>
         {$renderGA}
     </head>
     <body>        
@@ -34,14 +34,14 @@
             <div class="top">
                 <div class="center">
                     {load_menu('top_menu')}
-                    <ul class="user_menu m-l_19">{include_tpl('/shop/default/auth_data')}</ul>
-                    <ul class="user_menu cart_data_holder">{include_tpl('/shop/default/cart_data')}</ul>
+                    <ul class="user_menu m-l_19">{include_shop_tpl('auth_data')}</ul>
+                    <ul class="user_menu cart_data_holder">{include_shop_tpl('cart_data')}</ul>
                 </div>
             </div><!-- top -->
             <div class="header center">
 
                 <a href="{$BASE_URL}" class="logo">
-                    <img src="{$SHOP_THEME}images/imagecms.png">
+                    <img src="{$THEME}images/imagecms.png">
                 </a>
                 {$CI->load->module('mailer')}
                 <div class="frame_form_search">
@@ -55,7 +55,7 @@
                             <ul>
                                 <li class="smallest_item">
                                     <a href="#" class="photo_block">
-                                        <img src="{$SHOP_THEME}/images/temp/small_img.jpg"/>
+                                        <img src="{$THEME}/images/temp/small_img.jpg"/>
                                     </a>
                                     <div class="func_description">
                                         <a href="#" class="title">Asus X54C (X54C-SX006D) Black</a>
@@ -68,7 +68,7 @@
 
                                 <li class="smallest_item">
                                     <a href="#" class="photo_block">
-                                        <img src="{$SHOP_THEME}/images/temp/small_img.jpg"/>
+                                        <img src="{$THEME}/images/temp/small_img.jpg"/>
                                     </a>
                                     <div class="func_description">
                                         <a href="#" class="title">Asus X54C (X54C-SX006D) Black</a>
@@ -79,7 +79,7 @@
                                 </li>
                                 <li class="smallest_item">
                                     <a href="#" class="photo_block">
-                                        <img src="{$SHOP_THEME}/images/temp/small_img.jpg"/>
+                                        <img src="{$THEME}/images/temp/small_img.jpg"/>
                                     </a>
                                     <div class="func_description">
                                         <a href="#" class="title">Asus X54C (X54C-SX006D) Black</a>
@@ -102,12 +102,12 @@
 
                     <!--    Wish list item's for Header    -->
                     <li id="wishListHolder" class="like blue{if ShopCore::app()->SWishList->totalItems()} is_avail{/if}">
-                        {include_tpl('/shop/default/wish_list_data')}</li>
+                        {include_shop_tpl('wish_list_data')}</li>
                     <!--    Wish list item's for Header    -->
 
                     <!--    Products in compare list for Header    -->
                     <li id="compareHolder" class="compare blue{if is_array($CI->session->userdata('shopForCompare'))} is_avail{/if}">
-                        {include_tpl('/shop/default/compare_data')}</li>
+                        {include_shop_tpl('compare_data')}</li>
                     <!--    Products in compare list for Header    -->
                 </ul>
             </div><!-- header -->
