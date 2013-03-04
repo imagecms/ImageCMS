@@ -27,33 +27,31 @@
                     <nav>
                         <ul>
                             {foreach $tree as $item}
-                                {if $item->getLevel() == 0}
-                                    <ul>
-                                        <div class="title">
-                                            {foreach $item->getSubtree() as $subItem}
-                                                {$count_item = $categories[$subItem->getId()];}
-                                                {if $count_item}
-                                                    {echo $item->getName()}{break;}
-                                                {/if}
-                                            {/foreach}
-                                        </div>
+                                <ul>
+                                    <div class="title">
                                         {foreach $item->getSubtree() as $subItem}
                                             {$count_item = $categories[$subItem->getId()];}
                                             {if $count_item}
-                                                <li{if $_GET['category'] && $_GET['category'] == $subItem->getId()} class="active"{/if}>
-                                                    <span>
-                                                        {if $_GET['category'] && $_GET['category'] == $subItem->getId()}
-                                                            {echo $subItem->getName()}
-                                                        {else:}
-                                                            <a href="{shop_url('search?text='.$_GET['text'].'&category='.$subItem->getId())}">{echo $subItem->getName()}</a>     
-                                                        {/if}
-                                                        <span class="count">({echo $count_item})</span>
-                                                    </span>
-                                                </li>
+                                                {echo $item->getName()}{break;}
                                             {/if}
                                         {/foreach}
-                                    </ul>
-                                {/if}
+                                    </div>
+                                    {foreach $item->getSubtree() as $subItem}
+                                        {$count_item = $categories[$subItem->getId()];}
+                                        {if $count_item}
+                                            <li{if $_GET['category'] && $_GET['category'] == $subItem->getId()} class="active"{/if}>
+                                                <span>
+                                                    {if $_GET['category'] && $_GET['category'] == $subItem->getId()}
+                                                        {echo $subItem->getName()}
+                                                    {else:}
+                                                        <a href="{shop_url('search?text='.$_GET['text'].'&category='.$subItem->getId())}">{echo $subItem->getName()}</a>     
+                                                    {/if}
+                                                    <span class="count">({echo $count_item})</span>
+                                                </span>
+                                            </li>
+                                        {/if}
+                                    {/foreach}
+                                </ul>
                             {/foreach}
                         </ul>
                         {widget('latest_news')}
