@@ -146,7 +146,11 @@
                                 <div class="span6">
                                 {literal}<style>.selected{background-color:red;}</style>{/literal}
                                 <div class="frameSearch">
-                                    <form name="search" class="clearfix" action="{shop_url('search')}" method="get" id="autocomlete">
+                                    <form name="search" 
+                                          class="clearfix" 
+                                          action="{shop_url('search')}" 
+                                          method="get" 
+                                          id="autocomlete">
                                         <button class="f_r btn" type="submit">
                                             <span class="icon-search"></span>
                                             <span class="text-el">{lang('search_find')}</span>
@@ -184,7 +188,9 @@
                                                data-duration="300" 
                                                data-place="center">
                                                 <span class="icon-order-call"></span>
-                                                <span class="d_l_b">{lang('s_coll_order')}</span>
+                                                <span class="d_l_b">
+                                                    {lang('s_coll_order')}
+                                                </span>
                                             </a>
                                         </li>
                                     </ul>
@@ -305,7 +311,6 @@
                             <span class="frame_form_field c_n">
                                 <input type="submit" value="Позвоните мне" class="btn btn_cart f_r"/>
                             </span>
-
                         </div>
                     </form>
                 </div>
@@ -374,7 +379,16 @@
 
     <!-- floating elements-->
     <div id="popupCart" style="display: none;" class="drop"></div>
-    <a href="#" data-drop="#popupCart" data-place="center" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" id="showCart" style="display: none;"   >Show cart</a>
+    <a href="#" 
+       data-drop="#popupCart" 
+       data-place="center" 
+       data-effect-on="fadeIn" 
+       data-effect-off="fadeOut" 
+       data-duration="300" 
+       id="showCart" 
+       style="display: none;">
+        Show cart
+    </a>
     {include_tpl('search_autocomplete')}
 </body>
 

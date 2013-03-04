@@ -18,13 +18,9 @@ class Template extends Mabilis {
 
     public function load() {
         $this->CI = & get_instance();
-
         $this->modules_template_dir = TEMPLATES_PATH . 'modules/';
-
         $tpl = $this->CI->config->item('template');
-
         $config = array(
-            //'tpl_path'        => TEMPLATES_PATH.$this->CI->config->item('template').'/',
             'tpl_path' => TEMPLATES_PATH . $tpl . '/',
             'compile_path' => $this->CI->config->item('tpl_compile_path'),
             'force_compile' => $this->CI->config->item('tpl_force_compile'),
@@ -32,15 +28,14 @@ class Template extends Mabilis {
             'compress_output' => $this->CI->config->item('tpl_compress_output'),
             'use_filemtime' => $this->CI->config->item('tpl_use_filemtime')
         );
-
         $this->load_config($config);
 
         $this->template_dir = $config['tpl_path'];
 
-        $this->assign('JS_URL', base_url() . 'js'); //URL to JS folder
-        //$this->assign('THEME', base_url().'templates/'.$this->CI->config->item('template')); //URL to template folder
-        $this->assign('THEME', base_url() . 'templates/' . $tpl); //URL to template folder
-        // Assign CI instance
+        /** URL to JS folder */
+        $this->assign('JS_URL', base_url() . 'js');
+        /** URL to template folder */
+        $this->assign('THEME', base_url() . 'templates/' . $tpl . '/');
         $this->assign('CI', $this->CI);
     }
 
@@ -156,6 +151,10 @@ class Template extends Mabilis {
         $this->display('file:' . $path . '/' . $name);
     }
 
+    public function include_shop_tpl($name, $path) {
+        $this->display('file:' . $path . '/shop/' . $name);
+    }
+
     /////////////////////////////////////////////////////////////////////////////////////////
     private $_css_files = array();
     private $_js_files = array();
@@ -185,6 +184,11 @@ class Template extends Mabilis {
     public function registerJsFile($url, $position = 'before') {
         $position = $this->_check_postion($position);
         $this->_js_files[media_url($url)] = $position;
+    }
+
+    public function registerJsScript($script, $position = 'before') {
+        $position = $this->_check_postion($position);
+        $this->_js_script_files[$script] = $position;
     }
 
     /**
@@ -231,6 +235,22 @@ class Template extends Mabilis {
                         break;
                     case 'after':
                         $result_after .= "<script type=\"text/javascript\" src=\"$url\"></script>\n";
+                        break;
+                }
+            }
+        }
+
+        if (sizeof($this->_js_script_files) > 0) {
+            foreach ($this->_js_script_files as $script => $pos) {
+                switch ($pos) {
+                    case 'before':
+                        $result_before .= $script;
+                        break;
+                    case 'after':
+                        $result_after .= $script;
+                        break;
+                    default :
+                        $result_before .= $script;
                         break;
                 }
             }

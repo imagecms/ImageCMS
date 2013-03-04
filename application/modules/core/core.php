@@ -62,19 +62,8 @@ class Core extends MY_Controller {
             $data_type = 'bridge';
         }
 
-
-        /* Show Google Analytics code if some value inserted in admin panel */
-        if ($this->settings['google_analytics_id'])
-            $this->renderGA();
-
-        if ($this->settings['google_webmaster'])
-            ($hook = get_hook('render_google_webmaster')) ? eval($hook) : NULL;
-
-        if ($this->settings['yandex_webmaster'])
-            ($hook = get_hook('render_yandex_webmaster')) ? eval($hook) : NULL;
-
-        if (true)
-            ($hook = get_hook('render_yandex_metrik')) ? eval($hook) : NULL;
+        /* Show Analytic codes if some value inserted in admin panel */
+        $this->load->library('lib_seo')->init($this->settings);
 
         // DETECT LANGUAGE
         if ($this->uri->total_segments() >= 1) {
@@ -170,7 +159,7 @@ class Core extends MY_Controller {
         // Are we on main page?
         if (($cat_path == '/' OR $cat_path == FALSE) AND $data_type != 'bridge') {
             $data_type = 'main';
-            
+
             ($hook = get_hook('core_set_type_main')) ? eval($hook) : NULL;
         }
 
@@ -291,7 +280,7 @@ class Core extends MY_Controller {
         // If module than exit from core and load module
         if ($this->is_module($mod_segment) == TRUE)
             return TRUE;
-             
+
         switch ($this->settings['main_type']) {
             case 'page':
                 $main_id = $this->settings['main_page_id'];
@@ -302,10 +291,10 @@ class Core extends MY_Controller {
             case 'module':
                 $main_id = $this->settings['main_page_module'];
                 break;
-        
-         break;
+
+                break;
         }
-        
+
         if ($this->core_data['data_type'] == 'main') {
             $this->core->core_data['id'] = $main_id;
             $this->_mainpage();
@@ -347,7 +336,7 @@ class Core extends MY_Controller {
                 } else {
                     $this->error(lang('main_page_error'));
                 }
-                
+
                 // Set page template file
                 if ($page['full_tpl'] == NULL) {
                     $page_tpl = 'page_full';
@@ -364,7 +353,7 @@ class Core extends MY_Controller {
                 $this->template->assign('content', $this->template->read($page_tpl, array('page' => $page)));
 
                 ($hook = get_hook('core_set_main_page_meta')) ? eval($hook) : NULL;
-                
+
                 //$this->set_meta_tags($this->settings['site_title'], $this->settings['site_keywords'], $this->settings['site_description']);
                 $this->set_meta_tags($page['meta_title'] == NULL ? $page['title'] : $page['meta_title'], $page['keywords'], $page['description']);
 
@@ -417,7 +406,6 @@ class Core extends MY_Controller {
                 $page_tpl = $category['page_tpl'];
             } else {
                 $page_tpl = $page['full_tpl'];
-               
             }
 
             $tpl_name = $category['main_tpl'];
@@ -450,7 +438,7 @@ class Core extends MY_Controller {
         if (!$tpl_name) {
             $this->core->core_data['id'] = $page['id'];
             $this->template->show();
-        } else { 
+        } else {
             $this->template->display($tpl_name);
         }
     }
@@ -582,7 +570,7 @@ class Core extends MY_Controller {
 
         ($hook = get_hook('core_dispcat_show_content')) ? eval($hook) : NULL;
 
-        if (!$category['main_tpl']) {  
+        if (!$category['main_tpl']) {
             $this->core->core_data['id'] = $category['id'];
             $this->template->show();
         } else {
@@ -963,92 +951,6 @@ class Core extends MY_Controller {
                 $result = Null;
         }
         return $result;
-    }
-
-    public function renderGA($model = null) {
-        /* Show Google Analytics code if some value inserted in admin panel */
-        if ($this->settings['google_analytics_id']) {
-            $ga = "<script type='text/javascript'>
-            var _gaq = _gaq || [];
-          _gaq.push(['_setAccount', '" . $this->settings['google_analytics_id'] . "']);
-          _gaq.push (['_addOrganic', 'images.yandex.ru', 'text']);
-          _gaq.push (['_addOrganic', 'blogs.yandex.ru', 'text']);
-          _gaq.push (['_addOrganic', 'video.yandex.ru', 'text']);
-          _gaq.push (['_addOrganic', 'meta.ua', 'q']);
-          _gaq.push (['_addOrganic', 'search.bigmir.net', 'z']);
-          _gaq.push (['_addOrganic', 'search.i.ua', 'q']);
-          _gaq.push (['_addOrganic', 'mail.ru', 'q']);
-          _gaq.push (['_addOrganic', 'go.mail.ru', 'q']);
-          _gaq.push (['_addOrganic', 'google.com.ua', 'q']);
-          _gaq.push (['_addOrganic', 'images.google.com.ua', 'q']);
-          _gaq.push (['_addOrganic', 'maps.google.com.ua', 'q']);
-          _gaq.push (['_addOrganic', 'images.google.ru', 'q']);
-          _gaq.push (['_addOrganic', 'maps.google.ru', 'q']);
-          _gaq.push (['_addOrganic', 'rambler.ru', 'words']);
-          _gaq.push (['_addOrganic', 'nova.rambler.ru', 'query']);
-          _gaq.push (['_addOrganic', 'nova.rambler.ru', 'words']);
-          _gaq.push (['_addOrganic', 'gogo.ru', 'q']);
-          _gaq.push (['_addOrganic', 'nigma.ru', 's']);
-          _gaq.push (['_addOrganic', 'poisk.ru', 'text']);
-          _gaq.push (['_addOrganic', 'go.km.ru', 'sq']);
-          _gaq.push (['_addOrganic', 'liveinternet.ru', 'ask']);
-          _gaq.push (['_addOrganic', 'gde.ru', 'keywords']);
-          _gaq.push (['_addOrganic', 'search.qip.ru', 'query']);
-          _gaq.push (['_addOrganic', 'webalta.ru', 'q']);
-          _gaq.push (['_addOrganic', 'sm.aport.ru', 'r']);
-          _gaq.push (['_addOrganic', 'index.online.ua', 'q']);
-          _gaq.push (['_addOrganic', 'web20.a.ua', 'query']);
-          _gaq.push (['_addOrganic', 'search.ukr.net', 'search_query']);
-          _gaq.push (['_addOrganic', 'search.com.ua', 'q']);
-          _gaq.push (['_addOrganic', 'search.ua', 'q']);
-          _gaq.push (['_addOrganic', 'affiliates.quintura.com', 'request']);
-          _gaq.push (['_addOrganic', 'akavita.by', 'z']);
-          _gaq.push (['_addOrganic', 'search.tut.by', 'query']);
-          _gaq.push (['_addOrganic', 'all.by', 'query']);
-          _gaq.push(['_trackPageview']);
-        </script>";
-            if ($model && $this->session->flashdata('makeOrder') === true) {
-                $ga .= "
-                    <script type='text/javascript'>
-            _gaq.push(['_addTrans',
-                '" . $model->id . "',
-                '',
-                '" . $model->getTotalPrice() . "',
-                '',
-                '" . $model->getSDeliveryMethods()->name . "',
-                '',
-                '',
-                ''
-            ]);";
-
-                foreach ($model->getSOrderProductss() as $item) {
-                    $total = $total + $item->getQuantity() * $item->toCurrency();
-                    $product = $item->getSProducts();
-
-                    $ga .="_gaq.push(['_addItem',
-                '" . $model->id . "',
-                '" . $product->getUrl() . "',
-                '" . encode($product->getName()) . " " . encode($item->getVariantName()) . "',
-                '" . encode($product->getMainCategory()->name) . "',
-                '" . $item->toCurrency() . "',
-                '" . $item->getQuantity() . "']);";
-                }
-                $ga .="_gaq.push(['_trackTrans']);</script>";
-            }
-
-            $ga .= "
-<script type = 'text/javascript'>
-(function() {
-var ga = document.createElement('script');
-ga.type = 'text/javascript';
-ga.async = true;
-ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-var s = document.getElementsByTagName('script')[0];
-s.parentNode.insertBefore(ga, s);
-})();
-</script>";
-            $this->template->assign('renderGA', $ga);
-        }
     }
 
 }

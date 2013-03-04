@@ -40,7 +40,7 @@ define('ENVIRONMENT', 'development');
 
 switch (ENVIRONMENT) {
     case 'development':
-        error_reporting(E_ALL ^ E_NOTICE);
+        error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
         ini_set('display_errors', 'on');
         break;
 
