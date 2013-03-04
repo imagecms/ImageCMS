@@ -120,7 +120,18 @@
                             <span class="frame_form_field__icsi-css">
                                 <input type="text" name="comment_site" id="comment_site" value="{get_cookie('comment_site')}"/>
                             </span>
-                        </label>                
+                        </label>   
+
+                        <label>
+                            <span class="frame_form_field__icsi-css">
+                                <div class="msg">
+                                    <div class="success">
+                                        Коментарий будет отправлен на модерацию
+                                    </div>
+                                </div>
+                            </span>
+                        </label>
+
                     {/if}
                     <!-- Start star reiting --><!--
                     <label>
@@ -198,7 +209,7 @@
                         <div class="frameLabel__icsi-css" id="error_text" name="error_text"></div>
                     </span>
                 </label>
-                
+
                 {if !$is_logged_in}
                     <label>
                         <span class="title__icsi-css">{lang('lang_comment_author')}</span>
@@ -210,6 +221,16 @@
                         <span class="title__icsi-css">{lang('lang_comment_email')} </span>
                         <span class="frame_form_field__icsi-css">
                             <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
+                        </span>
+                    </label>
+                        
+                    <label>
+                        <span class="frame_form_field__icsi-css">
+                            <div class="msg">
+                                <div class="success">
+                                    Коментарий будет отправлен на модерацию
+                                </div>
+                            </div>
                         </span>
                     </label>
                 {/if}

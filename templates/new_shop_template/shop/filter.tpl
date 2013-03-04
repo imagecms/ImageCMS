@@ -137,7 +137,7 @@
                 {//meet slider}
                 <div class="sliderCont">
                     <div id="slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content">
-                        <img src="{$SHOP_THEME}images/slider.png"/>
+                        <img src="{$THEME}images/slider.png"/>
                         <div class="ui-slider-range ui-widget-header"></div>
                         <a href="#" class="ui-slider-handle" id="left_slider"></a>
                         <a href="#" class="ui-slider-handle" id="right_slider"></a>
