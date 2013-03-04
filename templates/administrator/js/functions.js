@@ -397,6 +397,11 @@ function initTinyMCE()
         if ($(this).hasClass('inited') == false)
         {
             opts.selector = id;
+            if ($(this).hasClass('smallTextarea')){
+                opts.theme_advanced_buttons1 = undefined;
+                opts.theme_advanced_buttons2 = undefined;
+                opts.theme_advanced_buttons3 = undefined;
+            }
             $(this).addClass('inited').tinymce(opts);
             
         }
