@@ -309,21 +309,33 @@ var Shop = {
     WishList: {
         items: [],
         all: function(){
+            
             return JSON.parse( localStorage.getItem('wishList'))? _.compact( JSON.parse( localStorage.getItem('wishList')) ):[];
         },
         add: function(key, vid){
     
-            this.items = this.all();
+            Shop.WishList.items = this.all();
             
             if (  this.items.indexOf(key) == -1 ){
-                this.items.push(key);
-                localStorage.setItem('wishList', JSON.stringify(this.items));
                 
-                $.post('/shop/wish_list_api/add/', {
+                $.post('/shop/wish_list_api/add', {
                     productId_: key, 
                     variantId_: vid
                 }, function(data){
-                    $('#wishListCount').html('('+Shop.WishList.all().length+')');
+                    try{
+                        dataObj = JSON.parse(data);
+                        
+                        if (dataObj.success == true)
+                        {
+                            Shop.WishList.items.push(key);
+                            localStorage.setItem('wishList', JSON.stringify(Shop.WishList.items));
+                            
+                            $(document).trigger({
+                                type: 'wish_list_add',
+                                id: key
+                            });
+                        }
+                    } catch(e) {console.error('Error adding product to wishlist. Server\'s response is not valid JSON.')}
                 });
             }
         },
@@ -331,12 +343,26 @@ var Shop = {
          rm: function(key){
             this.items = JSON.parse( localStorage.getItem('wishList'))?JSON.parse( localStorage.getItem('wishList')):[];
             //console.log(this.items);
-            if (this.items.indexOf(key) !== -1 ) {
-                this.items = _.without(this.items, key);
-                localStorage.setItem('wishList', JSON.stringify(this.items));
-                
-                $('#wishListCount').html('('+Shop.WishList.all().length+')');
-            }
+
+                $.get('/shop/wish_list_api/delete/'+key, function(data){
+                    try{
+                        dataObj = JSON.parse(data);
+                        
+                        if (dataObj.success == true)
+                        {
+                            dataObj = JSON.parse(data);
+                            
+                            Shop.WishList.items = _.without(Shop.WishList.items, key);
+                            localStorage.setItem('wishList', JSON.stringify(Shop.WishList.items));
+                            
+                            $(document).trigger({
+                                type: 'wish_list_rm',
+                                data: dataObj
+                            });
+                            
+                        }
+                    } catch(e) {console.error('Error remove product from wishlist. Server\'s response is notvalid JSON.')}
+                })
         }
     },
         
@@ -592,6 +618,17 @@ $(
         $(this).removeClass('toWishlist').addClass('inWishlist btn_cart');
     });
 
+    /*      Wish-list event listeners       */
+    
+    $(document).on('wish_list_add', function(){
+        $('#wishListCount').html('('+Shop.WishList.all().length+')');
+    });
+
+    $(document).on('wish_list_rm', function(e){
+        $('#wishListCount').html('('+Shop.WishList.all().length+')');
+        /* if i am in a wishList page */
+        console.log(data);
+    });
 }
 );
 
