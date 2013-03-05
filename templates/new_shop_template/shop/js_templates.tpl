@@ -2,8 +2,8 @@
 {literal}   
    <div class="fancy fancy_cleaner frame_head_content">
        <div class="header_title">Ваша корзина
-           <div class="icon-times-enter" data-closed="closed-js" onclick="togglePopupCart()"></div>
        </div>
+       <div class="icon-times-enter" data-closed="closed-js" onclick="togglePopupCart()"></div>
        <div class="drop-content">
        <div class="inside_padd" style="background: #fff;">
 

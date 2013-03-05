@@ -572,7 +572,7 @@ function ieInput(els) {
                     settings.before();
                     event.preventDefault();
 
-                    if (!$this.parent().hasClass('active')) {
+                    if (!$this.parent().hasClass('active') && !$this.parent().hasClass('disabled')) {
 
                         wST = wnd.scrollTop();
                         $thisA = $this[attrOrdata[index]]('href');
@@ -603,7 +603,7 @@ function ieInput(els) {
                                 k = false;
                             }
                         }
-                    }
+                    };
                     if (event.which || event.button == 0) {
                         settings.after($thiss);
                     }
@@ -974,7 +974,7 @@ function ieInput(els) {
             selector = $thisD.selector,
             dataSource = $('[data-drop]'),
             cloned = settings.cloned,
-            exit = settings.exit,
+            exit = $(settings.exit),
             effon = settings.effon,
             effoff = settings.effoff,
             effdur = settings.effdur,
@@ -1053,13 +1053,12 @@ function ieInput(els) {
                 dataSource2.attr('data-effect-off', $thisS).attr('data-duration', $thisD).attr('data-elrun', $thisSource);
             });
 
-            $thisD.each(function() {
+            
+            exit.live('click', function() {
                 var $this = $(this);
-                $this.find(exit).on('click', function() {
-                    $('[data-drop="' + $this.data('elrun') + '"]').click().parent().removeClass('active');
-                })
+                $('[data-drop="' + $this.closest('.drop').data('elrun') + '"]').click().parent().removeClass('active');
             })
-
+            
             body.live('click', function(event) {
                 event.stopPropagation();
                 if ($(event.target).parents().is(selector) || $(event.target).is(selector))
@@ -1258,9 +1257,9 @@ function ieInput(els) {
             else if ($thisVal < $min)
                 $this.val($min);
             
-           if (typeof $max == 'integer' && $max != 0)  
-               if ($thisVal > $max)
-                   $thisVal = $max;
+            if (typeof $max == 'integer' && $max != 0)  
+                if ($thisVal > $max)
+                    $thisVal = $max;
         }
     };
 
@@ -1279,7 +1278,7 @@ function ieInput(els) {
 })(jQuery);
 
 
- (function($) {
+(function($) {
     var methods = {
         init: function(options) {
             var $this = $(this),

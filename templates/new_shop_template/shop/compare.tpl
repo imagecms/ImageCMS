@@ -12,7 +12,6 @@
 #}
 
 <article>
-    <div class="crumbs" ></div>
     {$CI->load->helper('translit')}
     <h1 class="f_l">{lang('s_compare_tovars')}</h1>
     <!--Start. Show compare list if count products >0 -->
@@ -32,7 +31,7 @@
                 <ul class="tabs">
                     {foreach $categories as $category}
                         <li><span data-href="#{$category.Url}"><span class="d_l_b">{echo $category.Name}</span></span></li>
-                            {/foreach}
+                    {/foreach}
                 </ul>
             </div>
             <!--End. Show categories of products which are in list -->
@@ -172,13 +171,13 @@
             {/foreach}
         </div>
         <!--End. Show compare list if count products >0 -->
-    {else:}
-        <!--Start. Show message if compare list is empty -->
-        <div class="row"></div>
-        <div class="comparison_slider" >
-            <div class="f-s_18 m-t_29 t-a_c">{lang('s_compare_list_em')}</div>
-        </div>
-        <!--End. Show message if compare list is empty -->
-    {/if}
-</div>
+    </div>
+{else:}
+    <!--Start. Show message if compare list is empty -->
+    <div class="row"></div>
+    <div class="comparison_slider" >
+        <div class="f-s_18 m-t_29 t-a_c">{lang('s_compare_list_em')}</div>
+    </div>
+    <!--End. Show message if compare list is empty -->
+{/if}
 </article>
