@@ -367,6 +367,11 @@
     <script src="{$SHOP_THEME}js/jquery.ui-slider.js" type="text/javascript"></script>
     <script src="{$SHOP_THEME}js/cusel-min-2.5.js" type="text/javascript"></script>
     <script src="{$SHOP_THEME}js/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+    
+    <!--[if lte IE 8]>
+    <script src="{$SHOP_THEME}js/localStorageIE.js" type="text/javascript"></script>
+    <![endif]-->
+    
     <script src="{$SHOP_THEME}js/scripts.js" type="text/javascript"></script>
     <script src="{$SHOP_THEME}js/shop.js" type="text/javascript"></script>
     <!-- Dev. scripts -->
