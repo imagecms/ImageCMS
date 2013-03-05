@@ -1,4 +1,4 @@
-<div>
+<div style="margin-top: 5px;">
 <a href="{shop_url('compare')}" rel="nofollow">
     <span class="icon-comprasion"></span>
     {lang('s_list_comp')}</a> 
