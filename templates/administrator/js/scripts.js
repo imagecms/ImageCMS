@@ -22,9 +22,11 @@ $(document).ajaxComplete(function(event, XHR, ajaxOptions) {
             init_2();
             fixed_frame_title();
         }
-        
-        if ($.exists('#chart')) brands();            
-        if ($.exists('#wrapper_gistogram')) gistogram();            
+
+        if ($.exists('#chart'))
+            brands();
+        if ($.exists('#wrapper_gistogram'))
+            gistogram();
         $('#loading').stop().fadeOut(200);
     }
 });
@@ -80,40 +82,40 @@ function init_2() {
             changeRadioStart($(this));
         });
     }
-    
-    $('#paid_span').on('click', function(){
-        if ($('#Paid').is(':checked') != true){
-             $('#spanPaid2').css('backgroundPosition', '-46px -17px');
-             $('#Paid2').attr('checked',true);
-         }
-         else{
-             $('#spanPaid2').css('backgroundPosition', '-46px 0px');
-             $('#Paid2').removeAttr('checked');
-         }
+
+    $('#paid_span').on('click', function() {
+        if ($('#Paid').is(':checked') != true) {
+            $('#spanPaid2').css('backgroundPosition', '-46px -17px');
+            $('#Paid2').attr('checked', true);
+        }
+        else {
+            $('#spanPaid2').css('backgroundPosition', '-46px 0px');
+            $('#Paid2').removeAttr('checked');
+        }
     });
-    
-    $('#spanPaid2').on('click', function(){
-       if ($('#Paid2').is(':checked') != true){
-             $('#paid_span').css('backgroundPosition', '-46px -17px');
-             $('#Paid').attr('checked',true);
-         }
-         else{
-             $('#paid_span').css('backgroundPosition', '-46px 0px');
-             $('#Paid').removeAttr('checked');
-         }
-     });
-     
+
+    $('#spanPaid2').on('click', function() {
+        if ($('#Paid2').is(':checked') != true) {
+            $('#paid_span').css('backgroundPosition', '-46px -17px');
+            $('#Paid').attr('checked', true);
+        }
+        else {
+            $('#paid_span').css('backgroundPosition', '-46px 0px');
+            $('#Paid').removeAttr('checked');
+        }
+    });
+
     $(".frame_label:has(.niceCheck)").die('click').live('click', function() {
         var $this = $(this);
         if ($('#show_in_all_cat').attr('checked')) {
-             $('#cat_list').removeAttr('disabled');
-        }else
-            {
-             $('#cat_list').attr('disabled','disabled');
-             $('#cat_list option:selected').each(function(){
-                this.selected=false;
-                });
-            }
+            $('#cat_list').removeAttr('disabled');
+        } else
+        {
+            $('#cat_list').attr('disabled', 'disabled');
+            $('#cat_list option:selected').each(function() {
+                this.selected = false;
+            });
+        }
         if ($this.closest('thead')[0] != undefined) {
             changeCheck($this.find('> span:eq(0)'))
             if ($this.hasClass('active')) {
@@ -476,22 +478,22 @@ function autocomplete() {
             select: function(event, ui) {
                 var mainDisc = $('#mainDisc').attr('value');
                 $('#forAttached').append('<div id="tpm_row' + ui.item.identifier.id + '" class="m-t_10">' +
-                    '<span class="d-i_b number v-a_b">' +
-                    '<span class="help-inline d_b">ID</span>' +
-                    '<input type="text" name="AttachedProductsIds[]" value="' + ui.item.identifier.id + '" class="input-mini"/>' +
-                    '</span>&nbsp;' +
-                    '<span class="d-i_b v-a_b">' +
-                    '<span class="help-inline d_b">Имя</span>' +
-                    '<input type="text" id="AttachedProducts" value="' + ui.item.label + '" class="input-xxlarge"/>' +
-                    '</span>&nbsp;' +
-                    '<span class="d-i_b number v-a_b">' +
-                    '<span class="help-inline d_b">Скидка %</span>' +
-                    '<input type="text" id="AttachedProductsDisc" name="Discounts[]" value="' + mainDisc + '" class="input-mini" data-max="100" data-rel="tooltip" data-title="?????? ?????"/>' +
-                    '</span>&nbsp;' +
-                    '<span class="d-i_b v-a_b">' +
-                    '<button class="btn btn-danger btn-small del_tmp_row" type="button" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash icon-white"></i></button>' +
-                    '</span>' +
-                    '</div>');
+                        '<span class="d-i_b number v-a_b">' +
+                        '<span class="help-inline d_b">ID</span>' +
+                        '<input type="text" name="AttachedProductsIds[]" value="' + ui.item.identifier.id + '" class="input-mini"/>' +
+                        '</span>&nbsp;' +
+                        '<span class="d-i_b v-a_b">' +
+                        '<span class="help-inline d_b">Имя</span>' +
+                        '<input type="text" id="AttachedProducts" value="' + ui.item.label + '" class="input-xxlarge"/>' +
+                        '</span>&nbsp;' +
+                        '<span class="d-i_b number v-a_b">' +
+                        '<span class="help-inline d_b">Скидка %</span>' +
+                        '<input type="text" id="AttachedProductsDisc" name="Discounts[]" value="' + mainDisc + '" class="input-mini" data-max="100" data-rel="tooltip" data-title="?????? ?????"/>' +
+                        '</span>&nbsp;' +
+                        '<span class="d-i_b v-a_b">' +
+                        '<button class="btn btn-danger btn-small del_tmp_row" type="button" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash icon-white"></i></button>' +
+                        '</span>' +
+                        '</div>');
             },
             close: function(event, ui) {
                 $('#AttachedProducts').attr('value', '');
@@ -661,19 +663,19 @@ function fixed_frame_title() {
 
         var top = getScrollTop();
 
-        if (top < fixed_block_top){
+        if (top < fixed_block_top) {
             fixed_block.css("top", fixed_block_top - top + 20);
             frame_zH_frame_title.css("top", fixed_block_top - top + 6);
         }
-        else{
+        else {
             fixed_block.css("top", 20);
             frame_zH_frame_title.css("top", 6);
         }
 
-        fixed_block.css('width',  containerW - 2);
+        fixed_block.css('width', containerW - 2);
         mini_layout.css('padding-top', 20 + fixed_block_h)
         frame_zH_frame_title.css({
-            'right':$(window).width() - containerW - mini_layout.offset().left+10
+            'right': $(window).width() - containerW - mini_layout.offset().left + 10
         })
     }
 }
@@ -826,6 +828,8 @@ function initAdminArea() {
             prevText: '',
             nextText: ''
         });
+        $('[name="created_from"]').datepicker("option", "minDate", new Date(oldest_date * 1000));
+        $('[name="created_to"]').datepicker("option", "maxDate", new Date(newest_date * 1000));
     }
     $('.ui-datepicker').addClass('dropdown-menu');
 
@@ -1210,9 +1214,9 @@ $(document).ready(
             $('[data-remove]').live('click', function() {
                 $(this).closest('tr').remove();
             })
-            
+
             $('.btn').live('click', function() {
-                
+
                 $('.tooltip').remove();
             })
             $('#settings_form .control-label').live('click', function() {
