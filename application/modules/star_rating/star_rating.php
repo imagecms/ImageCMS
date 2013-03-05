@@ -25,8 +25,7 @@ class Star_rating extends MY_Controller {
     private $list_for_show = array('main', 'category', 'brand', 'product', 'shop_category', 'page');
 
     public function __construct() {
-        parent::__construct();
-        $this->load->library('template');
+        parent::__construct();        
         $this->load->helper('path');
     }
     /**
