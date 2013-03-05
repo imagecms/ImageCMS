@@ -70,7 +70,7 @@ jQuery(document).ready(function() {
             if ($(dropEl).hasClass('drop-report')) {
                 $(dropEl).find('li').remove();
                 var elWrap = $(el).closest('li').clone().removeAttr('style'),
-                        dropEl = $(dropEl).find('.drop-content');
+                dropEl = $(dropEl).find('.drop-content');
 
                 //adding product info into form
                 var formCont = $('#data-report');
@@ -84,6 +84,15 @@ jQuery(document).ready(function() {
                         dropEl.append('<ul class="frame-search-thumbail items"></ul>');
                     dropEl.find('.frame-search-thumbail').append(elWrap).find('.top_tovar, .btn, .frame_response').remove().end().parent().find('[data-clone="data-report"]').remove().end().append($('[data-clone="data-report"]').clone().removeClass('d_n'));
                 }
+            }
+        },
+        after: function(el, dropEl){
+            $(dropEl).removeClass('left-report').removeClass('top-right-report');
+            if ($(dropEl).hasClass('drop-report')) {
+                if ($(el).offset().left < 322 - $(el).outerWidth()) $(dropEl).addClass('left-report').css('left', $(el).offset().left);
+            }
+            if ($(el).data('placement') == 'top right'){
+                $(dropEl).addClass('top-right-report');
             }
         }
     });
@@ -216,7 +225,7 @@ wnd.load(function() {
             next: '.frame_baner .next',
             prev: '.frame_baner .prev',
             pager:      '.pager',
-                    pagerAnchorBuilder: function(idx, slide) {
+            pagerAnchorBuilder: function(idx, slide) {
                 return '<a href="#"></a>';
             }
         }).hover(function() {
@@ -228,7 +237,7 @@ wnd.load(function() {
 
 
     var $js_carousel = $('.carousel_js'),
-            $frame_button = new Array();
+    $frame_button = new Array();
     $item = new Array();
     $item_l = new Array();
     $item_w = new Array();
@@ -238,7 +247,7 @@ wnd.load(function() {
 
     $js_carousel.each(function(index) {
         var index = index,
-                $this = $(this);
+        $this = $(this);
 
         $frame_button[index] = $this.find('.groupButton')
         $item[index] = $this.find('.items:first > li');
@@ -252,7 +261,7 @@ wnd.load(function() {
         var cont_width = $('.container').width();
         $js_carousel.each(function(index) {
             var index = index,
-                    $count_visible = (cont_width / ($item_w[index])).toFixed(1);
+            $count_visible = (cont_width / ($item_w[index])).toFixed(1);
             if ($item_w[index] * $item_l[index] - ($item_w[index] - $item[index].width()) > cont_width) {
                 $this_carousel[index].jcarousel({
                     buttonNextHTML: $this_next[index],
@@ -293,7 +302,7 @@ def_max = $('span#opt2').data('def_max');
 cur_min = $('span#opt3').data('cur_min');
 cur_max = $('span#opt4').data('cur_max');
 
-/*$(".star-big").starRating({
+    /*$(".star-big").starRating({
         width: 26,
         afterClick: function(el, value) {
             alert(value)
