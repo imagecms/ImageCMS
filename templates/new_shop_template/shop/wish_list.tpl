@@ -27,7 +27,7 @@
                     {foreach $items as $key=>$item}
                         <li class="span3 {if $item.model->firstvariant->stock == 0} not-avail{/if}">
                             {if ShopCore::$ci->dx_auth->is_logged_in()===true}
-                                <button class="btn btn_small btn_small_p" data-drop=".drop-enter" onclick="window.location = '{echo base_url()}shop/wish_list/delete/{echo $key}'; Shop.WishList.rm({echo $item.model->getId()})">
+                                <button class="btn btn_small btn_small_p" data-drop_bak=".drop-enter" onclick="Shop.WishList.rm({echo $item.model->getId()})">
                                     <span class="icon-remove_comprasion"></span>
                                 </button>    
                             {/if}
@@ -101,7 +101,7 @@
                 <div class="span6">
                     <div class="d_i-b title">{lang('s_summ')}:</div>
                     <div class="price price_f-s_24 d_i-b">
-                        <span class="first_cash"><span class="f-w_b">{echo $total_price}</span> {$CS}</span>
+                        <span class="first_cash"><span class="f-w_b" id="wishListTotal">{echo $total_price}</span> {$CS}</span>
                     </div>
                 </div>
                 <div class="span6">
