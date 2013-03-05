@@ -22,16 +22,16 @@
 .helper__icsi-css + *{vertical-align: middle;display: inline-block;word-break: break-word;}
 
 #comment__icsi-css input[type="submit"]::-moz-focus-inner, #comment__icsi-css button::-moz-focus-inner{padding: 0; border: 0;}/* Firefox button bug */
-#comment__icsi-css button, #comment__icsi-css input[type="button"], #comment__icsi-css input[type="submit"]{cursor: pointer;-webkit-appearance: button;border: 0;background-color: transparent;padding: 0;}
+#comment__icsi-css button, #comment__icsi-css input[type="button"], #comment__icsi-css input[type="submit"]{cursor: pointer;-webkit-appearance: button;border: none;background-color: transparent;padding: 0;}
 #comment__icsi-css input[type="text"], #comment__icsi-css textarea{width: 100%;max-width: 100%;padding: 0 5px;border: 1px solid;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
 #comment__icsi-css label{display: block;}
-.btn__icsi-css{
+#comment__icsi-css .btn__icsi-css{
     display: inline-block;cursor: pointer;padding: 0 15px !important;color: #555;min-height: 30px;text-decoration: none;line-height: 30px;position: relative;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
-    border: 1px solid #e4e4e4;
-    border-bottom-color: #b7b7b7;
+    border: 1px solid #e4e4e4 !important;
+    border-bottom-color: #b7b7b7 !important;
     background: rgb(255,255,255); /* Old browsers */
     /* IE9 SVG, needs conditional override of 'filter' to 'none' */
     background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlNGU0ZTQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
@@ -42,8 +42,8 @@
     background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(228,228,228,1) 100%); /* IE10+ */
     background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(228,228,228,1) 100%); /* W3C */
 }
-.btn__icsi-css.active{cursor: default;}
-.btn__icsi-css.active{
+#comment__icsi-css .btn__icsi-css.active{cursor: default;}
+#comment__icsi-css .btn__icsi-css.active{
     color: #979797;
     -moz-box-shadow: inset 0 1px 0 #b8b8b8;
     -webkit-box-shadow: inset 0 1px 0 #b8b8b8;
@@ -88,3 +88,8 @@
 label.success {margin-top: 7px;padding: 2px 11px;}
 label.error {margin-top: 7px;padding: 2px 11px;}
 .error, .error * {color: #E42E2E;}
+
+@media screen and (max-width:350px){
+    .horizontal_form__icsi-css .title__icsi-css{float: none;}
+    .horizontal_form__icsi-css .frame_form_field__icsi-css{margin-left: 0;}
+}

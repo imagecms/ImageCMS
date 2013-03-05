@@ -2,6 +2,7 @@
 {literal}   
    <div class="fancy fancy_cleaner frame_head_content">
        <div class="header_title">Ваша корзина</div>
+       <div class="icon-times-enter" data-closed="closed-js"></div>
        <div class="inside_padd" style="background: #fff;">
            <table class="table table_order">
                <colgroup>
