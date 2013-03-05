@@ -126,6 +126,7 @@
                                 </button>
                                 <div class="f_l">
                                     <div class="frame-navbar">
+                                        <!--Load top menu-->
                                         {load_menu('top_menu')}
                                     </div>
                                 </div>
