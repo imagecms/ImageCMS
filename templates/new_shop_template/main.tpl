@@ -1,3 +1,16 @@
+{#
+/**
+* @main.tpl - template for displaying shop main page
+* Variables
+*   $site_title: variable for insert site title
+*   $meta_noindex: variable for insert meta noindex
+*   $canonical: variable for insert canonical
+*   $site_description: variable for insert site description
+*   $THEME: variable for template path
+*   $site_keywords : variable for insert site keywords
+*   $content : variable for insert content of page
+*/
+#}
 <!DOCTYPE html>
 <html>
     <head>
@@ -41,6 +54,7 @@
                             <div class="f_r m-l_25">
                                 <nav class="f_l">
                                     <ul class="nav navHorizontal frameEnterReg">
+                                        <!--Start. If not logged in then show links for registration and enter to the system--> 
                                         {if !$CI->dx_auth->is_logged_in()}
                                             <li>
                                                 <span class="f-s_0">
@@ -69,6 +83,7 @@
                                                     </span>
                                                 </span>
                                             </li>
+                                        <!--Else show link for personal cabinet -->
                                         {else:}
                                             <li>
                                                 <span class="f-s_0">
@@ -97,8 +112,10 @@
                                                 </span>
                                             </li>
                                         {/if}
+                                        <!--End. ***-->
                                     </ul>
                                 </nav>
+                                <!-- Start. Block with link for basket with count of products -->       
                                 <div class="cleaner f_l f-s_0 isAvail">
                                     <span class="helper"></span>
                                     <span class="f-s_0">
@@ -107,7 +124,9 @@
                                         <span id="topCartCount">&nbsp;(0)</span>
                                     </span>
                                 </div>
+                                <!--End-->
                             </div>
+                            <!--Start. Top menu block-->
                             <nav class="frameHeaderMenu">
                                 <button type="button" class="btn btn-navbar f_l">
                                     <span class="icon-bar"></span>
@@ -120,6 +139,7 @@
                                     </div>
                                 </div>
                             </nav>
+                            <!--End-->
                         </section>
                     </div>
                 </header>
@@ -134,7 +154,6 @@
                             <span class="helper"></span>
                             <div class="w_100 f-s_0 frameUndef_1">
                                 <div class="span6">
-                                {literal}<style>.selected{background-color:red;}</style>{/literal}
                                 <div class="frameSearch">
                                     <form name="search" 
                                           class="clearfix" 
@@ -162,6 +181,7 @@
                                 {include_shop_tpl('compare_data')}
                                 {include_shop_tpl('wish_list_data')}
                             </div>
+                            <!-- Start. Block order call -->
                             <div class="span3">
                                 <div class="headerPhone">
                                     <span class="c_67">+8 (097)</span>
@@ -186,6 +206,7 @@
                                     </ul>
                                 </div>
                             </div>
+                            <!-- End. Block order call-->
                         </div>
                     </div>
                 </section>
@@ -219,9 +240,10 @@
             <div class="row-fluid">
                 <div class="span5">
                     <nav>
-                        {load_menu('footer_menu')}
+                       {load_menu('footer_menu')}<!-- footer menu-->
                     </nav>
                 </div>
+                <!--Start. Block with contacts-->
                 <div class="span4">
                     <ul class="contacts_info">
                         <li>
@@ -238,9 +260,12 @@
                             <span class="icon-foot-skype"></span>
                             <span class="f-w_b">{lang('s_skype')}:</span> ImageCMS
                         </li>
+                        <!--Load star rating-->
                         {$CI->load->module('star_rating')->show_star_rating()}
                     </ul>
                 </div>
+                <!--End-->
+                <!--Start. Social buttons-->
                 <div class="span3 t-a_r">
                     <div class="copy_right">© ImageCMS, 2013</div>
                     <div class="footer_social">
@@ -256,6 +281,7 @@
                     <a href="http://imagecms.net">{lang('s_footer_create')}</a><br/>
                     {lang('s_footer_seo')}
                 </div>
+                <!--End-->
             </div>
         </div>
     </footer>
@@ -264,6 +290,7 @@
     {if !$CI->dx_auth->is_logged_in()}
         {include_tpl('login_popup')}
     {/if}
+    <!--Start. Callback form-->
     <div class="drop-order-call drop" id="a">
         <div class="icon-times-enter" data-closed="closed-js"></div>
         <div class="drop-content">
@@ -309,7 +336,8 @@
         </div>
         <div class="drop-footer"></div>
     </div>
-
+    <!--End-->
+    <!--Start. Block report on appearance-->
     <div class="drop drop-report">
         <div class="drop-content">
             <div class="title_h2">Сообщить когда появится</div>
@@ -354,6 +382,7 @@
             </div>
         </form>
     </div>
+    <!--End-->
     <script src="{$THEME}js/jquery.cycle.all.js" type="text/javascript"></script>
     <script src="{$THEME}js/jquery.jcarousel.min.js" type="text/javascript"></script>
     <script src="{$THEME}js/jquery.ui-slider.js" type="text/javascript"></script>
@@ -381,6 +410,7 @@
        style="display: none;">
         Show cart
     </a>
+    <!--Include template for autocomplete-->
     {include_shop_tpl('search_autocomplete')}
 </body>
 </html>
