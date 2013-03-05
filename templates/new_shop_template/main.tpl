@@ -46,6 +46,7 @@
                                                 <span class="f-s_0">
                                                     <span class="helper"></span>
                                                     <button type="button" 
+                                                            id="loginButton"
                                                             data-drop=".drop-enter" 
                                                             data-effect-on="fadeIn" 
                                                             data-effect-off="fadeOut" 
