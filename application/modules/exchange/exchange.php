@@ -488,6 +488,8 @@ class Exchange {
                 $data['id'] = $insert_id;
                 $data['locale'] = $this->locale;
                 $data['name'] = $product->Наименование . "";
+                $data['short_description'] = $product->Описание . "";
+                $data['full_description'] = $product->Описание . "";
 
                 //inserting prepared data into shop_products_i18n
                 $this->ci->db->insert($this->products_table . "_i18n", $data);
@@ -600,6 +602,8 @@ class Exchange {
                 //preparing data for shop_products_i18n table
                 $data = array();
                 $data['name'] = $product->Наименование . "";
+                $data['short_description'] = $product->Описание . "";
+                $data['full_description'] = $product->Описание . "";
 
                 //updating prepared data in shop_products_i18n
                 $this->ci->db->where('id', $searchedProduct['id'])->update($this->products_table . "_i18n", $data);
@@ -820,33 +824,34 @@ class Exchange {
                         "<Дата>" . date('Y-m-d', $order->date_created) . "</Дата>\n" .
                         "<ХозОперация>Заказ товара</ХозОперация>\n" .
                         "<Роль>Продавец</Роль>\n" .
-                        "<Валюта>" . app()->SCurrencyHelper->main->getCode() . "</Валюта>\n" .
+                        "<Валюта>" . ShopCore::app()->SCurrencyHelper->main->getCode() . "</Валюта>\n" .
                         "<Курс>1</Курс>\n" .
                         "<Сумма>" . $order->totalprice . "</Сумма>\n" .
                         "<Контрагенты>\n" .
-                        "<Контрагент>\n" .
-                        "<Ид>" . $ext_id . "</Ид>\n" .
-                        "<Наименование>" . $order->UserFullName . "</Наименование>\n" .
-                        "<Роль>Покупатель</Роль>\n" .
-                        "<ПолноеНаименование>" . $order->UserFullName . "</ПолноеНаименование>\n" .
-                        "<Фамилия/>\n" .
-                        "<Имя>" . $order->UserFullName . "</Имя>\n" .
-                        "<АдресРегистрации>\n" .
-                        "<Представление></Представление>\n" .
-                        "<АдресноеПоле>\n" .
-                        "<Тип>Электронная почта</Тип>\n" .
-                        "<Значение>" . $order->user_email . "</Значение>\n" .
-                        "</АдресноеПоле>\n" .
-                        "<АдресноеПоле>\n" .
-                        "<Тип>Телефон</Тип>\n" .
-                        "<Значение>" . $order->user_phone . "</Значение>\n" .
-                        "</АдресноеПоле>\n" .
-                        "<АдресноеПоле>\n" .
-                        "<Тип>Адрес доставки</Тип>\n" .
-                        "<Значение>" . $order->user_deliver_to . "</Значение>\n" .
-                        "</АдресноеПоле>\n" .
-                        "</АдресРегистрации>\n" .
-                        "</Контрагент>\n" .
+                            "<Контрагент>\n" .
+                                    "<Ид>" . $ext_id . "</Ид>\n" .
+                                    "<Наименование>" . $order->UserFullName . "</Наименование>\n" .
+                                    "<Роль>Покупатель</Роль>".
+                                    "<ПолноеНаименование>" . $order->UserFullName . "</ПолноеНаименование>\n" .
+                                    "<Фамилия>" . $order->UserFullName . "</Фамилия>".
+                                    "<Имя>".$order->UserFullName."</Имя>".
+                                    "<АдресРегистрации>".
+                                            "<Представление>".$order->user_deliver_to."</Представление>".
+                                            "<Комментарий></Комментарий>"
+                                    ."</АдресРегистрации>".
+                                    "<Контакты>".
+                                            "<Контакт>".
+                                                    "<Тип>ТелефонРабочий</Тип>".
+                                                    "<Значение>".$order->user_phone."</Значение>".
+                                                    "<Комментарий></Комментарий>".
+                                            "</Контакт>".
+                                            "<Контакт>".
+                                                    "<Тип>Почта</Тип>".
+                                                    "<Значение>".$order->user_email."</Значение>".
+                                                    "<Комментарий>Пользовательская почта</Комментарий>".
+                                            "</Контакт>".
+                                    "</Контакты>".
+                            "</Контрагент>\n" .
                         "</Контрагенты>\n" .
                         "<Время>" . date('G:i:s', $order->date_created) . "</Время>\n" .
                         "<Комментарий>" . $order->user_comment . "</Комментарий>\n" .
@@ -876,7 +881,7 @@ class Exchange {
                     $xml_order .= "<Товар>\n" .
                             "<Ид>" . $product->external_id . "</Ид>\n" .
                             "<ИдКаталога></ИдКаталога>\n" .
-                            "<Наименование>" . $product->product_name . "</Наименование>\n" .
+                            "<Наименование>" . ShopCore::encode($product->product_name) . "</Наименование>\n" .
                             '<БазоваяЕдиница Код="796" НаименованиеПолное="Штука" МеждународноеСокращение="PCE">шт</БазоваяЕдиница>' . "\n" .
                             "<ЦенаЗаЕдиницу>" . $product->price . "</ЦенаЗаЕдиницу>\n" .
                             "<Количество>$product->quantity</Количество>\n" .
