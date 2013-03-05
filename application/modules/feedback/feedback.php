@@ -22,11 +22,7 @@ class Feedback extends MY_Controller {
     }
 
     public function autoload() {
-        \CMSFactory\Events::create()->onRemoveFromCart()->addСorrelation('test');
-    }
-
-    public function test($arg) {
-//        var_dumps($arg);
+        
     }
 
     // Index function
@@ -63,10 +59,6 @@ class Feedback extends MY_Controller {
 //        $this->template->add_array($tpl_data);
 
         $this->display_tpl('feedback');
-    }
-
-    public function moreTest() {
-        
     }
 
     // Send e-mail
