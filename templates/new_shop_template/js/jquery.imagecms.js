@@ -1283,10 +1283,10 @@ function ieInput(els) {
     var methods = {
         init: function(options) {
             var $this = $(this),
-            $max = $(this).attr('data-max');
+            $max = parseInt( $(this).attr('data-max'));
 
             $thisVal = $this.val();
-            if ($thisVal > $max) $this.val($max);
+            if ($thisVal >  $max) $this.val($max);
         }
     };
     $.fn.maxValue = function(method) {
