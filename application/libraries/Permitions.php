@@ -5,31 +5,37 @@ if (!defined('BASEPATH'))
 
 class Permitions {
 
-    private static $shop_controllers_path = 'application/modules/shop/admin/';
-    private static $base_controllers_path = 'application/modules/admin/';
-    private static $modules_controllers_path = 'application/modules/';
-    private static $rbac_roles_table = 'shop_rbac_roles';
-    private static $rbac_privileges_table = 'shop_rbac_privileges';
-    private static $rbac_group_table = 'shop_rbac_group';
-    private static $rbac_roles_privileges_table = 'shop_rbac_roles_privileges';
-    private static $controller_types = array('shop', 'base', 'module');
+    private static $shop_controllers_path = 'application/modules/shop/admin/';  //define shop admin controllers path
+    private static $base_controllers_path = 'application/modules/admin/';       //define base admin controllers path
+    private static $modules_controllers_path = 'application/modules/';          //define modules path
+    private static $rbac_roles_table = 'shop_rbac_roles';                       //define rbac roles table name
+    private static $rbac_privileges_table = 'shop_rbac_privileges';             //define privileges table name
+    private static $rbac_group_table = 'shop_rbac_group';                       //define group table
+    private static $rbac_roles_privileges_table = 'shop_rbac_roles_privileges'; //define roles privileges table
+    private static $controller_types = array('shop', 'base', 'module');         //define controllers types
 
     public function __construct() {
         $ci = & get_instance();
         $ci->load->library('DX_Auth');
     }
 
+    /**
+     * runs in BaseAdminController and ShopAdminController __construct()
+     */
     public static function checkPermitions() {
-        //self::processRbacPrivileges();
-        //self::createSuperAdmin();
         self::checkUrl();
-        //self::groupsIntoDB();
-        //self::privilegesIntoDB();
     }
 
+    /**
+     * 
+     * @param type $adminClassName
+     * @param type $adminMethod
+     * @return boolean
+     */
     private static function checkAllPermitions($adminClassName, $adminMethod) {
         $ci = & get_instance();
 
+        //define error message
         $err_text = '<div class="alert alert-error">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <h4>Warning!</h4>
@@ -38,34 +44,57 @@ class Permitions {
 
         //check if user is loged in
         if ($ci->dx_auth->is_logged_in()) {
+            //creating string for search in rbac privileges table
             $privilege = $adminClassName . '::' . $adminMethod;
 
+            //searching privilege
             $privilege = $ci->db->where('name', $privilege)->get(self::$rbac_privileges_table)->row();
+
+            //searching user by id to get his role id
             $userProfile = $ci->db->where('id', $ci->dx_auth->get_user_id())->get('users')->row();
+
             $locale = 'ru';
+
+            //get privilege title
             $priv_title = $ci->db->select("title")->where(array('id' => $privilege->id, 'locale' => $locale))->get(self::$rbac_privileges_table . "_i18n")->row();
+
+            //if user exists!
             if (!empty($userProfile))
+            //get user role
                 $userRole = $ci->db->where('id', $userProfile->role_id)->get(self::$rbac_roles_table)->row();
+
+            //if privilege found
             if (!empty($privilege)) {
-                //check if user has as role
-                if ($userRole) {
+                //check if role exists
+                if (!empty($userRole)) {
+                    //check if user has needed privilege
                     $userPrivilege = $ci->db->where(array('role_id' => (int) $userRole->id, 'privilege_id' => (int) $privilege->id))->get(self::$rbac_roles_privileges_table)->result();
                     if (!empty($userPrivilege)) {
+                        //yes, current user has needed privilege
                         return TRUE;
                     } else {
+                        //no, permition denied
                         redirect('admin/rbac/permition_denied');
                     }
                 }
             } else {
+                //if privilege not found in base check if user is admin
                 if ($userRole->name != 'Administrator' AND $adminMethod != 'permition_denied')
                     redirect('admin/rbac/permition_denied');
             }
         }else {
+            //user always has access to admin/login page
             if ($adminClassName != 'Login')
                 redirect('admin/login');
         }
     }
 
+    /**
+     * parsing url to get needed parameters
+     * @param type $checkLink
+     * @param type $link
+     * @return array with class name and class method
+     */
     private static function checkUrl($checkLink = FALSE, $link = '') {
         $ci = & get_instance();
 
@@ -134,6 +163,9 @@ class Permitions {
         }
     }
 
+    /**
+     * scans all admin controllers
+     */
     private static function processRbacPrivileges() {
         $ci = & get_instance();
         $controllerFolders = self::$controller_types;
@@ -171,7 +203,11 @@ class Permitions {
         }
         showMessage("Успех");
     }
-
+    /**
+     * scans needed controller for public methods and write them into privileges table
+     * @param type $controller
+     * @param type $folder
+     */
     private static function scanControllers($controller, $folder) {
         $locale = BaseAdminController::getCurrentLocale();
         $ci = & get_instance();
@@ -212,12 +248,9 @@ class Permitions {
                     $ci->db->insert(self::$rbac_group_table, array('name' => ucfirst($controllerClassName), 'type' => $folder));
                     $ci->db->insert(self::$rbac_group_table . "_i18n", array('id' => $ci->db->insert_id(), 'description' => '', 'locale' => $locale));
                     $group = $ci->db->where('name', ucfirst($controllerClassName))->get(self::$rbac_group_table)->row();
-//                    var_dump($ci->db);
-//                    var_dump($group);
                 }
                 if (empty($dbPrivilege)) {
                     $ci->db->insert(self::$rbac_privileges_table, array('name' => $privilegeName, 'group_id' => $group->id));
-                    //$ci->db->insert(self::$rbac_privileges_table . "_i18n", array('id' => $ci->db->insert_id(), 'title' => $privilegeName, 'description' => '', 'locale' => $locale));
                     $ci->db->insert(self::$rbac_privileges_table . "_i18n", array('id' => $ci->db->insert_id(), 'title' => '', 'description' => '', 'locale' => $locale));
                 }
             }
@@ -225,7 +258,10 @@ class Permitions {
         if ($folder == 'module')
             unlink($controller);
     }
-
+    /**
+     * check if user with id = 1 exists and has all privileges
+     * @return boolean
+     */
     private static function checkSuperAdmin() {
         $ci = & get_instance();
         $superAdmin = $ci->db->where('id', 1)->get('users')->row();
@@ -249,6 +285,9 @@ class Permitions {
         }
     }
 
+    /**
+     * add all privileges to superadmin role
+     */
     private static function createSuperAdmin() {
         $ci = & get_instance();
         $superAdmin = $ci->db->where('id', 1)->get('users')->row();
@@ -847,6 +886,10 @@ class Permitions {
         }
     }
 
+    /**
+     * helper functions
+     */
+    
     /* private static function groupsIntoFile() {
       $ci = &get_instance();
       $join_string = self::$rbac_group_table . ".id=" . self::$rbac_group_table . "_i18n.id";
