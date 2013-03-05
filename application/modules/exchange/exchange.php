@@ -4,52 +4,60 @@
 
 /**
  * Image CMS
- *
- * Класс exchange
+ * exchange class handles 1c import/export
  */
 class Exchange {
 
-//class Exchange extends MY_Controller {
-
-    private $config = array();
-    private $ci;
-    private $tempDir;
-    private $locale;
-    private $categories_table = 'shop_category';
-    private $properties_table = 'shop_product_properties';
-    private $products_table = 'shop_products';
-    private $product_variants_table = 'shop_product_variants';
-    private $settings_table = 'components';
+    private $config = array();                                  //array which contains 1c settings
+    private $ci;                                                //object instance of ci
+    private $tempDir;                                           //default directory for saving files from 1c
+    private $locale;                                            //contains default locale
+    private $categories_table = 'shop_category';                //contains shop category table name
+    private $properties_table = 'shop_product_properties';      //contains shop products properties table name
+    private $products_table = 'shop_products';                  //contains shop products table name
+    private $product_variants_table = 'shop_product_variants';  //contains shop products variants name
+    private $settings_table = 'components';                     //table which contains module settings if modules is installed
+    private $allowed_image_extensions = array();
 
     public function __construct() {
-        $this->ci = &get_instance();
         set_time_limit(0);
+        $this->ci = &get_instance();
         $this->ci->load->helper('translit');
-
-        $this->locale = BaseAdminController::getCurrentLocale();
+        $this->locale = $this->getCurrentLocale();    //getting current locale
 
         if (!$this->get1CSettings()) {
-            //default settings
+            //default settings if module is not installed yet
             $this->config['zip'] = 'no';
             $this->config['filesize'] = 2048000;
             $this->config['validIP'] = '127.0.0.1';
             $this->config['password'] = '';
             $this->config['usepassword'] = false;
             $this->config['userstatuses'] = array();
+            $this->config['autoresize'] = 'off';
         } else {
+            //get settings from database
             $this->config = $this->get1CSettings();
         }
-
+        //define path to folder for saving files from 1c
         $this->tempDir = PUBPATH . 'application/modules/shop/cmlTemp/';
+
+        $this->allowed_image_extensions = array('jpg', 'jpeg', 'png', 'gif');
+
+        //define first get command parameter
         $method = 'command_';
+
+        //saving get requests to log file
         if ($_GET) {
             foreach ($_GET as $key => $value) {
                 $string .= date('c') . " GET - " . $key . ": " . $value . "\n";
             }
             write_file($this->tempDir . "log.txt", $string, 'ab');
         }
+        //preparing method and mode name from $_GET variables
         if (isset($_GET['type']) && isset($_GET['mode']))
             $method .= strtolower($_GET['type']) . '_' . strtolower($_GET['mode']);
+
+        //run method if exist
         if (method_exists($this, $method))
             $this->$method();
     }
@@ -65,6 +73,10 @@ class Exchange {
         }
     }
 
+    /**
+     * get 1c settings from modules table
+     * @return boolean
+     */
     private function get1CSettings() {
         $config = $this->ci->db->where('identif', 'exchange')->get('components')->row_array();
         if (empty($config))
@@ -73,6 +85,9 @@ class Exchange {
             return unserialize($config['settings']);
     }
 
+    /**
+     * module install function
+     */
     function _install() {
         if (is_array($this->config)) {
             $for_insert = serialize($this->config);
@@ -84,6 +99,9 @@ class Exchange {
         return;
     }
 
+    /**
+     * checking password from $_GET['password'] if use_password option in settings is "On"
+     */
     private function check_password() {
         if (isset($_GET['password']) && ($this->config['password'] == $_GET['password'])) {
             $this->checkauth();
@@ -92,6 +110,10 @@ class Exchange {
         }
     }
 
+    /**
+     * return to 1c session id and success status
+     * to initialize import start
+     */
     private function command_catalog_checkauth() {
         if ($this->config['usepassword'] == 'on') {
             $this->check_password();
@@ -101,6 +123,11 @@ class Exchange {
         exit();
     }
 
+    /**
+     * preparing to import
+     * writing session id to txt file in md5
+     * deleting old import files
+     */
     private function checkauth() {
         echo "success\n";
         echo session_name() . "\n";
@@ -113,6 +140,10 @@ class Exchange {
             unlink($this->tempDir . 'offers.xml');
     }
 
+    /**
+     * checking if current session id matches session id in txt files
+     * @return boolean
+     */
     private function check_perm() {
         $string = read_file($this->tempDir . 'session.txt');
         if (md5(session_id()) == $string) {
@@ -122,6 +153,11 @@ class Exchange {
         }
     }
 
+    /**
+     * returns exchange settings to 1c
+     * @zip no
+     * @file_limit in bytes
+     */
     private function command_catalog_init() {
         if ($this->check_perm() === true) {
             echo "zip=" . $this->config['zip'] . "\n";
@@ -130,6 +166,11 @@ class Exchange {
         exit();
     }
 
+    /**
+     * saves exchange files to tempDir
+     * xml files will be saved to tempDir/
+     * images wil be saved  to tempDir/images as jpg files
+     */
     private function command_catalog_file() {
         if ($this->check_perm() === true) {
             $st = $_GET['filename'];
@@ -137,7 +178,7 @@ class Exchange {
             if (strrchr($st, "/"))
                 $st = strrchr($st, "/");
             $filename = explode('.', $st);
-            if ($filename[1] != 'xml') {
+            if ($filename[1] != 'xml' && in_array($filename[1], $this->allowed_image_extensions)) {
                 //saving images to cmlTemp/images folder
                 if (write_file($this->tempDir . "images/" . basename($st, $filename[1]) . "jpg", file_get_contents('php://input'), 'wb')) {
                     echo "success";
@@ -152,15 +193,26 @@ class Exchange {
         exit();
     }
 
+    /**
+     * loading xml file to $this->xml variable
+     * uses simple xml extension
+     * @param type $filename
+     * @return boolean
+     */
     private function _readXmlFile($filename) {
         if (file_exists($this->tempDir . $filename) && is_file($this->tempDir . $filename))
             return simplexml_load_file($this->tempDir . $filename);
         return false;
     }
-
+    
+    /**
+     * start import process
+     * @return string "success" if success
+     */
     private function command_catalog_import() {
-
+        //check if session is up to date
         if ($this->check_perm() === true) {
+            //reading xml files
             $this->xml = $this->_readXmlFile($_GET['filename']);
             if (!$this->xml)
                 return "failure";
@@ -186,12 +238,15 @@ class Exchange {
             //auto resize images if option is on
             if ($this->config['autoresize'] == 'on')
                 $this->startImagesResize();
-
+            
+            //remove old success import file
             if (file_exists($this->tempDir . "success_" . ShopCore::$_GET['filename'])) {
                 unlink($this->tempDir . "success_" . ShopCore::$_GET['filename']);
             }
+            //rename import xml file after import finished
             rename($this->tempDir . ShopCore::$_GET['filename'], $this->tempDir . "success_" . ShopCore::$_GET['filename']);
-
+            
+            //returns success status to 1c
             echo "success";
         }
         exit();
@@ -612,6 +667,7 @@ class Exchange {
                 }
             }
         }
+        //serializing and saving property values to database
         foreach ($properties_data as $key => $item) {
             $data = array();
             $data = array('data' => serialize($item));
@@ -630,10 +686,16 @@ class Exchange {
         }
     }
 
+    /**
+     * uses SWatermark class to carry out image resize and adding watermark
+     */
     private function startImagesResize() {
         ShopCore::app()->SWatermark->updateWatermarks(true);
     }
 
+    /**
+     * checkauth for orders import
+     */
     private function command_sale_checkauth() {
         if ($this->config['usepassword'] == 'on') {
             $this->check_password();
@@ -643,6 +705,11 @@ class Exchange {
         exit();
     }
 
+    /**
+     * returns exchange settings to 1c
+     * @zip no
+     * @file_limit in bytes
+     */
     private function command_sale_init() {
         if ($this->check_perm() === true) {
             $this->command_catalog_init();
@@ -650,6 +717,10 @@ class Exchange {
         exit();
     }
 
+    /**
+     * saving xml files with orders from 1c
+     * and runs orders import
+     */
     private function command_sale_file() {
         if ($this->check_perm() === true) {
             $this->load->helper('file');
@@ -660,6 +731,10 @@ class Exchange {
         exit();
     }
 
+    /**
+     * procced orders import
+     * @return string
+     */
     private function command_sale_import() {
         if ($this->check_perm() === true) {
             $this->xml = $this->_readXmlFile($_GET['filename']);
@@ -709,6 +784,10 @@ class Exchange {
         exit();
     }
 
+    /**
+     * runs when orders from site succesfully uploaded to 1c server
+     * and sets some status for imported orders "waiting" for example
+     */
     private function command_sale_success() {
         if ($this->check_perm() === true) {
             $model = SOrdersQuery::create()->findByStatus(1);
@@ -720,6 +799,9 @@ class Exchange {
         exit();
     }
 
+    /**
+     * creating xml document with orders to make possible for 1c to grab it
+     */
     private function command_sale_query() {
         if ($this->check_perm() === true) {
             $model = SOrdersQuery::create()->findByStatus($this->config['userstatuses']);
@@ -853,6 +935,30 @@ class Exchange {
             echo $xml_order;
         }
         exit();
+    }
+
+    private function getCurrentLocale() {
+        $lang_id = $this->ci->config->item('cur_lang');
+        if ($lang_id) {
+            $this->ci->db->select('identif');
+            $query = $this->ci->db->get_where('languages', array('id' => $lang_id))->result();
+            if ($query) {
+                $currentLocale = $query[0]->identif;
+            } else {
+                $currentLocale = 'ru';
+            }
+        } else {
+            $language = $this->ci->db->where('default', 1)
+                    ->limit(1)
+                    ->get('languages');
+            if ($language)
+                $language = $language->row();
+            else
+                throw new Exception("Default language not found");
+
+            $currentLocale = $language->identif;
+        }
+        return $currentLocale;
     }
 
 }
