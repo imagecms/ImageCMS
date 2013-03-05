@@ -488,6 +488,8 @@ class Exchange {
                 $data['id'] = $insert_id;
                 $data['locale'] = $this->locale;
                 $data['name'] = $product->Наименование . "";
+                $data['short_description'] = $product->Описание . "";
+                $data['full_description'] = $product->Описание . "";
 
                 //inserting prepared data into shop_products_i18n
                 $this->ci->db->insert($this->products_table . "_i18n", $data);
@@ -600,6 +602,8 @@ class Exchange {
                 //preparing data for shop_products_i18n table
                 $data = array();
                 $data['name'] = $product->Наименование . "";
+                $data['short_description'] = $product->Описание . "";
+                $data['full_description'] = $product->Описание . "";
 
                 //updating prepared data in shop_products_i18n
                 $this->ci->db->where('id', $searchedProduct['id'])->update($this->products_table . "_i18n", $data);
