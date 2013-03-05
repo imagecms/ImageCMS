@@ -10,6 +10,7 @@ $(window).load(function()
 
 init_slideshow = function()
 {
+if ($.hasOwnProperty('cycle'))
 	$('#slides').cycle({
 		fx:'fade',
 		timeout:8000,
