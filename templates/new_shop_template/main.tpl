@@ -133,7 +133,6 @@
                             <span class="helper"></span>
                             <div class="w_100 f-s_0 frameUndef_1">
                                 <div class="span6">
-                                {literal}<style>.selected{background-color:red;}</style>{/literal}
                                 <div class="frameSearch">
                                     <form name="search" 
                                           class="clearfix" 

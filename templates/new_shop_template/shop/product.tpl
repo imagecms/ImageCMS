@@ -30,6 +30,7 @@
                     <ul class="frame_thumbs">                   
                         <li class="active">
                             <a rel="group" href="{productImageUrl($model->getMainModImage())}">   
+                                <span class="helper"></span>
                                 <figure>
                                     <img src="{productImageUrl($model->getMainimage())}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
                                 </figure>
@@ -40,6 +41,7 @@
                             {foreach $productImages as $key => $image}
                                 <li>
                                     <a rel="group" href="{echo $image->getThumbUrl()}">   
+                                        <span class="helper"></span>
                                         <figure>
                                             <img src="{productImageUrl($image->getImageName())}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
                                         </figure>
@@ -136,7 +138,7 @@
                     {if (int)$model->firstvariant->getstock() == 0}
 
                         <!-- displaying notify button -->
-                        <button data-placement="bottom right"
+                        <button data-placement="top right"
                                 data-place="noinherit"
                                 data-duration="500"
                                 data-effect-off="fadeOut"
