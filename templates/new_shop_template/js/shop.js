@@ -330,44 +330,47 @@ var Shop = {
                 }, function(data){
                     try{
                         dataObj = JSON.parse(data);
+                        dataObj.id = key;
                         
-                        if (dataObj.success == true)
-                        {
+                        if (dataObj.success == true) {
                             Shop.WishList.items.push(key);
                             localStorage.setItem('wishList', JSON.stringify(Shop.WishList.items));
                             
                             $(document).trigger({
                                 type: 'wish_list_add',
-                                id: key
+                                dataObj: dataObj
                             });
                         }
-                    } catch(e) {console.error('Error adding product to wishlist. Server\'s response is not valid JSON.')}
+                        else {
+                            if (dataObj.errors.match('not_logged_in')){
+                                $('#loginButton').click();
+                                $('html, body').animate({scrollTop:0}, 300);    
+                            }
+                        }
+                    } catch(e) {console.error('Error adding product to wishlist. Server\'s response is not valid JSON.');console.log(e)}
                 });
             }
         },
         
          rm: function(key){
-            this.items = JSON.parse( localStorage.getItem('wishList'))?JSON.parse( localStorage.getItem('wishList')):[];
-            //console.log(this.items);
-
+            this.items = this.all();
                 $.get('/shop/wish_list_api/delete/'+key, function(data){
                     try{
                         dataObj = JSON.parse(data);
+                        dataObj.id = key;
                         
                         if (dataObj.success == true)
-                        {
-                            dataObj = JSON.parse(data);
-                            
+                        {   
                             Shop.WishList.items = _.without(Shop.WishList.items, key);
                             localStorage.setItem('wishList', JSON.stringify(Shop.WishList.items));
                             
                             $(document).trigger({
                                 type: 'wish_list_rm',
-                                data: dataObj
+                                dataObj: dataObj
                             });
                             
                         }
-                    } catch(e) {console.error('Error remove product from wishlist. Server\'s response is notvalid JSON.')}
+                    } catch(e) {console.error('Error remove product from wishlist. Server\'s response is notvalid JSON.'); console.log(e.message);}
                 })
         }
     },
@@ -379,26 +382,57 @@ var Shop = {
         },        
         add: function(key){
             this.items = this.all();
-            //console.log(this.items);
-            if (  this.items.indexOf(key) == -1 ){
-                this.items.push(key);
-                localStorage.setItem('compareList', JSON.stringify(this.items));
-                $.get('/shop/compare/add/'+key);
-                
-                $('#compareCount').html('('+Shop.CompareList.all().length+')');
+            if (  this.items.indexOf(key) === -1 ){    
+                $.get('/shop/compare_api/add/'+key, function(data){
+                    try{
+                        dataObj = JSON.parse(data);
+                        dataObj.id = key;
+                        
+                        if (dataObj.success == true)
+                        {   
+                            Shop.CompareList.items.push(key);
+                            localStorage.setItem('compareList', JSON.stringify(Shop.CompareList.items));
+                            
+                            $(document).trigger({
+                                type: 'compare_list_add',
+                                dataObj: dataObj
+                            });
+                            
+                        }
+                    } catch(e) {console.error('Error add product to compareList. Server\'s response is notvalid JSON.'); console.log(e.message);}
+                });
             }
         },
 
          rm: function(key){
             this.items = JSON.parse( localStorage.getItem('compareList'))?JSON.parse( localStorage.getItem('compareList')):[];
-            //console.log(this.items);
+
             if (this.items.indexOf(key) !== -1 ) {
+             
                 this.items = _.without(this.items, key);
-                localStorage.setItem('compareList', JSON.stringify(this.items));
+                this.items = this.all();
                 
-                $('#compareCount').html('('+Shop.CompareList.all().length+')');
+                $.get('/shop/compare_api/remove/'+key, function(data){
+                    try{
+                        dataObj = JSON.parse(data);
+                        dataObj.id = key;
+
+                        if (dataObj.success == true){   
+                            Shop.CompareList.items = _.without(Shop.CompareList.items, key);
+                            localStorage.setItem('compareList', JSON.stringify(Shop.CompareList.items));
+
+                            $(document).trigger({
+                                type: 'compare_list_rm',
+                                dataObj: dataObj
+                            });
+                        }
+                    } catch(e) {console.error('Error remove product from compareList. Server\'s response is notvalid JSON.'); console.log(e.message);}
+                });
             }
         }
+    
+        
+    
     },
         
     
@@ -614,30 +648,50 @@ $(
     $('button.toCompare').on('click', function(){
         var id = $(this).data('prodid');
         Shop.CompareList.add(id);
-        
-        $(this).removeClass('toCompare').addClass('inCompare btn_cart');
     });
 
-    $('button.toWishlist').on('click', function()
-    {
-        //console.log($(this).closest('div.description').find('button').first());
+    $('button.toWishlist').on('click', function(){
         var id = $(this).data('prodid');
         var vid = $(this).data('varid');
         Shop.WishList.add(id, vid);
-        
-        $(this).removeClass('toWishlist').addClass('inWishlist btn_cart');
+    });
+
+    $('button.inWishlist').on('click', function(){
+        document.location.href = '/shop/wish_list';
+    });
+
+    $('button.inCompareList').on('click', function(){
+        document.location.href = '/shop/compare_list';
     });
 
     /*      Wish-list event listeners       */
     
-    $(document).on('wish_list_add', function(){
-        $('#wishListCount').html('('+Shop.WishList.all().length+')');
+    $(document).on('wish_list_add', function(e){
+        if (e.dataObj.success == true){
+            $('#wishListCount').html('('+Shop.WishList.all().length+')');
+            $('.toWishlist[data-prodid='+e.dataObj.id+']').removeClass('toWishlist').addClass('inWishlist btn_cart').unbind('click').on('click', function(){
+                document.location.href = '/shop/wish_list';
+            });
+        }
     });
 
     $(document).on('wish_list_rm', function(e){
         $('#wishListCount').html('('+Shop.WishList.all().length+')');
         /* if i am in a wishList page */
-        console.log(data);
+        $('#wishListTotal').html(parseFloat(e.dataObj.totalPrice).toFixed(2));
+    });
+
+    $(document).on('compare_list_add', function(e){
+        if (e.dataObj.success == true){
+            $('#compareCount').html('('+Shop.CompareList.all().length+')');
+            $('.toCompare[data-prodid='+e.dataObj.id+']').removeClass('toCompare').addClass('inCompare btn_cart').unbind('click').on('click', function(){
+                document.location.href = '/shop/compare';
+            });
+        }
+    });
+
+    $(document).on('compare_list_rm', function(){
+        $('#compareCount').html('('+Shop.CompareList.all().length+')');
     });
 
     /*  list-table buttons  */
@@ -652,6 +706,7 @@ $(
         if (asList == false || asList == 'false')
             Shop.Settings.set('products_as_list', true);
     });
+    
 
     if (Shop.Settings.get('products_as_list') == 'true')
         $('.showAsList').click();
