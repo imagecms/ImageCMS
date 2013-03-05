@@ -748,7 +748,7 @@ $(document).ready(function() {
             container.find('[name="variants[smallPhoto][]"]').attr('value', '');
         }
         container.find('img').attr('src', "/templates/administrator/images/select-picture.png");
-        container.find('img').css('width','50px');
+        container.find('img').css('width', '50px');
     });
     $('.change_image').live('click', function() {
         $(this).closest('td').find('[type="file"]').click();
@@ -821,6 +821,19 @@ $(document).ready(function() {
                 $('.notifications').append(data);
             }
         });
-    })
+    });
+
+    $('.order_list_order').live('click', function() {
+        $('input[name="orderMethod"]').val($(this).data('method'));
+        if ($('input[name="orderCriteria"]').val() == 'ASC')
+            $('input[name="orderCriteria"]').val('DESC')
+        else
+            $('input[name="orderCriteria"]').val('ASC');
+        var query_string = $('form.listFilterForm').serialize();
+        $.pjax({
+            url: '/admin/components/run/shop/orders/index/?' + query_string,
+            container: '#mainContent'
+        });
+    });
 
 });

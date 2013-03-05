@@ -48,7 +48,6 @@
                 </colgroup>
                 <tbody>
                     {foreach $items as $key=>$item}
-                        {$discount = ShopCore::app()->SDiscountsManager->productDiscount($item->id)}
                         {$style = productInCart($cart_data, $item.model->getId(), $item.model->firstVariant->getId(), $item.model->firstVariant->getStock())}
                         <tr>
                             <td>
@@ -76,16 +75,13 @@
                             </td>
                             <td>
                                 <div class="price f-s_18 f_l">
-                                    {if $discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                        {$prOne = $item.model->firstvariant->getPrice() * 1}
-                                        {$prTwo = $item.model->firstvariant->getPrice() * 1}
-                                        {$summary = $prOne - $prTwo / 100 * $discount}
-                                        <del class="price price-c_red f-s_12 price-c_9">{echo $item.model->firstvariant->getPrice() * 1} {$CS}</del> <br />
-                                    {else:}
-                                        {$summary = $item.model->firstvariant->getPrice()}
+                                    {if $item.model->hasDiscounts()}
+                                        <del class="price price-c_red f-s_12 price-c_9">
+                                            {echo $model->firstVariant->toCurrency('OrigPrice')} {$CS}
+                                        </del> 
+                                        <br />
                                     {/if}
-                                    {echo $summary} 
-                                    {$CS}
+                                    {echo $item.model->firstVariant->toCurrency()} <sub>{$CS}</sub>
                                 </div>
                             </td>
                             <td>
@@ -100,14 +96,13 @@
                                 {/if}
                             </td>
                         </tr>
-                        {$total     += $summary}
                     {/foreach}
                 </tbody>
                 <tfoot>
                     <tr>
                         <td colspan="6">
                             <div class="foot_cleaner">
-                                <div class="price f-s_26 f_r">{$total} <sub>{$CS}</sub></div>
+                                <div class="price f-s_26 f_r">{$total_price} <sub>{$CS}</sub></div>
                                 <div class="f_r sum">{lang('s_summ')}:</div>
                             </div>
                         </td>
