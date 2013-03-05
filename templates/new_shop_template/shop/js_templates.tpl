@@ -1,8 +1,14 @@
 <script type="text/template" id="cartPopupTemplate">
 {literal}   
    <div class="fancy fancy_cleaner frame_head_content">
-       <div class="header_title">Ваша корзина</div>
+       <div class="header_title">Ваша корзина
+       </div>
+       <div class="icon-times-enter" data-closed="closed-js" onclick="togglePopupCart()"></div>
+       <div class="drop-content">
        <div class="inside_padd" style="background: #fff;">
+
+           <div class="msg" style="display: none;"><div class="success">Ваша корзина пуста.</div></div><br/>
+
            <table class="table table_order">
                <colgroup>
                    <col width="20px"/>
@@ -179,6 +185,7 @@
                    </tr>
                </tfoot>
            </table>
+       </div>
        </div>
    </div>
 {/literal}  
