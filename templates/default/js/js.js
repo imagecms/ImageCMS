@@ -10,12 +10,13 @@ $(document).ready(function(){
 	Cufon.replace('#table .head',{fantFamily:'Kartika'});		
 	Cufon.replace('#total .label,#buttons .button',{fantFamily:'Kartika',hover:true});
 // Menu 
-$("#navigation ul").superfish({ 
-            delay:       1000,                            // one second delay on mouseout 
-            animation:   {opacity:'fast',height:'show'},  // fade-in and slide-down animation 
-            speed:       'slow',                          // faster animation speed 
-            autoArrows:  false,                           // disable generation of arrow mark-up 
-            dropShadows: false                            // disable drop shadows 
-        });
+if ($.hasOwnProperty('superfish'))
+	$("#navigation ul").superfish({ 
+		        delay:       1000,                            // one second delay on mouseout 
+		        animation:   {opacity:'fast',height:'show'},  // fade-in and slide-down animation 
+		        speed:       'slow',                          // faster animation speed 
+		        autoArrows:  false,                           // disable generation of arrow mark-up 
+		        dropShadows: false                            // disable drop shadows 
+		    });
 
-});
+	});
