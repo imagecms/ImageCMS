@@ -123,37 +123,38 @@
 
         {//form for submiting checked filters}
         <form id="filter" method="get" action="">
-            <div class="boxFilter">
-                <div class="title">{lang('s_price')}</div>
+            {if (int)$priceRange.minCost != 0 && (int)$priceRange.maxCost != 0}
+                <div class="boxFilter">
+                    {//meet slider}
+                    <div class="title">{lang('s_price')}</div>
+                    <div class="sliderCont">
+                        <div id="slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content">
+                            <img src="{$THEME}images/slider.png"/>
+                            <div class="ui-slider-range ui-widget-header"></div>
+                            <a href="#" class="ui-slider-handle" id="left_slider"></a>
+                            <a href="#" class="ui-slider-handle" id="right_slider"></a>
+                        </div>
+                    </div>
 
-                {//meet slider}
-                <div class="sliderCont">
-                    <div id="slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content">
-                        <img src="{$THEME}images/slider.png"/>
-                        <div class="ui-slider-range ui-widget-header"></div>
-                        <a href="#" class="ui-slider-handle" id="left_slider"></a>
-                        <a href="#" class="ui-slider-handle" id="right_slider"></a>
+                    {//inputs for displaying price range in numeric format}
+                    <div class="formCost t-a_j">
+                        <label>
+
+                            {//left price value}
+                            <input type="text" name="lp" id="minCost" value="{if ShopCore::$_GET['lp'] && (int)ShopCore::$_GET['lp']>0 && (int)ShopCore::$_GET['lp']>(int)$priceRange.minCost}{echo ShopCore::$_GET['lp']}{else:}{echo (int)$priceRange.minCost}{/if}" data-title="только цифры"/>
+                        </label>
+                        <span class="f-s_12">&ndash;</span>
+                        <label>
+
+                            {//rigth price value}
+                            <input type="text" name="rp" id="maxCost" value="{if ShopCore::$_GET['rp'] && (int)ShopCore::$_GET['rp']>0}{echo ShopCore::$_GET['rp']}{else:}{echo (int)$priceRange.maxCost}{/if}" data-title="только цифры"/>
+                        </label>
+
+                        {//button for submiting filter}
+                        <button type="submit" class="btn f-s_0 filterSubmit"><span class="icon-filter"></span><span class="text-el">Подобрать</span></button>
                     </div>
                 </div>
-
-                {//inputs for displaying price range in numeric format}
-                <div class="formCost t-a_j">
-                    <label>
-
-                        {//left price value}
-                        <input type="text" name="lp" id="minCost" value="{if ShopCore::$_GET['lp'] && (int)ShopCore::$_GET['lp']>0 && (int)ShopCore::$_GET['lp']>(int)$priceRange.minCost}{echo ShopCore::$_GET['lp']}{else:}{echo (int)$priceRange.minCost}{/if}" data-title="только цифры"/>
-                    </label>
-                    <span class="f-s_12">&ndash;</span>
-                    <label>
-
-                        {//rigth price value}
-                        <input type="text" name="rp" id="maxCost" value="{if ShopCore::$_GET['rp'] && (int)ShopCore::$_GET['rp']>0}{echo ShopCore::$_GET['rp']}{else:}{echo (int)$priceRange.maxCost}{/if}" data-title="только цифры"/>
-                    </label>
-
-                    {//button for submiting filter}
-                    <button type="submit" class="btn f-s_0 filterSubmit"><span class="icon-filter"></span><span class="text-el">Подобрать</span></button>
-                </div>
-            </div>
+            {/if}
 
             {//displaying all possible brands in current category}        
             {if count($brands)>0}
