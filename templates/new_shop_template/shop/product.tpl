@@ -184,9 +184,11 @@
                 <button class="btn btn_small_p toCompare"  
                         data-prodid="{echo $model->getId()}"  
                         type="button" 
-                        title="{lang('s_add_to_compare')}">
+                        data-title="{lang('s_add_to_compare')}"
+                        data-sectitle="{lang('s_in_compare')}"
+                        data-rel="tooltip">
                     <span class="icon-comprasion_2"></span>
-                    <span>{lang('s_add_to_compare')}</span>
+                    <span class="text-el">{lang('s_add_to_compare')}</span>
                 </button>
                 <!-- End. Block "Add to Compare" -->
 
@@ -196,9 +198,11 @@
                         data-prodid="{echo $model->getId()}" 
                         data-varid="{echo $model->firstVariant->getId()}"  
                         type="button" 
-                        title="{lang('s_add_to_wish_list')}">
+                        data-title="{lang('s_add_to_wish_list')}"
+                        data-sectitle="{lang('s_in_wish_list')}"
+                        data-rel="tooltip">
                     <span class="icon-wish_2"></span>
-                    <span class="js blue">{lang('s_slw')}</span>
+                    <span class="text-el">{lang('s_slw')}</span>
                 </button>
                 <!-- Stop. Block "Add to Wishlist" -->
             </div>
@@ -330,7 +334,9 @@
                                         <button class="btn btn_small_p toCompare"
                                                 data-prodid="{echo $p->getId()}"  
                                                 type="button" 
-                                                title="{lang('s_add_to_compare')}">
+                                                data-title="{lang('s_add_to_compare')}"
+                                                data-sectitle="{lang('s_in_compare')}"
+                                                data-rel="tooltip">
                                             <span class="icon-comprasion_2"></span>
                                         </button>
 
@@ -339,7 +345,9 @@
                                                 data-prodid="{echo $p->getId()}" 
                                                 data-varid="{echo $p->firstVariant->getId()}"  
                                                 type="button" 
-                                                title="{lang('s_add_to_wish_list')}">
+                                                data-title="{lang('s_add_to_wish_list')}"
+                                                data-sectitle="{lang('s_in_wish_list')}"
+                                                data-rel="tooltip">
                                             <span class="icon-wish_2"></span>
                                         </button>
                                     </div>
