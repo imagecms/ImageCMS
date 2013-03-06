@@ -446,7 +446,9 @@ function processWish() {
     $('button.toWishlist').each(function () {
         if (wishlist.indexOf($(this).data('prodid')) !== -1){
             var $this = $(this)
-            $this.removeClass('toWishlist').addClass('inWishlist').addClass(genObj.wishListIn).attr('data-title', $this.attr('data-sectitle'));
+            $this.removeClass('toWishlist').addClass('inWishlist').addClass(genObj.wishListIn).attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle')).end().unbind('click').on('click', function () {
+                document.location.href = '/shop/wish_list';
+            });
         }
     });
 
@@ -455,7 +457,9 @@ function processWish() {
     $('button.toCompare').each(function () {
         if (comparelist.indexOf($(this).data('prodid')) !== -1){
             var $this = $(this)
-            $this.removeClass('toCompare').addClass('inCompare').addClass(genObj.compareIn).attr('data-title', $this.attr('data-sectitle'));
+            $this.removeClass('toCompare').addClass('inCompare').addClass(genObj.compareIn).attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle')).end().unbind('click').on('click', function () {
+                document.location.href = '/shop/compare';
+            });
         }
     });
 }
@@ -677,7 +681,7 @@ $(
             if (e.dataObj.success == true) {
                 $('#wishListCount').html('(' + Shop.WishList.all().length + ')');
                 var $this = $('.toWishlist[data-prodid=' + e.dataObj.id + ']')
-                $this.removeClass('toWishlist').addClass('inWishlist').addClass(genObj.wishListIn).attr('data-title', $this.attr('data-sectitle')).unbind('click').on('click', function () {
+                $this.removeClass('toWishlist').addClass('inWishlist').addClass(genObj.wishListIn).attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle')).end().unbind('click').on('click', function () {
                     document.location.href = '/shop/wish_list';
                 });
                 $this.tooltip();
@@ -694,7 +698,7 @@ $(
             if (e.dataObj.success == true) {
                 $('#compareCount').html('(' + Shop.CompareList.all().length + ')');
                 var $this = $('.toCompare[data-prodid=' + e.dataObj.id + ']');
-                $this.removeClass('toCompare').addClass('inCompare').addClass(genObj.compareIn).attr('data-title', $this.attr('data-sectitle')).unbind('click').on('click', function () {
+                $this.removeClass('toCompare').addClass('inCompare').addClass(genObj.compareIn).attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle')).end().unbind('click').on('click', function () {
                     document.location.href = '/shop/compare';
                 });
                 $this.tooltip();

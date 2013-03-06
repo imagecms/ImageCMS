@@ -169,6 +169,7 @@
                                             data-sectitle="{lang('s_in_compare')}"
                                             data-rel="tooltip">
                                         <span class="icon-comprasion_2"></span>
+                                        <span class="text-el">{lang('s_add_to_compare')}</span>
                                     </button>
 
                                     <!-- to wish list button -->
@@ -180,17 +181,20 @@
                                             data-sectitle="{lang('s_in_wish_list')}"
                                             data-rel="tooltip">
                                         <span class="icon-wish_2"></span>
+                                        <span class="text-el">{lang('s_add_to_wish_list')}</span>
                                     </button>
                                 </div>
                                 <!-- End. Buttons -->
                             </div>
                             <!-- Start. Photo block -->
-                            <a class="photo" href="{shop_url('product/' . $p->getUrl())}">
-                                <span class="helper"></span>
-                                <figure>
-                                    <img src="{productImageUrl($p->getMainModimage())}" alt="{echo ShopCore::encode($p->name)} - {echo $p->getId()}" />
-                                </figure>
-                            </a>
+                            <div class="photo-block">
+                                <a class="photo" href="{shop_url('product/' . $p->getUrl())}">
+                                    <span class="helper"></span>
+                                    <figure>
+                                        <img src="{productImageUrl($p->getMainModimage())}" alt="{echo ShopCore::encode($p->name)} - {echo $p->getId()}" />
+                                    </figure>
+                                </a>
+                            </div>
                             <!-- End. Photo block -->
                         </li>
                     {/foreach}

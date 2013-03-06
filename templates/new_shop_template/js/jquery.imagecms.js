@@ -85,9 +85,30 @@ function ieInput(els) {
             searchPath = settings.searchPath;
             selectorPosition = -1;
             inputString = settings.inputString.keyup(function(event){
-                methods.lookup(event);
+                if (event.keyCode != 27) methods.lookup(event);
             }).blur(function(){
                 $thisS.fadeOut(durationA);
+            });
+            body.live('click', function(event) {
+                event.stopPropagation();
+                if ($(event.target).parents().last().is($thisS) || $(event.target).is($thisS))
+                    return;
+                else
+                    $thisS.fadeOut(durationA);
+
+            }).live('keydown', function(e) {
+                var key, keyChar;
+                if (!e)
+                    var e = window.event;
+
+                if (e.keyCode)
+                    key = e.keyCode;
+                else if (e.which)
+                    key = e.which;
+
+                if (key == 27) {
+                    $thisS.fadeOut(durationA);
+                }
             });
         },
         lookup: function(event){
