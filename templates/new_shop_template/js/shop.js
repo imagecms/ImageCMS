@@ -586,6 +586,18 @@ function emptyPopupCart(){
 
 /*      ========        Document Ready          ==========      */
 
+function checkCompareWishLink() {
+    if (Shop.WishList.all().length) {
+        $('#wishListData div.d_n').removeClass('d_n').find('a').removeClass('d_n');
+        $('#wishListData>span').addClass('d_n');
+    }
+
+    if (Shop.CompareList.all().length) {
+        $('#compareListData div.d_n').removeClass('d_n').find('a').removeClass('d_n');
+        $('#compareListData>span').addClass('d_n');
+    }
+}
+
 
 $(
     function () {
@@ -615,6 +627,7 @@ $(
             window.location.href = '/shop/cart';
         });
 
+        checkCompareWishLink();
 
         //click 'go to cart'
         //    $('button.btn_cart').on('click', function(){
@@ -671,6 +684,7 @@ $(
                 $('.toWishlist[data-prodid=' + e.dataObj.id + ']').removeClass('toWishlist').addClass('inWishlist').addClass(genObj.wishListIn).unbind('click').on('click', function () {
                     document.location.href = '/shop/wish_list';
                 });
+                checkCompareWishLink();
             }
         });
 
@@ -678,6 +692,7 @@ $(
             $('#wishListCount').html('(' + Shop.WishList.all().length + ')');
             /* if i am in a wishList page */
             $('#wishListTotal').html(parseFloat(e.dataObj.totalPrice).toFixed(2));
+            checkCompareWishLink();
         });
 
         $(document).on('compare_list_add', function (e) {
@@ -686,11 +701,13 @@ $(
                 $('.toCompare[data-prodid=' + e.dataObj.id + ']').removeClass('toCompare').addClass('inCompare').addClass(genObj.compareIn).unbind('click').on('click', function () {
                     document.location.href = '/shop/compare';
                 });
+                checkCompareWishLink();
             }
         });
 
         $(document).on('compare_list_rm', function () {
             $('#compareCount').html('(' + Shop.CompareList.all().length + ')');
+            checkCompareWishLink();
         });
 
         /*  list-table buttons  */
