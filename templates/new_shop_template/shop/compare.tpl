@@ -61,7 +61,7 @@
                                         <li class="span3">
                                             <ul class="items items_catalog">
                                                 <li>
-                                                    <button class="btn btn_small btn_small_p"  onclick="Shop.CompareList.rm({echo $product->id})">
+                                                    <button class="btn btn_small btn_small_p"  onclick="Shop.CompareList.rm({echo $product->id}, this)">
                                                         <span class="icon-remove_comprasion"></span>
                                                     </button>
                                                     <a href="{shop_url('product/' . $product->getUrl())}" class="photo">
