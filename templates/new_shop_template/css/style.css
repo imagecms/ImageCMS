@@ -219,7 +219,7 @@ button:hover .d_l_g, .d_l_g:hover, .d_l_b:hover{border-bottom: 1px dotted #cc000
 .groupButton .btn:last-child{-moz-border-radius: 0 3px 3px 0;-webkit-border-radius: 0 3px 3px 0;border-radius: 0 3px 3px 0;}
 a.btn:hover{color: #fff;}
 .btn{
-    display: inline-block;cursor: pointer;padding: 0 15px;color: #555;min-height: 30px;text-decoration: none;line-height: 30px;position: relative;
+    display: inline-block;cursor: pointer;padding: 0 15px;color: #555;min-height: 30px;text-decoration: none;line-height: 30px;position: relative;vertical-align: middle;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
@@ -261,7 +261,7 @@ a.btn:hover{color: #fff;}
 .btn_cart{
     font-size: 14px;
     color: #fff;
-    border: 0;
+    border-color: transparent;
     border-bottom: 1px solid #1a6d84;
     text-shadow: 0 1px #1a6d84;
     min-height: 29px;

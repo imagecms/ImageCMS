@@ -128,7 +128,7 @@
                                 <button class="btn btn_small_p toCompare"  
                                         data-prodid="{echo $product->getId()}"  
                                         type="button" 
-                                        title="{lang('s_add_to_compare')}">
+                                        data-title="{lang('s_add_to_compare')}" data-sec-title="{lang('s_add_to_compare')}">
                                     <span class="icon-comprasion_2"></span>
                                 </button>
 

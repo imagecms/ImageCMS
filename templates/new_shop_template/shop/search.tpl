@@ -210,7 +210,7 @@
             {/if}
         </div>
         <div class="alert alert-search-result">
-            <div class="title_h2 t-a_c">По вашему запросу товаров не найдено</div>
+            <div class="title_h2 t-a_c">{echo ShopCore::t(lang('s_not_found'))}</div>
         </div>
     </article>
     <!-- End. Show message -->
