@@ -7,7 +7,7 @@
        <div class="drop-content">
        <div class="inside_padd" style="background: #fff;">
 
-           <div class="msg" style="display: none;"><div class="success">Ваша корзина пуста.</div></div><br/>
+           <div class="msg" style="display: none;"><div class="success">Ваша корзина пуста.</div></div>
 
            <table class="table table_order">
                <colgroup>

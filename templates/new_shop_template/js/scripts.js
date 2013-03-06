@@ -230,10 +230,10 @@ wnd.load(function() {
     }
     $('.list_pic_btn .btn').on('click', function() {
         if ($(this).children().is('.icon-cat_list')) {
-            d_r_f_item.removeClass(d_r_f_item_class).addClass(span);
+            d_r_f_item.removeClass(d_r_f_item_class).addClass(span).parent().addClass('list');
         }
         else {
-            d_r_f_item.removeClass(span).addClass(d_r_f_item_class);
+            d_r_f_item.removeClass(span).addClass(d_r_f_item_class).parent().removeClass('list');
         }
     });
 
