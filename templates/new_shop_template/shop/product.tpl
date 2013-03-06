@@ -19,9 +19,9 @@
         <div class="item_tovar">
             <div class="row">
                 <!--Photo block for main product-->
-                <div class="photo span5 clearfix">
+                <div class="span5 clearfix">
                     <!-- productImageUrl($model->getMainModImage()) - Link to product -->
-                    <a rel="group" id="photoGroup" href="{productImageUrl($model->getMainModImage())}">
+                    <a rel="group" id="photoGroup" href="{productImageUrl($model->getMainModImage())}" class="photo">
                         <figure>
                             <!-- productImageUrl($model->getMainImage()) - Way before the photo to attribute img -->
                             <img id="imageGroup" src="{productImageUrl($model->getMainImage())}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
@@ -29,7 +29,7 @@
                     </a>              
                     <ul class="frame_thumbs">                   
                         <li class="active">
-                            <a rel="group" href="{productImageUrl($model->getMainModImage())}">   
+                            <a rel="group" href="{productImageUrl($model->getMainModImage())}" class="photo">
                                 <span class="helper"></span>
                                 <figure>
                                     <img src="{productImageUrl($model->getMainimage())}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
@@ -40,7 +40,7 @@
                         {if sizeof($productImages = $model->getSProductImagess()) > 0}
                             {foreach $productImages as $key => $image}
                                 <li>
-                                    <a rel="group" href="{echo $image->getThumbUrl()}">   
+                                    <a rel="group" href="{echo $image->getThumbUrl()}" class="photo">
                                         <span class="helper"></span>
                                         <figure>
                                             <img src="{productImageUrl($image->getImageName())}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
