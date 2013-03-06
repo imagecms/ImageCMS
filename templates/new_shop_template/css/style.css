@@ -18,7 +18,7 @@ time{color: #979797;font-size: 14px;}
 time .day{font-size: 24px;vertical-align: middle;}
 
 textarea, select, option, input, label, .frame_label{font-style: normal;font-size: 12px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
-input[type="submit"]::-moz-focus-inner, button::-moz-focus-inner{padding: 0; border: 0;}/* Firefox button bug */
+input[type="submit"]::-moz-focus-inner, button::-moz-focus-inner{padding: 0;border: 0;}/* Firefox button bug */
 input[type="radio"], input[type="checkbox"]{position: relative;top: 1px;margin-right: 5px;}
 input[type="submit"], button{overflow: visible;}
 label{display: block;margin-bottom: 5px;}
@@ -99,6 +99,7 @@ aside{margin-top: 13px;}
 .m-r_40{margin-right: 40px !important;}
 .m-r_30{margin-right: 30px !important;}
 .m-l_10{margin-left: 10px !important;}
+.m-b_10{margin-bottom: 10px !important;}
 .m-b_20{margin-bottom: 20px !important;}
 .p-t_40{padding-top: 40px;}
 
@@ -218,7 +219,7 @@ button:hover .d_l_g, .d_l_g:hover, .d_l_b:hover{border-bottom: 1px dotted #cc000
 .groupButton .btn:last-child{-moz-border-radius: 0 3px 3px 0;-webkit-border-radius: 0 3px 3px 0;border-radius: 0 3px 3px 0;}
 a.btn:hover{color: #fff;}
 .btn{
-    display: inline-block;cursor: pointer;padding: 0 15px;color: #555;min-height: 30px;text-decoration: none;line-height: 30px;position: relative;
+    display: inline-block;cursor: pointer;padding: 0 15px;color: #555;min-height: 30px;text-decoration: none;line-height: 30px;position: relative;vertical-align: middle;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
@@ -260,7 +261,7 @@ a.btn:hover{color: #fff;}
 .btn_cart{
     font-size: 14px;
     color: #fff;
-    border: 0;
+    border-color: transparent;
     border-bottom: 1px solid #1a6d84;
     text-shadow: 0 1px #1a6d84;
     min-height: 29px;
@@ -755,7 +756,7 @@ a.activeSlide{background-position: -66px 0;}
 .formCost label{display: inline-block;width: 70px;margin-bottom: 0 !important;}
 .formCost .text-el{position: relative;top: 5px;}
 
-.filter{background-color: #f2f2f2;padding: 4px 10px;position: relative;}
+.filter{background-color: #f2f2f2;padding: 0 10px;position: relative;}
 .checked_filter{border: 1px solid #c1c1c1;padding: 12px 20px;margin-bottom: 11px;}
 .checked_filter > .title{color: #4f4f4f;padding-bottom: 4px;}
 .times{color: #7b7979;font-size: 25px;line-height: 0.7;cursor: pointer;float: left;}
@@ -958,7 +959,7 @@ a.activeSlide{background-position: -66px 0;}
 .frame-comment:after, .ie_15{content: "";border-width: 6px 8px;border-style: solid;border-color: transparent;border-top-color: #f0f0f0;position: absolute;left: 20px;bottom: -12px;}
 .grey-b_r-bord{border: 3px solid #ebebeb;padding: 8px 22px 13px 29px;margin-bottom: 29px;background-color: #fff;}
 
-.tooltip{position:absolute;z-index:1030;display:block;padding:5px;font-size:11px;opacity:0.8;filtr:alpha(opacity=80);visibility:visible;padding:3px 8px;color:#fff;text-align:center;text-decoration:none;background-color:#000;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;display: none;}
+.tooltip{margin-top: -5px;position:absolute;z-index:1030;display:block;padding:5px;font-size:11px;opacity:0.8;filtr:alpha(opacity=80);visibility:visible;padding:3px 8px;color:#fff;text-align:center;text-decoration:none;background-color:#000;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;display: none;}
 .tooltip:after{position:absolute;width:0;height:0;border-color:transparent;border-style:solid;bottom:-5px;left:50%;margin-left:-5px;border-top-color:#000;border-width:5px 5px 0;content: "";}
 
 .selected{background-color:#eee;}
@@ -1153,3 +1154,4 @@ label.error{margin-top: 7px;padding: 2px 11px;}
 .infoOrder > *{font-style: italic; color: #979797;}
 .for_validations {display: none;}
 #popupCart{background-image: none;}
+.alert-search-result {background-color: #fafafa;border: 3px solid #e9e9e9;padding: 0 28px;margin-bottom: 25px;}
