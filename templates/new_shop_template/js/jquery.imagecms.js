@@ -1,5 +1,7 @@
 var isTouch = 'ontouchstart' in document.documentElement,
-wnd = $(window);
+wnd = $(window),
+body = $('body'),
+mainBody = $('.mainBody');
 
 jQuery.exists = function(selector) {
     return ($(selector).length > 0);
@@ -182,46 +184,62 @@ function ieInput(els) {
         }
     };
 })(jQuery);
-(function($) {
+(function($){
     var methods = {
-        init: function(options) {
+        init : function(options) {
             var settings = $.extend({
-                title: this.attr('data-title')
+                title : this.attr('data-title'),
+                otherClass: false,
+                effect: 'notalways'
             }, options);
-
+                
             $.ajaxSetup({
-                success: function() {
+                success: function(){
                     $('.tooltip').remove();
                 }
             })
+            if (settings.effect == 'notalways') {
+                $('.tooltip').remove();
+                body.append('<span class="tooltip">'+settings.title+'</span>');
+            }
+            
+            var tooltip = $('.tooltip').not('.cloned');
+            
+            if (settings.effect == 'always') {
+                if (!$.exists_nabir(tooltip)) {body.append('<span class="tooltip">'+settings.title+'</span>');}
+                else tooltip.text(settings.title)
+            }
 
-            $('.tooltip').fadeOut(3000).delay(300).remove();
-            $('body').append('<span class="tooltip" style="top:' + (this.offset().top - this.height() - 3) + 'px;">' + settings.title + '</span>');
-            tooltip = $('.tooltip');
-            var width_tooltip = tooltip.show().width() + 5;
-            tooltip.hide();
-            tooltip.css('left', Math.ceil(this.offset().left - (width_tooltip - this.width()) / 2)).fadeIn(300);
-
-            this.blur(function() {
-                $('.tooltip').fadeOut(3000).delay(300).remove();
+            if (settings.otherClass !== false) tooltip.addClass(settings.otherClass);
+            if (settings.effect == 'notalways') tooltip.hide();
+                
+            tooltip.css({
+                'left': Math.ceil(this.offset().left-(tooltip.actual('outerWidth')-this.outerWidth())/2),
+                'top': this.offset().top-tooltip.actual('outerHeight')
+            }).fadeIn(300);
+                
+            this.blur(function(){
+                $('.tooltip').fadeOut(300, function(){$(this).remove()});
             })
         },
-        remove: function( ) {
-            $('.tooltip').fadeOut(3000).delay(300).remove();
+        remove : function( ) {
+            $('.tooltip').fadeOut(300, function(){
+                $(this).remove()
+            });
         }
     };
-    $.fn.tooltip = function(method) {
-        if (methods[method]) {
-            return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
-        } else if (typeof method === 'object' || !method) {
-            return methods.init.apply(this, arguments);
+    $.fn.tooltip = function( method ) {
+        if ( methods[method] ) {
+            return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ));
+        } else if ( typeof method === 'object' || ! method ) {
+            return methods.init.apply( this, arguments );
         } else {
-            $.error('Method ' + method + ' does not exist on jQuery.tooltip');
+            $.error( 'Method ' +  method + ' does not exist on jQuery.tooltip' );
         }
     };
-    $('[data-rel="tooltip"]').hover(function() {
+    $('[data-rel="tooltip"]').live('mouseenter', function(){
         $(this).tooltip();
-    }, function() {
+    }).live('mouseleave', function(){
         $(this).tooltip('remove');
     })
 })(jQuery);
@@ -430,7 +448,7 @@ function ieInput(els) {
             drop.find('li li a').click(function(event) {
                 event.stopPropagation();
             })
-            $('body').click(function() {
+            body.click(function() {
                 methods.fadeDrop();
             })
         },
@@ -464,7 +482,6 @@ function ieInput(els) {
                 var settings = $.extend({}, options);
 
                 var rel = $(this),
-                body = $(' body'),
                 minCost = settings.minCost,
                 maxCost = settings.maxCost;
 
@@ -953,8 +970,6 @@ function ieInput(els) {
 (function($) {
     var methods = {
         init: function(options) {
-            var body = $('body'),
-            mainBody = $('.mainBody'),
             settings = $.extend({
                 cloned: '.cloned',
                 activeClass: 'active',
