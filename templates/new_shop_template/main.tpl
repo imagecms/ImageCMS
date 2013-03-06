@@ -87,6 +87,16 @@
                                             <li>
                                                 <span class="f-s_0">
                                                     <span class="helper"></span>
+                                                    <span>
+                                                        <a href="/shop/profile" class="t-d_u c_5c">
+                                                            <span class="text-el">Личный кабинет</span>
+                                                        </a>
+                                                    </span>
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="f-s_0">
+                                                    <span class="helper"></span>
                                                     <button type="button" 
                                                             data-drop=".drop-enter" 
                                                             data-effect-on="fadeIn" 
@@ -98,16 +108,6 @@
                                                         <span class="icon-exit"></span>
                                                         <span class="d_l_g">Выход</span>
                                                     </button>
-                                                </span>
-                                            </li>
-                                            <li>
-                                                <span class="f-s_0">
-                                                    <span class="helper"></span>
-                                                    <span>
-                                                        <a href="/shop/profile" class="t-d_u c_5c">
-                                                            <span class="text-el">Личный кабинет</span>
-                                                        </a>
-                                                    </span>
                                                 </span>
                                             </li>
                                         {/if}
@@ -372,7 +372,6 @@
                     <span class="frame_form_field">
                         <input type="text" id="" name="UserPhone"/>
                         <label id="for_UserPhone" class="for_validations"></label>
-                        <span class="must">*</span>
                     </span>
                 </label>
             </div>

@@ -491,7 +491,7 @@ header .helper{height: 32px;}
 .frameEnterReg{margin-right: 10px;}
 .frameEnterReg > li > span{min-height: 30px;padding: 0;}
 .frameEnterReg > li > span > button, .frameEnterReg > li a{padding: 0 10px;}
-.frameEnterReg > li a{border-left: 1px solid #848484;}
+.frameEnterReg > li a{border-right: 1px solid #848484;}
 
 .headerContent{margin-bottom: 24px;}
 .headerContent .helper{height: 76px;vertical-align: bottom;vertical-align: middle;}
