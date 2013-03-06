@@ -88,6 +88,7 @@ aside{margin-top: 13px;}
 
 .p_r{position: relative;}
 .bot_border_grey{border-bottom: 1px dashed #c5c5c5;}
+.bot_border_grey:first-child{margin-top: -10px;}
 
 .w_100{width: 100%;}
 .w_150{width: 150px !important;}
@@ -101,6 +102,7 @@ aside{margin-top: 13px;}
 .m-l_10{margin-left: 10px !important;}
 .m-b_10{margin-bottom: 10px !important;}
 .m-b_20{margin-bottom: 20px !important;}
+.p-t_10{padding-top: 10px !important;}
 .p-t_40{padding-top: 40px;}
 
 .c_w{color: #fff;}
@@ -198,6 +200,7 @@ table th{text-align: left;}
 tr.cartKit table td {border: 0;}
 
 h1, .title_h1{font-size: 24px;font-weight: normal;}
+article h1, article .title_h1{padding-top: 0;}
 h1{padding-top: 10px;}
 h2, .title_h2{font-size: 18px;font-weight: normal;margin-bottom: 4px;}
 h3, .title_h3{font-size: 12px;font-weight: bold;}
@@ -648,6 +651,7 @@ a.activeSlide{background-position: -66px 0;}
 .jcarousel-clip, .carousel_js, .carousel{overflow: hidden;}
 .carousel{width: auto !important;}
 .frame_carousel_product{margin-bottom: 17px;}
+.frame_carousel_product .bot_border_grey{margin-top: 0;}
 .frame_carousel_product .groupButton .btn{display: none;font-size: 0;}
 .frame_carousel_product .btn .icon{width: 7px;height: 15px;margin: 6px 0 -7px;}
 .frame_carousel_product .prev{background-position: -81px -16px;}
