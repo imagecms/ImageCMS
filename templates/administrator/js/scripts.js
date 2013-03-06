@@ -828,8 +828,12 @@ function initAdminArea() {
             prevText: '',
             nextText: ''
         });
-        $('[name="created_from"]').datepicker("option", "minDate", new Date(oldest_date * 1000));
-        $('[name="created_to"]').datepicker("option", "maxDate", new Date(newest_date * 1000));
+        try {
+            $('[name="created_from"]').datepicker("option", "minDate", new Date(oldest_date * 1000));
+            $('[name="created_to"]').datepicker("option", "maxDate", new Date(newest_date * 1000));
+        }
+        catch (err){}
+        
     }
     $('.ui-datepicker').addClass('dropdown-menu');
 
