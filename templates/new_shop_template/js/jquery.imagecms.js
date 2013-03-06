@@ -226,7 +226,9 @@ function ieInput(els) {
             var tooltip = $('.tooltip').not('.cloned');
             
             if (settings.effect == 'always') {
-                if (!$.exists_nabir(tooltip)) {body.append('<span class="tooltip">'+settings.title+'</span>');}
+                if (!$.exists_nabir(tooltip)) {
+                    body.append('<span class="tooltip">'+settings.title+'</span>');
+                }
                 else tooltip.text(settings.title)
             }
 
@@ -239,7 +241,9 @@ function ieInput(els) {
             }).fadeIn(300);
                 
             this.blur(function(){
-                $('.tooltip').fadeOut(300, function(){$(this).remove()});
+                $('.tooltip').fadeOut(300, function(){
+                    $(this).remove()
+                });
             })
         },
         remove : function( ) {
@@ -806,24 +810,29 @@ function ieInput(els) {
                         w += $(this).outerWidth(true);
                     })
                     frameScroll.css('width', w);
-                    frameScrollP = frameScroll.parent();
-                    frameScrollPW = frameScrollP.width();
-                    var scrollW = w - frameScroll.parent().width();
-                    if (scrollNSP) {
-                        scrollNSPT = $this.find(scrollNSPT);
-                        topScrollNSP = scrollNSPT.position().top + scrollNSPT.height();
-                        $this.children('.scrollNSP').remove();
-                        $this.append('<div class="scrollNSP" style = "overflow:auto;"><div style="width:'+w+'px;"></div></div>')
-                    }
+                    try{
+                        frameScrollP = frameScroll.parent();
+                        frameScrollPW = frameScrollP.width();
+                        var scrollW = w - frameScroll.parent().width();
+                        if (scrollNSP) {
+                            scrollNSPT = $this.find(scrollNSPT);
+                            topScrollNSP = scrollNSPT.position().top + scrollNSPT.height();
+                            $this.children('.scrollNSP').remove();
+                            $this.append('<div class="scrollNSP" style = "overflow:auto;"><div style="width:'+w+'px;"></div></div>')
+                        }
+                    }catch(err){}
+                    
                     var firstScrl = frameScroll.parent(),
                     secScrl = $([]);
-                    if (scrollNSP){
-                        secScrl = $this.children('.scrollNSP');
-                        secScrl.css({
-                            'width':frameScrollPW, 
-                            'top': topScrollNSP
-                        })
-                    }
+                    try{
+                        if (scrollNSP){
+                            secScrl = $this.children('.scrollNSP');
+                            secScrl.css({
+                                'width':frameScrollPW, 
+                                'top': topScrollNSP
+                            })
+                        }
+                    }catch(err){}
                         
                     if (mouseWhell){
                         firstScrl.add(secScrl).unbind('mousewheel').bind('mousewheel', function(event, delta, deltaX, deltaY) {
