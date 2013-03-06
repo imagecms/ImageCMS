@@ -198,23 +198,21 @@
                 {/if}
                 <!-- End pagination -->
                 <!-- End. Search results block -->
-                </div>
             </div>
         </div>
-            {else:}
-            <!--Start. Show message not found-->
-                <article>
-                  <div class="bot_border_grey">     
-                   {if !empty(ShopCore::$_GET['text'])}
-                        <h1>  {lang('s_sea_search_for')}:"{encode($_GET['text'])}" </h1>
-                    {/if}
-                    </div>
-                    <div class="frame_carousel_product">
-                        <div class="comparison_slider">
-                            <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t(lang('s_not_found'))}</div>
-                        </div>
-                    </div>
-                </article>
-               <!-- End. Show message -->
+    </div>
+{else:}
+    <!--Start. Show message not found-->
+    <article>
+        <div class="bot_border_grey m-b_10">
+            {if !empty(ShopCore::$_GET['text'])}
+                <div class="d_i title_h1">{lang('s_sea_search_for')} <span class="alert-small">:"{encode($_GET['text'])}"</span></div>
             {/if}
- 
+        </div>
+        <div class="alert alert-search-result">
+            <div class="title_h2 t-a_c">По вашему запросу товаров не найдено</div>
+        </div>
+    </article>
+    <!-- End. Show message -->
+{/if}
+
