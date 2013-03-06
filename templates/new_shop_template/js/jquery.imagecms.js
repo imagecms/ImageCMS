@@ -31,7 +31,6 @@ function navPortait(){
                 $('.btn-navbar').show();
                 $('.frame-navbar').removeClass('in');
                 $this.addClass('navVertical');
-                
             }
                 
             if ($.exists_nabir(frameM) && !frameM.children().hasClass('vertical')){

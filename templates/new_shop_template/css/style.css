@@ -445,7 +445,7 @@ header{
 }
 .headerMenu > li:active{-webkit-box-shadow: inset 0 1px 0 #a4a4a4;-moz-box-shadow: inset 0 1px 0 #a4a4a4;box-shadow: inset 0 1px 0 #a4a4a4;}
 header .helper + span{padding-top: 5px;padding-bottom: 5px;}
-header .helper{height: 32px;}
+header .helper{height: 32px !important;}
 .headerMenu > li{border-width: 0 1px;border-style: solid;border-left-color: #fff;border-right-color: #c8c8c8;}
 .navVertical.headerMenu > li{border-width: 1px 0;border-style: solid;border-bottom-color: #fff;border-top-color: #c8c8c8;}
 .frameSearch{margin-top: 13px;position: relative;border: 1px solid #d7d6d6;background-color: #fff;-moz-box-shadow: inset 0 1px 2px #edefec;-webkit-box-shadow: inset 0 1px 2px #edefec;box-shadow: inset 0 1px 1px #edefec;}
@@ -497,7 +497,7 @@ header .helper{height: 32px;}
 .frameEnterReg > li a{border-right: 1px solid #848484;}
 
 .headerContent{margin-bottom: 24px;}
-.headerContent .helper{height: 76px;vertical-align: bottom;vertical-align: middle;}
+.headerContent .helper{height: 76px !important;vertical-align: bottom;}
 .logo{display: block;margin: 15px 0 0 25px;}
 
 .mainFrameMenu{margin-bottom: 20px;position: relative;z-index: 2;}
@@ -517,7 +517,7 @@ header .helper{height: 32px;}
     background: linear-gradient(to bottom,  rgba(176,176,176,1) 0%,rgba(103,103,103,1) 100%); /* W3C */
 }
 .frameNav td{height: 49px;vertical-align: middle;text-align: center;font-size: 0;}
-.frameNav .helper{height: 47px;}
+.frameNav .helper{height: 47px !important;}
 .frameNav a{font-size: 16px;color: #fff;text-shadow: 0 1px #6f6f6f;width: 84%;padding: 0 8%;overflow: hidden;}
 .frameNav td{background-position: 0 0;background-repeat: repeat-y;}
 .frameNav td:first-child{background-image: none;}
@@ -711,15 +711,17 @@ a.activeSlide{background-position: -66px 0;}
 
 .items_catalog{margin: 0 0 0 -30px;}
 .items_catalog > li{margin-bottom: 30px;float: none !important;}
+.items_catalog .btn > .text-el{display: none;}
+.list.items_catalog .btn > .text-el{display: inline;}
 .items_catalog .description{margin-top: 195px;}
 .itemsFrameNS .description{margin-top: 0;}
-.items_catalog .photo{margin-bottom: 10px;margin-top: 0 !important;position: absolute;left: 0;top: 0;height: 155px;}
+.items_catalog .photo-block{margin-bottom: 10px;margin-top: 0 !important;position: absolute;left: 0;top: 0;height: 155px;width: 100%;}
 .itemsFrameNS .photo{position: static;width: auto;height: auto;}
 .items_catalog .helper{vertical-align: bottom;}
 .items_catalog > li .price{margin-bottom: 10px;}
 .items_catalog > .span9 > .description, .items_catalog > .span6 > .description{margin-left: 205px;margin-top: 0;min-height: 190px;}
-.items_catalog > .span9 > .photo, .items_catalog > .span6 > .photo{width: 185px;float: left;margin-right: 20px;}
-.items_catalog > .span9 > .photo > .helper, .items_catalog > .span6 > .photo > .helper{vertical-align: top;}
+.items_catalog > .span9 .photo-block, .items_catalog > .span6 .photo-block{float: left;margin-right: 20px;width: 185px;}
+.items_catalog > .span9 .photo > .helper, .items_catalog > .span6 .photo > .helper{vertical-align: top;}
 .item_set{width: 140px;display: inline-block;vertical-align: middle;position: relative;}
 .span3 .item_set{width: 210px;}
 .span2 .item_set{width: 120px;}
@@ -1135,6 +1137,7 @@ footer{background-color: #303030\0/;*background-color: #303030;}
 .frame-navbar.in{height:auto;}
 
 /******* server messages ************************/
+.msg{overflow: hidden;}
 .msg .success, .msg .error{padding:8px; margin-bottom:15px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;}
 .error{background-color:#ffe8e8;border: 1px solid #f27676;}
 .success{background-color:#ecffe8;border: 1px solid #80c232;}
@@ -1158,4 +1161,6 @@ label.error{margin-top: 7px;padding: 2px 11px;}
 .infoOrder > *{font-style: italic; color: #979797;}
 .for_validations {display: none;}
 #popupCart{background-image: none;}
+#popupCart .drop .drop-content .inside_padd{padding-top: 0;}
 .alert-search-result {background-color: #fafafa;border: 3px solid #e9e9e9;padding: 0 28px;margin-bottom: 25px;}
+.frameUndef_1{margin-top: 15px;}

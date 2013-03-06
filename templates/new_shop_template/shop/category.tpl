@@ -170,9 +170,9 @@
                                             type="button" 
                                             data-title="{lang('s_add_to_compare')}"
                                             data-sectitle="{lang('s_in_compare')}"
-                                            data-rel="tooltip"
-                                            >
+                                            data-rel="tooltip">
                                         <span class="icon-comprasion_2"></span>
+                                        <span class="text-el">{lang('s_add_to_compare')}</span>
                                     </button>
 
                                     <!-- to wish list button -->
@@ -184,17 +184,20 @@
                                             data-sectitle="{lang('s_in_wish_list')}"
                                             data-rel="tooltip">
                                         <span class="icon-wish_2"></span>
+                                        <span class="text-el">{lang('s_add_to_wish_list')}</span>
                                     </button>
                                 </div>
                             </div>
 
                             <!-- displaying products small mod image -->
-                            <a href="{shop_url('product/'.$product->getUrl())}" class="photo">
-                                <span class="helper"></span>
-                                <figure>
-                                    <img src="{productImageUrl($product->getSmallImage())}" alt="{echo ShopCore::encode($product->getName())} - {echo $product->getId()}"/>
-                                </figure>
-                            </a>
+                            <div class="photo-block">
+                                <a href="{shop_url('product/'.$product->getUrl())}" class="photo">
+                                    <span class="helper"></span>
+                                    <figure>
+                                        <img src="{productImageUrl($product->getSmallImage())}" alt="{echo ShopCore::encode($product->getName())} - {echo $product->getId()}"/>
+                                    </figure>
+                                </a>
+                            </div>
 
                             <!-- creating hot bubble for products image if product is hot -->
                             {if $product->getHot()}
