@@ -19,7 +19,10 @@ var optionCompare = {
     allParams: $('[data-href="#all-params"]'),
     hoverParent: '.characteristic'
 };
-
+var genObj = {
+    wishListIn: 'btn_cart',
+    compareIn: 'btn_cart'
+}
 
 jQuery(document).ready(function() {
     $('.formCost input[type="text"], .number input').live('keypress', function(event) {
@@ -302,7 +305,7 @@ def_max = $('span#opt2').data('def_max');
 cur_min = $('span#opt3').data('cur_min');
 cur_max = $('span#opt4').data('cur_max');
 
-    /*$(".star-big").starRating({
+/*$(".star-big").starRating({
         width: 26,
         afterClick: function(el, value) {
             alert(value)
