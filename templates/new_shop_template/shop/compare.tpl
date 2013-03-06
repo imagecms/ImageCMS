@@ -174,6 +174,7 @@
     </div>
 {else:}
     <!--Start. Show message if compare list is empty -->
+    
     <div class="row"></div>
     <div class="comparison_slider" >
         <div class="f-s_18 m-t_29 t-a_c">{lang('s_compare_list_em')}</div>

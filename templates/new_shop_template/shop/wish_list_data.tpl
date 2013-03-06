@@ -5,8 +5,17 @@
  # @var      $CS
 }
 <div style="margin-top: 9px;">
-<a {if ShopCore::$ci->dx_auth->is_logged_in()===true}logged_in="true" href="{shop_url('wish_list/')}"{else:}href="#"{/if} id="towishlist">
-    <span class="icon-wish"></span>
-    {echo lang('s_WL')}
-</a><span id="wishListCount"> ({echo ShopCore::app()->SWishList->totalItems()})</span>
+    {$cWL = ShopCore::app()->SWishList->totalItems()}
+    <div class="d_n">
+        <a {if ShopCore::$ci->dx_auth->is_logged_in()===true}logged_in="true" href="{shop_url('wish_list/')}"{else:}href="#"{/if} id="towishlist" class="d_n">
+            <span class="icon-wish"></span>
+            {echo lang('s_WL')}
+        </a><span id="wishListCount"> ({echo $cWL})</span>
+    </div>
+
+    <span class="c_97">
+        <span class="icon-wish"></span>
+        {echo lang('s_WL')}
+        <span id="wishListCount"> ({echo $cWL})</span>
+    </span>
 </div>
