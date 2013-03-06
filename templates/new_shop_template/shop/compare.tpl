@@ -10,12 +10,11 @@
 * ShopCore::app()->SPropertiesRenderer->renderPropertiesCompareArray(Sproducts $product): method gives product properties values
 */
 #}
-
 <article>
     {$CI->load->helper('translit')}
-    <h1 class="f_l">{lang('s_compare_tovars')}</h1>
     <!--Start. Show compare list if count products >0 -->
     {if count($products) > 0}
+        <h1 class="f_l">{lang('s_compare_tovars')}</h1>
         <!-- Start. Buttons for change to show different or all properties -->
         <div class="f_l">
             <ul class="tabs tabs-dif-all_par groupButton">
@@ -174,10 +173,11 @@
     </div>
 {else:}
     <!--Start. Show message if compare list is empty -->
-    
-    <div class="row"></div>
-    <div class="comparison_slider" >
-        <div class="f-s_18 m-t_29 t-a_c">{lang('s_compare_list_em')}</div>
+    <div class="bot_border_grey m-b_10">
+        <h1 class="d_i">{lang('s_compare_tovars')}</h1>
+    </div>
+    <div class="alert alert-search-result">
+        <div class="title_h2 t-a_c">{lang('s_compare_list_em')}</div>
     </div>
     <!--End. Show message if compare list is empty -->
 {/if}

@@ -127,7 +127,91 @@ jQuery(document).ready(function() {
         })
     } catch (err) {
     }
+});
+wnd.load(function() {
+    if ($('.cycle li').length > 1) {
+        $('.cycle').cycle({
+            speed: 600,
+            timeout: 2000,
+            fx: 'fade',
+            pager: '.cycle .nav',
+            pagerEvent: 'click',
+            pauseOnPagerHover: true,
+            next: '.frame_baner .next',
+            prev: '.frame_baner .prev',
+            pager:      '.pager',
+            pagerAnchorBuilder: function(idx, slide) {
+                return '<a href="#"></a>';
+            }
+        }).hover(function() {
+            $('.cycle').cycle('pause');
+        }, function() {
+            $('.cycle').cycle('resume');
+        });
+    }
 
+
+    var $js_carousel = $('.carousel_js'),
+    $frame_button = new Array();
+    $item = new Array();
+    $item_l = new Array();
+    $item_w = new Array();
+    $this_carousel = new Array();
+    $this_prev = new Array();
+    $this_next = new Array();
+
+    $js_carousel.each(function(index) {
+        var index = index,
+        $this = $(this);
+
+        $frame_button[index] = $this.find('.groupButton')
+        $item[index] = $this.find('.items:first > li');
+        $item_l[index] = $item[index].length;
+        $item_w[index] = $item[index].outerWidth(true);
+        $this_carousel[index] = $this.find('.carousel');
+        $this_prev[index] = $this.find('.btn_prev');
+        $this_next[index] = $this.find('.btn_next');
+    })
+    function carousel() {
+        var cont_width = $('.container').width();
+        $js_carousel.each(function(index) {
+            var index = index,
+            $count_visible = (cont_width / ($item_w[index])).toFixed(1);
+            if ($item_w[index] * $item_l[index] - ($item_w[index] - $item[index].width()) > cont_width) {
+                $this_carousel[index].jcarousel({
+                    buttonNextHTML: $this_next[index],
+                    buttonPrevHTML: $this_prev[index],
+                    visible: $count_visible,
+                    scroll: 1
+                })
+                $this_next[index].add($this_prev[index]).css('display', 'inline-block').appendTo($frame_button[index]);
+            }
+            else {
+                $this_carousel[index].width($item_w[index] * $item_l[index])
+                $this_next[index].add($this_prev[index]).css('display', 'none');
+            }
+            if ($(this).hasClass('frame_brand')) {
+                var sH = 0;
+                var brandsImg = $('.frame_brand img')
+                brandsImg.each(function() {
+                    var $thisH = $(this).height()
+                    if ($thisH > sH)
+                        sH = $thisH;
+                })
+                brandsImg.prev('.helper').css('height', sH);
+            }
+        });
+    }
+
+    carousel();
+
+    wnd.resize(function() {
+        carousel();
+        navPortait();
+        $('.frame_tabsc > div').equalHorizCell('refresh');
+        $('.menu-main').menuPacket2('refresh');
+    })
+    
     navPortait();
 
     $('[data-toggle="buttons-radio"] .btn').on('click', function(event) {
@@ -214,91 +298,6 @@ jQuery(document).ready(function() {
 
     /*fancybox-based imagebox initialization*/
     $('a.fancybox').fancybox();
-
-});
-wnd.load(function() {
-    if ($('.cycle li').length > 1) {
-        $('.cycle').cycle({
-            speed: 600,
-            timeout: 2000,
-            fx: 'fade',
-            pager: '.cycle .nav',
-            pagerEvent: 'click',
-            pauseOnPagerHover: true,
-            next: '.frame_baner .next',
-            prev: '.frame_baner .prev',
-            pager:      '.pager',
-            pagerAnchorBuilder: function(idx, slide) {
-                return '<a href="#"></a>';
-            }
-        }).hover(function() {
-            $('.cycle').cycle('pause');
-        }, function() {
-            $('.cycle').cycle('resume');
-        });
-    }
-
-
-    var $js_carousel = $('.carousel_js'),
-    $frame_button = new Array();
-    $item = new Array();
-    $item_l = new Array();
-    $item_w = new Array();
-    $this_carousel = new Array();
-    $this_prev = new Array();
-    $this_next = new Array();
-
-    $js_carousel.each(function(index) {
-        var index = index,
-        $this = $(this);
-
-        $frame_button[index] = $this.find('.groupButton')
-        $item[index] = $this.find('.items:first > li');
-        $item_l[index] = $item[index].length;
-        $item_w[index] = $item[index].outerWidth(true);
-        $this_carousel[index] = $this.find('.carousel');
-        $this_prev[index] = $this.find('.btn_prev');
-        $this_next[index] = $this.find('.btn_next');
-    })
-    function carousel() {
-        var cont_width = $('.container').width();
-        $js_carousel.each(function(index) {
-            var index = index,
-            $count_visible = (cont_width / ($item_w[index])).toFixed(1);
-            if ($item_w[index] * $item_l[index] - ($item_w[index] - $item[index].width()) > cont_width) {
-                $this_carousel[index].jcarousel({
-                    buttonNextHTML: $this_next[index],
-                    buttonPrevHTML: $this_prev[index],
-                    visible: $count_visible,
-                    scroll: 1
-                })
-                $this_next[index].add($this_prev[index]).css('display', 'inline-block').appendTo($frame_button[index]);
-            }
-            else {
-                $this_carousel[index].width($item_w[index] * $item_l[index])
-                $this_next[index].add($this_prev[index]).css('display', 'none');
-            }
-            if ($(this).hasClass('frame_brand')) {
-                var sH = 0;
-                var brandsImg = $('.frame_brand img')
-                brandsImg.each(function() {
-                    var $thisH = $(this).height()
-                    if ($thisH > sH)
-                        sH = $thisH;
-                })
-                brandsImg.prev('.helper').css('height', sH);
-            }
-        });
-    }
-
-    carousel();
-
-    wnd.resize(function() {
-        carousel();
-        navPortait();
-        $('.frame_tabsc > div').equalHorizCell('refresh');
-        $('.menu-main').menuPacket2('refresh');
-    })
 });
 def_min = $('span#opt1').data('def_min');
 def_max = $('span#opt2').data('def_max');
