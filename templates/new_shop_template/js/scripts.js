@@ -21,7 +21,8 @@ var optionCompare = {
 };
 var genObj = {
     wishListIn: 'btn_cart',
-    compareIn: 'btn_cart'
+    compareIn: 'btn_cart',
+    textEl: '.text-el'
 }
 
 jQuery(document).ready(function() {

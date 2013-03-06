@@ -188,7 +188,7 @@
                         data-sectitle="{lang('s_in_compare')}"
                         data-rel="tooltip">
                     <span class="icon-comprasion_2"></span>
-                    {lang('s_add_to_compare')}
+                    <span class="text-el">{lang('s_add_to_compare')}</span>
                 </button>
                 <!-- End. Block "Add to Compare" -->
 
@@ -202,7 +202,7 @@
                         data-sectitle="{lang('s_in_wish_list')}"
                         data-rel="tooltip">
                     <span class="icon-wish_2"></span>
-                    {lang('s_slw')}
+                    <span class="text-el">{lang('s_slw')}</span>
                 </button>
                 <!-- Stop. Block "Add to Wishlist" -->
             </div>

@@ -131,9 +131,9 @@
                                         data-title="{lang('s_add_to_compare')}"
                                         data-sectitle="{lang('s_in_compare')}"
                                         data-rel="tooltip">
-                                        <span class="icon-comprasion_2"></span>
+                                    <span class="icon-comprasion_2"></span>
+                                    <span class="text-el">{lang('s_add_to_compare')}</span>
                                 </button>
-
                                 <!-- to wish list button -->
                                 <button class="btn btn_small_p toWishlist" 
                                         data-prodid="{echo $product->getId()}" 
@@ -142,16 +142,19 @@
                                         data-title="{lang('s_add_to_wish_list')}"
                                         data-sectitle="{lang('s_in_wish_list')}"
                                         data-rel="tooltip">
-                                        <span class="icon-wish_2"></span>
+                                    <span class="icon-wish_2"></span>
+                                    <span class="text-el">{lang('s_add_to_wish_list')}</span>
                                 </button>
                             </div>
                         </div>
-                        <a href="{shop_url('product/' . $product->getUrl())}" class="photo">
-                            <span class="helper"></span>
-                            <figure>
-                                <img src="{productImageUrl($product->getmainimage())}" alt="{echo ShopCore::encode($product->getName())} - {echo $product->getid()}"/>
-                            </figure>
-                        </a>
+                        <div class="photo-block">
+                            <a href="{shop_url('product/' . $product->getUrl())}" class="photo">
+                                <span class="helper"></span>
+                                <figure>
+                                    <img src="{productImageUrl($product->getmainimage())}" alt="{echo ShopCore::encode($product->getName())} - {echo $product->getid()}"/>
+                                </figure>
+                            </a>
+                        </div>
                     </li>
                 {/foreach}
                 <!--  End. Rendering produts list   -->
