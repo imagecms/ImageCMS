@@ -1,14 +1,13 @@
 <div style="margin-top: 5px;" id="compareListData">
-    <div class="d_n">
+    <span class="d_n" data-rel="ref">
         <a href="{shop_url('compare')}" rel="nofollow">
             <span class="icon-comprasion"></span>
             {lang('s_list_comp')}
         </a> 
-        <span id="compareCount">({count($CI->session->userdata('shopForCompare'))})</span>
-    </div>
-    <span class="c_97">
+    </span>
+    <span class="c_97" data-rel="notref">
         <span class="icon-comprasion"></span>
         {lang('s_list_comp')}
-        <span id="compareCount">(0)</span>
     </span>
+    <span id="compareCount" class="c_97">({count($CI->session->userdata('shopForCompare'))})</span>
 </div>
