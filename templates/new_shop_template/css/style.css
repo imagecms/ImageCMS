@@ -18,7 +18,7 @@ time{color: #979797;font-size: 14px;}
 time .day{font-size: 24px;vertical-align: middle;}
 
 textarea, select, option, input, label, .frame_label{font-style: normal;font-size: 12px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
-input[type="submit"]::-moz-focus-inner, button::-moz-focus-inner{padding: 0; border: 0;}/* Firefox button bug */
+input[type="submit"]::-moz-focus-inner, button::-moz-focus-inner{padding: 0;border: 0;}/* Firefox button bug */
 input[type="radio"], input[type="checkbox"]{position: relative;top: 1px;margin-right: 5px;}
 input[type="submit"], button{overflow: visible;}
 label{display: block;margin-bottom: 5px;}
