@@ -4,7 +4,6 @@
 * @updated 26 February 2013;
 * Variables
 * $products:(оbject) instance of SProducts
-* $cart_data: Array of products in cart  
 * $totalProducts: (int) Products amount 
 * $brandsInSearchResult: (object) instance of SBrands 
 * $pagination: (string) Show pagination
