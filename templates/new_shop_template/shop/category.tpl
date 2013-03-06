@@ -168,7 +168,10 @@
                                     <button class="btn btn_small_p toCompare"  
                                             data-prodid="{echo $product->getId()}"  
                                             type="button" 
-                                            title="{lang('s_add_to_compare')}">
+                                            data-title="{lang('s_add_to_compare')}"
+                                            data-sectitle="{lang('s_in_compare')}"
+                                            data-rel="tooltip"
+                                            >
                                         <span class="icon-comprasion_2"></span>
                                     </button>
 
@@ -177,7 +180,9 @@
                                             data-prodid="{echo $product->getId()}" 
                                             data-varid="{echo $product->firstVariant->getId()}"  
                                             type="button" 
-                                            title="{lang('s_add_to_wish_list')}">
+                                            data-title="{lang('s_add_to_wish_list')}"
+                                            data-sectitle="{lang('s_in_wish_list')}"
+                                            data-rel="tooltip">
                                         <span class="icon-wish_2"></span>
                                     </button>
                                 </div>
