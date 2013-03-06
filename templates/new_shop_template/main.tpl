@@ -42,7 +42,6 @@
         {$meta_noindex}
         {$canonical}
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.2.min.js"></script>
-        <script type="text/javascript" src="{$THEME}js/jquery.imagecms.js"></script>
         <script type="text/javascript" src="{$THEME}js/underscore-min.js"></script>
     </head>
     <body>
@@ -382,6 +381,7 @@
         </form>
     </div>
     <!--End-->
+    <script type="text/javascript" src="{$THEME}js/jquery.imagecms.js"></script>
     <script src="{$THEME}js/jquery.cycle.all.js" type="text/javascript"></script>
     <script src="{$THEME}js/jquery.jcarousel.min.js" type="text/javascript"></script>
     <script src="{$THEME}js/jquery.ui-slider.js" type="text/javascript"></script>
