@@ -31,7 +31,7 @@
                 </button>
             </li>
             {if count($goodsInSpy) != 0}
-                <li class="disabled">
+                <li>
                     <button type="button" data-href="#wait_tov">
                         <span class="icon-waitexists"></span>
                         <span class="text-el">{lang('s_to_fal_do')}</span>
