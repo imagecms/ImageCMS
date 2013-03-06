@@ -358,8 +358,8 @@
                                                     <span class="title">Способ оплаты</span>
                                                     <div class="frame_form_field">
                                                         <div class="row-fluid">
-                                                            <div class="lineForm span4">
-                                                                <select name="paymentMethodId" >
+                                                            <div class="lineForm span4 pmDiv">
+                                                                <select name="paymentMethodId"  id="paymentMethod">
                                                                     
                                                                 {$counter = true}
                                                                 {foreach $paymentMethods as $paymentMethod}
