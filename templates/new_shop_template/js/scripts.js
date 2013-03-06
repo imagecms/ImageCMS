@@ -21,7 +21,8 @@ var optionCompare = {
 };
 var genObj = {
     wishListIn: 'btn_cart',
-    compareIn: 'btn_cart'
+    compareIn: 'btn_cart',
+    textEl: '.text-el'
 }
 
 jQuery(document).ready(function() {
@@ -127,94 +128,6 @@ jQuery(document).ready(function() {
         })
     } catch (err) {
     }
-
-    navPortait();
-
-    $('[data-toggle="buttons-radio"] .btn').on('click', function(event) {
-        $(this).siblings().removeClass('active').end().addClass('active');
-    })
-
-    d_r_f_item = $('[data-radio-frame]').children();
-
-    if ($.exists_nabir(d_r_f_item)) {
-        d_r_f_item_class = d_r_f_item.attr('class').match(/span([0-9]+)/)[0];
-        try {
-            var span = $('.right').attr('class').match(/span([0-9]+)/)[0];
-        }
-        catch (err) {
-        }
-    }
-    $('.list_pic_btn .btn').on('click', function() {
-        if ($(this).children().is('.icon-cat_list')) {
-            d_r_f_item.removeClass(d_r_f_item_class).addClass(span);
-        }
-        else {
-            d_r_f_item.removeClass(span).addClass(d_r_f_item_class);
-        }
-    });
-
-    var itemThumbs = $('.item_tovar .frame_thumbs > li');
-    if ($.exists_nabir(itemThumbs)) {
-        itemThumbs.click(function() {
-            var $this = $(this);
-            $this.addClass('active').siblings().removeClass('active');
-        })
-        $('.fancybox-next').live('click', function() {
-            $this = itemThumbs.filter('.active');
-            if (!$this.is(':last-child'))
-                $this.removeClass('active').next().addClass('active')
-            else
-                itemThumbs.first().click()
-        })
-        $('.fancybox-prev').live('click', function() {
-            $this = itemThumbs.filter('.active');
-            if (!$this.is(':first-child'))
-                $this.removeClass('active').prev().addClass('active')
-            else
-                itemThumbs.last().click()
-        })
-    }
-    var fr_lab_l = $('.frameLabel').length;
-    $('.frameLabel').each(function(index) {
-        $(this).css({
-            'position': 'relative',
-            'z-index': fr_lab_l - index
-        })
-    });
-    $('#suggestions').autocomlete();
-    $('.btn-navbar').click(function() {
-        var frameNavBar = $('.frame-navbar');
-        if (!frameNavBar.hasClass('in'))
-            frameNavBar.addClass('in').show();
-        else
-            frameNavBar.removeClass('in').hide();
-    });
-    $('.navStaticPages > ul > li > a').click(function(event) {
-        $this = $(this);
-        if ($this.next().length > 0) {
-            event.preventDefault();
-            $this.toggleClass('active');
-            $this.next().slideToggle(500);
-        }
-    });
-    /* Refresh when remove item from Compare */
-    $('.frame_tabsc > div').equalHorizCell('refresh');
-    /* End. Refresh when remove item from Compare */
-
-    /* REMOVE LATER */
-    $('.btn.btn_small.btn_small_p').unbind('click').click(function() {
-        var $this = $(this),
-        compTov = $this.closest('.comprasion_tovars_frame'),
-        left = $this.closest('.rightDescription').prev()
-        
-        $this.parents('li').remove();
-        if (compTov.children().length == 0) left.remove();
-        else $('.frame_tabsc > div').equalHorizCell('refresh');
-    });
-
-    /*fancybox-based imagebox initialization*/
-    $('a.fancybox').fancybox();
-
 });
 wnd.load(function() {
     if ($('.cycle li').length > 1) {
@@ -299,6 +212,93 @@ wnd.load(function() {
         $('.frame_tabsc > div').equalHorizCell('refresh');
         $('.menu-main').menuPacket2('refresh');
     })
+    
+    navPortait();
+
+    $('[data-toggle="buttons-radio"] .btn').on('click', function(event) {
+        $(this).siblings().removeClass('active').end().addClass('active');
+    })
+
+    d_r_f_item = $('[data-radio-frame]').children();
+
+    if ($.exists_nabir(d_r_f_item)) {
+        d_r_f_item_class = d_r_f_item.attr('class').match(/span([0-9]+)/)[0];
+        try {
+            var span = $('.right').attr('class').match(/span([0-9]+)/)[0];
+        }
+        catch (err) {
+        }
+    }
+    $('.list_pic_btn .btn').on('click', function() {
+        if ($(this).children().is('.icon-cat_list')) {
+            d_r_f_item.removeClass(d_r_f_item_class).addClass(span).parent().addClass('list');
+        }
+        else {
+            d_r_f_item.removeClass(span).addClass(d_r_f_item_class).parent().removeClass('list');
+        }
+    });
+
+    var itemThumbs = $('.item_tovar .frame_thumbs > li');
+    if ($.exists_nabir(itemThumbs)) {
+        itemThumbs.click(function() {
+            var $this = $(this);
+            $this.addClass('active').siblings().removeClass('active');
+        })
+        $('.fancybox-next').live('click', function() {
+            $this = itemThumbs.filter('.active');
+            if (!$this.is(':last-child'))
+                $this.removeClass('active').next().addClass('active')
+            else
+                itemThumbs.first().click()
+        })
+        $('.fancybox-prev').live('click', function() {
+            $this = itemThumbs.filter('.active');
+            if (!$this.is(':first-child'))
+                $this.removeClass('active').prev().addClass('active')
+            else
+                itemThumbs.last().click()
+        })
+    }
+    var fr_lab_l = $('.frameLabel').length;
+    $('.frameLabel').each(function(index) {
+        $(this).css({
+            'position': 'relative',
+            'z-index': fr_lab_l - index
+        })
+    });
+    $('#suggestions').autocomlete();
+    $('.btn-navbar').click(function() {
+        var frameNavBar = $('.frame-navbar');
+        if (!frameNavBar.hasClass('in'))
+            frameNavBar.addClass('in').show();
+        else
+            frameNavBar.removeClass('in').hide();
+    });
+    $('.navStaticPages > ul > li > a').click(function(event) {
+        $this = $(this);
+        if ($this.next().length > 0) {
+            event.preventDefault();
+            $this.toggleClass('active');
+            $this.next().slideToggle(500);
+        }
+    });
+    /* Refresh when remove item from Compare */
+    $('.frame_tabsc > div').equalHorizCell('refresh');
+    /* End. Refresh when remove item from Compare */
+
+    /* REMOVE LATER */
+    $('.btn.btn_small.btn_small_p').unbind('click').click(function() {
+        var $this = $(this),
+        compTov = $this.closest('.comprasion_tovars_frame'),
+        left = $this.closest('.rightDescription').prev()
+        
+        $this.parents('li').remove();
+        if (compTov.children().length == 0) left.remove();
+        else $('.frame_tabsc > div').equalHorizCell('refresh');
+    });
+
+    /*fancybox-based imagebox initialization*/
+    $('a.fancybox').fancybox();
 });
 def_min = $('span#opt1').data('def_min');
 def_max = $('span#opt2').data('def_max');

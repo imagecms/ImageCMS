@@ -70,12 +70,14 @@
                                         </button> 
                                     {/if} 
                                 </div>
-                                <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="photo">
-                                    <span class="helper"></span>
-                                    <figure class="w_200 h_180">
-                                        <img src="{productImageUrl($hotProduct->getMainModimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}"/>
-                                    </figure>
-                                </a>
+                                <div class="photo-block">
+                                    <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="photo">
+                                        <span class="helper"></span>
+                                        <figure class="w_200 h_180">
+                                            <img src="{productImageUrl($hotProduct->getMainModimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}"/>
+                                        </figure>
+                                    </a>
+                                </div>
                             </li>
                         {/foreach}
                     </ul>
