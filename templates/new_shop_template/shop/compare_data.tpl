@@ -1,4 +1,4 @@
-<div style="margin-top: 5px;">
+<div style="margin-top: 5px;" id="compareListData">
     <div class="d_n">
         <a href="{shop_url('compare')}" rel="nofollow">
             <span class="icon-comprasion"></span>
