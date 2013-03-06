@@ -570,6 +570,21 @@ function renderOrderDetails() {
     }));
 }
 
+function changeDeliveryMethod(id) {
+    $.get('/shop/cart_api/getPaymentsMethods/' + id, function (dataStr) {
+        data = JSON.parse(dataStr);
+        var replaceStr = _.template('<select id="paymentMethod"><% _.each(data, function(item) { %><option value="<%-item.id%>"><%-item.name%></option> <% }) %></select> ', {
+            data:data
+        });
+        $('div.pmDiv').closest('div').html(replaceStr);
+
+        cuSel({
+            changedEl:'#paymentMethod'
+        });
+    });
+}
+
+
 function recountCartPage() {
     Shop.Cart.shipping = parseFloat($('span.cuselActive').data('price'));
     Shop.Cart.shipFreeFrom = parseFloat($('span.cuselActive').data('freefrom'));
@@ -581,11 +596,10 @@ function recountCartPage() {
     $('span.curr').html(curr);
 }
 
-function emptyPopupCart(){
+function emptyPopupCart() {
     $('#popupCart .inside_padd table').hide(300);
     $('#popupCart .inside_padd div.msg').show(300);
 }
-
 
 
 /*      ========        Document Ready          ==========      */
@@ -627,6 +641,16 @@ $(
             Shop.Cart.add(cartItem);
             return true;
         });
+
+        if ($('#orderDetails'))
+            renderOrderDetails();
+
+        //shipping changing, re-render cart page
+        if ($('#method_deliv'))
+            $('#method_deliv').on('change', function () {
+                recountCartPage();
+                changeDeliveryMethod($('span.cuselActive').attr('val'));
+            });
 
         if ($('#orderDetails'))
             renderOrderDetails();
@@ -754,8 +778,6 @@ $(
 
 //variants
 $('[name="variant"]').live('change', function () {
-
-
     var productId = $(this).attr('value');
 
     var vId = $('span.variant_' + productId).attr('data-id');
