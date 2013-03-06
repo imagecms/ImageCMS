@@ -6,16 +6,15 @@
 }
 <div style="margin-top: 9px;" id="wishListData">
     {$cWL = ShopCore::app()->SWishList->totalItems()}
-    <div class="d_n">
+    <span class="d_n" data-rel="ref">
         <a {if ShopCore::$ci->dx_auth->is_logged_in()===true}logged_in="true" href="{shop_url('wish_list/')}"{else:}href="#"{/if} id="towishlist" class="d_n">
             <span class="icon-wish"></span>
             {echo lang('s_WL')}
-        </a><span id="wishListCount"> ({echo $cWL})</span>
-    </div>
-
-    <span class="c_97">
+        </a>
+    </span>
+    <span class="c_97" data-rel="notref">
         <span class="icon-wish"></span>
         {echo lang('s_WL')}
-        <span id="wishListCount"> ({echo $cWL})</span>
     </span>
+    <span id="wishListCount" class="c_97"> ({echo $cWL})</span>
 </div>

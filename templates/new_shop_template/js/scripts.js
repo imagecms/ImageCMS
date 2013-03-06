@@ -24,6 +24,32 @@ var genObj = {
     compareIn: 'btn_cart',
     textEl: '.text-el'
 }
+    
+function deleteComprasion(el){
+    var $this = el,
+    $thisI = $this.parents('li'),
+    $thisP = $this.parents('[data-equalhorizcell]').last(),
+    count_products = $thisP.find(optionCompare.right),
+    gen_count_products = count_products.add($thisP.siblings().find(optionCompare.right)).length,
+    count_productsL = count_products.length;
+    
+    console.log(gen_count_products == 1)
+        
+    $thisI.remove();
+        
+    if (count_productsL == 1) {
+        var btn = $('[data-href="#'+$thisP.attr('id')+'"],[href="#'+$thisP.attr('id')+'"]').parent();
+        $thisP.find(optionCompare.left).remove();
+        
+        if ($.exists_nabir(btn.next())) btn.next().children().click();
+        else btn.prev().children().click();
+                            
+        btn.remove();
+        $('.frame_tabsc > div').equalHorizCell('refresh');
+    }
+    if (gen_count_products == 1)
+        location.reload();
+}
 
 jQuery(document).ready(function() {
     $('.formCost input[type="text"], .number input').live('keypress', function(event) {
@@ -285,17 +311,6 @@ wnd.load(function() {
     /* Refresh when remove item from Compare */
     $('.frame_tabsc > div').equalHorizCell('refresh');
     /* End. Refresh when remove item from Compare */
-
-    /* REMOVE LATER */
-    $('.btn.btn_small.btn_small_p').unbind('click').click(function() {
-        var $this = $(this),
-        compTov = $this.closest('.comprasion_tovars_frame'),
-        left = $this.closest('.rightDescription').prev()
-        
-        $this.parents('li').remove();
-        if (compTov.children().length == 0) left.remove();
-        else $('.frame_tabsc > div').equalHorizCell('refresh');
-    });
 
     /*fancybox-based imagebox initialization*/
     $('a.fancybox').fancybox();
