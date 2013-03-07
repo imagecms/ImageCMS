@@ -100,7 +100,7 @@ class Template extends Mabilis {
 
     public function run_info() {
         /*         * ********************* */
-        echo '<!--';
+//        echo '<!--';
         echo '<div align="center">';
         echo 'Total Time:' . $this->CI->benchmark->elapsed_time('total_execution_time_start', 'total_execution_time_end') . ', ';
         echo 'Queries: ' . $this->CI->db->total_queries();
@@ -108,7 +108,7 @@ class Template extends Mabilis {
         echo ', Cache set: ' . $this->CI->cache->set;
         echo ', Memory Usage: ' . round(memory_get_usage() / 1024 / 1024, 4) . ' Mb';
         echo '</div>';
-        echo ' -->';
+//        echo ' -->';
         /*         * ********************* */
     }
 
