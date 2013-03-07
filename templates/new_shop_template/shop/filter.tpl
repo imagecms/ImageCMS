@@ -96,7 +96,10 @@
                         <li>
                             <div class="o_h">
                                 {//link to uncheck filter by price}
-                                <a href="{echo str_replace(array('&lp=' . ShopCore::$_GET['lp'], '&rp=' . ShopCore::$_GET['rp'], '?rp=' . ShopCore::$_GET['rp'], '?lp=' . ShopCore::$_GET['lp']), "", $aurl)}">
+                                {$url = str_replace(array('&lp=' . ShopCore::$_GET['lp'], '&rp=' . ShopCore::$_GET['rp'], '?rp=' . ShopCore::$_GET['rp'], '?lp=' . ShopCore::$_GET['lp']), '', $aurl)}
+                                {$position = strpos($url, '&')}
+                                <a href="{echo substr_replace($url, '?', $position,1)}">
+
                                     <span class="times">&times;</span>
                                     {if isset(ShopCore::$_GET['lp']) && ShopCore::$_GET['lp'] != (int)$priceRange.minCost}
                                         {lang('s_from')} 
