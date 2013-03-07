@@ -110,7 +110,7 @@
 
                         <!-- product block -->
                         <!-- check if product is in stock -->
-                        <li class="{if (int)$product->getallstock() == 0}not-avail {else:}in_cart {/if}span3">
+                        <li class="{if (int)$product->getallstock() == 0}not-avail{/if}span3">
 
                             <!-- product info block -->
                             <div class="description">
