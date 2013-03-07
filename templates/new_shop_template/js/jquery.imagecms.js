@@ -245,6 +245,10 @@ function ieInput(els) {
                     $(this).remove()
                 });
             })
+            body.live('click', function(event) {
+                event.stopPropagation();
+                $('.tooltip').fadeOut(300, function(){$(this).remove()});
+            })
         },
         remove : function( ) {
             $('.tooltip').fadeOut(300, function(){
