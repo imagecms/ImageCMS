@@ -343,7 +343,7 @@ var Shop = {
             }
         },
 
-        rm:function (key) {
+        rm:function (key, el) {
             this.items = this.all();
             $.get('/shop/wish_list_api/delete/' + key, function (data) {
                 try {
@@ -365,6 +365,7 @@ var Shop = {
                     console.log(e.message);
                 }
             })
+            deleteWishListItem($(el));
         }
     },
 
@@ -427,7 +428,7 @@ var Shop = {
                     }
                 });
             }
-            deleteComprasion($(el));
+            deleteComprasionItem($(el));
         }
     }
 };
