@@ -571,7 +571,7 @@ function renderOrderDetails() {
 function changeDeliveryMethod(id) {
     $.get('/shop/cart_api/getPaymentsMethods/' + id, function (dataStr) {
         data = JSON.parse(dataStr);
-        var replaceStr = _.template('<select id="paymentMethod"><% _.each(data, function(item) { %><option value="<%-item.id%>"><%-item.name%></option> <% }) %></select> ', {
+        var replaceStr = _.template('<select id="paymentMethod" name="paymentMethodId"><% _.each(data, function(item) { %><option value="<%-item.id%>"><%-item.name%></option> <% }) %></select> ', {
             data:data
         });
         $('div.pmDiv').closest('div').html(replaceStr);
@@ -633,6 +633,8 @@ function () {
     processPage();
     processWish();
     recountCartPage();
+    if ($('#method_deliv'))
+        changeDeliveryMethod($('#method_deliv').val());
     $('#popupCart').html(Shop.Cart.renderPopupCart())
     //click 'add to cart'
     $('button.btn_buy').on('click', function () {
