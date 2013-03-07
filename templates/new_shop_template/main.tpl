@@ -82,7 +82,7 @@
                                                     </span>
                                                 </span>
                                             </li>
-                                        <!--Else show link for personal cabinet -->
+                                            <!--Else show link for personal cabinet -->
                                         {else:}
                                             <li>
                                                 <span class="f-s_0">
@@ -153,263 +153,170 @@
                             <span class="helper"></span>
                             <div class="w_100 f-s_0 frameUndef_1">
                                 <div class="span6">
-                                <div class="frameSearch">
-                                    <form name="search" 
-                                          class="clearfix" 
-                                          action="{shop_url('search')}" 
-                                          method="get" 
-                                          id="autocomlete">
-                                        <button class="f_r btn" type="submit">
-                                            <span class="icon-search"></span>
-                                            <span class="text-el">{lang('search_find')}</span>
-                                        </button>
-                                        <div class="o_h">
-                                            <input type="text" 
-                                                   name="text" 
-                                                   value="" 
-                                                   placeholder="{lang('s_se_thi_sit')}" 
-                                                   autocomplete="off" 
-                                                   class="place_hold" 
-                                                   id="inputString"/>
-                                        </div>
-                                        <div id="suggestions" class="drop-search"></div>
-                                    </form>
+                                    <div class="frameSearch">
+                                        <form name="search" 
+                                              class="clearfix" 
+                                              action="{shop_url('search')}" 
+                                              method="get" 
+                                              id="autocomlete">
+                                            <button class="f_r btn" type="submit">
+                                                <span class="icon-search"></span>
+                                                <span class="text-el">{lang('search_find')}</span>
+                                            </button>
+                                            <div class="o_h">
+                                                <input type="text" 
+                                                       name="text" 
+                                                       value="" 
+                                                       placeholder="{lang('s_se_thi_sit')}" 
+                                                       autocomplete="off" 
+                                                       class="place_hold" 
+                                                       id="inputString"/>
+                                            </div>
+                                            <div id="suggestions" class="drop-search"></div>
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="span3">
-                                {include_shop_tpl('compare_data')}
-                                {include_shop_tpl('wish_list_data')}
-                            </div>
-                            <!-- Start. Block order call -->
-                            <div class="span3">
-                                <div class="headerPhone">
-                                    <span class="c_67">+8 (097)</span>
-                                    <span class="d_n">&minus;</span> 572-58-18
+                                <div class="span3">
+                                    {include_shop_tpl('compare_data')}
+                                    {include_shop_tpl('wish_list_data')}
                                 </div>
-                                <div style="margin-top: 7px;">
-                                    <ul class="tabs">
-                                        <li>
-                                            <a class="t-d_n f-s_0" 
-                                               href="#a" 
-                                               data-drop=".drop-order-call" 
-                                               data-effect-on="fadeIn" 
-                                               data-effect-off="fadeOut" 
-                                               data-duration="300" 
-                                               data-place="center">
-                                                <span class="icon-order-call"></span>
-                                                <span class="d_l_b">
-                                                    {lang('s_coll_order')}
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
+                                <!-- Start. Block order call -->
+                                <div class="span3">
+                                    <div class="headerPhone">
+                                        <span class="c_67">+8 (097)</span>
+                                        <span class="d_n">&minus;</span> 572-58-18
+                                    </div>
+                                    <div style="margin-top: 7px;">
+                                        <ul class="tabs">
+                                            <li>
+                                                <a class="t-d_n f-s_0" 
+                                                   href="#a" 
+                                                   data-drop=".drop-order-call" 
+                                                   data-effect-on="fadeIn" 
+                                                   data-effect-off="fadeOut" 
+                                                   data-duration="300" 
+                                                   data-place="center">
+                                                    <span class="icon-order-call"></span>
+                                                    <span class="d_l_b">
+                                                        {lang('s_coll_order')}
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
+                                <!-- End. Block order call-->
                             </div>
-                            <!-- End. Block order call-->
                         </div>
+                    </section>
+                </section>
+            </div>
+
+            <div
+                <!-- Start. Render Category Tree. Menu frame -->
+                <div class="mainFrameMenu">
+                    <section class="container">
+                        {\Category\RenderMenu::create()->load('category_menu')}
+                    </section>
+                </div>
+                <!-- End. Render Category Tree. Menu frame -->
+
+                <!-- Start. Show content -->
+                <div>
+                    <section class="container">                        
+                        {$content}
+                    </section>
+                </div>
+                <!-- End. Show content -->
+            </div>
+
+            <!-- Start Brands widget -->
+            {widget('brands')}
+            <!-- End. Brands widget -->
+
+            <div class="hFooter"></div>
+        </div>
+        <footer>
+            <div class="container">
+                <div class="row-fluid">
+                    <div class="span5">
+                        <nav>
+                            {load_menu('footer_menu')}<!-- footer menu-->
+                        </nav>
                     </div>
-                </section>
-            </section>
-        </div>
-        <div class="">
-
-            <!-- Start. Render Category Tree. Menu frame -->
-            <div class="mainFrameMenu">
-                <section class="container">
-                    {\Category\RenderMenu::create()->load('category_menu')}
-                </section>
-            </div>
-            <!-- End. Render Category Tree. Menu frame -->
-
-            <div class="">
-                <section class="container">
-                    <!--                     class="span9"-->
-                    {$content}
-                </section>
-            </div>
-        </div>
-
-        <!-- brands widget -->
-        {widget('brands')}
-        <!-- *** -->
-        <div class="hFooter"></div>
-    </div>
-    <footer>
-        <div class="container">
-            <div class="row-fluid">
-                <div class="span5">
-                    <nav>
-                       {load_menu('footer_menu')}<!-- footer menu-->
-                    </nav>
-                </div>
-                <!--Start. Block with contacts-->
-                <div class="span4">
-                    <ul class="contacts_info">
-                        <li>
-                            <span class="icon-foot-phone"></span>
-                            <span class="f-w_b">{lang('s_tel')}:</span> +8 (067)
-                            <span class="d_n">&minus;</span> 572-58-18, +8 (067)
-                            <span class="d_n">&minus;</span> 572-58-18
-                        </li>
-                        <li>
-                            <span class="icon-foot-email"></span>
-                            <span class="f-w_b">{lang('s_email')}:</span> Info@imagecms.net
-                        </li>
-                        <li>
-                            <span class="icon-foot-skype"></span>
-                            <span class="f-w_b">{lang('s_skype')}:</span> ImageCMS
-                        </li>
-                        <!--Load star rating-->
-                        {$CI->load->module('star_rating')->show_star_rating()}
-                    </ul>
-                </div>
-                <!--End-->
-                <!--Start. Social buttons-->
-                <div class="span3 t-a_r">
-                    <div class="copy_right">© ImageCMS, 2013</div>
-                    <div class="footer_social">
-                        <div class="social">
-                            <a href="#" class="mail"></a>
-                            <a href="#" class="g_plus"></a>
-                            <a href="#" class="facebook"></a>
-                            <a href="#" class="vkontakte"></a>
-                            <a href="#" class="twitter"></a>
-                            <a href="#" class="odnoklasniki"></a>
-                        </div>
+                    <!-- Start. Block with contacts -->
+                    <div class="span4">
+                        <ul class="contacts_info">
+                            <li>
+                                <span class="icon-foot-phone"></span>
+                                <span class="f-w_b">{lang('s_tel')}:</span> 
+                                +8 (090) <span class="d_n">&minus;</span> 500-50-50, 
+                                +8 (100)<span class="d_n">&minus;</span> 500-50-50
+                            </li>
+                            <li>
+                                <span class="icon-foot-email"></span>
+                                <span class="f-w_b">{lang('s_email')}:</span> Info@imagecms.net
+                            </li>
+                            <li>
+                                <span class="icon-foot-skype"></span>
+                                <span class="f-w_b">{lang('s_skype')}:</span> ImageCMS
+                            </li>
+                            <!--Load star rating-->
+                            {$CI->load->module('star_rating')->show_star_rating()}
+                        </ul>
                     </div>
-                    <a href="http://imagecms.net">{lang('s_footer_create')}</a><br/>
-                    {lang('s_footer_seo')}
-                </div>
-                <!--End-->
-            </div>
-        </div>
-    </footer>
-    <div class="headerFon"></div>
-    <!-- Including template file for displaying drop-down login form is user is not logged in -->
-    {if !$CI->dx_auth->is_logged_in()}
-        {include_tpl('login_popup')}
-    {/if}
-    <!--Start. Callback form-->
-    <div class="drop-order-call drop" id="a">
-        <div class="icon-times-enter" data-closed="closed-js"></div>
-        <div class="drop-content">
-            <div class="header_title">
-                Заказ звонка
-            </div>
-            <div class="inside_padd">
-                <div class="horizontal_form standart_form">
-                    <form method="post" id="data-callback" onsubmit="Notification.formAction('/shop/callbackApi', 'data-callback');
-                                                                    return false;">
-                        <label>
-                            <span class="title">Ваше имя</span>
-                            <span class="frame_form_field">
-                                <span class="icon-person"></span>
-                                <input type="text" name="Name"/>
-                                <label id="for_Name" class="for_validations"></label>
-                            </span>
-                        </label>
-                        <label>
-                            <span class="title">Номер телефона</span>
-                            <span class="frame_form_field">
-                                <span class="icon-phone"></span>
-                                <input type="text" name="Phone"/>
-                                <label id="for_Phone" class="for_validations"></label>
-                            </span>
-                        </label>
-                        <label>
-                            <span class="title">Комментарий</span>
-                            <span class="frame_form_field">
-                                <textarea name="Comment"></textarea>
-                                <label id="for_Comment" class="for_validations"></label>
-                            </span>
-                        </label>
-                        <div class="frameLabel">
-                            <span class="title">&nbsp;</span>
-                            <span class="frame_form_field c_n">
-                                <input type="submit" value="Позвоните мне" class="btn btn_cart f_r"/>
-                            </span>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="drop-footer"></div>
-    </div>
-    <!--End-->
-    <!--Start. Block report on appearance-->
-    <div class="drop drop-report">
-        <div class="drop-content">
-            <div class="title_h2">Сообщить когда появится</div>
-            <div class="icon-times-enter" data-closed="closed-js"></div>
-        </div>
-        <div class="drop-footer"></div>
-    </div>
-    <div class="d_n" data-clone="data-report">
-        <form method="post" action="" id="data-report" onsubmit="Notification.formAction('/shop/ajax/getApiNotifyingRequest', 'data-report');
-                                                                    return false;">
-            <div class="standart_form">
-                <label>
-                    <span class="title">Ваше имя</span>
-                    <span class="frame_form_field">
-                        <input type="text" id="" name="UserName"/>
-                        <label id="for_UserName" class="for_validations"></label>
-                        <span class="must">*</span>
-                    </span>
-                </label>
-                <label>
-                    <span class="title">E-mail</span>
-                    <span class="frame_form_field">
-                        <input type="text" id="" name="UserEmail"/>
-                        <label id="for_UserEmail" class="for_validations"></label>
-                        <input type="hidden" name="ProductId" value=""/>
-                        <input type="hidden" name="notifme" value="true"/>
-                        <span class="must">*</span>
-                        <span class="help_inline">На почту придет уведомление о появлении данного товара</span>
-                    </span>
-                </label>
-                <label>
-                    <span class="title">Телефон</span>
-                    <span class="frame_form_field">
-                        <input type="text" id="" name="UserPhone"/>
-                        <label id="for_UserPhone" class="for_validations"></label>
-                    </span>
-                </label>
-            </div>
-            <div class="t-a_r">
-                <input type="submit" value="Отправить"  class="btn btn_cart"/>
-            </div>
-        </form>
-    </div>
-    <!--End-->
-    <script type="text/javascript" src="{$THEME}js/jquery.imagecms.js"></script>
-    <script src="{$THEME}js/jquery.cycle.all.js" type="text/javascript"></script>
-    <script src="{$THEME}js/jquery.jcarousel.min.js" type="text/javascript"></script>
-    <script src="{$THEME}js/jquery.ui-slider.js" type="text/javascript"></script>
-    <script src="{$THEME}js/cusel-min-2.5.js" type="text/javascript"></script>
-    <script src="{$THEME}js/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
-    <script src="{$THEME}js/scripts.js" type="text/javascript"></script>
-    <script src="{$THEME}js/shop.js" type="text/javascript"></script>
-    <!-- Dev. scripts -->
-    <script src="{$THEME}js/imagecms.api.js" type="text/javascript"></script>
-    <script src="{$THEME}js/my_js_classes_iy.js" type="text/javascript"></script>
+                    <!-- End. Block with contacts -->
 
+                    <!-- Start. Social buttons-->
+                    <div class="span3 t-a_r">
+                        <div class="copy_right">© ImageCMS, 2013</div>
+                        <div class="footer_social">
+                            <div class="social">
+                                <a href="#" class="mail"></a>
+                                <a href="#" class="g_plus"></a>
+                                <a href="#" class="facebook"></a>
+                                <a href="#" class="vkontakte"></a>
+                                <a href="#" class="twitter"></a>
+                                <a href="#" class="odnoklasniki"></a>
+                            </div>
+                        </div>
+                        <a href="http://imagecms.net" target="_blank">{lang('s_footer_create')}</a><br/>
+                        {lang('s_footer_seo')}
+                    </div>
+                    <!--End-->
+
+                </div>
+            </div>
+        </footer>
+        <div class="headerFon"></div>
+
+        <script type="text/javascript" src="{$THEME}js/jquery.imagecms.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery.cycle.all.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery.jcarousel.min.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery.ui-slider.js"></script>
+        <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
+        <script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox.pack.js"></script>
+        <script type="text/javascript" src="{$THEME}js/scripts.js"></script>
+        <script type="text/javascript" src="{$THEME}js/shop.js"></script>
+        <!-- Dev. scripts -->
+        <script type="text/javascript" src="{$THEME}js/imagecms.api.js"></script>
+        <script type="text/javascript" src="{$THEME}js/my_js_classes_iy.js"></script>
+
+        <!-- Including template file for displaying drop-down login form is user is not logged in -->
+    {if !$CI->dx_auth->is_logged_in()}{include_tpl('login_popup')}{/if}
+
+    <!-- Start. Callback form -->
+    {include_shop_tpl('callback')}
+    <!-- End. Callback form -->        
+
+    <!-- Start. Block report on appearance -->
+    {include_shop_tpl('report_appearance')}
+    <!-- End. Block report on appearance -->
 
     {include_shop_tpl('js_templates')}
 
-
-    <!-- floating elements-->
-    <div id="popupCart" style="display: none;" class="drop"></div>
-    <a href="#" 
-       data-drop="#popupCart" 
-       data-place="center"
-       data-effect-on="fadeIn" 
-       data-effect-off="fadeOut" 
-       data-duration="300" 
-       id="showCart" 
-       style="display: none;">
-        Show cart
-    </a>
-    <!--Include template for autocomplete-->
+    <!-- Start. Include template for autocomplete-->
     {include_shop_tpl('search_autocomplete')}
+    <!-- End. Include template for autocomplete-->
 </body>
 </html>

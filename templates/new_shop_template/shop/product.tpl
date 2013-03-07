@@ -551,9 +551,7 @@
     </div>
 {/if}
 <!--Similar Products END-->
-{//widget('view_product')}
-{widget('popular_products')}
-{widget('new_products')}
-{widget('action_products')}
+
+{widget('view_product')}
 </article>
 </div>
