@@ -1,6 +1,6 @@
 var optionsMenu = {
     item: $('.menu-main td > .frame-item-menu > div'),
-    duration: 200,
+    duration: 400,
     drop: 'ul',
     itemSub: '.frame-item-menu > ul > li',
     frameSub: '.frame-item-menu > ul > li > div',
@@ -44,13 +44,19 @@ function deleteComprasionItem(el){
                             
         btn.remove();
     }
-    if (gen_count_products == 1)
-        location.reload();
+    if (gen_count_products == 1){
+        $('[data-body="body"]').hide()
+        $('[data-body="message"]').show()
+    }
     
     $('.frame_tabsc > div').equalHorizCell('refresh');
 }
 function deleteWishListItem(el){
-   el.parent().remove();
+    if (el.parent().siblings().length == 0){
+        $('[data-body="body"]').hide()
+        $('[data-body="message"]').show()
+    }
+    el.parent().remove();
 }
 
 jQuery(document).ready(function() {

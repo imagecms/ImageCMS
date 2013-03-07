@@ -10,17 +10,21 @@
 #}
 
 <article>
-    <h1>{lang('s_WL')}</h1>
-    <div class="row">
-        <div class="text span8"><!-- Some text --></div>
-    </div>
-    <div class="frame_carousel_product">
-        <!--If empty list show message -->
-        {if !$items}
-            <div class="comparison_slider">
-                <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t(lang('s_list_wish_empty'))}</div>
+    <!--If empty list show message -->
+    {if !$items}
+        <div data-body="message" class="d_b">
+            <!--Start. Show message if compare list is empty -->
+            <div class="bot_border_grey m-b_10">
+                <h1 class="d_i">{lang('s_WL')}</h1>
             </div>
-        {else:}
+            <div class="alert alert-search-result">
+                <div class="title_h2 t-a_c">{echo ShopCore::t(lang('s_list_wish_empty'))}</div>
+            </div>
+            <!--End. Show message if compare list is empty -->
+        </div>
+    {else:}
+        <div data-body="body">
+            <h1>{lang('s_WL')}</h1>
             <!--If not empty list show list of products -->
             <div class="bot_border_grey">
                 <ul class="items items_catalog itemsFrameNS">
@@ -94,9 +98,6 @@
                     {/foreach}
                 </ul>
             </div>
-        {/if}
-        <!--Show block with total price and send email form, if count products >0  -->
-        {if count($items)>0}
             <div class="row footer_wish-list">
                 <div class="span6">
                     <div class="d_i-b title">{lang('s_summ')}:</div>
@@ -113,6 +114,16 @@
                     </div>
                 </div>
             </div>
-        {/if}
+    </div>
+    {/if}
+    <div data-body="message">
+        <!--Start. Show message if compare list is empty -->
+        <div class="bot_border_grey m-b_10">
+            <h1 class="d_i">{lang('s_WL')}</h1>
+        </div>
+        <div class="alert alert-search-result">
+            <div class="title_h2 t-a_c">{echo ShopCore::t(lang('s_list_wish_empty'))}</div>
+        </div>
+        <!--End. Show message if compare list is empty -->
     </div>
 </article>
