@@ -59,7 +59,7 @@
     background: linear-gradient(to bottom,  rgba(237,237,237,1) 0%,rgba(247,247,247,1) 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#f7f7f7',GradientType=0 ); /* IE6-8 */
 }
-.like__icsi-css, .dis-like__icsi-css{background-image: none;border: none;}
+#comment__icsi-css .like__icsi-css, #comment__icsi-css .dis-like__icsi-css{background-image: none !important;border: none !important;}
 .like__icsi-css > button{border-bottom: 1px dotted #3a88cc !important;color: #3a88cc;}
 .dis-like__icsi-css > button{border-bottom: 1px dotted #f03f3f !important;color: #f03f3f;}
 .horizontal_form__icsi-css label, .horizontal_form__icsi-css .frameLabel__icsi-css{margin-bottom: 12px;}

@@ -1,7 +1,3 @@
-<!-- floating elements-->
-<div id="popupCart" style="display: none;" class="drop"></div>
-<a href="#" data-drop="#popupCart" data-place="center"data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" id="showCart" style="display: none;"></a>
-
 <script type="text/template" id="cartPopupTemplate">
     {literal}   
         <div class="fancy fancy_cleaner frame_head_content">
@@ -9,7 +5,7 @@
             </div>
             <div class="icon-times-enter" data-closed="closed-js" onclick="togglePopupCart()"></div>
             <div class="drop-content">
-                <div class="inside_padd" style="background: #fff;">
+                <div class="inside_padd">
 
                     <div class="msg" style="display: none;"><div class="success">Ваша корзина пуста.</div></div>
 
@@ -24,7 +20,7 @@
                         <tbody>
                             <% _.each(Shop.Cart.getAllItems(), function(item){ %>
 
-                            <!-- for single product -->
+     <!-- for single product -->
                             <% if (!item.kit) { %>
                             <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>"> 
                                 <td><span class="times d_i-b" onclick="rmFromPopupCart(this);">&times;</span></td>
@@ -56,7 +52,7 @@
                                     <span class="v-a_m"><%- item.count %> шт.</span>
                                 </td>
                                 <td>
-                                    <span>Сумма: </span>
+                                    <span class="d_b">Сумма: </span>
                                     <div class="price price_f-s_16 d_i-b">
                                         <span class="first_cash"><span class="f-w_b"><%- parseFloat(item.count*item.price).toFixed(2) %></span> грн.</span>
                                     </div>
@@ -155,6 +151,17 @@
 
                             <% }); %>
                         </tbody>
+                    </table>
+                </div>
+                <div class="inside_padd foot">
+                    <table class="table">
+                        <colgroup>
+                            <col width="20px"/>
+                            <col width="80px"/>
+                            <col width="260px"/>
+                            <col width="140px"/>
+                            <col width="140px"/>
+                        </colgroup>
                         <tfoot>
                             <tr>
                                 <% if ( Shop.Cart.totalCount  == 0 ) { %>
@@ -167,22 +174,18 @@
                                 <% setTimeout("location.href = '/';", 2000); %>
                                 <% } %>
                                 <td colspan="4" class="t-a_r">
-                                    <a href="#"  onclick="renderOrderDetails();
-                    togglePopupCart();
-                    return false;" class="btn btn_cart v-a_m m-r_30">Закрыть</a>
+                                    <a href="#"  onclick="renderOrderDetails(); togglePopupCart(); return false;" class="btn btn_cart v-a_m m-r_30">Закрыть</a>
                                 </td>
                                 <% } else { %>
-                                <td colspan="2">
-                                    <button type="button" onclick="togglePopupCart()" class="d_l_b w-s_n-w">← Продолжить покупки</button>
-                                </td>
-                                <td colspan="2" class="t-a_r">
-                                    <a href="/shop/cart" class="btn btn_cart v-a_m m-r_30">Оформить заказ</a>
+                                <td colspan="4">
+                                    <a href="/shop/cart" class="btn btn_cart m-r_30 f_r">Оформить заказ</a>
+                                    <button type="button" onclick="togglePopupCart()" class="d_l_b w-s_n-w f_l">← Продолжить покупки</button>
                                 </td>
 
                                 <% } %>
-                                <td colspan="1">
+                                <td style="padding-left: 0;">
                                     <div class="t-a_l d_i-b v-a_m">
-                                        <span>Итого:</span>
+                                        <span class="d_b">Итого:</span>
                                         <div class="price price_f-s_24">
                                             <span class="first_cash"><span class="f-w_b" id="popupCartTotal"><%- parseFloat(Shop.Cart.getTotalPrice()).toFixed(2) %></span> руб.</span>
                                         </div>
@@ -240,7 +243,7 @@
                     </tr>
 
                     <% } else { %>
-                    <!-- for product kit -->
+                        <!-- for product kit -->
                     <% var i=0 %>
                     <% var names = item.name %>
                     <% var ids = item.id %>
@@ -344,5 +347,5 @@
 </script>
 
 <script>
-                var curr = '{$CS}';
+    var curr = '{$CS}';
 </script>

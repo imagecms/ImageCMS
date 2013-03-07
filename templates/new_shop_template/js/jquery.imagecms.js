@@ -245,6 +245,12 @@ function ieInput(els) {
                     $(this).remove()
                 });
             })
+            body.live('click', function(event) {
+                event.stopPropagation();
+                $('.tooltip').fadeOut(300, function(){
+                    $(this).remove()
+                });
+            })
         },
         remove : function( ) {
             $('.tooltip').fadeOut(300, function(){
@@ -303,7 +309,7 @@ function ieInput(els) {
             menuItemCltd = menuItem.closest('td');
             effecton = settings.effecton;
             effectoff = settings.effectoff;
-
+            
             if (menu.hasClass('vertical'))
                 vertical = true;
 
@@ -399,22 +405,28 @@ function ieInput(els) {
             }, function(event) {
                 itemSubEv($(this), event);
             });
+            
+            hover_t_o = '';
+            
             function unhov(el) {
                 var $this = el,
                 $thisDrop = $this.next();
-                $('.first_h, .last_h').removeAttr('class');
+                $('.first_h, .last_h').removeClass('first_h').removeClass('last_h');
+                
                 frameSub.add(drop.not($thisDrop)).stop()[effectoff](duration);
+                
+                clearTimeout(hover_t_o);
                 if ($thisDrop.length != 0)
                     menu.removeClass('hover');
             }
-            hover_t_o = '';
             function hov(el) {
                 var $this = el,
                 $thisDrop = $this.next();
 
                 menuItemCltd.removeClass('hover');
+                
                 frameSub.add(drop.not($thisDrop)).stop()[effectoff](duration);
-
+                
                 $this = $this.closest('td').addClass('hover');
 
                 if ($this.index() == 0)
@@ -422,21 +434,12 @@ function ieInput(els) {
                 if ($this.index() == item_menu_l - 1)
                     $this.addClass('last_h');
 
+                clearTimeout(hover_t_o);
                 hover_t_o = setTimeout(function() {
                     $thisDrop[effecton](duration);
                     if ($thisDrop.length != 0)
                         menu.addClass('hover');
                 }, time_dur_m);
-
-                if (!isTouch) {
-                    $thisDrop.hover(function() {
-                        $(this)[effecton](duration);
-                    }, function(event) {
-                        clearTimeout(hover_t_o);
-                        menu.find('.hover').removeClass('hover');
-                        frameSub.hide();
-                    })
-                }
             }
             if (isTouch) {
                 menuItem.unbind(evDrop)[evDrop](
@@ -454,18 +457,16 @@ function ieInput(els) {
                     });
             }
             else {
-                menuItem.unbind(evDropF)[evDropF](
-                    function() {
+                menuItem.unbind(evDropF)[evDropF](function() {
                     hov($(this));
                     }).unbind(evDropS)[evDropS](function() {
-                    clearTimeout(hover_t_o);
+                    unhov($(this));
                 })
-
-                menu.unbind(evDropF)[evDropF](
-                    function(event) {
+                menu.unbind(evDropF)[evDropF](function() {
                     time_dur_m = 0;
                     }).unbind(evDropS)[evDropS](
-                    function(event) {
+                    function() {
+                        time_dur_m = duration;
                         methods.fadeDrop();
                     });
             }
@@ -483,8 +484,15 @@ function ieInput(els) {
             }, optionsMenu));
         },
         fadeDrop: function() {
-            time_dur_m = duration;
+            time_dur_m = 0;
+            
             drop.hide();
+            clearTimeout(hover_t_o);
+            
+            hover_t_o = setTimeout(function() {
+                drop.hide();
+            }, duration);
+
             menuItemCltd.removeClass('hover')
             $('.first_h, .last_h').removeClass('first_h').removeClass('last_h');
         }
@@ -734,16 +742,16 @@ function ieInput(els) {
             }
         },
         startCheck: function() {
+            $(hashs[1].join(',')).each(function(index) {
+                var $thisId = $(this).attr('id');
+                $('[data-href="#' + $thisId + '"]').trigger('click');
+            });
             $(hashs[0].join(',')).each(function(index) {
                 var $thisId = $(this).attr('id'),
                 attrOrdataNew = '';
 
                 $('[href="#' + $thisId + '"]').length == 0 ? attrOrdataNew = 'data-href' : attrOrdataNew = 'href';
                 $('[' + attrOrdataNew + '="#' + $thisId + '"]').trigger('click');
-            });
-            $(hashs[1].join(',')).each(function(index) {
-                var $thisId = $(this).attr('id');
-                $('[data-href="#' + $thisId + '"]').trigger('click');
             });
         }
     };

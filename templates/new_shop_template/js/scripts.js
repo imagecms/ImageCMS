@@ -1,6 +1,6 @@
 var optionsMenu = {
     item: $('.menu-main td > .frame-item-menu > div'),
-    duration: 200,
+    duration: 400,
     drop: 'ul',
     itemSub: '.frame-item-menu > ul > li',
     frameSub: '.frame-item-menu > ul > li > div',
@@ -25,7 +25,7 @@ var genObj = {
     textEl: '.text-el'
 }
     
-function deleteComprasion(el){
+function deleteComprasionItem(el){
     var $this = el,
     $thisI = $this.parents('li'),
     $thisP = $this.parents('[data-equalhorizcell]').last(),
@@ -33,8 +33,6 @@ function deleteComprasion(el){
     gen_count_products = count_products.add($thisP.siblings().find(optionCompare.right)).length,
     count_productsL = count_products.length;
     
-    console.log(gen_count_products == 1)
-        
     $thisI.remove();
         
     if (count_productsL == 1) {
@@ -45,10 +43,20 @@ function deleteComprasion(el){
         else btn.prev().children().click();
                             
         btn.remove();
-        $('.frame_tabsc > div').equalHorizCell('refresh');
     }
-    if (gen_count_products == 1)
-        location.reload();
+    if (gen_count_products == 1){
+        $('[data-body="body"]').hide()
+        $('[data-body="message"]').show()
+    }
+    
+    $('.frame_tabsc > div').equalHorizCell('refresh');
+}
+function deleteWishListItem(el){
+    if (el.parent().siblings().length == 0){
+        $('[data-body="body"]').hide()
+        $('[data-body="message"]').show()
+    }
+    el.parent().remove();
 }
 
 jQuery(document).ready(function() {

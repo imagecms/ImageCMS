@@ -9,7 +9,7 @@
 #}
 {literal}
     <script type="text/template" id="searchResultsTemplate">
-        <div class="inside-padd">
+        <div class="inside_padd">
             <% if (_.keys(items).length > 1) { %>
             <ul class="frame-search-thumbail">
                 <% _.each(items, function(item){
