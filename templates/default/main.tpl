@@ -11,17 +11,15 @@
 <link rel="stylesheet" type="text/css" href="{$THEME}/css/general.css" />
 <link rel="stylesheet" type="text/css" href="{$THEME}/css/slideshow.css" />
 
-<script type="text/javascript" src="{$THEME}/js/jquery.js"></script>
-<script type="text/javascript" src="{$THEME}/js/jquery.hoverIntent.js"></script>
-<script type="text/javascript" src="{$THEME}/js/superfish.js"></script>
-<script type="text/javascript" src="{$THEME}/js/jquery.cycle.js"></script>
+<script type="text/javascript" src="{$THEME}js/jquery.js"></script>
+<script type="text/javascript" src="{$THEME}js/jquery.hoverIntent.js"></script>
+<script type="text/javascript" src="{$THEME}js/jquery.cycle.js"></script>
 
-<script type="text/javascript" src="/js/jquery.fancybox-1.3.4/jquery-1.4.3.min.js" ></script>
 <link rel="stylesheet" type="text/css" href="/js/jquery.fancybox-1.3.4/style.css" />
 
-<script type="text/javascript" src="{$THEME}/js/jquery.functions.js"></script>
-<script type="text/javascript" src="{$THEME}/js/cufon.js"></script>
-<script type="text/javascript" src="{$THEME}/js/js.js"></script>
+<script type="text/javascript" src="{$THEME}js/jquery.functions.js"></script>
+<script type="text/javascript" src="{$THEME}js/cufon.js"></script>
+<script type="text/javascript" src="{$THEME}js/js.js"></script>
 
 <link rel="icon" href="{$THEME}/images/favicon.png" type="image/x-icon" />
 
