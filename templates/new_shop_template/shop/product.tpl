@@ -364,7 +364,6 @@
         </li>
     </ul>
 </div>
-
 <!--Kit start-->
 {if $model->getShopKits()->count() > 0}
     <div class="frame_carousel_product carousel_js c_b frameSet">
@@ -447,7 +446,7 @@
                                     {if $kitProducts->countProducts() == $key}={else:}+{/if}
                                 </div>
                             </li>                                            
-                        {/foreach}
+                        {/foreach}                       
                         <!--Output of goods subsidiaries set END-->
                         <li class="span3 p-t_40">
                             <div class="price price_f-s_24">

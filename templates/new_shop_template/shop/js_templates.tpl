@@ -1,3 +1,7 @@
+<!-- floating elements-->
+<div id="popupCart" style="display: none;" class="drop"></div>
+<a href="#" data-drop="#popupCart" data-place="center"data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" id="showCart" style="display: none;"></a>
+
 <script type="text/template" id="cartPopupTemplate">
     {literal}   
         <div class="fancy fancy_cleaner frame_head_content">
