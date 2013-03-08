@@ -243,6 +243,7 @@ html* {
 #navigation ul li.home a:hover {
 	background:url(images/homeHover.png) left top no-repeat;
 }
+#navigation ul li:hover ul{display: block;}
 #navigation ul li ul {
 	padding:15px;
 	position:absolute;
@@ -251,6 +252,7 @@ html* {
 	z-index:3;
 	left:-1px;
 	width:180px;/* MOD */
+        display: none;
 }
 #navigation ul li ul .last {
 	border-bottom:0;
