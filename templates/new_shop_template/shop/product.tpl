@@ -73,7 +73,7 @@
                             <div class=" d_i-b v-a_b m-r_30" id="variantProd">
                                 <span class="title">Выбор варианта:</span>
                                 <div class="lineForm w_170">
-                                    <select id="var" name="variant">
+                                    <select id="variantSwitcher" name="variant">
                                         {foreach $model->getProductVariants() as $key => $pv}
                                             <option value="{echo $pv->getId()}">
                                                 {if $pv->getName()}
@@ -153,7 +153,7 @@
                     {else:}
 
                         <!-- displaying buy or in cart button -->
-                        <button class="btn btn_buy" 
+                        <button class="btn btn_buy variant"
                                 type="button"
                                 data-prodid="{echo $model->getId()}"
                                 data-varid="{echo $model->firstVariant->getId()}"

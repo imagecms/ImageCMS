@@ -98,82 +98,54 @@
                 <div class="frame_nav" id="mainAdminMenu">
                     <div class="container" id="baseAdminMenu">
                         <nav class="navbar navbar-inverse">
+
+
+                            {include('templates/administrator/inc/menus.php');}
+
                             <ul class="nav">
-                                <li class="homeAnchor"><a href="/admin/dashboard" class="pjax"><i class="icon-home"></i><span>Главная</span></a></li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-align-justify"></i>{lang('a_cont')}<b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="/admin/pages/GetPagesByCategory" class="pjax">{lang('a_cont_list')}</a></li>
-                                        <li><a href="/admin/pages" class="pjax">{lang('a_create_page')}</a></li>
+                            {foreach $baseMenu as $li}
+                                <li class="{$li.class} {if $li.subMenu} dropdown{/if}">
+                                    {if $li.subMenu}
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="{$li.icon}"></i>{echo (bool)lang($li.text)?lang($li.text):$li.text}<b class="caret"></b></a>
+                                        <ul class="dropdown-menu">
+                                            {foreach $li.subMenu as $sli}
+                                                {if $sli.menusList}
+                                                    {if !$menus}
+                                                        {$CI->load->module('menu'); $menus=$CI->menu->get_all_menus()}
+                                                    {/if}
 
-                                        <li class="divider"></li>
-                                        <li class="nav-header">{lang('a_field_constructor')}</li>
-                                        <li><a href="/admin/components/cp/cfcm/index#additional_fields" class="pjax">Список полей</a></li>
-                                        <li><a href="/admin/components/cp/cfcm/index#fields_groups" class="pjax">Список груп</a></li>
-                                        <!--<li><a href="/admin/components/cp/cfcm" class="pjax">{lang('a_field_constructor')}</a></li>-->
+                                                    <li><a href="/admin/components/cp/menu/index" class="pjax">{lang('a_control')}</a></li>
+                                                    <li class="divider"></li>
+                                                    {foreach $menus as $menu}
+                                                        <li><a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="pjax">{$menu.main_title}</a></li>
+                                                    {/foreach}
+                                                {/if}
 
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list"></i>{lang('a_categories')}<b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="/admin/categories/create_form" class="pjax">{lang('a_create')}</a></li>
-                                        <li><a href="/admin/categories/cat_list" class="pjax">{lang('a_edit')}</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list-alt"></i>{lang('a_menu')}<b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
 
-                                        {if !$menus}
-                                            {$CI->load->module('menu'); $menus=$CI->menu->get_all_menus()}
-                                        {/if}
-                                        <li><a href="/admin/components/cp/menu/index" class="pjax">{lang('a_control')}</a></li>
-                                        <li class="divider"></li>
-                                        {foreach $menus as $menu}
-                                            <li><a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="pjax">{$menu.main_title}</a></li>
-                                        {/foreach}
+                                                {if $sli.modulesList}
+                                                    {if !$components}
+                                                        {$CI->load->module('admin/components'); $components = $CI->components->find_components(TRUE)}
+                                                    {/if}
 
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-circle-arrow-down"></i>{lang('a_modules')}<b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="/admin/components/modules_table" class="pjax">{lang('a_all_modules')}</a></li>
-                                        <!-- <li><a href="/admin/mod_search/">{lang('a_search')}</a></li> -->
-                                        <li class="divider returnFalse"></a></li>
-                                        {if !$components}
-                                            {$CI->load->module('admin/components'); $components = $CI->components->find_components(TRUE)}
-                                        {/if}
-                                        {foreach $components as $component}
-                                            {if $component['installed'] == TRUE AND $component['admin_file'] == 1}
-                                                <li><a href="/admin/components/cp/{$component.com_name}" class="pjax">{$component.menu_name}</a></li>
-                                            {/if}
-                                        {/foreach}
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-th"></i>{lang('a_widgets')}<b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="/admin/widgets_manager/create_tpl" class="pjax">{lang('a_create')}</a></li>
-                                        <li><a href="/admin/widgets_manager" class="pjax">{lang('a_edit')}</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-hdd"></i>{lang('a_system')}<b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="/admin/settings" class="pjax">{lang('a_sett_global_sett_menu')}</a></li>
-                                        <li><a href="/admin/components/cp/template_editor" class="pjax">Редактор шаблонов</a></li>
-                                        <li><a href="/admin/languages" class="pjax">{lang('a_languages')}</a></li>
-                                        <li><a href="/admin/cache_all" class="pjax">{lang('a_cache')}</a></li>
+                                                    {foreach $components as $component}
+                                                        {if $component['installed'] == TRUE AND $component['admin_file'] == 1}
+                                                            <li><a href="/admin/components/cp/{$component.com_name}" class="pjax">{$component.menu_name}</a></li>
+                                                        {/if}
+                                                    {/foreach}
+                                                {/if}
 
-                                        <li class="divider"></li>
-                                        <li><a href="/admin/admin_logs" class="pjax">{lang('a_event_journal')}</a></li>
-                                        <li><a href="/admin/backup" class="pjax">{lang('a_backup_copy')}</a></li>
-                                        <li><a href="/admin/rbac/roleList" class="pjax">Список ролей</a></li>
-                                    </ul>
+                                                <li {if $sli.divider} class="divider"{/if}{if $sli.header} class="nav-header"{/if}>{if $sli.link}<a href="{$sli.link}" class="pjax">{echo (bool)lang($sli.text)?lang($sli.text):$sli.text}</a>{else:}{echo (bool)lang($sli.text)?lang($sli.text):$sli.text}{/if}</li>
+
+
+                                            {/foreach}
+                                        </ul>
+                                    {else:}
+                                        <a href="{$li.link}" class="pjax"><i class="{$li.icon}"></i><span>{$li.text}</span></a>
+                                    {/if}
                                 </li>
+                            {/foreach}
                             </ul>
+
                             {if SHOP_INSTALLED}
                                 <a class="btn btn-small pull-right btn-info" onclick="loadShopInterface();" href="#">Администрировать магазин <span class="f-s_14">→</span></a>
                             {/if}
@@ -181,7 +153,27 @@
                     </div>
 
                     {if SHOP_INSTALLED}
-                        <div style="display:none;" class="container" id="shopAdminMenu"  > {include_tpl('shop_menu.tpl')} </div>
+                        <div style="display:none;" class="container" id="shopAdminMenu"  >
+                            <nav class="navbar navbar-inverse">
+                            <ul class="nav">
+                                {foreach $shopMenu as $li}
+                                    <li class="{$li.class} {if $li.subMenu} dropdown{/if}">
+                                        {if $li.subMenu}
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="{$li.icon}"></i>{echo (bool)lang($li.text)?lang($li.text):$li.text}<b class="caret"></b></a>
+                                            <ul class="dropdown-menu">
+                                                {foreach $li.subMenu as $sli}
+                                                    <li {if $sli.divider} class="divider"{/if}{if $sli.header} class="nav-header"{/if}>{if $sli.link}<a href="{$sli.link}" class="pjax">{echo (bool)lang($sli.text)?lang($sli.text):$sli.text}</a>{else:}{echo (bool)lang($sli.text)?lang($sli.text):$sli.text}{/if}</li>
+                                                {/foreach}
+                                            </ul>
+                                            {else:}
+                                            <a href="{$li.link}" class="pjax"><i class="{$li.icon}"></i><span>{$li.text}</span></a>
+                                        {/if}
+                                    </li>
+                                {/foreach}
+                            </ul>
+                                <a class="btn btn-small pull-right btn-info" onclick=" loadBaseInterface();"  href="#"><span class="f-s_14">←</span> Администрировать сайт </a>
+                            </nav>
+                        </div>
                     {/if}
                 </div>
             {/if}

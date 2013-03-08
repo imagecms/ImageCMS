@@ -778,7 +778,7 @@ function () {
 
 
 //variants
-$('[name="variant"]').live('change', function () {
+$('#variantSwitcher').live('change', function () {
     var productId = $(this).attr('value');
 
     var vId = $('span.variant_' + productId).attr('data-id');
@@ -801,7 +801,6 @@ $('[name="variant"]').live('change', function () {
         $('#number').html(' ');
     }
 
-    var productId = $(this).attr('value');
     $('.variant').hide();
-    $('.variant_' + productId).show();
+    $('.variant_' + vId).show();
 });
