@@ -69,7 +69,7 @@
                                         </button> 
                                     {/if} 
                                 </div>
-                                <div class="photo_block">
+                                <div class="photo-block">
                                     <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="photo">
                                         <span class="helper"></span>
                                         <figure class="w_200 h_180">
