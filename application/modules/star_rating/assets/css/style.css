@@ -7,3 +7,5 @@
 .productRate div {background-position: left bottom;width: 0;height: 100%;position: absolute;top: 0;left: 0;z-index: 1;cursor: pointer;}
 .productRate span {display: block;height: 100%;position: absolute;top: 0;left: 0;z-index: 2;background-position: left center;width: 0;cursor: pointer;}
 .productRate.disabled, .productRate.disabled div{cursor: default;}
+
+.star-small div{cursor: default;}

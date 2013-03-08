@@ -17,9 +17,9 @@
         <!-- Making bread crumbs -->
         {widget('path')}
         <div class="item_tovar">
-            <div class="row">
+            <ul class="row">
                 <!--Photo block for main product-->
-                <div class="span5 clearfix">
+                <li class="span5 clearfix">
                     <!-- productImageUrl($model->getMainModImage()) - Link to product -->
                     <a rel="group" id="photoGroup" href="{productImageUrl($model->getMainModImage())}" class="photo">
                         <figure>
@@ -51,20 +51,18 @@
                         {/if}        
                         <!-- End. Show additional images -->
                     </ul>
-                </div>
+                </li>
                 <!--Photo block for main product end-->
-                <div class="span7">
+                <li class="span7">
                     <h1 class="d_i">{echo ShopCore::encode($model->getName())}</h1>
-                    <span class="c_97" id="number">
-                    {if $model->firstVariant->getNumber() != ''}(Артикул {echo $model->firstVariant->getNumber()}) {/if}
-                </span>
+                    <span class="c_97" id="number">{if $model->firstVariant->getNumber() != ''}(Артикул {echo $model->firstVariant->getNumber()}) {/if}</span>
 
-                <!-- Output rating for the old product Start -->
-                <div class="frame_response">
-                    <div class="star">
-                        {$CI->load->module('star_rating')->show_star_rating($model)}
+                    <!-- Output rating for the old product Start -->
+                    <div class="frame_response">
+                        <div class="star">
+                            {$CI->load->module('star_rating')->show_star_rating()}
+                        </div>
                     </div>
-                </div>
                 <!-- Output rating for the old product End -->
                 <div class="clearfix">
                     <div class="d_i-b v-a_b m-b_20">
@@ -73,7 +71,7 @@
                             <div class=" d_i-b v-a_b m-r_30" id="variantProd">
                                 <span class="title">Выбор варианта:</span>
                                 <div class="lineForm w_170">
-                                    <select id="var" name="variant">
+                                    <select id="variantSwitcher" name="variant">
                                         {foreach $model->getProductVariants() as $key => $pv}
                                             <option value="{echo $pv->getId()}">
                                                 {if $pv->getName()}
@@ -85,75 +83,75 @@
                                         {/foreach}
                                     </select>
                                 </div>
-                            </div>
-                            <!-- End. Output of all the options -->
+                                </div>
+                                <!-- End. Output of all the options -->
 
-                            <!-- Start. Collect information about Variants, for future processing -->
-                            {foreach $model->getProductVariants() as $key => $pv}
-                        {if $pv->getMainImage()}{$mainImage = productImageUrl($pv->getMainImage())}{else:}{$mainImage = productImageUrl($model->getMainimage())}{/if}
+                                <!-- Start. Collect information about Variants, for future processing -->
+                                {foreach $model->getProductVariants() as $key => $pv}
+                            {if $pv->getMainImage()}{$mainImage = productImageUrl($pv->getMainImage())}{else:}{$mainImage = productImageUrl($model->getMainimage())}{/if}
 
-                        <span class="variant_{echo $pv->getId()}" 
-                              data-id="{echo $pv->getId()}"
-                              data-name="{echo ShopCore::encode($pv->getName())}"
-                              data-price="{echo $pv->toCurrency()}"
-                              data-number="{echo $pv->getNumber()}"
-                              data-origPrice="{if $model->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
-                              data-mainImage="{echo $mainImage}"
-                              data-smallImage="{echo productImageUrl($pv->getSmallImage())}"
-                              data-stock="{echo $pv->getStock()}"
-                              style="display: none;">
-                        </span>
-                    {/foreach}
-                    <!-- End. Collect information about Variants, for future processing -->
-                {/if}
-                <div class=" d_i-b v-a_b m-r_45">
-                    <div class="price price_f-s_24">
-                        <!-- $model->hasDiscounts() - check for a discount. -->
-                        {if $model->hasDiscounts()}
-                            <span class="d_b old_price">
-                                <!--
-                                "$model->firstVariant->toCurrency('OrigPrice')" or $model->firstVariant->getOrigPrice()
-                                output price without discount
-                                 To display the number of abatement "$model->firstVariant->getNumDiscount()"
-                                -->
-                                <span class="f-w_b" id="priceOrigVariant">{echo $model->firstVariant->toCurrency('OrigPrice')}</span>
-                                {$CS}
-                            </span>                           
-                        {/if}
+                            <span class="variant_{echo $pv->getId()}" 
+                                  data-id="{echo $pv->getId()}"
+                                  data-name="{echo ShopCore::encode($pv->getName())}"
+                                  data-price="{echo $pv->toCurrency()}"
+                                  data-number="{echo $pv->getNumber()}"
+                                  data-origPrice="{if $model->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
+                                  data-mainImage="{echo $mainImage}"
+                                  data-smallImage="{echo productImageUrl($pv->getSmallImage())}"
+                                  data-stock="{echo $pv->getStock()}"
+                                  style="display: none;">
+                            </span>
+                        {/foreach}
+                        <!-- End. Collect information about Variants, for future processing -->
+                    {/if}
+                    <div class=" d_i-b v-a_b m-r_45">
+                        <div class="price price_f-s_24">
+                            <!-- $model->hasDiscounts() - check for a discount. -->
+                            {if $model->hasDiscounts()}
+                                <span class="d_b old_price">
+                                    <!--
+                                    "$model->firstVariant->toCurrency('OrigPrice')" or $model->firstVariant->getOrigPrice()
+                                    output price without discount
+                                     To display the number of abatement "$model->firstVariant->getNumDiscount()"
+                                    -->
+                                    <span class="f-w_b" id="priceOrigVariant">{echo $model->firstVariant->toCurrency('OrigPrice')}</span>
+                                    {$CS}
+                                </span>                           
+                            {/if}
+                            <!--
+                            If there is a discount of "$model->firstVariant->toCurrency()" or "$model->firstVariant->getPrice"
+                            will display the price already discounted
+                            -->
+                            <span class="f-w_b" id="priceVariant">{echo $model->firstVariant->toCurrency()}</span>{$CS}
+                            <!--To display the amount of discounts you can use $model->firstVariant->getNumDiscount()-->
+                        </div>    
                         <!--
-                        If there is a discount of "$model->firstVariant->toCurrency()" or "$model->firstVariant->getPrice"
-                        will display the price already discounted
+                        Buy button applies the 
+                        data-prodid - product ID
+                        data-varid - variant ID
+                        data-price - price Product
+                        data-name - name product
+                        these are the main four options for the "buy" - button
                         -->
-                        <span class="f-w_b" id="priceVariant">{echo $model->firstVariant->toCurrency()}</span>{$CS}
-                        <!--To display the amount of discounts you can use $model->firstVariant->getNumDiscount()-->
-                    </div>    
-                    <!--
-                    Buy button applies the 
-                    data-prodid - product ID
-                    data-varid - variant ID
-                    data-price - price Product
-                    data-name - name product
-                    these are the main four options for the "buy" - button
-                    -->
-                    {if (int)$model->firstvariant->getstock() == 0}
+                        {if (int)$model->firstvariant->getstock() == 0}
 
-                        <!-- displaying notify button -->
-                        <button data-placement="top right"
-                                data-place="noinherit"
-                                data-duration="500"
-                                data-effect-off="fadeOut"
-                                data-effect-on="fadeIn"
-                                data-drop=".drop-report"
-                                data-prodid="{echo $model->getId()}"
-                                type="button"
-                                class="btn btn_not_avail">
-                            <span class="icon-but"></span>
-                            {lang('s_message_o_report')}
-                        </button>
-                    {else:}
+                            <!-- displaying notify button -->
+                            <button data-placement="top right"
+                                    data-place="noinherit"
+                                    data-duration="500"
+                                    data-effect-off="fadeOut"
+                                    data-effect-on="fadeIn"
+                                    data-drop=".drop-report"
+                                    data-prodid="{echo $model->getId()}"
+                                    type="button"
+                                    class="btn btn_not_avail">
+                                <span class="icon-but"></span>
+                                <span class="text-el">{lang('s_message_o_report')}</span>
+                            </button>
+                        {else:}
 
                         <!-- displaying buy or in cart button -->
-                        <button class="btn btn_buy" 
+                        <button class="btn btn_buy variant"
                                 type="button"
                                 data-prodid="{echo $model->getId()}"
                                 data-varid="{echo $model->firstVariant->getId()}"
@@ -165,200 +163,207 @@
                         </button>
                     {/if}
 
-                    {foreach $model->getProductVariants() as $key => $pv}
-                        <button style="display: none;" 
-                                class="btn btn_buy variant_{echo $pv->getId()} variant" 
-                                type="button" 
-                                data-prodid="{echo $pv->getId()}" 
-                                data-varid="{echo $pv->getId()}" 
-                                data-price="{echo $pv->toCurrency()}" 
-                                data-name="{if $pv->getName()}{echo ShopCore::encode($pv->getName())}{else:}{echo ShopCore::encode($model->getName())}{/if}">
-                            {lang('s_buy')}
-                        </button>
-                    {/foreach}
-                </div>
-            </div>
-            <div class="d_i-b v-a_b m-b_20">
-
-                <!-- Start. Block "Add to Compare" -->
-                <button class="btn btn_small_p toCompare"  
-                        data-prodid="{echo $model->getId()}"  
-                        type="button" 
-                        title="{lang('s_add_to_compare')}">
-                    <span class="icon-comprasion_2"></span>
-                    <span>{lang('s_add_to_compare')}</span>
-                </button>
-                <!-- End. Block "Add to Compare" -->
-
-                <br/>
-                <!--Block Wishlist Start-->
-                <button class="btn btn_small_p toWishlist" 
-                        data-prodid="{echo $model->getId()}" 
-                        data-varid="{echo $model->firstVariant->getId()}"  
-                        type="button" 
-                        title="{lang('s_add_to_wish_list')}">
-                    <span class="icon-wish_2"></span>
-                    <span class="js blue">{lang('s_slw')}</span>
-                </button>
-                <!-- Stop. Block "Add to Wishlist" -->
-            </div>
-        </div>
-
-        <!-- Start. Withdraw button to "share" -->
-        <div class="share_tov">
-            {echo $CI->load->module('share')->_make_share_form()}
-        </div>
-        <!-- End. Withdraw button to "share" -->
-
-        <ul class="tabs clearfix">
-            <!-- Start. Show the block information if available -->
-            {if $model->getShortDescription() != ''}
-                <li>
-                    <button type="button" data-href="#info">
-                        <span class="icon-info"></span>
-                        <span class="text-el">Информация</span>
-                    </button>
-                </li>
-            {/if}
-            <!-- End. Show the block information if available -->
-
-            <!-- Start. Display characteristics block if you have one -->
-            {if $renderProperties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTableNew($model->getId())}
-                <li>
-                    <button type="button" data-href="#characteristic">
-                        <span class="icon-charack"></span>
-                        <span class="text-el">{lang('s_properties')}</span>
-                    </button>
-                </li>
-            {/if}
-            <!-- End. Display characteristics block if you have one -->
-
-            <!--Output of the block if there is one accessory-->
-            {if $accessories = $model->getRelatedProductsModels()}            
-                <li>
-                    <button type="button" data-href="#accessories">
-                        <span class="icon-accss"></span>
-                        <span class="text-el">{lang('s_accessories')}</span>
-                    </button>
-                </li>
-            {/if}
-            <!--Output of the block if there is one accessory END-->
-            <!--Output of the block comments-->
-            {if $Comments}
-                <li>
-                    <button type="button" data-href="#comment" onclick="renderPosts(this)">
-                        <span class="icon-comment-tab"></span>
-                        <span class="text-el">                    
-                            <span id="cc">
-                                {echo $Comments[$model->getId()]}
-                            </span>
-                        </span>
-                    </button>
-                </li>
-            {/if}
-            <!--Output of the block comments END-->
-        </ul>
-
-        <div class="frame_tabs">
-            <!--Piece of information about the product Start-->
-            {if $model->getShortDescription() != ''}
-                <div id="info">
-                    <div class="text">
-                        {echo $model->getShortDescription()}                      
+                        {foreach $model->getProductVariants() as $key => $pv}
+                            <button style="display: none;" 
+                                    class="btn btn_buy variant_{echo $pv->getId()} variant" 
+                                    type="button" 
+                                    data-prodid="{echo $pv->getId()}" 
+                                    data-varid="{echo $pv->getId()}" 
+                                    data-price="{echo $pv->toCurrency()}" 
+                                    data-name="{if $pv->getName()}{echo ShopCore::encode($pv->getName())}{else:}{echo ShopCore::encode($model->getName())}{/if}">
+                                {lang('s_buy')}
+                            </button>
+                        {/foreach}
                     </div>
                 </div>
-            {/if}
-            <!--Piece of information about the product End-->
-            <!--The unit features product Start-->
-            {if $renderProperties}
-                <div id="characteristic">   
-                    {echo $renderProperties}  
+                <div class="d_i-b v-a_b m-b_20">
+
+                    <!-- Start. Block "Add to Compare" -->
+                    <button class="btn btn_small_p toCompare"  
+                            data-prodid="{echo $model->getId()}"  
+                            type="button" 
+                            data-title="{lang('s_add_to_compare')}"
+                            data-sectitle="{lang('s_in_compare')}"
+                            data-rel="tooltip">
+                        <span class="icon-comprasion_2"></span>
+                        <span class="text-el">{lang('s_add_to_compare')}</span>
+                    </button>
+                    <!-- End. Block "Add to Compare" -->
+
+                    <br/>
+                    <!--Block Wishlist Start-->
+                    <button class="btn btn_small_p toWishlist" 
+                            data-prodid="{echo $model->getId()}" 
+                            data-varid="{echo $model->firstVariant->getId()}"  
+                            type="button" 
+                            data-title="{lang('s_add_to_wish_list')}"
+                            data-sectitle="{lang('s_in_wish_list')}"
+                            data-rel="tooltip">
+                        <span class="icon-wish_2"></span>
+                        <span class="text-el">{lang('s_slw')}</span>
+                    </button>
+                    <!-- Stop. Block "Add to Wishlist" -->
                 </div>
-            {/if}
-            <!--The unit features product End-->
-            <!--Block Accessories Start-->
-            {if $accessories}
-                <div id="accessories">
-                    <ul class="items items_catalog" data-radio-frame>
-                        {foreach $accessories as $p}  
-                            <li class="span3 {if $p->firstvariant->getStock() == 0}not-avail{/if}">
-                                <!--Photo and link to accessory Start-->
-                                <a href="{shop_url('product/' . $p->getUrl())}" class="photo">
-                                    <span class="helper"></span>
-                                    <figure>
-                                        <img src="{productImageUrl($p->getMainImage())}" alt="{echo ShopCore::encode($p->getName())}"/>
-                                    </figure>
-                                </a>            
-                                <!--Photo and link to accessory End-->
-                                <div class="description">
-                                    <a href="{shop_url('product/'.$p->getUrl())}">{echo ShopCore::encode($p->getName())}</a>
-                                    <div class="price price_f-s_16">
-                                        {if $p->hasDiscounts()}
-                                            <span class="d_b old_price">
-                                                <!--
-                                                "$p->firstVariant->toCurrency('OrigPrice')" or $p->firstVariant->getOrigPrice()
-                                                output price without discount
-                                                -->
-                                                <span class="f-w_b" id="priceOrigVariant">{echo $p->firstVariant->toCurrency('OrigPrice')}</span>
-                                                {$CS}
-                                            </span>                                              
-                                        {/if}
-                                        <span class="f-w_b">{echo $p->firstvariant->toCurrency()}</span> {$CS}
-                                    </div>
-                                    <!--
-                                                Buy button applies the 
-                                                data-prodid - product ID
-                                                data-varid - variant ID
-                                                data-price - price Product
-                                                data-name - name product
-                                                these are the main four options for the button to "buy"
-                                    -->
-                                    <button class="btn btn_buy" 
-                                            data-varid="{echo $p->firstVariant->getId()}" 
-                                            data-prodid="{echo $p->getId()}" 
-                                            data-price="{echo $p->firstvariant->toCurrency()}" 
-                                            data-name="{echo ShopCore::encode($p->getName())}" 
-                                            type="button"
-                                            data-number="{echo $p->firstVariant->getnumber()}"
-                                            data-maxcount="{echo $p->firstVariant->getstock()}">
-                                        {lang('s_buy')}
-                                    </button>
-
-
-                                    <div class="d_i-b"> 
-                                        <!-- to compare button -->
-                                        <button class="btn btn_small_p toCompare"
-                                                data-prodid="{echo $p->getId()}"  
-                                                type="button" 
-                                                title="{lang('s_add_to_compare')}">
-                                            <span class="icon-comprasion_2"></span>
-                                        </button>
-
-                                        <!-- to wish list button -->
-                                        <button class="btn btn_small_p toWishlist" 
-                                                data-prodid="{echo $p->getId()}" 
-                                                data-varid="{echo $p->firstVariant->getId()}"  
-                                                type="button" 
-                                                title="{lang('s_add_to_wish_list')}">
-                                            <span class="icon-wish_2"></span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </li>
-                        {/foreach}    
-
-                    </ul>
-                </div>
-            {/if}
-            <!--Block Accessories End-->
-            <div id="comment">
-                <div id="for_comments" name="for_comments"></div>
             </div>
-        </div>
-    </div>
-</div>
-</div>
 
+            <!-- Start. Withdraw button to "share" -->
+            <div class="share_tov">
+                {echo $CI->load->module('share')->_make_share_form()}
+            </div>
+            <!-- End. Withdraw button to "share" -->
+
+            <ul class="tabs clearfix">
+                <!-- Start. Show the block information if available -->
+                {if $model->getShortDescription() != ''}
+                    <li>
+                        <button type="button" data-href="#info">
+                            <span class="icon-info"></span>
+                            <span class="text-el">Информация</span>
+                        </button>
+                    </li>
+                {/if}
+                <!-- End. Show the block information if available -->
+
+                <!-- Start. Display characteristics block if you have one -->
+                {if $renderProperties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTableNew($model->getId())}
+                    <li>
+                        <button type="button" data-href="#characteristic">
+                            <span class="icon-charack"></span>
+                            <span class="text-el">{lang('s_properties')}</span>
+                        </button>
+                    </li>
+                {/if}
+                <!-- End. Display characteristics block if you have one -->
+
+                <!--Output of the block if there is one accessory-->
+                {if $accessories = $model->getRelatedProductsModels()}            
+                    <li>
+                        <button type="button" data-href="#accessories">
+                            <span class="icon-accss"></span>
+                            <span class="text-el">{lang('s_accessories')}</span>
+                        </button>
+                    </li>
+                {/if}
+                <!--Output of the block if there is one accessory END-->
+                <!--Output of the block comments-->
+                {if $Comments}
+                    <li>
+                        <button type="button" data-href="#comment" onclick="renderPosts(this)">
+                            <span class="icon-comment-tab"></span>
+                            <span class="text-el">                    
+                                <span id="cc">
+                                    {echo $Comments[$model->getId()]}
+                                </span>
+                            </span>
+                        </button>
+                    </li>
+                {/if}
+                <!--Output of the block comments END-->
+            </ul>
+
+            <div class="frame_tabs">
+                <!--Piece of information about the product Start-->
+                {if $model->getShortDescription() != ''}
+                    <div id="info">
+                        <div class="text">
+                            {echo $model->getShortDescription()}                      
+                        </div>
+                    </div>
+                {/if}
+                <!--Piece of information about the product End-->
+                <!--The unit features product Start-->
+                {if $renderProperties}
+                    <div id="characteristic">   
+                        {echo $renderProperties}  
+                    </div>
+                {/if}
+                <!--The unit features product End-->
+                <!--Block Accessories Start-->
+                {if $accessories}
+                    <div id="accessories">
+                        <ul class="items items_catalog" data-radio-frame>
+                            {foreach $accessories as $p}  
+                                <li class="span3 {if $p->firstvariant->getStock() == 0}not-avail{/if}">
+                                    <!--Photo and link to accessory Start-->
+                                    <a href="{shop_url('product/' . $p->getUrl())}" class="photo">
+                                        <span class="helper"></span>
+                                        <figure>
+                                            <img src="{productImageUrl($p->getMainImage())}" alt="{echo ShopCore::encode($p->getName())}"/>
+                                        </figure>
+                                    </a>            
+                                    <!--Photo and link to accessory End-->
+                                    <div class="description">
+                                        <a href="{shop_url('product/'.$p->getUrl())}">{echo ShopCore::encode($p->getName())}</a>
+                                        <div class="price price_f-s_16">
+                                            {if $p->hasDiscounts()}
+                                                <span class="d_b old_price">
+                                                    <!--
+                                                    "$p->firstVariant->toCurrency('OrigPrice')" or $p->firstVariant->getOrigPrice()
+                                                    output price without discount
+                                                    -->
+                                                    <span class="f-w_b" id="priceOrigVariant">{echo $p->firstVariant->toCurrency('OrigPrice')}</span>
+                                                    {$CS}
+                                                </span>                                              
+                                            {/if}
+                                            <span class="f-w_b">{echo $p->firstvariant->toCurrency()}</span> {$CS}
+                                        </div>
+                                        <!--
+                                                    Buy button applies the 
+                                                    data-prodid - product ID
+                                                    data-varid - variant ID
+                                                    data-price - price Product
+                                                    data-name - name product
+                                                    these are the main four options for the button to "buy"
+                                        -->
+                                        <button class="btn btn_buy" 
+                                                data-varid="{echo $p->firstVariant->getId()}" 
+                                                data-prodid="{echo $p->getId()}" 
+                                                data-price="{echo $p->firstvariant->toCurrency()}" 
+                                                data-name="{echo ShopCore::encode($p->getName())}" 
+                                                type="button"
+                                                data-number="{echo $p->firstVariant->getnumber()}"
+                                                data-maxcount="{echo $p->firstVariant->getstock()}">
+                                            {lang('s_buy')}
+                                        </button>
+
+
+                                        <div class="d_i-b"> 
+                                            <!-- to compare button -->
+                                            <button class="btn btn_small_p toCompare"
+                                                    data-prodid="{echo $p->getId()}"  
+                                                    type="button" 
+                                                    data-title="{lang('s_add_to_compare')}"
+                                                    data-sectitle="{lang('s_in_compare')}"
+                                                    data-rel="tooltip">
+                                                <span class="icon-comprasion_2"></span>
+                                            </button>
+
+                                            <!-- to wish list button -->
+                                            <button class="btn btn_small_p toWishlist" 
+                                                    data-prodid="{echo $p->getId()}" 
+                                                    data-varid="{echo $p->firstVariant->getId()}"  
+                                                    type="button" 
+                                                    data-title="{lang('s_add_to_wish_list')}"
+                                                    data-sectitle="{lang('s_in_wish_list')}"
+                                                    data-rel="tooltip">
+                                                <span class="icon-wish_2"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                            {/foreach}    
+
+                        </ul>
+                    </div>
+                {/if}
+                <!--Block Accessories End-->
+                <div id="comment">
+                    <div id="for_comments" name="for_comments"></div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
 <!--Kit start-->
 {if $model->getShopKits()->count() > 0}
     <div class="frame_carousel_product carousel_js c_b frameSet">
@@ -394,12 +399,14 @@
                                                 {$CS}
                                             </div>
                                         </div>
-                                        <a href="{shop_url('product/' . $kitProducts->getMainProduct()->getUrl())}" class="photo">
-                                            <span class="helper"></span>
-                                            <figure>
-                                                <img src="{productImageUrl($kitProducts->getMainProduct()->getSmallModImage())}" alt="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}"/>
-                                            </figure>
-                                        </a>
+                                        <div class="photo-block">
+                                            <a href="{shop_url('product/' . $kitProducts->getMainProduct()->getUrl())}" class="photo">
+                                                <span class="helper"></span>
+                                                <figure>
+                                                    <img src="{productImageUrl($kitProducts->getMainProduct()->getSmallModImage())}" alt="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}"/>
+                                                </figure>
+                                            </a>
+                                        </div>
                                     </div>
                                     <div class="d_i-b">+</div>
                                 </li>
@@ -425,19 +432,21 @@
                                                     {$CS}
                                                 </div>
                                             </div>
-                                            <a href="{shop_url('product/' . $kitProduct->getSProducts()->getUrl())}" class="photo">
-                                                <span class="helper"></span>
-                                                <figure>
-                                                    <img src="{productImageUrl($kitProduct->getSProducts()->getSmallModImage())}"/>
-                                                </figure>
-                                            </a>
+                                            <div class="photo-block">
+                                                <a href="{shop_url('product/' . $kitProduct->getSProducts()->getUrl())}" class="photo">
+                                                    <span class="helper"></span>
+                                                    <figure>
+                                                        <img src="{productImageUrl($kitProduct->getSProducts()->getSmallModImage())}"/>
+                                                    </figure>
+                                                </a>
+                                            </div>
                                             <span class="top_tovar discount">-{echo $kitProduct->getDiscount()}%</span>
                                         </div>
                                         <div class="d_i-b">
                                     {if $kitProducts->countProducts() == $key}={else:}+{/if}
                                 </div>
                             </li>                                            
-                        {/foreach}
+                        {/foreach}                       
                         <!--Output of goods subsidiaries set END-->
                         <li class="span3 p-t_40">
                             <div class="price price_f-s_24">
@@ -545,9 +554,7 @@
     </div>
 {/if}
 <!--Similar Products END-->
-{//widget('view_product')}
-{widget('popular_products')}
-{widget('new_products')}
-{widget('action_products')}
+
+{widget('view_product')}
 </article>
 </div>

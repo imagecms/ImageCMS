@@ -71,7 +71,7 @@
                                                 <span class="f-s_0">
                                                     <span class="helper"></span>
                                                     <span>
-                                                        <a href="/auth/register" class="t-d_u c_5c">
+                                                        <a href="/auth/register" class="t-d_u c_5c f-s_0">
                                                             <span class="icon-registration"></span>
                                                             <span class="text-el">Регистрация</span>
                                                         </a>

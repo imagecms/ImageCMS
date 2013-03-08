@@ -83,7 +83,7 @@
                                 <!--    Star reiting    -->
                                 {$CI->load->module('star_rating')->show_star_rating($product)}
                                 <!--    Star reiting    -->
-                                <a href="{shop_url('product/'.$product->url.'#cc')}" class="count_response">                                    
+                                <a href="{shop_url('product/'.$product->url.'#comment')}" class="count_response">                                    
                                     {echo $Comments[$product->getId()]}
                                 </a>
                             </div>
@@ -107,7 +107,7 @@
                                         type="button"
                                         class="btn btn_not_avail">
                                     <span class="icon-but"></span>
-                                    {lang('s_message_o_report')}
+                                    <span class="text-el">{lang('s_message_o_report')}</span>
                                 </button>
                             {else:}
 
@@ -128,26 +128,33 @@
                                 <button class="btn btn_small_p toCompare"  
                                         data-prodid="{echo $product->getId()}"  
                                         type="button" 
-                                        title="{lang('s_add_to_compare')}">
+                                        data-title="{lang('s_add_to_compare')}"
+                                        data-sectitle="{lang('s_in_compare')}"
+                                        data-rel="tooltip">
                                     <span class="icon-comprasion_2"></span>
+                                    <span class="text-el">{lang('s_add_to_compare')}</span>
                                 </button>
-
                                 <!-- to wish list button -->
                                 <button class="btn btn_small_p toWishlist" 
                                         data-prodid="{echo $product->getId()}" 
                                         data-varid="{echo $product->firstVariant->getId()}"  
                                         type="button" 
-                                        title="{lang('s_add_to_wish_list')}">
+                                        data-title="{lang('s_add_to_wish_list')}"
+                                        data-sectitle="{lang('s_in_wish_list')}"
+                                        data-rel="tooltip">
                                     <span class="icon-wish_2"></span>
+                                    <span class="text-el">{lang('s_add_to_wish_list')}</span>
                                 </button>
                             </div>
                         </div>
-                        <a href="{shop_url('product/' . $product->getUrl())}" class="photo">
-                            <span class="helper"></span>
-                            <figure>
-                                <img src="{productImageUrl($product->getmainimage())}" alt="{echo ShopCore::encode($product->getName())} - {echo $product->getid()}"/>
-                            </figure>
-                        </a>
+                        <div class="photo-block">
+                            <a href="{shop_url('product/' . $product->getUrl())}" class="photo">
+                                <span class="helper"></span>
+                                <figure>
+                                    <img src="{productImageUrl($product->getmainimage())}" alt="{echo ShopCore::encode($product->getName())} - {echo $product->getid()}"/>
+                                </figure>
+                            </a>
+                        </div>
                     </li>
                 {/foreach}
                 <!--  End. Rendering produts list   -->

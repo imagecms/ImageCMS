@@ -95,7 +95,7 @@
             <!-- displaying category description if page number is 1 -->
             {if $page_number == 1 && $category->getDescription() != '' && $category->getDescription() != ' ' && $category->getDescription() != null}
                 <div class="grey-b_r-bord">
-                    <p><span style="font-weight:bold">{echo ShopCore::encode($category->getName())}</span> &mdash; {echo ShopCore::encode($category->getDescription())}</p>
+                    <p><span style="font-weight:bold">{echo ShopCore::encode($category->getName())}</span> &mdash; {echo $category->getDescription()}</p>
                 </div>
             {/if}
 
@@ -110,7 +110,7 @@
 
                         <!-- product block -->
                         <!-- check if product is in stock -->
-                        <li class="{if (int)$product->getallstock() == 0}not-avail {else:}in_cart {/if}span3">
+                        <li class="{if (int)$product->getallstock() == 0}not-avail{/if}span3">
 
                             <!-- product info block -->
                             <div class="description">
@@ -120,7 +120,7 @@
                                     {$CI->load->module('star_rating')->show_star_rating($product)}
 
                                     <!-- displaying comments count -->
-                                    <a href="{shop_url('product/'.$product->url.'#cc')}" class="count_response">
+                                    <a href="{shop_url('product/'.$product->url.'#comment')}" class="count_response">
                                         {echo $Comments[$product->getId()]}
                                     </a>
                                 </div>
@@ -146,7 +146,7 @@
                                             type="button"
                                             class="btn btn_not_avail">
                                         <span class="icon-but"></span>
-                                        {lang('s_message_o_report')}
+                                        <span class="text-el">{lang('s_message_o_report')}</span>
                                     </button>
                                 {else:}
 
@@ -168,8 +168,11 @@
                                     <button class="btn btn_small_p toCompare"  
                                             data-prodid="{echo $product->getId()}"  
                                             type="button" 
-                                            title="{lang('s_add_to_compare')}">
+                                            data-title="{lang('s_add_to_compare')}"
+                                            data-sectitle="{lang('s_in_compare')}"
+                                            data-rel="tooltip">
                                         <span class="icon-comprasion_2"></span>
+                                        <span class="text-el">{lang('s_add_to_compare')}</span>
                                     </button>
 
                                     <!-- to wish list button -->
@@ -177,19 +180,24 @@
                                             data-prodid="{echo $product->getId()}" 
                                             data-varid="{echo $product->firstVariant->getId()}"  
                                             type="button" 
-                                            title="{lang('s_add_to_wish_list')}">
+                                            data-title="{lang('s_add_to_wish_list')}"
+                                            data-sectitle="{lang('s_in_wish_list')}"
+                                            data-rel="tooltip">
                                         <span class="icon-wish_2"></span>
+                                        <span class="text-el">{lang('s_add_to_wish_list')}</span>
                                     </button>
                                 </div>
                             </div>
 
                             <!-- displaying products small mod image -->
-                            <a href="{shop_url('product/'.$product->getUrl())}" class="photo">
-                                <span class="helper"></span>
-                                <figure>
-                                    <img src="{productImageUrl($product->getSmallImage())}" alt="{echo ShopCore::encode($product->getName())} - {echo $product->getId()}"/>
-                                </figure>
-                            </a>
+                            <div class="photo-block">
+                                <a href="{shop_url('product/'.$product->getUrl())}" class="photo">
+                                    <span class="helper"></span>
+                                    <figure>
+                                        <img src="{productImageUrl($product->getSmallImage())}" alt="{echo ShopCore::encode($product->getName())} - {echo $product->getId()}"/>
+                                    </figure>
+                                </a>
+                            </div>
 
                             <!-- creating hot bubble for products image if product is hot -->
                             {if $product->getHot()}
