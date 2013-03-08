@@ -63,26 +63,26 @@
                             {$CI->load->module('star_rating')->show_star_rating()}
                         </div>
                     </div>
-                    <!-- Output rating for the old product End -->
-                    <div class="clearfix">
-                        <div class="d_i-b v-a_b m-b_20">
-                            <!-- Start. Output of all the options -->
-                            {if count($model->getProductVariants()) > 1}
-                                <div class=" d_i-b v-a_b m-r_30" id="variantProd">
-                                    <span class="title">Выбор варианта:</span>
-                                    <div class="lineForm w_170">
-                                        <select id="var" name="variant">
-                                            {foreach $model->getProductVariants() as $key => $pv}
-                                                <option value="{echo $pv->getId()}">
-                                                    {if $pv->getName()}
-                                                        {echo ShopCore::encode($pv->getName())}
-                                                    {else:}
-                                                        {echo ShopCore::encode($model->getName())}
-                                                    {/if}                                                   
-                                                </option>
-                                            {/foreach}
-                                        </select>
-                                    </div>
+                <!-- Output rating for the old product End -->
+                <div class="clearfix">
+                    <div class="d_i-b v-a_b m-b_20">
+                        <!-- Start. Output of all the options -->
+                        {if count($model->getProductVariants()) > 1}
+                            <div class=" d_i-b v-a_b m-r_30" id="variantProd">
+                                <span class="title">Выбор варианта:</span>
+                                <div class="lineForm w_170">
+                                    <select id="variantSwitcher" name="variant">
+                                        {foreach $model->getProductVariants() as $key => $pv}
+                                            <option value="{echo $pv->getId()}">
+                                                {if $pv->getName()}
+                                                    {echo ShopCore::encode($pv->getName())}
+                                                {else:}
+                                                    {echo ShopCore::encode($model->getName())}
+                                                {/if}                                                   
+                                            </option>
+                                        {/foreach}
+                                    </select>
+                                </div>
                                 </div>
                                 <!-- End. Output of all the options -->
 
@@ -150,18 +150,18 @@
                             </button>
                         {else:}
 
-                            <!-- displaying buy or in cart button -->
-                            <button class="btn btn_buy" 
-                                    type="button"
-                                    data-prodid="{echo $model->getId()}"
-                                    data-varid="{echo $model->firstVariant->getId()}"
-                                    data-price="{echo $model->firstVariant->toCurrency()}"
-                                    data-name="{echo ShopCore::encode($model->getName())}"
-                                    data-number="{echo $model->firstVariant->getnumber()}"
-                                    data-maxcount="{echo $model->firstVariant->getstock()}">
-                                {lang('s_buy')}
-                            </button>
-                        {/if}
+                        <!-- displaying buy or in cart button -->
+                        <button class="btn btn_buy variant"
+                                type="button"
+                                data-prodid="{echo $model->getId()}"
+                                data-varid="{echo $model->firstVariant->getId()}"
+                                data-price="{echo $model->firstVariant->toCurrency()}"
+                                data-name="{echo ShopCore::encode($model->getName())}"
+                                data-number="{echo $model->firstVariant->getnumber()}"
+                                data-maxcount="{echo $model->firstVariant->getstock()}">
+                            {lang('s_buy')}
+                        </button>
+                    {/if}
 
                         {foreach $model->getProductVariants() as $key => $pv}
                             <button style="display: none;" 

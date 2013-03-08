@@ -95,7 +95,7 @@
             <!-- displaying category description if page number is 1 -->
             {if $page_number == 1 && $category->getDescription() != '' && $category->getDescription() != ' ' && $category->getDescription() != null}
                 <div class="grey-b_r-bord">
-                    <p><span style="font-weight:bold">{echo ShopCore::encode($category->getName())}</span> &mdash; {echo ShopCore::encode($category->getDescription())}</p>
+                    <p><span style="font-weight:bold">{echo ShopCore::encode($category->getName())}</span> &mdash; {echo $category->getDescription()}</p>
                 </div>
             {/if}
 
