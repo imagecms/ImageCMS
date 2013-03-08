@@ -35,7 +35,7 @@ class Template extends Mabilis {
         /** URL to JS folder */
         $this->assign('JS_URL', base_url() . 'js');
         /** URL to template folder */
-        $this->assign('THEME', base_url() . 'templates/' . $tpl . '/');
+        $this->assign('THEME', base_url() . 'templates/' . $tpl . '/');        
         $this->assign('CI', $this->CI);
     }
 
