@@ -1,8 +1,8 @@
 var inCart = 'Уже в корзине';
-var toCart = 'В корзину';
+var toCart = 'Купить';
 var pcs = 'шт.';
 var kits = 'компл.';
-var curr = 'грн.';
+//var curr = 'грн.';
 
 
 var Shop = {
@@ -276,7 +276,7 @@ var Shop = {
 
         cartItem.id = $context.data('prodid');
         cartItem.vId = $context.data('varid');
-        cartItem.price = parseFloat($context.data('price')).toFixed(2);
+        cartItem.price = parseFloat($context.data('price')).toFixed(pricePrecision);
         cartItem.name = $context.data('name');
         cartItem.kit = $context.data('kit');
         cartItem.prices = $context.data('prices');
@@ -493,7 +493,7 @@ function processPage() {
     });
 }
 
-function initShopPage() {
+function initShopPage(showWindow) {
     if (Shop.Cart.countChanged == false) {
 
         Shop.Cart.totalRecount();
@@ -527,16 +527,18 @@ function initShopPage() {
 
             $('div.cleaner>span>span:nth-child(3)').html(' (' + Shop.Cart.totalCount + ')');
 
-            //console.log(cartItem);
+            //console.log(' --- '+cartItem.count);
 
-            var totalPrice = cartItem.count * cartItem.price;
-            pd.closest('tr').find('span.first_cash>span').last().html(totalPrice.toFixed(2));
 
-            $('table.table_order td:last-child span:last-child').last().html(Shop.Cart.totalPrice.toFixed(2));
+            totalPrice = cartItem.count * cartItem.price;
+            pd.closest('tr').find('span.first_cash>span').last().html(totalPrice.toFixed(pricePrecision));
+
+            $('#popupCartTotal').html(Shop.Cart.totalPrice.toFixed(pricePrecision));
 
         });
 
-        $('#showCart').click();
+        if (typeof showWindow == 'undefined' || showWindow != false)
+            $('#showCart').click();
 
     }
 
@@ -588,9 +590,9 @@ function recountCartPage() {
     Shop.Cart.shipping = parseFloat($('span.cuselActive').data('price'));
     Shop.Cart.shipFreeFrom = parseFloat($('span.cuselActive').data('freefrom'));
 
-    $('span#totalPrice').html(parseFloat(Shop.Cart.getTotalPrice()).toFixed(2));
-    $('span#finalAmount').html(parseFloat(Shop.Cart.getFinalAmount()).toFixed(2));
-    $('span#shipping').html(parseFloat(Shop.Cart.shipping).toFixed(2));
+    $('span#totalPrice').html(parseFloat(Shop.Cart.getTotalPrice()).toFixed(pricePrecision));
+    $('span#finalAmount').html(parseFloat(Shop.Cart.getFinalAmount()).toFixed(pricePrecision));
+    $('span#shipping').html(parseFloat(Shop.Cart.shipping).toFixed(pricePrecision));
 
     $('span.curr').html(curr);
 }
@@ -647,6 +649,10 @@ function () {
         if ($('#orderDetails'))
             renderOrderDetails();
 
+        //Shop.Cart.countChanged = true;
+        initShopPage(false);
+        //Shop.Cart.countChanged = false;
+
         //shipping changing, re-render cart page
         if ($('#method_deliv'))
             $('#method_deliv').on('change', function () {
@@ -681,14 +687,15 @@ function () {
         //cart content changed
         $(document).live('cart_changed', function () {
 
+            //Shop.Cart.totalRecount();
             processPage();
             renderOrderDetails();
             if ($('#method_deliv'))
                 recountCartPage();
             //update popup cart
-            //$('table.table_order.preview_order td:last-child span:last-child').last().html(Shop.Cart.totalPrice.toFixed(2));
+            //$('table.table_order.preview_order td:last-child span:last-child').last().html(Shop.Cart.totalPrice.toFixed(pricePrecision));
             //
-            $('#popupCartTotal').html(Shop.Cart.totalPrice.toFixed(2));
+            $('#popupCartTotal').html(Shop.Cart.totalPrice.toFixed(pricePrecision));
             if (Shop.Cart.totalCount == 0)
                 emptyPopupCart();
         });
@@ -736,7 +743,7 @@ function () {
         $(document).on('wish_list_rm', function (e) {
             $('#wishListCount').html('(' + Shop.WishList.all().length + ')');
             /* if i am in a wishList page */
-            $('#wishListTotal').html(parseFloat(e.dataObj.totalPrice).toFixed(2));
+            $('#wishListTotal').html(parseFloat(e.dataObj.totalPrice).toFixed(pricePrecision));
             checkCompareWishLink();
         });
 

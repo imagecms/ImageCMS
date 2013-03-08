@@ -38,7 +38,7 @@
                                 <td>
                                     <a href="#"><%- item.name %></a><span class="c_97"><% if (item.number) { %> (<%- item.number %>) <% } %></span>
                                     <div class="price price_f-s_16">
-                                        <span class="first_cash"><span class="f-w_b"><%- parseFloat(item.price).toFixed(2) %></span> грн.</span>
+                                        <span class="first_cash"><span class="f-w_b"><%- parseFloat(item.price).toFixed(pricePrecision) %></span> <%-curr%>.</span>
                                     </div>
                                 </td>
                                 <td>
@@ -53,12 +53,12 @@
                                         </div>
                                         <input type="text" value="<%- item.count %>" data-rel="plusminus" data-title="только цифры" data-min="1" <% if (item.maxcount) { %> data-max="<%-item.maxcount%>" <% } %> />
                                     </div>
-                                    <span class="v-a_m"><%- item.count %> шт.</span>
+                                    <span class="v-a_m"><%- item.count %> <%-pcs%></span>
                                 </td>
                                 <td>
                                     <span class="d_b">Сумма: </span>
                                     <div class="price price_f-s_16 d_i-b">
-                                        <span class="first_cash"><span class="f-w_b"><%- parseFloat(item.count*item.price).toFixed(2) %></span> грн.</span>
+                                        <span class="first_cash"><span class="f-w_b"><%- parseFloat(item.count*item.price).toFixed(pricePrecision) %></span> <%-curr%></span>
                                     </div>
                                 </td>
                             </tr>
@@ -119,7 +119,7 @@
                                                 <td rowspan="<%- names.length %>">
                                                     <span>Сумма: </span>
                                                     <div class="price price_f-s_16 d_i-b">
-                                                        <span class="first_cash"><span class="f-w_b"><%-parseFloat(item.price*item.count).toFixed(2)%></span> <%-curr%></span>
+                                                        <span class="first_cash"><span class="f-w_b"><%-parseFloat(item.price*item.count).toFixed(pricePrecision)%></span> <%-curr%></span>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -191,7 +191,7 @@
                                     <div class="t-a_l d_i-b v-a_m">
                                         <span class="d_b">Итого:</span>
                                         <div class="price price_f-s_24">
-                                            <span class="first_cash"><span class="f-w_b" id="popupCartTotal"><%- parseFloat(Shop.Cart.getTotalPrice()).toFixed(2) %></span> руб.</span>
+                                            <span class="first_cash"><span class="f-w_b" id="popupCartTotal"><%- parseFloat(Shop.Cart.getTotalPrice()).toFixed(pricePrecision) %></span> <%-curr%></span>
                                         </div>
                                     </div>
                                 </td>
@@ -233,7 +233,7 @@
                         <td>
                             <a href="#"><%- item.name %></a><span class="c_97"><% if (item.number) { %> (<%-item.number %>) <% } %></span>
                             <div class="price price_f-s_16">
-                                <span class="first_cash"><span class="f-w_b"><%- parseFloat(item.price).toFixed(2) %></span> <%- curr %>.</span>
+                                <span class="first_cash"><span class="f-w_b"><%- parseFloat(item.price).toFixed(pricePrecision) %></span> <%- curr %>.</span>
                             </div>
                         </td>
                         <td>
@@ -241,7 +241,7 @@
                         </td>
                         <td>
                             <div class="price price_f-s_16">
-                                <span class="first_cash"><span class="f-w_b"><%-  parseFloat( parseInt(item.count)*parseFloat(item.price) ).toFixed(2) %></span> <%- curr %></span>
+                                <span class="first_cash"><span class="f-w_b"><%-  parseFloat( parseInt(item.count)*parseFloat(item.price) ).toFixed(pricePrecision) %></span> <%- curr %></span>
                             </div>
                         </td>
                     </tr>
@@ -292,7 +292,7 @@
                                         <td rowspan="<%- names.length %>" class="v-a_m">
                                             <span>Сумма: </span>
                                             <div class="price price_f-s_16 d_i-b">
-                                                <span class="first_cash"><span class="f-w_b"><%-  parseFloat( parseInt(item.count)*parseFloat(item.price) ).toFixed(2) %></span> <%- curr %></span>
+                                                <span class="first_cash"><span class="f-w_b"><%-  parseFloat( parseInt(item.count)*parseFloat(item.price) ).toFixed(pricePrecision) %></span> <%- curr %></span>
                                             </div>
                                         </td>
                                     </tr>
@@ -339,7 +339,7 @@
                             <div class="f_r">
                                 <span class="v-a_m">Итого:&nbsp;&nbsp;</span>
                                 <span class="price price_f-s_24 v-a_m d_i-b">
-                                    <span class="first_cash"><span class="f-w_b"><%- parseFloat( Shop.Cart.getTotalPrice()).toFixed(2) %></span> <%- curr %></span>
+                                    <span class="first_cash"><span class="f-w_b"><%- parseFloat( Shop.Cart.getTotalPrice()).toFixed(pricePrecision) %></span> <%- curr %></span>
                                 </span>
                             </div>
                         </td>
