@@ -414,12 +414,13 @@ function ieInput(els) {
                 $('.first_h, .last_h').removeClass('first_h').removeClass('last_h');
                 
                 frameSub.add(drop.not($thisDrop)).stop()[effectoff](duration);
-                
+                                
                 clearTimeout(hover_t_o);
                 if ($thisDrop.length != 0)
                     menu.removeClass('hover');
             }
             function hov(el) {
+                drop.removeClass('d_n');
                 var $this = el,
                 $thisDrop = $this.next();
 
@@ -434,7 +435,6 @@ function ieInput(els) {
                 if ($this.index() == item_menu_l - 1)
                     $this.addClass('last_h');
 
-                clearTimeout(hover_t_o);
                 hover_t_o = setTimeout(function() {
                     $thisDrop[effecton](duration);
                     if ($thisDrop.length != 0)
@@ -463,11 +463,11 @@ function ieInput(els) {
                     unhov($(this));
                 })
                 menu.unbind(evDropF)[evDropF](function() {
-                    time_dur_m = 0;
+                    return time_dur_m = 0;
                     }).unbind(evDropS)[evDropS](
                     function() {
-                        time_dur_m = duration;
                         methods.fadeDrop();
+                        return time_dur_m = duration;
                     });
             }
             drop.find('li li a').click(function(event) {
@@ -486,13 +486,10 @@ function ieInput(els) {
         fadeDrop: function() {
             time_dur_m = 0;
             
-            drop.hide();
             clearTimeout(hover_t_o);
             
-            hover_t_o = setTimeout(function() {
-                drop.hide();
-            }, duration);
-
+            drop.stop()[effectoff](duration).addClass('d_n');
+            
             menuItemCltd.removeClass('hover')
             $('.first_h, .last_h').removeClass('first_h').removeClass('last_h');
         }

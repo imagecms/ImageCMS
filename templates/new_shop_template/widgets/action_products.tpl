@@ -67,7 +67,7 @@
                                                 type="button"
                                                 class="btn btn_not_avail">
                                             <span class="icon-but"></span>
-                                            {lang('s_message_o_report')}
+                                            <span class="text-el">{lang('s_message_o_report')}</span>
                                         </button> 
                                     {/if} 
                                 </div>
