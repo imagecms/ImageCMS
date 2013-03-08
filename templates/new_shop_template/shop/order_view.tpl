@@ -87,8 +87,10 @@
                         {if $model->getPaid() != true}
                             <tr class="b_n">
                                 <th></th>
-
-                                <td>{echo $paymentMethod->getPaymentForm($model)}{if $paymentMethod->getDescription()}<div class="m-t_10 infoOrder" style="font-style: italic">{echo ShopCore::t($paymentMethod->getDescription())}</div>{/if}</td>
+                                <td>{echo $paymentMethod->getPaymentForm($model)}
+                                    {if $paymentMethod->getDescription()}
+                                        <div class="m-t_10 infoOrder" style="font-style: italic">{echo ShopCore::t($paymentMethod->getDescription())}</div>
+                                    {/if}</td>
                             </tr>
                         {/if}
                         <!-- End. Render payment button and payment description -->
