@@ -31,7 +31,6 @@ function navPortait(){
                 $('.btn-navbar').show();
                 $('.frame-navbar').removeClass('in');
                 $this.addClass('navVertical');
-                
             }
                 
             if ($.exists_nabir(frameM) && !frameM.children().hasClass('vertical')){
@@ -86,9 +85,30 @@ function ieInput(els) {
             searchPath = settings.searchPath;
             selectorPosition = -1;
             inputString = settings.inputString.keyup(function(event){
-                methods.lookup(event);
+                if (event.keyCode != 27) methods.lookup(event);
             }).blur(function(){
                 $thisS.fadeOut(durationA);
+            });
+            body.live('click', function(event) {
+                event.stopPropagation();
+                if ($(event.target).parents().last().is($thisS) || $(event.target).is($thisS))
+                    return;
+                else
+                    $thisS.fadeOut(durationA);
+
+            }).live('keydown', function(e) {
+                var key, keyChar;
+                if (!e)
+                    var e = window.event;
+
+                if (e.keyCode)
+                    key = e.keyCode;
+                else if (e.which)
+                    key = e.which;
+
+                if (key == 27) {
+                    $thisS.fadeOut(durationA);
+                }
             });
         },
         lookup: function(event){
@@ -206,7 +226,9 @@ function ieInput(els) {
             var tooltip = $('.tooltip').not('.cloned');
             
             if (settings.effect == 'always') {
-                if (!$.exists_nabir(tooltip)) {body.append('<span class="tooltip">'+settings.title+'</span>');}
+                if (!$.exists_nabir(tooltip)) {
+                    body.append('<span class="tooltip">'+settings.title+'</span>');
+                }
                 else tooltip.text(settings.title)
             }
 
@@ -219,7 +241,15 @@ function ieInput(els) {
             }).fadeIn(300);
                 
             this.blur(function(){
-                $('.tooltip').fadeOut(300, function(){$(this).remove()});
+                $('.tooltip').fadeOut(300, function(){
+                    $(this).remove()
+                });
+            })
+            body.live('click', function(event) {
+                event.stopPropagation();
+                $('.tooltip').fadeOut(300, function(){
+                    $(this).remove()
+                });
             })
         },
         remove : function( ) {
@@ -279,7 +309,7 @@ function ieInput(els) {
             menuItemCltd = menuItem.closest('td');
             effecton = settings.effecton;
             effectoff = settings.effectoff;
-
+            
             if (menu.hasClass('vertical'))
                 vertical = true;
 
@@ -375,22 +405,29 @@ function ieInput(els) {
             }, function(event) {
                 itemSubEv($(this), event);
             });
+            
+            hover_t_o = '';
+            
             function unhov(el) {
                 var $this = el,
                 $thisDrop = $this.next();
-                $('.first_h, .last_h').removeAttr('class');
+                $('.first_h, .last_h').removeClass('first_h').removeClass('last_h');
+                
                 frameSub.add(drop.not($thisDrop)).stop()[effectoff](duration);
+                                
+                clearTimeout(hover_t_o);
                 if ($thisDrop.length != 0)
                     menu.removeClass('hover');
             }
-            hover_t_o = '';
             function hov(el) {
+                drop.removeClass('d_n');
                 var $this = el,
                 $thisDrop = $this.next();
 
                 menuItemCltd.removeClass('hover');
+                
                 frameSub.add(drop.not($thisDrop)).stop()[effectoff](duration);
-
+                
                 $this = $this.closest('td').addClass('hover');
 
                 if ($this.index() == 0)
@@ -403,16 +440,6 @@ function ieInput(els) {
                     if ($thisDrop.length != 0)
                         menu.addClass('hover');
                 }, time_dur_m);
-
-                if (!isTouch) {
-                    $thisDrop.hover(function() {
-                        $(this)[effecton](duration);
-                    }, function(event) {
-                        clearTimeout(hover_t_o);
-                        menu.find('.hover').removeClass('hover');
-                        frameSub.hide();
-                    })
-                }
             }
             if (isTouch) {
                 menuItem.unbind(evDrop)[evDrop](
@@ -430,19 +457,17 @@ function ieInput(els) {
                     });
             }
             else {
-                menuItem.unbind(evDropF)[evDropF](
-                    function() {
+                menuItem.unbind(evDropF)[evDropF](function() {
                     hov($(this));
                     }).unbind(evDropS)[evDropS](function() {
-                    clearTimeout(hover_t_o);
+                    unhov($(this));
                 })
-
-                menu.unbind(evDropF)[evDropF](
-                    function(event) {
-                    time_dur_m = 0;
+                menu.unbind(evDropF)[evDropF](function() {
+                    return time_dur_m = 0;
                     }).unbind(evDropS)[evDropS](
-                    function(event) {
+                    function() {
                         methods.fadeDrop();
+                        return time_dur_m = duration;
                     });
             }
             drop.find('li li a').click(function(event) {
@@ -459,8 +484,12 @@ function ieInput(els) {
             }, optionsMenu));
         },
         fadeDrop: function() {
-            time_dur_m = duration;
-            drop.hide();
+            time_dur_m = 0;
+            
+            clearTimeout(hover_t_o);
+            
+            drop.stop()[effectoff](duration).addClass('d_n');
+            
             menuItemCltd.removeClass('hover')
             $('.first_h, .last_h').removeClass('first_h').removeClass('last_h');
         }
@@ -710,16 +739,16 @@ function ieInput(els) {
             }
         },
         startCheck: function() {
+            $(hashs[1].join(',')).each(function(index) {
+                var $thisId = $(this).attr('id');
+                $('[data-href="#' + $thisId + '"]').trigger('click');
+            });
             $(hashs[0].join(',')).each(function(index) {
                 var $thisId = $(this).attr('id'),
                 attrOrdataNew = '';
 
                 $('[href="#' + $thisId + '"]').length == 0 ? attrOrdataNew = 'data-href' : attrOrdataNew = 'href';
                 $('[' + attrOrdataNew + '="#' + $thisId + '"]').trigger('click');
-            });
-            $(hashs[1].join(',')).each(function(index) {
-                var $thisId = $(this).attr('id');
-                $('[data-href="#' + $thisId + '"]').trigger('click');
             });
         }
     };
@@ -786,24 +815,29 @@ function ieInput(els) {
                         w += $(this).outerWidth(true);
                     })
                     frameScroll.css('width', w);
-                    frameScrollP = frameScroll.parent();
-                    frameScrollPW = frameScrollP.width();
-                    var scrollW = w - frameScroll.parent().width();
-                    if (scrollNSP) {
-                        scrollNSPT = $this.find(scrollNSPT);
-                        topScrollNSP = scrollNSPT.position().top + scrollNSPT.height();
-                        $this.children('.scrollNSP').remove();
-                        $this.append('<div class="scrollNSP" style = "overflow:auto;"><div style="width:'+w+'px;"></div></div>')
-                    }
+                    try{
+                        frameScrollP = frameScroll.parent();
+                        frameScrollPW = frameScrollP.width();
+                        var scrollW = w - frameScroll.parent().width();
+                        if (scrollNSP) {
+                            scrollNSPT = $this.find(scrollNSPT);
+                            topScrollNSP = scrollNSPT.position().top + scrollNSPT.height();
+                            $this.children('.scrollNSP').remove();
+                            $this.append('<div class="scrollNSP" style = "overflow:auto;"><div style="width:'+w+'px;"></div></div>')
+                        }
+                    }catch(err){}
+                    
                     var firstScrl = frameScroll.parent(),
                     secScrl = $([]);
-                    if (scrollNSP){
-                        secScrl = $this.children('.scrollNSP');
-                        secScrl.css({
-                            'width':frameScrollPW, 
-                            'top': topScrollNSP
-                        })
-                    }
+                    try{
+                        if (scrollNSP){
+                            secScrl = $this.children('.scrollNSP');
+                            secScrl.css({
+                                'width':frameScrollPW, 
+                                'top': topScrollNSP
+                            })
+                        }
+                    }catch(err){}
                         
                     if (mouseWhell){
                         firstScrl.add(secScrl).unbind('mousewheel').bind('mousewheel', function(event, delta, deltaX, deltaY) {
@@ -1297,10 +1331,10 @@ function ieInput(els) {
     var methods = {
         init: function(options) {
             var $this = $(this),
-            $max = parseInt( $(this).attr('data-max'));
+//            $max = parseInt( $(this).attr('data-max'));
 
             $thisVal = $this.val();
-            if ($thisVal >  $max) $this.val($max);
+//            if ($thisVal >  $max) $this.val($max);
         }
     };
     $.fn.maxValue = function(method) {

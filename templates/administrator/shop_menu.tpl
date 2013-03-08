@@ -26,7 +26,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list-alt"></i>Каталог товаров<b class="caret"></b></a>
             <ul class="dropdown-menu">
 
-                <li><a href="/admin/components/run/shop/categories/index" class="pjax">Категории</a></li>
+                <li><a href="/admin/components/run/shop/categories/index" class="pjax">Категории</a>    </li>
                 <li><a href="/admin/components/run/shop/search/index" class="pjax">Товары</a></li>
                 <li><a href="/admin/components/run/shop/properties/index" class="pjax">Свойства товаров</a></li>
                 <li><a href="/admin/components/run/shop/kits/index" class="pjax">Наборы товаров</a></li>
@@ -63,5 +63,5 @@
             </ul>
         </li>
     </ul>
-    <a class="btn btn-small pull-right btn-info" onclick=" loadBaseInterface();"  href="#"><span class="f-s_14">←</span> Администрировать сайт </a>
+        <a class="btn btn-small pull-right btn-info" onclick=" loadBaseInterface();"  href="#"><span class="f-s_14">←</span> Администрировать сайт </a>
 </nav>

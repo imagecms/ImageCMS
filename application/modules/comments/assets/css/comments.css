@@ -59,7 +59,7 @@
     background: linear-gradient(to bottom,  rgba(237,237,237,1) 0%,rgba(247,247,247,1) 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#f7f7f7',GradientType=0 ); /* IE6-8 */
 }
-.like__icsi-css, .dis-like__icsi-css{background-image: none;border: none;}
+#comment__icsi-css .like__icsi-css, #comment__icsi-css .dis-like__icsi-css{background-image: none !important;border: none !important;}
 .like__icsi-css > button{border-bottom: 1px dotted #3a88cc !important;color: #3a88cc;}
 .dis-like__icsi-css > button{border-bottom: 1px dotted #f03f3f !important;color: #f03f3f;}
 .horizontal_form__icsi-css label, .horizontal_form__icsi-css .frameLabel__icsi-css{margin-bottom: 12px;}
@@ -73,7 +73,7 @@
 #comment__icsi-css textarea, #comment__icsi-css input{font-style: normal;font-size: 12px;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;background-color:#fff;}
 #comment__icsi-css textarea, #comment__icsi-css input[type="text"]{height: 30px;border-color: #ababab;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;-moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);}
 #comment__icsi-css textarea{height: 134px; padding-top: 5px}
-#comment__icsi-css a:focus, #comment__icsi-css input:focus, #comment__icsi-css button:focus, #comment__icsi-css textarea:focus{outline: 2px solid #f1ca7f;outline-offset: -1px;}
+#comment__icsi-css a:focus, #comment__icsi-css input:focus, #comment__icsi-css button:focus, #comment__icsi-css textarea:focus{border-color: #75d9ff;outline: none;-moz-box-shadow: 0 0 5px rgba(177, 229, 255, 0.75), inset 0 3px 3px rgba(0, 0, 0, 0.06);-webkit-box-shadow: 0 0 5px rgba(177, 229, 255, 0.75), inset 0 3px 3px rgba(0, 0, 0, 0.06);box-shadow: 0 0 5px rgba(177, 229, 255, 0.75), inset 0 3px 3px rgba(0, 0, 0, 0.06);}
 .msg .success, .msg .error {border-radius: 5px 5px 5px 5px;margin-bottom: 15px;padding: 8px;}
 .error {background-color: #FFE8E8;border: 1px solid #F27676;}
 .success {background-color: #ECFFE8;border: 1px solid #80C232;}
