@@ -1322,29 +1322,29 @@ function ieInput(els) {
 })(jQuery);
 
 
-//(function($) {
-//    var methods = {
-//        init: function(options) {
-//            var $this = $(this),
+(function($) {
+    var methods = {
+        init: function(options) {
+            var $this = $(this),
 //            $max = parseInt( $(this).attr('data-max'));
-//
-//            $thisVal = $this.val();
+
+            $thisVal = $this.val();
 //            if ($thisVal >  $max) $this.val($max);
-//        }
-//    };
-//    $.fn.maxValue = function(method) {
-//        if (methods[method]) {
-//            return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
-//        } else if (typeof method === 'object' || !method) {
-//            return methods.init.apply(this, arguments);
-//        } else {
-//            $.error('Method ' + method + ' does not exist on jQuery.maxValue');
-//        }
-//    };
-//    $('[data-max]').live('keyup', function() {
-//        $(this).maxValue();
-//    })
-//})(jQuery);
+        }
+    };
+    $.fn.maxValue = function(method) {
+        if (methods[method]) {
+            return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
+        } else if (typeof method === 'object' || !method) {
+            return methods.init.apply(this, arguments);
+        } else {
+            $.error('Method ' + method + ' does not exist on jQuery.maxValue');
+        }
+    };
+    $('[data-max]').live('keyup', function() {
+        $(this).maxValue();
+    })
+})(jQuery);
 
 
 (function($){
