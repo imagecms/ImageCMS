@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 $lang['a_content'] = 'Содержание';
 $lang['a_category'] = 'Категория';
 $lang['a_no'] = 'Нет';
