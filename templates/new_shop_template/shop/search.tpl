@@ -116,7 +116,7 @@
                                     {echo $Comments[$p->getId()]}
                                     <!-- End. Star rating and comments count --> 
                                 </div>
-                                <a href="{shop_url('product/'.$p->getUrl())}">{echo ShopCore::encode($p->getName())}</a>
+                                <a href="{shop_url('product/'.$p->getUrl().'#comment')}">{echo ShopCore::encode($p->getName())}</a>
                                 <!-- Start. Price -->
                                 <div class="price price_f-s_16">
                                     <!--$model->hasDiscounts() - checking for the existence of discounts. 
@@ -155,7 +155,7 @@
                                             type="button"
                                             class="btn btn_not_avail">
                                         <span class="icon-but"></span>
-                                        {lang('s_message_o_report')}
+                                        <span class="text-el">{lang('s_message_o_report')}</span>
                                     </button>
                                 {/if} 
                                 <!-- End. Check amount of goods -->   

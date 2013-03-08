@@ -120,7 +120,7 @@
                                     {$CI->load->module('star_rating')->show_star_rating($product)}
 
                                     <!-- displaying comments count -->
-                                    <a href="{shop_url('product/'.$product->url.'#cc')}" class="count_response">
+                                    <a href="{shop_url('product/'.$product->url.'#comment')}" class="count_response">
                                         {echo $Comments[$product->getId()]}
                                     </a>
                                 </div>
@@ -146,7 +146,7 @@
                                             type="button"
                                             class="btn btn_not_avail">
                                         <span class="icon-but"></span>
-                                        {lang('s_message_o_report')}
+                                        <span class="text-el">{lang('s_message_o_report')}</span>
                                     </button>
                                 {else:}
 
