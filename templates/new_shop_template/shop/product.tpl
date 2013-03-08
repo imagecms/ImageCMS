@@ -364,7 +364,6 @@
         </li>
     </ul>
 </div>
-
 <!--Kit start-->
 {if $model->getShopKits()->count() > 0}
     <div class="frame_carousel_product carousel_js c_b frameSet">
@@ -400,12 +399,14 @@
                                                 {$CS}
                                             </div>
                                         </div>
-                                        <a href="{shop_url('product/' . $kitProducts->getMainProduct()->getUrl())}" class="photo">
-                                            <span class="helper"></span>
-                                            <figure>
-                                                <img src="{productImageUrl($kitProducts->getMainProduct()->getSmallModImage())}" alt="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}"/>
-                                            </figure>
-                                        </a>
+                                        <div class="photo-block">
+                                            <a href="{shop_url('product/' . $kitProducts->getMainProduct()->getUrl())}" class="photo">
+                                                <span class="helper"></span>
+                                                <figure>
+                                                    <img src="{productImageUrl($kitProducts->getMainProduct()->getSmallModImage())}" alt="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}"/>
+                                                </figure>
+                                            </a>
+                                        </div>
                                     </div>
                                     <div class="d_i-b">+</div>
                                 </li>
@@ -431,19 +432,21 @@
                                                     {$CS}
                                                 </div>
                                             </div>
-                                            <a href="{shop_url('product/' . $kitProduct->getSProducts()->getUrl())}" class="photo">
-                                                <span class="helper"></span>
-                                                <figure>
-                                                    <img src="{productImageUrl($kitProduct->getSProducts()->getSmallModImage())}"/>
-                                                </figure>
-                                            </a>
+                                            <div class="photo-block">
+                                                <a href="{shop_url('product/' . $kitProduct->getSProducts()->getUrl())}" class="photo">
+                                                    <span class="helper"></span>
+                                                    <figure>
+                                                        <img src="{productImageUrl($kitProduct->getSProducts()->getSmallModImage())}"/>
+                                                    </figure>
+                                                </a>
+                                            </div>
                                             <span class="top_tovar discount">-{echo $kitProduct->getDiscount()}%</span>
                                         </div>
                                         <div class="d_i-b">
                                     {if $kitProducts->countProducts() == $key}={else:}+{/if}
                                 </div>
                             </li>                                            
-                        {/foreach}
+                        {/foreach}                       
                         <!--Output of goods subsidiaries set END-->
                         <li class="span3 p-t_40">
                             <div class="price price_f-s_24">
