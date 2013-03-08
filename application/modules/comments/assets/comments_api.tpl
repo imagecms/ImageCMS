@@ -104,6 +104,15 @@
                     </label>
                     {if !$is_logged_in}
                         <label>
+                            <span class="frame_form_field__icsi-css">
+                                <div class="msg">
+                                    <div class="success">
+                                        Коментарий будет отправлен на модерацию
+                                    </div>
+                                </div>
+                            </span>
+                        </label>
+                        <label>
                             <span class="title__icsi-css">{lang('lang_comment_author')}</span>
                             <span class="frame_form_field__icsi-css">
                                 <input type="text" name="comment_author" id="comment_author" value="{get_cookie('comment_author')}"/>
@@ -115,23 +124,14 @@
                                 <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
                             </span>
                         </label>
-                        <label>
-                            <span class="title__icsi-css">{lang('lang_comment_site')}</span>
-                            <span class="frame_form_field__icsi-css">
-                                <input type="text" name="comment_site" id="comment_site" value="{get_cookie('comment_site')}"/>
-                            </span>
-                        </label>   
-
-                        <label>
-                            <span class="frame_form_field__icsi-css">
-                                <div class="msg">
-                                    <div class="success">
-                                        Коментарий будет отправлен на модерацию
-                                    </div>
-                                </div>
-                            </span>
-                        </label>
-
+                        <!--
+                    <label>
+                        <span class="title__icsi-css">{lang('lang_comment_site')}</span>
+                        <span class="frame_form_field__icsi-css">
+                            <input type="text" name="comment_site" id="comment_site" value="{get_cookie('comment_site')}"/>
+                        </span>
+                    </label>
+                        -->
                     {/if}
                     <!-- Start star reiting --><!--
                     <label>
@@ -223,7 +223,7 @@
                             <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
                         </span>
                     </label>
-                        
+
                     <label>
                         <span class="frame_form_field__icsi-css">
                             <div class="msg">
