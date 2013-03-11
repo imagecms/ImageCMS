@@ -9,9 +9,9 @@
 
 <script type="text/javascript">
     {literal}
-            $(function() {
-                renderPosts(this);
-            })
+        $(function() {
+            renderPosts(this);
+        })
     {/literal}
 </script>
 

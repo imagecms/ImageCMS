@@ -239,7 +239,7 @@ class Commentsapi extends Comments {
             $email = $this->db->select('email')
                     ->get_where('users', array('username' => $this->dx_auth->get_username()), 1)
                     ->row();
-
+//            var_dump($this->parsUrl($_SERVER['HTTP_REFERER']));exit;
             if (!validation_errors()) {
                 $comment_data = array(
                     'module' => $this->getModule($_SERVER['HTTP_REFERER']),

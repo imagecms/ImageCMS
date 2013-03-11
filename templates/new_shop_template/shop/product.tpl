@@ -7,7 +7,7 @@
  *  $model : PropelObjectCollection of (object) instance of SProducts
  *   $model->hasDiscounts() : Check whether the discount on the product.
  *   $model->firstVariant : variable which contains the first variant of product;
- *   $model->firstVariant->toCurrency() : variable which contains the first variant of product;
+ *   $model->firstVariant->toCurrency() : variable which contains price of product;
  *
  */
 #}
