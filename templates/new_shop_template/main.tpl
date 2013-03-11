@@ -119,7 +119,7 @@
                                     <span class="helper"></span>
                                     <span class="f-s_0">
                                         <span class="icon-bask"></span>
-                                        <span class="d_l">Корзина</span>
+                                        <span>Корзина</span>
                                         <span id="topCartCount">&nbsp;(0)</span>
                                     </span>
                                 </div>
