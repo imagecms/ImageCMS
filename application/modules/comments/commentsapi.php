@@ -92,7 +92,7 @@ class Commentsapi extends Comments {
 
         echo json_encode(array(
             'comments' => $comments,
-            'total_comments' => $comments_count . ' ' . $this->Pluralize($comments_count, array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre'))),
+            'total_comments' => $comments_count?$comments_count . ' ' . $this->Pluralize($comments_count, array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre'))):'Оставить отзыв',
             'validation_errors' => $this->validation_errors
         ));
     }
