@@ -1,3 +1,4 @@
+var isTouch = 'ontouchstart' in document.documentElement;
 var optionsMenu = {
     item: $('.menu-main td > .frame-item-menu > div'),
     duration: 400,
@@ -169,6 +170,11 @@ jQuery(document).ready(function() {
             'scrolling': 'no'
         })
     } catch (err) {
+    }
+    if (isTouch){
+        $('.jcarousel-clip-horizontal').ontouchstart(function(){
+            alert(1)
+        })
     }
 });
 wnd.load(function() {
