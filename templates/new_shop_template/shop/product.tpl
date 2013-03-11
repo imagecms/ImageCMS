@@ -264,7 +264,11 @@
                             <span class="icon-comment-tab"></span>
                             <span class="text-el">                    
                                 <span id="cc">
+                                    {if $Comments[$model->getId()][0] !== '0'}
                                     {echo $Comments[$model->getId()]}
+                                    {else:}
+                                    Оставить отзыв
+                                    {/if}
                                 </span>
                             </span>
                         </button>
