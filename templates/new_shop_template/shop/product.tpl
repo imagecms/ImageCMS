@@ -205,7 +205,7 @@
                     <!-- Stop. Block "Add to Wishlist" -->
                     <br/>
                     <!--Block Follow the price Start-->
-                    
+
                     <!--                            inFollow-->
                     <button class="btn btn_small_p toFollow" 
                             data-title="{lang('s_follow_prod')}"
@@ -514,7 +514,7 @@
                 </button>
             </div>
         </div>
-        <div class="carousel">
+        <div class="carousel bot_border_grey">
             <ul class="items items_catalog">
                 <!--Output set of similar products-->
                 {foreach $simProduct as $product}
@@ -524,13 +524,6 @@
                     -->
                     <li class="span3 {if $product->firstVariant->getStock() == 0}not-avail{/if}">
                         <!-- $product->getUrl() - the path to the product-->
-                        <a href="{site_url('shop/product/'.$product->getUrl())}" class="photo">
-                            <span class="helper"></span>
-                            <figure>
-                                <!--$product->getMainImage() - product image-->
-                                <img src="{productImageUrl($product->getMainImage())}" alt="{echo ShopCore::encode($product->getName())}"/>
-                            </figure>
-                        </a>
                         <div class="description">                            
                             <a href="{site_url('shop/product/'.$product->getUrl())}">{echo ShopCore::encode($product->getName())}</a>
                             <div class="price price_f-s_16">
@@ -562,6 +555,15 @@
                                     data-maxcount="{echo $product->firstVariant->getstock()}">
                                 {lang('s_buy')}
                             </button>
+                        </div>
+                        <div class="photo-block">
+                            <a href="{site_url('shop/product/'.$product->getUrl())}" class="photo">
+                                <span class="helper"></span>
+                                <figure>
+                                    <!--$product->getMainImage() - product image-->
+                                    <img src="{productImageUrl($product->getMainImage())}" alt="{echo ShopCore::encode($product->getName())}"/>
+                                </figure>
+                            </a>
                         </div>
                     </li>
                 {/foreach}

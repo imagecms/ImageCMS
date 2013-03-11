@@ -97,14 +97,7 @@
                                             <li>
                                                 <span class="f-s_0">
                                                     <span class="helper"></span>
-                                                    <button type="button" 
-                                                            data-drop=".drop-enter" 
-                                                            data-effect-on="fadeIn" 
-                                                            data-effect-off="fadeOut" 
-                                                            data-duration="300" 
-                                                            data-place="noinherit" 
-                                                            data-placement="top right"
-                                                            onclick="ImageCMSApi.formAction('/auth/authapi/logout', '')">
+                                                    <button type="button" onclick="ImageCMSApi.formAction('/auth/authapi/logout', '')">
                                                         <span class="icon-exit"></span>
                                                         <span class="d_l_g">Выход</span>
                                                     </button>
