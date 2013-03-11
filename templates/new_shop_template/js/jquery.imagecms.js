@@ -612,7 +612,6 @@ function ieInput(els) {
                 })
                 tabs_div[index] = temp_obj;
                 reg_refs[index] = new RegExp(reg_refs[index]);
-
                 refs[index].on('click', function(event) {
                     var $this = $(this);
                     settings.before();
@@ -988,8 +987,6 @@ function ieInput(els) {
         $('.cloned').remove();
         if (arguments.length && typeof arguments[0] == 'string') {
             var dim = arguments[0];
-            if (this.is('.active'))
-                return this[dim]();
             var clone = $(this).clone().css({
                 position: 'absolute',
                 top: '-9999px',
@@ -997,7 +994,6 @@ function ieInput(els) {
             }).addClass('cloned').appendTo('body');
             return clone[dim]();
         }
-        ;
         return undefined;
     };
 }(jQuery));
@@ -1035,63 +1031,71 @@ function ieInput(els) {
             dataSource.live('click', function(event) {
                 event.stopPropagation();
                 event.preventDefault();
-
-                $this = $(this);
-                elSet = $this.data();
-                elSetSource = $(elSet.drop);
                 
-                var elSetOn = elSet.effectOn || effon,
-                elSetOff = elSet.effectOff || effoff,
-                elSetDuration = elSet.duration || effdur,
-                overlayColor = elSet.overlaycolor || settings.overlayColor,
-                overlayOpacity = elSet.overlayopacity || settings.overlayOpacity;
+                if ($(event.target).parents('[data-simple="yes"]').length == 0){
 
-                if (overlayColor != undefined || overlayOpacity != undefined) {
-                    if (!$.exists('.overlayDrop')) {
-                        mainBody.append('<div class="overlayDrop" style="position:absolute;width:100%;height:100%;left:0;top:0;z-index: 1001;"></div>')
+                    $this = $(this);
+                    elSet = $this.data();
+                    elSetSource = $(elSet.drop);
+                
+                    var elSetOn = elSet.effectOn || effon,
+                    elSetOff = elSet.effectOff || effoff,
+                    elSetDuration = elSet.duration || effdur,
+                    overlayColor = elSet.overlaycolor || settings.overlayColor,
+                    overlayOpacity = elSet.overlayopacity || settings.overlayOpacity;
+
+                    if (overlayColor != undefined || overlayOpacity != undefined) {
+                        if (!$.exists('.overlayDrop')) {
+                            mainBody.append('<div class="overlayDrop" style="position:absolute;width:100%;height:100%;left:0;top:0;z-index: 1001;"></div>')
+                        }
+                        drop_over = $('.overlayDrop');
+                        drop_over.css({
+                            'background-color': overlayColor,
+                            'opacity': overlayOpacity
+                        });
                     }
-                    drop_over = $('.overlayDrop');
-                    drop_over.css({
-                        'background-color': overlayColor,
-                        'opacity': overlayOpacity
-                    });
-                }
-                else
-                    drop_over = $([]);
+                    else
+                        drop_over = $([]);
 
-                if (elSetSource.is('.' + activeClass)) {
-                    $this.removeClass(activeClass)
-                    elSetSource[elSetOff](elSetDuration, function() {
-                        elSetSource.removeClass(activeClass).removeAttr('style')
-                        drop_over[elSetOff](elSetDuration);
-                    });
-                    $thisHref = $(this).attr('href');
-                    if ($thisHref != undefined) {
-                        var $thisHrefL = $thisHref.length,
-                        wLH = location.hash,
-                        wLHL = wLH.length;
-                        try {
-                            indH = wLH.match($thisHref + '(?![a-z])').index;
-                            location.hash = wLH.substring(0, indH) + wLH.substring(indH + $thisHrefL, wLHL)
-                        } catch (err) {
+                    if (elSetSource.is('.' + activeClass)) {
+                        $this.removeClass(activeClass)
+                        elSetSource[elSetOff](elSetDuration, function() {
+                            elSetSource.removeClass(activeClass).removeAttr('style')
+                            drop_over[elSetOff](elSetDuration);
+                        });
+                        $thisHref = $(this).attr('href');
+                        if ($thisHref != undefined) {
+                            var $thisHrefL = $thisHref.length,
+                            wLH = location.hash,
+                            wLHL = wLH.length;
+                            try {
+                                indH = wLH.match($thisHref + '(?![a-z])').index;
+                                location.hash = wLH.substring(0, indH) + wLH.substring(indH + $thisHrefL, wLHL)
+                            } catch (err) {
+                            }
                         }
                     }
-                }
-                else {
-                    settings.before(this, elSetSource);
-                    
-                    methods.positionDrop($this, elSet, elSetSource);
+                    else {
+                        $newthis = settings.before(this, elSetSource);
+                        if ($newthis != undefined) $this = $newthis;
 
-                    $this.addClass(activeClass);
-                    drop_over.show();
-                    elSetSource[elSetOn](elSetDuration, function() {
-                        elSetSource.addClass(activeClass);
-                        if (ltie7)
-                            ieInput();
-                    });
-                    settings.after(this, elSetSource);
+                        var wndW = wnd.width();
+                        if (elSetSource.actual('width') > wnd.width()) elSetSource.css('width', wndW-40);
+                        else elSetSource.removeAttr('style');
+                    
+                        methods.positionDrop($this, elSet, elSetSource);
+
+                        $this.addClass(activeClass);
+                        drop_over.show();
+                        elSetSource[elSetOn](elSetDuration, function() {
+                            elSetSource.addClass(activeClass);
+                            if (ltie7)
+                                ieInput();
+                        });
+                        settings.after(this, elSetSource);
+                    }
+                    $(cloned).remove();
                 }
-                $(cloned).remove();
             }).each(function() {
                 var $this = $(this),
                 $thisS = $this.data('effect-off') || effoff,
@@ -1135,21 +1139,21 @@ function ieInput(els) {
                 $('[data-drop = "' + $(this).attr('data-elrun') + '"]').click().parent().removeClass('active');
             });
         },
-        positionDrop: function($this, elSet, elSetSource){
-            if ($this == undefined){
-                $this = $(this);
-
-                var elSet = $this.data(),
-                elSetSource = $(elSet.drop);
-            }
+        positionDrop: function($this){
+            var $this = $this;
+            if ($this == undefined) $this = $(this);
             
-            var $thisP = $this.data('place') || elSet.place;
+            var elSet = $this.data(),
+            elSetSource = $(elSet.drop);
+            
+            var $thisP = $this.attr('data-place');
             dataSourceH = 0,
             dataSourceW = 0,
             $thisW = $this.width();
             $thisH = $this.height();
+            
             if ($thisP == 'noinherit') {
-                var $thisPMT = ($this.data('placement') || elSet.place).toLowerCase().split(' ');
+                var $thisPMT = $this.attr('data-placement').toLowerCase().split(' ');
 
                 if ($thisPMT[0] == 'bottom' || $thisPMT[1] == 'bottom')
                     dataSourceH = -elSetSource.actual('height');
@@ -1162,6 +1166,7 @@ function ieInput(els) {
 
                 if ($thisPMT[0] == 'right' || $thisPMT[1] == 'right')
                     dataSourceW = -elSetSource.actual('width') + $thisW;
+                
 
                 $thisT = $this.offset().top + dataSourceH;
                 $thisL = $this.offset().left + dataSourceW;
@@ -1249,12 +1254,13 @@ function ieInput(els) {
                         else
                             $thisPrev.attr('disabled', 'disabled');
                         
-                        input.maxValue();
+                        if (input.maxValue()) $thisNext.attr('disabled', 'disabled');
                     })
                     $thisPrev.click(function() {
                         var input = $this.focus();
                         var inputVal = parseInt(input.val());
 
+                        $thisNext.removeAttr('disabled', 'disabled');
                         if (isNaN(inputVal))
                             input.val(1)
                         else if (inputVal > 1)
@@ -1331,10 +1337,15 @@ function ieInput(els) {
     var methods = {
         init: function(options) {
             var $this = $(this),
-//            $max = parseInt( $(this).attr('data-max'));
+            $max = parseInt( $(this).attr('data-max'));
 
             $thisVal = $this.val();
-//            if ($thisVal >  $max) $this.val($max);
+
+            if ($thisVal >  $max-1) {
+                $this.val($max);
+                return true;
+            }
+            else return false;
         }
     };
     $.fn.maxValue = function(method) {
@@ -1346,9 +1357,6 @@ function ieInput(els) {
             $.error('Method ' + method + ' does not exist on jQuery.maxValue');
         }
     };
-    $('[data-max]').live('keyup', function() {
-        $(this).maxValue();
-    })
 })(jQuery);
 
 

@@ -51,13 +51,18 @@ var Notification = {
                         Notification.sendValidations(obj.validations, selector);
                     }
                     if (obj.status === true) {
-                        $(Notification.formClass + ' form#' + selector).html('<div class="msg"><div class="success">' + obj.msg + '</div></div>');
+                        $(Notification.formClass + ' form#' + selector).hide();
+                        $(Notification.formClass + ' form#' + selector).before('<div class="msg"><div class="success">' + obj.msg + '</div></div>');
                         if ($('.btn_not_avail.active').length != 0)
                             $('.btn_not_avail.active').drop('positionDrop');
                         if (obj.close === true) {
                             setTimeout((function() {
-                                $('body').trigger('click');
+                                $('.drop').drop('triggerBtnClick');
                             }), 3000);
+                            setTimeout((function() {
+                                $(Notification.formClass + ' form#' + selector).show();
+                                $('.msg').remove();
+                            }), 4000);
                         }
                     }
                 }

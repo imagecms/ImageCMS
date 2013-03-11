@@ -176,7 +176,7 @@
                         {/foreach}
                     </div>
                 </div>
-                <div class="d_i-b v-a_b m-b_20">
+                <div class="d_i-b v-a_b m-b_20 add_func_btn">
 
                     <!-- Start. Block "Add to Compare" -->
                     <button class="btn btn_small_p toCompare"  
@@ -203,6 +203,18 @@
                         <span class="text-el">{lang('s_slw')}</span>
                     </button>
                     <!-- Stop. Block "Add to Wishlist" -->
+                    <br/>
+                    <!--Block Follow the price Start-->
+                    
+                    <!--                            inFollow-->
+                    <button class="btn btn_small_p toFollow" 
+                            data-title="{lang('s_follow_prod')}"
+                            data-sectitle="{lang('s_followprod')}"
+                            data-rel="tooltip">
+                        <span class="icon-followprice"></span>
+                        <span class="text-el">{lang('s_follow_prod')}</span>
+                    </button>
+                    <!-- Stop. Block "Follow the price" -->
                 </div>
             </div>
 

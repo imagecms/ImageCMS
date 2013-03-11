@@ -44,16 +44,16 @@
                                 <td>
                                     <div class="frame_count number d_i-b v-a_m">
                                         <div class="frame_change_count" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" >
-                                            <button type="button" class="d_b btn_small btn">
+                                            <button type="button" class="d_b btn_small btn plus">
                                                 <span class="icon-plus"></span>
                                             </button>
-                                            <button type="button" class="d_b btn_small btn">
+                                            <button type="button" class="d_b btn_small btn minus">
                                                 <span class="icon-minus"></span>
                                             </button>
                                         </div>
                                         <input type="text" value="<%- item.count %>" data-rel="plusminus" data-title="только цифры" data-min="1" <% if (item.maxcount) { %> data-max="<%-item.maxcount%>" <% } %> />
                                     </div>
-                                    <span class="v-a_m"><%- item.count %> шт.</span>
+                                    <span class="v-a_m">шт.</span>
                                 </td>
                                 <td>
                                     <span class="d_b">Сумма: </span>
@@ -105,16 +105,16 @@
                                                 <td rowspan="<%- names.length %>">
                                                     <div class="frame_count number d_i-b v-a_m">
                                                         <div class="frame_change_count" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" data-kit="<%-item.kit%>">
-                                                            <button id="plus" class="d_b btn_small btn" type="button">
+                                                            <button id="plus" class="d_b btn_small btn plus" type="button">
                                                                 <span class="icon-plus"></span>
                                                             </button>
-                                                            <button id="minus" class="d_b btn_small btn" type="button">
+                                                            <button id="minus" class="d_b btn_small btn minus" type="button">
                                                                 <span class="icon-minus"></span>
                                                             </button>
                                                         </div>
                                                         <input type="text" data-min="1" data-title="только цифры" data-rel="plusminus" value="<%-item.count%>">
                                                     </div>
-                                                    <span class="v-a_m"><%-item.count%> <%-kits%></span>
+                                                    <span class="v-a_m"><%-kits%></span>
                                                 </td>
                                                 <td rowspan="<%- names.length %>">
                                                     <span>Сумма: </span>
@@ -158,7 +158,7 @@
                     </table>
                 </div>
                 <div class="inside_padd foot">
-                    <table class="table">
+                    <table class="table table_order">
                         <colgroup>
                             <col width="20px"/>
                             <col width="80px"/>
@@ -178,7 +178,7 @@
                                 <% setTimeout("location.href = '/';", 2000); %>
                                 <% } %>
                                 <td colspan="4" class="t-a_r">
-                                    <a href="#"  onclick="renderOrderDetails(); togglePopupCart(); return false;" class="btn btn_cart v-a_m m-r_30">Закрыть</a>
+                                    <a href="#"  onclick="renderOrderDetails(); togglePopupCart(); return false;" class="btn btn_cart v-a_m m-r_30">Применить</a>
                                 </td>
                                 <% } else { %>
                                 <td colspan="4">
@@ -214,9 +214,9 @@
                 <thead class="v_h">
                     <tr>
                         <td class="span1"></td>
-                        <td class="span3"></td>
-                        <td class="span1"></td>
-                        <td class="span1"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                 </thead>
                 <tbody>
