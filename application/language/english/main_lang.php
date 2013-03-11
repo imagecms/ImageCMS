@@ -362,4 +362,7 @@ $lang['s_brands_in_cat'] = 'Brands in category';
 $lang['s_just_numeric'] = 'only numbers';
 $lang['s_description'] = 'Description';
 $lang['s_properties_in_cat'] = 'Properties';
+
+$lang['s_follow_prod'] = 'Follow the price';
+$lang['s_followprod'] = 'In follow';
 /* End of file main_lang.php */

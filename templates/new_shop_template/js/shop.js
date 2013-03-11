@@ -518,7 +518,7 @@ function initShopPage() {
 
             cartItem.count = pd.closest('div.frame_count').find('input').val();
             var word = cartItem.kit ? kits : pcs;
-            pd.closest('div.frame_count').next('span').html(cartItem.count + ' ' + word);
+            pd.closest('div.frame_count').next('span').html(word);
 
 
             Shop.Cart.chCount(cartItem);

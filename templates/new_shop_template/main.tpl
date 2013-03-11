@@ -189,13 +189,14 @@
                                     <div style="margin-top: 7px;">
                                         <ul class="tabs">
                                             <li>
-                                                <a class="t-d_n f-s_0" 
+                                                <a class="t-d_n d_b" 
                                                    href="#ordercall" 
                                                    data-drop=".drop-order-call" 
                                                    data-effect-on="fadeIn" 
                                                    data-effect-off="fadeOut" 
                                                    data-duration="300" 
-                                                   data-place="center">
+                                                   data-place="center"
+                                                   data-simple="yes">
                                                     <span class="icon-order-call"></span>
                                                     <span class="d_l_b">
                                                         {lang('s_coll_order')}
