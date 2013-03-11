@@ -258,13 +258,17 @@
                 {/if}
                 <!--Output of the block if there is one accessory END-->
                 <!--Output of the block comments-->
-                {if $Comments}
+                {if $Comments && $model->enable_comments}
                     <li>
                         <button type="button" data-href="#comment" onclick="renderPosts(this)">
                             <span class="icon-comment-tab"></span>
                             <span class="text-el">                    
                                 <span id="cc">
+                                    {if $Comments[$model->getId()][0] !== '0'}
                                     {echo $Comments[$model->getId()]}
+                                    {else:}
+                                    Оставить отзыв
+                                    {/if}
                                 </span>
                             </span>
                         </button>
