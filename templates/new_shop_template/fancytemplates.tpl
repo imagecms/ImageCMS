@@ -1,5 +1,5 @@
 <div class="drop-forgot-password drop">
-    <div class="icon-times-enter" data-closed="closed-js"></div>
+    <button type="button" class="icon-times-enter" data-closed="closed-js"></button>
     <div class="drop-content">
         <div class="header_title">
             Забыли пароль

@@ -87,7 +87,7 @@ var Shop = {
             if (cartItem.kit)
                 var key = 'ShopKit_' + cartItem.kitId;
             else
-                var key = 'SProducts_' + cartItem.storageId();
+                var key = 'SProducts_' + cartItem.id+'_'+cartItem.vId;
 
             Shop.currentItem = cartItem;
             $.getJSON('/shop/cart_api/delete/' + key, function (data) {
@@ -107,24 +107,31 @@ var Shop = {
 
             var currentItem = this.load(cartItem.storageId());
             if (currentItem) {
-                currentItem.count = cartItem.count - currentItem.count;
+                currentItem.count = cartItem.count;
 
                 this.countChanged = true;
-                this.add(currentItem);
+                this.save(currentItem);
 
-                $(document).trigger({
-                    type:'count_changed',
-                    cartItem:_.clone(cartItem)
-                });
+                var postName = 'products[SProducts_'+cartItem.id+'_'+cartItem.vId+']';
+                var postData = {recount:1};
+                postData[postName] = cartItem.count;
+                $.post('/shop/cart_api', postData, function(data){
 
-                $(document).trigger({
-                    type:'cart_changed'
+
+                    $(document).trigger({
+                        type:'count_changed',
+                        cartItem:_.clone(cartItem)
+                    });
+
+                    $(document).trigger({
+                        type:'cart_changed'
+                    });
+
                 });
 
                 return this.totalRecount();
+
             }
-            else
-                return this;
         },
 
         clear:function () {
@@ -518,7 +525,7 @@ function initShopPage(showWindow) {
 
             cartItem.count = pd.closest('div.frame_count').find('input').val();
             var word = cartItem.kit ? kits : pcs;
-            pd.closest('div.frame_count').next('span').html(cartItem.count + ' ' + word);
+            pd.closest('div.frame_count').next('span').html(word);
 
 
             Shop.Cart.chCount(cartItem);

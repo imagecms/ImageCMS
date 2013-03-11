@@ -1,3 +1,4 @@
+var isTouch = 'ontouchstart' in document.documentElement;
 var optionsMenu = {
     item: $('.menu-main td > .frame-item-menu > div'),
     duration: 400,
@@ -106,13 +107,27 @@ jQuery(document).ready(function() {
         before: function(el, dropEl) {
             //check for drop-report
             if ($(dropEl).hasClass('drop-report')) {
+                $(dropEl).removeClass('left-report').removeClass('top-right-report')
+                
+                if ($(el).offset().left < 322 - $(el).outerWidth()) {
+                    $(el).attr('data-placement', 'bottom left');
+                    $(dropEl).addClass('left-report');
+                }
+                else {
+                    if ($(el).data('placement') != 'top right')
+                        $(el).attr('data-placement', 'bottom right');
+                }
+                if ($(el).data('placement') == 'top right'){
+                    $(dropEl).addClass('top-right-report');
+                }
+            
                 $(dropEl).find('li').remove();
-                var elWrap = $(el).closest('li').clone().removeAttr('style'),
+                var elWrap = $(el).closest('li').clone().removeAttr('style').removeAttr('class'),
                 dropEl = $(dropEl).find('.drop-content');
 
                 //adding product info into form
                 var formCont = $('#data-report');
-                var productId = el.getAttribute('data-prodid');
+                var productId = $(el).attr('data-prodid');
                 formCont.find('input[name="ProductId"]').val(productId)
 
                 elWrap.find('.photo').prependTo(elWrap)
@@ -120,18 +135,13 @@ jQuery(document).ready(function() {
                 if (!dropEl.parent().hasClass('active')) {
                     if (!$.exists_nabir(dropEl.find('.frame-search-thumbail')))
                         dropEl.append('<ul class="frame-search-thumbail items"></ul>');
-                    dropEl.find('.frame-search-thumbail').append(elWrap).find('.top_tovar, .btn, .frame_response').remove().end().parent().find('[data-clone="data-report"]').remove().end().append($('[data-clone="data-report"]').clone().removeClass('d_n'));
+                    dropEl.find('.frame-search-thumbail').append(elWrap).find('.top_tovar, .btn, .frame_response, .tabs, .share_tov').remove().end().parent().find('[data-clone="data-report"]').remove().end().append($('[data-clone="data-report"]').clone().removeClass('d_n'));
                 }
+                return $(el);
             }
         },
         after: function(el, dropEl){
-            $(dropEl).removeClass('left-report').removeClass('top-right-report');
-            if ($(dropEl).hasClass('drop-report')) {
-                if ($(el).offset().left < 322 - $(el).outerWidth()) $(dropEl).addClass('left-report').css('left', $(el).offset().left);
-            }
-            if ($(el).data('placement') == 'top right'){
-                $(dropEl).addClass('top-right-report');
-            }
+            
         }
     });
     $('.tabs').tabs({
@@ -161,6 +171,11 @@ jQuery(document).ready(function() {
             'scrolling': 'no'
         })
     } catch (err) {
+    }
+    if (isTouch){
+        $('.jcarousel-clip-horizontal').touchstart(function(){
+            alert(1)
+        })
     }
 });
 wnd.load(function() {
@@ -245,6 +260,9 @@ wnd.load(function() {
         navPortait();
         $('.frame_tabsc > div').equalHorizCell('refresh');
         $('.menu-main').menuPacket2('refresh');
+        var btn_not_avail = $('.btn_not_avail.active');
+        if (btn_not_avail.length != 0)
+            btn_not_avail.drop('positionDrop');
     })
     
     navPortait();

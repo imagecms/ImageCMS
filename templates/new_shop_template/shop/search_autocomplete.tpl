@@ -21,13 +21,13 @@
                             <span class="helper"></span>
                         {/literal}<img src="{base_url()}uploads/shop/{literal}<%- item.smallModImage %>">
                         </span>
-                        <span><% print( item.name)  %></span>
+                        <span class="title"><% print( item.name)  %></span>
                          <!-- End. Photo Block and name -->
 
                     <!-- Start. Product price  -->
+                        <span class="price price_f-s_16"><span class="f-w_b"><%- Math.round(item.price) %></span>{/literal}<span class="curr">{$CS}</span>{literal}</span>
                     <!-- End. Product price  -->
                     </a>
-                    <div class="price price_f-s_16"><span class="f-w_b"><%- Math.round(item.price) %></span>{/literal}{$CS}{literal}</div>
                 </li>
                 <% }
                 }) %>
@@ -40,7 +40,7 @@
             </div>{literal}
             <!-- End. Show link  -->
             <% } else {%>    
-        {/literal}{echo ShopCore::t(lang('s_not_found'))} {literal}
+        {/literal}<div class="p_lr_10">{echo ShopCore::t(lang('s_not_found'))}</div>{literal}
             <% }%>
         </div>
     </script>

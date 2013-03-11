@@ -162,7 +162,13 @@
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="{$li.icon}"></i>{echo (bool)lang($li.text)?lang($li.text):$li.text}<b class="caret"></b></a>
                                             <ul class="dropdown-menu">
                                                 {foreach $li.subMenu as $sli}
-                                                    <li {if $sli.divider} class="divider"{/if}{if $sli.header} class="nav-header"{/if}>{if $sli.link}<a href="{$sli.link}" class="pjax">{echo (bool)lang($sli.text)?lang($sli.text):$sli.text}</a>{else:}{echo (bool)lang($sli.text)?lang($sli.text):$sli.text}{/if}</li>
+                                                    <li {if $sli.divider} class="divider"{/if}{if $sli.header} class="nav-header"{/if}>
+                                                        {if $sli.link}
+                                                            <a href="{$sli.link}" class="pjax">{echo (bool)lang($sli.text)?lang($sli.text):$sli.text}</a>
+                                                        {else:}
+                                                            {echo (bool)lang($sli.text)?lang($sli.text):$sli.text}
+                                                        {/if}
+                                                    </li>
                                                 {/foreach}
                                             </ul>
                                             {else:}
