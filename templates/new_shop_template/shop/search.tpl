@@ -114,9 +114,12 @@
                                 <div class="frame_response">
                                     <!-- Start. Star rating and comments count -->
                                     {$CI->load->module('star_rating')->show_star_rating($p)}
+
+                                    {if $Comments[$p->getId()][0] != '0'}
                                     <a href="{shop_url('product/'.$p->url.'#comment')}" class="count_response">
                                         {echo $Comments[$p->getId()]}
                                     </a>
+                                    {/if}
                                     <!-- End. Star rating and comments count --> 
                                 </div>
                                 <a href="{shop_url('product/'.$p->getUrl().'#comment')}">{echo ShopCore::encode($p->getName())}</a>

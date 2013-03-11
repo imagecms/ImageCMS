@@ -271,7 +271,7 @@
         <p>
             Ваша корзина пуста
         </p>
-        {literal}<script>setTimeout("window.location.href='/'");</script>{/literal}
+        {literal}<script>$(document).ready(function(){Shop.Cart.clear()}); setTimeout("window.location.href='/'");</script>{/literal}
     </div>
     {else:}
                         <h1>Оформление заказа</h1>
@@ -318,6 +318,7 @@
                                                     <span class="title">{lang('s_addresrec')}</span>
                                                     <span class="frame_form_field">
                                                         {if $isRequired['userInfo[deliverTo]']}<span class="must">*</span>{/if}
+                                                        <span class="icon-address"></span>
                                                         <input type="text" name="userInfo[deliverTo]" value="{echo $profile.address}"></span>
                                                 </label>
                                             </div>
@@ -326,7 +327,7 @@
                                                     <span class="title">Способ доставки</span>
                                                     <div class="frame_form_field">
                                                         <div class="row-fluid">
-                                                            <div class="lineForm span4">
+                                                            <div class="lineForm">
                                                                 <select id="method_deliv" name="deliveryMethodId">
                                                                     
                                                                     {foreach $deliveryMethods as $deliveryMethod}
@@ -358,9 +359,8 @@
                                                     <span class="title">Способ оплаты</span>
                                                     <div class="frame_form_field">
                                                         <div class="row-fluid">
-                                                            <div class="lineForm span4 pmDiv">
+                                                            <div class="lineForm pmDiv">
                                                                 <select name="paymentMethodId"  id="paymentMethod">
-                                                                    
                                                                 {$counter = true}
                                                                 {foreach $paymentMethods as $paymentMethod}
                                                                     <label>

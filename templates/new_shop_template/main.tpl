@@ -75,7 +75,7 @@
                                                 <span class="f-s_0">
                                                     <span class="helper"></span>
                                                     <span>
-                                                        <a href="/auth/register" class="t-d_u c_5c f-s_0">
+                                                        <a href="/auth/register" class="t-d_n c_5c f-s_0 register">
                                                             <span class="icon-registration"></span>
                                                             <span class="text-el">Регистрация</span>
                                                         </a>
@@ -119,7 +119,7 @@
                                     <span class="helper"></span>
                                     <span class="f-s_0">
                                         <span class="icon-bask"></span>
-                                        <span class="d_l">Корзина</span>
+                                        <span>Корзина</span>
                                         <span id="topCartCount">&nbsp;(0)</span>
                                     </span>
                                 </div>
@@ -150,8 +150,8 @@
                             </a>
                         </div>
                         <div class="span9 f-s_0">
-                            <span class="helper"></span>
-                            <div class="w_100 f-s_0 frameUndef_1">
+                            <span class="helper"></span
+                            ><div class="w_100 f-s_0 frameUndef_1">
                                 <div class="span6">
                                     <div class="frameSearch">
                                         <form name="search" 
@@ -189,13 +189,14 @@
                                     <div style="margin-top: 7px;">
                                         <ul class="tabs">
                                             <li>
-                                                <a class="t-d_n f-s_0" 
+                                                <a class="t-d_n d_b" 
                                                    href="#ordercall" 
                                                    data-drop=".drop-order-call" 
                                                    data-effect-on="fadeIn" 
                                                    data-effect-off="fadeOut" 
                                                    data-duration="300" 
-                                                   data-place="center">
+                                                   data-place="center"
+                                                   data-simple="yes">
                                                     <span class="icon-order-call"></span>
                                                     <span class="d_l_b">
                                                         {lang('s_coll_order')}
