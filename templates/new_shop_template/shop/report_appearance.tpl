@@ -1,7 +1,7 @@
 <div class="drop drop-report">
     <div class="drop-content">
         <div class="title_h2">Сообщить когда появится</div>
-        <div class="icon-times-enter" data-closed="closed-js"></div>
+        <button type="button" class="icon-times-enter" data-closed="closed-js"></button>
     </div>
     <div class="drop-footer"></div>
 </div>
