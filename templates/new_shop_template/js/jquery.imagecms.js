@@ -1170,11 +1170,13 @@ function ieInput(els) {
 
                 $thisT = $this.offset().top + dataSourceH;
                 $thisL = $this.offset().left + dataSourceW;
+                if ($thisL < 0) $thisL = 0;
 
                 elSetSource.css({
                     'top': $thisT,
                     'left': $thisL
                 });
+                if ($thisL == 0) elSetSource.css('margin-left', 0);
             }
             if ($thisP == 'center') {
                 function dropScroll() {
