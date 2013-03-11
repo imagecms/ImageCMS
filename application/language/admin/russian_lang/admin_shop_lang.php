@@ -371,7 +371,7 @@ $lang['a_status_set'] = 'Статус установил';
 $lang['a_user_name'] = 'Имя';
 $lang['a_there'] = 'существует';
 $lang['a_product'] = 'Товар';
-$lang['a_products'] = 'Товари';
+$lang['a_products'] = 'Товары';
 $lang['a_orders'] = 'Заказы';
 $lang['a_create_order'] = 'Создать заказ';
 $lang['a_orders_list'] = 'Список заказов';
@@ -855,4 +855,30 @@ $lang['a_user_name'] = 'Имя пользователя';
 $lang['a_delete_order_status_confirm'] = 'Действительно далить статус(ы)?';
 $lang['a_order_status_deleting'] = 'Удаление статуса заказа';
 $lang['a_order_cr'] = 'Создание заказа';
+
+
+/*      shop menu       */
+$lang['a_orders_all'] = 'Все заказы';
+$lang['a_callbacks_statuses'] = 'Статусы колбеков';
+$lang['a_orderstatuses'] = 'Статусы заказов';
+$lang['a_callbacks_themes'] = 'Темы колбеков';
+$lang['a_notificationstatuses'] = 'Статусы уведомлений';
+$lang['a_others'] = 'Остальное';
+$lang['a_products_catalog'] = 'Каталог товаров';
+$lang['a_categories_m'] = 'Категории';
+$lang['a_products_properties'] = 'Свойства товаров';
+$lang['a_shop_kits'] = 'Наборы товаров';
+$lang['a_rbac_control'] = 'Управление правами доступа';
+$lang['a_components'] = 'Компоненты';
+$lang['a_stocks'] = 'Склады';
+$lang['a_comulative_discounts'] = 'Накопительные скидки';
+$lang['a_gift_certs'] = 'Подарочные сертификаты';
+$lang['a_customfields'] = 'Дополнительные поля';
+$lang['a_global_settings'] = 'Глобальные настройки';
+$lang['a_currencies'] = 'Валюты';
+$lang['a_deliverymethods'] = 'Способы доставки';
+$lang['a_paymentmethods'] = 'Спопобы оплаты';
+$lang['a_automation'] = 'Автоматизация';
+$lang['a_statistics'] = 'Статистика';
+$lang['a_settings'] = 'Настройки';
 ?>

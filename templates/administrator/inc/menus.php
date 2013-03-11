@@ -43,7 +43,7 @@ $baseMenu = array(
     ),
     array(
         'link'      => '',
-        'text'      => 'Категория',
+        'text'      => 'Категории',
         'icon'      => 'icon-list',
         'subMenu'   => array(
             array(
@@ -140,7 +140,7 @@ $baseMenu = array(
 
 $shopMenu = array(
     array(
-        'link'      => '/admin/dashboard',
+        'link'      => $ADMIN_URL.'dashboard',
         'text'      => 'Главная',
         'icon'      => 'icon-home'
 
@@ -155,11 +155,11 @@ $shopMenu = array(
                 'text'      => 'a_orders',
             ),
             array(
-                'link'      => 'orders/index',
-                'text'      => 'a_all_orders',
+                'link'      => $ADMIN_URL.'orders/index',
+                'text'      => 'a_orders_all',
             ),
             array(
-                'link'      => 'orderstatuses',
+                'link'      => $ADMIN_URL.'orderstatuses',
                 'text'      => 'a_orderstatuses',
             ),
             array(
@@ -167,15 +167,15 @@ $shopMenu = array(
                 'text'      => 'a_callbacks',
             ),
             array(
-                'link'      => 'callbacks',
+                'link'      => $ADMIN_URL.'callbacks',
                 'text'      => 'a_callbacks',
             ),
             array(
-                'link'      => 'callbacks/statuses',
+                'link'      => $ADMIN_URL.'callbacks/statuses',
                 'text'      => 'a_callbacks_statuses',
             ),
             array(
-                'link'      => 'callbacks/themes',
+                'link'      => $ADMIN_URL.'callbacks/themes',
                 'text'      => 'a_callbacks_themes',
             ),
             array(
@@ -183,11 +183,11 @@ $shopMenu = array(
                 'text'      => 'a_notifications',
             ),
             array(
-                'link'      => 'notifications',
+                'link'      => $ADMIN_URL.'notifications',
                 'text'      => 'a_notifications',
             ),
             array(
-                'link'      => 'notificationstatuses/index',
+                'link'      => $ADMIN_URL.'notificationstatuses/index',
                 'text'      => 'a_notificationstatuses',
             ),
             array(
@@ -206,23 +206,23 @@ $shopMenu = array(
         'icon'      => 'icon-list-alt',
         'subMenu'   => array(
             array(
-                'link'      => '/admin/components/run/shop/categories/index',
-                'text'      => 'a_categories',
+                'link'      => $ADMIN_URL.'categories/index',
+                'text'      => 'a_categories_m',
             ),
             array(
-                'link'      => '/admin/components/run/shop/search/index',
+                'link'      => $ADMIN_URL.'search/index',
                 'text'      => 'a_products',
             ),
             array(
-                'link'      => '/admin/components/run/shop/properties/index',
+                'link'      => $ADMIN_URL.'properties/index',
                 'text'      => 'a_products_properties',
             ),
             array(
-                'link'      => '/admin/components/run/shop/kits/index',
+                'link'      => $ADMIN_URL.'kits/index',
                 'text'      => 'a_shop_kits',
             ),
             array(
-                'link'      => '/admin/components/run/shop/search/index?WithoutImages=1',
+                'link'      => $ADMIN_URL.'search/index?WithoutImages=1',
                 'text'      => 'a_products_without_images',
             )
         )
@@ -233,7 +233,7 @@ $shopMenu = array(
         'icon'      => 'icon-user',
         'subMenu'   => array(
             array(
-                'link'      => 'users/index',
+                'link'      => $ADMIN_URL.'users/index',
                 'text'      => 'a_users_list',
             ),
             array(
@@ -248,31 +248,31 @@ $shopMenu = array(
         'icon'      => 'icon-briefcase',
         'subMenu'   => array(
             array(
-                'link'      => 'brands/index',
+                'link'      => $ADMIN_URL.'brands/index',
                 'text'      => 'a_brands',
             ),
             array(
-                'link'      => 'warehouses/index',
+                'link'      => $ADMIN_URL.'warehouses/index',
                 'text'      => 'a_stocks',
             ),
             array(
-                'link'      => 'banners/index',
-                'text'      => 'a_stocks',
+                'link'      => $ADMIN_URL.'banners/index',
+                'text'      => 'a_banners',
             ),
             array(
-                'link'      => 'discounts/index',
+                'link'      => $ADMIN_URL.'discounts/index',
                 'text'      => 'a_reg_discount_sh',
             ),
             array(
-                'link'      => 'comulativ/index',
-                'text'      => 'a_comulative_discount_sh',
+                'link'      => $ADMIN_URL.'comulativ/index',
+                'text'      => 'a_comulative_discounts',
             ),
             array(
-                'link'      => 'gifts',
+                'link'      => $ADMIN_URL.'gifts',
                 'text'      => 'a_gift_certs',
             ),
             array(
-                'link'      => 'customfields',
+                'link'      => $ADMIN_URL.'customfields',
                 'text'      => 'a_customfields',
             ),
         )
@@ -283,11 +283,11 @@ $shopMenu = array(
         'icon'      => 'icon-statistic',
         'subMenu'   => array(
             array(
-                'link'      => 'charts/brands',
+                'link'      => $ADMIN_URL.'charts/brands',
                 'text'      => 'a_brands',
             ),
             array(
-                'link'      => 'charts/orders',
+                'link'      => $ADMIN_URL.'charts/orders',
                 'text'      => 'a_orders',
             )
         )
@@ -298,23 +298,23 @@ $shopMenu = array(
         'icon'      => 'icon-cog',
         'subMenu'   => array(
             array(
-                'link'      => 'settings',
+                'link'      => $ADMIN_URL.'settings',
                 'text'      => 'a_global_settings',
             ),
             array(
-                'link'      => 'currencies',
+                'link'      => $ADMIN_URL.'currencies',
                 'text'      => 'a_currencies',
             ),
             array(
-                'link'      => 'deliverymethods/index',
+                'link'      => $ADMIN_URL.'deliverymethods/index',
                 'text'      => 'a_deliverymethods',
             ),
             array(
-                'link'      => 'paymentmethods/index',
+                'link'      => $ADMIN_URL.'paymentmethods/index',
                 'text'      => 'a_paymentmethods',
             ),
             array(
-                'link'      => 'system/import',
+                'link'      => $ADMIN_URL.'system/import',
                 'text'      => 'a_automation',
             ),
         )
@@ -324,7 +324,6 @@ $shopMenu = array(
 
 if (preg_match('/Pro/', IMAGECMS_NUMBER))
 {
-    unset($baseMenu[6]['subMenu'][2]);
     unset($shopMenu[6]['subMenu'][4]);
     unset($shopMenu[5]);
 }

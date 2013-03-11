@@ -291,6 +291,12 @@
         </footer>
         <div class="headerFon"></div>
 
+        <!-- php vars to js -->
+        <script type="text/javascript">
+            var curr = '{$CS}';
+            var pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}');
+        </script>
+
         <script type="text/javascript" src="{$THEME}js/jquery.imagecms.js"></script>
         <script type="text/javascript" src="{$THEME}js/jquery.cycle.all.js"></script>
         <script type="text/javascript" src="{$THEME}js/jquery.jcarousel.min.js"></script>
