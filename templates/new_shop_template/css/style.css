@@ -201,7 +201,7 @@ table th{text-align: left;}
 .table_order .items > li{display: block;text-align: center;}
 .table_order .items_middle > li{display: inline-block;float: none;}
 .table_order .items_catalog{margin-left: 30px;margin-top: 30px;}
-.table_order .photo{padding: 0;}
+.table_order .photo{padding: 0;max-width: 80px;max-height: 80px;}
 
 tr.cartKit table td {border: 0;}
 
@@ -687,8 +687,8 @@ a.activeSlide{background-position: -66px 0;}
 .items .description{padding-right: 10px;}
 .items > li.o_5 a{color: #979797;}
 .items > li{position: relative;display: inline-block;vertical-align: top;font-size: 12px;white-space: normal;}
-.photo{font-size: 0;margin-bottom: 3px;text-align: center;text-decoration: none;display: block;width: 96%;letter-spacing:-1px;white-space: nowrap;}
-.photo > *{letter-spacing:normal;white-space: normal;}
+.photo{font-size: 0;margin-bottom: 3px;text-align: center;text-decoration: none;display: block;width: 96%;}
+
 .photo figure{width: 100%;height: 100%;}
 .photo a, a.photo{padding: 2%;}
 .photo figure img{max-height: 100%;}
