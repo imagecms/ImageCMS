@@ -99,7 +99,7 @@
                     <!-- End. Per page block -->
                     <!-- Start. Buttons for change view mode (list/images) -->
                     <div class="groupButton list_pic_btn" data-toggle="buttons-radio">
-                        <button type="button" class="btn active showAsTable"><span class="icon-cat_pic"></span>{lang('s_in_images')}</button>
+                        <button type="button" class="btn showAsTable"><span class="icon-cat_pic"></span>{lang('s_in_images')}</button>
                         <button type="button" class="btn showAsList"><span class="icon-cat_list"></span>{lang('s_in_list')}</button>
                     </div>
                     <!-- End. Buttons for change view mode (list/images) -->

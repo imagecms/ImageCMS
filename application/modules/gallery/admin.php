@@ -141,7 +141,7 @@ class Admin extends BaseAdminController {
 
             for ($i = 0; $i < $cnt; $i++) {
                 // Create url to album cover
-                $albums[$i]['cover_url'] = media_url($upload_url . $albums[$i]['id'] . '/_admin_thumbs/' . $albums[$i]['cover_name'] . $albums[$i]['cover_ext']);
+                $albums[$i]['cover_url'] = media_url($upload_url . $albums[$i]['id'] . '/' . $albums[$i]['cover_name'] . $albums[$i]['cover_ext']);
 
                 $upload_url = $this->conf['upload_url'];
 
@@ -149,12 +149,12 @@ class Admin extends BaseAdminController {
                     $image = $this->gallery_m->get_last_image($albums[$i]['id']);
 
                     if ($image != FALSE) {
-                        $albums[$i]['cover_url'] = media_url($upload_url . $albums[$i]['id'] . '/_admin_thumbs/' . $image['file_name'] . $image['file_ext']);
+                        $albums[$i]['cover_url'] = media_url($upload_url . $albums[$i]['id'] . '/' . $image['file_name'] . $image['file_ext']);
                     } else {
                         $albums[$i]['cover_url'] = 'empty';
                     }
                 } else {
-                    $albums[$i]['cover_url'] = media_url($upload_url . $albums[$i]['id'] . '/_admin_thumbs/' . $albums[$i]['cover_name'] . $albums[$i]['cover_ext']);
+                    $albums[$i]['cover_url'] = media_url($upload_url . $albums[$i]['id'] . '/' . $albums[$i]['cover_name'] . $albums[$i]['cover_ext']);
                 }
             }
 
@@ -272,7 +272,7 @@ class Admin extends BaseAdminController {
             $album_id = $this->gallery_m->create_album();
 
             // Create album folder
-           @mkdir($this->conf['upload_path'] . $album_id);
+            @mkdir($this->conf['upload_path'] . $album_id);
 
             chmod($this->conf['upload_path'] . $album_id, 0777);
 
@@ -338,7 +338,7 @@ class Admin extends BaseAdminController {
     /**
      * Delete album
      */
-    public function delete_album($id = FALSE) {
+    public function delete_album($id = FALSE, $category = NULL) {
         if ($id == FALSE) {
             $id = (int) $this->input->post('album_id');
         }
@@ -346,18 +346,19 @@ class Admin extends BaseAdminController {
         $album = $this->gallery_m->get_album($id);
 
         if ($album != FALSE) {
-            if ($this->input->post('delete_folder') == TRUE) {
-                $this->load->helper('file');
+//            if ($folder != FALSE) {
+            $this->load->helper('file');
 
-                // delete images.
-                delete_files($this->conf['upload_path'] . $album['id'], TRUE);
+            // delete images.
+            delete_files($this->conf['upload_path'] . $album['id'], TRUE);
 
-                // delete album dir.
-                rmdir($this->conf['upload_path'] . $album['id'], TRUE);
-            }
+            // delete album dir.
+            rmdir($this->conf['upload_path'] . $album['id'], TRUE);
+//            }
             $this->gallery_m->delete_album($album['id']);
-            echo 'deleted';
-            exit;
+            pjax('/admin/components/cp/gallery/category/' . $category);
+//            echo 'deleted';
+//            exit;
         } else {
             showMessage(lang('amt_cant_load_album_info'));
         }
