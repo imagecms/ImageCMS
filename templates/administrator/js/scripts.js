@@ -67,7 +67,7 @@ function init_2() {
     $('.btn.disabled').each(function(event) {
         $(this).attr('disabled', true);
     })
-
+    
     if ($.exists('.niceCheck')) {
         $(".niceCheck").each(function() {
             active_b_p = '-46px -17px';
@@ -110,7 +110,7 @@ function init_2() {
         if ($('#show_in_all_cat').attr('checked')) {
             $('#cat_list').removeAttr('disabled');
         } else
-        {
+{
             $('#cat_list').attr('disabled', 'disabled');
             $('#cat_list option:selected').each(function() {
                 this.selected = false;
@@ -264,11 +264,11 @@ function init_2() {
         var input = el.find("input");
         if (!input.attr("checked")) {
             check1(el, input);
-            //textcomment_s_h('s', el);
+        //textcomment_s_h('s', el);
         }
         else {
             check2(el, input);
-            //textcomment_s_h('h', el);
+        //textcomment_s_h('h', el);
         }
     }
     function changeRadio(el)
@@ -280,7 +280,7 @@ function init_2() {
     function changeCheckallchecks(el)
     {
         var el = el,
-                input = el.find("input");
+        input = el.find("input");
         el.css("background-position", active_b_p);
         el.parent().addClass('active');
         input.attr("checked", true);
@@ -294,12 +294,12 @@ function init_2() {
             el.closest('tbody').find('.comments').has(el).addClass('active');
 
         dis_un_dis();
-        //textcomment_s_h('s', el);
+    //textcomment_s_h('s', el);
     }
     function changeCheckallreset(el)
     {
         var el = el,
-                input = el.find("input");
+        input = el.find("input");
         el.css("background-position", n_active_b_p);
         el.parent().removeClass('active');
         input.attr("checked", false);
@@ -313,12 +313,12 @@ function init_2() {
             el.closest('tbody').find('.comments').has(el).removeClass('active');
 
         dis_un_dis();
-        //textcomment_s_h('h', el);
+    //textcomment_s_h('h', el);
     }
     function changeCheckStart(el)
     {
         var el = el,
-                input = el.find("input");
+        input = el.find("input");
         if (input.attr("checked")) {
             check1(el, input);
         }
@@ -330,7 +330,7 @@ function init_2() {
     function changeRadioStart(el)
     {
         var el = el,
-                input = el.find("input");
+        input = el.find("input");
         el.removeClass('b_n');
         if (input.attr("checked")) {
             check3(el, input);
@@ -342,11 +342,11 @@ function init_2() {
             changeCheckallchecks($(this).find('> span:eq(0)'));
         })
     },
-            function() {
-                $(this).parents('table').find('tbody .frame_label').each(function() {
-                    changeCheckallreset($(this).find('> span:eq(0)'));
-                })
-            });
+    function() {
+        $(this).parents('table').find('tbody .frame_label').each(function() {
+            changeCheckallreset($(this).find('> span:eq(0)'));
+        })
+    });
     $('.all_diselect').die('click').live('click', function() {
         $(this).parents('table').find('.frame_label').each(function() {
             changeCheckallreset($(this).find('> span:eq(0)'));
@@ -377,10 +377,10 @@ function dropDownMenu() {
             arr.push(parseInt($(this).val()));
         });
         $.post('/admin/components/cp/comments/update_status',
-                {
-                    id: arr,
-                    status: 2
-                },
+        {
+            id: arr,
+            status: 2
+        },
         function(data) {
             $('.notifications').append(data);
         }
@@ -392,10 +392,10 @@ function dropDownMenu() {
             arr.push(parseInt($(this).val()));
         });
         $.post('/admin/components/cp/comments/update_status',
-                {
-                    id: arr,
-                    status: 1
-                },
+        {
+            id: arr,
+            status: 1
+        },
         function(data) {
             $('.notifications').append(data);
         }
@@ -408,10 +408,10 @@ function dropDownMenu() {
             arr.push(parseInt($(this).val()));
         });
         $.post('/admin/components/cp/comments/update_status',
-                {
-                    id: arr,
-                    status: 0
-                },
+        {
+            id: arr,
+            status: 0
+        },
         function(data) {
             $('.notifications').append(data);
         }
@@ -478,22 +478,22 @@ function autocomplete() {
             select: function(event, ui) {
                 var mainDisc = $('#mainDisc').attr('value');
                 $('#forAttached').append('<div id="tpm_row' + ui.item.identifier.id + '" class="m-t_10">' +
-                        '<span class="d-i_b number v-a_b">' +
-                        '<span class="help-inline d_b">ID</span>' +
-                        '<input type="text" name="AttachedProductsIds[]" value="' + ui.item.identifier.id + '" class="input-mini"/>' +
-                        '</span>&nbsp;' +
-                        '<span class="d-i_b v-a_b">' +
-                        '<span class="help-inline d_b">Имя</span>' +
-                        '<input type="text" id="AttachedProducts" value="' + ui.item.label + '" class="input-xxlarge"/>' +
-                        '</span>&nbsp;' +
-                        '<span class="d-i_b number v-a_b">' +
-                        '<span class="help-inline d_b">Скидка %</span>' +
-                        '<input type="text" id="AttachedProductsDisc" name="Discounts[]" value="' + mainDisc + '" class="input-mini" data-max="100" data-rel="tooltip" data-title="?????? ?????"/>' +
-                        '</span>&nbsp;' +
-                        '<span class="d-i_b v-a_b">' +
-                        '<button class="btn btn-danger btn-small del_tmp_row" type="button" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash icon-white"></i></button>' +
-                        '</span>' +
-                        '</div>');
+                    '<span class="d-i_b number v-a_b">' +
+                    '<span class="help-inline d_b">ID</span>' +
+                    '<input type="text" name="AttachedProductsIds[]" value="' + ui.item.identifier.id + '" class="input-mini"/>' +
+                    '</span>&nbsp;' +
+                    '<span class="d-i_b v-a_b">' +
+                    '<span class="help-inline d_b">Имя</span>' +
+                    '<input type="text" id="AttachedProducts" value="' + ui.item.label + '" class="input-xxlarge"/>' +
+                    '</span>&nbsp;' +
+                    '<span class="d-i_b number v-a_b">' +
+                    '<span class="help-inline d_b">Скидка %</span>' +
+                    '<input type="text" id="AttachedProductsDisc" name="Discounts[]" value="' + mainDisc + '" class="input-mini" data-max="100" data-rel="tooltip" data-title="?????? ?????"/>' +
+                    '</span>&nbsp;' +
+                    '<span class="d-i_b v-a_b">' +
+                    '<button class="btn btn-danger btn-small del_tmp_row" type="button" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash icon-white"></i></button>' +
+                    '</span>' +
+                    '</div>');
             },
             close: function(event, ui) {
                 $('#AttachedProducts').attr('value', '');
@@ -506,14 +506,14 @@ function autocomplete() {
             source: '/admin/components/run/shop/kits/get_products_list/' + $('#RelatedProducts').attr('value') + '&limit=20',
             select: function(event, ui) {
                 $('#relatedProductsNames').append('<div id="tpm_row' + ui.item.identifier.id + '">' +
-                        '<span style="width: 70%;margin-left: 1%;" class="pull-left">' +
-                        '<a id="AttachedProducts" >' + ui.item.label + '</a>' +
-                        '<input type="hidden" name="RelatedProducts[]" value="' + ui.item.identifier.id + '">' +
-                        '</span>' +
-                        '<span style="width: 8%;margin-left: 1%;" class="pull-left">' +
-                        '<button class="btn btn-small del_tmp_row" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash"></i></button>' +
-                        '</span>' +
-                        '</div>');
+                    '<span style="width: 70%;margin-left: 1%;" class="pull-left">' +
+                    '<a id="AttachedProducts" >' + ui.item.label + '</a>' +
+                    '<input type="hidden" name="RelatedProducts[]" value="' + ui.item.identifier.id + '">' +
+                    '</span>' +
+                    '<span style="width: 8%;margin-left: 1%;" class="pull-left">' +
+                    '<button class="btn btn-small del_tmp_row" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash"></i></button>' +
+                    '</span>' +
+                    '</div>');
             },
             close: function(event, ui) {
                 $('#RelatedProducts').attr('value', '');
@@ -594,7 +594,7 @@ handleFileSelect = function(evt) {
                 // Render thumbnail.
                 var span = document.createElement('div');
                 span.innerHTML = ['<img style="max-width:100px;" src="', e.target.result,
-                    '" title="', escape(theFile.name), '"/>'].join('');
+                '" title="', escape(theFile.name), '"/>'].join('');
                 document.getElementById('picsToUpload').insertBefore(span, null);
                 document.getElementById('picsToUpload').className = 'is_content';
                 $('#picsToUpload img').fadeIn(500);
@@ -638,12 +638,12 @@ function getScrollTop() {
         //Netscape compliant
         scrOfY = window.pageYOffset;
     } else if (document.body
-            && (document.body.scrollLeft
+        && (document.body.scrollLeft
             || document.body.scrollTop)) {
         //DOM compliant
         scrOfY = document.body.scrollTop;
     } else if (document.documentElement
-            && (document.documentElement.scrollLeft
+        && (document.documentElement.scrollLeft
             || document.documentElement.scrollTop)) {
         //IE6 Strict
         scrOfY = document.documentElement.scrollTop;
@@ -912,18 +912,18 @@ function initAdminArea() {
 
     function mouseDown(e) {
         if (
-                (e.target.nodeName != "HTML") &&
-                (e.target.nodeName != "TEXTAREA") &&
-                (e.target.nodeName != "SELECT") &&
-                (e.target.nodeName != "OPTION") &&
-                (e.target.nodeName != "INPUT") &&
-                (e.target.nodeName != "TR") &&
-                (e.target.nodeName != "P") &&
-                (e.target.nodeName != "SPAN") &&
-                (!e.target.nodeName != "A") &&
-                (e.target.nodeName != "DD")
-                )
-        {
+            (e.target.nodeName != "HTML") &&
+            (e.target.nodeName != "TEXTAREA") &&
+            (e.target.nodeName != "SELECT") &&
+            (e.target.nodeName != "OPTION") &&
+            (e.target.nodeName != "INPUT") &&
+            (e.target.nodeName != "TR") &&
+            (e.target.nodeName != "P") &&
+            (e.target.nodeName != "SPAN") &&
+            (!e.target.nodeName != "A") &&
+            (e.target.nodeName != "DD")
+            )
+            {
             e = e || event;
             cancelEvent(e);
             addHandler(document, 'selectstart', returnFalse, false);
@@ -962,9 +962,9 @@ function initAdminArea() {
     $('.item_menu .row-category:even').addClass('even');
 
 
-// $('.listFilterForm').die('focus').live('focus', function() {
-// $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
-// });
+    // $('.listFilterForm').die('focus').live('focus', function() {
+    // $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
+    // });
 
     $('.listFilterSubmitButton').die('click').live('click', function() {
         if (!$(this).attr('disabled') && !$(this).hasClass('disabled'))
@@ -1023,7 +1023,7 @@ function initAdminArea() {
         $('#loading').fadeIn(100);
 
     })
-            .on('pjax:end', function() {
+    .on('pjax:end', function() {
         $('#loading').fadeOut(300);
     });
 
@@ -1036,12 +1036,12 @@ function initAdminArea() {
                 $('#order' + orderField).find('a').after('&darr;');
 
     if ($('textarea.elRTE').length > 0)
-//        initElRTE();
+        //        initElRTE();
         initTextEditor(textEditor);
 
     if ($('#elFinderTPLEd').length > 0)
         elFinderTPLEd();
-//        initTextEditor(textEditor);
+    //        initTextEditor(textEditor);
 
     //elRTE bugFix for Firefox
 
@@ -1064,169 +1064,169 @@ function initAdminArea() {
 ;
 
 $(document).ready(
-        function() {
+    function() {
 
-            if ($('#shopSearch').length) {
-                initShopSearch();
-            }
+        if ($('#shopSearch').length) {
+            initShopSearch();
+        }
 
-            if ($.exists('#topPanelNotifications'))
-                updateNotificationsTotal();
-            initAdminArea();
-            //$('.nav .dropdown-menu a').die('click');
+        if ($.exists('#topPanelNotifications'))
+            updateNotificationsTotal();
+        initAdminArea();
+        //$('.nav .dropdown-menu a').die('click');
 
-            $('a.pjax').not('#mainContent a.pjax').die('click').click(function(event) {
-                event.preventDefault();
-                $('#loading').fadeIn(100);
-                $.pjax({
-                    url: $(this).attr('href'),
-                    container: '#mainContent',
-                    timeout: 3000
-                });
-                $('nav li').removeClass('active');
-                $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
-                return true;
+        $('a.pjax').not('#mainContent a.pjax').die('click').click(function(event) {
+            event.preventDefault();
+            $('#loading').fadeIn(100);
+            $.pjax({
+                url: $(this).attr('href'),
+                container: '#mainContent',
+                timeout: 3000
             });
+            $('nav li').removeClass('active');
+            $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
+            return true;
+        });
 
 
-            $('.main_body').append('<div class="overlay"></div>');
+        $('.main_body').append('<div class="overlay"></div>');
 
-            $(this).keydown(function(e) {
-                e = e || window.event;
-                if (e.target.id == "baseSearch" || e.target.id == "shopSearch")
-                {
-                    if ((e.keyCode === 13 || (e.keyCode === 83 && e.ctrlKey)) && e.target.localName != 'textarea') {
-                        $('#adminSearchSubmit').click();
-                        return false;
-                    }
-                }
-            });
-
-
-            $('a.pjax').die('click').click(function(event) {
-                event.preventDefault();
-                $('#loading').fadeIn(100);
-                $.pjax({
-                    url: $(this).attr('href'),
-                    container: '#mainContent',
-                    timeout: 3000
-                });
-                $('nav li').removeClass('active');
-                $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
-                return false;
-            });
-
-
-            $('.main_body').append('<div class="overlay"></div>');
-
-            $(this).keydown(function(e) {
-                e = e || window.event;
-                if (e.target.id == "baseSearch" || e.target.id == "shopSearch")
-                {
-                    if ((e.keyCode === 13 || (e.keyCode === 83 && e.ctrlKey)) && e.target.localName != 'textarea') {
-                        $('#adminSearchSubmit').click();
-                        return false;
-                    }
-                }
-            });
-
-            $('#rep_bug').die('click').live('click', function() {
-                var overlay = $('.overlay');
-                overlay.css({
-                    'height': $(document).height(),
-                    'opacity': 0.5
-                });
-                overlay.fadeIn(function() {
-                    $('.frame_rep_bug').find('.alert').remove().end().fadeIn();
-                });
-                overlay.die('click').live('click', function() {
-                    $('.frame_rep_bug').fadeOut(function() {
-                        overlay.fadeOut();
-                    })
-                });
-                return false;
-            });
-            $('.frame_rep_bug [type="submit"]').die('click').live('click', function() {
-                var overlay = $('.overlay');
-                var url = 'hostname=' + location.hostname + '&pathname=' + location.pathname + '&user_name=' + $('#user_name').text() + '&text=' + $('.frame_rep_bug textarea').val() + '&ip_address=' + $('.frame_rep_bug #ip_address').val();
-                $.ajax({
-                    type: 'GET',
-                    url: '/admin/report_bug',
-                    data: url,
-                    success: function(data) {
-                        $('.frame_rep_bug').prepend('<div class="alert alert-success">???? ????????? ??????????</div>');
-                        setTimeout(function() {
-                            overlay.trigger('click')
-                        }, 2000)
-                    }
-                })
-                return false;
-            });
-            $('[name="cancel_button"]').live('click', function() {
-                var overlay = $('.overlay');
-                overlay.trigger('click');
-                //$('.frame_rep_bug').hide('slow');
-            });
-            if ($.exists('#chart'))
-                brands();
-            if ($.exists('#wrapper_gistogram'))
-                gistogram();
-
-            if ($.exists('#addPictures'))
-                $('#addPictures').live('change', handleFileSelect);
-
-            $(document).die('keydown').live('keydown', function(e) {
-                var dataSubmit = $("[data-submit]");
-                e = e || window.event;
-                if (e.ctrlKey)
-                    $('#baseSearch, #shopSearch').blur();
-                //if ((event.ctrlKey && event.shiftKey) || (event.shiftKey && event.altKey)) $('.baseSearch:first').focus();
-                if (e.keyCode === 83 && e.ctrlKey) {
-                    if (!dataSubmit.hasClass('disabled') && dataSubmit.closest('.tab-pane').css('display') != 'none')
-                        dataSubmit.trigger('click');
+        $(this).keydown(function(e) {
+            e = e || window.event;
+            if (e.target.id == "baseSearch" || e.target.id == "shopSearch")
+            {
+                if ((e.keyCode === 13 || (e.keyCode === 83 && e.ctrlKey)) && e.target.localName != 'textarea') {
+                    $('#adminSearchSubmit').click();
                     return false;
                 }
+            }
+        });
+
+
+        $('a.pjax').die('click').click(function(event) {
+            event.preventDefault();
+            $('#loading').fadeIn(100);
+            $.pjax({
+                url: $(this).attr('href'),
+                container: '#mainContent',
+                timeout: 3000
             });
+            $('nav li').removeClass('active');
+            $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
+            return false;
+        });
 
-            init_2();
-            autocomplete();
-            //list filter
 
-            $('.listFilterForm').die('keydown').live('keydown', function(event) {
-                $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
-                if (what_key(13, event))
-                    $('.listFilterSubmitButton').trigger('click');
+        $('.main_body').append('<div class="overlay"></div>');
+
+        $(this).keydown(function(e) {
+            e = e || window.event;
+            if (e.target.id == "baseSearch" || e.target.id == "shopSearch")
+            {
+                if ((e.keyCode === 13 || (e.keyCode === 83 && e.ctrlKey)) && e.target.localName != 'textarea') {
+                    $('#adminSearchSubmit').click();
+                    return false;
+                }
+            }
+        });
+
+        $('#rep_bug').die('click').live('click', function() {
+            var overlay = $('.overlay');
+            overlay.css({
+                'height': $(document).height(),
+                'opacity': 0.5
             });
-
-            $('.listFilterForm select').die('change').live('change', function(event) {
-                $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
+            overlay.fadeIn(function() {
+                $('.frame_rep_bug').find('.alert').remove().end().fadeIn();
             });
-
-            /* menu */
-            var found = false;
-            $('#mainAdminMenu a').each(function() {
-                if ($(this).attr('href').match(window.location.pathname) && !found)
-                {
-                    $(this).closest('li').addClass('active');
-                    $('li.active').closest('ul').closest('li').addClass('active');
-                    found = true;
+            overlay.die('click').live('click', function() {
+                $('.frame_rep_bug').fadeOut(function() {
+                    overlay.fadeOut();
+                })
+            });
+            return false;
+        });
+        $('.frame_rep_bug [type="submit"]').die('click').live('click', function() {
+            var overlay = $('.overlay');
+            var url = 'hostname=' + location.hostname + '&pathname=' + location.pathname + '&user_name=' + $('#user_name').text() + '&text=' + $('.frame_rep_bug textarea').val() + '&ip_address=' + $('.frame_rep_bug #ip_address').val();
+            $.ajax({
+                type: 'GET',
+                url: '/admin/report_bug',
+                data: url,
+                success: function(data) {
+                    $('.frame_rep_bug').prepend('<div class="alert alert-success">???? ????????? ??????????</div>');
+                    setTimeout(function() {
+                        overlay.trigger('click')
+                    }, 2000)
                 }
             })
-
-            /**/
-            $('#baseSearch, #shopSearch').focus();
-            $('[data-remove]').live('click', function() {
-                $(this).closest('tr').remove();
-            })
-
-            $('.btn').live('click', function() {
-
-                $('.tooltip').remove();
-            })
-            $('#settings_form .control-label').live('click', function() {
-                $(this).next().find(':input:first').focus();
-            })
+            return false;
         });
+        $('[name="cancel_button"]').live('click', function() {
+            var overlay = $('.overlay');
+            overlay.trigger('click');
+        //$('.frame_rep_bug').hide('slow');
+        });
+        if ($.exists('#chart'))
+            brands();
+        if ($.exists('#wrapper_gistogram'))
+            gistogram();
+
+        if ($.exists('#addPictures'))
+            $('#addPictures').live('change', handleFileSelect);
+
+        $(document).die('keydown').live('keydown', function(e) {
+            var dataSubmit = $("[data-submit]");
+            e = e || window.event;
+            if (e.ctrlKey)
+                $('#baseSearch, #shopSearch').blur();
+            //if ((event.ctrlKey && event.shiftKey) || (event.shiftKey && event.altKey)) $('.baseSearch:first').focus();
+            if (e.keyCode === 83 && e.ctrlKey) {
+                if (!dataSubmit.hasClass('disabled') && dataSubmit.closest('.tab-pane').css('display') != 'none')
+                    dataSubmit.trigger('click');
+                return false;
+            }
+        });
+
+        init_2();
+        autocomplete();
+        //list filter
+
+        $('.listFilterForm').die('keydown').live('keydown', function(event) {
+            $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
+            if (what_key(13, event))
+                $('.listFilterSubmitButton').trigger('click');
+        });
+
+        $('.listFilterForm select').die('change').live('change', function(event) {
+            $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
+        });
+
+        /* menu */
+        var found = false;
+        $('#mainAdminMenu a').each(function() {
+            if ($(this).attr('href').match(window.location.pathname) && !found)
+            {
+                $(this).closest('li').addClass('active');
+                $('li.active').closest('ul').closest('li').addClass('active');
+                found = true;
+            }
+        })
+
+        /**/
+        $('#baseSearch, #shopSearch').focus();
+        $('[data-remove]').live('click', function() {
+            $(this).closest('tr').remove();
+        })
+
+        $('.btn').live('click', function() {
+
+            $('.tooltip').remove();
+        })
+        $('#settings_form .control-label').live('click', function() {
+            $(this).next().find(':input:first').focus();
+        })
+    });
 
 $(window).load(function() {
     $(window).scroll(function() {
