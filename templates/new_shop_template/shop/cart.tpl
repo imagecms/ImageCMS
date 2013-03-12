@@ -270,7 +270,9 @@
         <p>
             Ваша корзина пуста
         </p>
-        {literal}<script>$(document).ready(function(){Shop.Cart.clear()}); setTimeout("window.location.href='/'");</script>{/literal}
+        {literal}<script>$(document).ready(function(){Shop.Cart.clear();
+            setTimeout("window.location.href='/'");});
+        </script>{/literal}
     </div>
     {else:}
                         <h1>Оформление заказа</h1>
