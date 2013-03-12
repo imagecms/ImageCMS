@@ -120,7 +120,7 @@
                                     {$CI->load->module('star_rating')->show_star_rating($product)}
 
                                     <!-- displaying comments count -->
-                                    {if $Comments[$product->getId()][0] != '0'}
+                                    {if $Comments[$product->getId()][0] != '0' && $product->enable_comments}
                                     <a href="{shop_url('product/'.$product->url.'#comment')}" class="count_response">
                                         {echo $Comments[$product->getId()]}
                                     </a>
