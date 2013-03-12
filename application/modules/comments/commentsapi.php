@@ -13,6 +13,7 @@ class Commentsapi extends Comments {
     public $comment_controller = 'comments/add';
     public $use_moderation = TRUE;
     public $validation_errors;
+    public $enable_comments = true;
 
     public function __construct() {
         parent::__construct();
@@ -42,9 +43,9 @@ class Commentsapi extends Comments {
 //            // Comments fetched from cahce file
 //        } else {
 //        $this->db->where('module', 'shop');
-        if (($comments = $this->base->get($this->parsUrl($_SERVER['HTTP_REFERER']))) == false)
-//            return;
-        
+
+        $comments = $this->base->get($this->parsUrl($_SERVER['HTTP_REFERER']));
+
         // Read comments template
         // Set page id for comments form
         if ($comments != FALSE) {
@@ -84,16 +85,19 @@ class Commentsapi extends Comments {
         }
         ($hook = get_hook('comments_read_com_tpl')) ? eval($hook) : NULL;
 
-        $comments = \CMSFactory\assetManager::create()
-                ->setData($data)
-                ->registerStyle('comments')
-                ->fetchTemplate($this->tpl_name);
+        if ($this->enable_comments)
+            $comments = \CMSFactory\assetManager::create()
+                    ->setData($data)
+                    ->registerStyle('comments')
+                    ->fetchTemplate($this->tpl_name);
+        else
+            $comments = '';
 
         ($hook = get_hook('comments_assign_tpl_data')) ? eval($hook) : NULL;
 
         echo json_encode(array(
             'comments' => $comments,
-            'total_comments' => $comments_count?$comments_count . ' ' . $this->Pluralize($comments_count, array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre'))):'Оставить отзыв',
+            'total_comments' => $comments_count ? $comments_count . ' ' . $this->Pluralize($comments_count, array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre'))) : 'Оставить отзыв',
             'validation_errors' => $this->validation_errors
         ));
     }
@@ -115,9 +119,9 @@ class Commentsapi extends Comments {
                     ->where('url', $url)
                     ->get('shop_products')
                     ->row();
-            
+
             if ($id->enable_comments == 0)
-                return FALSE;
+                $this->enable_comments = false;
             else
                 return $id->id;
         }
@@ -130,7 +134,7 @@ class Commentsapi extends Comments {
                     ->row();
 
             if ($id->comments_status == 0)
-                return FALSE;
+                $this->enable_comments = false;
             else
                 return $id->main_page_id;
         }
@@ -143,8 +147,9 @@ class Commentsapi extends Comments {
                 ->where('url', $paths)
                 ->get('content')
                 ->row();
+
         if ($id->comments_status == 0)
-            return FALSE;
+            $this->enable_comments = false;
         else
             return $id->id;
 //        }
