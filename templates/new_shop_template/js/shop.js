@@ -14,6 +14,7 @@ var Shop = {
         countChanged:false,
         shipping:0,
         shipFreeFrom:0,
+        giftCertPrice: 0,
 
         add:function (cartItem) {
             //trigger before_add_to_cart
@@ -224,7 +225,7 @@ var Shop = {
                 if (this.shipFreeFrom < this.getTotalPrice())
                     this.shipping = 0.0;
 
-            return this.getTotalPrice() + this.shipping;
+            return (this.getTotalPrice() + this.shipping - parseFloat(this.giftCertPrice))>=0?(this.getTotalPrice() + this.shipping - parseFloat(this.giftCertPrice)):0;
         },
 
         renderPopupCart:function (selector) {
@@ -638,7 +639,7 @@ function checkCompareWishLink() {
 }
 
 
-$(
+$(document).ready(
 function () {
     processPage();
     processWish();
@@ -791,6 +792,40 @@ function () {
     }
     );
 
+$(//gift certificate in cart
+function(){
+    $('#applyGiftCert').on('click', function(){
+        $('input[name=makeOrder]').val(0);
+        $('input[name=checkCert]').val(1);
+        $('#makeOrderForm').ajaxSubmit({url:'/shop/cart_api',
+            success : function(data){
+                try {
+                    var dataObj = JSON.parse(data);
+
+                    Shop.Cart.giftCertPrice = dataObj.cert_price;
+
+                    if (Shop.Cart.giftCertPrice > 0)
+                    {// apply certificate
+                        $('#giftCertPrice').html(parseFloat(Shop.Cart.giftCertPrice).toFixed(pricePrecision)+ ' '+curr);
+                        $('#giftCertSpan').show();
+                        //$('input[name=giftcert], #applyGiftCert').attr('disabled', 'disabled')
+                    }
+
+                    Shop.Cart.totalRecount();
+                    recountCartPage();
+                } catch (e) {
+                    console.error('Checking gift certificate filed. '+e.message);
+                }
+
+            }
+        });
+
+        $('input[name=makeOrder]').val(1);
+
+        return false;
+    });
+}
+)
 
 //variants
 $('#variantSwitcher').live('change', function () {

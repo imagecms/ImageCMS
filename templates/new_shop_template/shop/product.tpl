@@ -27,15 +27,7 @@
                             <img id="imageGroup" src="{productImageUrl($model->getMainImage())}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
                         </figure>                        
                     </a>              
-                    <ul class="frame_thumbs">                   
-                        <li class="active">
-                            <a rel="group" href="{productImageUrl($model->getMainModImage())}" class="photo">
-                                <span class="helper"></span>
-                                <figure>
-                                    <img src="{productImageUrl($model->getMainimage())}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
-                                </figure>
-                            </a>                                
-                        </li>                   
+                    <ul class="frame_thumbs">
                         <!-- Start. Show additional images -->
                         {if sizeof($productImages = $model->getSProductImagess()) > 0}
                             {foreach $productImages as $key => $image}
@@ -60,7 +52,7 @@
                     <!-- Output rating for the old product Start -->
                     <div class="frame_response">
                         <div class="star">
-                            {$CI->load->module('star_rating')->show_star_rating()}
+                            {$CI->load->module('star_rating')->show_star_rating($model)}
                         </div>
                     </div>
                 <!-- Output rating for the old product End -->
@@ -226,7 +218,7 @@
 
             <ul class="tabs clearfix">
                 <!-- Start. Show the block information if available -->
-                {if $model->getShortDescription() != ''}
+                {if $model->getShortDescription()        != ''}
                     <li>
                         <button type="button" data-href="#info">
                             <span class="icon-info"></span>
