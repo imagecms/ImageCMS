@@ -320,7 +320,20 @@
                                                         <span class="icon-address"></span>
                                                         <input type="text" name="userInfo[deliverTo]" value="{echo $profile.address}"></span>
                                                 </label>
+
+                                                <!--        User custom fields      -->
+                                                {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPattern($pattern)->getCustomFields('user')->asHtml() }
+
+
                                             </div>
+
+                                            <!--        Order custom fields      -->
+
+                                            <div class="groups_form">
+                                                {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPattern($pattern)->getCustomFields('order')->asHtml() }
+                                            </div>
+
+
                                             <div class="groups_form">
                                                 <div class="frameLabel" style="position: relative; z-index: 6;">
                                                     <span class="title">Способ доставки</span>
