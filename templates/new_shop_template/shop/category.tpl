@@ -120,9 +120,11 @@
                                     {$CI->load->module('star_rating')->show_star_rating($product)}
 
                                     <!-- displaying comments count -->
+                                    {if $Comments[$product->getId()][0] != '0' && $product->enable_comments}
                                     <a href="{shop_url('product/'.$product->url.'#comment')}" class="count_response">
                                         {echo $Comments[$product->getId()]}
                                     </a>
+                                    {/if}
                                 </div>
 
                                 <!-- displaying product name -->
@@ -187,6 +189,11 @@
                                         <span class="text-el">{lang('s_add_to_wish_list')}</span>
                                     </button>
                                 </div>
+
+                                <div class="short_description">
+                                    {echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($product->getId())}
+                                </div>
+
                             </div>
 
                             <!-- displaying products small mod image -->

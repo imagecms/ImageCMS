@@ -14,7 +14,7 @@ class Base extends CI_Model {
         $this->db->where('status', $status);
         $this->db->order_by('date', 'asc');
         $query = $this->db->get('comments');
-
+        
         if ($query->num_rows() > 0) {
             return $query->result_array();
         }

@@ -75,7 +75,7 @@
                                                 <span class="f-s_0">
                                                     <span class="helper"></span>
                                                     <span>
-                                                        <a href="/auth/register" class="t-d_u c_5c f-s_0">
+                                                        <a href="/auth/register" class="t-d_n c_5c f-s_0 register">
                                                             <span class="icon-registration"></span>
                                                             <span class="text-el">Регистрация</span>
                                                         </a>
@@ -97,14 +97,7 @@
                                             <li>
                                                 <span class="f-s_0">
                                                     <span class="helper"></span>
-                                                    <button type="button" 
-                                                            data-drop=".drop-enter" 
-                                                            data-effect-on="fadeIn" 
-                                                            data-effect-off="fadeOut" 
-                                                            data-duration="300" 
-                                                            data-place="noinherit" 
-                                                            data-placement="top right"
-                                                            onclick="ImageCMSApi.formAction('/auth/authapi/logout', '')">
+                                                    <button type="button" onclick="ImageCMSApi.formAction('/auth/authapi/logout', '')">
                                                         <span class="icon-exit"></span>
                                                         <span class="d_l_g">Выход</span>
                                                     </button>
@@ -150,8 +143,8 @@
                             </a>
                         </div>
                         <div class="span9 f-s_0">
-                            <span class="helper"></span>
-                            <div class="w_100 f-s_0 frameUndef_1">
+                            <span class="helper"></span
+                            ><div class="w_100 f-s_0 frameUndef_1">
                                 <div class="span6">
                                     <div class="frameSearch">
                                         <form name="search" 

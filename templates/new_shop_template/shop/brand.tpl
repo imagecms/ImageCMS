@@ -83,9 +83,11 @@
                                 <!--    Star reiting    -->
                                 {$CI->load->module('star_rating')->show_star_rating($product)}
                                 <!--    Star reiting    -->
+                                {if $Comments[$product->getId()][0] != '0' && $product->enable_comments}
                                 <a href="{shop_url('product/'.$product->url.'#comment')}" class="count_response">                                    
                                     {echo $Comments[$product->getId()]}
                                 </a>
+                                {/if}
                             </div>
                             <a href="{shop_url('product/' . $product->geturl())}">{echo ShopCore::encode($product->getname())}</a>
                             <div class="price price_f-s_16">

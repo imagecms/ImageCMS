@@ -13,6 +13,7 @@ class Commentsapi extends Comments {
     public $comment_controller = 'comments/add';
     public $use_moderation = TRUE;
     public $validation_errors;
+    public $enable_comments = true;
 
     public function __construct() {
         parent::__construct();
@@ -42,6 +43,7 @@ class Commentsapi extends Comments {
 //            // Comments fetched from cahce file
 //        } else {
 //        $this->db->where('module', 'shop');
+
         $comments = $this->base->get($this->parsUrl($_SERVER['HTTP_REFERER']));
 
         // Read comments template
@@ -83,16 +85,19 @@ class Commentsapi extends Comments {
         }
         ($hook = get_hook('comments_read_com_tpl')) ? eval($hook) : NULL;
 
-        $comments = \CMSFactory\assetManager::create()
-                ->setData($data)
-                ->registerStyle('comments')
-                ->fetchTemplate($this->tpl_name);
+        if ($this->enable_comments)
+            $comments = \CMSFactory\assetManager::create()
+                    ->setData($data)
+                    ->registerStyle('comments')
+                    ->fetchTemplate($this->tpl_name);
+        else
+            $comments = '';
 
         ($hook = get_hook('comments_assign_tpl_data')) ? eval($hook) : NULL;
 
         echo json_encode(array(
             'comments' => $comments,
-            'total_comments' => $comments_count . ' ' . $this->Pluralize($comments_count, array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre'))),
+            'total_comments' => $comments_count ? $comments_count . ' ' . $this->Pluralize($comments_count, array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre'))) : 'Оставить отзыв',
             'validation_errors' => $this->validation_errors
         ));
     }
@@ -110,33 +115,58 @@ class Commentsapi extends Comments {
             $search = array('shop', 'product', '/');
             $replace = array('', '', '');
             $url = str_replace($search, $replace, $url['path']);
-            $id = $this->db->select('id')
+            $id = $this->db->select('id, enable_comments')
                     ->where('url', $url)
                     ->get('shop_products')
                     ->row();
-            return $id->id;
+
+            if ($id->enable_comments == 0)
+                $this->enable_comments = false;
+            else
+                return $id->id;
         }
 
-        if (strstr($url, '/bloh/')) {
-            $paths = explode(DS, $url);
-            $paths = $paths[count($paths)-1];
 
-            $id = $this->db->select('id')
-                    ->where('url', $paths)
-                    ->get('content')
+        if ($url == site_url()) {
+            $id = $this->db->select('main_page_id, comments_status')
+                    ->join('content', 'settings.main_page_id=content.id')
+                    ->get('settings')
                     ->row();
-            return $id->id;
+
+            if ($id->comments_status == 0)
+                $this->enable_comments = false;
+            else
+                return $id->main_page_id;
         }
+
+//        if (strstr($url, '/bloh/')) {
+        $paths = explode(DS, $url);
+        $paths = $paths[count($paths) - 1];
+
+        $id = $this->db->select('id, comments_status')
+                ->where('url', $paths)
+                ->get('content')
+                ->row();
+
+        if ($id->comments_status == 0)
+            $this->enable_comments = false;
+        else
+            return $id->id;
+//        }
     }
 
     public function getModule($url) {
-        if (strstr($url, '/shop/')) {
+        if (strstr($url, '/shop/'))
             return 'shop';
-        }
 
-        if (strstr($url, '/bloh/')) {
+        if (strstr($url, '/bloh/'))
             return 'core';
-        }
+
+
+        if ($url == site_url())
+            return 'core';
+
+        return 'core';
     }
 
     public function newPost() {
@@ -239,7 +269,7 @@ class Commentsapi extends Comments {
             $email = $this->db->select('email')
                     ->get_where('users', array('username' => $this->dx_auth->get_username()), 1)
                     ->row();
-//            var_dump($this->parsUrl($_SERVER['HTTP_REFERER']));exit;
+
             if (!validation_errors()) {
                 $comment_data = array(
                     'module' => $this->getModule($_SERVER['HTTP_REFERER']),
@@ -428,8 +458,9 @@ class Commentsapi extends Comments {
         $this->db->where_in('item_id', $ids);
         $this->db->where('status', $status);
         $this->db->where('module = ', 'shop');
+//        $this->db->join ('shop_products', "shop_products.id=comments.item_id");
         $query = $this->db->get('comments')->result_array();
-
+//        var_dump($query);
         $result = array();
 
         foreach ($query as $q)
