@@ -12,6 +12,7 @@
 *    $model->getTotalPrice() : get aggregate ordered Products Price;
 *    $model->getDeliveryPrice() : return delivery Price;
 *    $model->getTotalPriceWithDelivery() : sum of Product and Delivery Prices;
+*    $model->getTotalPriceWithGift() : difference of previous price (getTotalPriceWithDelivery) and gift certificate price;
 * @updated 27 January 2013;
 */
 #}
@@ -214,9 +215,11 @@
                                         <div class="c_97" style="margin-bottom: 4px;">
                                             (Сумма товаров: <span class="f-w_b">{echo $model->getTotalPrice()}</span> {$CS}
                                             + Доставка: <span class="f-w_b">{echo $model->getDeliveryPrice()}</span> {$CS})
+                                            {if $model->getGiftCertPrice() > 0}<br><span >(Скидка подарочного сертификата: {echo $model->getGiftCertPrice()} {$CS}<span class="f-w_b"></span> )</span>{/if}
                                         </div>
+
                                         <span class="f-s_18">Сумма:</span>&nbsp;
-                                        <span class="f-s_24">{echo $model->getTotalPriceWithDelivery()}</span>&nbsp;
+                                        <span class="f-s_24">{echo $model->getTotalPriceWithGift()}</span>&nbsp;
                                         <span class="f-s_24">{$CS}</span>
                                     </div>
                                 </div>
