@@ -12,15 +12,18 @@
                 <li>
                     <div class="author-data-comment__icsi-css">
                         <span class="author-comment__icsi-css">{$comment.user_name}
-                            <!--
+                        </span> 
                             {if $comment.rate != 0}
-                                <div class="star_rating">
-                                    <div id="{echo $comment.item_id}_star_rating" class="rating_nohover {echo count_star($comment.rate)} star_rait" data-id="{echo $comment.item_id}">
+                                <div class="frameLabel__icsi-css">
+                                    <div class="frame_form_field__icsi-css">
+                                        <div class="star-small">   
+                                            <div class="productRate star-small">
+                                                <div style="width: {echo (int)$comment.rate *20}%"></div>
+                                            </div>  
+                                        </div>
                                     </div>
                                 </div>
                             {/if}
-                            -->
-                        </span> 
                         <span class="date-comment__icsi-css"> {date('d-m-Y H:i', $comment.date)}</span>
                     </div>
                     <div class="frame-comment__icsi-css">
@@ -102,6 +105,19 @@
                             <div class="frameLabel__icsi-css" id="error_text" name="error_text"></div>
                         </span>
                     </label>
+                    <!-- Start star reiting -->
+                    <div class="frameLabel__icsi-css">
+                        <span class="title__icsi-css">{lang('s_you_raiting')}</span>
+                        <div class="frame_form_field__icsi-css">
+                            <div class="star">   
+                                <div class="productRate star-big clicktemprate">
+                                    <div class="for_comment"style="width: 0%"></div>
+                                    <input id="ratec" name="ratec" type="hidden" value=""/>
+                                </div>    
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End star reiting -->
                     {if !$is_logged_in}
                         <label>
                             <span class="frame_form_field__icsi-css">
@@ -133,31 +149,6 @@
                     </label>
                         -->
                     {/if}
-                    <!-- Start star reiting --><!--
-                    <label>
-                    {lang('s_you_raiting')}
-                    <div class="star_rating">
-                        <div id="comment_block" class="rating {echo $r} star_rait" data-id="{echo $item_id}">
-                            <div id="1" class="rate one">
-                                <span title="1" class="clicktemprate">1</span>
-                            </div>
-                            <div id="2" class="rate two">
-                                <span title="2" class="clicktemprate">2</span>
-                            </div>
-                            <div id="3" class="rate three">
-                                <span title="3" class="clicktemprate">3</span>
-                            </div>
-                            <div id="4" class="rate four">
-                                <span title="4" class="clicktemprate">4</span>
-                            </div>
-                            <div id="5" class="rate five">
-                                <span title="5" class="clicktemprate">5</span>
-                            </div>
-                        </div>
-                    </div>
-                    <input id="ratec" name="ratec" type="hidden" value=""/>
-                </label>-->
-                    <!-- End star reiting -->
 
                     <label>
                         <span class="title__icsi-css">{lang('s_text_comment_one')}</span>
@@ -256,6 +247,7 @@
             $('form').submit(function(e) {
                 e.preventDefault();
             });
+
             (function($) {
                 var methods = {
                     init: function(options) {
@@ -329,6 +321,7 @@
                     }
                 };
             })(jQuery);
+
             $(document).ready(function() {
                 $('[data-rel="cloneAddPaste"]').cloneAddPaste({
                     pasteAfter: 'parent.parent',
@@ -350,6 +343,7 @@
                     },
                 });
             })
+
             $('span.clicktemprate').on('click', function() {
                 var rate = $(this).attr('title');
                 var ratec;
@@ -366,6 +360,7 @@
                 $('#comment_block').removeClass().addClass('rating ' + ratec + ' star_rait');
                 $('#ratec').attr('value', rate);
             });
+
             $('.usefullyes').on('click', function() {
                 var comid = $(this).attr('data-comid');
                 $.ajax({
@@ -379,6 +374,7 @@
                     }
                 });
             });
+
             $('.usefullno').on('click', function() {
                 var comid = $(this).attr('data-comid');
                 $.ajax({
@@ -391,6 +387,16 @@
                             $('#noholder' + comid).html("(" + obj.n_count + ")");
                     }
                 });
+            });
+
+            $(".star-big").starRating({
+                width: 26,
+                afterClick: function(el, value) {
+                    if (el.hasClass("clicktemprate")) {
+                        $('.productRate > div.for_comment').css("width", value * 20 + '%');
+                        $('#ratec').attr('value', value);
+                    }
+                }
             });
         {/literal}
     </script>
