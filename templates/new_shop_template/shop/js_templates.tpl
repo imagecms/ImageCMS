@@ -26,7 +26,7 @@
 
      <!-- for single product -->
                             <% if (!item.kit) { %>
-                            <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>"> 
+                            <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" id="popupProduct_<%- item.id %>_<%- item.vId %>">
                                 <td><span class="times d_i-b" onclick="rmFromPopupCart(this);">&times;</span></td>
                                 <td>
                                     <a href="#" class="d_i-b photo">
@@ -71,7 +71,7 @@
 
 
 
-                            <tr class="cartKit" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>">
+                            <tr class="cartKit" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" id="popupKit_<%- item.id %>_<%- item.vId %>>
                                 <td colspan="5">
                                     <table>
                                         <colgroup>
