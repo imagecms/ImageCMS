@@ -43,7 +43,7 @@
                                         -->
                                         <span class="f-w_b" id="priceVariant">{echo $hotProduct->firstVariant->toCurrency()}</span>{$CS}
                                         <!--To display the amount of discounts you can use $hotProduct->firstVariant->getNumDiscount()-->
-                                    </div>  
+                                    </div>
                                     {if $hotProduct->firstvariant->getstock()!=0}
 
                                         <button class="btn btn_buy" 
@@ -63,7 +63,7 @@
                                                 data-effect-off="fadeOut"
                                                 data-effect-on="fadeIn"
                                                 data-drop=".drop-report"
-                                                data-prodid="{echo $hotProduct->firstVariant->getId()}"
+                                                data-prodid="{echo $hotProduct->getId()}"
                                                 type="button"
                                                 class="btn btn_not_avail">
                                             <span class="icon-but"></span>
