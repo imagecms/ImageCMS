@@ -10,7 +10,7 @@
                         <button type="button" class="btn btn_next"><span class="icon next"></span><span class="text-el"></span></button>
                     </div>
                 </div>
-                <div class="carousel bot_border_grey">
+                <div class="carousel">
                     <ul class="items items_catalog">
                         {foreach $products as $hotProduct}
                             <li class="span3 {if $hotProduct->firstvariant->getStock()==0} not-avail{/if}">

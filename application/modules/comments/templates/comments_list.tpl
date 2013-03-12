@@ -91,12 +91,7 @@
                                             <span class="text_comment" id="comment_text_holder{$item.id}">{truncate(htmlspecialchars($item.text), 80, '...')}</span>
                                             <span class="frame_edit_comment ref_group" id="comment_text_editor{$item.id}">
                                                 <textarea id="edited_com_text{$item.id}">{$item.text}</textarea>
-                                                {if $item.module == 'shop'}
-                                                    Плюсы:
-                                                    <textarea id="edited_com_text_plus{$item.id}">{$item.text_plus}</textarea>
-                                                    Минусы:
-                                                    <textarea id="edited_com_text_minus{$item.id}">{$item.text_minus}</textarea>
-                                                {/if}
+                                               
                                                 <span class="js ref comment_update" data-cid="{$item.id}" data-uname="{$item.user_name}" data-uemail="{$item.user_mail}" data-cstatus="{$item.status}">Сохранить</span>
                                                 &nbsp;&nbsp;
                                                 <span class="js ref comment_update_cancel" data-cid="{$item.id}">Отменить</span>
@@ -116,10 +111,10 @@
                                                 <div class="patch_disabled"></div>
                                                 <div class="star">
                                                     {for $i=0; $i<5; $i++}
-                                                        <a href="#">
-                                                            <i class="icon-star{if $i>=(int)$item.rate}-empty{/if}">
-                                                            </i>
-                                                        </a>
+                                                    <a href="#">
+                                                        <i class="icon-star{if $i>=(int)$item.rate}-empty{/if}">
+                                                        </i>
+                                                    </a>
                                                     {/for}
                                                 </div>
                                                 <a href="#">
@@ -191,16 +186,7 @@
                                                             <span class="time muted">{date('d-m-Y H:i', $item.date)}</span>
                                                             <span class="text_comment" id="comment_text_holder{$item.id}">{truncate(htmlspecialchars($item.text), 80, '...')}</span>
                                                             <span class="frame_edit_comment ref_group" id="comment_text_editor{$item.id}">
-                                                                <textarea id="edited_com_text{$item.id}">{$item.text}</textarea>
-                                                                {if $item.module == 'shop'}
-
-                                                                    Плюсы:
-                                                                    <textarea id="edited_com_text_plus{$item.id}">{$item.text_plus}</textarea>
-
-                                                                    Минусы:
-                                                                    <textarea id="edited_com_text_minus{$item.id}">{$item.text_minus}</textarea>
-
-                                                                {/if}
+                                                                <textarea id="edited_com_text{$item.id}">{$item.text}</textarea>                                                                
                                                                 <span class="js ref comment_update" data-cid="{$item.id}" data-uname="{$item.user_name}" data-uemail="{$item.user_mail}" data-cstatus="{$item.status}">
                                                                     Сохранить
                                                                 </span>
@@ -224,10 +210,10 @@
                                                                 <div class="patch_disabled"></div>
                                                                 <div class="star">
                                                                     {for $i=0; $i<5; $i++}
-                                                                        <a href="#">
-                                                                            <i class="icon-star{if $i>=(int)$item.rate}-empty{/if}">
-                                                                            </i>
-                                                                        </a>
+                                                                    <a href="#">
+                                                                        <i class="icon-star{if $i>=(int)$item.rate}-empty{/if}">
+                                                                        </i>
+                                                                    </a>
                                                                     {/for}
                                                                 </div>
                                                                 <a href="#">
@@ -315,8 +301,8 @@
                                                                                 <div class="patch_disabled"></div>
                                                                                 <div class="star">
                                                                                     {for $i=0; $i<5; $i++}
-                                                                                        <a href="#"><i class="icon-star{if $i>=(int)$item.rate}-empty{/if}"></i></a>
-                                                                                        {/for}
+                                                                                    <a href="#"><i class="icon-star{if $i>=(int)$item.rate}-empty{/if}"></i></a>
+                                                                                    {/for}
                                                                                 </div>
                                                                                 <a href="#">
                                                                                     <i class="icon-thumbs-up"></i>

@@ -352,12 +352,37 @@ class Admin extends BaseAdminController {
         }
     }
 
+    function view($item_id, $type = 'page') {
+        $item = $this->db->where('id', $item_id)->get('menus_data')->row_array();
+        $parents = $this->db->where('menu_id', $item['menu_id'])->get('menus_data')->result_array();
+        $menu = $this->db->where('id', $item['menu_id'])->get('menus')->row_array();
+        $cats = $this->lib_category->build();
+        $pages = $this->get_pages(0, 0, 'controller');
+
+        $this->db->select("shop_rbac_roles.*", FALSE);
+        $this->db->select("shop_rbac_roles_i18n.alt_name", FALSE);
+        $this->db->where('locale', BaseAdminController::getCurrentLocale());
+        $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles_i18n.id = shop_rbac_roles.id");
+        $role = $this->db->get('shop_rbac_roles')->result_array();
+
+        //$query = $this->db->get('shop_rbac_roles');
+        $this->template->assign('roles', $role);
+        $this->template->assign('modules', $this->_load_module_list());
+        $this->template->assign('cats', $cats);
+        $this->template->assign('menu', $menu);
+        $this->template->assign('parents', $parents);
+        $this->template->assign('item', $item);
+        $this->template->assign('pages', $pages);
+        $this->display_tpl($type);
+    }
+
     /**
      * Display edit item window
      */
     function edit_item($item_id) {
         //cp_check_perm('menu_edit');
         if (empty($_POST)) {
+//            $this->view($item_id);
             $item = $this->db->where('id', $item_id)->get('menus_data')->row_array();
             $parents = $this->db->where('menu_id', $item['menu_id'])->get('menus_data')->result_array();
             $menu = $this->db->where('id', $item['menu_id'])->get('menus')->row_array();
@@ -379,6 +404,7 @@ class Admin extends BaseAdminController {
             $this->template->assign('item', $item);
             $this->template->assign('pages', $pages);
             $this->display_tpl('edit_item');
+//            $this->view($item_id);
         } else {
             $this->form_validation->set_rules('menu_id', 'Menu Id', 'required');
             $this->form_validation->set_rules('item_type', 'Item Type', 'required');
@@ -446,6 +472,7 @@ class Admin extends BaseAdminController {
                         $position = $query['position'] - 1;
                     }
                 }
+
                 $item_data = array(
                     'menu_id' => $_POST['menu_id'],
                     'item_id' => $_POST['item_id'],
