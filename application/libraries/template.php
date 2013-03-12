@@ -297,13 +297,15 @@ class Template extends Mabilis {
             if ($this->CI->input->is_ajax_request())
                 $tpl = $result_before . $tpl;
             else
-                $tpl = preg_replace('/\<\/head\>/', $result_before . '</head>' . "\n", $tpl, 1);
+                if (!strstr($tpl, $result_before))
+                    $tpl = preg_replace('/\<\/head\>/', $result_before . '</head>' . "\n", $tpl, 1);
 
         if ($result_after)
             if ($this->CI->input->is_ajax_request())
                 $tpl .= $result_after;
             else
-                $tpl = preg_replace('/\<\/body\>/', "$result_after</body>\n", $tpl, 1);
+                if (!strstr($tpl, $result_after))
+                    $tpl = preg_replace('/\<\/body\>/', "$result_after</body>\n", $tpl, 1);
 
 //
 //        if ($result_js_before) {
