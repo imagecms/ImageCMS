@@ -218,39 +218,44 @@ function ieInput(els) {
                     $('.tooltip').remove();
                 }
             })
-            if (settings.effect == 'notalways') {
-                $('.tooltip').remove();
-                body.append('<span class="tooltip">'+settings.title+'</span>');
-            }
+            var $this = $(this),
+            text_el = $this.find('.text-el');
             
-            var tooltip = $('.tooltip').not('.cloned');
-            
-            if (settings.effect == 'always') {
-                if (!$.exists_nabir(tooltip)) {
+            if (!text_el.is(':visible') && $.exists_nabir(text_el)){
+                if (settings.effect == 'notalways') {
+                    $('.tooltip').remove();
                     body.append('<span class="tooltip">'+settings.title+'</span>');
                 }
-                else tooltip.text(settings.title)
-            }
+            
+                var tooltip = $('.tooltip').not('.cloned');
+            
+                if (settings.effect == 'always') {
+                    if (!$.exists_nabir(tooltip)) {
+                        body.append('<span class="tooltip">'+settings.title+'</span>');
+                    }
+                    else tooltip.text(settings.title)
+                }
 
-            if (settings.otherClass !== false) tooltip.addClass(settings.otherClass);
-            if (settings.effect == 'notalways') tooltip.hide();
+                if (settings.otherClass !== false) tooltip.addClass(settings.otherClass);
+                if (settings.effect == 'notalways') tooltip.hide();
                 
-            tooltip.css({
-                'left': Math.ceil(this.offset().left-(tooltip.actual('outerWidth')-this.outerWidth())/2),
-                'top': this.offset().top-tooltip.actual('outerHeight')
-            }).fadeIn(300);
+                tooltip.css({
+                    'left': Math.ceil(this.offset().left-(tooltip.actual('outerWidth')-this.outerWidth())/2),
+                    'top': this.offset().top-tooltip.actual('outerHeight')
+                }).fadeIn(300);
                 
-            this.blur(function(){
-                $('.tooltip').fadeOut(300, function(){
-                    $(this).remove()
-                });
-            })
-            body.live('click', function(event) {
-                event.stopPropagation();
-                $('.tooltip').fadeOut(300, function(){
-                    $(this).remove()
-                });
-            })
+                this.blur(function(){
+                    $('.tooltip').fadeOut(300, function(){
+                        $(this).remove()
+                    });
+                })
+                body.live('click', function(event) {
+                    event.stopPropagation();
+                    $('.tooltip').fadeOut(300, function(){
+                        $(this).remove()
+                    });
+                })
+            }
         },
         remove : function( ) {
             $('.tooltip').fadeOut(300, function(){
@@ -443,32 +448,32 @@ function ieInput(els) {
             }
             if (isTouch) {
                 menuItem.unbind(evDrop)[evDrop](
-                    function() {
-                        hov($(this));
-                    }, function() {
-                        unhov($(this));
-                    });
+                function() {
+                    hov($(this));
+                }, function() {
+                    unhov($(this));
+                });
                 menu[evDrop](
-                    function(event) {
-                        time_dur_m = 0;
-                    },
-                    function(event) {
-                        time_dur_m = duration;
-                    });
+                function(event) {
+                    time_dur_m = 0;
+                },
+                function(event) {
+                    time_dur_m = duration;
+                });
             }
             else {
                 menuItem.unbind(evDropF)[evDropF](function() {
                     hov($(this));
-                    }).unbind(evDropS)[evDropS](function() {
+                }).unbind(evDropS)[evDropS](function() {
                     unhov($(this));
                 })
                 menu.unbind(evDropF)[evDropF](function() {
                     return time_dur_m = 0;
-                    }).unbind(evDropS)[evDropS](
-                    function() {
-                        methods.fadeDrop();
-                        return time_dur_m = duration;
-                    });
+                }).unbind(evDropS)[evDropS](
+                function() {
+                    methods.fadeDrop();
+                    return time_dur_m = duration;
+                });
             }
             drop.find('li li a').click(function(event) {
                 event.stopPropagation();
@@ -1170,11 +1175,13 @@ function ieInput(els) {
 
                 $thisT = $this.offset().top + dataSourceH;
                 $thisL = $this.offset().left + dataSourceW;
+                if ($thisL < 0) $thisL = 0;
 
                 elSetSource.css({
                     'top': $thisT,
                     'left': $thisL
                 });
+                if ($thisL == 0) elSetSource.css('margin-left', 0);
             }
             if ($thisP == 'center') {
                 function dropScroll() {
@@ -1374,41 +1381,41 @@ function ieInput(els) {
                 var $this = $(this);
                 if (!$this.hasClass('disabled')){
                     $this.hover (
-                        function(){
-                            $(this).append("<span></span>");
-                        },
-                        function()
-                        {
-                            $(this).find("span").remove();
-                        });
+                    function(){
+                        $(this).append("<span></span>");
+                    },
+                    function()
+                    {
+                        $(this).find("span").remove();
+                    });
 
                     var rating;
 
                     $this.mousemove (
-                        function(e){
-                            if (!e) e = window.event;
-                            if (e.pageX){
-                                x = e.pageX;
-                            } else if (e.clientX){
-                                x = e.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft) - document.documentElement.clientLeft;
+                    function(e){
+                        if (!e) e = window.event;
+                        if (e.pageX){
+                            x = e.pageX;
+                        } else if (e.clientX){
+                            x = e.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft) - document.documentElement.clientLeft;
 	     
-                            }
-                            var posLeft = 0;
-                            var obj = this;
-                            while (obj.offsetParent)
-                            {
-                                posLeft += obj.offsetLeft;
-                                obj = obj.offsetParent;
-                            }
-                            var offsetX = x-posLeft,
-                            modOffsetX = 5*offsetX%this.offsetWidth;
-                            rating = parseInt(5*offsetX/this.offsetWidth);
+                        }
+                        var posLeft = 0;
+                        var obj = this;
+                        while (obj.offsetParent)
+                        {
+                            posLeft += obj.offsetLeft;
+                            obj = obj.offsetParent;
+                        }
+                        var offsetX = x-posLeft,
+                        modOffsetX = 5*offsetX%this.offsetWidth;
+                        rating = parseInt(5*offsetX/this.offsetWidth);
 
-                            if(modOffsetX > 0) rating+=1;
+                        if(modOffsetX > 0) rating+=1;
 		
-                            jQuery(this).find("span").eq(0).css("width",rating*width+"px");
+                        jQuery(this).find("span").eq(0).css("width",rating*width+"px");
 
-                        });
+                    });
 
                     $this.click (function(){
                         settings.afterClick($this, rating);
