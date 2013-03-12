@@ -708,6 +708,8 @@ a.activeSlide{background-position: -66px 0;}
 .count_response{color: #333;}
 .star{display: inline-block;margin-right: 9px;}
 
+.short_description{display: none;}
+.list .short_description{display: block;}
 .items_catalog{margin: 0 0 0 -30px;}
 .items_catalog > li{margin-bottom: 30px;float: none !important;}
 .items_catalog .btn.btn_small_p > .text-el{display: none;}
