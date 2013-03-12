@@ -11,19 +11,14 @@
                 <input type="hidden" id="comment_item_id" name="comment_item_id" value="{$comment['id']}"/>
                 <li>
                     <div class="author-data-comment__icsi-css">
-                        <span class="author-comment__icsi-css">{$comment.user_name}
-                        </span> 
-                            {if $comment.rate != 0}
-                                <div class="frameLabel__icsi-css">
-                                    <div class="frame_form_field__icsi-css">
-                                        <div class="star-small">   
-                                            <div class="productRate star-small">
-                                                <div style="width: {echo (int)$comment.rate *20}%"></div>
-                                            </div>  
-                                        </div>
-                                    </div>
-                                </div>
-                            {/if}
+                        <span class="author-comment__icsi-css">{$comment.user_name}</span>&nbsp;&nbsp;
+                        {if $comment.rate != 0}
+                            <div class="star-small d_i-b">   
+                                <div class="productRate star-small">
+                                    <div style="width: {echo (int)$comment.rate *20}%"></div>
+                                </div>  
+                            </div>&nbsp;&nbsp;
+                        {/if}
                         <span class="date-comment__icsi-css"> {date('d-m-Y H:i', $comment.date)}</span>
                     </div>
                     <div class="frame-comment__icsi-css">
