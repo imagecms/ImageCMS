@@ -1,4 +1,3 @@
-
 {/*}
 <div class="center content">
     <h1>{lang('orderind_shop_sg')}</h1>
@@ -280,7 +279,7 @@
                                 <div class="frameGroupsForm">
                                     <div class="header_title">Данные заказа</div>
                                     <div class="standart_form horizontal_form">
-                                        <form method="post" action="{$BASE_URL}shop/cart">
+                                        <form method="post" action="{$BASE_URL}shop/cart" id="makeOrderForm">
                                             {if $errors}
                                                 <div class="groups_form">
                                                     <div class="msg">
@@ -321,7 +320,20 @@
                                                         <span class="icon-address"></span>
                                                         <input type="text" name="userInfo[deliverTo]" value="{echo $profile.address}"></span>
                                                 </label>
+
+                                                <!--        User custom fields      -->
+                                                {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPattern($pattern)->getCustomFields('user')->asHtml() }
+
+
                                             </div>
+
+                                            <!--        Order custom fields      -->
+
+                                            <div class="groups_form">
+                                                {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPattern($pattern)->getCustomFields('order')->asHtml() }
+                                            </div>
+
+
                                             <div class="groups_form">
                                                 <div class="frameLabel" style="position: relative; z-index: 6;">
                                                     <span class="title">Способ доставки</span>
@@ -380,6 +392,16 @@
                                                 </div>
                                                 {/if}
                                             </div>
+                                            <div class="groups_form" >
+                                                <label>
+                                                    <span class="title">{lang('s_cert_code')}</span>
+                                                    <span class="frame_form_field">
+                                                        {if $isRequired['giftcert']}<span class="must">*</span>{/if}
+                                                        <input type="text" name="giftcert" value="">
+                                                        <button class="btn" id="applyGiftCert">{lang('s_apply_sertif')}</button>
+                                                    </span>
+                                                </label>
+                                            </div>
                                             <div class="groups_form">
                                                 <label>
                                                     <span class="title">{lang('s_comment')}</span>
@@ -389,8 +411,12 @@
                                                     <span class="title">&nbsp;</span>
                                                     <div class="frame_form_field">
                                                         <div class="form_alert">
-                                                            <div style="margin-bottom: 4px;" class="c_97">(Сумма товаров: <span class="f-w_b" id="totalPrice"></span> <span class="curr"></span> + Доставка: <span class="f-w_b" id="shipping"></span> <span class="curr"></span>)</div>
+                                                            <div style="margin-bottom: 4px;" class="c_97">(Сумма товаров: <span class="f-w_b" id="totalPrice"></span> <span class="curr"></span> + Доставка: <span class="f-w_b" id="shipping"></span> <span class="curr"></span>)
+                                                                <br/><span id="giftCertSpan" style="display: none;" >(Скидка подарочного сертификата: <span id="giftCertPrice" class="f-w_b"></span> )</span>
+                                                            </div>
+
                                                             <span class="f-s_18">Сумма:</span> <span class="f-s_24" id="finalAmount"></span> <span class="f-s_14 curr"></span>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -402,6 +428,7 @@
                                                 </div>
                                             </div>
                                                     <input type="hidden" name="makeOrder" value="1">
+                                                    <input type="hidden" name="checkCert" value="0">
                                            {form_csrf()}
                                         </form>
                                     </div>
