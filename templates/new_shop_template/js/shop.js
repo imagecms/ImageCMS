@@ -29,7 +29,7 @@ var Shop = {
                 'productId':cartItem.id,
                 'variantId':cartItem.vId
             };
-            var url = '/shop/cart/add';
+            var url = '/shop/cart_api/add';
 
             if (cartItem.kit) {
                 data = {
@@ -49,6 +49,7 @@ var Shop = {
                         //save item to storage
                         Shop.Cart._add(Shop.currentItem);
                     } catch (e) {
+                        console.error(e.message);
                         return;
                     }
                 });
@@ -513,7 +514,7 @@ var Shop = {
         },
         sync: function(){
             $.getJSON('/shop/compare_api/sync', function(data){
-                console.log(typeof(data));
+                console.log(data);
                 if (typeof(data) == 'object' || typeof(data) == 'Array') {
                     localStorage.setItem('compareList', JSON.stringify(data));
 
@@ -521,6 +522,9 @@ var Shop = {
                         type:'compare_list_sync'
                     });
                 }
+                else
+                    if(data === false)
+                        localStorage.removeItem('compareList');
             });
         }
     }
@@ -737,6 +741,11 @@ function checkSyncs(){
         if (Shop.WishList.all().length != inServerWish)
             Shop.WishList.sync();
     }
+    if (inServerCart != NaN)
+    {
+        if (Shop.Cart.getAllItems().length != inServerCart)
+            Shop.Cart.sync();
+    }
 };
 
 $(document).ready(
@@ -878,6 +887,11 @@ function () {
         });
 
         $(document).on('compare_list_rm', function () {
+            $('#compareCount').html('(' + Shop.CompareList.all().length + ')');
+            checkCompareWishLink();
+        });
+
+        $(document).on('compare_list_sync', function () {
             $('#compareCount').html('(' + Shop.CompareList.all().length + ')');
             checkCompareWishLink();
         });
