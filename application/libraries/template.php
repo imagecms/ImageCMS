@@ -223,7 +223,6 @@ class Template extends Mabilis {
             foreach ($this->_css_files as $url => $pos) {
                 if (!in_array($url, self::$arr))
                 {
-                    var_dumps(self::$arr);
                     switch ($pos) {
                         case 'before':
                             self::$result_before .= "<link data-arr=\"".count(self::$arr)*2 ."\" rel=\"stylesheet\" type=\"text/css\" href=\"$url\" />\n";
@@ -236,8 +235,6 @@ class Template extends Mabilis {
                 }
             }
         }
-
-        //var_dumps(self::$arr);
 
         // split js files
         if (sizeof($this->_js_files) > 0) {
