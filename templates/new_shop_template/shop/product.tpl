@@ -150,7 +150,8 @@
                                     data-price="{echo $model->firstVariant->toCurrency()}"
                                     data-name="{echo ShopCore::encode($model->getName())}"
                                     data-number="{echo $model->firstVariant->getnumber()}"
-                                    data-maxcount="{echo $model->firstVariant->getstock()}">
+                                    data-maxcount="{echo $model->firstVariant->getstock()}"
+                                    data-prodpage="true">
                                 {lang('s_buy')}
                             </button>
                         {/if}
@@ -159,10 +160,12 @@
                             <button style="display: none;" 
                                     class="btn btn_buy variant_{echo $pv->getId()} variant" 
                                     type="button" 
-                                    data-prodid="{echo $pv->getId()}" 
+                                    data-prodid="{echo $model->getId()}"
                                     data-varid="{echo $pv->getId()}" 
                                     data-price="{echo $pv->toCurrency()}" 
-                                    data-name="{if $pv->getName()}{echo ShopCore::encode($pv->getName())}{else:}{echo ShopCore::encode($model->getName())}{/if}">
+                                    data-name="{echo ShopCore::encode($model->getName())}"
+                                    data-vname="{echo ShopCore::encode($pv->getName())}"
+                                    data-prodpage="true">
                                 {lang('s_buy')}
                             </button>
                         {/foreach}
