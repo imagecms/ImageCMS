@@ -10,7 +10,7 @@ abstract class BaseEvents {
      * Returns or creates and returns an BaseEvents instance.
      * Is a static method. Chaining method allows you to simplify your syntax by connecting multiple functions.
      * @return Events
-     * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
+     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
     abstract static function create();
 
@@ -22,7 +22,7 @@ abstract class BaseEvents {
      */
     public function registerEvent($data = null) {
         $trace = debug_backtrace();
-        $key = sprintf('%s:%s', $trace[1]['class'], $trace[1]['function']);
+        $key = $trace[1]['class'] . ':' . $trace[1]['function'];
         $this->storage[$key]['run'] = TRUE;
         $this->storage[$key]['params'] = $data;
         return $this;
@@ -40,13 +40,18 @@ abstract class BaseEvents {
         return $this;
     }
 
+    public function onAddComment() {
+        $this->key = 'Commentsapi:newPost';
+        return $this;
+    }
+
     public function onCartShowed() {
         $this->key = 'Cart:index';
         return $this;
     }
 
     public function onСategoryCreate() {
-        $this->key = 'Categories:сreate';
+        $this->key = 'Categories:create';
         return $this;
     }
 
@@ -103,7 +108,7 @@ abstract class BaseEvents {
                 foreach ($value['collable'] as $run)
                     call_user_func(array($run['collClass'], $run['collMethod']), $value['params']);
         }
-        //\CMSFactory\Events::create()->get();
+        \CMSFactory\Events::create()->get();
     }
 
     public function get() {
@@ -112,4 +117,5 @@ abstract class BaseEvents {
 
 }
 
+/* End of file /application/modules/CMSFactory/BaseEvents.php */
 ?>
