@@ -29,6 +29,21 @@ class Star_rating extends MY_Controller {
         $this->load->helper('path');
     }
 
+    public static function adminAutoload() {
+        parent::adminAutoload();
+        \CMSFactory\Events::create()->onСategoryCreate()->addСorrelation('writeToFile');
+    }
+
+    public function autoload() {
+        \CMSFactory\Events::create()->onAddComment()->addСorrelation('writeToFile');
+    }
+
+    public function writeToFile($arg) {
+        $ci = &get_instance();
+        $ci->load->helper('file');
+        write_file('./uploads/files/file.txt', implode(',', $arg) . "\r\n", 'a+');
+    }
+
     /**
      * Show star_rating
      * @param SProducts $item
