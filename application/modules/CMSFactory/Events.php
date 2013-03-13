@@ -6,7 +6,7 @@ class Events extends BaseEvents {
 
     protected static $_BehaviorInstance;
     public $storage = array();
-    public $key = null;    
+    public $key = null;
 
     private function __construct() {
         
@@ -23,4 +23,5 @@ class Events extends BaseEvents {
 
 }
 
+/* End of file /application/modules/CMSFactory/Events.php */
 ?>
