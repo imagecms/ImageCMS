@@ -45,7 +45,6 @@ var Shop = {
                 function (data) {
                     try {
                         responseObj = JSON.parse(data);
-                        console.log(responseObj);
 
                         //save item to storage
                         Shop.Cart._add(Shop.currentItem);
@@ -57,8 +56,6 @@ var Shop = {
 
         },
         _add:function (cartItem) {
-            //            console.log('adding');
-            //            console.log(cartItem);
 
             var currentItem = this.load(cartItem.storageId());
             if (currentItem)
@@ -66,7 +63,6 @@ var Shop = {
             else
                 currentItem = cartItem;
 
-            //            console.log(cartItem);
             this.save(currentItem);
 
 
@@ -268,7 +264,7 @@ var Shop = {
                     delete items;
 
                     _.each(_.keys(data.data.items), function(key) {
-                        localStorage.setItem(key, data.data.items[key]);
+                        localStorage.setItem(key, JSON.stringify(data.data.items[key]));
                             //console.log(data.data.items[key]);
                     });
 
@@ -558,7 +554,7 @@ function processPage() {
     //update page content
     //update products count
     Shop.Cart.totalRecount();
-    console.log(Shop.Cart.totalCount);
+    //console.log(Shop.Cart.totalCount);
     $('#topCartCount').html(' (' + Shop.Cart.totalCount + ')');
     if (!Shop.Cart.totalCount)
         $('div.cleaner.isAvail').removeClass('isAvail');
@@ -749,7 +745,7 @@ function () {
     checkSyncs();
     processWish();
     recountCartPage();
-    if ($('#method_deliv'))
+    if (window.location.href.match(/cart/))
         changeDeliveryMethod($('#method_deliv').val());
     $('#popupCart').html(Shop.Cart.renderPopupCart())
     //click 'add to cart'
