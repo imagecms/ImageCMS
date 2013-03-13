@@ -34,7 +34,7 @@ class Comments extends MY_Controller {
 
     public function init($model) {
         \CMSFactory\assetManager::create()->registerScript('comments');
-        
+
         if ($model instanceof SProducts) {
             $productsCount = $this->load->module('comments/commentsapi')->getTotalCommentsForProducts($model->getId());
         } else {
@@ -158,6 +158,7 @@ class Comments extends MY_Controller {
 
     /**
      * Add comment
+     * @deprecated ImageCMS 4.3
      */
     public function add() {
         ($hook = get_hook('comments_on_add')) ? eval($hook) : NULL;

@@ -43,7 +43,7 @@ class Commentsapi extends Comments {
 //            // Comments fetched from cahce file
 //        } else {
 //        $this->db->where('module', 'shop');
-        
+
         $item_id = $this->parsUrl($_SERVER['HTTP_REFERER']);
         $comments = $this->base->get($item_id);
 
@@ -460,7 +460,7 @@ class Commentsapi extends Comments {
         $this->db->where('status', $status);
         $this->db->where('module = ', 'shop');
         $query = $this->db->get('comments')->result_array();
-        
+
         $result = array();
 
         foreach ($query as $q)
