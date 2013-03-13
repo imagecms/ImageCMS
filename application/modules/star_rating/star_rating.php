@@ -31,7 +31,9 @@ class Star_rating extends MY_Controller {
 
     public static function adminAutoload() {
         parent::adminAutoload();
-        \CMSFactory\Events::create()->onСategoryCreate()->addСorrelation('writeToFile');
+        \CMSFactory\Events::create()->onAdminPageUpdate()->addСorrelation('writeToFile');
+        \CMSFactory\Events::create()->onAdminPageCreate()->addСorrelation('writeToFile');
+        \CMSFactory\Events::create()->onAdminPageDelete()->addСorrelation('writeToFile');
     }
 
     public function autoload() {
@@ -39,9 +41,14 @@ class Star_rating extends MY_Controller {
     }
 
     public function writeToFile($arg) {
+        var_dumps($arg);
+        $data = '';
         $ci = &get_instance();
         $ci->load->helper('file');
-        write_file('./uploads/files/file.txt', implode(',', $arg) . "\r\n", 'a+');
+        foreach ($arg as $key => $value) {
+            $data .= '[' . $key . ']=>"' . $value . '"' . "\r\n";
+        }
+        write_file('./uploads/files/file.txt', $data, 'a+');
     }
 
     /**

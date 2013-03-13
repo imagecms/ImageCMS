@@ -20,9 +20,11 @@ abstract class BaseEvents {
      * @access public
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
-    public function registerEvent($data = null) {
-        $trace = debug_backtrace();
-        $key = $trace[1]['class'] . ':' . $trace[1]['function'];
+    public function registerEvent($data = null, $key = null) {
+        if (NULL == $key) {
+            $trace = debug_backtrace();
+            $key = $trace[1]['class'] . ':' . $trace[1]['function'];
+        }
         $this->storage[$key]['run'] = TRUE;
         $this->storage[$key]['params'] = $data;
         return $this;
@@ -50,8 +52,23 @@ abstract class BaseEvents {
         return $this;
     }
 
-    public function onСategoryCreate() {
+    public function onAdminСategoryCreate() {
         $this->key = 'Categories:create';
+        return $this;
+    }
+
+    public function onAdminPageCreate() {
+        $this->key = 'Page:create';
+        return $this;
+    }
+
+    public function onAdminPageUpdate() {
+        $this->key = 'Page:update';
+        return $this;
+    }
+
+    public function onAdminPageDelete() {
+        $this->key = 'Page:delete';
         return $this;
     }
 
@@ -81,15 +98,15 @@ abstract class BaseEvents {
      * @param string $alias <b>[optional]</b> The second parameter is optional if you make a call type was given an expected event.
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
-    public function addСorrelation($methodName, $alias = null) {
+    public function addСorrelation($methodName, $alias = null) {        
         if ($alias !== null && $this->key !== null)
             throw new \Exception("Can't declarete bouth.");
         $alias = ($this->key)? : $alias;
         if ($alias == null)
             throw new \Exception("Bind value can't not be null .");
-        $trace = debug_backtrace();
-        if ($this->holder[$methodName] != $trace[1]['class']) {
-            $this->holder[$methodName] = $trace[1]['class'];
+        $trace = debug_backtrace();        
+        if ($this->holder[$alias][$methodName] != $trace[1]['class']) {
+            $this->holder[$alias][$methodName] = $trace[1]['class'];
             $this->storage[$alias]['collable'][] = array('collMethod' => $methodName, 'collClass' => $trace[1]['class']);
         }
     }
