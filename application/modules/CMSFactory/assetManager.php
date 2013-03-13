@@ -7,7 +7,6 @@ class assetManager {
     protected static $_BehaviorInstance;
 
     private function __construct() {
-
         defined('DS') OR define('DS', '/');
     }
 
@@ -115,7 +114,7 @@ class assetManager {
     public function fetchTemplate($tpl) {
         $trace = debug_backtrace();
         $paths = explode(DS, $trace[0]['file']);
-        $paths = $paths[count($paths) - 2];        
+        $paths = $paths[count($paths) - 2];
         try {
             $tplPath = APPPATH . '/modules/' . $paths . '/assets/' . $tpl;
             file_exists($tplPath . '.tpl') OR throwException('Can\'t load template file: <i>' . $paths . DS . $tpl . '.tpl</i>');
@@ -139,4 +138,5 @@ class assetManager {
 
 }
 
+/** End of file /application/modules/CMSFactory/assetManager.php */
 ?>
