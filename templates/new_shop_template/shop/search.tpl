@@ -147,7 +147,8 @@
                                             data-price="{echo $p->firstVariant->toCurrency()}" 
                                             data-name="{echo $p->getName()}"
                                             data-number="{echo $p->firstVariant->getnumber()}"
-                                            data-maxcount="{echo $p->firstVariant->getstock()}">
+                                            data-maxcount="{echo $p->firstVariant->getstock()}"
+                                            data-vname="{echo $p->firstVariant->getName()}">
                                         {lang('add_to_basket')}
                                     </button>
                                 {else:}
