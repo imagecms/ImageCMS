@@ -212,8 +212,8 @@ class Admin extends BaseAdminController {
         $this->db->update('comments', array('status' => $this->input->post('status')));
         
         //for children comments
-        $this->db->where_in('parent', $this->input->post('id'));
-        $this->db->update('comments', array('status' => $this->input->post('status')));
+//        $this->db->where_in('parent', $this->input->post('id'));
+//        $this->db->update('comments', array('status' => $this->input->post('status')));
         /*
         $comment = $this->comments->get_one($this->input->post('id'));
 
