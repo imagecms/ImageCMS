@@ -2,6 +2,10 @@
 
 namespace CMSFactory;
 
+/**
+ * @abstract
+ * @version CMS Event system v.1 Beta
+ */
 abstract class BaseEvents {
 
     public $holder = array();
@@ -31,63 +35,6 @@ abstract class BaseEvents {
     }
 
     /**
-     *
-     * @return BehaviorFactory
-     * @access
-     * @author Kaero
-     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
-     */
-    public function onAddToCart() {
-        $this->key = 'Cart:add';
-        return $this;
-    }
-
-    public function onAddComment() {
-        $this->key = 'Commentsapi:newPost';
-        return $this;
-    }
-
-    public function onCartShowed() {
-        $this->key = 'Cart:index';
-        return $this;
-    }
-
-    public function onAdminСategoryCreate() {
-        $this->key = 'Categories:create';
-        return $this;
-    }
-
-    public function onAdminPageCreate() {
-        $this->key = 'Page:create';
-        return $this;
-    }
-
-    public function onAdminPageUpdate() {
-        $this->key = 'Page:update';
-        return $this;
-    }
-
-    public function onAdminPageDelete() {
-        $this->key = 'Page:delete';
-        return $this;
-    }
-
-    public function onRemoveFromCart() {
-        $this->key = 'SCart:removeOne';
-        return $this;
-    }
-
-    public function onShopCategoryCreate() {
-        $this->key = 'ShopAdminCategories:create';
-        return $this;
-    }
-
-    public function onShopCategoryEdit() {
-        $this->key = 'ShopAdminCategories:edit';
-        return $this;
-    }
-
-    /**
      * Binds a custom method to the event.
      * <br/><br/><code>
      * public function autoload() {<br/>
@@ -98,13 +45,13 @@ abstract class BaseEvents {
      * @param string $alias <b>[optional]</b> The second parameter is optional if you make a call type was given an expected event.
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
-    public function addСorrelation($methodName, $alias = null) {        
+    public function addСorrelation($methodName, $alias = null) {
         if ($alias !== null && $this->key !== null)
             throw new \Exception("Can't declarete bouth.");
         $alias = ($this->key)? : $alias;
         if ($alias == null)
-            throw new \Exception("Bind value can't not be null .");
-        $trace = debug_backtrace();        
+            throw new \Exception("Bind value can't not be null.");
+        $trace = debug_backtrace();
         if ($this->holder[$alias][$methodName] != $trace[1]['class']) {
             $this->holder[$alias][$methodName] = $trace[1]['class'];
             $this->storage[$alias]['collable'][] = array('collMethod' => $methodName, 'collClass' => $trace[1]['class']);
@@ -130,6 +77,107 @@ abstract class BaseEvents {
 
     public function get() {
         var_dumps($this->storage);
+    }
+
+    /**
+     * @return BehaviorFactory
+     * @author Kaero
+     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     */
+    final public function onAdminPageCreate() {
+        $this->key = 'Page:create';
+        return $this;
+    }
+
+    /**
+     * @return BehaviorFactory
+     * @author Kaero
+     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     */
+    final public function onAdminPageUpdate() {
+        $this->key = 'Page:update';
+        return $this;
+    }
+
+    /**
+     * @return BehaviorFactory
+     * @author Kaero
+     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     */
+    final public function onAdminPageDelete() {
+        $this->key = 'Page:delete';
+        return $this;
+    }
+
+    /**
+     * @return BehaviorFactory
+     * @author Kaero
+     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     */
+    final public function onAdminСategoryCreate() {
+        $this->key = 'Categories:create';
+        return $this;
+    }
+
+    /**
+     * <p>The possible returned elements from <b>addСorrelation</b> are as follows:</p>
+     * <table>
+     * <tr valign="top"><td>['name']</td><td>Category name</td></tr>
+     * <tr valign="top"><td>['url']</td><td></td></tr>
+     * <tr valign="top"><td>['short_desc']</td><td></td></tr>
+     * <tr valign="top"><td>['parent_id']</td><td></td></tr>
+     * <tr valign="top"><td>['description']</td><td></td></tr>
+     * <tr valign="top"><td>['user_id']</td><td></td></tr>
+     * <tr valign="top"><td>['name']</td><td></td></tr>
+     * <tr valign="top"><td>['name']</td><td></td></tr>
+     * </table>
+     * @return BehaviorFactory
+     * @author Kaero
+     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     */
+    final public function onAdminСategoryUpdate() {
+        $this->key = 'Categories:update';
+        return $this;
+    }
+
+    /**
+     * @return BehaviorFactory
+     * @author Kaero
+     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     */
+    final public function onAddComment() {
+        $this->key = 'Commentsapi:newPost';
+        return $this;
+    }
+
+    /** */
+    /** */
+    /** */
+
+    /** */
+    public function onAddToCart() {
+        $this->key = 'Cart:add';
+        return $this;
+    }
+
+    public function onCartShowed() {
+        $this->key = 'Cart:index';
+        return $this;
+    }
+
+    public function onRemoveFromCart() {
+        $this->key = 'SCart:removeOne';
+        return $this;
+    }
+
+    public function onShopCategoryCreate() {
+        $this->key = 'ShopAdminCategories:create';
+        return $this;
+    }
+
+    public function onShopCategoryEdit() {
+        $this->key = 'ShopAdminCategories:edit';
+        return $this;
     }
 
 }

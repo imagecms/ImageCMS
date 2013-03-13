@@ -24,6 +24,7 @@ class Events extends BaseEvents {
 
     public static function create() {
         (null !== self::$_BehaviorInstance) OR self::$_BehaviorInstance = new self();
+        self::$_BehaviorInstance->key = null;
         return self::$_BehaviorInstance;
     }
 

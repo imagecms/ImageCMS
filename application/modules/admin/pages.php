@@ -98,8 +98,8 @@ class Pages extends BaseAdminController {
         $this->db->where('page_id', $page_id);
         $this->db->delete('content_tags');
 
-        $this->load->module('tags')->_remove_orphans();        
-        
+        $this->load->module('tags')->_remove_orphans();
+
         /** Init CMS Events system */
         \CMSFactory\Events::create()->registerEvent(array('page_id' => $page_id, 'user' => $this->dx_auth->get_user_id()), 'Page:delete');
     }
