@@ -46,6 +46,11 @@ class BaseAdminController extends MY_Controller {
 //        return self::$currentLocale;
     }
 
+    /**
+     * Run ImageCMS modules autoload method for admin-page
+     * @access private
+     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     */
     private function autoloadModules() {
         /** Search module with autoload */
         $query = $this->db
@@ -64,4 +69,5 @@ class BaseAdminController extends MY_Controller {
     }
 
 }
+
 ?>
