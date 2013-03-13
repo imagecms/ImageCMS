@@ -35,7 +35,7 @@ class Template extends Mabilis {
         /** URL to JS folder */
         $this->assign('JS_URL', base_url() . 'js');
         /** URL to template folder */
-        $this->assign('THEME', base_url() . 'templates/' . $tpl . '/');        
+        $this->assign('THEME', base_url() . 'templates/' . $tpl . '/');
         $this->assign('CI', $this->CI);
     }
 
@@ -163,6 +163,9 @@ class Template extends Mabilis {
     private $_css_code_pos = array();
     private $_js_code_pos = array();
     private $_metas = array();
+    private static $arr = array();
+    private static $result_before = '';
+    private static $result_after = '';
 
 //    public function registerCssCode($name, $code, $position = 'before') {
 //        $position = $this->_check_postion($position);
@@ -206,22 +209,29 @@ class Template extends Mabilis {
     }
 
     public function splitTplFiles($tpl) {
-        $result_before = '';
-        $result_after = '';
+//        $result_before = '';
+//        $result_after = '';
 //        $result_css_before = '';
 //        $result_css_after = '';
 //        $result_js_before = '';
 //        $result_js_after = '';
         // split css files
+
+        //self::$arr++;
+
         if (sizeof($this->_css_files) > 0) {
             foreach ($this->_css_files as $url => $pos) {
-                switch ($pos) {
-                    case 'before':
-                        $result_before .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"$url\" />\n";
-                        break;
-                    case 'after':
-                        $result_after .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"$url\" />\n";
-                        break;
+                if (!in_array($url, self::$arr))
+                {
+                    switch ($pos) {
+                        case 'before':
+                            self::$result_before .= "<link data-arr=\"".count(self::$arr)*2 ."\" rel=\"stylesheet\" type=\"text/css\" href=\"$url\" />\n";
+                            break;
+                        case 'after':
+                            self::$result_after .= "<link data-arr=\"".count(self::$arr)."\" rel=\"stylesheet\" type=\"text/css\" href=\"$url\" />\n";
+                            break;
+                    }
+                    self::$arr[] = $url;
                 }
             }
         }
@@ -229,13 +239,17 @@ class Template extends Mabilis {
         // split js files
         if (sizeof($this->_js_files) > 0) {
             foreach ($this->_js_files as $url => $pos) {
-                switch ($pos) {
-                    case 'before':
-                        $result_before .= "<script type=\"text/javascript\" src=\"$url\"></script>\n";
-                        break;
-                    case 'after':
-                        $result_after .= "<script type=\"text/javascript\" src=\"$url\"></script>\n";
-                        break;
+                if (!in_array($url, self::$arr))
+                {
+                    switch ($pos) {
+                        case 'before':
+                            self::$result_before .= "<script type=\"text/javascript\" src=\"$url\"></script>\n";
+                            break;
+                        case 'after':
+                            self::$result_after .= "<script type=\"text/javascript\" src=\"$url\"></script>\n";
+                            break;
+                    }
+                    self::$arr[] = $url;
                 }
             }
         }
@@ -244,13 +258,13 @@ class Template extends Mabilis {
             foreach ($this->_js_script_files as $script => $pos) {
                 switch ($pos) {
                     case 'before':
-                        $result_before .= $script;
+                        self::$result_before .= $script;
                         break;
                     case 'after':
-                        $result_after .= $script;
+                        self::$result_after .= $script;
                         break;
                     default :
-                        $result_before .= $script;
+                        self::$result_before .= $script;
                         break;
                 }
             }
@@ -287,22 +301,23 @@ class Template extends Mabilis {
 
         if (sizeof($this->_metas) > 0) {
             foreach ($this->_metas as $code)
-                $result_before .= "$code\n";
+                self::$result_before .= "$code\n";
         }
 
 //        $js_tpl_begin = "window.addEvent('domready', function() { ";
 //        $js_tpl_end = " });";
 
-        if ($result_before)
+
+        if (self::$result_before)
             if ($this->CI->input->is_ajax_request())
-                $tpl = $result_before . $tpl;
+                $tpl = self::$result_before . $tpl;
             else
                 if (!strstr($tpl, $result_before))
                     $tpl = preg_replace('/\<\/head\>/', $result_before . '</head>' . "\n", $tpl, 1);
 
-        if ($result_after)
+        if (self::$result_after)
             if ($this->CI->input->is_ajax_request())
-                $tpl .= $result_after;
+                $tpl .= self::$result_after;
             else
                 if (!strstr($tpl, $result_after))
                     $tpl = preg_replace('/\<\/body\>/', "$result_after</body>\n", $tpl, 1);
@@ -327,6 +342,8 @@ class Template extends Mabilis {
 //            $result_css_after = "<style type=\"text/css\">\n$result_css_after\n</style>\n";
 //            $tpl = preg_replace('/\<\/html\>/', "</html>\n" . $result_css_after, $tpl, 1);
 //        }
+
+
 
         return $tpl;
     }
