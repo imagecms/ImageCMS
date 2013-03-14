@@ -29,7 +29,7 @@ var Shop = {
                 'productId':cartItem.id,
                 'variantId':cartItem.vId
             };
-            var url = '/shop/cart/add';
+            var url = '/shop/cart_api/add';
 
             if (cartItem.kit) {
                 data = {
@@ -45,11 +45,11 @@ var Shop = {
                 function (data) {
                     try {
                         responseObj = JSON.parse(data);
-                        console.log(responseObj);
 
                         //save item to storage
                         Shop.Cart._add(Shop.currentItem);
                     } catch (e) {
+                        console.error(e.message);
                         return;
                     }
                 });
@@ -57,8 +57,6 @@ var Shop = {
 
         },
         _add:function (cartItem) {
-            //            console.log('adding');
-            //            console.log(cartItem);
 
             var currentItem = this.load(cartItem.storageId());
             if (currentItem)
@@ -66,7 +64,6 @@ var Shop = {
             else
                 currentItem = cartItem;
 
-            //            console.log(cartItem);
             this.save(currentItem);
 
 
@@ -268,7 +265,7 @@ var Shop = {
                     delete items;
 
                     _.each(_.keys(data.data.items), function(key) {
-                        localStorage.setItem(key, data.data.items[key]);
+                        localStorage.setItem(key, JSON.stringify(data.data.items[key]));
                             //console.log(data.data.items[key]);
                     });
 
@@ -517,7 +514,7 @@ var Shop = {
         },
         sync: function(){
             $.getJSON('/shop/compare_api/sync', function(data){
-                console.log(typeof(data));
+                console.log(data);
                 if (typeof(data) == 'object' || typeof(data) == 'Array') {
                     localStorage.setItem('compareList', JSON.stringify(data));
 
@@ -525,6 +522,9 @@ var Shop = {
                         type:'compare_list_sync'
                     });
                 }
+                else
+                    if(data === false)
+                        localStorage.removeItem('compareList');
             });
         }
     }
@@ -558,7 +558,7 @@ function processPage() {
     //update page content
     //update products count
     Shop.Cart.totalRecount();
-    console.log(Shop.Cart.totalCount);
+    //console.log(Shop.Cart.totalCount);
     $('#topCartCount').html(' (' + Shop.Cart.totalCount + ')');
     if (!Shop.Cart.totalCount)
         $('div.cleaner.isAvail').removeClass('isAvail');
@@ -741,6 +741,11 @@ function checkSyncs(){
         if (Shop.WishList.all().length != inServerWish)
             Shop.WishList.sync();
     }
+    if (inServerCart != NaN)
+    {
+        if (Shop.Cart.getAllItems().length != inServerCart)
+            Shop.Cart.sync();
+    }
 };
 
 $(document).ready(
@@ -749,7 +754,7 @@ function () {
     checkSyncs();
     processWish();
     recountCartPage();
-    if ($('#method_deliv'))
+    if (window.location.href.match(/cart/))
         changeDeliveryMethod($('#method_deliv').val());
     $('#popupCart').html(Shop.Cart.renderPopupCart())
     //click 'add to cart'
@@ -882,6 +887,11 @@ function () {
         });
 
         $(document).on('compare_list_rm', function () {
+            $('#compareCount').html('(' + Shop.CompareList.all().length + ')');
+            checkCompareWishLink();
+        });
+
+        $(document).on('compare_list_sync', function () {
             $('#compareCount').html('(' + Shop.CompareList.all().length + ')');
             checkCompareWishLink();
         });
