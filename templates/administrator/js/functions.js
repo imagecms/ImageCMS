@@ -232,7 +232,7 @@ function initElRTE()
         styleWithCSS: false,
         height: 300,
         fmAllow: true,
-        lang: 'ru',
+        lang: locale.substr(0,2),
         allowTextNodes : false,
         //        Format: 'Paragraph',
         fmOpen: function(callback) {
@@ -240,7 +240,7 @@ function initElRTE()
             // create new elFinder
             dialog = $('<div />').dialogelfinder({
                 url: '/admin/elfinder_init',
-                lang: 'ru',
+                lang: locale.substr(0,2),
                 commands: [
                 'open', 'reload', 'home', 'up', 'back', 'forward', 'getfile', 'quicklook',
                 'download', 'rm', 'rename', 'mkdir', 'mkfile', 'upload', 'edit', 'preview', 'extract', 'archive', 'search', 'info', 'view', 'help', 'sort'
@@ -325,6 +325,7 @@ function initTinyMCE()
         //mode : "textareas",
         // Location of TinyMCE script
         height: 300,
+        language: locale.substr(0,2),
         script_url: '/js/tiny_mce/tiny_mce.js',
         // General options
         theme: "advanced",
@@ -350,13 +351,13 @@ function initTinyMCE()
         media_external_list_url: "lists/media_list.js",
         // Replace values for the template plugin
         template_replace_values: {
-            username: "Some User",
-            staffid: "991234"
+            //username: "Some User",
+            //staffid: "991234"
         },
         file_browser_callback: function(field_name, url, type, win) {
             $('<div/>').dialogelfinder({
                 url: '/admin/elfinder_init',
-                lang: 'ru',
+                lang: locale.substr(0,2),
                 dialog: {
                     width: 900, 
                     modal: true, 
@@ -438,6 +439,7 @@ function initTextEditor(name)
 var dlg = false;
 function elFinderPopup(type, id, path)
 {
+    fId = id;
     if (typeof path == 'undefined')
         path = '';
     //todo: create diferent browsers (check 'type' variable)
@@ -445,7 +447,7 @@ function elFinderPopup(type, id, path)
     {
         dlg = $('#elFinder').dialogelfinder({
             url: '/admin/elfinder_init',
-            lang: 'ru',
+            lang: locale.substr(0,2),
             commands: [
             'open', 'reload', 'home', 'up', 'back', 'forward', 'getfile', 'quicklook',
             'download', 'rm', 'rename', 'mkdir', 'mkfile', 'upload', 'edit', 'preview', 'extract', 'archive', 'search', 'info', 'view', 'help', 'sort'
@@ -494,13 +496,14 @@ function elFinderPopup(type, id, path)
                         path = '/' + path;
                 }
                 file.path = file.path.replace(/\134/g, '/');
-                $('#' + id).val(path + '/' + file.path);
-                if (type == 'image' && $('#' + id + '-preview').length)
+                $('#' + fId).val(path + '/' + file.path);
+
+                if (type == 'image' && $('#' + fId + '-preview').length)
                 {
                     var img = document.createElement('img');
-                    img.src = $('#' + id).val();
+                    img.src = $('#' + fId).val();
                     img.className = "img-polaroid";
-                    $('#' + id + '-preview').html(img);
+                    $('#' + fId + '-preview').html(img);
                 }
             },
             contextmenu: {
@@ -533,7 +536,7 @@ function elFinderTPLEd()
     eD = $('#elFinderTPLEd').elfinder({
         url: '/admin/elfinder_init/1',
         height: $(window).height() * 0.6,
-        lang: 'ru',
+        lang: locale.substr(0,2),
         commands: [
         'open', 'reload', 'home', 'up', 'back', 'forward', 'getfile', 'quicklook',
         'download', 'rm', 'rename', 'mkdir', 'mkfile', 'upload', 'edit', 'preview', 'extract', 'archive', 'search', 'info', 'view', 'help', 'sort'
