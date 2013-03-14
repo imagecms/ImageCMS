@@ -267,34 +267,20 @@ wnd.load(function() {
     })
     
     navPortait();
-
-    d_r_f_item = $('[data-radio-frame]').children();
-
-    if ($.exists_nabir(d_r_f_item)) {
-        d_r_f_item_class = d_r_f_item.attr('class').match(/span([0-9]+)/)[0];
-        try {
-            var span = $('.right').attr('class').match(/span([0-9]+)/)[0];
-        }
-        catch (err) {
-        }
-    }
-    
+    var d_r_f_item = $('[data-radio-frame]');
     $('.list_pic_btn > .btn').click(function() {
-        if ($(this).children().is('.icon-cat_list')) {
-            d_r_f_item.removeClass(d_r_f_item_class).addClass(span).parent().addClass('list');
+        var $this = $(this);
+        if ($this.hasClass('showAsList')) {
+            d_r_f_item.addClass('list');
+            setcookie('listtable', $this.index(), 1, '/');
         }
         else {
-            d_r_f_item.removeClass(span).addClass(d_r_f_item_class).parent().removeClass('list');
+            d_r_f_item.removeClass('list');
+            setcookie('listtable', $this.index(), 0, '/');
         }
-        $(this).siblings().removeClass('active').end().addClass('active');
+        $this.siblings().removeClass('active').end().addClass('active');
     });
     
-    var f = Shop.Settings.get('products_as_list');
-    if (f == 'true' || f == true)
-        $('.showAsList').click();
-    else
-        $('.showAsTable').click();
-
     var itemThumbs = $('.item_tovar .frame_thumbs > li');
     if ($.exists_nabir(itemThumbs)) {
         itemThumbs.click(function() {
