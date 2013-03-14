@@ -164,7 +164,7 @@
                                                 {foreach $li.subMenu as $sli}
                                                     <li {if $sli.divider} class="divider"{/if}{if $sli.header} class="nav-header"{/if}>
                                                         {if $sli.link}
-                                                            <a href="{$sli.link}" class="pjax">{echo (bool)lang($sli.text)?lang($sli.text):$sli.text}</a>
+                                                            <a href="{site_url($sli.link)}" class="pjax">{echo (bool)lang($sli.text)?lang($sli.text):$sli.text}</a>
                                                         {else:}
                                                             {echo (bool)lang($sli.text)?lang($sli.text):$sli.text}
                                                         {/if}
@@ -273,7 +273,7 @@
         <script src="{$THEME}/js/admin_base_v.js" type="text/javascript"></script>       
         <script src="{$THEME}/js/admin_base_y.js" type="text/javascript"></script>               
         <script type="text/javascript" src="/js/tiny_mce/jquery.tinymce.js"></script>
-
+        <script type="text/javascript" src="/js/tiny_mce/langs/ru.js"></script>
         <script>
             {if $CI->uri->segment('4') == 'shop'}
                 var isShop = true;
