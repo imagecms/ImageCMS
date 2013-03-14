@@ -206,10 +206,10 @@ class Categories extends BaseAdminController {
                             '<a href="' . $BASE_URL . '/admin/categories/edit/' . $id . '"> ' . $data['name'] . '</a>'
                     );
 
-                    /** Init Event. Create new Page */
-                    \CMSFactory\Events::create()->registerEvent(array('categoryId' => $id));
-                    /** End init Event. Create new Page */
+                    /** Init Event. Create new Category */
+                    \CMSFactory\Events::create()->registerEvent(array_merge($data, array('user_id' => $this->dx_auth->get_user_id())));
 
+                    /** End init Event. Create new Page */
                     showMessage(lang('ac_cat') . ' ' . $data['name'] . ' ' . lang('ac_created'));
 
                     //showMessage(lang('a_categ_translate_upda'));
@@ -250,6 +250,10 @@ class Categories extends BaseAdminController {
                             lang('ac_changed_cat') .
                             '<a href="' . $BASE_URL . '/admin/categories/edit/' . $cat_id . '"> ' . $data['name'] . '</a>'
                     );
+
+                    /** Init Event. Create new Category */
+                    \CMSFactory\Events::create()->registerEvent(array_merge($data, array('user_id' => $this->dx_auth->get_user_id())), 'Categories:update');
+
                     /**
                      * 
                      */
