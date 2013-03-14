@@ -914,18 +914,6 @@ $(document).ready(
         });
 
         /*  list-table buttons  */
-        $('.showAsTable').on('click', function () {
-            var asList = Shop.Settings.get('products_as_list');
-            if (asList == true || asList == 'true')
-                Shop.Settings.set('products_as_list', false);
-        });
-
-        $('.showAsList').on('click', function () {
-            var asList = Shop.Settings.get('products_as_list');
-            if (asList == false || asList == 'false' || asList == null)
-                Shop.Settings.set('products_as_list', true);
-        });
-
     });
 
 $(//gift certificate in cart
