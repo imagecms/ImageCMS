@@ -33,7 +33,7 @@
         {/if}
 
         <!-- Start. Render goto profile button -->
-        <a href="{shop_url('profile')}" class="btn btn_cart v-a_m">
+        <a href="{shop_url('profile')}" class="btn v-a_m">
             {lang('s_go_profile')}
         </a>
         <!-- End. Render goto profile button -->

@@ -8,13 +8,13 @@ if (!defined('BASEPATH'))
  *
  * In oder to show "Star rating" type in template:
   {$CI->load->module('star_rating')->show_star_rating()}
- * 
- * If you want to show "Star rating" for product 
+ *
+ * If you want to show "Star rating" for product
  * {$CI->load->module('star_rating')->show_star_rating(SProducts $product)}
 
- * 
+ *
  * More turn on autoload and url access.
- * 
+ *
  * Star rating module
  *
  */
@@ -31,17 +31,15 @@ class Star_rating extends MY_Controller {
 
     public static function adminAutoload() {
         parent::adminAutoload();
-//        \CMSFactory\Events::create()->onAdminPageUpdate()->addСorrelation('writeToFile');
-//        \CMSFactory\Events::create()->onAdminPageCreate()->addСorrelation('writeToFile');
-//        \CMSFactory\Events::create()->onAdminPageDelete()->addСorrelation('writeToFile');
-        
-        
-//        \CMSFactory\Events::create()->onAdminСategoryCreate()->addСorrelation('writeToFile');
-//        \CMSFactory\Events::create()->onAdminСategoryUpdate()->addСorrelation('writeToFile');
+//        \CMSFactory\Events::create()->onAdminPageUpdate()->setListener('writeToFile');
+//        \CMSFactory\Events::create()->onAdminPageCreate()->setListener('writeToFile');
+//        \CMSFactory\Events::create()->onAdminPageDelete()->setListener('writeToFile');
+//        \CMSFactory\Events::create()->onAdminСategoryCreate()->setListener('writeToFile');
+//        \CMSFactory\Events::create()->onShopProductDelete()->setListener('writeToFile');
     }
 
     public function autoload() {
-//        \CMSFactory\Events::create()->onAddComment()->addСorrelation('writeToFile');
+//        \CMSFactory\Events::create()->onAddComment()->setListener('writeToFile');
     }
 
     public function writeToFile($arg) {
@@ -135,7 +133,7 @@ class Star_rating extends MY_Controller {
     }
 
     /**
-     * Change rating for pages / product 
+     * Change rating for pages / product
      * @return type
      */
     public function ajax_rate() {
@@ -144,7 +142,7 @@ class Star_rating extends MY_Controller {
         $rating = (int) $_POST['val'];
 
         if ($id != null && $type != null && !$this->session->userdata('voted_g' . $id . $type) == true) {
-            //Check if rating exists 
+            //Check if rating exists
             $check = $this->get_rating($id, $type);
             if ($check != null) {
                 $this->new_votes = $check->votes + 1;

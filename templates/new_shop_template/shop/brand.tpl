@@ -55,15 +55,9 @@
                         </select>
                     </div>
                 </div>
-                <div class="groupButton list_pic_btn" data-toggle="buttons-radio">
-                    <button type="button" class="btn showAsTable">
-                        <span class="icon-cat_pic"></span>
-                        {lang('s_in_images')}
-                    </button>
-                    <button type="button" class="btn showAsList">
-                        <span class="icon-cat_list"></span>
-                        {lang('s_in_list')}
-                    </button>
+                <div class="groupButton list_pic_btn">
+                    <button type="button" class="btn showAsTable {if $_COOKIE['listtable'] != 1}active{/if}"><span class="icon-cat_pic"></span><span class="text-el">{lang('s_in_images')}</span></button>
+                    <button type="button" class="btn showAsList {if $_COOKIE['listtable'] == 1}active{/if}"><span class="icon-cat_list"></span><span class="text-el">{lang('s_in_list')}</span></button>
                 </div>
             </div>
             {if str_replace(' ', '', $model->getDescription()) != ''}
@@ -74,7 +68,7 @@
                     {echo $model->getDescription()}
                 </div>
             {/if}
-            <ul class="items items_catalog" data-radio-frame>
+            <ul class="items items_catalog {if $_COOKIE['listtable'] == 1}list{/if}" data-radio-frame>
                 <!-- Start. Rendering produts list   -->
                 {foreach $products as $product}
                     <li class="span3{if $product->getFirstVariant()->getStock() == 0} not-avail{/if}">
