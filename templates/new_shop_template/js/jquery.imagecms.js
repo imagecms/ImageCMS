@@ -9,7 +9,21 @@ jQuery.exists = function(selector) {
 jQuery.exists_nabir = function(nabir) {
     return (nabir.length > 0);
 }
-
+function setcookie(name, value, expires, path, domain, secure)
+{
+    var today = new Date();
+    today.setTime(today.getTime());
+    if (expires)
+    {
+        expires = expires * 1000 * 60 * 60 * 24;
+    }
+    var expires_date = new Date(today.getTime() + (expires));
+    document.cookie = name + "=" + encodeURIComponent(value) +
+    ((expires) ? ";expires=" + expires_date.toGMTString() : "") +
+    ((path) ? ";path=" + path : "") +
+    ((domain) ? ";domain=" + domain : "") +
+    ((secure) ? ";secure" : "");
+}
 function navPortait(){
     var frameM = $('.frame-menu-main');
     headerMenu = $('.headerMenu');
