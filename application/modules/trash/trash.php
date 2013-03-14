@@ -18,9 +18,12 @@ class Trash extends MY_Controller {
         $this->core->error_404();
     }
 
-    public function autoload() {
-//        \behaviorFactory\BehaviorFactory::get();
+    public static function adminAutoload() {
+        parent::adminAutoload();
+        \CMSFactory\Events::create()->onShopProductDelete()->setListener('addProductWhenDelete');
+    }
 
+    public function autoload() {
         $row = $this->db->get_where('trash', array('trash_url' => $this->uri->uri_string()))->row();
         if ($row != null) {
             ($row->trash_redirect_type != '404') OR $this->core->error_404();
@@ -28,16 +31,19 @@ class Trash extends MY_Controller {
         }
     }
 
-    public function addProductWhenDelete(SProducts $model) {
-        $array = array(
-            'trash_id' => $model->category_id,
-            'trash_url' => 'shop/product/' . $model->url,
-            'trash_redirect_type' => 'category',
-            'trash_type' => '301',
-            'trash_redirect' => shop_url('category/' . $model->getMainCategory()->getFullPath())
-        );
-
-        $this->db->insert('trash', $array);
+    public function addProductWhenDelete($arg) {
+        $models = $arg['model'];
+        $CI = &get_instance();
+        foreach ($models as $model) {
+            $array = array(
+                'trash_id' => $model->category_id,
+                'trash_url' => 'shop/product/' . $model->url,
+                'trash_redirect_type' => 'category',
+                'trash_type' => '301',
+                'trash_redirect' => shop_url('category/' . $model->getMainCategory()->getFullPath())
+            );
+            $CI->db->insert('trash', $array);
+        }
     }
 
     public function _install() {

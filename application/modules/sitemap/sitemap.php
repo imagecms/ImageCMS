@@ -29,8 +29,6 @@ class Sitemap extends MY_Controller {
         parent::__construct();
         $this->robots = $this->replace(file('robots.txt'));
         $this->load->module('core');
-
-// Get langs
         $this->langs = $this->core->langs;
         $this->default_lang = $this->core->def_lang[0];
         if (uri_string() == 'sitemap.xml') {
@@ -41,10 +39,23 @@ class Sitemap extends MY_Controller {
 
     public function index() {
         $categories = $this->lib_category->build();
-//echo $this->sitemap_ul($categories);
-
         $this->template->assign('content', $this->sitemap_ul($categories));
         $this->template->show();
+    }
+
+    public static function adminAutoload() {
+        parent::adminAutoload();
+
+        \CMSFactory\Events::create()->onShopProductCreate()->setListener('ping_google');
+        \CMSFactory\Events::create()->onShopProductUpdate()->setListener('ping_google');
+        \CMSFactory\Events::create()->onShopProductDelete()->setListener('ping_google');
+
+        \CMSFactory\Events::create()->onAdminPageCreate()->setListener('ping_google');
+        \CMSFactory\Events::create()->onAdminPageUpdate()->setListener('ping_google');
+        \CMSFactory\Events::create()->onAdminPageDelete()->setListener('ping_google');
+
+        \CMSFactory\Events::create()->onAdminСategoryCreate()->setListener('ping_google');
+        \CMSFactory\Events::create()->onAdminСategoryUpdate()->setListener('ping_google');
     }
 
     public function initialize($settings = array()) {
@@ -102,12 +113,6 @@ class Sitemap extends MY_Controller {
     }
 
     public function _create_map() {
-//        if (($data = $this->cache->fetch($this->sitemap_key)) !== FALSE)
-//        {
-//            $this->result = $data;
-//        } 
-//        else
-//      {
         $this->initialize($this->_load_settings());
 
 // Add main page
@@ -304,11 +309,11 @@ class Sitemap extends MY_Controller {
      * return $code if send (200 = ok) else 'false'
      */
     public function ping_google() {
-        if (strstr($_SERVER['SERVER_NAME'], '.loc')) 
+        if (strstr($_SERVER['SERVER_NAME'], '.loc'))
             return false;
-        
-        $this->db->select('settings');
-        $a = unserialize(implode(',', $this->db->get_where('components', array('name' => 'sitemap'))->row_array()));
+        $CI = &get_instance();
+        $CI->db->select('settings');
+        $a = unserialize(implode(',', $CI->db->get_where('components', array('name' => 'sitemap'))->row_array()));
 
         if ((time() - $a['lastSend']) / (60 * 60) >= 1) {
             $ch = curl_init();
@@ -333,9 +338,9 @@ class Sitemap extends MY_Controller {
                     'lastSend' => time()
                 );
 
-                $this->db->limit(1);
-                $this->db->where('name', 'sitemap');
-                $this->db->update('components', array('settings' => serialize($XMLDataMap)));
+                $CI->db->limit(1);
+                $CI->db->where('name', 'sitemap');
+                $CI->db->update('components', array('settings' => serialize($XMLDataMap)));
 
                 showMessage('Пинг отправлен', 'Google ping');
             }

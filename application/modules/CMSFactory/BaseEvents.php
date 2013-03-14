@@ -38,14 +38,14 @@ abstract class BaseEvents {
      * Binds a custom method to the event.
      * <br/><br/><code>
      * public function autoload() {<br/>
-     * &emsp;&emsp;\CMSFactory\Events::create()->addСorrelation('myMethod', 'Comments::add');<br/>
+     * &emsp;&emsp;\CMSFactory\Events::create()->setListener('myMethod', 'Comments::add');<br/>
      * }
      * </code>
      * @param string $methodName Indicates the name of the method that will be called in response to a trigger-event. The method will be matched in the class from which the requested binding.
      * @param string $alias <b>[optional]</b> The second parameter is optional if you make a call type was given an expected event.
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
-    public function addСorrelation($methodName, $alias = null) {
+    public function setListener($methodName, $alias = null) {
         if ($alias !== null && $this->key !== null)
             throw new \Exception("Can't declarete bouth.");
         $alias = ($this->key)? : $alias;
@@ -72,7 +72,7 @@ abstract class BaseEvents {
                 foreach ($value['collable'] as $run)
                     call_user_func(array($run['collClass'], $run['collMethod']), $value['params']);
         }
-        //\CMSFactory\Events::create()->get();
+//        \CMSFactory\Events::create()->get();
     }
 
     public function get() {
@@ -120,16 +120,14 @@ abstract class BaseEvents {
     }
 
     /**
-     * <p>The possible returned elements from <b>addСorrelation</b> are as follows:</p>
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
      * <table>
      * <tr valign="top"><td>['name']</td><td>Category name</td></tr>
      * <tr valign="top"><td>['url']</td><td></td></tr>
      * <tr valign="top"><td>['short_desc']</td><td></td></tr>
      * <tr valign="top"><td>['parent_id']</td><td></td></tr>
      * <tr valign="top"><td>['description']</td><td></td></tr>
-     * <tr valign="top"><td>['user_id']</td><td></td></tr>
-     * <tr valign="top"><td>['name']</td><td></td></tr>
-     * <tr valign="top"><td>['name']</td><td></td></tr>
+     * <tr valign="top"><td>['userId']</td><td></td></tr>
      * </table>
      * @return BehaviorFactory
      * @author Kaero
@@ -137,6 +135,56 @@ abstract class BaseEvents {
      */
     final public function onAdminСategoryUpdate() {
         $this->key = 'Categories:update';
+        return $this;
+    }
+
+    /**
+     * @return BehaviorFactory
+     * @author Kaero
+     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     */
+    final public function onShopProductUpdate() {
+        $this->key = 'ShopAdminProducts:edit';
+        return $this;
+    }
+
+    /**
+     * @return BehaviorFactory
+     * @author Kaero
+     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     */
+    final public function onShopProductCreate() {
+        $this->key = 'ShopAdminProducts:create';
+        return $this;
+    }
+
+    /**
+     * @return BehaviorFactory
+     * @author Kaero
+     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     */
+    final public function onShopProductDelete() {
+        $this->key = 'ShopAdminProducts:delete';
+        return $this;
+    }
+
+    /**
+     * @return BehaviorFactory
+     * @author Kaero
+     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     */
+    public function onShopCategoryCreate() {
+        $this->key = 'ShopAdminCategories:create';
+        return $this;
+    }
+
+    /**
+     * @return BehaviorFactory
+     * @author Kaero
+     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     */
+    public function onShopCategoryEdit() {
+        $this->key = 'ShopAdminCategories:edit';
         return $this;
     }
 
@@ -167,16 +215,6 @@ abstract class BaseEvents {
 
     public function onRemoveFromCart() {
         $this->key = 'SCart:removeOne';
-        return $this;
-    }
-
-    public function onShopCategoryCreate() {
-        $this->key = 'ShopAdminCategories:create';
-        return $this;
-    }
-
-    public function onShopCategoryEdit() {
-        $this->key = 'ShopAdminCategories:edit';
         return $this;
     }
 

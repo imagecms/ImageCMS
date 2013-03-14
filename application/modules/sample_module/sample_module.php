@@ -18,7 +18,7 @@ class Sample_Module extends MY_Controller {
         $this->load->module('core');
         \CMSFactory\Events::create()->registerEvent(array('commentId' => 88));
 
-        /** Запускаем инициализацию переменых. Значения будут взяты з 
+        /** Запускаем инициализацию переменых. Значения будут взяты з
          *  Базы Данных, и присвоены соответствующим переменным */
         $this->initSettings();
     }
@@ -35,7 +35,7 @@ class Sample_Module extends MY_Controller {
      */
     public function autoload() {
         if (TRUE == $this->useEmailNotification)
-            \CMSFactory\Events::create()->addСorrelation('handler', 'Sample_Module:__construct');
+            \CMSFactory\Events::create()->setListener('handler', 'Sample_Module:__construct');
     }
 
     public function changeStatus($commentId, $status, $key) {
@@ -51,7 +51,7 @@ class Sample_Module extends MY_Controller {
         $comment = $this->db->where('id', $commentId)->get('comments')->row();
         if ($comment->module == 'core')
         /** Используем помощник get_page($id) который аргументом принимает ID страницы.
-         *  Помощник включен по умолчанию. Больше о функция помощника 
+         *  Помощник включен по умолчанию. Больше о функция помощника
          *  читайте здесь http://ellislab.com/codeigniter/user-guide/general/helpers.html */
             $comment->source = get_page($comment->item_id);
 
@@ -75,13 +75,14 @@ class Sample_Module extends MY_Controller {
         $comment = $this->db->where('id', $arg['commentId'])->get('comments')->row();
         if ($comment->module == 'core')
         /** Используем помощник get_page($id) который аргументом принимает ID страницы.
-         *  Помощник включен по умолчанию. Больше о функция помощника 
+         *  Помощник включен по умолчанию. Больше о функция помощника
          *  читайте здесь http://ellislab.com/codeigniter/user-guide/general/helpers.html */
             $comment->source = get_page($comment->item_id);
 
         /** Теперь переменная содержит HTML тело нашего письма */
         $message = \CMSFactory\assetManager::create()->setData(array('comment' => $comment, 'key' => $this->key))->fetchTemplate('emailPattern');
         echo $message;
+
         /** Настроявием отправку Email http://ellislab.com/codeigniter/user-guide/libraries/email.html */
         $this->mailTo = 'grooteam@gmail.com';
         $this->load->library('email');
