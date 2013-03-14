@@ -144,13 +144,13 @@
                         <label>
 
                             {//left price value}
-                            <input type="text" name="lp" id="minCost" value="{if ShopCore::$_GET['lp'] && (int)ShopCore::$_GET['lp']>0 && (int)ShopCore::$_GET['lp']>(int)$priceRange.minCost}{echo ShopCore::$_GET['lp']}{else:}{echo (int)$priceRange.minCost}{/if}" data-title="только цифры"/>
+                            <input type="text" name="lp" id="minCost" value="{if ShopCore::$_GET['lp'] && (int)ShopCore::$_GET['lp']>0 && (int)ShopCore::$_GET['lp']>(int)$priceRange.minCost}{echo ShopCore::$_GET['lp']}{else:}{echo (int)$priceRange.minCost}{/if}" data-title="только цифры" data-minS="{echo (int)$priceRange.minCost}"/> 
                         </label>
                         <span class="f-s_12">&ndash;</span>
                         <label>
 
                             {//rigth price value}
-                            <input type="text" name="rp" id="maxCost" value="{if ShopCore::$_GET['rp'] && (int)ShopCore::$_GET['rp']>0}{echo ShopCore::$_GET['rp']}{else:}{echo (int)$priceRange.maxCost}{/if}" data-title="только цифры"/>
+                            <input type="text" name="rp" id="maxCost" value="{if ShopCore::$_GET['rp'] && (int)ShopCore::$_GET['rp']>0}{echo ShopCore::$_GET['rp']}{else:}{echo (int)$priceRange.maxCost}{/if}" data-title="только цифры" data-maxS="{echo (int)$priceRange.maxCost}"/>
                         </label>
 
                         {//button for submiting filter}

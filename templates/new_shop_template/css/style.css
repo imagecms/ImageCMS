@@ -226,7 +226,7 @@ button:hover .d_l_g, .d_l_g:hover, .d_l_b:hover{border-bottom: 1px dotted #cc000
 .groupButton .btn{-moz-border-radius: 0;-webkit-border-radius: 0;border-radius: 0;border-left-color: #fff;}
 .groupButton .btn:first-child{-moz-border-radius: 3px 0 0 3px;-webkit-border-radius: 3px 0 0 3px;border-radius: 3px 0 0 3px;border-left-color: #e4e4e4;}
 .groupButton .btn:last-child{-moz-border-radius: 0 3px 3px 0;-webkit-border-radius: 0 3px 3px 0;border-radius: 0 3px 3px 0;}
-a.btn:hover{color: #fff;}
+a.btn:hover{color: #555;}
 .btn{
     display: inline-block;cursor: pointer;padding: 0 15px;color: #555;min-height: 29px;text-decoration: none;line-height: 28px;position: relative;vertical-align: middle;
     -moz-border-radius: 3px;
@@ -746,7 +746,7 @@ a.activeSlide{background-position: -66px 0;}
 .frame_brand .btn_next:hover{background-position: -240px -25px;}
 .frame_brand .jcarousel-prev-disabled-horizontal.btn_prev, .frame_brand .jcarousel-next-disabled-horizontal.btn_next{opacity: 0.2;cursor: default;}
 
-.frame_func_catalog{position: relative;z-index: 1;}
+.frame_func_catalog{position: relative;z-index: 2;}
 .frame_func_catalog .groupButton, .frame_func_catalog > div{margin: 6px 20px 15px;}
 .frame_func_catalog > div:first-child{margin-left: 0;}
 
