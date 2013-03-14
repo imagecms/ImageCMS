@@ -290,6 +290,13 @@
             var pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}');
         </script>
 
+        <!--        Syncronization data for cart, wishlist  and comparelist     -->
+        <script>
+            var inServerCart = parseInt("{echo ShopCore::app()->SCart->totalItems()}");
+            var inServerWish = parseInt("{echo ShopCore::app()->SWishList->totalItems()}");
+            var inServerCompare = parseInt("{count($CI->session->userdata('shopForCompare'))}");
+        </script>
+
         <script type="text/javascript" src="{$THEME}js/jquery.imagecms.js"></script>
         <script type="text/javascript" src="{$THEME}js/jquery.cycle.all.js"></script>
         <script type="text/javascript" src="{$THEME}js/jquery.jcarousel.min.js"></script>
@@ -303,6 +310,19 @@
         <script type="text/javascript" src="{$THEME}js/imagecms.api.js"></script>
         <script type="text/javascript" src="{$THEME}js/my_js_classes_iy.js"></script>
 
+        <script >
+            {literal}
+            $(document).ready(function(){
+                var f = Shop.Settings.get('products_as_list');
+                if (Shop.Settings.get('products_as_list') == 'true' || Shop.Settings.get('products_as_list') == true)
+                    $('.showAsList').click().addClass('active');
+                else
+                    $('.showAsTable').click().addClass('active');
+            })
+            {/literal}
+        </script>
+
+
         <!-- Including template file for displaying drop-down login form is user is not logged in -->
     {if !$CI->dx_auth->is_logged_in()}{include_tpl('login_popup')}{/if}
 
@@ -314,7 +334,9 @@
     {include_shop_tpl('report_appearance')}
     <!-- End. Block report on appearance -->
 
+    <!-- Start. Include js-template for popup cart and order-products-->
     {include_shop_tpl('js_templates')}
+    <!-- End. Include js-template for popup cart and order-products-->
 
     <!-- Start. Include template for autocomplete-->
     {include_shop_tpl('search_autocomplete')}

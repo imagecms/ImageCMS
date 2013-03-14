@@ -1261,7 +1261,7 @@ function ieInput(els) {
                         else
                             $thisPrev.attr('disabled', 'disabled');
                         
-                        if (input.maxValue()) $thisNext.attr('disabled', 'disabled');
+//                        if (input.maxValue()) $thisNext.attr('disabled', 'disabled');
                     })
                     $thisPrev.click(function() {
                         var input = $this.focus();

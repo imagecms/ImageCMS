@@ -44,13 +44,14 @@ class Commentsapi extends Comments {
 //        } else {
 //        $this->db->where('module', 'shop');
 
-        $comments = $this->base->get($this->parsUrl($_SERVER['HTTP_REFERER']));
+        $item_id = $this->parsUrl($_SERVER['HTTP_REFERER']);
+        $comments = $this->base->get($item_id);
 
         // Read comments template
         // Set page id for comments form
         if ($comments != FALSE) {
             ($hook = get_hook('comments_store_cache')) ? eval($hook) : NULL;
-            $this->cache->store('comments_' . $this->parsUrl($_SERVER['HTTP_REFERER']) . $this->module, $comments, $this->cache_ttl, 'comments');
+            $this->cache->store('comments_' . $item_id . $this->module, $comments, $this->cache_ttl, 'comments');
         }
 
         if ($comments != null) {
@@ -280,7 +281,7 @@ class Commentsapi extends Comments {
                     'text' => $comment_text,
                     'text_plus' => $comment_text_plus,
                     'text_minus' => $comment_text_minus,
-                    'item_id' => $this->parsUrl($_SERVER['HTTP_REFERER']),
+                    'item_id' => $item_id,
                     'status' => $this->_comment_status(),
                     'agent' => $this->agent->agent_string(),
                     'user_ip' => $this->input->ip_address(),
@@ -458,9 +459,8 @@ class Commentsapi extends Comments {
         $this->db->where_in('item_id', $ids);
         $this->db->where('status', $status);
         $this->db->where('module = ', 'shop');
-//        $this->db->join ('shop_products', "shop_products.id=comments.item_id");
         $query = $this->db->get('comments')->result_array();
-//        var_dump($query);
+
         $result = array();
 
         foreach ($query as $q)

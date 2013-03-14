@@ -1,4 +1,4 @@
-<!-- floating elements-->
+    <!-- floating elements-->
 <div id="popupCart" style="display: none;" class="drop"></div>
 <a href="#" data-drop="#popupCart" data-place="center"data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" id="showCart" style="display: none;"></a>
 
@@ -26,17 +26,17 @@
 
      <!-- for single product -->
                             <% if (!item.kit) { %>
-                            <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>"> 
+                            <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" id="popupProduct_<%- item.id %>_<%- item.vId %>">
                                 <td><span class="times d_i-b" onclick="rmFromPopupCart(this);">&times;</span></td>
                                 <td>
-                                    <a href="#" class="d_i-b photo">
+                                    <a href="<%-item.url%>" class="d_i-b photo">
                                         <figure>
-                                            <img src="/uploads/shop/<%- item.id %>_mainMod.jpg"/>
+                                            <img src="<% if(item.img) { %><%-item.img%><% } else { %>/uploads/shop/<%- item.id %>_mainMod.jpg<% } %>"/>
                                         </figure>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="#"><%- item.name %></a><span class="c_97"><% if (item.number) { %> (<%- item.number %>) <% } %></span>
+                                    <a href="<%-item.url%>"><%- item.name %></a><%if(item.vname) {%> <%- '('+item.vname+')'%><%}%><span class="c_97"><% if (item.number) { %> (<%- item.number %>) <% } %></span>
                                     <div class="price price_f-s_16">
                                         <span class="first_cash"><span class="f-w_b"><%- parseFloat(item.price).toFixed(pricePrecision) %></span> <%-curr%>.</span>
                                     </div>
@@ -71,7 +71,7 @@
 
 
 
-                            <tr class="cartKit" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>">
+                            <tr class="cartKit" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" id="popupKit_<%- item.id %>_<%- item.vId %>>
                                 <td colspan="5">
                                     <table>
                                         <colgroup>
@@ -224,14 +224,14 @@
                     <% if (!item.kit) { %>
                     <tr>
                         <td class="v-a_m">
-                            <a class="photo" href="#">
+                            <a class="photo" href="<%-item.url%>">
                                 <figure>
-                                    <img src="/uploads/shop/<%- item.id %>_mainMod.jpg">
+                                    <img src="<% if(item.img) { %><%-item.img%><% } else { %>/uploads/shop/<%- item.id %>_mainMod.jpg<% } %>">
                                 </figure>
                             </a>
                         </td>
                         <td>
-                            <a href="#"><%- item.name %></a><span class="c_97"><% if (item.number) { %> (<%-item.number %>) <% } %></span>
+                            <a href="#"><%- item.name %></a><%if(item.vname)%> <%- '('+item.vname+')'%><span class="c_97"><% if (item.number) { %> (<%-item.number %>) <% } %></span>
                             <div class="price price_f-s_16">
                                 <span class="first_cash"><span class="f-w_b"><%- parseFloat(item.price).toFixed(pricePrecision) %></span> <%- curr %>.</span>
                             </div>
