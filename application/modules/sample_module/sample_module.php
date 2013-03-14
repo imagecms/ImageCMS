@@ -16,7 +16,7 @@ class Sample_Module extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->module('core');
-        \CMSFactory\Events::create()->registerEvent(array('commentId' => 144));
+//        \CMSFactory\Events::create()->registerEvent(array('commentId' => 144));
 
         /** Запускаем инициализацию переменых. Значения будут взяты з
          *  Базы Данных, и присвоены соответствующим переменным */
