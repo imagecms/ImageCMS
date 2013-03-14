@@ -16,7 +16,7 @@ class Sample_Module extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->module('core');
-        \CMSFactory\Events::create()->registerEvent(array('commentId' => 88));
+        \CMSFactory\Events::create()->registerEvent(array('commentId' => 144));
 
         /** Запускаем инициализацию переменых. Значения будут взяты з
          *  Базы Данных, и присвоены соответствующим переменным */
@@ -68,7 +68,7 @@ class Sample_Module extends MY_Controller {
      */
     public static function handler(array $param) {
         $instance = new Sample_Module();
-//        $instance->composeAndSendEmail($param);
+        $instance->composeAndSendEmail($param);
     }
 
     private function composeAndSendEmail($arg) {
