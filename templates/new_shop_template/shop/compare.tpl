@@ -31,7 +31,7 @@
                     <ul class="tabs">
                         {foreach $categories as $category}
                             <li><span data-href="#{$category.Url}"><span class="d_l_b">{echo $category.Name}</span></span></li>
-                        {/foreach}
+                                {/foreach}
                     </ul>
                 </div>
                 <!--End. Show categories of products which are in list -->
@@ -68,7 +68,7 @@
                                                         <a href="{shop_url('product/' . $product->getUrl())}" class="photo">
                                                             <span class="helper"></span>
                                                             <figure>
-                                                                <img src="{productImageUrl($product->getSmallModimage())}" alt=""/>
+                                                                <img src="{productImageUrl($product->getSmallModimage())}" alt="{echo $product->id}"/>
                                                             </figure>
                                                         </a>
                                                         <!--Start. Product info -->
@@ -83,11 +83,10 @@
                                                             <div class="price price_f-s_16">
                                                                 {if $product->hasDiscounts()}
                                                                     <span class="d_b old_price">
-                                                                        <span class="f-w_b">{echo $product->firstVariant->toCurrency('OrigPrice')}</span>
-                                                                        {$CS}
+                                                                        <span class="f-w_b">{echo $product->firstVariant->toCurrency('OrigPrice')} </span>{$CS}
                                                                     </span>
                                                                 {/if}
-                                                                <span class="f-w_b" >{echo $product->firstVariant->toCurrency()}</span>{$CS}
+                                                                <span class="f-w_b" >{echo $product->firstVariant->toCurrency()} </span>{$CS}
                                                             </div>
                                                             <!-- End. Price -->
                                                             <!--Start. Check amount of goods -->
@@ -100,7 +99,7 @@
                                                                         data-name="{echo $product->getName()}"
                                                                         data-number="{echo $product->firstVariant->getnumber()}"
                                                                         data-maxcount="{echo $product->firstVariant->getstock()}">
-                                                                    {lang('add_to_basket')}
+                                                                    {lang('s_buy')}
                                                                 </button>
                                                             {else:}
                                                                 <button data-placement="bottom right"

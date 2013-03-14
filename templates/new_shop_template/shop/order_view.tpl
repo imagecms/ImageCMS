@@ -153,16 +153,16 @@
                                                 <!-- Start. Display main product of Kit -->
                                                 <li class="span4">
                                                     <div class="item_set">
-                                                        <div class="description">
-                                                            <a href="{shop_url('product/' . $orderProduct->getKit()->getMainProduct()->getUrl())}">{echo ShopCore::encode($orderProduct->getKit()->getMainProduct()->getName())}</a>
-                                                            <div class="price price_f-s_16"><span class="f-w_b">{echo $orderProduct->getKit()->getMainProduct()->getFirstVariant()->getPrice()}</span> {$CS}</div>
-                                                        </div>
                                                         <a href="{shop_url('product/' . $orderProduct->getKit()->getMainProduct()->getUrl())}" class="photo">
                                                             <span class="helper"></span>
                                                             <figure>
                                                                 <img src="{productImageUrl($orderProduct->getKit()->getMainProduct()->getSmallModImage())}" alt="{echo ShopCore::encode($orderProduct->getKit()->getMainProduct()->getName())}"/>
                                                             </figure>
                                                         </a>
+                                                        <div class="description">
+                                                            <a href="{shop_url('product/' . $orderProduct->getKit()->getMainProduct()->getUrl())}">{echo ShopCore::encode($orderProduct->getKit()->getMainProduct()->getName())}</a>
+                                                            <div class="price price_f-s_16"><span class="f-w_b">{echo $orderProduct->getKit()->getMainProduct()->getFirstVariant()->getPrice()}</span> {$CS}</div>
+                                                        </div>
                                                     </div>
                                                     <div class="d_i-b">+</div>
                                                 </li>
@@ -172,16 +172,16 @@
                                                 {foreach $orderProduct->getKit()->getShopKitProducts() as $key => $kitProducts}
                                                     <li class="span4">
                                                         <div class="item_set">
+                                                            <a href="{shop_url('product/' . $kitProducts->getSProducts()->getUrl())}" class="photo">
+                                                                <span class="helper"></span>
+                                                                <figure>
+                                                                    <img src="{productImageUrl($kitProducts->getSProducts()->getSmallModImage())}" alt="{echo ShopCore::encode($orderProduct->product_name)}"/>
+                                                                </figure>
+                                                            </a>
                                                             <div class="description">
                                                                 <a href="{shop_url('product/' . $kitProducts->getSProducts()->getUrl())}">{echo ShopCore::encode($kitProducts->getSProducts()->getName())}</a>
                                                                 <div class="price price_f-s_16"><span class="f-w_b">{echo $kitProducts->getDiscountProductPrice()}</span>&nbsp;{$CS}</div>
                                                             </div>
-                                                            <a href="{shop_url('product/' . $kitProducts->getSProducts()->getUrl())}" class="photo">
-                                                                <span class="helper"></span>
-                                                                <figure>
-                                                                    <img src="{productImageUrl($kitProducts->getSProducts()->getSmallModImage())}" alt="Apple MacBook Pro A1286"/>
-                                                                </figure>
-                                                            </a>
                                                             <span class="top_tovar discount">-{echo $kitProducts->getDiscount()}%</span>
                                                         </div>
                                                         <div class="d_i-b">{if $orderProduct->getKit()->countProducts() != $key}+{/if}</div>
@@ -190,7 +190,7 @@
                                                 <!-- End. Display kits products -->
 
                                             </ul>
-                                            <img src="{$SHOP_THEME}/images/gen_sum.png"/>
+                                            <img src="{$THEME}/images/gen_sum.png" alt="gen_sum"/>
 
                                             <!-- Start. Render kit summary -->
                                             <div class="c_97">(Количество комплектов - {echo $orderProduct->getQuantity()})</div>
@@ -220,7 +220,7 @@
 
                                         <span class="f-s_18">Сумма:</span>&nbsp;
                                         <span class="f-s_24">{echo $model->getTotalPriceWithGift()}</span>&nbsp;
-                                        <span class="f-s_24">{$CS}</span>
+                                        <span class="f-s_24"> {$CS}</span>
                                     </div>
                                 </div>
                             </td>

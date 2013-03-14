@@ -132,7 +132,7 @@
                     <div class="title">{lang('s_price')}</div>
                     <div class="sliderCont">
                         <div id="slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content">
-                            <img src="{$THEME}images/slider.png"/>
+                            <img src="{$THEME}images/slider.png" alt="slider"/>
                             <div class="ui-slider-range ui-widget-header"></div>
                             <a href="#" class="ui-slider-handle" id="left_slider"></a>
                             <a href="#" class="ui-slider-handle" id="right_slider"></a>
