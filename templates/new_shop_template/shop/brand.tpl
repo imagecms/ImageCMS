@@ -63,7 +63,7 @@
             {if str_replace(' ', '', $model->getDescription()) != ''}
                 <div class="grey-b_r-bord">
                     <figure class="f_l m-t_10 w_150">
-                        <img src="/uploads/shop/brands/{echo $model->getImage()}"/>
+                        <img src="/uploads/shop/brands/{echo $model->getImage()}" alt="{$model->getName()}"/>
                     </figure>
                     {echo $model->getDescription()}
                 </div>
