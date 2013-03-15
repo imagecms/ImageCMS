@@ -251,7 +251,6 @@ var Shop = {
                 selector = this.popupCartSelector;
 
             template = _.template($(selector).html(), Shop.Cart);
-            console.log(template);
             return template = _.template($(selector).html(), Shop.Cart);
 
         },
@@ -400,7 +399,6 @@ var Shop = {
                     try {
                         var dataObj = JSON.parse(data);
                         dataObj.id = key;
-console.log(dataObj)
                         if (dataObj.success == true) {
                             Shop.WishList.items.push(key);
                             localStorage.setItem('wishList', JSON.stringify(Shop.WishList.items));
@@ -426,7 +424,7 @@ console.log(dataObj)
                     } catch (e) {
                         console.error('Error adding product to wishlist. Server\'s response is not valid JSON.');
                         console.log(e)
-                    }
+                   }
                 });
             }
         },
@@ -889,14 +887,38 @@ $(document).ready(
                 $this.removeClass('toWishlist').addClass('inWishlist').addClass(genObj.wishListIn).attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle'));
                 $this.tooltip();
             }
-            checkCompareWishLink();chcss(genObj.compareIn).attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle'));
+            checkCompareWishLink();
+            //chcss(genObj.compareIn).attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle'));
                 $this.tooltip();
 
                 checkCompareWishLink();
         });
 
+
+        $(document).on('compare_list_add', function (e) {
+            if (e.dataObj.success == true) {
+                $('#compareListCount').html('(' + Shop.WishList.all().length + ')');
+                var $this = $('.toCompare[data-prodid=' + e.dataObj.id + ']')
+                $this.removeClass('toCompare').addClass('inCompare').addClass(genObj.wishListIn).attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle'));
+                $this.tooltip();
+            }
+
+            $('#compareCount').html('(' + Shop.CompareList.all().length + ')');
+
+            checkCompareWishLink();
+            //chcss(genObj.compareIn).attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle'));
+
+            $this.tooltip();
+
+            checkCompareWishLink();
+        });
+
         $(document).on('compare_list_rm', function () {
             $('#compareCount').html('(' + Shop.CompareList.all().length + ')');
+            checkCompareWishLink();
+        });
+
+        $(document).on('compare_list_add', function () {
             checkCompareWishLink();
         });
 

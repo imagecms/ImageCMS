@@ -223,7 +223,7 @@
             </div>
 
             <!-- Start Brands widget -->
-            {widget('brands')}
+            {//widget('brands')}
             <!-- End. Brands widget -->
 
             <div class="hFooter"></div>
@@ -304,11 +304,11 @@
         <script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox.pack.js"></script>
         <script type="text/javascript" src="{$THEME}js/jquery.form.js"></script>
         <script type="text/javascript" src="{$THEME}js/scripts.js"></script>
-        <script type="text/javascript" src="{$THEME}js/shop.js"></script>
         <!-- Dev. scripts -->
         <script type="text/javascript" src="{$THEME}js/imagecms.api.js"></script>
         <script type="text/javascript" src="{$THEME}js/my_js_classes_iy.js"></script>
 
+        <script type="text/javascript" src="{$THEME}js/shop.js"></script>
         <!-- Including template file for displaying drop-down login form is user is not logged in -->
     {if !$CI->dx_auth->is_logged_in()}{include_tpl('login_popup')}{/if}
 
