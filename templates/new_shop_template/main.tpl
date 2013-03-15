@@ -286,6 +286,7 @@
         <script type="text/javascript">
             var curr = '{$CS}';
             var pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}');
+            var checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}";
         </script>
 
         <!--        Syncronization data for cart, wishlist  and comparelist     -->
@@ -303,11 +304,11 @@
         <script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox.pack.js"></script>
         <script type="text/javascript" src="{$THEME}js/jquery.form.js"></script>
         <script type="text/javascript" src="{$THEME}js/scripts.js"></script>
-        <script type="text/javascript" src="{$THEME}js/shop.js"></script>
         <!-- Dev. scripts -->
         <script type="text/javascript" src="{$THEME}js/imagecms.api.js"></script>
         <script type="text/javascript" src="{$THEME}js/my_js_classes_iy.js"></script>
 
+        <script type="text/javascript" src="{$THEME}js/shop.js"></script>
         <!-- Including template file for displaying drop-down login form is user is not logged in -->
     {if !$CI->dx_auth->is_logged_in()}{include_tpl('login_popup')}{/if}
 

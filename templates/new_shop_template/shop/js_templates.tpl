@@ -26,7 +26,7 @@
 
      <!-- for single product -->
                             <% if (!item.kit) { %>
-                            <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" id="popupProduct_<%- item.id %>_<%- item.vId %>">
+                            <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" id="popupProduct_<%- item.id+'_'+item.vId %>">
                                 <td><span class="times d_i-b" onclick="rmFromPopupCart(this);">&times;</span></td>
                                 <td>
                                     <a href="<%-item.url%>" class="d_i-b photo">
@@ -71,7 +71,7 @@
 
 
 
-                            <tr class="cartKit" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" id="popupKit_<%- item.id %>_<%- item.vId %>>
+                            <tr class="cartKit" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" id="popupKit_<%- item.kitId %>">
                                 <td colspan="5">
                                     <table>
                                         <colgroup>
@@ -143,7 +143,7 @@
                                             </tr>
                                             <% }; i++;  %>
 
-                                            <% }) %>
+                                            <% }); %>
 
                                         </tbody>
                                     </table>
@@ -171,7 +171,9 @@
                                 <% if ( Shop.Cart.totalCount  == 0 ) { %>
                                 <td colspan="5"><div class="form_alert">
                                         <p>Ваша корзина пуста</p>
-                                    </div></td></tr><tr>
+                                    </div></td>
+                            </tr>
+                            <tr>
                                 <% } %>
                                 <% if ( document.getElementById('orderDetails')) { %>
                                 <% if ( Shop.Cart.totalCount  == 0 ) { %>
@@ -231,7 +233,7 @@
                             </a>
                         </td>
                         <td>
-                            <a href="#"><%- item.name %></a><%if(item.vname)%> <%- '('+item.vname+')'%><span class="c_97"><% if (item.number) { %> (<%-item.number %>) <% } %></span>
+                            <a href="<%-item.url%>"><%- item.name %></a><%if(item.vname)%> <%- '('+item.vname+')'%><span class="c_97"><% if (item.number) { %> (<%-item.number %>) <% } %></span>
                             <div class="price price_f-s_16">
                                 <span class="first_cash"><span class="f-w_b"><%- parseFloat(item.price).toFixed(pricePrecision) %></span> <%- curr %>.</span>
                             </div>

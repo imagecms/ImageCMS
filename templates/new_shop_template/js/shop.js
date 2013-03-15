@@ -108,7 +108,7 @@ var Shop = {
 
             return this;
         },
-        chCount:function (cartItem) {
+        chCount:function (cartItem, f) {
 
             Shop.Cart.currentItem = this.load(cartItem.storageId());
             if (Shop.Cart.currentItem) {
@@ -117,11 +117,14 @@ var Shop = {
 
                 //this.countChanged = true;
 
+                Shop.currentCallbackFn = f;
 
-                var postName = 'products[SProducts_'+cartItem.id+'_'+cartItem.vId+']';
-                var postData = {
-                    recount:1
-                };
+                if (cartItem.kit)
+                    var postName = 'kits[ShopKit_'+Shop.Cart.currentItem.kitId+']';
+                else
+                    var postName = 'products[SProducts_'+cartItem.id+'_'+cartItem.vId+']';
+
+                var postData = {recount:1};
                 postData[postName] = cartItem.count;
                 $.post('/shop/cart_api', postData, function(data){
 
@@ -130,6 +133,8 @@ var Shop = {
                         Shop.Cart.currentItem.count = dataObj.count;
 
                     Shop.Cart.save(Shop.Cart.currentItem);
+
+                    (Shop.currentCallbackFn () );
 
                     $(document).trigger({
                         type:'count_changed',
@@ -245,6 +250,7 @@ var Shop = {
             if (typeof selector == 'undefined' || selector == '')
                 selector = this.popupCartSelector;
 
+            template = _.template($(selector).html(), Shop.Cart);
             return template = _.template($(selector).html(), Shop.Cart);
 
         },
@@ -258,17 +264,25 @@ var Shop = {
         },
 
         sync: function (){
-            $.getJSON('/shop/cart_api/cnt', function(data){
+            $.getJSON('/shop/cart_api/sync', function(data){
                 if (typeof(data) == 'object'){
 
                     var items = Shop.Cart.getAllItems();
                     for (var i = 0; i < items.length; i++)
-                        localStorage.removeItem('cartItem_'+items[i]['id']+'_'+items[i]['vId']);
+                        if (!items[i].kit)
+                            localStorage.removeItem('cartItem_'+items[i]['id']+'_'+items[i]['vId']);
                     delete items;
 
                     _.each(_.keys(data.data.items), function(key) {
-                        localStorage.setItem(key, JSON.stringify(data.data.items[key]));
-                    //console.log(data.data.items[key]);
+                        if (!data.data.items[key].kit)
+                            localStorage.setItem(key, JSON.stringify(data.data.items[key]));
+                        else
+                        {
+                            var kit = Shop.Cart.load('cartItem_'+items[i]['id']+'_'+items[i]['vId']);
+                            kit.count = data.data.items[key].count;
+                            Shop.Cart.save('cartItem_'+kit['id']+'_'+kit['vId']);
+                        }
+                            //console.log(data.data.items[key]);
                     });
 
                     $(document).trigger({
@@ -385,7 +399,6 @@ var Shop = {
                     try {
                         var dataObj = JSON.parse(data);
                         dataObj.id = key;
-
                         if (dataObj.success == true) {
                             Shop.WishList.items.push(key);
                             localStorage.setItem('wishList', JSON.stringify(Shop.WishList.items));
@@ -411,7 +424,7 @@ var Shop = {
                     } catch (e) {
                         console.error('Error adding product to wishlist. Server\'s response is not valid JSON.');
                         console.log(e)
-                    }
+                   }
                 });
             }
         },
@@ -614,7 +627,7 @@ function initShopPage(showWindow) {
 
         // change count
         $('div.frame_change_count>button').click(function () {
-            var pd = $(this).closest('div');
+            pd = $(this).closest('div');
             var cartItem = new Shop.cartItem({
                 id:pd.data('prodid'),
                 vId:pd.data('varid'),
@@ -622,24 +635,26 @@ function initShopPage(showWindow) {
                 kit:pd.data('kit')
             });
 
-            cartItem.count = pd.closest('div.frame_count').find('input').val();
+            if (checkProdStock && pd.closest('div.frame_count').find('input').data('max'))
+                pd.closest('div.frame_count').find('input').val(pd.closest('div.frame_count').find('input').data('max'));
+            else
+                cartItem.count = pd.closest('div.frame_count').find('input').val();
+
+
             var word = cartItem.kit ? kits : pcs;
             pd.closest('div.frame_count').next('span').html(word);
 
+            Shop.Cart.chCount(cartItem, function(){});
 
-            Shop.Cart.chCount(cartItem);
-
-            //
 
             $('div.cleaner>span>span:nth-child(3)').html(' (' + Shop.Cart.totalCount + ')');
-
-            //console.log(' --- '+cartItem.count);
-
-
             totalPrice = cartItem.count * cartItem.price;
             pd.closest('tr').find('span.first_cash>span').last().html(totalPrice.toFixed(pricePrecision));
 
             $('#popupCartTotal').html(Shop.Cart.totalPrice.toFixed(pricePrecision));
+            //
+
+
 
         });
 
@@ -706,8 +721,8 @@ function recountCartPage() {
 }
 
 function emptyPopupCart() {
-    $('#popupCart .inside_padd table').hide();
-    $('#popupCart .inside_padd div.msg').show();
+    $('#popupCart .inside_padd table, #shopCartPage').hide();
+    $('#popupCart .inside_padd div.msg, #shopCartPageEmpty').removeClass('d_n').show();
 }
 
 
@@ -745,7 +760,7 @@ function checkSyncs(){
         if (Shop.CompareList.all().length != inServerCompare)
             Shop.CompareList.sync();
     }
-    if (inServerCompare != NaN)
+    if (inServerWish != NaN)
     {
         if (Shop.WishList.all().length != inServerWish)
             Shop.WishList.sync();
@@ -839,7 +854,7 @@ $(document).ready(
             if (!data.cartItem.kit)
                 $('#popupProduct_'+data.cartItem.id+'_'+data.cartItem.vId).remove();
             else
-                $('#popupKit_'+data.cartItem.id+'_'+data.cartItem.vId).remove();
+                $('#popupKit_'+data.cartItem.kitId).remove();
 
         });
 
@@ -868,35 +883,47 @@ $(document).ready(
         $(document).on('wish_list_add', function (e) {
             if (e.dataObj.success == true) {
                 $('#wishListCount').html('(' + Shop.WishList.all().length + ')');
-                alert(2)
                 var $this = $('.toWishlist[data-prodid=' + e.dataObj.id + ']')
                 $this.removeClass('toWishlist').addClass('inWishlist').addClass(genObj.wishListIn).attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle'));
                 $this.tooltip();
-                    
-                checkCompareWishLink();
             }
-        });
-
-        $(document).on('wish_list_rm', function (e) {
-            $('#wishListCount').html('(' + Shop.WishList.all().length + ')');
-            /* if i am in a wishList page */
-            $('#wishListTotal').html(parseFloat(e.dataObj.totalPrice).toFixed(pricePrecision));
             checkCompareWishLink();
-        });
-
-        $(document).on('compare_list_add', function (e) {
-            if (e.dataObj.success == true) {
-                $('#compareCount').html('(' + Shop.CompareList.all().length + ')');
-                var $this = $('.toCompare[data-prodid=' + e.dataObj.id + ']');
-                $this.removeClass('toCompare').addClass('inCompare').addClass(genObj.compareIn).attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle'));
+            //chcss(genObj.compareIn).attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle'));
                 $this.tooltip();
 
                 checkCompareWishLink();
+        });
+
+
+        $(document).on('compare_list_add', function (e) {
+            if (e.dataObj.success == true) {
+                $('#compareListCount').html('(' + Shop.WishList.all().length + ')');
+                var $this = $('.toCompare[data-prodid=' + e.dataObj.id + ']')
+                $this.removeClass('toCompare').addClass('inCompare').addClass(genObj.wishListIn).attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle'));
+                $this.tooltip();
             }
+
+            $('#compareCount').html('(' + Shop.CompareList.all().length + ')');
+
+            checkCompareWishLink();
+            //chcss(genObj.compareIn).attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle'));
+
+            $this.tooltip();
+
+            checkCompareWishLink();
         });
 
         $(document).on('compare_list_rm', function () {
             $('#compareCount').html('(' + Shop.CompareList.all().length + ')');
+            checkCompareWishLink();
+        });
+
+        $(document).on('wish_list_rm', function () {
+            $('#wishListCount').html('(' + Shop.WishList.all().length + ')');
+            checkCompareWishLink();
+        });
+
+        $(document).on('compare_list_add', function () {
             checkCompareWishLink();
         });
 
@@ -907,6 +934,7 @@ $(document).ready(
 
         /*     refresh page after sync      */
         $(document).on('wish_list_sync', function(){
+            $('#wishListCount').html('(' + Shop.WishList.all().length + ')');
             processWish();
         });
         $(document).on('compare_list_sync', function(){
