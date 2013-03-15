@@ -101,7 +101,7 @@ class Pages extends BaseAdminController {
         $this->load->module('tags')->_remove_orphans();
 
         /** Init CMS Events system */
-        \CMSFactory\Events::create()->registerEvent(array('page_id' => $page_id, 'user' => $this->dx_auth->get_user_id()), 'Page:delete');
+        \CMSFactory\Events::create()->registerEvent(array('pageId' => $page_id, 'userId' => $this->dx_auth->get_user_id()), 'Page:delete');
     }
 
     /*     * **************************************************

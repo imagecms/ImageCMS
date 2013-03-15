@@ -32,7 +32,7 @@
                                                 "$hotProduct->firstVariant->toCurrency('OrigPrice')" or $hotProduct->firstVariant->getOrigPrice()
                                                 output price without discount
                                                 -->
-                                                <span class="f-w_b" id="priceOrigVariant">{echo $hotProduct->firstVariant->toCurrency('OrigPrice')}</span>
+                                                <span class="f-w_b" id="priceOrigVariant">{echo $hotProduct->firstVariant->toCurrency('OrigPrice')} </span>
                                                 {$CS}
                                             </span>                           
                                         {/if}
@@ -40,7 +40,7 @@
                                         If there is a discount of "$hotProduct->firstVariant->toCurrency()" or "$hotProduct->firstVariant->getPrice"
                                         will display the price already discounted
                                         -->
-                                        <span class="f-w_b" id="priceVariant">{echo $hotProduct->firstVariant->toCurrency()}</span>{$CS}
+                                        <span class="f-w_b" id="priceVariant">{echo $hotProduct->firstVariant->toCurrency()} </span>{$CS}
                                         <!--To display the amount of discounts you can use $hotProduct->firstVariant->getNumDiscount()-->
                                     </div>  
                                     {if $hotProduct->firstvariant->getstock()!=0}
@@ -52,7 +52,7 @@
                                                 data-name="{echo $hotProduct->getName()}"
                                                 data-number="{echo $hotProduct->firstVariant->getnumber()}"
                                                 data-maxcount="{echo $hotProduct->firstVariant->getstock()}">
-                                            {lang('add_to_basket')}
+                                            {lang('s_buy')}
                                         </button>
                                     {else:}
                                         <button data-placement="bottom right"

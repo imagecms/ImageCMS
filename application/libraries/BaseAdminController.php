@@ -63,7 +63,8 @@ class BaseAdminController extends MY_Controller {
             foreach ($query->result_array() as $module) {
                 $moduleName = $module['name'];
                 Modules::load_file($moduleName, APPPATH . 'modules' . DS . $moduleName . DS);
-                $moduleName::adminAutoload();
+                if (method_exists($moduleName, 'adminAutoload'))
+                    $moduleName::adminAutoload();
             }
         }
     }

@@ -287,6 +287,16 @@ class Authapi extends MY_Controller {
         /** return JSON Data */
         return json_encode($jsonResponse);
     }
+    
+    function email_check($email) {
+
+        $result = $this->dx_auth->is_email_available($email);
+        if (!$result) {
+            $this->form_validation->set_message('email_check', lang('lang_email_exists'));
+        }
+
+        return $result;
+    }
 
     /**
      * Provides cancelling account if user is logged in
