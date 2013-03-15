@@ -4,52 +4,47 @@
         <div class="left">
 
             {if $form_errors}
-                <div class="errors"> 
+                <div class="errors">
                     {$form_errors}
                 </div>
             {/if}
 
             {if $message_sent}
-                Ваше сообщение отправлено.
+                <div style="color: green;">
+                    Ваше сообщение отправлено.
+                </div>
             {/if}
 
             <form action="{site_url('feedback')}" method="post">
                 <div class="textbox" style="margin-top: 15px;">
-                    <input type="text" id="name" name="name" class="text" value="{if $_POST.name}{$_POST.name}{else:}Ваше Имя{/if}" onfocus="if (this.value == 'Ваше Имя')
-                                this.value = '';" onblur="if (this.value == '')
-                                this.value = 'Ваше Имя';"/>
+                    <input type="text" id="name" name="name" class="text" value="{if $_POST.name}{$_POST.name}{/if}"  
+                           placeholder="Ваше Имя"/>
                 </div>
 
                 <div class="textbox" style="margin-top: 15px;">
-                    <input type="text" id="email" name="email" class="text" value="{if $_POST.email}{$_POST.email}{else:}Email{/if}" onfocus="if (this.value == 'Email')
-                                this.value = '';" onblur="if (this.value == '')
-                                this.value = 'Email';"/>
+                    <input type="text" id="email" name="email" class="text" value="{if $_POST.email}{$_POST.email}{/if}" placeholder="Email"/>
                 </div>
 
                 <div class="textbox" style="margin-top: 15px;">
-                    <input type="text" id="theme" name="theme" class="text" value="{if $_POST.theme}{$_POST.theme}{else:}Тема{/if}" onfocus="if (this.value == 'Тема')
-                                this.value = '';" onblur="if (this.value == '')
-                                this.value = 'Тема';"/>
+                    <input type="text" id="theme" name="theme" class="text" value="{if $_POST.theme}{$_POST.theme}{/if}" placeholder="Тема"/>
                 </div>
 
                 <div class="textbox" style="margin-top: 15px;">
-                    <textarea cols="45" rows="10" name="message" id="message" onfocus="if (this.value == 'Текст Сообщения')
-                                this.value = '';" onblur="if (this.value == '')
-                                this.value = 'Текст Сообщения';">{if $_POST.message}{$_POST.message}{else:}Текст Сообщения{/if}</textarea>
+                    <textarea cols="45" rows="10" name="message" id="message" placeholder="Текст Сообщения">{if $_POST.message}{$_POST.message}{/if}</textarea>
                 </div>
 
-                <!--<div class="comment_form_info">
-                    {if $captcha_type =='captcha'}    
-                        <div class="textbox captcha" style="margin-top: 15px;">
-                            <input type="text" name="captcha" id="recaptcha_response_field" value="Код протекции" onfocus="if (this.value == 'Код протекции')
-                                this.value = '';" onblur="if (this.value == '')
-                                this.value = 'Код протекции';"/>
-                        </div>
-                    {/if}
-                </div>-->
                 <div style="margin-top: 15px;">
                     {$cap_image}
                 </div>
+                <div class="comment_form_info">
+                    {if $captcha_type =='captcha'}    
+                        <div class="textbox captcha" style="margin-top: 15px;">
+                            <input type="text" name="captcha" id="recaptcha_response_field" value="" placeholder="Код протекции"/>
+                        </div>
+                    {/if}
+                </div>
+
+
                 <div style="margin-top: 15px;">
                     <input type="submit" class="submit" value="{lang('lang_comment_button')}" />
                 </div>
