@@ -17,7 +17,7 @@
                         {foreach $banners as $banner}
                             <li>
                                 <a href="{echo $banner['url']}">
-                                    <img src="/uploads/shop/banners/{echo $banner['image']}" />
+                                    <img src="/uploads/shop/banners/{echo $banner['image']}" alt="banner"/>
                                 </a>
                             </li>
                         {/foreach}

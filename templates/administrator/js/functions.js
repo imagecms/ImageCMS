@@ -696,7 +696,7 @@ var orders = new Object({
                     vKeys = Object.keys(ui.item.variants);
 
                     for (var i = 0; i < vKeys.length; i++)
-                        $('#product_variant_name').append(new Option(ui.item.variants[ vKeys[i] ].name + ui.item.variants[ vKeys[i] ].price + " " + ui.item.cs, vKeys[i], true, true));
+                        $('#product_variant_name').append(new Option(ui.item.variants[ vKeys[i] ].name + ' - ' + ui.item.variants[ vKeys[i] ].price + " " + ui.item.cs, vKeys[i], true, true));
                 },
                 close: function() {
                     $('#product_name').val(productName);
@@ -708,18 +708,20 @@ var orders = new Object({
                     minChars: 0,
                     source: '/admin/components/run/shop/orders/ajaxGetProductList/number' + $('#productNumber').val(),
                     select: function(event, ui) {
-                        productName = ui.item.label;                        
+                        productName = ui.item.name;                        
                         pNumber = ui.item.number;
                         $('#product_id').val(ui.item.value);
                         vKeys = Object.keys(ui.item.variants);
 
                         for (var i = 0; i < vKeys.length; i++)
-                            $('#product_variant_name').append(new Option(ui.item.variants[ vKeys[i] ].name + ui.item.variants[ vKeys[i] ].price + " - " + ui.item.cs, vKeys[i], true, true));
+                            $('#product_variant_name').append(new Option(ui.item.variants[ vKeys[i] ].name + ' - ' + ui.item.variants[ vKeys[i] ].price + "  " + ui.item.cs, vKeys[i], true, true));
                     },
                     close: function() {
                         $('#product_name').val(productName);
                         $('#productNumber').val(pNumber);
                     }
+                    
+                
                     
                 });
             }
@@ -733,7 +735,7 @@ var orders = new Object({
                         vKeys = Object.keys(ui.item.variants);
 
                         for (var i = 0; i < vKeys.length; i++)
-                            $('#product_variant_name').append(new Option(ui.item.variants[ vKeys[i] ].name + ui.item.variants[ vKeys[i] ].price + " - " + ui.item.cs, vKeys[i], true, true));
+                            $('#product_variant_name').append(new Option(ui.item.variants[ vKeys[i] ].name + ' ' + ui.item.variants[ vKeys[i] ].price + "  " + ui.item.cs, vKeys[i], true, true));
                     },
                     close: function() {
                         $('#product_name').val(productName);
@@ -741,7 +743,7 @@ var orders = new Object({
                     }
                 });
                 $('#product_name').val('');
-                $('#product_variant_name ').empty();
+                $('#product_variant_name').empty();
                 $('#product_quantity').val('');
             });
         });
@@ -1006,5 +1008,7 @@ function clone_object() {
         })
     }
 }
-
 window.onload = clone_object();
+
+
+
