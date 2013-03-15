@@ -288,6 +288,7 @@
         <script type="text/javascript">
             var curr = '{$CS}';
             var pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}');
+            var checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}";
         </script>
 
         <!--        Syncronization data for cart, wishlist  and comparelist     -->

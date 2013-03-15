@@ -15,7 +15,9 @@
 <script type="text/javascript" src="{$THEME}js/jquery.hoverIntent.js"></script>
 <script type="text/javascript" src="{$THEME}js/jquery.cycle.js"></script>
 
-<link rel="stylesheet" type="text/css" href="/js/jquery.fancybox-1.3.4/style.css" />
+<script type="text/javascript" src="/js/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.js"></script>
+<link rel="stylesheet" type="text/css" href="/js/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.css" />
+
 
 <script type="text/javascript" src="{$THEME}js/jquery.functions.js"></script>
 <script type="text/javascript" src="{$THEME}js/cufon.js"></script>

@@ -20,7 +20,6 @@ function ChangeBannerActive(el, bannerId)
     });
 }
 var shopAdminMenuCache = false;
-var base_url = 'http://p4/';
 
 function showMessage(title, text, messageType)
 {
@@ -137,7 +136,14 @@ $('.formSubmit').live('click', function() {
 function updateNotificationsTotal()
 {
     //if (isShop)
-    $('#topPanelNotifications>div').load('/admin/components/run/shop/notifications/getAvailableNotification');
+    $('#topPanelNotifications>div').load('/admin/components/run/shop/notifications/getAvailableNotification', function(){
+        $('#topPanelNotifications>div a').pjax({
+
+            container: '#mainContent',
+            timeout: 3000
+        });
+    });
+
 }
 
 
@@ -428,7 +434,7 @@ function initTinyMCE()
 
 function initTextEditor(name)
 {
-    if (typeof(name) != 'undefined' && name.length != 0)
+    if (typeof(name) != 'undefined' && name.length != 0 && name != 'none')
         ({
             'elrte': initElRTE,
             'tinymce': initTinyMCE

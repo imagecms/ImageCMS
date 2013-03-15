@@ -1260,8 +1260,9 @@ function ieInput(els) {
                             $thisPrev.removeAttr('disabled');
                         else
                             $thisPrev.attr('disabled', 'disabled');
-                        
-//                        if (input.maxValue()) $thisNext.attr('disabled', 'disabled');
+
+                        if (checkProdStock)
+                            if (input.maxValue()) $thisNext.attr('disabled', 'disabled');
                     })
                     $thisPrev.click(function() {
                         var input = $this.focus();
