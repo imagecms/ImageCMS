@@ -317,14 +317,6 @@ wnd.load(function() {
         else
             frameNavBar.removeClass('in').hide();
     });
-    $('.navStaticPages > ul > li > a').click(function(event) {
-        $this = $(this);
-        if ($this.next().length > 0) {
-            event.preventDefault();
-            $this.toggleClass('active');
-            $this.next().slideToggle(500);
-        }
-    });
     /* Refresh when remove item from Compare */
     $('.frame_tabsc > div').equalHorizCell('refresh');
     /* End. Refresh when remove item from Compare */
