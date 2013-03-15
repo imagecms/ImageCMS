@@ -10,11 +10,12 @@
 
 
         <div class="content_head">
-            <div class="crumbs">{renderCategoryPathNoSeo($model)}</div>
-            <a href="{shop_url('category/'.$model->getFullPath())}?filteronly" class="check_filter h_f"><span class="helper"></span><span class="v-a_m"><span class="check_filter_ico icon"></span><span class="title">Подбор по параметрам</span></span></a>
-        </div>Всего товаров({$totalProducts})
-        <div class="f-s_24 f_l">{echo ShopCore::encode($model->getTitle())} <span class="count_search">({$totalProducts})</span></div>
-                    <div class="f_r">
+            <div class="crumbs">{renderCategoryPathNoSeo($category)}
+                <h1>{echo ShopCore::encode($category->getTitle())}</h1>
+            </div>
+            <a href="{shop_url('category/'.$category->getFullPath())}?filteronly" class="check_filter h_f"><span class="helper"></span><span class="v-a_m"><span class="check_filter_ico icon"></span><span class="title">Подбор по параметрам</span></span></a>
+<!--        <div class="f-s_24 f_l">{echo ShopCore::encode($category->getTitle())} <span class="count_search">({$totalProducts})</span></div>-->
+<!--                    <div class="f_r">
                         <form method="GET">
                             <div class="lineForm f_l w_145">
                                 <select id="sort" name="order">
@@ -38,7 +39,8 @@
                             <input type="submit" value="FIN">
                         </form>
                     </div>
-                </div>
+                </div>-->
+                
         <ul class="catalog">
         {foreach $products as $product}
             <li>

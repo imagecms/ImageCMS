@@ -1,8 +1,8 @@
         <div class="baner">
-             {$banners = getBanners()}
+             {$banners = ShopCore::app()->SBannerHelper->getBanners(1)}
              {foreach $banners as $banner}
-            <a href="{echo $banner->getUrl()}" class="figure">
-                <img src="{$SHOP_THEME}/images/temp/baner.jpg"/>
+            <a href="" class="figure">
+                <img src="/uploads/shop/banners/{echo $banner['image']}"/>
             </a>
             {/foreach}
         </div>

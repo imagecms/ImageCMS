@@ -16,5 +16,5 @@
         <span class="icon-wish"></span>
         <span class="text-el">{echo lang('s_WL')}</span>
     </span>
-    <span id="wishListCount" class="c_97"> ({echo $cWL})</span>
+    <span id="wishListCount" class="c_97"> (0)</span>
 </div>

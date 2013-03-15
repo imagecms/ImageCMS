@@ -1,5 +1,5 @@
 {if count($simProduct = getSimilarProduct($model)) > 1}
-
+{var_dump('widget')}
     <div class="frame_carousel_product carousel_js c_b">
         <div class="m-b_20">
             <div class="title_h1 d_i-b v-a_m">{lang('s_similar_product')}</div>

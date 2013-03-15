@@ -157,6 +157,7 @@ class Settings extends BaseAdminController {
             'yandex_metric' => $this->input->post('yandex_metric'),
             'lang_sel' => $this->input->post('lang_sel'),
             'text_editor' => $this->input->post('text_editor'),
+			'template' => $this->input->post('template'),
         );
 
         ($hook = get_hook('admin_save_settings')) ? eval($hook) : NULL;
