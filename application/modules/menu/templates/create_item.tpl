@@ -171,19 +171,31 @@
                                             <label class="control-label">{lang('amt_hide')}:</label>
                                             <div class="controls">
                                                 <span class="frame_label no_connection m-r_15">
-                                                    <span class="niceRadio"><input type="radio" name="hidden" value="1" {if $item.hidden == 1}checked="checked"{/if}/></span> {lang('amt_yes')}
+                                                    <span class="niceRadio">
+                                                        <input type="radio" name="hidden" value="1"/>
+                                                    </span> {lang('amt_yes')}
                                                 </span>
                                                 <span class="frame_label no_connection">
-                                                    <span class="niceRadio"><input type="radio" name="hidden" value="0" {if $item.hidden == 0}checked="checked"{/if}/></span>
-                                                        {lang('amt_no')}
+                                                    <span class="niceRadio">
+                                                        <input type="radio" name="hidden" value="0" checked="checked"/>
+                                                    </span>
+                                                    {lang('amt_no')}
                                                 </span>
                                             </div>
                                         </div>            
                                         <div class="control-group">
                                             <label class="control-label">{lang('amt_open_in_new_window')}:</label>
                                             <div class="controls">
-                                                <span class="m-r_15 frame_label no_connection"><span class="niceRadio"><input type="radio" name="newpage" value="1" {if $data.newpage == 1}checked="checked"{/if}/></span> {lang('amt_yes')}</span>
-                                                <span class="frame_label no_connection"><span class="niceRadio"><input type="radio" name="newpage" value="0" {if $data.newpage == 0}checked="checked"{/if}/></span> {lang('amt_no')}</span>
+                                                <span class="m-r_15 frame_label no_connection">
+                                                    <span class="niceRadio">
+                                                        <input type="radio" name="newpage" value="1"/>
+                                                    </span> {lang('amt_yes')}
+                                                </span>
+                                                <span class="frame_label no_connection">
+                                                    <span class="niceRadio">
+                                                        <input type="radio" name="newpage" value="0" checked="checked"/>
+                                                    </span> {lang('amt_no')}
+                                                </span>
                                             </div>
                                         </div>    
                                     </div>
@@ -217,7 +229,7 @@
                                             <label class="control-label">{lang('amt_select_category')}:</label>
                                             <div class="controls">
                                                 <ul>
-                                                   {build_cats_tree_ul_li($cats)}  
+                                                    {build_cats_tree_ul_li($cats)}  
                                                 </ul>
                                             </div>
                                         </div>
@@ -310,13 +322,13 @@
                                             <div class="controls">
                                                 <span class="m-r_15 frame_label no_connection">
                                                     <span class="niceRadio">
-                                                        <input type="radio" name="hidden" value="1" {if $item.hidden == 1}checked="checked"{/if}/>
+                                                        <input type="radio" name="hidden" value="1"/>
                                                     </span>
                                                     {lang('amt_yes')}
                                                 </span>
                                                 <span class="frame_label no_connection">
                                                     <span class="niceRadio">
-                                                        <input type="radio" name="hidden" value="0" {if $item.hidden == 0}checked="checked"{/if}/>
+                                                        <input type="radio" name="hidden" value="0"checked="checked"/>
                                                     </span>
                                                     {lang('amt_no')}
                                                 </span>
@@ -328,14 +340,14 @@
                                                 <span class="m-r_15">
                                                     <span class="frame_label no_connection">
                                                         <span class="niceRadio">
-                                                            <input type="radio" name="newpage" value="1" {if $data.newpage == 1}checked="checked"{/if}/>
+                                                            <input type="radio" name="newpage" value="1"/>
                                                         </span>
                                                         {lang('amt_yes')}
                                                     </span>
                                                 </span>
                                                 <span class="frame_label no_connection">
                                                     <span class="niceRadio">
-                                                        <input type="radio" name="newpage" value="0" {if $data.newpage == 0}checked="checked"{/if}/>
+                                                        <input type="radio" name="newpage" value="0" checked="checked"/>
                                                     </span>
                                                     {lang('amt_no')}
                                                 </span>
