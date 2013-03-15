@@ -106,7 +106,7 @@
                                     output price without discount
                                      To display the number of abatement "$model->firstVariant->getNumDiscount()"
                                     -->
-                                    <span class="f-w_b" id="priceOrigVariant">{echo $model->firstVariant->toCurrency('OrigPrice')}</span>
+                                    <span class="f-w_b" id="priceOrigVariant">{echo $model->firstVariant->toCurrency('OrigPrice')} </span>
                                     {$CS}
                                 </span>                           
                             {/if}
@@ -114,7 +114,7 @@
                             If there is a discount of "$model->firstVariant->toCurrency()" or "$model->firstVariant->getPrice"
                             will display the price already discounted
                             -->
-                            <span class="f-w_b" id="priceVariant">{echo $model->firstVariant->toCurrency()}</span>{$CS}
+                            <span class="f-w_b" id="priceVariant">{echo $model->firstVariant->toCurrency()} </span>{$CS}
                             <!--To display the amount of discounts you can use $model->firstVariant->getNumDiscount()-->
                         </div>    
                         <!--
@@ -150,7 +150,8 @@
                                     data-price="{echo $model->firstVariant->toCurrency()}"
                                     data-name="{echo ShopCore::encode($model->getName())}"
                                     data-number="{echo $model->firstVariant->getnumber()}"
-                                    data-maxcount="{echo $model->firstVariant->getstock()}">
+                                    data-maxcount="{echo $model->firstVariant->getstock()}"
+                                    data-prodpage="true">
                                 {lang('s_buy')}
                             </button>
                         {/if}
@@ -159,10 +160,12 @@
                             <button style="display: none;" 
                                     class="btn btn_buy variant_{echo $pv->getId()} variant" 
                                     type="button" 
-                                    data-prodid="{echo $pv->getId()}" 
+                                    data-prodid="{echo $model->getId()}"
                                     data-varid="{echo $pv->getId()}" 
                                     data-price="{echo $pv->toCurrency()}" 
-                                    data-name="{if $pv->getName()}{echo ShopCore::encode($pv->getName())}{else:}{echo ShopCore::encode($model->getName())}{/if}">
+                                    data-name="{echo ShopCore::encode($model->getName())}"
+                                    data-vname="{echo ShopCore::encode($pv->getName())}"
+                                    data-prodpage="true">
                                 {lang('s_buy')}
                             </button>
                         {/foreach}
@@ -296,7 +299,7 @@
                                     <a href="{shop_url('product/' . $p->getUrl())}" class="photo">
                                         <span class="helper"></span>
                                         <figure>
-                                            <img src="{productImageUrl($p->getMainImage())}" alt="{echo ShopCore::encode($p->getName())}"/>
+                                            <img src="{productImageUrl($p->getSmallModImage())}" alt="{echo ShopCore::encode($p->getName())}"/>
                                         </figure>
                                     </a>            
                                     <!--Photo and link to accessory End-->
@@ -309,11 +312,11 @@
                                                     "$p->firstVariant->toCurrency('OrigPrice')" or $p->firstVariant->getOrigPrice()
                                                     output price without discount
                                                     -->
-                                                    <span class="f-w_b" id="priceOrigVariant">{echo $p->firstVariant->toCurrency('OrigPrice')}</span>
+                                                    <span class="f-w_b" id="priceOrigVariant">{echo $p->firstVariant->toCurrency('OrigPrice')} </span>
                                                     {$CS}
                                                 </span>                                              
                                             {/if}
-                                            <span class="f-w_b">{echo $p->firstvariant->toCurrency()}</span> {$CS}
+                                            <span class="f-w_b">{echo $p->firstvariant->toCurrency()} </span>{$CS}
                                         </div>
                                         <!--
                                                     Buy button applies the 
@@ -403,7 +406,7 @@
                                             </a>
                                             <div class="price price_f-s_16">
                                                 <!-- "$kitProducts->getMainProductPrice()" price of the main product-->
-                                                <span class="f-w_b">{echo $kitProducts->getMainProductPrice()}</span>
+                                                <span class="f-w_b">{echo $kitProducts->getMainProductPrice()} </span>
                                                 {$CS}
                                             </div>
                                         </div>
@@ -431,12 +434,12 @@
                                                     {if $kitProduct->getDiscount()}
                                                         <span class="d_b old_price">
                                                             <!--$kitProduct->getBeforePrice() - Price before discount-->
-                                                            <span class="f-w_b">{echo $kitProduct->getBeforePrice()}</span>
+                                                            <span class="f-w_b">{echo $kitProduct->getBeforePrice()} </span>
                                                             {$CS}
                                                         </span>
                                                     {/if}
                                                     <!--$kitProduct->getDiscountProductPrice() - discount price-->
-                                                    <span class="f-w_b">{echo $kitProduct->getDiscountProductPrice()}</span>
+                                                    <span class="f-w_b">{echo $kitProduct->getDiscountProductPrice()} </span>
                                                     {$CS}
                                                 </div>
                                             </div>
@@ -444,7 +447,7 @@
                                                 <a href="{shop_url('product/' . $kitProduct->getSProducts()->getUrl())}" class="photo">
                                                     <span class="helper"></span>
                                                     <figure>
-                                                        <img src="{productImageUrl($kitProduct->getSProducts()->getSmallModImage())}"/>
+                                                        <img src="{productImageUrl($kitProduct->getSProducts()->getSmallModImage())}" alt="{echo ShopCore::encode($kitProduct->getSProducts()->getName())}"/>
                                                     </figure>
                                                 </a>
                                             </div>
@@ -460,10 +463,10 @@
                             <div class="price price_f-s_24">
                                 <span class="d_b old_price">
                                     <!--$kitProducts->getAllPriceBefore() - The entire set of output price without discount-->
-                                    <span class="f-w_b">{echo $kitProducts->getAllPriceBefore()}</span> {$CS}
+                                    <span class="f-w_b">{echo $kitProducts->getAllPriceBefore()} </span> {$CS}
                                 </span>
                                 <!-- $kitProducts->getTotalPrice() - the entire set of output price with discount-->
-                                <span class="f-w_b">{echo $kitProducts->getTotalPrice()}</span> {$CS}
+                                <span class="f-w_b">{echo $kitProducts->getTotalPrice()} </span> {$CS}
                             </div>                                   
                             <button class="btn btn_buy" type="button"                                    
                                     data-price="{echo $kitProducts->getTotalPrice()}" 
@@ -525,7 +528,7 @@
                                 -->
                                 {if $product->hasDiscounts()}
                                     <span class="d_b old_price">
-                                        <span class="f-w_b">{echo $product->firstVariant->toCurrency('OrigPrice')}</span>
+                                        <span class="f-w_b">{echo $product->firstVariant->toCurrency('OrigPrice')} </span>
                                         {$CS}
                                     </span>                           
                                 {/if}
@@ -533,7 +536,7 @@
                            If there is a discount of "$model->firstVariant->toCurrency()" or "$model->firstVariant->getPrice"
                            will display the price already discounted
                                 -->
-                                <span class="f-w_b">{echo $product->firstVariant->toCurrency()}</span> 
+                                <span class="f-w_b">{echo $product->firstVariant->toCurrency()} </span> 
                                 {$CS}
                             </div>
 

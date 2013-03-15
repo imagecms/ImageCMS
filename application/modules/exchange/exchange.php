@@ -19,6 +19,10 @@ class Exchange {
     private $settings_table = 'components';                     //table which contains module settings if modules is installed
     private $allowed_image_extensions = array();
 
+    public static function adminAutoload() {
+        
+    }
+
     public function __construct() {
         set_time_limit(0);
         $this->ci = &get_instance();
@@ -147,7 +151,7 @@ class Exchange {
     private function check_perm() {
         $string = read_file($this->tempDir . 'session.txt');
         if (md5(session_id()) == $string) {
-            return true;
+        return true;
         } else {
             die("Ошибка безопасности!!!");
         }
@@ -204,7 +208,7 @@ class Exchange {
             return simplexml_load_file($this->tempDir . $filename);
         return false;
     }
-    
+
     /**
      * start import process
      * @return string "success" if success
@@ -238,14 +242,14 @@ class Exchange {
             //auto resize images if option is on
             if ($this->config['autoresize'] == 'on')
                 $this->startImagesResize();
-            
+
             //remove old success import file
             if (file_exists($this->tempDir . "success_" . ShopCore::$_GET['filename'])) {
                 unlink($this->tempDir . "success_" . ShopCore::$_GET['filename']);
             }
             //rename import xml file after import finished
             rename($this->tempDir . ShopCore::$_GET['filename'], $this->tempDir . "success_" . ShopCore::$_GET['filename']);
-            
+
             //returns success status to 1c
             echo "success";
         }
@@ -828,30 +832,30 @@ class Exchange {
                         "<Курс>1</Курс>\n" .
                         "<Сумма>" . $order->totalprice . "</Сумма>\n" .
                         "<Контрагенты>\n" .
-                            "<Контрагент>\n" .
-                                    "<Ид>" . $ext_id . "</Ид>\n" .
-                                    "<Наименование>" . $order->UserFullName . "</Наименование>\n" .
-                                    "<Роль>Покупатель</Роль>".
-                                    "<ПолноеНаименование>" . $order->UserFullName . "</ПолноеНаименование>\n" .
-                                    "<Фамилия>" . $order->UserFullName . "</Фамилия>".
-                                    "<Имя>".$order->UserFullName."</Имя>".
-                                    "<АдресРегистрации>".
-                                            "<Представление>".$order->user_deliver_to."</Представление>".
-                                            "<Комментарий></Комментарий>"
-                                    ."</АдресРегистрации>".
-                                    "<Контакты>".
-                                            "<Контакт>".
-                                                    "<Тип>ТелефонРабочий</Тип>".
-                                                    "<Значение>".$order->user_phone."</Значение>".
-                                                    "<Комментарий></Комментарий>".
-                                            "</Контакт>".
-                                            "<Контакт>".
-                                                    "<Тип>Почта</Тип>".
-                                                    "<Значение>".$order->user_email."</Значение>".
-                                                    "<Комментарий>Пользовательская почта</Комментарий>".
-                                            "</Контакт>".
-                                    "</Контакты>".
-                            "</Контрагент>\n" .
+                        "<Контрагент>\n" .
+                        "<Ид>" . $ext_id . "</Ид>\n" .
+                        "<Наименование>" . $order->UserFullName . "</Наименование>\n" .
+                        "<Роль>Покупатель</Роль>" .
+                        "<ПолноеНаименование>" . $order->UserFullName . "</ПолноеНаименование>\n" .
+                        "<Фамилия>" . $order->UserFullName . "</Фамилия>" .
+                        "<Имя>" . $order->UserFullName . "</Имя>" .
+                        "<АдресРегистрации>" .
+                        "<Представление>" . $order->user_deliver_to . "</Представление>" .
+                        "<Комментарий></Комментарий>"
+                        . "</АдресРегистрации>" .
+                        "<Контакты>" .
+                        "<Контакт>" .
+                        "<Тип>ТелефонРабочий</Тип>" .
+                        "<Значение>" . $order->user_phone . "</Значение>" .
+                        "<Комментарий></Комментарий>" .
+                        "</Контакт>" .
+                        "<Контакт>" .
+                        "<Тип>Почта</Тип>" .
+                        "<Значение>" . $order->user_email . "</Значение>" .
+                        "<Комментарий>Пользовательская почта</Комментарий>" .
+                        "</Контакт>" .
+                        "</Контакты>" .
+                        "</Контрагент>\n" .
                         "</Контрагенты>\n" .
                         "<Время>" . date('G:i:s', $order->date_created) . "</Время>\n" .
                         "<Комментарий>" . $order->user_comment . "</Комментарий>\n" .

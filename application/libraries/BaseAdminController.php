@@ -46,14 +46,24 @@ class BaseAdminController extends MY_Controller {
 //        return self::$currentLocale;
     }
 
+    /**
+     * Run ImageCMS modules autoload method for admin-page
+     * @access private
+     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     */
     private function autoloadModules() {
-        $query = $this->db->select('id, name, identif, autoload, enabled')->where('autoload', 1)->get('components')->result_array();        
-        foreach ($query as $module) {
-            if ($module['autoload'] == 1) {
-                $mod_name = $module['name'];
-                $this->load->module($mod_name);
-                if (method_exists($mod_name, 'autoload') === TRUE)
-                    $this->$mod_name->autoload();
+        /** Search module with autoload */
+        $query = $this->db
+                ->select('name')
+                ->where('autoload', 1)
+                ->get('components');
+
+        if ($query) {
+            /** Run all Admin autoload method */
+            foreach ($query->result_array() as $module) {
+                $moduleName = $module['name'];
+                Modules::load_file($moduleName, APPPATH . 'modules' . DS . $moduleName . DS);
+                $moduleName::adminAutoload();
             }
         }
     }

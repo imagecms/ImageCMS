@@ -25,7 +25,7 @@
                          <!-- End. Photo Block and name -->
 
                     <!-- Start. Product price  -->
-                        <span class="price price_f-s_16"><span class="f-w_b"><%- Math.round(item.price) %></span>{/literal}<span class="curr">{$CS}</span>{literal}</span>
+                        <span class="price price_f-s_16"><span class="f-w_b"><%- Math.round(item.price) %></span>{/literal}<span class="curr"> {$CS}</span>{literal}</span>
                     <!-- End. Product price  -->
                     </a>
                 </li>
