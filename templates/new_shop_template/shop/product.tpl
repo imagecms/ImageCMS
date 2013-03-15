@@ -510,11 +510,6 @@
 <!--Kit end-->
 
 
-<!--Similar Products-->
-
-
-<!--Similar Products END-->
-
-{//widget('view_product')}
+{widget('view_product')}
 </article>
 </div>
