@@ -263,18 +263,19 @@
 
 { */}
 
-
 <article>
-    {if count($items) <= 0}
-    <div class="form_alert">
-        <p>
-            Ваша корзина пуста
-        </p>
-        {literal}<script>$(document).ready(function(){Shop.Cart.clear();
-            setTimeout("window.location.href='/'");});
-        </script>{/literal}
-    </div>
-    {else:}
+
+
+        <div class="bot_border_grey m-b_10 {if count($items) > 0}d_n{/if}" id="shopCartPageEmpty" >
+            <div class="d_i title_h1">Корзина</div>
+        <div class="alert alert-search-result">
+            <div class="title_h2 t-a_c">Ваша корзина пуста</div>
+        </div>
+            </div>
+
+
+    {if count($items) > 0}
+    <div id="shopCartPage">
                         <h1>Оформление заказа</h1>
                         <div class="row">
                             <div class="span6">
@@ -440,5 +441,7 @@
 
                             </div>
                         </div>
+        </div>
                     </article>
-{/if}                                                    
+
+{/if}
