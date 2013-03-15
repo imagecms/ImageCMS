@@ -508,8 +508,7 @@
 </div>
 {/if}
 <!--Kit end-->
-
-
 {widget('view_product')}
+{widget('similar')}
 </article>
 </div>

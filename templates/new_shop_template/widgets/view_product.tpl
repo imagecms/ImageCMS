@@ -10,7 +10,7 @@
                         <button type="button" class="btn btn_next"><span class="icon next"></span><span class="text-el"></span></button>
                     </div>
                 </div>
-                <div class="carousel">
+                <div class="carousel bot_border_grey">
                     <ul class="items items_catalog">
                         {foreach $products as $hotProduct}
                             <li class="span3 {if $hotProduct->firstvariant->getStock()==0} not-avail{/if}">
@@ -32,7 +32,7 @@
                                                 "$hotProduct->firstVariant->toCurrency('OrigPrice')" or $hotProduct->firstVariant->getOrigPrice()
                                                 output price without discount
                                                 -->
-                                                <span class="f-w_b" id="priceOrigVariant">{echo $hotProduct->firstVariant->toCurrency('OrigPrice')} </span>
+                                                <span class="f-w_b" id="priceOrigVariant">{echo $hotProduct->firstVariant->toCurrency('OrigPrice')}</span>
                                                 {$CS}
                                             </span>                           
                                         {/if}
@@ -40,10 +40,11 @@
                                         If there is a discount of "$hotProduct->firstVariant->toCurrency()" or "$hotProduct->firstVariant->getPrice"
                                         will display the price already discounted
                                         -->
-                                        <span class="f-w_b" id="priceVariant">{echo $hotProduct->firstVariant->toCurrency()} </span>{$CS}
+                                        <span class="f-w_b" id="priceVariant">{echo $hotProduct->firstVariant->toCurrency()}</span>{$CS}
                                         <!--To display the amount of discounts you can use $hotProduct->firstVariant->getNumDiscount()-->
                                     </div>  
                                     {if $hotProduct->firstvariant->getstock()!=0}
+
                                         <button class="btn btn_buy" 
                                                 type="button" 
                                                 data-prodId="{echo $hotProduct->getId()}" 
@@ -61,11 +62,11 @@
                                                 data-effect-off="fadeOut"
                                                 data-effect-on="fadeIn"
                                                 data-drop=".drop-report"
-                                                data-prodid="{echo $hotProduct->firstVariant->getId()}"
+                                                data-prodid="{echo $hotProduct->getId()}"
                                                 type="button"
                                                 class="btn btn_not_avail">
                                             <span class="icon-but"></span>
-                                            <span class="text-el">{lang('s_message_o_report')}</span>
+                                            {lang('s_message_o_report')}
                                         </button> 
                                     {/if} 
                                 </div>
