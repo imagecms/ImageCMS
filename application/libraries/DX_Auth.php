@@ -1118,6 +1118,8 @@ class DX_Auth {
 
     function captcha() {
         $this->ci->load->helper('dx_captcha');
+        // Load library SESSION
+        $this->ci->load->library('session');
 
         $vals = array(
             'img_path' => $this->ci->config->item('DX_captcha_path'),
@@ -1159,6 +1161,7 @@ class DX_Auth {
         $now = ((float) $usec + (float) $sec);
 
         // Check if captcha already expired
+
         return (($this->ci->session->flashdata('captcha_time') + $this->ci->config->item('DX_captcha_expire')) < $now);
     }
 

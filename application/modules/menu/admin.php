@@ -352,37 +352,12 @@ class Admin extends BaseAdminController {
         }
     }
 
-    function view($item_id, $type = 'page') {
-        $item = $this->db->where('id', $item_id)->get('menus_data')->row_array();
-        $parents = $this->db->where('menu_id', $item['menu_id'])->get('menus_data')->result_array();
-        $menu = $this->db->where('id', $item['menu_id'])->get('menus')->row_array();
-        $cats = $this->lib_category->build();
-        $pages = $this->get_pages(0, 0, 'controller');
-
-        $this->db->select("shop_rbac_roles.*", FALSE);
-        $this->db->select("shop_rbac_roles_i18n.alt_name", FALSE);
-        $this->db->where('locale', BaseAdminController::getCurrentLocale());
-        $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles_i18n.id = shop_rbac_roles.id");
-        $role = $this->db->get('shop_rbac_roles')->result_array();
-
-        //$query = $this->db->get('shop_rbac_roles');
-        $this->template->assign('roles', $role);
-        $this->template->assign('modules', $this->_load_module_list());
-        $this->template->assign('cats', $cats);
-        $this->template->assign('menu', $menu);
-        $this->template->assign('parents', $parents);
-        $this->template->assign('item', $item);
-        $this->template->assign('pages', $pages);
-        $this->display_tpl($type);
-    }
-
     /**
      * Display edit item window
      */
     function edit_item($item_id) {
-        //cp_check_perm('menu_edit');
+
         if (empty($_POST)) {
-//            $this->view($item_id);
             $item = $this->db->where('id', $item_id)->get('menus_data')->row_array();
             $parents = $this->db->where('menu_id', $item['menu_id'])->get('menus_data')->result_array();
             $menu = $this->db->where('id', $item['menu_id'])->get('menus')->row_array();
@@ -404,7 +379,6 @@ class Admin extends BaseAdminController {
             $this->template->assign('item', $item);
             $this->template->assign('pages', $pages);
             $this->display_tpl('edit_item');
-//            $this->view($item_id);
         } else {
             $this->form_validation->set_rules('menu_id', 'Menu Id', 'required');
             $this->form_validation->set_rules('item_type', 'Item Type', 'required');
@@ -428,13 +402,44 @@ class Admin extends BaseAdminController {
             if ($this->form_validation->run($this) == FALSE) {
                 showMessage(validation_errors(), '', 'r');
             } else {
+
+
+
+                if ($_POST['page_hidden']) {
+                    $hidden = $_POST['page_hidden'];
+                } elseif ($_POST['cat_hidden']) {
+                    $hidden = $_POST['cat_hidden'];
+                } elseif ($_POST['module_hidden']) {
+                    $hidden = $_POST['module_hidden'];
+                } elseif ($_POST['url_hidden']) {
+                    $hidden = $_POST['url_hidden'];
+                }
+                if ($_POST['page_item_image']) {
+                    $image = $_POST['page_item_image'];
+                } elseif ($_POST['cat_item_image']) {
+                    $image = $_POST['cat_item_image'];
+                } elseif ($_POST['module_item_image']) {
+                    $image = $_POST['module_item_image'];
+                } elseif ($_POST['url_item_image']) {
+                    $image = $_POST['url_item_image'];
+                }
+                if ($_POST['page_parent_id']) {
+                    $parent_id = $_POST['page_parent_id'];
+                } elseif ($_POST['cat_parent_id']) {
+                    $parent_id = $_POST['cat_parent_id'];
+                } elseif ($_POST['module_parent_id']) {
+                    $parent_id = $_POST['module_parent_id'];
+                } elseif ($_POST['url_parent_id']) {
+                    $parent_id = $_POST['url_parent_id'];
+                }
+
                 $roles = $_POST['item_roles'];
                 if ($roles == NULL) {
                     $roles = '';
                 } else {
                     $roles = serialize($_POST['item_roles']);
                 }
-                // Item position
+//                 Item position
                 if ($_POST['position_after'] > 0) {
                     $after_pos = $this->menu_model->get_item_position($_POST['position_after']);
                     $after_pos = $after_pos['position'];
@@ -452,7 +457,7 @@ class Admin extends BaseAdminController {
                 if ($_POST['position_after'] == 0) {
                     $this->db->select_max('position');
                     $this->db->where('menu_id', $_POST['menu_id']);
-                    $this->db->where('parent_id', $_POST['parent_id']);
+                    $this->db->where('parent_id', $parent_id);
                     $query = $this->db->get('menus_data')->row_array();
 
                     if ($query['position'] == NULL) {
@@ -464,7 +469,7 @@ class Admin extends BaseAdminController {
                 if ($_POST['position_after'] == 'first') {
                     $this->db->select_min('position');
                     $this->db->where('menu_id', $_POST['menu_id']);
-                    $this->db->where('parent_id', $_POST['parent_id']);
+                    $this->db->where('parent_id', $parent_id);
                     $query = $this->db->get('menus_data')->row_array();
                     if ($query['position'] == NULL) {
                         $position = 1;
@@ -473,37 +478,39 @@ class Admin extends BaseAdminController {
                     }
                 }
 
+
                 $item_data = array(
                     'menu_id' => $_POST['menu_id'],
                     'item_id' => $_POST['item_id'],
                     'item_type' => $_POST['item_type'],
                     'title' => htmlentities($_POST['title'], ENT_QUOTES, 'UTF-8'),
-                    'hidden' => $_POST['hidden'],
-                    'item_image' => $_POST['item_image'],
+                    'hidden' => $hidden,
+                    'item_image' => $image,
                     'roles' => $roles,
-                    'parent_id' => $_POST['parent_id'],
+                    'parent_id' => $parent_id,
                     'position' => $position
                 );
+
 
                 if ($item_data['item_type'] == 'module') {
                     $data['mod_name'] = $_POST['mod_name'];
                     $data['method'] = $_POST['mod_method'];
-                    $data['newpage'] = $_POST['newpage'];
+                    $data['newpage'] = $_POST['module_newpage'];
                 }
 
                 if ($item_data['item_type'] == 'url') {
                     $item_data['item_id'] = 0;
-                    $item_data['add_data'] = serialize(array('url' => $_POST['item_url'], 'newpage' => $_POST['newpage']));
+                    $item_data['add_data'] = serialize(array('url' => $_POST['item_url'], 'newpage' => $_POST['url_newpage']));
                 }
                 if ($item_data['item_type'] == 'page') {
-                    $item_data['add_data'] = serialize(array('page' => $_POST['item_url'], 'newpage' => $_POST['newpage']));
+                    $item_data['add_data'] = serialize(array('page' => $_POST['item_url'], 'newpage' => $_POST['page_newpage']));
                 }
                 if (!isset($item_data['add_data']))
                     $item_data['add_data'] = serialize($data);
 
                 // Error: wrong parent id
-                if ($_POST['item_id'] != 0 && $_POST['parent_id'] != 0)
-                    if ($_POST['item_id'] == $_POST['parent_id']) {
+                if ($_POST['item_id'] != 0 && $parent_id != 0)
+                    if ($_POST['item_id'] == $parent_id) {
                         $error = TRUE;
                     }
 
@@ -513,7 +520,7 @@ class Admin extends BaseAdminController {
                     $this->_get_sub_items($_POST['item_id']);
 
                     foreach ($this->sub_menus as $k => $v) {
-                        if ($v == $_POST['parent_id']) {
+                        if ($v == $parent_id) {
                             $error = TRUE;
                         }
                     }
