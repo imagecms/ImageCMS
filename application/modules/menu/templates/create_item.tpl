@@ -148,7 +148,7 @@
                                                     <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
                                                 </div>
                                                 <div class="o_h">		            
-                                                    <input type="text" name="item_image" id="Img" value="{$item.item_image}">					
+                                                    <input type="text" name="page_item_image" id="Img" value="{$item.item_image}">					
                                                 </div>
                                             </div>
                                         </div>  
@@ -172,12 +172,12 @@
                                             <div class="controls">
                                                 <span class="frame_label no_connection m-r_15">
                                                     <span class="niceRadio">
-                                                        <input type="radio" name="hidden" value="1"/>
+                                                        <input type="radio" name="page_hidden" value="1"/>
                                                     </span> {lang('amt_yes')}
                                                 </span>
                                                 <span class="frame_label no_connection">
                                                     <span class="niceRadio">
-                                                        <input type="radio" name="hidden" value="0" checked="checked"/>
+                                                        <input type="radio" name="page_hidden" value="2" checked="checked"/>
                                                     </span>
                                                     {lang('amt_no')}
                                                 </span>
@@ -188,12 +188,12 @@
                                             <div class="controls">
                                                 <span class="m-r_15 frame_label no_connection">
                                                     <span class="niceRadio">
-                                                        <input type="radio" name="newpage" value="1"/>
+                                                        <input type="radio" name="page_newpage" value="1"/>
                                                     </span> {lang('amt_yes')}
                                                 </span>
                                                 <span class="frame_label no_connection">
                                                     <span class="niceRadio">
-                                                        <input type="radio" name="newpage" value="0" checked="checked"/>
+                                                        <input type="radio" name="page_newpage" value="2" checked="checked"/>
                                                     </span> {lang('amt_no')}
                                                 </span>
                                             </div>
@@ -302,7 +302,7 @@
                                                     <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
                                                 </div>
                                                 <div class="o_h">		            
-                                                    <input type="text" name="item_image" id="Img" value="{$item.item_image}">					
+                                                    <input type="text" name="cat_item_image" id="Img" value="{$item.item_image}">					
                                                 </div>
                                             </div>
                                         </div>  
@@ -322,13 +322,13 @@
                                             <div class="controls">
                                                 <span class="m-r_15 frame_label no_connection">
                                                     <span class="niceRadio">
-                                                        <input type="radio" name="hidden" value="1"/>
+                                                        <input type="radio" name="cat_hidden" value="1"/>
                                                     </span>
                                                     {lang('amt_yes')}
                                                 </span>
                                                 <span class="frame_label no_connection">
                                                     <span class="niceRadio">
-                                                        <input type="radio" name="hidden" value="0"checked="checked"/>
+                                                        <input type="radio" name="cat_hidden" value="2"checked="checked"/>
                                                     </span>
                                                     {lang('amt_no')}
                                                 </span>
@@ -340,14 +340,14 @@
                                                 <span class="m-r_15">
                                                     <span class="frame_label no_connection">
                                                         <span class="niceRadio">
-                                                            <input type="radio" name="newpage" value="1"/>
+                                                            <input type="radio" name="cat_newpage" value="1"/>
                                                         </span>
                                                         {lang('amt_yes')}
                                                     </span>
                                                 </span>
                                                 <span class="frame_label no_connection">
                                                     <span class="niceRadio">
-                                                        <input type="radio" name="newpage" value="0" checked="checked"/>
+                                                        <input type="radio" name="cat_newpage" value="2" checked="checked"/>
                                                     </span>
                                                     {lang('amt_no')}
                                                 </span>
@@ -449,7 +449,7 @@
                                                             <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
                                                         </div>
                                                         <div class="o_h">		            
-                                                            <input type="text" name="item_image" id="Img" value="{$item.item_image}">					
+                                                            <input type="text" name="module_item_image" id="Img" value="{$item.item_image}">					
                                                         </div>
                                                     </div>
                                                 </div>  
@@ -470,14 +470,14 @@
                                                         <span class="m-r_15">
                                                             <span class="frame_label no_connection">
                                                                 <span class="niceRadio">
-                                                                    <input type="radio" name="hidden" value="1" {if $item.hidden == 1}checked="checked"{/if}/>
+                                                                    <input type="radio" name="module_hidden" value="1" {if $item.hidden == 1}checked="checked"{/if}/>
                                                                 </span>
                                                             </span>
                                                             {lang('amt_yes')}
                                                         </span>
                                                         <span class="frame_label no_connection">
                                                             <span class="niceRadio">
-                                                                <input type="radio" name="hidden" value="0" {if $item.hidden == 0}checked="checked"{/if}/>
+                                                                <input type="radio" name="module_hidden" value="2" checked="checked"/>
                                                             </span>
                                                             {lang('amt_no')}
                                                         </span>
@@ -489,14 +489,14 @@
                                                         <span class="m-r_15">
                                                             <span class="frame_label no_connection">
                                                                 <span class="niceRadio">
-                                                                    <input type="radio" name="newpage" value="1" {if $data.newpage == 1}checked="checked"{/if}/>
+                                                                    <input type="radio" name="module_newpage" value="1" {if $data.newpage == 1}checked="checked"{/if}/>
                                                                 </span>
                                                                 {lang('amt_yes')}
                                                             </span>
                                                         </span>
                                                         <span class="frame_label no_connection">
                                                             <span class="niceRadio">
-                                                                <input type="radio" name="newpage" value="0" {if $data.newpage == 0}checked="checked"{/if}/>
+                                                                <input type="radio" name="module_newpage" value="2" checked="checked"/>
                                                             </span>
                                                             {lang('amt_no')}
                                                         </span>
@@ -594,7 +594,7 @@
                                                     <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
                                                 </div>
                                                 <div class="o_h">		            
-                                                    <input type="text" name="item_image" id="Img" value="{$item.item_image}">					
+                                                    <input type="text" name="url_item_image" id="Img" value="{$item.item_image}">					
                                                 </div>
                                             </div>
                                         </div>  
@@ -615,14 +615,14 @@
                                                 <span class="m-r_15">
                                                     <span class="frame_label no_connection">
                                                         <span class="niceRadio">
-                                                            <input type="radio" name="hidden" value="1" {if $item.hidden == 1}checked="checked"{/if}/>
+                                                            <input type="radio" name="url_hidden" value="1" {if $item.hidden == 1}checked="checked"{/if}/>
                                                         </span>
                                                         {lang('amt_yes')}
                                                     </span>
                                                 </span>
                                                 <span class="frame_label no_connection">
                                                     <span class="niceRadio">
-                                                        <input type="radio" name="hidden" value="0" {if $item.hidden == 0}checked="checked"{/if}/>
+                                                        <input type="radio" name="url_hidden" value="2" checked="checked"/>
                                                     </span>
                                                     {lang('amt_no')}
                                                 </span>
@@ -634,14 +634,14 @@
                                                 <span class="m-r_15">
                                                     <span class="frame_label no_connection">
                                                         <span class="niceRadio">
-                                                            <input type="radio" name="newpage" value="1" {if $data.newpage == 1}checked="checked"{/if}/>
+                                                            <input type="radio" name="url_newpage" value="1" {if $data.newpage == 1}checked="checked"{/if}/>
                                                         </span>
                                                         {lang('amt_yes')}
                                                     </span>
                                                 </span>
                                                 <span class="frame_label no_connection">
                                                     <span class="niceRadio">
-                                                        <input type="radio" name="newpage" value="0" {if $data.newpage == 0}checked="checked"{/if}/>
+                                                        <input type="radio" name="url_newpage" value="2" checked="checked"/>
                                                     </span>
                                                     {lang('amt_no')}
                                                 </span>

@@ -209,9 +209,7 @@
             <div
                 <!-- Start. Render Category Tree. Menu frame -->
                 <div class="mainFrameMenu">
-                    <section class="container">
-                        {\Category\RenderMenu::create()->load('category_menu')}
-                    </section>
+                    {\Category\RenderMenu::create()->load('category_menu')}
                 </div>
                 <!-- End. Render Category Tree. Menu frame -->
 
