@@ -49,7 +49,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                        
+
                                     <div class="control-group" id="mod_name">
                                         <label class="control-label">{lang('a_module_name')}:</label>
                                         <div class="controls">
@@ -58,7 +58,7 @@
                                             <input type="hidden" name="method" value="" id="swm">
                                         </div>
                                     </div>
-                                        
+
                                     <div class="control-group" id="textareaholder" style="display:none;">
                                         <label class="control-label">HTML:</label>
                                         <div class="controls" style="top: 6px;">
@@ -82,22 +82,22 @@
                         </thead>
                         <tbody class="sortable ui-sortable">
                             {foreach $blocks as $block}
-                            {$mtype = $block.module}
-                            {$type = $block.module_name}
-                            {foreach $block.widgets as $item}
-                            <tr data-original-title="">
-                                <td class="t-a_c">
-                                    <span class="frame_label">
-                                        <span class="niceRadio b_n selwid" data-title="{$item.title}" data-mname="{$mtype}" data-method="{$item.method}">
-                                            <input type="radio" name="one_column" />
-                                        </span>
-                                    </span>
-                                </td>
-                                <td><p>{$item.title}</p></td>
-                                <td><p>{$item.description}</p></td>
-                                <td><p>{$type}</p></td>
-                            </tr>
-                            {/foreach}
+                                {$mtype = $block.module}
+                                {$type = $block.module_name}
+                                {foreach $block.widgets as $item}
+                                    <tr data-original-title="">
+                                        <td class="t-a_c">
+                                            <span class="frame_label">
+                                                <span class="niceRadio b_n selwid" data-title="{$item.title}" data-mname="{$mtype}" data-method="{$item.method}">
+                                                    <input type="radio" name="one_column" />
+                                                </span>
+                                            </span>
+                                        </td>
+                                        <td><p>{$item.title}</p></td>
+                                        <td><p>{$item.description}</p></td>
+                                        <td><p>{$type}</p></td>
+                                    </tr>
+                                {/foreach}
                             {/foreach}
                         </tbody>
                     </table>
