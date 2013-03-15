@@ -760,7 +760,7 @@ function checkSyncs(){
         if (Shop.CompareList.all().length != inServerCompare)
             Shop.CompareList.sync();
     }
-    if (inServerCompare != NaN)
+    if (inServerWish != NaN)
     {
         if (Shop.WishList.all().length != inServerWish)
             Shop.WishList.sync();
@@ -915,6 +915,11 @@ $(document).ready(
 
         $(document).on('compare_list_rm', function () {
             $('#compareCount').html('(' + Shop.CompareList.all().length + ')');
+            checkCompareWishLink();
+        });
+
+        $(document).on('wish_list_rm', function () {
+            $('#wishListCount').html('(' + Shop.WishList.all().length + ')');
             checkCompareWishLink();
         });
 
