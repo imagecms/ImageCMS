@@ -7,11 +7,11 @@
             <h1>{$category[name]}</h1>
             {foreach $pages as $p}
                 <h2>
-                    <a href="{site_url($p['full_url'])}">
-                        {$p['title']}
+                    <a href="{site_url($p.full_url)}">
+                        {$p.title}
                     </a>
                 </h2>
-                <p>{$p['prev_text']}</p>
+                {$p.prev_text}
             {/foreach}
         </div>
     </div>
