@@ -68,6 +68,7 @@ function init_2() {
         $(this).attr('disabled', true);
     })
     
+   
     if ($.exists('.niceCheck')) {
         $(".niceCheck").each(function() {
             active_b_p = '-46px -17px';
@@ -75,6 +76,11 @@ function init_2() {
             changeCheckStart($(this));
         });
     }
+   
+
+    
+   
+    
     if ($.exists('.niceRadio')) {
         $(".niceRadio").each(function() {
             active_R_b_p = '-179px -17px';
@@ -82,6 +88,7 @@ function init_2() {
             changeRadioStart($(this));
         });
     }
+
 
     $('#paid_span').on('click', function() {
         if ($('#Paid').is(':checked') != true) {
@@ -315,6 +322,7 @@ function init_2() {
         dis_un_dis();
     //textcomment_s_h('h', el);
     }
+    
     function changeCheckStart(el)
     {
         var el = el,

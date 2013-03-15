@@ -158,7 +158,7 @@
                         <div class="muted">Помогите нам стать еще лучше - <a href="#">сообщите об ошибке</a></div>
                     </div>
                     <div class="span4 t-a_r">
-                        <div class="muted">Copyright © imageCMS 2012</div>
+                        <div class="muted">Copyright © imageCMS 2013</div>
                         <a href="http://wiki.imagecms.net" target="blank">Документация</a>
                     </div>
                 </div>

@@ -88,18 +88,18 @@ if (!function_exists('check_admin_redirect')) {
             }
     }
 
-    function build_cats_tree_ul_li($cats) {
+    function build_cats_tree_ul_li($cats, $item_id = NULL) {
         if (is_array($cats))
             foreach ($cats as $cat) {
                 echo "<li>";
-                echo "<a class='category_item' data-title='" . $cat['name'] . "' data-id='" . $cat['id'] . "' href='#'>";
-//                for ($i = 0; $i < $cat['level']; $i++) {
-//                    echo '-';
-//                }
-                echo $cat['name'] . "</a>";
+                if ($cat['id'] == $item_id) {
+                    echo "<b><a class='category_item' data-title='" . $cat['name'] . "' data-id='" . $cat['id'] . "' href='#'>" . $cat['name'] . "</a></b>";
+                } else {
+                    echo "<a class='category_item' data-title='" . $cat['name'] . "' data-id='" . $cat['id'] . "' href='#'>" . $cat['name'] . "</a>";
+                }
                 if ($cat['subtree']) {
                     echo "<ul>";
-                    build_cats_tree_ul_li($cat['subtree']);
+                    build_cats_tree_ul_li($cat['subtree'], $item_id);
                     echo "</ul>";
                 }
             }

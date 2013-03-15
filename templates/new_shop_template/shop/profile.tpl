@@ -183,7 +183,7 @@
                                     <td>
                                         <a href="{$BASE_URL}shop/product/{echo $product[0]->geturl()}" class="photo">
                                             <figure>
-                                                <img src="{productImageUrl($product[0]->smallmodimage)}"/>
+                                                <img src="{productImageUrl($product[0]->smallmodimage)}" alt="{echo $product[0]->getId()}"/>
                                             </figure>
                                         </a>
                                     </td>

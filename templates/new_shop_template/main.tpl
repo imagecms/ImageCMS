@@ -139,7 +139,7 @@
                     <section class="headerContent row-fluid">
                         <div class="span3">
                             <a href="{site_url()}" class="logo">
-                                <img src="{$THEME}images/logo.png" />
+                                <img src="{$THEME}images/logo.png" alt="logo"/>
                             </a>
                         </div>
                         <div class="span9 f-s_0">

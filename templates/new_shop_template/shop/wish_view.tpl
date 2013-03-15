@@ -45,7 +45,7 @@
                                          If there is a discount price without discount C-->
                                     {if $item.model->hasDiscounts()}
                                         <span class="d_b old_price">
-                                            <span class="f-w_b">{echo $item.model->firstVariant->toCurrency('OrigPrice')}</span>
+                                            <span class="f-w_b">{echo $item.model->firstVariant->toCurrency('OrigPrice')} </span>
                                             {$CS}
                                         </span>                           
                                     {/if}
@@ -66,7 +66,7 @@
                                                 data-name="{echo $item.model->getName()}"
                                                 data-number="{echo $item.model->firstVariant->getnumber()}"
                                                 data-maxcount="{echo $item.model->firstVariant->getstock()}">
-                                            {lang('add_to_basket')}
+                                            {lang('s_buy')}
                                         </button>
                                     {else:}
                                         <button data-placement="bottom right"

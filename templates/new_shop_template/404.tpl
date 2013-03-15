@@ -2,7 +2,7 @@
     <div class="center">
         <div class="text">
             <div class="p_n_f">
-                <img src="{$SHOP_THEME}images/404.png"/>
+                <img src="{$THEME}images/404.png" alt="404"/>
                 <div>Страница не найдена</div>
                 <p>
                     {$error}
