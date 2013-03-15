@@ -128,15 +128,16 @@
                         {if (int)$model->firstvariant->getstock() == 0}
 
                             <!-- displaying notify button -->
-                            <button data-placement="top right"
-                                    data-place="noinherit"
-                                    data-duration="500"
-                                    data-effect-off=    "fadeOut"
-                                    data-effect-on="fadeIn"
-                                    data-drop=".drop-report"
-                                    data-prodid="{echo $model->getId()}"
-                                    type="button"
-                                    class="btn btn_not_avail">
+                            <button
+                                data-placement="top right"
+                                data-place="noinherit"
+                                data-duration="500"
+                                data-effect-off=    "fadeOut"
+                                data-effect-on="fadeIn"
+                                data-drop=".drop-report"
+                                data-prodid="{echo $model->getId()}"
+                                type="button"
+                                class="btn btn_not_avail variant">
                                 <span class="icon-but"></span>
                                 <span class="text-el">{lang('s_message_o_report')}</span>
                             </button>
@@ -157,17 +158,34 @@
                         {/if}
 
                         {foreach $model->getProductVariants() as $key => $pv}
-                            <button style="display: none;" 
-                                    class="btn btn_buy variant_{echo $pv->getId()} variant" 
-                                    type="button" 
+                            {if $pv->getStock() > 0}
+                                <button style="display: none;" 
+                                        class="btn btn_buy variant_{echo $pv->getId()} variant" 
+                                        type="button" 
+                                        data-prodid="{echo $model->getId()}"
+                                        data-varid="{echo $pv->getId()}" 
+                                        data-price="{echo $pv->toCurrency()}" 
+                                        data-name="{echo ShopCore::encode($model->getName())}"
+                                        data-vname="{echo ShopCore::encode($pv->getName())}"
+                                        data-prodpage="true">
+                                    {lang('s_buy')}
+                                </button>
+                            {else:}
+                                <button
+                                    style="display: none;" 
+                                    data-placement="top right"
+                                    data-place="noinherit"
+                                    data-duration="500"
+                                    data-effect-off=    "fadeOut"
+                                    data-effect-on="fadeIn"
+                                    data-drop=".drop-report"
                                     data-prodid="{echo $model->getId()}"
-                                    data-varid="{echo $pv->getId()}" 
-                                    data-price="{echo $pv->toCurrency()}" 
-                                    data-name="{echo ShopCore::encode($model->getName())}"
-                                    data-vname="{echo ShopCore::encode($pv->getName())}"
-                                    data-prodpage="true">
-                                {lang('s_buy')}
-                            </button>
+                                    type="button"
+                                    class="btn btn_not_avail variant_{echo $pv->getId()} variant">
+                                    <span class="icon-but"></span>
+                                    <span class="text-el">{lang('s_message_o_report')}</span>
+                                </button>
+                            {/if}
                         {/foreach}
                     </div>
                 </div>
@@ -260,9 +278,9 @@
                             <span class="text-el">                    
                                 <span id="cc">
                                     {if $Comments[$model->getId()][0] !== '0'}
-                                    {echo $Comments[$model->getId()]}
+                                        {echo $Comments[$model->getId()]}
                                     {else:}
-                                    Оставить отзыв
+                                        Оставить отзыв
                                     {/if}
                                 </span>
                             </span>
@@ -491,11 +509,6 @@
 {/if}
 <!--Kit end-->
 
-
-<!--Similar Products-->
-
-{widget('s')}
-<!--Similar Products END-->
 
 {widget('view_product')}
 </article>
