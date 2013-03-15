@@ -115,6 +115,38 @@ class Admin extends BaseAdminController {
             if ($this->form_validation->run($this) == FALSE) {
                 showMessage(validation_errors(), '', 'r');
             } else {
+
+                if ($_POST['page_hidden']) {
+                    $hidden = $_POST['page_hidden'];
+                } elseif ($_POST['cat_hidden']) {
+                    $hidden = $_POST['cat_hidden'];
+                } elseif ($_POST['module_hidden']) {
+                    $hidden = $_POST['module_hidden'];
+                } elseif ($_POST['url_hidden']) {
+                    $hidden = $_POST['url_hidden'];
+                }
+
+                if ($_POST['page_item_image']) {
+                    $image = $_POST['page_item_image'];
+                } elseif ($_POST['cat_item_image']) {
+                    $image = $_POST['cat_item_image'];
+                } elseif ($_POST['module_item_image']) {
+                    $image = $_POST['module_item_image'];
+                } elseif ($_POST['url_item_image']) {
+                    $image = $_POST['url_item_image'];
+                }
+
+
+                if ($_POST['page_newpage']) {
+                    $newpage = $_POST['page_newpage'];
+                } elseif ($_POST['cat_newpage']) {
+                    $newpage = $_POST['cat_newpage'];
+                } elseif ($_POST['module_newpage']) {
+                    $newpage = $_POST['module_newpage'];
+                } elseif ($_POST['url_newpage']) {
+                    $newpage = $_POST['url_newpage'];
+                }
+
                 //preparing roles
                 $roles = $_POST['item_roles'];
                 if ($roles == NULL) {
@@ -122,14 +154,15 @@ class Admin extends BaseAdminController {
                 } else {
                     $roles = serialize($_POST['item_roles']);
                 }
+
                 //preparing main data
                 $item_data = array(
                     'menu_id' => $_POST['menu_id'],
                     'item_id' => $_POST['item_id'],
                     'item_type' => $_POST['item_type'],
                     'title' => htmlentities($_POST['title'], ENT_QUOTES, 'UTF-8'),
-                    'hidden' => $_POST['hidden'],
-                    'item_image' => $_POST['item_image'],
+                    'hidden' => $hidden,
+                    'item_image' => $image,
                     'roles' => $roles,
                     'parent_id' => $_POST['parent_id'],
                 );
@@ -159,7 +192,7 @@ class Admin extends BaseAdminController {
                     if ($_POST['item_type'] == 'url') {
                         $data['url'] = $_POST['item_url'];
                     }
-                    $data['newpage'] = $_POST['newpage'];
+                    $data['newpage'] = $newpage;
                     $item_data['add_data'] = serialize($data);
                 }
                 // Error: wrong parent id
