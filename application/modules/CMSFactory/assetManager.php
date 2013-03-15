@@ -2,13 +2,15 @@
 
 namespace CMSFactory;
 
+/**
+ * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+ */
 class assetManager {
 
     protected static $_BehaviorInstance;
 
     private function __construct() {
-
-        defined('DS') OR define('DS', '/');
+        $vla = new \stdClass();
     }
 
     private function __clone() {
@@ -39,7 +41,7 @@ class assetManager {
      */
     public function registerScript($name) {
         $trace = debug_backtrace();
-        $paths = explode(DS, $trace[0]['file']);
+        $paths = explode(DIRECTORY_SEPARATOR, $trace[0]['file']);
         $paths = $paths[count($paths) - 2];
         \CI_Controller::get_instance()->template->registerJsFile(APPPATH . 'modules/' . $paths . '/assets/js/' . $name . '.js', 'after');
         return $this;
@@ -53,7 +55,7 @@ class assetManager {
      */
     public function registerStyle($name) {
         $trace = debug_backtrace();
-        $paths = explode(DS, $trace[0]['file']);
+        $paths = explode(DIRECTORY_SEPARATOR, $trace[0]['file']);
         $paths = $paths[count($paths) - 2];
         \CI_Controller::get_instance()->template->registerCssFile(APPPATH . 'modules/' . $paths . '/assets/css/' . $name . '.css', 'before');
         return $this;
@@ -69,7 +71,7 @@ class assetManager {
      */
     public function renderAdmin($tpl) {
         $trace = debug_backtrace();
-        $paths = explode(DS, $trace[0]['file']);
+        $paths = explode(DIRECTORY_SEPARATOR, $trace[0]['file']);
         $paths = $paths[count($paths) - 2];
         try {
             $tplPath = 'application/modules/' . $paths . '/assets/admin/' . $tpl;
@@ -90,7 +92,7 @@ class assetManager {
      */
     public function render($tpl, $ignoreWrap = FALSE) {
         $trace = debug_backtrace();
-        $paths = explode(DS, $trace[0]['file']);
+        $paths = explode(DIRECTORY_SEPARATOR, $trace[0]['file']);
         $paths = $paths[count($paths) - 2];
         try {
             $tplPath = 'application/modules/' . $paths . '/assets/' . $tpl;
@@ -114,8 +116,8 @@ class assetManager {
      */
     public function fetchTemplate($tpl) {
         $trace = debug_backtrace();
-        $paths = explode(DS, $trace[0]['file']);
-        $paths = $paths[count($paths) - 2];        
+        $paths = explode(DIRECTORY_SEPARATOR, $trace[0]['file']);
+        $paths = $paths[count($paths) - 2];
         try {
             $tplPath = APPPATH . '/modules/' . $paths . '/assets/' . $tpl;
             file_exists($tplPath . '.tpl') OR throwException('Can\'t load template file: <i>' . $paths . DS . $tpl . '.tpl</i>');
@@ -139,4 +141,5 @@ class assetManager {
 
 }
 
+/** End of file /application/modules/CMSFactory/assetManager.php */
 ?>

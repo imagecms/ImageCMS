@@ -9,7 +9,21 @@ jQuery.exists = function(selector) {
 jQuery.exists_nabir = function(nabir) {
     return (nabir.length > 0);
 }
-
+function setcookie(name, value, expires, path, domain, secure)
+{
+    var today = new Date();
+    today.setTime(today.getTime());
+    if (expires)
+    {
+        expires = expires * 1000 * 60 * 60 * 24;
+    }
+    var expires_date = new Date(today.getTime() + (expires));
+    document.cookie = name + "=" + encodeURIComponent(value) +
+    ((expires) ? ";expires=" + expires_date.toGMTString() : "") +
+    ((path) ? ";path=" + path : "") +
+    ((domain) ? ";domain=" + domain : "") +
+    ((secure) ? ";secure" : "");
+}
 function navPortait(){
     var frameM = $('.frame-menu-main');
     headerMenu = $('.headerMenu');
@@ -448,32 +462,32 @@ function ieInput(els) {
             }
             if (isTouch) {
                 menuItem.unbind(evDrop)[evDrop](
-                function() {
-                    hov($(this));
-                }, function() {
-                    unhov($(this));
-                });
+                    function() {
+                        hov($(this));
+                    }, function() {
+                        unhov($(this));
+                    });
                 menu[evDrop](
-                function(event) {
-                    time_dur_m = 0;
-                },
-                function(event) {
-                    time_dur_m = duration;
-                });
+                    function(event) {
+                        time_dur_m = 0;
+                    },
+                    function(event) {
+                        time_dur_m = duration;
+                    });
             }
             else {
                 menuItem.unbind(evDropF)[evDropF](function() {
                     hov($(this));
-                }).unbind(evDropS)[evDropS](function() {
+                    }).unbind(evDropS)[evDropS](function() {
                     unhov($(this));
                 })
                 menu.unbind(evDropF)[evDropF](function() {
                     return time_dur_m = 0;
-                }).unbind(evDropS)[evDropS](
-                function() {
-                    methods.fadeDrop();
-                    return time_dur_m = duration;
-                });
+                    }).unbind(evDropS)[evDropS](
+                    function() {
+                        methods.fadeDrop();
+                        return time_dur_m = duration;
+                    });
             }
             drop.find('li li a').click(function(event) {
                 event.stopPropagation();
@@ -538,29 +552,40 @@ function ieInput(els) {
                         maxCost.val(ui.values[1]);
                     }
                 });
-                minCost.change(function() {
-                    var value1 = minCost.val();
-                    var value2 = maxCost.val();
-                    if (parseInt(value1) > parseInt(value2)) {
+                minCost.change(function(){
+                    var value1=minCost.val(),
+                    value2=maxCost.val(),
+                    minS = minCost.data('mins');
+
+                    if(parseInt(value1) > parseInt(value2)){
                         value1 = value2;
                         maxCost.val(value1);
                     }
-                    rel.slider("values", 0, value1);
-                });
-                maxCost.change(function() {
-                    var value1 = minCost.val();
-                    var value2 = maxCost.val();
+                    if (parseInt(value1) < minS) {
+                        minCost.val(minS);
+                        value1 = minS;
+                    }
+                    rel.slider("values",0,value1);
+                }); 
+                maxCost.change(function(){
+                    var value1=minCost.val(),
+                    value2=maxCost.val(),
+                    maxS = maxCost.data('maxs');
 
                     if (value2 > def_max) {
                         value2 = def_max;
                         maxCost.val(def_max)
                     }
 
-                    if (parseInt(value1) > parseInt(value2)) {
+                    if(parseInt(value1) > parseInt(value2)){
                         value2 = value1;
                         maxCost.val(value2);
                     }
-                    rel.slider("values", 1, value2);
+                    if (parseInt(value2) > maxS) {
+                        maxCost.val(maxS);
+                        value2 = maxS;
+                    }
+                    rel.slider("values",1,value2);
                 });
             }
         }
@@ -1261,7 +1286,7 @@ function ieInput(els) {
                         else
                             $thisPrev.attr('disabled', 'disabled');
                         
-//                        if (input.maxValue()) $thisNext.attr('disabled', 'disabled');
+                    //                        if (input.maxValue()) $thisNext.attr('disabled', 'disabled');
                     })
                     $thisPrev.click(function() {
                         var input = $this.focus();
@@ -1381,41 +1406,41 @@ function ieInput(els) {
                 var $this = $(this);
                 if (!$this.hasClass('disabled')){
                     $this.hover (
-                    function(){
-                        $(this).append("<span></span>");
-                    },
-                    function()
-                    {
-                        $(this).find("span").remove();
-                    });
+                        function(){
+                            $(this).append("<span></span>");
+                        },
+                        function()
+                        {
+                            $(this).find("span").remove();
+                        });
 
                     var rating;
 
                     $this.mousemove (
-                    function(e){
-                        if (!e) e = window.event;
-                        if (e.pageX){
-                            x = e.pageX;
-                        } else if (e.clientX){
-                            x = e.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft) - document.documentElement.clientLeft;
+                        function(e){
+                            if (!e) e = window.event;
+                            if (e.pageX){
+                                x = e.pageX;
+                            } else if (e.clientX){
+                                x = e.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft) - document.documentElement.clientLeft;
 	     
-                        }
-                        var posLeft = 0;
-                        var obj = this;
-                        while (obj.offsetParent)
-                        {
-                            posLeft += obj.offsetLeft;
-                            obj = obj.offsetParent;
-                        }
-                        var offsetX = x-posLeft,
-                        modOffsetX = 5*offsetX%this.offsetWidth;
-                        rating = parseInt(5*offsetX/this.offsetWidth);
+                            }
+                            var posLeft = 0;
+                            var obj = this;
+                            while (obj.offsetParent)
+                            {
+                                posLeft += obj.offsetLeft;
+                                obj = obj.offsetParent;
+                            }
+                            var offsetX = x-posLeft,
+                            modOffsetX = 5*offsetX%this.offsetWidth;
+                            rating = parseInt(5*offsetX/this.offsetWidth);
 
-                        if(modOffsetX > 0) rating+=1;
+                            if(modOffsetX > 0) rating+=1;
 		
-                        jQuery(this).find("span").eq(0).css("width",rating*width+"px");
+                            jQuery(this).find("span").eq(0).css("width",rating*width+"px");
 
-                    });
+                        });
 
                     $this.click (function(){
                         settings.afterClick($this, rating);

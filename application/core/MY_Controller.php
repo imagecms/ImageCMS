@@ -54,9 +54,6 @@ class MY_Controller extends MX_Controller {
 
     public $pjaxRequest = false;
     public $ajaxRequest = false;
-    private $apiRequest = false;
-
-    //public $apiClasses = array('auth');
 
     public function __construct() {
         parent::__construct();
@@ -82,6 +79,14 @@ class MY_Controller extends MX_Controller {
         }
         else
             return false;
+    }
+
+    /**
+     * Admin Autoload empty method
+     * @return boolean
+     */
+    public static function adminAutoload() {
+        /** Must be an empty */
     }
 
 }
