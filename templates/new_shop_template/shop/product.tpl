@@ -19,10 +19,10 @@
         <div class="item_tovar">
             <ul class="row">
                 <!--Photo block for main product-->
-                <li class="span5 clearfix">
+                <li class="span5 clearfix not-avail">
                     <!-- productImageUrl($model->getMainModImage()) - Link to product -->
                     <a rel="group" id="photoGroup" href="{productImageUrl($model->getMainModImage())}" class="photo">
-                        <figure>
+                        <figure >
                             <!-- productImageUrl($model->getMainImage()) - Way before the photo to attribute img -->
                             <img id="imageGroup" src="{productImageUrl($model->getMainImage())}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
                         </figure>                        
@@ -508,7 +508,6 @@
 </div>
 {/if}
 <!--Kit end-->
-
 
 {widget('view_product')}
 </article>
