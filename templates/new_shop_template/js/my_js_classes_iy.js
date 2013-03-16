@@ -163,5 +163,9 @@ $(document).ready(function() {
     $(orderSelect.mainSelector + '.lineForm input[type="hidden"]').on('change', function() {
         orderSelect.addHiddenFields();
     });
+
+    $('#sort, #sort2').on('change', function(){
+        $('form#searchSortForm').submit();
+    });
 });
 

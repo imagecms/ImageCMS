@@ -1015,7 +1015,7 @@ function initAdminArea() {
     });
 
 
-    $('#mainContent a.pjax').die('click').click(function(event) {
+    $('#mainContent a.pjax').unbind('click').die('click').on('click', function(event) {
         event.preventDefault();
         $('#loading').fadeIn(100);
         $.pjax({
@@ -1083,7 +1083,7 @@ $(document).ready(
         initAdminArea();
         //$('.nav .dropdown-menu a').die('click');
 
-        $('a.pjax').not('#mainContent a.pjax').die('click').click(function(event) {
+        $('a.pjax').not('#mainContent a.pjax').unbind('click').die('click').on('click', function(event) {
             event.preventDefault();
             $('#loading').fadeIn(100);
             $.pjax({
@@ -1111,7 +1111,7 @@ $(document).ready(
         });
 
 
-        $('a.pjax').die('click').click(function(event) {
+        $('a.pjax').unbind('click').die('click').on('click', function(event) {
             event.preventDefault();
             $('#loading').fadeIn(100);
             $.pjax({
