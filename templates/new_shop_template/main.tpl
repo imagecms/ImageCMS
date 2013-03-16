@@ -287,6 +287,10 @@
             var curr = '{$CS}';
             var pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}');
             var checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}";
+            var inCart = '{lang('already_in_basket')}';
+            var toCart = '{lang('s_buy')}';
+            var pcs = 'шт.';
+            var kits = 'компл.';
         </script>
 
         <!--        Syncronization data for cart, wishlist  and comparelist     -->
