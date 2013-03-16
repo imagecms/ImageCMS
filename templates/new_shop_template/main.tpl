@@ -223,7 +223,7 @@
             </div>
 
             <!-- Start Brands widget -->
-            {//widget('brands')}
+            {widget('brands')}
             <!-- End. Brands widget -->
 
             <div class="hFooter"></div>
