@@ -1,5 +1,5 @@
 var inCart = 'Уже в корзине';
-var toCart = 'В корзину';
+var toCart = 'Купить';
 var pcs = 'шт.';
 var kits = 'компл.';
 //var curr = 'грн.';
