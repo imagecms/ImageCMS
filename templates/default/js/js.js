@@ -9,4 +9,9 @@ $(document).ready(function() {
     Cufon.replace('#title', {fantFamily: 'Kartika'});
     Cufon.replace('#table .head', {fantFamily: 'Kartika'});
     Cufon.replace('#total .label,#buttons .button', {fantFamily: 'Kartika', hover: true});
+
+
+    //
+
+    $('a.fancybox').fancybox();
 });

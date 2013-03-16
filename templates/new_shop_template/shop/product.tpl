@@ -19,7 +19,7 @@
         <div class="item_tovar">
             <ul class="row">
                 <!--Photo block for main product-->
-                <li class="span5 clearfix not-avail">
+                <li class="span5 clearfix">
                     <!-- productImageUrl($model->getMainModImage()) - Link to product -->
                     <a rel="group" id="photoGroup" href="{productImageUrl($model->getMainModImage())}" class="photo">
                         <figure >
@@ -510,5 +510,6 @@
 <!--Kit end-->
 
 {widget('view_product')}
+{widget('similar')}
 </article>
 </div>

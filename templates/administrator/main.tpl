@@ -238,6 +238,7 @@
             {/if}
                 
                 var locale = '{echo $this->CI->config->item('language')}';
+                var base_url = "{site_url()}";
         </script>
 
         <script src="{$THEME}/js/jquery-1.8.2.min.js" type="text/javascript"></script>
@@ -273,7 +274,6 @@
         <script src="{$THEME}/js/admin_base_v.js" type="text/javascript"></script>       
         <script src="{$THEME}/js/admin_base_y.js" type="text/javascript"></script>               
         <script type="text/javascript" src="/js/tiny_mce/jquery.tinymce.js"></script>
-        <script type="text/javascript" src="/js/tiny_mce/langs/ru.js"></script>
         <script>
             {if $CI->uri->segment('4') == 'shop'}
                 var isShop = true;

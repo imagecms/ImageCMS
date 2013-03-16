@@ -143,7 +143,7 @@ $(document).ready(function() {
         FilterManipulation.filterSubmit();
     });
 
-    $(FilterManipulation.OnClickSublitSelectors).on('click', function(event) {
+    $(FilterManipulation.OnClickSubmitSelectors).on('click', function(event) {
         event.preventDefault();
         FilterManipulation.filterSubmit();
     });
@@ -162,6 +162,10 @@ $(document).ready(function() {
 
     $(orderSelect.mainSelector + '.lineForm input[type="hidden"]').on('change', function() {
         orderSelect.addHiddenFields();
+    });
+
+    $('#sort, #sort2').on('change', function(){
+        $('form#searchSortForm').submit();
     });
 });
 

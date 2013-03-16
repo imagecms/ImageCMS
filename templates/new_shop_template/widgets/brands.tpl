@@ -6,7 +6,7 @@
                     <li>
                         <a href="{shop_url($brand.full_url)}">
                             <span class="helper"></span>
-                            <img src="{media_url($brand.img_fullpath)}" title="{$brand.name}" />
+                            <img src="{media_url($brand.img_fullpath)}" title="{$brand.name}" alt="{$brand.name}"/>
                         </a>
                     </li>
                 {/foreach}

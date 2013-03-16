@@ -4,6 +4,8 @@
  * Date: 07.03.13
  * Time: 15:11
  */
+if (!$ADMIN_URL) $ADMIN_URL = '/admin/components/run/shop/';
+
 $baseMenu = array(
     array(
         'link'      => '/admin/dashboard',
