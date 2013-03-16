@@ -351,8 +351,8 @@ function initTinyMCE()
         media_external_list_url: "lists/media_list.js",
         // Replace values for the template plugin
         template_replace_values: {
-            //username: "Some User",
-            //staffid: "991234"
+        //username: "Some User",
+        //staffid: "991234"
         },
         file_browser_callback: function(field_name, url, type, win) {
             $('<div/>').dialogelfinder({

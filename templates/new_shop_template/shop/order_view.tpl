@@ -84,7 +84,7 @@
                         {/if}
                         <!-- End. Delivery Method name -->
 
-                        <!-- Start. Render payment button and payment description -->
+                        <!-- Start. Render payment button and payment description -->                        
                         {if $model->getPaid() != true}
                             <tr class="b_n">
                                 <th></th>
@@ -194,7 +194,7 @@
 
                                             <!-- Start. Render kit summary -->
                                             <div class="c_97">(Количество комплектов - {echo $orderProduct->getQuantity()})</div>
-                                            <div class="price price_f-s_18"><span class="f-w_b">{echo $orderProduct->getProductTotalPrice()}</span>&nbsp;{$CS}</div>
+                                            <div class="price price_f-s_18"><span class="f-w_b">{echo $orderProduct->getKit()->getTotalPrice()}</span>&nbsp;{$CS}</div>
                                             <!-- End. Render kit summary -->
 
                                         </li>
@@ -217,9 +217,10 @@
                                             + Доставка: <span class="f-w_b">{echo $model->getDeliveryPrice()}</span> {$CS})
                                             {if $model->getGiftCertPrice() > 0}<br><span >(Скидка подарочного сертификата: {echo $model->getGiftCertPrice()} {$CS}<span class="f-w_b"></span> )</span>{/if}
                                         </div>
+                                        
 
                                         <span class="f-s_18">Сумма:</span>&nbsp;
-                                        <span class="f-s_24">{echo $model->getTotalPriceWithGift()}</span>&nbsp;
+                                        <span class="f-s_24">{echo $model->getTotalPrice()}</span>&nbsp;
                                         <span class="f-s_24"> {$CS}</span>
                                     </div>
                                 </div>
