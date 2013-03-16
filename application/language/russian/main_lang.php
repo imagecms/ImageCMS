@@ -206,6 +206,7 @@ $lang['s_accessories'] = 'Аксессуары';
 $lang['s_properties'] = 'Характеристики';
 $lang['s_for'] = 'Для';
 $lang['s_close_form_wl'] = 'Закрыть форму';
+$lang['s_close'] = 'Закрыть';
 $lang['s_form_input_wl'] = 'Email друга';
 $lang['s_see'] = 'Посмотреть';
 $lang['s_wlist'] = 'Wish List';
