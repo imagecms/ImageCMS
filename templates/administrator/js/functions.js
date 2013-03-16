@@ -326,7 +326,7 @@ function initElRTE()
 
 function initTinyMCE()
 {
-    
+
     var opts = {
         //mode : "textareas",
         // Location of TinyMCE script
@@ -360,6 +360,13 @@ function initTinyMCE()
             //username: "Some User",
             //staffid: "991234"
         },
+
+        mode : "exact",
+        elements : 'nourlconvert',
+        //relative_urls : true, // Default value
+        //document_base_url : 'http://img.loc/',
+        convert_urls : false,
+
         file_browser_callback: function(field_name, url, type, win) {
             $('<div/>').dialogelfinder({
                 url: '/admin/elfinder_init',
@@ -371,15 +378,13 @@ function initTinyMCE()
                     zIndex: 900001
                 },
                 getFileCallback: function(file) {
-                    
+                    file.path = file.path.replace(/\134/g, '/');
                     file.path = '/'+file.path;
                     
                     var field = win.document.forms[0].elements[field_name];
                     field.value = file.path;
                     
                     $(field).change();
-                    
-                //ImageDialog.showPreviewImage('/' + file.path);
                 },
                 commandsOptions: {
                     getfile: {
