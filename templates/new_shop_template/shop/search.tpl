@@ -69,6 +69,7 @@
             <div class=" clearfix t-a_ccatalog_frame">
                 <div class="clearfix t-a_c frame_func_catalog">
                     <!-- Start. Sort by block -->
+                    <form method="get" id="searchSortForm" action="">
                     <div class="f_l">
                         <span class="v-a_m">Фильтровать по:</span>
                         <div class="lineForm w_170">
@@ -96,6 +97,8 @@
                             </select>
                         </div>
                     </div>
+                        <input type="hidden" name="text" value="{$_GET['text']}">
+                    </form>
                     <!-- End. Per page block -->
                     <!-- Start. Buttons for change view mode (list/images) -->
                     <div class="groupButton list_pic_btn">
