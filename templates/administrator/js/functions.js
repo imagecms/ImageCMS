@@ -364,7 +364,7 @@ function initTinyMCE()
         mode : "exact",
         elements : 'nourlconvert',
         //relative_urls : true, // Default value
-        document_base_url : 'http://img.loc/',
+        //document_base_url : 'http://img.loc/',
         convert_urls : false,
 
         file_browser_callback: function(field_name, url, type, win) {
