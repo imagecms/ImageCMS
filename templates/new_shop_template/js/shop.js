@@ -4,7 +4,6 @@ var pcs = 'шт.';
 var kits = 'компл.';
 //var curr = 'грн.';
 
-
 var Shop = {
     //var Cart = new Object();
     currentItem: {},
