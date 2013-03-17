@@ -128,7 +128,19 @@ var ImageDialog = {
 
 		tinyMCEPopup.restoreSelection();
                 
-                var fancy = nl[0].elements[3].checked;
+        var fancy = nl[0].elements[3].checked;
+        var fancyX = nl[5].value;
+        var fancyY = nl[6].value;
+
+//        if (fancy) {
+//            var req = new XMLHttpRequest();
+//            req.open('POST', '/admin/components/run/imagebox/imagebox/upload');
+//            //req.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+//            req.send(
+//            //    'file_url='+encodeURIComponent(nl[1].value)
+//            );
+//        }
+
 
 		// Fixes crash in Safari
 		if (tinymce.isWebKit)
@@ -188,6 +200,12 @@ var ImageDialog = {
                       //if fancybox
                     if (fancy == true)
                     {
+
+                        var parts = args.src.split('/');
+                        var  fname = parts[parts.length-1];
+                        //el.src = '/uploads/imagebox/thumbs/'+fname;
+                        //
+
                         var a = document.createElement('a');
                         a.appendChild(el);
                         a.className += 'fancybox';

@@ -4,12 +4,12 @@
 * @updated 26 February 2013;
 * Variables
 * $products:(оbject) instance of SProducts
-* $totalProducts: (int) Products amount 
-* $brandsInSearchResult: (object) instance of SBrands 
+* $totalProducts: (int) Products amount
+* $brandsInSearchResult: (object) instance of SBrands
 * $pagination: (string) Show pagination
-* $tree : (array) All Categories tree. 
+* $tree : (array) All Categories tree.
 * $categories: (array). Categories in search results with amount of found products
-* 
+*
 */
 #}
 <!-- Get category tree -->
@@ -18,58 +18,57 @@
 <!-- Start.Show search results block, if $totalProduct > 0 -->
 {if $totalProducts > 0}
     <div class="row">
-        <aside class="span3">
-            <div class="filter">
-                <!-- Start. Categories tree with navigation -->
-                <div class="boxFilter">
-                    <div class="title">{lang('s_sea_found_in_categories')}:</div>
-                    <nav>
-                        <ul>
-                            {foreach $tree as $item}
-                                <ul>
-                                    <div class="title">
-                                        {foreach $item->getSubtree() as $subItem}
-                                            {$count_item = $categories[$subItem->getId()];}
-                                            {if $count_item}
-                                                {echo $item->getName()}{break;}
-                                            {/if}
-                                        {/foreach}
-                                    </div>
-                                    {foreach $item->getSubtree() as $subItem}
-                                        {$count_item = $categories[$subItem->getId()];}
-                                        {if $count_item}
-                                            <li{if $_GET['category'] && $_GET['category'] == $subItem->getId()} class="active"{/if}>
+    <aside class="span3">
+        <div class="filter">
+            <!-- Start. Categories tree with navigation -->
+            <div class="boxFilter">
+                <div class="title">{lang('s_sea_found_in_categories')}:</div>
+                <nav>
+                    <ul>
+                        {foreach $tree as $item}
+                            <ul data-cid="{echo $item->getId()}" {if $item->getParentId() != 0} data-level="3" data-pid="{echo $item->getParentId()}"{/if}>
+                                {$title=false}
+                                {foreach $item->getSubtree() as $subItem}
+                                    {$count_item = $categories[$subItem->getId()];}
+                                    {if $count_item}
+                                        {if !$title}
+                                            <div class="title">
+                                                {echo trim($item->getName())}
+                                                {$title=true}
+                                            </div>
+                                        {/if}
+                                        <li{if $_GET['category'] && $_GET['category'] == $subItem->getId()} class="active"{/if}>
                                                 <span>
                                                     {if $_GET['category'] && $_GET['category'] == $subItem->getId()}
                                                         {echo $subItem->getName()}
                                                     {else:}
-                                                        <a href="{shop_url('search?text='.$_GET['text'].'&category='.$subItem->getId())}">{echo $subItem->getName()}</a>     
+                                                        <a href="{shop_url('search?text='.$_GET['text'].'&category='.$subItem->getId())}">{echo $subItem->getName()}</a>
                                                     {/if}
                                                     <span class="count">({echo $count_item})</span>
                                                 </span>
-                                            </li>
-                                        {/if}
-                                    {/foreach}
-                                </ul>
-                            {/foreach}
-                        </ul>
-                        {widget('latest_news')}
-                    </nav>
-                </div>
-                <!-- End. Categories tree with navigation -->
+                                        </li>
+                                    {/if}
+                                {/foreach}
+                            </ul>
+                        {/foreach}
+                    </ul>
+                    {widget('latest_news')}
+                </nav>
             </div>
-        </aside>
-        <div class="span9 right">
-            {if !empty(ShopCore::$_GET['text'])}
-                <h1 class="d_i">  {lang('s_sea_search_for')}:"{encode($_GET['text'])}" </h1>
-            {/if}
-            <span class="c_97">
-                ({$totalProducts}) {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}
+            <!-- End. Categories tree with navigation -->
+        </div>
+    </aside>
+    <div class="span9 right">
+        {if !empty(ShopCore::$_GET['text'])}
+            <h1 class="d_i">  {lang('s_sea_search_for')}:"{encode($_GET['text'])}" </h1>
+        {/if}
+        <span class="c_97">
+               Найдено {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}
             </span>
-            <div class=" clearfix t-a_ccatalog_frame">
-                <div class="clearfix t-a_c frame_func_catalog">
-                    <!-- Start. Sort by block -->
-                    <form method="get" id="searchSortForm" action="">
+        <div class=" clearfix t-a_ccatalog_frame">
+            <div class="clearfix t-a_c frame_func_catalog">
+                <!-- Start. Sort by block -->
+                <form method="get" id="searchSortForm" action="">
                     <div class="f_l">
                         <span class="v-a_m">Фильтровать по:</span>
                         <div class="lineForm w_170">
@@ -97,127 +96,147 @@
                             </select>
                         </div>
                     </div>
-                        <input type="hidden" name="text" value="{$_GET['text']}">
-                    </form>
-                    <!-- End. Per page block -->
-                    <!-- Start. Buttons for change view mode (list/images) -->
-                    <div class="groupButton list_pic_btn">
-                        <button type="button" class="btn showAsTable {if $_COOKIE['listtable'] != 1}active{/if}"><span class="icon-cat_pic"></span><span class="text-el">{lang('s_in_images')}</span></button>
-                        <button type="button" class="btn showAsList {if $_COOKIE['listtable'] == 1}active{/if}"><span class="icon-cat_list"></span><span class="text-el">{lang('s_in_list')}</span></button>
-                    </div>
-                    <!-- End. Buttons for change view mode (list/images) -->
+                    <input type="hidden" name="text" value="{$_GET['text']}">
+                </form>
+                <!-- End. Per page block -->
+                <!-- Start. Buttons for change view mode (list/images) -->
+                <div class="groupButton list_pic_btn">
+                    <button type="button" class="btn showAsTable {if $_COOKIE['listtable'] != 1}active{/if}"><span class="icon-cat_pic"></span><span class="text-el">{lang('s_in_images')}</span></button>
+                    <button type="button" class="btn showAsList {if $_COOKIE['listtable'] == 1}active{/if}"><span class="icon-cat_list"></span><span class="text-el">{lang('s_in_list')}</span></button>
                 </div>
-
-                <!--Start. Product block -->
-                <ul class="items items_catalog {if $_COOKIE['listtable'] == 1}list{/if}" data-radio-frame>
-                    {$Comments = $CI->load->module('comments')->init($products)}
-                    {foreach $products as $p}
-                        <li class="span3 {if $p->firstvariant->getstock()==0} not-avail{/if}">
-                            <div class="description">
-                                <div class="frame_response">
-                                    <!-- Start. Star rating and comments count -->
-                                    {$CI->load->module('star_rating')->show_star_rating($p)}
-
-                                    {if $Comments[$p->getId()][0] != '0' && $p->enable_comments}
-                                        <a href="{shop_url('product/'.$p->url.'#comment')}" class="count_response">
-                                            {echo $Comments[$p->getId()]}
-                                        </a>
-                                    {/if}
-                                    <!-- End. Star rating and comments count --> 
-                                </div>
-                                <a href="{shop_url('product/'.$p->getUrl().'#comment')}">{echo ShopCore::encode($p->getName())}</a>
-                                <!-- Start. Price -->
-                                <div class="price price_f-s_16">
-                                    <!--$model->hasDiscounts() - checking for the existence of discounts. 
-                                         If there is a discount price without discount C-->
-                                    {if $p->hasDiscounts()}
-                                        <span class="d_b old_price">
-                                            <span class="f-w_b">{echo $p->firstVariant->toCurrency('OrigPrice')} </span>
-                                            {$CS}
-                                        </span>                           
-                                    {/if}
-                                    <!--If there is a discount of "$model->firstVariant->toCurrency()" or "$model->firstVariant->getPrice"
-                                    will display the price already discounted-->
-                                    <span class="f-w_b" >{echo $p->firstVariant->toCurrency()} </span>{$CS}
-                                </div>
-                                <!-- End. Price -->
-                                <!--Start. Check amount of goods -->
-                                {if $p->firstvariant->getstock() != 0}
-                                    <button class="btn btn_buy" 
-                                            type="button" 
-                                            data-prodId="{echo $p->getId()}" 
-                                            data-varId="{echo $p->firstVariant->getId()}" 
-                                            data-price="{echo $p->firstVariant->toCurrency()}" 
-                                            data-name="{echo $p->getName()}"
-                                            data-number="{echo $p->firstVariant->getnumber()}"
-                                            data-maxcount="{echo $p->firstVariant->getstock()}"
-                                            data-vname="{echo $p->firstVariant->getName()}">
-                                        {lang('s_buy')}
-                                    </button>
-                                {else:}
-                                    <button data-placement="bottom right"
-                                            data-place="noinherit"
-                                            data-duration="500"
-                                            data-effect-off="fadeOut"
-                                            data-effect-on="fadeIn"
-                                            data-drop=".drop-report"
-                                            data-prodid="{echo $p->firstVariant->getId()}"
-                                            type="button"
-                                            class="btn btn_not_avail">
-                                        <span class="icon-but"></span>
-                                        <span class="text-el">{lang('s_message_o_report')}</span>
-                                    </button>
-                                {/if} 
-                                <!-- End. Check amount of goods -->   
-                                <!-- Start. Buttons "Add to wish list" and "add to compare" -->
-                                <div class="d_i-b">
-                                    <!-- to compare button -->
-                                    <button class="btn btn_small_p toCompare"  
-                                            data-prodid="{echo $p->getId()}"  
-                                            type="button" 
-                                            data-title="{lang('s_add_to_compare')}"
-                                            data-sectitle="{lang('s_in_compare')}"
-                                            data-rel="tooltip">
-                                        <span class="icon-comprasion_2"></span>
-                                        <span class="text-el">{lang('s_add_to_compare')}</span>
-                                    </button>
-
-                                    <!-- to wish list button -->
-                                    <button class="btn btn_small_p toWishlist" 
-                                            data-prodid="{echo $p->getId()}" 
-                                            data-varid="{echo $p->firstVariant->getId()}"  
-                                            type="button" 
-                                            data-title="{lang('s_add_to_wish_list')}"
-                                            data-sectitle="{lang('s_in_wish_list')}"
-                                            data-rel="tooltip">
-                                        <span class="icon-wish_2"></span>
-                                        <span class="text-el">{lang('s_add_to_wish_list')}</span>
-                                    </button>
-                                </div>
-                                <!-- End. Buttons -->
-                            </div>
-                            <!-- Start. Photo block -->
-                            <div class="photo-block">
-                                <a class="photo" href="{shop_url('product/' . $p->getUrl())}">
-                                    <span class="helper"></span>
-                                    <figure>
-                                        <img src="{productImageUrl($p->getMainModimage())}" alt="{echo ShopCore::encode($p->name)} - {echo $p->getId()}" />
-                                    </figure>
-                                </a>
-                            </div>
-                            <!-- End. Photo block -->
-                        </li>
-                    {/foreach}
-                </ul>
-                <!-- End. Product block -->
-                <!--Start. Pagination -->
-                {if $pagination}
-                    {$pagination}
-                {/if}
-                <!-- End pagination -->
-                <!-- End. Search results block -->
+                <!-- End. Buttons for change view mode (list/images) -->
             </div>
+
+            <!--Start. Product block -->
+            <ul class="items items_catalog {if $_COOKIE['listtable'] == 1}list{/if}" data-radio-frame>
+                {$Comments = $CI->load->module('comments')->init($products)}
+                {foreach $products as $p}
+                    <li class="span3 {if $p->firstvariant->getstock()==0} not-avail{/if}">
+                        <div class="description">
+                            <div class="frame_response">
+                                <!-- Start. Star rating and comments count -->
+                                {$CI->load->module('star_rating')->show_star_rating($p)}
+
+                                {if $Comments[$p->getId()][0] != '0' && $p->enable_comments}
+                                    <a href="{shop_url('product/'.$p->url.'#comment')}" class="count_response">
+                                        {echo $Comments[$p->getId()]}
+                                    </a>
+                                {/if}
+                                <!-- End. Star rating and comments count -->
+                            </div>
+                            <a href="{shop_url('product/'.$p->getUrl().'#comment')}">{echo ShopCore::encode($p->getName())}</a>
+                            <!-- Start. Price -->
+                            <div class="price price_f-s_16">
+                                <!--$model->hasDiscounts() - checking for the existence of discounts.
+                                     If there is a discount price without discount C-->
+                                {if $p->hasDiscounts()}
+                                    <span class="d_b old_price">
+                                            <span class="f-w_b">{echo $p->firstVariant->toCurrency('OrigPrice')} </span>
+                                        {$CS}
+                                        </span>
+                                {/if}
+                                <!--If there is a discount of "$model->firstVariant->toCurrency()" or "$model->firstVariant->getPrice"
+                                will display the price already discounted-->
+                                <span class="f-w_b" >{echo $p->firstVariant->toCurrency()} </span>{$CS}
+                            </div>
+                            <!-- End. Price -->
+                            <!--Start. Check amount of goods -->
+                            {if $p->firstvariant->getstock() != 0}
+                                <button class="btn btn_buy"
+                                        type="button"
+                                        data-prodId="{echo $p->getId()}"
+                                        data-varId="{echo $p->firstVariant->getId()}"
+                                        data-price="{echo $p->firstVariant->toCurrency()}"
+                                        data-name="{echo $p->getName()}"
+                                        data-number="{echo $p->firstVariant->getnumber()}"
+                                        data-maxcount="{echo $p->firstVariant->getstock()}"
+                                        data-vname="{echo $p->firstVariant->getName()}">
+                                    {lang('s_buy')}
+                                </button>
+                            {else:}
+                                <button data-placement="bottom right"
+                                        data-place="noinherit"
+                                        data-duration="500"
+                                        data-effect-off="fadeOut"
+                                        data-effect-on="fadeIn"
+                                        data-drop=".drop-report"
+                                        data-prodid="{echo $p->firstVariant->getId()}"
+                                        type="button"
+                                        class="btn btn_not_avail">
+                                    <span class="icon-but"></span>
+                                    <span class="text-el">{lang('s_message_o_report')}</span>
+                                </button>
+                            {/if}
+                            <!-- End. Check amount of goods -->
+                            <!-- Start. Buttons "Add to wish list" and "add to compare" -->
+                            <div class="d_i-b">
+                                <!-- to compare button -->
+                                <button class="btn btn_small_p toCompare"
+                                        data-prodid="{echo $p->getId()}"
+                                        type="button"
+                                        data-title="{lang('s_add_to_compare')}"
+                                        data-sectitle="{lang('s_in_compare')}"
+                                        data-rel="tooltip">
+                                    <span class="icon-comprasion_2"></span>
+                                    <span class="text-el">{lang('s_add_to_compare')}</span>
+                                </button>
+
+                                <!-- to wish list button -->
+                                <button class="btn btn_small_p toWishlist"
+                                        data-prodid="{echo $p->getId()}"
+                                        data-varid="{echo $p->firstVariant->getId()}"
+                                        type="button"
+                                        data-title="{lang('s_add_to_wish_list')}"
+                                        data-sectitle="{lang('s_in_wish_list')}"
+                                        data-rel="tooltip">
+                                    <span class="icon-wish_2"></span>
+                                    <span class="text-el">{lang('s_add_to_wish_list')}</span>
+                                </button>
+                            </div>
+                            <!-- End. Buttons -->
+
+                            <div class="short_description">
+                                {echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($p->getId())}
+                            </div>
+
+                        </div>
+                        <!-- Start. Photo block -->
+                        <div class="photo-block">
+                            <a class="photo" href="{shop_url('product/' . $p->getUrl())}">
+                                <span class="helper"></span>
+                                <figure>
+                                    <img src="{productImageUrl($p->getMainModimage())}" alt="{echo ShopCore::encode($p->name)} - {echo $p->getId()}" />
+                                </figure>
+                            </a>
+                        </div>
+                        <!-- End. Photo block -->
+
+                        <!-- creating hot bubble for products image if product is hot -->
+                        {if $p->getHot()}
+                            <span class="top_tovar nowelty">{lang('s_shot')}</span>
+                        {/if}
+
+                        <!-- creating hot bubble for products image if product is action -->
+                        {if $p->getAction()}
+                            <span class="top_tovar promotion">{lang('s_saction')}</span>
+                        {/if}
+
+                        <!-- creating hot bubble for products image if product is hit -->
+                        {if $p->getHit()}
+                            <span class="top_tovar discount">{lang('s_s_hit')}</span>
+                        {/if}
+                    </li>
+                {/foreach}
+            </ul>
+            <!-- End. Product block -->
+            <!--Start. Pagination -->
+            {if $pagination}
+                {$pagination}
+            {/if}
+            <!-- End pagination -->
+            <!-- End. Search results block -->
         </div>
+    </div>
     </div>
 {else:}
     <!--Start. Show message not found-->
