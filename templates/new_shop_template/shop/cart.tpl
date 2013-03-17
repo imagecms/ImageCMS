@@ -60,7 +60,7 @@
                                                 </label>
 
                                                 <!--        User custom fields      -->
-                                                {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPattern($pattern)->getCustomFields('user')->asHtml() }
+                                                {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPattern($pattern)->getCustomFields('user')->asHtml()}
 
 
                                             </div>

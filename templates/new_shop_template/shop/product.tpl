@@ -12,7 +12,6 @@
  */
 #}
 {$Comments = $CI->load->module('comments')->init($model)}
-{log_message('error', 'Can')}
 <div>
     <article>       
         <!-- Making bread crumbs -->
