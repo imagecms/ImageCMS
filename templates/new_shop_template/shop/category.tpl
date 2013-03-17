@@ -53,54 +53,56 @@
         <div class="span9 right">
 
             <!-- category title and products count output -->
-            <h1 class="d_i">{echo ShopCore::encode($category->getName())}</h1><span class="c_97">{lang('s_found')} {echo $totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}</span>
-            <div class="clearfix t-a_c frame_func_catalog">
-
-                <!-- sort block -->
-                <div class="f_l">
-                    <span class="v-a_m">{lang('s_order_by')}:</span>
-                    <div class="lineForm w_170 sort">
-                        <select class="sort" id="sort" name="order">
-                            <option value="" {if !ShopCore::$_GET['order']}selected="selected"{/if}>-{lang('s_no')}-</option>
-                            <option value="rating" {if ShopCore::$_GET['order']=='rating'}selected="selected"{/if}>{lang('s_po')} {lang('s_rating')}</option>
-                            <option value="price" {if ShopCore::$_GET['order']=='price'}selected="selected"{/if}>{lang('s_dewevye')}</option>
-                            <option value="price_desc" {if ShopCore::$_GET['order']=='price_desc'}selected="selected"{/if} >{lang('s_dor')}</option>
-                            <option value="hit" {if ShopCore::$_GET['order']=='hit'}selected="selected"{/if}>{lang('s_popular')}</option>
-                            <option value="hot" {if ShopCore::$_GET['order']=='hot'}selected="selected"{/if}>{lang('s_new')}</option>
-                            <option value="action" {if ShopCore::$_GET['order']=='action'}selected="selected"{/if}>{lang('s_action')}</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- products on page count -->
-                <div class="f_r">
-                    <span class="v-a_m">{lang('s_products_per_page')}:</span>
-                    <div class="lineForm w_70 sort">
-                        <select class="sort" id="sort2" name="user_per_page">
-                            <option value="12" {if ShopCore::$_GET['user_per_page']=='12'}selected="selected"{/if} >12</option>
-                            <option value="24" {if ShopCore::$_GET['user_per_page']=='24'}selected="selected"{/if} >24</option>
-                            <option value="36" {if ShopCore::$_GET['user_per_page']=='36'}selected="selected"{/if} >36</option>
-                            <option value="48" {if ShopCore::$_GET['user_per_page']=='48'}selected="selected"{/if} >48</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- selecting product list type -->
-                <div class="groupButton list_pic_btn">
-                    <button type="button" class="btn showAsTable {if $_COOKIE['listtable'] != 1}active{/if}"><span class="icon-cat_pic"></span><span class="text-el">{lang('s_in_images')}</span></button>
-                    <button type="button" class="btn showAsList {if $_COOKIE['listtable'] == 1}active{/if}"><span class="icon-cat_list"></span><span class="text-el">{lang('s_in_list')}</span></button>
-                </div>
-            </div>
-
-            <!-- displaying category description if page number is 1 -->
-            {if $page_number == 1 && $category->getDescription() != '' && $category->getDescription() != ' ' && $category->getDescription() != null}
-                <div class="grey-b_r-bord">
-                    <p><span style="font-weight:bold">{echo ShopCore::encode($category->getName())}</span> &mdash; {echo $category->getDescription()}</p>
-                </div>
-            {/if}
-
-            <!-- rendering product list if products count more than 0 -->
+            <h1 class="d_i">{echo ShopCore::encode($category->getName())}</h1>
             {if count($products)>0}
+                <span class="c_97">{lang('s_found')} {echo $totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}</span>
+                <div class="clearfix t-a_c frame_func_catalog">
+
+                    <!-- sort block -->
+                    <div class="f_l">
+                        <span class="v-a_m">{lang('s_order_by')}:</span>
+                        <div class="lineForm w_170 sort">
+                            <select class="sort" id="sort" name="order">
+                                <option value="" {if !ShopCore::$_GET['order']}selected="selected"{/if}>-{lang('s_no')}-</option>
+                                <option value="rating" {if ShopCore::$_GET['order']=='rating'}selected="selected"{/if}>{lang('s_po')} {lang('s_rating')}</option>
+                                <option value="price" {if ShopCore::$_GET['order']=='price'}selected="selected"{/if}>{lang('s_dewevye')}</option>
+                                <option value="price_desc" {if ShopCore::$_GET['order']=='price_desc'}selected="selected"{/if} >{lang('s_dor')}</option>
+                                <option value="hit" {if ShopCore::$_GET['order']=='hit'}selected="selected"{/if}>{lang('s_popular')}</option>
+                                <option value="hot" {if ShopCore::$_GET['order']=='hot'}selected="selected"{/if}>{lang('s_new')}</option>
+                                <option value="action" {if ShopCore::$_GET['order']=='action'}selected="selected"{/if}>{lang('s_action')}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- products on page count -->
+                    <div class="f_r">
+                        <span class="v-a_m">{lang('s_products_per_page')}:</span>
+                        <div class="lineForm w_70 sort">
+                            <select class="sort" id="sort2" name="user_per_page">
+                                <option value="12" {if ShopCore::$_GET['user_per_page']=='12'}selected="selected"{/if} >12</option>
+                                <option value="24" {if ShopCore::$_GET['user_per_page']=='24'}selected="selected"{/if} >24</option>
+                                <option value="36" {if ShopCore::$_GET['user_per_page']=='36'}selected="selected"{/if} >36</option>
+                                <option value="48" {if ShopCore::$_GET['user_per_page']=='48'}selected="selected"{/if} >48</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- selecting product list type -->
+                    <div class="groupButton list_pic_btn">
+                        <button type="button" class="btn showAsTable {if $_COOKIE['listtable'] != 1}active{/if}"><span class="icon-cat_pic"></span><span class="text-el">{lang('s_in_images')}</span></button>
+                        <button type="button" class="btn showAsList {if $_COOKIE['listtable'] == 1}active{/if}"><span class="icon-cat_list"></span><span class="text-el">{lang('s_in_list')}</span></button>
+                    </div>
+                </div>
+
+                <!-- displaying category description if page number is 1 -->
+                {if $page_number == 1 && $category->getDescription() != '' && $category->getDescription() != ' ' && $category->getDescription() != null}
+                    <div class="grey-b_r-bord">
+                        <p><span style="font-weight:bold">{echo ShopCore::encode($category->getName())}</span> &mdash; {echo $category->getDescription()}</p>
+                    </div>
+                {/if}
+
+                <!-- rendering product list if products count more than 0 -->
+
 
                 <!-- product list container -->
                 <ul class="items items_catalog {if $_COOKIE['listtable'] == 1}list{/if}" data-radio-frame>
@@ -121,9 +123,9 @@
 
                                     <!-- displaying comments count -->
                                     {if $Comments[$product->getId()][0] != '0' && $product->enable_comments}
-                                    <a href="{shop_url('product/'.$product->url.'#comment')}" class="count_response">
-                                        {echo $Comments[$product->getId()]}
-                                    </a>
+                                        <a href="{shop_url('product/'.$product->url.'#comment')}" class="count_response">
+                                            {echo $Comments[$product->getId()]}
+                                        </a>
                                     {/if}
                                 </div>
 
@@ -226,6 +228,10 @@
                         </li>
                     {/foreach}
                 </ul>
+            {else:}
+                <div class="alert alert-search-result">
+                    <div class="title_h2 t-a_c">Категория пуста</div>
+                </div>
             {/if}
 
             <!-- pagination variable from category.php controller -->

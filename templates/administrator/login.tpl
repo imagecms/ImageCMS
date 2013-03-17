@@ -15,11 +15,15 @@
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery.ui.1.8.16.ie.css"/>
     </head>
     <body>
-        <?php
-        $ci = get_instance();
-        if($ci->config->item('is_installed') === TRUE AND file_exists(APPPATH.'modules/install/install.php'))
-        die('<span style="font-size:18px;"><br/><br/>'.lang('a_delete_install').'/application/modules/install/install.php</div>');        
-        ?>
+
+        {$ci = get_instance();}
+        {if $ci->config->item('is_installed') === TRUE AND file_exists(APPPATH.'modules/install/install.php')}
+            {chmod(APPPATH.'modules/install/install.php', 0777)}
+            {if !rename(APPPATH.'modules/install/install.php', APPPATH.'modules/install/_install.php')}
+                {die('<span style="font-size:18px;"><br/><br/>'.lang('a_delete_install').'/application/modules/install/install.php</div>')}
+            {/if}
+        {/if}
+
         <div class="main_body">
             <div class="form_login t-a_c">
                 <a href="/admin/dashboard" class="d-i_b">
@@ -45,7 +49,8 @@
                         <label style="margin-bottom:50px">
                             {$lang_captcha}:<br/>
                             <div id="captcha">{$cap_image}</div>
-                            <a href="" onclick="ajax_div('captcha','{$BASE_URL}/admin/login/update_captcha');return false;">{lang('a_code_refresh')}</a>
+                            <a href="" onclick="ajax_div('captcha', '{$BASE_URL}/admin/login/update_captcha');
+                                    return false;">{lang('a_code_refresh')}</a>
                             <input type="text" name="captcha" />{$captcha_error}
                         </label>
                     {/if}

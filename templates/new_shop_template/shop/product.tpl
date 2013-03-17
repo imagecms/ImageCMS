@@ -218,16 +218,6 @@
                     <!-- Stop. Block "Add to Wishlist" -->
                     <br/>
                     <!--Block Follow the price Start-->
-
-                    <!--                            inFollow-->
-                    <button class="btn btn_small_p toFollow" 
-                            data-title="{lang('s_follow_prod')}"
-                            data-sectitle="{lang('s_followprod')}"
-                            data-rel="tooltip">
-                        <span class="icon-followprice"></span>
-                        <span class="text-el">{lang('s_follow_prod')}</span>
-                    </button>
-                    <!-- Stop. Block "Follow the price" -->
                 </div>
             </div>
 
