@@ -695,6 +695,7 @@ var orders = new Object({
                     $('#product_id').val(ui.item.value);
                     vKeys = Object.keys(ui.item.variants);
 
+                    $('#product_variant_name').html('');
                     for (var i = 0; i < vKeys.length; i++)
                         $('#product_variant_name').append(new Option(ui.item.variants[ vKeys[i] ].name + ' - ' + ui.item.variants[ vKeys[i] ].price + " " + ui.item.cs, vKeys[i], true, true));
                 },
@@ -713,6 +714,7 @@ var orders = new Object({
                         $('#product_id').val(ui.item.value);
                         vKeys = Object.keys(ui.item.variants);
 
+                        $('#product_variant_name').html('');
                         for (var i = 0; i < vKeys.length; i++)
                             $('#product_variant_name').append(new Option(ui.item.variants[ vKeys[i] ].name + ' - ' + ui.item.variants[ vKeys[i] ].price + "  " + ui.item.cs, vKeys[i], true, true));
                     },
