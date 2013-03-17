@@ -177,7 +177,7 @@
                                                 </span>
                                                 <span class="frame_label no_connection">
                                                     <span class="niceRadio">
-                                                        <input type="radio" name="page_hidden" value="2" checked="checked"/>
+                                                        <input type="radio" name="page_hidden" value="0" checked="checked"/>
                                                     </span>
                                                     {lang('amt_no')}
                                                 </span>
@@ -193,7 +193,7 @@
                                                 </span>
                                                 <span class="frame_label no_connection">
                                                     <span class="niceRadio">
-                                                        <input type="radio" name="page_newpage" value="2" checked="checked"/>
+                                                        <input type="radio" name="page_newpage" value="0" checked="checked"/>
                                                     </span> {lang('amt_no')}
                                                 </span>
                                             </div>
@@ -328,7 +328,7 @@
                                                 </span>
                                                 <span class="frame_label no_connection">
                                                     <span class="niceRadio">
-                                                        <input type="radio" name="cat_hidden" value="2"checked="checked"/>
+                                                        <input type="radio" name="cat_hidden" value="0"checked="checked"/>
                                                     </span>
                                                     {lang('amt_no')}
                                                 </span>
@@ -347,7 +347,7 @@
                                                 </span>
                                                 <span class="frame_label no_connection">
                                                     <span class="niceRadio">
-                                                        <input type="radio" name="cat_newpage" value="2" checked="checked"/>
+                                                        <input type="radio" name="cat_newpage" value="0" checked="checked"/>
                                                     </span>
                                                     {lang('amt_no')}
                                                 </span>
@@ -477,7 +477,7 @@
                                                         </span>
                                                         <span class="frame_label no_connection">
                                                             <span class="niceRadio">
-                                                                <input type="radio" name="module_hidden" value="2" checked="checked"/>
+                                                                <input type="radio" name="module_hidden" value="0" checked="checked"/>
                                                             </span>
                                                             {lang('amt_no')}
                                                         </span>
@@ -496,7 +496,7 @@
                                                         </span>
                                                         <span class="frame_label no_connection">
                                                             <span class="niceRadio">
-                                                                <input type="radio" name="module_newpage" value="2" checked="checked"/>
+                                                                <input type="radio" name="module_newpage" value="0" checked="checked"/>
                                                             </span>
                                                             {lang('amt_no')}
                                                         </span>
@@ -622,7 +622,7 @@
                                                 </span>
                                                 <span class="frame_label no_connection">
                                                     <span class="niceRadio">
-                                                        <input type="radio" name="url_hidden" value="2" checked="checked"/>
+                                                        <input type="radio" name="url_hidden" value="0" checked="checked"/>
                                                     </span>
                                                     {lang('amt_no')}
                                                 </span>
@@ -641,7 +641,7 @@
                                                 </span>
                                                 <span class="frame_label no_connection">
                                                     <span class="niceRadio">
-                                                        <input type="radio" name="url_newpage" value="2" checked="checked"/>
+                                                        <input type="radio" name="url_newpage" value="0" checked="checked"/>
                                                     </span>
                                                     {lang('amt_no')}
                                                 </span>

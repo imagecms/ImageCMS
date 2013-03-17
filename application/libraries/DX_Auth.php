@@ -914,11 +914,9 @@ class DX_Auth {
                     $this->_email($email, $from, $subject, $message);
                 }
                 if ($this->login($email, $password)) {
-                    if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
+                    if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest')
                         redirect('', 'location');
-                    } else {
-                        //echo json_encode(array('msg' => 'Вы успешно зарегестрированы', 'reload' => 1));
-                    }
+//                    if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
                 }
             }
         }
