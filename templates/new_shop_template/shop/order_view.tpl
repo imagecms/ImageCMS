@@ -119,12 +119,21 @@
                                 <td class="v-a_m">
                                     <a href="{shop_url('product/'.$orderProduct->getSProducts()->getUrl())}" class="photo">
                                         <figure>
-                                            <img src="{productImageUrl($orderProduct->getSProducts()->getSmallModImage())}" alt="{echo ShopCore::encode($orderProduct->product_name)} {echo ShopCore::encode($orderProduct->variant_name)}"/>
+                                            <img src="{productImageUrl($orderProduct->getSProducts()->getSmallModImage())}" 
+                                                 alt="{echo ShopCore::encode($orderProduct->product_name)} {echo ShopCore::encode($orderProduct->variant_name)}"/>
                                         </figure>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{shop_url('product/'.$orderProduct->getSProducts()->getUrl())}" class="c_97">{echo ShopCore::encode($orderProduct->product_name)}&nbsp;{echo ShopCore::encode($orderProduct->variant_name)}</a>
+                                    <a href="{shop_url('product/'.$orderProduct->getSProducts()->getUrl())}" 
+                                       class="c_97">
+                                        {echo ShopCore::encode($orderProduct->product_name)}&nbsp;
+                                        {echo ShopCore::encode($orderProduct->variant_name)}
+                                    </a>&nbsp;
+                                    {$number = ShopCore::encode($CI->db->select('number')->get_where('shop_product_variants', array('id' => $orderProduct->variant_id))->row()->number)}
+                                    {if $number}
+                                        - ({echo $number})
+                                    {/if}
                                     <div class="price price_f-s_16">
                                         <span class="first_cash"><span class="f-w_b">{echo $orderProduct->getPrice()}</span> {$CS}</span>
                                     </div>
@@ -156,12 +165,23 @@
                                                         <a href="{shop_url('product/' . $orderProduct->getKit()->getMainProduct()->getUrl())}" class="photo">
                                                             <span class="helper"></span>
                                                             <figure>
-                                                                <img src="{productImageUrl($orderProduct->getKit()->getMainProduct()->getSmallModImage())}" alt="{echo ShopCore::encode($orderProduct->getKit()->getMainProduct()->getName())}"/>
+                                                                <img src="{productImageUrl($orderProduct->getKit()->getMainProduct()->getSmallModImage())}" 
+                                                                     alt="{echo ShopCore::encode($orderProduct->getKit()->getMainProduct()->getName())}"/>
                                                             </figure>
                                                         </a>
                                                         <div class="description">
-                                                            <a href="{shop_url('product/' . $orderProduct->getKit()->getMainProduct()->getUrl())}">{echo ShopCore::encode($orderProduct->getKit()->getMainProduct()->getName())}</a>
-                                                            <div class="price price_f-s_16"><span class="f-w_b">{echo $orderProduct->getKit()->getMainProduct()->getFirstVariant()->getPrice()}</span> {$CS}</div>
+                                                            <a href="{shop_url('product/' . $orderProduct->getKit()->getMainProduct()->getUrl())}">
+                                                                {echo ShopCore::encode($orderProduct->getKit()->getMainProduct()->getName())}
+                                                            </a>&nbsp;
+                                                            {$number = ShopCore::encode($CI->db->select('number')->get_where('shop_product_variants', array('id' => $orderProduct->variant_id))->row()->number)}
+                                                            {if $number}
+                                                                - ({echo $number})
+                                                            {/if}
+                                                            <div class="price price_f-s_16">
+                                                                <span class="f-w_b">
+                                                                    {echo $orderProduct->getKit()->getMainProduct()->getFirstVariant()->getPrice()}
+                                                                </span> {$CS}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="d_i-b">+</div>
@@ -175,12 +195,23 @@
                                                             <a href="{shop_url('product/' . $kitProducts->getSProducts()->getUrl())}" class="photo">
                                                                 <span class="helper"></span>
                                                                 <figure>
-                                                                    <img src="{productImageUrl($kitProducts->getSProducts()->getSmallModImage())}" alt="{echo ShopCore::encode($orderProduct->product_name)}"/>
+                                                                    <img src="{productImageUrl($kitProducts->getSProducts()->getSmallModImage())}" 
+                                                                         alt="{echo ShopCore::encode($orderProduct->product_name)}"/>
                                                                 </figure>
                                                             </a>
                                                             <div class="description">
-                                                                <a href="{shop_url('product/' . $kitProducts->getSProducts()->getUrl())}">{echo ShopCore::encode($kitProducts->getSProducts()->getName())}</a>
-                                                                <div class="price price_f-s_16"><span class="f-w_b">{echo $kitProducts->getDiscountProductPrice()}</span>&nbsp;{$CS}</div>
+                                                                <a href="{shop_url('product/' . $kitProducts->getSProducts()->getUrl())}">
+                                                                    {echo ShopCore::encode($kitProducts->getSProducts()->getName())}
+                                                                </a>&nbsp;
+                                                                {$number = ShopCore::encode($CI->db->select('number')->get_where('shop_product_variants', array('product_id' => $kitProducts->product_id))->row()->number)}
+                                                                {if $number}
+                                                                    - ({echo $number})
+                                                                {/if}
+                                                                <div class="price price_f-s_16">
+                                                                    <span class="f-w_b">
+                                                                        {echo $kitProducts->getDiscountProductPrice()}
+                                                                    </span>{$CS}
+                                                                </div>
                                                             </div>
                                                             <span class="top_tovar discount">-{echo $kitProducts->getDiscount()}%</span>
                                                         </div>
@@ -214,23 +245,25 @@
                                     <div class="form_alert">
                                         <div class="c_97" style="margin-bottom: 4px;">
                                             (Сумма товаров: <span class="f-w_b">{echo $model->getTotalPrice()}</span> {$CS}
+
                                             + Доставка: <span class="f-w_b">{if $model->getTotalPrice() >= $freeFrom}0{else:}{echo $model->getDeliveryPrice()}{/if}</span> {$CS})
-                                            {if $model->getGiftCertPrice() > 0}<br><span >(Скидка подарочного сертификата: {echo $model->getGiftCertPrice()} {$CS}<span class="f-w_b"></span> )</span>{/if}
-                                        </div>
-                                        
-
-                                        <span class="f-s_18">Сумма:</span>&nbsp;
-                                        <span class="f-s_24">{echo $model->getTotalPrice()}</span>&nbsp;
-                                        <span class="f-s_24"> {$CS}</span>
+                                        {if $model->getGiftCertPrice() > 0}<br><span >(Скидка подарочного сертификата: {echo $model->getGiftCertPrice()} {$CS}<span class="f-w_b"></span> )</span>{/if}
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <!-- End. Display Order summary -->
 
-                    </tfoot>
-                </table>
-            </div>
-        </div>
+
+                                    <span class="f-s_18">Сумма:</span>&nbsp;
+                                    <span class="f-s_24">{echo $model->getTotalPrice()}</span>&nbsp;
+                                    <span class="f-s_24"> {$CS}</span>
+
+                        </div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- End. Display Order summary -->
+
+            </tfoot>
+        </table>
     </div>
+</div>
+</div>
 </article>

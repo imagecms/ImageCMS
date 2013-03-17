@@ -30,14 +30,6 @@
                     <span class="text-el">{lang('s_order_history')}</span>
                 </button>
             </li>
-            {if count($goodsInSpy) != 0}
-                <li >
-                    <button type="button" data-href="#wait_tov">
-                        <span class="icon-waitexists"></span>
-                        <span class="text-el">{lang('s_to_fal_do')}</span>
-                    </button>
-                </li>
-            {/if}
         </ul>
         <!-- End tabs block -->
         <!-- Start user tab block -->
