@@ -147,6 +147,7 @@ class Admin extends BaseAdminController {
                     $newpage = $_POST['url_newpage'];
                 }
 
+
                 //preparing roles
                 $roles = $_POST['item_roles'];
                 if ($roles == NULL) {
@@ -161,7 +162,7 @@ class Admin extends BaseAdminController {
                     'item_id' => $_POST['item_id'],
                     'item_type' => $_POST['item_type'],
                     'title' => htmlentities($_POST['title'], ENT_QUOTES, 'UTF-8'),
-                    'hidden' => $hidden,
+                    'hidden' => (int) $hidden,
                     'item_image' => $image,
                     'roles' => $roles,
                     'parent_id' => $_POST['parent_id'],
@@ -192,7 +193,7 @@ class Admin extends BaseAdminController {
                     if ($_POST['item_type'] == 'url') {
                         $data['url'] = $_POST['item_url'];
                     }
-                    $data['newpage'] = $newpage;
+                    $data['newpage'] = (int) $newpage;
                     $item_data['add_data'] = serialize($data);
                 }
                 // Error: wrong parent id
@@ -413,24 +414,41 @@ class Admin extends BaseAdminController {
             $this->template->assign('pages', $pages);
             $this->display_tpl('edit_item');
         } else {
+//            echo 'adsasd';
+//            exit;
+            if ($_POST['page_item_type']) {
+                $item_type = $_POST['page_item_type'];
+            } elseif ($_POST['cat_item_type']) {
+                $item_type = $_POST['cat_item_type'];
+            } elseif ($_POST['module_item_type']) {
+                $item_type = $_POST['module_item_type'];
+            } elseif ($_POST['url_item_type']) {
+                $item_type = $_POST['url_item_type'];
+            }
+
             $this->form_validation->set_rules('menu_id', 'Menu Id', 'required');
-            $this->form_validation->set_rules('item_type', 'Item Type', 'required');
+//            $this->form_validation->set_rules('item_type', 'Item Type', 'required');
             $this->form_validation->set_rules('title', 'Заголовок', 'required');
-            if ($_POST['item_type'] == 'page') {
+            if ($item_type == 'page') {
+                $this->form_validation->set_rules('page_item_type', 'Item Type', 'required');
                 $this->form_validation->set_rules('title', 'Заголовок', 'required');
                 $this->form_validation->set_rules('item_id', 'ID страницы', 'required');
             }
-            if ($_POST['item_type'] == 'category') {
+            if ($item_type == 'category') {
+                $this->form_validation->set_rules('cat_item_type', 'Item Type', 'required');
                 $this->form_validation->set_rules('item_id', 'ID категории', 'required');
             }
-            if ($_POST['item_type'] == 'module') {
+            if ($item_type == 'module') {
+                $this->form_validation->set_rules('module_item_type', 'Item Type', 'required');
                 $this->form_validation->set_rules('mod_name', 'Название модуля', 'required');
                 //$this->form_validation->set_rules('mod_method', 'Метод модуля', 'required');
                 $this->form_validation->set_rules('item_id', 'ID страницы', 'required');
             }
-            if ($_POST['item_type'] == 'url') {
+            if ($item_type == 'url') {
+                $this->form_validation->set_rules('url_item_type', 'Item Type', 'required');
                 $this->form_validation->set_rules('item_url', 'URL', 'required');
             }
+
 
             if ($this->form_validation->run($this) == FALSE) {
                 showMessage(validation_errors(), '', 'r');
@@ -465,6 +483,15 @@ class Admin extends BaseAdminController {
                 } elseif ($_POST['url_parent_id']) {
                     $parent_id = $_POST['url_parent_id'];
                 }
+                if ($_POST['page_newpage']) {
+                    $newpage = $_POST['page_newpage'];
+                } elseif ($_POST['cat_newpage']) {
+                    $newpage = $_POST['cat_newpage'];
+                } elseif ($_POST['module_newpage']) {
+                    $newpage = $_POST['module_newpage'];
+                } elseif ($_POST['url_newpage']) {
+                    $newpage = $_POST['url_newpage'];
+                }
 
                 $roles = $_POST['item_roles'];
                 if ($roles == NULL) {
@@ -472,6 +499,7 @@ class Admin extends BaseAdminController {
                 } else {
                     $roles = serialize($_POST['item_roles']);
                 }
+
 //                 Item position
                 if ($_POST['position_after'] > 0) {
                     $after_pos = $this->menu_model->get_item_position($_POST['position_after']);
@@ -502,7 +530,7 @@ class Admin extends BaseAdminController {
                 if ($_POST['position_after'] == 'first') {
                     $this->db->select_min('position');
                     $this->db->where('menu_id', $_POST['menu_id']);
-                    $this->db->where('parent_id', $parent_id);
+                    $this->db->where('parent_id', (int) $parent_id);
                     $query = $this->db->get('menus_data')->row_array();
                     if ($query['position'] == NULL) {
                         $position = 1;
@@ -515,12 +543,12 @@ class Admin extends BaseAdminController {
                 $item_data = array(
                     'menu_id' => $_POST['menu_id'],
                     'item_id' => $_POST['item_id'],
-                    'item_type' => $_POST['item_type'],
+                    'item_type' => $item_type,
                     'title' => htmlentities($_POST['title'], ENT_QUOTES, 'UTF-8'),
-                    'hidden' => $hidden,
+                    'hidden' => (int) $hidden,
                     'item_image' => $image,
                     'roles' => $roles,
-                    'parent_id' => $parent_id,
+                    'parent_id' => (int) $parent_id,
                     'position' => $position
                 );
 
@@ -528,24 +556,26 @@ class Admin extends BaseAdminController {
                 if ($item_data['item_type'] == 'module') {
                     $data['mod_name'] = $_POST['mod_name'];
                     $data['method'] = $_POST['mod_method'];
-                    $data['newpage'] = $_POST['module_newpage'];
+                    $data['newpage'] = (int) $newpage;
                 }
 
                 if ($item_data['item_type'] == 'url') {
                     $item_data['item_id'] = 0;
-                    $item_data['add_data'] = serialize(array('url' => $_POST['item_url'], 'newpage' => $_POST['url_newpage']));
+                    $item_data['add_data'] = serialize(array('url' => $_POST['item_url'], 'newpage' => (int) $newpage));
                 }
                 if ($item_data['item_type'] == 'page') {
-                    $item_data['add_data'] = serialize(array('page' => $_POST['item_url'], 'newpage' => $_POST['page_newpage']));
+                    $item_data['add_data'] = serialize(array('page' => $_POST['item_url'], 'newpage' => (int) $newpage));
                 }
                 if (!isset($item_data['add_data']))
                     $item_data['add_data'] = serialize($data);
-
+                $errorMessage = Null;
                 // Error: wrong parent id
                 if ($_POST['item_id'] != 0 && $parent_id != 0)
                     if ($_POST['item_id'] == $parent_id) {
                         $error = TRUE;
+                        $errorMessage = 1;
                     }
+
 
                 // Error: don't place root menu in sub
                 $item = $this->menu_model->get_item($_POST['item_id']);
@@ -555,14 +585,20 @@ class Admin extends BaseAdminController {
                     foreach ($this->sub_menus as $k => $v) {
                         if ($v == $parent_id) {
                             $error = TRUE;
+                            $errorMessage = 2;
                         }
                     }
                 }
 
+
                 if ($error == TRUE) {
-                    showMessage('Ошибка');
-                    return FALSE;
+                    if ($errorMessage == 1)
+                        showMessage('Неверний идентификатор родителя', '', 'r');
+                    if ($errorMessage == 2)
+                        showMessage('Не может быть корневое меню в подпункте', '', 'r');
+                    exit();
                 } else {
+
                     $this->db->where('id', $item_id);
                     $this->db->update('menus_data', $item_data);
                     showMessage('Изменения успешно сохранены');

@@ -253,8 +253,15 @@ class Cms_admin extends CI_Model {
 		return $this->db->insert_id();
 	}
 
-	function get_langs()
+	function get_langs($forShop=false)
 	{
+        if ($forShop)
+            if (strpos(getCMSNumber(), 'Pro'))
+                return $this->db
+                    ->where('default', true)
+                    ->get('languages')
+                    ->result_array();
+
 //		$this->db->order_by('default', 'desc');		
 		$query = $this->db->get('languages');
 
