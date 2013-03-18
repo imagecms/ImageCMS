@@ -105,16 +105,19 @@
                         <span class="first_cash"><span class="f-w_b" id="wishListTotal">{echo $total_price}</span> {$CS}</span>
                     </div>
                 </div>
-                <div class="span6">
-                    <div class="standart_form horizontal_form t-a_r">
-                        <input type="submit" value="Отправить страницу" class="btn btn_cart f_r m-l_10"/>
-                        <div class="o_h">
-                            <input type="text" placeholder="E-mail получателя"/>
+                <form action="" method="post" name="editForm" style="padding-left: 0; padding-right: 0px;">
+                    <div class="span6">
+                        <div class="standart_form horizontal_form t-a_r">
+                            <input type="submit"  name="sendwish" class="btn btn_cart f_r m-l_10"/>
+                            <div class="o_h">
+                                <input type="text" placeholder="E-mail получателя" name="friendsMail"/>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    {form_csrf()}
+                </form>
             </div>
-    </div>
+        </div>
     {/if}
     <div data-body="message">
         <!--Start. Show message if compare list is empty -->
