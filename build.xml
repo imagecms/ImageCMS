@@ -128,14 +128,21 @@
                 <include name="**"/>
             </fileset>
         </copy>
+        <chmod file="${target}/${uploadsDir}" quiet="true" mode="0777"></chmod>
+        <chmod file="${target}/${uploadsDir}/images" quiet="true" mode="0777"></chmod>
+        <chmod file="${target}/${uploadsDir}/media" quiet="true" mode="0777"></chmod>
+        <chmod file="${target}/${uploadsDir}/files" quiet="true" mode="0777"></chmod>
+        <chmod file="${target}/${uploadsDir}/shop" quiet="true" mode="0777"></chmod>
         <delete dir="${target}/${uploadsTempDir}" includeemptydirs="true" verbose="true" failonerror="true"/>
+        <move file="${target}/application/modules/install/sqlPre.sql" tofile="${target}/application/modules/install/sql.sql"></move>
     </target>
 
     <target name="removerExtraPro">
         <delete dir="${target}/application/modules/exchange" includeemptydirs="true" verbose="true" failonerror="false" />
         <delete dir="${target}/application/modules/shop/admin/templates/charts" includeemptydirs="true" verbose="true" failonerror="false" />
         <delete file="${target}/application/modules/shop/charts.php" />
-        <move file="${target}/application/modules/install/sqlShopPro.sql" tofile="${target}/application/modules/install/sqlShop.sql"></move>
+        <delete file="${target}/application/modules/install/sql.sql" />
+        <move file="${target}/application/modules/install/sqlPro.sql" tofile="${target}/application/modules/install/sql.sql"></move>
     </target>
 
     <target name="removerExtraCorporate">
@@ -147,9 +154,8 @@
         <delete dir="${target}/templates/commerce_facebook" includeemptydirs="true" verbose="true" failonerror="false" />
         <delete dir="${target}/templates/commerce_mobiles" includeemptydirs="true" verbose="true" failonerror="false" />
         <delete dir="${target}/templates/commerce4x" includeemptydirs="true" verbose="true" failonerror="false" />
-        <delete file="${target}/application/modules/install/sqlShop.sql" />
-        <delete file="${target}/application/modules/install/sqlShopPro.sql" />
-        <delete file="${target}/application/modules/install/sqlShopClean.sql" />
+        <delete file="${target}/application/modules/install/sql.sql" />
+        <move file="${target}/application/modules/install/sqlSite.sql" tofile="${target}/application/modules/install/sql.sql"></move>
     </target>
 
     <target name="createDepends">
@@ -287,3 +293,4 @@
 
 
 </project>
+
