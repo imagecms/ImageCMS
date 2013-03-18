@@ -1,17 +1,32 @@
+-- phpMyAdmin SQL Dump
+-- version 3.4.11.1deb1
+-- http://www.phpmyadmin.net
+--
+-- Хост: localhost
+-- Час створення: Бер 18 2013 р., 18:20
+-- Версія сервера: 5.5.29
+-- Версія PHP: 5.4.6-1ubuntu1.2
+
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
+--
+-- БД: `corp`
+--
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category`
+-- Структура таблиці `category`
 --
 
+DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL DEFAULT '0',
@@ -33,25 +48,32 @@ CREATE TABLE IF NOT EXISTS `category` (
   `comments_default` tinyint(1) NOT NULL DEFAULT '0',
   `field_group` int(11) NOT NULL,
   `category_field_group` int(11) NOT NULL,
+  `settings` varchar(10000) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`),
   KEY `url` (`url`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=61 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=62 ;
 
 --
--- Dumping data for table `category`
+-- Дамп даних таблиці `category`
 --
 
-INSERT INTO `category` (`id`, `parent_id`, `position`, `name`, `title`, `short_desc`, `url`, `image`, `keywords`, `description`, `fetch_pages`, `main_tpl`, `tpl`, `page_tpl`, `per_page`, `order_by`, `sort_order`, `comments_default`, `field_group`, `category_field_group`) VALUES
-(1, 0, 0, 'Главная', '', '', 'main', '', '', '', 'b:0;', '', '', '', 10, 'publish_date', 'desc', 1, 0, 0),
-(56, 0, 0, 'Новости и акции', '', '', 'novosti_i_aktsii', '', '', '', 'b:0;', '', '', '', 15, 'publish_date', 'desc', 0, 7, 0);
+INSERT INTO `category` (`id`, `parent_id`, `position`, `name`, `title`, `short_desc`, `url`, `image`, `keywords`, `description`, `fetch_pages`, `main_tpl`, `tpl`, `page_tpl`, `per_page`, `order_by`, `sort_order`, `comments_default`, `field_group`, `category_field_group`, `settings`) VALUES
+(56, 0, 0, 'Услуги', '', '<p>Помимо разработки и продажи роботов различных конфигураций, наша компания предоставляет также полный спектр услуг связанных с работоспособностью роботов. Со всем списком Вы можете ознакомиться ниже.</p>', 'usluhi', '', '', '', 'b:0;', '', '', '', 15, 'position', 'asc', 0, 7, 0, NULL),
+(57, 0, 0, 'Новости', '', '<p>В данном разделе Вы можете ознакомиться со списком последних новостей нашей компании, а возможно и с последними галактическими новостями в мире роботехники.</p>', 'novosti', '', '', '', 'b:0;', '', 'news', '', 15, 'publish_date', 'desc', 0, 0, 0, NULL),
+(55, 0, 0, 'Продукция', '', '<p>В данном разделе представлена вся продукция компании <strong>ImageRobotics</strong>, раздел постоянно пополняется, мы не стоим на месте и скоро наши роботы смогу еще больше.</p>', 'produktsiia', '', '', '', 'b:0;', '', '', '', 15, 'position', 'asc', 0, 7, 0, NULL),
+(58, 0, 0, 'Вакансии', '', '<p>В данном разделе собраны вакансии компании ImageRobotics. Ко всем кандидатам очень строгие требования. Для работы в нашей компании, Вам нужно как минимум обладать всеми знаниями нашей Галактики. <strong>"Простым вундеркиндам" просьба не беспокоить!!!</strong></p>\n<p><strong>Все, кто хотят подать свое резюме, должны для начала разгадать номер факса нашего HR отдела, который зашифрован следующим кодом: 8822001112008382288018280444322211081 (подсказка 784).<br /></strong></p>', 'vakansii', '', '', '', 'b:0;', '', '', '', 15, 'publish_date', 'desc', 0, 0, 0, NULL),
+(59, 0, 0, 'Блог', '', '', 'bloh', '', '', '', 'a:2:{i:0;s:2:"60";i:1;s:2:"61";}', '', 'blog', '', 10, 'publish_date', 'desc', 1, -1, -1, NULL),
+(60, 59, 0, 'Кухонные роботы', '', '', 'kuhonnye_roboty', '', '', '', 'b:0;', '', 'blog', '', 15, 'publish_date', 'desc', 1, 7, -1, NULL),
+(61, 59, 0, 'Человеко роботы', '', '', 'cheloveko_roboty', '', '', '', 'b:0;', '', 'blog', '', 15, 'publish_date', 'desc', 1, 7, -1, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category_translate`
+-- Структура таблиці `category_translate`
 --
 
+DROP TABLE IF EXISTS `category_translate`;
 CREATE TABLE IF NOT EXISTS `category_translate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `alias` int(11) NOT NULL,
@@ -64,23 +86,15 @@ CREATE TABLE IF NOT EXISTS `category_translate` (
   `lang` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`,`lang`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
-
---
--- Dumping data for table `category_translate`
---
-
-INSERT INTO `category_translate` (`id`, `alias`, `name`, `title`, `short_desc`, `image`, `keywords`, `description`, `lang`) VALUES
-(6, 1, 'Home', '', '', '', '', '', 30),
-(7, 1, 'Главная', '', '', '', '', '', 3),
-(8, 56, 'News and Events', '', '', '', '', '', 30);
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comments`
+-- Структура таблиці `comments`
 --
 
+DROP TABLE IF EXISTS `comments`;
 CREATE TABLE IF NOT EXISTS `comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `module` varchar(25) NOT NULL DEFAULT 'core',
@@ -104,27 +118,29 @@ CREATE TABLE IF NOT EXISTS `comments` (
   KEY `module` (`module`),
   KEY `item_id` (`item_id`),
   KEY `date` (`date`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=64 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=67 ;
 
 --
--- Dumping data for table `comments`
+-- Дамп даних таблиці `comments`
 --
 
 INSERT INTO `comments` (`id`, `module`, `user_id`, `user_name`, `user_mail`, `user_site`, `item_id`, `text`, `date`, `status`, `agent`, `user_ip`, `rate`, `text_plus`, `text_minus`, `like`, `disslike`, `parent`) VALUES
-(25, 'shop', 1, 'admin', 'admin@localhost.loc', '', 108, 'Отличный выбор!', 1328007661, 0, 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.7 (KHTML, like Gecko) Chrome/16.0.912.77 Safari/535.7', '127.0.0.2', 0, NULL, NULL, 0, 0, NULL);
+(21, 'core', 0, 'Funstarter', 'admin@localhost.loc', 'siteimage.com.ua', 80, 'Многие противоречат этой новинке, говоря, что робот не приготовит, так как человек. Он берет все в точности, не фантазирует и не добавляет ингредиенты по вкусу.  Но мы утверждаем, что такой прогресс необходим.', 1291637744, 0, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; ru; rv:1.9.2.12) Gecko/20101026 Firefox/3.6.12 ( .NET CLR 3.5.30729)', '127.0.0.1', 0, NULL, NULL, 0, 0, NULL),
+(22, 'core', 0, 'Funstarter', 'admin@localhost.loc', 'siteimage.com.ua', 80, 'Первые кухонные роботы обладали возможностью готовить только простые блюда или блюда дополненные покупателем. Но теперь все кухонные роботы имеют в памяти все рецепты, которые были вынесены на публику.', 1291637760, 0, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; ru; rv:1.9.2.12) Gecko/20101026 Firefox/3.6.12 ( .NET CLR 3.5.30729)', '127.0.0.1', 0, NULL, NULL, 0, 0, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `components`
+-- Структура таблиці `components`
 --
 
+DROP TABLE IF EXISTS `components`;
 CREATE TABLE IF NOT EXISTS `components` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `identif` varchar(25) NOT NULL,
-  `enabled` int(1) NOT NULL,
-  `autoload` int(1) NOT NULL,
+  `enabled` int(1) NOT NULL DEFAULT '0',
+  `autoload` int(1) NOT NULL DEFAULT '0',
   `in_menu` int(1) NOT NULL DEFAULT '0',
   `settings` text,
   `position` int(11) DEFAULT NULL,
@@ -133,37 +149,38 @@ CREATE TABLE IF NOT EXISTS `components` (
   KEY `identif` (`identif`),
   KEY `enabled` (`enabled`),
   KEY `autoload` (`autoload`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=126 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=130 ;
 
 --
--- Dumping data for table `components`
+-- Дамп даних таблиці `components`
 --
 
-INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_menu`, `settings`) VALUES
-(1, 'user_manager', 'user_manager', 0, 0, 0, NULL),
-(2, 'auth', 'auth', 1, 0, 0, NULL),
-(4, 'comments', 'comments', 1, 1, 1, 'a:5:{s:18:"max_comment_length";i:550;s:6:"period";i:0;s:11:"can_comment";i:0;s:11:"use_captcha";b:0;s:14:"use_moderation";b:0;}'),
-(7, 'navigation', 'navigation', 0, 0, 1, NULL),
-(30, 'tags', 'tags', 1, 1, 1, NULL),
-(92, 'gallery', 'gallery', 1, 0, 1, 'a:26:{s:13:"max_file_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:2:"95";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:0;s:14:"prev_img_width";s:3:"500";s:15:"prev_img_height";s:3:"500";s:11:"thumb_width";s:3:"100";s:12:"thumb_height";s:3:"100";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:19:"watermark_font_path";s:20:"./system/fonts/1.ttf";s:15:"watermark_image";s:0:"";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";}'),
-(55, 'rss', 'rss', 1, 0, 1, 'a:5:{s:5:"title";s:9:"Image CMS";s:11:"description";s:35:"Тестируем модуль RSS";s:10:"categories";a:1:{i:0;s:1:"3";}s:9:"cache_ttl";i:60;s:11:"pages_count";i:10;}'),
-(72, 'imagebox', 'imagebox', 0, 1, 0, 'a:6:{s:9:"max_width";i:800;s:10:"max_height";i:600;s:11:"thumb_width";i:100;s:12:"thumb_height";i:100;s:14:"maintain_ratio";b:1;s:7:"quality";s:3:"95%";}'),
-(60, 'menu', 'menu', 0, 1, 1, NULL),
-(58, 'sitemap', 'sitemap', 1, 0, 1, 'a:5:{s:18:"main_page_priority";s:1:"1";s:13:"cats_priority";s:3:"0.9";s:14:"pages_priority";s:3:"0.5";s:20:"main_page_changefreq";s:6:"weekly";s:16:"pages_changefreq";s:7:"monthly";}'),
-(80, 'search', 'search', 1, 0, 0, NULL),
-(84, 'feedback', 'feedback', 1, 0, 0, 'a:2:{s:5:"email";s:19:"admin@localhost.loc";s:15:"message_max_len";i:550;}'),
-(117, 'template_editor', 'template_editor', 0, 0, 0, NULL),
-(86, 'group_mailer', 'group_mailer', 0, 0, 1, NULL),
-(95, 'filter', 'filter', 1, 0, 0, NULL),
-(96, 'cfcm', 'cfcm', 0, 0, 0, NULL),
-(123, 'share', 'share', 0, 0, 0, NULL);
+INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_menu`, `settings`, `position`) VALUES
+(1, 'user_manager', 'user_manager', 0, 0, 1, NULL, NULL),
+(2, 'auth', 'auth', 1, 0, 0, NULL, NULL),
+(4, 'comments', 'comments', 1, 1, 1, 'a:5:{s:18:"max_comment_length";i:550;s:6:"period";i:0;s:11:"can_comment";i:0;s:11:"use_captcha";b:0;s:14:"use_moderation";b:0;}', NULL),
+(7, 'navigation', 'navigation', 0, 0, 1, NULL, NULL),
+(30, 'tags', 'tags', 1, 1, 1, NULL, NULL),
+(92, 'gallery', 'gallery', 1, 0, 1, 'a:26:{s:13:"max_file_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:3:"100";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:1;s:14:"prev_img_width";s:3:"500";s:15:"prev_img_height";s:3:"500";s:11:"thumb_width";s:3:"200";s:12:"thumb_height";s:3:"200";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:19:"watermark_font_path";s:20:"./system/fonts/1.ttf";s:15:"watermark_image";s:0:"";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";}', NULL),
+(55, 'rss', 'rss', 1, 0, 1, 'a:5:{s:5:"title";s:22:"Блог ImageRobotics";s:11:"description";s:64:"Последние тенденции в мире роботов";s:10:"categories";a:7:{i:0;s:2:"56";i:1;s:2:"57";i:2;s:2:"55";i:3;s:2:"58";i:4;s:2:"59";i:5;s:2:"60";i:6;s:2:"61";}s:9:"cache_ttl";i:60;s:11:"pages_count";i:10;}', NULL),
+(60, 'menu', 'menu', 0, 1, 1, NULL, NULL),
+(58, 'sitemap', 'sitemap', 1, 0, 1, 'a:5:{s:18:"main_page_priority";s:1:"1";s:13:"cats_priority";s:3:"0.9";s:14:"pages_priority";s:3:"0.5";s:20:"main_page_changefreq";s:6:"weekly";s:16:"pages_changefreq";s:7:"monthly";}', NULL),
+(80, 'search', 'search', 1, 0, 0, NULL, NULL),
+(84, 'feedback', 'feedback', 1, 0, 0, 'a:2:{s:5:"email";s:19:"admin@localhost.loc";s:15:"message_max_len";i:550;}', NULL),
+(117, 'template_editor', 'template_editor', 0, 0, 0, NULL, NULL),
+(86, 'group_mailer', 'group_mailer', 0, 0, 1, NULL, NULL),
+(95, 'filter', 'filter', 1, 0, 0, NULL, NULL),
+(96, 'cfcm', 'cfcm', 0, 0, 0, NULL, NULL),
+(123, 'share', 'share', 0, 0, 0, NULL, NULL),
+(129, 'star_rating', 'star_rating', 1, 0, 0, '{"main":"1","page":"1","category":"1","product":"1","shop_category":"1","brand":"1"}', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content`
+-- Структура таблиці `content`
 --
 
+DROP TABLE IF EXISTS `content`;
 CREATE TABLE IF NOT EXISTS `content` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(500) NOT NULL,
@@ -200,39 +217,42 @@ CREATE TABLE IF NOT EXISTS `content` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=83 ;
 
 --
--- Dumping data for table `content`
+-- Дамп даних таблиці `content`
 --
 
 INSERT INTO `content` (`id`, `title`, `meta_title`, `url`, `cat_url`, `keywords`, `description`, `prev_text`, `full_text`, `category`, `full_tpl`, `main_tpl`, `position`, `comments_status`, `comments_count`, `post_status`, `author`, `publish_date`, `created`, `updated`, `showed`, `lang`, `lang_alias`) VALUES
-(35, 'О сайте', '', 'o-sajte', '', 'это, базовый, шаблон, imagecms, котором, релизованы, следующие, функции, вывод, фотогалереи, статической, статьи, блога', 'Это базовый шаблон ImageCMS, на котором релизованы следующие функции: вывод фотогалереи, вывод статической статьи, вывод блога.', '<p>Это базовый шаблон ImageCMS, на котором релизованы следующие функции: отображение фотогалереи, отображение статической статьи, отображение корпоративного блога, отображение формы обратной связи.</p>\n<p>Общий вид шаблона можно отредактировать и изменить лого, графическую вставку на свои тематические.</p>\n<p>Слева в сайдбаре Вы видите список категорий блога, который легко вставляется с помощью функции {sub_category_list()} в файле main.tpl. Также в левом сайдбаре находится форма поиска по сайту, виджет последних комментариев и виджет тегов сайта. В этот сайдбар можно также добавить виджет последних либо популярных новостей, а также любые счетчики, информеры.</p>\n<p>Верхнее меню реализовано с помощью модуля Меню. Управлять его содержимым можно из административной части в разделе Меню - Главное меню. Сюда как правило можно еще добавить страницы: о компании, контакты, услуги и т.п.</p>\n<p>За дополнительной информацией обращайтесь в официальный раздел документации: <a href="http://www.imagecms.net/wiki">http://www.imagecms.net/wiki</a></p>\n<p>Обсудить дополнительные возможности, а также вопросы по установке, настройке системы можно на официальном форуме: <a href="http://forum.imagecms.net/index.php">http://forum.imagecms.net/</a></p>', '', 0, 'page_static', '', 0, 1, 0, 'publish', 'admin', 1267203253, 1267203328, 1290100400, 8, 3, 0),
-(64, 'О магазине', '', 'about', '', 'магазине', 'О магазине', '<p>Магазин ImageCMS Shop предоставляет огромный выбор техники на любой вкус по лучшим ценам.</p>\n<p>Наш магазин существует более 5 лет и за это время не было ни единого возврата товара.</p>\n<p>Мы обслуживаем ежедневно сотни покупателей и делаем это с радостью.</p>\n<p><strong>Покупайте технику у нас и становитесь обладателем лучшей в мире техники!!!</strong></p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295776, 1291295792, 1291743386, 287, 3, 0),
-(65, 'Оплата', '', 'oplata', '', 'оплата', 'Оплата', '<p>Наш магазин поддерживает все доступные на данный момент методы оплаты.</p>\n<p>Также действует возможность оплаты курьеру при доставке для всех крупных городов Украины и России. (возможность оплаты курьеру в Вашем городе уточняйте по телефону <strong>0 800 820 22 22</strong>).</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295824, 1291295836, 1291743521, 167, 3, 0),
-(66, 'Доставка', '', 'dostavka', '', 'доставка', 'Доставка', '<p>Мы поддерживаем доставку службой Автомир по всему миру.</p>\n<p>Также возможна доставка курьером для всех больших городов Украины и России (возможность доставки курьером в Вашем городе уточняйте по телефону <strong>0 800 820 22 22</strong>).</p>\n<p>При желании Вы можете сами забрать купленный товар в наших офисах.</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295844, 1291295851, 1291743683, 125, 3, 0),
-(67, 'Помощь', '', 'help', '', 'помощь', 'Помощь', '<p>Для того, чтобы приобрести товар в нашем магазине, Вам нужно выполнить несколько простых шагов:</p>\n<ul>\n<li>Выбрать нужный товар, воспользовавшить навигацией слева, либо поиском.</li>\n<li>Добавить товар в корзину.</li>\n<li>Перейти в корзину, выбрать способ доставки и указать Ваши контактные данные.</li>\n<li>Подтвердить заказ и выбрать способ оплаты.</li>\n</ul>\n<p>После этого наши менеджеры свяжуться с Вами и помогут с оплатой и доставкой товара, а также проконсультируют по любому вопросу.</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295855, 1291295867, 1291743919, 75, 3, 0),
-(68, 'Контакты', '', 'contact_us', '', 'контакты', 'Контакты', '<p><strong>Горячий телефон</strong>: 0 800 80 80 800</p>\n<p><strong>Главный офис в Москве</strong></p>\n<p>ул. Гагарина 1/2</p>\n<p>тел. 095 095 00 00</p>\n<p>&nbsp;</p>\n<p><strong>Главный офис в Киеве</strong></p>\n<p>ул. Гагарина 1/2</p>\n<p>тел. 098 098 00 00</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295870, 1291295888, 1291744068, 73, 3, 0),
-(74, 'Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!', '', 'aktsiia-k-fotoapparatu-nikon-s9100-karta-pamiati-8gb-v-podarok-1', 'novosti_i_aktsii/', 'windows, отримує, подарунок, сумку, ноутбука, кожен, покупець, акційних, ноутбуків, передвстановленою', 'ОС Windows отримує в подарунок сумку для ноутбука! Кожен покупець акційних ноутбуків з передвстановленою ОС Windows отримує в подарунок сумку для ноутбука!', '<p>ОС Windows получает в подарок сумку для ноутбука! Каждый покупатель акционных ноутбуков с предустановленной ОС Windows получает в подарок сумку для ноутбука!</p>', '', 56, '', '', 0, 1, 0, 'publish', 'admin', 1336737588, 1336737588, 1346689293, 3, 3, 0),
-(73, 'Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!', '', 'aktsiia-k-fotoapparatu-nikon-s9100-karta-pamiati-8gb-v-podarok', 'novosti_i_aktsii/', 'windows, отримує, подарунок, сумку, ноутбука, кожен, покупець, акційних, ноутбуків, передвстановленою', 'ОС Windows отримує в подарунок сумку для ноутбука! Кожен  покупець акційних ноутбуків з передвстановленою ОС Windows отримує в  подарунок сумку для ноутбука!', '<p><span id="result_box" lang="ru"><span>&nbsp;ОС Windows,</span> <span>получает в подарок</span> <span>сумку</span> <span>для ноутбука</span><span>!</span> <span>Каждая покупка</span> <span>рекламных</span> <span>ноутбуков</span> <span>с предустановленной</span> <span>Windows,</span> <span>получает в подарок</span> <span>сумку</span> <span>для ноутбука</span><span>!</span></span></p>', '', 56, '', '', 0, 1, 0, 'publish', 'admin', 1336477654, 1336477654, 1346689653, 0, 3, 0),
-(75, 'Contact', '', 'contact_us', '', 'ssss', 'ssss', '<p><span id="result_box" lang="en"><span>Hot Phone</span><span>:</span> <span>0800</span> <span>80</span> <span>80 800</span><br /><br /> <span>Head office in</span> <span>Moscow</span><br /><br /> <span>street</span><span>.</span> <span>Gagarin</span> <span>half</span><br /><br /> <span>tel.</span> <span>095</span> <span>095</span> <span>00</span> <span>00</span><br /><br /> <span>The main office</span> <span>in Kiev</span><br /><br /> <span>street</span><span>.</span> <span>Gagarin</span> <span>half</span><br /><br /> <span>tel.</span> <span>098</span> <span>098</span> <span>00</span> <span>00</span></span></p>', '', 0, '', '', 0, 1, 4, 'publish', 'admin', 1291295870, 1291295888, 1343664873, 35, 30, 68),
-(76, 'Delivery', '', 'dostavka', '', 'support, the, delivery, service, autoworld, around, world, also, possible, all, major, cities, ukraine, and, russia, possibility, courier, your, area, please, call, desired, you, can, pick, purchased, goods, themselves, our, offices', 'We support the delivery of service Autoworld around the world. It is also possible delivery to all major cities of Ukraine and Russia (the possibility of delivery by courier in your area please call 0800820 22 22.) If desired, you can pick up the purchase', '<p><span id="result_box" lang="en"><span>We support the</span> <span>delivery of</span> <span>service</span> <span>Autoworld</span> <span>around the world.</span><br /><br /> <span>It is also possible</span> <span>delivery</span> <span>to all</span> <span>major cities</span> <span>of Ukraine and Russia</span> <span>(the possibility of</span> <span>delivery</span> <span>by courier</span> <span>in your area</span> <span>please call</span> <span>0800820</span> <span>22 22</span><span>.)</span><br /><br /> <span>If desired,</span> <span>you can</span> <span>pick up the</span> <span>purchased goods</span> <span>themselves</span> <span>in our offices.</span></span></p>', '', 0, '', '', 0, 1, 4, 'publish', 'admin', 1291295844, 1291295851, 1343664842, 8, 30, 66),
-(77, 'Help', '', 'help', '', 'order, purchase, goods, our, store, you, must, follow, few, simple, steps, choose, the, right, product, vospolzovavshit, navigation, left, search, add, products, cart, shopping, select, shipping, method, and, provide, your, contact', 'In order to purchase goods in our store, you must follow a few simple steps: Choose the right product, vospolzovavshit navigation on the left, or search. Add products to cart. Go to the shopping cart, select shipping method and provide your contact inform', '<p><span id="result_box" lang="en"><span>In order to</span> <span>purchase goods</span> <span>in our store,</span> <span>you must follow</span> <span>a few simple steps</span><span>:</span><br /><br />&nbsp;&nbsp;&nbsp;&nbsp; <span>Choose</span> <span>the right product,</span> <span>vospolzovavshit</span> <span>navigation</span> <span>on the left</span><span>, or</span> <span>search.</span><br />&nbsp;&nbsp;&nbsp;&nbsp; <span>Add products</span> <span>to cart</span><span>.</span><br />&nbsp;&nbsp;&nbsp;&nbsp; <span>Go to the</span> <span>shopping cart,</span> <span>select</span> <span>shipping method</span> <span>and provide</span> <span>your contact information.</span><br />&nbsp;&nbsp;&nbsp;&nbsp; <span>Proceed to checkout</span> <span>and select the</span> <span>payment method.</span><br /><br /> <span>After that,</span> <span>our managers</span> <span>will contact</span> <span>you and</span> <span>help you</span> <span>with payment</span> <span>and delivery</span> <span>of the goods</span><span>, as well</span> <span>as give advice on</span> <span>any subject.</span></span></p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295855, 1291295867, 1343664897, 11, 30, 67),
-(78, 'Payment', '', 'oplata', '', 'our, store, supports, all, currently, available, methods, payment, also, there, possibility, pay, the, courier, for, delivery, major, cities, ukraine, and, russia, ability, your, area, please, call', 'Our store supports all currently available methods of payment. Also there is a possibility to pay the courier for delivery to all major cities of Ukraine and Russia. (ability to pay for the courier in your area please call 0800820 22 22.)', '<p><span id="result_box" lang="en"><span>Our store</span> <span>supports all</span> <span>currently available</span> <span>methods of payment.</span><br /><br /> <span>Also there is</span> <span>a possibility to pay</span> <span>the courier</span> <span>for delivery</span> <span>to all</span> <span>major cities</span> <span>of Ukraine</span> <span>and Russia.</span> <span>(ability to</span> <span>pay for</span> <span>the courier</span> <span>in your area</span> <span>please call</span> <span>0800820</span> <span>22 22</span><span>.)</span></span></p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295824, 1291295836, 1343664949, 1, 30, 65),
-(79, 'About us', '', 'about', '', 'shop, imagecms, offers, huge, selection, vehicles, suit, every, taste, the, best, prices, our, store, has, more, than, years, and, during, that, time, was, not, single, return, goods, serve, hundreds, customers', 'Shop ImageCMS Shop offers a huge selection of vehicles to suit every taste at the best prices. Our store has more than 5 years and during that time was not a single return of the goods. We serve hundreds of customers every day and do it with joy. Buy equi', '<p><span id="result_box" lang="en"><span>Shop</span> <span>ImageCMS Shop</span> <span>offers</span> <span>a huge selection</span> <span>of vehicles</span> <span>to suit every taste</span> <span>at the best prices</span><span>.</span><br /><br /> <span>Our store</span> <span>has more than</span> <span>5 years</span> <span>and during that time</span> <span>was not a single</span> <span>return of the goods</span><span>.</span><br /><br /> <span>We serve</span> <span>hundreds of</span> <span>customers</span> <span>every day</span> <span>and do</span> <span>it with joy.</span><br /><br /> <span>Buy</span> <span>equipment from</span> <span>us and</span> <span>become the owner of</span> <span>the world''s best</span> <span>technology</span><span>!</span></span></p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295776, 1291295792, 1343745649, 5, 30, 64),
-(80, 'Site', '', 'o-sajte', '', 'new', 'new', '<p><span id="result_box" lang="en"><span>This is</span> <span>the basic template</span> <span>ImageCMS,</span> <span>which</span> <span>relizovany</span> <span>the following functions</span><span>: display</span> <span>gallery</span><span>, displaying</span> <span>static</span> <span>articles</span><span>, displaying</span> <span>a corporate blog</span><span>, displaying</span> <span>the feedback form.</span><br /><br /> <span>General view of the</span> <span>template, you can</span> <span>edit and</span> <span>change the</span> <span>logo,</span> <span>a graphic</span> <span>box on</span> <span>your</span> <span>case</span><span>.</span><br /><br /> <span>On the left</span> <span>you can see</span> <span>in the sidebar</span> <span>list of</span> <span>categories of</span> <span>the blog,</span> <span>which is easily</span> <span>inserted</span> <span>by using the</span> <span>{sub_category_list ()}</span> <span>in the file</span> <span>main.tpl.</span> <span>Also</span> <span>in the left</span> <span>sidebar</span> <span>is</span> <span>a search form</span> <span>on the site,</span> <span>recent comments</span> <span>widget</span> <span>and the widget</span> <span>tag</span> <span>site.</span> <span>In</span> <span>this</span> <span>sidebar</span> <span>you can also</span> <span>add a widget</span><span>, or</span> <span>the latest</span> <span>popular</span> <span>news,</span> <span>as well as any</span> <span>counters,</span> <span>widgets</span><span>.</span><br /><br /> <span>The top menu</span> <span>is implemented</span> <span>by the module</span> <span>menu</span><span>.</span> <span>And manage</span> <span>its content</span> <span>can be</span> <span>part</span> <span>of the</span> <span>administration</span> <span>in Menu</span> <span>-</span> <span>Main Menu.</span> <span>It</span> <span>is usually</span> <span>possible to add</span> <span>page</span> <span>about the company</span><span>, contacts,</span> <span>services, etc.</span><br /><br /> <span>For more</span> <span>information, contact the</span> <span>official</span> <span>section of the documentation</span><span>: http://www.imagecms.net/wiki</span><br /><br /> <span>Discuss</span> <span>additional opportunities</span><span>, as well as</span> <span>questions about</span> <span>installation, configuration,</span> <span>the system can be</span> <span>on the official forum</span><span>: http://forum.imagecms.net/</span></span></p>', '', 0, 'page_static', '', 0, 1, 0, 'publish', 'admin', 1267203253, 1267203328, 1343722704, 0, 30, 35),
-(81, 'Action! Go to the camera Nikon S9100 - Memory Card 8 GB as a gift', '', 'aktsiia-k-fotoapparatu-nikon-s9100-karta-pamiati-8gb-v-podarok', 'novosti_i_aktsii/', 'windows, otrimuє, podarunok, laptop, bag, kozeny, pokupets, aktsіynih, noutbukіv, peredvstanovlenoyu, the', 'Windows OS otrimuє in podarunok laptop bag! Kozeny pokupets aktsіynih noutbukіv s peredvstanovlenoyu of Windows otrimuє podarunok in the laptop bag!', '<p><span id="result_box" lang="en"><span>Windows,</span> <span>receives a gift</span> <span>bag</span> <span>for a</span> <span>laptop!</span> <span>Each purchase</span> <span>advertising</span> <span>laptops</span> <span>preloaded with</span> <span>Windows,</span> <span>receives a gift</span> <span>bag for</span> <span>a laptop</span><span>!</span></span></p>', '', 56, '', '', 0, 1, 0, 'publish', 'admin', 1336477654, 1336477654, 1346689406, 4, 30, 73),
-(82, 'Action! To the camera Nikon S9100 - 8GB memory card for free!', '', 'aktsiia-k-fotoapparatu-nikon-s9100-karta-pamiati-8gb-v-podarok-1', 'novosti_i_aktsii/', 'windows, operating, system, receives, gift, bag, for, laptop, each, purchaser, promotional, notebooks, with', 'Windows operating system receives a gift bag for a laptop! Each purchaser of promotional notebooks with Windows receives a gift bag for a laptop!', '<p><span id="result_box" lang="en"><span>Windows</span> <span>operating system</span> <span>receives a gift</span> <span>bag for</span> <span>a laptop</span><span>!</span> <span>Each purchaser</span> <span>of promotional</span> <span>notebooks</span> <span>with Windows</span> <span>receives a gift</span> <span>bag for</span> <span>a laptop</span><span>!</span></span></p>', '', 56, '', '', 0, 1, 0, 'publish', 'admin', 1336737588, 1336737588, 1346689276, 0, 30, 74);
+(35, 'Приветствуем на сайте ImageRobotics', 'ImageRobotics - Лидер в производстве роботов', 'privetstvuem_na_saite_imagerobitics', '', 'это, базовый, шаблон, imagecms, котором, релизованы, следующие, функции, вывод, фотогалереи, статической, статьи, блога', 'Мы разрабатываем и усовершенствуем такие виды роботов: человеко роботы, боевые роботы, космические роботы, кухонные роботы, рабочие роботы.Наши службы по ремонту , прокату и апгрейду роботов всегда рады приветствовать любого клиента.Мы систематически расш', '<p>Мы разрабатываем и усовершенствуем такие виды роботов: человеко роботы, боевые роботы, космические роботы, кухонные роботы, рабочие роботы.<br /><br />Наши службы по ремонту , прокату и апгрейду роботов всегда рады приветствовать любого клиента.<br /><br />Мы систематически расширяемся и захватываем все новые сегменты рынка, потому постоянно пополняем наши ряды новыми сотрудниками.<br /><br />Мы рады представлять вам все новые виды робототехники, которые Вы можете приобрести в кредит. Для этого \nнужен только мульти паспорт!<br /><br />Будем рады, если вы станете нашим постоянным клиентом и надеемся, наш сайт поможет в информировании о деятельности компании!</p>', '', 0, 'homepage', '', 0, 0, 0, 'publish', 'admin', 1267203253, 1267203328, 1291735384, 7, 3, 0),
+(63, 'О компании', '', 'o_kompanii', '', 'компания, image, robotics, создана, высокой, цели, ndash, продавать, роботов, всегда, заботимся, качестве, нашей, продукции, безопасности, нашего, товара, существуем, рынке, начала, времен, потому, опыт, накопленный, время, дает, нам, право, считаться, лучшими', 'Компания Image Robotics создана для высокой цели – продавать роботов!  Мы всегда заботимся о качестве нашей продукции и безопасности нашего товара.  Мы существуем на рынке еще с начала времен. Потому опыт, накопленный за это время, дает нам право счи', '<p><strong>Компания Image Robotics создана для высокой цели &ndash; продавать роботов!</strong></p>\n<p><img style="float: right; margin-left: 10px;" src="/uploads/images/o-kompanii.jpg" alt="" width="210" height="158" /></p>\n<ul>\n<li>Мы всегда заботимся о качестве нашей продукции и&nbsp; безопасности нашего товара. </li>\n<li>Мы существуем на рынке еще с начала времен. Потому опыт, накопленный за это время, дает нам право считаться лучшими в своей сфере.</\nli>\n<li>Мы можем в любое время вернуть вам всю сумму, оплаченную за товар, если он еще не привык к Вам и Вашей семье!</li>\n<li>Мы заботимся не только о правах человека, но и о правах роботов, согласно галактического законодательства.</li>\n<li>Мы боремся с теми, кто выгоняет роботов на улицу и согласны на бесплатную утилизацию ввиду отсутствия интереса к таковому.</li>\n</ul>', '', 0, '', '', 0, 0, 0, 'publish', 'admin', 1291378533, 1291378992, 1291721377, 232, 3, 0),
+(64, 'Человеко роботы', '', 'cheloveko_roboty', 'produktsiia/', 'вам, надоели, ваши, друзья, подруги, достало, ваше, окружение, закажите, человеко, робота, нас, получите, чего, хватало, надоедливых, людей, роботы, работают, законам, которые, укажите, схожи, людьми, тоже, время, обладают, механизмом, управления, подчинения', 'Вам надоели ваши друзья и подруги? Вас достало ваше окружение? Закажите человеко робота у нас, и вы получите все, чего вам не хватало от надоедливых людей! Человеко роботы работают по законам, которые укажите вы. Они схожи с людьми, но в тоже время облада', '<p><img style="float: left; margin-right: 10px; margin-top:2px" src="/uploads/images/cheloveko-roboty.jpg" alt="" width="190" height="143" />Вам надоели ваши друзья и подруги? Вас достало ваше окружение? Закажите человеко робота у нас, и вы получите все, чего вам не хватало от надоедливых людей!</p>\r\n<p>Человеко роботы работают&nbsp; по законам, которые укажите вы. Они схожи с людьми, но в тоже время обладают механизмом управления \nи подчинения вашим приказам.</p>\r\n<p>Наши новые человеко роботы обладают инновационными разговорными функциями. Они могут оказывать полноценную психологическую поддержку, вести беседу обо всем, быть хорошими советчиками и пунктами необходимых&nbsp; знаний!</p>\r\n<p>Любого человеко робота можно взять в кредит и вернуть, если он вас не устроит.</p>', '', 55, '', '', 0, 0, 0, 'publish', 'admin', 1291379033, 1291379069, 1291634370, 58, 3, 0),
+(65, 'Боевые роботы', '', 'boevye_roboty', 'produktsiia/', 'если, нужна, настоящая, мощная, защита, ndash, боевые, роботы, нужно, наши, обладают, различными, комплектациями, вооружения, кроме, базового, оружия, возможна, установка, плазменной, ультрафиолетовой, лазерной, лептонной, пушки, важно, перед, покупкой, получить, форму, galaxy', 'Если вам нужна настоящая и мощная защита – боевые роботы это то, что вам нужно! Наши боевые роботы обладают различными комплектациями вооружения. Кроме базового оружия возможна установка плазменной, ультрафиолетовой, лазерной или лептонной пушки. ВАЖ', '<p><img style="float: left; margin-right: 10px; margin-top:2px" src="/uploads/images/boeviye-roboty.jpg" alt="" width="300" height="268" />Если вам нужна настоящая и мощная защита &ndash; боевые роботы это то, что вам нужно!</p>\r\n<p>Наши боевые роботы обладают различными комплектациями вооружения. Кроме базового оружия возможна установка плазменной, ультрафиолетовой, лазерной или лептонной пушки.</p>\r\n<p>ВАЖНО! Перед \nпокупкой Вам нужно получить форму GALAXY-837,&nbsp; для удостоверения психологической уравновешенности, не судимости и т.п. Приходите в наш отдел с данной формой и мульти паспортом, мы продадим вам боевого робота, который будет служить лучше, чем любая сторожевая собака или телохранитель высшего ранга.</p>', '', 55, '', '', 0, 0, 0, 'publish', 'admin', 1291379073, 1291379097, 1291634533, 20, 3, 0),
+(66, 'Космические роботы', '', 'kosmicheskie_roboty', 'produktsiia/', 'image, robotics, выпускает, лучших, космических, роботов, нашей, галактике, дальность, полетов, составляет, более, световых, лет, скорость, полета, близка, скорости, света, космические, роботы, могут, перевозить, довольно, большие, объемы, грузов, удаленно, выполнять, различные', 'Image Robotics выпускает лучших космических роботов в нашей галактике. Их дальность полетов составляет более 10 световых лет, а скорость полета близка к скорости света. Космические роботы могут перевозить довольно большие объемы грузов, удаленно выполнять', '<p><img style="float: left; margin-right: 10px; margin-top:2px" src="/uploads/images/kosmicheskie-roboty.jpg" alt="" width="298" height="293" />Image Robotics выпускает лучших космических роботов в нашей галактике. Их дальность полетов составляет более 10 световых лет, а скорость полета близка к скорости света.</p>\r\n<p>Космические роботы могут перевозить довольно большие объемы грузов, удаленно выполнять \nразличные задания на ближних планетах.</p>\r\n<p>Если вы купите более трех роботов или приведете к нам двух своих друзей , которые станут клиентами, Ваш робот будет оборудован дополнительным сверхмощным телескопом!</p>\r\n<p>С нашей инновационной продукцией Вам подчинится космос!</p>', '', 55, '', '', 0, 0, 0, 'publish', 'admin', 1291379102, 1291379142, 1291634589, 20, 3, 0),
+(67, 'Кухонные роботы', '', 'kuhonnye_roboty', 'produktsiia/', 'наши, кухонные, роботы, сделают, всю, грязную, работу, image, robotics, заставляет, людей, забыть, мытье, посуды, уборке, кухне, готовке, закажите, блюдо, робот, сам, найдет, ингредиенты, взвесит, измельчит, продолжит, крутиться, вашего, блага, кроме', 'Наши кухонные роботы сделают всю грязную работу за Вас! Image Robotics заставляет людей забыть о мытье посуды, уборке на кухне и даже готовке. Закажите блюдо. Робот сам найдет ингредиенты, взвесит, измельчит и продолжит крутиться на кухне для вашего блага', '<p><img style="float: left; margin-right: 10px; margin-top:5px" src="/uploads/images/kuhonniye-roboty.jpg" alt="" width="280" height="236" />Наши кухонные роботы сделают всю грязную работу за Вас! Image Robotics заставляет людей забыть о мытье посуды, уборке на кухне и даже готовке.</p>\r\n<p>Закажите блюдо. Робот сам найдет ингредиенты,&nbsp; взвесит, измельчит и продолжит крутиться на кухне для вашего блага.</p>\r\n<p>Наши роботы кроме \nстандартных функций обладают мощными программами&nbsp; обучения своему мастерству. То есть, ели вы любите готовить сами, робот станет учителем и партнером.</p>\r\n<p>Если вы знаете уникальный рецепт, научите робота этому! Любая модель легко воспринимает материал и учиться на лету.</p>', '', 55, '', '', 0, 0, 1, 'publish', 'admin', 1291379159, 1291379184, 1291634767, 28, 3, 0),
+(68, 'Рабочие роботы', '', 'rabochie_roboty', 'produktsiia/', 'наши, рабочие, роботы, работают, лучше, любого, рабочего, просто, слова, нужно, вынести, мусор, перетащить, шкаф, позвольте, мужу, отдохнуть, сами, избавьте, себя, сложностей, купите, робота, который, возложит, всевозможные, функции, тяжкие, мучения, человечества', 'Наши рабочие роботы, работают лучше любого рабочего! И это не просто слова. Нужно вынести мусор? Перетащить шкаф? Позвольте мужу отдохнуть или сами избавьте себя от сложностей. Купите рабочего робота, который возложит на себя всевозможные функции и тяжкие', '<p><img style="float: left; margin-right: 10px; margin-top:5px" src="/uploads/images/rabochiye-roboty.jpg" alt="" width="200" height="160" />Наши рабочие роботы, работают лучше любого рабочего! И это не просто слова.</p>\r\n<p>Нужно вынести мусор? Перетащить шкаф? Позвольте мужу отдохнуть или сами избавьте себя от сложностей. Купите рабочего робота, который возложит на себя всевозможные функции и тяжкие мучения человечества.</p>\r\nn<p>Каждая наша продукция обладает исключительными характеристиками. Рабочие роботы не остались без внимания. Функция таджикский&nbsp; гастарбайтер поможет на автопилоте проводить строительные работы, тратя на это малое количество энергии. Таким образом, вы экономите огромное количество средств.</p>\r\n<p>С Image Robotics легко сделать жизнь проще!</p>', '', 55, '', '', 0, 0, 0, 'publish', 'admin', 1291379213, 1291379236, 1291634846, 15, 3, 0),
+(69, 'Ремонт роботов', '', 'remont_robotov', 'usluhi/', 'даже, лучшие, роботы, иногда, выходят, строя, такое, случилось, гарантийный, срок, починим, робота, любого, класса, бесплатно, приобрели, нас, гарантии, вышел, предоставим, сервис, высшего, уровня, некоторое, маленькое, вознаграждение, диагностика, проблемы, ремонт, роботов', 'Даже лучшие роботы иногда выходят из строя. И если такое случилось в гарантийный срок, мы починим робота любого класса бесплатно! Если вы приобрели робота у нас, но срок гарантии вышел, мы предоставим сервис высшего уровня за некоторое маленькое вознаграж', '<p><img style="float:left;margin-right:10px;margin-top:5px" src="/uploads/images/remont-robotov.jpg" height="216" width="150">Даже лучшие роботы иногда выходят из строя.&nbsp; И если такое случилось в гарантийный срок, мы починим робота любого класса бесплатно!</p>\n<p>Если вы приобрели робота у нас, но срок гарантии вышел, мы предоставим сервис высшего уровня за некоторое маленькое вознаграждение.</p><p>\nn</p><p>Диагностика проблемы и ремонт роботов&nbsp; проходит под средством нано техники от&nbsp; Image Robotics. Ее нельзя приобрети на свободном рынке, такие возможности есть только у нас.</p>\n<p>Диагностика любой проблемы занимает несколько секунд, а ремонт составляет не более десяти минут с момента обнаружения проблемы. Если на складе есть ресурсы.</p>', '', 56, '', '', 0, 1, 1, 'publish', 'admin', 1291379278, 1291379309, 1363612852, 78, 3, 0),
+(70, 'Апгрейд роботов', '', 'aphreid_robotov', 'usluhi/', 'нам, систематически, обращаются, постоянные, клиенты, просьбой, усовершенствовать, робота, помогаем, только, своим, работая, клиентами, других, компаний, латаем, дыры, которые, привели, неудобству, проблемам, наша, модернизация, помогает, всегда, быть, пике, науки, инновационных, технологий', 'К нам систематически обращаются постоянные клиенты с просьбой усовершенствовать их робота. Мы помогаем не только своим. Работая с клиентами других компаний, мы латаем дыры, которые привели к неудобству и проблемам. Наша модернизация помогает всегда быть н', '<p><img style="float: left; margin-right: 10px; margin-top:5px" src="/uploads/images/apgreyder-robotov.jpg" alt="" width="260" height="186" />К нам систематически обращаются постоянные клиенты с просьбой усовершенствовать их робота.</p>\r\n<p>Мы помогаем не только своим. Работая с клиентами других компаний, мы латаем дыры, которые привели к неудобству и проблемам. Наша модернизация помогает всегда быть на \nпике науки и инновационных технологий.</p>\r\n<p>Любой робот может быть усовершенствован, как программно , так и технически.</p>\r\n<p>Не бойтесь становиться лучше вместе со своим помощником! Сразу после апгрейда вы смело можете говорить, что стоите на вершине технологического прогресса и ликвидировали свое отставание! Это модно и продуктивно. И пусть остальные завидуют вашему роботу, у которого такой отличный собственник.</p>', '', 56, '', '', 0, 0, 0, 'publish', 'admin', 1291379312, 1291379338, 1291635033, 19, 3, 0),
+(71, 'Прокат роботов', '', 'prokat_robotov', 'usluhi/', 'хорошая, робототехника, стоит, довольно, приличные, деньги, покупать, других, компаний, ndash, пылесос, вместо, настоящего, робота, хочется, потому, следует, воспользоваться, нашей, услугой, прокат, роботов, нас, возможен, любого, вида, зависимости, ваших, нынешних, потребностей', 'Хорошая робототехника стоит довольно приличные деньги. Покупать у других компаний – пылесос, вместо настоящего робота не хочется. И потому, следует воспользоваться нашей услугой Прокат роботов! У нас возможен прокат любого вида роботов в зависимости', '<p><img style="float: left; margin-right: 10px; margin-top:5px" src="/uploads/images/prokat-robotov.jpg" alt="" width="220" height="165" />Хорошая робототехника стоит довольно приличные деньги. Покупать у других компаний &ndash; пылесос, вместо настоящего робота не хочется. И потому, следует воспользоваться нашей услугой &laquo;Прокат роботов&raquo;!</p>\r\n<p>У нас возможен прокат любого вида роботов в зависимости от ваших \nнынешних потребностей.</p>\r\n<p>Если вас достали, вы хотите проучить обидчиков, возьмите у нас на прокат боевого робота&nbsp; и он легко всех накажет.</p>\r\n<p>Если вам лень выполнить временные работы по дому, возьмите в прокат нашего рабочего робота с инновационной функцией таджикский гастарбайтер.</p>\r\n<p>Если вы хотите временно оставить о себе хорошее впечатление перед мужчиной или женщиной, закажите в прокат кухонного робота. Он приготовит ужин, помоет посуду и почистит вашу кухню.</p>\r\n<p>Если вам не хватает рядом нормального человека, возьмите в прокат нашего человеко робота! Он составит достойную компанию.</p>\r\n<p>К сожалению, космических роботов в прокат мы не передаем, поскольку минимальный срок проката по соотношению равен цене. Рекомендуем Вам только покупать роботов данного типа!</p>', '', 56, '', '', 0, 0, 0, 'publish', 'admin', 1291379343, 1291379392, 1291635447, 16, 3, 0),
+(72, 'Новое в мире боевых роботов', '', 'novoe_v_mire_boevyh_robotov', 'novosti/', 'наконец, закончили, усовершенствование, лептонной, пушки, создали, нее, новый, комплекс, бесперебойной, самонаводной, стрельбы, теперь, время, между, выстрелами, заметно, сократилось, разрушать, стало, проще, быстрее, также, разработали, новое, гравитонное, орудие, которым, вскоре, будет', 'Мы наконец закончили усовершенствование лептонной пушки и создали для нее новый комплекс бесперебойной самонаводной стрельбы. Теперь время между выстрелами заметно сократилось, разрушать стало проще и быстрее. Также мы разработали новое гравитонное орудие', '<p><img style="float: left; margin-right: 10px; margin-top:5px" src="/uploads/images/novoe-v-mire-boevih-robotov.jpg" alt="" width="200" height="133" />Мы наконец закончили усовершенствование&nbsp; лептонной пушки и создали для нее новый комплекс бесперебойной самонаводной стрельбы. Теперь время между выстрелами заметно сократилось, разрушать стало проще и быстрее.</p>\r\n<p>Также мы \nразработали новое гравитонное орудие, которым вскоре будет укомплектована новая партия боевых роботов.</p>\r\n<p>Если вы хотите модернизировать своего друга, напоминаем о функции &ndash; апгрейд роботов. Если вы приобретали робота у нас, то вы получите скидку 15% на усовершенствование.</p>\r\n<p>Следите за нашими новостями и Вы всегда будете в курсе самых последних событий в мире робототехники!</p>', '', 57, '', '', 0, 0, 0, 'publish', 'admin', 1291379411, 1291379439, 1291636399, 5, 3, 0),
+(73, 'День робототехники в компании Image Robotics', '', 'den_robototehniki_v_kompanii_image_robotics', 'novosti/', 'через, несколько, недель, будет, один, самых, ожидаемых, дней, году, нашей, компании, хотим, поделиться, своей, радостью, ощущением, праздника, всеми, своими, покупателями, протяжении, часов, этого, удивительного, дня, предоставляем, любые, услуги, продаем, товары', 'Через несколько недель будет один из самых ожидаемых дней в году для нашей компании. И мы хотим поделиться своей радостью и ощущением праздника со всеми своими покупателями. На протяжении всех 24 часов этого удивительного дня мы предоставляем вам любые ус', '<p><img style="float: left; margin-right: 10px; margin-top:2px" src="/uploads/images/deny-robotehniki-v-imagerobotics.jpg" alt="" width="160" height="120" />Через несколько недель будет один из самых ожидаемых дней в году для нашей компании. И мы хотим поделиться своей радостью и ощущением праздника со всеми своими покупателями.</p>\n<p>На протяжении всех 24 часов этого \nудивительного дня мы предоставляем вам любые услуги и продаем любые товары со скидкой 10%! Удивлены? Но это так!</p>\n<p>Соберите ваши желания и мечты в кулак и ждите этого знаменательного события. Купите то, о чем давно мечтали, воспользуйтесь той услугой, которая вам так необходима! Зовите друзей, подруг и знакомых и получайте дополнительный купон на скидку годовую в 3% на все дополнительные услуги нашей компании*.</p>\n<p><em>*дополнительные услуги это все услуги предоставляемые компанией кроме непосредственной продажи робототехники.</em></p>', '', 57, '', '', 0, 0, 0, 'publish', 'admin', 1291379443, 1291379484, 1291636965, 18, 3, 0),
+(74, 'Новые космические роботы станут летать быстрее, а «носить» больше!', '', 'novye_kosmicheskie_roboty_stanut_letat_bystree_a_nosit_bolshe', 'novosti/', 'рады, сообщить, удивительную, новость, благодаря, нашим, инновационным, разработкам, течение, месяца, рынке, появиться, обновленная, версия, космического, робота, обновленной, модели, будет, встроен, ускоренный, тип, двигателя, который, позволит, увеличить, скорость, очередной, шаг, скорости', 'Мы рады сообщить вам удивительную новость. Благодаря нашим инновационным разработкам в течение месяца на рынке появиться обновленная версия космического робота. В обновленной модели будет встроен ускоренный тип двигателя, который позволит увеличить скорос', '<p><img style="float: left; margin-right: 10px; margin-top:2px" src="/uploads/images/novie-kosmicheskie-roboty.jpg" alt="" width="175" height="142" />Мы рады сообщить вам удивительную новость. Благодаря нашим инновационным разработкам в течение месяца на рынке появиться обновленная версия космического робота.</\np>\n<p>В обновленной модели будет&nbsp; встроен ускоренный тип двигателя, который позволит увеличить скорость еще на 152 848 км/ч.&nbsp; Это очередной шаг к скорости света и рано или поздно мы с Вами этого добьемся.</p>\n<p>Обновление не закончилось на улучшении двигателя. Благодаря новым сплавам мы облегчили космического робота и усовершенствовали механизм грузоподъемности. Таким образом, наши роботы станут перемещать на 2 тонны больше грузов, чем прежние!</p>', '', 57, '', '', 0, 0, 0, 'publish', 'admin', 1291379494, 1291379513, 1303820817, 44, 3, 0),
+(75, 'Главный ремонтник роботов', '', 'hlavnyi_remontnik_robotov', 'vakansii/', 'претендентов, эту, высокую, должность, просим, ознакомиться, нашими, требованиями, занятость, полная, образование, высшее, робототехническое, возраст, самом, расцвете, сил, зарплата, договоримся, должностные, обязанности, условия, ремонтировать, роботов, понедельника, пятницу, требования, знание, инновационной, робототехники', 'Всех претендентов на эту высокую должность просим ознакомиться с нашими требованиями.  Занятость: полная Образование: высшее робототехническое Возраст: в самом расцвете сил Зарплата: как договоримся  Должностные обязанности  Условия: ремонтировать роботов', '<p>Всех претендентов на эту высокую должность просим ознакомиться с нашими требованиями.</p>\r\n<ul>\r\n<li>Занятость:&nbsp; полная</li>\r\n<li>Образование: высшее робототехническое</li>\r\n<li>Возраст: в самом расцвете сил</li>\r\n<li>Зарплата:&nbsp; как договоримся</li>\r\n</ul>\r\n<p>Должностные обязанности</p>\r\n<ul>\r\n<li>Условия: ремонтировать \nроботов с понедельника по пятницу&nbsp; от 8 до 17. </li>\r\n<li>Требования: знание инновационной робототехники, знание всех моделей Image Robotics и их особенностей</li>\r\n<li>Обязанности: самостоятельно ремонтировать роботов, а также управлять другими ремонтными работами.</li>\r\n</ul>\r\n<p>Дополнительная информация</p>\r\n<ul>\r\n<li>Опыт работы от года, расторопность в диагностике и решении проблемы.</li>\r\n</ul>', '', 58, '', '', 0, 0, 0, 'publish', 'admin', 1291379557, 1291379629, 0, 2, 3, 0),
+(76, 'Апгрейдер роботов', '', 'aphreider_robotov', 'vakansii/', 'связи, участившимися, заказами, апгрейд, роботов, вынуждены, расширить, штат, сотрудников, публикуя, данную, вакансию, гарантируем, максимально, плотную, занятость, высокую, зарплату, полная, образование, высшее, робототехническое, возраст, самом, расцвете, сил, зарплата, высокая, должностные, обязанности', 'В связи с участившимися заказами на апгрейд роботов, мы вынуждены расширить штат сотрудников. Публикуя данную вакансию, мы гарантируем максимально плотную занятость и высокую зарплату.  Занятость: полная Образование: высшее робототехническое Возраст: в са', '<p>В связи с участившимися заказами на апгрейд роботов, мы вынуждены расширить штат сотрудников. Публикуя данную вакансию, мы гарантируем максимально плотную занятость и высокую зарплату.</p>\r\n<ul>\r\n<li>Занятость:&nbsp; полная</li>\r\n<li>Образование: высшее робототехническое</li>\r\n<li>Возраст: в самом расцвете сил</li>\r\n<li>Зарплата:&nbsp; высокая</li>\r\n</ul>\r\nn<p>Должностные обязанности</p>\r\n<ul>\r\n<li>Условия: Работа в течение 10-16 часов в день</li>\r\n<li>Требования: знания технологий укомплектования современной робототехники, знание программ для обновления программного обеспечения роботов Image Robotics.</li>\r\n</ul>\r\n<p>Обязанности</p>\r\n<ul>\r\n<li>Проводить установку новых технических и программных элементов.</li>\r\n</ul>', '', 58, '', '', 0, 0, 0, 'publish', 'admin', 1291379639, 1291379680, 0, 1, 3, 0),
+(77, 'Менеджер роботов', '', 'menedzher_robotov', 'vakansii/', 'нашей, компании, нужен, человек, который, способен, управлять, роботами, роботизированной, техникой, занятость, совместительству, образование, высшее, робототехническое, возраст, самом, расцвете, сил, зарплата, выработки, должностные, обязанности, условия, возможность, работать, выходным, требования, знание, технологий', 'Нашей компании нужен человек, который способен управлять роботами и роботизированной техникой.  Занятость: по совместительству Образование: высшее робототехническое Возраст: в самом расцвете сил Зарплата: от выработки  Должностные обязанности:  Условия: В', '<p>Нашей компании нужен человек, который способен управлять роботами и роботизированной техникой.</p>\r\n<ul>\r\n<li>Занятость: по совместительству</li>\r\n<li>Образование: высшее робототехническое</li>\r\n<li>Возраст: в самом расцвете сил</li>\r\n<li>Зарплата:&nbsp; от выработки</li>\r\n</ul>\r\n<p>Должностные обязанности:</p>\r\n<ul>\r\n<li>Условия: Возможность работать \nпо выходным</li>\r\n<li>Требования: знание технологий руководства роботизированным процессом, знание программ &laquo;Эффективное управление роботами от Image Robotics&raquo;.</li>\r\n</ul>\r\n<p>Обязанности</p>\r\n<ul>\r\n<li>организовывать управления группами роботизированных систем покупателя, настройка слаженной работы роботов оптовых покупателей.</li>\r\n</ul>\r\n<p>Дополнительная информация:</p>\r\n<ul>\r\n<li>Опыт работы менеджером в любой сфере деятельности приветствуется.</li>\r\n</ul>', '', 58, '', '', 0, 0, 0, 'publish', 'admin', 1291379686, 1291379740, 0, 3, 3, 0),
+(78, 'В каждый дом по 4 робота!', '', 'v_kazhdyi_dom_po_4_robota', 'bloh/cheloveko_roboty/', 'развитием, роботостроения, больше, людей, приобретают, себе, несколько, типов, роботов, семью, обусловлено, тем, роботы, становятся, доступнее, старые, модели, сейчас, может, позволить, гражданин, имеющий, минимальную, заработную, плату, рады, наша, компания, вносит, свой', 'С развитием роботостроения все больше людей приобретают себе по несколько типов роботов на семью. Это обусловлено тем, что роботы становятся доступнее. Старые модели сейчас может позволить себе даже гражданин, имеющий минимальную заработную плату. Мы рады', '<p><img style="float: left; margin-right: 10px; margin-top:5px" src="/uploads/images/v-kazhdiy-dom-po-chetire-robota.jpg" alt="" width="195" height="133" />С развитием роботостроения все больше людей приобретают себе по несколько типов роботов на семью. Это обусловлено тем, что роботы становятся доступнее. Старые модели сейчас может позволить себе даже гражданин, имеющий минимальную \nзаработную плату.</p>\n<p>Мы рады, что наша компания вносит свой огромный&nbsp; вклад в обесценивание старых моделей, пополняя рынок лучшими инновационными решениями.</p>\n<p>Наша статистика показывает, что с предыдущим годом количество семей, купивших более трех роботов выросло на 37%. И это отличный результат для всего мира!</p>', '', 61, '', '', 0, 1, 0, 'publish', 'admin', 1291379768, 1291379793, 1291731038, 37, 3, 0),
+(79, 'Ускоренные системы диагностики и ремонта роботов', '', '18uskorennye_sistemy_diahnostiki_i_remonta_robotov', 'bloh/kuhonnye_roboty/', 'компания, image, robotics, совместно, imaxi, life, разработали, концептуально, новые, системы, диагностики, проблем, робототехнике, устранению, основой, решения, которому, теперь, прибегает, сообщество, имеющее, отношение, ремонту, диагностике, стал, инновационный, наносборщик, помог, разработать, наносистемы', 'Компания Image Robotics совместно с IMAXI T-Life разработали концептуально новые системы диагностики проблем в робототехнике и их устранению. Основой решения, к которому теперь прибегает все сообщество, имеющее отношение к ремонту и диагностике проблем в', '<p><img style="float: left; margin-right: 10px; margin-top:5px" src="/uploads/images/uskorenniye-sistemy-diagnostiki-robotov.jpg" alt="" width="270" height="175" />Компания Image Robotics совместно с IMAXI T-Life разработали концептуально новые системы диагностики проблем в робототехнике и их устранению.</p>\nn<p>Основой решения, к которому теперь прибегает все сообщество, имеющее отношение к ремонту и диагностике проблем в робототехнике, стал инновационный наносборщик. Наносборщик помог разработать наносистемы,&nbsp; которые участвуют во всех вышеупомянутых работах.</p>\n<p>Наши&nbsp; наносистемы , почти моментально, находят любую проблему или неполадку в робототехнике и также участвуют в микро-ремонте систем. Микро-ремонт проходит за несколько минут в отличие от раннего порога в несколько часов. Технология уже доступна на рынке и продается большим корпорациям отрасли.</p>', '', 60, '', '', 0, 1, 0, 'publish', 'admin', 1291379797, 1291379825, 1291730993, 15, 3, 0),
+(80, 'Кухонная энциклопедия, интегрированная в робота', '', 'kuhonnaia_entsiklopediia_intehrirovannaia_v_robota', 'bloh/kuhonnye_roboty/', 'первые, кухонные, роботы, обладали, возможностью, готовить, только, простые, блюда, дополненные, покупателем, теперь, имеют, памяти, рецепты, которые, были, вынесены, публику, многие, противоречат, этой, новинке, говоря, робот, приготовит, человек, берет, точности, фантазирует', 'Первые кухонные роботы обладали возможностью готовить только простые блюда или блюда дополненные покупателем. Но теперь все кухонные роботы имеют в памяти все рецепты, которые были вынесены на публику. Многие противоречат этой новинке, говоря, что робот н', '<p><img style="float: left; margin-right: 10px; margin-top:5px" src="/uploads/images/kuhonnaya-enziklopediya-integr-v-robota.jpg" alt="" width="240" height="177" />Первые кухонные роботы обладали возможностью готовить только простые блюда или блюда дополненные покупателем. Но теперь все кухонные роботы имеют в памяти все рецепты, которые \nбыли вынесены на публику.</p>\n<p>Многие противоречат этой новинке, говоря, что робот не приготовит, так как человек. Он берет все в точности, не фантазирует и не добавляет ингредиенты по вкусу.&nbsp; Но мы утверждаем, что такой прогресс необходим.</p>\n<p>Создавая инновационных кухонных роботов, мы не удаляем человека из процесса готовки, а предоставляем ему помощника!</p>', '', 60, '', '', 0, 1, 3, 'publish', 'admin', 1291379842, 1291379866, 1291730975, 232, 3, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content_fields`
+-- Структура таблиці `content_fields`
 --
 
+DROP TABLE IF EXISTS `content_fields`;
 CREATE TABLE IF NOT EXISTS `content_fields` (
   `field_name` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
   `label` varchar(255) NOT NULL,
   `data` text NOT NULL,
-  `group` int(11) NOT NULL DEFAULT '0',
   `weight` int(11) NOT NULL,
   `in_search` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`field_name`),
@@ -242,19 +262,19 @@ CREATE TABLE IF NOT EXISTS `content_fields` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `content_fields`
+-- Дамп даних таблиці `content_fields`
 --
 
-INSERT INTO `content_fields` (`field_name`, `type`, `label`, `data`, `group`, `weight`, `in_search`) VALUES
-('field_field1', 'text', 'Field 1', '', 7, 1, 1),
-('field_pole2', 'select', 'Pole 2', 'a:3:{s:7:"initial";s:13:"value1\nvalue2";s:9:"help_text";s:0:"";s:10:"validation";s:0:"";}', 7, 2, 1);
+INSERT INTO `content_fields` (`field_name`, `type`, `label`, `data`, `weight`, `in_search`) VALUES
+('field_image', 'text', 'Рисунок', 'a:7:{s:5:"label";s:14:"Рисунок";s:7:"initial";s:1:" ";s:9:"help_text";s:0:"";s:4:"type";s:4:"text";s:20:"enable_image_browser";s:1:"1";s:10:"validation";s:0:"";s:6:"groups";a:1:{i:0;s:1:"7";}}', 1, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content_fields_data`
+-- Структура таблиці `content_fields_data`
 --
 
+DROP TABLE IF EXISTS `content_fields_data`;
 CREATE TABLE IF NOT EXISTS `content_fields_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `item_id` int(11) NOT NULL,
@@ -265,73 +285,95 @@ CREATE TABLE IF NOT EXISTS `content_fields_data` (
   KEY `item_id` (`item_id`),
   KEY `item_type` (`item_type`),
   KEY `field_name` (`field_name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
--- Dumping data for table `content_fields_data`
+-- Дамп даних таблиці `content_fields_data`
 --
 
 INSERT INTO `content_fields_data` (`id`, `item_id`, `item_type`, `field_name`, `data`) VALUES
-(10, 74, 'page', 'field_pole2', '0'),
-(9, 74, 'page', 'field_field1', ''),
-(5, 72, 'page', 'field_field1', ''),
-(6, 72, 'page', 'field_pole2', '0'),
-(7, 73, 'page', 'field_field1', ''),
-(8, 73, 'page', 'field_pole2', '0'),
-(11, 81, 'page', 'field_field1', ''),
-(12, 81, 'page', 'field_pole2', '0'),
-(13, 82, 'page', 'field_field1', ''),
-(14, 82, 'page', 'field_pole2', '0');
+(1, 64, 'page', 'field_image', '/uploads/images/small/cheloveko-roboty.jpg'),
+(2, 65, 'page', 'field_image', '/uploads/images/small/boeviye-roboty.jpg'),
+(3, 66, 'page', 'field_image', '/uploads/images/small/kosmicheskie-roboty.jpg'),
+(4, 67, 'page', 'field_image', '/uploads/images/small/kuhonniye-roboty.jpg'),
+(5, 68, 'page', 'field_image', '/uploads/images/small/rabochiye-roboty.jpg'),
+(6, 69, 'page', 'field_image', '/uploads/images/small/remont-robotov.jpg'),
+(7, 70, 'page', 'field_image', '/uploads/images/small/apgreyder-robotov.jpg'),
+(8, 71, 'page', 'field_image', '/uploads/images/small/prokat-robotov.jpg'),
+(9, 60, 'category', 'field_image', ''),
+(10, 59, 'category', 'field_image', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content_field_groups`
+-- Структура таблиці `content_fields_groups_relations`
 --
 
+DROP TABLE IF EXISTS `content_fields_groups_relations`;
+CREATE TABLE IF NOT EXISTS `content_fields_groups_relations` (
+  `field_name` varchar(64) NOT NULL,
+  `group_id` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Дамп даних таблиці `content_fields_groups_relations`
+--
+
+INSERT INTO `content_fields_groups_relations` (`field_name`, `group_id`) VALUES
+('field_doc', 9),
+('field_image', 7);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `content_field_groups`
+--
+
+DROP TABLE IF EXISTS `content_field_groups`;
 CREATE TABLE IF NOT EXISTS `content_field_groups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `description` text,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
--- Dumping data for table `content_field_groups`
+-- Дамп даних таблиці `content_field_groups`
 --
 
 INSERT INTO `content_field_groups` (`id`, `name`, `description`) VALUES
-(7, 'test', 'sdfsdfsdf');
+(7, 'main', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content_permissions`
+-- Структура таблиці `content_permissions`
 --
 
+DROP TABLE IF EXISTS `content_permissions`;
 CREATE TABLE IF NOT EXISTS `content_permissions` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `page_id` bigint(11) NOT NULL,
   `data` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `page_id` (`page_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `content_permissions`
+-- Дамп даних таблиці `content_permissions`
 --
 
 INSERT INTO `content_permissions` (`id`, `page_id`, `data`) VALUES
-(21, 35, 'a:3:{i:0;a:1:{s:7:"role_id";s:1:"0";}i:1;a:1:{s:7:"role_id";s:1:"1";}i:2;a:1:{s:7:"role_id";s:1:"2";}}'),
-(23, 80, 'a:3:{i:0;a:1:{s:7:"role_id";s:1:"0";}i:1;a:1:{s:7:"role_id";s:1:"1";}i:2;a:1:{s:7:"role_id";s:1:"2";}}');
+(1, 63, 'a:1:{i:0;a:1:{s:7:"role_id";s:1:"0";}}');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content_tags`
+-- Структура таблиці `content_tags`
 --
 
+DROP TABLE IF EXISTS `content_tags`;
 CREATE TABLE IF NOT EXISTS `content_tags` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `page_id` int(11) NOT NULL,
@@ -339,14 +381,29 @@ CREATE TABLE IF NOT EXISTS `content_tags` (
   PRIMARY KEY (`id`),
   KEY `page_id` (`page_id`),
   KEY `tag_id` (`tag_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=119 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=127 ;
+
+--
+-- Дамп даних таблиці `content_tags`
+--
+
+INSERT INTO `content_tags` (`id`, `page_id`, `tag_id`) VALUES
+(119, 80, 25),
+(120, 80, 26),
+(121, 80, 27),
+(122, 79, 25),
+(123, 79, 28),
+(124, 79, 27),
+(125, 78, 25),
+(126, 78, 29);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `custom_fields`
+-- Структура таблиці `custom_fields`
 --
 
+DROP TABLE IF EXISTS `custom_fields`;
 CREATE TABLE IF NOT EXISTS `custom_fields` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `field_type_id` int(11) NOT NULL,
@@ -362,28 +419,30 @@ CREATE TABLE IF NOT EXISTS `custom_fields` (
   `entity` varchar(32) DEFAULT NULL,
   `options` varchar(65) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `custom_fields_data`
+-- Структура таблиці `custom_fields_data`
 --
 
+DROP TABLE IF EXISTS `custom_fields_data`;
 CREATE TABLE IF NOT EXISTS `custom_fields_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `field_id` int(11) NOT NULL,
   `entity_id` int(11) NOT NULL,
   `field_data` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gallery_albums`
+-- Структура таблиці `gallery_albums`
 --
 
+DROP TABLE IF EXISTS `gallery_albums`;
 CREATE TABLE IF NOT EXISTS `gallery_albums` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) DEFAULT NULL,
@@ -397,21 +456,24 @@ CREATE TABLE IF NOT EXISTS `gallery_albums` (
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`),
   KEY `created` (`created`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `gallery_albums`
+-- Дамп даних таблиці `gallery_albums`
 --
 
 INSERT INTO `gallery_albums` (`id`, `category_id`, `name`, `description`, `cover_id`, `position`, `created`, `updated`, `tpl_file`) VALUES
-(1, 1, 'new album', '', 0, 0, 1264086406, 1307538865, '');
+(2, 5, 'Космические роботы', '<p>Image Robotics выпускает лучших космических роботов в нашей галактике.  Их дальность полетов составляет более 10 световых лет, а скорость полета  близка к скорости света.</p>', 0, 0, 1291645421, 1291655903, ''),
+(3, 5, 'Человеко роботы', '', 0, 0, 1291645434, 1291656661, ''),
+(4, 5, 'Боевые роботы', '', 0, 0, 1291645444, 1291656595, '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gallery_category`
+-- Структура таблиці `gallery_category`
 --
 
+DROP TABLE IF EXISTS `gallery_category`;
 CREATE TABLE IF NOT EXISTS `gallery_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) DEFAULT NULL,
@@ -422,21 +484,22 @@ CREATE TABLE IF NOT EXISTS `gallery_category` (
   PRIMARY KEY (`id`),
   KEY `created` (`created`),
   KEY `position` (`position`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `gallery_category`
+-- Дамп даних таблиці `gallery_category`
 --
 
 INSERT INTO `gallery_category` (`id`, `name`, `description`, `cover_id`, `position`, `created`) VALUES
-(1, 'test category', '', 0, 0, 1264086398);
+(5, 'Галерея', '', 0, 0, 1291645412);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gallery_images`
+-- Структура таблиці `gallery_images`
 --
 
+DROP TABLE IF EXISTS `gallery_images`;
 CREATE TABLE IF NOT EXISTS `gallery_images` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `album_id` int(11) DEFAULT NULL,
@@ -452,24 +515,39 @@ CREATE TABLE IF NOT EXISTS `gallery_images` (
   PRIMARY KEY (`id`),
   KEY `album_id` (`album_id`),
   KEY `position` (`position`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=93 ;
 
 --
--- Dumping data for table `gallery_images`
+-- Дамп даних таблиці `gallery_images`
 --
 
 INSERT INTO `gallery_images` (`id`, `album_id`, `file_name`, `file_ext`, `file_size`, `position`, `width`, `height`, `description`, `uploaded`, `views`) VALUES
-(18, 1, 'test', '.jpg', '201.3 Кб', 1, 800, 600, NULL, 1266935445, 229),
-(19, 1, 'Frangipani_Flowers', '.jpg', '53.2 Кб', 2, 800, 600, NULL, 1266935848, 231),
-(37, 1, 'flowers', '.jpg', '81.8 Кб', 4, 800, 600, NULL, 1307538860, 0),
-(36, 1, 'winter', '.jpg', '103.1 Кб', 3, 800, 600, NULL, 1307538860, 0);
+(86, 4, 'kuhonnaya-enziklopediya-integr-v-robota', '.jpg', '26.7 Кб', 43, 450, 332, NULL, 1291656595, 0),
+(85, 4, 'kosmicheskie-roboty', '.jpg', '20.6 Кб', 42, 298, 293, NULL, 1291656592, 0),
+(84, 4, 'glavniy-remontnik-robotov', '.jpg', '32.3 Кб', 41, 310, 400, NULL, 1291656587, 0),
+(83, 4, 'deny-robotehniki-v-imagerobotics', '.jpg', '36.1 Кб', 40, 500, 375, NULL, 1291656584, 5),
+(82, 4, 'cheloveko-roboty', '.jpg', '69.5 Кб', 39, 800, 600, NULL, 1291656581, 4),
+(81, 4, 'boeviye-roboty', '.jpg', '39.2 Кб', 38, 500, 446, NULL, 1291656576, 3),
+(89, 3, 'novie-kosmicheskie-roboty', '.jpg', '17.5 Кб', 46, 400, 324, NULL, 1291656648, 2),
+(88, 3, 'menedger-robotov', '.jpg', '31.0 Кб', 45, 553, 301, NULL, 1291656645, 4),
+(75, 2, 'remont-robotov', '.jpg', '43.9 Кб', 33, 400, 576, NULL, 1291655890, 3),
+(76, 2, 'upgrade-robotov', '.jpg', '40.8 Кб', 34, 468, 348, NULL, 1291655894, 2),
+(77, 2, 'uskorenniye-sistemy-diagnostiki-robotov', '.jpg', '82.9 Кб', 35, 800, 519, NULL, 1291655898, 1),
+(78, 2, 'v-kazhdiy-dom-po-chetire-robota', '.jpg', '41.1 Кб', 36, 800, 547, NULL, 1291655902, 2),
+(92, 3, 'prokat-robotov', '.jpg', '58.0 Кб', 49, 500, 375, NULL, 1291656661, 0),
+(91, 3, 'o-kompanii', '.jpg', '47.4 Кб', 48, 495, 372, NULL, 1291656658, 0),
+(90, 3, 'novoe-v-mire-boevih-robotov', '.jpg', '82.0 Кб', 47, 750, 500, NULL, 1291656653, 5),
+(80, 4, 'apgreyder-robotov', '.jpg', '95.5 Кб', 37, 800, 573, NULL, 1291656573, 8),
+(87, 3, 'kuhonniye-roboty', '.jpg', '29.1 Кб', 44, 450, 380, NULL, 1291656641, 13),
+(74, 2, 'rabochiye-roboty', '.jpg', '34.9 Кб', 32, 500, 400, NULL, 1291655886, 4);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `languages`
+-- Структура таблиці `languages`
 --
 
+DROP TABLE IF EXISTS `languages`;
 CREATE TABLE IF NOT EXISTS `languages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lang_name` varchar(100) NOT NULL,
@@ -481,22 +559,22 @@ CREATE TABLE IF NOT EXISTS `languages` (
   PRIMARY KEY (`id`),
   KEY `identif` (`identif`),
   KEY `default` (`default`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
 
 --
--- Dumping data for table `languages`
+-- Дамп даних таблиці `languages`
 --
 
 INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `template`, `default`) VALUES
-(3, 'Русский', 'ru', '', 'russian', 'commerce', 1),
-(30, 'English', 'en', '', 'english', 'commerce', 0);
+(3, 'Русский', 'ru', '', 'russian', 'default', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `login_attempts`
+-- Структура таблиці `login_attempts`
 --
 
+DROP TABLE IF EXISTS `login_attempts`;
 CREATE TABLE IF NOT EXISTS `login_attempts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ip_address` varchar(40) NOT NULL,
@@ -504,221 +582,79 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
   PRIMARY KEY (`id`),
   KEY `ip_address` (`ip_address`),
   KEY `time` (`time`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=64 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=43 ;
+
+--
+-- Дамп даних таблиці `login_attempts`
+--
+
+INSERT INTO `login_attempts` (`id`, `ip_address`, `time`) VALUES
+(39, '127.0.0.1', '2013-03-18 14:24:07'),
+(40, '127.0.0.1', '2013-03-18 14:24:16'),
+(41, '127.0.0.1', '2013-03-18 14:25:11'),
+(42, '127.0.0.1', '2013-03-18 14:25:18');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `logs`
+-- Структура таблиці `logs`
 --
 
+DROP TABLE IF EXISTS `logs`;
 CREATE TABLE IF NOT EXISTS `logs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `username` varchar(250) NOT NULL,
+  `username` varchar(255) NOT NULL,
   `message` text NOT NULL,
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `date` (`date`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=174 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=88 ;
 
 --
--- Dumping data for table `logs`
+-- Дамп даних таблиці `logs`
 --
 
 INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
-(1, 1, 'admin', 'Вошел в панель управления IP 127.0.0.2', 1328788922),
-(2, 1, 'admin', 'Вошел в панель управления IP 127.0.0.2', 1328884353),
-(3, 1, 'admin', 'Вошел в панель управления IP 127.0.0.2', 1329137906),
-(4, 1, 'admin', 'Вошел в панель управления IP 127.0.0.2', 1329213320),
-(5, 1, 'admin', 'Вошел в панель управления IP 127.0.0.2', 1329218395),
-(6, 1, 'admin', 'Вошел в панель управления IP 127.0.0.2', 1329321092),
-(7, 1, 'admin', 'Вошел в панель управления IP 127.0.0.2', 1329386614),
-(8, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1331835057),
-(9, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1331903485),
-(10, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1332148061),
-(11, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1332233794),
-(12, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1332325377),
-(13, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1332328971),
-(14, 1, 'admin', 'Установил модуль language_switch', 1332330224),
-(15, 1, 'admin', 'Создал виджет language_swithcer', 1332331128),
-(16, 1, 'admin', 'Удалил виджет language_swithcer', 1332331366),
-(17, 1, 'admin', 'Удалил модуль language_switch', 1332331378),
-(18, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1332421414),
-(19, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1332496693),
-(20, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1332748520),
-(21, 1, 'admin', 'Создал пользователя user', 1332849604),
-(22, 1, 'admin', 'Удалил пользователя user', 1332854772),
-(23, 1, 'admin', 'Вошел в панель управления IP 127.0.0.2', 1333379757),
-(24, 1, 'admin', 'Вошел в панель управления IP 127.0.0.2', 1333461375),
-(25, 1, 'admin', 'Вошел в панель управления IP 127.0.0.2', 1333533522),
-(26, 1, 'admin', 'Вошел в панель управления IP 127.0.0.2', 1333633996),
-(27, 1, 'admin', 'Вошел в панель управления IP 127.0.0.2', 1333701261),
-(28, 1, 'admin', 'Вошел в панель управления IP 127.0.0.2', 1333979622),
-(29, 1, 'admin', 'Вошел в панель управления IP 127.0.0.2', 1334664573),
-(30, 1, 'admin', 'Вошел в панель управления IP 127.0.0.2', 1334835786),
-(31, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1336651868),
-(32, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1336658719),
-(33, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1336662094),
-(34, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1336732290),
-(35, 1, 'admin', '\n      Создал страницу\n     <a href="#" onclick="ajax_div(''page'',''http://imagecms.shop/admin/pages/edit/73''); return false;">Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!</a>', 1336736882),
-(36, 1, 'admin', '\n        Изменил страницу\n        <a href="#" onclick="ajax_div(''page'',''http://imagecms.shop/admin/pages/edit/73''); return false;">Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!</a>', 1336737315),
-(37, 1, 'admin', 'Изменил язык Русский', 1336737433),
-(38, 1, 'admin', 'Удалил страницу ID 69', 1336737581),
-(39, 1, 'admin', '\n      Создал страницу\n     <a href="#" onclick="ajax_div(''page'',''http://imagecms.shop/admin/pages/edit/74''); return false;">Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!</a>', 1336737610),
-(40, 1, 'admin', '\n        Изменил страницу\n        <a href="#" onclick="ajax_div(''page'',''http://imagecms.shop/admin/pages/edit/73''); return false;">Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!</a>', 1336737669),
-(41, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1336986072),
-(42, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1336987777),
-(43, 1, 'admin', 'Изменил настройки сайта', 1337011518),
-(44, 1, 'admin', 'Очистил кеш', 1337011527),
-(45, 1, 'admin', 'Очистил кеш', 1337084965),
-(46, 1, 'admin', 'Очистил кеш', 1337155730),
-(47, 1, 'admin', 'Очистил кеш', 1337427423),
-(48, 1, 'admin', 'Вышел из панели управления', 1337515935),
-(49, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1337517574),
-(50, 1, 'admin', 'Вышел из панели управления', 1337517584),
-(51, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1337517639),
-(52, 1, 'admin', 'Очистил кеш', 1337533523),
-(53, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1337596811),
-(54, 1, 'admin', 'Вышел из панели управления', 1337597287),
-(55, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1337597293),
-(56, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1337678052),
-(57, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1337698985),
-(58, 1, 'admin', 'Вышел из панели управления', 1337698991),
-(59, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1337699627),
-(60, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1337768262),
-(61, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1337773005),
-(62, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1337844389),
-(63, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1337846191),
-(64, 1, 'admin', 'Очистил кеш', 1337852395),
-(65, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1337856238),
-(66, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1337863205),
-(67, 1, 'admin', 'Вышел из панели управления', 1337863227),
-(68, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1337863396),
-(69, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1337929574),
-(70, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1337930690),
-(71, 1, 'admin', 'Очистил кеш', 1340031146),
-(72, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1340120888),
-(73, 1, 'admin', 'Очистил кеш', 1340121004),
-(74, 1, 'admin', 'Изменил настройки сайта', 1340121068),
-(75, 1, 'admin', 'Изменил настройки сайта', 1340121079),
-(76, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1341221521),
-(77, 1, 'admin', 'Очистил кеш', 1341225009),
-(78, 1, 'admin', 'Очистил кеш', 1341238429),
-(79, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1342006563),
-(80, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1343634959),
-(81, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1343638277),
-(82, 1, 'admin', 'Изменил язык English', 1343660593),
-(83, 1, 'admin', 'Изменил настройки сайта', 1343662835),
-(84, 1, 'admin', 'Изменил настройки сайта', 1343662840),
-(85, 1, 'admin', '\n                    Создал перевод категории \n                    <a href="#" onclick="edit_category(1); return false;">Главная</a>', 1343663189),
-(86, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(1); return false;">Главная</a>', 1343663190),
-(87, 1, 'admin', '\n                    Создал перевод категории \n                    <a href="#" onclick="edit_category(1); return false;">Главная</a>', 1343663206),
-(88, 1, 'admin', '\n                    Изменил перевод категории \n                    <a href="#" onclick="edit_category(1); return false;">Главная</a>', 1343663210),
-(89, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(1); return false;">Главная</a>', 1343663212),
-(90, 1, 'admin', '\n				Изменил страницу\n				<a href="#" onclick="ajax_div(''page'',''http://www.imagecmsshop.loc/admin/pages/edit/75''); return false;">Contact</a>', 1343663245),
-(91, 1, 'admin', '\n				Изменил страницу\n				<a href="#" onclick="ajax_div(''page'',''http://www.imagecmsshop.loc/admin/pages/edit/76''); return false;">Delivery</a>', 1343664818),
-(92, 1, 'admin', '\n				Изменил страницу\n				<a href="#" onclick="ajax_div(''page'',''http://www.imagecmsshop.loc/admin/pages/edit/76''); return false;">Delivery</a>', 1343664842),
-(93, 1, 'admin', '\n				Изменил страницу\n				<a href="#" onclick="ajax_div(''page'',''http://www.imagecmsshop.loc/admin/pages/edit/75''); return false;">Contact</a>', 1343664873),
-(94, 1, 'admin', '\n				Изменил страницу\n				<a href="#" onclick="ajax_div(''page'',''http://www.imagecmsshop.loc/admin/pages/edit/77''); return false;">Help</a>', 1343664897),
-(95, 1, 'admin', '\n				Изменил страницу\n				<a href="#" onclick="ajax_div(''page'',''http://www.imagecmsshop.loc/admin/pages/edit/78''); return false;">Payment</a>', 1343664949),
-(96, 1, 'admin', 'Назначил язык English по умолчанию', 1343666453),
-(97, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1343722531),
-(98, 1, 'admin', '\n				Изменил страницу\n				<a href="#" onclick="ajax_div(''page'',''http://www.imagecmsshop.loc/admin/pages/edit/80''); return false;">Site</a>', 1343722690),
-(99, 1, 'admin', '\n				Изменил страницу\n				<a href="#" onclick="ajax_div(''page'',''http://www.imagecmsshop.loc/admin/pages/edit/80''); return false;">Site</a>', 1343722704),
-(100, 1, 'admin', 'Назначил язык Русский по умолчанию', 1343722791),
-(101, 1, 'admin', 'Назначил язык English по умолчанию', 1343722888),
-(102, 1, 'admin', 'Назначил язык Русский по умолчанию', 1343729093),
-(103, 1, 'admin', 'Назначил язык English по умолчанию', 1343731979),
-(104, 1, 'admin', 'Назначил язык Русский по умолчанию', 1343732620),
-(105, 1, 'admin', 'Назначил язык English по умолчанию', 1343732630),
-(106, 1, 'admin', '\n				Изменил страницу\n				<a href="#" onclick="ajax_div(''page'',''http://www.imagecmsshop.loc/admin/pages/edit/81''); return false;">Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок</a>', 1343742434),
-(107, 1, 'admin', '\n				Изменил страницу\n				<a href="#" onclick="ajax_div(''page'',''http://www.imagecmsshop.loc/admin/pages/edit/81''); return false;">Action! Go to the camera Nikon S9100 - Memory Card 8 GB as a gift</a>', 1343743284),
-(108, 1, 'admin', '\n				Изменил страницу\n				<a href="#" onclick="ajax_div(''page'',''http://www.imagecmsshop.loc/admin/pages/edit/73''); return false;">Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!</a>', 1343743335),
-(109, 1, 'admin', 'Назначил язык Русский по умолчанию', 1343743942),
-(110, 1, 'admin', 'Назначил язык English по умолчанию', 1343744091),
-(111, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1343745310),
-(112, 1, 'admin', '\n                    Создал перевод категории \n                    <a href="#" onclick="edit_category(56); return false;">Новости и акции</a>', 1343745337),
-(113, 1, 'admin', '\n                        Изменил категорию   \n                        <a href="#" onclick="edit_category(56); return false;">Новости и акции</a>', 1343745338),
-(114, 1, 'admin', '\n				Изменил страницу\n				<a href="#" onclick="ajax_div(''page'',''http://www.imagecmsshop.loc/admin/pages/edit/79''); return false;">О магазине</a>', 1343745634),
-(115, 1, 'admin', '\n				Изменил страницу\n				<a href="#" onclick="ajax_div(''page'',''http://www.imagecmsshop.loc/admin/pages/edit/79''); return false;">About us</a>', 1343745649),
-(116, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1343746228),
-(117, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1343817774),
-(118, 1, 'admin', 'Очистил кеш', 1343817792),
-(119, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1343821049),
-(120, 1, 'admin', 'Очистил кеш', 1343823630),
-(121, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1343824889),
-(122, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1344417771),
-(123, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1344421833),
-(124, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1344934178),
-(125, 91, 'admin', 'Вышел из панели управления', 1345645124),
-(126, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1345645129),
-(127, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346317936),
-(128, 1, 'admin', 'Назначил язык Русский по умолчанию', 1346317945),
-(129, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346324068),
-(130, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346324574),
-(131, 1, 'admin', 'Назначил язык English по умолчанию', 1346324584),
-(132, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346324961),
-(133, 1, 'admin', 'Назначил язык Русский по умолчанию', 1346324967),
-(134, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346325655),
-(135, 1, 'admin', 'Назначил язык English по умолчанию', 1346325661),
-(136, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346327229),
-(137, 1, 'admin', 'Вышел из панели управления', 1346327242),
-(138, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346327269),
-(139, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346328114),
-(140, 1, 'admin', 'Назначил язык Русский по умолчанию', 1346328122),
-(141, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346329962),
-(142, 1, 'admin', 'Назначил язык English по умолчанию', 1346329969),
-(143, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346330003),
-(144, 1, 'admin', 'Установил модуль share', 1346335886),
-(145, 1, 'admin', 'Установил модуль mailer', 1346336110),
-(146, 1, 'admin', 'Удалил модуль mailer', 1346337410),
-(147, 1, 'admin', 'Назначил язык Русский по умолчанию', 1346412457),
-(148, 1, 'admin', 'Назначил язык English по умолчанию', 1346412500),
-(149, 1, 'admin', 'Назначил язык Русский по умолчанию', 1346412518),
-(150, 1, 'admin', 'Назначил язык English по умолчанию', 1346413745),
-(151, 1, 'admin', 'Назначил язык Русский по умолчанию', 1346414503),
-(152, 1, 'admin', 'Назначил язык English по умолчанию', 1346419627),
-(153, 1, 'admin', 'Назначил язык Русский по умолчанию', 1346419656),
-(154, 1, 'admin', 'Назначил язык English по умолчанию', 1346420326),
-(155, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346426990),
-(156, 1, 'admin', 'Установил модуль user_support', 1346427036),
-(157, 1, 'admin', 'Удалил модуль user_support', 1346427057),
-(158, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346682174),
-(159, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346685108),
-(160, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346686365),
-(161, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346686825),
-(162, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346689135),
-(163, 1, 'admin', 'Изменил страницу<a href="#" onclick="ajax_div(''page'',''http://pushlang.loc/admin/pages/edit/82''); return false;">Action! To the camera Nikon S9100 - 8GB memory card for free!</a>', 1346689276),
-(164, 1, 'admin', 'Изменил страницу<a href="#" onclick="ajax_div(''page'',''http://pushlang.loc/admin/pages/edit/74''); return false;">Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!</a>', 1346689293),
-(165, 1, 'admin', 'Изменил страницу<a href="#" onclick="ajax_div(''page'',''http://pushlang.loc/admin/pages/edit/73''); return false;">Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!</a>', 1346689386),
-(166, 1, 'admin', 'Изменил страницу<a href="#" onclick="ajax_div(''page'',''http://pushlang.loc/admin/pages/edit/81''); return false;">Action! Go to the camera Nikon S9100 - Memory Card 8 GB as a gift</a>', 1346689406),
-(167, 1, 'admin', 'Изменил страницу<a href="#" onclick="ajax_div(''page'',''http://pushlang.loc/admin/pages/edit/73''); return false;">Акция! К фотоаппарату Nikon S9100 - карта памяти 8ГБ в подарок!</a>', 1346689653),
-(168, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346693110),
-(169, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346744686),
-(170, 1, 'admin', 'Назначил язык Русский по умолчанию', 1346745879),
-(171, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346749198),
-(172, 1, 'admin', 'Очистил кеш', 1346752792),
-(173, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1346759724);
+(71, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1354803269),
+(72, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1354803292),
+(73, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1354803298),
+(74, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1354803387),
+(75, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1354803425),
+(76, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1354803462),
+(77, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1354803469),
+(78, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1354803478),
+(79, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1354803627),
+(80, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1354803658),
+(81, 1, 'admin', 'Очистил кеш', 1363612492),
+(82, 1, 'admin', 'Изменил страницу<a href="http://www.t1.loc/admin/pages/edit/69">Ремонт роботов</a>', 1363612852),
+(83, 1, 'admin', 'Установил модуль star_rating', 1363613907),
+(84, 1, 'admin', 'Очистил кеш', 1363613941),
+(85, 1, 'admin', 'Очистил кеш', 1363614943),
+(86, 1, 'admin', 'Очистил кеш', 1363615660),
+(87, 1, 'admin', 'Вышел из панели управления', 1363616351);
 
 -- --------------------------------------------------------
 
--- Структура таблицы `mail`
+--
+-- Структура таблиці `mail`
 --
 
+DROP TABLE IF EXISTS `mail`;
 CREATE TABLE IF NOT EXISTS `mail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) DEFAULT NULL,
   `date` int(15) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menus`
+-- Структура таблиці `menus`
 --
 
+DROP TABLE IF EXISTS `menus`;
 CREATE TABLE IF NOT EXISTS `menus` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) NOT NULL,
@@ -729,23 +665,23 @@ CREATE TABLE IF NOT EXISTS `menus` (
   `created` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `menus`
+-- Дамп даних таблиці `menus`
 --
 
 INSERT INTO `menus` (`id`, `name`, `main_title`, `tpl`, `expand_level`, `description`, `created`) VALUES
-(1, 'main_menu', 'Главное меню', 'shop_menu', 0, '', '2012-02-07 15:34:41'),
-(4, 'top_menu', 'Top menu', 'top_menu', 0, 'Menu at the top of template', '2012-05-11 14:53:24'),
-(5, 'footer_menu', 'Footer menu', 'footer_menu', 0, '', '2012-05-25 11:43:06');
+(1, 'main_menu', 'Главное меню', 'main_menu', 1, '', '2012-11-12 21:57:53'),
+(4, 'bottom_menu', 'Нижнее меню', '', 0, '', '2010-12-07 13:56:59');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menus_data`
+-- Структура таблиці `menus_data`
 --
 
+DROP TABLE IF EXISTS `menus_data`;
 CREATE TABLE IF NOT EXISTS `menus_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `menu_id` int(9) NOT NULL,
@@ -762,41 +698,43 @@ CREATE TABLE IF NOT EXISTS `menus_data` (
   PRIMARY KEY (`id`),
   KEY `menu_id` (`menu_id`),
   KEY `position` (`position`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
 
 --
--- Dumping data for table `menus_data`
+-- Дамп даних таблиці `menus_data`
 --
 
 INSERT INTO `menus_data` (`id`, `menu_id`, `item_id`, `item_type`, `item_image`, `roles`, `hidden`, `title`, `parent_id`, `position`, `description`, `add_data`) VALUES
-(10, 1, 0, 'url', '', '', 0, 'Оплата', 0, 3, NULL, 'a:2:{s:3:"url";s:7:"/oplata";s:7:"newpage";s:1:"0";}'),
-(8, 1, 0, 'url', '', '', 0, 'Главная', 0, 1, NULL, 'a:2:{s:3:"url";s:1:"/";s:7:"newpage";s:1:"0";}'),
-(9, 1, 64, 'page', '', '', 0, 'О магазине', 0, 2, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
-(11, 1, 0, 'url', '', '', 0, 'Доставка', 0, 4, NULL, 'a:2:{s:3:"url";s:9:"/dostavka";s:7:"newpage";s:1:"0";}'),
-(12, 1, 0, 'url', '', '', 0, 'Помощь', 0, 5, NULL, 'a:2:{s:3:"url";s:5:"/help";s:7:"newpage";s:1:"0";}'),
-(13, 1, 0, 'url', '', '', 0, 'Контакты', 0, 6, NULL, 'a:2:{s:3:"url";s:11:"/contact_us";s:7:"newpage";s:1:"0";}'),
-(14, 4, 0, 'url', '', '', 0, 'Главная', 0, 1, NULL, 'a:2:{s:3:"url";s:1:"/";s:7:"newpage";s:1:"0";}'),
-(15, 4, 64, 'page', '', '', 0, 'О магазине', 0, 2, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
-(16, 4, 66, 'page', '', '', 0, 'Доставка', 0, 3, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
-(17, 4, 67, 'page', '', '', 0, 'Помощь', 0, 4, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
-(18, 4, 68, 'page', '', '', 0, 'Контакты', 0, 5, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
-(19, 5, 0, 'url', '', '', 0, 'Главная', 0, 1, NULL, 'a:2:{s:3:"url";s:1:"/";s:7:"newpage";s:1:"0";}'),
-(20, 5, 0, 'url', '', '', 0, 'Видео', 0, 2, NULL, 'a:2:{s:3:"url";s:20:"/shop/category/video";s:7:"newpage";s:1:"0";}'),
-(21, 5, 64, 'page', '', '', 0, 'О магазине', 0, 3, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
-(22, 5, 0, 'url', '', '', 0, 'Домашнее  аудио', 0, 4, NULL, 'a:2:{s:3:"url";s:30:"/shop/category/domashnee_audio";s:7:"newpage";s:1:"0";}'),
-(23, 5, 66, 'page', '', '', 0, 'Доставка и оплата', 0, 5, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
-(24, 5, 0, 'url', '', '', 0, 'Фото и камеры', 0, 6, NULL, 'a:2:{s:3:"url";s:28:"/shop/category/foto_i_kamery";s:7:"newpage";s:1:"0";}'),
-(25, 5, 67, 'page', '', '', 0, 'Помощь', 0, 7, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
-(26, 5, 0, 'url', '', '', 0, 'Домашняя электроника', 0, 8, NULL, 'a:2:{s:3:"url";s:38:"/shop/category/domashniaia_elektronika";s:7:"newpage";s:1:"0";}'),
-(27, 5, 68, 'page', '', '', 0, 'Контакты', 0, 9, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
-(28, 5, 0, 'url', '', '', 0, 'Авто музыка и видео', 0, 10, NULL, 'a:2:{s:3:"url";s:34:"/shop/category/avto_muzyka_i_video";s:7:"newpage";s:1:"0";}');
+(1, 1, 0, 'url', '', '', 0, 'Главная', 0, 1, NULL, 'a:2:{s:3:"url";s:1:"/";s:7:"newpage";N;}'),
+(2, 1, 59, 'category', '', '', 0, 'Блог', 0, 8, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
+(3, 1, 0, 'module', '', '', 0, 'Контакты', 9, 6, NULL, 'a:3:{s:8:"mod_name";s:8:"feedback";s:6:"method";s:0:"";s:7:"newpage";N;}'),
+(4, 1, 0, 'module', '', '', 0, 'Галерея', 0, 5, NULL, 'a:2:{s:8:"mod_name";s:7:"gallery";s:6:"method";s:0:"";}'),
+(8, 1, 63, 'page', '', '', 0, 'О компании', 0, 2, NULL, NULL),
+(9, 1, 55, 'category', '', '', 0, 'Продукция', 0, 3, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
+(10, 1, 56, 'category', '', '', 0, 'Услуги', 0, 4, NULL, NULL),
+(11, 1, 57, 'category', '', '', 0, 'Новости', 0, 6, NULL, NULL),
+(12, 1, 58, 'category', '', '', 0, 'Вакансии', 0, 7, NULL, NULL),
+(14, 1, 69, 'page', '', '', 0, 'Ремонт роботов', 10, 1, NULL, NULL),
+(15, 1, 70, 'page', '', '', 0, 'Апгрейд роботов', 10, 3, NULL, NULL),
+(16, 1, 71, 'page', '', '', 0, 'Прокат роботов', 10, 4, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
+(17, 1, 64, 'page', '', '', 0, 'Человеко роботы', 9, 1, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
+(18, 1, 65, 'page', '', '', 0, 'Боевые роботы', 9, 2, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
+(19, 1, 66, 'page', '', '', 0, 'Космические роботы', 9, 3, NULL, NULL),
+(20, 1, 67, 'page', '', '', 0, 'Кухонные роботы', 9, 4, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
+(21, 1, 68, 'page', '', '', 0, 'Рабочие роботы', 9, 5, NULL, NULL),
+(25, 4, 63, 'page', '', 'a:1:{i:0;s:1:"0";}', 0, 'О компании', 0, 1, NULL, NULL),
+(26, 4, 0, 'module', '', '', 0, 'Обратная связь', 0, 5, NULL, 'a:2:{s:8:"mod_name";s:8:"feedback";s:6:"method";s:0:"";}'),
+(27, 4, 57, 'category', '', '', 0, 'Новости', 0, 2, NULL, NULL),
+(28, 4, 58, 'category', '', '', 0, 'Вакансии', 0, 3, NULL, NULL),
+(29, 4, 59, 'category', '', '', 0, 'Блог', 0, 4, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menu_translate`
+-- Структура таблиці `menu_translate`
 --
 
+DROP TABLE IF EXISTS `menu_translate`;
 CREATE TABLE IF NOT EXISTS `menu_translate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `item_id` int(11) NOT NULL,
@@ -805,98 +743,71 @@ CREATE TABLE IF NOT EXISTS `menu_translate` (
   PRIMARY KEY (`id`),
   KEY `item_id` (`item_id`),
   KEY `lang_id` (`lang_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=52 ;
-
---
--- Dumping data for table `menu_translate`
---
-
-INSERT INTO `menu_translate` (`id`, `item_id`, `lang_id`, `title`) VALUES
-(32, 8, 30, 'Home'),
-(31, 8, 3, 'Главная'),
-(6, 9, 30, 'About'),
-(5, 9, 3, 'О Магазине'),
-(7, 13, 3, 'Контакты'),
-(8, 13, 30, 'Contacts'),
-(11, 10, 3, 'Оплата'),
-(12, 10, 30, 'Delivery'),
-(15, 12, 3, 'Помощь'),
-(16, 12, 30, 'Help'),
-(17, 14, 3, 'Главная'),
-(18, 14, 30, 'Home'),
-(19, 15, 3, 'О магазине'),
-(20, 15, 30, 'About'),
-(21, 16, 3, 'Доставка'),
-(22, 16, 30, 'Delivery'),
-(23, 17, 3, 'Помощь'),
-(24, 17, 30, 'Help'),
-(25, 18, 3, 'Контакты'),
-(26, 18, 30, 'Contacts'),
-(29, 19, 3, 'Главная'),
-(30, 19, 30, 'Home'),
-(33, 20, 3, 'Видео'),
-(34, 20, 30, 'Video'),
-(36, 21, 3, 'О магазине'),
-(37, 21, 30, 'About'),
-(38, 22, 3, 'Домашнее аудио'),
-(39, 22, 30, 'Home music'),
-(40, 23, 3, 'Доставка и оплата'),
-(41, 23, 30, 'Delivery'),
-(42, 24, 3, 'Фото и камеры'),
-(43, 24, 30, 'Photo and Camera'),
-(44, 25, 3, 'Помощь'),
-(45, 25, 30, 'Help'),
-(46, 26, 3, 'Домашняя электроника'),
-(47, 26, 30, 'Home Electronics'),
-(48, 27, 3, 'Контакты'),
-(49, 27, 30, 'Contacts'),
-(50, 28, 3, 'Авто музыка и видео'),
-(51, 28, 30, 'Auto Tabs');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permissions`
+-- Структура таблиці `permissions`
 --
 
+DROP TABLE IF EXISTS `permissions`;
 CREATE TABLE IF NOT EXISTS `permissions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) NOT NULL,
   `data` text,
   PRIMARY KEY (`id`),
   KEY `role_id` (`role_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `permissions`
+-- Дамп даних таблиці `permissions`
 --
 
 INSERT INTO `permissions` (`id`, `role_id`, `data`) VALUES
-(1, 2, 'a:37:{s:9:"cp_access";s:1:"1";s:13:"cp_autoupdate";s:1:"1";s:14:"cp_page_search";s:1:"1";s:11:"lang_create";s:1:"1";s:9:"lang_edit";s:1:"1";s:11:"lang_delete";s:1:"1";s:16:"cp_site_settings";s:1:"1";s:11:"cache_clear";s:1:"1";s:11:"page_create";s:1:"1";s:9:"page_edit";s:1:"1";s:11:"page_delete";s:1:"1";s:15:"category_create";s:1:"1";s:13:"category_edit";s:1:"1";s:15:"category_delete";s:1:"1";s:14:"module_install";s:1:"1";s:16:"module_deinstall";s:1:"1";s:12:"module_admin";s:1:"1";s:13:"widget_create";s:1:"1";s:13:"widget_delete";s:1:"1";s:22:"widget_access_settings";s:1:"1";s:11:"menu_create";s:1:"1";s:9:"menu_edit";s:1:"1";s:11:"menu_delete";s:1:"1";s:11:"user_create";s:1:"1";s:21:"user_create_all_roles";s:1:"1";s:9:"user_edit";s:1:"1";s:11:"user_delete";s:1:"1";s:14:"user_view_data";s:1:"1";s:12:"roles_create";s:1:"1";s:10:"roles_edit";s:1:"1";s:12:"roles_delete";s:1:"1";s:9:"logs_view";s:1:"1";s:13:"backup_create";s:1:"1";s:15:"tinybrowser_all";s:1:"1";s:18:"tinybrowser_upload";s:1:"1";s:16:"tinybrowser_edit";s:1:"1";s:19:"tinybrowser_folders";s:1:"1";}');
+(1, 10, 'a:36:{s:9:"cp_access";s:1:"1";s:13:"cp_autoupdate";s:1:"1";s:14:"cp_page_search";s:1:"1";s:11:"lang_create";s:1:"1";s:9:"lang_edit";s:1:"1";s:11:"lang_delete";s:1:"1";s:16:"cp_site_settings";s:1:"1";s:11:"cache_clear";s:1:"1";s:11:"page_create";s:1:"1";s:9:"page_edit";s:1:"1";s:11:"page_delete";s:1:"1";s:15:"category_create";s:1:"1";s:13:"category_edit";s:1:"1";s:15:"category_delete";s:1:"1";s:14:"module_install";s:1:"1";s:16:"module_deinstall";s:1:"1";s:12:"module_admin";s:1:"1";s:13:"widget_create";s:1:"1";s:13:"widget_delete";s:1:"1";s:22:"widget_access_settings";s:1:"1";s:11:"menu_create";s:1:"1";s:9:"menu_edit";s:1:"1";s:11:"menu_delete";s:1:"1";s:11:"user_create";s:1:"1";s:21:"user_create_all_roles";s:1:"1";s:9:"user_edit";s:1:"1";s:11:"user_delete";s:1:"1";s:14:"user_view_data";s:1:"1";s:14:"xfields_create";s:1:"1";s:14:"xfields_delete";s:1:"1";s:12:"xfields_edit";s:1:"1";s:12:"roles_create";s:1:"1";s:10:"roles_edit";s:1:"1";s:12:"roles_delete";s:1:"1";s:9:"logs_view";s:1:"1";s:13:"backup_\ncreate";s:1:"1";}');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `propel_migration`
+-- Структура таблиці `propel_migration`
 --
 
+DROP TABLE IF EXISTS `propel_migration`;
 CREATE TABLE IF NOT EXISTS `propel_migration` (
   `version` int(11) DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `propel_migration`
+-- Дамп даних таблиці `propel_migration`
 --
 
 INSERT INTO `propel_migration` (`version`) VALUES
-(1346160931);
+(1289824919);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `roles`
+-- Структура таблиці `rating`
 --
 
+DROP TABLE IF EXISTS `rating`;
+CREATE TABLE IF NOT EXISTS `rating` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_type` varchar(25) DEFAULT NULL,
+  `type` varchar(25) DEFAULT NULL,
+  `votes` int(11) NOT NULL,
+  `rating` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `roles`
+--
+
+DROP TABLE IF EXISTS `roles`;
 CREATE TABLE IF NOT EXISTS `roles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL DEFAULT '0',
@@ -906,22 +817,23 @@ CREATE TABLE IF NOT EXISTS `roles` (
   PRIMARY KEY (`id`),
   KEY `parent_id` (`parent_id`),
   KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=19 ;
 
 --
--- Dumping data for table `roles`
+-- Дамп даних таблиці `roles`
 --
 
 INSERT INTO `roles` (`id`, `parent_id`, `name`, `alt_name`, `desc`) VALUES
 (1, 0, 'user', 'Пользователи', ''),
-(2, 0, 'admin', 'Администраторы', '');
+(10, 0, 'admin', 'Администраторы', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `search`
+-- Структура таблиці `search`
 --
 
+DROP TABLE IF EXISTS `search`;
 CREATE TABLE IF NOT EXISTS `search` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `hash` varchar(264) DEFAULT NULL,
@@ -937,14 +849,15 @@ CREATE TABLE IF NOT EXISTS `search` (
   PRIMARY KEY (`id`),
   KEY `hash` (`hash`),
   KEY `datetime` (`datetime`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `settings`
+-- Структура таблиці `settings`
 --
 
+DROP TABLE IF EXISTS `settings`;
 CREATE TABLE IF NOT EXISTS `settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `s_name` varchar(50) NOT NULL,
@@ -972,6 +885,8 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `lang_sel` varchar(15) NOT NULL DEFAULT 'russian_lang',
   `google_webmaster` varchar(200) DEFAULT NULL,
   `yandex_webmaster` varchar(200) DEFAULT NULL,
+  `yandex_metric` varchar(200) DEFAULT NULL,
+  `ss` varchar(255) NOT NULL,
   `cat_list` varchar(10) NOT NULL,
   `text_editor` varchar(30) NOT NULL,
   PRIMARY KEY (`id`),
@@ -979,60 +894,1040 @@ CREATE TABLE IF NOT EXISTS `settings` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `settings`
+-- Дамп даних таблиці `settings`
 --
 
-INSERT INTO `settings` (`id`, `s_name`, `site_title`, `site_short_title`, `site_description`, `site_keywords`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `cat_list`, `text_editor`) VALUES
-(2, 'main', 'imagecmsshop', 'ImageCMS Shop', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники', 'auto', 'auto', '0', '0', 1, 1, '/', 'full', 'commerce', 'no', '', 'module', 69, '56', 'shop', '', '', 'russian_lang', 'yes', 'tinymce');
+INSERT INTO `settings` (`id`, `s_name`, `site_title`, `site_short_title`, `site_description`, `site_keywords`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `ss`, `cat_list`, `text_editor`) VALUES
+(2, 'main', 'f', 'ImageCMS', '', '', 'auto', 'auto', '0', '0', 1, 1, '/', 'full', 'default', 'no', '', 'page', 69, '56', 'user_manager', '', '', 'russian_lang', '', '', NULL, '', 'yes', 'elrte');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tags`
+-- Структура таблиці `shop_rbac_group`
 --
 
+DROP TABLE IF EXISTS `shop_rbac_group`;
+CREATE TABLE IF NOT EXISTS `shop_rbac_group` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(10) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=60 ;
+
+--
+-- Дамп даних таблиці `shop_rbac_group`
+--
+
+INSERT INTO `shop_rbac_group` (`id`, `type`, `name`) VALUES
+(28, 'base', 'Admin'),
+(29, 'base', 'Admin_logs'),
+(30, 'base', 'Admin_search'),
+(31, 'base', 'Backup'),
+(32, 'base', 'Cache_all'),
+(33, 'base', 'Categories'),
+(34, 'base', 'Components'),
+(35, 'base', 'Dashboard'),
+(36, 'base', 'Languages'),
+(37, 'base', 'Login'),
+(39, 'base', 'Pages'),
+(40, 'base', 'Rbac'),
+(41, 'base', 'Settings'),
+(43, 'module', 'Cfcm'),
+(44, 'module', 'Comments'),
+(45, 'module', 'Feedback'),
+(46, 'module', 'Gallery'),
+(47, 'module', 'Group_mailer'),
+(48, 'module', 'Mailer'),
+(49, 'module', 'Menu'),
+(50, 'module', 'Rss'),
+(51, 'module', 'Sample_mail'),
+(53, 'module', 'Share'),
+(54, 'module', 'Sitemap'),
+(55, 'module', 'Social_servises'),
+(56, 'module', 'Template_editor'),
+(57, 'module', 'Trash'),
+(58, 'module', 'User_manager'),
+(59, 'base', 'Widgets_manager');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `shop_rbac_group_i18n`
+--
+
+DROP TABLE IF EXISTS `shop_rbac_group_i18n`;
+CREATE TABLE IF NOT EXISTS `shop_rbac_group_i18n` (
+  `id` int(11) NOT NULL,
+  `description` varchar(200) DEFAULT NULL,
+  `locale` varchar(5) NOT NULL,
+  KEY `id_idx` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Дамп даних таблиці `shop_rbac_group_i18n`
+--
+
+INSERT INTO `shop_rbac_group_i18n` (`id`, `description`, `locale`) VALUES
+(28, 'Доступ к админ панели', 'ru'),
+(29, 'История событий', 'ru'),
+(30, 'Управление поиском в базовой админ панели', 'ru'),
+(31, 'Управление бекапами', 'ru'),
+(32, 'Управление кешем', 'ru'),
+(33, 'Управление категориями сайта', 'ru'),
+(34, 'Управление компонентами сайта', 'ru'),
+(35, 'Управление главной станицой базовой админ панели', 'ru'),
+(36, 'Управление языками', 'ru'),
+(37, 'Вход в админ панель', 'ru'),
+(39, 'Управление страницами', 'ru'),
+(40, 'Управление правами доступа', 'ru'),
+(41, 'Управление базовыми настройками', 'ru'),
+(43, 'Управление констуктором полей', 'ru'),
+(44, 'Управление комментариями', 'ru'),
+(45, 'Управление обратной связью', 'ru'),
+(46, 'Управление галереей', 'ru'),
+(47, 'Управление модулем рассылки', 'ru'),
+(48, 'Управление модулем подписки и рассылки', 'ru'),
+(49, 'Управление меню', 'ru'),
+(50, 'Управление модулем RSS', 'ru'),
+(51, 'Управление шаблонами писем', 'ru'),
+(53, 'Управление модулем кнопок соцсетей', 'ru'),
+(54, 'Управление модулем карта сайта', 'ru'),
+(55, 'Управление модулем интеграции с соцсетями', 'ru'),
+(56, 'Управление модулем редактор шаблонов', 'ru'),
+(57, 'Управление модулем перенаправления', 'ru'),
+(58, 'Управление пользователями', 'ru'),
+(59, 'Управление виджетами', 'ru');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `shop_rbac_privileges`
+--
+
+DROP TABLE IF EXISTS `shop_rbac_privileges`;
+CREATE TABLE IF NOT EXISTS `shop_rbac_privileges` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `group_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `shop_rbac_privileges_I_1` (`name`),
+  KEY `shop_rbac_privileges_FI_1` (`group_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=485 ;
+
+--
+-- Дамп даних таблиці `shop_rbac_privileges`
+--
+
+INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`) VALUES
+(210, 'Admin::__construct', 28),
+(211, 'Admin::init', 28),
+(212, 'Admin::index', 28),
+(213, 'Admin::sys_info', 28),
+(214, 'Admin::delete_cache', 28),
+(215, 'Admin::elfinder_init', 28),
+(216, 'Admin::get_csrf', 28),
+(218, 'Admin::logout', 28),
+(219, 'Admin::report_bug', 28),
+(220, 'Admin_logs::__construct', 29),
+(221, 'Admin_logs::index', 29),
+(222, 'Admin_search::__construct', 30),
+(224, 'Admin_search::advanced_search', 30),
+(225, 'Admin_search::do_advanced_search', 30),
+(226, 'Admin_search::validate_advanced_search', 30),
+(228, 'Admin_search::_filter_pages', 30),
+(229, 'Admin_search::autocomplete', 30),
+(230, 'Backup::__construct', 31),
+(231, 'Backup::index', 31),
+(232, 'Backup::create', 31),
+(233, 'Backup::force_download', 31),
+(234, 'Cache_all::__construct', 32),
+(235, 'Cache_all::index', 32),
+(236, 'Categories::__construct', 33),
+(237, 'Categories::index', 33),
+(238, 'Categories::create_form', 33),
+(240, 'Categories::save_positions', 33),
+(241, 'Categories::cat_list', 33),
+(243, 'Categories::create', 33),
+(244, 'Categories::update_urls', 33),
+(245, 'Categories::category_exists', 33),
+(246, 'Categories::fast_add', 33),
+(247, 'Categories::update_fast_block', 33),
+(248, 'Categories::edit', 33),
+(249, 'Categories::translate', 33),
+(250, 'Categories::delete', 33),
+(251, 'Categories::_get_sub_cats', 33),
+(252, 'Categories::get_comments_status', 33),
+(253, 'Components::__construct', 34),
+(254, 'Components::index', 34),
+(255, 'Components::modules_table', 34),
+(256, 'Components::is_installed', 34),
+(257, 'Components::install', 34),
+(258, 'Components::deinstall', 34),
+(259, 'Components::find_components', 34),
+(260, 'Components::component_settings', 34),
+(261, 'Components::save_settings', 34),
+(262, 'Components::init_window', 34),
+(263, 'Components::cp', 34),
+(264, 'Components::run', 34),
+(265, 'Components::com_info', 34),
+(266, 'Components::get_module_info', 34),
+(267, 'Components::change_autoload', 34),
+(268, 'Components::change_url_access', 34),
+(269, 'Components::save_components_positions', 34),
+(270, 'Components::change_show_in_menu', 34),
+(271, 'Dashboard::__construct', 35),
+(272, 'Dashboard::index', 35),
+(273, 'Languages::__construct', 36),
+(274, 'Languages::index', 36),
+(275, 'Languages::create_form', 36),
+(276, 'Languages::insert', 36),
+(277, 'Languages::edit', 36),
+(278, 'Languages::update', 36),
+(279, 'Languages::delete', 36),
+(280, 'Languages::set_default', 36),
+(281, 'Login::__construct', 37),
+(282, 'Login::index', 37),
+(283, 'Login::user_browser', 37),
+(284, 'Login::do_login', 37),
+(285, 'Login::forgot_password', 37),
+(286, 'Login::update_captcha', 37),
+(287, 'Login::captcha_check', 37),
+(293, 'Pages::__construct', 39),
+(294, 'Pages::index', 39),
+(295, 'Pages::add', 39),
+(297, 'Pages::edit', 39),
+(298, 'Pages::update', 39),
+(299, 'Pages::delete', 39),
+(300, 'Pages::ajax_translit', 39),
+(301, 'Pages::save_positions', 39),
+(302, 'Pages::delete_pages', 39),
+(303, 'Pages::move_pages', 39),
+(304, 'Pages::show_move_window', 39),
+(305, 'Pages::json_tags', 39),
+(306, 'Pages::ajax_create_keywords', 39),
+(307, 'Pages::ajax_create_description', 39),
+(308, 'Pages::ajax_change_status', 39),
+(309, 'Pages::GetPagesByCategory', 39),
+(310, 'Rbac::__construct', 40),
+(311, 'Settings::__construct', 41),
+(312, 'Settings::index', 41),
+(314, 'Settings::_get_templates', 41),
+(315, 'Settings::save', 41),
+(316, 'Settings::switch_admin_lang', 41),
+(322, 'cfcm::__construct', 43),
+(323, 'cfcm::_set_forms_config', 43),
+(324, 'cfcm::index', 43),
+(325, 'cfcm::create_field', 43),
+(326, 'cfcm::edit_field_data_type', 43),
+(327, 'cfcm::delete_field', 43),
+(328, 'cfcm::edit_field', 43),
+(329, 'cfcm::create_group', 43),
+(330, 'cfcm::edit_group', 43),
+(331, 'cfcm::delete_group', 43),
+(333, 'cfcm::get_form_attributes', 43),
+(334, 'cfcm::save_weight', 43),
+(335, 'cfcm::render', 43),
+(336, 'cfcm::get_url', 43),
+(337, 'cfcm::get_form', 43),
+(338, 'comments::__construct', 44),
+(339, 'comments::index', 44),
+(340, 'comments::proccess_child_comments', 44),
+(342, 'comments::edit', 44),
+(343, 'comments::update', 44),
+(344, 'comments::update_status', 44),
+(345, 'comments::delete', 44),
+(346, 'comments::delete_many', 44),
+(347, 'comments::show_settings', 44),
+(348, 'comments::update_settings', 44),
+(349, 'feedback::__construct', 45),
+(350, 'feedback::index', 45),
+(351, 'feedback::settings', 45),
+(352, 'gallery::__construct', 46),
+(353, 'gallery::index', 46),
+(354, 'gallery::category', 46),
+(355, 'gallery::settings', 46),
+(356, 'gallery::create_album', 46),
+(357, 'gallery::update_album', 46),
+(358, 'gallery::edit_album_params', 46),
+(359, 'gallery::delete_album', 46),
+(360, 'gallery::show_crate_album', 46),
+(361, 'gallery::edit_album', 46),
+(362, 'gallery::edit_image', 46),
+(363, 'gallery::rename_image', 46),
+(364, 'gallery::delete_image', 46),
+(365, 'gallery::update_info', 46),
+(366, 'gallery::update_positions', 46),
+(367, 'gallery::update_album_positions', 46),
+(368, 'gallery::update_img_positions', 46),
+(369, 'gallery::show_create_category', 46),
+(370, 'gallery::create_category', 46),
+(371, 'gallery::edit_category', 46),
+(372, 'gallery::update_category', 46),
+(373, 'gallery::delete_category', 46),
+(374, 'gallery::upload_image', 46),
+(375, 'gallery::upload_archive', 46),
+(376, 'group_mailer::__construct', 47),
+(377, 'group_mailer::index', 47),
+(378, 'group_mailer::send_email', 47),
+(379, 'mailer::__construct', 48),
+(380, 'mailer::index', 48),
+(381, 'mailer::send_email', 48),
+(382, 'mailer::delete', 48),
+(383, 'menu::__construct', 49),
+(384, 'menu::index', 49),
+(385, 'menu::menu_item', 49),
+(387, 'menu::create_item', 49),
+(390, 'menu::delete_item', 49),
+(391, 'menu::edit_item', 49),
+(394, 'menu::save_positions', 49),
+(395, 'menu::create_menu', 49),
+(396, 'menu::edit_menu', 49),
+(397, 'menu::update_menu', 49),
+(398, 'menu::check_menu_data', 49),
+(399, 'menu::delete_menu', 49),
+(400, 'menu::create_tpl', 49),
+(401, 'menu::get_pages', 49),
+(402, 'menu::search_pages', 49),
+(406, 'menu::translate_window', 49),
+(407, 'menu::translate_item', 49),
+(408, 'menu::_get_langs', 49),
+(410, 'menu::change_hidden', 49),
+(411, 'menu::get_children_items', 49),
+(412, 'rss::__construct', 50),
+(413, 'rss::index', 50),
+(418, 'sample_mail::__construct', 51),
+(419, 'sample_mail::create', 51),
+(420, 'sample_mail::edit', 51),
+(422, 'sample_mail::index', 51),
+(423, 'sample_mail::delete', 51),
+(426, 'share::__construct', 53),
+(427, 'share::index', 53),
+(428, 'share::update_settings', 53),
+(429, 'share::get_settings', 53),
+(431, 'sitemap::__construct', 54),
+(432, 'sitemap::index', 54),
+(434, 'sitemap::update_settings', 54),
+(438, 'social_servises::__construct', 55),
+(439, 'social_servises::index', 55),
+(440, 'social_servises::update_settings', 55),
+(445, 'template_editor::index', 56),
+(447, 'trash::__construct', 57),
+(448, 'trash::index', 57),
+(449, 'trash::create_trash', 57),
+(450, 'trash::edit_trash', 57),
+(451, 'trash::delete_trash', 57),
+(452, 'user_manager::__construct', 58),
+(453, 'user_manager::index', 58),
+(456, 'user_manager::genre_user_table', 58),
+(458, 'user_manager::create_user', 58),
+(460, 'user_manager::search', 58),
+(461, 'user_manager::edit_user', 58),
+(462, 'user_manager::update_user', 58),
+(468, 'user_manager::deleteAll', 58),
+(473, 'Widgets_manager::__construct', 59),
+(474, 'Widgets_manager::index', 59),
+(475, 'Widgets_manager::create', 59),
+(476, 'Widgets_manager::create_tpl', 59),
+(478, 'Widgets_manager::update_widget', 59),
+(479, 'Widgets_manager::update_config', 59),
+(480, 'Widgets_manager::delete', 59),
+(482, 'Widgets_manager::edit_html_widget', 59),
+(483, 'Widgets_manager::edit_module_widget', 59);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `shop_rbac_privileges_i18n`
+--
+
+DROP TABLE IF EXISTS `shop_rbac_privileges_i18n`;
+CREATE TABLE IF NOT EXISTS `shop_rbac_privileges_i18n` (
+  `id` int(11) NOT NULL,
+  `title` varchar(45) NOT NULL,
+  `description` varchar(200) DEFAULT NULL,
+  `locale` varchar(45) NOT NULL,
+  KEY `id_idx` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Дамп даних таблиці `shop_rbac_privileges_i18n`
+--
+
+INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`) VALUES
+(473, 'Управление виджетами', 'Доступ к управлению виджетами', 'ru'),
+(210, 'Доступ к админ панели', 'Доступ к админ панели', 'ru'),
+(211, 'Инициализация настроек', 'Доступ к инициализации настроек', 'ru'),
+(212, 'Просмотр дашборда базовой админки', 'Доступ к просмотру дашборда базовой админки', 'ru'),
+(213, 'Просмотр информации о системе', 'Доступ к просмотру информации о системе', 'ru'),
+(214, 'Очистка кеша', 'Доступ к очистке кеша', 'ru'),
+(215, 'Инициализация elfinder', 'Доступ к инициализации elfinder', 'ru'),
+(216, 'Получение защитного токена', 'Доступ к получению токена', 'ru'),
+(218, 'Выход с админки', 'Доступ к выходу с админки', 'ru'),
+(219, 'Сообщить о ошибке', 'Доступ к сообщению о ошибке', 'ru'),
+(220, 'История событий', 'Доступ к истории событий', 'ru'),
+(221, 'Просмотр истории событий', 'Доступ к просмотру истории событий', 'ru'),
+(222, 'Поиск в базовой версии', 'Доступ к поиску в базовой версии', 'ru'),
+(224, 'Продвинутый поиск в базовой версии', 'Доступ к продвинутому поиску в базовой версии', 'ru'),
+(225, 'Произвести поиск в базовой версии', 'Произвести поиск в базовой версии', 'ru'),
+(226, 'Валидация поиска в базовой версии', 'Доступ к валидации поиска в базовой версии', 'ru'),
+(228, 'Фильтрация страниц', 'Доступ к фильтрации страниц', 'ru'),
+(229, 'Автодополнение поиска', 'Доступ к автодополнению поиска', 'ru'),
+(230, 'Управление бекапами', 'Доступ к управлению бекапами', 'ru'),
+(231, 'Подготовка резервного копирования', 'Доступ к подготовке резервного копирования', 'ru'),
+(232, 'Создание бекапа', 'Доступ к созданию бекапа', 'ru'),
+(233, 'Закачка резервной копии', 'Доступ к созданию резервной копии', 'ru'),
+(234, 'Управление кешем', 'Достпу к управлению кешем', 'ru'),
+(235, 'Управление кешем', 'Доступ к управлению кешем', 'ru'),
+(236, 'Управление категориями сайта', 'Доступ к управлению категориями сайта', 'ru'),
+(237, 'Просмотр списка категорий сайта', 'Доступ к просмотру списка категорий сайта', 'ru'),
+(238, 'Отображение формы создания категории', 'Доступ к отображению формы создания категории', 'ru'),
+(240, 'Смена порядка категорий сайта', 'Доступ к смене порядка категорий сайта', 'ru'),
+(241, 'Просмотр списка категорий сайта', 'Доступ к просмотру списка категорий сайта', 'ru'),
+(243, 'Создание категории сайта', 'Доступ к категории сайта', 'ru'),
+(244, 'Обновление урлов', 'Доступ к обновлению урлов', 'ru'),
+(245, 'Проверка сушествования категории сайта', 'Доступ к проверке сушествования категории сайта', 'ru'),
+(246, 'Быстрое добавление категории', 'Доступ к быстрому добавлению категории', 'ru'),
+(247, 'Быстрое обновление блока', 'Доступ к быстрому обновлению блока', 'ru'),
+(248, 'Редактирование категорий сайта', 'Доступ к редактированию категории сайта', 'ru'),
+(249, 'Перевод категории сайта', 'Доступ к переводу категории сайта', 'ru'),
+(250, 'Удаление категории сайта', 'Доступ к удалению категории сайта', 'ru'),
+(251, 'Получение подкатегорий', 'Доступ к получению подкатегорий', 'ru'),
+(252, 'Получение статуса комментариев', 'Доступ к получению статусув комментариев', 'ru'),
+(253, 'Доступ к компонентам', 'Доступ к компонентам', 'ru'),
+(254, 'Управление компонентами системы', 'Доступ к управлению компонентами системы', 'ru'),
+(255, 'Просмотр списка компонентов сайта', 'Доступ к просмотру списка компонентов сайта', 'ru'),
+(256, 'Проверка установки компонента', 'Доступ к проверке установки компонента', 'ru'),
+(257, 'Установка модуля', 'Доступ к установке модуля', 'ru'),
+(258, 'Удаление модуля', 'Доступ к удалению модуля', 'ru'),
+(259, 'Поиск компонентов', 'Доступ к поиску компонентов', 'ru'),
+(260, 'Настройки модуля', 'Доступ к настройкам модуля', 'ru'),
+(261, 'Сохранение настроек модулей', 'Доступ к сохранению настроек модулей', 'ru'),
+(262, 'Переход к админ части модуля', 'Доступ к админ части модуля', 'ru'),
+(263, 'Запук методов модулей', 'Доступ к запуску методов модулей', 'ru'),
+(264, 'Запук методов модулей', 'Доступ к запуску методов модулей', 'ru'),
+(265, 'Получение информации о модуле', 'Доступ к получению информации о модуле', 'ru'),
+(266, 'Получение информации о модуле', 'Доступ к получению информации о модуле', 'ru'),
+(267, 'Смена статуса автозагрузки модуля', 'Доступ к смене статуса автозагрузки модуля', 'ru'),
+(268, 'Смена доступа по url к модулю', 'Смена доступа по url к модулю', 'ru'),
+(269, 'Смена порядка компонентов в списке', 'Доступ к смене порядка компонентов в списке', 'ru'),
+(270, 'Включение\\отключение отображения модуля в мен', 'Доступ к включению\\отключению отображения модуля в меню', 'ru'),
+(271, 'Отображение дашборда админки', 'Доступ к отображению дашборда админки', 'ru'),
+(272, 'Отображение дашборда админки', 'Доступ к отображению дашборда админки', 'ru'),
+(273, 'Управление языками', 'Доступ к управлению языками', 'ru'),
+(274, 'Просмотр списка языков', 'Достпу к просмотру списка языков', 'ru'),
+(275, 'Отображение формы создания языка', 'Доступ к отображению формы создания языка', 'ru'),
+(276, 'Создание языка', 'Доступ к созданию языка', 'ru'),
+(277, 'Редактирование языка', 'Доступ к редактированию языка', 'ru'),
+(278, 'Обновление языка', 'Доступ к обновлению языка', 'ru'),
+(279, 'Удаление языка', 'Доступ к удалению языка', 'ru'),
+(280, 'Установка языка по-умолчанию', 'Доступ к установке языка по-умолчанию', 'ru'),
+(281, 'Вход в админ панель', 'Доступ к входу в админ панель', 'ru'),
+(282, 'Вход в админ панель', 'Доступ к входу в админ панель', 'ru'),
+(283, 'Проверка браузера пользователя', 'Доступ к проверке браузера пользователя', 'ru'),
+(284, 'Вход', 'Вход', 'ru'),
+(285, 'Восстановление пароля', 'Восстановление пароля', 'ru'),
+(286, 'Обновление капчи', 'Доступ к обновлению капчи', 'ru'),
+(287, 'Проверка капчи', 'Доступ к проверке капчи', 'ru'),
+(293, 'Управление страницами', 'Доступ к управлению страницами', 'ru'),
+(294, 'Просмотр списка страниц', 'Доступ к просмотру списка страниц', 'ru'),
+(295, 'Добавление страницы', 'Доступ к добавлению страницы', 'ru'),
+(297, 'Редактирование страницы', 'Доступ к редактированию страницы', 'ru'),
+(298, 'Обновление страницы', 'Доступ к редактированию страницы', 'ru'),
+(299, 'Удаление страницы', 'Доступ к удалению страницы', 'ru'),
+(300, 'Транслит слов', 'Доступ к транслиту слов', 'ru'),
+(301, 'Смена порядка страниц', 'Доступ к смене порядка страниц', 'ru'),
+(302, 'Удаление страниц', 'Доступ к удалению страниц', 'ru'),
+(303, 'Перемещение страниц', 'Доступ к перемещению страниц', 'ru'),
+(304, 'Отображение страницы перемещения', 'Доступ к отображению страницы перемещения', 'ru'),
+(305, 'Теги', 'Теги', 'ru'),
+(306, 'Создание ключевых слов', 'Доступ к созданию ключевых слов', 'ru'),
+(307, 'Создание описания', 'Доступ к созданию описания', 'ru'),
+(308, 'Смена статуса', 'Доступ к смене статуса', 'ru'),
+(309, 'Фильтр страниц по категории', 'Доступ к фильтру страниц по категории', 'ru'),
+(310, 'Управление доступом', 'Управление доступом', 'ru'),
+(311, 'Настройки сайта', 'Доступ к настройкам сайта', 'ru'),
+(312, 'Настройки сайта', 'Доступ к настройкам сайта', 'ru'),
+(314, 'Список папок с шаблонами', 'Список папок с шаблонами', 'ru'),
+(315, 'Сохранение настроек', 'Доступ к сохранению настроек сайта', 'ru'),
+(316, 'Переключение языка в админке', 'Доступ к переключению языка в админке', 'ru'),
+(322, 'Управление дополнительными полями', 'Доступ к управлению дополнительными полями', 'ru'),
+(323, 'Настройки форм', 'Доступ к настройкам форм', 'ru'),
+(324, 'Управление дополнительными полями', 'Доступ к управлению дополнительными полями', 'ru'),
+(325, 'Создание дополнительного поля', 'Доступ к созданию дополнительного поля', 'ru'),
+(326, 'Редактирование типа дополнительного поля', 'Доступ к редактированию типа дополнительного поля', 'ru'),
+(327, 'Удаление дополнительного поля', 'Доступ к удалению дополнительного поля', 'ru'),
+(328, 'Редактирование дополнительного поля', 'Доступ к редактированию дополнительного поля', 'ru'),
+(329, 'Создание групы полей', 'Доступ к созданию групы полей', 'ru'),
+(330, 'Редактирование групы полей', 'Доступ к редактированию групы полей', 'ru'),
+(331, 'Удаление групы полей', 'Доступ к удалению групы полей', 'ru'),
+(333, 'Получение атрибутов формы', 'Доступ к получению атрибутов формы', 'ru'),
+(334, 'Сохранение важности', 'Доступ к сохранению важности', 'ru'),
+(335, 'Отображение поля', 'Доступ к отображению поля', 'ru'),
+(336, 'Получение адреса', 'Доступ к получению адреса', 'ru'),
+(337, 'Получение формы', 'Доступ к форме', 'ru'),
+(338, 'Управление комментариями', 'Доступ к управлению комментариями', 'ru'),
+(339, 'Отображения списка комментариев', 'Доступ к отображению списка комментариев', 'ru'),
+(340, 'Обработка подкомментариев', 'Доступ к обработке подкомментариев', 'ru'),
+(342, 'Редактирование комментария', 'Доступ к редактированию комментария', 'ru'),
+(343, 'Обновление комментария', 'Доступ к обновлению комментария', 'ru'),
+(344, 'Обновление статуса комментария', 'Доступ к обновлению статуса комментария', 'ru'),
+(345, 'Удаление комментария', 'Доступ к удалению комментария', 'ru'),
+(346, 'Множественное удаление комментариев', 'Доступ к множественному удалению комментариев', 'ru'),
+(347, 'Отображение настроек модуля комментарии', 'Доступ к отображению настроек модуля комментарии', 'ru'),
+(348, 'Обновление настроек комментариев', 'Доступ к обновлению настроек комментариев', 'ru'),
+(349, 'Управление обратноей связью', 'Доступ к управлению обратной связью', 'ru'),
+(350, 'Настройки модуля обратная связь', 'Доступ к настройкам модуля обратная связь', 'ru'),
+(351, 'Получение настроек модуля обратная связь', 'Доступ к получению настроек модуля обратная связь', 'ru'),
+(352, 'Управление галереей', 'Доступ к галерее', 'ru'),
+(353, 'Список категорий галереи', 'Доступ к списку категорий галереи', 'ru'),
+(354, 'Категория галереи', 'Доступ к категории галереи', 'ru'),
+(355, 'Настройки галереи', 'Доступ к настройкам галереи', 'ru'),
+(356, 'Создание альбома', 'Доступ к созданию альбома', 'ru'),
+(357, 'Редактирование альбома', 'Доступ к редактированию альбома', 'ru'),
+(358, 'Редактирование настроек альбома', 'Доступ к редактированию настроек альбома', 'ru'),
+(359, 'Удаление альбома', 'Доступ к удалению альбома', 'ru'),
+(360, 'Отображение формы содания альбома', 'Доступ к форме создания альбома', 'ru'),
+(361, 'Редактирование альбома', 'Доступ к редактированию альбома', 'ru'),
+(362, 'Редактирование изображения', 'Доступ к редактированию изображения', 'ru'),
+(363, 'Переименование изображения', 'Доступ к переименованию изображения', 'ru'),
+(364, 'Удаление изображения', 'Доступ к удалению изображения', 'ru'),
+(365, 'Обновление информации', 'Доступ к обновлению информации', 'ru'),
+(366, 'Смена порядка категорий', 'Доступ к смене порядка категорий', 'ru'),
+(367, 'Смена порядка альбомов', 'Доступ к смене порядка альбомов', 'ru'),
+(368, 'Смена порядка изображений', 'Доступ к смене порядка изображений', 'ru'),
+(369, 'Отображение формы создания категории', 'Доступ к отображению формы создания категории', 'ru'),
+(370, 'Создание категории', 'Доступ к созданию категории', 'ru'),
+(371, 'Редактирование категории', 'Доступ к редактированию категории', 'ru'),
+(372, 'Обновление категории', 'Доступ к обновлению категории', 'ru'),
+(373, 'Удаление категории', 'Доступ к удалению категории', 'ru'),
+(374, 'Загрузка изображений', 'Доступ к загрузке изображений', 'ru'),
+(375, 'Загрузка архива', 'Доступ к загрузке архива', 'ru'),
+(376, 'Управление модулем рассылки', 'Управление модулем рассылки', 'ru'),
+(377, 'Отправка писем групам', 'Доступ к отправке писем групам', 'ru'),
+(378, 'Отправка писем групам', 'Доступ к отправке писем групам', 'ru'),
+(379, 'Отправка писем подписчикам', 'Доступк отправке писем подписчикам', 'ru'),
+(380, 'Отправка писем подписчикам', 'Доступк отправке писем подписчикам', 'ru'),
+(381, 'Отправка писем подписчикам', 'Доступк отправке писем подписчикам', 'ru'),
+(382, 'Удаление подписчиков', 'Доступ к удалению подписчиков', 'ru'),
+(383, 'Управление меню', 'Доступ к управлению меню', 'ru'),
+(384, 'Список меню сайта', 'Доступ к списку меню сайта', 'ru'),
+(385, 'Отображение меню', 'Доступ к отображению меню', 'ru'),
+(387, 'Создание пункта меню', 'Доступ к созданию пункта меню', 'ru'),
+(390, 'Удаление пункта меню', 'Доступ к удалению пункта меню', 'ru'),
+(391, 'Редактирование пункта меню', 'Доступ к редактированию пункта меню', 'ru'),
+(394, 'Смена порядка меню', 'Доступ к смене порядка меню', 'ru'),
+(395, 'Создание меню', 'Доступ к созданию меню', 'ru'),
+(396, 'Редактирование меню', 'Доступ к редактированию меню', 'ru'),
+(397, 'Обновление меню', 'Доступ к обновлению меню', 'ru'),
+(398, 'Проверка данных меню', 'Доступ к проверке данных меню', 'ru'),
+(399, 'Удаление меню', 'Доступ к удалению меню', 'ru'),
+(400, 'Отображение формы создания меню', 'Доступ к отображению формы создания меню', 'ru'),
+(401, 'Получение списка страниц', 'Доступ к получению списка страниц', 'ru'),
+(402, 'Поиск страниц', 'Доступ к поиску страниц', 'ru'),
+(406, 'Отображение окна перевода пункта меню', 'Доступ к отображению окна перевода пункта меню', 'ru'),
+(407, 'Перевод пункта меню', 'Доступ к переводу пункта меню', 'ru'),
+(408, 'Получение списка языков', 'Доступ к получению списка языков', 'ru'),
+(410, 'Смена активности меню', 'Доступ к смене активности меню', 'ru'),
+(411, 'Получение дочерних елементов', 'Доступ к получению дочерних елементов', 'ru'),
+(412, 'Управление rss', 'Управление rss', 'ru'),
+(413, 'Управление rss', 'Управление rss', 'ru'),
+(418, 'Управление шаблонами писем', 'Доступ к управлению шаблонами писем', 'ru'),
+(419, 'Создание шаблона письма', 'Доступ к созданию шаблона письма', 'ru'),
+(420, 'Редактирование шаблона письма', 'Доступ к редактированию шаблона письма', 'ru'),
+(422, 'Список шаблонов писем', 'Доступ к списку шаблонов писем', 'ru'),
+(423, 'Удаление шаблона письма', 'Доступ к удалению шаблона письма', 'ru'),
+(426, 'Управление кнопками соцсетей', 'Доступ к управлению кнопками соцсетей', 'ru'),
+(427, 'Управление кнопками соцсетей', 'Доступ к управлению кнопками соцсетей', 'ru'),
+(428, 'Обновление настроек модуля кнопок соцсетей', 'Доступ к обновлению настроек модуля кнопок соцсетей', 'ru'),
+(429, 'Получение настроек модуля кнопок соцсетей', 'Доступ к настройкам модуля кнопок соцсетей', 'ru'),
+(431, 'Управление картой сайта', 'Доступ к управлению картой сайта', 'ru'),
+(432, 'Настройки карты сайта', 'Доступ к настройкам карты сайта', 'ru'),
+(434, 'Обновление настроек катры сайта', 'Доступ к обновлению настроек карты сайта', 'ru'),
+(438, 'Управление интеграцией с соцсетями', 'Доступ к управлению интеграцией с соцсетями', 'ru'),
+(439, 'Настройки модуля интеграции с соцсетями', 'Достпу к настройкам модуля интеграции с соцсетями', 'ru'),
+(440, 'Обновление настроек модуля', 'Доступ к обновлению настроек модуля', 'ru'),
+(445, 'Редактор шаблонов', 'Доступ к редактору шаблонов', 'ru'),
+(447, 'Управление редиректами с удаленнных товаров', 'Управление редиректами с удаленнных товаров', 'ru'),
+(448, 'Список редиректов', 'Доступ к списку редиректов', 'ru'),
+(449, 'Создание редиректа', 'Доступ к созданию редиректа', 'ru'),
+(450, 'Редактирование редиректа', 'Доступ к редактированию редиректа', 'ru'),
+(451, 'Удаление редаректа', 'Доступ к удалению редиректа', 'ru'),
+(452, 'Управление пользователями', 'Доступ к управлению пользователями', 'ru'),
+(453, 'Список пользователей', 'Доступ к списку пользователей', 'ru'),
+(456, 'Создание списка юзеров', 'Доступ к созданию списка юзеров', 'ru'),
+(458, 'Создание юзера', 'Доступ к созданию юзера', 'ru'),
+(460, 'Поиск пользователей', 'Доступ к поиску пользователей', 'ru'),
+(461, 'Редактирование юзера', 'Доступ к редактированию юзера', 'ru'),
+(462, 'Обновление информации о пользователе', 'Доступ к обновлению информации о пользователе', 'ru'),
+(468, 'Удаление пользователя', 'Доступ к удалению пользвателя', 'ru'),
+(474, 'Список виджетов', 'Доступ к списку виджетов', 'ru'),
+(475, 'Создание виджета', 'Доступ к созданию виджета', 'ru'),
+(476, 'Отображение формы создания виджета', 'Доступ к отображению формы создания виджета', 'ru'),
+(478, 'Обновление виджета', 'Доступ к обновлению виджетов', 'ru'),
+(479, 'Обновление настроек виджета', 'Доступ к обновлению настроек виджета', 'ru'),
+(480, 'Удаление виджета', 'Доступ к удалению виджета', 'ru'),
+(482, 'Редактирование html виджета', 'Доступ к редактированию html виджета', 'ru'),
+(483, 'Редактирование модульного виджета', 'Доступ к редактированию модульного виджета', 'ru');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `shop_rbac_roles`
+--
+
+DROP TABLE IF EXISTS `shop_rbac_roles`;
+CREATE TABLE IF NOT EXISTS `shop_rbac_roles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `importance` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_name` (`name`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Дамп даних таблиці `shop_rbac_roles`
+--
+
+INSERT INTO `shop_rbac_roles` (`id`, `name`, `importance`) VALUES
+(1, 'Administrator', 1),
+(2, 'Sales_manager', 2),
+(3, 'Content_manager', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `shop_rbac_roles_i18n`
+--
+
+DROP TABLE IF EXISTS `shop_rbac_roles_i18n`;
+CREATE TABLE IF NOT EXISTS `shop_rbac_roles_i18n` (
+  `id` int(11) NOT NULL,
+  `alt_name` varchar(45) DEFAULT NULL,
+  `locale` varchar(5) NOT NULL,
+  `description` varchar(200) DEFAULT NULL,
+  KEY `role_id_idx` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Дамп даних таблиці `shop_rbac_roles_i18n`
+--
+
+INSERT INTO `shop_rbac_roles_i18n` (`id`, `alt_name`, `locale`, `description`) VALUES
+(1, 'Администратор', 'ru', 'Доступны все елементы управления админкой'),
+(2, 'Продавец', 'ru', 'Имеет доступ только к заказам и пользователям'),
+(3, 'Контент менеджер', 'ru', 'Доступ к вкладке товары, наполнитель контента');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `shop_rbac_roles_privileges`
+--
+
+DROP TABLE IF EXISTS `shop_rbac_roles_privileges`;
+CREATE TABLE IF NOT EXISTS `shop_rbac_roles_privileges` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_id` int(11) NOT NULL,
+  `privilege_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `rolepriv` (`role_id`,`privilege_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=612 ;
+
+--
+-- Дамп даних таблиці `shop_rbac_roles_privileges`
+--
+
+INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUES
+(210, 1, 210),
+(211, 1, 211),
+(212, 1, 212),
+(213, 1, 213),
+(214, 1, 214),
+(215, 1, 215),
+(216, 1, 216),
+(218, 1, 218),
+(219, 1, 219),
+(220, 1, 220),
+(221, 1, 221),
+(222, 1, 222),
+(224, 1, 224),
+(225, 1, 225),
+(226, 1, 226),
+(228, 1, 228),
+(229, 1, 229),
+(230, 1, 230),
+(231, 1, 231),
+(232, 1, 232),
+(233, 1, 233),
+(234, 1, 234),
+(235, 1, 235),
+(236, 1, 236),
+(237, 1, 237),
+(238, 1, 238),
+(240, 1, 240),
+(241, 1, 241),
+(243, 1, 243),
+(244, 1, 244),
+(245, 1, 245),
+(246, 1, 246),
+(247, 1, 247),
+(248, 1, 248),
+(249, 1, 249),
+(250, 1, 250),
+(251, 1, 251),
+(252, 1, 252),
+(253, 1, 253),
+(254, 1, 254),
+(255, 1, 255),
+(256, 1, 256),
+(257, 1, 257),
+(258, 1, 258),
+(259, 1, 259),
+(260, 1, 260),
+(261, 1, 261),
+(262, 1, 262),
+(263, 1, 263),
+(264, 1, 264),
+(265, 1, 265),
+(266, 1, 266),
+(267, 1, 267),
+(268, 1, 268),
+(269, 1, 269),
+(270, 1, 270),
+(271, 1, 271),
+(272, 1, 272),
+(273, 1, 273),
+(274, 1, 274),
+(275, 1, 275),
+(276, 1, 276),
+(277, 1, 277),
+(278, 1, 278),
+(279, 1, 279),
+(280, 1, 280),
+(281, 1, 281),
+(282, 1, 282),
+(283, 1, 283),
+(284, 1, 284),
+(285, 1, 285),
+(286, 1, 286),
+(287, 1, 287),
+(293, 1, 293),
+(294, 1, 294),
+(295, 1, 295),
+(297, 1, 297),
+(298, 1, 298),
+(299, 1, 299),
+(300, 1, 300),
+(301, 1, 301),
+(302, 1, 302),
+(303, 1, 303),
+(304, 1, 304),
+(305, 1, 305),
+(306, 1, 306),
+(307, 1, 307),
+(308, 1, 308),
+(309, 1, 309),
+(310, 1, 310),
+(311, 1, 311),
+(312, 1, 312),
+(314, 1, 314),
+(315, 1, 315),
+(316, 1, 316),
+(322, 1, 322),
+(323, 1, 323),
+(324, 1, 324),
+(325, 1, 325),
+(326, 1, 326),
+(327, 1, 327),
+(328, 1, 328),
+(329, 1, 329),
+(330, 1, 330),
+(331, 1, 331),
+(333, 1, 333),
+(334, 1, 334),
+(335, 1, 335),
+(336, 1, 336),
+(337, 1, 337),
+(338, 1, 338),
+(339, 1, 339),
+(340, 1, 340),
+(342, 1, 342),
+(343, 1, 343),
+(344, 1, 344),
+(345, 1, 345),
+(346, 1, 346),
+(347, 1, 347),
+(348, 1, 348),
+(349, 1, 349),
+(350, 1, 350),
+(351, 1, 351),
+(352, 1, 352),
+(353, 1, 353),
+(354, 1, 354),
+(355, 1, 355),
+(356, 1, 356),
+(357, 1, 357),
+(358, 1, 358),
+(359, 1, 359),
+(360, 1, 360),
+(361, 1, 361),
+(362, 1, 362),
+(363, 1, 363),
+(364, 1, 364),
+(365, 1, 365),
+(366, 1, 366),
+(367, 1, 367),
+(368, 1, 368),
+(369, 1, 369),
+(370, 1, 370),
+(371, 1, 371),
+(372, 1, 372),
+(373, 1, 373),
+(374, 1, 374),
+(375, 1, 375),
+(376, 1, 376),
+(377, 1, 377),
+(378, 1, 378),
+(379, 1, 379),
+(380, 1, 380),
+(381, 1, 381),
+(382, 1, 382),
+(383, 1, 383),
+(384, 1, 384),
+(385, 1, 385),
+(387, 1, 387),
+(390, 1, 390),
+(391, 1, 391),
+(394, 1, 394),
+(395, 1, 395),
+(396, 1, 396),
+(397, 1, 397),
+(398, 1, 398),
+(399, 1, 399),
+(400, 1, 400),
+(401, 1, 401),
+(402, 1, 402),
+(406, 1, 406),
+(407, 1, 407),
+(408, 1, 408),
+(410, 1, 410),
+(411, 1, 411),
+(412, 1, 412),
+(413, 1, 413),
+(418, 1, 418),
+(419, 1, 419),
+(420, 1, 420),
+(422, 1, 422),
+(423, 1, 423),
+(426, 1, 426),
+(427, 1, 427),
+(428, 1, 428),
+(429, 1, 429),
+(431, 1, 431),
+(432, 1, 432),
+(434, 1, 434),
+(438, 1, 438),
+(439, 1, 439),
+(440, 1, 440),
+(445, 1, 445),
+(447, 1, 447),
+(448, 1, 448),
+(449, 1, 449),
+(450, 1, 450),
+(451, 1, 451),
+(452, 1, 452),
+(453, 1, 453),
+(456, 1, 456),
+(458, 1, 458),
+(460, 1, 460),
+(461, 1, 461),
+(462, 1, 462),
+(468, 1, 468),
+(473, 1, 473),
+(474, 1, 474),
+(475, 1, 475),
+(476, 1, 476),
+(477, 1, 477),
+(478, 1, 478),
+(479, 1, 479),
+(480, 1, 480),
+(481, 1, 481),
+(482, 1, 482),
+(483, 1, 483),
+(484, 1, 484),
+(512, 2, 281),
+(513, 2, 282),
+(514, 2, 283),
+(515, 2, 284),
+(516, 2, 285),
+(517, 2, 286),
+(518, 2, 287),
+(519, 2, 210),
+(520, 2, 211),
+(521, 2, 212),
+(522, 2, 213),
+(523, 2, 214),
+(524, 2, 215),
+(525, 2, 216),
+(527, 2, 218),
+(528, 2, 219),
+(593, 3, 271),
+(594, 3, 272),
+(595, 3, 281),
+(596, 3, 282),
+(597, 3, 283),
+(598, 3, 284),
+(599, 3, 285),
+(600, 3, 286),
+(601, 3, 287),
+(602, 3, 210),
+(603, 3, 211),
+(604, 3, 212),
+(605, 3, 213),
+(606, 3, 214),
+(607, 3, 215),
+(608, 3, 216),
+(610, 3, 218),
+(611, 3, 219);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `support_comments`
+--
+
+DROP TABLE IF EXISTS `support_comments`;
+CREATE TABLE IF NOT EXISTS `support_comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ticket_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `user_status` int(11) NOT NULL,
+  `user_name` varchar(100) NOT NULL,
+  `text` varchar(500) NOT NULL,
+  `date` int(11) NOT NULL,
+  UNIQUE KEY `id` (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Дамп даних таблиці `support_comments`
+--
+
+INSERT INTO `support_comments` (`id`, `ticket_id`, `user_id`, `user_status`, `user_name`, `text`, `date`) VALUES
+(1, 1, 85, 0, 'user', 'фыв фыв фывфыв', 1291726309);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `support_departments`
+--
+
+DROP TABLE IF EXISTS `support_departments`;
+CREATE TABLE IF NOT EXISTS `support_departments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Дамп даних таблиці `support_departments`
+--
+
+INSERT INTO `support_departments` (`id`, `name`) VALUES
+(1, 'Техническая поддержка');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `support_tickets`
+--
+
+DROP TABLE IF EXISTS `support_tickets`;
+CREATE TABLE IF NOT EXISTS `support_tickets` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `last_comment_author` varchar(50) NOT NULL,
+  `text` text,
+  `theme` varchar(100) NOT NULL,
+  `department` int(11) NOT NULL,
+  `status` smallint(1) DEFAULT NULL,
+  `priority` varchar(15) DEFAULT NULL,
+  `date` int(11) DEFAULT NULL,
+  `updated` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Дамп даних таблиці `support_tickets`
+--
+
+INSERT INTO `support_tickets` (`id`, `user_id`, `last_comment_author`, `text`, `theme`, `department`, `status`, `priority`, `date`, `updated`) VALUES
+(1, 85, 'user', 'фыв фыв фыв фыв ', 'Возникла неполадка', 1, 0, '0', 1291726286, 1291726309);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `tags`
+--
+
+DROP TABLE IF EXISTS `tags`;
 CREATE TABLE IF NOT EXISTS `tags` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `value` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `value` (`value`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
+
+--
+-- Дамп даних таблиці `tags`
+--
+
+INSERT INTO `tags` (`id`, `value`) VALUES
+(25, 'робот'),
+(26, 'кухонный робот'),
+(27, 'достижения'),
+(28, 'диагностика'),
+(29, 'инновации');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Структура таблиці `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `role_id` int(11) NOT NULL DEFAULT '1',
-  `username` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `banned` tinyint(1) NOT NULL DEFAULT '0',
+  `role_id` int(11) DEFAULT NULL,
+  `username` varchar(50) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `banned` tinyint(1) DEFAULT NULL,
   `ban_reason` varchar(255) DEFAULT NULL,
   `newpass` varchar(255) DEFAULT NULL,
   `newpass_key` varchar(255) DEFAULT NULL,
-  `newpass_time` datetime DEFAULT NULL,
-  `last_ip` varchar(40) NOT NULL,
-  `last_login` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `newpass_time` int(11) DEFAULT NULL,
+  `last_ip` varchar(40) DEFAULT NULL,
+  `last_login` int(11) DEFAULT NULL,
+  `created` int(11) DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `cart_data` text,
+  `wish_list_data` text,
+  `key` varchar(255) NOT NULL,
+  `amout` float(10,2) NOT NULL,
+  `discount` varchar(255) DEFAULT NULL,
+  `phone` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`),
-  UNIQUE KEY `email` (`email`),
   KEY `role_id` (`role_id`),
-  KEY `banned` (`banned`),
-  KEY `password` (`password`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  KEY `users_I_1` (`key`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=46 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_autologin`
+-- Структура таблиці `user_autologin`
 --
 
+DROP TABLE IF EXISTS `user_autologin`;
 CREATE TABLE IF NOT EXISTS `user_autologin` (
   `key_id` char(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `user_id` mediumint(8) NOT NULL DEFAULT '0',
@@ -1041,44 +1936,40 @@ CREATE TABLE IF NOT EXISTS `user_autologin` (
   `last_login` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`key_id`,`user_id`),
   KEY `last_ip` (`last_ip`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+--
+-- Дамп даних таблиці `user_autologin`
+--
+
+INSERT INTO `user_autologin` (`key_id`, `user_id`, `user_agent`, `last_ip`, `last_login`) VALUES
+('30df947aef7a96d843520de63d029ef2', 1, 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11', '127.0.0.1', '2012-12-06 14:20:58');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_profile`
+-- Структура таблиці `user_temp`
 --
 
-CREATE TABLE IF NOT EXISTS `user_profile` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user_temp`
---
-
+DROP TABLE IF EXISTS `user_temp`;
 CREATE TABLE IF NOT EXISTS `user_temp` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
-  `password` varchar(34) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `email` varchar(100) NOT NULL,
   `activation_key` varchar(50) NOT NULL,
   `last_ip` varchar(40) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `widgets`
+-- Структура таблиці `widgets`
 --
 
+DROP TABLE IF EXISTS `widgets`;
 CREATE TABLE IF NOT EXISTS `widgets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -1091,17 +1982,25 @@ CREATE TABLE IF NOT EXISTS `widgets` (
   `created` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 --
--- Dumping data for table `widgets`
+-- Дамп даних таблиці `widgets`
 --
 
 INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `description`, `roles`, `created`) VALUES
-(3, 'latest_news', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:1:"2";s:11:"max_symdols";s:3:"150";s:10:"categories";a:1:{i:0;s:2:"56";}s:7:"display";s:6:"recent";}', 'Последние новости', '', 1291632457),
-(4, 'recent_product_comments', 'module', 'comments', 'recent_product_comments', 'a:2:{s:14:"comments_count";s:1:"5";s:13:"symbols_count";s:1:"0";}', '', '', 1308300371),
-(5, 'tags', 'module', 'tags', 'tags_cloud', '', 'tags', '', 1312362714),
-(6, 'path', 'module', 'navigation', 'widget_navigation', '', 'path', '', 1328631622);
+(8, 'comments', 'module', 'comments', 'recent_comments', 'a:2:{s:14:"comments_count";s:1:"3";s:13:"symbols_count";s:2:"70";}', '', '', 1291642223),
+(9, 'tags', 'module', 'tags', 'tags_cloud', '', '', '', 1291642240),
+(3, 'path', 'module', 'navigation', 'widget_navigation', '', '', '', 1291381939),
+(4, 'news', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:1:"3";s:11:"max_symdols";s:1:"0";s:10:"categories";a:1:{i:0;s:2:"57";}s:7:"display";s:6:"recent";}', '', '', 1291387530),
+(5, 'blog', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:1:"3";s:11:"max_symdols";s:1:"0";s:10:"categories";a:3:{i:0;s:2:"59";i:1;s:2:"60";i:2;s:2:"61";}s:7:"display";s:6:"recent";}', '', '', 1291387932),
+(6, 'products', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:1:"5";s:11:"max_symdols";s:1:"0";s:10:"categories";a:1:{i:0;s:2:"55";}s:7:"display";s:6:"recent";}', '', '', 1291630787),
+(7, 'offers', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:1:"3";s:11:"max_symdols";s:1:"0";s:10:"categories";a:1:{i:0;s:2:"56";}s:7:"display";s:6:"recent";}', '', '', 1291630796),
+(10, 'contacts', 'html', '<p>Адрес: Федерация Орион, 12.23.22.22.2233.3</p>\n<p>Телефон: 0 800 345-56-12</p>', '', '', '', '', 1291646375),
+(11, 'product_all', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:5:"10000";s:11:"max_symdols";s:3:"150";s:10:"categories";a:1:{i:0;s:2:"55";}s:7:"display";s:6:"recent";}', '', '', 1291648944),
+(12, 'offers_all', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:3:"100";s:11:"max_symdols";s:3:"150";s:10:"categories";a:1:{i:0;s:2:"56";}s:7:"display";s:6:"recent";}', '', '', 1291649245),
+(13, 'works', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:3:"100";s:11:"max_symdols";s:3:"150";s:10:"categories";a:1:{i:0;s:2:"58";}s:7:"display";s:6:"recent";}', '', '', 1291657789),
+(14, 'rand_images', 'module', 'gallery', 'latest_fotos', 'a:2:{s:5:"limit";s:1:"3";s:5:"order";s:6:"random";}', '', '', 1291658084);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
