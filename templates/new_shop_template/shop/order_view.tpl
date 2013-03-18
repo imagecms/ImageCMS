@@ -246,24 +246,24 @@
                                         <div class="c_97" style="margin-bottom: 4px;">
                                             (Сумма товаров: <span class="f-w_b">{echo $model->getTotalPrice()}</span> {$CS}
 
-                                            + Доставка: <span class="f-w_b">{if $model->getTotalPrice() >= $freeFrom}0{else:}{echo $model->getDeliveryPrice()}{/if}</span> {$CS})
+                                            + Доставка: <span class="f-w_b">{if $model->getTotalPrice() >= $freeFrom}{echo $delivery = 0}{else:}{echo $delivery = $model->getDeliveryPrice()}{/if}</span> {$CS})
                                         {if $model->getGiftCertPrice() > 0}<br><span >(Скидка подарочного сертификата: {echo $model->getGiftCertPrice()} {$CS}<span class="f-w_b"></span> )</span>{/if}
                                     </div>
 
 
                                     <span class="f-s_18">Сумма:</span>&nbsp;
-                                    <span class="f-s_24">{echo $model->getTotalPrice()}</span>&nbsp;
+                                    <span class="f-s_24">{echo $model->getTotalPrice() + $delivery}</span>&nbsp;
                                     <span class="f-s_24"> {$CS}</span>
 
-                        </div>
-                        </div>
-                    </td>
-                </tr>
-                <!-- End. Display Order summary -->
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- End. Display Order summary -->
 
-            </tfoot>
-        </table>
+                </tfoot>
+            </table>
+        </div>
     </div>
-</div>
 </div>
 </article>

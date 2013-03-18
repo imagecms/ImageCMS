@@ -37,6 +37,7 @@ define('ENVIRONMENT', 'development');
  * Different environments will require different levels of error reporting.
  * By default development will show errors but testing and live will hide them.
  */
+ini_set('display_errors', 'on');
 
 switch (ENVIRONMENT) {
     case 'development':
