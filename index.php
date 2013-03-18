@@ -37,6 +37,7 @@ define('ENVIRONMENT', 'development');
  * Different environments will require different levels of error reporting.
  * By default development will show errors but testing and live will hide them.
  */
+ini_set('display_errors', 'on');
 
 switch (ENVIRONMENT) {
     case 'development':
@@ -194,7 +195,7 @@ if (is_dir($application_folder)) {
 }
 
 
-define('IMAGECMS_NUMBER', '4.2 Premium');
+define('IMAGECMS_NUMBER', '4.2 Professional');
 
 define('IMAGECMS_VERSION', '20130116');
 
