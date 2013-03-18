@@ -25,13 +25,13 @@
                                 </div>
                             </div>                                    
                         </div>
-                         {form_csrf()}
+                        {form_csrf()}
                     </form>
                 </div>
             {else:}
                 {lang('s_to_sen_wish_auth')}
             {/if}
-            {/if}
+        {/if}
         {if !$items}
             <div class="comparison_slider">
                 <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t(lang('s_list_wish_empty'))}</div>
