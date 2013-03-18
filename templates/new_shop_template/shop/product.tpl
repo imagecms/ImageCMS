@@ -22,7 +22,7 @@
                 <li class="span5 clearfix">
                     <!-- productImageUrl($model->getMainModImage()) - Link to product -->
                     <a rel="group" id="photoGroup" href="{productImageUrl($model->getMainModImage())}" class="photo">
-                        <figure>
+                        <figure >
                             <!-- productImageUrl($model->getMainImage()) - Way before the photo to attribute img -->
                             <img id="imageGroup" src="{productImageUrl($model->getMainImage())}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
                         </figure>                        
@@ -218,16 +218,6 @@
                     <!-- Stop. Block "Add to Wishlist" -->
                     <br/>
                     <!--Block Follow the price Start-->
-
-                    <!--                            inFollow-->
-                    <button class="btn btn_small_p toFollow" 
-                            data-title="{lang('s_follow_prod')}"
-                            data-sectitle="{lang('s_followprod')}"
-                            data-rel="tooltip">
-                        <span class="icon-followprice"></span>
-                        <span class="text-el">{lang('s_follow_prod')}</span>
-                    </button>
-                    <!-- Stop. Block "Follow the price" -->
                 </div>
             </div>
 
@@ -508,6 +498,7 @@
 </div>
 {/if}
 <!--Kit end-->
+
 {widget('view_product')}
 {widget('similar')}
 </article>

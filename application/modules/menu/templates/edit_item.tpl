@@ -28,7 +28,7 @@
                 {$data = unserialize($item.add_data)}
                 <input type="hidden" name="menu_id" value="{$menu.id}"/>
                 <input type="hidden" name="item_id" value="{$item.item_id}" id="item_page_id"/>
-                <input type="hidden" name="item_type" value="page"/>
+                <input type="hidden" name="page_item_type" value="page"/>
                 <table class="table table-striped table-bordered table-hover table-condensed">
                     <thead>
                         <tr>
@@ -178,7 +178,7 @@
                                                 </span>
                                                 <span class="frame_label no_connection">
                                                     <span class="niceRadio">
-                                                        <input type="radio" name="page_hidden" value="2" {if $item.hidden == 2}checked="checked"{/if}/>
+                                                        <input type="radio" name="page_hidden" value="0" {if $item.hidden == 0}checked="checked"{/if}/>
                                                     </span>
                                                     {lang('amt_no')}
                                                 </span>
@@ -194,7 +194,7 @@
                                                 </span>
                                                 <span class="frame_label no_connection">
                                                     <span class="niceRadio">
-                                                        <input type="radio" name="page_newpage" value="2" {if $data.newpage == 2}checked="checked"{/if}/>
+                                                        <input type="radio" name="page_newpage" value="0" {if $data.newpage == 0}checked="checked"{/if}/>
                                                     </span> {lang('amt_no')}
                                                 </span>
                                             </div>
@@ -212,7 +212,7 @@
                 {$data = unserialize($item.add_data)}
                 <input type="hidden" name="menu_id" value="{$menu.id}"/>
                 <input type="hidden" name="item_id" value="{$item.item_id}" id="cat_input"/>
-                <input type="hidden" name="item_type" value="category"/>
+                <input type="hidden" name="cat_item_type" value="category"/>
                 <table class="table table-striped table-bordered table-hover table-condensed">
                     <thead>
                         <tr>
@@ -329,7 +329,7 @@
                                                 </span>
                                                 <span class="frame_label no_connection">
                                                     <span class="niceRadio">
-                                                        <input type="radio" name="cat_hidden" value="2" {if $item.hidden == 2}checked="checked"{/if}/>
+                                                        <input type="radio" name="cat_hidden" value="0" {if $item.hidden == 0}checked="checked"{/if}/>
                                                     </span>
                                                     {lang('amt_no')}
                                                 </span>
@@ -348,7 +348,7 @@
                                                 </span>
                                                 <span class="frame_label no_connection">
                                                     <span class="niceRadio">
-                                                        <input type="radio" name="cat_newpage" value="2" {if $data.newpage == 2}checked="checked"{/if}/>
+                                                        <input type="radio" name="cat_newpage" value="0" {if $data.newpage == 0}checked="checked"{/if}/>
                                                     </span>
                                                     {lang('amt_no')}
                                                 </span>
@@ -369,7 +369,7 @@
                     <div class="span3">
                         <input type="hidden" name="menu_id" value="{$menu.id}"/>
                         <input type="hidden" name="item_id" value="0" />
-                        <input type="hidden" name="item_type" value="module"/>
+                        <input type="hidden" name="module_item_type" value="module"/>
                         <input type="hidden" name="mod_name" value="{$data.mod_name}"/>
                         <ul class="nav myTab nav-tabs nav-stacked">
                             {foreach $modules as $module}
@@ -431,7 +431,7 @@
                                                 </div>            
                                                 <div class="control-group">
                                                     <label class="control-label">{lang('amt_position_after')}:</label>
-                                                    <div class="controls">{echo $item.position}
+                                                    <div class="controls">
                                                         <select name="position_after" id="position_after">
                                                             <option value="0">{lang('amt_no')}</option>
                                                             <option value="first">{lang('amt_first')}</option>
@@ -478,7 +478,7 @@
                                                         </span>
                                                         <span class="frame_label no_connection">
                                                             <span class="niceRadio">
-                                                                <input type="radio" name="module_hidden" value="2" {if $item.hidden == 2}checked="checked"{/if}/>
+                                                                <input type="radio" name="module_hidden" value="0" {if $item.hidden == 0}checked="checked"{/if}/>
                                                             </span>
                                                             {lang('amt_no')}
                                                         </span>
@@ -497,7 +497,7 @@
                                                         </span>
                                                         <span class="frame_label no_connection">
                                                             <span class="niceRadio">
-                                                                <input type="radio" name="module_newpage" value="2" {if $data.newpage == 2}checked="checked"{/if}/>
+                                                                <input type="radio" name="module_newpage" value="0" {if $data.newpage == 0}checked="checked"{/if}/>
                                                             </span>
                                                             {lang('amt_no')}
                                                         </span>
@@ -517,7 +517,7 @@
             <form method="post" action="/admin/components/cp/menu/edit_item/{$item.id}" id="url_form" >
                 <input type="hidden" name="menu_id" value="{$menu.id}">
                 <input type="hidden" name="item_id" value="0"/>
-                <input type="hidden" name="item_type" value="url"/>
+                <input type="hidden" name="url_item_type" value="url"/>
                 <table class="table table-striped table-bordered table-hover table-condensed">
                     <thead>
                         <tr>
@@ -623,7 +623,7 @@
                                                 </span>
                                                 <span class="frame_label no_connection">
                                                     <span class="niceRadio">
-                                                        <input type="radio" name="url_hidden" value="2" {if $item.hidden == 2}checked="checked"{/if}/>
+                                                        <input type="radio" name="url_hidden" value="0" {if $item.hidden == 0}checked="checked"{/if}/>
                                                     </span>
                                                     {lang('amt_no')}
                                                 </span>
@@ -642,7 +642,7 @@
                                                 </span>
                                                 <span class="frame_label no_connection">
                                                     <span class="niceRadio">
-                                                        <input type="radio" name="url_newpage" value="2" {if $data.newpage == 2}checked="checked"{/if}/>
+                                                        <input type="radio" name="url_newpage" value="0" {if $data.newpage == 0}checked="checked"{/if}/>
                                                     </span>
                                                     {lang('amt_no')}
                                                 </span>

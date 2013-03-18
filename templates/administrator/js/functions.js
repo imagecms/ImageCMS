@@ -102,7 +102,7 @@ $('.formSubmit').live('click', function() {
 
     var btn = this;
 
-    var selector = $(this).data('form');
+    var selector = $(this).attr('data-form');
     var action = $(this).data('action');
     $(selector).validate()
     if ($(selector).valid())
@@ -357,8 +357,8 @@ function initTinyMCE()
         media_external_list_url: "lists/media_list.js",
         // Replace values for the template plugin
         template_replace_values: {
-            //username: "Some User",
-            //staffid: "991234"
+        //username: "Some User",
+        //staffid: "991234"
         },
 
         mode : "exact",
@@ -702,6 +702,7 @@ var orders = new Object({
                     $('#product_id').val(ui.item.value);
                     vKeys = Object.keys(ui.item.variants);
 
+                    $('#product_variant_name').html('');
                     for (var i = 0; i < vKeys.length; i++)
                         $('#product_variant_name').append(new Option(ui.item.variants[ vKeys[i] ].name + ' - ' + ui.item.variants[ vKeys[i] ].price + " " + ui.item.cs, vKeys[i], true, true));
                 },
@@ -720,6 +721,7 @@ var orders = new Object({
                         $('#product_id').val(ui.item.value);
                         vKeys = Object.keys(ui.item.variants);
 
+                        $('#product_variant_name').html('');
                         for (var i = 0; i < vKeys.length; i++)
                             $('#product_variant_name').append(new Option(ui.item.variants[ vKeys[i] ].name + ' - ' + ui.item.variants[ vKeys[i] ].price + "  " + ui.item.cs, vKeys[i], true, true));
                     },
