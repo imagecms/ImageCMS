@@ -1,9 +1,5 @@
-html {
-    scrollbar-track-color:expression(
-        this.runtimeStyle.scrollbarTrackColor = "#fff",
-        ((screen.deviceXDPI/screen.logicalXDPI) == 1) ? (document.body.style.fontSize = 1/(screen.logicalYDPI/96) +'em') : false
-        );
-}
+@charset "utf-8";
+a{cursor: pointer;}
 legend{margin-left: -7px;}
 select, input[type="file"]{margin-top: 4px;}
 input[type="checkbox"], input[type="radio"]{width: 13px;height: 13px;}
