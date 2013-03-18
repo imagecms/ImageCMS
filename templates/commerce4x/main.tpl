@@ -25,7 +25,14 @@
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css"/>
         <link href='http://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
         <script src="{$THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
-        <!--[if lt IE 9]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><script src="js/css3-mediaqueries.js"></script><![endif]-->
+        <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+        <!--[if lt IE 9]>
+            <link rel="stylesheet" type="text/css" href="{$THEME}css/lt_ie8.css" />
+            <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script src="js/css3-mediaqueries.js"></script>
+            <script src="/js/localStorageIE.js"></script>
+        <![endif]-->
+        <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{$THEME}css/ie_7.css" /><![endif]-->
         {literal}
             <style>
                 /*!
