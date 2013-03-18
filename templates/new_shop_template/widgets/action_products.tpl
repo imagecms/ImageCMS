@@ -79,34 +79,6 @@
                                         </button> 
                                     {/if} 
 
-                                    <div class="d_i-b">
-
-                                        <!-- to compare button -->
-                                        <button class="btn btn_small_p toCompare"  
-                                                data-prodid="{echo $hotProduct->getId()}"  
-                                                type="button" 
-                                                data-title="{lang('s_add_to_compare')}"
-                                                data-sectitle="{lang('s_in_compare')}"
-                                                data-rel="tooltip">
-                                            <span class="icon-comprasion_2"></span>
-                                            <span class="text-el">{lang('s_add_to_compare')}</span>
-                                        </button>
-
-                                        <!-- to wish list button -->
-                                        <button class="btn btn_small_p toWishlist" 
-                                                data-prodid="{echo $hotProduct->getId()}" 
-                                                data-varid="{echo $hotProduct->firstVariant->getId()}"  
-                                                type="button" 
-                                                data-title="{lang('s_add_to_wish_list')}"
-                                                data-sectitle="{lang('s_in_wish_list')}"
-                                                data-rel="tooltip">
-                                            <span class="icon-wish_2"></span>
-                                            <span class="text-el">{lang('s_add_to_wish_list')}</span>
-                                        </button>
-                                    </div>
-
-                                </div>
-
                                 <!-- displaying products small mod image -->
                                 <div class="photo-block">
                                     <a href="{shop_url('product/'.$hotProduct->getUrl())}" class="photo">

@@ -326,7 +326,7 @@ a:hover .icon-thumbs-up{background-position: -152px 0;}
 .p-l_10{padding-left: 10px;}
 .p-r_25{padding-right: 25px;}
 
-.dl-horizontal dt, .dl-horizontal dd{padding: 4px 0;}
+.dl-horizontal dt, .dl-horizontal dd{padding: 4px 20px;}
 .gen_sum{color: #468847;text-shadow: 0 1px #fff;background-color: #dff0d8;font-size: 18px;padding: 1px 15px;margin: 3px 0 0 0;display: block;}
 .btn-small input[type="file"]{height: 25px !important;}
 label .btn-small input[type="file"], .controls input[type="file"]{position: absolute !important;left: 0;top: 0;opacity: 0;-moz-opacity: 0;-khtml-opacity: 0;padding: 0;}
@@ -670,7 +670,7 @@ border-right: none !important;
  .horiz.myTab a{padding: 0;line-height: normal;background-color: transparent;border-color: transparent;text-decoration: none;color: #333333;}
  .horiz.myTab{border-bottom: 0;margin-bottom: 0;margin-left: 0;}
  .dl-horizontal.pull-left:first-child{margin-left: 60px;}
- .dl-horizontal dd{margin-left: 140px;}
+ .dl-horizontal dd{margin-left: 150px;}
  @media (max-width: 767px){
      .dl-horizontal.pull-left:first-child{margin-left: 0;}
  }

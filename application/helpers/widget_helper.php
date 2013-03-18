@@ -26,7 +26,7 @@
             }
             else
             {
-                return 'Can\'t run widget <b>'.$name.'</b>';
+                log_message('error', 'Can\'t run widget <b>'.$name.'</b>');
             }
 
             if ( ($data = $ci->cache->fetch('widget'.$name, 'widgets')) != FALSE AND $cache != FALSE)
