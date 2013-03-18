@@ -16,18 +16,18 @@
 */
 #}
 
-{//define default values for price slider}
-<span id="opt1" data-def_min = "{echo (int)$priceRange.minCost}"></span>
-<span id="opt2" data-def_max = "{echo (int)$priceRange.maxCost}"></span>
-<span id="opt3" data-cur_min = "{if isset(ShopCore::$_GET['lp'])}{echo ShopCore::$_GET['lp']}{else:}{echo (int)$priceRange.minCost}{/if}"></span>
-<span id="opt4" data-cur_max = "{if isset(ShopCore::$_GET['rp'])}{echo ShopCore::$_GET['rp']}{else:}{echo (int)$priceRange.maxCost}{/if}"></span>
-
-{//creating current url string}
-{$aurl = urldecode(site_url($_SERVER['REQUEST_URI']))}
-
 
 {//main filter container}
 <aside class="span3">
+    {//define default values for price slider}
+    <span id="opt1" data-def_min = "{echo (int)$priceRange.minCost}"></span>
+    <span id="opt2" data-def_max = "{echo (int)$priceRange.maxCost}"></span>
+    <span id="opt3" data-cur_min = "{if isset(ShopCore::$_GET['lp'])}{echo ShopCore::$_GET['lp']}{else:}{echo (int)$priceRange.minCost}{/if}"></span>
+    <span id="opt4" data-cur_max = "{if isset(ShopCore::$_GET['rp'])}{echo ShopCore::$_GET['rp']}{else:}{echo (int)$priceRange.maxCost}{/if}"></span>
+
+    {//creating current url string}
+    {$aurl = urldecode(site_url($_SERVER['REQUEST_URI']))}
+
 
     {//displaying checked filters and count of found products}
     {if ($_GET['lp'] and $_GET['lp'] > $priceRange.minCost) or ($_GET['rp'] and $_GET['rp'] < $priceRange.maxCost) or $_GET['p'] or $_GET['brand'] or $_GET['category']}
