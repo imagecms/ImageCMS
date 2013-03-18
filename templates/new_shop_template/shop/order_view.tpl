@@ -84,8 +84,8 @@
                         {/if}
                         <!-- End. Delivery Method name -->
 
-                        <!-- Start. Render payment button and payment description -->                        
-                        {if $model->getPaid() != true}
+                        <!-- Start. Render payment button and payment description -->
+                        {if $model->getPaid() != true && $model->getTotalPriceWithGift() > 0}
                             <tr class="b_n">
                                 <th></th>
                                 <td>{echo $paymentMethod->getPaymentForm($model)}

@@ -10,26 +10,29 @@
 {literal}
     <script type="text/template" id="searchResultsTemplate">
         <div class="inside_padd">
+            <% var ids=[] %>
             <% if (_.keys(items).length > 1) { %>
             <ul class="frame-search-thumbail">
                 <% _.each(items, function(item){
-                if (item.name != null){%>
-                <li>{/literal}
-                    <!-- Start. Photo Block and name  -->
-                    <a href="{shop_url('product')}/{literal}<%- item.url %>">
-                        <span class="photo">
-                            <span class="helper"></span>
-                        {/literal}<img src="{base_url()}uploads/shop/{literal}<%- item.smallModImage %>">
-                        </span>
-                        <span class="title"><% print( item.name)  %></span>
-                         <!-- End. Photo Block and name -->
 
-                    <!-- Start. Product price  -->
-                        <span class="price price_f-s_16"><span class="f-w_b"><%- Math.round(item.price) %></span>{/literal}<span class="curr"> {$CS}</span>{literal}</span>
-                    <!-- End. Product price  -->
-                    </a>
-                </li>
-                <% }
+                    if (item.name != null && ids.indexOf(item.product_id)){%>
+                    <% ids.push(item.product_id) %>
+                    <li>{/literal}
+                        <!-- Start. Photo Block and name  -->
+                        <a href="{shop_url('product')}/{literal}<%- item.url %>">
+                            <span class="photo">
+                                <span class="helper"></span>
+                            {/literal}<img src="{base_url()}uploads/shop/{literal}<%- item.smallModImage %>">
+                            </span>
+                            <span class="title"><% print( item.name)  %></span>
+                             <!-- End. Photo Block and name -->
+
+                        <!-- Start. Product price  -->
+                            <span class="price price_f-s_16"><span class="f-w_b"><%- Math.round(item.price) %></span>{/literal}<span class="curr"> {$CS}</span>{literal}</span>
+                        <!-- End. Product price  -->
+                        </a>
+                    </li>
+                    <% }
                 }) %>
             </ul>
             <!-- Start. Show link see all results if amount products >0  -->

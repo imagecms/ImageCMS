@@ -383,6 +383,8 @@ function initTinyMCE()
                     
                     var field = win.document.forms[0].elements[field_name];
                     field.value = file.path;
+                    var cmsT = win.document.forms[0].elements['cms_token'];
+                    cmsT.value = $('input[name=cms_token]').val();
                     
                     $(field).change();
                 },
