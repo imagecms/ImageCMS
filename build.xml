@@ -5,6 +5,7 @@
     <property name="sourceFiles" value="/var/www/imagecms.loc"/>
     <property name="imageCMSProDir" value="imagecms_shop_pro"/>
     <property name="imageCMSPremiumDir" value="imagecms_shop_premium"/>
+    <property name="imageCMSCorporateDir" value="imagecms_corporate"/>
     <property name="cacheDir" value="system/cache"/>
     <property name="capthaDir" value="captcha"/>
     <property name="backupsDir" value="application/backups"/>
@@ -47,7 +48,7 @@
         <phingcall target="createDepends" ><property name="target" value="${imageCMSProDir}"/></phingcall>
 
         <echo msg="Start Replace Content"/>
-        <phingcall target="replaceContent">
+        <phingcall target="replaceContentPro">
             <property name="target" value="${project.basedir}/${imageCMSProDir}"/>
             <property name="version" value="${version}"/>
             <property name="release" value="Professional"/>
@@ -60,6 +61,26 @@
         <phingcall target="zipping"><property name="target" value="${imageCMSProDir}"/></phingcall>
         <!-- end of creating pro -->
 
+        <!-- create corporate -->
+        <echo msg="Remove Extra from distributive" />
+        <phingcall target="removeExtra" ><property name="target" value="${imageCMSCorporateDir}"/></phingcall>
+        <phingcall target="removerExtraCorporate"><property name="target" value="${imageCMSCorporateDir}" /></phingcall>
+        <phingcall target="createDepends" ><property name="target" value="${imageCMSCorporateDir}"/></phingcall>
+
+        <echo msg="Start Replace Content"/>
+        <phingcall target="replaceContentCorporate">
+            <property name="target" value="${project.basedir}/${imageCMSCorporateDir}"/>
+            <property name="version" value="${version}"/>
+            <property name="release" value="Corporate"/>
+        </phingcall>
+
+        <echo msg="Rename some necessary Files"/>
+        <phingcall target="prepareToInstall" ><property name="target" value="${imageCMSCorporateDir}"/></phingcall>
+
+        <echo msg="Zipping"/>
+        <phingcall target="zipping"><property name="target" value="${imageCMSCorporateDir}"/></phingcall>
+        <!-- end of creating corporate -->
+
 
 
     </target>
@@ -67,8 +88,10 @@
     <target name="createSources">
         <delete dir="${imageCMSPremiumDir}" failonerror="FALSE"/>
         <delete dir="${imageCMSProDir}" failonerror="FALSE"/>
+        <delete dir="${imageCMSCorporateDir}" failonerror="FALSE"/>
         <mkdir dir="${imageCMSPremiumDir}" mode="0777"/>
         <mkdir dir="${imageCMSProDir}" mode="0777"/>
+        <mkdir dir="${imageCMSCorporateDir}" mode="0777"/>
         <copy todir="${imageCMSPremiumDir}">
             <fileset defaultexcludes="false" dir="${sourceFiles}">
                 <include name="**"/>
@@ -79,16 +102,21 @@
                 <include name="**"/>
             </fileset>
         </copy>
+        <copy todir="${imageCMSCorporateDir}">
+            <fileset defaultexcludes="false" dir="${sourceFiles}">
+                <include name="**"/>
+            </fileset>
+        </copy>
     </target>
 
     <target name="removeExtra">
-        <delete dir="${target}/.idea" includeemptydirs="true" verbose="true" failonerror="true"/>
-        <delete dir="${target}/.git" includeemptydirs="true" verbose="true" failonerror="true"/>
-        <delete dir="${target}/${cacheDir}" includeemptydirs="true" verbose="true" failonerror="true"/>
-        <delete dir="${target}/${capthaDir}" includeemptydirs="true" verbose="true" failonerror="true"/>
-        <delete dir="${target}/${backupsDir}" includeemptydirs="true" verbose="true" failonerror="true"/>
-        <delete dir="${target}/${uploadsDir}" includeemptydirs="true" verbose="true" failonerror="true"/>
-        <delete dir="${target}/${logsDir}" includeemptydirs="true" verbose="true" failonerror="true"/>
+        <delete dir="${target}/.idea" includeemptydirs="true" verbose="true" failonerror="false"/>
+        <delete dir="${target}/.git" includeemptydirs="true" verbose="true" failonerror="false"/>
+        <delete dir="${target}/${cacheDir}" includeemptydirs="true" verbose="true" failonerror="false"/>
+        <delete dir="${target}/${capthaDir}" includeemptydirs="true" verbose="true" failonerror="false"/>
+        <delete dir="${target}/${backupsDir}" includeemptydirs="true" verbose="true" failonerror="false"/>
+        <delete dir="${target}/${uploadsDir}" includeemptydirs="true" verbose="true" failonerror="false"/>
+        <delete dir="${target}/${logsDir}" includeemptydirs="true" verbose="true" failonerror="false"/>
         <delete file="${target}/.gitignore"/>
         <delete file="${target}/application/modules/shop/.gitignore"/>
         <delete file="${target}/application/modules/shop/.gitignore.save"/>
@@ -104,9 +132,22 @@
     </target>
 
     <target name="removerExtraPro">
-        <delete dir="${target}/modules/exchange" includeemptydirs="true" verbose="true" failonerror="true" />
-        <delete dir="${target}/modules/shop/admin/templates/charts" includeemptydirs="true" verbose="true" failonerror="true" />
+        <delete dir="${target}/modules/exchange" includeemptydirs="true" verbose="true" failonerror="false" />
+        <delete dir="${target}/modules/shop/admin/templates/charts" includeemptydirs="true" verbose="true" failonerror="false" />
         <delete file="${target}/modules/shop/charts.php" />
+    </target>
+
+    <target name="removerExtraCorporate">
+        <delete dir="${target}/modules/exchange" includeemptydirs="true" verbose="true" failonerror="false" />
+        <delete dir="${target}/modules/shop" includeemptydirs="true" verbose="true" failonerror="false" />
+        <delete dir="${target}/uploads/shop" includeemptydirs="true" verbose="true" failonerror="false" />
+        <delete dir="${target}/templates/commerce" includeemptydirs="true" verbose="true" failonerror="false" />
+        <delete dir="${target}/templates/commerce_old" includeemptydirs="true" verbose="true" failonerror="false" />
+        <delete dir="${target}/templates/commerce_facebook" includeemptydirs="true" verbose="true" failonerror="false" />
+        <delete dir="${target}/templates/commerce_mobiles" includeemptydirs="true" verbose="true" failonerror="false" />
+        <delete dir="${target}/templates/commerce4x" includeemptydirs="true" verbose="true" failonerror="false" />
+        <delete file="${target}/modules/install/sqlShop.sql" />
+        <delete file="${target}/modules/install/sqlShopClean.sql" />
     </target>
 
     <target name="createDepends">
@@ -164,7 +205,81 @@
             }
         }
         ]]></adhoc-task>
+
         <replaceContentClass target="${target}" version="${version}" release="${release}"/>
     </target>
+
+    <target name="replaceContentPro">
+        <adhoc-task name="replaceContentClassPro"><![CDATA[
+          class BarTaskPro extends Task {
+            protected $target;
+            protected $version;
+            protected $release;
+            function setTarget($target) {
+				$this->target = $target;
+			}
+			function setVersion($version) {
+				$this->version = $version;
+			}
+			function setRelease($release) {
+				$this->release = $release;
+			}
+            function main() {
+                $this->changePropelDebugMode();
+                $this->changeVersion();
+            }
+            function changePropelDebugMode(){
+                $content = file_get_contents($this->target."/application/modules/shop/classes/ShopCore.php");
+		        $content = str_replace("define('PropelDebugMode', TRUE);", "define('PropelDebugMode', FALSE);", $content);
+		        $content = str_replace("define('PropelDebugMode', true);", "define('PropelDebugMode', false);", $content);
+		        file_put_contents($this->target."/application/modules/shop/classes/ShopCore.php", $content);
+            }
+            function changeVersion(){
+                $content = file_get_contents($this->target."/index.php");
+		        $content = preg_replace("/IMAGECMS_NUMBER', '.*?'.*?/", "IMAGECMS_NUMBER', '".$this->version." ".$this->release."'", $content);
+		        file_put_contents($this->target."/index.php", $content);
+            }
+        }
+        ]]></adhoc-task>
+
+        <replaceContentClassPro target="${target}" version="${version}" release="${release}"/>
+    </target>
+
+    <target name="replaceContentCorporate">
+        <adhoc-task name="replaceContentClassCorporate"><![CDATA[
+          class BarTaskCorporate extends Task {
+            protected $target;
+            protected $version;
+            protected $release;
+            function setTarget($target) {
+				$this->target = $target;
+			}
+			function setVersion($version) {
+				$this->version = $version;
+			}
+			function setRelease($release) {
+				$this->release = $release;
+			}
+            function main() {
+                $this->changePropelDebugMode();
+                $this->changeVersion();
+            }
+            function changePropelDebugMode(){
+                $content = file_get_contents($this->target."/application/modules/shop/classes/ShopCore.php");
+		        $content = str_replace("define('PropelDebugMode', TRUE);", "define('PropelDebugMode', FALSE);", $content);
+		        $content = str_replace("define('PropelDebugMode', true);", "define('PropelDebugMode', false);", $content);
+		        file_put_contents($this->target."/application/modules/shop/classes/ShopCore.php", $content);
+            }
+            function changeVersion(){
+                $content = file_get_contents($this->target."/index.php");
+		        $content = preg_replace("/IMAGECMS_NUMBER', '.*?'.*?/", "IMAGECMS_NUMBER', '".$this->version." ".$this->release."'", $content);
+		        file_put_contents($this->target."/index.php", $content);
+            }
+        }
+        ]]></adhoc-task>
+
+        <replaceContentClassCorporate target="${target}" version="${version}" release="${release}"/>
+    </target>
+
 
 </project>
