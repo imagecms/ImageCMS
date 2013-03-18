@@ -326,7 +326,6 @@ $shopMenu = array(
 
 if (preg_match('/Pro/', IMAGECMS_NUMBER))
 {
-    unset($shopMenu[6]['subMenu'][4]);
     unset($shopMenu[5]);
 }
 
