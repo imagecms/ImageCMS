@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ImageCMSBuild" basedir="." default="bootstrap">
+
+    <property name="version" value="4.3"/>
+    <property name="sourceFiles" value="/var/www/imagecms.loc"/>
+    <property name="imageCMSProDir" value="imagecms_shop_pro"/>
+    <property name="imageCMSPremiumDir" value="imagecms_shop_premium"/>
+    <property name="cacheDir" value="system/cache"/>
+    <property name="capthaDir" value="captcha"/>
+    <property name="backupsDir" value="application/backups"/>
+    <property name="uploadsDir" value="uploads"/>
+    <property name="uploadsTempDir" value="uploads_site"/>
+    <property name="logsDir" value="system/logs"/>
+    <property name="configFile" value="application/config/config.php"/>
+
+    <target name="bootstrap">
+        <echo msg="Let's start Build"/>
+
+        <echo msg="Сreate Sources" />
+        <phingcall target="createSources" />
+        <echo msg="Files prepare completed." />
+
+        <!-- create premium -->
+        <echo msg="Remove Extra from distributive" />
+        <phingcall target="removeExtra" ><property name="target" value="${imageCMSPremiumDir}"/></phingcall>
+        <phingcall target="createDepends" ><property name="target" value="${imageCMSPremiumDir}"/></phingcall>
+
+
+        <echo msg="Start Replace Content"/>
+        <phingcall target="replaceContent">
+            <property name="target" value="${project.basedir}/${imageCMSPremiumDir}"/>
+            <property name="version" value="${version}"/>
+            <property name="release" value="Premium"/>
+        </phingcall>
+
+        <echo msg="Rename some necessary Files"/>
+        <phingcall target="prepareToInstall" ><property name="target" value="${imageCMSPremiumDir}"/></phingcall>
+
+        <echo msg="Zipping"/>
+        <phingcall target="zipping"><property name="target" value="${imageCMSPremiumDir}"/></phingcall>
+        <!-- end of creating premium -->
+
+        <!-- create pro -->
+        <echo msg="Remove Extra from distributive" />
+        <phingcall target="removeExtra" ><property name="target" value="${imageCMSProDir}"/></phingcall>
+        <phingcall target="removerExtraPro"><property name="target" value="${imageCMSProDir}" /></phingcall>
+        <phingcall target="createDepends" ><property name="target" value="${imageCMSProDir}"/></phingcall>
+
+        <echo msg="Start Replace Content"/>
+        <phingcall target="replaceContent">
+            <property name="target" value="${project.basedir}/${imageCMSProDir}"/>
+            <property name="version" value="${version}"/>
+            <property name="release" value="Professional"/>
+        </phingcall>
+
+        <echo msg="Rename some necessary Files"/>
+        <phingcall target="prepareToInstall" ><property name="target" value="${imageCMSProDir}"/></phingcall>
+
+        <echo msg="Zipping"/>
+        <phingcall target="zipping"><property name="target" value="${imageCMSProDir}"/></phingcall>
+        <!-- end of creating pro -->
+
+
+
+    </target>
+
+    <target name="createSources">
+        <delete dir="${imageCMSPremiumDir}" failonerror="FALSE"/>
+        <delete dir="${imageCMSProDir}" failonerror="FALSE"/>
+        <mkdir dir="${imageCMSPremiumDir}" mode="0777"/>
+        <mkdir dir="${imageCMSProDir}" mode="0777"/>
+        <copy todir="${imageCMSPremiumDir}">
+            <fileset defaultexcludes="false" dir="${sourceFiles}">
+                <include name="**"/>
+            </fileset>
+        </copy>
+        <copy todir="${imageCMSProDir}">
+            <fileset defaultexcludes="false" dir="${sourceFiles}">
+                <include name="**"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="removeExtra">
+        <delete dir="${target}/.idea" includeemptydirs="true" verbose="true" failonerror="true"/>
+        <delete dir="${target}/.git" includeemptydirs="true" verbose="true" failonerror="true"/>
+        <delete dir="${target}/${cacheDir}" includeemptydirs="true" verbose="true" failonerror="true"/>
+        <delete dir="${target}/${capthaDir}" includeemptydirs="true" verbose="true" failonerror="true"/>
+        <delete dir="${target}/${backupsDir}" includeemptydirs="true" verbose="true" failonerror="true"/>
+        <delete dir="${target}/${uploadsDir}" includeemptydirs="true" verbose="true" failonerror="true"/>
+        <delete dir="${target}/${logsDir}" includeemptydirs="true" verbose="true" failonerror="true"/>
+        <delete file="${target}/.gitignore"/>
+        <delete file="${target}/application/modules/shop/.gitignore"/>
+        <delete file="${target}/application/modules/shop/.gitignore.save"/>
+        <delete file="${target}/.gitmodules"/>
+        <delete file="${target}_${version}.zip" />
+        <mkdir dir="${target}/${uploadsDir}" mode="0777"/>
+        <copy todir="${target}/${uploadsDir}">
+            <fileset defaultexcludes="false" dir="${target}/${uploadsTempDir}">
+                <include name="**"/>
+            </fileset>
+        </copy>
+        <delete dir="${target}/${uploadsTempDir}" includeemptydirs="true" verbose="true" failonerror="true"/>
+    </target>
+
+    <target name="removerExtraPro">
+        <delete dir="${target}/modules/exchange" includeemptydirs="true" verbose="true" failonerror="true" />
+        <delete dir="${target}/modules/shop/admin/templates/charts" includeemptydirs="true" verbose="true" failonerror="true" />
+        <delete file="${target}/modules/shop/charts.php" />
+    </target>
+
+    <target name="createDepends">
+        <mkdir dir="${target}/${cacheDir}" mode="0777"/>
+        <mkdir dir="${target}/${capthaDir}" mode="0777"/>
+        <mkdir dir="${target}/${backupsDir}" mode="0777"/>
+        <mkdir dir="${target}/${logsDir}" mode="0777"/>
+        <copy file="${target}/system/codeigniter/index.html" todir="${target}/${logsDir}" overwrite="true"/>
+        <copy file="${target}/system/codeigniter/index.html" todir="${target}/${backupsDir}" overwrite="true"/>
+        <copy file="${target}/system/codeigniter/index.html" todir="${target}/${cacheDir}" overwrite="true"/>
+        <copy file="${target}/system/codeigniter/index.html" todir="${target}/${capthaDir}" overwrite="true"/>
+    </target>
+
+    <target name="prepareToInstall">
+        <copy file="${target}/application/modules/install/_install.php" tofile="${target}/application/modules/install/install.php" overwrite="true" />
+        <delete file="${target}/application/modules/install/_install.php"/>
+        <chmod file="${target}/application/modules/install/install.php" mode="0777" />
+        <copy file="${target}/application/config/config.php.sample" tofile="${target}/application/config/config.php" overwrite="true" />
+        <chmod file="${target}/application/config/config.php" mode="0777" />
+    </target>
+
+    <target name="zipping">
+        <exec command="zip -r -q ${target}_${version}.zip ${target}" checkreturn="true" />
+    </target>
+
+    <target name="replaceContent">
+        <adhoc-task name="replaceContentClass"><![CDATA[
+          class BarTask extends Task {
+            protected $target;
+            protected $version;
+            protected $release;
+            function setTarget($target) {
+				$this->target = $target;
+			}
+			function setVersion($version) {
+				$this->version = $version;
+			}
+			function setRelease($release) {
+				$this->release = $release;
+			}
+            function main() {
+                $this->changePropelDebugMode();
+                $this->changeVersion();
+            }
+            function changePropelDebugMode(){
+                $content = file_get_contents($this->target."/application/modules/shop/classes/ShopCore.php");
+		        $content = str_replace("define('PropelDebugMode', TRUE);", "define('PropelDebugMode', FALSE);", $content);
+		        $content = str_replace("define('PropelDebugMode', true);", "define('PropelDebugMode', false);", $content);
+		        file_put_contents($this->target."/application/modules/shop/classes/ShopCore.php", $content);
+            }
+            function changeVersion(){
+                $content = file_get_contents($this->target."/index.php");
+		        $content = preg_replace("/IMAGECMS_NUMBER', '.*?'.*?/", "IMAGECMS_NUMBER', '".$this->version." ".$this->release."'", $content);
+		        file_put_contents($this->target."/index.php", $content);
+            }
+        }
+        ]]></adhoc-task>
+        <replaceContentClass target="${target}" version="${version}" release="${release}"/>
+    </target>
+
+</project>
