@@ -180,7 +180,7 @@ $(document).ready(function() {
         $.ajax({
             type: 'post',
             data: "quantity=" + 1 + "&kitId=" + id,
-            url: '/shop/cart_api/add/ShopKit',
+            url: '/shop/cart/add/ShopKit',
             beforeSend: function() {
                 $('#kitBuy').show();
             },
@@ -206,7 +206,7 @@ $(document).ready(function() {
         $.ajax({
             type: 'post',
             data: "quantity=" + 1 + "&productId=" + id + "&variantId=" + id_var,
-            url: '/shop/cart_api/add',
+            url: '/shop/cart/add',
             success: function(msg) {
                 $('.cart_data_holder').load('/shop/ajax/getCartDataHtml');
                 if ($this.parent().hasClass('button_big_green'))
@@ -391,7 +391,7 @@ $(document).ready(function() {
         $.ajax({
             type: 'post',
             data: $form.serialize() + '&recount=1',
-            url: '/shop/cart_api',
+            url: '/shop/cart',
             success: function(msg) {
                 $('.cart_data_holder').load('/shop/ajax/getCartDataHtml');
                 if ($this.hasClass('inCartProducts'))
@@ -440,7 +440,7 @@ $(document).ready(function() {
         var nid = $(this);
         $('#deliveryMethodId').val(nid.val());
         $.ajax({
-            url: "/shop/cart_api/getPaymentsMethods/" + nid.val(),
+            url: "/shop/cart/getPaymentsMethods/" + nid.val(),
             success: function(msg) {
                 $("#paymentMethods").html(msg);
                 $('#paymentMethodId').val($('.met_buy:eq(0)').val());
@@ -498,7 +498,7 @@ $(document).ready(function() {
         $.ajax({
             type: 'post',
             data: $("#cartForm").serialize() + '&recount=1',
-            url: '/shop/cart_api',
+            url: '/shop/cart',
             success: function(msg) {
                 $('.cart_data_holder').load('/shop/ajax/getCartDataHtml');
                 if ($.exists('.inCartProducts')){
