@@ -1,9 +1,3 @@
-var inCart = 'Уже в корзине';
-var toCart = 'Купить';
-var pcs = 'шт.';
-var kits = 'компл.';
-//var curr = 'грн.';
-
 var Shop = {
     //var Cart = new Object();
     currentItem: {},
@@ -347,8 +341,14 @@ var Shop = {
 
         /*find url*/
         var anchors = false;
-        if (anchors = $context.closest('li').find('a'))
-            cartItem.url = $(anchors[0]).attr('href');
+        if (anchors = $context.closest('li').find('a')) {
+            console.log(typeof anchors);
+            _.each(anchors, function(anchor){
+                if (typeof $(anchor).attr('href') != 'undefined')
+                    if ($(anchor).attr('href').match('/product/'))
+                        cartItem.url = $(anchor).attr('href');
+            })
+        }
         delete anchors;
 
         /*find image*/
@@ -463,8 +463,13 @@ var Shop = {
                         type:'wish_list_sync'
                     });
                 }
-                if (data === false)
+                if (data === false) {
                     localStorage.setItem('wishList', []);
+
+                    $(document).trigger({
+                        type:'wish_list_sync'
+                    });
+                }
             });
         }
     },
@@ -541,8 +546,13 @@ var Shop = {
                     });
                 }
                 else
-                if(data === false)
+                if(data === false) {
                     localStorage.removeItem('compareList');
+
+                    $(document).trigger({
+                        type:'compare_list_sync'
+                    });
+                }
             });
         }
     }
