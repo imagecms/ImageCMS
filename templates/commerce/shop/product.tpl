@@ -102,9 +102,7 @@
                     {foreach $model->getProductVariants() as $key => $pv}
 
                         <input type="radio" class="selectVar" id="sVar{echo $pv->getId()}" name="selectVar" {if $model->firstVariant->getId() == $pv->getId()}checked="checked"{/if}
-                               {if $model->hasDiscounts()}
-                                   discount="{echo $model->firstvariant->toCurrency('OrigPrice')}" 
-                               {/if}
+                               
                                value="{echo $pv->getId()}" 
                                data-pp="1" 
                                data-cs = "{$CS}"
