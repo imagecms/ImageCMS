@@ -77,7 +77,7 @@
                                 <div class="price f-s_18 f_l">
                                     {if $item.model->hasDiscounts()}
                                         <del class="price price-c_red f-s_12 price-c_9">
-                                            {echo $model->firstVariant->toCurrency('OrigPrice')} {$CS}
+                                            {echo $item.model->firstVariant->toCurrency('OrigPrice')} {$CS}
                                         </del> 
                                         <br />
                                     {/if}
