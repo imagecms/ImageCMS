@@ -1,4 +1,3 @@
-<<<<<<< HEAD:templates/new_shop_template/js/shop.js
 var inCart = 'Уже в корзине';
 var toCart = 'Купить';
 var pcs = 'шт.';
@@ -16,8 +15,6 @@ if (!Array.indexOf) {
   }
 }
 
-=======
->>>>>>> 6ac661ce4378942be48e77a700396721a44a5e75:templates/commerce4x/js/shop.js
 var Shop = {
     //var Cart = new Object();
     currentItem: {},
