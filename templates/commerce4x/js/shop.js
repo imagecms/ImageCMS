@@ -4,6 +4,17 @@ var pcs = 'шт.';
 var kits = 'компл.';
 //var curr = 'грн.';
 
+if (!Array.indexOf) {
+  Array.prototype.indexOf = function (obj, start) {
+    for (var i = (start || 0); i < this.length; i++) {
+      if (this[i] == obj) {
+        return i;
+      }
+    }
+    return -1;
+  }
+}
+
 var Shop = {
     //var Cart = new Object();
     currentItem: {},
@@ -48,7 +59,7 @@ var Shop = {
                         //save item to storage
                         Shop.Cart._add(Shop.currentItem);
                     } catch (e) {
-                        console.error(e.message);
+                        //console.error(e.message);
                         return;
                     }
                 });
@@ -255,11 +266,11 @@ var Shop = {
         },
 
         showPopupCart:function () {
-            console.log('start rendering');
+            //console.log('start rendering');
             var start = Date.now();
             $.fancybox(this.renderPopupCart());
             var delta = Date.now() - start;
-            console.log('stop rendering, elapsed time: ' + delta);
+            //console.log('stop rendering, elapsed time: ' + delta);
         },
 
         sync: function (){
@@ -347,8 +358,14 @@ var Shop = {
 
         /*find url*/
         var anchors = false;
-        if (anchors = $context.closest('li').find('a'))
-            cartItem.url = $(anchors[0]).attr('href');
+        if (anchors = $context.closest('li').find('a')) {
+            console.log(typeof anchors);
+            _.each(anchors, function(anchor){
+                if (typeof $(anchor).attr('href') != 'undefined')
+                    if ($(anchor).attr('href').match('/product/'))
+                        cartItem.url = $(anchor).attr('href');
+            })
+        }
         delete anchors;
 
         /*find image*/
@@ -423,8 +440,8 @@ var Shop = {
                             }
                         }
                     } catch (e) {
-                        console.error('Error adding product to wishlist. Server\'s response is not valid JSON.');
-                        console.log(e)
+                        //console.error('Error adding product to wishlist. Server\'s response is not valid JSON.');
+                        //console.log(e)
                    }
                 });
             }
@@ -448,8 +465,8 @@ var Shop = {
 
                     }
                 } catch (e) {
-                    console.error('Error remove product from wishlist. Server\'s response is notvalid JSON.');
-                    console.log(e.message);
+                    //console.error('Error remove product from wishlist. Server\'s response is notvalid JSON.');
+                    //console.log(e.message);
                 }
             });
             deleteWishListItem($(el));
@@ -463,8 +480,13 @@ var Shop = {
                         type:'wish_list_sync'
                     });
                 }
-                if (data === false)
+                if (data === false) {
                     localStorage.setItem('wishList', []);
+
+                    $(document).trigger({
+                        type:'wish_list_sync'
+                    });
+                }
             });
         }
     },
@@ -493,8 +515,8 @@ var Shop = {
 
                         }
                     } catch (e) {
-                        console.error('Error add product to compareList. Server\'s response is notvalid JSON.');
-                        console.log(e.message);
+                        //console.error('Error add product to compareList. Server\'s response is notvalid JSON.');
+                        //console.log(e.message);
                     }
                 });
             }
@@ -523,8 +545,8 @@ var Shop = {
                             });
                         }
                     } catch (e) {
-                        console.error('Error remove product from compareList. Server\'s response is notvalid JSON.');
-                        console.log(e.message);
+                        //console.error('Error remove product from compareList. Server\'s response is notvalid JSON.');
+                        //console.log(e.message);
                     }
                 });
             }
@@ -532,7 +554,7 @@ var Shop = {
         },
         sync: function(){
             $.getJSON('/shop/compare_api/sync', function(data){
-                console.log(data);
+                //console.log(data);
                 if (typeof(data) == 'object' || typeof(data) == 'Array') {
                     localStorage.setItem('compareList', JSON.stringify(data));
 
@@ -541,8 +563,13 @@ var Shop = {
                     });
                 }
                 else
-                if(data === false)
+                if(data === false) {
                     localStorage.removeItem('compareList');
+
+                    $(document).trigger({
+                        type:'compare_list_sync'
+                    });
+                }
             });
         }
     }
@@ -582,7 +609,7 @@ function processPage() {
         $('div.cleaner.isAvail').removeClass('isAvail');
     else if (Shop.Cart.totalCount && !$('div.cleaner').hasClass('isAvail')) {
         $('div.cleaner').addClass('isAvail').on('click', function () {
-            window.location.href = '/shop/cart';
+            location.href = '/shop/cart';
         })
     }
 
@@ -970,7 +997,7 @@ $(//gift certificate in cart
                         Shop.Cart.totalRecount();
                         recountCartPage();
                     } catch (e) {
-                        console.error('Checking gift certificate filed. '+e.message);
+                        //console.error('Checking gift certificate filed. '+e.message);
                     }
                 }
             });

@@ -53,13 +53,14 @@
         </table>
 
         <div class="btn-group myTab m-t_20" data-toggle="buttons-radio">
-            <a href="#shop" class="btn btn-small">Shop</a>
+            {if !strpos(getCmsNumber(), 'Pro')}<a href="#shop" class="btn btn-small">Shop</a>{/if}
             <a href="#base" class="btn btn-small active">Base</a>
             <a href="#module" class="btn btn-small">Modules</a>
         </div> 
 
         <div class="tab-content">
-            {foreach $types as $key => $type} 
+            {foreach $types as $key => $type}
+                {if  !strpos(getCmsNumber(), 'Pro') OR  (strpos(getCmsNumber(), 'Pro') AND $key!='shop')}
                 <div class="tab-pane row {if $key == 'base'}active{/if}" id="{echo $key}">
                     {foreach $type as $k => $groups} 
                         <div class="span3">
@@ -96,6 +97,7 @@
                         </div>
                     {/foreach}
                 </div>
+                {/if}
             {/foreach}
         </div>
         {form_csrf()}
