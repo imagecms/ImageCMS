@@ -75,7 +75,7 @@ $config['static_base_url'] = $config['base_url'];
 */
 $config['index_page'] = "";
 $config['is_installed'] = TRUE;
-$config['rebuild_hooks_tree'] = TRUE;
+$config['rebuild_hooks_tree'] = FALSE;
 /*
 |--------------------------------------------------------------------------
 | URI PROTOCOL
@@ -287,7 +287,7 @@ $config['cache_path'] = '';
 | enabled you MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = "";
+$config['encryption_key'] = "9fbf22a810b176ca6fd14e4f8058b6b0";
 
 /*
 |--------------------------------------------------------------------------
