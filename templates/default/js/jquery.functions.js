@@ -4,35 +4,25 @@
  
 $(window).load(function()
 {
-	//this is intended to wait for all the images to load before running the slideshow
-	init_slideshow()
+    //this is intended to wait for all the images to load before running the slideshow
+    init_slideshow()
 })
 
 init_slideshow = function()
 {
-if ($.hasOwnProperty('cycle'))
-	$('#slides').cycle({
-		fx:'fade',
-		timeout:8000,
-		pager:'#slide_navigation',
-		after:update_slide_caption,
-		before:fade_slide_caption
-	})
+    $('#slides').cycle({
+        speed: 600,
+        timeout: 2000,
+        fx: 'fade',
+        pager: '#slide_navigation',
+        pagerEvent: 'click',
+        pauseOnPagerHover: true,
+        pagerAnchorBuilder: function(idx, slide) {
+            return '<a href="#"></a>';
+        }
+    }).hover(function() {
+        $('#slides').cycle('pause');
+    }, function() {
+        $('#slides').cycle('resume');
+    });
 }
-
-fade_slide_caption = function(next, previous)
-{
-	caption_container = $('#project_caption')
-	caption_container.fadeOut('fast')
-}
-
-update_slide_caption = function(next, previous)
-{
-	caption_container = $('#project_caption')
-
-	caption = $('span.slide_caption', previous)
-	caption_container.fadeIn('fast')
-	caption_container.html(caption.html())
-	
-}
-
