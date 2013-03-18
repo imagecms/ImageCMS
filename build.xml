@@ -132,22 +132,24 @@
     </target>
 
     <target name="removerExtraPro">
-        <delete dir="${target}/modules/exchange" includeemptydirs="true" verbose="true" failonerror="false" />
-        <delete dir="${target}/modules/shop/admin/templates/charts" includeemptydirs="true" verbose="true" failonerror="false" />
-        <delete file="${target}/modules/shop/charts.php" />
+        <delete dir="${target}/application/modules/exchange" includeemptydirs="true" verbose="true" failonerror="false" />
+        <delete dir="${target}/application/modules/shop/admin/templates/charts" includeemptydirs="true" verbose="true" failonerror="false" />
+        <delete file="${target}/application/modules/shop/charts.php" />
+        <move file="${target}/application/modules/install/sqlShopPro.sql" tofile="${target}/application/modules/install/sqlShop.sql"></move>
     </target>
 
     <target name="removerExtraCorporate">
-        <delete dir="${target}/modules/exchange" includeemptydirs="true" verbose="true" failonerror="false" />
-        <delete dir="${target}/modules/shop" includeemptydirs="true" verbose="true" failonerror="false" />
+        <delete dir="${target}/application/modules/exchange" includeemptydirs="true" verbose="true" failonerror="false" />
+        <delete dir="${target}/application/modules/shop" includeemptydirs="true" verbose="true" failonerror="false" />
         <delete dir="${target}/uploads/shop" includeemptydirs="true" verbose="true" failonerror="false" />
         <delete dir="${target}/templates/commerce" includeemptydirs="true" verbose="true" failonerror="false" />
         <delete dir="${target}/templates/commerce_old" includeemptydirs="true" verbose="true" failonerror="false" />
         <delete dir="${target}/templates/commerce_facebook" includeemptydirs="true" verbose="true" failonerror="false" />
         <delete dir="${target}/templates/commerce_mobiles" includeemptydirs="true" verbose="true" failonerror="false" />
         <delete dir="${target}/templates/commerce4x" includeemptydirs="true" verbose="true" failonerror="false" />
-        <delete file="${target}/modules/install/sqlShop.sql" />
-        <delete file="${target}/modules/install/sqlShopClean.sql" />
+        <delete file="${target}/application/modules/install/sqlShop.sql" />
+        <delete file="${target}/application/modules/install/sqlShopPro.sql" />
+        <delete file="${target}/application/modules/install/sqlShopClean.sql" />
     </target>
 
     <target name="createDepends">
