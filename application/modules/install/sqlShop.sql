@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Час створення: Бер 18 2013 р., 16:22
+-- Час створення: Бер 18 2013 р., 18:47
 -- Версія сервера: 5.5.29
 -- Версія PHP: 5.4.6-1ubuntu1.2
 
@@ -26,6 +26,7 @@ SET time_zone = "+00:00";
 -- Структура таблиці `category`
 --
 
+DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL DEFAULT '0',
@@ -69,6 +70,7 @@ INSERT INTO `category` (`id`, `parent_id`, `position`, `name`, `title`, `short_d
 -- Структура таблиці `category_translate`
 --
 
+DROP TABLE IF EXISTS `category_translate`;
 CREATE TABLE IF NOT EXISTS `category_translate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `alias` int(11) NOT NULL,
@@ -89,6 +91,7 @@ CREATE TABLE IF NOT EXISTS `category_translate` (
 -- Структура таблиці `comments`
 --
 
+DROP TABLE IF EXISTS `comments`;
 CREATE TABLE IF NOT EXISTS `comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `module` varchar(25) NOT NULL DEFAULT 'core',
@@ -138,6 +141,7 @@ INSERT INTO `comments` (`id`, `module`, `user_id`, `user_name`, `user_mail`, `us
 -- Структура таблиці `components`
 --
 
+DROP TABLE IF EXISTS `components`;
 CREATE TABLE IF NOT EXISTS `components` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -186,6 +190,7 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 -- Структура таблиці `content`
 --
 
+DROP TABLE IF EXISTS `content`;
 CREATE TABLE IF NOT EXISTS `content` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(500) NOT NULL,
@@ -252,6 +257,7 @@ INSERT INTO `content` (`id`, `title`, `meta_title`, `url`, `cat_url`, `keywords`
 -- Структура таблиці `content_fields`
 --
 
+DROP TABLE IF EXISTS `content_fields`;
 CREATE TABLE IF NOT EXISTS `content_fields` (
   `field_name` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
@@ -278,6 +284,7 @@ INSERT INTO `content_fields` (`field_name`, `type`, `label`, `data`, `weight`, `
 -- Структура таблиці `content_fields_data`
 --
 
+DROP TABLE IF EXISTS `content_fields_data`;
 CREATE TABLE IF NOT EXISTS `content_fields_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `item_id` int(11) NOT NULL,
@@ -303,6 +310,7 @@ INSERT INTO `content_fields_data` (`id`, `item_id`, `item_type`, `field_name`, `
 -- Структура таблиці `content_fields_groups_relations`
 --
 
+DROP TABLE IF EXISTS `content_fields_groups_relations`;
 CREATE TABLE IF NOT EXISTS `content_fields_groups_relations` (
   `field_name` varchar(64) NOT NULL,
   `group_id` int(3) NOT NULL
@@ -326,6 +334,7 @@ INSERT INTO `content_fields_groups_relations` (`field_name`, `group_id`) VALUES
 -- Структура таблиці `content_field_groups`
 --
 
+DROP TABLE IF EXISTS `content_field_groups`;
 CREATE TABLE IF NOT EXISTS `content_field_groups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -349,6 +358,7 @@ INSERT INTO `content_field_groups` (`id`, `name`, `description`) VALUES
 -- Структура таблиці `content_permissions`
 --
 
+DROP TABLE IF EXISTS `content_permissions`;
 CREATE TABLE IF NOT EXISTS `content_permissions` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `page_id` bigint(11) NOT NULL,
@@ -370,6 +380,7 @@ INSERT INTO `content_permissions` (`id`, `page_id`, `data`) VALUES
 -- Структура таблиці `content_tags`
 --
 
+DROP TABLE IF EXISTS `content_tags`;
 CREATE TABLE IF NOT EXISTS `content_tags` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `page_id` int(11) NOT NULL,
@@ -385,6 +396,7 @@ CREATE TABLE IF NOT EXISTS `content_tags` (
 -- Структура таблиці `custom_fields`
 --
 
+DROP TABLE IF EXISTS `custom_fields`;
 CREATE TABLE IF NOT EXISTS `custom_fields` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `field_type_id` int(11) NOT NULL,
@@ -409,6 +421,7 @@ CREATE TABLE IF NOT EXISTS `custom_fields` (
 -- Структура таблиці `custom_fields_data`
 --
 
+DROP TABLE IF EXISTS `custom_fields_data`;
 CREATE TABLE IF NOT EXISTS `custom_fields_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `field_id` int(11) NOT NULL,
@@ -432,6 +445,7 @@ INSERT INTO `custom_fields_data` (`id`, `field_id`, `entity_id`, `field_data`) V
 -- Структура таблиці `emails`
 --
 
+DROP TABLE IF EXISTS `emails`;
 CREATE TABLE IF NOT EXISTS `emails` (
   `name` varchar(50) CHARACTER SET utf8 NOT NULL,
   `template` text CHARACTER SET utf8 NOT NULL,
@@ -470,6 +484,7 @@ INSERT INTO `emails` (`name`, `template`, `settings`, `locale`, `description`) V
 -- Структура таблиці `gallery_albums`
 --
 
+DROP TABLE IF EXISTS `gallery_albums`;
 CREATE TABLE IF NOT EXISTS `gallery_albums` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) NOT NULL,
@@ -491,6 +506,7 @@ CREATE TABLE IF NOT EXISTS `gallery_albums` (
 -- Структура таблиці `gallery_category`
 --
 
+DROP TABLE IF EXISTS `gallery_category`;
 CREATE TABLE IF NOT EXISTS `gallery_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) NOT NULL,
@@ -507,6 +523,7 @@ CREATE TABLE IF NOT EXISTS `gallery_category` (
 -- Структура таблиці `gallery_images`
 --
 
+DROP TABLE IF EXISTS `gallery_images`;
 CREATE TABLE IF NOT EXISTS `gallery_images` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `album_id` int(11) NOT NULL,
@@ -528,6 +545,7 @@ CREATE TABLE IF NOT EXISTS `gallery_images` (
 -- Структура таблиці `languages`
 --
 
+DROP TABLE IF EXISTS `languages`;
 CREATE TABLE IF NOT EXISTS `languages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lang_name` varchar(100) NOT NULL,
@@ -554,6 +572,7 @@ INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `templ
 -- Структура таблиці `login_attempts`
 --
 
+DROP TABLE IF EXISTS `login_attempts`;
 CREATE TABLE IF NOT EXISTS `login_attempts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ip_address` varchar(40) NOT NULL,
@@ -561,7 +580,18 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
   PRIMARY KEY (`id`),
   KEY `ip_address` (`ip_address`),
   KEY `time` (`time`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=97 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=102 ;
+
+--
+-- Дамп даних таблиці `login_attempts`
+--
+
+INSERT INTO `login_attempts` (`id`, `ip_address`, `time`) VALUES
+(97, '127.0.0.1', '2013-03-18 14:25:40'),
+(98, '127.0.0.1', '2013-03-18 14:25:47'),
+(99, '127.0.0.1', '2013-03-18 14:26:13'),
+(100, '127.0.0.1', '2013-03-18 14:26:17'),
+(101, '127.0.0.1', '2013-03-18 14:30:03');
 
 -- --------------------------------------------------------
 
@@ -569,6 +599,7 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
 -- Структура таблиці `logs`
 --
 
+DROP TABLE IF EXISTS `logs`;
 CREATE TABLE IF NOT EXISTS `logs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -577,7 +608,7 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `date` (`date`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=755 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=756 ;
 
 --
 -- Дамп даних таблиці `logs`
@@ -597,7 +628,8 @@ INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
 (751, 1, 'admin', 'Создал категорию        <a href="/admin/categories/edit/70"> Последние новости</a>', 1363608751),
 (752, 1, 'admin', 'Изменил категорию   <a href="/admin/categories/edit/70"> Последние новости</a>', 1363608759),
 (753, 1, 'admin', 'Создал категорию        <a href="/admin/categories/edit/71"> Архив</a>', 1363608777),
-(754, 1, 'admin', 'Изменил категорию   <a href="/admin/categories/edit/69"> Новости</a>', 1363610618);
+(754, 1, 'admin', 'Изменил категорию   <a href="/admin/categories/edit/69"> Новости</a>', 1363610618),
+(755, 1, 'admin', 'Вышел из панели управления', 1363617075);
 
 -- --------------------------------------------------------
 
@@ -605,6 +637,7 @@ INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
 -- Структура таблиці `mail`
 --
 
+DROP TABLE IF EXISTS `mail`;
 CREATE TABLE IF NOT EXISTS `mail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) DEFAULT NULL,
@@ -618,6 +651,7 @@ CREATE TABLE IF NOT EXISTS `mail` (
 -- Структура таблиці `menus`
 --
 
+DROP TABLE IF EXISTS `menus`;
 CREATE TABLE IF NOT EXISTS `menus` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) NOT NULL,
@@ -646,6 +680,7 @@ INSERT INTO `menus` (`id`, `name`, `main_title`, `tpl`, `expand_level`, `descrip
 -- Структура таблиці `menus_data`
 --
 
+DROP TABLE IF EXISTS `menus_data`;
 CREATE TABLE IF NOT EXISTS `menus_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `menu_id` int(9) NOT NULL,
@@ -705,6 +740,7 @@ INSERT INTO `menus_data` (`id`, `menu_id`, `item_id`, `item_type`, `item_image`,
 -- Структура таблиці `menu_translate`
 --
 
+DROP TABLE IF EXISTS `menu_translate`;
 CREATE TABLE IF NOT EXISTS `menu_translate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `item_id` int(11) NOT NULL,
@@ -767,6 +803,7 @@ INSERT INTO `menu_translate` (`id`, `item_id`, `lang_id`, `title`) VALUES
 -- Структура таблиці `propel_migration`
 --
 
+DROP TABLE IF EXISTS `propel_migration`;
 CREATE TABLE IF NOT EXISTS `propel_migration` (
   `version` int(11) DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -784,6 +821,7 @@ INSERT INTO `propel_migration` (`version`) VALUES
 -- Структура таблиці `search`
 --
 
+DROP TABLE IF EXISTS `search`;
 CREATE TABLE IF NOT EXISTS `search` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `hash` varchar(264) NOT NULL,
@@ -807,6 +845,7 @@ CREATE TABLE IF NOT EXISTS `search` (
 -- Структура таблиці `settings`
 --
 
+DROP TABLE IF EXISTS `settings`;
 CREATE TABLE IF NOT EXISTS `settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `s_name` varchar(50) NOT NULL,
@@ -847,7 +886,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
 --
 
 INSERT INTO `settings` (`id`, `s_name`, `site_title`, `site_short_title`, `site_description`, `site_keywords`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `ss`, `cat_list`, `text_editor`) VALUES
-(2, 'main', 'premium', 'ImageCMS', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'new_shop_template', 'no', '', 'module', 69, '63', 'shop', '', '', 'russian_lang', '', '', '', '', 'yes', 'elrte');
+(2, 'main', 'premium', 'ImageCMS', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'commerce4x', 'no', '', 'module', 69, '63', 'shop', '', '', 'russian_lang', '', '', '', '', 'yes', 'elrte');
 
 -- --------------------------------------------------------
 
@@ -855,6 +894,7 @@ INSERT INTO `settings` (`id`, `s_name`, `site_title`, `site_short_title`, `site_
 -- Структура таблиці `shop_banners`
 --
 
+DROP TABLE IF EXISTS `shop_banners`;
 CREATE TABLE IF NOT EXISTS `shop_banners` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `position` smallint(6) DEFAULT NULL,
@@ -881,6 +921,7 @@ INSERT INTO `shop_banners` (`id`, `position`, `active`, `categories`, `on_main`,
 -- Структура таблиці `shop_banners_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_banners_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_banners_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -906,6 +947,7 @@ INSERT INTO `shop_banners_i18n` (`id`, `locale`, `name`, `text`, `url`, `image`)
 -- Структура таблиці `shop_brands`
 --
 
+DROP TABLE IF EXISTS `shop_brands`;
 CREATE TABLE IF NOT EXISTS `shop_brands` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(255) NOT NULL,
@@ -939,6 +981,7 @@ INSERT INTO `shop_brands` (`id`, `url`, `image`, `position`) VALUES
 -- Структура таблиці `shop_brands_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_brands_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_brands_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -979,6 +1022,7 @@ INSERT INTO `shop_brands_i18n` (`id`, `locale`, `name`, `description`, `meta_tit
 -- Структура таблиці `shop_callbacks`
 --
 
+DROP TABLE IF EXISTS `shop_callbacks`;
 CREATE TABLE IF NOT EXISTS `shop_callbacks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -1001,6 +1045,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks` (
 -- Структура таблиці `shop_callbacks_statuses`
 --
 
+DROP TABLE IF EXISTS `shop_callbacks_statuses`;
 CREATE TABLE IF NOT EXISTS `shop_callbacks_statuses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `is_default` tinyint(1) DEFAULT NULL,
@@ -1021,6 +1066,7 @@ INSERT INTO `shop_callbacks_statuses` (`id`, `is_default`) VALUES
 -- Структура таблиці `shop_callbacks_statuses_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_callbacks_statuses_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_callbacks_statuses_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1043,6 +1089,7 @@ INSERT INTO `shop_callbacks_statuses_i18n` (`id`, `locale`, `text`) VALUES
 -- Структура таблиці `shop_callbacks_themes`
 --
 
+DROP TABLE IF EXISTS `shop_callbacks_themes`;
 CREATE TABLE IF NOT EXISTS `shop_callbacks_themes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `position` int(11) DEFAULT NULL,
@@ -1062,6 +1109,7 @@ INSERT INTO `shop_callbacks_themes` (`id`, `position`) VALUES
 -- Структура таблиці `shop_callbacks_themes_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_callbacks_themes_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_callbacks_themes_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1084,6 +1132,7 @@ INSERT INTO `shop_callbacks_themes_i18n` (`id`, `locale`, `text`) VALUES
 -- Структура таблиці `shop_category`
 --
 
+DROP TABLE IF EXISTS `shop_category`;
 CREATE TABLE IF NOT EXISTS `shop_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(255) NOT NULL,
@@ -1138,6 +1187,7 @@ INSERT INTO `shop_category` (`id`, `url`, `parent_id`, `position`, `full_path`, 
 -- Структура таблиці `shop_category_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_category_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_category_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1202,6 +1252,7 @@ INSERT INTO `shop_category_i18n` (`id`, `locale`, `name`, `h1`, `description`, `
 -- Структура таблиці `shop_comulativ_discount`
 --
 
+DROP TABLE IF EXISTS `shop_comulativ_discount`;
 CREATE TABLE IF NOT EXISTS `shop_comulativ_discount` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(255) DEFAULT NULL,
@@ -1219,6 +1270,7 @@ CREATE TABLE IF NOT EXISTS `shop_comulativ_discount` (
 -- Структура таблиці `shop_currencies`
 --
 
+DROP TABLE IF EXISTS `shop_currencies`;
 CREATE TABLE IF NOT EXISTS `shop_currencies` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -1247,6 +1299,7 @@ INSERT INTO `shop_currencies` (`id`, `name`, `main`, `is_default`, `code`, `symb
 -- Структура таблиці `shop_delivery_methods`
 --
 
+DROP TABLE IF EXISTS `shop_delivery_methods`;
 CREATE TABLE IF NOT EXISTS `shop_delivery_methods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `price` float(10,2) NOT NULL,
@@ -1273,6 +1326,7 @@ INSERT INTO `shop_delivery_methods` (`id`, `price`, `free_from`, `enabled`, `is_
 -- Структура таблиці `shop_delivery_methods_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_delivery_methods_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_delivery_methods_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1299,6 +1353,7 @@ INSERT INTO `shop_delivery_methods_i18n` (`id`, `locale`, `name`, `description`,
 -- Структура таблиці `shop_delivery_methods_systems`
 --
 
+DROP TABLE IF EXISTS `shop_delivery_methods_systems`;
 CREATE TABLE IF NOT EXISTS `shop_delivery_methods_systems` (
   `delivery_method_id` int(11) NOT NULL,
   `payment_method_id` int(11) NOT NULL,
@@ -1340,6 +1395,7 @@ INSERT INTO `shop_delivery_methods_systems` (`delivery_method_id`, `payment_meth
 -- Структура таблиці `shop_discounts`
 --
 
+DROP TABLE IF EXISTS `shop_discounts`;
 CREATE TABLE IF NOT EXISTS `shop_discounts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -1362,6 +1418,7 @@ CREATE TABLE IF NOT EXISTS `shop_discounts` (
 -- Структура таблиці `shop_discount_category`
 --
 
+DROP TABLE IF EXISTS `shop_discount_category`;
 CREATE TABLE IF NOT EXISTS `shop_discount_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `discount_id` int(11) NOT NULL,
@@ -1375,6 +1432,7 @@ CREATE TABLE IF NOT EXISTS `shop_discount_category` (
 -- Структура таблиці `shop_discount_product`
 --
 
+DROP TABLE IF EXISTS `shop_discount_product`;
 CREATE TABLE IF NOT EXISTS `shop_discount_product` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `discount_id` int(11) NOT NULL,
@@ -1388,6 +1446,7 @@ CREATE TABLE IF NOT EXISTS `shop_discount_product` (
 -- Структура таблиці `shop_discount_user_group`
 --
 
+DROP TABLE IF EXISTS `shop_discount_user_group`;
 CREATE TABLE IF NOT EXISTS `shop_discount_user_group` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `discount_id` int(11) NOT NULL,
@@ -1401,6 +1460,7 @@ CREATE TABLE IF NOT EXISTS `shop_discount_user_group` (
 -- Структура таблиці `shop_gifts`
 --
 
+DROP TABLE IF EXISTS `shop_gifts`;
 CREATE TABLE IF NOT EXISTS `shop_gifts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `key` varchar(255) DEFAULT NULL,
@@ -1426,6 +1486,7 @@ INSERT INTO `shop_gifts` (`id`, `key`, `active`, `price`, `created`, `espdate`) 
 -- Структура таблиці `shop_kit`
 --
 
+DROP TABLE IF EXISTS `shop_kit`;
 CREATE TABLE IF NOT EXISTS `shop_kit` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) DEFAULT NULL,
@@ -1450,6 +1511,7 @@ INSERT INTO `shop_kit` (`id`, `product_id`, `active`, `position`) VALUES
 -- Структура таблиці `shop_kit_product`
 --
 
+DROP TABLE IF EXISTS `shop_kit_product`;
 CREATE TABLE IF NOT EXISTS `shop_kit_product` (
   `product_id` int(11) NOT NULL,
   `kit_id` int(11) NOT NULL,
@@ -1473,6 +1535,7 @@ INSERT INTO `shop_kit_product` (`product_id`, `kit_id`, `discount`) VALUES
 -- Структура таблиці `shop_notifications`
 --
 
+DROP TABLE IF EXISTS `shop_notifications`;
 CREATE TABLE IF NOT EXISTS `shop_notifications` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
@@ -1502,6 +1565,7 @@ CREATE TABLE IF NOT EXISTS `shop_notifications` (
 -- Структура таблиці `shop_notification_statuses`
 --
 
+DROP TABLE IF EXISTS `shop_notification_statuses`;
 CREATE TABLE IF NOT EXISTS `shop_notification_statuses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `position` smallint(6) DEFAULT NULL,
@@ -1524,6 +1588,7 @@ INSERT INTO `shop_notification_statuses` (`id`, `position`) VALUES
 -- Структура таблиці `shop_notification_statuses_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_notification_statuses_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_notification_statuses_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1546,6 +1611,7 @@ INSERT INTO `shop_notification_statuses_i18n` (`id`, `locale`, `name`) VALUES
 -- Структура таблиці `shop_orders`
 --
 
+DROP TABLE IF EXISTS `shop_orders`;
 CREATE TABLE IF NOT EXISTS `shop_orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `key` varchar(255) NOT NULL,
@@ -1605,6 +1671,7 @@ INSERT INTO `shop_orders` (`id`, `key`, `delivery_method`, `delivery_price`, `st
 -- Структура таблиці `shop_orders_products`
 --
 
+DROP TABLE IF EXISTS `shop_orders_products`;
 CREATE TABLE IF NOT EXISTS `shop_orders_products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
@@ -1661,6 +1728,7 @@ INSERT INTO `shop_orders_products` (`id`, `order_id`, `product_id`, `variant_id`
 -- Структура таблиці `shop_orders_status_history`
 --
 
+DROP TABLE IF EXISTS `shop_orders_status_history`;
 CREATE TABLE IF NOT EXISTS `shop_orders_status_history` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
@@ -1697,6 +1765,7 @@ INSERT INTO `shop_orders_status_history` (`id`, `order_id`, `status_id`, `user_i
 -- Структура таблиці `shop_order_statuses`
 --
 
+DROP TABLE IF EXISTS `shop_order_statuses`;
 CREATE TABLE IF NOT EXISTS `shop_order_statuses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `position` smallint(6) DEFAULT NULL,
@@ -1719,6 +1788,7 @@ INSERT INTO `shop_order_statuses` (`id`, `position`) VALUES
 -- Структура таблиці `shop_order_statuses_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_order_statuses_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_order_statuses_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1741,6 +1811,7 @@ INSERT INTO `shop_order_statuses_i18n` (`id`, `locale`, `name`) VALUES
 -- Структура таблиці `shop_payment_methods`
 --
 
+DROP TABLE IF EXISTS `shop_payment_methods`;
 CREATE TABLE IF NOT EXISTS `shop_payment_methods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `active` tinyint(1) DEFAULT NULL,
@@ -1769,6 +1840,7 @@ INSERT INTO `shop_payment_methods` (`id`, `active`, `currency_id`, `position`, `
 -- Структура таблиці `shop_payment_methods_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_payment_methods_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_payment_methods_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1798,6 +1870,7 @@ INSERT INTO `shop_payment_methods_i18n` (`id`, `locale`, `name`, `description`) 
 -- Структура таблиці `shop_products`
 --
 
+DROP TABLE IF EXISTS `shop_products`;
 CREATE TABLE IF NOT EXISTS `shop_products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(255) NOT NULL,
@@ -1894,6 +1967,7 @@ INSERT INTO `shop_products` (`id`, `url`, `active`, `hit`, `brand_id`, `category
 -- Структура таблиці `shop_products_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_products_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_products_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -2023,6 +2097,7 @@ INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `
 -- Структура таблиці `shop_products_rating`
 --
 
+DROP TABLE IF EXISTS `shop_products_rating`;
 CREATE TABLE IF NOT EXISTS `shop_products_rating` (
   `product_id` int(11) NOT NULL,
   `votes` int(11) DEFAULT NULL,
@@ -2056,6 +2131,7 @@ INSERT INTO `shop_products_rating` (`product_id`, `votes`, `rating`) VALUES
 -- Структура таблиці `shop_product_categories`
 --
 
+DROP TABLE IF EXISTS `shop_product_categories`;
 CREATE TABLE IF NOT EXISTS `shop_product_categories` (
   `product_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
@@ -2189,6 +2265,7 @@ INSERT INTO `shop_product_categories` (`product_id`, `category_id`) VALUES
 -- Структура таблиці `shop_product_images`
 --
 
+DROP TABLE IF EXISTS `shop_product_images`;
 CREATE TABLE IF NOT EXISTS `shop_product_images` (
   `product_id` int(11) NOT NULL,
   `image_name` varchar(255) NOT NULL,
@@ -2235,6 +2312,7 @@ INSERT INTO `shop_product_images` (`product_id`, `image_name`, `position`) VALUE
 -- Структура таблиці `shop_product_properties`
 --
 
+DROP TABLE IF EXISTS `shop_product_properties`;
 CREATE TABLE IF NOT EXISTS `shop_product_properties` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `csv_name` varchar(50) NOT NULL,
@@ -2286,6 +2364,7 @@ INSERT INTO `shop_product_properties` (`id`, `csv_name`, `active`, `show_in_comp
 -- Структура таблиці `shop_product_properties_categories`
 --
 
+DROP TABLE IF EXISTS `shop_product_properties_categories`;
 CREATE TABLE IF NOT EXISTS `shop_product_properties_categories` (
   `property_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
@@ -2403,6 +2482,7 @@ INSERT INTO `shop_product_properties_categories` (`property_id`, `category_id`) 
 -- Структура таблиці `shop_product_properties_data`
 --
 
+DROP TABLE IF EXISTS `shop_product_properties_data`;
 CREATE TABLE IF NOT EXISTS `shop_product_properties_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `property_id` int(11) DEFAULT NULL,
@@ -7724,6 +7804,7 @@ INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `
 -- Структура таблиці `shop_product_properties_data_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_product_properties_data_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_product_properties_data_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -7738,6 +7819,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_data_i18n` (
 -- Структура таблиці `shop_product_properties_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_product_properties_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_product_properties_i18n` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
@@ -7788,6 +7870,7 @@ INSERT INTO `shop_product_properties_i18n` (`id`, `name`, `locale`, `data`) VALU
 -- Структура таблиці `shop_product_variants`
 --
 
+DROP TABLE IF EXISTS `shop_product_variants`;
 CREATE TABLE IF NOT EXISTS `shop_product_variants` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
@@ -7878,6 +7961,7 @@ INSERT INTO `shop_product_variants` (`id`, `product_id`, `price`, `number`, `sto
 -- Структура таблиці `shop_product_variants_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_product_variants_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_product_variants_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -7974,6 +8058,7 @@ INSERT INTO `shop_product_variants_i18n` (`id`, `locale`, `name`) VALUES
 -- Структура таблиці `shop_rbac_group`
 --
 
+DROP TABLE IF EXISTS `shop_rbac_group`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_group` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -8053,6 +8138,7 @@ INSERT INTO `shop_rbac_group` (`id`, `name`, `description`) VALUES
 -- Структура таблиці `shop_rbac_group_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_rbac_group_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_group_i18n` (
   `id` int(11) NOT NULL,
   `description` varchar(200) DEFAULT NULL,
@@ -8130,6 +8216,7 @@ INSERT INTO `shop_rbac_group_i18n` (`id`, `description`, `locale`) VALUES
 -- Структура таблиці `shop_rbac_privileges`
 --
 
+DROP TABLE IF EXISTS `shop_rbac_privileges`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_privileges` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -8622,6 +8709,7 @@ INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`, `description`) VAL
 -- Структура таблиці `shop_rbac_privileges_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_rbac_privileges_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_privileges_i18n` (
   `id` int(11) NOT NULL,
   `title` varchar(45) NOT NULL,
@@ -9114,6 +9202,7 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 -- Структура таблиці `shop_rbac_roles`
 --
 
+DROP TABLE IF EXISTS `shop_rbac_roles`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_roles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -9138,6 +9227,7 @@ INSERT INTO `shop_rbac_roles` (`id`, `name`, `importance`, `description`) VALUES
 -- Структура таблиці `shop_rbac_roles_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_rbac_roles_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_roles_i18n` (
   `id` int(11) NOT NULL,
   `alt_name` varchar(45) DEFAULT NULL,
@@ -9161,6 +9251,7 @@ INSERT INTO `shop_rbac_roles_i18n` (`id`, `alt_name`, `locale`, `description`) V
 -- Структура таблиці `shop_rbac_roles_privileges`
 --
 
+DROP TABLE IF EXISTS `shop_rbac_roles_privileges`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_roles_privileges` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) NOT NULL,
@@ -9793,6 +9884,7 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 -- Структура таблиці `shop_settings`
 --
 
+DROP TABLE IF EXISTS `shop_settings`;
 CREATE TABLE IF NOT EXISTS `shop_settings` (
   `name` varchar(255) NOT NULL,
   `value` text,
@@ -9812,7 +9904,7 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 ('addImageWidth', '800', ''),
 ('addImageHeight', '600', ''),
 ('imagesQuality', '99', ''),
-('systemTemplatePath', './templates/new_shop_template/shop/', ''),
+('systemTemplatePath', './templates/commerce4x/shop/', ''),
 ('frontProductsPerPage', '12', ''),
 ('adminProductsPerPage', '24', ''),
 ('ordersMessageFormat', 'text', ''),
@@ -9948,6 +10040,7 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 -- Структура таблиці `shop_spy`
 --
 
+DROP TABLE IF EXISTS `shop_spy`;
 CREATE TABLE IF NOT EXISTS `shop_spy` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -9973,6 +10066,7 @@ INSERT INTO `shop_spy` (`id`, `user_id`, `product_id`, `price`, `variant_id`, `k
 -- Структура таблиці `shop_warehouse`
 --
 
+DROP TABLE IF EXISTS `shop_warehouse`;
 CREATE TABLE IF NOT EXISTS `shop_warehouse` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -9997,6 +10091,7 @@ INSERT INTO `shop_warehouse` (`id`, `name`, `address`, `phone`, `description`) V
 -- Структура таблиці `shop_warehouse_data`
 --
 
+DROP TABLE IF EXISTS `shop_warehouse_data`;
 CREATE TABLE IF NOT EXISTS `shop_warehouse_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
@@ -10022,6 +10117,7 @@ INSERT INTO `shop_warehouse_data` (`id`, `product_id`, `warehouse_id`, `count`) 
 -- Структура таблиці `support_comments`
 --
 
+DROP TABLE IF EXISTS `support_comments`;
 CREATE TABLE IF NOT EXISTS `support_comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ticket_id` int(11) NOT NULL,
@@ -10046,6 +10142,7 @@ INSERT INTO `support_comments` (`id`, `ticket_id`, `user_id`, `user_status`, `us
 -- Структура таблиці `support_departments`
 --
 
+DROP TABLE IF EXISTS `support_departments`;
 CREATE TABLE IF NOT EXISTS `support_departments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
@@ -10067,6 +10164,7 @@ INSERT INTO `support_departments` (`id`, `name`) VALUES
 -- Структура таблиці `support_tickets`
 --
 
+DROP TABLE IF EXISTS `support_tickets`;
 CREATE TABLE IF NOT EXISTS `support_tickets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -10096,6 +10194,7 @@ INSERT INTO `support_tickets` (`id`, `user_id`, `last_comment_author`, `text`, `
 -- Структура таблиці `tags`
 --
 
+DROP TABLE IF EXISTS `tags`;
 CREATE TABLE IF NOT EXISTS `tags` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `value` varchar(255) NOT NULL,
@@ -10109,6 +10208,7 @@ CREATE TABLE IF NOT EXISTS `tags` (
 -- Структура таблиці `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) DEFAULT NULL,
@@ -10135,41 +10235,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   KEY `users_I_1` (`key`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=46 ;
 
---
--- Дамп даних таблиці `users`
---
-
-INSERT INTO `users` (`id`, `role_id`, `username`, `password`, `email`, `banned`, `ban_reason`, `newpass`, `newpass_key`, `newpass_time`, `last_ip`, `last_login`, `created`, `modified`, `address`, `cart_data`, `wish_list_data`, `key`, `amout`, `discount`, `phone`) VALUES
-(1, 1, 'admin', '$6$17LKhkPw/gb3$3ljfZJYgwWM8Zp7tebTQoCTWJplTO8SJIOmzQUcN190lVURcVWcZIjP51Cto9HGylJL/MUW8cllLjajX6Hv74/', 'ad@min.com', 0, '', NULL, NULL, NULL, '127.0.0.1', 2013, 2012, '0000-00-00 00:00:00', 'lviv', 'a:1:{s:16:"SProducts_92_103";a:6:{s:8:"instance";s:9:"SProducts";s:9:"productId";i:92;s:9:"variantId";i:103;s:8:"quantity";i:1;s:5:"price";d:742.5;s:11:"variantName";s:0:"";}}', 'a:0:{}', '3', 599.38, NULL, '123456789'),
-(45, NULL, 'плгпгоп', '$1$9x9zuc5H$ca.kSMwgCo3O3iGYchTXg.', 'hyftn@yfhy.com', NULL, NULL, NULL, NULL, NULL, '95.133.123.99', 2013, 1362172515, NULL, '', 'a:1:{s:17:"SProducts_191_219";a:6:{s:8:"instance";s:9:"SProducts";s:9:"productId";i:191;s:9:"variantId";i:219;s:8:"quantity";i:1;s:5:"price";d:824;s:11:"variantName";s:0:"";}}', NULL, '', 0.00, NULL, 'thfghfh'),
-(43, NULL, 'asd', '$1$iX0.D40.$3KQvRugPWnG.ww.7YhMYA.', 'same_one@mail.ru', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2013, 1358358993, NULL, '', NULL, NULL, 'NvJLj', 0.00, NULL, ''),
-(2, NULL, 'Василий Пупкин', '$1$fCYNXvZ/$8XtmYCvq/zhA3Fc//ou00.', 'vasil.pypkin@mail.ru', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 944006400, NULL, 'г. Москва', NULL, NULL, 'Rw9x4', 0.00, NULL, '+38050 123 45 67'),
-(3, 2, 'Оксана', '$1$LjN2NDGo$pm.0w5ad56jcfU7d7lrMP1', 'oksana@mail.ru', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 1116806400, NULL, 'г. Тула', NULL, NULL, 'iZkSk', 0.00, NULL, '+3 098 357 78 54'),
-(4, NULL, 'Валентин', '$1$5E22OQfO$LSChb/.1d0am5RWhTVom10', 'valentin@rambler.ru', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 1186963200, NULL, 'м. Львів', NULL, NULL, 'jzgdZ', 0.00, NULL, '+ 067 546 87 54'),
-(5, NULL, 'Игор Петрович', '$1$SBeN16qQ$oaDnHR7lNu2RvEygOUpxq.', 'kalmar@gmail.com', 0, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 1300147200, NULL, 'г. Тверь', NULL, NULL, 'BHElK', 0.00, NULL, '054 245 64 34'),
-(6, NULL, 'Валентина', '$1$mnMRiwMI$WAjrtxf8CuYzFCNKrgvvH0', 'geg@g.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1336867200, NULL, '', NULL, NULL, 'apgKh', 0.00, NULL, ''),
-(7, NULL, 'Юлия', '$1$jpThhaAT$5rhMF1hVH/bU4SUboGAqY.', 'gola@go.go', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 923961600, NULL, '', NULL, NULL, 'PDO2h', 450.00, NULL, ''),
-(8, NULL, 'Микола', '$1$LZwk8Zeq$FtEgH7kznQhfM/DYQp5Xt0', 'hi@hello.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1204588800, NULL, '', NULL, NULL, 'v7AL9', 372.00, NULL, ''),
-(9, NULL, 'Петр', '$1$rtOiO.Kb$DoOEPmufZ0QoH6ALhIW8K/', 'go@gmail.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1179878400, NULL, '', NULL, NULL, 'DfFay', 534.61, NULL, ''),
-(10, NULL, 'Юрий', '$1$7WY/C71c$yWo/60KT8o1Gpgz8NoR6g0', 'hell@hi.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1080000000, NULL, '', NULL, NULL, 'nnwHi', 1032.00, NULL, ''),
-(11, NULL, 'Артур', '$1$fqe/B31z$SCEUoyGht45BD7P7sGntB1', 'joker@g.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1174608000, NULL, '', NULL, NULL, 'ZQMgY', 500.00, NULL, ''),
-(12, NULL, 'Роман', '$1$Q5OGVHIL$EdIFtjfNZS0esJhNJBT4S/', 'h@g.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1139097600, NULL, '', NULL, NULL, 'vBYt5', 777.65, NULL, ''),
-(13, NULL, 'Иван', '$1$NuYcOL2u$DT9IMVrhso30lkt.KjX3R0', 't@com.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1131148800, NULL, '', NULL, NULL, 'GvaoX', 39.95, NULL, ''),
-(14, NULL, 'roman', '$1$O4xM5INE$xXS1VKjNGADRAQ2ECq.fb/', 'hh@f.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1103760000, NULL, '', NULL, NULL, '4vuGR', 60.99, NULL, ''),
-(15, NULL, 'Степа', '$1$0URQeiKO$51AjUbMLddI89Q00wxbBd/', 'w@go.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1086307200, NULL, '', NULL, NULL, 'xjWwZ', 42.00, NULL, ''),
-(16, NULL, 'Катерина', '$1$K4BWApqA$78xLQXHIxL6MjnGsXHr/40', 'd@com.ua', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1094342400, NULL, '', NULL, NULL, 'L4TGA', 1000.00, NULL, ''),
-(17, NULL, 'Валерия', '$1$K7RfsI0I$H51xxHN4K41e3bYNnwkK7/', 'q@w.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 984441600, NULL, '', NULL, NULL, 'MAWZm', 1178.99, NULL, ''),
-(37, NULL, '11111111', '$1$8L/.vA..$HbLCBTdFOqAXiw/IBJtYb.', 'ad4444444@min.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 1358270077, NULL, 'aaaaaa', NULL, NULL, '', 300.00, NULL, 'aa'),
-(38, NULL, 'mfmfmf', '$1$D23.QK2.$CnNcL.twaRCHkWFH5o9Ux0', 'mf@mf.mf', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 1358270150, NULL, 'mf', NULL, NULL, '', 0.00, NULL, 'mf'),
-(36, NULL, 'aaaaaaaaaaaaaa', '$1$jc5.wU..$xUAQH2lLNtWZpEyAAvm7p1', 'a111111111111d@min.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 1358269947, NULL, 'aaaaaaaaaaa', NULL, NULL, '', 0.00, NULL, 'aaaaaaaaaaaa'),
-(44, NULL, 'fghjghgfhfg', '$1$tV..ya0.$cqxP9PbWHid5r0LZzpzTa/', 'hghfgh@chgch.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 1358963553, NULL, '', NULL, NULL, '', 10500.00, NULL, '');
-
 -- --------------------------------------------------------
 
 --
 -- Структура таблиці `user_autologin`
 --
 
+DROP TABLE IF EXISTS `user_autologin`;
 CREATE TABLE IF NOT EXISTS `user_autologin` (
   `key_id` char(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `user_id` mediumint(8) NOT NULL DEFAULT '0',
@@ -10186,6 +10258,7 @@ CREATE TABLE IF NOT EXISTS `user_autologin` (
 -- Структура таблиці `user_temp`
 --
 
+DROP TABLE IF EXISTS `user_temp`;
 CREATE TABLE IF NOT EXISTS `user_temp` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
@@ -10203,6 +10276,7 @@ CREATE TABLE IF NOT EXISTS `user_temp` (
 -- Структура таблиці `widgets`
 --
 
+DROP TABLE IF EXISTS `widgets`;
 CREATE TABLE IF NOT EXISTS `widgets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
