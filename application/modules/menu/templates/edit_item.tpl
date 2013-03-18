@@ -28,7 +28,7 @@
                 {$data = unserialize($item.add_data)}
                 <input type="hidden" name="menu_id" value="{$menu.id}"/>
                 <input type="hidden" name="item_id" value="{$item.item_id}" id="item_page_id"/>
-                <input type="hidden" name="item_type" value="page"/>
+                <input type="hidden" name="page_item_type" value="page"/>
                 <table class="table table-striped table-bordered table-hover table-condensed">
                     <thead>
                         <tr>
@@ -212,7 +212,7 @@
                 {$data = unserialize($item.add_data)}
                 <input type="hidden" name="menu_id" value="{$menu.id}"/>
                 <input type="hidden" name="item_id" value="{$item.item_id}" id="cat_input"/>
-                <input type="hidden" name="item_type" value="category"/>
+                <input type="hidden" name="cat_item_type" value="category"/>
                 <table class="table table-striped table-bordered table-hover table-condensed">
                     <thead>
                         <tr>
@@ -369,7 +369,7 @@
                     <div class="span3">
                         <input type="hidden" name="menu_id" value="{$menu.id}"/>
                         <input type="hidden" name="item_id" value="0" />
-                        <input type="hidden" name="item_type" value="module"/>
+                        <input type="hidden" name="module_item_type" value="module"/>
                         <input type="hidden" name="mod_name" value="{$data.mod_name}"/>
                         <ul class="nav myTab nav-tabs nav-stacked">
                             {foreach $modules as $module}
@@ -431,7 +431,7 @@
                                                 </div>            
                                                 <div class="control-group">
                                                     <label class="control-label">{lang('amt_position_after')}:</label>
-                                                    <div class="controls">{echo $item.position}
+                                                    <div class="controls">
                                                         <select name="position_after" id="position_after">
                                                             <option value="0">{lang('amt_no')}</option>
                                                             <option value="first">{lang('amt_first')}</option>
@@ -517,7 +517,7 @@
             <form method="post" action="/admin/components/cp/menu/edit_item/{$item.id}" id="url_form" >
                 <input type="hidden" name="menu_id" value="{$menu.id}">
                 <input type="hidden" name="item_id" value="0"/>
-                <input type="hidden" name="item_type" value="url"/>
+                <input type="hidden" name="url_item_type" value="url"/>
                 <table class="table table-striped table-bordered table-hover table-condensed">
                     <thead>
                         <tr>

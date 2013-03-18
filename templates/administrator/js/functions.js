@@ -102,7 +102,7 @@ $('.formSubmit').live('click', function() {
 
     var btn = this;
 
-    var selector = $(this).data('form');
+    var selector = $(this).attr('data-form');
     var action = $(this).data('action');
     $(selector).validate()
     if ($(selector).valid())
