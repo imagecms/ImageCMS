@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1deb1
+-- version 3.4.11.1deb1
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Янв 28 2013 г., 14:02
--- Версия сервера: 5.5.28
--- Версия PHP: 5.3.10-1ubuntu3.4
+-- Час створення: Бер 18 2013 р., 16:22
+-- Версія сервера: 5.5.29
+-- Версія PHP: 5.4.6-1ubuntu1.2
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,16 +17,15 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- База данных: `reliz`
+-- БД: `premium`
 --
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `category`
+-- Структура таблиці `category`
 --
 
-DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL DEFAULT '0',
@@ -52,22 +51,24 @@ CREATE TABLE IF NOT EXISTS `category` (
   PRIMARY KEY (`id`),
   KEY `name` (`name`),
   KEY `url` (`url`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=69 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=72 ;
 
 --
--- Дамп данных таблицы `category`
+-- Дамп даних таблиці `category`
 --
 
 INSERT INTO `category` (`id`, `parent_id`, `position`, `name`, `title`, `short_desc`, `url`, `image`, `keywords`, `description`, `fetch_pages`, `main_tpl`, `tpl`, `page_tpl`, `per_page`, `order_by`, `sort_order`, `comments_default`, `field_group`, `category_field_group`, `settings`) VALUES
-(63, 0, 0, 'Корневая категория', 'root category', '', 'root', '', '', '', 'b:0;', '', '', '', 5, 'publish_date', 'desc', 0, 11, 9, 'a:2:{s:26:"category_apply_for_subcats";s:1:"1";s:17:"apply_for_subcats";s:1:"1";}');
+(63, 0, 0, 'Корневая категория', 'root category', '', 'root', '', '', '', 'b:0;', '', '', '', 5, 'publish_date', 'desc', 0, 11, 9, 'a:2:{s:26:"category_apply_for_subcats";s:1:"1";s:17:"apply_for_subcats";s:1:"1";}'),
+(69, 0, 1, 'Новости', '', '', 'novosti', '', '', '', 'a:3:{i:0;s:2:"69";i:1;s:2:"70";i:2;s:2:"71";}', '', '', '', 15, 'publish_date', 'desc', 0, -1, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}'),
+(70, 69, 2, 'Последние новости', '', '', 'poslednie-novosti', '', '', '', 'b:0;', '', '', '', 15, 'publish_date', 'desc', 0, -1, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}'),
+(71, 69, 3, 'Архив', '', '', 'arhiv', '', '', '', 'b:0;', '', '', '', 15, 'publish_date', 'desc', 0, -1, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `category_translate`
+-- Структура таблиці `category_translate`
 --
 
-DROP TABLE IF EXISTS `category_translate`;
 CREATE TABLE IF NOT EXISTS `category_translate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `alias` int(11) NOT NULL,
@@ -85,10 +86,9 @@ CREATE TABLE IF NOT EXISTS `category_translate` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `comments`
+-- Структура таблиці `comments`
 --
 
-DROP TABLE IF EXISTS `comments`;
 CREATE TABLE IF NOT EXISTS `comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `module` varchar(25) NOT NULL DEFAULT 'core',
@@ -115,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=82 ;
 
 --
--- Дамп данных таблицы `comments`
+-- Дамп даних таблиці `comments`
 --
 
 INSERT INTO `comments` (`id`, `module`, `user_id`, `user_name`, `user_mail`, `user_site`, `item_id`, `text`, `date`, `status`, `agent`, `user_ip`, `rate`, `text_plus`, `text_minus`, `like`, `disslike`, `parent`) VALUES
@@ -135,10 +135,9 @@ INSERT INTO `comments` (`id`, `module`, `user_id`, `user_name`, `user_mail`, `us
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `components`
+-- Структура таблиці `components`
 --
 
-DROP TABLE IF EXISTS `components`;
 CREATE TABLE IF NOT EXISTS `components` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -156,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `components` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=177 ;
 
 --
--- Дамп данных таблицы `components`
+-- Дамп даних таблиці `components`
 --
 
 INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_menu`, `settings`, `position`) VALUES
@@ -184,10 +183,9 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `content`
+-- Структура таблиці `content`
 --
 
-DROP TABLE IF EXISTS `content`;
 CREATE TABLE IF NOT EXISTS `content` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(500) NOT NULL,
@@ -221,33 +219,39 @@ CREATE TABLE IF NOT EXISTS `content` (
   KEY `category` (`category`),
   KEY `created` (`created`),
   KEY `updated` (`updated`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=90 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=97 ;
 
 --
--- Дамп данных таблицы `content`
+-- Дамп даних таблиці `content`
 --
 
 INSERT INTO `content` (`id`, `title`, `meta_title`, `url`, `cat_url`, `keywords`, `description`, `prev_text`, `full_text`, `category`, `full_tpl`, `main_tpl`, `position`, `comments_status`, `comments_count`, `post_status`, `author`, `publish_date`, `created`, `updated`, `showed`, `lang`, `lang_alias`) VALUES
 (35, 'О сайте', '', 'o-sajte', '', 'это, базовый, шаблон, imagecms, котором, релизованы, следующие, функции, вывод, фотогалереи, статической, статьи, блога', 'Это базовый шаблон ImageCMS, на котором релизованы следующие функции: вывод фотогалереи, вывод статической статьи, вывод блога.', '<p>Это базовый шаблон ImageCMS, на котором релизованы следующие функции: отображение фотогалереи, отображение статической статьи, отображение корпоративного блога, отображение формы обратной связи.</p>\n<p>Общий вид шаблона можно отредактировать и изменить лого, графическую вставку на свои тематические.</p>\n<p>Слева в сайдбаре Вы видите список категорий блога, который легко вставляется с помощью функции {sub_category_list()} в файле main.tpl. Также в левом сайдбаре находится форма поиска по сайту, виджет последних комментариев и виджет тегов сайта. В этот сайдбар можно также добавить виджет последних либо популярных новостей, а также любые счетчики, информеры.</p>\n<p>Верхнее меню реализовано с помощью модуля Меню. Управлять его содержимым можно из административной части в разделе Меню - Главное меню. Сюда как правило можно еще добавить страницы: о компании, контакты, услуги и т.п.</p>\n<p>За дополнительной информацией обращайтесь в официальный раздел документации: <a href="http://www.imagecms.net/wiki">http://www.imagecms.net/wiki</a></p>\n<p>Обсудить дополнительные возможности, а также вопросы по установке, настройке системы можно на официальном форуме: <a href="http://forum.imagecms.net/index.php">http://forum.imagecms.net/</a></p>', 'іаіаіваіваіваів', 0, 'page_static', '', 0, 1, 0, 'publish', 'admin', 1267203253, 1267203328, 1357651935, 13, 3, 0),
-(64, 'О магазине', '', 'about', '', 'магазине', 'О магазине', '<p>Магазин ImageCMS Shop предоставляет огромный выбор техники на любой вкус по лучшим ценам.</p>\n<p>Наш магазин существует более 5 лет и за это время не было ни единого возврата товара.</p>\n<p>Мы обслуживаем ежедневно сотни покупателей и делаем это с радостью.</p>\n<p><strong>Покупайте технику у нас и становитесь обладателем лучшей в мире техники!!!</strong></p>', '', 0, '', '', 0, 1, 0, 'publish', 'Roman Koloda', 1291295776, 0, 1354551261, 294, 3, 0),
+(64, 'О магазине', '', 'about', '', 'магазине', 'О магазине', '<p>Магазин ImageCMS Shop предоставляет огромный выбор техники на любой вкус по лучшим ценам.</p>\n<p>Наш магазин существует более 5 лет и за это время не было ни единого возврата товара.</p>\n<p>Мы обслуживаем ежедневно сотни покупателей и делаем это с радостью.</p>\n<p><strong>Покупайте технику у нас и становитесь обладателем лучшей в мире техники!!!</strong></p>', '', 0, '', '', 0, 1, 0, 'publish', 'Roman Koloda', 1291295776, 0, 1354551261, 305, 3, 0),
 (65, 'Оплата', '', 'oplata', '', 'оплата', 'Оплата', '<p>Наш магазин поддерживает все доступные на данный момент методы оплаты.</p>\n<p>Также действует возможность оплаты курьеру при доставке для всех крупных городов Украины и России. (возможность оплаты курьеру в Вашем городе уточняйте по телефону <strong>0 800 820 22 22</strong>).</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295824, 1291295836, 1291743521, 167, 3, 0),
-(66, 'Доставка', '', 'dostavka', '', 'доставка', 'Доставка', '<p>Мы поддерживаем доставку службой Автомир по всему миру.</p>\n<p>Также возможна доставка курьером для всех больших городов Украины и России (возможность доставки курьером в Вашем городе уточняйте по телефону <strong>0 800 820 22 22</strong>).</p>\n<p>При желании Вы можете сами забрать купленный товар в наших офисах.</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295844, 1291295851, 1291743683, 141, 3, 0),
-(67, 'Помощь', '', 'help', '', 'помощь', 'Помощь', '<p>Для того, чтобы приобрести товар в нашем магазине, Вам нужно выполнить несколько простых шагов:</p>\n<ul>\n<li>Выбрать нужный товар, воспользовавшить навигацией слева, либо поиском.</li>\n<li>Добавить товар в корзину.</li>\n<li>Перейти в корзину, выбрать способ доставки и указать Ваши контактные данные.</li>\n<li>Подтвердить заказ и выбрать способ оплаты.</li>\n</ul>\n<p>После этого наши менеджеры свяжуться с Вами и помогут с оплатой и доставкой товара, а также проконсультируют по любому вопросу.</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295855, 1291295867, 1291743919, 84, 3, 0),
-(68, 'Контакты', '', 'contact_us', '', 'контакты', 'Контакты', '<p><strong>Горячий телефон</strong>: 0 800 80 80 800</p>\n<p><strong>Главный офис в Москве</strong></p>\n<p>ул. Гагарина 1/2</p>\n<p>тел. 095 095 00 00</p>\n<p>&nbsp;</p>\n<p><strong>Главный офис в Киеве</strong></p>\n<p>ул. Гагарина 1/2</p>\n<p>тел. 098 098 00 00</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295870, 1291295888, 1291744068, 85, 3, 0),
+(66, 'Доставка', '', 'dostavka', '', 'доставка', 'Доставка', '<p>Мы поддерживаем доставку службой Автомир по всему миру.</p>\n<p>Также возможна доставка курьером для всех больших городов Украины и России (возможность доставки курьером в Вашем городе уточняйте по телефону <strong>0 800 820 22 22</strong>).</p>\n<p>При желании Вы можете сами забрать купленный товар в наших офисах.</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295844, 1291295851, 1291743683, 151, 3, 0),
+(67, 'Помощь', '', 'help', '', 'помощь', 'Помощь', '<p>Для того, чтобы приобрести товар в нашем магазине, Вам нужно выполнить несколько простых шагов:</p>\n<ul>\n<li>Выбрать нужный товар, воспользовавшить навигацией слева, либо поиском.</li>\n<li>Добавить товар в корзину.</li>\n<li>Перейти в корзину, выбрать способ доставки и указать Ваши контактные данные.</li>\n<li>Подтвердить заказ и выбрать способ оплаты.</li>\n</ul>\n<p>После этого наши менеджеры свяжуться с Вами и помогут с оплатой и доставкой товара, а также проконсультируют по любому вопросу.</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295855, 1291295867, 1291743919, 90, 3, 0),
+(68, 'Контакты', '', 'contact_us', '', 'контакты', 'Контакты', '<p><strong>Горячий телефон</strong>: 0 800 80 80 800</p>\n<p><strong>Главный офис в Москве</strong></p>\n<p>ул. Гагарина 1/2</p>\n<p>тел. 095 095 00 00</p>\n<p>&nbsp;</p>\n<p><strong>Главный офис в Киеве</strong></p>\n<p>ул. Гагарина 1/2</p>\n<p>тел. 098 098 00 00</p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295870, 1291295888, 1291744068, 93, 3, 0),
 (75, 'Contact', '', 'contact_us', '', 'ssss', 'ssss', '<p><span id="result_box" lang="en"><span>Hot Phone</span><span>:</span> <span>0800</span> <span>80</span> <span>80 800</span><br /><br /> <span>Head office in</span> <span>Moscow</span><br /><br /> <span>street</span><span>.</span> <span>Gagarin</span> <span>half</span><br /><br /> <span>tel.</span> <span>095</span> <span>095</span> <span>00</span> <span>00</span><br /><br /> <span>The main office</span> <span>in Kiev</span><br /><br /> <span>street</span><span>.</span> <span>Gagarin</span> <span>half</span><br /><br /> <span>tel.</span> <span>098</span> <span>098</span> <span>00</span> <span>00</span></span></p>', '', 0, '', '', 0, 1, 4, 'publish', 'admin', 1291295870, 1291295888, 1343664873, 35, 30, 68),
 (76, 'Delivery', '', 'dostavka', '', 'support, the, delivery, service, autoworld, around, world, also, possible, all, major, cities, ukraine, and, russia, possibility, courier, your, area, please, call, desired, you, can, pick, purchased, goods, themselves, our, offices', 'We support the delivery of service Autoworld around the world. It is also possible delivery to all major cities of Ukraine and Russia (the possibility of delivery by courier in your area please call 0800820 22 22.) If desired, you can pick up the purchase', '<p><span id="result_box" lang="en"><span>We support the</span> <span>delivery of</span> <span>service</span> <span>Autoworld</span> <span>around the world.</span><br /><br /> <span>It is also possible</span> <span>delivery</span> <span>to all</span> <span>major cities</span> <span>of Ukraine and Russia</span> <span>(the possibility of</span> <span>delivery</span> <span>by courier</span> <span>in your area</span> <span>please call</span> <span>0800820</span> <span>22 22</span><span>.)</span><br /><br /> <span>If desired,</span> <span>you can</span> <span>pick up the</span> <span>purchased goods</span> <span>themselves</span> <span>in our offices.</span></span></p>', '', 0, '', '', 0, 1, 4, 'publish', 'admin', 1291295844, 1291295851, 1343664842, 8, 30, 66),
 (77, 'Help', '', 'help', '', 'order, purchase, goods, our, store, you, must, follow, few, simple, steps, choose, the, right, product, vospolzovavshit, navigation, left, search, add, products, cart, shopping, select, shipping, method, and, provide, your, contact', 'In order to purchase goods in our store, you must follow a few simple steps: Choose the right product, vospolzovavshit navigation on the left, or search. Add products to cart. Go to the shopping cart, select shipping method and provide your contact inform', '<p><span id="result_box" lang="en"><span>In order to</span> <span>purchase goods</span> <span>in our store,</span> <span>you must follow</span> <span>a few simple steps</span><span>:</span><br /><br />&nbsp;&nbsp;&nbsp;&nbsp; <span>Choose</span> <span>the right product,</span> <span>vospolzovavshit</span> <span>navigation</span> <span>on the left</span><span>, or</span> <span>search.</span><br />&nbsp;&nbsp;&nbsp;&nbsp; <span>Add products</span> <span>to cart</span><span>.</span><br />&nbsp;&nbsp;&nbsp;&nbsp; <span>Go to the</span> <span>shopping cart,</span> <span>select</span> <span>shipping method</span> <span>and provide</span> <span>your contact information.</span><br />&nbsp;&nbsp;&nbsp;&nbsp; <span>Proceed to checkout</span> <span>and select the</span> <span>payment method.</span><br /><br /> <span>After that,</span> <span>our managers</span> <span>will contact</span> <span>you and</span> <span>help you</span> <span>with payment</span> <span>and delivery</span> <span>of the goods</span><span>, as well</span> <span>as give advice on</span> <span>any subject.</span></span></p>', '', 0, '', '', 0, 1, 0, 'publish', 'admin', 1291295855, 1291295867, 1343664897, 11, 30, 67),
 (78, 'Payment', '', 'oplata', '', 'our, store, supports, all, currently, available, methods, payment, also, there, possibility, pay, the, courier, for, delivery, major, cities, ukraine, and, russia, ability, your, area, please, call', 'Our store supports all currently available methods of payment. Also there is a possibility to pay the courier for delivery to all major cities of Ukraine and Russia. (ability to pay for the courier in your area please call 0800820 22 22.)', '<p><span id="result_box" lang="en"><span>Our store</span> <span>supports all</span> <span>currently available</span> <span>methods of payment.</span><br /><br /> <span>Also there is</span> <span>a possibility to pay</span> <span>the courier</span> <span>for delivery</span> <span>to all</span> <span>major cities</span> <span>of Ukraine</span> <span>and Russia.</span> <span>(ability to</span> <span>pay for</span> <span>the courier</span> <span>in your area</span> <span>please call</span> <span>0800820</span> <span>22 22</span><span>.)</span></span></p>', '', 0, '', '', 0, 1, 3, 'publish', 'admin', 1291295824, 1291295836, 1343664949, 1, 30, 65),
 (79, 'About us', '', 'about', '', 'shop, imagecms, offers, huge, selection, vehicles, suit, every, taste, the, best, prices, our, store, has, more, than, years, and, during, that, time, was, not, single, return, goods, serve, hundreds, customers', 'Shop ImageCMS Shop offers a huge selection of vehicles to suit every taste at the best prices. Our store has more than 5 years and during that time was not a single return of the goods. We serve hundreds of customers every day and do it with joy. Buy equi', '<p><span id="result_box" lang="en"><span>Shop</span> <span>ImageCMS Shop</span> <span>offers</span> <span>a huge selection</span> <span>of vehicles</span> <span>to suit every taste</span> <span>at the best prices</span><span>.</span><br /><br /> <span>Our store</span> <span>has more than</span> <span>5 years</span> <span>and during that time</span> <span>was not a single</span> <span>return of the goods</span><span>.</span><br /><br /> <span>We serve</span> <span>hundreds of</span> <span>customers</span> <span>every day</span> <span>and do</span> <span>it with joy.</span><br /><br /> <span>Buy</span> <span>equipment from</span> <span>us and</span> <span>become the owner of</span> <span>the world''s best</span> <span>technology</span><span>!</span></span></p>', '', 0, '', '', 0, 1, 1, 'publish', 'admin', 1291295776, 1291295792, 1343745649, 5, 30, 64),
-(80, 'Site', '', 'o-sajte', '', 'new', 'new', '<p><span id="result_box" lang="en"><span>This is</span> <span>the basic template</span> <span>ImageCMS,</span> <span>which</span> <span>relizovany</span> <span>the following functions</span><span>: display</span> <span>gallery</span><span>, displaying</span> <span>static</span> <span>articles</span><span>, displaying</span> <span>a corporate blog</span><span>, displaying</span> <span>the feedback form.</span><br /><br /> <span>General view of the</span> <span>template, you can</span> <span>edit and</span> <span>change the</span> <span>logo,</span> <span>a graphic</span> <span>box on</span> <span>your</span> <span>case</span><span>.</span><br /><br /> <span>On the left</span> <span>you can see</span> <span>in the sidebar</span> <span>list of</span> <span>categories of</span> <span>the blog,</span> <span>which is easily</span> <span>inserted</span> <span>by using the</span> <span>{sub_category_list ()}</span> <span>in the file</span> <span>main.tpl.</span> <span>Also</span> <span>in the left</span> <span>sidebar</span> <span>is</span> <span>a search form</span> <span>on the site,</span> <span>recent comments</span> <span>widget</span> <span>and the widget</span> <span>tag</span> <span>site.</span> <span>In</span> <span>this</span> <span>sidebar</span> <span>you can also</span> <span>add a widget</span><span>, or</span> <span>the latest</span> <span>popular</span> <span>news,</span> <span>as well as any</span> <span>counters,</span> <span>widgets</span><span>.</span><br /><br /> <span>The top menu</span> <span>is implemented</span> <span>by the module</span> <span>menu</span><span>.</span> <span>And manage</span> <span>its content</span> <span>can be</span> <span>part</span> <span>of the</span> <span>administration</span> <span>in Menu</span> <span>-</span> <span>Main Menu.</span> <span>It</span> <span>is usually</span> <span>possible to add</span> <span>page</span> <span>about the company</span><span>, contacts,</span> <span>services, etc.</span><br /><br /> <span>For more</span> <span>information, contact the</span> <span>official</span> <span>section of the documentation</span><span>: http://www.imagecms.net/wiki</span><br /><br /> <span>Discuss</span> <span>additional opportunities</span><span>, as well as</span> <span>questions about</span> <span>installation, configuration,</span> <span>the system can be</span> <span>on the official forum</span><span>: http://forum.imagecms.net/</span></span></p>', '', 0, 'page_static', '', 0, 1, 0, 'publish', 'admin', 1267203253, 1267203328, 1343722704, 0, 30, 35);
+(80, 'Site', '', 'o-sajte', '', 'new', 'new', '<p><span id="result_box" lang="en"><span>This is</span> <span>the basic template</span> <span>ImageCMS,</span> <span>which</span> <span>relizovany</span> <span>the following functions</span><span>: display</span> <span>gallery</span><span>, displaying</span> <span>static</span> <span>articles</span><span>, displaying</span> <span>a corporate blog</span><span>, displaying</span> <span>the feedback form.</span><br /><br /> <span>General view of the</span> <span>template, you can</span> <span>edit and</span> <span>change the</span> <span>logo,</span> <span>a graphic</span> <span>box on</span> <span>your</span> <span>case</span><span>.</span><br /><br /> <span>On the left</span> <span>you can see</span> <span>in the sidebar</span> <span>list of</span> <span>categories of</span> <span>the blog,</span> <span>which is easily</span> <span>inserted</span> <span>by using the</span> <span>{sub_category_list ()}</span> <span>in the file</span> <span>main.tpl.</span> <span>Also</span> <span>in the left</span> <span>sidebar</span> <span>is</span> <span>a search form</span> <span>on the site,</span> <span>recent comments</span> <span>widget</span> <span>and the widget</span> <span>tag</span> <span>site.</span> <span>In</span> <span>this</span> <span>sidebar</span> <span>you can also</span> <span>add a widget</span><span>, or</span> <span>the latest</span> <span>popular</span> <span>news,</span> <span>as well as any</span> <span>counters,</span> <span>widgets</span><span>.</span><br /><br /> <span>The top menu</span> <span>is implemented</span> <span>by the module</span> <span>menu</span><span>.</span> <span>And manage</span> <span>its content</span> <span>can be</span> <span>part</span> <span>of the</span> <span>administration</span> <span>in Menu</span> <span>-</span> <span>Main Menu.</span> <span>It</span> <span>is usually</span> <span>possible to add</span> <span>page</span> <span>about the company</span><span>, contacts,</span> <span>services, etc.</span><br /><br /> <span>For more</span> <span>information, contact the</span> <span>official</span> <span>section of the documentation</span><span>: http://www.imagecms.net/wiki</span><br /><br /> <span>Discuss</span> <span>additional opportunities</span><span>, as well as</span> <span>questions about</span> <span>installation, configuration,</span> <span>the system can be</span> <span>on the official forum</span><span>: http://forum.imagecms.net/</span></span></p>', '', 0, 'page_static', '', 0, 1, 0, 'publish', 'admin', 1267203253, 1267203328, 1343722704, 0, 30, 35),
+(91, 'Как раскрутить сайт? Методы поискового продвижения', '', 'kak-raskrutit-sait-metody-poiskovogo-prodvizheniia', 'novosti/poslednie-novosti/', 'наличие, корпоративного, сайта, стало, стандартом, факто, знаком, хорошего, тона, любой, компании, только, известных, игроков, рынка, независимо, области, вашей, деятельности, собственный, ресурс, любом, случае, принесет, пользу, особенно, знаете, раскрутить, сайт, самостоятельно', 'Наличие корпоративного сайта уже стало стандартом де-факто и знаком   хорошего тона любой компании, а не только известных игроков рынка.   Независимо от области вашей деятельности, собственный ресурс в любом   случае принесет вам пользу, особенно если вы', '<p>Наличие корпоративного сайта уже стало стандартом де-факто и знаком  \nхорошего тона любой компании, а не только известных игроков рынка.  \nНезависимо от области вашей деятельности, собственный ресурс в любом  \nслучае принесет вам пользу, особенно если вы знаете как раскрутить сайт \n самостоятельно. Его можно использовать не только для повышения  \nузнаваемости бренда, но и в качестве эффективного инструмента продаж.</p>', '<p>Наличие корпоративного сайта уже стало стандартом де-факто и знаком \nхорошего тона любой компании, а не только известных игроков рынка. \nНезависимо от области вашей деятельности, собственный ресурс в любом \nслучае принесет вам пользу, особенно если вы знаете как раскрутить сайт \nсамостоятельно. Его можно использовать не только для повышения \nузнаваемости бренда, но и в качестве эффективного инструмента продаж.\n</p><p>После разработки и создания, каждый владелец Интернет-ресурса \nнепременно задумается как раскрутить сайт, ведь это - очень важный \nмомент. И тогда стоит разобраться в актуальных методах продвижения с \nцелью выбора оптимального.</p>\n<p>Все методы можно разделить на две основные группы: белые и черные \n(или спамные) - не важно, интересует ли вас как раскрутить сайт \nбесплатно или же с помощью студии. Если применение «белых» методов не \nвлечет за собой возможные санкции со стороны поисковых систем, то \nприменение запрещенных «черных» методов хотя и обещает быстрый результат\n и высокую эффективность в краткосрочном периоде, в долгосрочном периоде\n может обернутся жесткими санкциями со стороны поисковых систем.</p>\n<p>Но, скорее всего, большинство интересуется именно вопросом как \nраскрутить сайт бесплатно или с минимальными финансовыми вложениями. А \nзначит, стоит обратить внимание на такие методы бесплатного продвижения \nкак добавление в специализированные каталоги, рассылку пресс-релизов, \ne-mail маркетинг, обмен ссылками с другими сайтами схожей тематики. В \nтаком случае вопрос сколько стоит раскрутить сайт отпадает, так как все \nделается своими силами. Но прежде нужно хорошо подумать, не лучше ли \nобратиться к профессионалам своего дела? Ведь <a href="http://www.imagecms.net/blog/obzory/biznes-v-internete-kak-perspektivnyi-trend" target="_blank">бизнес в Интернете</a>\n требует затрат времени и они могут оказаться колоссальными, и в случае с\n профессиональными подрядчиками по крайней мере можно быть уверенным в \nрезультате.</p>\n<p>Кроме того, стоит обратить внимание на специализированные движки для \nсайтов, которые “с коробки” обладают хорошими возможностями в плане \nSEO-оптимизации. Одной из таких систем является <a href="http://www.imagecms.net/download">ImageCMS</a>\n - благодаря тому, что движок изначально является SEO-friendly, не нужно\n устанавливать дополнительные модули и компоненты, а значит можно \nсэкономить массу времени и нервов.</p>\n<p><a href="http://www.imagecms.net/download"><img src="http://www.imagecms.net/uploads/images/blog/2.png" alt="Система для создания интернет-магазинов - ImageCMS" height="183" width="705"></a></p>\n<p>Если анализировать сколько стоит раскрутить сайт, то стоит \nотталкиваться от того факта, что это - комплексный процесс, и \nпредусматривает он работу сразу в нескольких направлениях, а значит \nлучше, если работу будут вести несколько человек. Поэтому самостоятельно\n справиться будет нелегко.</p>\n<p>Если вы задумались как раскрутить сайт бесплатно в сжатые сроки, то \nлучше сразу отбросьте эту идею и обратите внимание на платные методы - с\n их помощью можно сделать это гораздо быстрее, да и эффективность в этом\n случае на порядок выше. Здесь важен вопрос сколько стоит раскрутить \nсайт и вопрос больше по бюджету. Продвижение в таком случае ведется с \nиспользованием покупных ссылок на тематических сайтах, \nспециализированных бирж, заказа текстов у копирайтеров, организации \nкампаний в сетях контекстной рекламы, а также использования потенциала \nсоциальных медиа. Кроме того, <a href="http://www.imagecms.net/blog/obzory/osnovy-iuzabiliti-saita" target="_blank">юзабилити сайта</a> также играет важную роль.</p>\n<p>Выбирать между возможностью раскрутить сайт самостоятельно и заказать\n продвижение у специализированного агентства – нелегко. Во многом из-за \nнеобходимости хорошо проанализировать, что для вас важнее – экономия \nсредств или экономия времени. Да порой, если задумываешься как \nраскрутить сайт самостоятельно, стоит обратить внимание в сторону услуг \nподрядчиков, ведь с помощью профессионалов гораздо лучше сделать все \nбыстро и сэкономленный временной ресурс направить на получение прибыли в\n области, в которой вы действительно хорошо разбираетесь.</p>', 70, '', '', 0, 1, 0, 'publish', 'admin', 1362225580, 1362225580, 0, 1, 3, 0),
+(92, 'Как добавить сайт в Яндекс и Гугл. Советы начинающим вебмастерам', '', 'kak-dobavit-sait-v-iandeks-i-gugl-sovety-nachinaiushchim-vebmasteram', 'novosti/poslednie-novosti/', 'создание, сайта, само, себе, является, нелегким, довольно, продолжительным, процессом, позади, неприятно, обнаружить, ваш, красивый, наполненный, полезными, материалами, сайт, никто, кроме, самих, заходит, пожалуй, владельцы, сайтов, которые, запустили, свой, первый, проект', 'Создание сайта само по себе является нелегким и довольно продолжительным   процессом, и когда все уже позади, довольно неприятно обнаружить, что   на ваш красивый и наполненный полезными материалами сайт никто кроме  вас  самих не заходит. Пожалуй, владел', '<p>Создание сайта само по себе является нелегким и довольно продолжительным\n  процессом, и когда все уже позади, довольно неприятно обнаружить, что \n на ваш красивый и наполненный полезными материалами сайт никто кроме \nвас  самих не заходит. Пожалуй, владельцы сайтов, которые запустили свой\n  первый проект, чаще всего испытывают неприятное удивление в связи с \nэтим  фактом. А на самом деле все просто – прежде всего, нужно знать как\n  добавить сайт в поисковики.</p>', '<p>Создание сайта само по себе является нелегким и довольно \nпродолжительным процессом, и когда все уже позади, довольно неприятно \nобнаружить, что на ваш красивый и наполненный полезными материалами сайт\n никто кроме вас самих не заходит. Пожалуй, владельцы сайтов, которые \nзапустили свой первый проект, чаще всего испытывают неприятное удивление\n в связи с этим фактом. А на самом деле все просто – прежде всего, нужно\n знать как добавить сайт в поисковики.\n</p><p>Посетители переходят на сайты из результатов поиска, выдаваемых им \nGoogle при вводе определенного запроса. Но, чтобы появится в выдаче по \nэтому запросу, нужно сначала, чтобы поисковый робот проиндексировал ваш \nсайт, то есть, внес его в свою поисковую базу. Поэтому, если вы имеете \nпонятие про <a href="http://www.imagecms.net/blog/obzory/biznes-v-internete-kak-perspektivnyi-trend" target="_blank">бизнес в Интернете</a>, и уже запустили собственный ресурс, вопрос как добавить сайт в поисковики будет актуальным для каждого вебмастера.</p>\n<p><a href="http://www.imagecms.net/download"><img src="http://www.imagecms.net/uploads/images/blog/2.png" alt="Мощная система для создания сайтов любых типов" height="183" width="705"></a></p>\n<p>Часто бывает, что ресурс может проиндексироваться сразу же после \nрегистрации доменного имени, но лучше всего самостоятельно добавить сайт\n в поисковые системы. Тем более, учитывая тот факт, что это займет \nсовсем немного времени.</p><br><h3>Добавить сайт в Яндекс</h3><br><p>Для того, чтобы сообщить этому поисковику о новом сайте, нужно \nперейти на страницу со специальной формой, которая находится по  \nследующему адресу: <a href="http://webmaster.yandex.ua/addurl.xml" target="_blank">http://webmaster.yandex.ua/addurl.xml</a></p>\n<p>С помощью панельки можно просто и быстро добавить сайт в Яндекс с \nминимальными затратами времени и сил. Перейдя по ссылке, вы увидите \nследующую форму: <br><img src="http://www.imagecms.net/uploads/images/blog/add_yandex.jpg" alt="Форма добавления сайта в индекс ПС Яндекс" height="266" width="695"> <br>В\n поле URL ведите адрес сайта, ниже введите цифры с картинки каптчи \n(защита от спама), после чего нажмите кнопку «Добавить». Поздравляем! \nТолько что вы смогли добавить сайт в Яндекс и уже в ближайшее время на \nнего заглянет поисковый паук, чтобы внести в свою базу. После этого он \nпоявится в результатах поиска, и вы получите первых посетителей.</p><br><h3>Добавить сайт в Гугл</h3><br><p>Эта поисковая система является мировым лидером в области web-поиска, и\n сообщить ей о своем сайте нужно обязательно. Добавить сайт в Гугл еще \nпроще, чем в предыдущем случае, ведь не нужно даже вводить каптчу. \nПерейдите <a href="https://www.google.com/webmasters/tools/submit-url?hl=ru" target="_blank">по этой ссылке</a> и перед вами откроется окно, с помощью которого можно добавить сайт в Google: <br><img src="http://www.imagecms.net/uploads/images/blog/add_google.jpg" alt="Добавление url в индекс ПС Google" height="311" width="695"><br>\n Введите адрес и по желанию можно добавить примечание. Хотя вряд ли в \nэтом есть смысл, так как это ни на что не влияет. Кстати, не нужно \nвводить никаких отдельных страниц, чтобы добавить сайт в Гугл достаточно\n вставить в поле формы URL главной страницы.</p>\n<p>Как видите, добавить сайт в поисковые системы совсем не сложно. Тем \nболее, если учитывать, что хорошая индексация ведет к росту \nпосещаемости, а значит и повышает <a href="http://www.imagecms.net/blog/obzory/otsenka-stoimosti-saita-i-faktory-kotorye-vliiaiut-na-tsenu" target="_blank">стоимость сайта</a>\n в целом. Это займет у вас минимум времени, но благодаря проделанным \nоперациям вы сможете быть уверены в том, что поисковые системы узнают о \nсайте и добавят его в базу, а значит, на сайт начнут заходить \nпосетители. Теперь вы знаете как добавить сайт в Google и можете без \nпроблем сделать это самостоятельно.</p>', 70, '', '', 0, 1, 0, 'publish', 'admin', 1362225699, 1362225699, 0, 1, 3, 0),
+(93, '8Р: Бизнес в сети', '', '8r-biznes-v-seti', 'novosti/poslednie-novosti/', 'редкий, предприниматель, наше, время, задается, вопросом, «как, помощью, интернета, увеличить, продажи, подробный, обстоятельный, ответ, каждый, сможет, получить, традиционной, ежегодной, конференции, бизнес, сети, которая, третий, состоится, одессе, ожидается, около, участников, этом', 'Редкий предприниматель в наше время не задается вопросом: «Как с помощью  интернета увеличить продажи?» Подробный и обстоятельный ответ каждый  сможет получить на традиционной ежегодной конференции “8Р: Бизнес в  сети”, которая в третий раз состоится в Од', '<p>Редкий предприниматель в наше время не задается вопросом: «Как с помощью\n интернета увеличить продажи?» Подробный и обстоятельный ответ каждый \nсможет получить на традиционной ежегодной конференции “8Р: Бизнес в \nсети”, которая в третий раз состоится &nbsp;в Одессе 13.07.2013г. Ожидается \nоколо 700 участников.</p>', '<br><p><img src="http://www.imagecms.net/uploads/images/8p_logo.jpg" height="70" width="300">Редкий\n предприниматель в наше время не задается вопросом: «Как с помощью \nинтернета увеличить продажи?» Подробный и обстоятельный ответ каждый \nсможет получить на традиционной ежегодной конференции “8Р: Бизнес в \nсети”, которая в третий раз состоится &nbsp;в Одессе 13.07.2013г. Ожидается \nоколо 700 участников.</p>\n<p dir="ltr">В этом году оргкомитет выбрал наиболее актуальные темы, \nпригласил более 40 докладчиков и решил немного отойти от теоретики, \nсделав упор на примеры из практики. Большое количество кейсов – \nотличительная черта “8P” 2013.</p>\n<p dir="ltr">В программе конференции предусмотрены 4 потока:</p><br><ul><li dir="ltr">Интернет-маркетинг &nbsp;– инструменты онлайн продвижения бизнеса</li><li dir="ltr">E-commerce – привлечение новых клиентов, увеличение конверсии, формирование лояльности</li><li dir="ltr">Кейсы – примеры успешного продвижения в сети</li><li dir="ltr">Мастер-классы – полтора часа непрерывного общения&nbsp;</li></ul><br><p>Оформить регистрацию на конференцию “8Р: Бизнес в сети” 2013 можно <a href="http://8p.ua/?utm_source=p20954&amp;utm_medium=press_release&amp;utm_campaign=8p">здесь</a>.</p>\n<p dir="ltr">Там же вы можете посмотреть фото и видео с прошлогодней конференции, прочитать отзывы участников.</p>\n<p dir="ltr">Стартовая цена билета – 950 грн. Внимание: с каждым проданным билетом она возрастает на 1 грн.<br>Адрес\n конференции: г.Одесса, банкетный дом Ренессанс. От железнодорожного \nвокзала будет курсировать комфортабельный автобус. Добираться можно и на\n своем автомобиле - бесплатная парковка к вашим услугам.</p>\n<p>В программе также кофе-брейки, обед, афтер-пати.<br>Испытание на стойкость - афтер-афтер-пати.<br> <br>Организатор конференции: <a href="http://netpeak.ua">Netpeak</a> - агентство интернет-маркетинга</p>', 70, '', '', 0, 1, 0, 'publish', 'admin', 1362225792, 1362225792, 0, 1, 3, 0),
+(94, 'Lviv Social Media Camp 2013', '', 'lviv-social-media-camp-2013', 'novosti/arhiv/', 'lviv, social, media, camp, третья, ежегодная, конференция, вопросам, продвижения, малого, бизнеса, социальных, сетях, состоится, февраля, успешные, форумы, года, собравшие, почти, участников, доказали, покорения, изменчивого, мира, медиа, необходимы, незаурядные, знания, опыт', 'Lviv Social Media Camp 2013 - третья ежегодная конференция по вопросам  продвижения малого бизнеса в социальных сетях - состоится 23 февраля.  Успешные форумы 2011 и 2012 года, собравшие почти 700 участников,  доказали - для покорения изменчивого мира соц', '<p>Lviv Social Media Camp 2013 - третья ежегодная конференция по вопросам \nпродвижения малого бизнеса в социальных сетях - состоится 23 февраля. \nУспешные форумы 2011 и 2012 года, собравшие почти 700 участников, \nдоказали - для покорения &nbsp;изменчивого мира социальных медиа необходимы \nнезаурядные знания и опыт, которыми могут поделиться только настоящие \nпрофессионалы. Как следствие - десятки новых ярких звезд, вспыхнувших в \nукраинском бизнес-пространстве. Такие результаты не могли не вдохновить \nорганизаторов на продолжение работы в этом перспективном направлении.</p>', '<p><img src="http://www.imagecms.net/uploads/images/smcamp2013.png" height="237" width="850"><br><a href="http://smcamp.com.ua">Lviv Social Media Camp 2013</a>\n - третья ежегодная конференция по вопросам продвижения малого бизнеса в\n социальных сетях - состоится 23 февраля. Успешные форумы 2011 и 2012 \nгода, собравшие почти 700 участников, доказали - для покорения \n&nbsp;изменчивого мира социальных медиа необходимы незаурядные знания и опыт,\n которыми могут поделиться только настоящие профессионалы. Как следствие\n - десятки новых ярких звезд, вспыхнувших в украинском \nбизнес-пространстве. Такие результаты не могли не вдохновить \nорганизаторов на продолжение работы в этом перспективном направлении.<br> <br>Красноречивые факты:</p><br><ul><li dir="ltr">22 млн. гривен - общий объем видеорекламы в Уанете.</li><li dir="ltr">680 млн. гривен - объем украинского рынка интернет-рекламы</li><li dir="ltr">180 млн. гривен - объем прошлогоднего рынка Digital-услуг</li><li dir="ltr">Около 20% - &nbsp;прогнозируемый рост Digital на 2013 год</li></ul><br><p><br>Нынешняя программа конференции разработана специально для \nпредпринимателей и представителей малого бизнеса, которым интересны \n&nbsp;новые возможности для продвижения своего продукта. К тому же, \nконференция станет точкой сбора для украинских профессионалов SMM.<br> <br>По традиции, в программе конференции будет три потока:<br> <br>Social Media Marketing:</p><br><ul><li dir="ltr">Украинский SMM в 2013 году - успехи и провалы</li><li dir="ltr">Нужен ли SMM украинскому бизнесу?</li><li dir="ltr">Методы манипулирования выдачей Facebook</li><li dir="ltr">Как продвигать "звезд" в YouTube</li><li dir="ltr">Вирусные промокампании</li><li dir="ltr">Использование возможностей Pinterest и Instagram</li><li dir="ltr">Social Media Optimization: о секретных алгоритмах Facebook</li><li dir="ltr">Опыт работы лучших украинских Digital-агентств</li></ul><br><p><br>Social Media и бизнес:</p><br><ul><li dir="ltr">Нуждается ли мой бизнес в использовании &nbsp;соц. сетей - как узнать?</li><li dir="ltr">Успешные локальные маркетинговые кампании - рассмотрим примеры</li><li dir="ltr">Facebook в Украине, Киеве, во Львове - определяем пользу</li><li dir="ltr">Facebook-страница - как правильно оформить?</li><li dir="ltr">Максимум результата за минимум времени - как добиться?</li><li dir="ltr">Агентства – стоит ли доверяться?</li></ul><br><p><br>Новые медиа, разработка, стартапы:</p><br><ul><li dir="ltr">Собственные сервисы и social media - вопросы интеграции</li><li dir="ltr">Mixed media</li><li dir="ltr">Twitter, Facebook, Foursquare API</li><li dir="ltr">BlogCamp</li><li dir="ltr">SmartTV</li><li dir="ltr">Линчи social media стартапов </li></ul><br><p><br>Стоимость билета:<br>200 грн. - Первые 50 билетов для ранних пташек<br>300 грн. - Следующие 200 билетов<br>500 грн. - Предпоследние 50 билетов<br>800 грн. - Кто поздно приходит, тому последние 20 билетов<br> <br>Встречаемся&nbsp;23 февраля в конференц-зале УКУ (ул.. Хуторовка, 35а).</p>', 71, '', '', 0, 1, 0, 'publish', 'admin', 1362225886, 1362225886, 0, 1, 3, 0);
+INSERT INTO `content` (`id`, `title`, `meta_title`, `url`, `cat_url`, `keywords`, `description`, `prev_text`, `full_text`, `category`, `full_tpl`, `main_tpl`, `position`, `comments_status`, `comments_count`, `post_status`, `author`, `publish_date`, `created`, `updated`, `showed`, `lang`, `lang_alias`) VALUES
+(95, 'Оценка стоимости сайта и факторы, которые влияют на цену', '', 'otsenka-stoimosti-saita-i-faktory-kotorye-vliiaiut-na-tsenu', 'novosti/arhiv/', 'как, время, разработки, продажи, интернет, ресурса, учитывается, достаточно, много, факторов, влияющих, цену, поэтому, нужно, уметь, оценить, стоимость, сайта, своими, силами, важно, планируете, создание, коммерческого, собираетесь, запустить, личный, блог, знать, финансовые', 'Как во время разработки, так и во время продажи Интернет-ресурса   учитывается достаточно много факторов, влияющих на его цену. Поэтому   нужно уметь оценить стоимость сайта своими силами. Не важно, планируете   ли вы создание коммерческого сайта или соби', '<p>Как во время разработки, так и во время продажи Интернет-ресурса  \nучитывается достаточно много факторов, влияющих на его цену. Поэтому  \nнужно уметь оценить стоимость сайта своими силами. Не важно, планируете \n ли вы создание коммерческого сайта или собираетесь запустить личный  \nблог, знать финансовые стороны вопроса никогда не будет лишним.</p>', '<br><p><img src="http://www.imagecms.net/uploads/images/blog/site-price.jpg" alt="Быстрая оценка любого сайта" height="172" width="250">Как\n во время разработки, так и во время продажи Интернет-ресурса \nучитывается достаточно много факторов, влияющих на его цену. Поэтому \nнужно уметь оценить стоимость сайта своими силами. Не важно, планируете \nли вы создание коммерческого сайта или собираетесь запустить личный \nблог, знать финансовые стороны вопроса никогда не будет лишним. <a title="стоимость создания сайта" href="http://www.imagecms.net/blog/obzory/skolko-stoit-sait-postroit" target="_blank">Стоимость создания сайта</a>\n для многих является ключевым фактором, влияющим на принятие решения о \nразработка. Многое зависит от необходимых вам возможностей, ведь для \nпростого блога вполне хватит бесплатной версии ImageCMS, а вот уже для \nторговой площадки понадобится коммерческий модуль Интернет-магазина.</p>\n<p>Оценка стоимости сайта при его разработке зависит от нескольких факторов. Пройдемся по пунктам:</p><br><ul><li>Дизайн. Если он уникальный – стоимость будет выше, но в этом случае \nучитываются все ваши пожелания и специфика вашего бизнеса. \nИндивидуальный подход позволяет сделать внешний вид сайта именно таким, \nкаким вы бы хотели его видеть, и поднять <a title="юзабилити сайт" href="http://www.imagecms.net/blog/obzory/osnovy-iuzabiliti-saita" target="_blank">юзабилити сайта</a>\n на действительно высокий уровень. Шаблонный сайт обойдется дешевле, что\n позволит оценить стоимость сайта ниже, но и качество не будет на \nвысоком уровне. Кроме того, такой же шаблон может использоваться и на \nдесятках других сайтов.</li><li>Функциональность. Думаю, не нужно быть профессионалом в \nweb-разработке, чтобы понять, что различие в цене разработки \nсайта-визитки для местного фотографа и туристического портала, будет \nсущественным. Оценка стоимости сайта в таком случае определяется \nсложностью добавляемых модулей.</li><li>Контент. Пожалуй, о важности качественного контента на данный момент\n можно и не напоминать, это аксиома известная всем, как заказчикам,  так\n и исполнителям. Конечно, качественный копирайтинг не может стоить \nдешево, и чем больше таких страниц нужно создать, тем дороже это \nобойдется. Точные знания относительно необходимого количества контента, \nпозволяет узнать стоимость сайта более подробно. Но стоит помнить, что \nвложения в качество обязательно окупятся в долгосрочной перспективе.</li><li>Оптимизация под поисковые системы (SEO). Если вам не нужны \nпосетители, а сайт сделан просто для галочки и надписи на визитке – \nможете смело пропускать этот пункт. Вот только зачем тогда его вообще \nсоздавать? Оптимизация сайта является важным пунктом договора, который \nзаранее оговаривается при разработке. Чтобы узнать стоимость сайта, \nнеобязательно сразу же просчитывать этот пункт, это скорее затраты \nбудущего периода. Особенно хорошо нужно проработать такой момент как <a title="подбор ключевых слов для сайта" href="http://www.imagecms.net/blog/obzory/podbor-kliuchevyh-slov-kak-sdelat-vse-pravilno" target="_blank">подбор ключевых слов</a> для сайта, то есть, составление семантического ядра.</li><li>Тематика сайта. Коммерческая ниша в любом случае будет цениться гораздо выше, чем развлекательная.</li><li>Количество страниц в индексе. Чем их больше, тем выше можно \nвыставить цену при продаже. Хороший багаж в плане контента будет полезен\n для любого проекта, как залог лояльности со стороны поисковых систем. \nГлавное – чтобы все материалы сайта были уникальными, а не обычным \nкопипастом.</li><li>Показатели тИЦ и PR. Пожалуй, оценить стоимость сайта на основе \nэтого показателя проще всего. Тут действует простое правило – чем \nбольше, тем лучше.</li><li>Посещаемость сайта. Оценка стоимости сайта с высокой посещаемостью \nвсегда была высокой. В последнее время, в связи с ужесточением поисковых\n алгоритмов и увеличением конкуренции, сайты с более-менее пристойным \nколичеством посетителей стали цениться еще выше.</li><li>Присутствие в каталогах DMOZ, Mail.ru и Яндекс.Каталог. Хотя данный \nфактор уже не имеет такого веса как во времена расцвета ссылочных бирж, \nно он все еще играет весомую роль, если вас интересует оценка стоимости \nсайта, так как является своеобразным знаком качества от поисковиков.</li></ul><br><p><a href="http://www.imagecms.net/download"><img src="http://www.imagecms.net/uploads/images/blog/2.png" alt="Загрузить ImageCMS Corporate бесплатно" height="183" width="705"></a></p>\n<p>Перечисленные выше факторы позволяют точно оценить стоимость сайта \nеще на этапе проектирования, и в случае надобности – внести необходимые \nкорректировки. В случае, если ресурс принадлежит вам лично, а не \nкомпании, узнать стоимость сайта также очень важно, ведь он является \nвыгодным активом, который можно в любой момент продать. Это может быть \nкак блог, так и узкотематический проект, который хорошо закрепился в \nсвоей нише и представляет ценность для пользователей.</p>\n<p>В таком случае узнать стоимость сайта можно с помощью оценки немного \nдругих показателей, чем в первом случае. При продаже на стоимость \nповлияют такие показатели:</p>\n<p>В этой статье мы перечислили все основные факторы, с учетом которых \nможно оценить стоимость сайта и применить данные методики по отношению \nкак корпоративному, так и личному проекту.</p>', 71, '', '', 0, 1, 0, 'publish', 'admin', 1362225958, 1362225958, 0, 1, 3, 0),
+(96, 'Зачем вашему оффлайн-бизнесу нужен Интернет-магазин?', '', 'zachem-vashemu-offlain-biznesu-nuzhen-internet-magazin', 'novosti/arhiv/', 'несмотря, бурный, рост, интернет, коммерции, далеко, предприниматели, понимают, преимущества, магазина, особенно, оффлайная, торговая, точка, именно, таком, случае, проявляются, лучше, всего, ведь, получаете, только, отличный, источник, дополнительного, дохода, возможность, сравнения, эффективности', 'Несмотря на бурный рост Интернет-коммерции, далеко не все  предприниматели понимают, в чем преимущества Интернет-магазина, особенно  если уже есть оффлайная торговая точка. Но именно в таком случае  преимущества Интернет-магазина проявляются лучше всего,', '<p>Несмотря на бурный рост Интернет-коммерции, далеко не все \nпредприниматели понимают, в чем преимущества Интернет-магазина, особенно\n если уже есть оффлайная торговая точка. Но именно в таком случае \nпреимущества Интернет-магазина проявляются лучше всего, ведь вы \nполучаете не только отличный источник дополнительного дохода, но и \nвозможность сравнения эффективности вложения средств.</p>', '<br><p><img src="http://www.imagecms.net/uploads/images/blog/inet-magaz.jpg" alt="Интернет как перспективная бизнес-среда" height="200" width="213">Несмотря\n на бурный рост Интернет-коммерции, далеко не все предприниматели \nпонимают, в чем преимущества Интернет-магазина, особенно если уже есть \nоффлайная торговая точка. Но именно в таком случае преимущества \nИнтернет-магазина проявляются лучше всего, ведь вы получаете не только \nотличный источник дополнительного дохода, но и возможность сравнения \nэффективности вложения средств.</p>\n<p>Так зачем нужен Интернет-магазин современному предпринимателю? В \nзависимости от того, есть ли у вас уже действующий оффлайн-бизнес, он \nможет быть как дополнением к нему, или же основным источником дохода. \nУже отталкиваясь от этого, нужно планировать бюджет создания магазина и \nего развития. Над онлайновой торговой площадкой нужно вести постоянную \nработу, подробно проработать <a href="http://www.imagecms.net/blog/obzory/biznes-plan-internet-magazina-na-chto-obratit-vnimanie" target="_blank">бизнес-план Интернет-магазина</a>\n - это не просто визитка, созданная «для галочки»... это полноценный и \nочень эффективный инструмент продаж. Плюсов у онлайн-бизнеса, по \nсравнению с оффлайном, довольно много.</p>\n<p><a href="http://www.imagecms.net/download"><img src="http://www.imagecms.net/uploads/images/blog/2.png" alt="Система для создания интернет-магазинов - ImageCMS" height="183" width="705"></a></p>\n<p>Перечислим основные преимущества Интернет-магазина:</p><br><ul><li>можно обойтись без аренды производственных площадей и складов -  достаточно небольшого офиса для обслуживания;</li><li>может быть как основным источником прибыли, так и дополнительным по \nотношению к основному бизнесу - это важное обоснование при вопросе зачем\n нужен Интернет-магазин;</li><li>гораздо меньший порог вхождения, хотя конкуренция в разных тематиках отличается;</li><li>нет региональных ограничений: можно находить клиентов как в своем городе или области, так и по всей стране;</li><li>доступность в режиме 24/7: круглосуточно и семь дней в неделю;</li><li>такие преимущества Интернет-магазина как экономия времени и свобода выбора, играют важную роль и для покупателей;</li><li><a title="бизнес в Интернете" href="http://www.imagecms.net/blog/obzory/biznes-v-internete-kak-perspektivnyi-trend" target="_blank">бизнес в Интернете</a>\n не требует большого количества обслуживающего персонала: можно обойтись\n одним консультантом там, где обычные торговые точки обслуживают \nпятерых;</li><li>нет ограничений по количеству представленных на виртуальной витрине товаров;</li><li>в случае с раскруткой и продвижением можно сфокусироваться только на\n потенциально заинтересованных в ваших товарах или услугах \nпользователях.</li></ul><br><p>Можно привести несколько примеров развертывания Интернет-магазинов на платформе <a href="http://www.imagecms.net/products/imagecms-shop-professional">ImageCMS Shop Professional</a>:\n boutique-ekaterinasmolina.ru, euro-technika.com.ua и др. Как видно из \nпримеров, можно торговать в онлайне как с небольшим ассортиментом, так и\n предлагая тысячи наименований товаров. Учитывая вышеперечисленное, \nкаждый владелец бизнеса может понять, зачем нужен Интернет-магазин и \nкакие выгоды от его разработки можно получить (независимо от того, \nработаете ли вы с розничной торговлей или в области B2B).</p>', 71, '', '', 0, 1, 0, 'publish', 'admin', 1362226037, 1362226037, 0, 3, 3, 0);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `content_fields`
+-- Структура таблиці `content_fields`
 --
 
-DROP TABLE IF EXISTS `content_fields`;
 CREATE TABLE IF NOT EXISTS `content_fields` (
   `field_name` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
@@ -262,7 +266,7 @@ CREATE TABLE IF NOT EXISTS `content_fields` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `content_fields`
+-- Дамп даних таблиці `content_fields`
 --
 
 INSERT INTO `content_fields` (`field_name`, `type`, `label`, `data`, `weight`, `in_search`) VALUES
@@ -271,10 +275,9 @@ INSERT INTO `content_fields` (`field_name`, `type`, `label`, `data`, `weight`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `content_fields_data`
+-- Структура таблиці `content_fields_data`
 --
 
-DROP TABLE IF EXISTS `content_fields_data`;
 CREATE TABLE IF NOT EXISTS `content_fields_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `item_id` int(11) NOT NULL,
@@ -288,7 +291,7 @@ CREATE TABLE IF NOT EXISTS `content_fields_data` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
 
 --
--- Дамп данных таблицы `content_fields_data`
+-- Дамп даних таблиці `content_fields_data`
 --
 
 INSERT INTO `content_fields_data` (`id`, `item_id`, `item_type`, `field_name`, `data`) VALUES
@@ -297,17 +300,16 @@ INSERT INTO `content_fields_data` (`id`, `item_id`, `item_type`, `field_name`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `content_fields_groups_relations`
+-- Структура таблиці `content_fields_groups_relations`
 --
 
-DROP TABLE IF EXISTS `content_fields_groups_relations`;
 CREATE TABLE IF NOT EXISTS `content_fields_groups_relations` (
   `field_name` varchar(64) NOT NULL,
   `group_id` int(3) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Дамп данных таблицы `content_fields_groups_relations`
+-- Дамп даних таблиці `content_fields_groups_relations`
 --
 
 INSERT INTO `content_fields_groups_relations` (`field_name`, `group_id`) VALUES
@@ -321,10 +323,9 @@ INSERT INTO `content_fields_groups_relations` (`field_name`, `group_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `content_field_groups`
+-- Структура таблиці `content_field_groups`
 --
 
-DROP TABLE IF EXISTS `content_field_groups`;
 CREATE TABLE IF NOT EXISTS `content_field_groups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -334,7 +335,7 @@ CREATE TABLE IF NOT EXISTS `content_field_groups` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
--- Дамп данных таблицы `content_field_groups`
+-- Дамп даних таблиці `content_field_groups`
 --
 
 INSERT INTO `content_field_groups` (`id`, `name`, `description`) VALUES
@@ -345,10 +346,9 @@ INSERT INTO `content_field_groups` (`id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `content_permissions`
+-- Структура таблиці `content_permissions`
 --
 
-DROP TABLE IF EXISTS `content_permissions`;
 CREATE TABLE IF NOT EXISTS `content_permissions` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `page_id` bigint(11) NOT NULL,
@@ -358,7 +358,7 @@ CREATE TABLE IF NOT EXISTS `content_permissions` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
 
 --
--- Дамп данных таблицы `content_permissions`
+-- Дамп даних таблиці `content_permissions`
 --
 
 INSERT INTO `content_permissions` (`id`, `page_id`, `data`) VALUES
@@ -367,10 +367,9 @@ INSERT INTO `content_permissions` (`id`, `page_id`, `data`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `content_tags`
+-- Структура таблиці `content_tags`
 --
 
-DROP TABLE IF EXISTS `content_tags`;
 CREATE TABLE IF NOT EXISTS `content_tags` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `page_id` int(11) NOT NULL,
@@ -383,10 +382,9 @@ CREATE TABLE IF NOT EXISTS `content_tags` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `custom_fields`
+-- Структура таблиці `custom_fields`
 --
 
-DROP TABLE IF EXISTS `custom_fields`;
 CREATE TABLE IF NOT EXISTS `custom_fields` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `field_type_id` int(11) NOT NULL,
@@ -398,19 +396,19 @@ CREATE TABLE IF NOT EXISTS `custom_fields` (
   `is_private` tinyint(1) NOT NULL DEFAULT '0',
   `possible_values` text,
   `validators` varchar(255) DEFAULT NULL,
-  `field_access_rules` text,
+  `classes` text,
   `entity` varchar(32) DEFAULT NULL,
   `options` varchar(65) DEFAULT NULL,
+  `position` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `custom_fields_data`
+-- Структура таблиці `custom_fields_data`
 --
 
-DROP TABLE IF EXISTS `custom_fields_data`;
 CREATE TABLE IF NOT EXISTS `custom_fields_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `field_id` int(11) NOT NULL,
@@ -420,7 +418,7 @@ CREATE TABLE IF NOT EXISTS `custom_fields_data` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Дамп данных таблицы `custom_fields_data`
+-- Дамп даних таблиці `custom_fields_data`
 --
 
 INSERT INTO `custom_fields_data` (`id`, `field_id`, `entity_id`, `field_data`) VALUES
@@ -431,10 +429,9 @@ INSERT INTO `custom_fields_data` (`id`, `field_id`, `entity_id`, `field_data`) V
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `emails`
+-- Структура таблиці `emails`
 --
 
-DROP TABLE IF EXISTS `emails`;
 CREATE TABLE IF NOT EXISTS `emails` (
   `name` varchar(50) CHARACTER SET utf8 NOT NULL,
   `template` text CHARACTER SET utf8 NOT NULL,
@@ -444,7 +441,7 @@ CREATE TABLE IF NOT EXISTS `emails` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Дамп данных таблицы `emails`
+-- Дамп даних таблиці `emails`
 --
 
 INSERT INTO `emails` (`name`, `template`, `settings`, `locale`, `description`) VALUES
@@ -470,10 +467,9 @@ INSERT INTO `emails` (`name`, `template`, `settings`, `locale`, `description`) V
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `gallery_albums`
+-- Структура таблиці `gallery_albums`
 --
 
-DROP TABLE IF EXISTS `gallery_albums`;
 CREATE TABLE IF NOT EXISTS `gallery_albums` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) NOT NULL,
@@ -492,10 +488,9 @@ CREATE TABLE IF NOT EXISTS `gallery_albums` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `gallery_category`
+-- Структура таблиці `gallery_category`
 --
 
-DROP TABLE IF EXISTS `gallery_category`;
 CREATE TABLE IF NOT EXISTS `gallery_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) NOT NULL,
@@ -509,10 +504,9 @@ CREATE TABLE IF NOT EXISTS `gallery_category` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `gallery_images`
+-- Структура таблиці `gallery_images`
 --
 
-DROP TABLE IF EXISTS `gallery_images`;
 CREATE TABLE IF NOT EXISTS `gallery_images` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `album_id` int(11) NOT NULL,
@@ -531,10 +525,9 @@ CREATE TABLE IF NOT EXISTS `gallery_images` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `languages`
+-- Структура таблиці `languages`
 --
 
-DROP TABLE IF EXISTS `languages`;
 CREATE TABLE IF NOT EXISTS `languages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lang_name` varchar(100) NOT NULL,
@@ -549,7 +542,7 @@ CREATE TABLE IF NOT EXISTS `languages` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
 
 --
--- Дамп данных таблицы `languages`
+-- Дамп даних таблиці `languages`
 --
 
 INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `template`, `default`) VALUES
@@ -558,10 +551,9 @@ INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `templ
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `login_attempts`
+-- Структура таблиці `login_attempts`
 --
 
-DROP TABLE IF EXISTS `login_attempts`;
 CREATE TABLE IF NOT EXISTS `login_attempts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ip_address` varchar(40) NOT NULL,
@@ -569,15 +561,14 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
   PRIMARY KEY (`id`),
   KEY `ip_address` (`ip_address`),
   KEY `time` (`time`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=96 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=97 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `logs`
+-- Структура таблиці `logs`
 --
 
-DROP TABLE IF EXISTS `logs`;
 CREATE TABLE IF NOT EXISTS `logs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -586,15 +577,34 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `date` (`date`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=741 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=755 ;
+
+--
+-- Дамп даних таблиці `logs`
+--
+
+INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
+(741, 1, 'admin', 'Вышел из панели управления', 1363601996),
+(742, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1363602140),
+(743, 1, 'admin', 'Изменил настройки сайта', 1363605006),
+(744, 1, 'admin', 'Создал виджет popular_products', 1363606273),
+(745, 1, 'admin', 'Создал виджет new_products', 1363606324),
+(746, 1, 'admin', 'Создал виджет action_products', 1363606361),
+(747, 1, 'admin', 'Создал виджет brands', 1363606422),
+(748, 1, 'admin', 'Создал виджет view_product', 1363606497),
+(749, 1, 'admin', 'Создал виджет similar', 1363606582),
+(750, 1, 'admin', 'Создал категорию        <a href="/admin/categories/edit/69"> Новости</a>', 1363608590),
+(751, 1, 'admin', 'Создал категорию        <a href="/admin/categories/edit/70"> Последние новости</a>', 1363608751),
+(752, 1, 'admin', 'Изменил категорию   <a href="/admin/categories/edit/70"> Последние новости</a>', 1363608759),
+(753, 1, 'admin', 'Создал категорию        <a href="/admin/categories/edit/71"> Архив</a>', 1363608777),
+(754, 1, 'admin', 'Изменил категорию   <a href="/admin/categories/edit/69"> Новости</a>', 1363610618);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `mail`
+-- Структура таблиці `mail`
 --
 
-DROP TABLE IF EXISTS `mail`;
 CREATE TABLE IF NOT EXISTS `mail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) DEFAULT NULL,
@@ -605,10 +615,9 @@ CREATE TABLE IF NOT EXISTS `mail` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `menus`
+-- Структура таблиці `menus`
 --
 
-DROP TABLE IF EXISTS `menus`;
 CREATE TABLE IF NOT EXISTS `menus` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) NOT NULL,
@@ -619,30 +628,30 @@ CREATE TABLE IF NOT EXISTS `menus` (
   `created` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
--- Дамп данных таблицы `menus`
+-- Дамп даних таблиці `menus`
 --
 
 INSERT INTO `menus` (`id`, `name`, `main_title`, `tpl`, `expand_level`, `description`, `created`) VALUES
 (1, 'main_menu', 'Главное меню', 'shop_menu', 0, '', '2012-02-07 15:34:41'),
 (4, 'top_menu', 'Top menu', 'top_menu', 0, 'Menu at the top of template', '2012-05-11 14:53:24'),
-(5, 'footer_menu', 'Footer menu', 'footer_menu', 0, '', '2012-05-25 11:43:06');
+(5, 'footer_menu', 'Footer menu', 'footer_menu', 0, '', '2012-05-25 11:43:06'),
+(11, 'left_menu', 'left_menu', 'left_menu', 1, 'left_menu', '2013-03-18 16:13:38');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `menus_data`
+-- Структура таблиці `menus_data`
 --
 
-DROP TABLE IF EXISTS `menus_data`;
 CREATE TABLE IF NOT EXISTS `menus_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `menu_id` int(9) NOT NULL,
   `item_id` int(9) NOT NULL,
   `item_type` varchar(15) NOT NULL,
-  `item_image` varchar(255) NOT NULL,
+  `item_image` varchar(255) DEFAULT NULL,
   `roles` text,
   `hidden` smallint(1) NOT NULL DEFAULT '0',
   `title` varchar(300) NOT NULL,
@@ -653,10 +662,10 @@ CREATE TABLE IF NOT EXISTS `menus_data` (
   PRIMARY KEY (`id`),
   KEY `menu_id` (`menu_id`),
   KEY `position` (`position`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=45 ;
 
 --
--- Дамп данных таблицы `menus_data`
+-- Дамп даних таблиці `menus_data`
 --
 
 INSERT INTO `menus_data` (`id`, `menu_id`, `item_id`, `item_type`, `item_image`, `roles`, `hidden`, `title`, `parent_id`, `position`, `description`, `add_data`) VALUES
@@ -680,15 +689,22 @@ INSERT INTO `menus_data` (`id`, `menu_id`, `item_id`, `item_type`, `item_image`,
 (25, 5, 67, 'page', '', '', 0, 'Помощь', 0, 7, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
 (26, 5, 0, 'url', '', '', 0, 'Домашняя электроника', 0, 8, NULL, 'a:2:{s:3:"url";s:38:"/shop/category/domashniaia_elektronika";s:7:"newpage";s:1:"0";}'),
 (27, 5, 68, 'page', '', '', 0, 'Контакты', 0, 9, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
-(28, 5, 0, 'url', '', '', 0, 'Авто музыка и видео', 0, 10, NULL, 'a:2:{s:3:"url";s:34:"/shop/category/avto_muzyka_i_video";s:7:"newpage";s:1:"0";}');
+(28, 5, 0, 'url', '', '', 0, 'Авто музыка и видео', 0, 10, NULL, 'a:2:{s:3:"url";s:34:"/shop/category/avto_muzyka_i_video";s:7:"newpage";s:1:"0";}'),
+(37, 11, 69, 'category', NULL, '', 0, 'Новости', 0, 2, NULL, 'N;'),
+(38, 11, 70, 'category', NULL, '', 0, 'Последние новости', 37, 1, NULL, 'a:1:{s:7:"newpage";i:0;}'),
+(39, 11, 71, 'category', NULL, '', 0, 'Архив', 37, 2, NULL, 'a:1:{s:7:"newpage";i:0;}'),
+(40, 4, 69, 'category', NULL, '', 0, 'Новости', 0, 6, NULL, 'a:1:{s:7:"newpage";i:0;}'),
+(41, 11, 64, 'page', NULL, 'a:1:{i:0;s:1:"0";}', 0, 'О магазине', 0, 6, NULL, 'a:2:{s:4:"page";N;s:7:"newpage";i:0;}'),
+(42, 11, 66, 'page', NULL, '', 0, 'Доставка', 0, 3, NULL, 'a:1:{s:7:"newpage";i:0;}'),
+(43, 11, 67, 'page', NULL, '', 0, 'Помощь', 0, 4, NULL, 'a:1:{s:7:"newpage";i:0;}'),
+(44, 11, 68, 'page', NULL, '', 0, 'Контакты', 0, 5, NULL, 'a:1:{s:7:"newpage";i:0;}');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `menu_translate`
+-- Структура таблиці `menu_translate`
 --
 
-DROP TABLE IF EXISTS `menu_translate`;
 CREATE TABLE IF NOT EXISTS `menu_translate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `item_id` int(11) NOT NULL,
@@ -700,7 +716,7 @@ CREATE TABLE IF NOT EXISTS `menu_translate` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=52 ;
 
 --
--- Дамп данных таблицы `menu_translate`
+-- Дамп даних таблиці `menu_translate`
 --
 
 INSERT INTO `menu_translate` (`id`, `item_id`, `lang_id`, `title`) VALUES
@@ -748,28 +764,26 @@ INSERT INTO `menu_translate` (`id`, `item_id`, `lang_id`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `propel_migration`
+-- Структура таблиці `propel_migration`
 --
 
-DROP TABLE IF EXISTS `propel_migration`;
 CREATE TABLE IF NOT EXISTS `propel_migration` (
   `version` int(11) DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `propel_migration`
+-- Дамп даних таблиці `propel_migration`
 --
 
 INSERT INTO `propel_migration` (`version`) VALUES
-(1355934024);
+(1363604832);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `search`
+-- Структура таблиці `search`
 --
 
-DROP TABLE IF EXISTS `search`;
 CREATE TABLE IF NOT EXISTS `search` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `hash` varchar(264) NOT NULL,
@@ -790,10 +804,9 @@ CREATE TABLE IF NOT EXISTS `search` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `settings`
+-- Структура таблиці `settings`
 --
 
-DROP TABLE IF EXISTS `settings`;
 CREATE TABLE IF NOT EXISTS `settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `s_name` varchar(50) NOT NULL,
@@ -830,44 +843,44 @@ CREATE TABLE IF NOT EXISTS `settings` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Дамп данных таблицы `settings`
+-- Дамп даних таблиці `settings`
 --
 
 INSERT INTO `settings` (`id`, `s_name`, `site_title`, `site_short_title`, `site_description`, `site_keywords`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `ss`, `cat_list`, `text_editor`) VALUES
-(2, 'main', 'premium', 'ImageCMS', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'commerce', 'no', '', 'module', 69, '63', 'shop', '', '', 'russian_lang', '', '', '', '', 'yes', 'elrte');
+(2, 'main', 'premium', 'ImageCMS', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'new_shop_template', 'no', '', 'module', 69, '63', 'shop', '', '', 'russian_lang', '', '', '', '', 'yes', 'elrte');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_banners`
+-- Структура таблиці `shop_banners`
 --
 
-DROP TABLE IF EXISTS `shop_banners`;
 CREATE TABLE IF NOT EXISTS `shop_banners` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `position` smallint(6) DEFAULT NULL,
-  `active` tinyint(1) NOT NULL,
-  `categories` varchar(500) NOT NULL,
+  `active` tinyint(1) DEFAULT NULL,
+  `categories` text,
+  `on_main` tinyint(1) DEFAULT NULL,
+  `espdate` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_banners_I_1` (`position`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
--- Дамп данных таблицы `shop_banners`
+-- Дамп даних таблиці `shop_banners`
 --
 
-INSERT INTO `shop_banners` (`id`, `position`, `active`, `categories`) VALUES
-(7, 23, 1, ''),
-(8, 24, 1, ''),
-(9, 25, 1, '');
+INSERT INTO `shop_banners` (`id`, `position`, `active`, `categories`, `on_main`, `espdate`) VALUES
+(7, 23, 1, 'false', 1, 2147483647),
+(11, 24, 1, 'false', 1, 2147457600),
+(12, 25, 1, 'false', 1, 2147457600);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_banners_i18n`
+-- Структура таблиці `shop_banners_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_banners_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_banners_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -879,33 +892,32 @@ CREATE TABLE IF NOT EXISTS `shop_banners_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_banners_i18n`
+-- Дамп даних таблиці `shop_banners_i18n`
 --
 
 INSERT INTO `shop_banners_i18n` (`id`, `locale`, `name`, `text`, `url`, `image`) VALUES
-(8, 'ru', 'iPhone5', ' ', '/shop/product/apple-iphone-5-16gb-black-slate', '8_.jpg'),
-(7, 'ru', 'Epson', ' ', '/shop/brand/epson', '7_.jpg'),
-(9, 'ru', 'SonyYamaha', ' ', '/shop/product/71', '9_.jpg');
+(12, 'ru', 'sumsung', ' ', '/shop/brand/sumsung', 'template-imageshop-banner-3.jpg'),
+(7, 'ru', 'Epson', ' ', '/shop/brand/epson', 'template-imageshop-banner-1.jpg'),
+(11, 'ru', 'Sony', ' ', '/shop/brand/sony', 'template-imageshop-banner-2.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_brands`
+-- Структура таблиці `shop_brands`
 --
 
-DROP TABLE IF EXISTS `shop_brands`;
 CREATE TABLE IF NOT EXISTS `shop_brands` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(255) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
-  `position` int(11) NOT NULL,
+  `position` smallint(6) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_brands_I_2` (`url`),
   KEY `shop_brands_I_1` (`url`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
 
 --
--- Дамп данных таблицы `shop_brands`
+-- Дамп даних таблиці `shop_brands`
 --
 
 INSERT INTO `shop_brands` (`id`, `url`, `image`, `position`) VALUES
@@ -924,10 +936,9 @@ INSERT INTO `shop_brands` (`id`, `url`, `image`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_brands_i18n`
+-- Структура таблиці `shop_brands_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_brands_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_brands_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -941,7 +952,7 @@ CREATE TABLE IF NOT EXISTS `shop_brands_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_brands_i18n`
+-- Дамп даних таблиці `shop_brands_i18n`
 --
 
 INSERT INTO `shop_brands_i18n` (`id`, `locale`, `name`, `description`, `meta_title`, `meta_description`, `meta_keywords`) VALUES
@@ -965,10 +976,9 @@ INSERT INTO `shop_brands_i18n` (`id`, `locale`, `name`, `description`, `meta_tit
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_callbacks`
+-- Структура таблиці `shop_callbacks`
 --
 
-DROP TABLE IF EXISTS `shop_callbacks`;
 CREATE TABLE IF NOT EXISTS `shop_callbacks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -988,10 +998,9 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_callbacks_statuses`
+-- Структура таблиці `shop_callbacks_statuses`
 --
 
-DROP TABLE IF EXISTS `shop_callbacks_statuses`;
 CREATE TABLE IF NOT EXISTS `shop_callbacks_statuses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `is_default` tinyint(1) DEFAULT NULL,
@@ -999,7 +1008,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_statuses` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
--- Дамп данных таблицы `shop_callbacks_statuses`
+-- Дамп даних таблиці `shop_callbacks_statuses`
 --
 
 INSERT INTO `shop_callbacks_statuses` (`id`, `is_default`) VALUES
@@ -1009,10 +1018,9 @@ INSERT INTO `shop_callbacks_statuses` (`id`, `is_default`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_callbacks_statuses_i18n`
+-- Структура таблиці `shop_callbacks_statuses_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_callbacks_statuses_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_callbacks_statuses_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1022,7 +1030,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_statuses_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_callbacks_statuses_i18n`
+-- Дамп даних таблиці `shop_callbacks_statuses_i18n`
 --
 
 INSERT INTO `shop_callbacks_statuses_i18n` (`id`, `locale`, `text`) VALUES
@@ -1032,10 +1040,9 @@ INSERT INTO `shop_callbacks_statuses_i18n` (`id`, `locale`, `text`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_callbacks_themes`
+-- Структура таблиці `shop_callbacks_themes`
 --
 
-DROP TABLE IF EXISTS `shop_callbacks_themes`;
 CREATE TABLE IF NOT EXISTS `shop_callbacks_themes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `position` int(11) DEFAULT NULL,
@@ -1043,7 +1050,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_themes` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
--- Дамп данных таблицы `shop_callbacks_themes`
+-- Дамп даних таблиці `shop_callbacks_themes`
 --
 
 INSERT INTO `shop_callbacks_themes` (`id`, `position`) VALUES
@@ -1052,10 +1059,9 @@ INSERT INTO `shop_callbacks_themes` (`id`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_callbacks_themes_i18n`
+-- Структура таблиці `shop_callbacks_themes_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_callbacks_themes_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_callbacks_themes_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1065,7 +1071,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_themes_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_callbacks_themes_i18n`
+-- Дамп даних таблиці `shop_callbacks_themes_i18n`
 --
 
 INSERT INTO `shop_callbacks_themes_i18n` (`id`, `locale`, `text`) VALUES
@@ -1075,10 +1081,9 @@ INSERT INTO `shop_callbacks_themes_i18n` (`id`, `locale`, `text`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_category`
+-- Структура таблиці `shop_category`
 --
 
-DROP TABLE IF EXISTS `shop_category`;
 CREATE TABLE IF NOT EXISTS `shop_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(255) NOT NULL,
@@ -1101,7 +1106,7 @@ CREATE TABLE IF NOT EXISTS `shop_category` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=78 ;
 
 --
--- Дамп данных таблицы `shop_category`
+-- Дамп даних таблиці `shop_category`
 --
 
 INSERT INTO `shop_category` (`id`, `url`, `parent_id`, `position`, `full_path`, `full_path_ids`, `active`, `external_id`, `image`, `tpl`, `order_method`, `showsitetitle`) VALUES
@@ -1130,10 +1135,9 @@ INSERT INTO `shop_category` (`id`, `url`, `parent_id`, `position`, `full_path`, 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_category_i18n`
+-- Структура таблиці `shop_category_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_category_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_category_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1148,7 +1152,7 @@ CREATE TABLE IF NOT EXISTS `shop_category_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_category_i18n`
+-- Дамп даних таблиці `shop_category_i18n`
 --
 
 INSERT INTO `shop_category_i18n` (`id`, `locale`, `name`, `h1`, `description`, `meta_desc`, `meta_title`, `meta_keywords`) VALUES
@@ -1195,10 +1199,9 @@ INSERT INTO `shop_category_i18n` (`id`, `locale`, `name`, `h1`, `description`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_comulativ_discount`
+-- Структура таблиці `shop_comulativ_discount`
 --
 
-DROP TABLE IF EXISTS `shop_comulativ_discount`;
 CREATE TABLE IF NOT EXISTS `shop_comulativ_discount` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(255) DEFAULT NULL,
@@ -1213,10 +1216,9 @@ CREATE TABLE IF NOT EXISTS `shop_comulativ_discount` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_currencies`
+-- Структура таблиці `shop_currencies`
 --
 
-DROP TABLE IF EXISTS `shop_currencies`;
 CREATE TABLE IF NOT EXISTS `shop_currencies` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -1232,7 +1234,7 @@ CREATE TABLE IF NOT EXISTS `shop_currencies` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп данных таблицы `shop_currencies`
+-- Дамп даних таблиці `shop_currencies`
 --
 
 INSERT INTO `shop_currencies` (`id`, `name`, `main`, `is_default`, `code`, `symbol`, `rate`) VALUES
@@ -1242,10 +1244,9 @@ INSERT INTO `shop_currencies` (`id`, `name`, `main`, `is_default`, `code`, `symb
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_delivery_methods`
+-- Структура таблиці `shop_delivery_methods`
 --
 
-DROP TABLE IF EXISTS `shop_delivery_methods`;
 CREATE TABLE IF NOT EXISTS `shop_delivery_methods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `price` float(10,2) NOT NULL,
@@ -1258,7 +1259,7 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
 
 --
--- Дамп данных таблицы `shop_delivery_methods`
+-- Дамп даних таблиці `shop_delivery_methods`
 --
 
 INSERT INTO `shop_delivery_methods` (`id`, `price`, `free_from`, `enabled`, `is_price_in_percent`) VALUES
@@ -1269,10 +1270,9 @@ INSERT INTO `shop_delivery_methods` (`id`, `price`, `free_from`, `enabled`, `is_
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_delivery_methods_i18n`
+-- Структура таблиці `shop_delivery_methods_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_delivery_methods_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_delivery_methods_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1284,7 +1284,7 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_delivery_methods_i18n`
+-- Дамп даних таблиці `shop_delivery_methods_i18n`
 --
 
 INSERT INTO `shop_delivery_methods_i18n` (`id`, `locale`, `name`, `description`, `pricedescription`) VALUES
@@ -1296,10 +1296,9 @@ INSERT INTO `shop_delivery_methods_i18n` (`id`, `locale`, `name`, `description`,
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_delivery_methods_systems`
+-- Структура таблиці `shop_delivery_methods_systems`
 --
 
-DROP TABLE IF EXISTS `shop_delivery_methods_systems`;
 CREATE TABLE IF NOT EXISTS `shop_delivery_methods_systems` (
   `delivery_method_id` int(11) NOT NULL,
   `payment_method_id` int(11) NOT NULL,
@@ -1308,7 +1307,7 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods_systems` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_delivery_methods_systems`
+-- Дамп даних таблиці `shop_delivery_methods_systems`
 --
 
 INSERT INTO `shop_delivery_methods_systems` (`delivery_method_id`, `payment_method_id`) VALUES
@@ -1338,10 +1337,9 @@ INSERT INTO `shop_delivery_methods_systems` (`delivery_method_id`, `payment_meth
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_discounts`
+-- Структура таблиці `shop_discounts`
 --
 
-DROP TABLE IF EXISTS `shop_discounts`;
 CREATE TABLE IF NOT EXISTS `shop_discounts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -1361,10 +1359,48 @@ CREATE TABLE IF NOT EXISTS `shop_discounts` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_gifts`
+-- Структура таблиці `shop_discount_category`
 --
 
-DROP TABLE IF EXISTS `shop_gifts`;
+CREATE TABLE IF NOT EXISTS `shop_discount_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `discount_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `shop_discount_product`
+--
+
+CREATE TABLE IF NOT EXISTS `shop_discount_product` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `discount_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `shop_discount_user_group`
+--
+
+CREATE TABLE IF NOT EXISTS `shop_discount_user_group` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `discount_id` int(11) NOT NULL,
+  `user_group_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `shop_gifts`
+--
+
 CREATE TABLE IF NOT EXISTS `shop_gifts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `key` varchar(255) DEFAULT NULL,
@@ -1376,7 +1412,7 @@ CREATE TABLE IF NOT EXISTS `shop_gifts` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп данных таблицы `shop_gifts`
+-- Дамп даних таблиці `shop_gifts`
 --
 
 INSERT INTO `shop_gifts` (`id`, `key`, `active`, `price`, `created`, `espdate`) VALUES
@@ -1387,10 +1423,9 @@ INSERT INTO `shop_gifts` (`id`, `key`, `active`, `price`, `created`, `espdate`) 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_kit`
+-- Структура таблиці `shop_kit`
 --
 
-DROP TABLE IF EXISTS `shop_kit`;
 CREATE TABLE IF NOT EXISTS `shop_kit` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) DEFAULT NULL,
@@ -1401,7 +1436,7 @@ CREATE TABLE IF NOT EXISTS `shop_kit` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
--- Дамп данных таблицы `shop_kit`
+-- Дамп даних таблиці `shop_kit`
 --
 
 INSERT INTO `shop_kit` (`id`, `product_id`, `active`, `position`) VALUES
@@ -1412,10 +1447,9 @@ INSERT INTO `shop_kit` (`id`, `product_id`, `active`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_kit_product`
+-- Структура таблиці `shop_kit_product`
 --
 
-DROP TABLE IF EXISTS `shop_kit_product`;
 CREATE TABLE IF NOT EXISTS `shop_kit_product` (
   `product_id` int(11) NOT NULL,
   `kit_id` int(11) NOT NULL,
@@ -1425,7 +1459,7 @@ CREATE TABLE IF NOT EXISTS `shop_kit_product` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_kit_product`
+-- Дамп даних таблиці `shop_kit_product`
 --
 
 INSERT INTO `shop_kit_product` (`product_id`, `kit_id`, `discount`) VALUES
@@ -1436,10 +1470,9 @@ INSERT INTO `shop_kit_product` (`product_id`, `kit_id`, `discount`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_notifications`
+-- Структура таблиці `shop_notifications`
 --
 
-DROP TABLE IF EXISTS `shop_notifications`;
 CREATE TABLE IF NOT EXISTS `shop_notifications` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
@@ -1466,10 +1499,9 @@ CREATE TABLE IF NOT EXISTS `shop_notifications` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_notification_statuses`
+-- Структура таблиці `shop_notification_statuses`
 --
 
-DROP TABLE IF EXISTS `shop_notification_statuses`;
 CREATE TABLE IF NOT EXISTS `shop_notification_statuses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `position` smallint(6) DEFAULT NULL,
@@ -1479,7 +1511,7 @@ CREATE TABLE IF NOT EXISTS `shop_notification_statuses` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Дамп данных таблицы `shop_notification_statuses`
+-- Дамп даних таблиці `shop_notification_statuses`
 --
 
 INSERT INTO `shop_notification_statuses` (`id`, `position`) VALUES
@@ -1489,10 +1521,9 @@ INSERT INTO `shop_notification_statuses` (`id`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_notification_statuses_i18n`
+-- Структура таблиці `shop_notification_statuses_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_notification_statuses_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_notification_statuses_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1502,7 +1533,7 @@ CREATE TABLE IF NOT EXISTS `shop_notification_statuses_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_notification_statuses_i18n`
+-- Дамп даних таблиці `shop_notification_statuses_i18n`
 --
 
 INSERT INTO `shop_notification_statuses_i18n` (`id`, `locale`, `name`) VALUES
@@ -1512,10 +1543,9 @@ INSERT INTO `shop_notification_statuses_i18n` (`id`, `locale`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_orders`
+-- Структура таблиці `shop_orders`
 --
 
-DROP TABLE IF EXISTS `shop_orders`;
 CREATE TABLE IF NOT EXISTS `shop_orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `key` varchar(255) NOT NULL,
@@ -1547,7 +1577,7 @@ CREATE TABLE IF NOT EXISTS `shop_orders` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=49 ;
 
 --
--- Дамп данных таблицы `shop_orders`
+-- Дамп даних таблиці `shop_orders`
 --
 
 INSERT INTO `shop_orders` (`id`, `key`, `delivery_method`, `delivery_price`, `status`, `paid`, `user_full_name`, `user_email`, `user_phone`, `user_deliver_to`, `user_comment`, `date_created`, `date_updated`, `user_ip`, `user_id`, `payment_method`, `total_price`, `external_id`, `gift_cert_key`, `gift_cert_price`, `comulativ`) VALUES
@@ -1567,19 +1597,14 @@ INSERT INTO `shop_orders` (`id`, `key`, `delivery_method`, `delivery_price`, `st
 (41, '1p4491f5m5', 6, 0.00, 2, 1, 'roman', 'hh@f.com', '', '', '', 1302134400, 1302134400, '127.0.0.1', 14, 1, 60.99, NULL, NULL, NULL, NULL),
 (42, 'bx41g39564', 6, 0.00, 2, 1, 'Степа', 'w@go.com', '', '', '', 1306108800, 1306108800, '127.0.0.1', 15, 1, 42.00, NULL, NULL, NULL, NULL),
 (43, 'd5fw278457', 5, 0.00, 2, 1, 'Катерина', 'd@com.ua', '', '', '', 1302048000, 1302048000, '127.0.0.1', 16, 2, 500.00, NULL, NULL, NULL, NULL),
-(44, 'h82681tn83', 6, 0.00, 2, 1, 'Валерия', 'q@w.com', '', '', '', 1299196800, 1299196800, '127.0.0.1', 17, 1, 1178.99, NULL, NULL, NULL, NULL),
-(45, '9e79h5q398', 6, 355.00, 1, NULL, 'admin', 'ad@min.com', '', '', '', 1355999826, 1355999826, '127.0.0.1', 1, 1, 250.00, NULL, NULL, NULL, NULL),
-(46, 'e46314u82i', 6, 355.00, 1, NULL, 'admin', 'ad@min.com', '', '', '', 1356000139, 1356000139, '127.0.0.1', 1, 1, 250.00, NULL, NULL, NULL, NULL),
-(47, 'f347d362l9', 6, 355.00, 1, NULL, 'hfgghdfhfg', 'test@test.com', '534534534', 'gdfghdfgdfgdf', 'gfgdgdfgdfgdf', 1357312953, 1357312953, '127.0.0.1', NULL, 1, 300.00, NULL, NULL, NULL, NULL),
-(48, 'y3415819mf', 6, 355.00, 1, NULL, 'dgdfgdfgdf', 'test@test.com', '45645', 'fdfgdgdfgdf', 'fgdfg dfg dfgdf gdfgd fgdfg dfgdf gdf', 1357313098, 1357313098, '127.0.0.1', 23, 1, 5000.00, NULL, NULL, NULL, NULL);
+(44, 'h82681tn83', 6, 0.00, 2, 1, 'Валерия', 'q@w.com', '', '', '', 1299196800, 1299196800, '127.0.0.1', 17, 1, 1178.99, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_orders_products`
+-- Структура таблиці `shop_orders_products`
 --
 
-DROP TABLE IF EXISTS `shop_orders_products`;
 CREATE TABLE IF NOT EXISTS `shop_orders_products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
@@ -1597,7 +1622,7 @@ CREATE TABLE IF NOT EXISTS `shop_orders_products` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=73 ;
 
 --
--- Дамп данных таблицы `shop_orders_products`
+-- Дамп даних таблиці `shop_orders_products`
 --
 
 INSERT INTO `shop_orders_products` (`id`, `order_id`, `product_id`, `variant_id`, `product_name`, `variant_name`, `price`, `quantity`, `kit_id`, `is_main`) VALUES
@@ -1628,19 +1653,14 @@ INSERT INTO `shop_orders_products` (`id`, `order_id`, `product_id`, `variant_id`
 (65, 43, 185, 213, 'Apple iPhone 5 16GB Black & Slate', '', 500.00, 1, NULL, NULL),
 (66, 44, 102, 113, 'Epson Stylus R1900 Photo Printer', '', 549.99, 1, NULL, NULL),
 (67, 44, 83, 94, 'Sony BDP-S470 Network', '', 129.00, 1, NULL, NULL),
-(68, 44, 185, 213, 'Apple iPhone 5 16GB Black & Slate', '', 500.00, 1, NULL, NULL),
-(69, 45, 188, 216, 'LG 32LS359T', '', 250.00, 1, NULL, NULL),
-(70, 46, 188, 216, 'LG 32LS359T', '', 250.00, 1, NULL, NULL),
-(71, 47, 186, 214, 'Samsung UE32EH4030WXUA', '', 300.00, 1, NULL, NULL),
-(72, 48, 189, 217, 'LG 47LM580T', '', 5000.00, 1, NULL, NULL);
+(68, 44, 185, 213, 'Apple iPhone 5 16GB Black & Slate', '', 500.00, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_orders_status_history`
+-- Структура таблиці `shop_orders_status_history`
 --
 
-DROP TABLE IF EXISTS `shop_orders_status_history`;
 CREATE TABLE IF NOT EXISTS `shop_orders_status_history` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
@@ -1654,7 +1674,7 @@ CREATE TABLE IF NOT EXISTS `shop_orders_status_history` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
--- Дамп данных таблицы `shop_orders_status_history`
+-- Дамп даних таблиці `shop_orders_status_history`
 --
 
 INSERT INTO `shop_orders_status_history` (`id`, `order_id`, `status_id`, `user_id`, `date_created`, `comment`) VALUES
@@ -1674,10 +1694,9 @@ INSERT INTO `shop_orders_status_history` (`id`, `order_id`, `status_id`, `user_i
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_order_statuses`
+-- Структура таблиці `shop_order_statuses`
 --
 
-DROP TABLE IF EXISTS `shop_order_statuses`;
 CREATE TABLE IF NOT EXISTS `shop_order_statuses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `position` smallint(6) DEFAULT NULL,
@@ -1687,7 +1706,7 @@ CREATE TABLE IF NOT EXISTS `shop_order_statuses` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
--- Дамп данных таблицы `shop_order_statuses`
+-- Дамп даних таблиці `shop_order_statuses`
 --
 
 INSERT INTO `shop_order_statuses` (`id`, `position`) VALUES
@@ -1697,10 +1716,9 @@ INSERT INTO `shop_order_statuses` (`id`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_order_statuses_i18n`
+-- Структура таблиці `shop_order_statuses_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_order_statuses_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_order_statuses_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1710,7 +1728,7 @@ CREATE TABLE IF NOT EXISTS `shop_order_statuses_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_order_statuses_i18n`
+-- Дамп даних таблиці `shop_order_statuses_i18n`
 --
 
 INSERT INTO `shop_order_statuses_i18n` (`id`, `locale`, `name`) VALUES
@@ -1720,10 +1738,9 @@ INSERT INTO `shop_order_statuses_i18n` (`id`, `locale`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_payment_methods`
+-- Структура таблиці `shop_payment_methods`
 --
 
-DROP TABLE IF EXISTS `shop_payment_methods`;
 CREATE TABLE IF NOT EXISTS `shop_payment_methods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `active` tinyint(1) DEFAULT NULL,
@@ -1737,7 +1754,7 @@ CREATE TABLE IF NOT EXISTS `shop_payment_methods` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
--- Дамп данных таблицы `shop_payment_methods`
+-- Дамп даних таблиці `shop_payment_methods`
 --
 
 INSERT INTO `shop_payment_methods` (`id`, `active`, `currency_id`, `position`, `payment_system_name`) VALUES
@@ -1749,10 +1766,9 @@ INSERT INTO `shop_payment_methods` (`id`, `active`, `currency_id`, `position`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_payment_methods_i18n`
+-- Структура таблиці `shop_payment_methods_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_payment_methods_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_payment_methods_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1763,7 +1779,7 @@ CREATE TABLE IF NOT EXISTS `shop_payment_methods_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_payment_methods_i18n`
+-- Дамп даних таблиці `shop_payment_methods_i18n`
 --
 
 INSERT INTO `shop_payment_methods_i18n` (`id`, `locale`, `name`, `description`) VALUES
@@ -1779,10 +1795,9 @@ INSERT INTO `shop_payment_methods_i18n` (`id`, `locale`, `name`, `description`) 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_products`
+-- Структура таблиці `shop_products`
 --
 
-DROP TABLE IF EXISTS `shop_products`;
 CREATE TABLE IF NOT EXISTS `shop_products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(255) NOT NULL,
@@ -1814,7 +1829,7 @@ CREATE TABLE IF NOT EXISTS `shop_products` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=195 ;
 
 --
--- Дамп данных таблицы `shop_products`
+-- Дамп даних таблиці `shop_products`
 --
 
 INSERT INTO `shop_products` (`id`, `url`, `active`, `hit`, `brand_id`, `category_id`, `related_products`, `mainImage`, `smallImage`, `created`, `updated`, `old_price`, `views`, `hot`, `action`, `added_to_cart_count`, `enable_comments`, `external_id`, `mainModImage`, `smallModImage`, `tpl`, `user_id`) VALUES
@@ -1865,24 +1880,20 @@ INSERT INTO `shop_products` (`id`, `url`, `active`, `hit`, `brand_id`, `category
 (122, '122', 1, NULL, 29, 54, '', '122_main.jpg', '122_small.jpg', 1307543511, 1355497077, 0.00, 1, NULL, NULL, 2, 1, NULL, '122_mainMod.jpg', '122_smallMod.jpg', '', NULL),
 (123, '123', 1, NULL, 0, 54, '', '123_main.jpg', '123_small.jpg', 1307543925, 1355497060, 0.00, 25, NULL, NULL, 1, 1, NULL, '123_mainMod.jpg', '123_smallMod.jpg', '', NULL),
 (124, '124', 1, NULL, 0, 54, '', '124_main.jpg', '124_small.jpg', 1307542680, 1355497269, 0.00, NULL, NULL, NULL, 1, 1, NULL, '124_mainMod.jpg', '124_smallMod.jpg', '', NULL),
-(185, 'apple-iphone-5-16gb-black-slate', 1, 0, 27, 50, '108,111,107', '', '', 1355428800, 1356345896, 0.00, 16, NULL, NULL, 3, 1, NULL, '185_mainMod.jpg', '185_smallMod.jpg', '', NULL),
+(185, 'apple-iphone-5-16gb-black-slate', 1, 0, 27, 50, '108,111,107', '185_main.jpg', '185_small.jpg', 1355428800, 1363607089, 0.00, 20, NULL, NULL, 3, 1, NULL, '185_mainMod.jpg', '185_smallMod.jpg', '', NULL),
 (186, 'samsung-ue32eh4030wxua', 1, NULL, 0, 74, '', '186_main.jpg', '186_mainMod.jpg', 1355688000, 1355745194, 0.00, 23, NULL, NULL, 1, 1, NULL, '186_mainMod.jpg', '186_smallMod.jpg', '', NULL),
 (187, 'samsung-ue40es6307uxua', 1, NULL, 28, 74, '', '187_main.jpg', '187_mainMod.jpg', 1355688000, 1355745685, 0.00, 1, NULL, NULL, NULL, 1, NULL, '187_mainMod.jpg', '187_smallMod.jpg', '', NULL),
 (188, 'lg-32ls359t', 1, NULL, 29, 74, '', '188_main.jpg', '188_mainMod.jpg', 1355688000, 1355746100, 0.00, 9, NULL, NULL, 2, 1, NULL, '188_mainMod.jpg', '188_smallMod.jpg', '', NULL),
 (189, 'lg-47lm580t', 1, 1, 35, 75, '', '189_main.jpg', '189_mainMod.jpg', 1355688000, 1355750041, 0.00, 4, 1, 1, 1, 1, NULL, '189_mainMod.jpg', '189_smallMod.jpg', '', NULL),
 (190, 'samsung-le40d550k1wxua', 1, 1, 28, 75, '', '190_main.jpg', '190_mainMod.jpg', 1355688000, 1355747897, 0.00, 3, NULL, NULL, NULL, 1, NULL, '190_mainMod.jpg', '190_smallMod.jpg', '', NULL),
-(191, 'sony-kdl-22ex553', 1, NULL, 26, 75, '', '191_main.jpg', '191_mainMod.jpg', 1355688000, 1355749805, 0.00, 2, 1, 1, NULL, 1, NULL, '191_mainMod.jpg', '191_smallMod.jpg', '', NULL),
-(192, '192', 1, 1, NULL, 74, NULL, '', '', 1356095541, 1356345897, 1150.00, NULL, NULL, NULL, NULL, 1, NULL, '71_mainMod.jpg', '71_smallMod.jpg', NULL, NULL),
-(193, '193', 1, 0, NULL, 74, NULL, '', '', 1356095541, 1356345897, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '186_mainMod.jpg', '186_smallMod.jpg', NULL, NULL),
-(194, '194', 1, 0, NULL, 74, NULL, '', '', 1356095541, 1356345897, 0.00, NULL, NULL, NULL, NULL, 1, NULL, '187_mainMod.jpg', '187_smallMod.jpg', NULL, NULL);
+(191, 'sony-kdl-22ex553', 1, NULL, 26, 75, '', '191_main.jpg', '191_mainMod.jpg', 1355688000, 1355749805, 0.00, 2, 1, 1, NULL, 1, NULL, '191_mainMod.jpg', '191_smallMod.jpg', '', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_products_i18n`
+-- Структура таблиці `shop_products_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_products_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_products_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1897,7 +1908,7 @@ CREATE TABLE IF NOT EXISTS `shop_products_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_products_i18n`
+-- Дамп даних таблиці `shop_products_i18n`
 --
 
 INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `full_description`, `meta_title`, `meta_description`, `meta_keywords`) VALUES
@@ -1997,25 +2008,21 @@ INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `
 (116, 'en', 'Pyle PLT-AB8 Subwoofer - PLTAB8', '', '<p><span id="result_box" lang="en"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
 (122, 'en', 'Panasonic CX-DP880U 8-Disc', '', '<p><span id="result_box" lang="en"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
 (121, 'en', 'Pioneer JD-612V 6-disc CD Magazine', '', '<p><span id="result_box" lang="en"><span>High</span> <span>technology product</span> <span>that will help you</span> <span>evaluate the quality of</span> <span>the highest level.</span><br /><br /> <span>All products are available</span> <span>in stock</span><span>, and our managers</span> <span>will help you</span> <span>to make a purchase</span> <span>as soon as possible</span><span>.</span><br /><br /> <span>On</span> <span>all the products we</span> <span>offer a guarantee</span> <span>of quality.</span><br /><br /> <span>Purchase only</span> <span>from our online</span> <span>store</span> <span>at the best prices</span><span>.</span></span></p>', '', '', ''),
-(185, 'ru', 'Apple iPhone 5 16GB Black &amp;amp; Slate', '', '', '', '', ''),
+(185, 'ru', 'Apple iPhone 5 16GB Black Slate', ' ', ' ', '', '', ''),
 (186, 'ru', 'Samsung UE32EH4030WXUA', '32 дюйма, 1366x768, 720p, 16:9, LED-подсветка, 300000:1, звук: 2х10 Вт, SCART, RGB, VGA, HDMI x2, USB  ', '<div>\nСупертонкий и плоский LED телевизор Samsung UE32EH4030WXUA идеально \nподойдет для вашей гостиной. При минималистичном дизайне этот телевизор \nобеспечивает кинематографическую реалистичность впечатлений во время \nпросмотра, благодаря светодиодной подсветке матрицы ТВ Samsung \nUE32EH4030WXUA. Получите удовольствие от максимальной четкости \nдинамичного изображения, насыщенности и многообразия цветовых оттенков. \n           </div>  ', '', '', '');
 INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `full_description`, `meta_title`, `meta_description`, `meta_keywords`) VALUES
 (187, 'ru', 'Samsung UE40ES6307UXUA', '40 дюймов, LED, 1920x1080, 16:9, Full HD, 178°/178°, 2х10 Вт, 3xHDMI, 3xUSB, Ethernet (LAN), Wi-Fi, Smart TV  ', '<strong>Новый уровень ощущений в формате 3D</strong><br>\nLED телевизоры Samsung внесли в мир развлечений совершенно новые \nощущения. Благодаря новейшим достижениям технологии 3D вы погружаетесь в\n совершенно новый мир ТВ-реальности.<br>\n<br>\n<strong>Смотрите фильмы, загружая их прямо с USB-накопителя</strong><br>\nБлагодаря функции ConnectShare Movie, вы можете росто вставить ваш USB \nнакопитель или жесткий диск в USB разъем телевизора, чтобы записанные на\n носителе фильмы, фотоснимки или музыкальные треки начали \nвоспроизводиться на экране телевизора. Теперь на большом экране \nтелевизора, установленного в гостиной, вы можете просмотреть или \nпрослушать любой контент.<br>\n<br>\n<strong>Видеозвонки по Skype на большом экране</strong><br>\nПриложение Skype для Smart TV доступно бесплатно в магазине Samsung App.\n В сочетании с отдельно приобретаемой веб-камерой Skype вы сможете \nсовершать видеозвонки своим друзьям и близким на большом экране почти \nили совсем бесплатно. С помощью пульта ДУ вы можете легко создать новые \nSkype эккаунты и получать доступ к существующим. Теперь видеосвязь \nбуквально в ваших руках.<br>\n<br>\n<strong>Доступ в Интернет без проводов</strong><br>\nВстроенная поддержка сети, широкие возможности подключения других устройств сочетаются с привлекательным дизайном.<br>\n<br>\n<strong>Наслаждайтесь приложениями, видео, Skype, серфингом в Интернете и многими другими возможностями</strong><br>\nБлагодаря вашей домашней системе развлечений вы откроете для себя новый \nмир социальных и персонализированных развлечений на обновленном портале \nSamsung Smart Hub и трех новых сервисах. Раздел Family Story позволит \nподелиться в друзьями и близкими фотоснимками, текстовыми комментариями и\n самыми знаменательными событиями вашей жизни. Кроме того, дети могут \nвоспользоваться развлекательными, обучающими и познавательными \nпрограммами в разделе Kids (Для детей). С помощью раздела "Фитнес" \n(Fitness) вы можете заниматься фитнесом и контролировать результаты на \nэкране телевизора. Доступ к большой библиотеке контента, приложениям на \nпортале Samsung Apps и возможность бродить по страницам Интернета \nсущественно разнообразит ваш семейный досуг и позволит получить массу \nновых положительных эмоций.  ', '', '', ''),
 (188, 'ru', 'LG 32LS359T', 'LED телевізор 32 LG 32LS359T (81,28 см, 16:9, HD Ready, 1366x768, \n1000000:1, 178/178, 3 мс, Pal/Secam-B/G, Pal/Secam-D/K, Pal-I/I'', \nDVB-T2, DVB-C, Triple XD Engine, 2x5 Вт, телетекст (1000), годинник, \nтаймер, CI Slot, RF In (T2/C), Composite, Full Scart, Component \n(Y,Pb,Pr), HDMI/HDCP (1.4)x2, USB 2.0 (JPEG/ MP3/ DivX), LAN, 100~240 В,\n 50-60 Гц, 755x530x288.8  ', 'LED телевізор 32" LG 32LS359T (81, 28 см, 16:9, HD Ready, 1366x768, \n1000000:1, 178/178, 3 мс, Pal/Secam-B/G, Pal/Secam-D/K, Pal-I/I'', \nDVB-T2, DVB-C, Triple XD Engine, 2x5 Вт, телетекст (1000), годинник, \nтаймер, CI Slot, RF In (T2/C), Composite, Full Scart, Component (Y, Pb, \nPr), HDMI/HDCP (1.4)x2, USB 2.0 (JPEG/ MP3/ DivX), LAN, 100~240 В, 50-60\n Гц, 755x530x288.8 мм, 9.1 кг, білий)  ', '', '', ''),
 (189, 'ru', 'LG 47LM580T', '<div>\n                <div>ЖК-телевизор, 47, 16:9, 1920x1080, HDTV, 1080p (Full HD), LED-подсветка,\n 200 Гц, 3D, мощность звука 20 Вт, HDMI x3, VGA  </div></div>  ', 'ЖК-телевизор, 47", 16:9, 1920x1080, HDTV, 1080p (Full HD), \nLED-подсветка, 200 Гц, 3D, мощность звука 20 Вт, HDMI x3, VGA  ', '', '', ''),
 (190, 'ru', 'Samsung LE40D550K1WXUA', '<div>\n                <div>\n                LCD телевізор 40 Samsung LE-40D550K1WXUA (Full HD 1080p \n1920х1080, 500 cd/m2, 50Hz, 10 Wx2 SRS TheaterSound, HDMI 1.4, USB, \nComponent In (Y/Pb/Pr), Composite In (AV), Digital Audio Out (Optical), \nPC In (D-sub), CI Slot, Scart, RF In (Terrestrial/Cable Input), \nheadphones, PC Audio In (Mini Jack), DVI Audio In (Mini Jack), Ethernet \n(LAN) , VESA 200х200mm</div></div>  ', 'SAMSUNG LE40D550K1WXUA - ЖК телевизор диагональю 40". Уникальная система\n подключения устройств позволит вам централизованно управлять всем \nцифровым контентом. Технология Samsung AllShare дает возможность \nподключить ваш телевизор ко всем совместимым цифровым устройствам, чтобы\n воспроизводить файлы с них на большом экране. Для подсоединения \nустройств, не поддерживающих беспроводную связь, можно использовать \nчетыре порта HDMI . Технология ConnectShare Movie™ позволяет подключить \nотдельный жесткий диск непосредственно к телевизору для потоковой \nпередачи фильмов. Гладкий корпус без видимых стыков и супертонкая рамка \nдовершают впечатление сдержанной элегантности.  ', '', '', ''),
-(191, 'ru', 'Sony KDL-22EX553', '22 // 1366x768 пикс // 50 Гц // LED подсветка // эфирный (DVB-T) // \nкабельный (DVB-C) // HDMI: 2 шт // Компонентный //Композитный // SCART \n// USB // LAN // Линейный  ', '<div><strong>KDL-22EX553<br>\nНовый способ просмотра ТВ</strong></div><br>\n55 см / 22", телевизор HD Ready с технологией подсветки Edge LED, X-Reality, встроенным Wi-Fi® и интернет-телевидением от Sony<br>\nНаслаждайтесь четким отображением на тонком экране Edge LED<br>\nWi-Fi обеспечивает быстрый доступ к функции просмотра пропущенных программ, фильмам и приложениям<br>\nДля более комфортного просмотра предусматривается изменение угла наклона телевизора<br>\n<br>\n<div><strong>Мир развлечений на кончиках пальцев</strong></div><br>\nНачните революцию интернет-телевидения у себя дома. Откройте \nувлекательный новый мир передачи контента по запросу, просмотра \nпропущенных программ, приложений и многого другого, и все это - с \nчетким, детализированным изображением, на большом и тонком ЖК-экране. \nПришло время управлять центром развлечений в вашем доме.<br>\n<br>\n<div><strong>Четкое, реалистичное изображение</strong></div><br>\nX-Reality обеспечивает более четкое и реалистичное HD-изображение, вне \nзависимости от источника: будь то интернет-канал, DVD-диск или \nлюбительский клип. Кроме того, эта технология убирает эффект мерцания, \nгарантируя более плавное отображение динамичных спортивных передач.<br>\n<br>\n<div><strong>Новый дизайн, легкие материалы</strong></div><br>\nТелевизоры серии HX75 выполнены из контрастных материалов и имеют \nбезукоризненный дизайн. Вас восхитит легкость этого телевизора, который \nрасполагается на подставке в форме мольберта, позволяющей вращать его в \nвертикальной и горизонтальной плоскости для идеального угла обзора.<br>\n<br>\n<div><strong>Беспроводной доступ к онлайн-развлечениям</strong></div><br>\nТеперь доступ к контенту сетевого сервиса Sony Entertainment Network — \nHD-фильмам, миллионам музыкальных композиций, любимым телеканалам, \nвеб-браузеру, приложениям Twitter™, Facebook®, YouTube™, Skype™ и \nмногому другому — осуществляется с помощью дистанционного пульта или \nмобильного устройства с поддержкой распознавания голоса.<br>\n<br>\n<div><strong>Энергосберегающие функции телевизоров</strong></div><br>\nНовая функция затемнения LED Frame автоматически подстраивает яркость \nподсветки при просмотре и снижает потребление энергии, позволяя \nэкономить деньги. При этом изображение остается резким и \nвысококонтрастным.  ', '', '', ''),
-(192, 'ru', 'Sony KDL46EX710', 'ЖК ТВ: технология Motionflow 100Hz, эко-функции, экран с Edge LED, \nдиагональ 117 см / 46, Full HD 1080, Wireless LAN Ready', '&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Множество функций для вашего отдыха&amp;lt;/strong&amp;gt;&amp;lt;br&amp;gt;\nСупертонкий &amp;lt;strong&amp;gt;EX710&amp;lt;/strong&amp;gt; очень просто перемещать из комнаты в комнату. \nВеликолепное ТВ-изображение и потрясающий просмотр в Full HD. Дизайн без\n лишних проводов для удобного размещения в любом пространстве. \nОнлайн-развлечения для приятного отдыха на многие часы. Отличные функции\n и экономия электричества.&amp;lt;br&amp;gt;\n&amp;lt;br&amp;gt;\n&amp;lt;strong&amp;gt;Потрясающий просмотр в качестве Full HD&amp;lt;/strong&amp;gt;&amp;lt;br&amp;gt;\nПередовая технология подсветки Edge LED помогает реализовывать \nбесподобное качество изображения в ультра-тонком корпусе. Технология \nMotionflow 100Hz позволяет добиться бесподобной контрастности и \nчеткости, а также насыщенных цветов и плавного отображения динамичных \nсцен – максимум удовольствия от любимых фильмов и видеоигр.&amp;lt;br&amp;gt;\n&amp;lt;br&amp;gt;\n&amp;lt;strong&amp;gt;Порядок без проводов&amp;lt;/strong&amp;gt;&amp;lt;br&amp;gt;\nЭта модель позволит сэкономить место в доме. Тонкий корпус с гладкими \nповерхностями идеально впишется в интерьер вашей комнаты. Телевизор \nтакже предусматривает соединение по Wi-Fi, что позволит подключиться к \nИнтернету, без использования неприглядных проводов.&amp;lt;br&amp;gt;\n&amp;lt;br&amp;gt;\n&amp;lt;strong&amp;gt;Развлечения и экономия электроэнергии&amp;lt;/strong&amp;gt;&amp;lt;br&amp;gt;\nДанная модель позволяет экономить электричество. Датчик присутствия \nопределяет, когда в комнате никого нет, и выключает телевизор \nавтоматически. Датчик освещения автоматически подбирает оптимальные \nнастройки яркости изображения в соответствии с освещением и экономит \nэлектроэнергию при низком освещении.  &amp;lt;/p&amp;gt;', NULL, NULL, NULL),
-(193, 'ru', 'Samsung UE32EH4030WXUA', '32 дюйма, 1366x768, 720p, 16:9, LED-подсветка, 300000:1, звук: 2х10 Вт, SCART, RGB, VGA, HDMI x2, USB', '&amp;lt;div&amp;gt;\nСупертонкий и плоский LED телевизор Samsung UE32EH4030WXUA идеально \nподойдет для вашей гостиной. При минималистичном дизайне этот телевизор \nобеспечивает кинематографическую реалистичность впечатлений во время \nпросмотра, благодаря светодиодной подсветке матрицы ТВ Samsung \nUE32EH4030WXUA. Получите удовольствие от максимальной четкости \nдинамичного изображения, насыщенности и многообразия цветовых оттенков. \n           &amp;lt;/div&amp;gt;', NULL, NULL, NULL),
-(194, 'ru', 'Samsung UE40ES6307UXUA', '40 дюймов, LED, 1920x1080, 16:9, Full HD, 178°/178°, 2х10 Вт, 3xHDMI, 3xUSB, Ethernet (LAN), Wi-Fi, Smart TV', '&amp;lt;strong&amp;gt;Новый уровень ощущений в формате 3D&amp;lt;/strong&amp;gt;&amp;lt;br&amp;gt;\nLED телевизоры Samsung внесли в мир развлечений совершенно новые \nощущения. Благодаря новейшим достижениям технологии 3D вы погружаетесь в\n совершенно новый мир ТВ-реальности.&amp;lt;br&amp;gt;\n&amp;lt;br&amp;gt;\n&amp;lt;strong&amp;gt;Смотрите фильмы, загружая их прямо с USB-накопителя&amp;lt;/strong&amp;gt;&amp;lt;br&amp;gt;\nБлагодаря функции ConnectShare Movie, вы можете росто вставить ваш USB \nнакопитель или жесткий диск в USB разъем телевизора, чтобы записанные на\n носителе фильмы, фотоснимки или музыкальные треки начали \nвоспроизводиться на экране телевизора. Теперь на большом экране \nтелевизора, установленного в гостиной, вы можете просмотреть или \nпрослушать любой контент.&amp;lt;br&amp;gt;\n&amp;lt;br&amp;gt;\n&amp;lt;strong&amp;gt;Видеозвонки по Skype на большом экране&amp;lt;/strong&amp;gt;&amp;lt;br&amp;gt;\nПриложение Skype для Smart TV доступно бесплатно в магазине Samsung App.\n В сочетании с отдельно приобретаемой веб-камерой Skype вы сможете \nсовершать видеозвонки своим друзьям и близким на большом экране почти \nили совсем бесплатно. С помощью пульта ДУ вы можете легко создать новые \nSkype эккаунты и получать доступ к существующим. Теперь видеосвязь \nбуквально в ваших руках.&amp;lt;br&amp;gt;\n&amp;lt;br&amp;gt;\n&amp;lt;strong&amp;gt;Доступ в Интернет без проводов&amp;lt;/strong&amp;gt;&amp;lt;br&amp;gt;\nВстроенная поддержка сети, широкие возможности подключения других устройств сочетаются с привлекательным дизайном.&amp;lt;br&amp;gt;\n&amp;lt;br&amp;gt;\n&amp;lt;strong&amp;gt;Наслаждайтесь приложениями, видео, Skype, серфингом в Интернете и многими другими возможностями&amp;lt;/strong&amp;gt;&amp;lt;br&amp;gt;\nБлагодаря вашей домашней системе развлечений вы откроете для себя новый \nмир социальных и персонализированных развлечений на обновленном портале \nSamsung Smart Hub и трех новых сервисах. Раздел Family Story позволит \nподелиться в друзьями и близкими фотоснимками, текстовыми комментариями и\n самыми знаменательными событиями вашей жизни. Кроме того, дети могут \nвоспользоваться развлекательными, обучающими и познавательными \nпрограммами в разделе Kids (Для детей). С помощью раздела &amp;quot;Фитнес&amp;quot; \n(Fitness) вы можете заниматься фитнесом и контролировать результаты на \nэкране телевизора. Доступ к большой библиотеке контента, приложениям на \nпортале Samsung Apps и возможность бродить по страницам Интернета \nсущественно разнообразит ваш семейный досуг и позволит получить массу \nновых положительных эмоций.', NULL, NULL, NULL);
+(191, 'ru', 'Sony KDL-22EX553', '22 // 1366x768 пикс // 50 Гц // LED подсветка // эфирный (DVB-T) // \nкабельный (DVB-C) // HDMI: 2 шт // Компонентный //Композитный // SCART \n// USB // LAN // Линейный  ', '<div><strong>KDL-22EX553<br>\nНовый способ просмотра ТВ</strong></div><br>\n55 см / 22", телевизор HD Ready с технологией подсветки Edge LED, X-Reality, встроенным Wi-Fi® и интернет-телевидением от Sony<br>\nНаслаждайтесь четким отображением на тонком экране Edge LED<br>\nWi-Fi обеспечивает быстрый доступ к функции просмотра пропущенных программ, фильмам и приложениям<br>\nДля более комфортного просмотра предусматривается изменение угла наклона телевизора<br>\n<br>\n<div><strong>Мир развлечений на кончиках пальцев</strong></div><br>\nНачните революцию интернет-телевидения у себя дома. Откройте \nувлекательный новый мир передачи контента по запросу, просмотра \nпропущенных программ, приложений и многого другого, и все это - с \nчетким, детализированным изображением, на большом и тонком ЖК-экране. \nПришло время управлять центром развлечений в вашем доме.<br>\n<br>\n<div><strong>Четкое, реалистичное изображение</strong></div><br>\nX-Reality обеспечивает более четкое и реалистичное HD-изображение, вне \nзависимости от источника: будь то интернет-канал, DVD-диск или \nлюбительский клип. Кроме того, эта технология убирает эффект мерцания, \nгарантируя более плавное отображение динамичных спортивных передач.<br>\n<br>\n<div><strong>Новый дизайн, легкие материалы</strong></div><br>\nТелевизоры серии HX75 выполнены из контрастных материалов и имеют \nбезукоризненный дизайн. Вас восхитит легкость этого телевизора, который \nрасполагается на подставке в форме мольберта, позволяющей вращать его в \nвертикальной и горизонтальной плоскости для идеального угла обзора.<br>\n<br>\n<div><strong>Беспроводной доступ к онлайн-развлечениям</strong></div><br>\nТеперь доступ к контенту сетевого сервиса Sony Entertainment Network — \nHD-фильмам, миллионам музыкальных композиций, любимым телеканалам, \nвеб-браузеру, приложениям Twitter™, Facebook®, YouTube™, Skype™ и \nмногому другому — осуществляется с помощью дистанционного пульта или \nмобильного устройства с поддержкой распознавания голоса.<br>\n<br>\n<div><strong>Энергосберегающие функции телевизоров</strong></div><br>\nНовая функция затемнения LED Frame автоматически подстраивает яркость \nподсветки при просмотре и снижает потребление энергии, позволяя \nэкономить деньги. При этом изображение остается резким и \nвысококонтрастным.  ', '', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_products_rating`
+-- Структура таблиці `shop_products_rating`
 --
 
-DROP TABLE IF EXISTS `shop_products_rating`;
 CREATE TABLE IF NOT EXISTS `shop_products_rating` (
   `product_id` int(11) NOT NULL,
   `votes` int(11) DEFAULT NULL,
@@ -2024,7 +2031,7 @@ CREATE TABLE IF NOT EXISTS `shop_products_rating` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_products_rating`
+-- Дамп даних таблиці `shop_products_rating`
 --
 
 INSERT INTO `shop_products_rating` (`product_id`, `votes`, `rating`) VALUES
@@ -2046,10 +2053,9 @@ INSERT INTO `shop_products_rating` (`product_id`, `votes`, `rating`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_product_categories`
+-- Структура таблиці `shop_product_categories`
 --
 
-DROP TABLE IF EXISTS `shop_product_categories`;
 CREATE TABLE IF NOT EXISTS `shop_product_categories` (
   `product_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
@@ -2058,7 +2064,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_categories` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_product_categories`
+-- Дамп даних таблиці `shop_product_categories`
 --
 
 INSERT INTO `shop_product_categories` (`product_id`, `category_id`) VALUES
@@ -2175,24 +2181,14 @@ INSERT INTO `shop_product_categories` (`product_id`, `category_id`) VALUES
 (190, 75),
 (191, 36),
 (191, 37),
-(191, 75),
-(192, 36),
-(192, 37),
-(192, 74),
-(193, 36),
-(193, 37),
-(193, 74),
-(194, 36),
-(194, 37),
-(194, 74);
+(191, 75);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_product_images`
+-- Структура таблиці `shop_product_images`
 --
 
-DROP TABLE IF EXISTS `shop_product_images`;
 CREATE TABLE IF NOT EXISTS `shop_product_images` (
   `product_id` int(11) NOT NULL,
   `image_name` varchar(255) NOT NULL,
@@ -2202,7 +2198,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_images` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_product_images`
+-- Дамп даних таблиці `shop_product_images`
 --
 
 INSERT INTO `shop_product_images` (`product_id`, `image_name`, `position`) VALUES
@@ -2228,15 +2224,17 @@ INSERT INTO `shop_product_images` (`product_id`, `image_name`, `position`) VALUE
 (190, '190_1.jpg', 1),
 (190, '190_2.jpg', 2),
 (191, '191_0.jpg', 0),
-(191, '191_1.jpg', 1);
+(191, '191_1.jpg', 1),
+(185, '185_0.jpg', 0),
+(185, '185_1.jpg', 1),
+(185, '185_2.jpg', 2);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_product_properties`
+-- Структура таблиці `shop_product_properties`
 --
 
-DROP TABLE IF EXISTS `shop_product_properties`;
 CREATE TABLE IF NOT EXISTS `shop_product_properties` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `csv_name` varchar(50) NOT NULL,
@@ -2257,7 +2255,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
 
 --
--- Дамп данных таблицы `shop_product_properties`
+-- Дамп даних таблиці `shop_product_properties`
 --
 
 INSERT INTO `shop_product_properties` (`id`, `csv_name`, `active`, `show_in_compare`, `position`, `show_on_site`, `multiple`, `external_id`, `show_in_filter`, `main_property`) VALUES
@@ -2285,10 +2283,9 @@ INSERT INTO `shop_product_properties` (`id`, `csv_name`, `active`, `show_in_comp
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_product_properties_categories`
+-- Структура таблиці `shop_product_properties_categories`
 --
 
-DROP TABLE IF EXISTS `shop_product_properties_categories`;
 CREATE TABLE IF NOT EXISTS `shop_product_properties_categories` (
   `property_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
@@ -2297,7 +2294,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_categories` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_product_properties_categories`
+-- Дамп даних таблиці `shop_product_properties_categories`
 --
 
 INSERT INTO `shop_product_properties_categories` (`property_id`, `category_id`) VALUES
@@ -2403,10 +2400,9 @@ INSERT INTO `shop_product_properties_categories` (`property_id`, `category_id`) 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_product_properties_data`
+-- Структура таблиці `shop_product_properties_data`
 --
 
-DROP TABLE IF EXISTS `shop_product_properties_data`;
 CREATE TABLE IF NOT EXISTS `shop_product_properties_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `property_id` int(11) DEFAULT NULL,
@@ -2417,10 +2413,10 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_data` (
   KEY `shop_product_properties_data_I_1` (`value`(333)),
   KEY `shop_product_properties_data_FI_2` (`product_id`),
   KEY `shop_product_properties_data_FI_1` (`property_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5957 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5975 ;
 
 --
--- Дамп данных таблицы `shop_product_properties_data`
+-- Дамп даних таблиці `shop_product_properties_data`
 --
 
 INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `value`, `locale`) VALUES
@@ -2733,10 +2729,9 @@ INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `
 (536, 30, 122, '12 месяцев', 'ru'),
 (537, 23, 122, '100 Вт', 'ru'),
 (538, 24, 122, '4', 'ru'),
-(585, 37, 185, 'Ethernet', 'ru'),
-(584, 37, 185, 'Bluetooth', 'ru'),
-(583, 33, 185, 'Сенсор', 'ru'),
-(582, 32, 185, '2 ГГц', 'ru'),
+(5974, 30, 185, '12 месяцев', 'ru'),
+(5973, 37, 185, 'Wi-Fi', 'ru'),
+(5972, 37, 185, 'Ethernet', 'ru'),
 (552, 28, 124, 'AC3', 'ru'),
 (553, 28, 124, 'DTS', 'ru'),
 (554, 28, 124, 'DTS-WAV', 'ru'),
@@ -2751,8 +2746,7 @@ INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `
 (563, 24, 124, '2', 'ru'),
 (866, 35, 102, 'Лазерная печать', 'ru'),
 (824, 38, 96, '80~3200 ISO', 'ru'),
-(581, 30, 185, '12 месяцев', 'ru'),
-(586, 37, 185, 'Wi-Fi', 'ru'),
+(5970, 33, 185, 'Сенсор', 'ru'),
 (590, 36, 100, 'A2', 'ru'),
 (591, 36, 100, 'A3', 'ru'),
 (592, 36, 100, 'A4', 'ru'),
@@ -3881,10 +3875,10 @@ INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `
 (1948, 30, NULL, '12 месяцев', 'ru'),
 (1949, 35, NULL, 'Лазерная печать', 'ru'),
 (1950, 36, NULL, 'A3', 'ru'),
-(1951, 37, NULL, 'Bluetooth', 'ru');
-INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `value`, `locale`) VALUES
+(1951, 37, NULL, 'Bluetooth', 'ru'),
 (1953, 35, NULL, 'Лазерная печать', 'ru'),
-(1954, 36, NULL, 'A3', 'ru'),
+(1954, 36, NULL, 'A3', 'ru');
+INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `value`, `locale`) VALUES
 (1955, 30, NULL, '36 месяцев', 'ru'),
 (1956, 35, NULL, 'Струйная печать', 'ru'),
 (1957, 36, NULL, 'A3', 'ru'),
@@ -5273,10 +5267,10 @@ INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `
 (3341, 40, NULL, '5 м', 'ru'),
 (3343, 40, NULL, '2 м', 'ru'),
 (3344, 30, NULL, '12 месяцев', 'ru'),
-(3345, 40, NULL, '5 м', 'ru');
-INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `value`, `locale`) VALUES
+(3345, 40, NULL, '5 м', 'ru'),
 (3346, 23, NULL, '40 Вт', 'ru'),
-(3347, 30, NULL, '12 месяцев', 'ru'),
+(3347, 30, NULL, '12 месяцев', 'ru');
+INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `value`, `locale`) VALUES
 (3348, 39, NULL, 'Дерево', 'ru'),
 (3349, 23, NULL, '40 Вт', 'ru'),
 (3350, 30, NULL, '24 месяца', 'ru'),
@@ -6667,10 +6661,10 @@ INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `
 (4735, 22, NULL, 'Да', 'ru'),
 (4736, 30, NULL, '24 месяца', 'ru'),
 (4737, 20, NULL, 'LED', 'ru'),
-(4738, 21, NULL, '40', 'ru');
-INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `value`, `locale`) VALUES
+(4738, 21, NULL, '40', 'ru'),
 (4739, 22, NULL, 'Да', 'ru'),
-(4740, 30, NULL, '24 месяца', 'ru'),
+(4740, 30, NULL, '24 месяца', 'ru');
+INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `value`, `locale`) VALUES
 (4741, 20, NULL, 'LED', 'ru'),
 (4742, 21, NULL, '32', 'ru'),
 (4743, 22, NULL, 'Да', 'ru'),
@@ -7720,15 +7714,16 @@ INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `
 (5864, 22, 212, 'Да', 'ru'),
 (5898, 37, 100, 'Wi-Fi', 'ru'),
 (5899, 30, 100, '36 месяцев', 'ru'),
-(5956, 38, 96, '80~3200 ISO', 'ru');
+(5956, 38, 96, '80~3200 ISO', 'ru'),
+(5971, 37, 185, 'Bluetooth', 'ru'),
+(5969, 32, 185, '2 ГГц', 'ru');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_product_properties_data_i18n`
+-- Структура таблиці `shop_product_properties_data_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_product_properties_data_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_product_properties_data_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -7740,10 +7735,9 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_data_i18n` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_product_properties_i18n`
+-- Структура таблиці `shop_product_properties_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_product_properties_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_product_properties_i18n` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
@@ -7755,7 +7749,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_product_properties_i18n`
+-- Дамп даних таблиці `shop_product_properties_i18n`
 --
 
 INSERT INTO `shop_product_properties_i18n` (`id`, `name`, `locale`, `data`) VALUES
@@ -7791,22 +7785,21 @@ INSERT INTO `shop_product_properties_i18n` (`id`, `name`, `locale`, `data`) VALU
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_product_variants`
+-- Структура таблиці `shop_product_variants`
 --
 
-DROP TABLE IF EXISTS `shop_product_variants`;
 CREATE TABLE IF NOT EXISTS `shop_product_variants` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
-  `price` float(15,5) NOT NULL,
+  `price` double(20,5) NOT NULL,
   `number` varchar(255) DEFAULT NULL,
   `stock` int(11) DEFAULT NULL,
-  `position` int(11) DEFAULT '0',
+  `position` int(11) DEFAULT NULL,
   `mainImage` varchar(255) DEFAULT NULL,
   `smallImage` varchar(255) DEFAULT NULL,
   `external_id` varchar(255) DEFAULT NULL,
   `currency` int(11) DEFAULT NULL,
-  `price_in_main` float(15,5) NOT NULL,
+  `price_in_main` double(20,5) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_product_variants_I_1` (`product_id`),
   KEY `shop_product_variants_I_2` (`position`),
@@ -7817,7 +7810,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_variants` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=224 ;
 
 --
--- Дамп данных таблицы `shop_product_variants`
+-- Дамп даних таблиці `shop_product_variants`
 --
 
 INSERT INTO `shop_product_variants` (`id`, `product_id`, `price`, `number`, `stock`, `position`, `mainImage`, `smallImage`, `external_id`, `currency`, `price_in_main`) VALUES
@@ -7871,24 +7864,20 @@ INSERT INTO `shop_product_variants` (`id`, `product_id`, `price`, `number`, `sto
 (210, 100, 2256.45142, '', 1, 1, '100_vM210.jpg', '100_vS210.jpg', NULL, 1, 69.95000),
 (211, 110, 476.77417, '', 2, 1, '110_vM211.jpg', '110_vS211.jpg', NULL, 1, 14.78000),
 (212, 86, 2000.00000, '', 0, 1, '86_vM212.jpg', '86_vS212.jpg', NULL, 1, 62.00000),
-(213, 185, 200.00000, '123456', 5, 0, NULL, NULL, NULL, 2, 200.00000),
+(213, 185, 200.00000, '123456', 5, 0, '185_main.jpg', '185_small.jpg', NULL, 2, 200.00000),
 (214, 186, 24193.54883, ' 130835', 4, 0, '186_vM214.jpg', '186_vS214.jpg', NULL, 1, 750.00000),
 (215, 187, 28225.80664, ' 155763', 0, 0, '187_vM215.jpg', '187_vS215.jpg', NULL, 1, 875.00000),
 (216, 188, 20161.29102, '', 10, 0, '188_vM216.jpg', '188_vS216.jpg', NULL, 1, 625.00000),
 (217, 189, 403225.81250, '', 10, 0, '189_vM217.jpg', NULL, NULL, 1, 12500.00000),
 (218, 190, 20161.29102, '', 5, 0, '190_vM218.jpg', NULL, NULL, 1, 625.00000),
-(219, 191, 26612.90234, '', 8, 0, '191_vM219.jpg', '191_vS219.jpg', NULL, 1, 825.00000),
-(221, 192, 2500.00000, '034976', 3, NULL, NULL, NULL, NULL, 2, 2500.00000),
-(222, 193, 750.00000, '130835', 4, NULL, NULL, NULL, NULL, 2, 750.00000),
-(223, 194, 875.00000, '155763', 0, NULL, NULL, NULL, NULL, 2, 875.00000);
+(219, 191, 26612.90234, '', 8, 0, '191_vM219.jpg', '191_vS219.jpg', NULL, 1, 825.00000);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_product_variants_i18n`
+-- Структура таблиці `shop_product_variants_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_product_variants_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_product_variants_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -7898,7 +7887,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_variants_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_product_variants_i18n`
+-- Дамп даних таблиці `shop_product_variants_i18n`
 --
 
 INSERT INTO `shop_product_variants_i18n` (`id`, `locale`, `name`) VALUES
@@ -7977,97 +7966,93 @@ INSERT INTO `shop_product_variants_i18n` (`id`, `locale`, `name`) VALUES
 (216, 'ru', ''),
 (217, 'ru', ''),
 (218, 'ru', ''),
-(219, 'ru', ''),
-(222, 'ru', ''),
-(221, 'ru', ''),
-(223, 'ru', '');
+(219, 'ru', '');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_rbac_group`
+-- Структура таблиці `shop_rbac_group`
 --
 
-DROP TABLE IF EXISTS `shop_rbac_group`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_group` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` varchar(10) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
+  `name` varchar(255) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `shop_rbac_group_I_1` (`name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=60 ;
 
 --
--- Дамп данных таблицы `shop_rbac_group`
+-- Дамп даних таблиці `shop_rbac_group`
 --
 
-INSERT INTO `shop_rbac_group` (`id`, `type`, `name`) VALUES
-(1, 'shop', 'ShopAdminBanners'),
-(2, 'shop', 'ShopAdminBrands'),
-(3, 'shop', 'ShopAdminCallbacks'),
-(4, 'shop', 'ShopAdminCategories'),
-(5, 'shop', 'ShopAdminCharts'),
-(6, 'shop', 'ShopAdminComulativ'),
-(7, 'shop', 'ShopAdminCurrencies'),
-(8, 'shop', 'ShopAdminCustomfields'),
-(9, 'shop', 'ShopAdminDashboard'),
-(10, 'shop', 'ShopAdminDeliverymethods'),
-(11, 'shop', 'ShopAdminDiscounts'),
-(12, 'shop', 'ShopAdminGifts'),
-(13, 'shop', 'ShopAdminKits'),
-(14, 'shop', 'ShopAdminNotifications'),
-(15, 'shop', 'ShopAdminNotificationstatuses'),
-(16, 'shop', 'ShopAdminOrders'),
-(17, 'shop', 'ShopAdminOrderstatuses'),
-(18, 'shop', 'ShopAdminPaymentmethods'),
-(19, 'shop', 'ShopAdminProducts'),
-(20, 'shop', 'ShopAdminProductspy'),
-(21, 'shop', 'ShopAdminProperties'),
-(22, 'shop', 'ShopAdminRbac'),
-(23, 'shop', 'ShopAdminSearch'),
-(24, 'shop', 'ShopAdminSettings'),
-(25, 'shop', 'ShopAdminSystem'),
-(26, 'shop', 'ShopAdminUsers'),
-(27, 'shop', 'ShopAdminWarehouses'),
-(28, 'base', 'Admin'),
-(29, 'base', 'Admin_logs'),
-(30, 'base', 'Admin_search'),
-(31, 'base', 'Backup'),
-(32, 'base', 'Cache_all'),
-(33, 'base', 'Categories'),
-(34, 'base', 'Components'),
-(35, 'base', 'Dashboard'),
-(36, 'base', 'Languages'),
-(37, 'base', 'Login'),
-(38, 'base', 'Mod_search'),
-(39, 'base', 'Pages'),
-(40, 'base', 'Rbac'),
-(41, 'base', 'Settings'),
-(42, 'base', 'Sys_upgrade'),
-(43, 'module', 'Cfcm'),
-(44, 'module', 'Comments'),
-(45, 'module', 'Feedback'),
-(46, 'module', 'Gallery'),
-(47, 'module', 'Group_mailer'),
-(48, 'module', 'Mailer'),
-(49, 'module', 'Menu'),
-(50, 'module', 'Rss'),
-(51, 'module', 'Sample_mail'),
-(52, 'module', 'Sample_module'),
-(53, 'module', 'Share'),
-(54, 'module', 'Sitemap'),
-(55, 'module', 'Social_servises'),
-(56, 'module', 'Template_editor'),
-(57, 'module', 'Trash'),
-(58, 'module', 'User_manager'),
-(59, 'base', 'Widgets_manager');
+INSERT INTO `shop_rbac_group` (`id`, `name`, `description`) VALUES
+(1, 'ShopAdminBanners', NULL),
+(2, 'ShopAdminBrands', NULL),
+(3, 'ShopAdminCallbacks', NULL),
+(4, 'ShopAdminCategories', NULL),
+(5, 'ShopAdminCharts', NULL),
+(6, 'ShopAdminComulativ', NULL),
+(7, 'ShopAdminCurrencies', NULL),
+(8, 'ShopAdminCustomfields', NULL),
+(9, 'ShopAdminDashboard', NULL),
+(10, 'ShopAdminDeliverymethods', NULL),
+(11, 'ShopAdminDiscounts', NULL),
+(12, 'ShopAdminGifts', NULL),
+(13, 'ShopAdminKits', NULL),
+(14, 'ShopAdminNotifications', NULL),
+(15, 'ShopAdminNotificationstatuses', NULL),
+(16, 'ShopAdminOrders', NULL),
+(17, 'ShopAdminOrderstatuses', NULL),
+(18, 'ShopAdminPaymentmethods', NULL),
+(19, 'ShopAdminProducts', NULL),
+(20, 'ShopAdminProductspy', NULL),
+(21, 'ShopAdminProperties', NULL),
+(22, 'ShopAdminRbac', NULL),
+(23, 'ShopAdminSearch', NULL),
+(24, 'ShopAdminSettings', NULL),
+(25, 'ShopAdminSystem', NULL),
+(26, 'ShopAdminUsers', NULL),
+(27, 'ShopAdminWarehouses', NULL),
+(28, 'Admin', NULL),
+(29, 'Admin_logs', NULL),
+(30, 'Admin_search', NULL),
+(31, 'Backup', NULL),
+(32, 'Cache_all', NULL),
+(33, 'Categories', NULL),
+(34, 'Components', NULL),
+(35, 'Dashboard', NULL),
+(36, 'Languages', NULL),
+(37, 'Login', NULL),
+(38, 'Mod_search', NULL),
+(39, 'Pages', NULL),
+(40, 'Rbac', NULL),
+(41, 'Settings', NULL),
+(42, 'Sys_upgrade', NULL),
+(43, 'Cfcm', NULL),
+(44, 'Comments', NULL),
+(45, 'Feedback', NULL),
+(46, 'Gallery', NULL),
+(47, 'Group_mailer', NULL),
+(48, 'Mailer', NULL),
+(49, 'Menu', NULL),
+(50, 'Rss', NULL),
+(51, 'Sample_mail', NULL),
+(52, 'Sample_module', NULL),
+(53, 'Share', NULL),
+(54, 'Sitemap', NULL),
+(55, 'Social_servises', NULL),
+(56, 'Template_editor', NULL),
+(57, 'Trash', NULL),
+(58, 'User_manager', NULL),
+(59, 'Widgets_manager', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_rbac_group_i18n`
+-- Структура таблиці `shop_rbac_group_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_rbac_group_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_group_i18n` (
   `id` int(11) NOT NULL,
   `description` varchar(200) DEFAULT NULL,
@@ -8076,7 +8061,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_group_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_rbac_group_i18n`
+-- Дамп даних таблиці `shop_rbac_group_i18n`
 --
 
 INSERT INTO `shop_rbac_group_i18n` (`id`, `description`, `locale`) VALUES
@@ -8142,502 +8127,501 @@ INSERT INTO `shop_rbac_group_i18n` (`id`, `description`, `locale`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_rbac_privileges`
+-- Структура таблиці `shop_rbac_privileges`
 --
 
-DROP TABLE IF EXISTS `shop_rbac_privileges`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_privileges` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
+  `name` varchar(255) NOT NULL,
   `group_id` int(11) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_rbac_privileges_I_1` (`name`),
   KEY `shop_rbac_privileges_FI_1` (`group_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=485 ;
 
 --
--- Дамп данных таблицы `shop_rbac_privileges`
+-- Дамп даних таблиці `shop_rbac_privileges`
 --
 
-INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`) VALUES
-(1, 'ShopAdminBanners::index', 1),
-(2, 'ShopAdminBanners::create', 1),
-(3, 'ShopAdminBanners::edit', 1),
-(4, 'ShopAdminBanners::deleteAll', 1),
-(5, 'ShopAdminBanners::translate', 1),
-(6, 'ShopAdminBanners::changeActive', 1),
-(7, 'ShopAdminBrands::index', 2),
-(8, 'ShopAdminBrands::create', 2),
-(9, 'ShopAdminBrands::edit', 2),
-(10, 'ShopAdminBrands::delete', 2),
-(11, 'ShopAdminBrands::c_list', 2),
-(12, 'ShopAdminBrands::translate', 2),
-(13, 'ShopAdminCallbacks::index', 3),
-(14, 'ShopAdminCallbacks::update', 3),
-(15, 'ShopAdminCallbacks::statuses', 3),
-(16, 'ShopAdminCallbacks::createStatus', 3),
-(17, 'ShopAdminCallbacks::updateStatus', 3),
-(18, 'ShopAdminCallbacks::setDefaultStatus', 3),
-(19, 'ShopAdminCallbacks::changeStatus', 3),
-(20, 'ShopAdminCallbacks::reorderThemes', 3),
-(21, 'ShopAdminCallbacks::changeTheme', 3),
-(22, 'ShopAdminCallbacks::deleteCallback', 3),
-(23, 'ShopAdminCallbacks::deleteStatus', 3),
-(24, 'ShopAdminCallbacks::themes', 3),
-(25, 'ShopAdminCallbacks::createTheme', 3),
-(26, 'ShopAdminCallbacks::updateTheme', 3),
-(27, 'ShopAdminCallbacks::deleteTheme', 3),
-(28, 'ShopAdminCallbacks::search', 3),
-(29, 'ShopAdminCategories::index', 4),
-(30, 'ShopAdminCategories::create', 4),
-(31, 'ShopAdminCategories::edit', 4),
-(32, 'ShopAdminCategories::delete', 4),
-(33, 'ShopAdminCategories::c_list', 4),
-(34, 'ShopAdminCategories::save_positions', 4),
-(35, 'ShopAdminCategories::ajax_translit', 4),
-(36, 'ShopAdminCategories::translate', 4),
-(37, 'ShopAdminCategories::changeActive', 4),
-(38, 'ShopAdminCategories::create_tpl', 4),
-(39, 'ShopAdminCategories::get_tpl_names', 4),
-(40, 'ShopAdminCharts::orders', 5),
-(41, 'ShopAdminCharts::byDate', 5),
-(42, 'ShopAdminCharts::_createDatesDropDown', 5),
-(43, 'ShopAdminComulativ::index', 6),
-(44, 'ShopAdminComulativ::create', 6),
-(45, 'ShopAdminComulativ::edit', 6),
-(46, 'ShopAdminComulativ::allUsers', 6),
-(47, 'ShopAdminComulativ::user', 6),
-(48, 'ShopAdminComulativ::deleteAll', 6),
-(49, 'ShopAdminComulativ::change_comulativ_dis_status', 6),
-(50, 'ShopAdminCurrencies::index', 7),
-(51, 'ShopAdminCurrencies::create', 7),
-(52, 'ShopAdminCurrencies::edit', 7),
-(53, 'ShopAdminCurrencies::makeCurrencyDefault', 7),
-(54, 'ShopAdminCurrencies::makeCurrencyMain', 7),
-(55, 'ShopAdminCurrencies::delete', 7),
-(56, 'ShopAdminCurrencies::recount', 7),
-(57, 'ShopAdminCurrencies::checkPrices', 7),
-(58, 'ShopAdminCustomfields::index', 8),
-(59, 'ShopAdminCustomfields::create', 8),
-(60, 'ShopAdminCustomfields::edit', 8),
-(61, 'ShopAdminCustomfields::deleteAll', 8),
-(62, 'ShopAdminCustomfields::change_status_activ', 8),
-(63, 'ShopAdminCustomfields::change_status_private', 8),
-(64, 'ShopAdminCustomfields::change_status_required', 8),
-(65, 'ShopAdminDashboard::index', 9),
-(66, 'ShopAdminDeliverymethods::index', 10),
-(67, 'ShopAdminDeliverymethods::create', 10),
-(68, 'ShopAdminDeliverymethods::change_delivery_status', 10),
-(69, 'ShopAdminDeliverymethods::edit', 10),
-(70, 'ShopAdminDeliverymethods::deleteAll', 10),
-(71, 'ShopAdminDeliverymethods::c_list', 10),
-(72, 'ShopAdminDiscounts::index', 11),
-(73, 'ShopAdminDiscounts::create', 11),
-(74, 'ShopAdminDiscounts::change_discount_status', 11),
-(75, 'ShopAdminDiscounts::edit', 11),
-(76, 'ShopAdminDiscounts::deleteAll', 11),
-(77, 'ShopAdminGifts::index', 12),
-(78, 'ShopAdminGifts::create', 12),
-(79, 'ShopAdminGifts::generateKey', 12),
-(80, 'ShopAdminGifts::delete', 12),
-(81, 'ShopAdminGifts::edit', 12),
-(82, 'ShopAdminGifts::ChangeActive', 12),
-(83, 'ShopAdminGifts::settings', 12),
-(84, 'ShopAdminGifts::save_settings', 12),
-(85, 'ShopAdminKits::index', 13),
-(86, 'ShopAdminKits::kit_create', 13),
-(87, 'ShopAdminKits::kit_edit', 13),
-(88, 'ShopAdminKits::kit_save_positions', 13),
-(89, 'ShopAdminKits::kit_change_active', 13),
-(90, 'ShopAdminKits::kit_list', 13),
-(91, 'ShopAdminKits::kit_delete', 13),
-(92, 'ShopAdminKits::get_products_list', 13),
-(93, 'ShopAdminNotifications::index', 14),
-(94, 'ShopAdminNotifications::edit', 14),
-(95, 'ShopAdminNotifications::changeStatus', 14),
-(96, 'ShopAdminNotifications::notifyByEmail', 14),
-(97, 'ShopAdminNotifications::deleteAll', 14),
-(98, 'ShopAdminNotifications::ajaxDeleteNotifications', 14),
-(99, 'ShopAdminNotifications::ajaxChangeNotificationsStatus', 14),
-(100, 'ShopAdminNotifications::search', 14),
-(101, 'ShopAdminNotifications::getAvailableNotification', 14),
-(102, 'ShopAdminNotificationstatuses::index', 15),
-(103, 'ShopAdminNotificationstatuses::create', 15),
-(104, 'ShopAdminNotificationstatuses::edit', 15),
-(105, 'ShopAdminNotificationstatuses::deleteAll', 15),
-(106, 'ShopAdminNotificationstatuses::savePositions', 15),
-(107, 'ShopAdminOrders::index', 16),
-(108, 'ShopAdminOrders::edit', 16),
-(109, 'ShopAdminOrders::changeStatus', 16),
-(110, 'ShopAdminOrders::changePaid', 16),
-(111, 'ShopAdminOrders::delete', 16),
-(112, 'ShopAdminOrders::ajaxDeleteOrders', 16),
-(113, 'ShopAdminOrders::ajaxChangeOrdersStatus', 16),
-(114, 'ShopAdminOrders::ajaxChangeOrdersPaid', 16),
-(115, 'ShopAdminOrders::ajaxEditWindow', 16),
-(116, 'ShopAdminOrders::editKit', 16),
-(117, 'ShopAdminOrders::ajaxEditAddToCartWindow', 16),
-(118, 'ShopAdminOrders::ajaxDeleteProduct', 16),
-(119, 'ShopAdminOrders::ajaxGetProductList', 16),
-(120, 'ShopAdminOrders::ajaxEditOrderCart', 16),
-(121, 'ShopAdminOrders::ajaxEditOrderAddToCart', 16),
-(122, 'ShopAdminOrders::ajaxGetOrderCart', 16),
-(123, 'ShopAdminOrders::search', 16),
-(124, 'ShopAdminOrders::printChecks', 16),
-(125, 'ShopAdminOrders::createPDFPage', 16),
-(126, 'ShopAdminOrders::createPdf', 16),
-(127, 'ShopAdminOrders::create', 16),
-(128, 'ShopAdminOrderstatuses::index', 17),
-(129, 'ShopAdminOrderstatuses::create', 17),
-(130, 'ShopAdminOrderstatuses::edit', 17),
-(131, 'ShopAdminOrderstatuses::delete', 17),
-(132, 'ShopAdminOrderstatuses::ajaxDeleteWindow', 17),
-(133, 'ShopAdminOrderstatuses::savePositions', 17),
-(134, 'ShopAdminPaymentmethods::index', 18),
-(135, 'ShopAdminPaymentmethods::create', 18),
-(136, 'ShopAdminPaymentmethods::change_payment_status', 18),
-(137, 'ShopAdminPaymentmethods::edit', 18),
-(138, 'ShopAdminPaymentmethods::deleteAll', 18),
-(139, 'ShopAdminPaymentmethods::savePositions', 18),
-(140, 'ShopAdminPaymentmethods::getAdminForm', 18),
-(141, 'ShopAdminProducts::index', 19),
-(142, 'ShopAdminProducts::create', 19),
-(143, 'ShopAdminProducts::edit', 19),
-(144, 'ShopAdminProducts::saveAdditionalImages', 19),
-(145, 'ShopAdminProducts::delete', 19),
-(146, 'ShopAdminProducts::processImage', 19),
-(147, 'ShopAdminProducts::deleteAddImage', 19),
-(148, 'ShopAdminProducts::ajaxChangeActive', 19),
-(149, 'ShopAdminProducts::ajaxChangeHit', 19),
-(150, 'ShopAdminProducts::ajaxChangeHot', 19),
-(151, 'ShopAdminProducts::ajaxChangeAction', 19),
-(152, 'ShopAdminProducts::ajaxUpdatePrice', 19),
-(153, 'ShopAdminProducts::ajaxCloneProducts', 19),
-(154, 'ShopAdminProducts::ajaxDeleteProducts', 19),
-(155, 'ShopAdminProducts::ajaxMoveWindow', 19),
-(156, 'ShopAdminProducts::ajaxMoveProducts', 19),
-(157, 'ShopAdminProducts::translate', 19),
-(158, 'ShopAdminProducts::get_ids', 19),
-(159, 'ShopAdminProducts::prev_next', 19),
-(160, 'ShopAdminProductspy::index', 20),
-(161, 'ShopAdminProductspy::delete', 20),
-(162, 'ShopAdminProductspy::settings', 20),
-(163, 'ShopAdminProperties::index', 21),
-(164, 'ShopAdminProperties::create', 21),
-(165, 'ShopAdminProperties::edit', 21),
-(166, 'ShopAdminProperties::renderForm', 21),
-(167, 'ShopAdminProperties::save_positions', 21),
-(168, 'ShopAdminProperties::delete', 21),
-(169, 'ShopAdminProperties::changeActive', 21),
-(184, 'ShopAdminSearch::index', 23),
-(185, 'ShopAdminSearch::save_positions_variant', 23),
-(186, 'ShopAdminSearch::autocomplete', 23),
-(187, 'ShopAdminSearch::advanced', 23),
-(188, 'ShopAdminSearch::renderCustomFields', 23),
-(189, 'ShopAdminSettings::index', 24),
-(190, 'ShopAdminSettings::update', 24),
-(191, 'ShopAdminSettings::get_fsettings', 24),
-(192, 'ShopAdminSettings::get_vsettings', 24),
-(193, 'ShopAdminSettings::_get_templates', 24),
-(194, 'ShopAdminSettings::_load_settings', 24),
-(195, 'ShopAdminSettings::runResize', 24),
-(196, 'ShopAdminSystem::import', 25),
-(197, 'ShopAdminSystem::export', 25),
-(198, 'ShopAdminSystem::getAttributes', 25),
-(199, 'ShopAdminSystem::exportUsers', 25),
-(200, 'ShopAdminUsers::index', 26),
-(201, 'ShopAdminUsers::search', 26),
-(202, 'ShopAdminUsers::create', 26),
-(203, 'ShopAdminUsers::edit', 26),
-(204, 'ShopAdminUsers::deleteAll', 26),
-(205, 'ShopAdminUsers::auto_complite', 26),
-(206, 'ShopAdminWarehouses::index', 27),
-(207, 'ShopAdminWarehouses::create', 27),
-(208, 'ShopAdminWarehouses::edit', 27),
-(209, 'ShopAdminWarehouses::deleteAll', 27),
-(210, 'Admin::__construct', 28),
-(211, 'Admin::init', 28),
-(212, 'Admin::index', 28),
-(213, 'Admin::sys_info', 28),
-(214, 'Admin::delete_cache', 28),
-(215, 'Admin::elfinder_init', 28),
-(216, 'Admin::get_csrf', 28),
-(217, 'Admin::sidebar_cats', 28),
-(218, 'Admin::logout', 28),
-(219, 'Admin::report_bug', 28),
-(220, 'Admin_logs::__construct', 29),
-(221, 'Admin_logs::index', 29),
-(222, 'Admin_search::__construct', 30),
-(223, 'Admin_search::index', 30),
-(224, 'Admin_search::advanced_search', 30),
-(225, 'Admin_search::do_advanced_search', 30),
-(226, 'Admin_search::validate_advanced_search', 30),
-(227, 'Admin_search::form_from_group', 30),
-(228, 'Admin_search::_filter_pages', 30),
-(229, 'Admin_search::autocomplete', 30),
-(230, 'Backup::__construct', 31),
-(231, 'Backup::index', 31),
-(232, 'Backup::create', 31),
-(233, 'Backup::force_download', 31),
-(234, 'Cache_all::__construct', 32),
-(235, 'Cache_all::index', 32),
-(236, 'Categories::__construct', 33),
-(237, 'Categories::index', 33),
-(238, 'Categories::create_form', 33),
-(239, 'Categories::update_block', 33),
-(240, 'Categories::save_positions', 33),
-(241, 'Categories::cat_list', 33),
-(242, 'Categories::sub_cats', 33),
-(243, 'Categories::create', 33),
-(244, 'Categories::update_urls', 33),
-(245, 'Categories::category_exists', 33),
-(246, 'Categories::fast_add', 33),
-(247, 'Categories::update_fast_block', 33),
-(248, 'Categories::edit', 33),
-(249, 'Categories::translate', 33),
-(250, 'Categories::delete', 33),
-(251, 'Categories::_get_sub_cats', 33),
-(252, 'Categories::get_comments_status', 33),
-(253, 'Components::__construct', 34),
-(254, 'Components::index', 34),
-(255, 'Components::modules_table', 34),
-(256, 'Components::is_installed', 34),
-(257, 'Components::install', 34),
-(258, 'Components::deinstall', 34),
-(259, 'Components::find_components', 34),
-(260, 'Components::component_settings', 34),
-(261, 'Components::save_settings', 34),
-(262, 'Components::init_window', 34),
-(263, 'Components::cp', 34),
-(264, 'Components::run', 34),
-(265, 'Components::com_info', 34),
-(266, 'Components::get_module_info', 34),
-(267, 'Components::change_autoload', 34),
-(268, 'Components::change_url_access', 34),
-(269, 'Components::save_components_positions', 34),
-(270, 'Components::change_show_in_menu', 34),
-(271, 'Dashboard::__construct', 35),
-(272, 'Dashboard::index', 35),
-(273, 'Languages::__construct', 36),
-(274, 'Languages::index', 36),
-(275, 'Languages::create_form', 36),
-(276, 'Languages::insert', 36),
-(277, 'Languages::edit', 36),
-(278, 'Languages::update', 36),
-(279, 'Languages::delete', 36),
-(280, 'Languages::set_default', 36),
-(281, 'Login::__construct', 37),
-(282, 'Login::index', 37),
-(283, 'Login::user_browser', 37),
-(284, 'Login::do_login', 37),
-(285, 'Login::forgot_password', 37),
-(286, 'Login::update_captcha', 37),
-(287, 'Login::captcha_check', 37),
-(288, 'Mod_search::__construct', 38),
-(289, 'Mod_search::index', 38),
-(290, 'Mod_search::category', 38),
-(291, 'Mod_search::display_install_window', 38),
-(292, 'Mod_search::connect_ftp', 38),
-(293, 'Pages::__construct', 39),
-(294, 'Pages::index', 39),
-(295, 'Pages::add', 39),
-(296, 'Pages::_set_page_roles', 39),
-(297, 'Pages::edit', 39),
-(298, 'Pages::update', 39),
-(299, 'Pages::delete', 39),
-(300, 'Pages::ajax_translit', 39),
-(301, 'Pages::save_positions', 39),
-(302, 'Pages::delete_pages', 39),
-(303, 'Pages::move_pages', 39),
-(304, 'Pages::show_move_window', 39),
-(305, 'Pages::json_tags', 39),
-(306, 'Pages::ajax_create_keywords', 39),
-(307, 'Pages::ajax_create_description', 39),
-(308, 'Pages::ajax_change_status', 39),
-(309, 'Pages::GetPagesByCategory', 39),
-(310, 'Rbac::__construct', 40),
-(311, 'Settings::__construct', 41),
-(312, 'Settings::index', 41),
-(313, 'Settings::main_page', 41),
-(314, 'Settings::_get_templates', 41),
-(315, 'Settings::save', 41),
-(316, 'Settings::switch_admin_lang', 41),
-(317, 'Settings::save_main', 41),
-(318, 'Sys_upgrade::__construct', 42),
-(319, 'Sys_upgrade::index', 42),
-(320, 'Sys_upgrade::make_upgrade', 42),
-(321, 'Sys_upgrade::_check_status', 42),
-(322, 'cfcm::__construct', 43),
-(323, 'cfcm::_set_forms_config', 43),
-(324, 'cfcm::index', 43),
-(325, 'cfcm::create_field', 43),
-(326, 'cfcm::edit_field_data_type', 43),
-(327, 'cfcm::delete_field', 43),
-(328, 'cfcm::edit_field', 43),
-(329, 'cfcm::create_group', 43),
-(330, 'cfcm::edit_group', 43),
-(331, 'cfcm::delete_group', 43),
-(332, 'cfcm::form_from_category_group', 43),
-(333, 'cfcm::get_form_attributes', 43),
-(334, 'cfcm::save_weight', 43),
-(335, 'cfcm::render', 43),
-(336, 'cfcm::get_url', 43),
-(337, 'cfcm::get_form', 43),
-(338, 'comments::__construct', 44),
-(339, 'comments::index', 44),
-(340, 'comments::proccess_child_comments', 44),
-(341, 'comments::render', 44),
-(342, 'comments::edit', 44),
-(343, 'comments::update', 44),
-(344, 'comments::update_status', 44),
-(345, 'comments::delete', 44),
-(346, 'comments::delete_many', 44),
-(347, 'comments::show_settings', 44),
-(348, 'comments::update_settings', 44),
-(349, 'feedback::__construct', 45),
-(350, 'feedback::index', 45),
-(351, 'feedback::settings', 45),
-(352, 'gallery::__construct', 46),
-(353, 'gallery::index', 46),
-(354, 'gallery::category', 46),
-(355, 'gallery::settings', 46),
-(356, 'gallery::create_album', 46),
-(357, 'gallery::update_album', 46),
-(358, 'gallery::edit_album_params', 46),
-(359, 'gallery::delete_album', 46),
-(360, 'gallery::show_crate_album', 46),
-(361, 'gallery::edit_album', 46),
-(362, 'gallery::edit_image', 46),
-(363, 'gallery::rename_image', 46),
-(364, 'gallery::delete_image', 46),
-(365, 'gallery::update_info', 46),
-(366, 'gallery::update_positions', 46),
-(367, 'gallery::update_album_positions', 46),
-(368, 'gallery::update_img_positions', 46),
-(369, 'gallery::show_create_category', 46),
-(370, 'gallery::create_category', 46),
-(371, 'gallery::edit_category', 46),
-(372, 'gallery::update_category', 46),
-(373, 'gallery::delete_category', 46),
-(374, 'gallery::upload_image', 46),
-(375, 'gallery::upload_archive', 46),
-(376, 'group_mailer::__construct', 47),
-(377, 'group_mailer::index', 47),
-(378, 'group_mailer::send_email', 47),
-(379, 'mailer::__construct', 48),
-(380, 'mailer::index', 48),
-(381, 'mailer::send_email', 48),
-(382, 'mailer::delete', 48),
-(383, 'menu::__construct', 49),
-(384, 'menu::index', 49),
-(385, 'menu::menu_item', 49),
-(386, 'menu::list_menu_items', 49),
-(387, 'menu::create_item', 49),
-(388, 'menu::display_selector', 49),
-(389, 'menu::get_name_by_id', 49),
-(390, 'menu::delete_item', 49),
-(391, 'menu::edit_item', 49),
-(392, 'menu::process_root', 49),
-(393, 'menu::insert_menu_item', 49),
-(394, 'menu::save_positions', 49),
-(395, 'menu::create_menu', 49),
-(396, 'menu::edit_menu', 49),
-(397, 'menu::update_menu', 49),
-(398, 'menu::check_menu_data', 49),
-(399, 'menu::delete_menu', 49),
-(400, 'menu::create_tpl', 49),
-(401, 'menu::get_pages', 49),
-(402, 'menu::search_pages', 49),
-(403, 'menu::get_item', 49),
-(404, 'menu::display_tpl', 49),
-(405, 'menu::fetch_tpl', 49),
-(406, 'menu::translate_window', 49),
-(407, 'menu::translate_item', 49),
-(408, 'menu::_get_langs', 49),
-(409, 'menu::render', 49),
-(410, 'menu::change_hidden', 49),
-(411, 'menu::get_children_items', 49),
-(412, 'rss::__construct', 50),
-(413, 'rss::index', 50),
-(414, 'rss::render', 50),
-(415, 'rss::settings_update', 50),
-(416, 'rss::display_tpl', 50),
-(417, 'rss::fetch_tpl', 50),
-(418, 'sample_mail::__construct', 51),
-(419, 'sample_mail::create', 51),
-(420, 'sample_mail::edit', 51),
-(421, 'sample_mail::render', 51),
-(422, 'sample_mail::index', 51),
-(423, 'sample_mail::delete', 51),
-(424, 'sample_module::__construct', 52),
-(425, 'sample_module::index', 52),
-(426, 'share::__construct', 53),
-(427, 'share::index', 53),
-(428, 'share::update_settings', 53),
-(429, 'share::get_settings', 53),
-(430, 'share::render', 53),
-(431, 'sitemap::__construct', 54),
-(432, 'sitemap::index', 54),
-(433, 'sitemap::_load_settings', 54),
-(434, 'sitemap::update_settings', 54),
-(435, 'sitemap::display_tpl', 54),
-(436, 'sitemap::fetch_tpl', 54),
-(437, 'sitemap::render', 54),
-(438, 'social_servises::__construct', 55),
-(439, 'social_servises::index', 55),
-(440, 'social_servises::update_settings', 55),
-(441, 'social_servises::get_fsettings', 55),
-(442, 'social_servises::get_vsettings', 55),
-(443, 'social_servises::_get_templates', 55),
-(444, 'social_servises::render', 55),
-(445, 'template_editor::index', 56),
-(446, 'template_editor::render', 56),
-(447, 'trash::__construct', 57),
-(448, 'trash::index', 57),
-(449, 'trash::create_trash', 57),
-(450, 'trash::edit_trash', 57),
-(451, 'trash::delete_trash', 57),
-(452, 'user_manager::__construct', 58),
-(453, 'user_manager::index', 58),
-(454, 'user_manager::set_tpl_roles', 58),
-(455, 'user_manager::getRolesTable', 58),
-(456, 'user_manager::genre_user_table', 58),
-(457, 'user_manager::auto_complit', 58),
-(458, 'user_manager::create_user', 58),
-(459, 'user_manager::actions', 58),
-(460, 'user_manager::search', 58),
-(461, 'user_manager::edit_user', 58),
-(462, 'user_manager::update_user', 58),
-(463, 'user_manager::groups_index', 58),
-(464, 'user_manager::create', 58),
-(465, 'user_manager::edit', 58),
-(466, 'user_manager::save', 58),
-(467, 'user_manager::delete', 58),
-(468, 'user_manager::deleteAll', 58),
-(469, 'user_manager::update_role_perms', 58),
-(470, 'user_manager::show_edit_prems_tpl', 58),
-(471, 'user_manager::get_permissions_table', 58),
-(472, 'user_manager::get_group_names', 58),
-(473, 'Widgets_manager::__construct', 59),
-(474, 'Widgets_manager::index', 59),
-(475, 'Widgets_manager::create', 59),
-(476, 'Widgets_manager::create_tpl', 59),
-(477, 'Widgets_manager::edit', 59),
-(478, 'Widgets_manager::update_widget', 59),
-(479, 'Widgets_manager::update_config', 59),
-(480, 'Widgets_manager::delete', 59),
-(481, 'Widgets_manager::get', 59),
-(482, 'Widgets_manager::edit_html_widget', 59),
-(483, 'Widgets_manager::edit_module_widget', 59),
-(484, 'Widgets_manager::display_create_tpl', 59);
+INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`, `description`) VALUES
+(1, 'ShopAdminBanners::index', 1, NULL),
+(2, 'ShopAdminBanners::create', 1, NULL),
+(3, 'ShopAdminBanners::edit', 1, NULL),
+(4, 'ShopAdminBanners::deleteAll', 1, NULL),
+(5, 'ShopAdminBanners::translate', 1, NULL),
+(6, 'ShopAdminBanners::changeActive', 1, NULL),
+(7, 'ShopAdminBrands::index', 2, NULL),
+(8, 'ShopAdminBrands::create', 2, NULL),
+(9, 'ShopAdminBrands::edit', 2, NULL),
+(10, 'ShopAdminBrands::delete', 2, NULL),
+(11, 'ShopAdminBrands::c_list', 2, NULL),
+(12, 'ShopAdminBrands::translate', 2, NULL),
+(13, 'ShopAdminCallbacks::index', 3, NULL),
+(14, 'ShopAdminCallbacks::update', 3, NULL),
+(15, 'ShopAdminCallbacks::statuses', 3, NULL),
+(16, 'ShopAdminCallbacks::createStatus', 3, NULL),
+(17, 'ShopAdminCallbacks::updateStatus', 3, NULL),
+(18, 'ShopAdminCallbacks::setDefaultStatus', 3, NULL),
+(19, 'ShopAdminCallbacks::changeStatus', 3, NULL),
+(20, 'ShopAdminCallbacks::reorderThemes', 3, NULL),
+(21, 'ShopAdminCallbacks::changeTheme', 3, NULL),
+(22, 'ShopAdminCallbacks::deleteCallback', 3, NULL),
+(23, 'ShopAdminCallbacks::deleteStatus', 3, NULL),
+(24, 'ShopAdminCallbacks::themes', 3, NULL),
+(25, 'ShopAdminCallbacks::createTheme', 3, NULL),
+(26, 'ShopAdminCallbacks::updateTheme', 3, NULL),
+(27, 'ShopAdminCallbacks::deleteTheme', 3, NULL),
+(28, 'ShopAdminCallbacks::search', 3, NULL),
+(29, 'ShopAdminCategories::index', 4, NULL),
+(30, 'ShopAdminCategories::create', 4, NULL),
+(31, 'ShopAdminCategories::edit', 4, NULL),
+(32, 'ShopAdminCategories::delete', 4, NULL),
+(33, 'ShopAdminCategories::c_list', 4, NULL),
+(34, 'ShopAdminCategories::save_positions', 4, NULL),
+(35, 'ShopAdminCategories::ajax_translit', 4, NULL),
+(36, 'ShopAdminCategories::translate', 4, NULL),
+(37, 'ShopAdminCategories::changeActive', 4, NULL),
+(38, 'ShopAdminCategories::create_tpl', 4, NULL),
+(39, 'ShopAdminCategories::get_tpl_names', 4, NULL),
+(40, 'ShopAdminCharts::orders', 5, NULL),
+(41, 'ShopAdminCharts::byDate', 5, NULL),
+(42, 'ShopAdminCharts::_createDatesDropDown', 5, NULL),
+(43, 'ShopAdminComulativ::index', 6, NULL),
+(44, 'ShopAdminComulativ::create', 6, NULL),
+(45, 'ShopAdminComulativ::edit', 6, NULL),
+(46, 'ShopAdminComulativ::allUsers', 6, NULL),
+(47, 'ShopAdminComulativ::user', 6, NULL),
+(48, 'ShopAdminComulativ::deleteAll', 6, NULL),
+(49, 'ShopAdminComulativ::change_comulativ_dis_status', 6, NULL),
+(50, 'ShopAdminCurrencies::index', 7, NULL),
+(51, 'ShopAdminCurrencies::create', 7, NULL),
+(52, 'ShopAdminCurrencies::edit', 7, NULL),
+(53, 'ShopAdminCurrencies::makeCurrencyDefault', 7, NULL),
+(54, 'ShopAdminCurrencies::makeCurrencyMain', 7, NULL),
+(55, 'ShopAdminCurrencies::delete', 7, NULL),
+(56, 'ShopAdminCurrencies::recount', 7, NULL),
+(57, 'ShopAdminCurrencies::checkPrices', 7, NULL),
+(58, 'ShopAdminCustomfields::index', 8, NULL),
+(59, 'ShopAdminCustomfields::create', 8, NULL),
+(60, 'ShopAdminCustomfields::edit', 8, NULL),
+(61, 'ShopAdminCustomfields::deleteAll', 8, NULL),
+(62, 'ShopAdminCustomfields::change_status_activ', 8, NULL),
+(63, 'ShopAdminCustomfields::change_status_private', 8, NULL),
+(64, 'ShopAdminCustomfields::change_status_required', 8, NULL),
+(65, 'ShopAdminDashboard::index', 9, NULL),
+(66, 'ShopAdminDeliverymethods::index', 10, NULL),
+(67, 'ShopAdminDeliverymethods::create', 10, NULL),
+(68, 'ShopAdminDeliverymethods::change_delivery_status', 10, NULL),
+(69, 'ShopAdminDeliverymethods::edit', 10, NULL),
+(70, 'ShopAdminDeliverymethods::deleteAll', 10, NULL),
+(71, 'ShopAdminDeliverymethods::c_list', 10, NULL),
+(72, 'ShopAdminDiscounts::index', 11, NULL),
+(73, 'ShopAdminDiscounts::create', 11, NULL),
+(74, 'ShopAdminDiscounts::change_discount_status', 11, NULL),
+(75, 'ShopAdminDiscounts::edit', 11, NULL),
+(76, 'ShopAdminDiscounts::deleteAll', 11, NULL),
+(77, 'ShopAdminGifts::index', 12, NULL),
+(78, 'ShopAdminGifts::create', 12, NULL),
+(79, 'ShopAdminGifts::generateKey', 12, NULL),
+(80, 'ShopAdminGifts::delete', 12, NULL),
+(81, 'ShopAdminGifts::edit', 12, NULL),
+(82, 'ShopAdminGifts::ChangeActive', 12, NULL),
+(83, 'ShopAdminGifts::settings', 12, NULL),
+(84, 'ShopAdminGifts::save_settings', 12, NULL),
+(85, 'ShopAdminKits::index', 13, NULL),
+(86, 'ShopAdminKits::kit_create', 13, NULL),
+(87, 'ShopAdminKits::kit_edit', 13, NULL),
+(88, 'ShopAdminKits::kit_save_positions', 13, NULL),
+(89, 'ShopAdminKits::kit_change_active', 13, NULL),
+(90, 'ShopAdminKits::kit_list', 13, NULL),
+(91, 'ShopAdminKits::kit_delete', 13, NULL),
+(92, 'ShopAdminKits::get_products_list', 13, NULL),
+(93, 'ShopAdminNotifications::index', 14, NULL),
+(94, 'ShopAdminNotifications::edit', 14, NULL),
+(95, 'ShopAdminNotifications::changeStatus', 14, NULL),
+(96, 'ShopAdminNotifications::notifyByEmail', 14, NULL),
+(97, 'ShopAdminNotifications::deleteAll', 14, NULL),
+(98, 'ShopAdminNotifications::ajaxDeleteNotifications', 14, NULL),
+(99, 'ShopAdminNotifications::ajaxChangeNotificationsStatus', 14, NULL),
+(100, 'ShopAdminNotifications::search', 14, NULL),
+(101, 'ShopAdminNotifications::getAvailableNotification', 14, NULL),
+(102, 'ShopAdminNotificationstatuses::index', 15, NULL),
+(103, 'ShopAdminNotificationstatuses::create', 15, NULL),
+(104, 'ShopAdminNotificationstatuses::edit', 15, NULL),
+(105, 'ShopAdminNotificationstatuses::deleteAll', 15, NULL),
+(106, 'ShopAdminNotificationstatuses::savePositions', 15, NULL),
+(107, 'ShopAdminOrders::index', 16, NULL),
+(108, 'ShopAdminOrders::edit', 16, NULL),
+(109, 'ShopAdminOrders::changeStatus', 16, NULL),
+(110, 'ShopAdminOrders::changePaid', 16, NULL),
+(111, 'ShopAdminOrders::delete', 16, NULL),
+(112, 'ShopAdminOrders::ajaxDeleteOrders', 16, NULL),
+(113, 'ShopAdminOrders::ajaxChangeOrdersStatus', 16, NULL),
+(114, 'ShopAdminOrders::ajaxChangeOrdersPaid', 16, NULL),
+(115, 'ShopAdminOrders::ajaxEditWindow', 16, NULL),
+(116, 'ShopAdminOrders::editKit', 16, NULL),
+(117, 'ShopAdminOrders::ajaxEditAddToCartWindow', 16, NULL),
+(118, 'ShopAdminOrders::ajaxDeleteProduct', 16, NULL),
+(119, 'ShopAdminOrders::ajaxGetProductList', 16, NULL),
+(120, 'ShopAdminOrders::ajaxEditOrderCart', 16, NULL),
+(121, 'ShopAdminOrders::ajaxEditOrderAddToCart', 16, NULL),
+(122, 'ShopAdminOrders::ajaxGetOrderCart', 16, NULL),
+(123, 'ShopAdminOrders::search', 16, NULL),
+(124, 'ShopAdminOrders::printChecks', 16, NULL),
+(125, 'ShopAdminOrders::createPDFPage', 16, NULL),
+(126, 'ShopAdminOrders::createPdf', 16, NULL),
+(127, 'ShopAdminOrders::create', 16, NULL),
+(128, 'ShopAdminOrderstatuses::index', 17, NULL),
+(129, 'ShopAdminOrderstatuses::create', 17, NULL),
+(130, 'ShopAdminOrderstatuses::edit', 17, NULL),
+(131, 'ShopAdminOrderstatuses::delete', 17, NULL),
+(132, 'ShopAdminOrderstatuses::ajaxDeleteWindow', 17, NULL),
+(133, 'ShopAdminOrderstatuses::savePositions', 17, NULL),
+(134, 'ShopAdminPaymentmethods::index', 18, NULL),
+(135, 'ShopAdminPaymentmethods::create', 18, NULL),
+(136, 'ShopAdminPaymentmethods::change_payment_status', 18, NULL),
+(137, 'ShopAdminPaymentmethods::edit', 18, NULL),
+(138, 'ShopAdminPaymentmethods::deleteAll', 18, NULL),
+(139, 'ShopAdminPaymentmethods::savePositions', 18, NULL),
+(140, 'ShopAdminPaymentmethods::getAdminForm', 18, NULL),
+(141, 'ShopAdminProducts::index', 19, NULL),
+(142, 'ShopAdminProducts::create', 19, NULL),
+(143, 'ShopAdminProducts::edit', 19, NULL),
+(144, 'ShopAdminProducts::saveAdditionalImages', 19, NULL),
+(145, 'ShopAdminProducts::delete', 19, NULL),
+(146, 'ShopAdminProducts::processImage', 19, NULL),
+(147, 'ShopAdminProducts::deleteAddImage', 19, NULL),
+(148, 'ShopAdminProducts::ajaxChangeActive', 19, NULL),
+(149, 'ShopAdminProducts::ajaxChangeHit', 19, NULL),
+(150, 'ShopAdminProducts::ajaxChangeHot', 19, NULL),
+(151, 'ShopAdminProducts::ajaxChangeAction', 19, NULL),
+(152, 'ShopAdminProducts::ajaxUpdatePrice', 19, NULL),
+(153, 'ShopAdminProducts::ajaxCloneProducts', 19, NULL),
+(154, 'ShopAdminProducts::ajaxDeleteProducts', 19, NULL),
+(155, 'ShopAdminProducts::ajaxMoveWindow', 19, NULL),
+(156, 'ShopAdminProducts::ajaxMoveProducts', 19, NULL),
+(157, 'ShopAdminProducts::translate', 19, NULL),
+(158, 'ShopAdminProducts::get_ids', 19, NULL),
+(159, 'ShopAdminProducts::prev_next', 19, NULL),
+(160, 'ShopAdminProductspy::index', 20, NULL),
+(161, 'ShopAdminProductspy::delete', 20, NULL),
+(162, 'ShopAdminProductspy::settings', 20, NULL),
+(163, 'ShopAdminProperties::index', 21, NULL),
+(164, 'ShopAdminProperties::create', 21, NULL),
+(165, 'ShopAdminProperties::edit', 21, NULL),
+(166, 'ShopAdminProperties::renderForm', 21, NULL),
+(167, 'ShopAdminProperties::save_positions', 21, NULL),
+(168, 'ShopAdminProperties::delete', 21, NULL),
+(169, 'ShopAdminProperties::changeActive', 21, NULL),
+(184, 'ShopAdminSearch::index', 23, NULL),
+(185, 'ShopAdminSearch::save_positions_variant', 23, NULL),
+(186, 'ShopAdminSearch::autocomplete', 23, NULL),
+(187, 'ShopAdminSearch::advanced', 23, NULL),
+(188, 'ShopAdminSearch::renderCustomFields', 23, NULL),
+(189, 'ShopAdminSettings::index', 24, NULL),
+(190, 'ShopAdminSettings::update', 24, NULL),
+(191, 'ShopAdminSettings::get_fsettings', 24, NULL),
+(192, 'ShopAdminSettings::get_vsettings', 24, NULL),
+(193, 'ShopAdminSettings::_get_templates', 24, NULL),
+(194, 'ShopAdminSettings::_load_settings', 24, NULL),
+(195, 'ShopAdminSettings::runResize', 24, NULL),
+(196, 'ShopAdminSystem::import', 25, NULL),
+(197, 'ShopAdminSystem::export', 25, NULL),
+(198, 'ShopAdminSystem::getAttributes', 25, NULL),
+(199, 'ShopAdminSystem::exportUsers', 25, NULL),
+(200, 'ShopAdminUsers::index', 26, NULL),
+(201, 'ShopAdminUsers::search', 26, NULL),
+(202, 'ShopAdminUsers::create', 26, NULL),
+(203, 'ShopAdminUsers::edit', 26, NULL),
+(204, 'ShopAdminUsers::deleteAll', 26, NULL),
+(205, 'ShopAdminUsers::auto_complite', 26, NULL),
+(206, 'ShopAdminWarehouses::index', 27, NULL),
+(207, 'ShopAdminWarehouses::create', 27, NULL),
+(208, 'ShopAdminWarehouses::edit', 27, NULL),
+(209, 'ShopAdminWarehouses::deleteAll', 27, NULL),
+(210, 'Admin::__construct', 28, NULL),
+(211, 'Admin::init', 28, NULL),
+(212, 'Admin::index', 28, NULL),
+(213, 'Admin::sys_info', 28, NULL),
+(214, 'Admin::delete_cache', 28, NULL),
+(215, 'Admin::elfinder_init', 28, NULL),
+(216, 'Admin::get_csrf', 28, NULL),
+(217, 'Admin::sidebar_cats', 28, NULL),
+(218, 'Admin::logout', 28, NULL),
+(219, 'Admin::report_bug', 28, NULL),
+(220, 'Admin_logs::__construct', 29, NULL),
+(221, 'Admin_logs::index', 29, NULL),
+(222, 'Admin_search::__construct', 30, NULL),
+(223, 'Admin_search::index', 30, NULL),
+(224, 'Admin_search::advanced_search', 30, NULL),
+(225, 'Admin_search::do_advanced_search', 30, NULL),
+(226, 'Admin_search::validate_advanced_search', 30, NULL),
+(227, 'Admin_search::form_from_group', 30, NULL),
+(228, 'Admin_search::_filter_pages', 30, NULL),
+(229, 'Admin_search::autocomplete', 30, NULL),
+(230, 'Backup::__construct', 31, NULL),
+(231, 'Backup::index', 31, NULL),
+(232, 'Backup::create', 31, NULL),
+(233, 'Backup::force_download', 31, NULL),
+(234, 'Cache_all::__construct', 32, NULL),
+(235, 'Cache_all::index', 32, NULL),
+(236, 'Categories::__construct', 33, NULL),
+(237, 'Categories::index', 33, NULL),
+(238, 'Categories::create_form', 33, NULL),
+(239, 'Categories::update_block', 33, NULL),
+(240, 'Categories::save_positions', 33, NULL),
+(241, 'Categories::cat_list', 33, NULL),
+(242, 'Categories::sub_cats', 33, NULL),
+(243, 'Categories::create', 33, NULL),
+(244, 'Categories::update_urls', 33, NULL),
+(245, 'Categories::category_exists', 33, NULL),
+(246, 'Categories::fast_add', 33, NULL),
+(247, 'Categories::update_fast_block', 33, NULL),
+(248, 'Categories::edit', 33, NULL),
+(249, 'Categories::translate', 33, NULL),
+(250, 'Categories::delete', 33, NULL),
+(251, 'Categories::_get_sub_cats', 33, NULL),
+(252, 'Categories::get_comments_status', 33, NULL),
+(253, 'Components::__construct', 34, NULL),
+(254, 'Components::index', 34, NULL),
+(255, 'Components::modules_table', 34, NULL),
+(256, 'Components::is_installed', 34, NULL),
+(257, 'Components::install', 34, NULL),
+(258, 'Components::deinstall', 34, NULL),
+(259, 'Components::find_components', 34, NULL),
+(260, 'Components::component_settings', 34, NULL),
+(261, 'Components::save_settings', 34, NULL),
+(262, 'Components::init_window', 34, NULL),
+(263, 'Components::cp', 34, NULL),
+(264, 'Components::run', 34, NULL),
+(265, 'Components::com_info', 34, NULL),
+(266, 'Components::get_module_info', 34, NULL),
+(267, 'Components::change_autoload', 34, NULL),
+(268, 'Components::change_url_access', 34, NULL),
+(269, 'Components::save_components_positions', 34, NULL),
+(270, 'Components::change_show_in_menu', 34, NULL),
+(271, 'Dashboard::__construct', 35, NULL),
+(272, 'Dashboard::index', 35, NULL),
+(273, 'Languages::__construct', 36, NULL),
+(274, 'Languages::index', 36, NULL),
+(275, 'Languages::create_form', 36, NULL),
+(276, 'Languages::insert', 36, NULL),
+(277, 'Languages::edit', 36, NULL),
+(278, 'Languages::update', 36, NULL),
+(279, 'Languages::delete', 36, NULL),
+(280, 'Languages::set_default', 36, NULL),
+(281, 'Login::__construct', 37, NULL),
+(282, 'Login::index', 37, NULL),
+(283, 'Login::user_browser', 37, NULL),
+(284, 'Login::do_login', 37, NULL),
+(285, 'Login::forgot_password', 37, NULL),
+(286, 'Login::update_captcha', 37, NULL),
+(287, 'Login::captcha_check', 37, NULL),
+(288, 'Mod_search::__construct', 38, NULL),
+(289, 'Mod_search::index', 38, NULL),
+(290, 'Mod_search::category', 38, NULL),
+(291, 'Mod_search::display_install_window', 38, NULL),
+(292, 'Mod_search::connect_ftp', 38, NULL),
+(293, 'Pages::__construct', 39, NULL),
+(294, 'Pages::index', 39, NULL),
+(295, 'Pages::add', 39, NULL),
+(296, 'Pages::_set_page_roles', 39, NULL),
+(297, 'Pages::edit', 39, NULL),
+(298, 'Pages::update', 39, NULL),
+(299, 'Pages::delete', 39, NULL),
+(300, 'Pages::ajax_translit', 39, NULL),
+(301, 'Pages::save_positions', 39, NULL),
+(302, 'Pages::delete_pages', 39, NULL),
+(303, 'Pages::move_pages', 39, NULL),
+(304, 'Pages::show_move_window', 39, NULL),
+(305, 'Pages::json_tags', 39, NULL),
+(306, 'Pages::ajax_create_keywords', 39, NULL),
+(307, 'Pages::ajax_create_description', 39, NULL),
+(308, 'Pages::ajax_change_status', 39, NULL),
+(309, 'Pages::GetPagesByCategory', 39, NULL),
+(310, 'Rbac::__construct', 40, NULL),
+(311, 'Settings::__construct', 41, NULL),
+(312, 'Settings::index', 41, NULL),
+(313, 'Settings::main_page', 41, NULL),
+(314, 'Settings::_get_templates', 41, NULL),
+(315, 'Settings::save', 41, NULL),
+(316, 'Settings::switch_admin_lang', 41, NULL),
+(317, 'Settings::save_main', 41, NULL),
+(318, 'Sys_upgrade::__construct', 42, NULL),
+(319, 'Sys_upgrade::index', 42, NULL),
+(320, 'Sys_upgrade::make_upgrade', 42, NULL),
+(321, 'Sys_upgrade::_check_status', 42, NULL),
+(322, 'cfcm::__construct', 43, NULL),
+(323, 'cfcm::_set_forms_config', 43, NULL),
+(324, 'cfcm::index', 43, NULL),
+(325, 'cfcm::create_field', 43, NULL),
+(326, 'cfcm::edit_field_data_type', 43, NULL),
+(327, 'cfcm::delete_field', 43, NULL),
+(328, 'cfcm::edit_field', 43, NULL),
+(329, 'cfcm::create_group', 43, NULL),
+(330, 'cfcm::edit_group', 43, NULL),
+(331, 'cfcm::delete_group', 43, NULL),
+(332, 'cfcm::form_from_category_group', 43, NULL),
+(333, 'cfcm::get_form_attributes', 43, NULL),
+(334, 'cfcm::save_weight', 43, NULL),
+(335, 'cfcm::render', 43, NULL),
+(336, 'cfcm::get_url', 43, NULL),
+(337, 'cfcm::get_form', 43, NULL),
+(338, 'comments::__construct', 44, NULL),
+(339, 'comments::index', 44, NULL),
+(340, 'comments::proccess_child_comments', 44, NULL),
+(341, 'comments::render', 44, NULL),
+(342, 'comments::edit', 44, NULL),
+(343, 'comments::update', 44, NULL),
+(344, 'comments::update_status', 44, NULL),
+(345, 'comments::delete', 44, NULL),
+(346, 'comments::delete_many', 44, NULL),
+(347, 'comments::show_settings', 44, NULL),
+(348, 'comments::update_settings', 44, NULL),
+(349, 'feedback::__construct', 45, NULL),
+(350, 'feedback::index', 45, NULL),
+(351, 'feedback::settings', 45, NULL),
+(352, 'gallery::__construct', 46, NULL),
+(353, 'gallery::index', 46, NULL),
+(354, 'gallery::category', 46, NULL),
+(355, 'gallery::settings', 46, NULL),
+(356, 'gallery::create_album', 46, NULL),
+(357, 'gallery::update_album', 46, NULL),
+(358, 'gallery::edit_album_params', 46, NULL),
+(359, 'gallery::delete_album', 46, NULL),
+(360, 'gallery::show_crate_album', 46, NULL),
+(361, 'gallery::edit_album', 46, NULL),
+(362, 'gallery::edit_image', 46, NULL),
+(363, 'gallery::rename_image', 46, NULL),
+(364, 'gallery::delete_image', 46, NULL),
+(365, 'gallery::update_info', 46, NULL),
+(366, 'gallery::update_positions', 46, NULL),
+(367, 'gallery::update_album_positions', 46, NULL),
+(368, 'gallery::update_img_positions', 46, NULL),
+(369, 'gallery::show_create_category', 46, NULL),
+(370, 'gallery::create_category', 46, NULL),
+(371, 'gallery::edit_category', 46, NULL),
+(372, 'gallery::update_category', 46, NULL),
+(373, 'gallery::delete_category', 46, NULL),
+(374, 'gallery::upload_image', 46, NULL),
+(375, 'gallery::upload_archive', 46, NULL),
+(376, 'group_mailer::__construct', 47, NULL),
+(377, 'group_mailer::index', 47, NULL),
+(378, 'group_mailer::send_email', 47, NULL),
+(379, 'mailer::__construct', 48, NULL),
+(380, 'mailer::index', 48, NULL),
+(381, 'mailer::send_email', 48, NULL),
+(382, 'mailer::delete', 48, NULL),
+(383, 'menu::__construct', 49, NULL),
+(384, 'menu::index', 49, NULL),
+(385, 'menu::menu_item', 49, NULL),
+(386, 'menu::list_menu_items', 49, NULL),
+(387, 'menu::create_item', 49, NULL),
+(388, 'menu::display_selector', 49, NULL),
+(389, 'menu::get_name_by_id', 49, NULL),
+(390, 'menu::delete_item', 49, NULL),
+(391, 'menu::edit_item', 49, NULL),
+(392, 'menu::process_root', 49, NULL),
+(393, 'menu::insert_menu_item', 49, NULL),
+(394, 'menu::save_positions', 49, NULL),
+(395, 'menu::create_menu', 49, NULL),
+(396, 'menu::edit_menu', 49, NULL),
+(397, 'menu::update_menu', 49, NULL),
+(398, 'menu::check_menu_data', 49, NULL),
+(399, 'menu::delete_menu', 49, NULL),
+(400, 'menu::create_tpl', 49, NULL),
+(401, 'menu::get_pages', 49, NULL),
+(402, 'menu::search_pages', 49, NULL),
+(403, 'menu::get_item', 49, NULL),
+(404, 'menu::display_tpl', 49, NULL),
+(405, 'menu::fetch_tpl', 49, NULL),
+(406, 'menu::translate_window', 49, NULL),
+(407, 'menu::translate_item', 49, NULL),
+(408, 'menu::_get_langs', 49, NULL),
+(409, 'menu::render', 49, NULL),
+(410, 'menu::change_hidden', 49, NULL),
+(411, 'menu::get_children_items', 49, NULL),
+(412, 'rss::__construct', 50, NULL),
+(413, 'rss::index', 50, NULL),
+(414, 'rss::render', 50, NULL),
+(415, 'rss::settings_update', 50, NULL),
+(416, 'rss::display_tpl', 50, NULL),
+(417, 'rss::fetch_tpl', 50, NULL),
+(418, 'sample_mail::__construct', 51, NULL),
+(419, 'sample_mail::create', 51, NULL),
+(420, 'sample_mail::edit', 51, NULL),
+(421, 'sample_mail::render', 51, NULL),
+(422, 'sample_mail::index', 51, NULL),
+(423, 'sample_mail::delete', 51, NULL),
+(424, 'sample_module::__construct', 52, NULL),
+(425, 'sample_module::index', 52, NULL),
+(426, 'share::__construct', 53, NULL),
+(427, 'share::index', 53, NULL),
+(428, 'share::update_settings', 53, NULL),
+(429, 'share::get_settings', 53, NULL),
+(430, 'share::render', 53, NULL),
+(431, 'sitemap::__construct', 54, NULL),
+(432, 'sitemap::index', 54, NULL),
+(433, 'sitemap::_load_settings', 54, NULL),
+(434, 'sitemap::update_settings', 54, NULL),
+(435, 'sitemap::display_tpl', 54, NULL),
+(436, 'sitemap::fetch_tpl', 54, NULL),
+(437, 'sitemap::render', 54, NULL),
+(438, 'social_servises::__construct', 55, NULL),
+(439, 'social_servises::index', 55, NULL),
+(440, 'social_servises::update_settings', 55, NULL),
+(441, 'social_servises::get_fsettings', 55, NULL),
+(442, 'social_servises::get_vsettings', 55, NULL),
+(443, 'social_servises::_get_templates', 55, NULL),
+(444, 'social_servises::render', 55, NULL),
+(445, 'template_editor::index', 56, NULL),
+(446, 'template_editor::render', 56, NULL),
+(447, 'trash::__construct', 57, NULL),
+(448, 'trash::index', 57, NULL),
+(449, 'trash::create_trash', 57, NULL),
+(450, 'trash::edit_trash', 57, NULL),
+(451, 'trash::delete_trash', 57, NULL),
+(452, 'user_manager::__construct', 58, NULL),
+(453, 'user_manager::index', 58, NULL),
+(454, 'user_manager::set_tpl_roles', 58, NULL),
+(455, 'user_manager::getRolesTable', 58, NULL),
+(456, 'user_manager::genre_user_table', 58, NULL),
+(457, 'user_manager::auto_complit', 58, NULL),
+(458, 'user_manager::create_user', 58, NULL),
+(459, 'user_manager::actions', 58, NULL),
+(460, 'user_manager::search', 58, NULL),
+(461, 'user_manager::edit_user', 58, NULL),
+(462, 'user_manager::update_user', 58, NULL),
+(463, 'user_manager::groups_index', 58, NULL),
+(464, 'user_manager::create', 58, NULL),
+(465, 'user_manager::edit', 58, NULL),
+(466, 'user_manager::save', 58, NULL),
+(467, 'user_manager::delete', 58, NULL),
+(468, 'user_manager::deleteAll', 58, NULL),
+(469, 'user_manager::update_role_perms', 58, NULL),
+(470, 'user_manager::show_edit_prems_tpl', 58, NULL),
+(471, 'user_manager::get_permissions_table', 58, NULL),
+(472, 'user_manager::get_group_names', 58, NULL),
+(473, 'Widgets_manager::__construct', 59, NULL),
+(474, 'Widgets_manager::index', 59, NULL),
+(475, 'Widgets_manager::create', 59, NULL),
+(476, 'Widgets_manager::create_tpl', 59, NULL),
+(477, 'Widgets_manager::edit', 59, NULL),
+(478, 'Widgets_manager::update_widget', 59, NULL),
+(479, 'Widgets_manager::update_config', 59, NULL),
+(480, 'Widgets_manager::delete', 59, NULL),
+(481, 'Widgets_manager::get', 59, NULL),
+(482, 'Widgets_manager::edit_html_widget', 59, NULL),
+(483, 'Widgets_manager::edit_module_widget', 59, NULL),
+(484, 'Widgets_manager::display_create_tpl', 59, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_rbac_privileges_i18n`
+-- Структура таблиці `shop_rbac_privileges_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_rbac_privileges_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_privileges_i18n` (
   `id` int(11) NOT NULL,
   `title` varchar(45) NOT NULL,
@@ -8647,7 +8631,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_privileges_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_rbac_privileges_i18n`
+-- Дамп даних таблиці `shop_rbac_privileges_i18n`
 --
 
 INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`) VALUES
@@ -9127,34 +9111,33 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_rbac_roles`
+-- Структура таблиці `shop_rbac_roles`
 --
 
-DROP TABLE IF EXISTS `shop_rbac_roles`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_roles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `importance` int(11) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_name` (`name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп данных таблицы `shop_rbac_roles`
+-- Дамп даних таблиці `shop_rbac_roles`
 --
 
-INSERT INTO `shop_rbac_roles` (`id`, `name`, `importance`) VALUES
-(1, 'Administrator', 1),
-(2, 'Sales_manager', 2),
-(3, 'Content_manager', 3);
+INSERT INTO `shop_rbac_roles` (`id`, `name`, `importance`, `description`) VALUES
+(1, 'Administrator', 1, NULL),
+(2, 'Sales_manager', 2, NULL),
+(3, 'Content_manager', 3, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_rbac_roles_i18n`
+-- Структура таблиці `shop_rbac_roles_i18n`
 --
 
-DROP TABLE IF EXISTS `shop_rbac_roles_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_roles_i18n` (
   `id` int(11) NOT NULL,
   `alt_name` varchar(45) DEFAULT NULL,
@@ -9164,7 +9147,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_roles_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_rbac_roles_i18n`
+-- Дамп даних таблиці `shop_rbac_roles_i18n`
 --
 
 INSERT INTO `shop_rbac_roles_i18n` (`id`, `alt_name`, `locale`, `description`) VALUES
@@ -9175,20 +9158,20 @@ INSERT INTO `shop_rbac_roles_i18n` (`id`, `alt_name`, `locale`, `description`) V
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_rbac_roles_privileges`
+-- Структура таблиці `shop_rbac_roles_privileges`
 --
 
-DROP TABLE IF EXISTS `shop_rbac_roles_privileges`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_roles_privileges` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) NOT NULL,
   `privilege_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `rolepriv` (`role_id`,`privilege_id`)
+  UNIQUE KEY `rolepriv` (`role_id`,`privilege_id`),
+  KEY `shop_rbac_roles_privileges_FK_2` (`privilege_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=612 ;
 
 --
--- Дамп данных таблицы `shop_rbac_roles_privileges`
+-- Дамп даних таблиці `shop_rbac_roles_privileges`
 --
 
 INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUES
@@ -9807,10 +9790,9 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_settings`
+-- Структура таблиці `shop_settings`
 --
 
-DROP TABLE IF EXISTS `shop_settings`;
 CREATE TABLE IF NOT EXISTS `shop_settings` (
   `name` varchar(255) NOT NULL,
   `value` text,
@@ -9819,7 +9801,7 @@ CREATE TABLE IF NOT EXISTS `shop_settings` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_settings`
+-- Дамп даних таблиці `shop_settings`
 --
 
 INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
@@ -9830,7 +9812,7 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 ('addImageWidth', '800', ''),
 ('addImageHeight', '600', ''),
 ('imagesQuality', '99', ''),
-('systemTemplatePath', './templates/commerce/shop/default', ''),
+('systemTemplatePath', './templates/new_shop_template/shop/', ''),
 ('frontProductsPerPage', '12', ''),
 ('adminProductsPerPage', '24', ''),
 ('ordersMessageFormat', 'text', ''),
@@ -9947,8 +9929,8 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 ('facebook_int', 'a:3:{s:9:"secretkey";s:0:"";s:9:"appnumber";s:0:"";s:8:"template";s:16:"commerce_mobiles";}', ''),
 ('vk_int', 'a:3:{s:7:"protkey";s:0:"";s:9:"appnumber";s:0:"";s:8:"template";s:16:"commerce_mobiles";}', ''),
 ('xmlSiteMap', 'a:6:{s:18:"main_page_priority";s:1:"1";s:13:"cats_priority";s:3:"0.8";s:14:"pages_priority";s:3:"0.6";s:20:"main_page_changefreq";s:6:"always";s:21:"categories_changefreq";s:6:"hourly";s:16:"pages_changefreq";s:5:"daily";}', ''),
-('mobileTemplatePath', './templates/commerce_mobiles/shop/default', ''),
-('ordersRecountGoods', '0', ''),
+('mobileTemplatePath', './templates/commerce_mobiles/shop/PIE', ''),
+('ordersRecountGoods', '', ''),
 ('ordersuserInfoRegister', NULL, ''),
 ('notifyOrderStatusStatusEmail', '1', ''),
 ('8_LMI_PAYEE_PURSE', '6456456456464', ''),
@@ -9957,15 +9939,15 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 ('9_OschadBankData', 'a:5:{s:8:"receiver";s:0:"";s:4:"code";s:10:"1234567890";s:7:"account";s:0:"";s:3:"mfo";s:0:"";s:8:"banknote";s:0:"";}', ''),
 ('ss', 'a:9:{s:4:"yaru";s:1:"1";s:5:"vkcom";s:1:"1";s:8:"facebook";s:1:"1";s:7:"twitter";s:1:"1";s:9:"odnoclass";s:1:"1";s:7:"myworld";s:1:"1";s:2:"lj";s:1:"1";s:4:"type";s:6:"button";s:8:"vk_apiid";s:0:"";}', ''),
 ('1CCatSettings', 'a:1:{s:8:"filesize";s:11:"file_limit=";}', ''),
-('1CSettingsOS', 'N;', '');
+('1CSettingsOS', 'N;', ''),
+('ordersCheckStocks', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_spy`
+-- Структура таблиці `shop_spy`
 --
 
-DROP TABLE IF EXISTS `shop_spy`;
 CREATE TABLE IF NOT EXISTS `shop_spy` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -9979,7 +9961,7 @@ CREATE TABLE IF NOT EXISTS `shop_spy` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Дамп данных таблицы `shop_spy`
+-- Дамп даних таблиці `shop_spy`
 --
 
 INSERT INTO `shop_spy` (`id`, `user_id`, `product_id`, `price`, `variant_id`, `key`, `email`, `old_price`) VALUES
@@ -9988,10 +9970,9 @@ INSERT INTO `shop_spy` (`id`, `user_id`, `product_id`, `price`, `variant_id`, `k
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_warehouse`
+-- Структура таблиці `shop_warehouse`
 --
 
-DROP TABLE IF EXISTS `shop_warehouse`;
 CREATE TABLE IF NOT EXISTS `shop_warehouse` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -10003,7 +9984,7 @@ CREATE TABLE IF NOT EXISTS `shop_warehouse` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Дамп данных таблицы `shop_warehouse`
+-- Дамп даних таблиці `shop_warehouse`
 --
 
 INSERT INTO `shop_warehouse` (`id`, `name`, `address`, `phone`, `description`) VALUES
@@ -10013,10 +9994,9 @@ INSERT INTO `shop_warehouse` (`id`, `name`, `address`, `phone`, `description`) V
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_warehouse_data`
+-- Структура таблиці `shop_warehouse_data`
 --
 
-DROP TABLE IF EXISTS `shop_warehouse_data`;
 CREATE TABLE IF NOT EXISTS `shop_warehouse_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
@@ -10028,7 +10008,7 @@ CREATE TABLE IF NOT EXISTS `shop_warehouse_data` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=38 ;
 
 --
--- Дамп данных таблицы `shop_warehouse_data`
+-- Дамп даних таблиці `shop_warehouse_data`
 --
 
 INSERT INTO `shop_warehouse_data` (`id`, `product_id`, `warehouse_id`, `count`) VALUES
@@ -10039,10 +10019,9 @@ INSERT INTO `shop_warehouse_data` (`id`, `product_id`, `warehouse_id`, `count`) 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `support_comments`
+-- Структура таблиці `support_comments`
 --
 
-DROP TABLE IF EXISTS `support_comments`;
 CREATE TABLE IF NOT EXISTS `support_comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ticket_id` int(11) NOT NULL,
@@ -10055,7 +10034,7 @@ CREATE TABLE IF NOT EXISTS `support_comments` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Дамп данных таблицы `support_comments`
+-- Дамп даних таблиці `support_comments`
 --
 
 INSERT INTO `support_comments` (`id`, `ticket_id`, `user_id`, `user_status`, `user_name`, `text`, `date`) VALUES
@@ -10064,10 +10043,9 @@ INSERT INTO `support_comments` (`id`, `ticket_id`, `user_id`, `user_status`, `us
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `support_departments`
+-- Структура таблиці `support_departments`
 --
 
-DROP TABLE IF EXISTS `support_departments`;
 CREATE TABLE IF NOT EXISTS `support_departments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
@@ -10075,7 +10053,7 @@ CREATE TABLE IF NOT EXISTS `support_departments` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп данных таблицы `support_departments`
+-- Дамп даних таблиці `support_departments`
 --
 
 INSERT INTO `support_departments` (`id`, `name`) VALUES
@@ -10086,10 +10064,9 @@ INSERT INTO `support_departments` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `support_tickets`
+-- Структура таблиці `support_tickets`
 --
 
-DROP TABLE IF EXISTS `support_tickets`;
 CREATE TABLE IF NOT EXISTS `support_tickets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -10105,7 +10082,7 @@ CREATE TABLE IF NOT EXISTS `support_tickets` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп данных таблицы `support_tickets`
+-- Дамп даних таблиці `support_tickets`
 --
 
 INSERT INTO `support_tickets` (`id`, `user_id`, `last_comment_author`, `text`, `theme`, `department`, `status`, `priority`, `date`, `updated`) VALUES
@@ -10116,10 +10093,9 @@ INSERT INTO `support_tickets` (`id`, `user_id`, `last_comment_author`, `text`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tags`
+-- Структура таблиці `tags`
 --
 
-DROP TABLE IF EXISTS `tags`;
 CREATE TABLE IF NOT EXISTS `tags` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `value` varchar(255) NOT NULL,
@@ -10130,10 +10106,9 @@ CREATE TABLE IF NOT EXISTS `tags` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `users`
+-- Структура таблиці `users`
 --
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) DEFAULT NULL,
@@ -10157,17 +10132,44 @@ CREATE TABLE IF NOT EXISTS `users` (
   `discount` varchar(255) DEFAULT NULL,
   `phone` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `role_id` (`role_id`),
   KEY `users_I_1` (`key`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=46 ;
+
+--
+-- Дамп даних таблиці `users`
+--
+
+INSERT INTO `users` (`id`, `role_id`, `username`, `password`, `email`, `banned`, `ban_reason`, `newpass`, `newpass_key`, `newpass_time`, `last_ip`, `last_login`, `created`, `modified`, `address`, `cart_data`, `wish_list_data`, `key`, `amout`, `discount`, `phone`) VALUES
+(1, 1, 'admin', '$6$17LKhkPw/gb3$3ljfZJYgwWM8Zp7tebTQoCTWJplTO8SJIOmzQUcN190lVURcVWcZIjP51Cto9HGylJL/MUW8cllLjajX6Hv74/', 'ad@min.com', 0, '', NULL, NULL, NULL, '127.0.0.1', 2013, 2012, '0000-00-00 00:00:00', 'lviv', 'a:1:{s:16:"SProducts_92_103";a:6:{s:8:"instance";s:9:"SProducts";s:9:"productId";i:92;s:9:"variantId";i:103;s:8:"quantity";i:1;s:5:"price";d:742.5;s:11:"variantName";s:0:"";}}', 'a:0:{}', '3', 599.38, NULL, '123456789'),
+(45, NULL, 'плгпгоп', '$1$9x9zuc5H$ca.kSMwgCo3O3iGYchTXg.', 'hyftn@yfhy.com', NULL, NULL, NULL, NULL, NULL, '95.133.123.99', 2013, 1362172515, NULL, '', 'a:1:{s:17:"SProducts_191_219";a:6:{s:8:"instance";s:9:"SProducts";s:9:"productId";i:191;s:9:"variantId";i:219;s:8:"quantity";i:1;s:5:"price";d:824;s:11:"variantName";s:0:"";}}', NULL, '', 0.00, NULL, 'thfghfh'),
+(43, NULL, 'asd', '$1$iX0.D40.$3KQvRugPWnG.ww.7YhMYA.', 'same_one@mail.ru', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2013, 1358358993, NULL, '', NULL, NULL, 'NvJLj', 0.00, NULL, ''),
+(2, NULL, 'Василий Пупкин', '$1$fCYNXvZ/$8XtmYCvq/zhA3Fc//ou00.', 'vasil.pypkin@mail.ru', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 944006400, NULL, 'г. Москва', NULL, NULL, 'Rw9x4', 0.00, NULL, '+38050 123 45 67'),
+(3, 2, 'Оксана', '$1$LjN2NDGo$pm.0w5ad56jcfU7d7lrMP1', 'oksana@mail.ru', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 1116806400, NULL, 'г. Тула', NULL, NULL, 'iZkSk', 0.00, NULL, '+3 098 357 78 54'),
+(4, NULL, 'Валентин', '$1$5E22OQfO$LSChb/.1d0am5RWhTVom10', 'valentin@rambler.ru', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 1186963200, NULL, 'м. Львів', NULL, NULL, 'jzgdZ', 0.00, NULL, '+ 067 546 87 54'),
+(5, NULL, 'Игор Петрович', '$1$SBeN16qQ$oaDnHR7lNu2RvEygOUpxq.', 'kalmar@gmail.com', 0, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 1300147200, NULL, 'г. Тверь', NULL, NULL, 'BHElK', 0.00, NULL, '054 245 64 34'),
+(6, NULL, 'Валентина', '$1$mnMRiwMI$WAjrtxf8CuYzFCNKrgvvH0', 'geg@g.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1336867200, NULL, '', NULL, NULL, 'apgKh', 0.00, NULL, ''),
+(7, NULL, 'Юлия', '$1$jpThhaAT$5rhMF1hVH/bU4SUboGAqY.', 'gola@go.go', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 923961600, NULL, '', NULL, NULL, 'PDO2h', 450.00, NULL, ''),
+(8, NULL, 'Микола', '$1$LZwk8Zeq$FtEgH7kznQhfM/DYQp5Xt0', 'hi@hello.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1204588800, NULL, '', NULL, NULL, 'v7AL9', 372.00, NULL, ''),
+(9, NULL, 'Петр', '$1$rtOiO.Kb$DoOEPmufZ0QoH6ALhIW8K/', 'go@gmail.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1179878400, NULL, '', NULL, NULL, 'DfFay', 534.61, NULL, ''),
+(10, NULL, 'Юрий', '$1$7WY/C71c$yWo/60KT8o1Gpgz8NoR6g0', 'hell@hi.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1080000000, NULL, '', NULL, NULL, 'nnwHi', 1032.00, NULL, ''),
+(11, NULL, 'Артур', '$1$fqe/B31z$SCEUoyGht45BD7P7sGntB1', 'joker@g.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1174608000, NULL, '', NULL, NULL, 'ZQMgY', 500.00, NULL, ''),
+(12, NULL, 'Роман', '$1$Q5OGVHIL$EdIFtjfNZS0esJhNJBT4S/', 'h@g.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1139097600, NULL, '', NULL, NULL, 'vBYt5', 777.65, NULL, ''),
+(13, NULL, 'Иван', '$1$NuYcOL2u$DT9IMVrhso30lkt.KjX3R0', 't@com.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1131148800, NULL, '', NULL, NULL, 'GvaoX', 39.95, NULL, ''),
+(14, NULL, 'roman', '$1$O4xM5INE$xXS1VKjNGADRAQ2ECq.fb/', 'hh@f.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1103760000, NULL, '', NULL, NULL, '4vuGR', 60.99, NULL, ''),
+(15, NULL, 'Степа', '$1$0URQeiKO$51AjUbMLddI89Q00wxbBd/', 'w@go.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1086307200, NULL, '', NULL, NULL, 'xjWwZ', 42.00, NULL, ''),
+(16, NULL, 'Катерина', '$1$K4BWApqA$78xLQXHIxL6MjnGsXHr/40', 'd@com.ua', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 1094342400, NULL, '', NULL, NULL, 'L4TGA', 1000.00, NULL, ''),
+(17, NULL, 'Валерия', '$1$K7RfsI0I$H51xxHN4K41e3bYNnwkK7/', 'q@w.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2012, 984441600, NULL, '', NULL, NULL, 'MAWZm', 1178.99, NULL, ''),
+(37, NULL, '11111111', '$1$8L/.vA..$HbLCBTdFOqAXiw/IBJtYb.', 'ad4444444@min.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 1358270077, NULL, 'aaaaaa', NULL, NULL, '', 300.00, NULL, 'aa'),
+(38, NULL, 'mfmfmf', '$1$D23.QK2.$CnNcL.twaRCHkWFH5o9Ux0', 'mf@mf.mf', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 1358270150, NULL, 'mf', NULL, NULL, '', 0.00, NULL, 'mf'),
+(36, NULL, 'aaaaaaaaaaaaaa', '$1$jc5.wU..$xUAQH2lLNtWZpEyAAvm7p1', 'a111111111111d@min.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 1358269947, NULL, 'aaaaaaaaaaa', NULL, NULL, '', 0.00, NULL, 'aaaaaaaaaaaa'),
+(44, NULL, 'fghjghgfhfg', '$1$tV..ya0.$cqxP9PbWHid5r0LZzpzTa/', 'hghfgh@chgch.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 1358963553, NULL, '', NULL, NULL, '', 10500.00, NULL, '');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `user_autologin`
+-- Структура таблиці `user_autologin`
 --
 
-DROP TABLE IF EXISTS `user_autologin`;
 CREATE TABLE IF NOT EXISTS `user_autologin` (
   `key_id` char(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `user_id` mediumint(8) NOT NULL DEFAULT '0',
@@ -10181,10 +10183,9 @@ CREATE TABLE IF NOT EXISTS `user_autologin` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `user_temp`
+-- Структура таблиці `user_temp`
 --
 
-DROP TABLE IF EXISTS `user_temp`;
 CREATE TABLE IF NOT EXISTS `user_temp` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
@@ -10199,10 +10200,9 @@ CREATE TABLE IF NOT EXISTS `user_temp` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `widgets`
+-- Структура таблиці `widgets`
 --
 
-DROP TABLE IF EXISTS `widgets`;
 CREATE TABLE IF NOT EXISTS `widgets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -10215,17 +10215,23 @@ CREATE TABLE IF NOT EXISTS `widgets` (
   `created` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
 
 --
--- Дамп данных таблицы `widgets`
+-- Дамп даних таблиці `widgets`
 --
 
 INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `description`, `roles`, `created`) VALUES
 (3, 'latest_news', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:1:"2";s:11:"max_symdols";s:3:"150";s:10:"categories";a:1:{i:0;s:2:"56";}s:7:"display";s:6:"recent";}', 'Последние новости', '', 1291632457),
 (4, 'recent_product_comments', 'module', 'comments', 'recent_product_comments', 'a:2:{s:14:"comments_count";s:1:"5";s:13:"symbols_count";s:1:"0";}', '', '', 1308300371),
 (5, 'tags', 'module', 'tags', 'tags_cloud', '', 'tags', '', 1312362714),
-(6, 'path', 'module', 'navigation', 'widget_navigation', '', 'path', '', 1328631622);
+(6, 'path', 'module', 'navigation', 'widget_navigation', '', 'path', '', 1328631622),
+(10, 'popular_products', 'module', 'shop', 'products', 'a:4:{s:12:"productsType";s:11:"popular,hit";s:5:"title";s:33:"Популярные товары";s:13:"productsCount";s:2:"10";s:7:"subpath";s:7:"widgets";}', 'popular_products', '', 1363606273),
+(11, 'new_products', 'module', 'shop', 'products', 'a:4:{s:12:"productsType";s:11:"popular,hot";s:5:"title";s:14:"Новинки";s:13:"productsCount";s:2:"10";s:7:"subpath";s:7:"widgets";}', 'new_products', '', 1363606324),
+(12, 'action_products', 'module', 'shop', 'products', 'a:4:{s:12:"productsType";s:14:"popular,action";s:5:"title";s:31:"Акционные товары";s:13:"productsCount";s:2:"10";s:7:"subpath";s:7:"widgets";}', 'action_products', '', 1363606361),
+(13, 'brands', 'module', 'shop', 'brands', 'a:3:{s:10:"withImages";b:1;s:11:"brandsCount";s:2:"15";s:7:"subpath";s:7:"widgets";}', 'brands', '', 1363606422),
+(14, 'view_product', 'module', 'shop', 'view_product', 'a:4:{s:12:"productsType";b:0;s:5:"title";s:54:"Недавно просмотренные товары";s:13:"productsCount";s:2:"10";s:7:"subpath";s:7:"widgets";}', 'view_product', '', 1363606497),
+(15, 'similar', 'module', 'shop', 'similar_products', 'a:3:{s:5:"title";s:27:"Похожие товары";s:13:"productsCount";s:1:"5";s:7:"subpath";s:7:"widgets";}', 'similar', '', 1363606582);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
