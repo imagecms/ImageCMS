@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Час створення: Бер 18 2013 р., 18:20
+-- Час створення: Бер 18 2013 р., 20:12
 -- Версія сервера: 5.5.29
 -- Версія PHP: 5.4.6-1ubuntu1.2
 
@@ -584,16 +584,6 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
   KEY `time` (`time`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=43 ;
 
---
--- Дамп даних таблиці `login_attempts`
---
-
-INSERT INTO `login_attempts` (`id`, `ip_address`, `time`) VALUES
-(39, '127.0.0.1', '2013-03-18 14:24:07'),
-(40, '127.0.0.1', '2013-03-18 14:24:16'),
-(41, '127.0.0.1', '2013-03-18 14:25:11'),
-(42, '127.0.0.1', '2013-03-18 14:25:18');
-
 -- --------------------------------------------------------
 
 --
@@ -609,7 +599,7 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `date` (`date`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=88 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=89 ;
 
 --
 -- Дамп даних таблиці `logs`
@@ -632,7 +622,8 @@ INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
 (84, 1, 'admin', 'Очистил кеш', 1363613941),
 (85, 1, 'admin', 'Очистил кеш', 1363614943),
 (86, 1, 'admin', 'Очистил кеш', 1363615660),
-(87, 1, 'admin', 'Вышел из панели управления', 1363616351);
+(87, 1, 'admin', 'Вышел из панели управления', 1363616351),
+(88, 1, 'admin', 'Вышел из панели управления', 1363627112);
 
 -- --------------------------------------------------------
 
