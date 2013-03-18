@@ -154,12 +154,14 @@
 
     <target name="createDepends">
         <mkdir dir="${target}/${cacheDir}" mode="0777"/>
+        <mkdir dir="${target}/${cacheDir}/templates_c" mode="0777"/>
         <mkdir dir="${target}/${capthaDir}" mode="0777"/>
         <mkdir dir="${target}/${backupsDir}" mode="0777"/>
         <mkdir dir="${target}/${logsDir}" mode="0777"/>
         <copy file="${target}/system/codeigniter/index.html" todir="${target}/${logsDir}" overwrite="true"/>
         <copy file="${target}/system/codeigniter/index.html" todir="${target}/${backupsDir}" overwrite="true"/>
         <copy file="${target}/system/codeigniter/index.html" todir="${target}/${cacheDir}" overwrite="true"/>
+        <copy file="${target}/system/codeigniter/index.html" todir="${target}/${cacheDir}/templates_c" overwrite="true"/>
         <copy file="${target}/system/codeigniter/index.html" todir="${target}/${capthaDir}" overwrite="true"/>
     </target>
 
