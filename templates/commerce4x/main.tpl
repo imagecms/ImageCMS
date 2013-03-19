@@ -51,7 +51,7 @@
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.2.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/underscore-min.js"></script>
     </head>
-    <body>
+    <body>        
         <div class="mainBody">
             <div class="header">
                 <header>
@@ -183,8 +183,7 @@
                                 <!-- Start. Block order call -->
                                 <div class="span3">
                                     <div class="headerPhone">
-                                        +8 (090)<span class="d_n">&minus;</span> 500-50-50, <br>
-                                        +8 (100)<span class="d_n">&minus;</span> 500-50-50
+                                        +8 (090)<span class="d_n">&minus;</span> 500-50-50
                                     </div>
                                     <div style="margin-top: 7px;">
                                         <ul class="tabs">
@@ -227,10 +226,11 @@
                 <!-- End. Show content -->
             </div>
 
-            <!-- Start Brands widget -->
-            {widget('brands')}
-            <!-- End. Brands widget -->
-
+            <!-- Start Brands widget for Shop -->
+            {if !$CI->uri->segment(1) || $CI->uri->segment(1) == 'shop'}
+                {widget('brands')}
+            {/if}
+            <!-- End. Brands widget for Shop -->
             <div class="hFooter"></div>
         </div>
         <footer>
