@@ -26,7 +26,7 @@
 #comment__icsi-css input[type="text"], #comment__icsi-css textarea{width: 100%;max-width: 100%;padding: 0 5px;border: 1px solid;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
 #comment__icsi-css label{display: block;}
 #comment__icsi-css .btn__icsi-css{
-    display: inline-block;cursor: pointer;padding: 0 15px !important;color: #555;min-height: 30px;text-decoration: none;line-height: 30px;position: relative;
+        display: inline-block;cursor: pointer;padding: 5px 15px !important;color: #555;text-decoration: none;position: relative;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
