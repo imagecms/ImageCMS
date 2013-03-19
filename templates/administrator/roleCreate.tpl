@@ -60,7 +60,7 @@
 
         <div class="tab-content">
             {foreach $types as $key => $type}
-                {if  strpos(getCmsNumber(), 'Premium') AND $key!='shop'}
+                {if  strpos(getCmsNumber(), 'Premium') OR $key!='shop'}
                 <div class="tab-pane row {if $key == 'base'}active{/if}" id="{echo $key}">
                     {foreach $type as $k => $groups} 
                         <div class="span3">
