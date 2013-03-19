@@ -115,7 +115,8 @@ class Auth extends MY_Controller {
             if ($val->run() AND $this->dx_auth->login($val->set_value('email'), $val->set_value('password'), $val->set_value('remember'))) {
 //                 ($hook = get_hook('auth_login_success')) ? eval($hook) : NULL;
                 // Redirect to homepage
-                ShopCore::app()->SCart->transferCartData();
+                if (class_exists('ShopCore'))
+                    ShopCore::app()->SCart->transferCartData();
                 if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
                     redirect('', 'location');
                 } else {
