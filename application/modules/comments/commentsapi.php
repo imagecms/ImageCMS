@@ -254,16 +254,17 @@ class Commentsapi extends Comments {
             $comment_text_minus = str_replace("\n", '<br/>', $comment_text_minus);
             $rate = $this->input->post('ratec');
             if ($this->input->post('ratec')) {
-                if (SProductsQuery::create()->findPk($item_id) !== null) {
-                    $model = SProductsRatingQuery::create()->findPk($item_id);
-                    if ($model === null) {
-                        $model = new SProductsRating;
-                        $model->setProductId($item_id);
+                if (class_exists('SProductsQuery'))
+                    if (SProductsQuery::create()->findPk($item_id) !== null) {
+                        $model = SProductsRatingQuery::create()->findPk($item_id);
+                        if ($model === null) {
+                            $model = new SProductsRating;
+                            $model->setProductId($item_id);
+                        }
+                        $model->setVotes($model->getVotes() + 1);
+                        $model->setRating($model->getRating() + $rate);
+                        $model->save();
                     }
-                    $model->setVotes($model->getVotes() + 1);
-                    $model->setRating($model->getRating() + $rate);
-                    $model->save();
-                }
             }
         }
         if ($this->input->post('action') == 'newPost') {
