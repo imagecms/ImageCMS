@@ -37,8 +37,8 @@
         <echo msg="Rename some necessary Files"/>
         <phingcall target="prepareToInstall" ><property name="target" value="${imageCMSPremiumDir}"/></phingcall>
 
-        <move file="${imageCMSPremiumDir}/CHANGELOG.PRE.xml" tofile="${imageCMSPremiumDir}/CHANGELOG.xml" mode="0755"></move>
-        <delete file="${imageCMSPremiumDir}/CHANGELOG.PRO.xml" quiet="true" failonerror="false"></delete>
+        <move file="${imageCMSPremiumDir}/application/modules/shop/CHANGELOG.PRE.xml" tofile="${imageCMSPremiumDir}/CHANGELOG.xml" mode="0755"></move>
+        <delete file="${imageCMSPremiumDir}/application/modules/shop/CHANGELOG.PRO.xml" quiet="true" failonerror="false"></delete>
 
         <echo msg="Zipping"/>
         <phingcall target="zipping"><property name="target" value="${imageCMSPremiumDir}"/></phingcall>
@@ -60,8 +60,8 @@
         <echo msg="Rename some necessary Files"/>
         <phingcall target="prepareToInstall" ><property name="target" value="${imageCMSProDir}"/></phingcall>
 
-        <move file="${imageCMSProDir}/CHANGELOG.PRO.xml" tofile="${imageCMSProDir}/CHANGELOG.xml" mode="0755"></move>
-        <delete file="${imageCMSProDir}/CHANGELOG.PRE.xml" quiet="true" failonerror="false"></delete>
+        <move file="${imageCMSProDir}/application/modules/shop/CHANGELOG.PRO.xml" tofile="${imageCMSProDir}/CHANGELOG.xml" mode="0755"></move>
+        <delete file="${imageCMSProDir}/application/modules/shop/CHANGELOG.PRE.xml" quiet="true" failonerror="false"></delete>
 
         <echo msg="Zipping"/>
         <phingcall target="zipping"><property name="target" value="${imageCMSProDir}"/></phingcall>
@@ -82,9 +82,6 @@
 
         <echo msg="Rename some necessary Files"/>
         <phingcall target="prepareToInstall" ><property name="target" value="${imageCMSCorporateDir}"/></phingcall>
-
-        <delete file="${imageCMSCorporateDir}/CHANGELOG.PRO.xml" quiet="true" failonerror="false"></delete>
-        <delete file="${imageCMSCorporateDir}/CHANGELOG.PRO.xml" quiet="true" failonerror="false"></delete>
 
         <echo msg="Zipping"/>
         <phingcall target="zipping"><property name="target" value="${imageCMSCorporateDir}"/></phingcall>
