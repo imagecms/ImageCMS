@@ -183,8 +183,8 @@
                                 <!-- Start. Block order call -->
                                 <div class="span3">
                                     <div class="headerPhone">
-                                        <span class="c_67">+8 (097)</span>
-                                        <span class="d_n">&minus;</span> 572-58-18
+                                        +8 (090)<span class="d_n">&minus;</span> 500-50-50, <br>
+                                        +8 (100)<span class="d_n">&minus;</span> 500-50-50
                                     </div>
                                     <div style="margin-top: 7px;">
                                         <ul class="tabs">
@@ -291,13 +291,13 @@
 
         <!-- php vars to js -->
         <script type="text/javascript">
-            var curr = '{$CS}';
-            var pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}');
-            var checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}";
-            var inCart = '{lang('already_in_basket')}';
-            var toCart = '{lang('s_buy')}';
-            var pcs = 'шт.';
-            var kits = 'компл.';
+                                                        var curr = '{$CS}';
+                                                        var pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}');
+                                                        var checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}";
+                                                        var inCart = '{lang('already_in_basket')}';
+                                                        var toCart = '{lang('s_buy')}';
+                                                        var pcs = 'шт.';
+                                                        var kits = 'компл.';
         </script>
 
         <!--        Syncronization data for cart, wishlist  and comparelist     -->
