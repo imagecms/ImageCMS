@@ -28,7 +28,7 @@ if (strpos($_SERVER['REQUEST_URI'], 'index.php') !== false) {
     header("Location:http://" . $_SERVER['SERVER_NAME'] . "/page_not_found");
     exit;
 }
-define('ENVIRONMENT', 'development');
+define('ENVIRONMENT', 'production');
 /*
  * ---------------------------------------------------------------
  * ERROR REPORTING
@@ -37,7 +37,6 @@ define('ENVIRONMENT', 'development');
  * Different environments will require different levels of error reporting.
  * By default development will show errors but testing and live will hide them.
  */
-ini_set('display_errors', 'on');
 
 switch (ENVIRONMENT) {
     case 'development':
