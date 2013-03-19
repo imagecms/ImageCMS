@@ -24,6 +24,8 @@ var ImageDialog = {
                             nl[0].elements[3].checked = 'checked';
                             nl.fancy.checked = 'checked';
                             nl.fancy.disabled = 'disabled';
+//                            n.fancyThumbX.disabled = 'disabled';
+//                            n.fancyThumbX.disabled = 'disabled';
                         }
                         
 			nl.src.value = dom.getAttrib(n, 'src');
@@ -135,10 +137,12 @@ var ImageDialog = {
 //        if (fancy) {
 //            var req = new XMLHttpRequest();
 //            req.open('POST', '/admin/components/run/imagebox/imagebox/upload');
-//            //req.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-//            req.send(
-//            //    'file_url='+encodeURIComponent(nl[1].value)
-//            );
+//            req.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+////            req.send(
+////            //    'file_url='+encodeURIComponent(nl[1].value)
+////            );
+//            req.onCancel = function(e){console.log(e)}
+//            req.send('file_url='+encodeURIComponent('/uploads/images/novie-kosmicheskie-roboty.jpg'));
 //        }
 
 
@@ -168,8 +172,8 @@ var ImageDialog = {
                     cls = 'fancybox';
 		tinymce.extend(args, {
 			src : nl.src.value.replace(/ /g, '%20'),
-			width : nl.width.value,
-			height : nl.height.value,
+			width : fancy?(fancyX?fancyX:200):nl.width.value,
+			height : fancy?(fancyY?fancyY:null):nl.height.value,
 			alt : nl.alt.value,
 			title : nl.title.value,
 			'class' : getSelectValue(f, 'class_list') + cls,
@@ -203,7 +207,7 @@ var ImageDialog = {
 
                         var parts = args.src.split('/');
                         var  fname = parts[parts.length-1];
-                        //el.src = '/uploads/imagebox/thumbs/'+fname;
+                        el.src = '/uploads/imagebox/thumbs/'+fname;
                         //
 
                         var a = document.createElement('a');
@@ -223,8 +227,14 @@ var ImageDialog = {
 				}
 			});
 
-                        if (fancy == true)
-                            var insertHtml = '<a href="'+args.src+'" class="fancybox">'+tinyMCEPopup.editor.dom.createHTML('img', args)+'</a>';
+                        if (fancy == true) {
+                            var src = args.src;
+                            var parts = args.src.split('/');
+                            var  fname = parts[parts.length-1];
+                            args.src = '/uploads/imagebox/thumbs/'+fname;
+
+                            var insertHtml = '<a href="'+src+'" class="fancybox">'+tinyMCEPopup.editor.dom.createHTML('img', args)+'</a>';
+                        }
                         else
                             var insertHtml = tinyMCEPopup.editor.dom.createHTML('img', args);
                         
