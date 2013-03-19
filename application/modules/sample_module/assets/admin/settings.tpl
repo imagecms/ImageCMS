@@ -10,7 +10,7 @@
                     <a href="{$BASE_URL}admin/components/cp/sample_mail" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
                     <button type="button" class="btn btn-small formSubmit" data-form="#sample_module_settings"><i class="icon-ok"></i>{lang('a_save')}</button>
                     <button type="button" class="btn btn-small formSubmit" data-form="#sample_module_settings" data-action="tomain"><i class="icon-edit"></i>{lang('a_save_and_exit')}</button>
-                        {echo create_language_select($languages, $locale, "/admin/components/cp/sample_mail/edit/".$model.name)}
+                        {echo create_language_select($languages, $locale, "/admin/components/modules_table')}
                 </div>
             </div>
         </div>
