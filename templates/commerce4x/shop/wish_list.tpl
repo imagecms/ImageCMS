@@ -9,7 +9,7 @@
 */
 #}
 
-<article>
+<article class="container">
     <!--If empty list show message -->
     {if !$items}
         <div data-body="message" class="d_b">

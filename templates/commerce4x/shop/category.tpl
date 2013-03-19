@@ -16,7 +16,7 @@
 #}
 
 {$Comments = $CI->load->module('comments')->init($products)}
-<article>
+<article class="container">
     <!-- Show Banners in circle -->
     <div class="mainFrameBaner">
         <section class="container">

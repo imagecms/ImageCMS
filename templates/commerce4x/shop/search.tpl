@@ -240,7 +240,7 @@
     </div>
 {else:}
     <!--Start. Show message not found-->
-    <article>
+    <article class="container">
         <div class="bot_border_grey m-b_10">
             {if !empty(ShopCore::$_GET['text'])}
                 <div class="d_i title_h1">{lang('s_sea_search_for')} <span class="alert-small">:"{encode($_GET['text'])}"</span></div>

@@ -21,7 +21,7 @@
 #}
 
 {$Comments = $CI->load->module('comments')->init($products)}
-<article>
+<article class="container">
     <div class="row">
         {include_tpl('filter')}
         <div class="span9 right">

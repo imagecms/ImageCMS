@@ -13,7 +13,7 @@
 #}
 {$Comments = $CI->load->module('comments')->init($model)}
 <div>
-    <article>       
+    <article class="container">       
         <!-- Making bread crumbs -->
         {widget('path')}
         <div class="item_tovar">
@@ -56,7 +56,7 @@
                         </div>
                     </div>
                     <!-- Output rating for the old product End -->
-                    <div class="clearfix">
+                    <div class="clearfix frame_buy">
                         <div class="d_i-b v-a_b m-b_20">
                             <!-- Start. Output of all the options -->
                             {if count($model->getProductVariants()) > 1}
@@ -304,14 +304,6 @@
                         <ul class="items items_catalog" data-radio-frame>
                             {foreach $accessories as $p}  
                                 <li class="span3 {if $p->firstvariant->getStock() == 0}not-avail{/if}">
-                                    <!--Photo and link to accessory Start-->
-                                    <a href="{shop_url('product/' . $p->getUrl())}" class="photo">
-                                        <span class="helper"></span>
-                                        <figure>
-                                            <img src="{productImageUrl($p->getSmallModImage())}" alt="{echo ShopCore::encode($p->getName())}"/>
-                                        </figure>
-                                    </a>            
-                                    <!--Photo and link to accessory End-->
                                     <div class="description">
                                         <a href="{shop_url('product/'.$p->getUrl())}">{echo ShopCore::encode($p->getName())}</a>
                                         <div class="price price_f-s_16">
@@ -370,6 +362,16 @@
                                             </button>
                                         </div>
                                     </div>
+                                    <!--Photo and link to accessory Start-->
+                                    <div class="photo-block">
+                                        <a href="{shop_url('product/' . $p->getUrl())}" class="photo">
+                                            <span class="helper"></span>
+                                            <figure>
+                                                <img src="{productImageUrl($p->getSmallModImage())}" alt="{echo ShopCore::encode($p->getName())}"/>
+                                            </figure>
+                                        </a>
+                                    </div>
+                                    <!--Photo and link to accessory End-->
                                 </li>
                             {/foreach}    
 
