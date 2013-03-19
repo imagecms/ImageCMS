@@ -1,4 +1,6 @@
+{$Comments = $CI->load->module('comments')->init($pages)}
 <div id="titleExt"><h5>{widget('path')}<span class="ext">{$category.name}</span></h5></div>
+
 {$category.short_desc}
 {if $no_pages}
         <p>{$no_pages}</p>
@@ -17,7 +19,7 @@
         {$page.prev_text}
 
         <div class="postinfo">
-           <a href="{site_url($page.full_url)}#comments">Комментарии ({$page.comments_count})</a> 
+           <a href="{site_url($page.full_url)}#comments">{$Comments[$page.id]}</a> 
            &nbsp;&nbsp;
            <a href="{site_url($page.full_url)}">{lang('full_article')}</a>
         </div>

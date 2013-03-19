@@ -39,11 +39,15 @@ class Comments extends MY_Controller {
             $productsCount = $this->load->module('comments/commentsapi')->getTotalCommentsForProducts($model->getId());
         } else {
             $ids = array();
-
-            foreach ($model as $id)
-                $ids[] = $id->getId();
-
-            $productsCount = $this->load->module('comments/commentsapi')->getTotalCommentsForProducts($ids);
+            if ($this->core->core_data[module] != 'shop') {
+                foreach ($model as $id)
+                    $ids[] = $id[id];
+                $productsCount = $this->load->module('comments/commentsapi')->getTotalCommentsForProducts($ids, 'core');
+            } else {
+                foreach ($model as $id)
+                    $ids[] = $id->getId();
+                $productsCount = $this->load->module('comments/commentsapi')->getTotalCommentsForProducts($ids);
+            }
         }
         return $productsCount;
     }
