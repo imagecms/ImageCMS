@@ -15,8 +15,8 @@ class Admin extends MY_Controller {
             'thumbs_folder' => './uploads/imagebox/thumbs/',
             'max_width' => '800',
             'max_height' => '600',
-            'thumb_width' => '100',
-            'thumb_height' => '100',
+            'thumb_width' => '200',
+            'thumb_height' => '200',
             'allowed_types'       => 'gif|jpg|jpeg|png',
             'maintain_ratio' => TRUE,
             'quality' => '95%',
@@ -60,11 +60,17 @@ class Admin extends MY_Controller {
 	}
 
     public function upload()
-    {echo 2;
-        $this->load->library('image_lib'); 
-
+    {
+        $this->load->library('image_lib');
         if ($this->input->post('file_url') != '')
         {
+            //settings
+            $this->settings['thumb_height'] = (int) $this->input->post('y')?:$this->settings['thumb_height'];
+            $this->settings['thumb_width'] = (int) $this->input->post('x')?:$this->settings['thumb_width'];
+            //
+
+            var_dump($this->settings);
+
             $url = '.'.$this->input->post('file_url');
 
             $ext = end(explode('.', $url));
@@ -131,19 +137,19 @@ class Admin extends MY_Controller {
 
     private function _resize($file)
     {
-        if ($file['image_width'] > $this->settings['max_width'] OR $file['image_height'] > $this->settings['max_height']) 
-        {
-            $config['image_library']  = 'gd2';
-            $config['source_image']   = $file['full_path'];
-            $config['maintain_ratio'] = $this->settings['maintain_ratio'];
-            $config['width']          = $this->settings['max_width'];
-            $config['height']         = $this->settings['max_height'];
-            $config['quality']        = $this->settings['quality'];
-
-            $this->image_lib->clear(); 
-            $this->image_lib->initialize($config); 
-            $this->image_lib->resize();
-        }
+//        if ($file['image_width'] > $this->settings['max_width'] OR $file['image_height'] > $this->settings['max_height'])
+//        {
+//            $config['image_library']  = 'gd2';
+//            $config['source_image']   = $file['full_path'];
+//            $config['maintain_ratio'] = $this->settings['maintain_ratio'];
+//            $config['width']          = $this->settings['max_width'];
+//            $config['height']         = $this->settings['max_height'];
+//            $config['quality']        = $this->settings['quality'];
+//
+//            $this->image_lib->clear();
+//            $this->image_lib->initialize($config);
+//            $this->image_lib->resize();
+//        }
 
         $config['image_library']  = 'gd2';
         $config['source_image']   = $file['full_path'];
