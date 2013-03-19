@@ -926,7 +926,7 @@ CREATE TABLE IF NOT EXISTS `shop_banners_i18n` (
 --
 
 INSERT INTO `shop_banners_i18n` (`id`, `locale`, `name`, `text`, `url`, `image`) VALUES
-(12, 'ru', 'sumsung', ' ', '/shop/brand/sumsung', 'template-imageshop-banner-3.jpg'),
+(12, 'ru', 'Samsung', ' ', '/shop/brand/samsung', 'template-imageshop-banner-3.jpg'),
 (7, 'ru', 'Epson', ' ', '/shop/brand/epson', 'template-imageshop-banner-1.jpg'),
 (11, 'ru', 'Sony', ' ', '/shop/brand/sony', 'template-imageshop-banner-2.jpg');
 
