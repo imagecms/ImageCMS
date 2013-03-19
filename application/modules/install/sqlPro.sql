@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Час створення: Бер 18 2013 р., 20:08
+-- Час створення: Бер 19 2013 р., 11:34
 -- Версія сервера: 5.5.29
 -- Версія PHP: 5.4.6-1ubuntu1.2
 
@@ -874,7 +874,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
 --
 
 INSERT INTO `settings` (`id`, `s_name`, `site_title`, `site_short_title`, `site_description`, `site_keywords`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `ss`, `cat_list`, `text_editor`) VALUES
-(2, 'main', 'premium', 'ImageCMS', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'commerce4x', 'no', '', 'module', 69, '63', 'shop', '', '', 'russian_lang', '', '', '', '', 'yes', 'elrte');
+(2, 'main', 'premium', 'ImageCMS', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'commerce4x', 'no', '', 'module', 69, '63', 'shop', '', '', 'russian_lang', '', '', '', '', 'yes', 'tinymce');
 
 -- --------------------------------------------------------
 
@@ -8051,6 +8051,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_group` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(10) NOT NULL,
   `name` varchar(100) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=60 ;
 
@@ -8058,36 +8059,63 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_group` (
 -- Дамп даних таблиці `shop_rbac_group`
 --
 
-INSERT INTO `shop_rbac_group` (`id`, `type`, `name`) VALUES
-(28, 'base', 'Admin'),
-(29, 'base', 'Admin_logs'),
-(30, 'base', 'Admin_search'),
-(31, 'base', 'Backup'),
-(32, 'base', 'Cache_all'),
-(33, 'base', 'Categories'),
-(34, 'base', 'Components'),
-(35, 'base', 'Dashboard'),
-(36, 'base', 'Languages'),
-(37, 'base', 'Login'),
-(39, 'base', 'Pages'),
-(40, 'base', 'Rbac'),
-(41, 'base', 'Settings'),
-(43, 'module', 'Cfcm'),
-(44, 'module', 'Comments'),
-(45, 'module', 'Feedback'),
-(46, 'module', 'Gallery'),
-(47, 'module', 'Group_mailer'),
-(48, 'module', 'Mailer'),
-(49, 'module', 'Menu'),
-(50, 'module', 'Rss'),
-(51, 'module', 'Sample_mail'),
-(53, 'module', 'Share'),
-(54, 'module', 'Sitemap'),
-(55, 'module', 'Social_servises'),
-(56, 'module', 'Template_editor'),
-(57, 'module', 'Trash'),
-(58, 'module', 'User_manager'),
-(59, 'base', 'Widgets_manager');
+INSERT INTO `shop_rbac_group` (`id`, `type`, `name`, `description`) VALUES
+(1, 'shop', 'ShopAdminBanners', NULL),
+(2, 'shop', 'ShopAdminBrands', NULL),
+(3, 'shop', 'ShopAdminCallbacks', NULL),
+(4, 'shop', 'ShopAdminCategories', NULL),
+(5, 'shop', 'ShopAdminCharts', NULL),
+(6, 'shop', 'ShopAdminComulativ', NULL),
+(7, 'shop', 'ShopAdminCurrencies', NULL),
+(8, 'shop', 'ShopAdminCustomfields', NULL),
+(9, 'shop', 'ShopAdminDashboard', NULL),
+(10, 'shop', 'ShopAdminDeliverymethods', NULL),
+(11, 'shop', 'ShopAdminDiscounts', NULL),
+(12, 'shop', 'ShopAdminGifts', NULL),
+(13, 'shop', 'ShopAdminKits', NULL),
+(14, 'shop', 'ShopAdminNotifications', NULL),
+(15, 'shop', 'ShopAdminNotificationstatuses', NULL),
+(16, 'shop', 'ShopAdminOrders', NULL),
+(17, 'shop', 'ShopAdminOrderstatuses', NULL),
+(18, 'shop', 'ShopAdminPaymentmethods', NULL),
+(19, 'shop', 'ShopAdminProducts', NULL),
+(20, 'shop', 'ShopAdminProductspy', NULL),
+(21, 'shop', 'ShopAdminProperties', NULL),
+(22, 'shop', 'ShopAdminRbac', NULL),
+(23, 'shop', 'ShopAdminSearch', NULL),
+(24, 'shop', 'ShopAdminSettings', NULL),
+(25, 'shop', 'ShopAdminSystem', NULL),
+(26, 'shop', 'ShopAdminUsers', NULL),
+(27, 'shop', 'ShopAdminWarehouses', NULL),
+(28, 'base', 'Admin', NULL),
+(29, 'base', 'Admin_logs', NULL),
+(30, 'base', 'Admin_search', NULL),
+(31, 'base', 'Backup', NULL),
+(32, 'base', 'Cache_all', NULL),
+(33, 'base', 'Categories', NULL),
+(34, 'base', 'Components', NULL),
+(35, 'base', 'Dashboard', NULL),
+(36, 'base', 'Languages', NULL),
+(37, 'base', 'Login', NULL),
+(39, 'base', 'Pages', NULL),
+(40, 'base', 'Rbac', NULL),
+(41, 'base', 'Settings', NULL),
+(43, 'module', 'Cfcm', NULL),
+(44, 'module', 'Comments', NULL),
+(45, 'module', 'Feedback', NULL),
+(46, 'module', 'Gallery', NULL),
+(47, 'module', 'Group_mailer', NULL),
+(48, 'module', 'Mailer', NULL),
+(49, 'module', 'Menu', NULL),
+(50, 'module', 'Rss', NULL),
+(51, 'module', 'Sample_mail', NULL),
+(53, 'module', 'Share', NULL),
+(54, 'module', 'Sitemap', NULL),
+(55, 'module', 'Social_servises', NULL),
+(56, 'module', 'Template_editor', NULL),
+(57, 'module', 'Trash', NULL),
+(58, 'module', 'User_manager', NULL),
+(59, 'base', 'Widgets_manager', NULL);
 
 -- --------------------------------------------------------
 
@@ -9083,6 +9111,7 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 ('ss', 'a:9:{s:4:"yaru";s:1:"1";s:5:"vkcom";s:1:"1";s:8:"facebook";s:1:"1";s:7:"twitter";s:1:"1";s:9:"odnoclass";s:1:"1";s:7:"myworld";s:1:"1";s:2:"lj";s:1:"1";s:4:"type";s:6:"button";s:8:"vk_apiid";s:0:"";}', ''),
 ('1CCatSettings', 'a:1:{s:8:"filesize";s:11:"file_limit=";}', ''),
 ('1CSettingsOS', 'N;', ''),
+('usegifts', '0;', 'ru'),
 ('ordersCheckStocks', '', '');
 
 -- --------------------------------------------------------
