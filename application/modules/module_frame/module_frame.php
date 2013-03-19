@@ -4,9 +4,9 @@
 
 /**
  * Image CMS
- * Module Skeleton
+ * Module Frame
  */
-class Module_skeleton extends MY_Controller {
+class Module_frame extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -36,7 +36,7 @@ class Module_skeleton extends MY_Controller {
           $this->dbforge->create_table('mod_empty', TRUE);
          */
         /**
-          $this->db->where('name', 'module_skeleton')
+          $this->db->where('name', 'module_frame')
           ->update('components', array('autoload' => '1', 'enabled' => '1'));
          */
     }
