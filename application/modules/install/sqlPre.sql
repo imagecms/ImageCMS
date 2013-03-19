@@ -163,6 +163,7 @@ CREATE TABLE IF NOT EXISTS `components` (
 --
 
 INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_menu`, `settings`, `position`) VALUES
+(1, 'user_manager', 'user_manager', 0, 0, 1, NULL, 4),
 (2, 'auth', 'auth', 1, 0, 0, NULL, 5),
 (4, 'comments', 'comments', 1, 1, 1, 'a:5:{s:18:"max_comment_length";i:550;s:6:"period";i:0;s:11:"can_comment";i:0;s:11:"use_captcha";b:0;s:14:"use_moderation";b:0;}', 6),
 (7, 'navigation', 'navigation', 0, 0, 1, NULL, 7),
@@ -925,7 +926,7 @@ CREATE TABLE IF NOT EXISTS `shop_banners_i18n` (
 --
 
 INSERT INTO `shop_banners_i18n` (`id`, `locale`, `name`, `text`, `url`, `image`) VALUES
-(12, 'ru', 'sumsung', ' ', '/shop/brand/sumsung', 'template-imageshop-banner-3.jpg'),
+(12, 'ru', 'Samsung', ' ', '/shop/brand/samsung', 'template-imageshop-banner-3.jpg'),
 (7, 'ru', 'Epson', ' ', '/shop/brand/epson', 'template-imageshop-banner-1.jpg'),
 (11, 'ru', 'Sony', ' ', '/shop/brand/sony', 'template-imageshop-banner-2.jpg');
 
