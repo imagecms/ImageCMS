@@ -134,7 +134,7 @@
                 </div>
                 {if ShopCore::app()->SSettings->usegifts == 1}
                     <div class="groups_form" >
-                        <label>
+                        <label for="giftcert">
                             <span class="title">{lang('s_cert_code')}</span>
                             <span class="frame_form_field">
                                 <button class="btn f_r" id="applyGiftCert">{lang('s_apply_sertif')}</button>
