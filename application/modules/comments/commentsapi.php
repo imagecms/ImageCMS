@@ -451,7 +451,7 @@ class Commentsapi extends Comments {
         return TRUE;
     }
 
-    public function getTotalCommentsForProducts($ids, $status = 0) {
+    public function getTotalCommentsForProducts($ids, $module = 'shop', $status = 0) {
         if ($ids == null)
             return;
 
@@ -459,7 +459,7 @@ class Commentsapi extends Comments {
         $this->db->group_by('item_id');
         $this->db->where_in('item_id', $ids);
         $this->db->where('status', $status);
-        $this->db->where('module = ', 'shop');
+        $this->db->where('module = ', $module);
         $query = $this->db->get('comments')->result_array();
 
         $result = array();
