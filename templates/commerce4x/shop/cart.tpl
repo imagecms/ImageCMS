@@ -1,4 +1,4 @@
-<article>
+<article class="container">
 
 
     <div class="bot_border_grey m-b_10 {if count($items) > 0}d_n{/if}" id="shopCartPageEmpty" >

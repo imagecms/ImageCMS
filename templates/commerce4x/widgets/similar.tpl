@@ -1,4 +1,4 @@
-{if count($simProduct = getSimilarProduct($model, $settings[productsCount]))>0}
+{if count($simProduct = getSimilarProduct($model, $settings[productsCount])) > 0}
     <div class="frame_carousel_product carousel_js c_b">
         <div class="m-b_20">
             <div class="title_h1 d_i-b v-a_m">{$settings[title]}</div>

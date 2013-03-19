@@ -5,7 +5,7 @@
 *   $banners: (array) which contains shop banners
 */
 #}
-<div class="">
+<div class="start_page">
 
     <!-- Show Banners in circle -->
     <div class="mainFrameBaner">

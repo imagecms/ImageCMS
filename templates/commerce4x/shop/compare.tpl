@@ -10,7 +10,7 @@
 * ShopCore::app()->SPropertiesRenderer->renderPropertiesCompareArray(Sproducts $product): method gives product properties values
 */
 #}
-<article>
+<article class="container">
     {$CI->load->helper('translit')}
     <div data-body="body">
         {if count($products) > 0}

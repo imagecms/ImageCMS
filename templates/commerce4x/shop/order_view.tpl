@@ -16,7 +16,7 @@
 * @updated 27 January 2013;
 */
 #}
-<article>
+<article class="container">
     <div class="m-t_10"></div>
     <div class="">
         <!-- We check, if you come to the page for the first time, after the order -->

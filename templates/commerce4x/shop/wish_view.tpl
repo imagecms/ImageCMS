@@ -7,7 +7,7 @@
 *
 */
 #}
-<article>
+<article class="container">
     <h1>{lang('s_WL')}</h1>
     <div class="row">
         <div class="text span8"><!-- Some text --></div>
