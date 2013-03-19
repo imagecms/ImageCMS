@@ -385,6 +385,24 @@ function initTinyMCE()
                     field.value = file.path;
                     var cmsT = win.document.forms[0].elements['cms_token'];
                     cmsT.value = $('input[name=cms_token]').val();
+
+
+                    $( win.document.forms[0], 'input#insert').on('click', function(el){
+                        //if (el.srcElement == 'input#insert') {
+                            sPost();
+                        //}
+                    });
+                    //
+                    function sPost(){
+                        $.post('/admin/components/run/imagebox/imagebox/upload', {
+                            file_url: file.path,
+                            x: win.document.forms[0].elements['fancyThumbX'].value,
+                            y: win.document.forms[0].elements['fancyThumbY'].value,
+                            cms_token: $('input[name=cms_token]').val()
+                        }, function(data){
+                            console.log(data);
+                        });
+                    }
                     
                     $(field).change();
                 },
