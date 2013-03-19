@@ -167,6 +167,7 @@
                                         data-price="{echo $pv->toCurrency()}" 
                                         data-name="{echo ShopCore::encode($model->getName())}"
                                         data-vname="{echo ShopCore::encode($pv->getName())}"
+                                        data-maxcount="{echo $pv->getstock()}"
                                         data-prodpage="true">
                                     {lang('s_buy')}
                                 </button>
@@ -179,7 +180,7 @@
                                     data-effect-off=    "fadeOut"
                                     data-effect-on="fadeIn"
                                     data-drop=".drop-report"
-                                    data-prodid="{echo $model->getId()}"
+                                    data-prodid="{echo $model->getId()}" 
                                     type="button"
                                     class="btn btn_not_avail variant_{echo $pv->getId()} variant">
                                     <span class="icon-but"></span>
