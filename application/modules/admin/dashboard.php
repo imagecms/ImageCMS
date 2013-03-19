@@ -81,7 +81,7 @@ class Dashboard extends BaseAdminController {
             if ($on_local !== TRUE) {
                 $this->config->load('api');
 
-                $api_news = $this->_curl_post($this->config->item('imagecms_latest_news'));
+                $api_news = $this->_curl_post($this->config->item('imagecms_latest_news'), array('for' => IMAGECMS_NUMBER));
 
                 if (count(unserialize($api_news['result'])) > 1 AND $api_news['code'] == '200') {
                     $this->template->assign('api_news', unserialize($api_news['result']));
