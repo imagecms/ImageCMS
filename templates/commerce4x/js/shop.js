@@ -244,7 +244,7 @@ var Shop = {
 
         getFinalAmount:function () {
             if (this.shipFreeFrom > 0)
-                if (this.shipFreeFrom < this.getTotalPrice())
+                if (this.shipFreeFrom <= this.getTotalPrice())
                     this.shipping = 0.0;
 
             return (this.getTotalPrice() + this.shipping - parseFloat(this.giftCertPrice))>=0?(this.getTotalPrice() + this.shipping - parseFloat(this.giftCertPrice)):0;
@@ -649,9 +649,8 @@ function initShopPage(showWindow) {
         });
 
 
-        // change count
-        $('div.frame_change_count>button').click(function () {
-            pd = $(this).closest('div');
+        function chCountInCart($this) {
+            var pd = $this;
             var cartItem = new Shop.cartItem({
                 id:pd.data('prodid'),
                 vId:pd.data('varid'),
@@ -659,10 +658,11 @@ function initShopPage(showWindow) {
                 kit:pd.data('kit')
             });
 
-            if (checkProdStock && pd.closest('div.frame_count').find('input').data('max'))
+            if (checkProdStock && pd.closest('div.frame_count').find('input').val() >= pd.closest('div.frame_count').find('input').data('max'))
                 pd.closest('div.frame_count').find('input').val(pd.closest('div.frame_count').find('input').data('max'));
-            else
-                cartItem.count = pd.closest('div.frame_count').find('input').val();
+            //else
+
+            cartItem.count = pd.closest('div.frame_count').find('input').val();
 
 
             var word = cartItem.kit ? kits : pcs;
@@ -677,10 +677,21 @@ function initShopPage(showWindow) {
 
             $('#popupCartTotal').html(Shop.Cart.totalPrice.toFixed(pricePrecision));
             //
+        }
 
 
 
+        // change count
+        $('div.frame_change_count>button').die('click').live('click', function(){
+            chCountInCart($(this).closest('div'));
         });
+
+        $('div.frame_change_count+input[type=text]').die('keyup').live('keyup', function(){
+            chCountInCart($(this).prev('div'));
+        });
+
+
+
 
         if (typeof showWindow == 'undefined' || showWindow != false)
             $('#showCart').click();
