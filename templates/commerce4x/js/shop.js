@@ -1,9 +1,3 @@
-var inCart = 'Уже в корзине';
-var toCart = 'Купить';
-var pcs = 'шт.';
-var kits = 'компл.';
-//var curr = 'грн.';
-
 if (!Array.indexOf) {
   Array.prototype.indexOf = function (obj, start) {
     for (var i = (start || 0); i < this.length; i++) {
