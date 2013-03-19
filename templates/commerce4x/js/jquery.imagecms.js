@@ -1304,6 +1304,10 @@ function ieInput(els) {
                         else
                             $thisPrev.removeAttr('disabled');
                     })
+                    $this.die('keyup').live('keyup', function(){
+                        if (checkProdStock)
+                            $(this).maxValue();
+                    })
                 })
             }
         }
