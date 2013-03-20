@@ -28,7 +28,7 @@ if (strpos($_SERVER['REQUEST_URI'], 'index.php') !== false) {
     header("Location:http://" . $_SERVER['SERVER_NAME'] . "/page_not_found");
     exit;
 }
-define('ENVIRONMENT', 'production');
+define('ENVIRONMENT', 'development');
 /*
  * ---------------------------------------------------------------
  * ERROR REPORTING
