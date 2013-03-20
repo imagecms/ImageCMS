@@ -85,6 +85,17 @@
                             </div>
                             <a href="{shop_url('product/' . $product->geturl())}">{echo ShopCore::encode($product->getname())}</a>
                             <div class="price price_f-s_16">
+                                {if $product->hasDiscounts()}
+                                    <span class="d_b old_price">
+                                        <!--
+                                        "$model->firstVariant->toCurrency('OrigPrice')" or $model->firstVariant->getOrigPrice()
+                                        output price without discount
+                                         To display the number of abatement "$model->firstVariant->getNumDiscount()"
+                                        -->
+                                        <span class="f-w_b" id="priceOrigVariant">{echo $product->firstVariant->toCurrency('OrigPrice')} </span>
+                                        {$CS}
+                                    </span>                           
+                                {/if}
                                 <span class="f-w_b">
                                     {echo $product->firstVariant->toCurrency()}
                                 </span> 

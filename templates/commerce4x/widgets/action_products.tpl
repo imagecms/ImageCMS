@@ -42,6 +42,12 @@
 
                                 <!-- displaying products first variant price and currency symbol -->
                                 <div class="price price_f-s_16">
+                                    {if $hotProduct->hasDiscounts()}
+                                        <span class="d_b old_price">
+                                            <span class="f-w_b">{echo $hotProduct->firstVariant->toCurrency('OrigPrice')} </span>
+                                            {$CS}
+                                        </span>                           
+                                    {/if}
                                     <span class="f-w_b">
                                         {echo $hotProduct->firstVariant->toCurrency()}
                                     </span> {$CS}&nbsp;&nbsp;

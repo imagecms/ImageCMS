@@ -5,7 +5,7 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$BASE_URL}admin/widgets_manager/index/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_create')}</span></a>
+                <a href="{$BASE_URL}admin/widgets_manager/index/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
                 <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#wid_ed_form" data-submit><i class="icon-ok icon-white"></i>{lang('a_save')}</button>
                 <button type="button" class="btn btn-small formSubmit" data-form="#wid_ed_form" data-action="tomain"><i class="icon-check"></i>{lang('a_save_and_exit')}</button>
             </div>
