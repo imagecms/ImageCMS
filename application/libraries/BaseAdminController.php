@@ -54,17 +54,21 @@ class BaseAdminController extends MY_Controller {
     private function autoloadModules() {
         /** Search module with autoload */
         $query = $this->db
-                ->select('name')
-                ->where('autoload', 1)
-                ->get('components');
+            ->select('name')
+            ->where('autoload', 1)
+            ->get('components');
 
         if ($query) {
+            $moduleName = null;
             /** Run all Admin autoload method */
             foreach ($query->result_array() as $module) {
                 $moduleName = $module['name'];
-                Modules::load_file($moduleName, APPPATH . 'modules' . DS . $moduleName . DS);
-                if (method_exists($moduleName, 'adminAutoload'))
-                    $moduleName::adminAutoload();
+                Modules::load_file($moduleName, APPPATH . 'modules' . DIRECTORY_SEPARATOR . $moduleName . DIRECTORY_SEPARATOR);
+                $moduleName = ucfirst($moduleName);
+                if (class_exists($moduleName)) {
+                    if (method_exists($moduleName, 'adminAutoload'))
+                        $moduleName::adminAutoload();
+                }
             }
         }
     }
