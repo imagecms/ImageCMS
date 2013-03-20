@@ -134,7 +134,9 @@ class Admin extends BaseAdminController {
                     $image = $_POST['module_item_image'];
                 } elseif ($_POST['url_item_image']) {
                     $image = $_POST['url_item_image'];
-                }
+                } else
+                    $image = '';
+
 
 
                 if ($_POST['page_newpage']) {
