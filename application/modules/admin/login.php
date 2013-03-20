@@ -98,7 +98,7 @@ class Login extends BaseAdminController {
             if ($rezult == TRUE) {
                 $this->lib_admin->log(lang('ac_entered_in_cp_ip') . $this->input->ip_address());
 
-                redirect('admin/init', 'refresh');
+                redirect('admin/admin/init', 'refresh');
             } else {
                 $this->template->assign('login_failed', lang('ac_error_login'));
             }
