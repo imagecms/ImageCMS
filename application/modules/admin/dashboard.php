@@ -5,7 +5,7 @@ if (!defined('BASEPATH'))
 
 class Dashboard extends BaseAdminController {
 
-    public function __construct() {
+    public function __construct() { phpinfo();
         parent::__construct();
 
         $this->load->library('DX_Auth');
