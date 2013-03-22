@@ -87,8 +87,8 @@
                                 <!-- displaying products small mod image -->
                                 <div class="photo-block">
                                     <a href="{shop_url('product/'.$hotProduct->getUrl())}" class="photo">
-                                        <span class="helper"></span>
                                         <figure>
+                                            <span class="helper"></span>
                                             <img src="{productImageUrl($hotProduct->getSmallImage())}" 
                                                  alt="{echo ShopCore::encode($hotProduct->getName())} - {echo $hotProduct->getId()}"/>
                                         </figure>

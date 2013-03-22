@@ -225,63 +225,65 @@
                 </div>
                 <!-- End. Show content -->
             </div>
-
+            {$exists_brands = !$CI->uri->segment(1) || $CI->uri->segment(1) == 'shop';}
+            <div class="{if !$exists_brands}without_brand{/if} hFooter"></div>
+        </div>
+        <footer class="{if !$exists_brands}without_brand{/if}">
             <!-- Start Brands widget for Shop -->
-            {if !$CI->uri->segment(1) || $CI->uri->segment(1) == 'shop'}
+            {if $exists_brands}
                 {widget('brands')}
             {/if}
             <!-- End. Brands widget for Shop -->
-            <div class="hFooter"></div>
-        </div>
-        <footer>
-            <div class="container">
-                <div class="row-fluid">
-                    <div class="span5">
-                        <nav>
-                            {load_menu('footer_menu')}<!-- footer menu-->
-                        </nav>
-                    </div>
-                    <!-- Start. Block with contacts -->
-                    <div class="span4">
-                        <ul class="contacts_info">
-                            <li>
-                                <span class="icon-foot-phone"></span>
-                                <span class="f-w_b">{lang('s_tel')}:</span> 
-                                +8 (090) <span class="d_n">&minus;</span> 500-50-50, 
-                                +8 (100)<span class="d_n">&minus;</span> 500-50-50
-                            </li>
-                            <li>
-                                <span class="icon-foot-email"></span>
-                                <span class="f-w_b">{lang('s_email')}:</span> Info@imagecms.net
-                            </li>
-                            <li>
-                                <span class="icon-foot-skype"></span>
-                                <span class="f-w_b">{lang('s_skype')}:</span> ImageCMS
-                            </li>
-                            <!--Load star rating-->
-                            {$CI->load->module('star_rating')->show_star_rating()}
-                        </ul>
-                    </div>
-                    <!-- End. Block with contacts -->
-
-                    <!-- Start. Social buttons-->
-                    <div class="span3 t-a_r">
-                        <div class="copy_right">© ImageCMS, 2013</div>
-                        <div class="footer_social">
-                            <div class="social">
-                                <a href="#" class="mail"></a>
-                                <a href="#" class="g_plus"></a>
-                                <a href="#" class="facebook"></a>
-                                <a href="#" class="vkontakte"></a>
-                                <a href="#" class="twitter"></a>
-                                <a href="#" class="odnoklasniki"></a>
-                            </div>
+            <div class="frame_footer">
+                <div class="container">
+                    <div class="row-fluid">
+                        <div class="span5">
+                            <nav>
+                                {load_menu('footer_menu')}<!-- footer menu-->
+                            </nav>
                         </div>
-                        <a href="http://imagecms.net" target="_blank">{lang('s_footer_create')}</a><br/>
-                        {lang('s_footer_seo')}
-                    </div>
-                    <!--End-->
+                        <!-- Start. Block with contacts -->
+                        <div class="span4">
+                            <ul class="contacts_info">
+                                <li>
+                                    <span class="icon-foot-phone"></span>
+                                    <span class="f-w_b">{lang('s_tel')}:</span> 
+                                    +8 (090) <span class="d_n">&minus;</span> 500-50-50, 
+                                    +8 (100)<span class="d_n">&minus;</span> 500-50-50
+                                </li>
+                                <li>
+                                    <span class="icon-foot-email"></span>
+                                    <span class="f-w_b">{lang('s_email')}:</span> Info@imagecms.net
+                                </li>
+                                <li>
+                                    <span class="icon-foot-skype"></span>
+                                    <span class="f-w_b">{lang('s_skype')}:</span> ImageCMS
+                                </li>
+                                <!--Load star rating-->
+                                {$CI->load->module('star_rating')->show_star_rating()}
+                            </ul>
+                        </div>
+                        <!-- End. Block with contacts -->
 
+                        <!-- Start. Social buttons-->
+                        <div class="span3 t-a_r">
+                            <div class="copy_right">© ImageCMS, 2013</div>
+                            <div class="footer_social">
+                                <div class="social">
+                                    <a href="#" class="mail"></a>
+                                    <a href="#" class="g_plus"></a>
+                                    <a href="#" class="facebook"></a>
+                                    <a href="#" class="vkontakte"></a>
+                                    <a href="#" class="twitter"></a>
+                                    <a href="#" class="odnoklasniki"></a>
+                                </div>
+                            </div>
+                            <a href="http://imagecms.net" target="_blank">{lang('s_footer_create')}</a><br/>
+                            {lang('s_footer_seo')}
+                        </div>
+                        <!--End-->
+
+                    </div>
                 </div>
             </div>
         </footer>

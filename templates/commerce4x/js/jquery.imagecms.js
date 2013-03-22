@@ -1378,7 +1378,7 @@ function ieInput(els) {
 
             $thisVal = $this.val();
 
-            if ($thisVal >  $max-1) {
+            if ($thisVal >  $max) {
                 $this.val($max);
                 return true;
             }

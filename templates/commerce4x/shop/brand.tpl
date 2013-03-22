@@ -158,8 +158,8 @@
                         </div>
                         <div class="photo-block">
                             <a href="{shop_url('product/' . $product->getUrl())}" class="photo">
-                                <span class="helper"></span>
                                 <figure>
+                                    <span class="helper"></span>
                                     <img src="{productImageUrl($product->getmainimage())}" alt="{echo ShopCore::encode($product->getName())} - {echo $product->getid()}"/>
                                 </figure>
                             </a>
