@@ -204,8 +204,8 @@
                         <!-- Start. Photo block -->
                         <div class="photo-block">
                             <a class="photo" href="{shop_url('product/' . $p->getUrl())}">
-                                <span class="helper"></span>
                                 <figure>
+                                    <span class="helper"></span>
                                     <img src="{productImageUrl($p->getMainModimage())}" alt="{echo ShopCore::encode($p->name)} - {echo $p->getId()}" />
                                 </figure>
                             </a>

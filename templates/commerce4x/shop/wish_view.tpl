@@ -24,13 +24,6 @@
                 <ul class="items items_catalog itemsFrameNS">
                     {foreach $items as $key=>$item}
                         <li class="span3 {if $item.model->firstvariant->stock == 0} not-avail{/if}">
-                            <!-- Photo block-->
-                            <a href="{shop_url('product/' . $item.model->getUrl())}" class="photo">
-                                <span class="helper"></span>
-                                <figure class="w_150">
-                                    <img src="{productImageUrl($item.model->getMainModimage())}" alt="{echo ShopCore::encode($item.model->getName())}"/>
-                                </figure>
-                            </a>
                             <!-- Descritpion block -->
                             <div class="description">
                                 <div class="frame_response">
@@ -84,6 +77,15 @@
                                     {/if}
                                 {/if}
                                 <!-- End. Check is product available -->
+                            </div>
+                            <!-- Photo block-->
+                            <div class="photo-block">
+                                <a href="{shop_url('product/' . $item.model->getUrl())}" class="photo">
+                                    <figure>
+                                        <span class="helper"></span>
+                                        <img src="{productImageUrl($item.model->getMainModimage())}" alt="{echo ShopCore::encode($item.model->getName())}"/>
+                                    </figure>
+                                </a>
                             </div>
                         </li>
                     {/foreach}

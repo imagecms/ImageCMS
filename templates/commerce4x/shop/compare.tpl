@@ -66,12 +66,6 @@
                                                         <button class="btn btn_small btn_small_p"  onclick="Shop.CompareList.rm({echo $product->id}, this)">
                                                             <span class="icon-remove_comprasion"></span>
                                                         </button>
-                                                        <a href="{shop_url('product/' . $product->getUrl())}" class="photo">
-                                                            <span class="helper"></span>
-                                                            <figure>
-                                                                <img src="{productImageUrl($product->getSmallModimage())}" alt="{echo $product->id}"/>
-                                                            </figure>
-                                                        </a>
                                                         <!--Start. Product info -->
                                                         <div class="description">
                                                             <div class="frame_response">
@@ -129,6 +123,14 @@
                                                             </button>
                                                         </div>
                                                         <!-- End. Product info -->
+                                                        <div class="photo-block">
+                                                            <a href="{shop_url('product/' . $product->getUrl())}" class="photo">
+                                                                <figure>
+                                                                    <span class="helper"></span>
+                                                                    <img src="{productImageUrl($product->getSmallModimage())}" alt="{echo $product->id}"/>
+                                                                </figure>
+                                                            </a>
+                                                        </div>
                                                     </li>
                                                 </ul>
                                                 <!--Start. Product characteristics -->
