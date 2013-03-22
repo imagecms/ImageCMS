@@ -1,6 +1,6 @@
 <section class="mini-layout">
     <div class="frame_title clearfix">
-        <div class="pull-left">
+        <div class="pull-left">{gettext('a_email')}
             <span class="help-inline"></span>
             <span class="title w-s_n">Создание новой страницы</span>
         </div>

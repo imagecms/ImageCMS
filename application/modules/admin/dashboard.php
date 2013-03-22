@@ -5,7 +5,7 @@ if (!defined('BASEPATH'))
 
 class Dashboard extends BaseAdminController {
 
-    public function __construct() { phpinfo();
+    public function __construct() {
         parent::__construct();
 
         $this->load->library('DX_Auth');
@@ -13,6 +13,10 @@ class Dashboard extends BaseAdminController {
 
         $this->load->library('lib_admin');
         $this->lib_admin->init_settings();
+
+        $this->lang->load_gettext('ru','utf-8', 'default', 'application/language/admiin');
+        //$this->lang->load_gettext('en','utf-8', 'messages', 'application/language');
+        //$this->lang->load_gettext('en','utf-8', 'newdomen', 'application/language');
     }
 
     public function index() {

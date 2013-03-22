@@ -24,6 +24,7 @@ class MY_Lang extends MX_Lang {
 
     private $langPrefix = '';
     private $langSuffix = '_lang';
+    private $gettext = null;
 
 	/**
 	 * The constructor initialize the library
@@ -32,7 +33,38 @@ class MY_Lang extends MX_Lang {
 	 */
 	function __construct() {
 		parent::__construct();
+
+
+//        $this->ci = & get_instance();
+//
+//        $this->ci->load->library('gettext_php/gettext');
+
+
+
+//        $this->load->library('gettext_php/gettext_extension', array(
+//            'directory' => 'application/language/admin',
+//            'domain'    => 'messages',
+//            'locale'    => 'ru'
+//        ));
+//
+//        $this->gettext = $this->gettext_extension->getInstance('application/language/admin', 'messages', 'ru');
+//        unset($this->gettext_extension);
+
 	}
+
+    private function _init() {
+        if ( !isset($this->ci) )
+            $this->ci =& get_instance();
+
+
+        $this->ci->load->library('gettext_php/gettext_extension', array(
+//            'directory' => 'application/language',
+//            'domain'    => 'messages',
+//            'locale'    => 'ru'
+        ));
+        $this->gettext = & $this->ci->gettext_extension->getInstance('application/language', 'messages', 'ru');
+
+    }
 
 	private function _language() {
 		static $language;
@@ -62,6 +94,12 @@ class MY_Lang extends MX_Lang {
 	 * @return	mixed
 	 */
 	public function load($langfile = '', $idiom = '', $return = FALSE, $add_suffix = TRUE, $alt_path = '') {
+        //$this->gettext_php->
+
+        if ($this->gettext)
+            $this->_init();
+
+        if ($langfile!= 'comments')
 		return parent::load($langfile.$this->langSuffix, !empty($idiom) ? $idiom : $this->_language(), $return, $add_suffix, $alt_path);
 	}
 
@@ -88,11 +126,28 @@ class MY_Lang extends MX_Lang {
 		setlocale(LC_ALL, $this->gettext_language);
 
 		/* bind text domain */
-		$textdomain_path = bindtextdomain($this->gettext_domain, $this->gettext_path);
+
+            $lang = 'en';
+            $locale = 'en_US';
+
+        if (!setlocale (LC_ALL, $locale.'.utf8', $locale.'.utf-8', $locale.'.UTF8', $locale.'.UTF-8', $lang.'.utf-8', $lang.'.UTF-8', $lang)) {
+            // Set current locale
+            setlocale(LC_ALL, '');
+        }
+
+        putenv('LC_ALL='.$locale);
+        putenv('LANG='.$locale);
+        putenv('LANGUAGE='.$locale);
+
+		$textdomain_path = bindtextdomain($this->gettext_domain, $this->gettext_path); var_dump($textdomain_path);
 		bind_textdomain_codeset($this->gettext_domain, $this->gettext_codeset);
 		textdomain($this->gettext_domain);
 		log_message('debug', 'Gettext Class path: ' . $textdomain_path);
-		log_message('debug', 'Gettext Class the domain: ' . $this->gettext_domain);
+
+
+        log_message('debug', 'Gettext Class the domain: ' . $this->gettext_domain);
+
+        var_dump($this->gettext_domain);
 
 		return  true;
 	}
@@ -121,10 +176,14 @@ class MY_Lang extends MX_Lang {
 	*/
 	public function line($line = '', $params = FALSE)
 	{
-		if ( $params !== FALSE || FALSE === ($value = parent::line($line)) )
-			$value = $this->_trans( $line, $params );
+        if (!$this->gettext)
+            $this->_init();
+//		if ( $params !== FALSE || FALSE === ($value = parent::line($line)) )
+//			$value = $this->_trans( $line, $params );
+//
+//		return $value ? $value : $line;
 
-		return $value ? $value : $line;
+        return $this->gettext->gettext($line);
 	}
 
 	/**
