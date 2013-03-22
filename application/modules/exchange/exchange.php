@@ -19,10 +19,6 @@ class Exchange {
     private $settings_table = 'components';                     //table which contains module settings if modules is installed
     private $allowed_image_extensions = array();
 
-    public static function adminAutoload() {
-        
-    }
-
     public function __construct() {
         set_time_limit(0);
         $this->ci = &get_instance();
@@ -249,7 +245,6 @@ class Exchange {
             }
             //rename import xml file after import finished
             rename($this->tempDir . ShopCore::$_GET['filename'], $this->tempDir . "success_" . ShopCore::$_GET['filename']);
-
             //returns success status to 1c
             echo "success";
         }
@@ -257,6 +252,7 @@ class Exchange {
     }
 
     private function importCategories($data, $parent = null) {
+
         foreach ($data->Группа as $category) {
             //search category by external id
             $searchedCat = array();
@@ -353,6 +349,7 @@ class Exchange {
         elseif (isset($this->xml->Классификатор->Свойства->Свойство))
             $properties = $this->xml->Классификатор->Свойства->Свойство;
         foreach ($properties as $property) {
+
             //searching property by external id
             $searchedProperty = $this->ci->db->select('id, external_id')->where('external_id', $property->Ид . "")->get('shop_product_properties')->row_array();
             if (empty($searchedProperty)) {
@@ -373,6 +370,9 @@ class Exchange {
                     $data['active'] = true;
                 elseif ($property->ИспользованиеСвойства . "" == 'false')
                     $data['active'] = false;
+                if (count($property->ИспользованиеСвойства) == 0) 
+                    $data['active'] = true;
+                
                 $data['show_in_compare'] = false;
                 $data['show_on_site'] = true;
                 $data['show_in_filter'] = false;
@@ -388,6 +388,7 @@ class Exchange {
                 $i18n_data['name'] = $property->Наименование . "";
                 $i18n_data['locale'] = $this->locale;
                 $i18n_data['data'] = '';
+
 
                 //inserting data to i18n table
                 $this->ci->db->insert($this->properties_table . "_i18n", $i18n_data);
@@ -408,6 +409,9 @@ class Exchange {
                     $data['active'] = true;
                 elseif ($property->ИспользованиеСвойства . "" == 'false')
                     $data['active'] = false;
+                if (count($property->ИспользованиеСвойства) == 0) 
+                    $data['active'] = true;
+                
 
                 //updating property
                 $this->ci->db->where(array('id' => $searchedProperty['id'], 'external_id' => $searchedProperty['external_id']))->update($this->properties_table, $data);
@@ -441,7 +445,12 @@ class Exchange {
             $searchedProduct = array();
 
             //search product by external id
-            $searchedProduct = $this->ci->db->select('id')->where('external_id', $product->Ид . "")->get($this->products_table)->row_array();
+            $searchedProduct = $this->ci->db
+                    ->select('id')
+                    ->where('external_id', $product->Ид . "")
+                    ->get($this->products_table)
+                    ->row_array();
+
             if (empty($searchedProduct)) {
 
                 //product not found, should be inserted
@@ -480,6 +489,9 @@ class Exchange {
 
                 //setting images if $product->Картинка not empty
                 if ($product->Картинка . "" != '' OR $product->Картинка != null) {
+                    $image = explode('/', $product->Картинка);
+                    rename('./application/modules/shop/cmlTemp/images/' . $image[count($image) - 1], './application/modules/shop/cmlTemp/images/' . $product->Ид . '.jpg');
+
                     $data['mainImage'] = $insert_id . '_main.jpg';
                     $data['smallImage'] = $insert_id . '_small.jpg';
                     $data['mainModImage'] = $insert_id . '_mainMod.jpg';
@@ -595,12 +607,15 @@ class Exchange {
 
                 //setting images if $product->Картинка not empty
                 if ($product->Картинка . "" != '' OR $product->Картинка != null) {
+                    $image = explode('/', $product->Картинка);
+                    rename('./application/modules/shop/cmlTemp/images/' . $image[count($image) - 1], './application/modules/shop/cmlTemp/images/' . $product->Ид . '.jpg');
                     $data = array();
-                    $data['mainImage'] = $insert_id . '_main.jpg';
-                    $data['smallImage'] = $insert_id . '_small.jpg';
-                    $data['mainModImage'] = $insert_id . '_mainMod.jpg';
-                    $data['smallModImage'] = $insert_id . '_smallMod.jpg';
+                    $data['mainImage'] = $searchedProduct['id'] . '_main.jpg';
+                    $data['smallImage'] = $searchedProduct['id'] . '_small.jpg';
+                    $data['mainModImage'] = $searchedProduct['id'] . '_mainMod.jpg';
+                    $data['smallModImage'] = $searchedProduct['id'] . '_smallMod.jpg';
                 }
+
                 $this->ci->db->where('id', $searchedProduct['id'])->update($this->products_table, $data);
 
                 //preparing data for shop_products_i18n table

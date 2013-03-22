@@ -110,6 +110,7 @@
                     <!-- starts loop for array with products -->
                     {foreach $products as $product}
 
+                        {$product->firstVariant}
                         <!-- product block -->
                         <!-- check if product is in stock -->
                         <li class="{if (int)$product->getallstock() == 0}not-avail{/if} span3">
@@ -131,7 +132,17 @@
 
                                 <!-- displaying product name -->
                                 <a href="{shop_url('product/'.$product->getUrl())}">{echo ShopCore::encode($product->getName())}</a>
-
+                                {if $product->hasDiscounts()}
+                                    <span class="d_b old_price">
+                                        <!--
+                                        "$model->firstVariant->toCurrency('OrigPrice')" or $model->firstVariant->getOrigPrice()
+                                        output price without discount
+                                         To display the number of abatement "$model->firstVariant->getNumDiscount()"
+                                        -->
+                                        <span class="f-w_b" id="priceOrigVariant">{echo $product->firstVariant->toCurrency('OrigPrice')} </span>
+                                        {$CS}
+                                    </span>                           
+                                {/if}
                                 <!-- displaying products first variant price and currency symbol -->
                                 <div class="price price_f-s_16"><span class="f-w_b">{echo $product->firstVariant->toCurrency()}</span> {$CS}&nbsp;&nbsp;<span class="second_cash"></span></div>
 
