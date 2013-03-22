@@ -48,6 +48,8 @@
                 <a href="/admin/components/init_window/user_manager"  title="{lang('a_cancel_filter')}" type="button" class="btn btn-small pjax action_on  pull-right" style="margin-top:-26px; margin-bottom: 10px; margin-right: 3px;"><i class="icon-refresh"></i> {lang('a_cancel_filter')}</a>
                 <button type="button" class="btn btn-small disabled listFilterSubmitButton pull-right " style="margin-top:-26px; margin-right: 3px;" disabled="disabled"><i class="icon-filter"></i> {lang('a_filter_admin')}</button>
 
+                {lang('profiler_no_profiles')}
+
                 <form method="get" action="/admin/components/cp/user_manager/search/" id="ordersListFilter" class="listFilterForm">
                     <table class="table table-striped table-bordered table-hover table-condensed" style="clear: both;">
                         <thead>

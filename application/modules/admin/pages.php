@@ -21,6 +21,23 @@ class Pages extends BaseAdminController {
         $this->load->library('pagination');
         $this->load->library('lib_seo');
         $this->lib_admin->init_settings();
+
+
+//
+//        $this->load->library('gettext_php/gettext_extension', array(
+//            'directory' => 'application/language/admin',
+//            'domain'    => 'messages',
+//            'locale'    => 'ru'
+//        ));
+//
+//        $this->gettext = $this->gettext_extension->getInstance('application/language/admin', 'messages', 'ru');
+//        unset($this->gettext_extension);
+
+        //var_dump($this->gettext);
+
+        //var_dump($this->gettext->gettext('Page creation'));
+
+        //$this->lang->load_gettext('ru','utf-8', 'messages', 'application/language/admin');
     }
 
     function index($params = array()) {
