@@ -49,7 +49,7 @@
                         <label style="margin-bottom:50px">
                             {$lang_captcha}:<br/>
                             <div id="captcha">{$cap_image}</div>
-                            <a href="" onclick="ajax_div('captcha', '{$BASE_URL}/admin/login/update_captcha');
+                            <a href="" onclick="ajax_div('captcha', '{$BASE_URL}admin/login/update_captcha');
                                     return false;">{lang('a_code_refresh')}</a>
                             <input type="text" name="captcha" />{$captcha_error}
                         </label>
