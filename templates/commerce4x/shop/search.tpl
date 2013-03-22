@@ -17,6 +17,7 @@
 
 <!-- Start.Show search results block, if $totalProduct > 0 -->
 {if $totalProducts > 0}
+    <div class="container">
     <div class="row">
     <aside class="span3">
         <div class="filter">
@@ -236,6 +237,7 @@
             <!-- End pagination -->
             <!-- End. Search results block -->
         </div>
+    </div>
     </div>
     </div>
 {else:}

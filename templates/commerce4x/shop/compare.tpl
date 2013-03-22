@@ -59,6 +59,7 @@
                                 <ul class="comprasion_tovars_frame row itemsFrameNS">
                                     {foreach $products as $product}
                                         {if $product->category_id == $category['Id']}
+                                            {$product->firstVariant}
                                             <li class="span3">
                                                 <ul class="items items_catalog">
                                                     <li>

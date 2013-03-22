@@ -3,7 +3,7 @@
 * @file template for displaying login page
 */
 #}
-
+ 
 <!-- Adds meta tag for this page -->
 {$this->registerMeta('<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">')}
 <article class="container">
