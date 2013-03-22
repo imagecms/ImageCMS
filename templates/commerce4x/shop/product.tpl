@@ -33,8 +33,8 @@
                             {foreach $productImages as $key => $image}
                                 <li>
                                     <a rel="group" href="{echo $image->getThumbUrl()}" class="photo">
-                                        <span class="helper"></span>
                                         <figure>
+                                            <span class="helper"></span>
                                             <img src="{productImageUrl($image->getImageName())}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
                                         </figure>
                                     </a>                                
@@ -365,8 +365,8 @@
                                     <!--Photo and link to accessory Start-->
                                     <div class="photo-block">
                                         <a href="{shop_url('product/' . $p->getUrl())}" class="photo">
-                                            <span class="helper"></span>
                                             <figure>
+                                                <span class="helper"></span>
                                                 <img src="{productImageUrl($p->getSmallModImage())}" alt="{echo ShopCore::encode($p->getName())}"/>
                                             </figure>
                                         </a>
@@ -423,8 +423,8 @@
                                         </div>
                                         <div class="photo-block">
                                             <a href="{shop_url('product/' . $kitProducts->getMainProduct()->getUrl())}" class="photo">
-                                                <span class="helper"></span>
                                                 <figure>
+                                                    <span class="helper"></span>
                                                     <img src="{productImageUrl($kitProducts->getMainProduct()->getSmallModImage())}" alt="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}"/>
                                                 </figure>
                                             </a>
@@ -456,8 +456,8 @@
                                             </div>
                                             <div class="photo-block">
                                                 <a href="{shop_url('product/' . $kitProduct->getSProducts()->getUrl())}" class="photo">
-                                                    <span class="helper"></span>
                                                     <figure>
+                                                        <span class="helper"></span>
                                                         <img src="{productImageUrl($kitProduct->getSProducts()->getSmallModImage())}" alt="{echo ShopCore::encode($kitProduct->getSProducts()->getName())}"/>
                                                     </figure>
                                                 </a>

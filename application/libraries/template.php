@@ -100,7 +100,7 @@ class Template extends Mabilis {
 
     public function run_info() {
         /*         * ********************* */
-//        echo '<!--';
+        echo '<!--';
         echo '<div align="center">';
         echo 'Total Time:' . $this->CI->benchmark->elapsed_time('total_execution_time_start', 'total_execution_time_end') . ', ';
         echo 'Queries: ' . $this->CI->db->total_queries();
@@ -108,7 +108,7 @@ class Template extends Mabilis {
         echo ', Cache set: ' . $this->CI->cache->set;
         echo ', Memory Usage: ' . round(memory_get_usage() / 1024 / 1024, 4) . ' Mb';
         echo '</div>';
-//        echo ' -->';
+        echo ' -->';
         /*         * ********************* */
     }
 
@@ -216,19 +216,17 @@ class Template extends Mabilis {
 //        $result_js_before = '';
 //        $result_js_after = '';
         // split css files
-
         //self::$arr++;
 
         if (sizeof($this->_css_files) > 0) {
             foreach ($this->_css_files as $url => $pos) {
-                if (!in_array($url, self::$arr))
-                {
+                if (!in_array($url, self::$arr)) {
                     switch ($pos) {
                         case 'before':
-                            self::$result_before .= "<link data-arr=\"".count(self::$arr)*2 ."\" rel=\"stylesheet\" type=\"text/css\" href=\"$url\" />\n";
+                            self::$result_before .= "<link data-arr=\"" . count(self::$arr) * 2 . "\" rel=\"stylesheet\" type=\"text/css\" href=\"$url\" />\n";
                             break;
                         case 'after':
-                            self::$result_after .= "<link data-arr=\"".count(self::$arr)."\" rel=\"stylesheet\" type=\"text/css\" href=\"$url\" />\n";
+                            self::$result_after .= "<link data-arr=\"" . count(self::$arr) . "\" rel=\"stylesheet\" type=\"text/css\" href=\"$url\" />\n";
                             break;
                     }
                     self::$arr[] = $url;
@@ -239,8 +237,7 @@ class Template extends Mabilis {
         // split js files
         if (sizeof($this->_js_files) > 0) {
             foreach ($this->_js_files as $url => $pos) {
-                if (!in_array($url, self::$arr))
-                {
+                if (!in_array($url, self::$arr)) {
                     switch ($pos) {
                         case 'before':
                             self::$result_before .= "<script type=\"text/javascript\" src=\"$url\"></script>\n";
@@ -256,16 +253,19 @@ class Template extends Mabilis {
 
         if (sizeof($this->_js_script_files) > 0) {
             foreach ($this->_js_script_files as $script => $pos) {
-                switch ($pos) {
-                    case 'before':
-                        self::$result_before .= $script;
-                        break;
-                    case 'after':
-                        self::$result_after .= $script;
-                        break;
-                    default :
-                        self::$result_before .= $script;
-                        break;
+                if (!in_array($script, self::$arr)) {
+                    switch ($pos) {
+                        case 'before':
+                            self::$result_before .= $script;
+                            break;
+                        case 'after':
+                            self::$result_after .= $script;
+                            break;
+                        default :
+                            self::$result_before .= $script;
+                            break;
+                    }
+                    self::$arr[] = $script;
                 }
             }
         }
@@ -312,15 +312,15 @@ class Template extends Mabilis {
             if ($this->CI->input->is_ajax_request())
                 $tpl = self::$result_before . $tpl;
             else
-                if (!strstr($tpl, self::$result_before))
-                    $tpl = preg_replace('/\<\/head\>/', self::$result_before . '</head>' . "\n", $tpl, 1);
+            if (!strstr($tpl, self::$result_before))
+                $tpl = preg_replace('/\<\/head\>/', self::$result_before . '</head>' . "\n", $tpl, 1);
 
         if (self::$result_after)
             if ($this->CI->input->is_ajax_request())
                 $tpl .= self::$result_after;
             else
-                if (!strstr($tpl, self::$result_after))
-                    $tpl = preg_replace('/\<\/body\>/', self::$result_after."</body>\n", $tpl, 1);
+            if (!strstr($tpl, self::$result_after))
+                $tpl = preg_replace('/\<\/body\>/', self::$result_after . "</body>\n", $tpl, 1);
 
 //
 //        if ($result_js_before) {
