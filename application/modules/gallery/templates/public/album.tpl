@@ -33,9 +33,17 @@
 </div>
 
 <br />
+{$Comments = $CI->load->module('comments')->init()}
+<script type="text/javascript">
+    {literal}
+        $(function() {
+            renderPosts(this);
+        })
+    {/literal}
+</script>
 
-<div class="comments">
-    {$comments}
+<div id="comment">
+    <div id="for_comments" name="for_comments"></div>
 </div>
 
 <!-- Image info

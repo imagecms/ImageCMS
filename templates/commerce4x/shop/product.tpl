@@ -230,7 +230,7 @@
 
             <ul class="tabs clearfix">
                 <!-- Start. Show the block information if available -->
-                {if $model->getShortDescription()        != ''}
+                {if $model->getFullDescription()        != ''}
                     <li>
                         <button type="button" data-href="#info">
                             <span class="icon-info"></span>
@@ -283,10 +283,10 @@
 
             <div class="frame_tabs">
                 <!--Piece of information about the product Start-->
-                {if $model->getShortDescription() != ''}
+                {if $model->getFullDescription() != ''}
                     <div id="info">
                         <div class="text">
-                            {echo $model->getShortDescription()}                      
+                            {echo $model->getFullDescription()}                      
                         </div>
                     </div>
                 {/if}
