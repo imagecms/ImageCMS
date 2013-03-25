@@ -177,8 +177,8 @@
                 {/if}
                 </span>
             {/if}
-            {if $model->getShortDescription() != ''}
-                <p class="c_b">{echo $model->getShortDescription()}</p>
+            {if $model->getFullDescription() != ''}
+                <p class="c_b">{echo $model->getFullDescription()}</p>
             {/if}
             <div>
                 {echo $CI->load->module('share')->_make_like_buttons()}
