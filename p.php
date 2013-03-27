@@ -52,6 +52,9 @@ function myFn($iter, $f=false, $lang=false) {
                 preg_match_all('/lang\([\'"][\w\d_ ]*[\'"]\)/', $contents, $matches );
 
                 if (count($matches[0]) > 0) {
+
+                    //$f = fopen()
+                    $parsed = $contents;
                     foreach ($matches[0] as $matchedText) {
 
 //                        preg_match('/[\'"][\w\d_ ][\'"]/', $matchedText, $subMatch);
@@ -60,9 +63,19 @@ function myFn($iter, $f=false, $lang=false) {
 //                        var_dump($subMatch);
 //                        if (count($subMatch)) {
                         if (isset($lang[$str])) {
-                            echo '+++'.$matchedText."\n";
-                            echo '+++'.$str."\n\n";
-                            echo isset($lang[$str])?'>>>'.$lang[$str]:'';
+//                            echo '+++'.$matchedText."\n";
+//                            echo '+++'.$str."\n\n";
+//                            echo isset($lang[$str])?'>>>'.$lang[$str]:'';
+
+
+                            $newStr = 'lang("'.$lang[$str].'")';
+
+                            $parsed = str_replace($matchedText, $newStr, $parsed);
+
+
+//                            echo '+++'.$matchedText."\n";
+                            //echo '+++'.$newStr."\n\n";
+//                            echo isset($lang[$str])?'>>>'.$lang[$str]:'';
                         }
 //                        } else
 //                            echo '---'.$matchedText."\n\n";
@@ -71,6 +84,11 @@ function myFn($iter, $f=false, $lang=false) {
                     $phrases += count($matches[0]);
                     $files++;
                     //var_dump($matches[0]);
+
+                    $f = fopen($item->getPath() .'/'. $item->getFileName(), 'w');
+                    fwrite($f, $parsed);
+                    fclose($f);
+                    unset($f);
                 }
 
 
