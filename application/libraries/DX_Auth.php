@@ -35,7 +35,7 @@ class DX_Auth {
         $this->ci->load->config('auth');
 
         // Load DX Auth language
-        $this->ci->lang->load('dx_auth');
+//        $this->ci->lang->load('dx_auth');
 
         // Load DX Auth event
         $this->ci->load->library('DX_Auth_Event');

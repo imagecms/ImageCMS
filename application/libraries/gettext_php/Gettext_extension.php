@@ -38,8 +38,8 @@ class Gettext_Extension extends Gettext
     public function __construct($params)
     {
 
-        $locale = 'ru_RU';
-        $lang = 'ru_RU';
+        $lang = $params['locale'][0];
+        $locale = $params['locale'][1];
 
 
         if (!setlocale (LC_ALL, $locale.'.utf8', $locale.'.utf-8', $locale.'.UTF8', $locale.'.UTF-8', $lang.'.utf-8', $lang.'.UTF-8', $lang)) {
@@ -51,19 +51,35 @@ class Gettext_Extension extends Gettext
         putenv('LANG='.$locale);
         putenv('LANGUAGE='.$locale);
 
-
-
-        $arr = array($params);
-        //setlocale(LC_ALL, $params['locale']);
-        //$td = bindtextdomain($params['domain'], $params['directory']);
         bindtextdomain($params['domain'], 'application/language/admin');
-
-        var_dump($td);
-
         textdomain($params['domain']);
+    }
 
+    /**
+     * @param String $directory
+     * @param String $domain
+     * @param String $locale
+     * @return mixed|void
+     */
+    public function addDomain($directory, $domain, $locale)
+    {
+        $lang = $locale; //TODO: select lang by locale
 
-        var_dump($this->gettext('a_fail'));
+        if (!setlocale (LC_ALL, $locale.'.utf8', $locale.'.utf-8', $locale.'.UTF8', $locale.'.UTF-8', $lang.'.utf-8', $lang.'.UTF-8', $lang)) {
+            // Set current locale
+            setlocale(LC_ALL, '');
+        }
+
+        putenv('LC_ALL='.$locale);
+        putenv('LANG='.$locale);
+        putenv('LANGUAGE='.$locale);
+
+        bindtextdomain($domain, $directory);
+    }
+
+    public function switchDomain($directory, $domain, $locale) {
+        $this->addDomain($directory, $domain, $locale);
+        textdomain($domain);
     }
 
     /**

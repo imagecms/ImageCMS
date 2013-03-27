@@ -44,6 +44,7 @@ class Gettext_PHP extends Gettext
     protected $mofile;
     protected $translationTable = array();
     protected $parsed = false;
+    protected $domains = array();
 
     /**
      * Initialize a new gettext class
@@ -52,12 +53,24 @@ class Gettext_PHP extends Gettext
      */
     public function __construct($params)
     {
+        //var_dump($params);
         list($directory, $domain, $locale) = $params;
+        $this->mofile = sprintf("%s/%s/LC_MESSAGES/%s.mo", $directory, $locale, $domain);
+    }
 
-        $directory .='/admin';
+    /**
+     * @param String $directory
+     * @param String $domain
+     * @param String $locale
+     * @return mixed|void
+     */
+    public function addDomain($directory, $domain, $locale) {
+        $this->mofile = sprintf("%s/%s/LC_MESSAGES/%s.mo", $directory, $locale, $domain);
+        $this->parsed = false;
+    }
 
-        $this->mofile = sprintf("%s/%s/LC_MESSAGES/%s.mo", $directory,
-                            $locale, $domain);
+    public function switchDomain($directory, $domain, $locale) {
+        $this->addDomain($directory, $domain, $locale);
     }
 
     /**
@@ -252,6 +265,7 @@ class Gettext_PHP extends Gettext
         if (1 == $count) {
             return $msg;
         } else {
+
             return $msg_plural;
         }
     }

@@ -61,6 +61,16 @@ abstract class Gettext
      */
     public abstract function ngettext($msg1, $msg2, $count);
 
+
+    /**
+     * add new domain and bind some lang file to it
+     * @param String $directory Directory to search the mo files in
+     * @param String $domain    The current domain
+     * @param String $locale    The local
+     * @return mixed
+     */
+    public abstract function addDomain($directory, $domain, $locale);
+
     /**
      * Returns an instance of a gettext implementation depending on
      * the capabilities of the PHP installation. If the gettext extension
@@ -77,8 +87,8 @@ abstract class Gettext
     {
         $key = $directory . $domain . $locale;
         if (!isset(self::$instance[$key])) {
-//            if (extension_loaded('gettext')) {
-            if (0){
+            if (extension_loaded('gettext')) {
+//            if (0){
                 self::$instance[$key] = new Gettext_Extension(array($directory, $domain, $locale));
             } else {
                 self::$instance[$key] = new Gettext_PHP(array($directory, $domain, $locale));

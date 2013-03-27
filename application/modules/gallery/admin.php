@@ -62,6 +62,8 @@ class Admin extends BaseAdminController {
         if ($this->dx_auth->is_admin() == FALSE)
             exit;
 
+        $this->lang->load('gallery');
+
         $this->load->model('gallery_m');
         $this->init_settings();
 
