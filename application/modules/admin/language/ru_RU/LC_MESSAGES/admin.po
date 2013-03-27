@@ -1,0 +1,2255 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ImageCms\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-03-26 14:54+0300\n"
+"PO-Revision-Date: 2013-03-26 15:05+0300\n"
+"Last-Translator: koloda <koloda90@gmail.com>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: Russian\n"
+"X-Poedit-Country: UKRAINE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: /var/www/img/application/modules/admin\n"
+"X-Poedit-SearchPath-1: /var/www/img/templates/administrator\n"
+
+#: /var/www/img/application/modules/admin/widgets_manager.php:30
+#: /var/www/img/application/modules/admin/widgets_manager.php:81
+#: /var/www/img/application/modules/admin/widgets_manager.php:196
+msgid "ac_to_contin_work_set_perm"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/widgets_manager.php:91
+msgid "ac_widget_w_n_cr"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/widgets_manager.php:96
+#: /var/www/img/application/modules/admin/widgets_manager.php:160
+#: /var/www/img/application/modules/admin/widgets_manager.php:239
+#: /var/www/img/application/modules/admin/widgets_manager.php:270
+#: /var/www/img/application/modules/admin/pages.php:139
+#: /var/www/img/application/modules/admin/pages.php:468
+msgid "ac_val_desc"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/widgets_manager.php:97
+#: /var/www/img/application/modules/admin/widgets_manager.php:161
+#: /var/www/img/application/modules/admin/widgets_manager.php:240
+#: /var/www/img/application/modules/admin/widgets_manager.php:271
+#, fuzzy
+msgid "ac_val_name"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/admin/widgets_manager.php:98
+msgid "ac_val_module"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/widgets_manager.php:99
+msgid "ac_val_method"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/widgets_manager.php:144
+#: /var/www/img/application/modules/admin/widgets_manager.php:175
+msgid "ac_created_widget"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/widgets_manager.php:162
+#: /var/www/img/application/modules/admin/widgets_manager.php:272
+msgid "ac_val_html"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/widgets_manager.php:225
+#: /var/www/img/application/modules/admin/widgets_manager.php:298
+msgid "ac_err_wid_not_found"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/widgets_manager.php:255
+#: /var/www/img/application/modules/admin/widgets_manager.php:290
+msgid "ac_ch_widget"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/widgets_manager.php:257
+#: /var/www/img/application/modules/admin/widgets_manager.php:293
+msgid "ac_changes_saved"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/widgets_manager.php:327
+msgid "ac_wid_del"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/widgets_manager.php:329
+msgid "a_widget_success_delete"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/widgets_manager.php:442
+msgid "ac_core"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/components.php:98
+msgid "ac_istall"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/components.php:133
+msgid "ac_deinstall"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/components.php:137
+msgid "ac_deinstall_error"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/components.php:234
+msgid "ac_module_sett_changed"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/components.php:324
+msgid "ac_author"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/components.php:324
+msgid "ac_version"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/components.php:328
+msgid "ac_cant_load_module_into_file"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/components.php:395
+msgid "a_positions_updated"
+msgstr "Позиція змінена"
+
+#: /var/www/img/application/modules/admin/components.php:397
+msgid "a_fail"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/components.php:411
+msgid "a_changes_saved"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/admin_search.php:91
+#: /var/www/img/application/modules/admin/admin_search.php:220
+msgid "first_link"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/admin_search.php:92
+#: /var/www/img/application/modules/admin/admin_search.php:221
+msgid "last_link"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/mod_search.php:96
+msgid "ac_error_not_found"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/mod_search.php:123
+#: /var/www/img/application/modules/admin/sys_upgrade.php:32
+msgid "ac_ftp_fun_dis"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/mod_search.php:140
+#: /var/www/img/application/modules/admin/sys_upgrade.php:62
+msgid "ac_err_conn_to_serv"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/mod_search.php:167
+msgid "ac_wrong_path_to_root"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/mod_search.php:182
+msgid "ac_error_down_file"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/mod_search.php:207
+#: /var/www/img/application/modules/admin/mod_search.php:287
+msgid "ac_error_cr_temp_dir"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/mod_search.php:231
+msgid "ac_to_continue"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/mod_search.php:231
+msgid "ac_atten"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/mod_search.php:237
+#: /var/www/img/application/modules/admin/mod_search.php:268
+#: /var/www/img/application/modules/admin/sys_upgrade.php:129
+msgid "ac_error_extract"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/mod_search.php:248
+#: /var/www/img/application/modules/admin/mod_search.php:296
+msgid "ac_error_install_module"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/mod_search.php:258
+#: /var/www/img/application/modules/admin/mod_search.php:306
+msgid "ac_module_installed"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:108
+msgid "ac_delete_page"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:136
+#: /var/www/img/application/modules/admin/pages.php:464
+msgid "ac_val_t"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:137
+#: /var/www/img/application/modules/admin/pages.php:465
+msgid "ac_val_url"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:138
+#: /var/www/img/application/modules/admin/pages.php:467
+msgid "ac_val_prev_cont"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:140
+#: /var/www/img/application/modules/admin/pages.php:469
+msgid "ac_val_page_tpl"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:141
+#: /var/www/img/application/modules/admin/pages.php:471
+msgid "ac_val_cr_date"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:142
+#: /var/www/img/application/modules/admin/pages.php:472
+msgid "ac_val_time_cr"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:143
+#: /var/www/img/application/modules/admin/pages.php:473
+#, fuzzy
+msgid "ac_val_pub_date"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/admin/pages.php:144
+#: /var/www/img/application/modules/admin/pages.php:474
+msgid "ac_val_pub_time"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:146
+msgid "ac_main_tpl"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:173
+#: /var/www/img/application/modules/admin/pages.php:503
+msgid "ac_modul_exists"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:182
+#: /var/www/img/application/modules/admin/pages.php:512
+msgid "ac_category_exists"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:194
+msgid "ac_page_is_al_cr"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:258
+msgid "ac_created_page"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:268
+msgid "ac_page_created"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:318
+msgid "ac_page"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:318
+msgid "ac_not_found"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:442
+msgid "ac_page_in_language"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:442
+#, fuzzy
+msgid "ac_creat"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/admin/pages.php:466
+msgid "ac_val_keywords"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:470
+msgid "ac_val_main_page_tpl"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:526
+msgid "ac_page_with_url"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:526
+msgid "ac_in_cat_id"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:526
+msgid "ac_allready_exist"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:584
+msgid "ac_changed_page"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:594
+#, fuzzy
+msgid "ac_page_cont_updated"
+msgstr "Позиція змінена"
+
+#: /var/www/img/application/modules/admin/pages.php:613
+msgid "ac_error_deleting_main_cat"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:631
+#: /var/www/img/application/modules/admin/pages.php:648
+msgid "ac_page_deleted"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:833
+msgid "ac_empty_string"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/sys_upgrade.php:48
+msgid "ac_ur_usign_last_ver"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/sys_upgrade.php:48
+msgid "ac_congrat"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/sys_upgrade.php:85
+msgid "ac_err_wrong_path_to_root"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/sys_upgrade.php:96
+msgid "ac_err_down_update_files"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/sys_upgrade.php:162
+msgid "ac_update_completed"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/backup.php:42
+msgid "ac_msg_dir"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/backup.php:82
+msgid "ac_backup_copy"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/backup.php:113
+msgid "ac_backup_complete"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/login.php:73
+msgid "a_email"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/login.php:74
+msgid "a_password"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/login.php:84
+msgid "ac_lang_captcha"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/login.php:99
+msgid "ac_entered_in_cp_ip"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/login.php:103
+msgid "ac_error_login"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/login.php:119
+msgid "lang_username_or_mail"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/login.php:123
+msgid "lang_acc_mail_sent"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/login.php:145
+#: /var/www/img/application/modules/admin/login.php:149
+msgid "ac_lang_captcha_error"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/settings.php:124
+msgid "ac_page_not_found"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/settings.php:168
+msgid "ac_changed_site_sett"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/settings.php:171
+#, fuzzy
+msgid "ac_sett_saved"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/admin/admin.php:57
+msgid "ac_cleaned_cache"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/admin.php:63
+msgid "ac_files_deleted"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/admin.php:65
+#: /var/www/img/application/modules/admin/admin.php:73
+msgid "ac_cache_cleared"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/admin.php:71
+msgid "ac_old_files_deleted"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/admin.php:155
+msgid "ac_admin_panel_exit"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/languages.php:47
+#: /var/www/img/application/modules/admin/languages.php:105
+#: /var/www/img/application/modules/admin/categories.php:126
+#: /var/www/img/application/modules/admin/categories.php:293
+#: /var/www/img/application/modules/admin/categories.php:411
+msgid "ac_val_title"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/languages.php:48
+#: /var/www/img/application/modules/admin/languages.php:106
+msgid "ac_val_identif"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/languages.php:49
+#: /var/www/img/application/modules/admin/languages.php:107
+#: /var/www/img/application/modules/admin/categories.php:128
+#: /var/www/img/application/modules/admin/categories.php:412
+#, fuzzy
+msgid "ac_val_image"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/admin/languages.php:50
+#: /var/www/img/application/modules/admin/languages.php:108
+msgid "ac_val_folder"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/languages.php:51
+#: /var/www/img/application/modules/admin/languages.php:109
+#: /var/www/img/application/modules/admin/categories.php:135
+msgid "ac_val_template"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/languages.php:70
+msgid "ac_cr_language"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/languages.php:74
+msgid "ac_language_created"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/languages.php:128
+msgid "ac_changed_language"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/languages.php:155
+#: /var/www/img/application/modules/admin/languages.php:171
+msgid "ac_cant_delete_language"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/languages.php:155
+#: /var/www/img/application/modules/admin/languages.php:171
+msgid "ac_block"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/languages.php:163
+#: /var/www/img/application/modules/admin/languages.php:183
+msgid "ac_delete_language"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/languages.php:185
+msgid "ac_language_deleted"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/languages.php:206
+msgid "ac_set_language"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/languages.php:206
+#, fuzzy
+msgid "ac_by_default"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/admin/languages.php:208
+msgid "ac_def_lang_is_set"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:127
+msgid "ac_val_cat_url"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:129
+#, fuzzy
+msgid "ac_val_position"
+msgstr "Позиція"
+
+#: /var/www/img/application/modules/admin/categories.php:130
+#: /var/www/img/application/modules/admin/categories.php:294
+msgid "ac_val_parent"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:133
+#: /var/www/img/application/modules/admin/categories.php:415
+msgid "ac_val_short_desc"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:134
+msgid "ac_val_tit"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:137
+msgid "ac_val_main_tpl"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:138
+msgid "ac_val_per_page"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:205
+#: /var/www/img/application/modules/admin/categories.php:346
+msgid "ac_cr_cat"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:213
+msgid "ac_cat"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:213
+#, fuzzy
+msgid "ac_created"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/admin/categories.php:244
+msgid "ac_changed_cat"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:365
+msgid "ac_categor"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:366
+msgid "ac_no"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:416
+msgid "ac_val_meta_title"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:439
+msgid "ac_create_cat_trans"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:448
+msgid "ac_changed_cat_trans"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:460
+msgid "a_categ_translate_upda"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:518
+msgid "ac_delete_cat_err"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:518
+msgid "ac_error"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:529
+#: /var/www/img/application/modules/admin/categories.php:561
+msgid "ac_delete_cat"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:587
+msgid "ac_cat_deleted"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3
+msgid "a_url_access_on"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:7
+#: /var/www/img/templates/administrator/_out.php:3644
+msgid "a_autoload"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:11
+msgid "a_add_to_menu"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:16
+#: /var/www/img/templates/administrator/_out.php:28
+#: /var/www/img/templates/administrator/_out.php:101
+#: /var/www/img/templates/administrator/_out.php:486
+#: /var/www/img/templates/administrator/_out.php:1033
+#: /var/www/img/templates/administrator/_out.php:1101
+#: /var/www/img/templates/administrator/_out.php:1224
+#: /var/www/img/templates/administrator/_out.php:1396
+#: /var/www/img/templates/administrator/_out.php:1789
+#: /var/www/img/templates/administrator/_out.php:1884
+#: /var/www/img/templates/administrator/_out.php:1931
+#: /var/www/img/templates/administrator/_out.php:2693
+#: /var/www/img/templates/administrator/_out.php:3070
+#: /var/www/img/templates/administrator/_out.php:3465
+#: /var/www/img/templates/administrator/_out.php:3755
+#: /var/www/img/templates/administrator/_out.php:4530
+#: /var/www/img/templates/administrator/_out.php:5379
+#, fuzzy
+msgid "a_save"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:23
+#: /var/www/img/templates/administrator/_out.php:3460
+msgid "a_role_edit"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:27
+#: /var/www/img/templates/administrator/_out.php:485
+#: /var/www/img/templates/administrator/_out.php:1100
+#: /var/www/img/templates/administrator/_out.php:2784
+#: /var/www/img/templates/administrator/_out.php:3069
+#: /var/www/img/templates/administrator/_out.php:3464
+#: /var/www/img/templates/administrator/_out.php:3754
+msgid "a_back"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:29
+#: /var/www/img/templates/administrator/_out.php:1034
+#: /var/www/img/templates/administrator/_out.php:1102
+#: /var/www/img/templates/administrator/_out.php:3071
+#: /var/www/img/templates/administrator/_out.php:3466
+msgid "a_footer_save_exit"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:34
+#: /var/www/img/templates/administrator/_out.php:40
+#: /var/www/img/templates/administrator/_out.php:1401
+#: /var/www/img/templates/administrator/_out.php:1407
+#: /var/www/img/templates/administrator/_out.php:1936
+#: /var/www/img/templates/administrator/_out.php:1942
+#: /var/www/img/templates/administrator/_out.php:2701
+#: /var/www/img/templates/administrator/_out.php:2711
+#: /var/www/img/templates/administrator/_out.php:3473
+#: /var/www/img/templates/administrator/_out.php:3482
+#: /var/www/img/templates/administrator/_out.php:4539
+#: /var/www/img/templates/administrator/_out.php:4549
+#: /var/www/img/templates/administrator/_out.php:5671
+msgid "a_english"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:34
+#: /var/www/img/templates/administrator/_out.php:40
+#: /var/www/img/templates/administrator/_out.php:1401
+#: /var/www/img/templates/administrator/_out.php:1407
+#: /var/www/img/templates/administrator/_out.php:1936
+#: /var/www/img/templates/administrator/_out.php:1942
+#: /var/www/img/templates/administrator/_out.php:2701
+#: /var/www/img/templates/administrator/_out.php:2711
+#: /var/www/img/templates/administrator/_out.php:3473
+#: /var/www/img/templates/administrator/_out.php:3482
+#: /var/www/img/templates/administrator/_out.php:4539
+#: /var/www/img/templates/administrator/_out.php:4549
+#: /var/www/img/templates/administrator/_out.php:5672
+msgid "a_russian"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:59
+#: /var/www/img/templates/administrator/_out.php:497
+#: /var/www/img/templates/administrator/_out.php:602
+#: /var/www/img/templates/administrator/_out.php:1046
+#: /var/www/img/templates/administrator/_out.php:1424
+#: /var/www/img/templates/administrator/_out.php:1894
+#: /var/www/img/templates/administrator/_out.php:1959
+#: /var/www/img/templates/administrator/_out.php:2012
+#: /var/www/img/templates/administrator/_out.php:2064
+#: /var/www/img/templates/administrator/_out.php:2174
+#: /var/www/img/templates/administrator/_out.php:2729
+#: /var/www/img/templates/administrator/_out.php:3496
+#: /var/www/img/templates/administrator/_out.php:3784
+#: /var/www/img/templates/administrator/_out.php:3866
+#: /var/www/img/templates/administrator/_out.php:4126
+#: /var/www/img/templates/administrator/_out.php:4223
+#: /var/www/img/templates/administrator/_out.php:4294
+#: /var/www/img/templates/administrator/_out.php:4567
+#: /var/www/img/templates/administrator/_out.php:5393
+msgid "a_param"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:69
+#: /var/www/img/templates/administrator/_out.php:3512
+msgid "a_description"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:96
+msgid "a_sett_global_sett_menu"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:100
+#: /var/www/img/templates/administrator/_out.php:1788
+#: /var/www/img/templates/administrator/_out.php:2051
+#: /var/www/img/templates/administrator/_out.php:4113
+msgid "a_return"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:108
+#: /var/www/img/templates/administrator/_out.php:122
+#: /var/www/img/templates/administrator/_out.php:1505
+#: /var/www/img/templates/administrator/_out.php:1542
+#: /var/www/img/templates/administrator/_out.php:1801
+#: /var/www/img/templates/administrator/_out.php:3786
+#: /var/www/img/templates/administrator/_out.php:3989
+#: /var/www/img/templates/administrator/_out.php:4225
+#: /var/www/img/templates/administrator/_out.php:4409
+#, fuzzy
+msgid "a_sett"
+msgstr "Позиція"
+
+#: /var/www/img/templates/administrator/_out.php:110
+#: /var/www/img/templates/administrator/_out.php:283
+msgid "a_main_page"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:133
+#: /var/www/img/templates/administrator/_out.php:357
+msgid "a_site_title"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:140
+msgid "a_site_shutdown"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:148
+msgid "a_site_offline_help"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:154
+msgid "a_lang_select"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:166
+#: /var/www/img/templates/administrator/_out.php:1856
+#: /var/www/img/templates/administrator/_out.php:4180
+#: /var/www/img/templates/administrator/_out.php:4679
+msgid "a_tpl"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:220
+msgid "a_short_title"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:227
+#: /var/www/img/templates/administrator/_out.php:513
+#: /var/www/img/templates/administrator/_out.php:618
+#: /var/www/img/templates/administrator/_out.php:1061
+#: /var/www/img/templates/administrator/_out.php:1171
+#: /var/www/img/templates/administrator/_out.php:1217
+#: /var/www/img/templates/administrator/_out.php:1433
+#: /var/www/img/templates/administrator/_out.php:1504
+#: /var/www/img/templates/administrator/_out.php:1621
+#: /var/www/img/templates/administrator/_out.php:1910
+#: /var/www/img/templates/administrator/_out.php:1968
+#: /var/www/img/templates/administrator/_out.php:1991
+#: /var/www/img/templates/administrator/_out.php:2023
+#: /var/www/img/templates/administrator/_out.php:2079
+#: /var/www/img/templates/administrator/_out.php:2121
+#: /var/www/img/templates/administrator/_out.php:2744
+#: /var/www/img/templates/administrator/_out.php:2908
+#: /var/www/img/templates/administrator/_out.php:3214
+#: /var/www/img/templates/administrator/_out.php:3421
+#: /var/www/img/templates/administrator/_out.php:3642
+#: /var/www/img/templates/administrator/_out.php:3710
+#: /var/www/img/templates/administrator/_out.php:4582
+#: /var/www/img/templates/administrator/_out.php:4952
+#: /var/www/img/templates/administrator/_out.php:5008
+#: /var/www/img/templates/administrator/_out.php:5409
+msgid "a_desc"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:234
+msgid "a_key_words"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:241
+msgid "a_google_id"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:245
+msgid "a_code_in_google"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:250
+msgid "a_W_G"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:257
+msgid "a_Y_W"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:264
+msgid "a_yandex_metric"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:295
+#: /var/www/img/templates/administrator/_out.php:662
+#: /var/www/img/templates/administrator/_out.php:708
+#: /var/www/img/templates/administrator/_out.php:835
+#: /var/www/img/templates/administrator/_out.php:926
+#: /var/www/img/templates/administrator/_out.php:3810
+#: /var/www/img/templates/administrator/_out.php:4245
+#: /var/www/img/templates/administrator/_out.php:5229
+msgid "a_category"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:307
+msgid "a_page"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:312
+msgid "a_page_id"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:317
+#: /var/www/img/templates/administrator/_out.php:1532
+#: /var/www/img/templates/administrator/_out.php:2089
+#: /var/www/img/templates/administrator/_out.php:3641
+#: /var/www/img/templates/administrator/_out.php:3709
+msgid "a_module"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:345
+#: /var/www/img/templates/administrator/_out.php:2794
+#: /var/www/img/templates/administrator/_out.php:3018
+#: /var/www/img/templates/administrator/_out.php:3101
+#: /var/www/img/templates/administrator/_out.php:3329
+msgid "a_meta_tags"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:360
+#: /var/www/img/templates/administrator/_out.php:373
+#, fuzzy
+msgid "a_yes"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:361
+#: /var/www/img/templates/administrator/_out.php:374
+#: /var/www/img/templates/administrator/_out.php:1287
+#: /var/www/img/templates/administrator/_out.php:1373
+#: /var/www/img/templates/administrator/_out.php:2839
+#: /var/www/img/templates/administrator/_out.php:2850
+#: /var/www/img/templates/administrator/_out.php:2871
+#: /var/www/img/templates/administrator/_out.php:3143
+#: /var/www/img/templates/administrator/_out.php:3154
+#: /var/www/img/templates/administrator/_out.php:3174
+#: /var/www/img/templates/administrator/_out.php:3816
+#: /var/www/img/templates/administrator/_out.php:4087
+#: /var/www/img/templates/administrator/_out.php:4251
+#: /var/www/img/templates/administrator/_out.php:4504
+msgid "a_no"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:370
+#, fuzzy
+msgid "a_cat_name"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:383
+msgid "a_separator"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:390
+#: /var/www/img/templates/administrator/_out.php:1187
+#: /var/www/img/templates/administrator/_out.php:3038
+#: /var/www/img/templates/administrator/_out.php:3348
+#: /var/www/img/templates/administrator/_out.php:3922
+#: /var/www/img/templates/administrator/_out.php:4345
+msgid "a_meta_keywords"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:393
+#: /var/www/img/templates/administrator/_out.php:405
+msgid "a_auto_form"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:394
+#: /var/www/img/templates/administrator/_out.php:406
+msgid "a_leave_empty"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:397
+msgid "a_if_not_pointed"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:402
+#: /var/www/img/templates/administrator/_out.php:1182
+#: /var/www/img/templates/administrator/_out.php:3033
+#: /var/www/img/templates/administrator/_out.php:3343
+#: /var/www/img/templates/administrator/_out.php:3912
+#: /var/www/img/templates/administrator/_out.php:4335
+#, fuzzy
+msgid "a_meta_description"
+msgstr "Позиція"
+
+#: /var/www/img/templates/administrator/_out.php:409
+msgid "a_if_not_pointed1"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:436
+#: /var/www/img/templates/administrator/_out.php:437
+#: /var/www/img/templates/administrator/_out.php:2502
+#: /var/www/img/templates/administrator/_out.php:2503
+#: /var/www/img/templates/administrator/_out.php:4723
+#: /var/www/img/templates/administrator/_out.php:4724
+#: /var/www/img/templates/administrator/_out.php:4886
+#: /var/www/img/templates/administrator/_out.php:4887
+#: /var/www/img/templates/administrator/_out.php:5472
+#: /var/www/img/templates/administrator/_out.php:5474
+msgid "a_controll_panel"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:448
+#: /var/www/img/templates/administrator/_out.php:4740
+#: /var/www/img/templates/administrator/_out.php:4901
+msgid "a_delete_install"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:455
+msgid "lang_forgot_password"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:468
+msgid "a_send_f"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:469
+msgid "s_log_out"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:481
+#, fuzzy
+msgid "a_role_create"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:487
+#: /var/www/img/templates/administrator/_out.php:1397
+#: /var/www/img/templates/administrator/_out.php:1790
+#: /var/www/img/templates/administrator/_out.php:1885
+#: /var/www/img/templates/administrator/_out.php:2053
+#: /var/www/img/templates/administrator/_out.php:2694
+#: /var/www/img/templates/administrator/_out.php:3756
+#: /var/www/img/templates/administrator/_out.php:4216
+#, fuzzy
+msgid "a_save_and_exit"
+msgstr "Позиція"
+
+#: /var/www/img/templates/administrator/_out.php:507
+#: /var/www/img/templates/administrator/_out.php:1055
+#: /var/www/img/templates/administrator/_out.php:1150
+#: /var/www/img/templates/administrator/_out.php:1209
+#: /var/www/img/templates/administrator/_out.php:1813
+#: /var/www/img/templates/administrator/_out.php:1989
+#: /var/www/img/templates/administrator/_out.php:2015
+#: /var/www/img/templates/administrator/_out.php:2120
+#: /var/www/img/templates/administrator/_out.php:2738
+#: /var/www/img/templates/administrator/_out.php:2814
+#: /var/www/img/templates/administrator/_out.php:3121
+#: /var/www/img/templates/administrator/_out.php:3420
+#: /var/www/img/templates/administrator/_out.php:3506
+#: /var/www/img/templates/administrator/_out.php:4074
+#: /var/www/img/templates/administrator/_out.php:4136
+#: /var/www/img/templates/administrator/_out.php:4491
+#: /var/www/img/templates/administrator/_out.php:4576
+#: /var/www/img/templates/administrator/_out.php:4676
+#: /var/www/img/templates/administrator/_out.php:4951
+#: /var/www/img/templates/administrator/_out.php:5402
+#, fuzzy
+msgid "a_name"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:519
+#: /var/www/img/templates/administrator/_out.php:3524
+msgid "a_imp_rbak"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:584
+#: /var/www/img/templates/administrator/_out.php:1879
+msgid "a_widget_edit"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:612
+#: /var/www/img/templates/administrator/_out.php:1365
+#: /var/www/img/templates/administrator/_out.php:1502
+#: /var/www/img/templates/administrator/_out.php:1619
+#: /var/www/img/templates/administrator/_out.php:1903
+#: /var/www/img/templates/administrator/_out.php:2073
+#, fuzzy
+msgid "a_n"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:621
+#: /var/www/img/templates/administrator/_out.php:1913
+#: /var/www/img/templates/administrator/_out.php:2082
+msgid "a_short_widget_desc"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:646
+msgid "a_tools_panel"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:650
+#: /var/www/img/templates/administrator/_out.php:874
+#: /var/www/img/templates/administrator/_out.php:875
+#, fuzzy
+msgid "a_create_page"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:651
+#: /var/www/img/templates/administrator/_out.php:2779
+#: /var/www/img/templates/administrator/_out.php:2785
+#: /var/www/img/templates/administrator/_out.php:3813
+#: /var/www/img/templates/administrator/_out.php:4067
+#: /var/www/img/templates/administrator/_out.php:4248
+#: /var/www/img/templates/administrator/_out.php:4484
+#, fuzzy
+msgid "a_create_cat"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:657
+#, fuzzy
+msgid "a_new_pages"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:660
+#: /var/www/img/templates/administrator/_out.php:706
+#: /var/www/img/templates/administrator/_out.php:924
+#: /var/www/img/templates/administrator/_out.php:3826
+#: /var/www/img/templates/administrator/_out.php:4259
+#: /var/www/img/templates/administrator/_out.php:5125
+#: /var/www/img/templates/administrator/_out.php:5249
+msgid "a_title"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:664
+#: /var/www/img/templates/administrator/_out.php:710
+#: /var/www/img/templates/administrator/_out.php:4012
+#: /var/www/img/templates/administrator/_out.php:4434
+msgid "a_date_and_time_cr"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:673
+#: /var/www/img/templates/administrator/_out.php:685
+#: /var/www/img/templates/administrator/_out.php:719
+#: /var/www/img/templates/administrator/_out.php:731
+#: /var/www/img/templates/administrator/_out.php:970
+#: /var/www/img/templates/administrator/_out.php:1391
+#: /var/www/img/templates/administrator/_out.php:1527
+#: /var/www/img/templates/administrator/_out.php:2325
+#: /var/www/img/templates/administrator/_out.php:2359
+#: /var/www/img/templates/administrator/_out.php:2611
+#: /var/www/img/templates/administrator/_out.php:2688
+#: /var/www/img/templates/administrator/_out.php:4694
+msgid "a_edit"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:703
+msgid "a_updated_pages"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:753
+#: /var/www/img/templates/administrator/_out.php:2363
+#: /var/www/img/templates/administrator/_out.php:2645
+msgid "a_system"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:759
+#: /var/www/img/templates/administrator/_out.php:1261
+#: /var/www/img/templates/administrator/_out.php:1620
+#: /var/www/img/templates/administrator/_out.php:3711
+#: /var/www/img/templates/administrator/_out.php:5015
+#: /var/www/img/templates/administrator/_out.php:5677
+msgid "a_version"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:761
+msgid "a_updates_to_version"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:763
+#, fuzzy
+msgid "a_no_updates"
+msgstr "Позиція змінена"
+
+#: /var/www/img/templates/administrator/_out.php:766
+#: /var/www/img/templates/administrator/_out.php:1139
+#: /var/www/img/templates/administrator/_out.php:3111
+msgid "a_info"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:774
+msgid "a_stat"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:780
+#: /var/www/img/templates/administrator/_out.php:5108
+#: /var/www/img/templates/administrator/_out.php:5251
+#, fuzzy
+msgid "a_pages"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:781
+msgid "a_cats"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:782
+msgid "a_comments"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:791
+#: /var/www/img/templates/administrator/_out.php:5553
+msgid "a_last_comm"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:812
+msgid "a_cms_news"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:832
+msgid "a_copy_move_title"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:837
+#: /var/www/img/templates/administrator/_out.php:883
+#: /var/www/img/templates/administrator/_out.php:978
+#: /var/www/img/templates/administrator/_out.php:2315
+#: /var/www/img/templates/administrator/_out.php:2603
+msgid "a_without_cat"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:842
+#: /var/www/img/templates/administrator/_out.php:856
+#: /var/www/img/templates/administrator/_out.php:1294
+#: /var/www/img/templates/administrator/_out.php:1465
+#: /var/www/img/templates/administrator/_out.php:3600
+#: /var/www/img/templates/administrator/_out.php:4642
+#: /var/www/img/templates/administrator/_out.php:5215
+#: /var/www/img/templates/administrator/_out.php:5695
+#, fuzzy
+msgid "a_cancel"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:843
+msgid "a_submit"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:850
+msgid "a_delete_pages_title"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:853
+msgid "a_delete_pages_promt"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:857
+#: /var/www/img/templates/administrator/_out.php:873
+#: /var/www/img/templates/administrator/_out.php:1464
+#: /var/www/img/templates/administrator/_out.php:1478
+#: /var/www/img/templates/administrator/_out.php:1715
+#: /var/www/img/templates/administrator/_out.php:1777
+#: /var/www/img/templates/administrator/_out.php:3382
+#: /var/www/img/templates/administrator/_out.php:3401
+#: /var/www/img/templates/administrator/_out.php:3599
+#: /var/www/img/templates/administrator/_out.php:3619
+#: /var/www/img/templates/administrator/_out.php:4641
+#: /var/www/img/templates/administrator/_out.php:4656
+#: /var/www/img/templates/administrator/_out.php:4803
+#: /var/www/img/templates/administrator/_out.php:4858
+#: /var/www/img/templates/administrator/_out.php:4931
+#: /var/www/img/templates/administrator/_out.php:4996
+#: /var/www/img/templates/administrator/_out.php:5214
+#: /var/www/img/templates/administrator/_out.php:5233
+msgid "a_delete"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:866
+msgid "a_cont_list"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:870
+msgid "a_filtrate"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:871
+msgid "a_copy_product"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:872
+msgid "a_repalce"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:925
+#: /var/www/img/templates/administrator/_out.php:2821
+#: /var/www/img/templates/administrator/_out.php:3127
+#: /var/www/img/templates/administrator/_out.php:3643
+#: /var/www/img/templates/administrator/_out.php:3877
+#: /var/www/img/templates/administrator/_out.php:4304
+#: /var/www/img/templates/administrator/_out.php:5126
+#: /var/www/img/templates/administrator/_out.php:5250
+msgid "a_url"
+msgstr "Посилання"
+
+#: /var/www/img/templates/administrator/_out.php:927
+#, fuzzy
+msgid "a_date_create"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:928
+#: /var/www/img/templates/administrator/_out.php:5128
+msgid "a_status"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:934
+#: /var/www/img/templates/administrator/_out.php:5751
+msgid "a_numbers_only"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:969
+#: /var/www/img/templates/administrator/_out.php:5137
+#, fuzzy
+msgid "a_goto_site"
+msgstr "Позиція"
+
+#: /var/www/img/templates/administrator/_out.php:994
+#: /var/www/img/templates/administrator/_out.php:5145
+#: /var/www/img/templates/administrator/_out.php:5752
+msgid "a_show"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:994
+#: /var/www/img/templates/administrator/_out.php:5145
+#: /var/www/img/templates/administrator/_out.php:5753
+msgid "a_dont_show"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1028
+#: /var/www/img/templates/administrator/_out.php:1883
+#: /var/www/img/templates/administrator/_out.php:2012
+#: /var/www/img/templates/administrator/_out.php:2030
+#: /var/www/img/templates/administrator/_out.php:2052
+#: /var/www/img/templates/administrator/_out.php:2164
+#: /var/www/img/templates/administrator/_out.php:2313
+#: /var/www/img/templates/administrator/_out.php:2324
+#: /var/www/img/templates/administrator/_out.php:2358
+#: /var/www/img/templates/administrator/_out.php:2602
+#: /var/www/img/templates/administrator/_out.php:2610
+#: /var/www/img/templates/administrator/_out.php:4114
+#: /var/www/img/templates/administrator/_out.php:4215
+#, fuzzy
+msgid "a_create"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:1028
+#: /var/www/img/templates/administrator/_out.php:1391
+#: /var/www/img/templates/administrator/_out.php:2688
+msgid "a_privilege"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1073
+#: /var/www/img/templates/administrator/_out.php:1765
+#: /var/www/img/templates/administrator/_out.php:2756
+#: /var/www/img/templates/administrator/_out.php:4981
+msgid "a_group"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1096
+msgid "a_cat_translate"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1158
+#: /var/www/img/templates/administrator/_out.php:2888
+#: /var/www/img/templates/administrator/_out.php:3193
+#: /var/www/img/templates/administrator/_out.php:4680
+#, fuzzy
+msgid "a_image"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:1162
+#: /var/www/img/templates/administrator/_out.php:1838
+#: /var/www/img/templates/administrator/_out.php:2892
+#: /var/www/img/templates/administrator/_out.php:3197
+#: /var/www/img/templates/administrator/_out.php:4162
+#, fuzzy
+msgid "a_select_image"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:1177
+#: /var/www/img/templates/administrator/_out.php:3028
+#: /var/www/img/templates/administrator/_out.php:3338
+#: /var/www/img/templates/administrator/_out.php:3903
+#: /var/www/img/templates/administrator/_out.php:4326
+msgid "a_meta_title"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1213
+#: /var/www/img/templates/administrator/_out.php:1819
+#: /var/www/img/templates/administrator/_out.php:1990
+#: /var/www/img/templates/administrator/_out.php:2019
+#: /var/www/img/templates/administrator/_out.php:4143
+#: /var/www/img/templates/administrator/_out.php:4678
+msgid "a_identif"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1214
+#: /var/www/img/templates/administrator/_out.php:1906
+#: /var/www/img/templates/administrator/_out.php:2020
+#: /var/www/img/templates/administrator/_out.php:3888
+#: /var/www/img/templates/administrator/_out.php:4311
+msgid "a_just_lat"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1230
+msgid "a_sys_info"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1237
+msgid "a_server_load"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1247
+msgid "a_server"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1250
+msgid "a_os"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1258
+msgid "a_db"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1262
+msgid "a_period"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1263
+msgid "a_size"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1268
+msgid "a_write_perm"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1285
+msgid "a_select_cat"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1293
+msgid "a_send"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1305
+msgid "a_orders"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1308
+msgid "a_callbacks"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1312
+msgid "a_notifications"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1344
+msgid "a_reg_discount_sh"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1370
+#: /var/www/img/templates/administrator/_out.php:2836
+#: /var/www/img/templates/administrator/_out.php:3140
+#: /var/www/img/templates/administrator/_out.php:4083
+#: /var/www/img/templates/administrator/_out.php:4500
+msgid "a_parent"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1395
+#: /var/www/img/templates/administrator/_out.php:2692
+msgid "a_go_back"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1458
+msgid "a_widget_deleting"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1461
+msgid "a_delete_selected_widgets"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1474
+msgid "a_widgets_list"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1479
+#, fuzzy
+msgid "a_create_widget"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:1501
+#: /var/www/img/templates/administrator/_out.php:1988
+#: /var/www/img/templates/administrator/_out.php:3419
+#: /var/www/img/templates/administrator/_out.php:4950
+#: /var/www/img/templates/administrator/_out.php:5248
+msgid "a_id"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1503
+#: /var/www/img/templates/administrator/_out.php:2086
+#: /var/www/img/templates/administrator/_out.php:2122
+#, fuzzy
+msgid "a_type"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:1535
+#: /var/www/img/templates/administrator/_out.php:2090
+msgid "a_html"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1553
+#, fuzzy
+msgid "a_no_widgets_created"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:1600
+msgid "a_message"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1600
+msgid "a_modules_search_in_dev"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1606
+msgid "a_for_simple_install"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1622
+msgid "a_actions"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1632
+#: /var/www/img/templates/administrator/_out.php:3712
+#: /var/www/img/templates/administrator/_out.php:3728
+#: /var/www/img/templates/administrator/_out.php:5020
+#: /var/www/img/templates/administrator/_out.php:5022
+msgid "a_install"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1650
+msgid "a_for_your_request"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1659
+msgid "a_modules_search"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1664
+msgid "a_modules_search_text"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1676
+#: /var/www/img/templates/administrator/_out.php:2322
+#: /var/www/img/templates/administrator/_out.php:2608
+msgid "a_categories"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1697
+#, fuzzy
+msgid "a_change_cat_data"
+msgstr "Позиція змінена"
+
+#: /var/www/img/templates/administrator/_out.php:1698
+#: /var/www/img/templates/administrator/_out.php:4869
+msgid "a_add_subcat"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1699
+#: /var/www/img/templates/administrator/_out.php:4870
+msgid "a_add_article"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1711
+#: /var/www/img/templates/administrator/_out.php:4927
+msgid "a_role_group_list"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1765
+#: /var/www/img/templates/administrator/_out.php:3450
+#: /var/www/img/templates/administrator/_out.php:4981
+msgid "a_list"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1765
+#: /var/www/img/templates/administrator/_out.php:4981
+msgid "a_privilegy"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1765
+#: /var/www/img/templates/administrator/_out.php:3450
+#: /var/www/img/templates/administrator/_out.php:4981
+msgid "a_empty"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1773
+msgid "a_delete_group"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1776
+#, fuzzy
+msgid "a_footer_cancel"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:1784
+msgid "a_lang_edit"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1826
+#: /var/www/img/templates/administrator/_out.php:1833
+#: /var/www/img/templates/administrator/_out.php:4150
+#: /var/www/img/templates/administrator/_out.php:4157
+#, fuzzy
+msgid "a_image_url"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:1846
+#: /var/www/img/templates/administrator/_out.php:4170
+#: /var/www/img/templates/administrator/_out.php:4677
+msgid "a_folder"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1926
+#: /var/www/img/templates/administrator/_out.php:4525
+msgid "a_role_group_edit"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1984
+#: /var/www/img/templates/administrator/_out.php:3835
+#: /var/www/img/templates/administrator/_out.php:4268
+msgid "a_prev_cont"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1984
+msgid "a_group_list"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2047
+msgid "a_widget_creating"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2096
+#, fuzzy
+msgid "a_module_name"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:2160
+#: /var/www/img/templates/administrator/_out.php:2375
+#: /var/www/img/templates/administrator/_out.php:2657
+msgid "a_backup_copy"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2189
+msgid "a_local_copy"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2201
+msgid "a_save_on_server"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2203
+#, fuzzy
+msgid "a_save_path"
+msgstr "Позиція"
+
+#: /var/www/img/templates/administrator/_out.php:2214
+msgid "a_send_mail"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2220
+msgid "a_file_format"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2311
+#: /var/www/img/templates/administrator/_out.php:3783
+#: /var/www/img/templates/administrator/_out.php:3800
+#: /var/www/img/templates/administrator/_out.php:4222
+#: /var/www/img/templates/administrator/_out.php:4235
+msgid "a_content"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2317
+#: /var/www/img/templates/administrator/_out.php:2604
+msgid "a_field_constructor"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2329
+#: /var/www/img/templates/administrator/_out.php:2615
+msgid "a_menu"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2332
+#: /var/www/img/templates/administrator/_out.php:2617
+#: /var/www/img/templates/administrator/_out.php:5585
+msgid "a_control"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2341
+#: /var/www/img/templates/administrator/_out.php:2626
+#: /var/www/img/templates/administrator/_out.php:3624
+msgid "a_modules"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2343
+#: /var/www/img/templates/administrator/_out.php:2628
+#: /var/www/img/templates/administrator/_out.php:3615
+#: /var/www/img/templates/administrator/_out.php:3624
+msgid "a_all_modules"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2344
+#: /var/www/img/templates/administrator/_out.php:2629
+msgid "a_search"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2356
+#: /var/www/img/templates/administrator/_out.php:2641
+msgid "a_widgets"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2365
+#: /var/www/img/templates/administrator/_out.php:2647
+#, fuzzy
+msgid "a_site_settings"
+msgstr "Позиція"
+
+#: /var/www/img/templates/administrator/_out.php:2366
+#: /var/www/img/templates/administrator/_out.php:2649
+#: /var/www/img/templates/administrator/_out.php:4652
+msgid "a_languages"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2367
+#: /var/www/img/templates/administrator/_out.php:2650
+#: /var/www/img/templates/administrator/_out.php:5821
+msgid "a_cache"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2369
+#: /var/www/img/templates/administrator/_out.php:2652
+#: /var/www/img/templates/administrator/_out.php:5853
+msgid "a_clean_all"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2370
+#: /var/www/img/templates/administrator/_out.php:2653
+#: /var/www/img/templates/administrator/_out.php:5847
+msgid "a_clean_old"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2374
+#: /var/www/img/templates/administrator/_out.php:2656
+#: /var/www/img/templates/administrator/_out.php:5873
+msgid "a_event_journal"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2565
+msgid "a_use_js"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2595
+#: /var/www/img/templates/administrator/_out.php:5517
+msgid "a_wellcome"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2600
+msgid "a_cont"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2661
+msgid "a_show_site"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2662
+msgid "a_exit"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2786
+msgid "a_cre_exit_form"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2793
+#: /var/www/img/templates/administrator/_out.php:2804
+#: /var/www/img/templates/administrator/_out.php:3100
+msgid "param"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2826
+#: /var/www/img/templates/administrator/_out.php:3131
+msgid "a_auto_fit_by_url"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2846
+#: /var/www/img/templates/administrator/_out.php:3149
+msgid "a_fields_group"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2856
+#: /var/www/img/templates/administrator/_out.php:3159
+msgid "a_sel_gr_fld_f_subcats"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2861
+#: /var/www/img/templates/administrator/_out.php:2881
+#: /var/www/img/templates/administrator/_out.php:3165
+#: /var/www/img/templates/administrator/_out.php:3185
+msgid "a_apply_for_subcats"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2867
+#: /var/www/img/templates/administrator/_out.php:3170
+msgid "a_pages_fields_group"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2876
+#: /var/www/img/templates/administrator/_out.php:3179
+msgid "a_select_fields_group"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2901
+#: /var/www/img/templates/administrator/_out.php:3207
+#, fuzzy
+msgid "a_position"
+msgstr "Позиція"
+
+#: /var/www/img/templates/administrator/_out.php:2923
+#: /var/www/img/templates/administrator/_out.php:3230
+msgid "a_page_view"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2933
+#: /var/www/img/templates/administrator/_out.php:3240
+#, fuzzy
+msgid "a_sort"
+msgstr "Позиція"
+
+#: /var/www/img/templates/administrator/_out.php:2937
+#: /var/www/img/templates/administrator/_out.php:3244
+#, fuzzy
+msgid "a_by_date"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:2938
+#: /var/www/img/templates/administrator/_out.php:3245
+msgid "a_by_abc"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2939
+#: /var/www/img/templates/administrator/_out.php:3246
+#, fuzzy
+msgid "a_by_pos"
+msgstr "Позиція"
+
+#: /var/www/img/templates/administrator/_out.php:2944
+#: /var/www/img/templates/administrator/_out.php:3252
+msgid "a_desc_order"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2945
+#: /var/www/img/templates/administrator/_out.php:3253
+msgid "a_asc_order"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2951
+#: /var/www/img/templates/administrator/_out.php:3259
+msgid "a_records_count"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2958
+#: /var/www/img/templates/administrator/_out.php:3267
+#, fuzzy
+msgid "a_comm_by_def"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:2963
+#: /var/www/img/templates/administrator/_out.php:3272
+msgid "a_disp_pages_f_other_cats"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2977
+#: /var/www/img/templates/administrator/_out.php:3288
+#: /var/www/img/templates/administrator/_out.php:3934
+#: /var/www/img/templates/administrator/_out.php:4357
+msgid "a_main_tpl"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2982
+#: /var/www/img/templates/administrator/_out.php:3293
+msgid "a_main_tpl_by_def"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2986
+#: /var/www/img/templates/administrator/_out.php:3297
+msgid "a_cat_tpl"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2993
+#: /var/www/img/templates/administrator/_out.php:3304
+msgid "a_main_cat_tpl_by_def"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2997
+#: /var/www/img/templates/administrator/_out.php:3308
+msgid "a_pages_tpl"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3003
+#: /var/www/img/templates/administrator/_out.php:3314
+msgid "a_pages_view_tpl_by_def"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3065
+msgid "a_edit_user_mod"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3102
+msgid "a_addit_fiel_bas_a"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3376
+#: /var/www/img/templates/administrator/_out.php:4852
+msgid "a_rbak_delete_role"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3379
+#: /var/www/img/templates/administrator/_out.php:4855
+msgid "a_rbak_del_role_gro"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3389
+#: /var/www/img/templates/administrator/_out.php:4865
+#: /var/www/img/templates/administrator/_out.php:5003
+msgid "a_rb_del_roles"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3397
+msgid "a_role_list"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3402
+msgid "a_rbak_new_role"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3450
+msgid "a_role"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3593
+#: /var/www/img/templates/administrator/_out.php:3605
+msgid "a_module_delete"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3596
+msgid "a_delete_selected_modules"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3606
+msgid "a_delete_module"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3625
+msgid "a_install_modules"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3645
+msgid "a_url_access"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3646
+msgid "a_show_in_menu"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3680
+#: /var/www/img/templates/administrator/_out.php:3685
+#: /var/www/img/templates/administrator/_out.php:3690
+msgid "a_turn_on"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3680
+#: /var/www/img/templates/administrator/_out.php:3685
+#: /var/www/img/templates/administrator/_out.php:3690
+#, fuzzy
+msgid "a_turn_off"
+msgstr "Позиція"
+
+#: /var/www/img/templates/administrator/_out.php:3701
+msgid "a_modules_not_installed"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3738
+msgid "a_no_modules_for_install"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3749
+msgid "a_editing_page"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3780
+msgid "a_show_page"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3785
+#: /var/www/img/templates/administrator/_out.php:4224
+msgid "a_additional_fields"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3844
+#: /var/www/img/templates/administrator/_out.php:4277
+msgid "a_full_cont"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3894
+#: /var/www/img/templates/administrator/_out.php:4317
+msgid "a_tags"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3941
+#: /var/www/img/templates/administrator/_out.php:3954
+#: /var/www/img/templates/administrator/_out.php:4364
+#: /var/www/img/templates/administrator/_out.php:4377
+#: /var/www/img/templates/administrator/_out.php:4681
+#, fuzzy
+msgid "a_by_default"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:3947
+#: /var/www/img/templates/administrator/_out.php:4370
+#, fuzzy
+msgid "a_page_tpl"
+msgstr "Позиція змінена"
+
+#: /var/www/img/templates/administrator/_out.php:3966
+#: /var/www/img/templates/administrator/_out.php:4389
+msgid "a_comm_alow"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3999
+#: /var/www/img/templates/administrator/_out.php:4419
+#, fuzzy
+msgid "a_pub_stat"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:4003
+#: /var/www/img/templates/administrator/_out.php:4423
+msgid "a_published"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4004
+#: /var/www/img/templates/administrator/_out.php:4424
+msgid "a_wait_approve"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4005
+#: /var/www/img/templates/administrator/_out.php:4425
+msgid "a_not_publ"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4025
+#: /var/www/img/templates/administrator/_out.php:4446
+msgid "a_date_and_time_p"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4038
+#: /var/www/img/templates/administrator/_out.php:4459
+msgid "a_access"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4042
+#: /var/www/img/templates/administrator/_out.php:4463
+msgid "a_all"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4109
+msgid "a_sett_base_create_new_language"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4634
+msgid "a_language_delete"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4637
+msgid "a_delete_selected_languages"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4638
+msgid "a_warning_ld"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4657
+msgid "a_create_language"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4761
+#: /var/www/img/templates/administrator/_out.php:5060
+#: /var/www/img/templates/administrator/_out.php:5309
+msgid "a_pass"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4770
+msgid "a_code_refresh"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4780
+msgid "a_remember"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4783
+msgid "a_forget_pass"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4785
+#, fuzzy
+msgid "a_enter_sys"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:4798
+msgid "a_roles_list"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4802
+#, fuzzy
+msgid "a_create_group"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:4871
+msgid "a_dbl_click"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5013
+msgid "a_author"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5025
+#, fuzzy
+msgid "a_download"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:5044
+#: /var/www/img/templates/administrator/_out.php:5293
+#, fuzzy
+msgid "a_ftp_sett"
+msgstr "Позиція"
+
+#: /var/www/img/templates/administrator/_out.php:5048
+#: /var/www/img/templates/administrator/_out.php:5297
+msgid "a_host"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5052
+#: /var/www/img/templates/administrator/_out.php:5301
+msgid "a_port"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5056
+#: /var/www/img/templates/administrator/_out.php:5305
+msgid "a_login"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5064
+#: /var/www/img/templates/administrator/_out.php:5313
+msgid "a_root_path"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5068
+msgid "a_for_example"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5074
+msgid "a_forward"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5101
+msgid "a_search_results"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5111
+msgid "a_users"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5154
+#: /var/www/img/templates/administrator/_out.php:5192
+#: /var/www/img/templates/administrator/_out.php:5267
+msgid "a_not_found"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5164
+msgid "a_ID"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5165
+#: /var/www/img/templates/administrator/_out.php:5883
+msgid "a_us_in_admin"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5167
+msgid "a_u_man_group_sa_yser"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5168
+msgid "a_banned"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5169
+msgid "a_b_last_ip"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5208
+#: /var/www/img/templates/administrator/_out.php:5221
+msgid "a_del_catego_ba"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5211
+msgid "a_del_category_selec"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5220
+msgid "a_del_categoy_ba"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5234
+#, fuzzy
+msgid "create_cat"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:5280
+#, fuzzy
+msgid "a_sys_update"
+msgstr "Позиція змінена"
+
+#: /var/www/img/templates/administrator/_out.php:5287
+msgid "a_atten"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5287
+msgid "a_make_backup"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5317
+msgid "a_example_path"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5323
+msgid "a_refresh"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5374
+msgid "a_role_group_create"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5524
+msgid "a_guest"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5547
+msgid "a_product_no_icon"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5667
+msgid "a_"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5691
+msgid "a_your_remark"
+msgstr "Вааааааааааааше замечание"
+
+#: /var/www/img/templates/administrator/_out.php:5694
+msgid "a_send_report"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5832
+msgid "a_clear_cache"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5841
+msgid "a_all_cache_file"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5884
+msgid "a_d_m_admin"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5885
+msgid "a_action_admin"
+msgstr ""
+
+#: /var/www/img/templates/administrator/profiler_template.php:356
+msgid "profiler_"
+msgstr ""
+
+#: /var/www/img/templates/administrator/profiler_template.php:405
+msgid "profiler_no_profiles"
+msgstr ""
+
+#~ msgid "Settings saved success"
+#~ msgstr "Сохранение настроек прошло успешно"
+
+#, fuzzy
+#~ msgid "amt_in_mb"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_left"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_top"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "amt_bottom"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "amt_text"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_albums"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_no_albums"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_album"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_gallery"
+#~ msgstr "Нааааааааамеееееееееее"

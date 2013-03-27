@@ -13,6 +13,7 @@ class Admin extends BaseAdminController {
         parent::__construct();
 
         $this->load->library('DX_Auth');
+        $this->lang->load('star_rating');
         //cp_check_perm('module_admin');
     }
 
@@ -35,7 +36,7 @@ class Admin extends BaseAdminController {
         
         if ($this->input->post('action') == 'tomain')
             pjax('/admin/components/modules_table');
-        showMessage("Настройки успешно сохранены");
+        showMessage(lang("Settings saved success"));
     }
 
     public function get_settings() {
@@ -54,6 +55,7 @@ class Admin extends BaseAdminController {
 //            $this->template->show('file:' . 'application/modules/star_rating/templates/admin/' . $viewName);
 //        else
 //            return $this->template->fetch('file:' . 'application/modules/star_rating/templates/admin/' . $viewName);
+        $this->__destruct();
     }
     
     
@@ -62,6 +64,11 @@ class Admin extends BaseAdminController {
     {
         $res = $this->db->where('name','star_rating')->get('components')->row();
         return $res; 
+    }
+
+    public function __destruct() {
+        $this->lang->load('admin');
+        unset($this);
     }
             
 

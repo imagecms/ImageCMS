@@ -17,13 +17,11 @@
 
 class MY_Lang extends MX_Lang {
 	private $ci;
-	private $gettext_language;
+	public $gettext_language;
 	private $gettext_codeset;
-	private $gettext_domain;
+	public $gettext_domain;
 	private $gettext_path;
 
-    private $langPrefix = '';
-    private $langSuffix = '_lang';
     private $gettext = null;
 
 	/**
@@ -33,37 +31,37 @@ class MY_Lang extends MX_Lang {
 	 */
 	function __construct() {
 		parent::__construct();
-
-
-//        $this->ci = & get_instance();
-//
-//        $this->ci->load->library('gettext_php/gettext');
-
-
-
-//        $this->load->library('gettext_php/gettext_extension', array(
-//            'directory' => 'application/language/admin',
-//            'domain'    => 'messages',
-//            'locale'    => 'ru'
-//        ));
-//
-//        $this->gettext = $this->gettext_extension->getInstance('application/language/admin', 'messages', 'ru');
-//        unset($this->gettext_extension);
-
 	}
+
+
+    public function getLangCode($language) {
+        $langs = array(
+            'russian'   => array('ru', 'ru_RU'),
+            'english'   => array('en', 'en_GB'),
+            'german'    => array('de', 'de_CH'),
+            'ukrainian' => array('uk', 'uk_UA')
+        );
+
+        return isset($langs[$language])?$langs[$language]:array('en', 'en_GB');
+    }
+
 
     private function _init() {
         if ( !isset($this->ci) )
             $this->ci =& get_instance();
 
+        $sett = $this->ci->db->where('s_name', 'main')->get('settings')->row();
+        if ($sett->lang_sel == 'english_lang') {
+            $this->ci->config->set_item('language', 'english');
+        }
+        else
+            $this->ci->config->set_item('language', 'russian');
 
-        $this->ci->load->library('gettext_php/gettext_extension', array(
-//            'directory' => 'application/language',
-//            'domain'    => 'messages',
-//            'locale'    => 'ru'
-        ));
-        $this->gettext = & $this->ci->gettext_extension->getInstance('application/language', 'messages', 'ru');
+        unset($sett);
 
+        $this->gettext_language = $this->ci->config->item('language');
+        $this->ci->load->library('gettext_php/gettext_extension', array());
+        $this->gettext = & $this->ci->gettext_extension->getInstance('admin', 'messages', $this->getLangCode($this->gettext_language)[1]);
     }
 
 	private function _language() {
@@ -93,14 +91,12 @@ class MY_Lang extends MX_Lang {
 	 * @param	string	the language (english, etc.)
 	 * @return	mixed
 	 */
-	public function load($langfile = '', $idiom = '', $return = FALSE, $add_suffix = TRUE, $alt_path = '') {
-        //$this->gettext_php->
-
-        if ($this->gettext)
+	public function load($module) {
+        if (!$this->gettext)
             $this->_init();
 
-        if ($langfile!= 'comments')
-		return parent::load($langfile.$this->langSuffix, !empty($idiom) ? $idiom : $this->_language(), $return, $add_suffix, $alt_path);
+        $this->gettext_domain = $module;
+        $this->gettext->switchDomain('application/modules/'.$module.'/language', $module, $this->getLangCode($this->gettext_language)[1]);
 	}
 
 	/**
@@ -178,10 +174,6 @@ class MY_Lang extends MX_Lang {
 	{
         if (!$this->gettext)
             $this->_init();
-//		if ( $params !== FALSE || FALSE === ($value = parent::line($line)) )
-//			$value = $this->_trans( $line, $params );
-//
-//		return $value ? $value : $line;
 
         return $this->gettext->gettext($line);
 	}

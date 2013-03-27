@@ -1,0 +1,622 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ImageCms\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-03-25 19:24+0300\n"
+"PO-Revision-Date: 2013-03-25 19:25+0300\n"
+"Last-Translator: koloda <koloda90@gmail.com>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: Russian\n"
+"X-Poedit-Country: UKRAINE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: /var/www/img/application/modules/gallery\n"
+
+#: /var/www/img/application/modules/gallery/gallery_widgets.php:50
+msgid "amt_image_limit"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/gallery_widgets.php:64
+#: /var/www/img/application/modules/gallery/admin.php:253
+msgid "amt_settings_saved"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:5
+msgid "amt_widget_settings"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:9
+msgid "a_return"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:10
+#: /var/www/img/application/modules/gallery/_out.php:876
+msgid "a_save"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:11
+#: /var/www/img/application/modules/gallery/_out.php:1003
+msgid "a_save_and_exit"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:20
+msgid "a_sett"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:28
+msgid "a_images_limit"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:34
+msgid "a_algorithm"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:37
+msgid "a_latest_images"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:38
+msgid "a_random_images"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:282
+#: /var/www/img/application/modules/gallery/_out.php:932
+#, fuzzy
+msgid "amt_settings"
+msgstr "Позиція"
+
+#: /var/www/img/application/modules/gallery/_out.php:286
+#: /var/www/img/application/modules/gallery/_out.php:637
+#: /var/www/img/application/modules/gallery/_out.php:725
+#: /var/www/img/application/modules/gallery/_out.php:821
+#: /var/www/img/application/modules/gallery/_out.php:875
+#: /var/www/img/application/modules/gallery/_out.php:1001
+#: /var/www/img/application/modules/gallery/_out.php:1076
+msgid "a_back"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:287
+#: /var/www/img/application/modules/gallery/_out.php:729
+#: /var/www/img/application/modules/gallery/_out.php:1002
+#: /var/www/img/application/modules/gallery/_out.php:1198
+#: /var/www/img/application/modules/gallery/_out.php:1206
+#, fuzzy
+msgid "amt_save"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/gallery/_out.php:299
+msgid "amt_albums_and_categories"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:309
+#, fuzzy
+msgid "amt_to_sort"
+msgstr "Позиція"
+
+#: /var/www/img/application/modules/gallery/_out.php:312
+#, fuzzy
+msgid "amt_by_date"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/gallery/_out.php:313
+msgid "amt_by_abc"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:314
+#, fuzzy
+msgid "amt_by_position"
+msgstr "Позиція"
+
+#: /var/www/img/application/modules/gallery/_out.php:317
+msgid "amt_by_desc"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:318
+msgid "amt_by_asc"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:332
+#, fuzzy
+msgid "amt_images"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/gallery/_out.php:342
+msgid "amt_max_file_size"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:344
+#, fuzzy
+msgid "amt_in_mb"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/gallery/_out.php:351
+#: /var/www/img/application/modules/gallery/admin.php:192
+msgid "amt_max_width"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:360
+#: /var/www/img/application/modules/gallery/admin.php:193
+msgid "amt_max_height"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:368
+#: /var/www/img/application/modules/gallery/admin.php:194
+msgid "amt_quality"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:377
+#: /var/www/img/application/modules/gallery/_out.php:428
+#: /var/www/img/application/modules/gallery/_out.php:479
+#, fuzzy
+msgid "amt_save_ratio"
+msgstr "Позиція"
+
+#: /var/www/img/application/modules/gallery/_out.php:379
+#: /var/www/img/application/modules/gallery/_out.php:386
+#: /var/www/img/application/modules/gallery/_out.php:430
+#: /var/www/img/application/modules/gallery/_out.php:437
+#: /var/www/img/application/modules/gallery/_out.php:481
+#: /var/www/img/application/modules/gallery/_out.php:488
+#, fuzzy
+msgid "amt_yes"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/gallery/_out.php:380
+#: /var/www/img/application/modules/gallery/_out.php:387
+#: /var/www/img/application/modules/gallery/_out.php:431
+#: /var/www/img/application/modules/gallery/_out.php:438
+#: /var/www/img/application/modules/gallery/_out.php:482
+#: /var/www/img/application/modules/gallery/_out.php:489
+#, fuzzy
+msgid "amt_no"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/gallery/_out.php:384
+#: /var/www/img/application/modules/gallery/_out.php:435
+#: /var/www/img/application/modules/gallery/_out.php:486
+msgid "amt_cut_borders"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:400
+msgid "amt_image_preview"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:410
+#: /var/www/img/application/modules/gallery/_out.php:461
+msgid "amt_width"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:412
+#: /var/www/img/application/modules/gallery/_out.php:421
+#: /var/www/img/application/modules/gallery/_out.php:463
+#: /var/www/img/application/modules/gallery/_out.php:472
+#: /var/www/img/application/modules/gallery/_out.php:562
+#: /var/www/img/application/modules/gallery/_out.php:591
+msgid "amt_px"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:419
+#: /var/www/img/application/modules/gallery/_out.php:470
+msgid "amt_height"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:451
+msgid "amt_image_icons"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:502
+msgid "amt_water_mark"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:512
+msgid "amt_hor_align"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:515
+#, fuzzy
+msgid "amt_left"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/gallery/_out.php:516
+#, fuzzy
+msgid "amt_center"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/gallery/_out.php:517
+msgid "amt_right"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:522
+msgid "amt_ver_align"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:525
+#, fuzzy
+msgid "amt_top"
+msgstr "Позиція"
+
+#: /var/www/img/application/modules/gallery/_out.php:526
+msgid "amt_in_the_middle"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:527
+#, fuzzy
+msgid "amt_bottom"
+msgstr "Позиція"
+
+#: /var/www/img/application/modules/gallery/_out.php:532
+#, fuzzy
+msgid "amt_type"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/gallery/_out.php:535
+#: /var/www/img/application/modules/gallery/_out.php:571
+#, fuzzy
+msgid "amt_text"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/gallery/_out.php:536
+#, fuzzy
+msgid "amt_image"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/gallery/_out.php:543
+msgid "amt_path_to_image"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:546
+msgid "amt_should_be_on_server"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:550
+#: /var/www/img/application/modules/gallery/admin.php:201
+msgid "amt_transparency"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:555
+msgid "amt_select_value"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:560
+#: /var/www/img/application/modules/gallery/_out.php:589
+#, fuzzy
+msgid "amt_offset"
+msgstr "Позиція"
+
+#: /var/www/img/application/modules/gallery/_out.php:577
+#: /var/www/img/application/modules/gallery/admin.php:200
+msgid "amt_font_size"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:583
+msgid "amt_font_color"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:598
+msgid "amt_path_to_font"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:633
+#: /var/www/img/application/modules/gallery/_out.php:948
+#, fuzzy
+msgid "amt_albums"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/gallery/_out.php:638
+msgid "a_create"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:659
+msgid "imgs_view"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:667
+#: /var/www/img/application/modules/gallery/_out.php:832
+#: /var/www/img/application/modules/gallery/_out.php:886
+#: /var/www/img/application/modules/gallery/_out.php:947
+#: /var/www/img/application/modules/gallery/_out.php:1023
+#: /var/www/img/application/modules/gallery/_out.php:1097
+#: /var/www/img/application/modules/gallery/_out.php:1175
+#: /var/www/img/application/modules/gallery/admin.php:267
+#: /var/www/img/application/modules/gallery/admin.php:429
+#: /var/www/img/application/modules/gallery/admin.php:598
+#: /var/www/img/application/modules/gallery/admin.php:639
+msgid "amt_name"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/gallery/_out.php:671
+msgid "amt_cr"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:675
+msgid "amt_up"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:679
+#: /var/www/img/application/modules/gallery/_out.php:1179
+msgid "amt_views"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:683
+#: /var/www/img/application/modules/gallery/_out.php:838
+#: /var/www/img/application/modules/gallery/_out.php:892
+#: /var/www/img/application/modules/gallery/_out.php:949
+#: /var/www/img/application/modules/gallery/_out.php:1029
+#: /var/www/img/application/modules/gallery/_out.php:1103
+#: /var/www/img/application/modules/gallery/_out.php:1194
+#: /var/www/img/application/modules/gallery/admin.php:268
+#: /var/www/img/application/modules/gallery/admin.php:599
+#: /var/www/img/application/modules/gallery/admin.php:640
+msgid "amt_description"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:689
+#: /var/www/img/application/modules/gallery/_out.php:769
+msgid "a_to_edit"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:690
+#: /var/www/img/application/modules/gallery/_out.php:715
+#: /var/www/img/application/modules/gallery/_out.php:730
+#: /var/www/img/application/modules/gallery/_out.php:768
+#: /var/www/img/application/modules/gallery/_out.php:808
+#: /var/www/img/application/modules/gallery/_out.php:865
+#: /var/www/img/application/modules/gallery/_out.php:919
+#: /var/www/img/application/modules/gallery/_out.php:929
+#: /var/www/img/application/modules/gallery/_out.php:991
+#: /var/www/img/application/modules/gallery/_out.php:1065
+msgid "a_delete"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:704
+#, fuzzy
+msgid "amt_no_albums"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/gallery/_out.php:711
+msgid "a_album_delete"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:714
+#: /var/www/img/application/modules/gallery/_out.php:990
+msgid "a_footer_cancel"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:721
+#: /var/www/img/application/modules/gallery/_out.php:1158
+#, fuzzy
+msgid "amt_album"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/gallery/_out.php:727
+msgid "a_add_pictures"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:749
+msgid "a_choose_all_photos"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:774
+#: /var/www/img/application/modules/gallery/admin.php:297
+msgid "a_name"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:775
+msgid "a_size"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:790
+msgid "a_album_empty"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:804
+msgid "a_acc_per_43"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:807
+#: /var/www/img/application/modules/gallery/_out.php:864
+#: /var/www/img/application/modules/gallery/_out.php:918
+#: /var/www/img/application/modules/gallery/_out.php:1064
+msgid "a_cancel"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:817
+#: /var/www/img/application/modules/gallery/_out.php:930
+msgid "amt_create_cat"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:822
+msgid "a_cr"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:823
+#: /var/www/img/application/modules/gallery/_out.php:877
+msgid "a_footer_save_exit"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:844
+#: /var/www/img/application/modules/gallery/_out.php:898
+#: /var/www/img/application/modules/gallery/_out.php:1035
+#: /var/www/img/application/modules/gallery/_out.php:1191
+#: /var/www/img/application/modules/gallery/admin.php:600
+#: /var/www/img/application/modules/gallery/admin.php:641
+msgid "amt_position"
+msgstr "Позиція"
+
+#: /var/www/img/application/modules/gallery/_out.php:871
+#: /var/www/img/application/modules/gallery/_out.php:964
+msgid "amt_category_edit"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:925
+msgid "amt_categories"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:931
+#: /var/www/img/application/modules/gallery/_out.php:1072
+#: /var/www/img/application/modules/gallery/_out.php:1077
+msgid "amt_create_album"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:946
+msgid "amt_id"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:950
+#, fuzzy
+msgid "amt_crea"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/gallery/_out.php:968
+msgid "a_show_album"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:980
+msgid "a_empty_category_list"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:987
+msgid "a_category_delete"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:997
+msgid "a_album"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:1004
+msgid "amt_delete"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:1013
+#: /var/www/img/application/modules/gallery/_out.php:1086
+#: /var/www/img/application/modules/gallery/admin.php:269
+msgid "amt_category"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:1041
+#: /var/www/img/application/modules/gallery/_out.php:1109
+msgid "amt_template_file"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:1046
+#: /var/www/img/application/modules/gallery/_out.php:1114
+msgid "amt_by_default"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:1061
+msgid "amt_album_delete"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:1131
+msgid "amt_select_file"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:1135
+msgid "amt_download_file"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:1146
+#, fuzzy
+msgid "amt_gallery"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/gallery/_out.php:1177
+#, fuzzy
+msgid "amt_downloaded"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/gallery/_out.php:1181
+#: /var/www/img/application/modules/gallery/admin.php:191
+msgid "amt_file_size"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:1183
+msgid "amt_image_size"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:1188
+msgid "amt_preview"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/_out.php:1199
+#, fuzzy
+msgid "amt_cancel"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/gallery/_out.php:1205
+#, fuzzy
+msgid "amt_new_name"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/gallery/_out.php:1212
+msgid "My last photo"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/admin.php:84
+msgid "amt_delete_folder_to_continue"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/admin.php:84
+msgid "amt_write_perm"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/admin.php:195
+msgid "amt_previmage_width"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/admin.php:196
+msgid "amt_previmage_height"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/admin.php:197
+msgid "amt_col_width"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/admin.php:198
+msgid "amt_col_height"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/admin.php:199
+msgid "amt_watermark_text"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/admin.php:210
+msgid "amt_select_correct_path_to_image"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/admin.php:216
+msgid "amt_select_correct_path_to_font"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/admin.php:302
+#: /var/www/img/application/modules/gallery/admin.php:455
+#: /var/www/img/application/modules/gallery/admin.php:654
+msgid "amt_changes_saved"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/admin.php:336
+#: /var/www/img/application/modules/gallery/admin.php:365
+msgid "amt_cant_load_album_info"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/admin.php:416
+#: /var/www/img/application/modules/gallery/admin.php:458
+#: /var/www/img/application/modules/gallery/admin.php:518
+msgid "amt_cant_load_image_info"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/admin.php:490
+msgid "a_photos_deleted"
+msgstr ""
+
+#: /var/www/img/application/modules/gallery/admin.php:527
+#: /var/www/img/application/modules/gallery/admin.php:535
+#: /var/www/img/application/modules/gallery/admin.php:543
+msgid "a_positions_updated"
+msgstr "Позиція змінена"
+
