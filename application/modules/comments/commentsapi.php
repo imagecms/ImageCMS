@@ -14,10 +14,12 @@ class Commentsapi extends Comments {
     public $use_moderation = TRUE;
     public $validation_errors;
     public $enable_comments = true;
+    public $module = 'core';
 
     public function __construct() {
         parent::__construct();
         $this->load->module('core');
+        $this->module = $this->getModule($_SERVER['HTTP_REFERER']);
     }
 
     private function init_settings() {
@@ -45,7 +47,7 @@ class Commentsapi extends Comments {
 //        $this->db->where('module', 'shop');
 
         $item_id = $this->parsUrl($_SERVER['HTTP_REFERER']);
-        $comments = $this->base->get($item_id);
+        $comments = $this->base->get($item_id, 0, $this->module);
 
         // Read comments template
         // Set page id for comments form
@@ -127,6 +129,19 @@ class Commentsapi extends Comments {
                 return $id->id;
         }
 
+        if (strstr($url, "/image/")) {
+            $url = explode(DS, $url);
+            $url = $url[count($url) - 1];
+
+            return $url;
+        }
+
+        if (strstr($url, '/album/')) {
+            $url = explode(DS, $url);
+            $url = $url[count($url) - 1];
+
+            return $url;
+        }
 
         if ($url == site_url()) {
             $id = $this->db->select('main_page_id, comments_status')
@@ -163,6 +178,8 @@ class Commentsapi extends Comments {
         if (strstr($url, '/bloh/'))
             return 'core';
 
+        if (strstr($url, '/gallery/'))
+            return 'gallery';
 
         if ($url == site_url())
             return 'core';
@@ -274,7 +291,7 @@ class Commentsapi extends Comments {
 
             if (!validation_errors()) {
                 $comment_data = array(
-                    'module' => $this->getModule($_SERVER['HTTP_REFERER']),
+                    'module' => $this->module,
                     'user_id' => $this->dx_auth->get_user_id(), // 0 if unregistered
                     'user_name' => $this->dx_auth->is_logged_in() ? $this->dx_auth->get_username() : trim(htmlspecialchars($this->input->post('comment_author'))),
                     'user_mail' => $this->dx_auth->is_logged_in() ? $email->email : trim(htmlspecialchars($this->input->post('comment_email'))),
@@ -290,7 +307,6 @@ class Commentsapi extends Comments {
                     'rate' => $this->input->post('ratec'),
                     'parent' => $this->input->post('comment_parent')
                 );
-
                 $this->db->insert('comments', $comment_data);
                 \CMSFactory\Events::create()->registerEvent(array('commentId' => $this->db->insert_id()));
                 $this->validation_errors = '';
