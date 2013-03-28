@@ -22,6 +22,20 @@
         </section>
     </div>
 {/if}
+<div class="frame-news-catalog">
+    <div class="container">
+        {widget('news_main')}
+        {\Category\RenderMenu::create()->load('front_menu')}
+    </div>
+</div>
     {widget('popular_products')}
     {widget('new_products')}
     {widget('action_products')}
+<div class="frame-seo-text">
+    <div class="container">
+        <div class="text seo-text">
+            {//$pg = get_page(9)}
+            {//$pg.prev_text}
+        </div>
+    </div>
+</div>
