@@ -9,9 +9,10 @@ class Base extends CI_Model {
         parent::__construct();
     }
 
-    function get($item_id, $status = 0) {
+    function get($item_id, $status = 0, $module) {
         $this->db->where('item_id', $item_id);
         $this->db->where('status', $status);
+        $this->db->where('module', $module);
         $this->db->order_by('date', 'asc');
         $query = $this->db->get('comments');
         
