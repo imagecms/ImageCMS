@@ -1,7 +1,7 @@
-<script type="text/javascript" src="{$SHOP_THEME}js/shop_script/category.js"></script>
+<script type="text/javascript" src="{$THEME}js/shop_script/category.js"></script>
 <div class="frame-crumbs">
     <div class="container">
-        {myCrumbs(0, " / ", "Поиск")}
+        {//myCrumbs(0, " / ", "Поиск")}
     </div>
 </div>
 <div class="frame-inside">
@@ -9,7 +9,7 @@
         <div class="right-catalog" {if !$totalProducts > 0}style="width:100% !important"{/if}>
             <div class="f-s_0 title-head-ategory">
                 <div class="d_i m-r_15">
-                    <div class="d_i title_h1">Вы искали: <span class="alert-small">«{$searched_text}»</span></div>
+                    <div class="d_i title_h1">Вы искали: <span class="alert-small">«{encode($_GET['text'])}»</span></div>
                 </div>
                 {if $totalProducts > 0}
                     <span class="count">(Найдено {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array('товар','товара','товаров'))})</span>
@@ -38,7 +38,7 @@
                     <input type="hidden" name="category" value="{echo $_GET[category]}">
                 </form>
 
-                {$cat = searchResultsInCategories($tree, $categorys)}
+                {$cat = searchResultsInCategories($tree, $categories)}
                 <div class="block-filter">
                     <div class="title_h3">Категории</div>
                     <div class="inside-padd">
