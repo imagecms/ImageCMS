@@ -359,7 +359,7 @@ class Exchange {
                 $data['external_id'] = $property->Ид . "";
                 $data['csv_name'] = translit_url($property->Наименование);
                 $data['csv_name'] = str_replace(array("-", "_", "'"), '', $data['csv_name']);
-                
+
                 if ($property->Обязательное . "" == 'true')
                     $data['main_property'] = true;
                 elseif ($property->Обязательное . "" == 'false')
@@ -400,7 +400,7 @@ class Exchange {
                 $data = array();
                 $data['csv_name'] = translit_url($property->Наименование);
                 $data['csv_name'] = str_replace(array("-", "_", "'"), '', $data['csv_name']);
-                
+
                 if ($property->Обязательное . "" == 'true')
                     $data['main_property'] = true;
                 elseif ($property->Обязательное . "" == 'false')
@@ -491,7 +491,9 @@ class Exchange {
                 //setting images if $product->Картинка not empty
                 if ($product->Картинка . "" != '' OR $product->Картинка != null) {
                     $image = explode('/', $product->Картинка);
-                    @rename('./application/modules/shop/cmlTemp/images/' . $image[count($image) - 1], './application/modules/shop/cmlTemp/images/' . $product->Ид . '.jpg');
+                    $ext = explode('.', $image[count($image) - 1]);
+                    @rename('./application/modules/shop/cmlTemp/images/' . $image[count($image) - 1], 
+                            './application/modules/shop/cmlTemp/images/' . $product->Ид . '.' . $ext[count($ext) - 1]);
 
                     $data['mainImage'] = $insert_id . '_main.jpg';
                     $data['smallImage'] = $insert_id . '_small.jpg';
@@ -609,7 +611,9 @@ class Exchange {
                 //setting images if $product->Картинка not empty
                 if ($product->Картинка . "" != '' OR $product->Картинка != null) {
                     $image = explode('/', $product->Картинка);
-                    @rename('./application/modules/shop/cmlTemp/images/' . $image[count($image) - 1], './application/modules/shop/cmlTemp/images/' . $product->Ид . '.jpg');
+                    $ext = explode('.', $image[count($image) - 1]);
+                    @rename('./application/modules/shop/cmlTemp/images/' . $image[count($image) - 1], 
+                            './application/modules/shop/cmlTemp/images/' . $product->Ид . '.' . $ext[count($ext) - 1]);
                     $data = array();
                     $data['mainImage'] = $searchedProduct['id'] . '_main.jpg';
                     $data['smallImage'] = $searchedProduct['id'] . '_small.jpg';
