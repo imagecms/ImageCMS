@@ -38,7 +38,7 @@
                 <ul>
 					{if $is_logged_in}
 					<li class="first">{lang('lang_logged_in_as')} <b>{$username}</b></li>
-					<li><a href="{site_url('auth/logout')}">{lang('lang_logout')}</a></li>
+					<li><a href="{site_url('auth/logout')}">{lang("Exit")}</a></li>
 					{else:}
                     <li class="first"><a href="{site_url('auth/login')}">Вход</a></li>
                     <li><a href="{site_url('auth/register')}">Регистрация</a></li>

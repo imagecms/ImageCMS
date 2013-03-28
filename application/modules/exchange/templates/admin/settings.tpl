@@ -6,8 +6,8 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$BASE_URL}admin/components/modules_table" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
-                <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#exchange_settings_form" data-action="tomain"><i class="icon-ok"></i>{lang('a_save')}</button>
+                <a href="{$BASE_URL}admin/components/modules_table" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back")}</span></a>
+                <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#exchange_settings_form" data-action="tomain"><i class="icon-ok"></i>{lang("Have been saved")}</button>
             </div>
         </div>                            
     </div>
@@ -25,28 +25,28 @@
                     <td colspan="6">
                         <div class="inside_padd">
                             <div class="control-group">
-                                <label class="control-label" for="zip">{lang('a_ispol')}:</label>
+                                <label class="control-label" for="zip">{lang(" Use zip compaction , if available")}:</label>
                                 <div class="controls">
                                     <select name = "1CSettings[zip]" id="zip">
-                                        <option value = "yes" disabled>{lang('a_yes')}</option>
-                                        <option value = "no">{lang('a_no')}</option>
+                                        <option value = "yes" disabled>{lang("Yes")}</option>
+                                        <option value = "no">{lang("No")}</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="size">{lang('a_razmer')}:</label>
+                                <label class="control-label" for="size">{lang(" Size of the single file download (in bites)")}:</label>
                                 <div class="controls">
                                     <input type = "text" name = "1CSettings[filesize]" value = "{$settings['filesize']}" id="size"/>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="address">{lang('a_ip_addres_1c')}:</label>
+                                <label class="control-label" for="address">{lang("Server 1C IP address")}:</label>
                                 <div class="controls">
                                     <input type = "text" name = "1CSettings[validIP]" value = "{$settings['validIP']}" id="address"/>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="usepass">{lang('a_ispol_server')}:</label>
+                                <label class="control-label" for="usepass">{lang("Use the password for access from 1C server")}:</label>
                                 <div class="controls">
                                     <span class="frame_label no_connection">
                                         <span class="niceCheck b_n">
@@ -56,13 +56,13 @@
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="pass">{lang('a_server_zadat')}:</label>
+                                <label class="control-label" for="pass">{lang(" Set  a password for  access from 1C server ")}:</label>
                                 <div class="controls">
                                     <input type = "password" name = "1CSettings[password]" class="textbox_short" value="{$settings['password']}" id="pass"/>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="status">{lang('a_select_order_status')}:</label>
+                                <label class="control-label" for="status">{lang("Select order statuses for import")}:</label>
                                 <div class="controls">
                                     <select name="1CSettings[statuses][]" multiple="multiple" id="status">
                                         {foreach $statuses as $status}

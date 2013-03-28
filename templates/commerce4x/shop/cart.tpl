@@ -28,7 +28,7 @@
                                 {/if}
                                 <div class="groups_form">
                                     <label>
-                                        <span class="title">{lang('s_c_uoy_name_u')}</span>
+                                        <span class="title">{lang("You name")}</span>
                                         <span class="frame_form_field">
                                         {if $isRequired['userInfo[fullName]']}<span class="must">*</span>{/if}
                                         <span class="icon-person"></span>
@@ -36,7 +36,7 @@
                                     </span>
                                 </label>
                                 <label>
-                                    <span class="title">{lang('s_c_uoy_user_el')}</span>
+                                    <span class="title">{lang("E-mail Address")}</span>
                                     <span class="frame_form_field">
                                     {if $isRequired['userInfo[email]']}<span class="must">*</span>{/if}
                                     <span class="icon-email"></span>
@@ -44,7 +44,7 @@
                                 </span>
                             </label>
                             <label>
-                                <span class="title">{lang('s_phone')}</span>
+                                <span class="title">{lang("Phone")}</span>
                             {if $isRequired['userInfo[phone]']}<span class="must">*</span>{/if}
                             <span class="frame_form_field">
                                 <span class="icon-phone"></span>
@@ -52,7 +52,7 @@
                             </span>
                         </label>
                         <label>
-                            <span class="title">{lang('s_addresrec')}</span>
+                            <span class="title">{lang("Address of the recipient")}</span>
                             <span class="frame_form_field">
                             {if $isRequired['userInfo[deliverTo]']}<span class="must">*</span>{/if}
                             <span class="icon-address"></span>
@@ -137,7 +137,7 @@
                         <label for="giftcert">
                             <span class="title">{lang('s_cert_code')}</span>
                             <span class="frame_form_field">
-                                <button class="btn f_r" id="applyGiftCert">{lang('s_apply_sertif')}</button>
+                                <button class="btn f_r" id="applyGiftCert">{lang("Apply")}</button>
                                 <div class="o_h">
                                     <input type="text" name="giftcert" value="">
                                 </div>
@@ -148,7 +148,7 @@
             {/if}
             <div class="groups_form">
                 <label>
-                    <span class="title">{lang('s_comment')}</span>
+                    <span class="title">{lang("Comment")}</span>
                     <span class="frame_form_field"><textarea name="userInfo[commentText]" ></textarea></span>
                 </label>
                 <div class="frameLabel c_t" style="position: relative; z-index: 4;">

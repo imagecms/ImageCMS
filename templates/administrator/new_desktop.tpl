@@ -60,28 +60,28 @@
                         <ul class="nav">
                             <li ><a href="/admin/pages"><i class="icon-home"></i><span>Главная</span></a></li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-align-justify"></i>{lang('a_content')}<b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-align-justify"></i>{lang("Content")}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/admin/pages">{lang('a_create')}</a></li>
+                                    <li><a href="/admin/pages">{lang("Create")}</a></li>
                                     <li><a href="/admin/pages/GetPagesByCategory/0">Все содержимое по категориях</a></li>
-                                    <li><a href="/admin/pages/GetPagesByCategory/0">{lang('a_without_cat')}</a></li>
+                                    <li><a href="/admin/pages/GetPagesByCategory/0">{lang("Without a category")}</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="/admin/components/cp/cfcm">{lang('a_field_constructor')}</a></li>
+                                    <li><a href="/admin/components/cp/cfcm">{lang("Field constructor")}</a></li>
 
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list"></i>{lang('a_categories')}<b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list"></i>{lang("Categories")}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/admin/categories/create_form">{lang('a_create')}</a></li>
-                                    <li><a href="/admin/categories/cat_list">{lang('a_edit')}</a></li>
+                                    <li><a href="/admin/categories/create_form">{lang("Create")}</a></li>
+                                    <li><a href="/admin/categories/cat_list">{lang("Editing")}</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list-alt"></i>{lang('a_menu')}<b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list-alt"></i>{lang("Menu")}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
 
-                                    <li><a href="/admin/components/cp/menu">{lang('a_control')}</a></li>
+                                    <li><a href="/admin/components/cp/menu">{lang("Control or Operation")}</a></li>
                                     <li class="divider"></li>
                                     {foreach $menus as $menu}
                                         <li><a href="/admin/components/cp/menu/menu_item/{$menu.name}">{$menu.main_title}</a></li>
@@ -90,10 +90,10 @@
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-circle-arrow-down"></i>{lang('a_modules')}<b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-circle-arrow-down"></i>{lang("Modules")}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/admin/components/modules_table/">{lang('a_all_modules')}</a></li>
-                                    <li><a href="/admin/mod_search/">{lang('a_search')}</a></li>
+                                    <li><a href="/admin/components/modules_table/">{lang("All modules")}</a></li>
+                                    <li><a href="/admin/mod_search/">{lang("Search")}</a></li>
                                     <li class="divider returnFalse"></a></li>
                                     {if $components}
                                         {foreach $components as $component}
@@ -105,26 +105,26 @@
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-th"></i>{lang('a_widgets')}<b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-th"></i>{lang("Widgets")}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/admin/widgets_manager/create_tpl">{lang('a_create')}</a></li>
-                                    <li><a href="/admin/widgets_manager">{lang('a_edit')}</a></li>
+                                    <li><a href="/admin/widgets_manager/create_tpl">{lang("Create")}</a></li>
+                                    <li><a href="/admin/widgets_manager">{lang("Editing")}</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-hdd"></i>{lang('a_system')}<b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-hdd"></i>{lang("System")}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/admin/settings">{lang('a_site_settings')}</a></li>
-                                    <li><a href="/admin/languages">{lang('a_languages')}</a></li>
-                                    <li class="dropdown"><a class="returnFalse arrow-right" href="">{lang('a_cache')}</a>
+                                    <li><a href="/admin/settings">{lang("Site settings")}</a></li>
+                                    <li><a href="/admin/languages">{lang("Languages")}</a></li>
+                                    <li class="dropdown"><a class="returnFalse arrow-right" href="">{lang("Cache")}</a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="javascript:delete_cache('all')">{lang('a_clean_all')}</a></li>
-                                            <li><a href="javascript:delete_cache('expried')">{lang('a_clean_old')}</a></li>
+                                            <li><a href="javascript:delete_cache('all')">{lang("Clear all")}</a></li>
+                                            <li><a href="javascript:delete_cache('expried')">{lang("Clear old or Delete outdated posts or information")}</a></li>
                                         </ul>
                                     </li>
                                     <li class="divider"></li>
-                                    <li><a href="/admin/admin_logs">{lang('a_event_journal')}</a></li>
-                                    <li><a href="/admin/backup">{lang('a_backup_copy')}</a></li>
+                                    <li><a href="/admin/admin_logs">{lang("Event journal")}</a></li>
+                                    <li><a href="/admin/backup">{lang("Backup copying")}</a></li>
                                 </ul>
                             </li>
                         </ul>

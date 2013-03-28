@@ -53,7 +53,7 @@
                                                 data-name="{echo $hotProduct->getName()}"
                                                 data-number="{echo $hotProduct->firstVariant->getnumber()}"
                                                 data-maxcount="{echo $hotProduct->firstVariant->getstock()}">
-                                            {lang('s_buy')}
+                                            {lang("Buy")}
                                         </button>
                                     {else:}
                                         <button data-placement="bottom right"
@@ -66,7 +66,7 @@
                                                 type="button"
                                                 class="btn btn_not_avail">
                                             <span class="icon-but"></span>
-                                            {lang('s_message_o_report')}
+                                            {lang("Report the appearance of")}
                                         </button> 
                                     {/if} 
                                 </div>

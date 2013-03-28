@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-26 14:57+0300\n"
-"PO-Revision-Date: 2013-03-26 14:57+0300\n"
+"POT-Creation-Date: 2013-03-28 12:06+0300\n"
+"PO-Revision-Date: 2013-03-28 12:07+0300\n"
 "Last-Translator: koloda <koloda90@gmail.com>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -15,572 +15,2099 @@ msgstr ""
 "X-Poedit-Language: English\n"
 "X-Poedit-Country: UKRAINE\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-SearchPath-0: /var/www/img/application/modules/admin\n"
+"X-Poedit-SearchPath-0: ../../../\n"
+"X-Poedit-SearchPath-1: ../../../../../../templates/administrator\n"
 
-#: /var/www/img/application/modules/admin/widgets_manager.php:30
-#: /var/www/img/application/modules/admin/widgets_manager.php:81
-#: /var/www/img/application/modules/admin/widgets_manager.php:196
-msgid "ac_to_contin_work_set_perm"
+#: ../../..//widgets_manager.php:30
+#: ../../..//widgets_manager.php:81
+#: ../../..//widgets_manager.php:196
+msgid "Set the directory access rights to continue the work with widgets"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/widgets_manager.php:91
-msgid "ac_widget_w_n_cr"
+#: ../../..//widgets_manager.php:91
+msgid "Widget with the same name already exists. Choose or select another name."
 msgstr ""
 
-#: /var/www/img/application/modules/admin/widgets_manager.php:96
-#: /var/www/img/application/modules/admin/widgets_manager.php:160
-#: /var/www/img/application/modules/admin/widgets_manager.php:239
-#: /var/www/img/application/modules/admin/widgets_manager.php:270
-#: /var/www/img/application/modules/admin/pages.php:139
-#: /var/www/img/application/modules/admin/pages.php:468
-msgid "ac_val_desc"
+#: ../../..//widgets_manager.php:96
+#: ../../..//widgets_manager.php:160
+#: ../../..//widgets_manager.php:239
+#: ../../..//widgets_manager.php:270
+#: ../../..//pages.php:139
+#: ../../..//pages.php:468
+msgid "Description "
 msgstr ""
 
-#: /var/www/img/application/modules/admin/widgets_manager.php:97
-#: /var/www/img/application/modules/admin/widgets_manager.php:161
-#: /var/www/img/application/modules/admin/widgets_manager.php:240
-#: /var/www/img/application/modules/admin/widgets_manager.php:271
+#: ../../..//widgets_manager.php:97
+#: ../../..//widgets_manager.php:161
+#: ../../..//widgets_manager.php:240
+#: ../../..//widgets_manager.php:271
+msgid "Name"
+msgstr ""
+
+#: ../../..//widgets_manager.php:98
+msgid "Module"
+msgstr ""
+
+#: ../../..//widgets_manager.php:99
+msgid "Method"
+msgstr ""
+
+#: ../../..//widgets_manager.php:144
+#: ../../..//widgets_manager.php:175
+msgid "Created a widget"
+msgstr ""
+
+#: ../../..//widgets_manager.php:162
+#: ../../..//widgets_manager.php:272
+msgid "HTML"
+msgstr ""
+
+#: ../../..//widgets_manager.php:225
+#: ../../..//widgets_manager.php:298
+msgid "Error: widget not found!"
+msgstr ""
+
+#: ../../..//widgets_manager.php:255
+#: ../../..//widgets_manager.php:290
+msgid "Changed a widget"
+msgstr ""
+
+#: ../../..//widgets_manager.php:257
+#: ../../..//widgets_manager.php:293
+msgid "Changes has been saved"
+msgstr ""
+
+#: ../../..//widgets_manager.php:327
+msgid "Deleted a widget"
+msgstr ""
+
+#: ../../..//widgets_manager.php:329
+msgid "Widget successfully deleted"
+msgstr ""
+
+#: ../../..//widgets_manager.php:442
+msgid "Core"
+msgstr ""
+
+#: ../../..//components.php:98
+msgid "Installed a module"
+msgstr ""
+
+#: ../../..//components.php:133
+msgid "Deleted a module"
+msgstr ""
+
+#: ../../..//components.php:137
+msgid "Module deletion error"
+msgstr ""
+
+#: ../../..//components.php:234
+msgid "Changed the module settings"
+msgstr ""
+
+#: ../../..//components.php:324
+msgid "Author"
+msgstr ""
+
+#: ../../..//components.php:324
+msgid "Version "
+msgstr ""
+
+#: ../../..//components.php:328
+msgid "Can't load module info file"
+msgstr ""
+
+#: ../../..//components.php:395
 #, fuzzy
-msgid "ac_val_name"
-msgstr "Name"
-
-#: /var/www/img/application/modules/admin/widgets_manager.php:98
-msgid "ac_val_module"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/widgets_manager.php:99
-msgid "ac_val_method"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/widgets_manager.php:144
-#: /var/www/img/application/modules/admin/widgets_manager.php:175
-msgid "ac_created_widget"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/widgets_manager.php:162
-#: /var/www/img/application/modules/admin/widgets_manager.php:272
-msgid "ac_val_html"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/widgets_manager.php:225
-#: /var/www/img/application/modules/admin/widgets_manager.php:298
-msgid "ac_err_wid_not_found"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/widgets_manager.php:255
-#: /var/www/img/application/modules/admin/widgets_manager.php:290
-msgid "ac_ch_widget"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/widgets_manager.php:257
-#: /var/www/img/application/modules/admin/widgets_manager.php:293
-msgid "ac_changes_saved"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/widgets_manager.php:327
-msgid "ac_wid_del"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/widgets_manager.php:329
-msgid "a_widget_success_delete"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/widgets_manager.php:442
-msgid "ac_core"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/components.php:98
-msgid "ac_istall"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/components.php:133
-msgid "ac_deinstall"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/components.php:137
-msgid "ac_deinstall_error"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/components.php:234
-msgid "ac_module_sett_changed"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/components.php:324
-msgid "ac_author"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/components.php:324
-msgid "ac_version"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/components.php:328
-msgid "ac_cant_load_module_into_file"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/components.php:395
-msgid "a_positions_updated"
+msgid "Positions updated"
 msgstr "Позиція змінена"
 
-#: /var/www/img/application/modules/admin/components.php:397
-msgid "a_fail"
+#: ../../..//components.php:397
+msgid "Fail"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/components.php:411
-msgid "a_changes_saved"
+#: ../../..//components.php:411
+msgid "Changes saved"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/admin_search.php:91
-#: /var/www/img/application/modules/admin/admin_search.php:220
-msgid "first_link"
+#: ../../..//admin_search.php:91
+#: ../../..//admin_search.php:220
+msgid "The first"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/admin_search.php:92
-#: /var/www/img/application/modules/admin/admin_search.php:221
-msgid "last_link"
+#: ../../..//admin_search.php:92
+#: ../../..//admin_search.php:221
+msgid "Last"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/mod_search.php:96
-msgid "ac_error_not_found"
+#: ../../..//mod_search.php:96
+msgid "Error: Module information has not been found"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/mod_search.php:123
-#: /var/www/img/application/modules/admin/sys_upgrade.php:32
-msgid "ac_ftp_fun_dis"
+#: ../../..//mod_search.php:123
+#: ../../..//sys_upgrade.php:32
+msgid "FTP_connect function is not available"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/mod_search.php:140
-#: /var/www/img/application/modules/admin/sys_upgrade.php:62
-msgid "ac_err_conn_to_serv"
+#: ../../..//mod_search.php:140
+#: ../../..//sys_upgrade.php:62
+msgid "Server connection error:Check username and password"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/mod_search.php:167
-msgid "ac_wrong_path_to_root"
+#: ../../..//mod_search.php:167
+msgid "Wrong path to the root directory"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/mod_search.php:182
-msgid "ac_error_down_file"
+#: ../../..//mod_search.php:182
+msgid "File downloading error"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/mod_search.php:207
-#: /var/www/img/application/modules/admin/mod_search.php:287
-msgid "ac_error_cr_temp_dir"
+#: ../../..//mod_search.php:207
+#: ../../..//mod_search.php:287
+msgid "Creation of temporary directory has been failed"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/mod_search.php:231
-msgid "ac_to_continue"
+#: ../../..//mod_search.php:231
+msgid "Delete the directory to continue"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/mod_search.php:231
-msgid "ac_atten"
+#: ../../..//mod_search.php:231
+msgid "Attention or Caution"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/mod_search.php:237
-#: /var/www/img/application/modules/admin/mod_search.php:268
-#: /var/www/img/application/modules/admin/sys_upgrade.php:129
-msgid "ac_error_extract"
+#: ../../..//mod_search.php:237
+#: ../../..//mod_search.php:268
+#: ../../..//sys_upgrade.php:129
+msgid "Exploding error"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/mod_search.php:248
-#: /var/www/img/application/modules/admin/mod_search.php:296
-msgid "ac_error_install_module"
+#: ../../..//mod_search.php:248
+#: ../../..//mod_search.php:296
+msgid "Module installation module"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/mod_search.php:258
-#: /var/www/img/application/modules/admin/mod_search.php:306
-msgid "ac_module_installed"
+#: ../../..//mod_search.php:258
+#: ../../..//mod_search.php:306
+msgid "Modul has been installed"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/pages.php:108
-msgid "ac_delete_page"
+#: ../../..//pages.php:108
+msgid "Deleted ID page"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/pages.php:136
-#: /var/www/img/application/modules/admin/pages.php:464
-msgid "ac_val_t"
+#: ../../..//pages.php:136
+#: ../../..//pages.php:464
+msgid "Title"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/pages.php:137
-#: /var/www/img/application/modules/admin/pages.php:465
-msgid "ac_val_url"
+#: ../../..//pages.php:137
+#: ../../..//pages.php:465
+msgid "URL"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/pages.php:138
-#: /var/www/img/application/modules/admin/pages.php:467
-msgid "ac_val_prev_cont"
+#: ../../..//pages.php:138
+#: ../../..//pages.php:467
+msgid "Preliminary contents"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/pages.php:140
-#: /var/www/img/application/modules/admin/pages.php:469
-msgid "ac_val_page_tpl"
+#: ../../..//pages.php:140
+#: ../../..//pages.php:469
+msgid "Page template"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/pages.php:141
-#: /var/www/img/application/modules/admin/pages.php:471
-msgid "ac_val_cr_date"
+#: ../../..//pages.php:141
+#: ../../..//pages.php:471
+msgid "Date of creation or creation date"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/pages.php:142
-#: /var/www/img/application/modules/admin/pages.php:472
-msgid "ac_val_time_cr"
+#: ../../..//pages.php:142
+#: ../../..//pages.php:472
+msgid "Time of creation or creation time"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/pages.php:143
-#: /var/www/img/application/modules/admin/pages.php:473
-msgid "ac_val_pub_date"
+#: ../../..//pages.php:143
+#: ../../..//pages.php:473
+msgid "Publication date or date of publication"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/pages.php:144
-#: /var/www/img/application/modules/admin/pages.php:474
-msgid "ac_val_pub_time"
+#: ../../..//pages.php:144
+#: ../../..//pages.php:474
+msgid "Publication time or time of publication"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/pages.php:146
-msgid "ac_main_tpl"
+#: ../../..//pages.php:146
+msgid "Main page template"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/pages.php:173
-#: /var/www/img/application/modules/admin/pages.php:503
-msgid "ac_modul_exists"
+#: ../../..//pages.php:173
+#: ../../..//pages.php:503
+msgid "Reserved the same name module"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/pages.php:182
-#: /var/www/img/application/modules/admin/pages.php:512
-msgid "ac_category_exists"
+#: ../../..//pages.php:182
+#: ../../..//pages.php:512
+msgid "Reserved of the same name category"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/pages.php:194
-msgid "ac_page_is_al_cr"
+#: ../../..//pages.php:194
+msgid "Page with the same URL has been created yet. Specify or select another URL"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/pages.php:258
-msgid "ac_created_page"
+#: ../../..//pages.php:258
+msgid "Created a page"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/pages.php:268
-msgid "ac_page_created"
+#: ../../..//pages.php:268
+msgid "Page has been created"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/pages.php:318
-msgid "ac_page"
+#: ../../..//pages.php:318
+msgid "Page"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/pages.php:318
-msgid "ac_not_found"
+#: ../../..//pages.php:318
+msgid "Not found"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/pages.php:442
-msgid "ac_page_in_language"
+#: ../../..//pages.php:442
+msgid "Language of the page"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/pages.php:442
-msgid "ac_creat"
+#: ../../..//pages.php:442
+msgid "Created. ID"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/pages.php:466
-msgid "ac_val_keywords"
+#: ../../..//pages.php:466
+msgid "Keywords"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/pages.php:470
-msgid "ac_val_main_page_tpl"
+#: ../../..//pages.php:470
+msgid "Main page template "
 msgstr ""
 
-#: /var/www/img/application/modules/admin/pages.php:526
-msgid "ac_page_with_url"
+#: ../../..//pages.php:526
+msgid "Page with URL"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/pages.php:526
-msgid "ac_in_cat_id"
+#: ../../..//pages.php:526
+msgid "in ID category"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/pages.php:526
-msgid "ac_allready_exist"
+#: ../../..//pages.php:526
+msgid " already exists. Specify or select another URL"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/pages.php:584
-msgid "ac_changed_page"
+#: ../../..//pages.php:584
+msgid "Changed the page "
 msgstr ""
 
-#: /var/www/img/application/modules/admin/pages.php:594
+#: ../../..//pages.php:594
+msgid "Page contents have been updated"
+msgstr ""
+
+#: ../../..//pages.php:613
+msgid "Error: Generic page can not be deleted."
+msgstr ""
+
+#: ../../..//pages.php:631
+#: ../../..//pages.php:648
+msgid "Page has been deleted."
+msgstr ""
+
+#: ../../..//pages.php:833
+msgid "Zero-length string"
+msgstr ""
+
+#: ../../..//sys_upgrade.php:48
+msgid "You are using the latest version"
+msgstr ""
+
+#: ../../..//sys_upgrade.php:48
+msgid "Congratulations!"
+msgstr ""
+
+#: ../../..//sys_upgrade.php:85
+msgid "Error: Wrong path to the root directory."
+msgstr ""
+
+#: ../../..//sys_upgrade.php:96
+msgid "Error downloading update file"
+msgstr ""
+
+#: ../../..//sys_upgrade.php:162
+msgid "Updating has been completed"
+msgstr ""
+
+#: ../../..//backup.php:42
+msgid "Directory ./application/backups has no writing permission"
+msgstr ""
+
+#: ../../..//backup.php:82
+msgid "Backup copying"
+msgstr ""
+
+#: ../../..//backup.php:113
+msgid "Backup copying has been completed"
+msgstr ""
+
+#: ../../..//login.php:73
+msgid "E-mail"
+msgstr ""
+
+#: ../../..//login.php:74
+msgid "Password"
+msgstr ""
+
+#: ../../..//login.php:84
+msgid "Protection code"
+msgstr ""
+
+#: ../../..//login.php:99
+msgid "Entered the IP control panel"
+msgstr ""
+
+#: ../../..//login.php:103
+msgid "Username and password have not been found"
+msgstr ""
+
+#: ../../..//login.php:119
+msgid "Username or Email"
+msgstr ""
+
+#: ../../..//login.php:123
+msgid "Please check your email for instructions on how to activate the new password."
+msgstr ""
+
+#: ../../..//login.php:145
+#: ../../..//login.php:149
+msgid "Wrong protection code"
+msgstr ""
+
+#: ../../..//settings.php:124
+msgid "Page has not been found"
+msgstr ""
+
+#: ../../..//settings.php:168
+msgid "Changed wesite settings"
+msgstr ""
+
+#: ../../..//settings.php:171
 #, fuzzy
-msgid "ac_page_cont_updated"
-msgstr "Позиція змінена"
+msgid "Settings have been saved"
+msgstr "Settings saved success"
 
-#: /var/www/img/application/modules/admin/pages.php:613
-msgid "ac_error_deleting_main_cat"
+#: ../../..//admin.php:57
+msgid "Cleared the cache"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/pages.php:631
-#: /var/www/img/application/modules/admin/pages.php:648
-msgid "ac_page_deleted"
+#: ../../..//admin.php:63
+msgid "Files deleted"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/pages.php:833
-msgid "ac_empty_string"
+#: ../../..//admin.php:65
+#: ../../..//admin.php:73
+msgid "Cache has been cleared"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/sys_upgrade.php:48
-msgid "ac_ur_usign_last_ver"
+#: ../../..//admin.php:71
+msgid "Outdated files  have been deleted"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/sys_upgrade.php:48
-msgid "ac_congrat"
+#: ../../..//admin.php:155
+msgid "exited the control panel"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/sys_upgrade.php:85
-msgid "ac_err_wrong_path_to_root"
+#: ../../..//languages.php:48
+#: ../../..//languages.php:106
+#: ../../../../../../templates/administrator/_out.php:1213
+#: ../../../../../../templates/administrator/_out.php:1819
+#: ../../../../../../templates/administrator/_out.php:1989
+#: ../../../../../../templates/administrator/_out.php:2018
+#: ../../../../../../templates/administrator/_out.php:4142
+#: ../../../../../../templates/administrator/_out.php:4676
+msgid "Identifier"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/sys_upgrade.php:96
-msgid "ac_err_down_update_files"
+#: ../../..//languages.php:49
+#: ../../..//languages.php:107
+#: ../../..//categories.php:128
+#: ../../..//categories.php:412
+#: ../../../../../../templates/administrator/_out.php:1158
+#: ../../../../../../templates/administrator/_out.php:2887
+#: ../../../../../../templates/administrator/_out.php:3192
+#: ../../../../../../templates/administrator/_out.php:4678
+msgid "Image"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/sys_upgrade.php:162
-msgid "ac_update_completed"
+#: ../../..//languages.php:50
+#: ../../..//languages.php:108
+#: ../../../../../../templates/administrator/_out.php:1845
+#: ../../../../../../templates/administrator/_out.php:4168
+#: ../../../../../../templates/administrator/_out.php:4675
+msgid "Folder"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/backup.php:42
-msgid "ac_msg_dir"
+#: ../../..//languages.php:51
+#: ../../..//languages.php:109
+#: ../../..//categories.php:135
+#: ../../../../../../templates/administrator/_out.php:166
+#: ../../../../../../templates/administrator/_out.php:1855
+#: ../../../../../../templates/administrator/_out.php:4178
+#: ../../../../../../templates/administrator/_out.php:4677
+#: ../../../../../../templates/administrator/settings.tpl:76
+msgid "Template"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/backup.php:82
-msgid "ac_backup_copy"
+#: ../../..//languages.php:70
+msgid "Create a language"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/backup.php:113
-msgid "ac_backup_complete"
+#: ../../..//languages.php:74
+msgid "Language has been created"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/login.php:73
-msgid "a_email"
+#: ../../..//languages.php:128
+msgid "Changed a language"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/login.php:74
-msgid "a_password"
+#: ../../..//languages.php:155
+#: ../../..//languages.php:171
+msgid "This language has been used by default and can not be deleted"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/login.php:84
-msgid "ac_lang_captcha"
+#: ../../..//languages.php:155
+#: ../../..//languages.php:171
+msgid "Blocking"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/login.php:99
-msgid "ac_entered_in_cp_ip"
+#: ../../..//languages.php:163
+#: ../../..//languages.php:183
+msgid "Deleted the ID language"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/login.php:103
-msgid "ac_error_login"
+#: ../../..//languages.php:185
+msgid "the language has been deleted"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/login.php:119
-msgid "lang_username_or_mail"
+#: ../../..//languages.php:206
+msgid "Specified a language or selected a language"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/login.php:123
-msgid "lang_acc_mail_sent"
+#: ../../..//languages.php:206
+#: ../../../../../../templates/administrator/_out.php:3940
+#: ../../../../../../templates/administrator/_out.php:3953
+#: ../../../../../../templates/administrator/_out.php:4362
+#: ../../../../../../templates/administrator/_out.php:4375
+#: ../../../../../../templates/administrator/_out.php:4679
+msgid "by default"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/login.php:145
-#: /var/www/img/application/modules/admin/login.php:149
-msgid "ac_lang_captcha_error"
+#: ../../..//languages.php:208
+msgid "The language has been installed by default"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/settings.php:124
-msgid "ac_page_not_found"
+#: ../../..//categories.php:127
+msgid "URL categories"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/settings.php:168
-msgid "ac_changed_site_sett"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/settings.php:171
-msgid "ac_sett_saved"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/admin.php:57
-msgid "ac_cleaned_cache"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/admin.php:63
-msgid "ac_files_deleted"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/admin.php:65
-#: /var/www/img/application/modules/admin/admin.php:73
-msgid "ac_cache_cleared"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/admin.php:71
-msgid "ac_old_files_deleted"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/admin.php:155
-msgid "ac_admin_panel_exit"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/languages.php:47
-#: /var/www/img/application/modules/admin/languages.php:105
-#: /var/www/img/application/modules/admin/categories.php:126
-#: /var/www/img/application/modules/admin/categories.php:293
-#: /var/www/img/application/modules/admin/categories.php:411
-msgid "ac_val_title"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/languages.php:48
-#: /var/www/img/application/modules/admin/languages.php:106
-msgid "ac_val_identif"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/languages.php:49
-#: /var/www/img/application/modules/admin/languages.php:107
-#: /var/www/img/application/modules/admin/categories.php:128
-#: /var/www/img/application/modules/admin/categories.php:412
-msgid "ac_val_image"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/languages.php:50
-#: /var/www/img/application/modules/admin/languages.php:108
-msgid "ac_val_folder"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/languages.php:51
-#: /var/www/img/application/modules/admin/languages.php:109
-#: /var/www/img/application/modules/admin/categories.php:135
-msgid "ac_val_template"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/languages.php:70
-msgid "ac_cr_language"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/languages.php:74
-msgid "ac_language_created"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/languages.php:128
-msgid "ac_changed_language"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/languages.php:155
-#: /var/www/img/application/modules/admin/languages.php:171
-msgid "ac_cant_delete_language"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/languages.php:155
-#: /var/www/img/application/modules/admin/languages.php:171
-msgid "ac_block"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/languages.php:163
-#: /var/www/img/application/modules/admin/languages.php:183
-msgid "ac_delete_language"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/languages.php:185
-msgid "ac_language_deleted"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/languages.php:206
-msgid "ac_set_language"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/languages.php:206
-msgid "ac_by_default"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/languages.php:208
-msgid "ac_def_lang_is_set"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/categories.php:127
-msgid "ac_val_cat_url"
-msgstr ""
-
-#: /var/www/img/application/modules/admin/categories.php:129
+#: ../../..//categories.php:129
+#: ../../../../../../templates/administrator/_out.php:2900
+#: ../../../../../../templates/administrator/_out.php:3206
 #, fuzzy
-msgid "ac_val_position"
+msgid "Position"
 msgstr "Позиція"
 
-#: /var/www/img/application/modules/admin/categories.php:130
-#: /var/www/img/application/modules/admin/categories.php:294
-msgid "ac_val_parent"
+#: ../../..//categories.php:130
+#: ../../..//categories.php:294
+#: ../../../../../../templates/administrator/_out.php:1370
+#: ../../../../../../templates/administrator/_out.php:4082
+#: ../../../../../../templates/administrator/_out.php:4498
+msgid "Parent"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/categories.php:133
-#: /var/www/img/application/modules/admin/categories.php:415
-msgid "ac_val_short_desc"
+#: ../../..//categories.php:133
+#: ../../..//categories.php:415
+msgid "Short description"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/categories.php:134
-msgid "ac_val_tit"
+#: ../../..//categories.php:137
+#: ../../../../../../templates/administrator/_out.php:2976
+#: ../../../../../../templates/administrator/_out.php:3287
+#: ../../../../../../templates/administrator/_out.php:3933
+#: ../../../../../../templates/administrator/_out.php:4355
+msgid "Main template"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/categories.php:137
-msgid "ac_val_main_tpl"
+#: ../../..//categories.php:138
+msgid "Per page"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/categories.php:138
-msgid "ac_val_per_page"
+#: ../../..//categories.php:205
+#: ../../..//categories.php:346
+msgid "Category has been created or created a category"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/categories.php:205
-#: /var/www/img/application/modules/admin/categories.php:346
-msgid "ac_cr_cat"
+#: ../../..//categories.php:213
+#: ../../..//categories.php:365
+msgid "Category"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/categories.php:213
-msgid "ac_cat"
+#: ../../..//categories.php:213
+msgid "Created or has been created"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/categories.php:213
-msgid "ac_created"
+#: ../../..//categories.php:244
+msgid "Changed the category"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/categories.php:244
-msgid "ac_changed_cat"
+#: ../../..//categories.php:366
+#: ../../../../../../templates/administrator/_out.php:361
+#: ../../../../../../templates/administrator/_out.php:374
+#: ../../../../../../templates/administrator/_out.php:1287
+#: ../../../../../../templates/administrator/_out.php:1373
+#: ../../../../../../templates/administrator/_out.php:2838
+#: ../../../../../../templates/administrator/_out.php:2849
+#: ../../../../../../templates/administrator/_out.php:2870
+#: ../../../../../../templates/administrator/_out.php:3142
+#: ../../../../../../templates/administrator/_out.php:3153
+#: ../../../../../../templates/administrator/_out.php:3173
+#: ../../../../../../templates/administrator/_out.php:3815
+#: ../../../../../../templates/administrator/_out.php:4086
+#: ../../../../../../templates/administrator/_out.php:4249
+#: ../../../../../../templates/administrator/_out.php:4502
+#: ../../../../../../templates/administrator/settings.tpl:271
+#: ../../../../../../templates/administrator/settings.tpl:284
+msgid "No"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/categories.php:365
-msgid "ac_categor"
+#: ../../..//categories.php:416
+msgid "Meta title"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/categories.php:366
-msgid "ac_no"
+#: ../../..//categories.php:439
+msgid "Translated the category"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/categories.php:416
-msgid "ac_val_meta_title"
+#: ../../..//categories.php:448
+msgid "Changed the category translation"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/categories.php:439
-msgid "ac_create_cat_trans"
+#: ../../..//categories.php:460
+msgid "Category translation updated"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/categories.php:448
-msgid "ac_changed_cat_trans"
+#: ../../..//categories.php:518
+msgid "Category deletion error"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/categories.php:460
-msgid "a_categ_translate_upda"
+#: ../../..//categories.php:518
+msgid "Error"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/categories.php:518
-msgid "ac_delete_cat_err"
+#: ../../..//categories.php:529
+#: ../../..//categories.php:561
+msgid "Deleted ID category or ID category has been deleted"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/categories.php:518
-msgid "ac_error"
+#: ../../..//categories.php:587
+msgid "Category has been deleted"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/categories.php:529
-#: /var/www/img/application/modules/admin/categories.php:561
-msgid "ac_delete_cat"
+#: ../../../../../../templates/administrator/_out.php:3
+#: ../../../../../../templates/administrator/component_settings.tpl:3
+msgid "URL access on"
 msgstr ""
 
-#: /var/www/img/application/modules/admin/categories.php:587
-msgid "ac_cat_deleted"
+#: ../../../../../../templates/administrator/_out.php:7
+#: ../../../../../../templates/administrator/_out.php:3643
+#: ../../../../../../templates/administrator/component_settings.tpl:7
+msgid "Auto loading "
 msgstr ""
 
-#~ msgid "Settings saved success"
-#~ msgstr "Settings saved success"
+#: ../../../../../../templates/administrator/_out.php:11
+#: ../../../../../../templates/administrator/component_settings.tpl:11
+msgid "Add to the menu"
+msgstr ""
 
-#~ msgid "amt_name"
-#~ msgstr "User name"
+#: ../../../../../../templates/administrator/_out.php:16
+#: ../../../../../../templates/administrator/_out.php:28
+#: ../../../../../../templates/administrator/_out.php:101
+#: ../../../../../../templates/administrator/_out.php:486
+#: ../../../../../../templates/administrator/_out.php:1033
+#: ../../../../../../templates/administrator/_out.php:1101
+#: ../../../../../../templates/administrator/_out.php:1224
+#: ../../../../../../templates/administrator/_out.php:1396
+#: ../../../../../../templates/administrator/_out.php:1789
+#: ../../../../../../templates/administrator/_out.php:1883
+#: ../../../../../../templates/administrator/_out.php:1930
+#: ../../../../../../templates/administrator/_out.php:2692
+#: ../../../../../../templates/administrator/_out.php:3069
+#: ../../../../../../templates/administrator/_out.php:3464
+#: ../../../../../../templates/administrator/_out.php:3754
+#: ../../../../../../templates/administrator/_out.php:4528
+#: ../../../../../../templates/administrator/_out.php:5375
+#: ../../../../../../templates/administrator/translateRole.tpl:10
+#: ../../../../../../templates/administrator/settings.tpl:11
+#: ../../../../../../templates/administrator/roleCreate.tpl:10
+msgid "Have been saved"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:23
+#: ../../../../../../templates/administrator/_out.php:3459
+#: ../../../../../../templates/administrator/translateRole.tpl:5
+msgid "Role edit"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:27
+#: ../../../../../../templates/administrator/_out.php:485
+#: ../../../../../../templates/administrator/_out.php:1100
+#: ../../../../../../templates/administrator/_out.php:1395
+#: ../../../../../../templates/administrator/_out.php:2691
+#: ../../../../../../templates/administrator/_out.php:2783
+#: ../../../../../../templates/administrator/_out.php:3068
+#: ../../../../../../templates/administrator/_out.php:3463
+#: ../../../../../../templates/administrator/_out.php:3753
+#: ../../../../../../templates/administrator/translateRole.tpl:9
+#: ../../../../../../templates/administrator/roleCreate.tpl:9
+msgid "Back"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:29
+#: ../../../../../../templates/administrator/_out.php:1034
+#: ../../../../../../templates/administrator/_out.php:1102
+#: ../../../../../../templates/administrator/_out.php:3070
+#: ../../../../../../templates/administrator/_out.php:3465
+#: ../../../../../../templates/administrator/translateRole.tpl:11
+msgid "Save and exit"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:34
+#: ../../../../../../templates/administrator/_out.php:40
+#: ../../../../../../templates/administrator/_out.php:1401
+#: ../../../../../../templates/administrator/_out.php:1407
+#: ../../../../../../templates/administrator/_out.php:1935
+#: ../../../../../../templates/administrator/_out.php:1941
+#: ../../../../../../templates/administrator/_out.php:2700
+#: ../../../../../../templates/administrator/_out.php:2710
+#: ../../../../../../templates/administrator/_out.php:3472
+#: ../../../../../../templates/administrator/_out.php:3481
+#: ../../../../../../templates/administrator/_out.php:4537
+#: ../../../../../../templates/administrator/_out.php:4547
+#: ../../../../../../templates/administrator/_out.php:5672
+#: ../../../../../../templates/administrator/translateRole.tpl:16
+#: ../../../../../../templates/administrator/translateRole.tpl:22
+msgid "English"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:34
+#: ../../../../../../templates/administrator/_out.php:40
+#: ../../../../../../templates/administrator/_out.php:1401
+#: ../../../../../../templates/administrator/_out.php:1407
+#: ../../../../../../templates/administrator/_out.php:1935
+#: ../../../../../../templates/administrator/_out.php:1941
+#: ../../../../../../templates/administrator/_out.php:2700
+#: ../../../../../../templates/administrator/_out.php:2710
+#: ../../../../../../templates/administrator/_out.php:3472
+#: ../../../../../../templates/administrator/_out.php:3481
+#: ../../../../../../templates/administrator/_out.php:4537
+#: ../../../../../../templates/administrator/_out.php:4547
+#: ../../../../../../templates/administrator/_out.php:5673
+#: ../../../../../../templates/administrator/translateRole.tpl:16
+#: ../../../../../../templates/administrator/translateRole.tpl:22
+msgid "Russian"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:59
+#: ../../../../../../templates/administrator/_out.php:497
+#: ../../../../../../templates/administrator/_out.php:602
+#: ../../../../../../templates/administrator/_out.php:1046
+#: ../../../../../../templates/administrator/_out.php:1424
+#: ../../../../../../templates/administrator/_out.php:1893
+#: ../../../../../../templates/administrator/_out.php:1958
+#: ../../../../../../templates/administrator/_out.php:2011
+#: ../../../../../../templates/administrator/_out.php:2063
+#: ../../../../../../templates/administrator/_out.php:2173
+#: ../../../../../../templates/administrator/_out.php:2728
+#: ../../../../../../templates/administrator/_out.php:3495
+#: ../../../../../../templates/administrator/_out.php:3783
+#: ../../../../../../templates/administrator/_out.php:3865
+#: ../../../../../../templates/administrator/_out.php:4125
+#: ../../../../../../templates/administrator/_out.php:4221
+#: ../../../../../../templates/administrator/_out.php:4292
+#: ../../../../../../templates/administrator/_out.php:4565
+#: ../../../../../../templates/administrator/_out.php:5389
+#: ../../../../../../templates/administrator/translateRole.tpl:41
+#: ../../../../../../templates/administrator/roleCreate.tpl:21
+#: ../../../../../../templates/administrator/widget_edit_html.tpl:22
+msgid "Properties"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:69
+#: ../../../../../../templates/administrator/_out.php:227
+#: ../../../../../../templates/administrator/_out.php:513
+#: ../../../../../../templates/administrator/_out.php:618
+#: ../../../../../../templates/administrator/_out.php:1061
+#: ../../../../../../templates/administrator/_out.php:1171
+#: ../../../../../../templates/administrator/_out.php:1217
+#: ../../../../../../templates/administrator/_out.php:1433
+#: ../../../../../../templates/administrator/_out.php:1504
+#: ../../../../../../templates/administrator/_out.php:1621
+#: ../../../../../../templates/administrator/_out.php:1909
+#: ../../../../../../templates/administrator/_out.php:1967
+#: ../../../../../../templates/administrator/_out.php:1990
+#: ../../../../../../templates/administrator/_out.php:2022
+#: ../../../../../../templates/administrator/_out.php:2078
+#: ../../../../../../templates/administrator/_out.php:2120
+#: ../../../../../../templates/administrator/_out.php:2743
+#: ../../../../../../templates/administrator/_out.php:2907
+#: ../../../../../../templates/administrator/_out.php:3213
+#: ../../../../../../templates/administrator/_out.php:3420
+#: ../../../../../../templates/administrator/_out.php:3511
+#: ../../../../../../templates/administrator/_out.php:3641
+#: ../../../../../../templates/administrator/_out.php:3709
+#: ../../../../../../templates/administrator/_out.php:4580
+#: ../../../../../../templates/administrator/_out.php:4949
+#: ../../../../../../templates/administrator/_out.php:5005
+#: ../../../../../../templates/administrator/_out.php:5405
+#: ../../../../../../templates/administrator/translateRole.tpl:51
+#: ../../../../../../templates/administrator/settings.tpl:137
+#: ../../../../../../templates/administrator/roleCreate.tpl:37
+#: ../../../../../../templates/administrator/widget_edit_html.tpl:38
+msgid "Description"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:96
+#: ../../../../../../templates/administrator/settings.tpl:6
+msgid "Site configuration"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:100
+#: ../../../../../../templates/administrator/_out.php:1788
+#: ../../../../../../templates/administrator/_out.php:2050
+#: ../../../../../../templates/administrator/_out.php:4112
+#: ../../../../../../templates/administrator/settings.tpl:10
+msgid "Go back"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:108
+#: ../../../../../../templates/administrator/_out.php:122
+#: ../../../../../../templates/administrator/_out.php:1505
+#: ../../../../../../templates/administrator/_out.php:1542
+#: ../../../../../../templates/administrator/_out.php:1801
+#: ../../../../../../templates/administrator/_out.php:2792
+#: ../../../../../../templates/administrator/_out.php:2803
+#: ../../../../../../templates/administrator/_out.php:3099
+#: ../../../../../../templates/administrator/_out.php:3785
+#: ../../../../../../templates/administrator/_out.php:3988
+#: ../../../../../../templates/administrator/_out.php:4223
+#: ../../../../../../templates/administrator/_out.php:4407
+#: ../../../../../../templates/administrator/settings.tpl:18
+#: ../../../../../../templates/administrator/settings.tpl:32
+msgid "Settings"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:110
+#: ../../../../../../templates/administrator/_out.php:283
+#: ../../../../../../templates/administrator/settings.tpl:20
+#: ../../../../../../templates/administrator/settings.tpl:193
+msgid "Main page"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:133
+#: ../../../../../../templates/administrator/_out.php:357
+#: ../../../../../../templates/administrator/settings.tpl:43
+#: ../../../../../../templates/administrator/settings.tpl:267
+msgid "Site name or site title"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:140
+#: ../../../../../../templates/administrator/settings.tpl:50
+msgid "Site shutdown"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:148
+#: ../../../../../../templates/administrator/settings.tpl:58
+msgid "The site will be available only to the Administrator"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:154
+#: ../../../../../../templates/administrator/settings.tpl:64
+msgid "Select admin language"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:220
+#: ../../../../../../templates/administrator/settings.tpl:130
+msgid "Short site name or site title"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:241
+#: ../../../../../../templates/administrator/settings.tpl:151
+msgid "ID Google Analytics"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:245
+#: ../../../../../../templates/administrator/settings.tpl:155
+msgid "The code should be in the format "
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:250
+#: ../../../../../../templates/administrator/settings.tpl:160
+msgid "G.Webmaster"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:257
+msgid "Ya.Webmaster"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:264
+#: ../../../../../../templates/administrator/settings.tpl:174
+msgid "ID for yandex metric"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:295
+#: ../../../../../../templates/administrator/_out.php:662
+#: ../../../../../../templates/administrator/_out.php:708
+#: ../../../../../../templates/administrator/_out.php:781
+#: ../../../../../../templates/administrator/_out.php:835
+#: ../../../../../../templates/administrator/_out.php:926
+#: ../../../../../../templates/administrator/_out.php:1676
+#: ../../../../../../templates/administrator/_out.php:2321
+#: ../../../../../../templates/administrator/_out.php:2607
+#: ../../../../../../templates/administrator/_out.php:3809
+#: ../../../../../../templates/administrator/_out.php:4243
+#: ../../../../../../templates/administrator/_out.php:5226
+#: ../../../../../../templates/administrator/settings.tpl:205
+#: ../../../../../../templates/administrator/dashboard.tpl:22
+#: ../../../../../../templates/administrator/dashboard.tpl:68
+#: ../../../../../../templates/administrator/dashboard.tpl:141
+#: ../../../../../../templates/administrator/pages.tpl:7
+#: ../../../../../../templates/administrator/pages.tpl:98
+msgid "Categories"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:312
+#: ../../../../../../templates/administrator/settings.tpl:222
+msgid "Page ID"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:345
+#: ../../../../../../templates/administrator/_out.php:2793
+#: ../../../../../../templates/administrator/_out.php:3017
+#: ../../../../../../templates/administrator/_out.php:3100
+#: ../../../../../../templates/administrator/_out.php:3328
+#: ../../../../../../templates/administrator/settings.tpl:255
+msgid "Meta tags"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:360
+#: ../../../../../../templates/administrator/_out.php:373
+#: ../../../../../../templates/administrator/settings.tpl:270
+#: ../../../../../../templates/administrator/settings.tpl:283
+msgid "Yes"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:370
+#: ../../../../../../templates/administrator/settings.tpl:280
+msgid "Category name"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:383
+#: ../../../../../../templates/administrator/settings.tpl:293
+msgid "Separator"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:390
+#: ../../../../../../templates/administrator/_out.php:1187
+#: ../../../../../../templates/administrator/_out.php:3037
+#: ../../../../../../templates/administrator/_out.php:3347
+#: ../../../../../../templates/administrator/_out.php:3921
+#: ../../../../../../templates/administrator/_out.php:4343
+#: ../../../../../../templates/administrator/settings.tpl:300
+msgid "Meta Keywords"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:393
+#: ../../../../../../templates/administrator/_out.php:405
+#: ../../../../../../templates/administrator/settings.tpl:303
+#: ../../../../../../templates/administrator/settings.tpl:315
+msgid "Auto formation"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:394
+#: ../../../../../../templates/administrator/_out.php:406
+#: ../../../../../../templates/administrator/settings.tpl:304
+#: ../../../../../../templates/administrator/settings.tpl:316
+msgid "Leave empty"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:397
+#: ../../../../../../templates/administrator/_out.php:409
+#: ../../../../../../templates/administrator/settings.tpl:307
+#: ../../../../../../templates/administrator/settings.tpl:319
+msgid "If not given or specified"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:402
+#: ../../../../../../templates/administrator/_out.php:1182
+#: ../../../../../../templates/administrator/_out.php:3032
+#: ../../../../../../templates/administrator/_out.php:3342
+#: ../../../../../../templates/administrator/_out.php:3911
+#: ../../../../../../templates/administrator/_out.php:4333
+#: ../../../../../../templates/administrator/settings.tpl:312
+msgid "Meta Description"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:436
+#: ../../../../../../templates/administrator/_out.php:437
+#: ../../../../../../templates/administrator/_out.php:2501
+#: ../../../../../../templates/administrator/_out.php:2502
+#: ../../../../../../templates/administrator/_out.php:4721
+#: ../../../../../../templates/administrator/_out.php:4722
+#: ../../../../../../templates/administrator/_out.php:4883
+#: ../../../../../../templates/administrator/_out.php:4884
+#: ../../../../../../templates/administrator/_out.php:5468
+#: ../../../../../../templates/administrator/_out.php:5470
+#: ../../../../../../templates/administrator/forgot_password.tpl:6
+msgid "Operation panel"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:448
+#: ../../../../../../templates/administrator/_out.php:4738
+#: ../../../../../../templates/administrator/_out.php:4898
+#: ../../../../../../templates/administrator/forgot_password.tpl:18
+msgid "Delete the file to continue"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:455
+#: ../../../../../../templates/administrator/forgot_password.tpl:25
+msgid "Forgot your password?"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:468
+#: ../../../../../../templates/administrator/_out.php:1293
+#: ../../../../../../templates/administrator/_out.php:5696
+msgid "Send"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:469
+#: ../../../../../../templates/administrator/_out.php:4782
+#: ../../../../../../templates/administrator/forgot_password.tpl:39
+msgid "Log in"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:481
+#: ../../../../../../templates/administrator/roleCreate.tpl:5
+msgid "Role create"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:487
+#: ../../../../../../templates/administrator/_out.php:1397
+#: ../../../../../../templates/administrator/_out.php:1790
+#: ../../../../../../templates/administrator/_out.php:1884
+#: ../../../../../../templates/administrator/_out.php:2052
+#: ../../../../../../templates/administrator/_out.php:2693
+#: ../../../../../../templates/administrator/_out.php:3755
+#: ../../../../../../templates/administrator/_out.php:4214
+#: ../../../../../../templates/administrator/roleCreate.tpl:11
+msgid "Save and go back"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:519
+#: ../../../../../../templates/administrator/_out.php:3523
+#: ../../../../../../templates/administrator/roleCreate.tpl:43
+msgid "Importance"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:584
+#: ../../../../../../templates/administrator/_out.php:1878
+#: ../../../../../../templates/administrator/widget_edit_html.tpl:4
+msgid "Widget editing"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:621
+#: ../../../../../../templates/administrator/_out.php:1912
+#: ../../../../../../templates/administrator/_out.php:2081
+#: ../../../../../../templates/administrator/widget_edit_html.tpl:41
+msgid "Short widget discription"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:646
+msgid "a_tools_panel"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:650
+#: ../../../../../../templates/administrator/_out.php:874
+#: ../../../../../../templates/administrator/_out.php:875
+#: ../../../../../../templates/administrator/dashboard.tpl:10
+#: ../../../../../../templates/administrator/pages.tpl:46
+#: ../../../../../../templates/administrator/pages.tpl:47
+msgid "Create a page"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:651
+#: ../../../../../../templates/administrator/_out.php:2778
+#: ../../../../../../templates/administrator/_out.php:2784
+#: ../../../../../../templates/administrator/_out.php:3812
+#: ../../../../../../templates/administrator/_out.php:4066
+#: ../../../../../../templates/administrator/_out.php:4246
+#: ../../../../../../templates/administrator/_out.php:4482
+#: ../../../../../../templates/administrator/dashboard.tpl:11
+msgid "Create a category"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:657
+#: ../../../../../../templates/administrator/dashboard.tpl:17
+msgid "New pages"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:664
+#: ../../../../../../templates/administrator/_out.php:710
+#: ../../../../../../templates/administrator/_out.php:4011
+#: ../../../../../../templates/administrator/_out.php:4432
+#: ../../../../../../templates/administrator/dashboard.tpl:24
+#: ../../../../../../templates/administrator/dashboard.tpl:70
+msgid "Time and date of creation"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:673
+#: ../../../../../../templates/administrator/_out.php:685
+#: ../../../../../../templates/administrator/_out.php:719
+#: ../../../../../../templates/administrator/_out.php:731
+#: ../../../../../../templates/administrator/_out.php:970
+#: ../../../../../../templates/administrator/_out.php:1391
+#: ../../../../../../templates/administrator/_out.php:1527
+#: ../../../../../../templates/administrator/_out.php:2324
+#: ../../../../../../templates/administrator/_out.php:2358
+#: ../../../../../../templates/administrator/_out.php:2610
+#: ../../../../../../templates/administrator/_out.php:2687
+#: ../../../../../../templates/administrator/_out.php:3064
+#: ../../../../../../templates/administrator/_out.php:4692
+msgid "Editing"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:703
+#: ../../../../../../templates/administrator/dashboard.tpl:63
+msgid "Updated pages"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:753
+#: ../../../../../../templates/administrator/_out.php:2362
+#: ../../../../../../templates/administrator/_out.php:2644
+#: ../../../../../../templates/administrator/dashboard.tpl:113
+msgid "System"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:759
+#: ../../../../../../templates/administrator/_out.php:1261
+#: ../../../../../../templates/administrator/_out.php:1620
+#: ../../../../../../templates/administrator/_out.php:3710
+#: ../../../../../../templates/administrator/_out.php:5012
+#: ../../../../../../templates/administrator/_out.php:5678
+#: ../../../../../../templates/administrator/dashboard.tpl:119
+msgid "Version"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:761
+#: ../../../../../../templates/administrator/dashboard.tpl:121
+msgid "Version updates available"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:763
+#: ../../../../../../templates/administrator/dashboard.tpl:123
+msgid "Version updates are not available."
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:766
+#: ../../../../../../templates/administrator/_out.php:1139
+#: ../../../../../../templates/administrator/_out.php:3110
+#: ../../../../../../templates/administrator/dashboard.tpl:126
+msgid "Information"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:774
+#: ../../../../../../templates/administrator/dashboard.tpl:134
+msgid "Statistics"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:780
+#: ../../../../../../templates/administrator/_out.php:5105
+#: ../../../../../../templates/administrator/_out.php:5248
+#: ../../../../../../templates/administrator/dashboard.tpl:140
+msgid "Pages"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:782
+#: ../../../../../../templates/administrator/dashboard.tpl:142
+msgid "Comments"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:791
+#: ../../../../../../templates/administrator/_out.php:5551
+#: ../../../../../../templates/administrator/dashboard.tpl:151
+msgid "Latest/recent  comments"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:812
+#: ../../../../../../templates/administrator/dashboard.tpl:172
+msgid "ImageCMS news"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:832
+#: ../../../../../../templates/administrator/pages.tpl:4
+msgid "Copy/Move pages"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:837
+#: ../../../../../../templates/administrator/_out.php:883
+#: ../../../../../../templates/administrator/_out.php:978
+#: ../../../../../../templates/administrator/_out.php:2314
+#: ../../../../../../templates/administrator/_out.php:2602
+#: ../../../../../../templates/administrator/pages.tpl:9
+#: ../../../../../../templates/administrator/pages.tpl:55
+#: ../../../../../../templates/administrator/pages.tpl:150
+msgid "Without a category"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:842
+#: ../../../../../../templates/administrator/_out.php:856
+#: ../../../../../../templates/administrator/_out.php:1294
+#: ../../../../../../templates/administrator/_out.php:1465
+#: ../../../../../../templates/administrator/_out.php:1776
+#: ../../../../../../templates/administrator/_out.php:3599
+#: ../../../../../../templates/administrator/_out.php:4640
+#: ../../../../../../templates/administrator/_out.php:5212
+#: ../../../../../../templates/administrator/_out.php:5697
+#: ../../../../../../templates/administrator/pages.tpl:14
+#: ../../../../../../templates/administrator/pages.tpl:28
+msgid "Cancel"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:843
+msgid "Confirm"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:850
+#: ../../../../../../templates/administrator/pages.tpl:22
+msgid "Delete pages"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:853
+#: ../../../../../../templates/administrator/pages.tpl:25
+msgid "Delete selected pages"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:857
+#: ../../../../../../templates/administrator/_out.php:873
+#: ../../../../../../templates/administrator/_out.php:1464
+#: ../../../../../../templates/administrator/_out.php:1478
+#: ../../../../../../templates/administrator/_out.php:1715
+#: ../../../../../../templates/administrator/_out.php:1777
+#: ../../../../../../templates/administrator/_out.php:3381
+#: ../../../../../../templates/administrator/_out.php:3400
+#: ../../../../../../templates/administrator/_out.php:3598
+#: ../../../../../../templates/administrator/_out.php:3618
+#: ../../../../../../templates/administrator/_out.php:4639
+#: ../../../../../../templates/administrator/_out.php:4654
+#: ../../../../../../templates/administrator/_out.php:4800
+#: ../../../../../../templates/administrator/_out.php:4855
+#: ../../../../../../templates/administrator/_out.php:4928
+#: ../../../../../../templates/administrator/_out.php:4993
+#: ../../../../../../templates/administrator/_out.php:5211
+#: ../../../../../../templates/administrator/_out.php:5230
+#: ../../../../../../templates/administrator/pages.tpl:29
+#: ../../../../../../templates/administrator/pages.tpl:45
+msgid "Delete"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:866
+msgid "a_cont_list"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:870
+#: ../../../../../../templates/administrator/pages.tpl:42
+msgid "Filter"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:871
+#: ../../../../../../templates/administrator/pages.tpl:43
+msgid "Create copy"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:872
+#: ../../../../../../templates/administrator/pages.tpl:44
+msgid "move or displace"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:927
+#: ../../../../../../templates/administrator/pages.tpl:99
+msgid "Date of creation"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:928
+#: ../../../../../../templates/administrator/_out.php:5125
+#: ../../../../../../templates/administrator/pages.tpl:100
+msgid "Status"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:934
+#: ../../../../../../templates/administrator/_out.php:5753
+msgid "numbers only"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:969
+#: ../../../../../../templates/administrator/_out.php:5134
+msgid "goto site"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:994
+#: ../../../../../../templates/administrator/_out.php:5142
+#: ../../../../../../templates/administrator/_out.php:5754
+msgid "show"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:994
+#: ../../../../../../templates/administrator/_out.php:5142
+#: ../../../../../../templates/administrator/_out.php:5755
+msgid "don't show"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1028
+#: ../../../../../../templates/administrator/_out.php:1882
+#: ../../../../../../templates/administrator/_out.php:2011
+#: ../../../../../../templates/administrator/_out.php:2029
+#: ../../../../../../templates/administrator/_out.php:2051
+#: ../../../../../../templates/administrator/_out.php:2163
+#: ../../../../../../templates/administrator/_out.php:2312
+#: ../../../../../../templates/administrator/_out.php:2323
+#: ../../../../../../templates/administrator/_out.php:2357
+#: ../../../../../../templates/administrator/_out.php:2601
+#: ../../../../../../templates/administrator/_out.php:2609
+#: ../../../../../../templates/administrator/_out.php:4113
+#: ../../../../../../templates/administrator/_out.php:4213
+msgid "Create"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1028
+#: ../../../../../../templates/administrator/_out.php:1391
+#: ../../../../../../templates/administrator/_out.php:2687
+msgid "Privileges"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1073
+#: ../../../../../../templates/administrator/_out.php:1765
+#: ../../../../../../templates/administrator/_out.php:2755
+#: ../../../../../../templates/administrator/_out.php:4978
+#: ../../../../../../templates/administrator/_out.php:5164
+msgid "Group"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1096
+msgid "Category translation"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1162
+#: ../../../../../../templates/administrator/_out.php:2891
+#: ../../../../../../templates/administrator/_out.php:3196
+#: ../../../../../../templates/administrator/_out.php:4160
+msgid "Choose an image "
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1177
+#: ../../../../../../templates/administrator/_out.php:3027
+#: ../../../../../../templates/administrator/_out.php:3337
+#: ../../../../../../templates/administrator/_out.php:3902
+#: ../../../../../../templates/administrator/_out.php:4324
+msgid "Meta Title"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1214
+#: ../../../../../../templates/administrator/_out.php:1905
+#: ../../../../../../templates/administrator/_out.php:2019
+#: ../../../../../../templates/administrator/_out.php:3887
+#: ../../../../../../templates/administrator/_out.php:4309
+msgid "Only Latin characters"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1230
+msgid "System information"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1237
+msgid "Level of server utilisation"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1247
+msgid "Server"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1250
+msgid "Operating system"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1258
+msgid "Data base"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1262
+msgid "Period"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1263
+msgid "Size"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1268
+msgid "Write rights or permission"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1285
+msgid "Select a category"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1305
+msgid "Orders"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1308
+msgid "a_callbacks"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1312
+msgid "Arrival notification"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1344
+msgid "Regular discounts"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1458
+msgid "Widget delete"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1461
+msgid "Delete selected widget(s)?"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1474
+msgid "Widgets list"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1479
+msgid "Create a widget"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1501
+#: ../../../../../../templates/administrator/_out.php:1987
+#: ../../../../../../templates/administrator/_out.php:3418
+#: ../../../../../../templates/administrator/_out.php:4947
+#: ../../../../../../templates/administrator/_out.php:5161
+#: ../../../../../../templates/administrator/_out.php:5245
+msgid "ID"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1503
+#: ../../../../../../templates/administrator/_out.php:2085
+#: ../../../../../../templates/administrator/_out.php:2121
+msgid "Type"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1553
+msgid "No widgets created"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1600
+msgid "message"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1600
+msgid "Module search is being developed"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1606
+msgid "set write rights  on the directory for  simple module installation"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1622
+msgid "Actions"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1632
+#: ../../../../../../templates/administrator/_out.php:3711
+#: ../../../../../../templates/administrator/_out.php:3727
+#: ../../../../../../templates/administrator/_out.php:5017
+#: ../../../../../../templates/administrator/_out.php:5019
+msgid "Install"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1650
+msgid "No  modules have been found at your request"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1659
+msgid "Module search"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1664
+msgid "Here you can search for modules and set them to automatic mode"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1697
+msgid "Change category data"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1698
+#: ../../../../../../templates/administrator/_out.php:4866
+msgid "Add a subcategory"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1699
+#: ../../../../../../templates/administrator/_out.php:4867
+msgid "Add an article"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1711
+#: ../../../../../../templates/administrator/_out.php:4924
+msgid "Roles groups list"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1765
+#: ../../../../../../templates/administrator/_out.php:3449
+#: ../../../../../../templates/administrator/_out.php:4978
+msgid "List"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1765
+#: ../../../../../../templates/administrator/_out.php:4978
+msgid "a_privilegy"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1765
+#: ../../../../../../templates/administrator/_out.php:3449
+#: ../../../../../../templates/administrator/_out.php:4978
+msgid "Empty."
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1773
+msgid "Remove group"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1784
+msgid "Language edit"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1826
+#: ../../../../../../templates/administrator/_out.php:1833
+#: ../../../../../../templates/administrator/_out.php:4149
+#: ../../../../../../templates/administrator/_out.php:4156
+msgid "Image URL"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1837
+msgid "Choose an image"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1925
+#: ../../../../../../templates/administrator/_out.php:4523
+msgid "Roles group edit"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:1983
+msgid "Group list"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2046
+msgid "Widget creating"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2095
+msgid "Module name"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2188
+msgid "Copy to the local computer"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2200
+msgid "Save on the server"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2202
+msgid "File will be saved in the directory"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2213
+msgid "Send to your email"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2219
+msgid "File format"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2310
+#: ../../../../../../templates/administrator/_out.php:3782
+#: ../../../../../../templates/administrator/_out.php:3799
+#: ../../../../../../templates/administrator/_out.php:4220
+#: ../../../../../../templates/administrator/_out.php:4233
+msgid "Content"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2316
+#: ../../../../../../templates/administrator/_out.php:2603
+msgid "Field constructor"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2328
+#: ../../../../../../templates/administrator/_out.php:2614
+msgid "Menu"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2331
+#: ../../../../../../templates/administrator/_out.php:2616
+#: ../../../../../../templates/administrator/_out.php:5583
+msgid "Control or Operation"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2340
+#: ../../../../../../templates/administrator/_out.php:2625
+#: ../../../../../../templates/administrator/_out.php:3623
+msgid "Modules"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2342
+#: ../../../../../../templates/administrator/_out.php:2627
+#: ../../../../../../templates/administrator/_out.php:3614
+#: ../../../../../../templates/administrator/_out.php:3623
+msgid "All modules"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2343
+#: ../../../../../../templates/administrator/_out.php:2628
+msgid "Search"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2355
+#: ../../../../../../templates/administrator/_out.php:2640
+msgid "Widgets"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2364
+#: ../../../../../../templates/administrator/_out.php:2646
+msgid "Site settings"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2365
+#: ../../../../../../templates/administrator/_out.php:2648
+#: ../../../../../../templates/administrator/_out.php:4650
+msgid "Languages"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2366
+#: ../../../../../../templates/administrator/_out.php:2649
+#: ../../../../../../templates/administrator/_out.php:5823
+msgid "Cache"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2368
+#: ../../../../../../templates/administrator/_out.php:2651
+#: ../../../../../../templates/administrator/_out.php:5855
+msgid "Clear all"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2369
+#: ../../../../../../templates/administrator/_out.php:2652
+#: ../../../../../../templates/administrator/_out.php:5849
+msgid "Clear old or Delete outdated posts or information"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2373
+#: ../../../../../../templates/administrator/_out.php:2655
+#: ../../../../../../templates/administrator/_out.php:5875
+msgid "Event journal"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2564
+msgid "To use your personal account, activate JavaScript, please."
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2594
+#: ../../../../../../templates/administrator/_out.php:5515
+msgid "Hello"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2599
+msgid "Contents"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2660
+msgid "View a site"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2661
+msgid "Exit"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2785
+msgid "Create and exit"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2825
+#: ../../../../../../templates/administrator/_out.php:3130
+msgid "AutoFit"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2835
+#: ../../../../../../templates/administrator/_out.php:3139
+msgid "Parent category"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2845
+#: ../../../../../../templates/administrator/_out.php:3148
+msgid "Field group"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2855
+#: ../../../../../../templates/administrator/_out.php:3158
+msgid "Select  a field group  for a category"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2860
+#: ../../../../../../templates/administrator/_out.php:2880
+#: ../../../../../../templates/administrator/_out.php:3164
+#: ../../../../../../templates/administrator/_out.php:3184
+msgid "Apply for subcategories"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2866
+#: ../../../../../../templates/administrator/_out.php:3169
+msgid "page field group"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2875
+#: ../../../../../../templates/administrator/_out.php:3178
+msgid "Select a field group to be displayed/ viewed  in the created category of the group or group category"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2922
+#: ../../../../../../templates/administrator/_out.php:3229
+msgid "Page display"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2932
+#: ../../../../../../templates/administrator/_out.php:3239
+msgid "Sort by"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2936
+#: ../../../../../../templates/administrator/_out.php:3243
+msgid "by date"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2937
+#: ../../../../../../templates/administrator/_out.php:3244
+msgid "By alphabet or  in the alphabetic order"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2938
+#: ../../../../../../templates/administrator/_out.php:3245
+#, fuzzy
+msgid "By position"
+msgstr "Позиція"
+
+#: ../../../../../../templates/administrator/_out.php:2943
+#: ../../../../../../templates/administrator/_out.php:3251
+msgid "In descending order"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2944
+#: ../../../../../../templates/administrator/_out.php:3252
+msgid "In ascending order"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2950
+#: ../../../../../../templates/administrator/_out.php:3258
+msgid "Posts on the page or Records on the page"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2957
+#: ../../../../../../templates/administrator/_out.php:3266
+msgid "Comment pages by default "
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2962
+#: ../../../../../../templates/administrator/_out.php:3271
+msgid "Display pages of other categories"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2981
+#: ../../../../../../templates/administrator/_out.php:2992
+#: ../../../../../../templates/administrator/_out.php:3292
+#: ../../../../../../templates/administrator/_out.php:3303
+msgid "Main category template by default"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:2985
+#: ../../../../../../templates/administrator/_out.php:3296
+msgid "Category template"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:3002
+#: ../../../../../../templates/administrator/_out.php:3313
+msgid "Page view template by default"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:3101
+#: ../../../../../../templates/administrator/_out.php:3784
+#: ../../../../../../templates/administrator/_out.php:4222
+msgid "Additional fields"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:3375
+#: ../../../../../../templates/administrator/_out.php:4849
+msgid "Remove a Role"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:3378
+#: ../../../../../../templates/administrator/_out.php:4852
+msgid "Remove selected roles?"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:3388
+#: ../../../../../../templates/administrator/_out.php:4862
+#: ../../../../../../templates/administrator/_out.php:5000
+msgid "Remove roles?"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:3396
+msgid "Roles list"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:3401
+msgid "New Role"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:3449
+msgid "Role"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:3592
+#: ../../../../../../templates/administrator/_out.php:3604
+msgid "Module deinstalling"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:3595
+msgid "Delete selected module(s)?"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:3605
+msgid "Delete modules?"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:3624
+msgid "Install modules"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:3644
+msgid "URL access"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:3645
+msgid "Show in menu"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:3679
+#: ../../../../../../templates/administrator/_out.php:3684
+#: ../../../../../../templates/administrator/_out.php:3689
+msgid "switch on"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:3679
+#: ../../../../../../templates/administrator/_out.php:3684
+#: ../../../../../../templates/administrator/_out.php:3689
+msgid "switch off"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:3700
+msgid "Modules has not been installed"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:3737
+msgid "There isn't any module for install!"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:3748
+msgid "Edit page"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:3779
+msgid "a_show_page"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:3843
+#: ../../../../../../templates/administrator/_out.php:4275
+msgid "Full contents"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:3893
+#: ../../../../../../templates/administrator/_out.php:4315
+msgid "Tags"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:3946
+#: ../../../../../../templates/administrator/_out.php:4368
+msgid "Page Template"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:3965
+#: ../../../../../../templates/administrator/_out.php:4387
+msgid "Comment permission"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:3998
+#: ../../../../../../templates/administrator/_out.php:4417
+msgid "Publication status"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:4002
+#: ../../../../../../templates/administrator/_out.php:4421
+msgid "Published or Has been published"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:4003
+#: ../../../../../../templates/administrator/_out.php:4422
+msgid "Pending approval or Awaiting approval "
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:4004
+#: ../../../../../../templates/administrator/_out.php:4423
+msgid "Has not been published"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:4024
+#: ../../../../../../templates/administrator/_out.php:4444
+msgid "Time and date of publication"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:4037
+#: ../../../../../../templates/administrator/_out.php:4457
+msgid "Access"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:4041
+#: ../../../../../../templates/administrator/_out.php:4461
+msgid "All"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:4108
+msgid "The creation of a new language"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:4207
+msgid "Create new page"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:4632
+msgid "Delete language"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:4635
+msgid "Delete selected languages?"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:4636
+msgid "Attention! All pages in this language will be deleted!"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:4655
+msgid "Create language"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:4767
+msgid "Update the code"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:4777
+msgid "Remember"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:4780
+msgid "Forgot your password"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:4795
+msgid "Privileges list"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:4799
+msgid "Create privilege"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:4868
+msgid "Double click to show all categories"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5022
+msgid "Download"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5041
+#: ../../../../../../templates/administrator/_out.php:5290
+msgid "FTP connection settings"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5045
+#: ../../../../../../templates/administrator/_out.php:5294
+#, fuzzy
+msgid "Hostname"
+msgstr "User name"
+
+#: ../../../../../../templates/administrator/_out.php:5049
+#: ../../../../../../templates/administrator/_out.php:5298
+msgid "Port"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5053
+#: ../../../../../../templates/administrator/_out.php:5302
+msgid "login"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5061
+#: ../../../../../../templates/administrator/_out.php:5310
+msgid "Path to the root directory"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5065
+msgid "For example"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5071
+msgid "Next"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5098
+msgid "a_search_results"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5108
+#: ../../../../../../templates/administrator/_out.php:5162
+#: ../../../../../../templates/administrator/_out.php:5885
+msgid "User"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5151
+#: ../../../../../../templates/administrator/_out.php:5189
+#: ../../../../../../templates/administrator/_out.php:5264
+msgid "No relevant data has been found"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5165
+msgid "Banned"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5166
+msgid "Last IP"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5205
+#: ../../../../../../templates/administrator/_out.php:5218
+msgid "Delete category"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5208
+msgid "Remove selected categories"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5217
+msgid "Delete a category"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5231
+msgid "Create category"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5277
+msgid "System update"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5284
+msgid "Attention"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5284
+msgid "Make a database backup copy before updating "
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5314
+msgid "For example:  /domains/mysite/public_html/"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5320
+msgid "Update"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5370
+msgid "Roles group create"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5522
+msgid "Guest"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5525
+msgid "Preview"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5525
+msgid "site"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5545
+msgid "Products without icons"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5616
+msgid "Manage shop"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5647
+msgid "Manage site"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5668
+msgid "a_"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5693
+msgid "Your remark"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5834
+msgid "Delete cache"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5843
+msgid "Total file caching"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5886
+msgid "Date/time"
+msgstr ""
+
+#: ../../../../../../templates/administrator/_out.php:5887
+msgid "Action"
+msgstr ""
+
+#: ../../../../../../templates/administrator/profiler_template.php:356
+msgid "profiler_"
+msgstr ""
+
+#: ../../../../../../templates/administrator/profiler_template.php:405
+msgid "profiler_no_profiles"
+msgstr ""
+
+#, fuzzy
+#~ msgid "ac_val_name"
+#~ msgstr "Name"
+
+#, fuzzy
+#~ msgid "ac_page_cont_updated"
+#~ msgstr "Позиція змінена"

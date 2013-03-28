@@ -1182,15 +1182,15 @@ class DX_Auth {
         if ($this->use_recaptcha) {
             $result = $this->is_recaptcha_match();
             if (!$result) {
-                $CI->form_validation->set_message('captcha_check', lang('lang_captcha_error'));
+                $CI->form_validation->set_message('captcha_check', lang("Improper protection code"));
             }
         } else {
             if ($this->is_captcha_expired()) {
                 // Will replace this error msg with $lang
-                $CI->form_validation->set_message('captcha_check', lang('lang_captcha_error'));
+                $CI->form_validation->set_message('captcha_check', lang("Improper protection code"));
                 $result = FALSE;
             } elseif (!$this->is_captcha_match($code)) {
-                $CI->form_validation->set_message('captcha_check', lang('lang_captcha_error'));
+                $CI->form_validation->set_message('captcha_check', lang("Improper protection code"));
                 $result = FALSE;
             }
         }

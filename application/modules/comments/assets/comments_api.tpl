@@ -5,7 +5,7 @@
 {/if}
 <div id="comment__icsi-css">
     {if $comments_arr}        
-        <div class="title_h2__icsi-css">{lang('s_clients_comment')}</div>
+        <div class="title_h2__icsi-css">{lang("Customer Reviews")}</div>
         <ul class="frame-list-comment__icsi-css">
             {foreach $comments_arr as $key => $comment}
                 <input type="hidden" id="comment_item_id" name="comment_item_id" value="{$comment['id']}"/>
@@ -25,13 +25,13 @@
                         <p>{$comment.text}</p>
                         {if $comment.text_plus != Null}
                             <p>
-                                <b>{lang('s_plus')}</b><br>
+                                <b>{lang("Plus")}</b><br>
                                 {$comment.text_plus}
                             </p>
                         {/if}
                         {if $comment.text_minus != Null}
                             <p>
-                                <b>{lang('s_cons')}</b><br>
+                                <b>{lang("Cons")}</b><br>
                                 {$comment.text_minus}
                             </p>
                         {/if}
@@ -42,7 +42,7 @@
                                 <button type="button" data-rel="cloneAddPaste" data-parid="{$comment['id']}">
                                     <span class="icon-comment__icsi-css">
                                     </span>
-                                    {lang('s_comment_answer')}
+                                    {lang("Answer")}
                                 </button>
                             </div>
                         {/if}
@@ -52,14 +52,14 @@
                             <span>
                                 <span class="btn__icsi-css like__icsi-css">
                                     <button type="button" class="usefullyes" data-comid="{echo $comment.id}">
-                                        {lang('s_like')}
+                                        {lang("Like this review")}
                                     </button> 
                                     <span id="yesholder{$comment.id}">({echo $comment.like})</span>
                                 </span>
                                 <span class="divider_l_dl__icsi-css">|</span>
                                 <span class="btn__icsi-css dis-like__icsi-css">
                                     <button type="button" class="usefullno" data-comid="{echo $comment.id}">
-                                        {lang('s_dislike')}
+                                        {lang("Dislike this review")}
                                     </button> 
                                     <span id="noholder{$comment.id}">({echo $comment.disslike})</span>
                                 </span>
@@ -91,7 +91,7 @@
     {if $can_comment == 0 OR $is_logged_in}
 
         <div class="frame-comments__icsi-css">
-            <div class="title_h2__icsi-css">{lang('s_leave_your_comment')}</div>
+            <div class="title_h2__icsi-css">{lang("Write a review")}</div>
             <!-- Start of new comment fild -->
             <div class="form-comment__icsi-css horizontal_form__icsi-css">
                 <form method="post">
@@ -102,7 +102,7 @@
                     </label>
                     <!-- Start star reiting -->
                     <div class="frameLabel__icsi-css">
-                        <span class="title__icsi-css">{lang('s_you_raiting')}</span>
+                        <span class="title__icsi-css">{lang("You rating")}</span>
                         <div class="frame_form_field__icsi-css">
                             <div class="star">   
                                 <div class="productRate star-big clicktemprate">
@@ -146,20 +146,20 @@
                     {/if}
 
                     <label>
-                        <span class="title__icsi-css">{lang('s_text_comment_one')}</span>
+                        <span class="title__icsi-css">{lang("Text comments")}</span>
                         <span class="frame_form_field__icsi-css">
                             <textarea name="comment_text" id="comment_text">{$_POST.comment_text}</textarea>
                         </span>
                     </label>
                     <!-- If you want get plus and minus for products - uncoment it
                 <label>
-                    <span class="title__icsi-css">{lang('s_plus')}</span>
+                    <span class="title__icsi-css">{lang("Plus")}</span>
                     <span class="frame_form_field__icsi-css">
                         <textarea name="comment_text_plus" id="comment_text_plus">{$_POST.comment_text}</textarea>
                     </span>
                 </label>
                 <label>
-                    <span class="title__icsi-css">{lang('s_cons')}</span>
+                    <span class="title__icsi-css">{lang("Cons")}</span>
                     <span class="frame_form_field__icsi-css">
                         <textarea name="comment_text_minus" id="comment_text_minus" >{$_POST.comment_text}</textarea>
                     </span>
@@ -167,7 +167,7 @@
                     -->
                     {if $use_captcha}
                         <label>
-                            <span class="title__icsi-css">{lang('lang_captcha')}</span>
+                            <span class="title__icsi-css">{lang("Code protection")}</span>
                             {$cap_image}
                             <span class="frame_form_field__icsi-css">
                                 <input type="text" name="captcha" id="captcha"/>
@@ -178,7 +178,7 @@
                     <div class="frameLabel__icsi-css">
                         <span class="title__icsi-css">&nbsp;</span>
                         <span class="frame_form_field__icsi-css">
-                            <input type="submit" value="{lang('s_leave_comment')}" class="btn__icsi-css" onclick="post(this)"/>
+                            <input type="submit" value="{lang("leave a comment")}" class="btn__icsi-css" onclick="post(this)"/>
                         </span>
                     </div>        
                 </form>
@@ -230,7 +230,7 @@
                     <span class="title__icsi-css">&nbsp;</span>
                     <span class="frame_form_field__icsi-css">
                         <input type="hidden" id="parent" name="comment_parent" value="">
-                        <input type="submit" value="{lang('s_leave_comment')}" class="btn__icsi-css" onclick="post(this)"/>
+                        <input type="submit" value="{lang("leave a comment")}" class="btn__icsi-css" onclick="post(this)"/>
                     </span>
                 </div>
             </form>

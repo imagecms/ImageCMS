@@ -2,20 +2,20 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang('a_role_edit')}: {echo $model->alt_name}</span>
+            <span class="title">{lang("Role edit")}: {echo $model->alt_name}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$BASE_URL}admin/rbac/roleList" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
-                <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#role_ed_form" data-action="edit" data-submit><i class="icon-ok icon-white"></i>{lang('a_save')}</button>
-                <button type="button" class="btn btn-small formSubmit" data-form="#role_ed_form" data-action="exit"><i class="icon-check"></i>{lang('a_footer_save_exit')}</button>
+                <a href="{$BASE_URL}admin/rbac/roleList" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back")}</span></a>
+                <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#role_ed_form" data-action="edit" data-submit><i class="icon-ok icon-white"></i>{lang("Have been saved")}</button>
+                <button type="button" class="btn btn-small formSubmit" data-form="#role_ed_form" data-action="exit"><i class="icon-check"></i>{lang("Save and exit")}</button>
 
                 <div class="dropdown d-i_b">   
                     {$arr = get_lang_admin_folders()}                   
                     {foreach $arr as $a}
                         {if $lang_sel->lang_sel == $a}
                             <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
-                        {if $a == 'english_lang'}{lang('a_english')}{else:}{lang('a_russian')}{/if}
+                        {if $a == 'english_lang'}{lang("English")}{else:}{lang("Russian")}{/if}
                         <span class="caret"></span>
                     </a>
                 {/if}   
@@ -24,7 +24,7 @@
                 {foreach $arr as $a}
                     <li>
                         <a href="{$BASE_URL}admin/rbac/translateRole/{echo $model->id}/{if $a == 'russian_lang'}en{else:}ru{/if}">
-                    {if $a == 'english_lang'}{lang('a_russian')} {else:} {lang('a_english')} (beta){/if}
+                    {if $a == 'english_lang'}{lang("Russian")} {else:} {lang("English")} (beta){/if}
                 </a>
             </li>                          
         {/foreach}
@@ -38,7 +38,7 @@
         <thead>
             <tr>
                 <th colspan="6">
-                    {lang('a_param')}
+                    {lang("Properties")}
                 </th>
             </tr>
         </thead>
@@ -48,13 +48,13 @@
                     <div class="inside_padd">
                         <div class="row-fluid">
                             <div class="control-group m-t_10">
-                                <label class="control-label" for="Name">{lang('a_name')}:</label>
+                                <label class="control-label" for="Name">{lang("Name")}:</label>
                                 <div class="controls">
                                     <input type="text" name="Name" id="Name" value="{echo $model->name}" />
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="alt_name">{lang('a_description')}:</label>
+                                <label class="control-label" for="alt_name">{lang("Description")}:</label>
                                 <div class="controls">
                                     <input type="text" name="alt_name" id="alt_name" value="{echo $model->alt_name}"/>
                                 </div>
@@ -66,7 +66,7 @@
                                 </div>
                             </div>    
                             <div class="control-group">
-                                <label class="control-label" for="Importance">{lang('a_imp_rbak')}:</label>
+                                <label class="control-label" for="Importance">{lang("Importance")}:</label>
                                 <div class="controls">
                                     <input type="text" name="Importance" id="Importance" value="{echo $model->importance}"/>
                                 </div>

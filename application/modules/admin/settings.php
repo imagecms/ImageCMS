@@ -121,7 +121,7 @@ class Settings extends BaseAdminController {
 
                     $this->cms_admin->save_settings($data);
                 } else {
-                    showMessage(lang('ac_page_not_found'), false, 'r');
+                    showMessage(lang("Page has not been found"), false, 'r');
                     exit;
                 }
                 break;
@@ -165,10 +165,10 @@ class Settings extends BaseAdminController {
 
         $this->cache->delete('main_site_settings');
 
-        $this->lib_admin->log(lang('ac_changed_site_sett'));
+        $this->lib_admin->log(lang("Changed wesite settings"));
 
         echo "<script>var textEditor = '{$data_m['text_editor']}';</script>";
-        showMessage(lang('ac_sett_saved'));
+        showMessage(lang("Settings have been saved"));
     }
     
     public function switch_admin_lang($lang)

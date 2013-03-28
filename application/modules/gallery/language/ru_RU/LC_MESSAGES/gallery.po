@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-25 19:24+0300\n"
-"PO-Revision-Date: 2013-03-25 19:25+0300\n"
+"POT-Creation-Date: 2013-03-28 12:32+0300\n"
+"PO-Revision-Date: 2013-03-28 12:32+0300\n"
 "Last-Translator: koloda <koloda90@gmail.com>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -15,608 +15,649 @@ msgstr ""
 "X-Poedit-Language: Russian\n"
 "X-Poedit-Country: UKRAINE\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-SearchPath-0: /var/www/img/application/modules/gallery\n"
+"X-Poedit-SearchPath-0: ../../../\n"
 
-#: /var/www/img/application/modules/gallery/gallery_widgets.php:50
-msgid "amt_image_limit"
+#: ../../..//gallery_widgets.php:50
+msgid "Image limit"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/gallery_widgets.php:64
-#: /var/www/img/application/modules/gallery/admin.php:253
-msgid "amt_settings_saved"
+#: ../../..//gallery_widgets.php:64
+#: ../../..//admin.php:253
+msgid "Settings have been saved or settings were saved"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:5
-msgid "amt_widget_settings"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:9
-msgid "a_return"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:10
-#: /var/www/img/application/modules/gallery/_out.php:876
-msgid "a_save"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:11
-#: /var/www/img/application/modules/gallery/_out.php:1003
-msgid "a_save_and_exit"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:20
-msgid "a_sett"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:28
-msgid "a_images_limit"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:34
-msgid "a_algorithm"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:37
-msgid "a_latest_images"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:38
-msgid "a_random_images"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:282
-#: /var/www/img/application/modules/gallery/_out.php:932
+#: ../../..//_out.php:5
+#: ../../..//templates/latest_fotos_form.tpl:5
 #, fuzzy
-msgid "amt_settings"
+msgid "Widget settings"
 msgstr "Позиція"
 
-#: /var/www/img/application/modules/gallery/_out.php:286
-#: /var/www/img/application/modules/gallery/_out.php:637
-#: /var/www/img/application/modules/gallery/_out.php:725
-#: /var/www/img/application/modules/gallery/_out.php:821
-#: /var/www/img/application/modules/gallery/_out.php:875
-#: /var/www/img/application/modules/gallery/_out.php:1001
-#: /var/www/img/application/modules/gallery/_out.php:1076
-msgid "a_back"
+#: ../../..//_out.php:9
+#: ../../..//templates/latest_fotos_form.tpl:9
+msgid "Go back"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:287
-#: /var/www/img/application/modules/gallery/_out.php:729
-#: /var/www/img/application/modules/gallery/_out.php:1002
-#: /var/www/img/application/modules/gallery/_out.php:1198
-#: /var/www/img/application/modules/gallery/_out.php:1206
-#, fuzzy
-msgid "amt_save"
-msgstr "Нааааааааамеееееееееее"
-
-#: /var/www/img/application/modules/gallery/_out.php:299
-msgid "amt_albums_and_categories"
+#: ../../..//_out.php:10
+#: ../../..//_out.php:876
+#: ../../..//templates/latest_fotos_form.tpl:10
+msgid "Have been saved"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:309
+#: ../../..//_out.php:11
+#: ../../..//_out.php:1003
+#: ../../..//templates/latest_fotos_form.tpl:11
+msgid "Save and go back"
+msgstr ""
+
+#: ../../..//_out.php:20
+#: ../../..//_out.php:282
+#: ../../..//_out.php:932
+#: ../../..//templates/latest_fotos_form.tpl:20
 #, fuzzy
-msgid "amt_to_sort"
+msgid "Settings"
 msgstr "Позиція"
 
-#: /var/www/img/application/modules/gallery/_out.php:312
-#, fuzzy
-msgid "amt_by_date"
-msgstr "Нааааааааамеееееееееее"
-
-#: /var/www/img/application/modules/gallery/_out.php:313
-msgid "amt_by_abc"
+#: ../../..//_out.php:28
+#: ../../..//templates/latest_fotos_form.tpl:28
+msgid "Images limit"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:314
+#: ../../..//_out.php:34
+#: ../../..//templates/latest_fotos_form.tpl:34
+msgid "Algorithm"
+msgstr ""
+
+#: ../../..//_out.php:37
+#: ../../..//templates/latest_fotos_form.tpl:37
 #, fuzzy
-msgid "amt_by_position"
+msgid "Last images"
+msgstr "Нааааааааамеееееееееее"
+
+#: ../../..//_out.php:38
+#: ../../..//templates/latest_fotos_form.tpl:38
+#, fuzzy
+msgid "Random images"
+msgstr "Нааааааааамеееееееееее"
+
+#: ../../..//_out.php:286
+#: ../../..//_out.php:637
+#: ../../..//_out.php:725
+#: ../../..//_out.php:821
+#: ../../..//_out.php:875
+#: ../../..//_out.php:1001
+#: ../../..//_out.php:1076
+msgid "Back"
+msgstr ""
+
+#: ../../..//_out.php:287
+#: ../../..//_out.php:729
+#: ../../..//_out.php:1002
+#: ../../..//_out.php:1198
+#: ../../..//_out.php:1206
+msgid "Save"
+msgstr ""
+
+#: ../../..//_out.php:299
+msgid "Categories and albums"
+msgstr ""
+
+#: ../../..//_out.php:309
+msgid "Sort"
+msgstr ""
+
+#: ../../..//_out.php:312
+msgid "By date"
+msgstr ""
+
+#: ../../..//_out.php:313
+msgid "in alphabetic order"
+msgstr ""
+
+#: ../../..//_out.php:314
+#, fuzzy
+msgid "By position"
 msgstr "Позиція"
 
-#: /var/www/img/application/modules/gallery/_out.php:317
-msgid "amt_by_desc"
+#: ../../..//_out.php:317
+msgid "in descending order"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:318
-msgid "amt_by_asc"
+#: ../../..//_out.php:318
+msgid "in  ascending order"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:332
+#: ../../..//_out.php:332
 #, fuzzy
-msgid "amt_images"
+msgid "Images"
 msgstr "Нааааааааамеееееееееее"
 
-#: /var/www/img/application/modules/gallery/_out.php:342
-msgid "amt_max_file_size"
+#: ../../..//_out.php:342
+msgid "maximum file size"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:344
+#: ../../..//_out.php:344
+msgid "In megabites"
+msgstr ""
+
+#: ../../..//_out.php:351
+#: ../../..//admin.php:192
+msgid "Maximum width"
+msgstr ""
+
+#: ../../..//_out.php:360
+#: ../../..//admin.php:193
+msgid "Maximum height"
+msgstr ""
+
+#: ../../..//_out.php:368
+#: ../../..//admin.php:194
+msgid "Quality"
+msgstr ""
+
+#: ../../..//_out.php:377
+#: ../../..//_out.php:428
+#: ../../..//_out.php:479
 #, fuzzy
-msgid "amt_in_mb"
-msgstr "Нааааааааамеееееееееее"
-
-#: /var/www/img/application/modules/gallery/_out.php:351
-#: /var/www/img/application/modules/gallery/admin.php:192
-msgid "amt_max_width"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:360
-#: /var/www/img/application/modules/gallery/admin.php:193
-msgid "amt_max_height"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:368
-#: /var/www/img/application/modules/gallery/admin.php:194
-msgid "amt_quality"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:377
-#: /var/www/img/application/modules/gallery/_out.php:428
-#: /var/www/img/application/modules/gallery/_out.php:479
-#, fuzzy
-msgid "amt_save_ratio"
+msgid "Save ratio"
 msgstr "Позиція"
 
-#: /var/www/img/application/modules/gallery/_out.php:379
-#: /var/www/img/application/modules/gallery/_out.php:386
-#: /var/www/img/application/modules/gallery/_out.php:430
-#: /var/www/img/application/modules/gallery/_out.php:437
-#: /var/www/img/application/modules/gallery/_out.php:481
-#: /var/www/img/application/modules/gallery/_out.php:488
-#, fuzzy
-msgid "amt_yes"
-msgstr "Нааааааааамеееееееееее"
-
-#: /var/www/img/application/modules/gallery/_out.php:380
-#: /var/www/img/application/modules/gallery/_out.php:387
-#: /var/www/img/application/modules/gallery/_out.php:431
-#: /var/www/img/application/modules/gallery/_out.php:438
-#: /var/www/img/application/modules/gallery/_out.php:482
-#: /var/www/img/application/modules/gallery/_out.php:489
-#, fuzzy
-msgid "amt_no"
-msgstr "Нааааааааамеееееееееее"
-
-#: /var/www/img/application/modules/gallery/_out.php:384
-#: /var/www/img/application/modules/gallery/_out.php:435
-#: /var/www/img/application/modules/gallery/_out.php:486
-msgid "amt_cut_borders"
+#: ../../..//_out.php:379
+#: ../../..//_out.php:386
+#: ../../..//_out.php:430
+#: ../../..//_out.php:437
+#: ../../..//_out.php:481
+#: ../../..//_out.php:488
+msgid "Yes"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:400
-msgid "amt_image_preview"
+#: ../../..//_out.php:380
+#: ../../..//_out.php:387
+#: ../../..//_out.php:431
+#: ../../..//_out.php:438
+#: ../../..//_out.php:482
+#: ../../..//_out.php:489
+msgid "No"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:410
-#: /var/www/img/application/modules/gallery/_out.php:461
-msgid "amt_width"
+#: ../../..//_out.php:384
+#: ../../..//_out.php:435
+#: ../../..//_out.php:486
+msgid "Cut the borders"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:412
-#: /var/www/img/application/modules/gallery/_out.php:421
-#: /var/www/img/application/modules/gallery/_out.php:463
-#: /var/www/img/application/modules/gallery/_out.php:472
-#: /var/www/img/application/modules/gallery/_out.php:562
-#: /var/www/img/application/modules/gallery/_out.php:591
-msgid "amt_px"
+#: ../../..//_out.php:400
+msgid "Image preview"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:419
-#: /var/www/img/application/modules/gallery/_out.php:470
+#: ../../..//_out.php:410
+#: ../../..//_out.php:461
+msgid "height"
+msgstr ""
+
+#: ../../..//_out.php:412
+#: ../../..//_out.php:421
+#: ../../..//_out.php:463
+#: ../../..//_out.php:472
+#: ../../..//_out.php:562
+#: ../../..//_out.php:591
+msgid "px"
+msgstr ""
+
+#: ../../..//_out.php:419
+#: ../../..//_out.php:470
 msgid "amt_height"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:451
-msgid "amt_image_icons"
+#: ../../..//_out.php:451
+msgid "Image icons"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:502
-msgid "amt_water_mark"
+#: ../../..//_out.php:502
+msgid "Watermark"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:512
-msgid "amt_hor_align"
+#: ../../..//_out.php:512
+msgid "horizontal alignment"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:515
+#: ../../..//_out.php:515
+msgid "left or on the left"
+msgstr ""
+
+#: ../../..//_out.php:516
 #, fuzzy
-msgid "amt_left"
+msgid "in the center"
 msgstr "Нааааааааамеееееееееее"
 
-#: /var/www/img/application/modules/gallery/_out.php:516
-#, fuzzy
-msgid "amt_center"
-msgstr "Нааааааааамеееееееееее"
-
-#: /var/www/img/application/modules/gallery/_out.php:517
-msgid "amt_right"
+#: ../../..//_out.php:517
+msgid "on the right"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:522
-msgid "amt_ver_align"
+#: ../../..//_out.php:522
+msgid "vertical alignment"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:525
+#: ../../..//_out.php:525
+msgid "at the top"
+msgstr ""
+
+#: ../../..//_out.php:526
+msgid "in the middle"
+msgstr ""
+
+#: ../../..//_out.php:527
 #, fuzzy
-msgid "amt_top"
+msgid "at the bottom"
 msgstr "Позиція"
 
-#: /var/www/img/application/modules/gallery/_out.php:526
-msgid "amt_in_the_middle"
+#: ../../..//_out.php:532
+msgid "Type"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:527
+#: ../../..//_out.php:535
+#: ../../..//_out.php:571
+msgid "Text"
+msgstr ""
+
+#: ../../..//_out.php:536
+msgid "Image"
+msgstr ""
+
+#: ../../..//_out.php:543
+msgid "Path to the image"
+msgstr ""
+
+#: ../../..//_out.php:546
+msgid "File has to be located on the server. For example"
+msgstr ""
+
+#: ../../..//_out.php:550
+#: ../../..//admin.php:201
+msgid "Transparency"
+msgstr ""
+
+#: ../../..//_out.php:555
+msgid "Select a digit from 1 to 100"
+msgstr ""
+
+#: ../../..//_out.php:560
+#: ../../..//_out.php:589
 #, fuzzy
-msgid "amt_bottom"
+msgid "Offset"
 msgstr "Позиція"
 
-#: /var/www/img/application/modules/gallery/_out.php:532
+#: ../../..//_out.php:577
+#: ../../..//admin.php:200
+msgid "Font size"
+msgstr ""
+
+#: ../../..//_out.php:583
+msgid "Font colour"
+msgstr ""
+
+#: ../../..//_out.php:598
+msgid "Path to font"
+msgstr ""
+
+#: ../../..//_out.php:633
+#: ../../..//_out.php:948
 #, fuzzy
-msgid "amt_type"
+msgid "Albums"
 msgstr "Нааааааааамеееееееееее"
 
-#: /var/www/img/application/modules/gallery/_out.php:535
-#: /var/www/img/application/modules/gallery/_out.php:571
-#, fuzzy
-msgid "amt_text"
-msgstr "Нааааааааамеееееееееее"
-
-#: /var/www/img/application/modules/gallery/_out.php:536
-#, fuzzy
-msgid "amt_image"
-msgstr "Нааааааааамеееееееееее"
-
-#: /var/www/img/application/modules/gallery/_out.php:543
-msgid "amt_path_to_image"
+#: ../../..//_out.php:638
+#: ../../..//_out.php:822
+msgid "Create"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:546
-msgid "amt_should_be_on_server"
+#: ../../..//_out.php:659
+msgid "View images"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:550
-#: /var/www/img/application/modules/gallery/admin.php:201
-msgid "amt_transparency"
+#: ../../..//_out.php:667
+#: ../../..//_out.php:774
+#: ../../..//_out.php:832
+#: ../../..//_out.php:886
+#: ../../..//_out.php:947
+#: ../../..//_out.php:1023
+#: ../../..//_out.php:1097
+#: ../../..//_out.php:1175
+#: ../../..//admin.php:267
+#: ../../..//admin.php:297
+#: ../../..//admin.php:429
+#: ../../..//admin.php:598
+#: ../../..//admin.php:639
+msgid "Name"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:555
-msgid "amt_select_value"
+#: ../../..//_out.php:671
+msgid "Created"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:560
-#: /var/www/img/application/modules/gallery/_out.php:589
-#, fuzzy
-msgid "amt_offset"
-msgstr "Позиція"
-
-#: /var/www/img/application/modules/gallery/_out.php:577
-#: /var/www/img/application/modules/gallery/admin.php:200
-msgid "amt_font_size"
+#: ../../..//_out.php:675
+msgid "Has been updated or updated"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:583
-msgid "amt_font_color"
+#: ../../..//_out.php:679
+#: ../../..//_out.php:1179
+msgid "Views"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:598
-msgid "amt_path_to_font"
+#: ../../..//_out.php:683
+#: ../../..//_out.php:838
+#: ../../..//_out.php:892
+#: ../../..//_out.php:949
+#: ../../..//_out.php:1029
+#: ../../..//_out.php:1103
+#: ../../..//_out.php:1194
+#: ../../..//admin.php:268
+#: ../../..//admin.php:599
+#: ../../..//admin.php:640
+msgid "Description"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:633
-#: /var/www/img/application/modules/gallery/_out.php:948
-#, fuzzy
-msgid "amt_albums"
-msgstr "Нааааааааамеееееееееее"
-
-#: /var/www/img/application/modules/gallery/_out.php:638
-msgid "a_create"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:659
-msgid "imgs_view"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:667
-#: /var/www/img/application/modules/gallery/_out.php:832
-#: /var/www/img/application/modules/gallery/_out.php:886
-#: /var/www/img/application/modules/gallery/_out.php:947
-#: /var/www/img/application/modules/gallery/_out.php:1023
-#: /var/www/img/application/modules/gallery/_out.php:1097
-#: /var/www/img/application/modules/gallery/_out.php:1175
-#: /var/www/img/application/modules/gallery/admin.php:267
-#: /var/www/img/application/modules/gallery/admin.php:429
-#: /var/www/img/application/modules/gallery/admin.php:598
-#: /var/www/img/application/modules/gallery/admin.php:639
-msgid "amt_name"
-msgstr "Нааааааааамеееееееееее"
-
-#: /var/www/img/application/modules/gallery/_out.php:671
-msgid "amt_cr"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:675
-msgid "amt_up"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:679
-#: /var/www/img/application/modules/gallery/_out.php:1179
-msgid "amt_views"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:683
-#: /var/www/img/application/modules/gallery/_out.php:838
-#: /var/www/img/application/modules/gallery/_out.php:892
-#: /var/www/img/application/modules/gallery/_out.php:949
-#: /var/www/img/application/modules/gallery/_out.php:1029
-#: /var/www/img/application/modules/gallery/_out.php:1103
-#: /var/www/img/application/modules/gallery/_out.php:1194
-#: /var/www/img/application/modules/gallery/admin.php:268
-#: /var/www/img/application/modules/gallery/admin.php:599
-#: /var/www/img/application/modules/gallery/admin.php:640
-msgid "amt_description"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:689
-#: /var/www/img/application/modules/gallery/_out.php:769
+#: ../../..//_out.php:689
+#: ../../..//_out.php:769
 msgid "a_to_edit"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:690
-#: /var/www/img/application/modules/gallery/_out.php:715
-#: /var/www/img/application/modules/gallery/_out.php:730
-#: /var/www/img/application/modules/gallery/_out.php:768
-#: /var/www/img/application/modules/gallery/_out.php:808
-#: /var/www/img/application/modules/gallery/_out.php:865
-#: /var/www/img/application/modules/gallery/_out.php:919
-#: /var/www/img/application/modules/gallery/_out.php:929
-#: /var/www/img/application/modules/gallery/_out.php:991
-#: /var/www/img/application/modules/gallery/_out.php:1065
-msgid "a_delete"
+#: ../../..//_out.php:690
+#: ../../..//_out.php:715
+#: ../../..//_out.php:730
+#: ../../..//_out.php:768
+#: ../../..//_out.php:808
+#: ../../..//_out.php:865
+#: ../../..//_out.php:919
+#: ../../..//_out.php:929
+#: ../../..//_out.php:991
+#: ../../..//_out.php:1004
+#: ../../..//_out.php:1065
+msgid "Delete"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:704
+#: ../../..//_out.php:704
+msgid "No albums found"
+msgstr ""
+
+#: ../../..//_out.php:711
+msgid "Delete album?"
+msgstr ""
+
+#: ../../..//_out.php:714
+#: ../../..//_out.php:807
+#: ../../..//_out.php:864
+#: ../../..//_out.php:918
+#: ../../..//_out.php:990
+#: ../../..//_out.php:1064
+#: ../../..//_out.php:1199
 #, fuzzy
-msgid "amt_no_albums"
+msgid "Cancel"
 msgstr "Нааааааааамеееееееееее"
 
-#: /var/www/img/application/modules/gallery/_out.php:711
-msgid "a_album_delete"
+#: ../../..//_out.php:721
+#: ../../..//_out.php:997
+#: ../../..//_out.php:1158
+msgid "Album"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:714
-#: /var/www/img/application/modules/gallery/_out.php:990
-msgid "a_footer_cancel"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:721
-#: /var/www/img/application/modules/gallery/_out.php:1158
-#, fuzzy
-msgid "amt_album"
-msgstr "Нааааааааамеееееееееее"
-
-#: /var/www/img/application/modules/gallery/_out.php:727
+#: ../../..//_out.php:727
 msgid "a_add_pictures"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:749
-msgid "a_choose_all_photos"
+#: ../../..//_out.php:749
+msgid "Chose all photos"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:774
-#: /var/www/img/application/modules/gallery/admin.php:297
-msgid "a_name"
+#: ../../..//_out.php:775
+msgid "Size"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:775
-msgid "a_size"
+#: ../../..//_out.php:790
+msgid "Album is empty"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:790
-msgid "a_album_empty"
+#: ../../..//_out.php:804
+msgid "Deleting photos"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:804
-msgid "a_acc_per_43"
+#: ../../..//_out.php:817
+#: ../../..//_out.php:930
+msgid "Create a category"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:807
-#: /var/www/img/application/modules/gallery/_out.php:864
-#: /var/www/img/application/modules/gallery/_out.php:918
-#: /var/www/img/application/modules/gallery/_out.php:1064
-msgid "a_cancel"
+#: ../../..//_out.php:823
+#: ../../..//_out.php:877
+msgid "Save and exit"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:817
-#: /var/www/img/application/modules/gallery/_out.php:930
-msgid "amt_create_cat"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:822
-msgid "a_cr"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:823
-#: /var/www/img/application/modules/gallery/_out.php:877
-msgid "a_footer_save_exit"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:844
-#: /var/www/img/application/modules/gallery/_out.php:898
-#: /var/www/img/application/modules/gallery/_out.php:1035
-#: /var/www/img/application/modules/gallery/_out.php:1191
-#: /var/www/img/application/modules/gallery/admin.php:600
-#: /var/www/img/application/modules/gallery/admin.php:641
-msgid "amt_position"
+#: ../../..//_out.php:844
+#: ../../..//_out.php:898
+#: ../../..//_out.php:1035
+#: ../../..//_out.php:1191
+#: ../../..//admin.php:600
+#: ../../..//admin.php:641
+#, fuzzy
+msgid "Position"
 msgstr "Позиція"
 
-#: /var/www/img/application/modules/gallery/_out.php:871
-#: /var/www/img/application/modules/gallery/_out.php:964
-msgid "amt_category_edit"
+#: ../../..//_out.php:871
+#: ../../..//_out.php:964
+msgid "Edit the category"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:925
-msgid "amt_categories"
+#: ../../..//_out.php:925
+#: ../../..//_out.php:1013
+#: ../../..//_out.php:1086
+#: ../../..//admin.php:269
+msgid "Categories"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:931
-#: /var/www/img/application/modules/gallery/_out.php:1072
-#: /var/www/img/application/modules/gallery/_out.php:1077
-msgid "amt_create_album"
+#: ../../..//_out.php:931
+#: ../../..//_out.php:1072
+#: ../../..//_out.php:1077
+msgid "Create an album"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:946
-msgid "amt_id"
+#: ../../..//_out.php:946
+msgid "ID"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:950
+#: ../../..//_out.php:950
+msgid "Created or Has been created"
+msgstr ""
+
+#: ../../..//_out.php:968
+msgid "View albums"
+msgstr ""
+
+#: ../../..//_out.php:980
+msgid "Category list is empty"
+msgstr ""
+
+#: ../../..//_out.php:987
+msgid "Delete category?"
+msgstr ""
+
+#: ../../..//_out.php:1041
+#: ../../..//_out.php:1109
+msgid "Template file"
+msgstr ""
+
+#: ../../..//_out.php:1046
+#: ../../..//_out.php:1114
+msgid "by default"
+msgstr ""
+
+#: ../../..//_out.php:1061
+msgid "Album deletion"
+msgstr ""
+
+#: ../../..//_out.php:1131
+msgid "Select a file"
+msgstr ""
+
+#: ../../..//_out.php:1135
+msgid "Upload a file"
+msgstr ""
+
+#: ../../..//_out.php:1146
 #, fuzzy
-msgid "amt_crea"
+msgid "Gallery"
 msgstr "Нааааааааамеееееееееее"
 
-#: /var/www/img/application/modules/gallery/_out.php:968
-msgid "a_show_album"
+#: ../../..//_out.php:1177
+msgid "Has been downloaded or downloaded"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:980
-msgid "a_empty_category_list"
+#: ../../..//_out.php:1181
+#: ../../..//admin.php:191
+msgid "File size"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:987
-msgid "a_category_delete"
+#: ../../..//_out.php:1183
+msgid "Image size"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:997
-msgid "a_album"
+#: ../../..//_out.php:1188
+msgid "Preview or skin or cover"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/_out.php:1004
-msgid "amt_delete"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:1013
-#: /var/www/img/application/modules/gallery/_out.php:1086
-#: /var/www/img/application/modules/gallery/admin.php:269
-msgid "amt_category"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:1041
-#: /var/www/img/application/modules/gallery/_out.php:1109
-msgid "amt_template_file"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:1046
-#: /var/www/img/application/modules/gallery/_out.php:1114
-msgid "amt_by_default"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:1061
-msgid "amt_album_delete"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:1131
-msgid "amt_select_file"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:1135
-msgid "amt_download_file"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:1146
+#: ../../..//_out.php:1205
 #, fuzzy
-msgid "amt_gallery"
+msgid "New name"
 msgstr "Нааааааааамеееееееееее"
 
-#: /var/www/img/application/modules/gallery/_out.php:1177
-#, fuzzy
-msgid "amt_downloaded"
-msgstr "Нааааааааамеееееееееее"
-
-#: /var/www/img/application/modules/gallery/_out.php:1181
-#: /var/www/img/application/modules/gallery/admin.php:191
-msgid "amt_file_size"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:1183
-msgid "amt_image_size"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:1188
-msgid "amt_preview"
-msgstr ""
-
-#: /var/www/img/application/modules/gallery/_out.php:1199
-#, fuzzy
-msgid "amt_cancel"
-msgstr "Нааааааааамеееееееееее"
-
-#: /var/www/img/application/modules/gallery/_out.php:1205
-#, fuzzy
-msgid "amt_new_name"
-msgstr "Нааааааааамеееееееееее"
-
-#: /var/www/img/application/modules/gallery/_out.php:1212
+#: ../../..//_out.php:1212
 msgid "My last photo"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/admin.php:84
-msgid "amt_delete_folder_to_continue"
+#: ../../..//admin.php:84
+msgid "Create a directory to continue your work with the gallery"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/admin.php:84
-msgid "amt_write_perm"
+#: ../../..//admin.php:84
+msgid "Set the write access"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/admin.php:195
-msgid "amt_previmage_width"
+#: ../../..//admin.php:195
+msgid "Pre-image width"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/admin.php:196
-msgid "amt_previmage_height"
+#: ../../..//admin.php:196
+msgid "pre-image height"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/admin.php:197
-msgid "amt_col_width"
+#: ../../..//admin.php:197
+msgid "Icon width"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/admin.php:198
-msgid "amt_col_height"
+#: ../../..//admin.php:198
+msgid "Icon height"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/admin.php:199
-msgid "amt_watermark_text"
+#: ../../..//admin.php:199
+msgid "Watermark text"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/admin.php:210
-msgid "amt_select_correct_path_to_image"
+#: ../../..//admin.php:210
+msgid "Specify the correct path to watermark image"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/admin.php:216
-msgid "amt_select_correct_path_to_font"
+#: ../../..//admin.php:216
+msgid "Specify the correct path to font"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/admin.php:302
-#: /var/www/img/application/modules/gallery/admin.php:455
-#: /var/www/img/application/modules/gallery/admin.php:654
-msgid "amt_changes_saved"
+#: ../../..//admin.php:302
+#: ../../..//admin.php:455
+#: ../../..//admin.php:654
+msgid "Changes have been saved"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/admin.php:336
-#: /var/www/img/application/modules/gallery/admin.php:365
-msgid "amt_cant_load_album_info"
+#: ../../..//admin.php:336
+#: ../../..//admin.php:365
+msgid "Can't load album information"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/admin.php:416
-#: /var/www/img/application/modules/gallery/admin.php:458
-#: /var/www/img/application/modules/gallery/admin.php:518
-msgid "amt_cant_load_image_info"
+#: ../../..//admin.php:416
+#: ../../..//admin.php:458
+#: ../../..//admin.php:518
+msgid "Can't load image information"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/admin.php:490
-msgid "a_photos_deleted"
+#: ../../..//admin.php:490
+msgid "Photos removed"
 msgstr ""
 
-#: /var/www/img/application/modules/gallery/admin.php:527
-#: /var/www/img/application/modules/gallery/admin.php:535
-#: /var/www/img/application/modules/gallery/admin.php:543
-msgid "a_positions_updated"
+#: ../../..//admin.php:527
+#: ../../..//admin.php:535
+#: ../../..//admin.php:543
+#, fuzzy
+msgid "Positions updated"
 msgstr "Позиція змінена"
 
+#, fuzzy
+#~ msgid "amt_save"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_to_sort"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "amt_by_date"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_by_position"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "amt_in_mb"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_yes"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_no"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_left"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_top"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "amt_type"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_text"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_image"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#~ msgid "amt_name"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_no_albums"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_album"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_crea"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_downloaded"
+#~ msgstr "Нааааааааамеееееееееее"

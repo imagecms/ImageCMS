@@ -11,6 +11,6 @@
     {$page.full_text}
 
     <p>
-        <a href="javascript:history.back(-1);">{lang('history_back')}</a>
+        <a href="javascript:history.back(-1);">{lang("←  Back")}</a>
     </p>
 </div>

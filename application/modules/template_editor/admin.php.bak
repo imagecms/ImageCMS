@@ -84,12 +84,12 @@ class Admin extends MY_Controller {
         $file=TEMPLATES_PATH.$path; 
         
         if ($this->get_file_ext($file)=='php')
-            die(lang('amt_access_denied'));
+            die(lang("Access is denied or forbidden"));
 
         if (file_exists($file))
             $file_data = read_file($file);
         else
-            die(lang('amt_file_not_found'));
+            die(lang("File has not been found"));
         
         $this->template->add_array(array(
             'file_data'=>$file_data,
@@ -107,12 +107,12 @@ class Admin extends MY_Controller {
         if (file_exists($file))
         {
             if ( ! write_file($file, $this->input->post('data'))) 
-                showMessage(lang('amt_check_write_perm'),false,'r'); 
+                showMessage(lang("File record error. Check the write permission or access"),false,'r'); 
             else
-                showMessage(lang('amt_changes_saved'));
+                showMessage(lang("Changes have been saved"));
         }
         else
-            showMessage(lang('amt_file_not_found'),false,'r');  
+            showMessage(lang("File has not been found"),false,'r');  
     }
 
     public function create_file()
@@ -128,7 +128,7 @@ class Admin extends MY_Controller {
 
             if (trim($file_name) == '')
             {
-                showMessage(lang('amt_select_file_name'),false,'r');
+                showMessage(lang("Select or specify a file name"),false,'r');
                 exit;
             }
             else
@@ -138,10 +138,10 @@ class Admin extends MY_Controller {
                 $file=htmlspecialchars(TEMPLATES_PATH.$path.'/'.$file_name.'.tpl');
                 
                 if ( ! write_file($file, ' ')) 
-                    showMessage(lang('amt_check_write_perm'),false,'r'); 
+                    showMessage(lang("File record error. Check the write permission or access"),false,'r'); 
                 else
                 {
-                    showMessage(lang('amt_file_created'));
+                    showMessage(lang("File has been created"));
                     closeWindow('create_filetemplate_window');
                     updateDiv('page',site_url('admin/components/cp/template_editor/renderDir/'.$path));
                 }
@@ -164,7 +164,7 @@ class Admin extends MY_Controller {
         {
             if (!unlink(TEMPLATES_PATH.$path))
             {
-                showMessage(lang('amt_err_deleting_file'),false,'r');
+                showMessage(lang("File deletion error"),false,'r');
             }
             else
             {
@@ -175,7 +175,7 @@ class Admin extends MY_Controller {
         }
         else
         {
-            showMessage(lang('amt_err_deleting'),false,'r');
+            showMessage(lang("Deleting error"),false,'r');
         }
     }
 

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{lang('a_controll_panel')} | Image CMS</title>
+        <title>{lang("Operation panel")} | Image CMS</title>
         <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
-        <meta name="description" content="{lang('a_controll_panel')} - Image CMS" />
+        <meta name="description" content="{lang("Operation panel")} - Image CMS" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="generator" content="ImageCMS">
         
@@ -28,6 +28,8 @@
 
     </head>
     <body>
+    {$langDomain = $CI->land->gettext_domain}
+    {$CI->lang->load('admin')}
         <div class="main_body">
             <!-- Here be notifications -->
             <div class="notifications top-right"></div>
@@ -46,17 +48,17 @@
                             <div class="pull-right span4">
                                 <div class="clearfix">
                                     <span class="m-r_10">
-                                        {lang('a_wellcome')},
+                                        {lang("Hello")},
                                         {if $CI->dx_auth->get_username()}
                                             <a href="{echo base_url()}admin/components/cp/user_manager/edit_user/{echo $CI->dx_auth->get_user_id()}" id="user_name">
                                                 {echo $CI->dx_auth->get_username()}
                                             </a>
                                             <a href="/admin/logout"><i class="my_icon exit_ico"></i></a>
                                         {else:}
-                                            {echo lang('a_guest')}
+                                            {echo lang("Guest")}
                                         {/if}
                                     </span>
-                                    <span class="m-l_10">Просмотр <a href="{$BASE_URL}" target="_blank">сайта <span class="f-s_14">→</span></a></span>
+                                    <span class="m-l_10">{lang('Preview')} <a href="{$BASE_URL}" target="_blank">{lang('site')} <span class="f-s_14">→</span></a></span>
                                 </div>
                                 <form method="get" action="{if $ADMIN_URL}/admin/components/run/shop/search/advanced{else:}/admin/admin_search{/if}" id="adminAdvancedSearch">
                                     <div class="input-append search">
@@ -76,13 +78,13 @@
                                         <a href="/admin/components/run/shop/orders/index" class=" pjax btn btn-large" data-title="Заказы" data-rel="tooltip" data-original-title="Заказы">
                                             <i class="icon-bask "></i>
                                         </a>
-                                        <a href="#" class="btn btn-large pjax" data-title="{lang('a_product_no_icon')}" data-rel="tooltip" data-original-title="">
+                                        <a href="#" class="btn btn-large pjax" data-title="{lang("Products without icons")}" data-rel="tooltip" data-original-title="">
                                             <i class="icon-report_exists"></i>
                                         </a>
                                         <a href="#" class="btn btn-large pjax" data-title="Callback" data-rel="tooltip" data-original-title="Callback">
                                             <i class="icon-callback "></i>
                                         </a>
-                                        <a href="/admin/components/cp/comments" class="btn btn-large pjax" data-title="{lang('a_last_comm')}" data-rel="tooltip" data-original-title="{lang('a_last_comm')}">
+                                        <a href="/admin/components/cp/comments" class="btn btn-large pjax" data-title="{lang("Latest/recent  comments")}" data-rel="tooltip" data-original-title="{lang("Latest/recent  comments")}">
                                             <i class="icon-comment_head "></i>
                                         </a>
                                     </div>
@@ -114,7 +116,7 @@
                                                         {$CI->load->module('menu'); $menus=$CI->menu->get_all_menus()}
                                                     {/if}
 
-                                                    <li><a href="/admin/components/cp/menu/index" class="pjax">{lang('a_control')}</a></li>
+                                                    <li><a href="/admin/components/cp/menu/index" class="pjax">{lang("Control or Operation")}</a></li>
                                                     <li class="divider"></li>
                                                     {foreach $menus as $menu}
                                                         <li><a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="pjax">{$menu.main_title}</a></li>
@@ -147,8 +149,9 @@
                             </ul>
 
                             {if SHOP_INSTALLED}
-                                <a class="btn btn-small pull-right btn-info" onclick="loadShopInterface();" href="#">Администрировать магазин <span class="f-s_14">→</span></a>
+                                <a class="btn btn-small pull-right btn-info" onclick="loadShopInterface();" href="#">{lang('Manage shop')}<span class="f-s_14">→</span></a>
                             {/if}
+                            {$CI->lang->load($langDomain)}
                         </nav>
                     </div>
 
@@ -177,13 +180,14 @@
                                     </li>
                                 {/foreach}
                             </ul>
-                                <a class="btn btn-small pull-right btn-info" onclick=" loadBaseInterface();"  href="#"><span class="f-s_14">←</span> Администрировать сайт </a>
+                                <a class="btn btn-small pull-right btn-info" onclick=" loadBaseInterface();"  href="#"><span class="f-s_14">←</span>{lang('Manage site')}</a>
                             </nav>
                         </div>
                     {/if}
                 </div>
             {/if}
             <div id="loading"></div>
+            {$CI->lang->load($langDomain)}
             <div class="container" id="mainContent">
                 {$content}
             </div>
@@ -201,13 +205,13 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a href="/admin/settings/switch_admin_lang/english">{lang('a_english')} (beta)</a></li>
-                                <li><a href="/admin/settings/switch_admin_lang/russian">{lang('a_russian')}</a></li>
+                                <li><a href="/admin/settings/switch_admin_lang/english">{lang("English")} (beta)</a></li>
+                                <li><a href="/admin/settings/switch_admin_lang/russian">{lang("Russian")}</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="span4 t-a_c">
-                        {lang('a_version')}: <b>{echo getCMSNumber()}</b>
+                        {lang("Version")}: <b>{echo getCMSNumber()}</b>
                         <div class="muted">Помогите нам стать еще лучше - <a href="#" id="rep_bug">сообщите об ошибке</a></div>
                     </div>
                     <div class="span4 t-a_r">
@@ -222,11 +226,11 @@
         <div class="standart_form frame_rep_bug">
             <form method="post" action="">
                 <label>
-                    {lang('a_your_remark')}:
+                    {lang("Your remark")}:
                     <textarea></textarea>
                 </label>
-                <input type="submit" value="{lang('a_send_report')}" class="btn btn-info"/>
-                <input type="button" value="{lang('a_cancel')}" class="btn btn-info" style="float:right" name="cancel_button"/>
+                <input type="submit" value="{lang("Send")}" class="btn btn-info"/>
+                <input type="button" value="{lang("Cancel")}" class="btn btn-info" style="float:right" name="cancel_button"/>
                 <input type="hidden" value="{$_SERVER['REMOTE_ADDR']}" id="ip_address"/>
             </form>
         </div>
@@ -282,9 +286,9 @@
             {else:}
                 var isShop = false;
             {/if}
-                var lang_only_number = "{lang('a_numbers_only')}";
-                var show_tovar_text = "{lang('a_show')}";
-                var hide_tovar_text = "{lang('a_dont_show')}";
+                var lang_only_number = "{lang("numbers only")}";
+                var show_tovar_text = "{lang("show")}";
+                var hide_tovar_text = "{lang('don\'t show')}";
             {literal}
 
             $(document).ready(function(){

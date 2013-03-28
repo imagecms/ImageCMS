@@ -471,7 +471,7 @@ class Permitions {
                             $this->db->query($sqlPrivilege);
                         }
                     }
-                    showMessage(lang('a_js_edit_save'));
+                    showMessage(lang("Changes have been saved"));
                     if ($_POST['action'] == 'new') {
                         pjax('/admin/rbac/roleEdit/' . $idCreate);
                     } else {
@@ -542,7 +542,7 @@ class Permitions {
                 $this->db->query($sqlI);
             }
 
-            showMessage(lang('a_js_edit_save'));
+            showMessage(lang("Changes have been saved"));
             if ($_POST['action'] == 'edit') {
                 pjax('/admin/rbac/translateRole/' . $id . '/' . $lang);
             } else {
@@ -575,7 +575,7 @@ class Permitions {
         $queryModel->row();
 
         if ($queryModel === null)
-            $this->error404(lang('a_rback_not_found'));
+            $this->error404(lang("Role not found"));
 
         if (!empty($_POST)) {
             $this->form_validation->set_rules('Name', 'Name', 'required');
@@ -605,7 +605,7 @@ class Permitions {
                         }
                     }
                 }
-                showMessage(lang('a_js_edit_save'));
+                showMessage(lang("Changes have been saved"));
                 if ($_POST['action'] != 'edit')
                     pjax('/admin/rbac/roleList');
             }
@@ -739,7 +739,7 @@ class Permitions {
                 $this->db->query($sqlI);
 
 
-                showMessage(lang('a_rbak_privile_create'));
+                showMessage(lang("Privilege created"));
 
                 if ($_POST['action'] == 'close') {
                     pjax('/admin/rbac/privilegeCreate');
@@ -777,7 +777,7 @@ class Permitions {
         $queryRBACPrivilege = $this->db->query($sqlPr)->row();
 
         if ($queryRBACPrivilege === null AND FALSE)
-            $this->error404(lang('a_rbak_privi_not'));
+            $this->error404(lang("The privilege is not found"));
 
 
         if (!empty($_POST)) {
@@ -788,7 +788,7 @@ class Permitions {
                     " WHERE id = " . $privilegeId;
             $this->db->query($sql);
 
-            showMessage(lang('a_js_edit_save'));
+            showMessage(lang("Changes have been saved"));
 
             if ($_POST['action'] == 'close') {
                 pjax('/admin/rbac/privilegeEdit/' . $privilegeId);

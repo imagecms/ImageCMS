@@ -9,8 +9,8 @@
             <p>Удалить ссылки?</p>
         </div>
         <div class="modal-footer">
-            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/components/init_window/trash/delete_trash/')">{lang('a_delete')}</a>
-            <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('a_footer_cancel')}</a>
+            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/components/init_window/trash/delete_trash/')">{lang("Delete")}</a>
+            <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang("Cancel")}</a>
         </div>
     </div>
     <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->
@@ -22,11 +22,11 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="/admin/components/modules_table" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
+                    <a href="/admin/components/modules_table" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back")}</span></a>
                 </div>
                 <div class="d-i_b">
                     <a href="/admin/components/init_window/trash/create_trash/" class="btn btn-small btn-success pjax"><i class="icon-plus-sign icon-white"></i>Создать редирект</a>
-                    <button type="button" class="btn btn-small btn-danger disabled action_on" id="trash_del" onclick="delete_function.deleteFunction()"><i class="icon-trash icon-white"></i>{lang('a_delete')}</button>
+                    <button type="button" class="btn btn-small btn-danger disabled action_on" id="trash_del" onclick="delete_function.deleteFunction()"><i class="icon-trash icon-white"></i>{lang("Delete")}</button>
                 </div>
             </div>                            
         </div>
@@ -60,7 +60,7 @@
                                     </span>
                                 </td>
                                 <td>
-                                    <a class="pjax" href="/admin/components/init_window/trash/edit_trash/{echo $item->id}" data-rel="tooltip" data-title="{lang('a_edit')}">{echo $item->trash_url}</a>
+                                    <a class="pjax" href="/admin/components/init_window/trash/edit_trash/{echo $item->id}" data-rel="tooltip" data-title="{lang("Editing")}">{echo $item->trash_url}</a>
                                 </td>
                                 <td>
                                     <label>{echo $item->trash_redirect_type}</label>

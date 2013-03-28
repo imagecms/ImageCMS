@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-26 14:28+0300\n"
-"PO-Revision-Date: 2013-03-26 14:31+0300\n"
+"POT-Creation-Date: 2013-03-28 13:03+0300\n"
+"PO-Revision-Date: 2013-03-28 13:03+0300\n"
 "Last-Translator: koloda <koloda90@gmail.com>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -15,9 +15,24 @@ msgstr ""
 "X-Poedit-Language: English\n"
 "X-Poedit-Country: UKRAINE\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-SearchPath-0: /var/www/img/application/modules/star_rating\n"
+"X-Poedit-SearchPath-0: ../../../\n"
 
-#: /var/www/img/application/modules/star_rating/admin.php:39
+#: ../../..//_out.php:9
+#: ../../..//assets/admin/settings.tpl:9
+msgid "Go back"
+msgstr ""
+
+#: ../../..//_out.php:10
+#: ../../..//assets/admin/settings.tpl:10
+msgid "Have been saved"
+msgstr ""
+
+#: ../../..//_out.php:11
+#: ../../..//assets/admin/settings.tpl:11
+msgid "Save and go back"
+msgstr ""
+
+#: ../../..//admin.php:39
 msgid "Settings saved success"
 msgstr "Settings saved success"
 

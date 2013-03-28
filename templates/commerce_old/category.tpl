@@ -28,7 +28,7 @@
             <div class="postinfo">
                <a href="{site_url($page.full_url)}#comments">Комментарии ({$page.comments_count})</a>
                &nbsp;&nbsp;
-               <a href="{site_url($page.full_url)}">{lang('full_article')}</a>
+               <a href="{site_url($page.full_url)}">{lang("Read more → ")}</a>
             </div>
 
             <div style="border-bottom:1px solid #ECECEC;">

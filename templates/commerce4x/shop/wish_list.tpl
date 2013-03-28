@@ -15,16 +15,16 @@
         <div data-body="message" class="d_b">
             <!--Start. Show message if compare list is empty -->
             <div class="bot_border_grey m-b_10">
-                <h1 class="d_i">{lang('s_WL')}</h1>
+                <h1 class="d_i">{lang("Wish List")}</h1>
             </div>
             <div class="alert alert-search-result">
-                <div class="title_h2 t-a_c">{echo ShopCore::t(lang('s_list_wish_empty'))}</div>
+                <div class="title_h2 t-a_c">{echo ShopCore::t(lang("Your Wish List is empty "))}</div>
             </div>
             <!--End. Show message if compare list is empty -->
         </div>
     {else:}
         <div data-body="body">
-            <h1>{lang('s_WL')}</h1>
+            <h1>{lang("Wish List")}</h1>
             <!--If not empty list show list of products -->
             <div class="bot_border_grey">
                 <ul class="items items_catalog itemsFrameNS">
@@ -76,7 +76,7 @@
                                             data-name="{echo $item.model->getName()}"
                                             data-number="{echo $item.model->firstVariant->getnumber()}"
                                             data-maxcount="{echo $item.model->firstVariant->getstock()}">
-                                        {lang('s_buy')}
+                                        {lang("Buy")}
                                     </button>
                                 {else:}
                                     <button data-placement="bottom right"
@@ -89,7 +89,7 @@
                                             type="button"
                                             class="btn btn_not_avail">
                                         <span class="icon-but"></span>
-                                        <span class="text-el">{lang('s_message_o_report')}</span>
+                                        <span class="text-el">{lang("Report the appearance of")}</span>
                                     </button>              
                                 {/if}
                                 <!-- End. Check is product available -->
@@ -100,7 +100,7 @@
             </div>
             <div class="row footer_wish-list">
                 <div class="span6">
-                    <div class="d_i-b title">{lang('s_summ')}:</div>
+                    <div class="d_i-b title">{lang("Total")}:</div>
                     <div class="price price_f-s_24 d_i-b">
                         <span class="first_cash"><span class="f-w_b" id="wishListTotal">{echo $total_price}</span> {$CS}</span>
                     </div>
@@ -122,10 +122,10 @@
     <div data-body="message">
         <!--Start. Show message if compare list is empty -->
         <div class="bot_border_grey m-b_10">
-            <h1 class="d_i">{lang('s_WL')}</h1>
+            <h1 class="d_i">{lang("Wish List")}</h1>
         </div>
         <div class="alert alert-search-result">
-            <div class="title_h2 t-a_c">{echo ShopCore::t(lang('s_list_wish_empty'))}</div>
+            <div class="title_h2 t-a_c">{echo ShopCore::t(lang("Your Wish List is empty "))}</div>
         </div>
         <!--End. Show message if compare list is empty -->
     </div>
