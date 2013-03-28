@@ -95,7 +95,7 @@ class Components extends BaseAdminController {
             $this->load->library('cms_hooks');
             $this->cms_hooks->build_hooks();
 
-            $this->lib_admin->log(lang('ac_istall') . $data['name']);
+            $this->lib_admin->log(lang("Installed a module") . $data['name']);
 
             if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
                 $result = true;
@@ -130,11 +130,11 @@ class Components extends BaseAdminController {
 
                 $this->db->limit(1);
                 $this->db->delete('components', array('name' => $module));
-                $this->lib_admin->log(lang('ac_deinstall') . $module);
+                $this->lib_admin->log(lang("Deleted a module") . $module);
                 showMessage('Модуль успешно деинсталирован');
                 pjax('/admin/components/modules_table');
             } else {
-                showMessage(lang('ac_deinstall_error'), false, 'r');
+                showMessage(lang("Module deletion error"), false, 'r');
                 pjax('/admin/components/modules_table');
             }
 
@@ -231,7 +231,7 @@ class Components extends BaseAdminController {
             $this->db->where('name', $component);
             $this->db->update('components', $data);
 
-            $this->lib_admin->log(lang('ac_module_sett_changed') . $com['name']);
+            $this->lib_admin->log(lang("Changed the module settings") . $com['name']);
 
             //showMessage('Настройки сохранены');
         } else {
@@ -321,11 +321,11 @@ class Components extends BaseAdminController {
         $com_info = $this->get_module_info($this->input->post('component'));
 
         if ($com_info != FALSE) {
-            $info_text = '<h1>' . $com_info['menu_name'] . '</h1><p>' . $com_info['description'] . '</p><p><b>' . lang('ac_author') . '</b> ' . $com_info['author'] . '<br/><b>' . lang('ac_version') . '</b> ' . $com_info['version'] . '</p>';
+            $info_text = '<h1>' . $com_info['menu_name'] . '</h1><p>' . $com_info['description'] . '</p><p><b>' . lang("Author") . '</b> ' . $com_info['author'] . '<br/><b>' . lang("Version ") . '</b> ' . $com_info['version'] . '</p>';
 
             jsCode("alertBox.info('" . $info_text . "');");
         } else {
-            showMessage(lang('ac_cant_load_module_into_file'), false . 'r');
+            showMessage(lang("Can't load module info file"), false . 'r');
         }
     }
 
@@ -392,9 +392,9 @@ class Components extends BaseAdminController {
                 }
             }
             if ($result)
-                showMessage(lang('a_positions_updated'));
+                showMessage(lang("Positions updated"));
             else
-                showMessage(lang('a_fail'));
+                showMessage(lang("Fail"));
         }
     }
 
@@ -408,7 +408,7 @@ class Components extends BaseAdminController {
             else
                 $in_menu = 1;
             if ($this->db->where('id', (int) $id)->set('in_menu', $in_menu)->update('components')) {
-                showMessage(lang('a_changes_saved'));
+                showMessage(lang("Changes saved"));
             }
         }
     }

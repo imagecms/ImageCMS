@@ -46,8 +46,8 @@ class Admin extends BaseAdminController {
                 {
                     $this->load->library('form_validation');
 
-                    $this->form_validation->set_rules('email', lang('amt_email'), 'trim|valid_email|required|xss_clean');
-                    $this->form_validation->set_rules('message_max_len', lang('amt_max_message_length'), 'trim|integer|required|xss_clean');
+                    $this->form_validation->set_rules('email', lang("E-Mail"), 'trim|valid_email|required|xss_clean');
+                    $this->form_validation->set_rules('message_max_len', lang("Maximum message length"), 'trim|integer|required|xss_clean');
 
                     if ($this->form_validation->run($this) == FALSE)
                     {
@@ -62,7 +62,7 @@ class Admin extends BaseAdminController {
                         $this->db->where('name', 'feedback');
                         $this->db->update('components', array('settings' => serialize($data)));
 
-                        showMessage(lang('amt_settings_saved'));
+                        showMessage(lang("Settings have been saved or settings were saved"));
                     }
                 }
             break;

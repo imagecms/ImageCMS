@@ -2,12 +2,12 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang('a_role_group_edit')}</span>
+            <span class="title">{lang("Roles group edit")}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="{$BASE_URL}admin/rbac/groupList" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
-                <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#group_ed_form" data-action="tomain" data-submit><i class="icon-ok"></i>{lang('a_save')}</button>
+                <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#group_ed_form" data-action="tomain" data-submit><i class="icon-ok"></i>{lang("Have been saved")}</button>
                 <button type="button" class="btn btn-small formSubmit" data-form="#group_ed_form" data-action="tocreate"><i class="icon-check"></i>Сохранить и создать новую группу</button>
                 <button type="button" class="btn btn-small formSubmit" data-form="#group_ed_form" data-action="toedit"><i class="icon-check"></i>Сохранить и редактировать</button>
 
@@ -16,7 +16,7 @@
                     {foreach $arr as $a}
                         {if $lang_sel == $a}
                             <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
-                        {if $a == 'english_lang'}{lang('a_english')}{else:}{lang('a_russian')}{/if}
+                        {if $a == 'english_lang'}{lang("English")}{else:}{lang("Russian")}{/if}
                         <span class="caret"></span>
                     </a>
                 {/if}   
@@ -26,7 +26,7 @@
                     <li>
                         <a href="{$BASE_URL}admin/rbac/translateGroup/{echo $model->id}/{if $a == 'russian_lang'}en{else:}ru{/if}">
 
-                    {if $a == 'english_lang'}{lang('a_russian')} {else:} {lang('a_english')} (beta){/if}
+                    {if $a == 'english_lang'}{lang("Russian")} {else:} {lang("English")} (beta){/if}
                 </a>
             </li>                          
         {/foreach}
@@ -44,7 +44,7 @@
                 <thead>
                     <tr>
                         <th colspan="6">
-                            {lang('a_param')}
+                            {lang("Properties")}
                         </th>
                     </tr>
                 </thead>
@@ -53,13 +53,13 @@
                         <td colspan="6">
                             <div class="inside_padd span9">
                                 <div class="control-group m-t_10">
-                                    <label class="control-label" for="Name">{lang('a_name')}:</label>
+                                    <label class="control-label" for="Name">{lang("Name")}:</label>
                                     <div class="controls">
                                         <input type="text" name="Name" id="Name" value="{echo $model->name}" required/>
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label" for="Description">{lang('a_desc')}:</label>
+                                    <label class="control-label" for="Description">{lang("Description")}:</label>
                                     <div class="controls">
                                         <input type="text" name="Description" id="Description" value="{echo $model->description}"/>
                                     </div>

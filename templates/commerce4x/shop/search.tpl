@@ -22,7 +22,7 @@
         <div class="filter">
             <!-- Start. Categories tree with navigation -->
             <div class="boxFilter">
-                <div class="title">{lang('s_sea_found_in_categories')}:</div>
+                <div class="title">{lang("Found in categories")}:</div>
                 <nav>
                     <ul>
                         {foreach $tree as $item}
@@ -60,10 +60,10 @@
     </aside>
     <div class="span9 right">
         {if !empty(ShopCore::$_GET['text'])}
-            <h1 class="d_i">  {lang('s_sea_search_for')}:"{encode($_GET['text'])}" </h1>
+            <h1 class="d_i">  {lang("You searched for")}:"{encode($_GET['text'])}" </h1>
         {/if}
         <span class="c_97">
-               Найдено {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}
+               Найдено {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang("product"), lang("product"), lang("product")))}
             </span>
         <div class=" clearfix t-a_ccatalog_frame">
             <div class="clearfix t-a_c frame_func_catalog">
@@ -73,20 +73,20 @@
                         <span class="v-a_m">Фильтровать по:</span>
                         <div class="lineForm w_170">
                             <select class="sort" id="sort" name="order">
-                                <option value="" {if !ShopCore::$_GET['order']}selected="selected"{/if}>-{lang('s_no')}-</option>
-                                <option value="rating" {if ShopCore::$_GET['order']=='rating'}selected="selected"{/if}>{lang('s_po')} {lang('s_rating')}</option>
-                                <option value="price" {if ShopCore::$_GET['order']=='price'}selected="selected"{/if}>{lang('s_dewevye')}</option>
-                                <option value="price_desc" {if ShopCore::$_GET['order']=='price_desc'}selected="selected"{/if} >{lang('s_dor')}</option>
-                                <option value="hit" {if ShopCore::$_GET['order']=='hit'}selected="selected"{/if}>{lang('s_popular')}</option>
-                                <option value="hot" {if ShopCore::$_GET['order']=='hot'}selected="selected"{/if}>{lang('s_new')}</option>
-                                <option value="action" {if ShopCore::$_GET['order']=='action'}selected="selected"{/if}>{lang('s_action')}</option>
+                                <option value="" {if !ShopCore::$_GET['order']}selected="selected"{/if}>-{lang("No")}-</option>
+                                <option value="rating" {if ShopCore::$_GET['order']=='rating'}selected="selected"{/if}>{lang("On")} {lang("Rating")}</option>
+                                <option value="price" {if ShopCore::$_GET['order']=='price'}selected="selected"{/if}>{lang("From cheap to expensive")}</option>
+                                <option value="price_desc" {if ShopCore::$_GET['order']=='price_desc'}selected="selected"{/if} >{lang("From expensive to cheap")}</option>
+                                <option value="hit" {if ShopCore::$_GET['order']=='hit'}selected="selected"{/if}>{lang("Popular")}</option>
+                                <option value="hot" {if ShopCore::$_GET['order']=='hot'}selected="selected"{/if}>{lang("New")}</option>
+                                <option value="action" {if ShopCore::$_GET['order']=='action'}selected="selected"{/if}>{lang("Action")}</option>
                             </select>
                         </div>
                     </div>
                     <!-- End. Sort by block -->
                     <!-- Start. Per page block -->
                     <div class="f_r">
-                        <span class="v-a_m">{lang('s_products_per_page')}:</span>
+                        <span class="v-a_m">{lang("Products per page")}:</span>
                         <div class="lineForm w_70">
                             <select class="sort" id="sort2" name="user_per_page">
                                 <option value="12" {if ShopCore::$_GET['user_per_page']=='12'}selected="selected"{/if} >12</option>
@@ -101,8 +101,8 @@
                 <!-- End. Per page block -->
                 <!-- Start. Buttons for change view mode (list/images) -->
                 <div class="groupButton list_pic_btn">
-                    <button type="button" class="btn showAsTable {if $_COOKIE['listtable'] != 1}active{/if}"><span class="icon-cat_pic"></span><span class="text-el">{lang('s_in_images')}</span></button>
-                    <button type="button" class="btn showAsList {if $_COOKIE['listtable'] == 1}active{/if}"><span class="icon-cat_list"></span><span class="text-el">{lang('s_in_list')}</span></button>
+                    <button type="button" class="btn showAsTable {if $_COOKIE['listtable'] != 1}active{/if}"><span class="icon-cat_pic"></span><span class="text-el">{lang("Image view")}</span></button>
+                    <button type="button" class="btn showAsList {if $_COOKIE['listtable'] == 1}active{/if}"><span class="icon-cat_list"></span><span class="text-el">{lang("List view")}</span></button>
                 </div>
                 <!-- End. Buttons for change view mode (list/images) -->
             </div>
@@ -151,7 +151,7 @@
                                         data-number="{echo $p->firstVariant->getnumber()}"
                                         data-maxcount="{echo $p->firstVariant->getstock()}"
                                         data-vname="{echo $p->firstVariant->getName()}">
-                                    {lang('s_buy')}
+                                    {lang("Buy")}
                                 </button>
                             {else:}
                                 <button data-placement="bottom right"
@@ -164,7 +164,7 @@
                                         type="button"
                                         class="btn btn_not_avail">
                                     <span class="icon-but"></span>
-                                    <span class="text-el">{lang('s_message_o_report')}</span>
+                                    <span class="text-el">{lang("Report the appearance of")}</span>
                                 </button>
                             {/if}
                             <!-- End. Check amount of goods -->
@@ -174,11 +174,11 @@
                                 <button class="btn btn_small_p toCompare"
                                         data-prodid="{echo $p->getId()}"
                                         type="button"
-                                        data-title="{lang('s_add_to_compare')}"
+                                        data-title="{lang("add to compare")}"
                                         data-sectitle="{lang('s_in_compare')}"
                                         data-rel="tooltip">
                                     <span class="icon-comprasion_2"></span>
-                                    <span class="text-el">{lang('s_add_to_compare')}</span>
+                                    <span class="text-el">{lang("add to compare")}</span>
                                 </button>
 
                                 <!-- to wish list button -->
@@ -186,11 +186,11 @@
                                         data-prodid="{echo $p->getId()}"
                                         data-varid="{echo $p->firstVariant->getId()}"
                                         type="button"
-                                        data-title="{lang('s_add_to_wish_list')}"
+                                        data-title="{lang("add to wish list")}"
                                         data-sectitle="{lang('s_in_wish_list')}"
                                         data-rel="tooltip">
                                     <span class="icon-wish_2"></span>
-                                    <span class="text-el">{lang('s_add_to_wish_list')}</span>
+                                    <span class="text-el">{lang("add to wish list")}</span>
                                 </button>
                             </div>
                             <!-- End. Buttons -->
@@ -213,17 +213,17 @@
 
                         <!-- creating hot bubble for products image if product is hot -->
                         {if $p->getHot()}
-                            <span class="top_tovar nowelty">{lang('s_shot')}</span>
+                            <span class="top_tovar nowelty">{lang("New")}</span>
                         {/if}
 
                         <!-- creating hot bubble for products image if product is action -->
                         {if $p->getAction()}
-                            <span class="top_tovar promotion">{lang('s_saction')}</span>
+                            <span class="top_tovar promotion">{lang("Promotion")}</span>
                         {/if}
 
                         <!-- creating hot bubble for products image if product is hit -->
                         {if $p->getHit()}
-                            <span class="top_tovar discount">{lang('s_s_hit')}</span>
+                            <span class="top_tovar discount">{lang("Hit")}</span>
                         {/if}
                     </li>
                 {/foreach}
@@ -243,11 +243,11 @@
     <article class="container">
         <div class="bot_border_grey m-b_10">
             {if !empty(ShopCore::$_GET['text'])}
-                <div class="d_i title_h1">{lang('s_sea_search_for')} <span class="alert-small">:"{encode($_GET['text'])}"</span></div>
+                <div class="d_i title_h1">{lang("You searched for")} <span class="alert-small">:"{encode($_GET['text'])}"</span></div>
             {/if}
         </div>
         <div class="alert alert-search-result">
-            <div class="title_h2 t-a_c">{echo ShopCore::t(lang('s_not_found'))}</div>
+            <div class="title_h2 t-a_c">{echo ShopCore::t(lang("Your search did not match"))}</div>
         </div>
     </article>
     <!-- End. Show message -->

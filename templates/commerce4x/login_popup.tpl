@@ -7,14 +7,14 @@
     <button type="button" class="icon-times-enter" data-closed="closed-js"></button>
     <div class="drop-content">
         <div class="header_title">
-            {lang('lang_login_page')}
+            {lang("Authorization")}
         </div>
         <div class="inside_padd">
             <div class="horizontal_form standart_form">
                 <form method="post" id="login_form" onsubmit="ImageCMSApi.formAction('/auth/authapi/login', 'login_form');
                                         return false;">
                     <label>
-                        <span class="title">{lang('lang_email')}</span>
+                        <span class="title">{lang("Email")}</span>
                         <span class="frame_form_field">
                             <span class="icon-email"></span>
                             <input type="text" name="email"/>
@@ -22,7 +22,7 @@
                         </span>
                     </label>
                     <label>
-                        <span class="title">{lang('lang_password')}</span>
+                        <span class="title">{lang("Password")}</span>
                         <span class="frame_form_field">
                             <span class="icon-password"></span>
                             <input type="password" name="password"/>
@@ -36,7 +36,7 @@
                     <div class="frameLabel">
                         <span class="title">&nbsp;</span>
                         <span class="frame_form_field c_n">
-                            <a href="/auth/forgot_password" class="f_l neigh_btn">{lang('lang_forgot_password')}</a>
+                            <a href="/auth/forgot_password" class="f_l neigh_btn">{lang("Forgot your password?")}</a>
                             <input type="submit" value="Войти" class="btn btn_cart f_r" />
                         </span>
                     </div>

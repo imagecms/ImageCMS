@@ -2,11 +2,11 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang('a_role_group_list')}</span>
+            <span class="title">{lang("Roles groups list")}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="$('.modal').modal();"><i class="icon-trash icon-white"></i>{lang('a_delete')}</button>
+                <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="$('.modal').modal();"><i class="icon-trash icon-white"></i>{lang("Delete")}</button>
                 <a class="btn btn-small btn-success pjax" href="/admin/rbac/groupCreate" ><i class="icon-plus-sign icon-white"></i>Создать групу ролей</a>
             </div>
         </div>  
@@ -25,9 +25,9 @@
                                         </span>
                                     </span>
                                 </th>
-                                <th class="span1">{lang('a_id')}</th>
-                                <th>{lang('a_name')}</th>
-                                <th>{lang('a_desc')}</th>
+                                <th class="span1">{lang("ID")}</th>
+                                <th>{lang("Name")}</th>
+                                <th>{lang("Description")}</th>
                             </tr>    
                         </thead>
                         <tbody id="rltbl">
@@ -56,7 +56,7 @@
         {else:}
             </br>
             <div class="alert alert-info">
-                {lang('a_list')} {lang('a_group')} {lang('a_privilegy')} {lang('a_empty')}
+                {lang("List")} {lang("Group")} {lang('a_privilegy')} {lang("Empty.")}
             </div>
         {/if}
     </div>
@@ -71,13 +71,13 @@
         <p>Удалить группу?</p>
     </div>
     <div class="modal-footer">
-        <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('{$ADMIN_URL}groupDelete')" >{lang('a_delete')}</a>
+        <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('{$ADMIN_URL}groupDelete')" >{lang("Delete")}</a>
         <a href="#" class="btn" onclick="$('.modal').modal('hide');">Отмена</a>
     </div>
 </div>
 
 
 <div id="delete_dialog" style="display: none">
-    {lang('a_rb_del_roles')}
+    {lang("Remove roles?")}
 </div>
 <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->

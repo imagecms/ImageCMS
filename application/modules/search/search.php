@@ -125,7 +125,7 @@ class Search extends MY_Controller {
 
         $data = $this->_highlight_text($data, $s_text);
 
-        $this->core->set_meta_tags(array(lang('search_title'), $this->search_title));
+        $this->core->set_meta_tags(array(lang("Search"), $this->search_title));
         $this->_display($data);
     }
 
@@ -218,7 +218,7 @@ class Search extends MY_Controller {
         $collect_ids = FALSE;
 
         if ($this->table == '') {
-            $error = lang('amt_lang_select_table');
+            $error = lang("Error. Select or specify the table for search");
             return $error;
         }
 

@@ -62,15 +62,15 @@
                 </a>
                 <div class="frame_form_search">
                     <form name="search" class="clearfix" action="{shop_url('search')}" method="get" id="autocomlete">
-                        <input type="text" name="text" value="{lang('s_se_thi_sit')}"  onfocus="if(this.value=='{lang('s_se_thi_sit')}') this.value='';" onblur="if(this.value=='') this.value='{lang('s_se_thi_sit')}';"  id="inputString" autocomplete="off" onkeyup="lookup(event);" class="place_hold"/>
-                        <input type="submit" id="search_submit"  value="{lang('s_search')}" class="icon"/>
+                        <input type="text" name="text" value="{lang("Search this site")}"  onfocus="if(this.value=='{lang("Search this site")}') this.value='';" onblur="if(this.value=='') this.value='{lang("Search this site")}';"  id="inputString" autocomplete="off" onkeyup="lookup(event);" class="place_hold"/>
+                        <input type="submit" id="search_submit"  value="{lang("Search")}" class="icon"/>
                         <span id="suggestions" style="display: none; width: 0px; right: 0px;"></span>
                     </form>
                 </div>
 
                 <div class="phone">
                     <address>(095)<span><span class="d_n">&minus;</span> 555-55-55</span></address>
-                    <span class="js showCallback">{lang('s_coll_order')}</span>
+                    <span class="js showCallback">{lang("Request Call")}</span>
                 </div>
 
                 <ul class="user_menu">
@@ -78,7 +78,7 @@
                     {if !count(get_currencies())}
                         <li class="p-l_0">
                             <form action="" method="post" name="currencyChangeForm" id="currencyChangeForm">
-                                {lang('s_currency')}: <select class="changeCurrency" name="setCurrency" >
+                                {lang("Currency")}: <select class="changeCurrency" name="setCurrency" >
                                     {foreach get_currencies() as $currency}
                                         {if $currency->getId() != ShopCore::app()->SCurrencyHelper->default->getId()}
                                             <option {if ShopCore::app()->SCurrencyHelper->additional->getId() == $currency->getId()}selected{/if} value="{echo $currency->getId()}">{echo encode($currency->getName())}</option>
@@ -119,15 +119,15 @@
                 {load_menu('footer_menu')}
                 <ul class="contacts f_l">
                     <li>
-                        <span class="b">{lang('s_tel')}:</span>
+                        <span class="b">{lang("Phone.")}:</span>
                         <span>(095) <span class="d_n">&minus; </span>555-55-55</span>
                     </li>
                     <li>
-                        <span class="b">{lang('s_email')}:</span>
+                        <span class="b">{lang("Email")}:</span>
                         <span>Info@imagecms.net</span>
                     </li>
                     <li>
-                        <span class="b">{lang('s_skype')}:</span>
+                        <span class="b">{lang("Skype")}:</span>
                         <span>ImageCMS</span>
                     </li>
                     {$CI->load->module('star_rating')->show_star_rating()}
@@ -143,8 +143,8 @@
                         <a href="#" class="twitter"></a>
                         <a href="#" class="odnoklasniki"></a>
                     </div>
-                    <a href="http://imagecms.net" target="_blank" class="red">{lang('s_footer_create')}</a>
-                    <div class="s">{lang('s_footer_seo')}</div>
+                    <a href="http://imagecms.net" target="_blank" class="red">{lang("Create Online Store")}</a>
+                    <div class="s">{lang("SEO optimization")}</div>
                 </div>
             </div>
         </div><!-- footer -->

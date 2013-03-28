@@ -2,24 +2,24 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang('a_role_edit')}: {echo $model->name}</span>
+            <span class="title">{lang("Role edit")}: {echo $model->name}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$BASE_URL}admin/rbac/roleEdit/{echo $idRole}" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
-                <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#role_ed_form" data-action="edit" data-submit><i class="icon-ok icon-white"></i>{lang('a_save')}</button>
-                <button type="button" class="btn btn-small formSubmit" data-form="#role_ed_form" data-action="exit"><i class="icon-check"></i>{lang('a_footer_save_exit')}</button>
+                <a href="{$BASE_URL}admin/rbac/roleEdit/{echo $idRole}" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back")}</span></a>
+                <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#role_ed_form" data-action="edit" data-submit><i class="icon-ok icon-white"></i>{lang("Have been saved")}</button>
+                <button type="button" class="btn btn-small formSubmit" data-form="#role_ed_form" data-action="exit"><i class="icon-check"></i>{lang("Save and exit")}</button>
 
                 <div class="dropdown d-i_b">   
                     {$arr = get_lang_admin_folders()}
                     <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
-                {if $lang_sel == 'en'}{lang('a_english')}{else:}{lang('a_russian')}{/if}
+                {if $lang_sel == 'en'}{lang("English")}{else:}{lang("Russian")}{/if}
                 <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
                 <li>
                     <a href="{$BASE_URL}admin/rbac/translateRole/{echo $idRole}/{if $lang_sel == 'en'}ru{else:}en{/if}">                                    
-                {if $lang_sel == 'en'} {lang('a_russian')} {else:} {lang('a_english')} (beta){/if}
+                {if $lang_sel == 'en'} {lang("Russian")} {else:} {lang("English")} (beta){/if}
             </a>
         </li> 
     </ul>
@@ -38,7 +38,7 @@
                     <thead>
                         <tr>
                             <th colspan="6">
-                                {lang('a_param')}
+                                {lang("Properties")}
                             </th>
                         </tr>
                     </thead>
@@ -48,7 +48,7 @@
                                 <div class="inside_padd">
                                     <div class="row-fluid">
                                         <div class="control-group m-t_10">
-                                            <label class="control-label" for="alt_name">{lang('a_description')}:</label>
+                                            <label class="control-label" for="alt_name">{lang("Description")}:</label>
                                             <div class="controls">
                                                 <input type="text" name="alt_name" id="alt_name" value="{echo $model->alt_name}" />
                                             </div>

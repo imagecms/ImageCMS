@@ -9,7 +9,7 @@
                 <div class="dropdown d-i_b">
                     <button type="button" class="btn btn-small dropdown-toggle disabled action_on" data-toggle="dropdown">
                         <i class="icon-tag"></i>
-                        {lang('a_mark')}
+                        {lang("Mark")}
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
@@ -18,25 +18,25 @@
                         <li><a href="#" class="to_approved">В одобреные</a></li>
                     </ul>
                 </div>
-                <button type="button" class="btn btn-small btn-danger disabled action_on" id="comment_delete"><i class="icon-trash icon-white"></i>{lang('a_delete')}</button>
+                <button type="button" class="btn btn-small btn-danger disabled action_on" id="comment_delete"><i class="icon-trash icon-white"></i>{lang("Delete")}</button>
                 <a class="btn btn-small pjax" href="/admin/components/cp/comments/show_settings"><i class="icon-wrench"></i>Настройки</a>
             </div>
         </div>    
     </div>
     <div class="btn-group myTab m-t_20">
-        <a class="btn btn-small pjax {if $status == 'all' OR $status== NULL}active{/if}" href="/admin/components/cp/comments/index/status/all/page/0">{lang('amt_all_comments')}
+        <a class="btn btn-small pjax {if $status == 'all' OR $status== NULL}active{/if}" href="/admin/components/cp/comments/index/status/all/page/0">{lang("All comments")}
             {if $all_comm_show}
                 <span style="top:-13px;" class="badge badge-important">
                     {$all_comm_show}
                 </span>
             {/if}
         </a>
-        <a class="btn btn-small pjax {if $status == 'waiting'}active{/if}" href="/admin/components/cp/comments/index/status/waiting/page/0">{lang('amt_waighting_for_moderation')}
+        <a class="btn btn-small pjax {if $status == 'waiting'}active{/if}" href="/admin/components/cp/comments/index/status/waiting/page/0">{lang("Pending moderation  or waiting for moderation")}
             {if $total_waiting>0}
                 <span style="top:-13px;" class="badge badge-important">{$total_waiting}</span>
             {/if}
         </a>
-        <a class="btn btn-small pjax {if $status == 'approved'}active{/if}" href="/admin/components/cp/comments/index/status/approved/page/0">{lang('amt_approved')}
+        <a class="btn btn-small pjax {if $status == 'approved'}active{/if}" href="/admin/components/cp/comments/index/status/approved/page/0">{lang("Approval")}
             {if $total_app>0}
                 <span style="top:-13px;" class="badge badge-important">
                     {$total_app}
@@ -44,7 +44,7 @@
             {/if}
         </a>
         <a class="btn btn-small pjax {if $status == 'spam'}active{/if}" href="/admin/components/cp/comments/index/status/spam/page/0">
-            {lang('amt_spam')}
+            {lang("Spam")}
             {if $total_spam>0}
                 <span style="top:-13px;" class="badge badge-important">
                     {$total_spam}
@@ -66,12 +66,12 @@
                                         </span>
                                     </span>
                                 </th>
-                                <th class="span1">{lang('amt_id')}</th>
-                                <th class="span5">{lang('amt_text')}</th>
+                                <th class="span1">{lang("ID")}</th>
+                                <th class="span5">{lang("Text")}</th>
                                 <th class="span2">Оценка</th>
-                                <th class="span2">{lang('amt_user')}</th>
+                                <th class="span2">{lang("User")}</th>
                                 <th class="span2">Email пользователя</th>
-                                <th class="span2">{lang('amt_page')}</th>
+                                <th class="span2">{lang("Page")}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -358,7 +358,7 @@
     {else:}
         </br>
         <div class="alert alert-info">
-            {lang('amt_nothing_found')}
+            {lang("No data has been found or Nothing has been found")}
         </div>
     {/if}
 </div>

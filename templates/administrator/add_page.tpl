@@ -1,24 +1,24 @@
 <section class="mini-layout">
     <div class="frame_title clearfix">
-        <div class="pull-left">{gettext('a_email')}
+        <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title w-s_n">Создание новой страницы</span>
+            <span class="title w-s_n">{lang('Create new page')}</span>
         </div>
         <div class="pull-right">
             <span class="help-inline"></span>
             <div class="d-i_b">
                 <a href="/admin/pages/GetPagesByCategory" class="pjax t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
-                <button type="button" class="btn btn-small btn-success action_on formSubmit" data-form="#add_page_form" data-action="edit" data-submit><i class="icon-plus-sign icon-white"></i>{lang('a_create')}</button>
-                <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form" data-action="close"><i class="icon-check"></i>{lang('a_save_and_exit')}</button>
+                <button type="button" class="btn btn-small btn-success action_on formSubmit" data-form="#add_page_form" data-action="edit" data-submit><i class="icon-plus-sign icon-white"></i>{lang("Create")}</button>
+                <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form" data-action="close"><i class="icon-check"></i>{lang("Save and go back")}</button>
             </div>
         </div>                            
     </div>  
     <div class="clearfix">
         <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
-            <a href="#content_article" class="btn btn-small active">{lang('a_content')}</a>
-            <a href="#parameters_article" class="btn btn-small ">{lang('a_param')}</a>
-            <a href="#addfields_article" class="btn btn-small">{lang('a_additional_fields')}</a>
-            <a href="#setings_article" class="btn btn-small">{lang('a_sett')}</a>
+            <a href="#content_article" class="btn btn-small active">{lang("Content")}</a>
+            <a href="#parameters_article" class="btn btn-small ">{lang("Properties")}</a>
+            <a href="#addfields_article" class="btn btn-small">{lang("Additional fields")}</a>
+            <a href="#setings_article" class="btn btn-small">{lang("Settings")}</a>
         </div>
     </div>             
     <form method="post" action="{$BASE_URL}admin/pages/add" id="add_page_form" class="form-horizontal" >
@@ -28,7 +28,7 @@
                     <thead>
                         <tr>
                             <th colspan="6">
-                                {lang('a_content')}
+                                {lang("Content")}
                             </th>
                         </tr>
                     </thead>
@@ -38,13 +38,13 @@
                                 <div class="inside_padd span12">
                                     <div class="control-group">
                                         <label class="control-label" for="category_selectbox">
-                                            {lang('a_category')}:
+                                            {lang("Categories")}:
                                         </label>
                                         <div class="controls">
-                                            <a onclick="$('.modal').modal(); return false;" class="btn btn-success btn-small pull-right" href="#"><i class="icon-plus-sign icon-white"></i> {lang('a_create_cat')}</a>
+                                            <a onclick="$('.modal').modal(); return false;" class="btn btn-success btn-small pull-right" href="#"><i class="icon-plus-sign icon-white"></i> {lang("Create a category")}</a>
                                             <div class="o_h">
                                                 <select name="category" id="category_selectbox" onchange="pagesAdmin.loadCFAddPage()"> 
-                                                    <option value="0" selected="selected">{lang('a_no')}</option>
+                                                    <option value="0" selected="selected">{lang("No")}</option>
                                                     { $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['sel_cat'])); }
                                                 </select>
                                             </div>
@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="control-group">
                                         <label class="control-label" for="page_title_u">
-                                            {lang('a_title')}:
+                                            {lang("Title")}:
                                         </label>
                                         <div class="controls">
                                             <input type="text" name="page_title" value="" id="page_title_u" required/>
@@ -61,7 +61,7 @@
 
                                     <div class="control-group">
                                         <div class="control-label">
-                                            {lang('a_prev_cont')}:
+                                            {lang("Preliminary contents")}:
                                         </div>
                                         <div class="controls">
                                             <textarea id="prev_text" class="elRTE required" name="prev_text" rows="10" cols="180" ></textarea>
@@ -70,7 +70,7 @@
 
                                     <div class="control-group">
                                         <div class="control-label">
-                                            {lang('a_full_cont')}:
+                                            {lang("Full contents")}:
                                         </div>
                                         <div class="controls">
                                             <textarea id="full_text" class="elRTE" name="full_text" rows="10" cols="180" ></textarea>
@@ -87,7 +87,7 @@
                     <thead>
                         <tr>
                             <th colspan="6">
-                                {lang('a_param')}
+                                {lang("Properties")}
                             </th>
                         </tr>
                     </thead>
@@ -97,20 +97,20 @@
                                 <div class="inside_padd span12">
                                     <div class="control-group">
                                         <label class="control-label" for="page_url">
-                                            {lang('a_url')}:
+                                            {lang("URL")}:
                                         </label>
                                         <div class="controls">
                                             <button onclick="translite_title('#page_title_u', '#page_url');" type="button" class="btn btn-small pull-right" id="translateCategoryTitle"><i class="icon-refresh"></i>&nbsp;&nbsp;Автоподбор</button>
                                             <div class="o_h">
                                                 <input type="text" name="page_url" value="" id="page_url"/>
                                             </div>
-                                            <div class="help-block">({lang('a_just_lat')})</div>
+                                            <div class="help-block">({lang("Only Latin characters")})</div>
                                         </div>
                                     </div>
 
                                     <div class="control-group">
                                         <label class="control-label" for="tags">
-                                            {lang('a_tags')}:
+                                            {lang("Tags")}:
                                         </label>
                                         <div class="controls">
                                             <input type="text" name="search_tags" value="" id="tags"/>
@@ -119,7 +119,7 @@
 
                                     <div class="control-group">
                                         <label class="control-label" for="meta_title">
-                                            {lang('a_meta_title')}:
+                                            {lang("Meta Title")}:
                                         </label>
                                         <div class="controls">
                                             <input type="text" name="meta_title" id="meta_title" value=""/>
@@ -128,7 +128,7 @@
 
                                     <div class="control-group">
                                         <label class="control-label" for="page_description">
-                                            {lang('a_meta_description')}:
+                                            {lang("Meta Description")}:
                                         </label>
                                         <div class="controls">
                                             <textarea name="page_description" class="textarea" id="page_description" rows="8"></textarea>
@@ -138,7 +138,7 @@
 
                                     <div class="control-group">
                                         <label class="control-label" for="page_keywords">
-                                            {lang('a_meta_keywords')}:
+                                            {lang("Meta Keywords")}:
                                         </label>
                                         <div class="controls">
                                             <textarea name="page_keywords" id="page_keywords" rows="8" class="textarea" cols="28"></textarea>
@@ -150,27 +150,27 @@
 
                                     <div class="control-group">
                                         <label class="control-label" for="main_tpl">
-                                            {lang('a_main_tpl')}:
+                                            {lang("Main template")}:
                                         </label>
                                         <div class="controls">
                                             <div class="pull-right help-block">&nbsp;&nbsp;.tpl</div>
                                             <div class="o_h">
                                                 <input type="text" name="main_tpl" id="main_tpl" value=""/>
                                             </div>
-                                            <div class="help-block">{lang('a_by_default')}  main.tpl</div>
+                                            <div class="help-block">{lang("by default")}  main.tpl</div>
                                         </div>
                                     </div>
 
                                     <div class="control-group">
                                         <label class="control-label" for="full_tpl">
-                                            {lang('a_page_tpl')}:
+                                            {lang("Page Template")}:
                                         </label>
                                         <div class="controls">
                                             <div class="pull-right help-block">&nbsp;&nbsp;.tpl</div>
                                             <div class="o_h">
                                                 <input type="text" name="full_tpl" id="full_tpl" value=""/> 
                                             </div>
-                                            <div class="help-block">{lang('a_by_default')}  page_full.tpl</div>
+                                            <div class="help-block">{lang("by default")}  page_full.tpl</div>
                                         </div>
                                     </div>
 
@@ -182,7 +182,7 @@
                                                 <span class="niceCheck b_n">
                                                     <input name="comments_status"  value="1" checked="checked" type="checkbox" id="comments_status" />                        	
                                                 </span>
-                                                {lang('a_comm_alow')}
+                                                {lang("Comment permission")}
                                             </span>
                                         </div>
                                     </div>
@@ -202,7 +202,7 @@
                     <thead>
                         <tr>
                             <th colspan="6">
-                                {lang('a_sett')}
+                                {lang("Settings")}
                             </th>
                         </tr>
                     </thead>
@@ -212,13 +212,13 @@
                                 <div class="inside_padd span12">
                                     <div class="control-group">
                                         <label class="control-label" for="post_status">
-                                            {lang('a_pub_stat')}:
+                                            {lang("Publication status")}:
                                         </label>
                                         <div class="controls">
                                             <select name="post_status" id="post_status">
-                                                <option selected="selected" value="publish">{lang('a_published')}</option>
-                                                <option value="pending">{lang('a_wait_approve')}</option>
-                                                <option value="draft">{lang('a_not_publ')}</option>
+                                                <option selected="selected" value="publish">{lang("Published or Has been published")}</option>
+                                                <option value="pending">{lang("Pending approval or Awaiting approval ")}</option>
+                                                <option value="draft">{lang("Has not been published")}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -227,7 +227,7 @@
 
                                     <div class="control-group">
                                         <label class="control-label" for="create_date">
-                                            {lang('a_date_and_time_cr')}:    
+                                            {lang("Time and date of creation")}:    
                                         </label>
                                         <div class="controls">
                                             <span class="pull-left p_r">
@@ -239,7 +239,7 @@
                                     </div>
                                     <div class="control-group">
                                         <label class="control-label" for="publish_date">
-                                            {lang('a_date_and_time_p')}:                 
+                                            {lang("Time and date of publication")}:                 
                                         </label>
                                         <div class="controls">
                                             <span class="pull-left p_r">
@@ -252,11 +252,11 @@
 
                                     <div class="control-group">
                                         <label class="control-label" for="roles">
-                                            {lang('a_access')}:             
+                                            {lang("Access")}:             
                                         </label>
                                         <div class="controls">
                                             <select multiple="multiple" name="roles[]" id="roles">
-                                                <option value="0">{lang('a_all')}</option>
+                                                <option value="0">{lang("All")}</option>
                                                 {foreach $roles as $role}
                                                 <option value ="{$role.id}">{$role.name}</option>
                                                 {/foreach}
@@ -277,14 +277,14 @@
 <div class="modal hide fade">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3>{lang('a_create_cat')}</h3>
+        <h3>{lang("Create a category")}</h3>
     </div>
     <div class="modal-body">
 
         <form action="/admin/categories/fast_add/create" method="post" id="fast_add_form" class="form-horizontal">
             <div class="control-group">
                 <label class="control-label">
-                    {lang('a_name')}
+                    {lang("Name")}
                 </label>
                 <div class="controls">
                     <input type="text" name="name" value="" class="required">
@@ -293,11 +293,11 @@
 
             <div class="control-group">
                 <label class="control-label">
-                    {lang('a_parent')}
+                    {lang("Parent")}
                 </label>
                 <div class="controls">
                     <select name="parent_id">
-                        <option value="0" selected="selected">{lang('a_no')}</option>
+                        <option value="0" selected="selected">{lang("No")}</option>
                         { $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['sel_cat'])); }
                     </select>
                 </div>

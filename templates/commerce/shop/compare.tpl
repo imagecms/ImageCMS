@@ -2,22 +2,22 @@
     <div class="content" >
         {$CI->load->helper('translit')}
         <div class="center">
-            <h1>{lang('s_compare_tovars')}</h1>
+            <h1>{lang("Compare Products")}</h1>
             {if count($products) > 0}
-                <!--<a class="active" style="cursor: pointer; display:none;">{lang('s_all_par')}</a>-->
-                <!--<a class="prod_dif" id="all" style="cursor:pointer;">{lang('s_only_diff')}</a>-->
+                <!--<a class="active" style="cursor: pointer; display:none;">{lang("All the parameters")}</a>-->
+                <!--<a class="prod_dif" id="all" style="cursor:pointer;">{lang("Only Differences")}</a>-->
 
                 {$cnt = 1}
                 {$cnc = 1}
                 {foreach $categories as $category}
                     <div class="comparison_slider">
                         <div class="frame_button_compare">
-                            <div class="prod_show_diff button_compare disabled"><span class="js blue">{lang('s_all_par')}</span></div>
-                            <div class="prod_show_diff"><span class="js blue">{lang('s_only_diff')}</span></div>
+                            <div class="prod_show_diff button_compare disabled"><span class="js blue">{lang("All the parameters")}</span></div>
+                            <div class="prod_show_diff"><span class="js blue">{lang("Only Differences")}</span></div>
                             <div class="no_differ">Нет различий</div>
                         </div>
                         <div class="parameters_compr">
-                            <div class="title">{lang('lang_categories')}: {echo $category.Name}</div>
+                            <div class="title">{lang("Category")}: {echo $category.Name}</div>
                         </div>
                         <div class="comparison_slider_left">
                             {$data = ShopCore::app()->SPropertiesRenderer->renderCategoryPropertiesArray($category['Id'])}
@@ -95,7 +95,7 @@
     {/foreach}           
 {else:}
     <div class="comparison_slider">
-        <div class="f-s_18 m-t_29 t-a_c">{lang('s_compare_list_em')}</div>
+        <div class="f-s_18 m-t_29 t-a_c">{lang("Comparison list is empty")}</div>
     </div>
 {/if}
 {widget('latest_news')}

@@ -1,0 +1,657 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ImageCms\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-03-28 12:10+0300\n"
+"PO-Revision-Date: 2013-03-28 12:10+0300\n"
+"Last-Translator: koloda <koloda90@gmail.com>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: Russian\n"
+"X-Poedit-Country: UKRAINE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: ../../../\n"
+
+#: ../../..//comments.php:140
+#: ../../..//commentsapi.php:78
+msgid "lang_total_comments"
+msgstr ""
+
+#: ../../..//comments.php:177
+#: ../../..//_out.php:3
+msgid "login_for_comments"
+msgstr ""
+
+#: ../../..//comments.php:186
+msgid "error_comments_diabled"
+msgstr ""
+
+#: ../../..//comments.php:197
+msgid "error_comments_period"
+msgstr ""
+
+#: ../../..//comments.php:213
+#: ../../..//comments.php:215
+#: ../../..//_out.php:170
+#: ../../..//commentsapi.php:218
+#: ../../..//commentsapi.php:220
+#: ../../..//assets/comments_api.tpl:170
+msgid "Code protection"
+msgstr ""
+
+#: ../../..//comments.php:306
+msgid "error_comments_text"
+msgstr ""
+
+#: ../../..//comments_widgets.php:88
+msgid "Number of comments"
+msgstr ""
+
+#: ../../..//comments_widgets.php:89
+#: ../../..//comments_widgets.php:168
+msgid "Number of characters"
+msgstr ""
+
+#: ../../..//comments_widgets.php:102
+#: ../../..//comments_widgets.php:181
+#, fuzzy
+msgid "Settings have been saved or settings were saved"
+msgstr "Сохранение настроек прошло успешно"
+
+#: ../../..//comments_widgets.php:167
+msgid "Number of responses"
+msgstr ""
+
+#: ../../..//_out.php:8
+#: ../../..//assets/comments_api.tpl:8
+msgid "Customer Reviews"
+msgstr ""
+
+#: ../../..//_out.php:28
+#: ../../..//_out.php:156
+#: ../../..//assets/comments_api.tpl:28
+#: ../../..//assets/comments_api.tpl:156
+msgid "Plus"
+msgstr ""
+
+#: ../../..//_out.php:34
+#: ../../..//_out.php:162
+#: ../../..//assets/comments_api.tpl:34
+#: ../../..//assets/comments_api.tpl:162
+msgid "Cons"
+msgstr ""
+
+#: ../../..//_out.php:45
+#: ../../..//assets/comments_api.tpl:45
+msgid "Answer"
+msgstr ""
+
+#: ../../..//_out.php:55
+#: ../../..//assets/comments_api.tpl:55
+msgid "Like this review"
+msgstr ""
+
+#: ../../..//_out.php:62
+#: ../../..//assets/comments_api.tpl:62
+msgid "Dislike this review"
+msgstr ""
+
+#: ../../..//_out.php:94
+#: ../../..//assets/comments_api.tpl:94
+msgid "Write a review"
+msgstr ""
+
+#: ../../..//_out.php:105
+#: ../../..//assets/comments_api.tpl:105
+msgid "You rating"
+msgstr ""
+
+#: ../../..//_out.php:127
+#: ../../..//_out.php:201
+msgid "lang_comment_author"
+msgstr ""
+
+#: ../../..//_out.php:133
+#: ../../..//_out.php:207
+msgid "lang_comment_email"
+msgstr ""
+
+#: ../../..//_out.php:140
+msgid "lang_comment_site"
+msgstr ""
+
+#: ../../..//_out.php:149
+#: ../../..//assets/comments_api.tpl:149
+msgid "Text comments"
+msgstr ""
+
+#: ../../..//_out.php:181
+#: ../../..//_out.php:233
+msgid "leave a comment"
+msgstr ""
+
+#: ../../..//_out.php:402
+#: ../../..//templates/settings.tpl:5
+#, fuzzy
+msgid "Comment settings"
+msgstr "Позиція"
+
+#: ../../..//_out.php:406
+#: ../../..//templates/settings.tpl:9
+msgid "Back"
+msgstr ""
+
+#: ../../..//_out.php:407
+#: ../../..//_out.php:562
+#: ../../..//_out.php:986
+#: ../../..//templates/settings.tpl:10
+#: ../../..//templates/recent_comments_form.tpl:10
+#: ../../..//templates/recent_product_comments_form.tpl:10
+msgid "Have been saved"
+msgstr ""
+
+#: ../../..//_out.php:416
+#: ../../..//templates/settings.tpl:19
+msgid "Properties"
+msgstr ""
+
+#: ../../..//_out.php:425
+#: ../../..//templates/settings.tpl:28
+msgid "Maximum comment length"
+msgstr ""
+
+#: ../../..//_out.php:431
+#: ../../..//templates/settings.tpl:34
+#, fuzzy
+msgid "Comment restrictions"
+msgstr "Позиція"
+
+#: ../../..//_out.php:434
+#: ../../..//templates/settings.tpl:37
+msgid "Comment frequency restriction  per minute . O - check off"
+msgstr ""
+
+#: ../../..//_out.php:444
+#: ../../..//templates/settings.tpl:47
+msgid "Forbid comments for unregistered users"
+msgstr ""
+
+#: ../../..//_out.php:455
+#: ../../..//templates/settings.tpl:58
+msgid "Administrator approval on"
+msgstr ""
+
+#: ../../..//_out.php:466
+#: ../../..//templates/settings.tpl:69
+msgid "Use the protection code"
+msgstr ""
+
+#: ../../..//_out.php:486
+#, fuzzy
+msgid "a_comm_edit"
+msgstr "Нааааааааамеееееееееее"
+
+#: ../../..//_out.php:491
+#: ../../..//templates/edit.tpl:11
+msgid "Save"
+msgstr ""
+
+#: ../../..//_out.php:501
+#: ../../..//_out.php:572
+#: ../../..//_out.php:996
+#: ../../..//templates/edit.tpl:21
+#: ../../..//templates/recent_comments_form.tpl:20
+#: ../../..//templates/recent_product_comments_form.tpl:20
+#, fuzzy
+msgid "Settings"
+msgstr "Позиція"
+
+#: ../../..//_out.php:514
+#: ../../..//templates/edit.tpl:34
+msgid "Author"
+msgstr ""
+
+#: ../../..//_out.php:521
+#: ../../..//templates/edit.tpl:41
+msgid "E-Mail"
+msgstr ""
+
+#: ../../..//_out.php:528
+#: ../../..//templates/edit.tpl:48
+msgid "Status"
+msgstr ""
+
+#: ../../..//_out.php:531
+#: ../../..//templates/edit.tpl:51
+msgid "Approved"
+msgstr ""
+
+#: ../../..//_out.php:532
+#: ../../..//templates/edit.tpl:52
+msgid "Pending approval"
+msgstr ""
+
+#: ../../..//_out.php:533
+#: ../../..//_out.php:656
+#: ../../..//templates/edit.tpl:53
+#: ../../..//templates/comments_list.tpl:47
+msgid "Spam"
+msgstr ""
+
+#: ../../..//_out.php:538
+#: ../../..//templates/edit.tpl:58
+msgid "Contents"
+msgstr ""
+
+#: ../../..//_out.php:557
+#: ../../..//_out.php:981
+#: ../../..//templates/recent_comments_form.tpl:5
+#: ../../..//templates/recent_product_comments_form.tpl:5
+#, fuzzy
+msgid "Widget settings"
+msgstr "Позиція"
+
+#: ../../..//_out.php:561
+#: ../../..//_out.php:985
+#: ../../..//templates/recent_comments_form.tpl:9
+#: ../../..//templates/recent_product_comments_form.tpl:9
+msgid "Go back"
+msgstr ""
+
+#: ../../..//_out.php:563
+#: ../../..//_out.php:987
+#: ../../..//templates/recent_comments_form.tpl:11
+#: ../../..//templates/recent_product_comments_form.tpl:11
+msgid "Save and go back"
+msgstr ""
+
+#: ../../..//_out.php:580
+#: ../../..//_out.php:1004
+#: ../../..//templates/recent_comments_form.tpl:28
+#: ../../..//templates/recent_product_comments_form.tpl:28
+msgid "Number of comments for display"
+msgstr ""
+
+#: ../../..//_out.php:586
+#: ../../..//_out.php:1010
+#: ../../..//templates/recent_comments_form.tpl:34
+#: ../../..//templates/recent_product_comments_form.tpl:34
+msgid "Maximum number of characters"
+msgstr ""
+
+#: ../../..//_out.php:621
+#: ../../..//templates/comments_list.tpl:12
+msgid "Mark"
+msgstr ""
+
+#: ../../..//_out.php:630
+#: ../../..//templates/comments_list.tpl:21
+msgid "Delete"
+msgstr ""
+
+#: ../../..//_out.php:636
+#: ../../..//templates/comments_list.tpl:27
+msgid "All comments"
+msgstr ""
+
+#: ../../..//_out.php:643
+#: ../../..//templates/comments_list.tpl:34
+msgid "Pending moderation  or waiting for moderation"
+msgstr ""
+
+#: ../../..//_out.php:648
+#: ../../..//templates/comments_list.tpl:39
+msgid "Approval"
+msgstr ""
+
+#: ../../..//_out.php:678
+#: ../../..//templates/comments_list.tpl:69
+msgid "ID"
+msgstr ""
+
+#: ../../..//_out.php:679
+#: ../../..//templates/comments_list.tpl:70
+msgid "Text"
+msgstr ""
+
+#: ../../..//_out.php:681
+#: ../../..//templates/comments_list.tpl:72
+msgid "User"
+msgstr ""
+
+#: ../../..//_out.php:683
+#: ../../..//templates/comments_list.tpl:74
+msgid "Page"
+msgstr ""
+
+#: ../../..//_out.php:970
+#: ../../..//templates/comments_list.tpl:361
+msgid "No data has been found or Nothing has been found"
+msgstr ""
+
+#: ../../..//commentsapi.php:101
+#: ../../..//commentsapi.php:468
+#: ../../..//commentsapi.php:472
+#, fuzzy
+msgid "review"
+msgstr "Смотреть"
+
+#: ../../..//commentsapi.php:101
+#: ../../..//commentsapi.php:468
+#: ../../..//commentsapi.php:472
+#, fuzzy
+msgid "reviews"
+msgstr "Смотреть"
+
+#, fuzzy
+#~ msgid "Description "
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "Created a widget"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "Positions updated"
+#~ msgstr "Позиція змінена"
+
+#~ msgid "Title"
+#~ msgstr "Заголовок"
+
+#, fuzzy
+#~ msgid "Created a page"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "Changed wesite settings"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "Image"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "by default"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "Position"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "Short description"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "Save and exit"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "Description"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "Main page"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "Role create"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "Create a page"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "New pages"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "Updated pages"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "Pages"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "Cancel"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "goto site"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "Create"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "Create a widget"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "No widgets created"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "Change category data"
+#~ msgstr "Позиція змінена"
+
+#, fuzzy
+#~ msgid "Module name"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "Languages"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#~ msgid "Hello"
+#~ msgstr "Привет"
+
+#, fuzzy
+#~ msgid "Create and exit"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "by date"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "By position"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "Create new page"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "Download"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "Create category"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "System update"
+#~ msgstr "Позиція змінена"
+
+#~ msgid "site"
+#~ msgstr "сайт"
+
+#, fuzzy
+#~ msgid "Manage site"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "Your remark"
+#~ msgstr "Вааааааааааааше замечание"
+
+#, fuzzy
+#~ msgid "ac_val_name"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "ac_val_pub_date"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "ac_creat"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "ac_page_cont_updated"
+#~ msgstr "Позиція змінена"
+
+#, fuzzy
+#~ msgid "ac_sett_saved"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "ac_val_image"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "ac_by_default"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "ac_val_position"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "ac_created"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_save"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_sett"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "a_yes"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_cat_name"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_name"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_n"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_create_cat"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_no_updates"
+#~ msgstr "Позиція змінена"
+
+#~ msgid "a_url"
+#~ msgstr "Посилання"
+
+#, fuzzy
+#~ msgid "a_date_create"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_select_image"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_type"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_footer_cancel"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_image_url"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_save_path"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "a_sort"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "a_by_pos"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "a_turn_off"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "a_page_tpl"
+#~ msgstr "Позиція змінена"
+
+#, fuzzy
+#~ msgid "a_pub_stat"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_enter_sys"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_create_group"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_ftp_sett"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "amt_in_mb"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_left"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_top"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "amt_bottom"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "amt_text"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_albums"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_no_albums"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_album"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_gallery"
+#~ msgstr "Нааааааааамеееееееееее"

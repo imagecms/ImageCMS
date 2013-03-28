@@ -54,23 +54,23 @@ class Admin extends MY_Controller {
 
         $param = $this->input->post('param');
 
-        $this->lib_admin->log(lang('ac_cleaned_cache'));
+        $this->lib_admin->log(lang("Cleared the cache"));
 
         switch ($param) {
             case 'all':
                 $files = $this->cache->delete_all();
                 if ($files)
-                    $message = lang('ac_files_deleted') . ':' . $files;
+                    $message = lang("Files deleted") . ':' . $files;
                 else
-                    $message = lang('ac_cache_cleared');
+                    $message = lang("Cache has been cleared");
                 break;
 
             case 'expried':
                 $files = $this->cache->Clean();
                 if ($files)
-                    $message = lang('ac_old_files_deleted') . $files;
+                    $message = lang("Outdated files  have been deleted") . $files;
                 else
-                    $message = lang('ac_cache_cleared');
+                    $message = lang("Cache has been cleared");
                 break;
             default: {
                     $message = 'Ошибка очистки кэша';
@@ -152,7 +152,7 @@ class Admin extends MY_Controller {
      * @access public
      */
     public function logout() {
-        $this->lib_admin->log(lang('ac_admin_panel_exit'));
+        $this->lib_admin->log(lang("exited the control panel"));
         $this->dx_auth->logout();
         redirect('/admin/login', 'refresh');
     }

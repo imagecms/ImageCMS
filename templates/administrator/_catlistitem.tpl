@@ -7,8 +7,7 @@
         </span>
     </div>       
     <div><p>{$item.id}</p></div>
-    <div><div class="title {if $item.parent_id > 0} lev {/if}" onclick="edit_category({$item.id});
-            return false;">
+    <div><div class="title {if $item.parent_id > 0} lev {/if}" onclick="edit_category({$item.id});return false;">
             {if count($item.subtree)}
                 <button type="button" class="btn btn-small my_btn_s"
                         style="display: none;" data-rel="tooltip"

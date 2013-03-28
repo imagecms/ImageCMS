@@ -1,4 +1,4 @@
-<div id="titleExt"><h5>{widget('path')}<span class="ext">{lang('lang_login_page')}</span></h5></div>
+<div id="titleExt"><h5>{widget('path')}<span class="ext">{lang("Authorization")}</span></h5></div>
 
 {if validation_errors() OR $info_message}
     <div class="errors"> 
@@ -12,19 +12,19 @@
     <div class="comment_form_info">
 
         <div class="textbox">
-            <label for="username" class="left">{lang('s_email')}</label>
-            <input type="text" id="username" size="30" name="email" value="{lang('lang_email_form')}" onfocus="if (this.value == '{lang('lang_email_form')}')
+            <label for="username" class="left">{lang("Email")}</label>
+            <input type="text" id="username" size="30" name="email" value="{lang("Enter email")}" onfocus="if (this.value == '{lang("Enter email")}')
                     this.value = '';" onblur="if (this.value == '')
-                    this.value = '{lang('lang_email_form')}';" />
+                    this.value = '{lang("Enter email")}';" />
         </div>
 
         <div class="textbox_spacer"></div>
 
         <div class="textbox">
-            <label for="password" class="left">{lang('lang_password')}</label> 
-            <input type="password" size="30" name="password" id="password" value="{lang('lang_password')}" onfocus="if (this.value == '{lang('lang_password')}')
+            <label for="password" class="left">{lang("Password")}</label> 
+            <input type="password" size="30" name="password" id="password" value="{lang("Password")}" onfocus="if (this.value == '{lang("Password")}')
                     this.value = '';" onblur="if (this.value == '')
-                    this.value = '{lang('lang_password')}';"/>
+                    this.value = '{lang("Password")}';"/>
         </div>
     </div>
 
@@ -41,18 +41,18 @@
 
     <p class="clear">
         <label for="remember" class="left">&nbsp;</label> 
-        <label><input type="checkbox" name="remember" value="1" id="remember" /> {lang('lang_remember_me')}</label>
+        <label><input type="checkbox" name="remember" value="1" id="remember" /> {lang("Remember me")}</label>
     </p>
 
-    <input type="submit" id="submit" class="submit" value="{lang('lang_submit')}" /> 
+    <input type="submit" id="submit" class="submit" value="{lang("Send")}" /> 
 
 
     <br /><br />
 
     <label class="left">&nbsp;</label> 
-    <a href="{site_url($modules.auth . '/forgot_password')}">{lang('lang_forgot_password')}</a>
+    <a href="{site_url($modules.auth . '/forgot_password')}">{lang("Forgot your password?")}</a>
     &nbsp;
-    <a href="{site_url($modules.auth . '/register')}">{lang('lang_register')}</a>
+    <a href="{site_url($modules.auth . '/register')}">{lang("Registration")}</a>
 
     {form_csrf()}
 </form>

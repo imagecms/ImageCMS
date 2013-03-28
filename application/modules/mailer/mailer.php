@@ -25,7 +25,7 @@ class Mailer extends MY_Controller {
 
         $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('user_email', lang('amt_your_email'), 'required|trim|valid_email');
+        $this->form_validation->set_rules('user_email', lang("Your e-mail"), 'required|trim|valid_email');
 
         if ($this->form_validation->run($this) == FALSE) {
 

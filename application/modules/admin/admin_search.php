@@ -88,8 +88,8 @@ class Admin_search extends BaseAdminController {
 				$config['total_rows']  = $result['total_rows'];
 				$config['per_page']    = $this->search->row_count;
 				$config['uri_segment'] = 5;
-				$config['first_link']  = lang('first_link');
-				$config['last_link']   = lang('last_link');
+				$config['first_link']  = lang("The first");
+				$config['last_link']   = lang("Last");
 
 				$config['cur_tag_open']  = '<span class="active">';
 				$config['cur_tag_close'] = '</span>';
@@ -217,8 +217,8 @@ class Admin_search extends BaseAdminController {
 		$config['total_rows']  = $this->_filter_pages($ids, $search_data, TRUE);
 		$config['per_page']    = $this->items_per_page;
 		$config['uri_segment'] = $this->uri->total_segments();
-		$config['first_link']  = lang('first_link');
-		$config['last_link']   = lang('last_link');
+		$config['first_link']  = lang("The first");
+		$config['last_link']   = lang("Last");
 
 		$config['cur_tag_open']  = '<span class="active">';
 		$config['cur_tag_close'] = '</span>';

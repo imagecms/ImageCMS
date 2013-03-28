@@ -23,7 +23,7 @@
         {if $CI->session->flashdata('makeOrder') === true}
             <!-- Show greeting message  -->
             <h1 class="d_i v-a_m m-r_45">
-                {lang('s_thank_order')}
+                {lang("Thank you for your order.")}
             </h1>
             <!-- Clear Cart locale Storage -->
             <script>{literal}$(document).ready(function() {
@@ -34,7 +34,7 @@
 
         <!-- Start. Render goto profile button -->
         <a href="{shop_url('profile')}" class="btn v-a_m">
-            {lang('s_go_profile')}
+            {lang("Go to profile")}
         </a>
         <!-- End. Render goto profile button -->
 
@@ -42,26 +42,26 @@
 
             <!-- Start. Displays a information block about Order -->
             <div class="frameGroupsForm span5">
-                <div class="header_title">{lang('s_order_data')}</div>
+                <div class="header_title">{lang("Order data")}</div>
                 <div class="inside_padd">
                     <table class="tableOrderData">
                         <!-- Start. Render Order number -->
                         <tr>
-                            <th>{lang('s_order')} #:</th>
+                            <th>{lang("Order")} #:</th>
                             <td>{echo ShopCore::encode($model->getId())}</td>
                         </tr>
                         <!-- End. Render Order number -->
 
                         <!-- Start. Display Paid status -->
                         <tr>
-                            <th>{lang('s_paid')}:</th>
-                            <td>{if $model->getPaid() == true} {lang('s_yes')}{else:}{lang('s_no')}{/if}</td>
+                            <th>{lang("Paid")}:</th>
+                            <td>{if $model->getPaid() == true} {lang("Yes")}{else:}{lang("No")}{/if}</td>
                         </tr>
                         <!-- End. Display Paid status -->
 
                         <!-- Start. Show Order status name -->
                         <tr>
-                            <th>{lang('s_status')}:</th>
+                            <th>{lang("Status")}:</th>
                             <td>{echo SOrders::getStatusName('Id', $model->getStatus())}</td>
                         </tr>
                         <!-- End. Show Order status name -->
@@ -69,7 +69,7 @@
                         <!-- Start. Render certificate -->
                         {if $model->getGiftCertKey() != null}
                             <tr>
-                                <th>{lang('s_do_you_cer_tif')}: </th>
+                                <th>{lang("Certificate")}: </th>
                                 <td>-{echo $model->getGiftCertPrice()} {$CS}</td>
                             </tr>
                         {/if}
@@ -78,7 +78,7 @@
                         <!-- Start. Delivery Method name -->
                         {if $model->getDeliveryMethod() > 0}
                             <tr>
-                                <th>{lang('s_dostavka')}:</th>
+                                <th>{lang("Delivery")}:</th>
                                 <td>{echo $model->getSDeliveryMethods()->getName()}</td>
                             </tr>
                         {/if}

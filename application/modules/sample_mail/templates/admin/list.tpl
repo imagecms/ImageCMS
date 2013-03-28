@@ -25,8 +25,8 @@
             <div class="pull-right">
                 <span class="help-inline"></span>
                 <div class="d-i_b">
-                    <a href="{$BASE_URL}admin/components/modules_table" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
-                    <button type="button" class="btn btn-small disabled action_on" onclick="delete_function.deleteFunction()" id="del_sel_property"><i class="icon-trash"></i>{lang('a_delete')}</button>
+                    <a href="{$BASE_URL}admin/components/modules_table" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back")}</span></a>
+                    <button type="button" class="btn btn-small disabled action_on" onclick="delete_function.deleteFunction()" id="del_sel_property"><i class="icon-trash"></i>{lang("Delete")}</button>
                     <a class="btn btn-small btn-success pjax" href="/admin/components/cp/sample_mail/create" ><i class="icon-list-alt icon-white"></i>Создать шаблон</a>
                 </div>
             </div>  
@@ -45,7 +45,7 @@
                                             </span>
                                         </span>
                                     </th>
-                                    <th>{lang('a_name')}</th>
+                                    <th>{lang("Name")}</th>
                                     <th>Описание</th>
                                     <th>Тема</th>
                                     <th>От кого</th>

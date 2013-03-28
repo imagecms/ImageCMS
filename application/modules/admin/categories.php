@@ -123,19 +123,19 @@ class Categories extends BaseAdminController {
     function create($action, $cat_id = 0) {
         //cp_check_perm('category_create');
 
-        $this->form_validation->set_rules('name', lang('ac_val_title'), 'trim|required|min_length[1]|max_length[160]');
-        $this->form_validation->set_rules('url', lang('ac_val_cat_url'), 'trim|min_length[2]|max_length[300]|alpha_dash');
-        $this->form_validation->set_rules('image', lang('ac_val_image'), 'max_length[250]');
-        $this->form_validation->set_rules('position', lang('ac_val_position'), 'required|integer|max_length[11]');
-        $this->form_validation->set_rules('parent_id', lang('ac_val_parent'), 'trim|required|integer|max_length[160]');
-        $this->form_validation->set_rules('description', lang('ac_val_desc'), 'trim');
-        $this->form_validation->set_rules('keywords', lang('ac_val_keywords'), 'trim');
-        $this->form_validation->set_rules('short_desc', lang('ac_val_short_desc'), 'trim');
-        $this->form_validation->set_rules('title', lang('ac_val_tit'), 'trim|max_length[250]');
-        $this->form_validation->set_rules('tpl', lang('ac_val_template'), 'trim|max_length[50]');
-        $this->form_validation->set_rules('page_tpl', lang('ac_val_page_tpl'), 'trim|max_length[50]');
-        $this->form_validation->set_rules('main_tpl', lang('ac_val_main_tpl'), 'trim|max_length[50]');
-        $this->form_validation->set_rules('per_page', lang('ac_val_per_page'), 'required|trim|integer|max_length[9]|min_length[1]|is_natural_no_zero');
+        $this->form_validation->set_rules('name', lang("Title"), 'trim|required|min_length[1]|max_length[160]');
+        $this->form_validation->set_rules('url', lang("URL categories"), 'trim|min_length[2]|max_length[300]|alpha_dash');
+        $this->form_validation->set_rules('image', lang("Image"), 'max_length[250]');
+        $this->form_validation->set_rules('position', lang("Position"), 'required|integer|max_length[11]');
+        $this->form_validation->set_rules('parent_id', lang("Parent"), 'trim|required|integer|max_length[160]');
+        $this->form_validation->set_rules('description', lang("Description "), 'trim');
+        $this->form_validation->set_rules('keywords', lang("Keywords"), 'trim');
+        $this->form_validation->set_rules('short_desc', lang("Short description"), 'trim');
+        $this->form_validation->set_rules('title', lang("Title"), 'trim|max_length[250]');
+        $this->form_validation->set_rules('tpl', lang("Template"), 'trim|max_length[50]');
+        $this->form_validation->set_rules('page_tpl', lang("Page template"), 'trim|max_length[50]');
+        $this->form_validation->set_rules('main_tpl', lang("Main template"), 'trim|max_length[50]');
+        $this->form_validation->set_rules('per_page', lang("Per page"), 'required|trim|integer|max_length[9]|min_length[1]|is_natural_no_zero');
 
         $groupId = (int) $this->input->post('category_field_group');
         ($hook = get_hook('cfcm_set_rules')) ? eval($hook) : NULL;
@@ -202,7 +202,7 @@ class Categories extends BaseAdminController {
                     $id = $this->cms_admin->create_category($data);
 
                     $this->lib_admin->log(
-                            lang('ac_cr_cat') .
+                            lang("Category has been created or created a category") .
                             '<a href="' . $BASE_URL . '/admin/categories/edit/' . $id . '"> ' . $data['name'] . '</a>'
                     );
 
@@ -210,7 +210,7 @@ class Categories extends BaseAdminController {
                     \CMSFactory\Events::create()->registerEvent(array_merge($data, array('userId' => $this->dx_auth->get_user_id())));
 
                     /** End init Event. Create new Page */
-                    showMessage(lang('ac_cat') . ' ' . $data['name'] . ' ' . lang('ac_created'));
+                    showMessage(lang("Category") . ' ' . $data['name'] . ' ' . lang("Created or has been created"));
 
                     $act = $_POST['action'];
                     if ($act == 'close') {
@@ -241,7 +241,7 @@ class Categories extends BaseAdminController {
                     $this->update_urls();
 
                     $this->lib_admin->log(
-                            lang('ac_changed_cat') .
+                            lang("Changed the category") .
                             '<a href="' . $BASE_URL . '/admin/categories/edit/' . $cat_id . '"> ' . $data['name'] . '</a>'
                     );
 
@@ -290,8 +290,8 @@ class Categories extends BaseAdminController {
         }
 
         if ($action == 'create') {
-            $this->form_validation->set_rules('name', lang('ac_val_title'), 'trim|required|min_length[1]|max_length[160]');
-            $this->form_validation->set_rules('parent_id', lang('ac_val_parent'), 'trim|required|integer|max_length[160]');
+            $this->form_validation->set_rules('name', lang("Title"), 'trim|required|min_length[1]|max_length[160]');
+            $this->form_validation->set_rules('parent_id', lang("Parent"), 'trim|required|integer|max_length[160]');
 
             if ($this->form_validation->run($this) == FALSE) {
                 showMessage(validation_errors(), false, 'r');
@@ -343,7 +343,7 @@ class Categories extends BaseAdminController {
                 $this->lib_category->clear_cache();
 
                 $this->lib_admin->log(
-                        lang('ac_cr_cat') .
+                        lang("Category has been created or created a category") .
                         '<a href="' . $BASE_URL . '/admin/categories/edit/' . id . '"> ' . $data['name'] . '</a>'
                 );
 
@@ -362,8 +362,8 @@ class Categories extends BaseAdminController {
             'sel_cat' => $sel_id,
         ));
 
-        echo lang('ac_categor') . ' <select name="category" ONCHANGE="change_comments_status();" id="category_selectbox">
-                <option value="0">' . lang('ac_no') . '</option>';
+        echo lang("Category") . ' <select name="category" ONCHANGE="change_comments_status();" id="category_selectbox">
+                <option value="0">' . lang("No") . '</option>';
 
         $this->template->show('cats_select', FALSE);
 
@@ -408,12 +408,12 @@ class Categories extends BaseAdminController {
         if (count($_POST) > 0) {
             $this->load->library('form_validation');
 
-            $this->form_validation->set_rules('name', lang('ac_val_title'), 'trim|required|min_length[1]|max_length[160]');
-            $this->form_validation->set_rules('image', lang('ac_val_image'), 'max_length[250]');
-            $this->form_validation->set_rules('description', lang('ac_val_desc'), 'trim');
-            $this->form_validation->set_rules('keywords', lang('ac_val_keywords'), 'trim');
-            $this->form_validation->set_rules('short_desc', lang('ac_val_short_desc'), 'trim');
-            $this->form_validation->set_rules('title', lang('ac_val_meta_title'), 'trim|max_length[250]');
+            $this->form_validation->set_rules('name', lang("Title"), 'trim|required|min_length[1]|max_length[160]');
+            $this->form_validation->set_rules('image', lang("Image"), 'max_length[250]');
+            $this->form_validation->set_rules('description', lang("Description "), 'trim');
+            $this->form_validation->set_rules('keywords', lang("Keywords"), 'trim');
+            $this->form_validation->set_rules('short_desc', lang("Short description"), 'trim');
+            $this->form_validation->set_rules('title', lang("Meta title"), 'trim|max_length[250]');
 
             ($hook = get_hook('admin_set_cat_translate_rules')) ? eval($hook) : NULL;
 
@@ -436,7 +436,7 @@ class Categories extends BaseAdminController {
 
                 if ($query->num_rows() == 0) {
                     $this->lib_admin->log(
-                            lang('ac_create_cat_trans') .
+                            lang("Translated the category") .
                             '<a href="' . $BASE_URL . '/admin/categories/edit/' . $cat['id'] . '"> ' . $cat['name'] . '</a>'
                     );
 
@@ -445,7 +445,7 @@ class Categories extends BaseAdminController {
                     $this->db->insert('category_translate', $data);
                 } else {
                     $this->lib_admin->log(
-                            lang('ac_changed_cat_trans') .
+                            lang("Changed the category translation") .
                             '<a href="' . $BASE_URL . '/admin/categories/edit/' . $cat['id'] . '"> ' . $cat['name'] . '</a>'
                     );
 
@@ -457,7 +457,7 @@ class Categories extends BaseAdminController {
                 }
 
                 $this->lib_category->clear_cache();
-                showMessage(lang('a_categ_translate_upda'));
+                showMessage(lang("Category translation updated"));
                 $active = $_POST['action'];
 
                 if ($active == 'close') {
@@ -515,7 +515,7 @@ class Categories extends BaseAdminController {
 //if (0)
 //{
             if ($this->db->get('category')->num_rows() == 1) {
-                showMessage(lang('ac_delete_cat_err'), lang('ac_error'), 'r');
+                showMessage(lang("Category deletion error"), lang("Error"), 'r');
                 exit;
             }
 
@@ -526,7 +526,7 @@ class Categories extends BaseAdminController {
             $this->db->where('id', $cat_id);
             $this->db->delete('category');
 
-            $this->lib_admin->log(lang('ac_delete_cat') . $cat_id);
+            $this->lib_admin->log(lang("Deleted ID category or ID category has been deleted") . $cat_id);
 
             // Delete translates
             $this->db->where('alias', $cat_id);
@@ -558,7 +558,7 @@ class Categories extends BaseAdminController {
                     $this->db->where('id', $cat_id);
                     $this->db->delete('category');
 
-                    $this->lib_admin->log(lang('ac_delete_cat') . $cat_id);
+                    $this->lib_admin->log(lang("Deleted ID category or ID category has been deleted") . $cat_id);
 
                     // Delete translates
                     $this->db->where('alias', $cat_id);
@@ -584,7 +584,7 @@ class Categories extends BaseAdminController {
             $CI->load->module('sitemap')->ping_google($this);
 
         $this->lib_category->clear_cache();
-        showMessage(lang('ac_cat_deleted'));
+        showMessage(lang("Category has been deleted"));
 
         return TRUE;
     }

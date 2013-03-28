@@ -3,7 +3,7 @@
 <br />
 
 {if !$items}
-        <p>{lang('no_pages_found')}</p>
+        <p>{lang("Nothing was found")}</p>
 {/if}
 
 <ul>

@@ -83,7 +83,7 @@ if (!function_exists('get_category_name')) {
         $c = $ci->lib_category->get_category($id);
 
         if ($c['name'] == '') {
-            $c['name'] = lang('a_dasboard_no_category');
+            $c['name'] = lang("No category");
         }
 
         return $c['name'];

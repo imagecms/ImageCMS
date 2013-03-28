@@ -1,7 +1,7 @@
 <section class="mini-layout">
     <div class="frame_title clearfix">
         <div class="pull-left">
-            <span class="title">{lang('a_widget_edit')}<b>{$widget.name}</b></span>
+            <span class="title">{lang("Widget editing")}<b>{$widget.name}</b></span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
@@ -19,7 +19,7 @@
                         <thead>
                             <tr>
                                 <th colspan="6">
-                                    {lang('a_param')}
+                                    {lang("Properties")}
                                 </th>
                             </tr>
                         </thead>
@@ -29,16 +29,16 @@
                                     <div class="inside_padd">
                                         <div class="row-fluid">
                                             <div class="control-group m-t_10">
-                                                <label class="control-label" for="inputName">{lang('a_n')}:</label>
+                                                <label class="control-label" for="inputName">{lang("Name")}:</label>
                                                 <div class="controls">
                                                     <input type="text" name="name" id="inputName" value="{$widget.name}"/>
                                                 </div>
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label" for="inputDesc">{lang('a_desc')}:</label>
+                                                <label class="control-label" for="inputDesc">{lang("Description")}:</label>
                                                 <div class="controls">
                                                     <input type="text" name="desc" id="inputDesc" value="{$widget.description}">
-                                                    <p class="help-block">{lang('a_short_widget_desc')}</p>
+                                                    <p class="help-block">{lang("Short widget discription")}</p>
                                                 </div>
                                             </div>
                                             <div class="control-group">

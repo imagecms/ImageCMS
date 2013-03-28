@@ -1,0 +1,204 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ImageCms\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-03-28 12:08+0300\n"
+"PO-Revision-Date: 2013-03-28 12:08+0300\n"
+"Last-Translator: koloda <koloda90@gmail.com>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UKRAINE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: ../../../\n"
+
+#: ../../..//authapi.php:35
+msgid "mod_auth_email"
+msgstr ""
+
+#: ../../..//authapi.php:36
+msgid "mod_auth_psw"
+msgstr ""
+
+#: ../../..//authapi.php:37
+msgid "mod_auth_remember_me"
+msgstr ""
+
+#: ../../..//authapi.php:60
+#: ../../..//authapi.php:61
+msgid "mod_auth_usr_notfound"
+msgstr ""
+
+#: ../../..//authapi.php:96
+msgid "mod_auth_scfl_logout"
+msgstr ""
+
+#: ../../..//authapi.php:121
+#: ../../..//authapi.php:196
+#: ../../..//auth.php:103
+#: ../../..//auth.php:198
+#: ../../..//auth.php:296
+msgid "Email"
+msgstr ""
+
+#: ../../..//authapi.php:122
+#: ../../..//auth.php:199
+msgid "Name"
+msgstr ""
+
+#: ../../..//authapi.php:123
+#: ../../..//authapi.php:309
+#: ../../..//auth.php:104
+#: ../../..//auth.php:200
+#: ../../..//auth.php:382
+msgid "Password"
+msgstr ""
+
+#: ../../..//authapi.php:124
+#: ../../..//auth.php:201
+msgid "Repeat Password"
+msgstr ""
+
+#: ../../..//authapi.php:127
+#: ../../..//authapi.php:129
+#: ../../..//auth.php:110
+#: ../../..//auth.php:112
+#: ../../..//auth.php:207
+#: ../../..//auth.php:209
+msgid "Code protection"
+msgstr ""
+
+#: ../../..//authapi.php:137
+#: ../../..//auth.php:219
+msgid "You have successfully registered. Please check your email to activate your account."
+msgstr ""
+
+#: ../../..//authapi.php:139
+#: ../../..//auth.php:221
+msgid "You have successfully registered. "
+msgstr ""
+
+#: ../../..//authapi.php:139
+#: ../../..//auth.php:221
+#: ../../..//auth.php:276
+msgid "Login"
+msgstr ""
+
+#: ../../..//authapi.php:228
+#: ../../..//auth.php:329
+msgid "You have successfully zeroed my password. "
+msgstr ""
+
+#: ../../..//authapi.php:228
+#: ../../..//auth.php:329
+msgid "Login Here"
+msgstr ""
+
+#: ../../..//authapi.php:259
+msgid "mod_auth_old_psw"
+msgstr ""
+
+#: ../../..//authapi.php:260
+msgid "mod_auth_new_psw"
+msgstr ""
+
+#: ../../..//authapi.php:261
+msgid "mod_auth_cfrm_n_psw"
+msgstr ""
+
+#: ../../..//authapi.php:269
+#: ../../..//auth.php:359
+msgid "Your password was successfully changed."
+msgstr ""
+
+#: ../../..//authapi.php:278
+msgid "mod_auth_error_old_psw"
+msgstr ""
+
+#: ../../..//authapi.php:295
+#: ../../..//auth.php:56
+msgid "A user with this email is already registered."
+msgstr ""
+
+#: ../../..//authapi.php:338
+#: ../../..//auth.php:411
+msgid "Your account has been blocked."
+msgstr ""
+
+#: ../../..//auth.php:83
+msgid "Improper protection code"
+msgstr ""
+
+#: ../../..//auth.php:174
+msgid "You are already logged."
+msgstr ""
+
+#: ../../..//auth.php:191
+msgid "Registration"
+msgstr ""
+
+#: ../../..//auth.php:253
+msgid "Registration is prohibited."
+msgstr ""
+
+#: ../../..//auth.php:276
+msgid "Your account has been successfully activated. "
+msgstr ""
+
+#: ../../..//auth.php:281
+msgid "You have provided an incorrect activation code sent to the e-mail the new code."
+msgstr ""
+
+#: ../../..//auth.php:290
+msgid "Forgot password"
+msgstr ""
+
+#: ../../..//auth.php:300
+msgid "Please check your email for instructions on how to activate the new password."
+msgstr ""
+
+#: ../../..//auth.php:336
+msgid "Reset failed. Not a valid user name and / or password. Check your email and follow the instructions."
+msgstr ""
+
+#: ../../..//auth.php:353
+msgid "Old Password"
+msgstr ""
+
+#: ../../..//auth.php:354
+msgid "The new password"
+msgstr ""
+
+#: ../../..//auth.php:355
+msgid "Repeat new password"
+msgstr ""
+
+#: ../../..//auth.php:404
+msgid "You are not allowed to view the page."
+msgstr ""
+
+#, fuzzy
+#~ msgid "ac_val_name"
+#~ msgstr "Name"
+
+#~ msgid "a_positions_updated"
+#~ msgstr "Позиція змінена"
+
+#, fuzzy
+#~ msgid "ac_page_cont_updated"
+#~ msgstr "Позиція змінена"
+
+#, fuzzy
+#~ msgid "ac_val_position"
+#~ msgstr "Позиція"
+
+#~ msgid "Settings saved success"
+#~ msgstr "Settings saved success"
+
+#~ msgid "amt_name"
+#~ msgstr "User name"

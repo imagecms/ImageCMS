@@ -167,7 +167,7 @@
                                                 <input type="text" 
                                                        name="text" 
                                                        value="" 
-                                                       placeholder="{lang('s_se_thi_sit')}" 
+                                                       placeholder="{lang("Search this site")}" 
                                                        autocomplete="off" 
                                                        class="place_hold" 
                                                        id="inputString"/>
@@ -198,7 +198,7 @@
                                                    data-simple="yes">
                                                     <span class="icon-order-call"></span>
                                                     <span class="d_l_b">
-                                                        {lang('s_coll_order')}
+                                                        {lang("Request Call")}
                                                     </span>
                                                 </a>
                                             </li>
@@ -246,17 +246,17 @@
                         <ul class="contacts_info">
                             <li>
                                 <span class="icon-foot-phone"></span>
-                                <span class="f-w_b">{lang('s_tel')}:</span> 
+                                <span class="f-w_b">{lang("Phone.")}:</span> 
                                 +8 (090) <span class="d_n">&minus;</span> 500-50-50, 
                                 +8 (100)<span class="d_n">&minus;</span> 500-50-50
                             </li>
                             <li>
                                 <span class="icon-foot-email"></span>
-                                <span class="f-w_b">{lang('s_email')}:</span> Info@imagecms.net
+                                <span class="f-w_b">{lang("Email")}:</span> Info@imagecms.net
                             </li>
                             <li>
                                 <span class="icon-foot-skype"></span>
-                                <span class="f-w_b">{lang('s_skype')}:</span> ImageCMS
+                                <span class="f-w_b">{lang("Skype")}:</span> ImageCMS
                             </li>
                             <!--Load star rating-->
                             {$CI->load->module('star_rating')->show_star_rating()}
@@ -277,8 +277,8 @@
                                 <a href="#" class="odnoklasniki"></a>
                             </div>
                         </div>
-                        <a href="http://imagecms.net" target="_blank">{lang('s_footer_create')}</a><br/>
-                        {lang('s_footer_seo')}
+                        <a href="http://imagecms.net" target="_blank">{lang("Create Online Store")}</a><br/>
+                        {lang("SEO optimization")}
                     </div>
                     <!--End-->
 
@@ -293,7 +293,7 @@
                                                         var pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}');
                                                         var checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}";
                                                         var inCart = '{lang('already_in_basket')}';
-                                                        var toCart = '{lang('s_buy')}';
+                                                        var toCart = '{lang("Buy")}';
                                                         var pcs = 'шт.';
                                                         var kits = 'компл.';
         </script>

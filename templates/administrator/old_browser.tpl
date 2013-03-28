@@ -3,8 +3,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-        <title>{lang('a_controll_panel')} - Image CMS</title>
-        <meta name="description" content="{lang('a_controll_panel')} - Image CMS" />
+        <title>{lang("Operation panel")} - Image CMS</title>
+        <meta name="description" content="{lang("Operation panel")} - Image CMS" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap.css"/>
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/style.css"/>
@@ -18,7 +18,7 @@
         <?php
         $ci = get_instance();
         if($ci->config->item('is_installed') === TRUE AND file_exists(APPPATH.'modules/install/install.php'))
-        die('<span style="font-size:18px;"><br/><br/>'.lang('a_delete_install').'/application/modules/install/install.php</div>');        
+        die('<span style="font-size:18px;"><br/><br/>'.lang("Delete the file to continue").'/application/modules/install/install.php</div>');        
         ?>
         <div class="main_body">
             <div class="form_login t-a_c">

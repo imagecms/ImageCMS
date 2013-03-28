@@ -52,7 +52,7 @@
                                     data-name="{echo ShopCore::encode($product->getName())}"
                                     data-number="{echo $product->firstVariant->getnumber()}"
                                     data-maxcount="{echo $product->firstVariant->getstock()}">
-                                {lang('s_buy')}
+                                {lang("Buy")}
                             </button>
                         </div>
                         <div class="photo-block">

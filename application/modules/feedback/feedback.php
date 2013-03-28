@@ -38,7 +38,7 @@ class Feedback extends MY_Controller {
     function recaptcha_check() {
         $result = $this->dx_auth->is_recaptcha_match();
         if (!$result) {
-            $this->form_validation->set_message('recaptcha_check', lang('lang_captcha_error'));
+            $this->form_validation->set_message('recaptcha_check', lang("Improper protection code"));
         }
 
         return $result;
@@ -63,9 +63,9 @@ class Feedback extends MY_Controller {
 
             
             if ($this->dx_auth->use_recaptcha)
-                $this->form_validation->set_rules('recaptcha_response_field', lang('lang_captcha') . 'RECAPTCHA', 'trim|xss_clean|required|callback_recaptcha_check');
+                $this->form_validation->set_rules('recaptcha_response_field', lang("Code protection") . 'RECAPTCHA', 'trim|xss_clean|required|callback_recaptcha_check');
             else
-                $this->form_validation->set_rules('captcha', lang('lang_captcha') . 'RECAPTCHA', 'trim|required|xss_clean|callback_captcha_check');
+                $this->form_validation->set_rules('captcha', lang("Code protection") . 'RECAPTCHA', 'trim|required|xss_clean|callback_captcha_check');
 
             $this->form_validation->set_rules('message', 'Сообщение', 'trim|required|max_length[' . $this->message_max_len . ']|xss_clean');
 

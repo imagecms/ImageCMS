@@ -21,7 +21,7 @@
         <div class="postinfo">
            <a href="{site_url($page.full_url)}#comments">{$Comments[$page.id]}</a> 
            &nbsp;&nbsp;
-           <a href="{site_url($page.full_url)}">{lang('full_article')}</a>
+           <a href="{site_url($page.full_url)}">{lang("Read more → ")}</a>
         </div>
 
         <div style="border-bottom:1px solid #ECECEC;">

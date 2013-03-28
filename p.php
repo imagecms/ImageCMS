@@ -23,7 +23,7 @@ include('application/language/english/upload_lang.php');
 include('application/language/english/validation_lang.php');
 
 
-var_dump($lang);
+//var_dump($lang);
 
 $itr = new RecursiveIteratorIterator( new RecursiveDirectoryIterator('./'), RecursiveIteratorIterator::CHILD_FIRST );
 //$f = fopen('_out.php', 'w');

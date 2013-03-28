@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="span9 item_tovar">
-            <h1>{lang('s_private_office')}</h1>
+            <h1>{lang("Private office")}</h1>
             <!-- Start errors block -->
             <div  class="msg_form_edit">
                 {if $errors}
@@ -16,19 +16,19 @@
                 <li>
                     <button type="button" data-href="#my_data">
                         <span class="icon-mydata"></span>
-                        <span class="text-el">{lang('s_profile_me')}</span>
+                        <span class="text-el">{lang("My Account")}</span>
                     </button>
                 </li>
                 <li>
                     <button type="button" data-href="#change_pass">
                         <span class="icon-chgpass"></span>
-                        <span class="text-el">{lang('s_profile_me_change_password')}</span>
+                        <span class="text-el">{lang("Change Password")}</span>
                     </button>
                 </li>
                 <li>
                     <button type="button" data-href="#history_order">
                         <span class="icon-historyorder"></span>
-                        <span class="text-el">{lang('s_order_history')}</span>
+                        <span class="text-el">{lang("Order History")}</span>
                     </button>
                 </li>
             </ul>
@@ -40,33 +40,33 @@
                         <form method="post" id="form_change_info" onsubmit="ImageCMSApi.formAction('/shop/profileapi/changeInfo', 'form_change_info');
                                 return false;">
                             <label>
-                                <span class="title">{lang('s_c_uoy_name_u')}:</span>
+                                <span class="title">{lang("You name")}:</span>
                                 <span class="row">
                                     <span class="frame_form_field">
                                         <input type="text" value="{echo encode($profile->getName())}" name="name"/>
                                         <label id="for_name" class="for_validations"></label>
-                                        <span class="help_inline">{lang('s_email_4_sumbls')}</span>
+                                        <span class="help_inline">{lang("At least 4 characters long")}</span>
                                     </span>
                                 </span>
                             </label>
                             <label>
-                                <span class="title">{lang('s_c_uoy_user_el')}:</span>
+                                <span class="title">{lang("E-mail Address")}:</span>
                                 <span class="frame_form_field">
                                     <input type="text" disabled="disabled" value="{echo encode($profile->getUserEmail())}" name="email"/>
                                     <input type="hidden" value="{echo encode($profile->getUserEmail())}" name="email"/>
-                                    <span class="help_inline">{lang('s_email_is_login')}</span>
+                                    <span class="help_inline">{lang("E-mail is login")}</span>
                                     <label id="for_email" class="for_validations"></label>
                                 </span>
                             </label>
                             <label>
-                                <span class="title">{lang('s_phone')}:</span>
+                                <span class="title">{lang("Phone")}:</span>
                                 <span class="frame_form_field">
                                     <input type="text" value="{echo encode($profile->getPhone())}" name="phone"/>
                                     <label id="for_phone" class="for_validations"></label>
                                 </span>
                             </label>
                             <label>
-                                <span class="title">{lang('s_profile_me_address')}:</span>
+                                <span class="title">{lang("Address for service")}:</span>
                                 <span class="frame_form_field">
                                     <input type="text" value="{echo encode($profile->getAddress())}" name="address"/>
                                     <label id="for_address" class="for_validations"></label>
@@ -75,7 +75,7 @@
                             <div class="frameLabel">
                                 <span class="title">&nbsp;</span>
                                 <span class="frame_form_field">
-                                    <input type="submit" value="{lang('s_edit')}" class="btn"/>
+                                    <input type="submit" value="{lang("Edit")}" class="btn"/>
                                 </span>
                             </div>
                             {form_csrf()}
@@ -88,21 +88,21 @@
                     <div class="standart_form horizontal_form">
                         <form method="post" id="form_change_pass">
                             <label>
-                                <span class="title">{lang('lang_old_password')}:</span>
+                                <span class="title">{lang("Old Password")}:</span>
                                 <span class="frame_form_field">
                                     <input type="password" name="old_password"/>
                                     <label id="for_old_password" class="for_validations"></label>
                                 </span>
                             </label>
                             <label>
-                                <span class="title">{lang('lang_new_password')}:</span>
+                                <span class="title">{lang("The new password")}:</span>
                                 <span class="frame_form_field">
                                     <input type="password" name="new_password"/>
                                     <label id="for_new_password" class="for_validations"></label>
                                 </span>
                             </label>
                             <label>
-                                <span class="title">{lang('s_newpassword')}:</span>
+                                <span class="title">{lang("Confirm new password")}:</span>
                                 <span class="frame_form_field">
                                     <input type="password" name="confirm_new_password"/>
                                     <label id="for_confirm_new_password" class="for_validations"></label>
@@ -111,7 +111,7 @@
                             <div class="frameLabel">
                                 <span class="title">&nbsp;</span>
                                 <span class="frame_form_field">
-                                    <input type="submit" value="{lang('s_save')}" class="btn" onclick="ImageCMSApi.formAction('/auth/authapi/change_password', 'form_change_pass');
+                                    <input type="submit" value="{lang("Save")}" class="btn" onclick="ImageCMSApi.formAction('/auth/authapi/change_password', 'form_change_pass');
                                 return false;"/>
                                 </span>
                             </div>
@@ -126,11 +126,11 @@
                         <thead>
                             <tr>
                                 <th>№</th>
-                                <th>{lang('s_order_date')}</th>
-                                <th>{lang('s_refresh')}</th>
-                                <th>{lang('s_summ')}</th>
-                                <th>{lang('s_status')}</th>
-                                <th>{lang('s_pay')}</th>
+                                <th>{lang("Order date")}</th>
+                                <th>{lang("Updated")}</th>
+                                <th>{lang("Total")}</th>
+                                <th>{lang("Status")}</th>
+                                <th>{lang("Payment")}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -162,9 +162,9 @@
                                     <th></th>
                                     <th>№</th>
                                     <th></th>
-                                    <th>{lang('s_naz')}</th>
-                                    <th>{lang('s_to_falitem_difference')}</th>
-                                    <th>{lang('s_to_falitem_difference_perc')}</th>
+                                    <th>{lang("Name")}</th>
+                                    <th>{lang("Difference")}</th>
+                                    <th>{lang("Differencein percents")}</th>
                                 </tr>
                             </thead>
                             <tbody>

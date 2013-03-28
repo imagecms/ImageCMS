@@ -105,7 +105,7 @@ class Pages extends BaseAdminController {
     private function on_page_delete($page_id) {
         ($hook = get_hook('admin_on_page_delete')) ? eval($hook) : NULL;
 
-        $this->lib_admin->log(lang('ac_delete_page') . $page_id);
+        $this->lib_admin->log(lang("Deleted ID page") . $page_id);
 
         // Delete content_permissions
         $this->db->where('page_id', $page_id);
@@ -133,17 +133,17 @@ class Pages extends BaseAdminController {
 
         //cp_check_perm('page_create');
 
-        $this->form_validation->set_rules('page_title', lang('ac_val_t'), 'trim|required|min_length[1]|max_length[500]');
-        $this->form_validation->set_rules('page_url', lang('ac_val_url'), 'alpha_dash');
-        $this->form_validation->set_rules('prev_text', lang('ac_val_prev_cont'), 'trim|required');
-        $this->form_validation->set_rules('page_description', lang('ac_val_desc'), 'trim');
-        $this->form_validation->set_rules('full_tpl', lang('ac_val_page_tpl'), 'trim|max_length[150]|min_length[2]');
-        $this->form_validation->set_rules('create_date', lang('ac_val_cr_date'), 'required|valid_date');
-        $this->form_validation->set_rules('create_time', lang('ac_val_time_cr'), 'required|valid_time');
-        $this->form_validation->set_rules('publish_date', lang('ac_val_pub_date'), 'required|valid_date');
-        $this->form_validation->set_rules('publish_time', lang('ac_val_pub_time'), 'required|valid_time');
+        $this->form_validation->set_rules('page_title', lang("Title"), 'trim|required|min_length[1]|max_length[500]');
+        $this->form_validation->set_rules('page_url', lang("URL"), 'alpha_dash');
+        $this->form_validation->set_rules('prev_text', lang("Preliminary contents"), 'trim|required');
+        $this->form_validation->set_rules('page_description', lang("Description "), 'trim');
+        $this->form_validation->set_rules('full_tpl', lang("Page template"), 'trim|max_length[150]|min_length[2]');
+        $this->form_validation->set_rules('create_date', lang("Date of creation or creation date"), 'required|valid_date');
+        $this->form_validation->set_rules('create_time', lang("Time of creation or creation time"), 'required|valid_time');
+        $this->form_validation->set_rules('publish_date', lang("Publication date or date of publication"), 'required|valid_date');
+        $this->form_validation->set_rules('publish_time', lang("Publication time or time of publication"), 'required|valid_time');
 
-        $this->form_validation->set_rules('main_tpl', lang('ac_main_tpl'), 'trim|max_length[50]|min_length[2]');
+        $this->form_validation->set_rules('main_tpl', lang("Main page template"), 'trim|max_length[50]|min_length[2]');
 
         $groupId = (int) $this->input->post('cfcm_use_group');
 
@@ -170,7 +170,7 @@ class Pages extends BaseAdminController {
             $query = $this->db->get('components');
 
             if ($query->num_rows() > 0) {
-                showMessage(lang('ac_modul_exists'), false, 'r');
+                showMessage(lang("Reserved the same name module"), false, 'r');
                 exit;
             }
             // end module check
@@ -179,7 +179,7 @@ class Pages extends BaseAdminController {
             $query = $this->db->get('category', 1);
 
             if ($query->num_rows() > 0) {
-                showMessage(lang('ac_category_exists'), false, 'r');
+                showMessage(lang("Reserved of the same name category"), false, 'r');
                 exit;
             }
             // end check
@@ -191,7 +191,7 @@ class Pages extends BaseAdminController {
             $query = $this->db->get('content', 1);
 
             if ($query->num_rows() > 0) {
-                showMessage(lang('ac_page_is_al_cr'), false, 'r');
+                showMessage(lang("Page with the same URL has been created yet. Specify or select another URL"), false, 'r');
                 exit;
             }
             // end check
@@ -255,7 +255,7 @@ class Pages extends BaseAdminController {
             $this->on_page_add($data);
 
             $this->lib_admin->log(
-                    lang('ac_created_page') .
+                    lang("Created a page") .
                     '<a href="' . site_url('admin/pages/edit/' . $page_id) . '">' . $data['title'] . '</a>'
             );
 
@@ -265,7 +265,7 @@ class Pages extends BaseAdminController {
             if ($action == 'edit')
                 $path = '/admin/pages/edit/' . $page_id;
 
-            showMessage(lang('ac_page_created'));
+            showMessage(lang("Page has been created"));
             pjax($path);
         }
     }
@@ -315,7 +315,7 @@ class Pages extends BaseAdminController {
         //cp_check_perm('page_edit');
 
         if ($this->cms_admin->get_page($page_id) == FALSE) {
-            showMessage(lang('ac_page') . $page_id . lang('ac_not_found'), false, 'r');
+            showMessage(lang("Page") . $page_id . lang("Not found"), false, 'r');
             exit;
         }
 
@@ -439,7 +439,7 @@ class Pages extends BaseAdminController {
                 $new_p_id = $this->cms_admin->add_page($new_data);
 
                 if ($new_p_id > 0) {
-                    showMessage(lang('ac_page_in_language') . '<b>' . $cur_lang['lang_name'] . '</b>' . lang('ac_creat') . '<b>' . $new_p_id . '</b>');
+                    showMessage(lang("Language of the page") . '<b>' . $cur_lang['lang_name'] . '</b>' . lang("Created. ID") . '<b>' . $new_p_id . '</b>');
                     if ($this->pjaxRequest)
                         pjax('/admin/pages/edit/' . $page_id . '/' . $lang);
                     else
@@ -461,17 +461,17 @@ class Pages extends BaseAdminController {
 
         //cp_check_perm('page_edit');
 
-        $this->form_validation->set_rules('page_title', lang('ac_val_t'), 'trim|required|min_length[1]|max_length[500]');
-        $this->form_validation->set_rules('page_url', lang('ac_val_url'), 'alpha_dash');
-        $this->form_validation->set_rules('page_keywords', lang('ac_val_keywords'), 'trim');
-        $this->form_validation->set_rules('prev_text', lang('ac_val_prev_cont'), 'trim|required');
-        $this->form_validation->set_rules('page_description', lang('ac_val_desc'), 'trim');
-        $this->form_validation->set_rules('full_tpl', lang('ac_val_page_tpl'), 'trim|max_length[50]|min_length[2]');
-        $this->form_validation->set_rules('main_tpl', lang('ac_val_main_page_tpl'), 'trim|max_length[50]|min_length[2]');
-        $this->form_validation->set_rules('create_date', lang('ac_val_cr_date'), 'required|valid_date');
-        $this->form_validation->set_rules('create_time', lang('ac_val_time_cr'), 'required|valid_time');
-        $this->form_validation->set_rules('publish_date', lang('ac_val_pub_date'), 'required|valid_date');
-        $this->form_validation->set_rules('publish_time', lang('ac_val_pub_time'), 'required|valid_time');
+        $this->form_validation->set_rules('page_title', lang("Title"), 'trim|required|min_length[1]|max_length[500]');
+        $this->form_validation->set_rules('page_url', lang("URL"), 'alpha_dash');
+        $this->form_validation->set_rules('page_keywords', lang("Keywords"), 'trim');
+        $this->form_validation->set_rules('prev_text', lang("Preliminary contents"), 'trim|required');
+        $this->form_validation->set_rules('page_description', lang("Description "), 'trim');
+        $this->form_validation->set_rules('full_tpl', lang("Page template"), 'trim|max_length[50]|min_length[2]');
+        $this->form_validation->set_rules('main_tpl', lang("Main page template "), 'trim|max_length[50]|min_length[2]');
+        $this->form_validation->set_rules('create_date', lang("Date of creation or creation date"), 'required|valid_date');
+        $this->form_validation->set_rules('create_time', lang("Time of creation or creation time"), 'required|valid_time');
+        $this->form_validation->set_rules('publish_date', lang("Publication date or date of publication"), 'required|valid_date');
+        $this->form_validation->set_rules('publish_time', lang("Publication time or time of publication"), 'required|valid_time');
 
         ($hook = get_hook('admin_page_update_set_rules')) ? eval($hook) : NULL;
 
@@ -500,7 +500,7 @@ class Pages extends BaseAdminController {
             $query = $this->db->get('components');
 
             if ($query->num_rows() > 0) {
-                showMessage(lang('ac_modul_exists'), false, 'r');
+                showMessage(lang("Reserved the same name module"), false, 'r');
                 exit;
             }
             // end module check
@@ -509,7 +509,7 @@ class Pages extends BaseAdminController {
             $query = $this->db->get('category', 1);
 
             if ($query->num_rows() > 0) {
-                showMessage(lang('ac_category_exists'), false, 'r');
+                showMessage(lang("Reserved of the same name category"), false, 'r');
                 exit;
             }
             // end check
@@ -523,7 +523,7 @@ class Pages extends BaseAdminController {
             $query = $this->db->get('content', 1);
 
             if ($query->num_rows() > 0) {
-                showMessage(lang('ac_page_with_url') . '<b>' . $url . '</b>' . lang('ac_in_cat_id') . $this->input->post('category') . lang('ac_allready_exist'), false, 'r');
+                showMessage(lang("Page with URL") . '<b>' . $url . '</b>' . lang("in ID category") . $this->input->post('category') . lang(" already exists. Specify or select another URL"), false, 'r');
                 exit;
             }
             // end check
@@ -581,7 +581,7 @@ class Pages extends BaseAdminController {
 
             if ($this->cms_admin->update_page($page_id, $data) >= 1) {
                 $this->lib_admin->log(
-                        lang('ac_changed_page') .
+                        lang("Changed the page ") .
                         '<a href="' . site_url('admin/pages/edit/' . $page_id) . '">' . $data['title'] . '</a>'
                 );
 
@@ -591,7 +591,7 @@ class Pages extends BaseAdminController {
                 if ($action == 'edit')
                     $path = '/admin/pages/edit/' . $page_id;
 
-                showMessage(lang('ac_page_cont_updated'));
+                showMessage(lang("Page contents have been updated"));
                 pjax($path);
             } else {
                 showMessage('', false, 'r');
@@ -610,7 +610,7 @@ class Pages extends BaseAdminController {
         $settings = $this->cms_admin->get_settings();
 
         if ($settings['main_page_id'] == $page_id AND $settings['main_type'] == 'page') {
-            jsCode("alertBox.alert(" . lang('ac_error_deleting_main_cat') . ");");
+            jsCode("alertBox.alert(" . lang("Error: Generic page can not be deleted.") . ");");
             return FALSE;
         }
 
@@ -628,7 +628,7 @@ class Pages extends BaseAdminController {
             $this->on_page_delete($page['id']);
 
             if ($show_messages == TRUE) {
-                showMessage(lang('ac_page_deleted'));
+                showMessage(lang("Page has been deleted."));
                 updateDiv('page', site_url('admin/pages/GetPagesByCategory/' . $page['category']));
             }
             return TRUE;
@@ -645,7 +645,7 @@ class Pages extends BaseAdminController {
         $this->on_page_delete($page_id);
 
         if ($show_messages == TRUE) {
-            showMessage(lang('ac_page_deleted'));
+            showMessage(lang("Page has been deleted."));
             updateDiv('page', site_url('admin/pages/edit/' . $root_page['id'] . '/' . $root_page['lang']));
         }
     }
@@ -830,7 +830,7 @@ class Pages extends BaseAdminController {
         $text = $this->input->post('keys');
 
         if ($text == '') {
-            echo lang('ac_empty_string');
+            echo lang("Zero-length string");
             exit;
         }
 
@@ -880,7 +880,7 @@ class Pages extends BaseAdminController {
                 $this->cms_admin->update_page($page['id'], $data);
                 /*
                   jsCode(" $('p_status_" . $page_id . "').src = theme + '/images/pending.png'; ");
-                  jsCode(" $('p_status_" . $page_id . "').title = '" . lang('ac_wait_for_appr') . "'; ");
+                  jsCode(" $('p_status_" . $page_id . "').title = '" . lang("Pending approval") . "'; ");
                  */
                 break;
 
@@ -890,7 +890,7 @@ class Pages extends BaseAdminController {
                 $this->cms_admin->update_page($page['id'], $data);
                 /*
                   jsCode(" $('p_status_" . $page_id . "').src = theme + '/images/draft.png'; ");
-                  jsCode(" $('p_status_" . $page_id . "').title = '" . lang('ac_not_publ') . "'; ");
+                  jsCode(" $('p_status_" . $page_id . "').title = '" . lang("Has not been published") . "'; ");
                  */
                 break;
 
@@ -899,7 +899,7 @@ class Pages extends BaseAdminController {
                 $this->cms_admin->update_page($page['id'], $data);
                 /*
                   jsCode(" $('p_status_" . $page_id . "').src = theme + '/images/publish.png'; ");
-                  jsCode(" $('p_status_" . $page_id . "').title = '" . lang('ac_published') . "'; ");
+                  jsCode(" $('p_status_" . $page_id . "').title = '" . lang("Has been published") . "'; ");
                  */
                 break;
 
@@ -909,7 +909,7 @@ class Pages extends BaseAdminController {
                 $this->cms_admin->update_page($page['id'], $data);
                 /*
                   jsCode(" $('p_status_" . $page_id . "').src = theme + '/images/publish.png'; ");
-                  jsCode(" $('p_status_" . $page_id . "').title = '" . lang('ac_published') . "'; ");
+                  jsCode(" $('p_status_" . $page_id . "').title = '" . lang("Has been published") . "'; ");
                  */
                 break;
         }
