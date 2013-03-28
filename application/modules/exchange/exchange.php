@@ -147,7 +147,7 @@ class Exchange {
     private function check_perm() {
         $string = read_file($this->tempDir . 'session.txt');
         if (md5(session_id()) == $string) {
-        return true;
+            return true;
         } else {
             die("Ошибка безопасности!!!");
         }
@@ -358,6 +358,8 @@ class Exchange {
                 $data = array();
                 $data['external_id'] = $property->Ид . "";
                 $data['csv_name'] = translit_url($property->Наименование);
+                $data['csv_name'] = str_replace(array("-", "_", "'"), '', $data['csv_name']);
+
                 if ($property->Обязательное . "" == 'true')
                     $data['main_property'] = true;
                 elseif ($property->Обязательное . "" == 'false')
@@ -370,9 +372,9 @@ class Exchange {
                     $data['active'] = true;
                 elseif ($property->ИспользованиеСвойства . "" == 'false')
                     $data['active'] = false;
-                if (count($property->ИспользованиеСвойства) == 0) 
+                if (count($property->ИспользованиеСвойства) == 0)
                     $data['active'] = true;
-                
+
                 $data['show_in_compare'] = false;
                 $data['show_on_site'] = true;
                 $data['show_in_filter'] = false;
@@ -397,6 +399,8 @@ class Exchange {
                 //preparing data for update
                 $data = array();
                 $data['csv_name'] = translit_url($property->Наименование);
+                $data['csv_name'] = str_replace(array("-", "_", "'"), '', $data['csv_name']);
+
                 if ($property->Обязательное . "" == 'true')
                     $data['main_property'] = true;
                 elseif ($property->Обязательное . "" == 'false')
@@ -409,9 +413,8 @@ class Exchange {
                     $data['active'] = true;
                 elseif ($property->ИспользованиеСвойства . "" == 'false')
                     $data['active'] = false;
-                if (count($property->ИспользованиеСвойства) == 0) 
+                if (count($property->ИспользованиеСвойства) == 0)
                     $data['active'] = true;
-                
 
                 //updating property
                 $this->ci->db->where(array('id' => $searchedProperty['id'], 'external_id' => $searchedProperty['external_id']))->update($this->properties_table, $data);
@@ -437,8 +440,6 @@ class Exchange {
                     $properties_data[$item['id']] = unserialize($item['data']);
             }
         }
-//        var_dump($properties_data);
-//        exit();
         unset($temp_properties);
 
         foreach ($this->xml->Каталог->Товары->Товар as $product) {
@@ -490,7 +491,9 @@ class Exchange {
                 //setting images if $product->Картинка not empty
                 if ($product->Картинка . "" != '' OR $product->Картинка != null) {
                     $image = explode('/', $product->Картинка);
-                    rename('./application/modules/shop/cmlTemp/images/' . $image[count($image) - 1], './application/modules/shop/cmlTemp/images/' . $product->Ид . '.jpg');
+                    $ext = explode('.', $image[count($image) - 1]);
+                    @rename('./application/modules/shop/cmlTemp/images/' . $image[count($image) - 1], 
+                            './application/modules/shop/cmlTemp/images/' . $product->Ид . '.' . $ext[count($ext) - 1]);
 
                     $data['mainImage'] = $insert_id . '_main.jpg';
                     $data['smallImage'] = $insert_id . '_small.jpg';
@@ -608,7 +611,9 @@ class Exchange {
                 //setting images if $product->Картинка not empty
                 if ($product->Картинка . "" != '' OR $product->Картинка != null) {
                     $image = explode('/', $product->Картинка);
-                    rename('./application/modules/shop/cmlTemp/images/' . $image[count($image) - 1], './application/modules/shop/cmlTemp/images/' . $product->Ид . '.jpg');
+                    $ext = explode('.', $image[count($image) - 1]);
+                    @rename('./application/modules/shop/cmlTemp/images/' . $image[count($image) - 1], 
+                            './application/modules/shop/cmlTemp/images/' . $product->Ид . '.' . $ext[count($ext) - 1]);
                     $data = array();
                     $data['mainImage'] = $searchedProduct['id'] . '_main.jpg';
                     $data['smallImage'] = $searchedProduct['id'] . '_small.jpg';
